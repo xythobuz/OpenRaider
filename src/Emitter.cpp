@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: Particle emitter for freyja
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2001.06.30:
  * Mongoose - Created
@@ -22,8 +22,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif
 #include "Emitter.h"
 
 #ifdef DEBUG_MEMEORY
@@ -42,15 +47,15 @@ int compareParticleDist(const void *voidA, const void *voidB)
 		return -1; // error really
 
 	a->Pos(&x, &y, &z);
-	distA = (Emitter::mFrustum[5][0] * x + 
-				Emitter::mFrustum[5][1] * y + 
-				Emitter::mFrustum[5][2] * z + 
+	distA = (Emitter::mFrustum[5][0] * x +
+				Emitter::mFrustum[5][1] * y +
+				Emitter::mFrustum[5][2] * z +
 				Emitter::mFrustum[5][3]);
 
 	b->Pos(&x, &y, &z);
-	distB = (Emitter::mFrustum[5][0] * x + 
-				Emitter::mFrustum[5][1] * y + 
-				Emitter::mFrustum[5][2] * z + 
+	distB = (Emitter::mFrustum[5][0] * x +
+				Emitter::mFrustum[5][1] * y +
+				Emitter::mFrustum[5][2] * z +
 				Emitter::mFrustum[5][3]);
 
 	// reverse less/greater than
@@ -193,13 +198,13 @@ void Emitter::SetTextureId(int id)
 {
 	unsigned int i;
 
-	
+
 	for (i = 0; i < _count; i++)
-		_particle[i].TextureId(id);		
+		_particle[i].TextureId(id);
 }
 
 
-void Emitter::TextureId(unsigned int particle_start, 
+void Emitter::TextureId(unsigned int particle_start,
 								unsigned int particle_end, int id)
 {
 	unsigned int i;
@@ -210,12 +215,12 @@ void Emitter::TextureId(unsigned int particle_start,
 		 (particle_start < particle_end))
 	{
 		for (i = particle_start; i < particle_end; i++)
-			_particle[i].TextureId(id);		
+			_particle[i].TextureId(id);
 	}
 }
 
 
-void Emitter::Color(unsigned int particle_start, unsigned int particle_end, 
+void Emitter::Color(unsigned int particle_start, unsigned int particle_end,
 						  float r, float g, float b)
 {
 	unsigned int i;
@@ -226,12 +231,12 @@ void Emitter::Color(unsigned int particle_start, unsigned int particle_end,
 		 (particle_start < particle_end))
 	{
 		for (i = particle_start; i < particle_end; i++)
-			_particle[i].Color(r, g, b);		
+			_particle[i].Color(r, g, b);
 	}
 }
 
 
-void Emitter::Speed(unsigned int particle_start, unsigned int particle_end, 
+void Emitter::Speed(unsigned int particle_start, unsigned int particle_end,
 						  float x, float y, float z)
 {
 	unsigned int i;
@@ -242,12 +247,12 @@ void Emitter::Speed(unsigned int particle_start, unsigned int particle_end,
 		 (particle_start < particle_end))
 	{
 		for (i = particle_start; i < particle_end; i++)
-			_particle[i].Speed(x, y, z);		
+			_particle[i].Speed(x, y, z);
 	}
 }
 
 
-void Emitter::Force(unsigned int particle_start, unsigned int particle_end, 
+void Emitter::Force(unsigned int particle_start, unsigned int particle_end,
 						  float x, float y, float z)
 {
 	unsigned int i;
@@ -258,7 +263,7 @@ void Emitter::Force(unsigned int particle_start, unsigned int particle_end,
 		 (particle_start < particle_end))
 	{
 		for (i = particle_start; i < particle_end; i++)
-			_particle[i].Force(x, y, z);		
+			_particle[i].Force(x, y, z);
 	}
 }
 
@@ -299,9 +304,9 @@ void Emitter::Draw()
 			{
 				for (p = 0; p < 6; ++p)
 				{
-					if (mFrustum[p][0] * x + 
-						 mFrustum[p][1] * y + 
-						 mFrustum[p][2] * z + 
+					if (mFrustum[p][0] * x +
+						 mFrustum[p][1] * y +
+						 mFrustum[p][2] * z +
 						 mFrustum[p][3] < 0)
 					{
 						_particle[i].setActive(false);

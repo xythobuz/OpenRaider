@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Mtk
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: Open GL rendering font/string class
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.01.01:
  * Mongoose - Created
@@ -23,7 +23,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/gl.h>
+#endif
 
 #include "Texture.h"
 
@@ -62,7 +66,7 @@ GLString::~GLString()
 	{
 		delete [] _font_texture;
 	}
-	
+
 	if (_font_base)
 	{
 		delete [] _font_base;
@@ -84,7 +88,7 @@ GLString::~GLString()
 }
 
 
-void GLString::Init(unsigned int max_strings, unsigned int max_fonts, 
+void GLString::Init(unsigned int max_strings, unsigned int max_fonts,
 						  int *tex_map)
 {
 	unsigned int i;
@@ -105,7 +109,7 @@ void GLString::Init(unsigned int max_strings, unsigned int max_fonts,
 	for (i = 0; i < max_fonts; ++i)
 	{
 		_font_texture[i] = tex_map[i];
-		
+
 		if (BuildFontList(i) < 0)
 		{
 			printf("GLString::Init> BuildFontList failed for %i\n", i);
@@ -118,7 +122,7 @@ void GLString::SetChar(unsigned int string, unsigned int pos, char c)
 {
 	gl_string_t *str = GetString(string);
 
-	
+
 	if (str && pos < str->len)
 	{
 		str->text[pos] = c;
@@ -130,7 +134,7 @@ unsigned int GLString::GetStringLen(unsigned int string)
 {
 	gl_string_t *str = GetString(string);
 
-	
+
 	if (str)
 	{
 		return str->len;
@@ -144,7 +148,7 @@ char *GLString::GetBuffer(unsigned int string)
 {
 	gl_string_t *str = GetString(string);
 
-	
+
 	if (str)
 	{
 		return str->text;
@@ -189,7 +193,7 @@ void GLString::SetString(unsigned int string, char *s, ...)
 		}
 
 		va_start(args, s);
-		vsnprintf(str->text, str->len-2, s, args);	
+		vsnprintf(str->text, str->len-2, s, args);
 		str->text[str->len-1] = 0;
 		va_end(args);
 	}
@@ -207,7 +211,7 @@ int GLString::BuildFontList(int index)
 	int i;
 	float cx;
 	float cy;
-	
+
 
 	if (_num_font >= _num_font_max || index < 0 || index >= (int)_num_font_max)
 	{
@@ -216,7 +220,7 @@ int GLString::BuildFontList(int index)
 
 	_font_base[index] = glGenLists(256);
 	glBindTexture(GL_TEXTURE_2D, _font_texture[index]);
-	
+
 	// Mongoose 2002.01.01, Generate 256 lists per font
 	//   one per symbol
 	for (i = 0; i < 256; i++)
@@ -225,7 +229,7 @@ int GLString::BuildFontList(int index)
 		cx = 1 - (float)(i % 16) / 16.0f;
 		/* Y Position Of Current Character */
 		cy = 1 - (float)(i / 16) / 16.0f;
-		
+
 		/* Start Building A List */
 		glNewList(_font_base[index] + (255 - i), GL_COMPILE);
 		/* Use A Quad For Each Character */
@@ -234,23 +238,23 @@ int GLString::BuildFontList(int index)
 		glTexCoord2f(cx - 0.0625, cy);
 		/* Vertex Coord (Bottom Left) */
 		glVertex2i(0, 0);
-		
+
 		/* Texture Coord (Bottom Right) */
 		glTexCoord2f(cx, cy);
 		/* Vertex Coord (Bottom Right) */
 		glVertex2i(16, 0);
-		
+
 		/* Texture Coord (Top Right) */
 		glTexCoord2f(cx, cy - 0.0625f);
 		 /* Vertex Coord (Top Right) */
 		glVertex2i(16, 16);
-		
+
 		/* Texture Coord (Top Left) */
 		glTexCoord2f(cx - 0.0625f, cy - 0.0625f);
 		/* Vertex Coord (Top Left) */
 		glVertex2i(0, 16);
 		glEnd();
-		
+
 		/* Move To The Left Of The Character */
 		glTranslated(10, 0, 0);
 		glEndList();
@@ -266,7 +270,7 @@ int GLString::glPrintf(int x, int y, int font, char *string, ...)
 	int n;
 	va_list args;
 
-	
+
 	// Mongoose 2002.01.01, Only allow valid strings
 	//   we must assume it's NULL terminated also if it passes...
 	if (!string || !string[0])
@@ -336,7 +340,7 @@ int GLString::glPrintf(int x, int y, int font, char *string, ...)
 	// Mongoose 2002.01.04, Remeber string size, for future rebuffering use
 	_string[_num_string].len = sz;
 
-	// Mongoose 2002.01.01, Incement string counter, since we just 
+	// Mongoose 2002.01.01, Incement string counter, since we just
 	//   allocated a string
 	++_num_string;
 
@@ -383,7 +387,7 @@ void GLString::Render(int width, int height)
 	// Mongoose 2001.12.31, Restore scene projection
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
-	
+
 	// Mongoose 2001.12.31, Restore scene matrix
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
@@ -394,8 +398,8 @@ void GLString::Render(int width, int height)
 	{
 		if (_string[i].active)
 		{
-			glPrint2d(_string[i].x, _string[i].y, 
-						 _string[i].scale, 
+			glPrint2d(_string[i].x, _string[i].y,
+						 _string[i].scale,
 						 _string[i].text);
 		}
 	}
@@ -444,7 +448,7 @@ void event_resize(int width, int height)
 
 	glMatrixMode(GL_PROJECTION);
 	aspect = (GLfloat)width/(GLfloat)height;
-	
+
 	// Mongoose 2002.01.01, Setup view volume, with a nice FOV
 	gluPerspective(40.0, aspect, 1, 2000);
 
@@ -508,7 +512,7 @@ void shutdown_gl()
 }
 
 
-void init_gl(unsigned int width, unsigned int height, 
+void init_gl(unsigned int width, unsigned int height,
 				 int argc, char *argv[])
 {
 	int i, j;
@@ -523,14 +527,14 @@ void init_gl(unsigned int width, unsigned int height,
 	glDepthFunc(GL_LESS);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	
+
 	event_resize(width, height);
 
 	// Mongoose 2002.01.01, Texture setup
 	gTexture.reset();
 	gTexture.setFlag(Texture::fUseMipmaps);
 	gTexture.setMaxTextureCount(32);
-	
+
 	if (argc > 1)
 	{
 		for (i = 1, j = 0; i < argc; ++i, ++j)
@@ -552,14 +556,14 @@ void init_gl(unsigned int width, unsigned int height,
 	printf("%i %i %i %i\n", id[0], id[1], id[2], id[3]);
 
 	TEXT->Init(4, 4, id);
-	i = TEXT->glPrintf((width/2)-12*5, height/2, 0, 
+	i = TEXT->glPrintf((width/2)-12*5, height/2, 0,
 							 "[font %i] GLString Test", id[0]);
 	if (i)
 	{
 		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
 	}
 
-	i = TEXT->glPrintf((width/2)-10*7, height/2+32, 1, 
+	i = TEXT->glPrintf((width/2)-10*7, height/2+32, 1,
 							 "[font %i] GLString Test", id[1]);
 
 	if (i)
@@ -570,14 +574,14 @@ void init_gl(unsigned int width, unsigned int height,
 	s = 1.1;
 	TEXT->Scale(s);
 
-	i = TEXT->glPrintf((width/2)-10*7, height/2+64, 1, 
+	i = TEXT->glPrintf((width/2)-10*7, height/2+64, 1,
 							 "[font %i] Scaled by %.3f", id[1], s);
 
 	if (i)
 	{
 		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
 	}
-	i = TEXT->glPrintf((width/2)-10*7, height/2-32, 0, 
+	i = TEXT->glPrintf((width/2)-10*7, height/2-32, 0,
 							 "[font %i] Scaled by %.3f", id[0], s);
 
 	if (i)
@@ -615,7 +619,7 @@ int main_gl(int argc, char *argv[])
 	  if (SDL_GL_LoadLibrary("libGL.so") < 0)
 	  {
 		  SDL_ClearError();
-    
+
 		  // Fallback 2
 		  if (SDL_GL_LoadLibrary("libGL.so.1") < 0)
 		  {
@@ -642,7 +646,7 @@ int main_gl(int argc, char *argv[])
   SDL_WINDOW = SDL_SetVideoMode(width, height, 16, flags);
   SDL_WM_SetCaption("GLString Test", "GLString Test");
   SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-  
+
   // Init rendering
   init_gl(width, height, argc, argv);
 
@@ -664,7 +668,7 @@ int main_gl(int argc, char *argv[])
 			  break;
 		  case SDL_MOUSEBUTTONDOWN:
 		  case SDL_MOUSEBUTTONUP:
-			  break;	
+			  break;
 		  case SDL_KEYDOWN:
 			  mkeys = (unsigned int)SDL_GetModState();
 			  mod = 0;
@@ -698,7 +702,7 @@ int main_gl(int argc, char *argv[])
 			  break;
 		  case SDL_KEYUP:
 			  break;
-		  case SDL_VIDEORESIZE:			  
+		  case SDL_VIDEORESIZE:
 			  event_resize(event.resize.w, event.resize.h);
 
 			  width = event.resize.w;
@@ -708,7 +712,7 @@ int main_gl(int argc, char *argv[])
 		  }
 	  }
   }
-  
+
   return 0;
 }
 #else

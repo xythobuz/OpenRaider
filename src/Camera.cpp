@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -9,15 +9,15 @@
  * License : No use w/o permission (C) 2001 Mongoose
  * Comments: OpenGL camera class for Freyja
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.12.16:
  * Mongoose - Removed perspective setting and OpenGL dependency
  *            API changes to reflect new direction of this object:
- *              Removing outdated algorithms and code 
+ *              Removing outdated algorithms and code
  *              And refactoring the class in general
  *
  * 2001.06.06:
@@ -33,7 +33,7 @@
  =================================================================*/
 
 #include <math.h>
-#include <hel/math.h>
+#include "hel/math.h"
 #include "Camera.h"
 
 #ifdef DEBUG_MEMEORY
@@ -130,7 +130,7 @@ void Camera::rotate(float angle, float x, float y, float z)
 	double look[4] = { 0, 0, -1, 1 };
  	unsigned int i;
 	matrix_t m;
-   
+
 
 	t.set(angle, x, y, z);
 	n = mQ * t;
@@ -148,7 +148,7 @@ void Camera::rotate(float angle, float x, float y, float z)
 		mTarget[i] += mPos[i];
 		mUp[i] += mPos[i];
 	}
-    
+
 	mQ = n;
 }
 
@@ -197,7 +197,7 @@ void Camera::translate(float x, float y, float z)
 
 	mPos[0] = x;
 	mPos[1] = y;
-	mPos[2] = z;	
+	mPos[2] = z;
 }
 
 
@@ -248,7 +248,7 @@ void Camera::command(enum camera_command cmd)
 		{
 			mPos[2] += (mTranslateDelta * cos(mTheta));
 		}
-		
+
 	  mPos[0] += (mTranslateDelta * sin(mTheta));
 	  mPos[1] += (mTranslateDelta * sin(mTheta2));
 	  break;
@@ -306,7 +306,7 @@ void Camera::command(enum camera_command cmd)
 	  rotate(mTheta, 0.0, 1.0, 0.0);
 	  break;
   case CAMERA_MOVE_UP:
-	  mPos[1] -= mTranslateDelta / 2.0;   
+	  mPos[1] -= mTranslateDelta / 2.0;
 	  mTarget[1] -= mTranslateDelta / 2.0;
 	  break;
   case CAMERA_MOVE_DOWN:

@@ -1,19 +1,19 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : UnRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
  * Object  : System
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.08.09:
  * Mongoose - Created
@@ -27,8 +27,13 @@
 #include <stdarg.h>
 
 #ifdef USING_OPENGL
-#   include <GL/gl.h>
-#   include <GL/glu.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #endif
 
 #ifdef HAVE_LIBFERIT
@@ -38,7 +43,7 @@
 #   include <ferit/Ftp.h>
 #endif
 
-#ifdef linux
+#if defined(linux) || defined(__APPLE__)
 #   include <time.h>
 #   include <sys/time.h>
 #endif
@@ -75,7 +80,7 @@ System::System()
 	printf("[System.Core]\n");
 
 	// Hack for bad Map class, as well as reserved commands
-	addCommandMode("[System.Console]"); 
+	addCommandMode("[System.Console]");
 	mConsoleKey = '`';
 	bindKeyCommand("+console", mConsoleKey, 0);
 
@@ -103,7 +108,7 @@ char *System::bufferString(char *string, ...)
 	char *text;
 	va_list args;
 
-	
+
 	// Mongoose 2002.01.01, Only allow valid strings
 	//   we must assume it's NULL terminated also if it passes...
 	if (!string || !string[0])
@@ -197,13 +202,13 @@ char *System::fullPath(char *path, char end)
 
 		i = lenPath;
 	}
-	
+
 	// Make sure ends in "end" char
 	if (end && dir[i-1] != end)
 	{
 		dir[i++] = end;
 	}
-		
+
 	dir[i] = 0;
 
 	return dir;
@@ -217,17 +222,17 @@ char *System::getFileFromFullPath(char *filename)
 
 
 	len = strlen(filename);
-	
+
 	for (i = len, j = 0; i > 0; --i, ++j)
 	{
 		if (filename[i] == '/' || filename[i] == '\\')
 			break;
 	}
-	
+
 	j--;
-	
+
 	str = new char[len - j + 1];
-	
+
 	for (i = 0; i < len - j; ++i)
 	{
 		str[i] = filename[i + len - j];
@@ -255,7 +260,7 @@ int System::createDir(char *path)
 }
 
 
-int System::downloadToBuffer(char *urlString, 
+int System::downloadToBuffer(char *urlString,
 									  unsigned char **buffer, unsigned int *size)
 {
 #ifdef HAVE_LIBFERIT
@@ -295,12 +300,12 @@ int System::downloadToFile(char *urlString, char *filename)
 		break;
 	default:
 		printf("Sorry the protocol used in the URL isn't unsupported.\n");
-	
+
 		if (client)
 		{
 			delete client;
 		}
-		
+
 		return -2;
 	}
 
@@ -312,7 +317,7 @@ int System::downloadToFile(char *urlString, char *filename)
 
 	if (url)
 		delete url;
-	
+
 	return err;
 #else
 	printf("ERROR: This build not libferit enabled, unable to download\n");
@@ -341,7 +346,7 @@ unsigned int System::addCommandMode(char *command)
 // FIXME: Modifer support later
 void System::bindKeyCommand(char *cmd, unsigned int key, int event)
 {
-	printf("Bound command '%s' -> event %i (0x%x key)\n", cmd, event, key);	
+	printf("Bound command '%s' -> event %i (0x%x key)\n", cmd, event, key);
 	mKeyEvents.Add(key, event);
 }
 
@@ -399,19 +404,19 @@ int System::loadResourceFile(char *filename)
 
 	i = 0;
 	buffer[0] = 0;
-	
+
 	// Strip out whitespace and comments
 	while (fscanf(f, "%c", &c) != EOF)
 	{
 		if (line_comment && c != '\n')
 			continue;
-		
+
 		if (i > 254)
 		{
 			printf("loadResourceFile> Overflow handled\n");
 			i = 254;
 		}
-		
+
 		switch (c)
 		{
 		case '\v':
@@ -426,13 +431,13 @@ int System::loadResourceFile(char *filename)
 			{
 				line_comment = false;
 			}
-			
+
 			if (buffer[0] == 0)
 			{
 				i = 0;
 				continue;
 			}
-			
+
 			buffer[i] = 0;
 			//printf("'%s'\n", buffer);
 
@@ -446,9 +451,9 @@ int System::loadResourceFile(char *filename)
 						buffer[j-9] = buffer[j];
 						buffer[j-8] = 0;
 					}
-					
+
 					printf("Importing '%s'\n", buffer);
-					
+
 					loadResourceFile(fullPath(buffer, '/'));
 				}
 			}
@@ -464,7 +469,7 @@ int System::loadResourceFile(char *filename)
 			buffer[i++] = c;
 		}
 	}
-	
+
 	fclose(f);
 
 	return 0;
@@ -561,11 +566,11 @@ void System::initGL()
 	// Set background to black
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
-	// Disable lighting 
+	// Disable lighting
 	glDisable(GL_LIGHTING);
 
 	// Set up alpha blending
-	if (m_fastCard) 
+	if (m_fastCard)
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
@@ -584,13 +589,13 @@ void System::initGL()
 	// Setup shading
 	glShadeModel(GL_SMOOTH);
 
-	if (m_fastCard) 
+	if (m_fastCard)
 	{
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 		glHint(GL_FOG_HINT, GL_NICEST);
 		glDisable(GL_COLOR_MATERIAL);
 		glEnable(GL_DITHER);
-		
+
 		// AA polygon edges
 		//glEnable(GL_POLYGON_SMOOTH);
 		//glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
@@ -637,8 +642,8 @@ void System::resizeGL(unsigned int w, unsigned int h)
 	}
 
 	glViewport(0, 0, w, h);
-	glMatrixMode(GL_PROJECTION); 
-	glLoadIdentity(); 
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 
 	// Adjust clipping
 	gluPerspective(m_fovY, ((GLdouble)w)/((GLdouble)h), m_clipNear, m_clipFar);
@@ -660,7 +665,7 @@ void System::resizeGL(unsigned int w, unsigned int h)
 // Gobal helper functions
 ////////////////////////////////////////////////////////////
 
-// Mongoose 2002.03.23, Checks command to see if it's same 
+// Mongoose 2002.03.23, Checks command to see if it's same
 //   as symbol, then returns the arg list in command buffer
 bool rc_command(char *symbol, char *command)
 {
@@ -687,7 +692,7 @@ bool rc_command(char *symbol, char *command)
 
 		return true;
 	}
-		
+
 	return false;
 }
 
@@ -698,7 +703,7 @@ int rc_get_bool(char *buffer, bool *val)
 	{
 		return -1;
 	}
-	
+
 	if (strncmp(buffer, "true", 4) == 0)
 		*val = true;
 	else if (strncmp(buffer, "false", 5) == 0)
@@ -727,29 +732,29 @@ unsigned int system_timer(int state)
 		break;
 	case 1:
 		gettimeofday(&stop, &tz);
-		
-		if (start.tv_usec > stop.tv_usec) 
-		{ 
-#ifdef OBSOLETE
-			stop.tv_usec = (1000000 + stop.tv_usec); 
-#else
-			stop.tv_usec = (1000 + stop.tv_usec); 
-#endif
-			stop.tv_sec--; 
-		} 
 
-		stop.tv_usec -= start.tv_usec; 
+		if (start.tv_usec > stop.tv_usec)
+		{
+#ifdef OBSOLETE
+			stop.tv_usec = (1000000 + stop.tv_usec);
+#else
+			stop.tv_usec = (1000 + stop.tv_usec);
+#endif
+			stop.tv_sec--;
+		}
+
+		stop.tv_usec -= start.tv_usec;
 		stop.tv_sec -= start.tv_sec;
 
 #ifdef OBSOLETE
 		total.tv_sec += stop.tv_sec;
 		total.tv_usec += stop.tv_usec;
 
-		while (total.tv_usec > 1000000) 
+		while (total.tv_usec > 1000000)
 		{
 			total.tv_usec -= 1000000;
-			total.tv_sec++; 
-		} 
+			total.tv_sec++;
+		}
 
 		return total.tv_sec * 1000000 + total.tv_usec;
 #else

@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Mongoose
  * Website : http://gooseegg.sourceforge.net/
@@ -17,22 +17,22 @@
  *           2. The root node must be black.
  *           3. Every leaf node is black. (null pointers)
  *           4. If a node is red, then both its children are black.
- *           5. Every simple path from a node to a descendant 
+ *           5. Every simple path from a node to a descendant
  *              leaf contains the same number of black nodes.
  *           6. Any path from the root to a leaf must not have
  *              adjacent red nodes.
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.02.17:
  * Mongoose - Rewritten as a Red-Black tree
  *
  * 2002.02.16:
- * Mongoose - Dug out of cobwebs and fixed up 
+ * Mongoose - Dug out of cobwebs and fixed up
  *            Yes, I believe in code reuse!  =)
  *
  * 2000.10.26:
@@ -59,7 +59,7 @@ typedef enum
 {
 	_tree_h_black,
 	_tree_h_red
-	
+
 }  _tree_h_color_t;
 
 
@@ -80,7 +80,7 @@ public:
 
 
 	~TreeNode()
-	{		
+	{
 		TreeNode<Key, Data> *left;
 		TreeNode<Key, Data> *right;
 
@@ -97,7 +97,7 @@ public:
 			left->SetParent(NULL);
 			delete left;
 		}
-			
+
 		if (right)
 		{
 			right->SetParent(NULL);
@@ -121,26 +121,26 @@ public:
 
 	/// Left, child ///////////////////////////////
 
-	TreeNode<Key, Data> *GetChild() 
+	TreeNode<Key, Data> *GetChild()
 	{
-		return Left();
+		return GetLeft();
 	}
 
-	
-	void SetChild(TreeNode<Key, Data> *tree) 
+
+	void SetChild(TreeNode<Key, Data> *tree)
 	{
 		Left(tree);
 	}
 
 
-	TreeNode<Key, Data> *GetLeft() 
+	TreeNode<Key, Data> *GetLeft()
 	{
 		return _left;
 	}
 
 
 	void SetLeft(TreeNode<Key, Data> *tree)
-	{	
+	{
 		if (tree == this)
 		{
 			return;
@@ -152,30 +152,30 @@ public:
 		{
 			tree->SetParent(this);
 		}
-	} 
+	}
 
 	/// Right, sibling ///////////////////////////
 
-	TreeNode<Key, Data> *GetSibling() 
+	TreeNode<Key, Data> *GetSibling()
 	{
-		return Right();
+		return GetRight();
 	}
 
 
-	void SetSibling(TreeNode<Key, Data> *tree) 
+	void SetSibling(TreeNode<Key, Data> *tree)
 	{
-		Right(tree);
+		SetRight(tree);
 	}
 
 
-	TreeNode<Key, Data> *GetRight() 
+	TreeNode<Key, Data> *GetRight()
 	{
 		return _right;
 	}
 
 
 	void SetRight(TreeNode<Key, Data> *tree)
-	{		
+	{
 		if (tree == this)
 		{
 			return;
@@ -240,7 +240,7 @@ public:
 	}
 
 
-	void PrintInorder() 
+	void PrintInorder()
 	{
 		if (_left)
 		{
@@ -250,7 +250,7 @@ public:
 		}
 
 		PrintNode();
-    
+
 		if (_right)
 		{
 			//cout << ", ";
@@ -373,7 +373,7 @@ public:
 			}
 			else
 			{
-				_right->Insert(tree);     
+				_right->Insert(tree);
 			}
 		}
 	}
@@ -403,7 +403,7 @@ private:
 template <class Key, class Data> class Tree
 {
 public:
-	
+
 	Tree()
 	{
 		_error = false;
@@ -416,7 +416,7 @@ public:
 	{
 		Clear();
 	}
-  
+
 
 	unsigned int NumElements()
 	{
@@ -438,7 +438,7 @@ public:
 		}
 
 		seeking = _root->SearchByKey(key, error);
-		
+
 		if (seeking)
 		{
 			return seeking->GetData();
@@ -462,7 +462,7 @@ public:
 		}
 
 		seeking = _root->SearchByData(data, error);
-		
+
 		if (seeking)
 		{
 			return seeking->GetKey();
@@ -515,7 +515,7 @@ public:
 		if (_root)
 		{
 #ifdef OBSOLETE
-			// Mongoose 2002.02.18, To remove duplicates 
+			// Mongoose 2002.02.18, To remove duplicates
 			erorr = false;
 
 			while (!error)
@@ -528,7 +528,7 @@ public:
 		}
 
 		return error;
-	}  
+	}
 
 
 	void Erase()
@@ -600,7 +600,7 @@ public:
 				}
 			}
 
-			cout << "(" << tree->GetKey() << ", " 
+			cout << "(" << tree->GetKey() << ", "
 				  << ((tree->GetColor() == _tree_h_red) ? "red" : "blk")
 				  << ")";
 
@@ -618,7 +618,7 @@ public:
 			return;
 		}
 		else if (seek < height)
-		{			
+		{
 			return;
 		}
 
@@ -634,7 +634,7 @@ public:
 		{
 			cout << "(-, blk) ";
 		}
-		
+
 		if (right)
 		{
 			PrintTree(right, height, seek, rightmost);
@@ -659,11 +659,11 @@ public:
 		PrintTree(_root, 0, 0, true);
 		cout << endl << "Nodes marked with * are in error" << endl;
 	}
-  
+
 
 	void Print()
 	{
-		cout << "Tree: " << _num_elements <<" elements {" << endl;    
+		cout << "Tree: " << _num_elements <<" elements {" << endl;
 
 		if (_root)
 		{
@@ -785,7 +785,7 @@ private:
 			}
 
 			return predecessor;
-		}		
+		}
 	}
 
 
@@ -886,7 +886,7 @@ private:
 			}
 			else
 			{
-				parent->SetRight(right);				
+				parent->SetRight(right);
 			}
 		}
 		else // TreeNode 'tree' was root, so now right is root
@@ -935,7 +935,7 @@ private:
 
 		if (left)
 		{
-        left->SetParent(tree->GetParent());  
+        left->SetParent(tree->GetParent());
 		}
 
 		parent = tree->GetParent();
@@ -967,7 +967,7 @@ private:
 	}
 
 
-	void TreeNodeShallowCopy(TreeNode<Key, Data> *src, 
+	void TreeNodeShallowCopy(TreeNode<Key, Data> *src,
 									 TreeNode<Key, Data> *dest, bool no_links)
 	{
 		if (!src || !dest)
@@ -1019,7 +1019,7 @@ private:
 		}
 		else
 		{
-			cur = prev->GetRight();  
+			cur = prev->GetRight();
 		}
 
 		if (cur)
@@ -1048,7 +1048,7 @@ private:
 		if (prev != tree)
 		{
 			TreeNodeShallowCopy(prev, tree, true);
-			
+
 			if (prev->GetParent())
 			{
 				if (prev == (prev->GetParent())->GetLeft())
@@ -1066,7 +1066,7 @@ private:
 			prev->SetParent(NULL);
 			prev->SetLeft(NULL);
 
-			delete prev;     
+			delete prev;
 		}
 
 		if (tree->GetColor() == _tree_h_black)
@@ -1088,13 +1088,13 @@ private:
 
 		parent = tree->GetParent();
 
-		while ((tree != _root) && (parent->GetColor() == _tree_h_black)) 
+		while ((tree != _root) && (parent->GetColor() == _tree_h_black))
 		{
-			if (tree == parent->GetLeft()) 
+			if (tree == parent->GetLeft())
 			{
 				sibling = parent->GetRight();
 
-				if (sibling && sibling->GetColor() == _tree_h_red) 
+				if (sibling && sibling->GetColor() == _tree_h_red)
 				{
 					sibling->SetColor(_tree_h_black);
 					parent->SetColor(_tree_h_red);
@@ -1199,18 +1199,18 @@ private:
 		}
 
 		tree->SetColor(_tree_h_red);
-		
+
 		parent = tree->GetParent();
 
-		while ((tree != _root) && (parent->GetColor() == _tree_h_red)) 
+		while ((tree != _root) && (parent->GetColor() == _tree_h_red))
 		{
 			grandparent = parent->GetParent();
-			
-			if (parent == grandparent->GetLeft()) 
+
+			if (parent == grandparent->GetLeft())
 			{
 				uncle = grandparent->GetRight();
 
-				if (uncle && uncle->GetColor() == _tree_h_red) 
+				if (uncle && uncle->GetColor() == _tree_h_red)
 				{
                // Case 1 - Change the colors
                parent->SetColor(_tree_h_black);
@@ -1240,8 +1240,8 @@ private:
 			else // TreeNode 'tree' is in right subtree
 			{
 				uncle = grandparent->GetLeft();
-								
-				if (uncle && uncle->GetColor() == _tree_h_red) 
+
+				if (uncle && uncle->GetColor() == _tree_h_red)
 				{
                // Case 1 - Change the colors
                parent->SetColor(_tree_h_black);

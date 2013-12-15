@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Hel
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,14 +10,14 @@
  * Comments: This class simulates mass physics
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- Test Defines -----------------------------------------------
- *           
- * UNIT_TEST_SIMULATION - Builds Simulation class as a console unit test 
  *
- *-- History ------------------------------------------------ 
+ *-- Test Defines -----------------------------------------------
+ *
+ * UNIT_TEST_SIMULATION - Builds Simulation class as a console unit test
+ *
+ *-- History ------------------------------------------------
  *
  * 2003.06.08:
  * Mongoose - Generic collision and basic resolution w/o generic
@@ -47,12 +47,12 @@ class Simulation
 
 	Simulation();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of Simulation
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2003.06.02: 
+	 * 2003.06.02:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -63,7 +63,7 @@ class Simulation
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2003.06.02: 
+	 * 2003.06.02:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -74,7 +74,7 @@ class Simulation
 
 	Mass *getMass(unsigned int i);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Get <i>th Mass element of this simulation
 	 *
 	 *-- History ------------------------------------------
@@ -90,7 +90,7 @@ class Simulation
 
 	virtual void attachCollisionObject(CollisionObject *obj);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Adds <Obj> to the collision list for this simulation
 	 *
 	 * TODO : Allow multiple types of collision to be excluded?
@@ -103,7 +103,7 @@ class Simulation
 
 	virtual void clear();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Removes all masses from this simulation
 	 *
 	 *-- History ------------------------------------------
@@ -114,7 +114,7 @@ class Simulation
 
 	virtual bool collisionDetected(Mass *mass);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Returns true if <Mass> collided with object
 	 *
 	 *-- History ------------------------------------------
@@ -125,7 +125,7 @@ class Simulation
 
 	virtual void generateMasses(unsigned int count, vec_t mass);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : <Count> number of masses with <mass> value are added
 	 *
 	 *-- History ------------------------------------------
@@ -135,11 +135,11 @@ class Simulation
 	 ------------------------------------------------------*/
 
 	virtual void generateMasses(unsigned int count, vec_t mass,
-										 const Vector3d &position, 
+										 const Vector3d &position,
 										 const Vector3d &velocity);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : <Count> number of masses with 
+	 * Pre  :
+	 * Post : <Count> number of masses with
 	 *        <mass>, <position>, and <velocity> are added
 	 *
 	 *-- History ------------------------------------------
@@ -150,7 +150,7 @@ class Simulation
 
 	virtual void init();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Reset forces acting on masses
 	 *
 	 *-- History ------------------------------------------
@@ -161,7 +161,7 @@ class Simulation
 
 	virtual void resolveCollision(Mass *mass, CollisionObject *obj);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Resolves a collision of <Obj> and <Mass>
 	 *
 	 *        The default resolution here is to set mass pos
@@ -176,7 +176,7 @@ class Simulation
 
 	virtual void run(vec_t timeDelta);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Does full init, solve, simulate cycle
 	 *
 	 *-- History ------------------------------------------
@@ -187,7 +187,7 @@ class Simulation
 
 	virtual void simulate(vec_t timeDelta);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Update change in time for each mass
 	 *
 	 *-- History ------------------------------------------
@@ -199,7 +199,7 @@ class Simulation
 	virtual void solve ();
 	/*------------------------------------------------------
 	 * Pre  :
-	 * Post : Have forces act on masses  
+	 * Post : Have forces act on masses
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -231,13 +231,13 @@ class GravitySimulation : public Simulation
 {
 public:
 
-	GravitySimulation() : Simulation()      
+	GravitySimulation() : Simulation()
 	{
 		gravitation = Vector3d(0.0f, -9.81f, 0.0f);
 	}
 
 
-	virtual void solve()                                                    
+	virtual void solve()
 	{
 		Mass *m;
 
@@ -248,7 +248,7 @@ public:
 
 			// Gravitational force, Force = (Mass)(Gravity)
 			m->applyForce(gravitation * m->mMass);
-			
+
 			if (collisionDetected(m))
 			{
 				m->mVelocity = Vector3d(0, 0, 0);
@@ -269,12 +269,12 @@ public:
 	{
 	}
 
-	
+
 	virtual void generateMasses(unsigned int count, vec_t mass,
-										 const Vector3d &position, 
+										 const Vector3d &position,
 										 const Vector3d &velocity)
 	{
-		Simulation::generateMasses(count, mass, 
+		Simulation::generateMasses(count, mass,
 											connectionPos + position, velocity);
 	}
 
@@ -290,7 +290,7 @@ public:
 
 			// Vector from mass to spring connection
 			Vector3d springVector = m->mPos - connectionPos;
-			
+
 			// Apply spring force, spring force formulation
 			m->applyForce(-springVector * springConstant);
 

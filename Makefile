@@ -29,13 +29,13 @@ ARCH=i386
 # -DMULTITEXTURE		Add OpenGL multitexturing
 # -DUNICODE_SUPPORT		Add unicode/internation keyboard support
 # -DUSING_EMITTER_IN_GAME	Run particle test in game
-BASE_DEFS=$(shell sdl-config --cflags) -DSDL_INTERFACE \
+BASE_DEFS=$(shell sdl-config --cflags) -Isrc -I/opt/local/include -DSDL_INTERFACE \
 	-DUSING_OPENGL -DZLIB_SUPPORT -DUSING_EMITTER \
 	-DUSING_OPENAL -DUSING_MTK_TGA -DUSING_PTHREADS \
 	-DUSING_HEL -DHAVE_SDL_TTF -DHAVE_OPENGL
 
 BASE_LIBS=$(shell sdl-config --libs) -lz -lstdc++ \
-	-lopenal -lpthread -lSDL_ttf
+	-lpthread -lSDL_ttf
 
 # -DDEBUG_GL
 DEBUG_DEFS=-DDEBUG -DEXPERIMENTAL
@@ -43,8 +43,8 @@ DEBUG_OBJ=
 
 ###############################################################
 # OpenAL, Sound support
-BASE_DEFS += -DHAVE_OPENAL
-BASE_LIBS += -lopenal
+#BASE_DEFS += -DHAVE_OPENAL
+#BASE_LIBS += -lopenal
 
 # libferit, File transfer via HTTP/FTP/etc support
 LIBFERIT_LIB=/usr/local/lib/libferit.so
@@ -77,11 +77,11 @@ INSTALL_INCLUDE=$(DESTDIR)/usr/include
 ###############################################################
 CC=gcc
 
-BASE_CFLAGS=-Wall -Isrc $(BASE_DEFS) \
+BASE_CFLAGS=-Wall $(BASE_DEFS) \
 	-DVERSION=\"\\\"$(NAME)-$(VERSION)-$(BUILD_ID)\\\"\" \
 	-DBUILD_HOST=\"\\\"$(BUILD_HOST)\\\"\"
 
-LD_FLAGS=-L/usr/X11R6/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
+LD_FLAGS=-L/opt/X11/lib -L/opt/local/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
 	-lGL -lGLU -lm $(BASE_LIBS)
 
 RELEASE_CFLAGS=$(BASE_CFLAGS) -ffast-math -funroll-loops \
@@ -160,12 +160,12 @@ HEL_OBJ = \
 	$(BUILDDIR)/Vector3d.o \
 	$(BUILDDIR)/Matrix.o \
 	$(BUILDDIR)/ViewVolume.o \
-	$(BUILDDIR)/Spring.o \
 	$(BUILDDIR)/CollisionObject.o \
 	$(BUILDDIR)/BoundingVolume.o \
 	$(BUILDDIR)/Quaternion.o \
-	$(BUILDDIR)/math.o
-
+	$(BUILDDIR)/math.o \
+	$(BUILDDIR)/Entity.o
+	#$(BUILDDIR)/Spring.o
 
 OBJS = \
 	$(DEBUG_OBJ) \

@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*==========================================================================
- * 
+ *
  * Project : GooseEgg
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440
@@ -17,7 +17,7 @@
  *           so - since this class is desgined using their specs...
  *
  *
- *-- History ---------------------------------------------------------- 
+ *-- History ----------------------------------------------------------
  *
  * 2000-10-06:
  * Mongoose - The new code for the new interface
@@ -35,7 +35,11 @@
 #include <math.h>
 
 #ifdef USING_OPENGL
-#   include <GL/gl.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
 #endif
 
 #include "endian.h"
@@ -48,23 +52,23 @@ Md3::Md3()
 {
 	mFlags = fDecodeNormals;
 
-	memset(m_filename, 0, 68);     
- 
+	memset(m_filename, 0, 68);
+
 	m_id = 0;
-	m_version = 0;           
-	m_num_bones = 0;   
-	m_num_tags = 0;          
-	m_num_meshes = 0;        
+	m_version = 0;
+	m_num_bones = 0;
+	m_num_tags = 0;
+	m_num_meshes = 0;
 	m_max_skins = 0;
 
-	m_header_length = 0;     
-	m_tag_start = 0;         
-	m_surfaces_start = 0;          
-	m_file_size = 0;        
+	m_header_length = 0;
+	m_tag_start = 0;
+	m_surfaces_start = 0;
+	m_file_size = 0;
 
 	m_debug = 1;
 
-	m_tags = NULL;     
+	m_tags = NULL;
 	m_bones = NULL;
 	m_meshes = NULL;
 	slaveTest = NULL;
@@ -73,28 +77,28 @@ Md3::Md3()
 
 
 Md3::Md3(unsigned int num_meshes, unsigned int num_bones, unsigned int num_tags)
-{	
-	memset(m_filename, 0, 68);     
- 
+{
+	memset(m_filename, 0, 68);
+
 	m_id = 0;
 	m_version = 0;
 	m_max_skins = 0;
 
-	m_header_length = 0;     
-	m_tag_start = 0;         
-	m_surfaces_start = 0;          
-	m_file_size = 0;        
+	m_header_length = 0;
+	m_tag_start = 0;
+	m_surfaces_start = 0;
+	m_file_size = 0;
 
 	m_debug = 1;
 
-	m_tags = NULL;     
+	m_tags = NULL;
 	m_bones = NULL;
 	m_meshes = NULL;
 	slaveTest = NULL;
 	texTest = NULL;
 
-	m_num_bones = num_bones;   
-	m_num_tags = num_tags;          
+	m_num_bones = num_bones;
+	m_num_tags = num_tags;
 	m_num_meshes = num_meshes;
 	createMeshes(num_meshes);
 	createTags(num_tags*num_bones);
@@ -162,18 +166,18 @@ void Md3::reset()
 {
 	int i;
 
-	memset(m_filename, 0, 68);     
+	memset(m_filename, 0, 68);
 
 	m_id = 0;
-	m_version = 0;           
-	m_num_bones = 0;   
-	m_num_tags = 0;          
-	m_num_meshes = 0;        
+	m_version = 0;
+	m_num_bones = 0;
+	m_num_tags = 0;
+	m_num_meshes = 0;
 	m_max_skins = 0;
-	m_header_length = 0;     
-	m_tag_start = 0;         
-	m_surfaces_start = 0;          
-	m_file_size = 0;  
+	m_header_length = 0;
+	m_tag_start = 0;
+	m_surfaces_start = 0;
+	m_file_size = 0;
 
 	if (m_meshes)
 	{
@@ -222,7 +226,7 @@ void Md3::reset()
 	{
 		delete [] texTest;
 	}
-} 
+}
 
 
 void Md3::setDebug(unsigned char level)
@@ -240,7 +244,7 @@ int Md3::load(char *filename)
 	int16_t ss;
 	int8_t sb;
 
-  
+
 	npherno_warn = 0;
 
 	f = fopen(filename, "rb");
@@ -255,13 +259,13 @@ int Md3::load(char *filename)
 
 	fread_int_small(&m_id, f);
 	printDebug("load", "id = 0x%x\n", m_id);
-  
+
 	if (m_id != MD3_IDALIASHEADER)
 	{
 		printError("load", "header not 0x%x\n", MD3_IDALIASHEADER);
 		return -2;
 	}
-  
+
 	fread_int_small(&m_version, f);
 	printDebug("load", "version = %i\n", m_version);
 
@@ -270,7 +274,7 @@ int Md3::load(char *filename)
 		printError("load", "version not %i\n", MD3_ALIAS_VERSION);
 		return -3;
 	}
-  
+
 	fread(&m_filename, 68, 1, f);
 	printDebug("load", "filename = '%s'\n", m_filename);
 
@@ -297,7 +301,7 @@ int Md3::load(char *filename)
 
 	fread_int_small(&m_file_size, f);
 	printDebug("load", "file_size = %i\n", m_file_size);
- 
+
 	// End Header //////////////////
 	printDebug("load", "Loading %i bones\n", m_num_bones);
 	createBones(m_num_bones);
@@ -325,11 +329,11 @@ int Md3::load(char *filename)
 			npherno_warn = 1;
 		}
 
-		printDebug("load", "bone[%i].mins = %f %f %f\n", i, 
+		printDebug("load", "bone[%i].mins = %f %f %f\n", i,
 				 m_bones[i].mins[0], m_bones[i].mins[1], m_bones[i].mins[2]);
-		printDebug("load", "bone[%i].maxs = %f %f %f\n", i, 
+		printDebug("load", "bone[%i].maxs = %f %f %f\n", i,
 				 m_bones[i].maxs[0], m_bones[i].maxs[1], m_bones[i].maxs[2]);
-		printDebug("load", "bone[%i].center = %f %f %f\n", i, 
+		printDebug("load", "bone[%i].center = %f %f %f\n", i,
 				 m_bones[i].center[0], m_bones[i].center[1], m_bones[i].center[2]);
 		printDebug("load", "bone[%i].scale = %f\n", i, m_bones[i].scale);
 		printDebug("load", "bone[%i].creator = '%s'\n", i, m_bones[i].creator);
@@ -338,7 +342,7 @@ int Md3::load(char *filename)
 
 	if (m_tag_start != ftell(f))
 	{
-		printWarning("load", "tag_start %i != file pos %lu\n", 
+		printWarning("load", "tag_start %i != file pos %lu\n",
 						 m_tag_start,ftell(f));
 
 		fseek(f, m_tag_start, SEEK_SET);
@@ -362,13 +366,13 @@ int Md3::load(char *filename)
 
 	if (m_surfaces_start != ftell(f))
 	{
-		printWarning("load", "surfaces_start %i != file pos %lu\n", 
+		printWarning("load", "surfaces_start %i != file pos %lu\n",
 						 m_surfaces_start, ftell(f));
 
 		fseek(f, m_surfaces_start, SEEK_SET);
 		printWarning("load", "File position set to %lu\n", ftell(f));
 	}
- 
+
 	printDebug("load", "Loading %i meshes\n", m_num_meshes);
 	createMeshes(m_num_meshes);
 
@@ -380,10 +384,10 @@ int Md3::load(char *filename)
 		fread(&m_meshes[i].name, 64, 1, f);
 		fread(&m_meshes[i].flags, 4, 1, f);
 		fread(&m_meshes[i].num_frames, 4, 1, f);
-    
+
 		fread(&m_meshes[i].num_shaders, 4, 1, f);
 		m_meshes[i].num_skins = m_meshes[i].num_shaders;
-    
+
 		fread(&m_meshes[i].num_vertices, 4, 1, f);
 		fread(&m_meshes[i].num_triangles, 4, 1, f);
 		fread(&m_meshes[i].tris_offset, 4, 1, f);
@@ -394,29 +398,29 @@ int Md3::load(char *filename)
 		// num_verts * num_frames
 		fread(&m_meshes[i].mesh_size, 4, 1, f);     // next surface
 
-		printDebug("load", "mesh[%i].id = '%c%c%c%c'\n", i, 
+		printDebug("load", "mesh[%i].id = '%c%c%c%c'\n", i,
 				 m_meshes[i].id[0], m_meshes[i].id[1], m_meshes[i].id[2], m_meshes[i].id[3]);
-		printDebug("load", "mesh[%i].name = '%s'\n", i, 
+		printDebug("load", "mesh[%i].name = '%s'\n", i,
 				 m_meshes[i].name);
-		printDebug("load", "mesh[%i].flags = %i\n", i, 
+		printDebug("load", "mesh[%i].flags = %i\n", i,
 				 m_meshes[i].flags);
-		printDebug("load", "mesh[%i].num_frames = %i\n", i, 
+		printDebug("load", "mesh[%i].num_frames = %i\n", i,
 				 m_meshes[i].num_frames);
-		printDebug("load", "mesh[%i].num_shaders = %i\n", i, 
+		printDebug("load", "mesh[%i].num_shaders = %i\n", i,
 				 m_meshes[i].num_shaders);
-		printDebug("load", "mesh[%i].num_vertices = %i\n", i, 
+		printDebug("load", "mesh[%i].num_vertices = %i\n", i,
 				 m_meshes[i].num_vertices);
-		printDebug("load", "mesh[%i].num_triangles = %i\n", i, 
+		printDebug("load", "mesh[%i].num_triangles = %i\n", i,
 				 m_meshes[i].num_triangles);
-		printDebug("load", "mesh[%i].tris_offset = %i\n", i, 
+		printDebug("load", "mesh[%i].tris_offset = %i\n", i,
 				 m_meshes[i].tris_offset+m_surfaces_start);
-		printDebug("load", "mesh[%i].shader_offset = %i\n", i, 
+		printDebug("load", "mesh[%i].shader_offset = %i\n", i,
 				 m_meshes[i].header_size+m_surfaces_start);
-		printDebug("load", "mesh[%i].texel_offset = %i\n", i, 
+		printDebug("load", "mesh[%i].texel_offset = %i\n", i,
 				 m_meshes[i].texel_offset+m_surfaces_start);
-		printDebug("load", "mesh[%i].vertex_offset = %i\n", i, 
+		printDebug("load", "mesh[%i].vertex_offset = %i\n", i,
 				 m_meshes[i].vertex_offset+m_surfaces_start);
-		printDebug("load", "mesh[%i].mesh_end = %i\n", i, 
+		printDebug("load", "mesh[%i].mesh_end = %i\n", i,
 				 m_meshes[i].mesh_size+m_surfaces_start);
 
 		// This will kind of handle bad mesh reads here
@@ -442,7 +446,7 @@ int Md3::load(char *filename)
 		{
 			printWarning("load", "_mesh[%i] shader offset %i != file pos %lu\n",
 							 i, m_surfaces_start+m_meshes[i].header_size, ftell(f));
-      
+
 			fseek(f, m_surfaces_start+m_meshes[i].header_size, SEEK_SET);
 			printWarning("load", "HANDLE: File position set to %lu\n", ftell(f));
 		}
@@ -475,7 +479,7 @@ int Md3::load(char *filename)
 
 				for (k = 0; k < 68; ++k)
 				{
-					if (m_meshes[i].skin[j].name[k] > 32 && 
+					if (m_meshes[i].skin[j].name[k] > 32 &&
 						 m_meshes[i].skin[j].name[k] < 127)
 					{
 						printf("%c", m_meshes[i].skin[j].name[k]);
@@ -489,16 +493,16 @@ int Md3::load(char *filename)
 				printf("'\n");
 			}
 
-			printDebug("load", "mesh[%i].skin[%i].name = '%s'\n", 
+			printDebug("load", "mesh[%i].skin[%i].name = '%s'\n",
 					 i, j, m_meshes[i].skin[j].name);
 		}
 
 		// Start triangles ////////////////////////
 		if (m_surfaces_start+m_meshes[i].tris_offset != ftell(f))
 		{
-			printWarning("load", "mesh[%i] tris offset %i != file pos %lu\n", i, 
+			printWarning("load", "mesh[%i] tris offset %i != file pos %lu\n", i,
 							 m_surfaces_start+m_meshes[i].tris_offset, ftell(f));
-      
+
 			fseek(f, m_surfaces_start+m_meshes[i].tris_offset, SEEK_SET);
 			printWarning("load", "HANDLE: File position set to %lu\n", ftell(f));
 		}
@@ -513,9 +517,9 @@ int Md3::load(char *filename)
 		// Start texels /////////////////////
 		if (m_surfaces_start+m_meshes[i].texel_offset != ftell(f))
 		{
-			printWarning("load", "mesh[%i] texel offset %i != file pos %lu\n", i, 
+			printWarning("load", "mesh[%i] texel offset %i != file pos %lu\n", i,
 							 m_surfaces_start+m_meshes[i].texel_offset, ftell(f));
-      
+
 			fseek(f, m_surfaces_start+m_meshes[i].texel_offset, SEEK_SET);
 			printWarning("load", "HANDLE: File position set to %lu\n", ftell(f));
 		}
@@ -531,15 +535,15 @@ int Md3::load(char *filename)
 		// Start vertices /////////////////////
 		if (m_surfaces_start+m_meshes[i].vertex_offset != ftell(f))
 		{
-			printWarning("load", "mesh[%i] vertex offset %i != file pos %lu\n", 
+			printWarning("load", "mesh[%i] vertex offset %i != file pos %lu\n",
 							 i, m_surfaces_start+m_meshes[i].vertex_offset, ftell(f));
-      
+
 			fseek(f, m_surfaces_start+m_meshes[i].vertex_offset, SEEK_SET);
 			printWarning("load", "HANDLE: File position set to %lu\n", ftell(f));
 		}
 
 		// Should be num_vertices * num_frames??
-		m_meshes[i].vertex = 
+		m_meshes[i].vertex =
       new md3_vertex_t[m_meshes[i].num_vertices * m_meshes[i].num_frames];
 
 		for (j = 0; j < m_meshes[i].num_vertices * m_meshes[i].num_frames; ++j)
@@ -566,12 +570,12 @@ int Md3::load(char *filename)
 				normal = (unsigned short)m_meshes[i].vertex[j].st;
 				lat = (unsigned char)((normal & 255) * (2 * M_PI) / 255.0);
 				lng = (unsigned char)(((normal >> 8) & 255) * (2 * M_PI) / 255.0);
-				
+
 				m_meshes[i].vertex[j].norm[0] = cos(lat) * sin(lng);
 				m_meshes[i].vertex[j].norm[1] = sin(lat) * sin(lng);
 				m_meshes[i].vertex[j].norm[2] = cos(lng);
 
-				printDebug("load", "%f %f %f\n", 
+				printDebug("load", "%f %f %f\n",
 							  m_meshes[i].vertex[j].norm[0],
 							  m_meshes[i].vertex[j].norm[1],
 							  m_meshes[i].vertex[j].norm[2]);
@@ -581,9 +585,9 @@ int Md3::load(char *filename)
 		// Start next surface/mesh /////////////////////
 		if (m_surfaces_start+m_meshes[i].mesh_size != ftell(f))
 		{
-			printWarning("load", "_mesh[%i] next mesh offset %i != file pos %lu\n", 
+			printWarning("load", "_mesh[%i] next mesh offset %i != file pos %lu\n",
 						  i, m_surfaces_start+m_meshes[i].mesh_size, ftell(f));
-      
+
 			fseek(f, m_surfaces_start+m_meshes[i].mesh_size, SEEK_SET);
 			printWarning("load", "HANDLE: File position set to %lu\n", ftell(f));
 		}
@@ -603,9 +607,9 @@ int Md3::save(char *filename)
   FILE *f;
   int i, ii, tmp, hms;
   int32_t si;
-  
 
-  if ((!m_tags && m_num_tags) || (!m_bones && m_num_bones) || 
+
+  if ((!m_tags && m_num_tags) || (!m_bones && m_num_bones) ||
 		(!m_meshes && m_num_meshes))
   {
     printError("save", "invalid md3\n");
@@ -624,7 +628,7 @@ int Md3::save(char *filename)
   si = m_id;
   fwrite(&si, 4, 1, f);
   printDebug("save", "id = 0x%x\n", m_id);
-  
+
   m_version = MD3_ALIAS_VERSION;
 
   fwrite(&m_version, 4, 1, f);
@@ -664,7 +668,7 @@ int Md3::save(char *filename)
   // store file postiion for now
   m_file_size = ftell(f);
   fwrite(&m_file_size, 4, 1, f);
- 
+
   // End Header //////////////////
   tmp = m_header_length;
   m_header_length = ftell(f);
@@ -757,14 +761,14 @@ int Md3::save(char *filename)
 
 #ifdef TEST_MD3
       printf("Viewing full skin buffer:\n'");
-		
+
       for (int foo = 0; foo < 68; ++foo)
 	printf("%c", m_meshes[i].skin[ii].name[foo]);
 
       printf("'\n");
 #endif
 
-      printDebug("save", "_mesh[%i].skin[%i].name = '%s'\n", 
+      printDebug("save", "_mesh[%i].skin[%i].name = '%s'\n",
 	     i, ii, m_meshes[i].skin[ii].name);
     }
 
@@ -774,7 +778,7 @@ int Md3::save(char *filename)
     m_meshes[i].tris_offset = tmp - hms;
     fwrite(&m_meshes[i].tris_offset, 4, 1, f);
     printDebug("save", "_mesh[%i].tris_offset = %i\n",i,m_meshes[i].tris_offset);
-    fseek(f, tmp, SEEK_SET);   
+    fseek(f, tmp, SEEK_SET);
 
     for(ii = 0; ii < m_meshes[i].num_triangles; ++ii)
     {
@@ -788,7 +792,7 @@ int Md3::save(char *filename)
     fwrite(&m_meshes[i].texel_offset, 4, 1, f);
     printDebug("save", "_mesh[%i].texel_offset = %i\n",
 	   i,m_meshes[i].texel_offset);
-    fseek(f, tmp, SEEK_SET);   
+    fseek(f, tmp, SEEK_SET);
 
     for(ii = 0; ii < m_meshes[i].num_vertices; ++ii)
     {
@@ -802,7 +806,7 @@ int Md3::save(char *filename)
     fwrite(&m_meshes[i].vertex_offset, 4, 1, f);
     printDebug("save", "_mesh[%i]._vertexoffset = %i\n",
 	   i,m_meshes[i].vertex_offset);
-    fseek(f, tmp, SEEK_SET);  
+    fseek(f, tmp, SEEK_SET);
 
     // Should be num_vertices * num_frames??
     for(ii = 0; ii < m_meshes[i].num_vertices * m_meshes[i].num_frames; ++ii)
@@ -892,7 +896,7 @@ void Md3::createMeshes(unsigned int num)
 	m_meshes = new md3_mesh_t[num];
 
 	texTest = new int[num];
-	memset(texTest, 0, num*4);	
+	memset(texTest, 0, num*4);
 }
 
 
@@ -923,7 +927,7 @@ int main(int argc, char *argv[])
 
 
 	printf("[MD3 class test]\n");
-	
+
 	md3.setDebug(2);
 
 	if (argc > 2)
@@ -958,13 +962,13 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
-			printf("\n\n%s [save | load | test] filename.md3 [testout.md3]\n", 
+			printf("\n\n%s [save | load | test] filename.md3 [testout.md3]\n",
 					 argv[0]);
 		}
 	}
 	else
 	{
-		printf("\n\n%s [save | load | test] filename.md3 [testout.md3]\n", 
+		printf("\n\n%s [save | load | test] filename.md3 [testout.md3]\n",
 				 argv[0]);
 	}
 }

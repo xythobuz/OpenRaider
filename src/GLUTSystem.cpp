@@ -1,19 +1,19 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : UnRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
  * Object  : GLUTSystem
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.08.09:
  * Mongoose - Created
@@ -23,9 +23,15 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+#endif
 
 #ifdef PS2_LINUX
 #   include "ps2.h"
@@ -92,7 +98,7 @@ void GLUTSystem::shutdown(int i)
 	//printf("[Mongoose MEMEORY_DEBUG]\nUnfreed memory table:\n");
 	//dump_memory_report();
 	//#endif
-	
+
 	printf("\n\n\tThanks for testing %s\n", VERSION);
 	printf("\tPlease file bug reports and submit video card performance\n\n");
 	printf("\tBuild date : %s @ %s\n", __DATE__, __TIME__);
@@ -104,12 +110,12 @@ void GLUTSystem::shutdown(int i)
 }
 
 
-void GLUTSystem::initVideo(unsigned int width, unsigned int height, 
+void GLUTSystem::initVideo(unsigned int width, unsigned int height,
 								  bool fullscreen)
 {
 	glutInit(NULL, 0);
 	printf("@Created OpenGL Context...\n");
-	
+
 	m_width = width;
 	m_height = height;
 

@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -10,20 +10,25 @@
  * Comments: This is the audio manager for OpenRaider
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2001.05.23:
  * Mongoose - Created
  =================================================================*/
 
 #ifdef HAVE_OPENAL
+#ifdef __APPLE__
+#include <OpenAL/al.h>
+#include <OpenAL/alc.h>
+#else
 #   include <AL/al.h>
 #   include <AL/alc.h>
 #   include <AL/alut.h>
 #   include <AL/alext.h>
+#endif
 #endif
 
 #include <time.h>
@@ -65,7 +70,7 @@ Sound::~Sound()
 
 int Sound::init()
 {
-	int fd;	
+	int fd;
 
 	fd = open("/dev/dsp", O_RDWR);
 
@@ -97,7 +102,7 @@ void Sound::listenAt(float pos[3], float angle[3])
 
 #ifdef HAVE_OPENAL
 	alListenerfv(AL_POSITION, pos);
-	alListenerfv(AL_ORIENTATION, angle);	
+	alListenerfv(AL_ORIENTATION, angle);
 #endif
 }
 
@@ -137,7 +142,7 @@ int Sound::add(char *filename, int *source, unsigned int flags)
 
 	alGenBuffers(1, &mBuffer[mNextBuffer]);
 
-	if (alGetError() != AL_NO_ERROR)	
+	if (alGetError() != AL_NO_ERROR)
    {
 		fprintf(stderr, "Sound::Init> alGenBuffers call failed\n");
 		return -1;
@@ -152,10 +157,10 @@ int Sound::add(char *filename, int *source, unsigned int flags)
 		fprintf(stderr, "Sound::Init> alGenSources call failed\n");
 		return -2;
 	}
-   
+
    err = alutLoadWAV(filename, &data, &format, &size, &bits, &freq);
 
-   if (err == AL_FALSE) 
+   if (err == AL_FALSE)
 	{
 	   fprintf(stderr, "Could not load %s\n", filename);
 	   return -3;
@@ -204,7 +209,7 @@ int Sound::add(unsigned char *wav, int *source, unsigned int flags)
 
 	alGenBuffers(1, &mBuffer[mNextBuffer]);
 
-	if (alGetError() != AL_NO_ERROR)	
+	if (alGetError() != AL_NO_ERROR)
    {
 		fprintf(stderr, "Sound::Init> alGenBuffers call failed\n");
 		return -1;
@@ -219,7 +224,7 @@ int Sound::add(unsigned char *wav, int *source, unsigned int flags)
 		fprintf(stderr, "Sound::Init> alGenSources call failed\n");
 		return -2;
 	}
-   
+
 	// AL_FORMAT_WAVE_EXT
    alBufferData(mBuffer[mNextBuffer], AL_FORMAT_WAVE_EXT, data, size, freq);
 
@@ -280,7 +285,7 @@ void Sound::stop(int source)
 
 
 #ifdef UNIT_TEST_SOUND
-int main(int argc, char* argv[]) 
+int main(int argc, char* argv[])
 {
 	Sound snd;
 	FILE *f;
@@ -313,7 +318,7 @@ int main(int argc, char* argv[])
 			fread(buf, l, 1, f);
 
 			fclose(f);
-			
+
 			printf("Loading buffer of %s\n", argv[1]);
 			ret = snd.add(buf, &id, SoundFlagsNone);
 			printf("Load returned %i\n", ret);

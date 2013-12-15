@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Render
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -10,17 +10,22 @@
  * Comments: This is the renderer class for OpenRaider
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2001.05.21:
  * Mongoose - Created
  =================================================================*/
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
@@ -37,7 +42,7 @@
 #   include "gl_test.cpp"
 #endif
 
-#ifdef USING_MD3 
+#ifdef USING_MD3
 #   include "Md3AnimModel.h"
 extern Md3AnimModel gMd3;
 #endif
@@ -70,19 +75,19 @@ int compareEntites(const void *voidA, const void *voidB)
 	if (!a || !b)
 		return -1; // error really
 
-	distA = gViewVolume.getDistToSphereFromNear(a->pos[0], 
-															  a->pos[1], 
-															  a->pos[2], 
+	distA = gViewVolume.getDistToSphereFromNear(a->pos[0],
+															  a->pos[1],
+															  a->pos[2],
 															  1.0f);
-	distB = gViewVolume.getDistToSphereFromNear(b->pos[0], 
-															  b->pos[1], 
-															  b->pos[2], 
+	distB = gViewVolume.getDistToSphereFromNear(b->pos[0],
+															  b->pos[1],
+															  b->pos[2],
 															  1.0f);
 
 	// less than
 	if (distA < distB)
 		return -1;
-	
+
 	// greater than ( no need for equal )
 	return 1;
 }
@@ -96,19 +101,19 @@ int compareStaticModels(const void *voidA, const void *voidB)
 	if (!a || !b)
 		return -1; // error really
 
-	distA = gViewVolume.getDistToSphereFromNear(a->pos[0], 
-															  a->pos[1], 
-															  a->pos[2], 
+	distA = gViewVolume.getDistToSphereFromNear(a->pos[0],
+															  a->pos[1],
+															  a->pos[2],
 															  128.0f);
-	distB = gViewVolume.getDistToSphereFromNear(b->pos[0], 
-															  b->pos[1], 
-															  b->pos[2], 
+	distB = gViewVolume.getDistToSphereFromNear(b->pos[0],
+															  b->pos[1],
+															  b->pos[2],
 															  128.0f);
 
 	// less than
 	if (distA < distB)
 		return -1;
-	
+
 	// greater than ( no need for equal )
 	return 1;
 }
@@ -125,7 +130,7 @@ int compareRoomDist(const void *voidA, const void *voidB)
 	// less than
 	if (a->dist < b->dist)
 		return -1;
-	
+
 	// greater than ( no need for equal )
 	return 1;
 }
@@ -145,7 +150,7 @@ Render::Render()
 	mMode = Render::modeDisabled;
 	mLock = 0;
 	mFlags = (Render::fRoomAlpha | Render::fViewModel | Render::fSprites |
-				 Render::fRoomModels | Render::fEntityModels | 
+				 Render::fRoomModels | Render::fEntityModels |
 				 Render::fUsePortals | fUpdateRoomListPerFrame);
 
 	mModels.setError(0x0);
@@ -180,7 +185,7 @@ void Render::addRoom(RenderRoom *room)
 }
 
 
-void Render::loadTexture(unsigned char *image, 
+void Render::loadTexture(unsigned char *image,
 								 unsigned int width, unsigned int height,
 								 unsigned int id)
 {
@@ -189,7 +194,7 @@ void Render::loadTexture(unsigned char *image,
 }
 
 
-void Render::initTextures(char *textureDir, unsigned int *numLoaded, 
+void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 								  unsigned int *nextId)
 {
 	char filename[128];
@@ -205,7 +210,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 	unsigned char color[4];
 
 
-	// We want to update as needed later 
+	// We want to update as needed later
 	mNumTexturesLoaded = numLoaded;
 	mNextTextureId = nextId;
 
@@ -228,7 +233,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 	if ((font_id = mTexture.loadColorTexture(color, 32, 32)) > -1)
 	{
 		++numTextures;
-	}	
+	}
 
 	snprintf(filename, 126, "%s%s", textureDir, "splash.tga");
 	filename[127] = 0;
@@ -255,7 +260,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 	}
 
 	extern char *gFontFilename;
-	if ((mTexture.loadFontTTF(gFontFilename, 
+	if ((mTexture.loadFontTTF(gFontFilename,
 									  //0x303f, 0x3093-0x303f)) // Hiragana
 									  32, 126 - 32))  // ASCII
 		 > -1)
@@ -277,7 +282,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 
 	// Setup particle system test
 	initEmitter("Snow test", 650, snow1_id, snow2_id);
-		
+
 	// Mongoose 2002.01.01, Temp placement of GLString init
 	id[0] = font_id;
 	id[4] = id[3] = id[2] = id[1] = -1;
@@ -286,8 +291,8 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 
 	// String 0: OpenRaider version in lower right corner
 	mString.Scale(0.90);
-	err = mString.glPrintf(mWidth - 14 * strlen(VERSION), 
-								  mHeight-24*3, 0, VERSION); 
+	err = mString.glPrintf(mWidth - 14 * strlen(VERSION),
+								  mHeight-24*3, 0, VERSION);
 	mString.SetString(0, VERSION);
 	mString.Scale(1.0);
 
@@ -306,7 +311,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 
 	// String 2: Used for game console
 	err = mString.glPrintf(8, -24, 0, console);
-	
+
 	if (err)
 	{
 		printf("\n*** GLPrint test: ERROR %i font_tex %i\n", err, id[0]);
@@ -340,45 +345,45 @@ void Render::loadMd3(char *model, char *skin)
 {
 #ifdef USING_MD3
 	char filename[256];
-	
-	
+
+
 	snprintf(filename, 255, "data/models/players/%s", model);
 
-	if (gMd3.load(filename, skin, MD3_LOD_HIGH) < 0) 
-	{ 
+	if (gMd3.load(filename, skin, MD3_LOD_HIGH) < 0)
+	{
 		printf("ERROR: MD3 '%s' not loaded\n", filename);
-	} 
+	}
 	else
 	{
-		gMd3.loadWeapon("data/models/weapons2/railgun", "railgun"); 
-		gMd3.loadWeapon("data/models/weapons2/plasma", "plasma"); 
-		gMd3.loadWeapon("data/models/weapons2/machinegun", "machinegun"); 
-		gMd3.setAnimUpper(TORSO_STAND); 
-		gMd3.setAnimLower(LEGS_WALK); 
+		gMd3.loadWeapon("data/models/weapons2/railgun", "railgun");
+		gMd3.loadWeapon("data/models/weapons2/plasma", "plasma");
+		gMd3.loadWeapon("data/models/weapons2/machinegun", "machinegun");
+		gMd3.setAnimUpper(TORSO_STAND);
+		gMd3.setAnimLower(LEGS_WALK);
 
 		// Setup textures
-		for (unsigned int i = 0; i < gMd3.texNumTest; ++i) 
-		{ 
-			snprintf(filename, 255, "data/%s", gMd3.texTest[i].name); 
-			
-			gMd3.texTest[i].gl_texture_id = mTexture.loadTGA(filename, true); 
-			
-			if (gMd3.texTest[i].gl_texture_id < 0) 
-			{ 
-				printf("ERROR: Md3 texture '%s' not loaded\n", filename); 
+		for (unsigned int i = 0; i < gMd3.texNumTest; ++i)
+		{
+			snprintf(filename, 255, "data/%s", gMd3.texTest[i].name);
+
+			gMd3.texTest[i].gl_texture_id = mTexture.loadTGA(filename, true);
+
+			if (gMd3.texTest[i].gl_texture_id < 0)
+			{
+				printf("ERROR: Md3 texture '%s' not loaded\n", filename);
 			}
 			else
 			{
 				(*mNumTexturesLoaded)++;
 				(*mNextTextureId) = gMd3.texTest[i].gl_texture_id;
 			}
-		} 
+		}
 	}
 #endif
 }
 
 
-void Render::initEmitter(char *name, unsigned int size, 
+void Render::initEmitter(char *name, unsigned int size,
 								 unsigned int snowTex1, unsigned int snowTex2)
 {
 #ifdef USING_EMITTER
@@ -390,7 +395,7 @@ void Render::initEmitter(char *name, unsigned int size,
 	mEmitter->TextureId(400, 450, snowTex2);
 	mEmitter->TextureId(500, 550, snowTex2);
 
-	// Mongoose 2002.01.01, Varing force and speed should look 
+	// Mongoose 2002.01.01, Varing force and speed should look
 	//   like varing mass/SA in wind, maybe
 	mEmitter->Speed(0, 150, 3500, 3000, 3500);
 	mEmitter->Speed(150, 350, 3000, 4000, 3000);
@@ -409,7 +414,7 @@ void Render::ClearWorld()
 	LARA = NULL;
 
 	mRoomRenderList.clear();
-	
+
 	mRooms.erase();
 
 	mModels.erase();
@@ -474,12 +479,12 @@ void Render::Init(int width, int height, bool fast_card)
 	mWidth = width;
 	mHeight = height;
 	mFlags |= Render::fFastCard;
-	
+
 	if (!fast_card)
 	{
 		mFlags ^= Render::fFastCard;
 	}
-	
+
 	// Print driver support information
 	printf("\n\n\t## GL Driver Info ##\n");
 	printf("\tVendor     : %s\n", glGetString(GL_VENDOR));
@@ -530,11 +535,11 @@ void Render::Init(int width, int height, bool fast_card)
 	// Set background to black
 	glClearColor(BLACK[0], BLACK[1], BLACK[2], BLACK[3]);
 
-	// Disable lighting 
+	// Disable lighting
 	glDisable(GL_LIGHTING);
 
 	// Set up alpha blending
-	if (fast_card) 
+	if (fast_card)
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
@@ -553,7 +558,7 @@ void Render::Init(int width, int height, bool fast_card)
 	// Setup shading
 	glShadeModel(GL_SMOOTH);
 
-	if (fast_card) 
+	if (fast_card)
 	{
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 		glHint(GL_FOG_HINT, GL_NICEST);
@@ -637,11 +642,11 @@ void lightRoom(RenderRoom *room)
 	  case Light::typePoint:
 	  case Light::typeDirectional:
 		  glLightf(GL_LIGHT0 + i, GL_CONSTANT_ATTENUATION, 1.0); // 1.0
-	  
+
 		  // GL_QUADRATIC_ATTENUATION
 		  // GL_LINEAR_ATTENUATION
 		  glLightf(GL_LIGHT0 + i, GL_LINEAR_ATTENUATION, light->mAtt);
-		  
+
 		  glLightfv(GL_LIGHT0 + i, GL_DIFFUSE, light->mColor); // GL_DIFFUSE
 		  glLightfv(GL_LIGHT0 + i, GL_POSITION, light->mPos);
 		  break;
@@ -667,7 +672,7 @@ void Render::clearFlags(unsigned int flags)
 	if (flags & Render::fFog)
 	{
 		if (glIsEnabled(GL_FOG))
-		{ 
+		{
 			glDisable(GL_FOG);
 		}
 	}
@@ -723,7 +728,7 @@ void Render::setMode(int n)
 		break;
 	case Render::modeSolid:
 	case Render::modeWireframe:
-		glClearColor(NEXT_PURPLE[0], NEXT_PURPLE[1], 
+		glClearColor(NEXT_PURPLE[0], NEXT_PURPLE[1],
 						 NEXT_PURPLE[2], NEXT_PURPLE[3]);
 		glDisable(GL_TEXTURE_2D);
 		break;
@@ -793,7 +798,7 @@ void Render::Display()
 		int sector;
 		float camOffsetH = 0.0f;
 
-		
+
 		switch (LARA->moveType)
 		{
 		case worldMoveType_fly:
@@ -811,12 +816,12 @@ void Render::Display()
 		yaw = LARA->angles[1];
 
 		index = LARA->room;
-		
+
 		// Mongoose 2002.08.24, New 3rd person camera hack
 		camPos[0] = curPos[0];
 		camPos[1] = curPos[1] - camOffsetH; // UP is lower val
 		camPos[2] = curPos[2];
-		
+
 		camPos[0] -= (1024.0 * sin(yaw));
 		camPos[2] -= (1024.0 * cos(yaw));
 
@@ -850,31 +855,31 @@ void Render::Display()
 
 	// Let's see the LoS -- should be event controled
 	if (LARA)
-	{ 
+	{
 		//		SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
 
 		// Draw in solid colors
 		glDisable(GL_TEXTURE_2D);
 		glDisable(GL_CULL_FACE);
-		
+
 		if (LARA->state == 64) // eWeaponFire
-		{	
+		{
 			vec3_t u, v; //, s, t;
-			
+
 			// Center of LARA
 			u[0] = curPos[0];
 			u[1] = curPos[1] - 512.0;
 			u[2] = curPos[2];
-			
+
 			// Location LARA is aiming at?  ( Not finished yet )
 			v[0] = u[0] + (9000.0 * sin(LARA->angles[1]));
 			v[1] = u[1] + (9000.0 * sin(LARA->angles[2]));
 			v[2] = u[2] + (9000.0 * cos(LARA->angles[1]));
-			
+
 			//mtkVectorSubtract(u, v, t);
 			//mtkVectorSubtract(u, curPos, s);
 			//printf("* %f rad\n", LARA->angles[1]);
-			
+
 			// Test tracing of aim
 			renderTrace(0, u, v); // v = target
 		}
@@ -903,7 +908,7 @@ void Render::Display()
 	newRoomRenderList(index);
 
 	// Room solid pass, need to do depth sorting to avoid 2 pass render
-	for (mRoomRenderList.start(); mRoomRenderList.forward(); 
+	for (mRoomRenderList.start(); mRoomRenderList.forward();
 		  mRoomRenderList.next())
 	{
 		room = mRoomRenderList.current();
@@ -925,7 +930,7 @@ void Render::Display()
 		entity_t *e;
 		Vector<entity_t *> entityRenderList;
 		Vector<entity_t *> *entities = gWorld.getEntities();
-		
+
 		for (entities->start(); entities->forward(); entities->next())
 		{
 			e = entities->current();
@@ -955,7 +960,7 @@ void Render::Display()
 			//{
 			//	continue;
 			//}
-			
+
 			entityRenderList.pushBack(e);
 		}
 
@@ -964,10 +969,10 @@ void Render::Display()
 		drawObjects();
 		glPopMatrix();
 
-		// Depth sort entityRenderList with qsort 
+		// Depth sort entityRenderList with qsort
 		entityRenderList.qSort(compareEntites);
 
-		for (entityRenderList.start(); entityRenderList.forward(); 
+		for (entityRenderList.start(); entityRenderList.forward();
 			  entityRenderList.next())
 		{
 			e = entityRenderList.current();
@@ -981,14 +986,14 @@ void Render::Display()
 	}
 
 	// Room alpha pass
-	// Skip room alpha pass for modes w/o texture 
+	// Skip room alpha pass for modes w/o texture
 	if (!(mMode == Render::modeSolid || mMode == Render::modeWireframe))
 	{
 		for (mRoomRenderList.start(); mRoomRenderList.forward();
 			  mRoomRenderList.next())
 		{
 			room = mRoomRenderList.current();
-			
+
 			if (room)
 			{
 				drawRoom(room, true);
@@ -1004,17 +1009,17 @@ void Render::Display()
 
 		glPushMatrix();
 		glLoadIdentity();
-		
+
 		glEnable(GL_BLEND);
 		glRotatef(180.0, 1.0, 0.0, 0.0);
 		glTranslatef(0.0, -820.0, 575.0);
 		glScalef(80.0, 80.0, 80.0);
-		
+
 		EMIT->Draw();
-		
+
 		glPopMatrix();
 
-		// Mongoose 2002.03.26, Account for particle system 
+		// Mongoose 2002.03.26, Account for particle system
 		//   not using new binds by setting WHITE texture here
 		mTexture.bindTextureId(0);
 	}
@@ -1055,7 +1060,7 @@ void Render::newRoomRenderList(int index)
 		if (index == -1) // -1 is error, so draw room 0, for the hell of it
 		{
 			room = mRooms[0];
-			
+
 			mRoomRenderList.clear();
 
 			if (room)
@@ -1066,7 +1071,7 @@ void Render::newRoomRenderList(int index)
 		else
 		{
 			// Update room render list if needed
-			if (mFlags & Render::fUpdateRoomListPerFrame || 
+			if (mFlags & Render::fUpdateRoomListPerFrame ||
 				 currentRoomId != index)
 			{
 				mRoomRenderList.clear();
@@ -1085,15 +1090,15 @@ void Render::newRoomRenderList(int index)
 			for (mRooms.start(); mRooms.forward(); mRooms.next())
 			{
 				room = mRooms.current();
-				
+
 				if (!room || !room->room)
 					continue;
 
 				if (!isVisible(room->room->bbox_min, room->room->bbox_max))
 					continue;
 
-				//room->dist = 
-				//gViewVolume.getDistToBboxFromNear(room->room->bbox_min, 
+				//room->dist =
+				//gViewVolume.getDistToBboxFromNear(room->room->bbox_min,
 				//											 room->room->bbox_max);
 
 				mRoomRenderList.pushBack(room);
@@ -1131,8 +1136,8 @@ void Render::buildRoomRenderList(RenderRoom *rRoom)
 			return;
 	}
 
-	//rRoom->dist = 
-	//gViewVolume.getDistToBboxFromNear(rRoom->room->bbox_min, 
+	//rRoom->dist =
+	//gViewVolume.getDistToBboxFromNear(rRoom->room->bbox_min,
 	//											 rRoom->room->bbox_max);
 
 	/* Add current room to list */
@@ -1147,18 +1152,18 @@ void Render::buildRoomRenderList(RenderRoom *rRoom)
 		for (mRooms.start(); mRooms.forward(); mRooms.next())
 		{
 			rRoom2 = mRooms.current();
-			
+
 			if (rRoom2 && rRoom2 != rRoom)
 			{
 				buildRoomRenderList(rRoom2);
 			}
 		}
-		
+
 		return;
 	}
 
 	// Try to add adj rooms and their adj rooms, skip this room
-	for (rRoom->room->adjacentRooms.start(), rRoom->room->adjacentRooms.next(); 
+	for (rRoom->room->adjacentRooms.start(), rRoom->room->adjacentRooms.next();
 		  rRoom->room->adjacentRooms.forward(); rRoom->room->adjacentRooms.next())
 	{
 		if (rRoom->room->adjacentRooms.current() < 0)
@@ -1186,12 +1191,12 @@ void Render::drawSkyMesh(float scale)
 
 	glDisable(GL_DEPTH_TEST);
 	glPushMatrix();
-	
-	if (mSkyMeshRotation) 
+
+	if (mSkyMeshRotation)
 	{
 		glRotated(90.0, 1, 0, 0);
 	}
-	
+
 	glTranslated(0.0, 1000.0, 0.0);
 	glScaled(scale, scale, scale);
 	//drawModel(model);
@@ -1255,7 +1260,7 @@ void Render::drawLoadScreen()
 	else
 	{
 		glBindTexture(GL_TEXTURE_2D, 2);
-		
+
 		glBegin(GL_TRIANGLE_STRIP);
 		glTexCoord2f(1.0, 1.0);
 		glVertex3f(x + w, y + h, z);
@@ -1288,7 +1293,7 @@ void Render::drawLoadScreen()
 		gViewVolume.getFrustum(mEmitter->mFrustum);
 		mEmitter->Flags(Emitter::fUseDepthSorting, true);
 		mEmitter->Draw();
-		
+
 		glPopMatrix();
 	}
 #endif
@@ -1319,7 +1324,7 @@ void Render::drawObjects()
 
 		// Mongoose 2002.03.22, Test 'idle' aniamtions
 		if (!LARA->moving)
-		{	
+		{
 			frame = mdl->getIdleAnimation();
 
 			// Mongoose 2002.08.15, Stop flickering of idle lara here
@@ -1348,7 +1353,7 @@ void Render::drawObjects()
 		glTranslated(0, 500, 1200);
 #else
 		glTranslated(LARA->pos[0], LARA->pos[1], LARA->pos[2]);
-		glRotated(mCamera->getYaw(), 0, 1, 0);		
+		glRotated(mCamera->getYaw(), 0, 1, 0);
 #endif
 
 #ifdef USING_MD3
@@ -1369,16 +1374,16 @@ void Render::drawObjects()
 	if (mFlags & Render::fSprites)
 	{
 		Vector<sprite_seq_t *> *sprites;
-		
+
 		sprites = gWorld.getSprites();
 
 		for (sprites->start(); sprites->forward(); sprites->next())
 		{
 			sprite = sprites->current();
-		
+
 			if (!sprite)
 				continue;
-		
+
 			if (sprite->sprite && sprite->num_sprites)
 			{
 				for (int i = 0; i < sprite->num_sprites; i++)
@@ -1414,16 +1419,16 @@ void Render::drawModel(SkeletalModel *model)
 	if (!animation)
 	{
 #ifdef DEBUG
-		printf("ERROR: No animation for model[%i].aframe[%i] %i\n", 
+		printf("ERROR: No animation for model[%i].aframe[%i] %i\n",
 				 mdl->id, aframe, mdl->animation.size());
-#endif	
+#endif
 		return;
 	}
 
 	if (animation->frame.empty())
 	{
 #ifdef DEBUG_RENDER
-		printf("ERROR: No boneframes?!?!  *** %i:%i ***\n", 
+		printf("ERROR: No boneframes?!?!  *** %i:%i ***\n",
 				 mdl->id, bframe);
 #endif
 		return;
@@ -1445,7 +1450,7 @@ void Render::drawModel(SkeletalModel *model)
 	for (boneframe->tag.start(); boneframe->tag.forward(); boneframe->tag.next())
 	{
 		tag = boneframe->tag.current();
-		
+
 		if (!tag)
 			continue;
 
@@ -1467,9 +1472,9 @@ void Render::drawModel(SkeletalModel *model)
 
 			if (tag->flag & 0x02)
 				glPushMatrix();
-		
+
 			glTranslatef(tag->off[0], tag->off[1], tag->off[2]);
-			
+
 			if (tag->rot[1])
 				glRotatef(tag->rot[1], 0, 1, 0);
 
@@ -1495,14 +1500,14 @@ void Render::drawModel(SkeletalModel *model)
 				}
 			}
 		}
-		
+
 		if (mFlags & Render::fRenderPonytail)
 		{
-			if (mdl->ponytailId > 0 && 
+			if (mdl->ponytailId > 0 &&
 				 boneframe->tag.getCurrentIndex() == 14)
 			{
 				glPushMatrix();
-				
+
 				// Mongoose 2002.08.30, TEST to align offset
 				glTranslatef(mdl->ponytail[0], mdl->ponytail[1], mdl->ponytail[2]);
 				glRotatef(mdl->ponytailAngle, 1, 0, 0);
@@ -1514,13 +1519,13 @@ void Render::drawModel(SkeletalModel *model)
 					glScalef(1.20, 1.20, 1.20);
 				}
 
-#ifdef EXPERIMENTAL_NON_ITEM_RENDER				
+#ifdef EXPERIMENTAL_NON_ITEM_RENDER
 				drawModel(mModels[mdl->ponytail], 0, 0);
 #else
 				for (i = 0; i < mdl->ponytailNumMeshes; ++i)
 				{
 					glPushMatrix();
-					
+
 					if (i > 0)
 					{
 						glRotatef(helRandomNum(-8.0, -10.0), 1, 0, 0);
@@ -1529,12 +1534,12 @@ void Render::drawModel(SkeletalModel *model)
 
 						glTranslatef(0.0, 0.0, mdl->ponyOff);
 					}
-					
+
 					if (mdl->pigtails)
 					{
 						glPushMatrix();
 						glTranslatef(mdl->ponyOff2, 0.0, 0.0);
-						drawModelMesh(gWorld.getMesh(mdl->ponytailMeshId + i), 
+						drawModelMesh(gWorld.getMesh(mdl->ponytailMeshId + i),
 										  Render::skeletalMesh);
 						glPopMatrix();
 
@@ -1552,10 +1557,10 @@ void Render::drawModel(SkeletalModel *model)
 				}
 
 				for (i = 0; i < mdl->ponytailNumMeshes; ++i)
-				{			
+				{
 					glPopMatrix();
 				}
-#endif				
+#endif
 				glPopMatrix();
 			}
 		}
@@ -1641,7 +1646,7 @@ void draw_bbox(vec3_t min, vec3_t max, bool draw_points)
 	// min, bottom quad
 	glVertex3f(min[0], min[1], min[2]);
 	glVertex3f(min[0], max[1], min[2]);
-    
+
 	glVertex3f(min[0], min[1], min[2]);
 	glVertex3f(max[0], min[1], min[2]);
 
@@ -1654,7 +1659,7 @@ void draw_bbox(vec3_t min, vec3_t max, bool draw_points)
 }
 
 
-void draw_bbox_color(vec3_t min, vec3_t max, bool draw_points, 
+void draw_bbox_color(vec3_t min, vec3_t max, bool draw_points,
 							const vec4_t c1, const vec4_t c2)
 {
 	// Bind before entering now
@@ -1718,7 +1723,7 @@ void draw_bbox_color(vec3_t min, vec3_t max, bool draw_points,
 	// min, bottom quad
 	glVertex3f(min[0], min[1], min[2]);
 	glVertex3f(min[0], max[1], min[2]);
-    
+
 	glVertex3f(min[0], min[1], min[2]);
 	glVertex3f(max[0], min[1], min[2]);
 
@@ -1779,7 +1784,7 @@ void Render::drawRoom(RenderRoom *rRoom, bool draw_alpha)
 
 		for (i = 0; i < (int)room->num_boxes; ++i)
 		{
-			// Mongoose 2002.08.14, This is a simple test - 
+			// Mongoose 2002.08.14, This is a simple test -
 			//   these like portals are really planes
 			glBegin(GL_QUADS);
 			glVertex3fv(room->boxes[i].a.pos);
@@ -1787,7 +1792,7 @@ void Render::drawRoom(RenderRoom *rRoom, bool draw_alpha)
 			glVertex3fv(room->boxes[i].c.pos);
 			glVertex3fv(room->boxes[i].d.pos);
 			glEnd();
-		}		
+		}
 #endif
 	}
 
@@ -1834,19 +1839,19 @@ void Render::drawRoom(RenderRoom *rRoom, bool draw_alpha)
 		{
 			static_model_t *mdl;
 
-			for (room->models.start(); room->models.forward(); 
+			for (room->models.start(); room->models.forward();
 				  room->models.next())
 			{
 				mdl = room->models.current();
-				
+
 				if (!mdl)
 					continue;
-				
+
 				mdl->pos[0] += room->pos[0];
 				mdl->pos[1] += room->pos[1];
 				mdl->pos[2] += room->pos[2];
 
-				// Depth sort room model render list with qsort 
+				// Depth sort room model render list with qsort
 				room->models.qSort(compareStaticModels);
 
 				mdl->pos[0] -= room->pos[0];
@@ -1854,7 +1859,7 @@ void Render::drawRoom(RenderRoom *rRoom, bool draw_alpha)
 				mdl->pos[2] -= room->pos[2];
 			}
 
-			for (room->models.start(); room->models.forward(); 
+			for (room->models.start(); room->models.forward();
 				  room->models.next())
 			{
 				drawRoomModel(room->models.current());
@@ -1878,7 +1883,7 @@ void Render::drawSprite(sprite_t *sprite)
 	if (!sprite)
 		return;
 
-	if (!isVisible(sprite->pos[0], sprite->pos[1], sprite->pos[2], 
+	if (!isVisible(sprite->pos[0], sprite->pos[1], sprite->pos[2],
 						sprite->radius))
 		return;
 
@@ -1955,7 +1960,7 @@ void Render::drawRoomModel(static_model_t *mesh)
 	glPushMatrix();
 	glTranslated(mesh->pos[0], mesh->pos[1], mesh->pos[2]);
 	glRotated(mesh->yaw, 0, 1, 0);
-	
+
 	drawModelMesh(r_mesh, roomMesh);
 	glPopMatrix();
 }
@@ -1964,7 +1969,7 @@ void Render::drawRoomModel(static_model_t *mesh)
 void Render::tmpRenderModelMesh(model_mesh_t *r_mesh, texture_tri_t *ttri)
 {
 	glBegin(GL_TRIANGLES);
-	
+
 	switch (mMode)
 	{
 	case modeSolid:
@@ -1974,11 +1979,11 @@ void Render::tmpRenderModelMesh(model_mesh_t *r_mesh, texture_tri_t *ttri)
 			glColor3fv(r_mesh->colors+ttri->index[0]);
 			glTexCoord2fv(ttri->st);
 			glVertex3fv(r_mesh->vertices+ttri->index[0]*3);
-			
+
 			glColor3fv(r_mesh->colors+ttri->index[1]);
 			glTexCoord2fv(ttri->st+2);
 			glVertex3fv(r_mesh->vertices+ttri->index[1]*3);
-			
+
 			glColor3fv(r_mesh->colors+ttri->index[2]);
 			glTexCoord2fv(ttri->st+4);
 			glVertex3fv(r_mesh->vertices+ttri->index[2]*3);
@@ -1988,11 +1993,11 @@ void Render::tmpRenderModelMesh(model_mesh_t *r_mesh, texture_tri_t *ttri)
 			glNormal3fv(r_mesh->normals+ttri->index[0]*3);
 			glTexCoord2fv(ttri->st);
 			glVertex3fv(r_mesh->vertices+ttri->index[0]*3);
-			
+
 			glNormal3fv(r_mesh->normals+ttri->index[1]*3);
 			glTexCoord2fv(ttri->st+2);
 			glVertex3fv(r_mesh->vertices+ttri->index[1]*3);
-			
+
 			glNormal3fv(r_mesh->normals+ttri->index[2]*3);
 			glTexCoord2fv(ttri->st+4);
 			glVertex3fv(r_mesh->vertices+ttri->index[2]*3);
@@ -2043,7 +2048,7 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
 	// Setup Arrays ( move these to another method depends on mMode )
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3, GL_FLOAT, 0, r_mesh->vertices);
-	
+
 	if (r_mesh->normals)
 	{
 		glEnableClientState(GL_NORMAL_ARRAY);
@@ -2061,17 +2066,17 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
 
 	glBegin(GL_TRIANGLES);
 
-	for (r_mesh->texturedTriangles.start(); 
+	for (r_mesh->texturedTriangles.start();
 		  r_mesh->texturedTriangles.forward();
 		  r_mesh->texturedTriangles.next())
 	{
 		ttri = r_mesh->texturedTriangles.current();
-		
+
 		if (!ttri)
 			continue;
 
 		for (k = 0; k < 4; ++k)
-		{							
+		{
 			index = mQuads[i].quads[j*4+k];
 			glTexCoord2fv(mQuads[i].texcoors[j*4+k]);
 			glArrayElement(mVertices[index]);
@@ -2084,7 +2089,7 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
 
 	// Mongoose 2002.01.08, FIXME 'AMBIENT'
 	glColor3fv(WHITE);
-	
+
 	if (mMode == modeWireframe)
 	{
 		switch (type)
@@ -2102,16 +2107,16 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
 	glBindTexture(GL_TEXTURE_2D, 1);  // White texture for colors
 
 	// Colored Triagles
-	for (r_mesh->coloredTriangles.start(); 
+	for (r_mesh->coloredTriangles.start();
 		  r_mesh->coloredTriangles.forward();
 		  r_mesh->coloredTriangles.next())
 	{
 		ttri = r_mesh->coloredTriangles.current();
-		
+
 		if (!ttri)
 			continue;
 
-		if (mMode != modeWireframe && mMode != modeSolid && 
+		if (mMode != modeWireframe && mMode != modeSolid &&
 			 ttri->texture != lastTexture)
 		{
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -2123,16 +2128,16 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
 	}
 
 	// Colored Rectagles
-	for (r_mesh->coloredRectangles.start(); 
+	for (r_mesh->coloredRectangles.start();
 		  r_mesh->coloredRectangles.forward();
 		  r_mesh->coloredRectangles.next())
 	{
 		ttri = r_mesh->coloredRectangles.current();
-		
+
 		if (!ttri)
 			continue;
 
-		if (mMode != modeWireframe && mMode != modeSolid && 
+		if (mMode != modeWireframe && mMode != modeSolid &&
 			 ttri->texture != lastTexture)
 		{
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -2144,16 +2149,16 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
 	}
 
 	// Textured Tris
-	for (r_mesh->texturedTriangles.start(); 
+	for (r_mesh->texturedTriangles.start();
 		  r_mesh->texturedTriangles.forward();
 		  r_mesh->texturedTriangles.next())
 	{
 		ttri = r_mesh->texturedTriangles.current();
-		
+
 		if (!ttri)
 			continue;
 
-		if (mMode != modeWireframe && mMode != modeSolid && 
+		if (mMode != modeWireframe && mMode != modeSolid &&
 			 ttri->texture != lastTexture)
 		{
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -2165,16 +2170,16 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
 	}
 
 	// Textured Quads
-	for (r_mesh->texturedRectangles.start(); 
+	for (r_mesh->texturedRectangles.start();
 		  r_mesh->texturedRectangles.forward();
 		  r_mesh->texturedRectangles.next())
 	{
 		ttri = r_mesh->texturedRectangles.current();
-		
+
 		if (!ttri)
 			continue;
 
-		if (mMode != modeWireframe && mMode != modeSolid && 
+		if (mMode != modeWireframe && mMode != modeSolid &&
 			 ttri->texture != lastTexture)
 		{
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -2239,7 +2244,7 @@ void Render::updateViewVolume()
 {
 	matrix_t proj;
 	matrix_t mdl;
-	
+
 
 	glGetFloatv(GL_PROJECTION_MATRIX, proj);
 	glGetFloatv(GL_MODELVIEW_MATRIX, mdl);
@@ -2278,7 +2283,7 @@ bool Render::isVisible(float x, float y, float z)
 		glEnd();
 	}
 
-	return (gViewVolume.isPointInFrustum(x, y, z));	
+	return (gViewVolume.isPointInFrustum(x, y, z));
 }
 
 

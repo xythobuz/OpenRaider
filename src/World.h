@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,14 +10,14 @@
  * Comments: The game world ( model )
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- Test Defines -----------------------------------------------
- *           
- * UNIT_TEST_WORLD - Builds World class as a console unit test 
  *
- *-- History ------------------------------------------------ 
+ *-- Test Defines -----------------------------------------------
+ *
+ * UNIT_TEST_WORLD - Builds World class as a console unit test
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.12.16:
  * Mongoose - Created
@@ -33,10 +33,10 @@
 #   include "SkeletalModel.h"
 #endif
 
-#include <mstl/List.h>
-#include <mstl/Vector.h>
-#include <hel/math.h>
-#include <hel/Mass.h>
+#include "mstl/List.h"
+#include "mstl/Vector.h"
+#include "hel/math.h"
+#include "hel/Mass.h"
 
 
 // Mirrors TombRaider class' room flags really
@@ -86,12 +86,12 @@ typedef struct color_s
 
 typedef struct sprite_s
 {
-	int num_verts; // 4 == Quad, 3 == Triangle, renderered as triangles 
+	int num_verts; // 4 == Quad, 3 == Triangle, renderered as triangles
 	vertex_t vertex[4];
 	texel_t texel[4];
 	float pos[3];
 	float radius; // yeah, I know
-	int texture;	
+	int texture;
 
 } sprite_t;
 
@@ -177,7 +177,7 @@ typedef struct static_model_s
 	int index;     // model_mesh index
 	float yaw;     // angle of rotation on Y
 	float pos[3];  // position
-	
+
 	//vec3_t bboxMax;
 	//vec3_t bboxMin;
 
@@ -234,7 +234,7 @@ typedef struct room_mesh_s
 
 
 // Workout generic entity and a client class from these entities
-typedef struct world_entity_s 
+typedef struct world_entity_s
 {
 	vec3_t pos;
 	vec3_t lastPos;
@@ -249,7 +249,7 @@ typedef struct world_entity_s
 } world_entity_t;
 
 
-typedef struct actor_entity_s 
+typedef struct actor_entity_s
 {
 	vec3_t pos;
 	vec3_t lastPos;
@@ -305,12 +305,12 @@ class World
 
 	World();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of World
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.16: 
+	 * 2002.12.16:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -321,7 +321,7 @@ class World
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.16: 
+	 * 2002.12.16:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -341,28 +341,28 @@ class World
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	int getRoomByLocation(float x, float y, float z);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Returns correct room index or -1 for unknown
 	 *
-	 *        NOTE: If it fails to be in a room it gives 
+	 *        NOTE: If it fails to be in a room it gives
 	 *        closest overlapping room
 	 *
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
-	int getAdjoiningRoom(int index, 
+	int getAdjoiningRoom(int index,
 								float x, float y, float z,
 								float x2, float y2, float z2);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Looks for portal crossings from xyz to xyz2 segment
 	 *        from room[index] returns index of adjoined room or -1
 	 *
@@ -381,13 +381,13 @@ class World
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	unsigned int getRoomInfo(int room);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -404,7 +404,7 @@ class World
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	bool getHeightAtPosition(int index, float x, float *y, float z);
@@ -416,7 +416,7 @@ class World
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	// Temp methods for rendering use until more refactoring is done
@@ -432,32 +432,32 @@ class World
 	////////////////////////////////////////////////////////////
 	// Public Mutators
 	////////////////////////////////////////////////////////////
-	
+
 	void setFlag(WorldFlag flag);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Sets option flag
 	 *
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	void clearFlag(WorldFlag flag);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Clears option flag
 	 *
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	void destroy();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Clears all data in world, in future will check
 	 *        if data is in use before clearing
 	 *
@@ -469,58 +469,58 @@ class World
 
 	void addRoom(room_mesh_t *room);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Adds object to world
 	 *
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
-	
+
 	void addMesh(model_mesh_t *model);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Adds object to world
 	 *
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	void addEntity(entity_t *e);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Adds object to world
 	 *
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	int addModel(skeletal_model_t *model);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Adds object to world, returns next model Id
 	 *        or -1 if failed to add model to world
 	 *
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	void addSprite(sprite_seq_t *sprite);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Adds object to world
 	 *
 	 *-- History ------------------------------------------
 	 *
 	 * 2002.12.20:
-	 * Mongoose - Created, factored out of Render class 
+	 * Mongoose - Created, factored out of Render class
 	 ------------------------------------------------------*/
 
 	void moveEntity(entity_t *e, char movement);
@@ -556,7 +556,7 @@ class World
 
 	void clear();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Clears all data in world
 	 *
 	 *-- History ------------------------------------------

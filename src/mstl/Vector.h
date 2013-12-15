@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -10,11 +10,11 @@
  * Comments: mtk template vector
  *
  *           UINT_MAX is an error condition, used in place of -1
- * 
- *           This file was generated using Mongoose's C++ 
+ *
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.08.31:
  * Mongoose - Created
@@ -84,7 +84,7 @@ public:
 			delete [] mData;
 		}
 
-		clear();		
+		clear();
 		mReserve = 0;
 	}
 
@@ -116,7 +116,7 @@ public:
 	{
 		unsigned int i;
 		Object *swap = 0x0;
-		
+
 
 		if (count > mReserve)
 		{
@@ -131,7 +131,7 @@ public:
 			{
 				mData[i] = swap[i];
 			}
-			
+
 			delete [] swap;
 		}
 	}
@@ -157,7 +157,7 @@ public:
 				mData[i] = object;
 			}
 		}
-		
+
 		mEnd = count;
 	}
 
@@ -166,7 +166,7 @@ public:
 	{
 		pushBack(0x0);
 	}
-	
+
 
 	void pushBack(Object object)
 	{
@@ -185,13 +185,13 @@ public:
 	{
 		return mReserve;
 	}
-	
+
 
 	unsigned int begin()
 	{
 		return mStart;
 	}
-	
+
 
 	unsigned int end()
 	{
@@ -203,7 +203,7 @@ public:
 	{
 		return mEnd;
 	}
-	
+
 
 	void copy(Vector<Object> &vector)
 	{
@@ -221,7 +221,7 @@ public:
 		for (i = vector.begin(); i < vector.end(); ++i)
 		{
 			mData[i] = vector[i];
-			Add(list->Current());
+			//Add(list->Current()); // WTFBBQ?
 		}
 	}
 
@@ -230,13 +230,13 @@ public:
 	{
 		qsort(mData, end(), sizeof(Object), compareFunc);
 	}
-	
+
 
 	void swap(unsigned int index, unsigned int index2)
 	{
 		if (index < begin() || index > end())
 			return;
-		
+
 		if (index2 < begin() || index2 > end())
 			return;
 
@@ -245,7 +245,7 @@ public:
 		mData[index2] = swap;
 	}
 
-	
+
 	void assign(unsigned int index, Object object)
 	{
 		mData[index] = object;
@@ -254,7 +254,7 @@ public:
 
 	Object operator [] (unsigned int index)
 	{
-		if (mData == 0x0 || index < begin() || index > end() || 
+		if (mData == 0x0 || index < begin() || index > end() ||
 			 index >= size() || empty())
 			return mError;
 
@@ -276,8 +276,8 @@ public:
 
 			fflush(stdout);
 		}
-		
-		printf("\n");    
+
+		printf("\n");
 	}
 
 
@@ -285,7 +285,7 @@ public:
 
 	void start(unsigned int index)
 	{
-		if (mData == 0x0 || index < begin() || index > end() || 
+		if (mData == 0x0 || index < begin() || index > end() ||
 			 index >= size() || empty())
 			return;
 
@@ -354,7 +354,7 @@ public:
 		return mData[mIndex];
 	}
 
-	
+
 	/* Requires objects to support '=='  */
 	bool find(Object object)
 	{

@@ -1,26 +1,26 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
  * Object  : SDL
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
  *
- * 2003.06.30, 
+ *-- History -------------------------------------------------
+ *
+ * 2003.06.30,
  * Mongoose - SDL_TTF support moved to Texture class
  *
  * 2003.06.03:
  * Mongoose - SDL_TTF support based on Sam Lantinga's public domain
- *            SDL_TTF demo functions and algorithms 
+ *            SDL_TTF demo functions and algorithms
  *
  * 2002.06.06:
  * Mongoose - Created
@@ -36,8 +36,13 @@
 #endif
 
 #ifdef HAVE_OPENGL
-#   include <GL/gl.h>
-#   include <GL/glu.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #else
 #   error "SDLSystem requires -DHAVE_OPENGL"
 #endif
@@ -68,8 +73,8 @@ void glDrawGrid(float size, float step)
 		glBegin(GL_LINE_LOOP);
 		for (y = -size; y < size; y += step)
 		{
-			glVertex3f(x + step, 0.0f, y);	
-			glVertex3f(x, 0.0f, y);	
+			glVertex3f(x + step, 0.0f, y);
+			glVertex3f(x, 0.0f, y);
 			glVertex3f(x, 0.0f, y + step);
 			glVertex3f(x + step, 0.0f, y + step);
 		}
@@ -162,7 +167,7 @@ void SDLSystem::bindKeyCommand(char *cmd, int key, int event)
 	}
 
 	printf("Bound command '%s' -> event %i (0x%x key)\n", cmd, event, key);
-	
+
 	keyEvents[key] = event;
 }
 #endif
@@ -208,7 +213,7 @@ void SDLSystem::setGrabMouse(bool on)
 }
 
 
-void SDLSystem::initVideo(unsigned int width, unsigned int height, 
+void SDLSystem::initVideo(unsigned int width, unsigned int height,
 								  bool fullscreen)
 {
 	int flags; //, x, y;
@@ -225,12 +230,12 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 	if (!m_driver || !m_driver[0] || SDL_GL_LoadLibrary(m_driver) < 0)
 	{
 		SDL_ClearError();
-		
+
 		// Fallback 1
 		if (SDL_GL_LoadLibrary("libGL.so") < 0)
 		{
 			SDL_ClearError();
-    
+
 			// Fallback 2
 			if (SDL_GL_LoadLibrary("libGL.so.1") < 0)
 			{
@@ -268,7 +273,7 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 
 	// Start game renderer
 	initGL();
-	
+
 	// Resize context
 	resizeGL(width, height);
 }
@@ -278,13 +283,13 @@ void SDLSystem::resize(unsigned int width, unsigned int height)
 {
 	GLfloat aspect;
 
-	
+
 	m_width = width;
 	m_height = height;
 
 	aspect = (GLfloat)width/(GLfloat)height;
 
-	glViewport(0, 0, width, height); 
+	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -334,10 +339,10 @@ void SDLSystem::runGame()
 				{
 				case SDL_BUTTON_LEFT:
 					btn = SYS_MOUSE_LEFT;
-					break; 
+					break;
 				case SDL_BUTTON_RIGHT:
 					btn = SYS_MOUSE_RIGHT;
-					break; 
+					break;
 				case SDL_BUTTON_MIDDLE:
 					btn = SYS_MOUSE_MIDDLE;
 					break;
@@ -352,7 +357,7 @@ void SDLSystem::runGame()
 					handleKeyReleaseEvent(btn, 0); // FIXME: mod not used
 				}
 				break;
-			case SDL_KEYUP:	
+			case SDL_KEYUP:
 			case SDL_KEYDOWN:
 				//SDL_GetMouseState(&x, &y); // Get cursor pos
 
@@ -464,13 +469,13 @@ void SDLSystem::runGame()
 					{
 						key= (unsigned int)(event.key.keysym.unicode & 0x7F);
 					}
-					else 
+					else
 					{
 						key = 0;
 					}
 				}
 #else
-				// FIXME: Avoid passing modifers as a key, since the 
+				// FIXME: Avoid passing modifers as a key, since the
 				// consoles using this expect text characters, add unicode
 				// support later when they're able to handle it
 				if (key > 255 && key < 1000)
@@ -478,7 +483,7 @@ void SDLSystem::runGame()
 					key = 0;
 				}
 #endif
-				
+
 				if (key == mConsoleKey)
 				{
 					if (event.type == SDL_KEYDOWN)
@@ -525,7 +530,7 @@ void SDLSystem::runGame()
 					}
 				}
 				break;
-			case SDL_VIDEORESIZE:			  
+			case SDL_VIDEORESIZE:
 				resizeGL(event.resize.w, event.resize.h);
 				gameFrame();
 				break;
@@ -555,7 +560,7 @@ void SDLSystem::shutdown(int i)
 void SDLSystem::toggleFullscreen()
 {
 	if (mWindow)
-	{		
+	{
 		SDL_ShowCursor(SDL_DISABLE);
 		SDL_WM_ToggleFullScreen(mWindow);
 	}

@@ -6,8 +6,13 @@
 
 #ifdef USING_OPENGL
 
-#   include <GL/gl.h>
-#   include <GL/glu.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #   include <SDL/SDL.h>
 #   include <Texture.h>
 
@@ -47,7 +52,7 @@ void handle_key(int key)
 
 		if (wireframe)
 		{
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); 
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		}
 		else
 		{
@@ -223,13 +228,13 @@ void event_resize(unsigned int width, unsigned int height)
 {
 	GLfloat aspect;
 
-	
+
 	gWidth = width;
 	gHeight = height;
 
 	aspect = (GLfloat)width/(GLfloat)height;
 
-	glViewport(0, 0, width, height); 
+	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -287,7 +292,7 @@ void draw_axis(float length, float arrowLenght)
 #endif
 
 
-void renderUnitTestScene() 
+void renderUnitTestScene()
 {
 
 	static float lastTime = 0.0f;
@@ -295,8 +300,8 @@ void renderUnitTestScene()
 	float x, y, time;
 
 
-	gluLookAt(0.0, 0.0, -256.0, 
-				 0.0, 8.0, 0.0, 
+	gluLookAt(0.0, 0.0, -256.0,
+				 0.0, 8.0, 0.0,
 				 0.0, 1.0, 0.0);
 
 	glDisable(GL_TEXTURE_2D);
@@ -331,7 +336,7 @@ void renderUnitTestScene()
 	// Draw light symbol
 	glPushMatrix();
 	glTranslatef(gLightPos[0], gLightPos[1], gLightPos[2]);
-	
+
 	glBegin(GL_LINES);
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glVertex3f(0.0f, 0.0f, 0.0f);
@@ -370,8 +375,8 @@ void renderUnitTestScene()
 		glBegin(GL_LINE_LOOP);
 		for (y = -size; y < size; y += step)
 		{
-			glVertex3f(x + step, 0.0f, y);	
-			glVertex3f(x, 0.0f, y);	
+			glVertex3f(x + step, 0.0f, y);
+			glVertex3f(x, 0.0f, y);
 			glVertex3f(x, 0.0f, y + step);
 			glVertex3f(x + step, 0.0f, y + step);
 		}
@@ -380,7 +385,7 @@ void renderUnitTestScene()
 
 	glPopMatrix();
 
-	
+
 	glEnable(GL_TEXTURE_2D);
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glPushMatrix();
@@ -458,7 +463,7 @@ int main_gl(int argc, char *argv[])
 	  if (SDL_GL_LoadLibrary("libGL.so") < 0)
 	  {
 		  SDL_ClearError();
-    
+
 		  // Fallback 2
 		  if (SDL_GL_LoadLibrary("libGL.so.1") < 0)
 		  {
@@ -484,7 +489,7 @@ int main_gl(int argc, char *argv[])
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
   gSDLWindow = SDL_SetVideoMode(width, height, 16, flags);
   SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-  
+
   // Init rendering
   init_gl(width, height);
   initScene(argc, argv);
@@ -505,7 +510,7 @@ int main_gl(int argc, char *argv[])
 			  break;
 		  case SDL_MOUSEBUTTONDOWN:
 		  case SDL_MOUSEBUTTONUP:
-			  break;	
+			  break;
 		  case SDL_KEYDOWN:
 			  mkeys = (unsigned int)SDL_GetModState();
 			  mod = 0;
@@ -542,12 +547,12 @@ int main_gl(int argc, char *argv[])
 					  SDL_WM_ToggleFullScreen(gSDLWindow);
 				  }
 			  }
-			  
+
 			  handle_key(key);
 			  break;
 		  case SDL_KEYUP:
 			  break;
-		  case SDL_VIDEORESIZE:			  
+		  case SDL_VIDEORESIZE:
 			  event_resize(event.resize.w, event.resize.h);
 
 			  width = event.resize.w;
@@ -559,7 +564,7 @@ int main_gl(int argc, char *argv[])
 
 	  event_display(width, height);
   }
-  
+
   return 0;
 }
 #endif
@@ -585,7 +590,7 @@ int runSDLUnitTest(int argc, char *argv[])
 		printf("'%s h' for help\n", argv[0]);
 	}
 
-	
+
 #ifdef USING_OPENGL
 	main_gl(argc, argv);
 #else

@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: Unreal Tournament skeletal model
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2003.07.12:
  * Mongoose - UT Package prototype code moved into 'UTPackage'
@@ -35,10 +35,10 @@
  *
  * 2003.01.20:
  * Mongoose - Fixed triangle rendering thanks to debugging by
- *            Steven Fuller, who found the tris -> UV -> vert 
+ *            Steven Fuller, who found the tris -> UV -> vert
  *            connection
  *
- *            Finished up basic rendering, lots of 
+ *            Finished up basic rendering, lots of
  *            small fixes/features
  *
  * 2003.01.06:
@@ -52,8 +52,13 @@
 #include <math.h>
 
 #ifdef USING_OPENGL
-#   include <GL/gl.h>
-#   include <GL/glu.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #endif
 
 #include "UTPackage.h"
@@ -70,17 +75,17 @@ void multiply_matrix(float *a, float *b, float *result)
 	result[ 1] = a[ 0] * b[ 4] + a[ 4] * b[ 5] + a[ 8] * b[ 6] + a[12] * b[ 7];
 	result[ 2] = a[ 0] * b[ 8] + a[ 4] * b[ 9] + a[ 8] * b[10] + a[12] * b[11];
 	result[ 3] = a[ 0] * b[12] + a[ 4] * b[13] + a[ 8] * b[14] + a[12] * b[15];
-	
+
 	result[ 4] = a[ 1] * b[ 0] + a[ 5] * b[ 1] + a[ 9] * b[ 2] + a[13] * b[ 3];
 	result[ 5] = a[ 1] * b[ 4] + a[ 5] * b[ 5] + a[ 9] * b[ 6] + a[13] * b[ 7];
 	result[ 6] = a[ 1] * b[ 8] + a[ 5] * b[ 9] + a[ 9] * b[10] + a[13] * b[11];
 	result[ 7] = a[ 1] * b[12] + a[ 5] * b[13] + a[ 9] * b[14] + a[13] * b[15];
-	
+
 	result[ 8] = a[ 2] * b[ 0] + a[ 6] * b[ 1] + a[10] * b[ 2] + a[14] * b[ 3];
 	result[ 9] = a[ 2] * b[ 4] + a[ 6] * b[ 5] + a[10] * b[ 6] + a[14] * b[ 7];
 	result[10] = a[ 2] * b[ 8] + a[ 6] * b[ 9] + a[10] * b[10] + a[14] * b[11];
 	result[11] = a[ 2] * b[12] + a[ 6] * b[13] + a[10] * b[14] + a[14] * b[15];
-	
+
 	result[12] = a[ 3] * b[ 0] + a[ 7] * b[ 1] + a[11] * b[ 2] + a[15] * b[ 3];
 	result[13] = a[ 3] * b[ 4] + a[ 7] * b[ 5] + a[11] * b[ 6] + a[15] * b[ 7];
 	result[14] = a[ 3] * b[ 8] + a[ 7] * b[ 9] + a[11] * b[10] + a[15] * b[11];
@@ -110,7 +115,7 @@ void translate_matrix(float tx, float ty, float tz, float *m)
    tmat[12]=tx; tmat[13]=ty; tmat[14]=tz; tmat[15]=1;
 
 	//copy_matrix(m, tmp);
-	
+
 	for (i = 0; i < 16; ++i)
 		tmp[i] = m[i];
 
@@ -129,25 +134,25 @@ bool invert_matrix(float *m, float *out)
 	/* NB. OpenGL Matrices are COLUMN major. */
 #define SWAP_ROWS(a, b) { float *_tmp = a; (a)=(b); (b)=_tmp; }
 #define MAT(m,r,c) (m)[(c)*4+(r)]
-	
+
 	float wtmp[4][8];
 	float m0, m1, m2, m3, s;
 	float *r0, *r1, *r2, *r3;
-	
+
 	r0 = wtmp[0], r1 = wtmp[1], r2 = wtmp[2], r3 = wtmp[3];
-	
+
 	r0[0] = MAT(m,0,0), r0[1] = MAT(m,0,1),
 	r0[2] = MAT(m,0,2), r0[3] = MAT(m,0,3),
 	r0[4] = 1.0, r0[5] = r0[6] = r0[7] = 0.0,
-	
+
 	r1[0] = MAT(m,1,0), r1[1] = MAT(m,1,1),
 	r1[2] = MAT(m,1,2), r1[3] = MAT(m,1,3),
 	r1[5] = 1.0, r1[4] = r1[6] = r1[7] = 0.0,
-	
+
 	r2[0] = MAT(m,2,0), r2[1] = MAT(m,2,1),
 	r2[2] = MAT(m,2,2), r2[3] = MAT(m,2,3),
 	r2[6] = 1.0, r2[4] = r2[5] = r2[7] = 0.0,
-	
+
 	r3[0] = MAT(m,3,0), r3[1] = MAT(m,3,1),
 	r3[2] = MAT(m,3,2), r3[3] = MAT(m,3,3),
 	r3[7] = 1.0, r3[4] = r3[5] = r3[6] = 0.0;
@@ -157,7 +162,7 @@ bool invert_matrix(float *m, float *out)
 	if (fabs(r2[0])>fabs(r1[0])) SWAP_ROWS(r2, r1);
 	if (fabs(r1[0])>fabs(r0[0])) SWAP_ROWS(r1, r0);
 	if (0.0 == r0[0])  return false;
-	
+
 	/* eliminate first variable     */
 	m1 = r1[0]/r0[0]; m2 = r2[0]/r0[0]; m3 = r3[0]/r0[0];
 	s = r0[1]; r1[1] -= m1 * s; r2[1] -= m2 * s; r3[1] -= m3 * s;
@@ -171,12 +176,12 @@ bool invert_matrix(float *m, float *out)
 	if (s != 0.0) { r1[6] -= m1 * s; r2[6] -= m2 * s; r3[6] -= m3 * s; }
 	s = r0[7];
 	if (s != 0.0) { r1[7] -= m1 * s; r2[7] -= m2 * s; r3[7] -= m3 * s; }
-	
+
 	/* choose pivot - or die */
 	if (fabs(r3[1])>fabs(r2[1])) SWAP_ROWS(r3, r2);
 	if (fabs(r2[1])>fabs(r1[1])) SWAP_ROWS(r2, r1);
 	if (0.0 == r1[1])  return false;
-	
+
 	/* eliminate second variable */
 	m2 = r2[1]/r1[1]; m3 = r3[1]/r1[1];
 	r2[2] -= m2 * r1[2]; r3[2] -= m3 * r1[2];
@@ -185,23 +190,23 @@ bool invert_matrix(float *m, float *out)
 	s = r1[5]; if (0.0 != s) { r2[5] -= m2 * s; r3[5] -= m3 * s; }
 	s = r1[6]; if (0.0 != s) { r2[6] -= m2 * s; r3[6] -= m3 * s; }
 	s = r1[7]; if (0.0 != s) { r2[7] -= m2 * s; r3[7] -= m3 * s; }
-	
+
 	/* choose pivot - or die */
 	if (fabs(r3[2])>fabs(r2[2])) SWAP_ROWS(r3, r2);
 	if (0.0 == r2[2])  return false;
-	
+
 	/* eliminate third variable */
 	m3 = r3[2]/r2[2];
 	r3[3] -= m3 * r2[3], r3[4] -= m3 * r2[4],
 	r3[5] -= m3 * r2[5], r3[6] -= m3 * r2[6],
 	r3[7] -= m3 * r2[7];
-	
+
 	/* last check */
 	if (0.0 == r3[3]) return false;
-	
+
 	s = 1.0/r3[3];              /* now back substitute row 3 */
 	r3[4] *= s; r3[5] *= s; r3[6] *= s; r3[7] *= s;
-	
+
 	m2 = r2[3];                 /* now back substitute row 2 */
 	s  = 1.0/r2[2];
 	r2[4] = s * (r2[4] - r3[4] * m2), r2[5] = s * (r2[5] - r3[5] * m2),
@@ -212,7 +217,7 @@ bool invert_matrix(float *m, float *out)
 	m0 = r0[3];
 	r0[4] -= r3[4] * m0, r0[5] -= r3[5] * m0,
 	r0[6] -= r3[6] * m0, r0[7] -= r3[7] * m0;
-	
+
 	m1 = r1[2];                 /* now back substitute row 1 */
 	s  = 1.0/r1[1];
 	r1[4] = s * (r1[4] - r2[4] * m1), r1[5] = s * (r1[5] - r2[5] * m1),
@@ -220,22 +225,22 @@ bool invert_matrix(float *m, float *out)
 	m0 = r0[2];
 	r0[4] -= r2[4] * m0, r0[5] -= r2[5] * m0,
 	r0[6] -= r2[6] * m0, r0[7] -= r2[7] * m0;
-	
+
 	m0 = r0[1];                 /* now back substitute row 0 */
 	s  = 1.0/r0[0];
 	r0[4] = s * (r0[4] - r1[4] * m0), r0[5] = s * (r0[5] - r1[5] * m0),
 	r0[6] = s * (r0[6] - r1[6] * m0), r0[7] = s * (r0[7] - r1[7] * m0);
-	
-	MAT(out,0,0) = r0[4]; 
-	MAT(out,0,1) = r0[5], MAT(out,0,2) = r0[6]; 
+
+	MAT(out,0,0) = r0[4];
+	MAT(out,0,1) = r0[5], MAT(out,0,2) = r0[6];
 	MAT(out,0,3) = r0[7], MAT(out,1,0) = r1[4];
 	MAT(out,1,1) = r1[5], MAT(out,1,2) = r1[6];
 	MAT(out,1,3) = r1[7], MAT(out,2,0) = r2[4];
 	MAT(out,2,1) = r2[5], MAT(out,2,2) = r2[6];
 	MAT(out,2,3) = r2[7], MAT(out,3,0) = r3[4];
 	MAT(out,3,1) = r3[5], MAT(out,3,2) = r3[6];
-	MAT(out,3,3) = r3[7]; 
-	
+	MAT(out,3,3) = r3[7];
+
 	return true;
 #undef MAT
 #undef SWAP_ROWS
@@ -248,17 +253,17 @@ void quaternion_to_matrix(float mW, float mX, float mY, float mZ, float *m)
 	m[ 1] = 2.0f * (mX*mY - mW*mZ);
 	m[ 2] = 2.0f * (mX*mZ + mW*mY);
 	m[ 3] = 0.0f;
-	
+
 	m[ 4] = 2.0f * (mX*mY + mW*mZ);
 	m[ 5] = 1.0f - 2.0f * (mX*mX + mZ*mZ);
 	m[ 6] = 2.0f * (mY*mZ - mW*mX);
 	m[ 7] = 0.0f;
-	
+
 	m[ 8] = 2.0f * (mX*mZ - mW*mY);
 	m[ 9] = 2.0f * (mY*mZ + mW*mX);
 	m[10] = 1.0 - 2.0f * (mX*mX + mY*mY);
 	m[11] = 0.0f;
-	
+
 	m[12] = 0.0f;
 	m[13] = 0.0f;
 	m[14] = 0.0f;
@@ -266,7 +271,7 @@ void quaternion_to_matrix(float mW, float mX, float mY, float mZ, float *m)
 }
 
 
-void quaternion_to_axis_angles(float qw, float qx, float qy, float qz, 
+void quaternion_to_axis_angles(float qw, float qx, float qy, float qz,
 										 float *theta, float *x, float *y, float *z)
 {
 	*theta = (float)acos(qw) * 2.0;
@@ -281,7 +286,7 @@ void quaternion_to_axis_angles(float qw, float qx, float qy, float qz,
 }
 
 
-void quaternion_to_euler_angles(float qw, float qx, float qy, float qz, 
+void quaternion_to_euler_angles(float qw, float qx, float qy, float qz,
 										  float *x, float *y, float *z)
 {
 	double qw2 = qw*qw;
@@ -322,22 +327,22 @@ PSKModel::PSKModel()
 
 PSKModel::~PSKModel()
 {
-	if (mVertices) 
+	if (mVertices)
 		delete [] mVertices;
 
-	if (mWeights) 
+	if (mWeights)
 		delete [] mWeights;
 
-	if (mVTXWs) 
+	if (mVTXWs)
 		delete [] mVTXWs;
 
-	if (mFaces) 
+	if (mFaces)
 		delete [] mFaces;
 
-	if (mMaterials) 
+	if (mMaterials)
 		delete [] mMaterials;
 
-	if (mBones) 
+	if (mBones)
 		delete [] mBones;
 }
 
@@ -356,7 +361,7 @@ void PSKModel::printSkeletion(bool printNames)
 	{
 		printf("%3i. ", i);
 		j = i;
-			
+
 		while (j > 0)
 		{
 			if (printNames)
@@ -370,7 +375,7 @@ void PSKModel::printSkeletion(bool printNames)
 
 			j = mBones[j].parentIndex;
 		}
-			
+
 		printf("\n");
 	}
 
@@ -426,12 +431,12 @@ int PSKModel::load(char *filename)
 	{
 		printf(" ===========================\n");
 		printf(" Reading Frame[%03u]\n", frame);
-		printf(" ===========================\n");		
+		printf(" ===========================\n");
 
 		/* PNTS0000... */
 		fread(buffer, 1, 28, f);
 		buffer[8] = 0;
-	
+
 		if (frame == 0 && strncmp("PNTS0000", buffer, 8) != 0)
 		{
 			printf("Expected PNTS0000, found '%s'\n", buffer);
@@ -452,10 +457,10 @@ int PSKModel::load(char *filename)
 			mVertices[i+1] = r;
 			fread(&r, 1, 4, f);
 			mVertices[i+2] = r;
-			
+
 			if (mFlags & fDebugPointLoad)
 			{
-				printf("\t%5u (%.3f, %.3f, %.3f)\n", 
+				printf("\t%5u (%.3f, %.3f, %.3f)\n",
 						 i/3, mVertices[i], mVertices[i+1], mVertices[i+2]);
 			}
 		}
@@ -464,7 +469,7 @@ int PSKModel::load(char *filename)
 		/* VTXW0000... */
 		fread(buffer, 1, 28, f);
 		buffer[8] = 0;
-		
+
 		if (frame == 0 && strncmp("VTXW0000", buffer, 8) != 0)
 		{
 			printf("Expected VTXW0000, found '%s'\n", buffer);
@@ -472,7 +477,7 @@ int PSKModel::load(char *filename)
 			printf("This isn't a known VTXW0000\n");
 			return -2;
 		}
-		
+
 		fread(&mNumVTXWs, 1, 4, f);
 		printf(" NumVTXWs =\t %u\n", mNumVTXWs);
 
@@ -497,9 +502,9 @@ int PSKModel::load(char *filename)
 
 			if (mFlags & fDebugUVLoad)
 			{
-				printf("\t%5u vertex = %u, unknown1 = 0x%x, UV = (%.3f, %.3f), unknown2 = 0x%x\n", 
-						 i, 
-						 mVTXWs[i].vertex, mVTXWs[i].unknown1, 
+				printf("\t%5u vertex = %u, unknown1 = 0x%x, UV = (%.3f, %.3f), unknown2 = 0x%x\n",
+						 i,
+						 mVTXWs[i].vertex, mVTXWs[i].unknown1,
 						 mVTXWs[i].uv[0], mVTXWs[i].uv[1],
 						 mVTXWs[i].unknown2);
 			}
@@ -509,7 +514,7 @@ int PSKModel::load(char *filename)
 		/* FACE0000... */
 		fread(buffer, 1, 28, f);
 		buffer[8] = 0;
-		
+
 		if (frame == 0 && strncmp("FACE0000", buffer, 8) != 0)
 		{
 			printf("Expected FACE0000, found '%s'\n", buffer);
@@ -520,9 +525,9 @@ int PSKModel::load(char *filename)
 
 		fread(&mNumFaces, 1, 4, f);
 		printf(" NumFaces =\t %u\n", mNumFaces);
-		
+
 		mFaces = new psk_face_t[mNumFaces];
-		
+
 		for (i = 0; i < mNumFaces; ++i)
 		{
 			// Vertex indices
@@ -541,11 +546,11 @@ int PSKModel::load(char *filename)
 
 			if (mFlags & fDebugFaceLoad)
 			{
-				printf("%5u (%u, %u, %u), material = %u, flags = %u, unknown = 0x%x\n", 
-						 i, 
+				printf("%5u (%u, %u, %u), material = %u, flags = %u, unknown = 0x%x\n",
+						 i,
 						 mFaces[i].x, mFaces[i].y, mFaces[i].z,
 						 mFaces[i].material, mFaces[i].flags, mFaces[i].unknown);
-						 
+
 			}
 		}
 
@@ -553,7 +558,7 @@ int PSKModel::load(char *filename)
 		/* MATT0000... */
 		fread(buffer, 1, 28, f);
 		buffer[8] = 0;
-		
+
 		if (frame == 0 && strncmp("MATT0000", buffer, 8) != 0)
 		{
 			printf("Expected MATT0000, found '%s'\n", buffer);
@@ -565,7 +570,7 @@ int PSKModel::load(char *filename)
 		fread(&mNumMaterials, 1, 4, f);
 		printf(" NumMaterials =\t %u\n", mNumMaterials);
 		mMaterials = new psk_material_t[mNumMaterials];
-		
+
 		for (i = 0; i < mNumMaterials; ++i)
 		{
 			fread(&mMaterials[i].name, 1, 64, f);
@@ -612,7 +617,7 @@ int PSKModel::load(char *filename)
 
 	fread(&mNumBones, 1, 4, f);
 	printf(" NumBones =\t %u\n", mNumBones);
-	
+
 	mBones = new psk_bone_t[mNumBones];
 
 	for (i = 0; i < mNumBones; ++i)
@@ -621,7 +626,7 @@ int PSKModel::load(char *filename)
 		strncpy(mBones[i].name, buffer, 64);
 		fread(&mBones[i].flags, 1, 4, f);
 		fread(&mBones[i].numChildren, 1, 4, f);
-		fread(&mBones[i].parentIndex, 1, 4, f); 
+		fread(&mBones[i].parentIndex, 1, 4, f);
 
 		fread(&r, 1, 4, f);
 		mBones[i].restDir[0] = r;
@@ -643,25 +648,25 @@ int PSKModel::load(char *filename)
 		fread(mBones[i].unknown+1, 1, 4, f);
 		fread(mBones[i].unknown+2, 1, 4, f);
 		fread(mBones[i].unknown+3, 1, 4, f);
-		
+
 		if (mFlags & fDebugBoneLoad)
 		{
 			unsigned int offset = ftell(f) - 110;
 			printf("\n# File offset 0x%x + 110bytes\n", offset);
 
 			printf("Bone[%03u] = { '%s'\n", i, buffer);
-			printf("\tParent: %u, Children: %u, flags: 0x%80x\n", 
-					 mBones[i].parentIndex, mBones[i].numChildren, 
+			printf("\tParent: %u, Children: %u, flags: 0x%80x\n",
+					 mBones[i].parentIndex, mBones[i].numChildren,
 					 mBones[i].flags);
-			printf("\tRest Loc: (%.3f, %.3f, %.3f)\n", 
-					 mBones[i].restLoc[0], mBones[i].restLoc[1], 
+			printf("\tRest Loc: (%.3f, %.3f, %.3f)\n",
+					 mBones[i].restLoc[0], mBones[i].restLoc[1],
 					 mBones[i].restLoc[2]);
-			printf("\tRest Dir XYZ: (%.3f, %.3f, %.3f), W: %.3f?\n", 
-					 mBones[i].restDir[0], mBones[i].restDir[1], 
+			printf("\tRest Dir XYZ: (%.3f, %.3f, %.3f), W: %.3f?\n",
+					 mBones[i].restDir[0], mBones[i].restDir[1],
 					 mBones[i].restDir[2], mBones[i].restDir[3]);
-			
-			printf("\tUnknown: 0x%x, 0x%x, 0x%x, Flags? 0x%x\n", 
-					 mBones[i].unknown[0], mBones[i].unknown[1], 
+
+			printf("\tUnknown: 0x%x, 0x%x, 0x%x, Flags? 0x%x\n",
+					 mBones[i].unknown[0], mBones[i].unknown[1],
 					 mBones[i].unknown[2], mBones[i].unknown[3]);
 			printf("}\n");
 		}
@@ -686,7 +691,7 @@ int PSKModel::load(char *filename)
 
 	fread(&mNumWeights, 1, 4, f);
 	printf(" NumWeights =\t %u\n", mNumWeights);
-	
+
 	mWeights = new psk_weight_t[mNumWeights];
 
 	for (i = 0; i < mNumWeights; ++i)
@@ -697,8 +702,8 @@ int PSKModel::load(char *filename)
 
 		if (mFlags & fDebugWeightLoad)
 		{
-			printf("\tWeight[%u] { w = %f, vertexIndex = %u,  boneIndex = %u }\n", i, 
-					 mWeights[i].weight, 
+			printf("\tWeight[%u] { w = %f, vertexIndex = %u,  boneIndex = %u }\n", i,
+					 mWeights[i].weight,
 					 mWeights[i].vertexIndex, mWeights[i].boneIndex);
 		}
 	}
@@ -801,7 +806,7 @@ int PSAAnimation::load(char *filename)
 		fread(mBones[i].name, 1, 64, f);
 		fread(&mBones[i].flags, 1, 4, f);
 		fread(&mBones[i].numChildren, 1, 4, f);
-		fread(&mBones[i].parentIndex, 1, 4, f); 
+		fread(&mBones[i].parentIndex, 1, 4, f);
 
 		fread(&mBones[i].restDir[0], 1, 4, f);
 		fread(&mBones[i].restDir[1], 1, 4, f);
@@ -820,17 +825,17 @@ int PSAAnimation::load(char *filename)
 		if (mFlags &fDebugBones)
 		{
 			printf("Bone[%03u] = { '%s'\n", i, mBones[i].name);
-			printf("\tParent: %u, Children: %u, Flags: 0x%04x\n", 
+			printf("\tParent: %u, Children: %u, Flags: 0x%04x\n",
 					 mBones[i].parentIndex, mBones[i].numChildren,
 					 mBones[i].flags);
-			printf("\tRest Loc: (%.3f, %.3f, %.3f)\n", 
-					 mBones[i].restLoc[0], mBones[i].restLoc[1], 
+			printf("\tRest Loc: (%.3f, %.3f, %.3f)\n",
+					 mBones[i].restLoc[0], mBones[i].restLoc[1],
 					 mBones[i].restLoc[2]);
-			printf("\tRest Dir XYZ: (%.3f, %.3f, %.3f), W: %.3f\n", 
-					 mBones[i].restDir[0], mBones[i].restDir[1], 
+			printf("\tRest Dir XYZ: (%.3f, %.3f, %.3f), W: %.3f\n",
+					 mBones[i].restDir[0], mBones[i].restDir[1],
 					 mBones[i].restDir[2], mBones[i].restDir[3]);
-			printf("\?: 0x%x, 0x%x, 0x%x, Flags? 0x%08x\n", 
-					 mBones[i].unknown[0], mBones[i].unknown[1], 
+			printf("\?: 0x%x, 0x%x, 0x%x, Flags? 0x%08x\n",
+					 mBones[i].unknown[0], mBones[i].unknown[1],
 					 mBones[i].unknown[2], mBones[i].unknown[3]);
 			printf("? %f\n", *((float *)&mBones[i].unknown[3]));
 			printf("}\n");
@@ -871,22 +876,22 @@ int PSAAnimation::load(char *filename)
 		if (mFlags &fDebugAnimInfos)
 		{
 			printf("\n");
-			printf("AnimInfo[%u] = { name: '%s', name2: '%s'\n", i, 
+			printf("AnimInfo[%u] = { name: '%s', name2: '%s'\n", i,
 					 mAnimInfos[i].name, mAnimInfos[i].name2);
 			printf(" numBones = %u, rootId = %u\n",
 					 mAnimInfos[i].numBones, mAnimInfos[i].rootId);
-			printf(" key: %u %u %f\n", 
-					 mAnimInfos[i].key[0], mAnimInfos[i].key[1], 
+			printf(" key: %u %u %f\n",
+					 mAnimInfos[i].key[0], mAnimInfos[i].key[1],
 					 mAnimInfos[i].keyf);
-			printf(" time: %f %f\n", 
+			printf(" time: %f %f\n",
 					 mAnimInfos[i].time[0], mAnimInfos[i].time[1]);
-			printf(" unknowns: %f %f %f\n", 
-					 mAnimInfos[i].unknown[0], mAnimInfos[i].unknown[1], 
+			printf(" unknowns: %f %f %f\n",
+					 mAnimInfos[i].unknown[0], mAnimInfos[i].unknown[1],
 					 mAnimInfos[i].unknown[2]);
 			printf("}\n");
 		}
 	}
-	
+
 	printf("COMPUTE: psa.numKeyframes / info.numBones = frames per bone\n");
 	printf("\n");
 
@@ -907,7 +912,7 @@ int PSAAnimation::load(char *filename)
 	mKeyFrames = new psa_key_frame_t[mNumKeyFrames];
 
 	for (i = 0; i < mNumKeyFrames; ++i)
-	{	
+	{
 		// tx ty tz qx qy qz qw s
 		fread(&mKeyFrames[i].trans[0], 4, 1, f);
 		fread(&mKeyFrames[i].trans[1], 4, 1, f);
@@ -921,11 +926,11 @@ int PSAAnimation::load(char *filename)
 		if (mFlags &fDebugKeyFrames)
 		{
 			printf("keyFrame[%u] = {\n", i);
-			printf("Trans XYZ: ( %f %f %f )\n", 
+			printf("Trans XYZ: ( %f %f %f )\n",
 					 mKeyFrames[i].trans[0], mKeyFrames[i].trans[1],
 					 mKeyFrames[i].trans[2]);
-			printf("Dir XYZ: ( %f %f %f ) %f\n", 
-					 mKeyFrames[i].dir[0], mKeyFrames[i].dir[1], 
+			printf("Dir XYZ: ( %f %f %f ) %f\n",
+					 mKeyFrames[i].dir[0], mKeyFrames[i].dir[1],
 					 mKeyFrames[i].dir[2], mKeyFrames[i].dir[3]);
 			printf("scale = %f\n", mKeyFrames[i].scale);
 			printf("}\n\n");
@@ -1018,14 +1023,14 @@ void PSKModelRenderer::render()
 	}
 
 	if (mFlags & fRenderPoints)
-	{	
+	{
 		glBegin(GL_POINTS);
-		
+
 		for (i = 0; i < mNumVertices*3; i+= 3)
 		{
 			glVertex3fv(mVertexTransformCache+i);
 		}
-		
+
 		glEnd();
 	}
 
@@ -1035,7 +1040,7 @@ void PSKModelRenderer::render()
 	}
 
 	if (mFlags & fRenderFaces)
-	{		
+	{
 		unsigned int index[3];
 		int lastTexture = 999999;
 
@@ -1078,17 +1083,17 @@ void PSKModelRenderer::render()
 				glTexCoord2fv(mVTXWs[mFaces[i].y].uv);
 				glVertex3fv(mVertexTransformCache+index[1]);
 				glTexCoord2fv(mVTXWs[mFaces[i].z].uv);
-				glVertex3fv(mVertexTransformCache+index[2]); 
+				glVertex3fv(mVertexTransformCache+index[2]);
 			}
 			else
 			{
-				((i % 2) ? 
+				((i % 2) ?
 				 glColor3f(0.0f, 0.0f, (((float)i)/(float)mNumFaces)*.5+.25) :
 				 glColor3f(0.0f, (((float)i)/(float)mNumFaces)*.5+.25, 0.0f));
 
-				glVertex3fv(mVertexTransformCache+index[0]); 
-				glVertex3fv(mVertexTransformCache+index[1]); 
-				glVertex3fv(mVertexTransformCache+index[2]); 
+				glVertex3fv(mVertexTransformCache+index[0]);
+				glVertex3fv(mVertexTransformCache+index[1]);
+				glVertex3fv(mVertexTransformCache+index[2]);
 			}
 
 			glEnd();
@@ -1151,12 +1156,12 @@ void PSKModelRenderer::renderBone(unsigned int id)
 	if (mAnimationFrame > 0 &&
 		 mAnimation && mAnimation->mBones == mBones)
 	{
-		f = id + (mAnimationFrame*mAnimation->mNumBones); 
+		f = id + (mAnimationFrame*mAnimation->mNumBones);
 
 		posB[0] = -mAnimation->mKeyFrames[f].trans[0];
 		posB[1] = -mAnimation->mKeyFrames[f].trans[1];
 		posB[2] = -mAnimation->mKeyFrames[f].trans[2];
-		
+
 		glTranslatef(mAnimation->mKeyFrames[f].trans[0],
 						 mAnimation->mKeyFrames[f].trans[1],
 						 mAnimation->mKeyFrames[f].trans[2]);
@@ -1166,7 +1171,7 @@ void PSKModelRenderer::renderBone(unsigned int id)
 		posB[0] = -mBones[id].restLoc[0];
 		posB[1] = -mBones[id].restLoc[1];
 		posB[2] = -mBones[id].restLoc[2];
-		
+
 		glTranslatef(mBones[id].restLoc[0],
 						 mBones[id].restLoc[1],
 						 mBones[id].restLoc[2]);
@@ -1259,7 +1264,7 @@ void PSKModelRenderer::renderBone(unsigned int id)
 		{
 			if (i == mBones[i].parentIndex)
 				continue;
-			
+
 			if (mBones[i].parentIndex == id)
 			{
 				renderBone(i);
@@ -1319,7 +1324,7 @@ void PSKModelRenderer::convertBoneAngles()
 												&mBoneRotationCache[i*4],    // x
 												&mBoneRotationCache[i*4+1],  // y
 												&mBoneRotationCache[i*4+2]); // z
-			
+
 			// Convert radians to degrees
 			mBoneRotationCache[i*4] *= 57.295779513082323;
 			mBoneRotationCache[i*4+1] *= 57.295779513082323;
@@ -1334,11 +1339,11 @@ void PSKModelRenderer::convertBoneAngles()
 											  mBones[i].restDir[2], // qz
 											  &mBoneRotationCache[i*4],  // theta
 											  &mBoneRotationCache[i*4+1],  // x
-											  &mBoneRotationCache[i*4+2],  // y  
+											  &mBoneRotationCache[i*4+2],  // y
 											  &mBoneRotationCache[i*4+3]); // z
 
 			// Convert radians to degrees, negated to account for UT coords
-			mBoneRotationCache[i*4] *= -57.295779513082323; 
+			mBoneRotationCache[i*4] *= -57.295779513082323;
 		}
 	}
 }
@@ -1412,7 +1417,7 @@ void PSKModelRenderer::convertBoneAnglesPSA(unsigned int frame)
 												&mBoneRotationCache[b*4],    // x
 												&mBoneRotationCache[b*4+1],  // y
 												&mBoneRotationCache[b*4+2]); // z
-			
+
 			// Convert radians to degrees
 			mBoneRotationCache[b*4] *= 57.295779513082323;
 			mBoneRotationCache[b*4+1] *= 57.295779513082323;
@@ -1424,7 +1429,7 @@ void PSKModelRenderer::convertBoneAnglesPSA(unsigned int frame)
 			quaternion_to_axis_angles(qw, qx, qy, qz,
 											  &mBoneRotationCache[b*4],    // theta
 											  &mBoneRotationCache[b*4+1],  // x
-											  &mBoneRotationCache[b*4+2],  // y  
+											  &mBoneRotationCache[b*4+2],  // y
 											  &mBoneRotationCache[b*4+3]); // z
 
 			// Convert radians to degrees, negated to account for UT coords
@@ -1466,7 +1471,7 @@ void PSKModelRenderer::setAnimation(PSAAnimation *anim)
 	if (!anim || !mModel || anim->mNumBones != mModel->mNumBones)
 	{
 		printf("Error: Unable to load PSA Animation, [%s]\n",
-				 (!mModel) ? "No PSK model loaded" : 
+				 (!mModel) ? "No PSK model loaded" :
 				 (!anim) ? "Null PSA given" :
 				 "PSA animation doesn't match loaded PSK model");
 		return;
@@ -1515,7 +1520,7 @@ void PSKModelRenderer::setModel(PSKModel *model)
 	mFaces = model->mFaces;
 	mMaterials = model->mMaterials;
 	mBones = model->mBones;
-	mWeights = model->mWeights;		
+	mWeights = model->mWeights;
 
 	/* Setup vertices */
 	if (mVertexTransformCache)
@@ -1527,7 +1532,7 @@ void PSKModelRenderer::setModel(PSKModel *model)
 	/* Setup bones */
 	if (mBoneRotationCache)
 		delete [] mBoneRotationCache;
-	
+
 	mBoneRotationCache = new float[model->mNumBones*4];
 	convertBoneAngles();
 
@@ -1579,7 +1584,7 @@ void PSKModelRenderer::setupRestMatrices(unsigned int id)
 	/* OpenGL axis angles rotation */
 	glRotatef(theta, x, y, z);
 
-	/* Store this bones tranform matrix inverted to 
+	/* Store this bones tranform matrix inverted to
 		get bone rest position of model vertices */
 	glGetFloatv(GL_MODELVIEW_MATRIX, m);
 	invert_matrix(m, mInvertedMatrices[id]);
@@ -1590,7 +1595,7 @@ void PSKModelRenderer::setupRestMatrices(unsigned int id)
 		{
 			if (i == mBones[i].parentIndex)
 				continue;
-			
+
 			if (mBones[i].parentIndex == id)
 			{
 				setupRestMatrices(i);
@@ -1616,8 +1621,8 @@ void PSKModelRenderer::setupWorldMatrices(unsigned int id)
 	if (mAnimationFrame > 0 &&
 		 mAnimation && mAnimation->mBones == mBones)
 	{
-		f = id + (mAnimationFrame*mAnimation->mNumBones); 
-		
+		f = id + (mAnimationFrame*mAnimation->mNumBones);
+
 		glTranslatef(mAnimation->mKeyFrames[f].trans[0],
 						 mAnimation->mKeyFrames[f].trans[1],
 						 mAnimation->mKeyFrames[f].trans[2]);
@@ -1654,7 +1659,7 @@ void PSKModelRenderer::setupWorldMatrices(unsigned int id)
 		{
 			if (i == mBones[i].parentIndex)
 				continue;
-			
+
 			if (mBones[i].parentIndex == id)
 			{
 				setupWorldMatrices(i);
@@ -1669,7 +1674,7 @@ void PSKModelRenderer::setupWorldMatrices(unsigned int id)
 	float m[16], m2[16], m3[16];
 
 
-	/* Currently inline transforms all vertices to produce 
+	/* Currently inline transforms all vertices to produce
 		one deformed mesh keyframe */
 	if (id == 0)
 		copyVertices();
@@ -1685,7 +1690,7 @@ void PSKModelRenderer::setupWorldMatrices(unsigned int id)
 								mModel->mBones[id].restDir[1], // qy
 								mModel->mBones[id].restDir[2], // qz
 								m2);
-	
+
 	multiply_matrix(m, m2, m3);
 
 	if (id == 0)
@@ -1695,8 +1700,8 @@ void PSKModelRenderer::setupWorldMatrices(unsigned int id)
 	else
 	{
 		invert_matrix(m3, m2);
-		multiply_matrix(mInvertedMatrices[mModel->mBones[id].parent], 
-							 m2, mInvertedMatrices[id]);	
+		multiply_matrix(mInvertedMatrices[mModel->mBones[id].parent],
+							 m2, mInvertedMatrices[id]);
 	}
 
 	/* Transformed skeleton matrices */
@@ -1723,9 +1728,9 @@ void PSKModelRenderer::setupWorldMatrices(unsigned int id)
 	else
 	{
 		multiply_matrix(mInvertedMatrices[id], m3, m2);
-		multiply_matrix(mInvertedMatrices[mModel->mBones[id].parent], 
+		multiply_matrix(mInvertedMatrices[mModel->mBones[id].parent],
 							 m2, m);
-	}	
+	}
 	//copy_matrix(m, mInvertedMatrices[id]);
 
 	for (i = 0; i < mModel->mNumWeights; ++i)
@@ -1775,11 +1780,11 @@ void PSKModelRenderer::transformVertices()
 			if (mModel->mWeights[i].boneIndex == id)
 			{
 				j = mModel->mWeights[i].vertexIndex;
-				
+
 				x = mVertexTransformCache[j*3+0] * mModel->mWeights[i].weight;
 				y = mVertexTransformCache[j*3+1] * mModel->mWeights[i].weight;
 				z = mVertexTransformCache[j*3+2] * mModel->mWeights[i].weight;
-				
+
 				mVertexTransformCache[j*3+0] = m[0]*x + m[4]*y + m[ 8]*z + m[12];
 				mVertexTransformCache[j*3+1] = m[1]*x + m[5]*y + m[ 9]*z + m[13];
 				mVertexTransformCache[j*3+2] = m[2]*x + m[6]*y + m[10]*z + m[14];
@@ -1829,8 +1834,8 @@ void renderScene()
 	float x, y, time;
 
 
-	gluLookAt(0.0, 0.0, -256.0, 
-				 0.0, 8.0, 0.0, 
+	gluLookAt(0.0, 0.0, -256.0,
+				 0.0, 8.0, 0.0,
 				 0.0, 1.0, 0.0);
 
 	glDisable(GL_TEXTURE_2D);
@@ -1865,7 +1870,7 @@ void renderScene()
 	// Draw light symbol
 	glPushMatrix();
 	glTranslatef(gLightPos[0], gLightPos[1], gLightPos[2]);
-	
+
 	glBegin(GL_LINES);
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glVertex3f(0.0f, 0.0f, 0.0f);
@@ -1926,15 +1931,15 @@ void renderScene()
 		glBegin(GL_LINE_LOOP);
 		for (y = -size; y < size; y += step)
 		{
-			glVertex3f(x + step, 0.0f, y);	
-			glVertex3f(x, 0.0f, y);	
+			glVertex3f(x + step, 0.0f, y);
+			glVertex3f(x, 0.0f, y);
 			glVertex3f(x, 0.0f, y + step);
 			glVertex3f(x + step, 0.0f, y + step);
 		}
 		glEnd();
 	}
 	glPopMatrix();
-	
+
 	// Draw model
 	glEnable(GL_TEXTURE_2D);
 	glColor3f(1.0f, 1.0f, 1.0f);
@@ -2025,14 +2030,14 @@ void initScene(int argc, char *argv[])
 	printf(";/'        - Switch PSA frame (EXPERIMENTAL)\n");
 	printf("/          - Show PSK frame\n");
 	printf("----------------------------------\n");
-	printf("1 - Toggle polygon rendering\n");   
-	printf("2 - Toggle polygon render debugging\n"); 
-	printf("3 - Toggle textured polygons\n");  
-	printf("4 - Toggle points\n");  
+	printf("1 - Toggle polygon rendering\n");
+	printf("2 - Toggle polygon render debugging\n");
+	printf("3 - Toggle textured polygons\n");
+	printf("4 - Toggle points\n");
 	printf("7 - Toggle scene rotation\n");
-	printf("8 - Toggle alpha blending\n");      
-	printf("8 - Toggle OpenGL Lighting\n"); 
-	printf("r - Reset mesh to default\n");  
+	printf("8 - Toggle alpha blending\n");
+	printf("8 - Toggle OpenGL Lighting\n");
+	printf("r - Reset mesh to default\n");
 	printf("w - Toggle wireframe rendering\n");
 #ifdef INTERACTIVE_BONE_RENDER
 	printf("g,h - Select bone Id\n");
@@ -2251,7 +2256,7 @@ void handleKey(int key)
 
 		if (gWireframe)
 		{
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); 
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		}
 		else
 		{
@@ -2295,13 +2300,13 @@ void event_resize(unsigned int width, unsigned int height)
 {
 	GLfloat aspect;
 
-	
+
 	gWidth = width;
 	gHeight = height;
 
 	aspect = (GLfloat)width/(GLfloat)height;
 
-	glViewport(0, 0, width, height); 
+	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -2376,7 +2381,7 @@ int main_gl(int argc, char *argv[])
 	  if (SDL_GL_LoadLibrary("libGL.so") < 0)
 	  {
 		  SDL_ClearError();
-    
+
 		  // Fallback 2
 		  if (SDL_GL_LoadLibrary("libGL.so.1") < 0)
 		  {
@@ -2402,7 +2407,7 @@ int main_gl(int argc, char *argv[])
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
   gSDLWindow = SDL_SetVideoMode(width, height, 16, flags);
   SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-  
+
   // Init rendering
   init_gl(width, height);
   initScene(argc, argv);
@@ -2423,7 +2428,7 @@ int main_gl(int argc, char *argv[])
 			  break;
 		  case SDL_MOUSEBUTTONDOWN:
 		  case SDL_MOUSEBUTTONUP:
-			  break;	
+			  break;
 		  case SDL_KEYDOWN:
 			  mkeys = (unsigned int)SDL_GetModState();
 			  mod = 0;
@@ -2460,12 +2465,12 @@ int main_gl(int argc, char *argv[])
 					  SDL_WM_ToggleFullScreen(gSDLWindow);
 				  }
 			  }
-			  
+
 			  handleKey(key);
 			  break;
 		  case SDL_KEYUP:
 			  break;
-		  case SDL_VIDEORESIZE:			  
+		  case SDL_VIDEORESIZE:
 			  event_resize(event.resize.w, event.resize.h);
 
 			  width = event.resize.w;
@@ -2477,7 +2482,7 @@ int main_gl(int argc, char *argv[])
 
 	  event_display(width, height);
   }
-  
+
   return 0;
 }
 #endif
@@ -2496,13 +2501,13 @@ int runPSKModelUnitTest(int argc, char *argv[])
 			{
 			case '.':
 				gAnim.mFlags = (PSAAnimation::fDebugBones |
-									 PSAAnimation::fDebugAnimInfos | 
+									 PSAAnimation::fDebugAnimInfos |
 									 PSAAnimation::fDebugKeyFrames);
 				gAnim.load(argv[2]);
 				break;
 			case 'p':
-				gAnim.mFlags = (PSAAnimation::fDebugBones |	
-									 PSAAnimation::fDebugAnimInfos | 
+				gAnim.mFlags = (PSAAnimation::fDebugBones |
+									 PSAAnimation::fDebugAnimInfos |
 									 PSAAnimation::fDebugKeyFrames);
 				break;
 			case 'g':
@@ -2544,7 +2549,7 @@ int runPSKModelUnitTest(int argc, char *argv[])
 				break;
 			}
 		}
-		
+
 		if (argc > 3)
 		{
 			/* Load PSK model */

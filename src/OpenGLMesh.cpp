@@ -1,25 +1,29 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
  * Object  : OpenGLMesh
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.08.23:
  * Mongoose - Created
  =================================================================*/
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/gl.h>
+#endif
 #include "OpenGLMesh.h"
 
 
@@ -68,12 +72,12 @@ OpenGLMesh::~OpenGLMesh()
 	{
 		delete [] mVertices;
 	}
-	
+
 	if (mNormals)
 	{
 		delete [] mNormals;
 	}
-	
+
 	if (mColors)
 	{
 		delete [] mColors;
@@ -98,9 +102,9 @@ OpenGLMesh::~OpenGLMesh()
 
 		delete [] mTris;
 	}
-	
+
 	if (mQuads)
-	{	
+	{
 		for (i = 0; i < mNumQuads; ++i)
 		{
 			if (mQuads[i].quads)
@@ -183,12 +187,12 @@ void OpenGLMesh::drawAlpha()
 
 		glBegin(GL_QUADS);
 
-		for (j = 0; j < mQuads[i].num_alpha_quads; ++j) 
+		for (j = 0; j < mQuads[i].num_alpha_quads; ++j)
 		{
 			for (k = 0; k < 4; ++k)
-			{							
+			{
 				index = mQuads[i].alpha_quads[j*4+k];
-				
+
 				glTexCoord2fv(mQuads[i].texcoors2[j*4+k]);
 				glColor4fv(mColors[index]);
 				glVertex3fv(mVertices[index]);
@@ -216,12 +220,12 @@ void OpenGLMesh::drawAlpha()
 
 		glBegin(GL_TRIANGLES);
 
-		for (j = 0; j < mTris[i].num_alpha_triangles; ++j) 
+		for (j = 0; j < mTris[i].num_alpha_triangles; ++j)
 		{
 			for (k = 0; k < 3; ++k)
 			{
 				index = mTris[i].alpha_triangles[j*3+k];
-				
+
 				glTexCoord2fv(mTris[i].texcoors2[j*3+k]);
 				glColor4fv(mColors[index]);
 				glVertex3fv(mVertices[index]);
@@ -259,12 +263,12 @@ void OpenGLMesh::drawSolid()
 
 		return; // FIXME
 
-		for (j = 0; j < mQuads[i].num_quads; ++j) 
+		for (j = 0; j < mQuads[i].num_quads; ++j)
 		{
 			for (k = 0; k < 4; ++k)
-			{							
+			{
 				index = mQuads[i].quads[j*4+k];
-				
+
 				glTexCoord2fv(mQuads[i].texcoors[j*4+k]);
 				glArrayElement(mQuads[i].quads[j*4+k]);
 			}
@@ -304,20 +308,20 @@ void OpenGLMesh::drawSolid()
 
 		glBegin(GL_QUADS);
 
-		for (j = 0; j < mQuads[i].num_quads; ++j) 
+		for (j = 0; j < mQuads[i].num_quads; ++j)
 		{
 			for (k = 0; k < 4; ++k)
-			{							
+			{
 				index = mQuads[i].quads[j*4+k];
-					
+
 				glColor4fv(mColors[index]);
 
 #ifdef MULTITEXTURE
 				if (mMode == OpenGLMeshModeMultiTexture)
 				{
-					glMultiTexCoord2fvARB(GL_TEXTURE0_ARB, 
+					glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
 												 mQuads[i].texcoors[j*4+k]);
-					glMultiTexCoord2fvARB(GL_TEXTURE1_ARB, 
+					glMultiTexCoord2fvARB(GL_TEXTURE1_ARB,
 												 mQuads[i].texcoors[j*4+k]);
 				}
 				else
@@ -362,7 +366,7 @@ void OpenGLMesh::drawSolid()
 
 		glBegin(GL_TRIANGLES);
 
-		for (j = 0; j < mTris[i].num_triangles; ++j) 
+		for (j = 0; j < mTris[i].num_triangles; ++j)
 		{
 			for (k = 0; k < 3; ++k)
 			{
@@ -371,9 +375,9 @@ void OpenGLMesh::drawSolid()
 #ifdef MULTITEXTURE
 				if (mMode == OpenGLMeshModeMultiTexture)
 				{
-					glMultiTexCoord2fvARB(GL_TEXTURE0_ARB, 
+					glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
 												 mTris[i].texcoors[j*3+k]);
-					glMultiTexCoord2fvARB(GL_TEXTURE1_ARB, 
+					glMultiTexCoord2fvARB(GL_TEXTURE1_ARB,
 												 mTris[i].texcoors[j*3+k]);
 				}
 				else
@@ -500,15 +504,15 @@ void OpenGLMesh::bufferColorArray(unsigned int colorCount, vec_t *colors,
 		mNumColors = 0;
 		delete [] mColors;
 	}
-	
+
 	if (!colorCount)
 	{
 		return;
 	}
-	
+
 		//mColorWidth = colorWidth;  // for now assume 4 always
 	mNumColors = colorCount;
-	mColorArray = colors; 
+	mColorArray = colors;
 }
 
 
@@ -519,22 +523,22 @@ void OpenGLMesh::bufferNormalArray(unsigned int normalCount, vec_t *normals)
 		mNumNormals = 0;
 		delete [] mNormals;
 	}
-	
+
 	if (!normalCount)
 	{
 		return;
 	}
-	
+
 	mNumNormals = normalCount;
 	mNormalArray = normals;
 }
 
 
-void OpenGLMesh::bufferTriangles(unsigned int count, 
-											unsigned int *indices, vec_t *texCoords, 
+void OpenGLMesh::bufferTriangles(unsigned int count,
+											unsigned int *indices, vec_t *texCoords,
 											int *textures, unsigned int *flags)
 {
-	
+
 	mTriangleCount = count;
 	mTriangleTextures = textures;
 	mTriangleIndices = indices;
@@ -552,26 +556,26 @@ void OpenGLMesh::bufferVertexArray(unsigned int vertexCount, vec_t *vertices)
 		mNumVertices = 0;
 		delete [] mVertices;
 	}
-	
+
 	if (!vertexCount)
 	{
 		return;
 	}
-	
+
 	mNumVertices = vertexCount;
-	mVertexArray = vertices; 
+	mVertexArray = vertices;
 	mFlags |= fOpenGLMesh_UseVertexArray;
 }
 
 
-void OpenGLMesh::setColor(unsigned int index, 
+void OpenGLMesh::setColor(unsigned int index,
 								  float r, float g, float b, float a)
 {
 	if (index > mNumColors)
 	{
 		return;
 	}
-	
+
 	mColors[index][0] = r;
 	mColors[index][1] = g;
 	mColors[index][2] = b;
@@ -585,7 +589,7 @@ void OpenGLMesh::setColor(unsigned int index, float rgba[4])
 	{
 		return;
 	}
-	
+
 	mColors[index][0] = rgba[0];
 	mColors[index][1] = rgba[1];
 	mColors[index][2] = rgba[2];
@@ -599,7 +603,7 @@ void OpenGLMesh::setNormal(unsigned int index, float i, float j, float k)
 	{
 		return;
 	}
-	
+
 	mNormals[index][0] = i;
 	mNormals[index][1] = j;
 	mNormals[index][2] = k;
@@ -612,7 +616,7 @@ void OpenGLMesh::setVertex(unsigned int index, float x, float y, float z)
 	{
 		return;
 	}
-	
+
 	mVertices[index][0] = x;
 	mVertices[index][1] = y;
 	mVertices[index][2] = z;

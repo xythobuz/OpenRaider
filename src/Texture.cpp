@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*==========================================================================
- * 
+ *
  * Project : MTK, Freyja, OpenRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440
@@ -10,13 +10,13 @@
  *
  *           See file COPYING for license details.
  *
- * 
- *-- History ---------------------------------------------------------- 
  *
- * 2003.06.30, 
+ *-- History ----------------------------------------------------------
+ *
+ * 2003.06.30,
  * Mongoose - API update, SDL_TTF support moved here, misc features
  *            SDL_TTF support based on Sam Lantinga's public domain
- *            SDL_TTF demo functions and algorithms 
+ *            SDL_TTF demo functions and algorithms
  *
  * 2001.05.29:
  * Mongoose - Removed legacy code and done clean up
@@ -49,8 +49,13 @@
 #   include <SDL/SDL_ttf.h>
 #endif
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif
 
 #include "Texture.h"
 
@@ -95,7 +100,7 @@ Texture::~Texture()
 ////////////////////////////////////////////////////////////
 
 unsigned char *Texture::generateColorTexture(unsigned char rgba[4],
-															unsigned int width, 
+															unsigned int width,
 															unsigned int height)
 {
 	unsigned char *image;
@@ -166,7 +171,7 @@ void bufferedPrintf(char *string, unsigned int len, char *s, ...)
 	if (s && s[0])
 	{
 		va_start(args, s);
-		vsnprintf(string, len-1, s, args);	
+		vsnprintf(string, len-1, s, args);
 		string[len-1] = 0;
 		va_end(args);
 	}
@@ -190,8 +195,8 @@ void glPrint2d(float x, float y, float scale, char *string)
 	glBindTexture(GL_TEXTURE_2D, font->textureId);
 	glTranslatef(x, y, 0);
 	glScalef(scale, scale, 1);
-	
-	/* FIXME: 
+
+	/* FIXME:
 	 * Add utf-8 dencoding of char* string
 	 *
 	 *	Also this string must be preprocessed to have glyph offsets
@@ -202,8 +207,8 @@ void glPrint2d(float x, float y, float scale, char *string)
 }
 
 
-void glPrint3d(float x, float y, float z, 
-					float pitch, float yaw, float roll, 
+void glPrint3d(float x, float y, float z,
+					float pitch, float yaw, float roll,
 					float scale,
 					char *string)
 {
@@ -225,8 +230,8 @@ void glPrint3d(float x, float y, float z,
 	glRotatef(yaw,   0, 1, 0);
 	glRotatef(pitch, 0, 0, 1);
 	glScalef(scale, scale, scale);
-	
-	/* FIXME: 
+
+	/* FIXME:
 	 * Add utf-8 dencoding of char* string
 	 *
 	 *	Also this string must be preprocessed to have glyph offsets
@@ -237,7 +242,7 @@ void glPrint3d(float x, float y, float z,
 }
 
 
-int Texture::loadFontTTF(char *filename, 
+int Texture::loadFontTTF(char *filename,
 								 unsigned int utf8Offset, unsigned int count)
 {
 	ttf_texture_t *texture;
@@ -273,7 +278,7 @@ int Texture::loadFontTTF(char *filename,
 
 		gFontTest = generateFont(texture);
 
-		/* FIXME: Until UTF8 decoder is working, we map from 
+		/* FIXME: Until UTF8 decoder is working, we map from
 			ASCII when rendering */
 		gFontTest->utf8Offset = 32; // hack to use ASCII strings to test unicode
 
@@ -328,7 +333,7 @@ gl_font_t *Texture::generateFont(ttf_texture_t *texture)
 #ifdef DEBUG_TTF_OFFSET
 		if (i+texture->utf8Offset == 'y' || i+texture->utf8Offset == 'x')
 		{
-			printf("%c: %i %i %i\n", 
+			printf("%c: %i %i %i\n",
 					 i+texture->utf8Offset,
 					 texture->fontDescent,
 					 texture->glyphs[i].miny, texture->glyphs[i].maxy);
@@ -352,17 +357,17 @@ gl_font_t *Texture::generateFont(ttf_texture_t *texture)
 		glBegin(GL_QUADS);
 		 glTexCoord2f(u2, v);	/* Top, right */
 		 glVertex3i(texture->glyphs[i].w, h, 0);
-		
+
 		 glTexCoord2f(u, v);	/* Top, left */
 		 glVertex3i(0, h, 0);
 
 		 glTexCoord2f(u, v2);	/* Bottom, left */
 		 glVertex3i(0, h+texture->glyphs[i].h, 0);
-		
+
 		 glTexCoord2f(u2, v2);	/* Bottom, right */
 		 glVertex3i(texture->glyphs[i].w, h+texture->glyphs[i].h, 0);
 		glEnd();
-		
+
 		/* Move To The Left Of The Character */
 		glTranslated(texture->glyphs[i].w + spacing, 0, 0);
 		glEndList();
@@ -375,7 +380,7 @@ gl_font_t *Texture::generateFont(ttf_texture_t *texture)
 }
 
 
-ttf_texture_t *Texture::generateFontTexture(char *filename, int pointSize, 
+ttf_texture_t *Texture::generateFontTexture(char *filename, int pointSize,
 														  unsigned int textureWidth,
 														  unsigned char color[3],
 														  unsigned int utf8Offset,
@@ -442,13 +447,13 @@ ttf_texture_t *Texture::generateFontTexture(char *filename, int pointSize,
 	texture->glyphs = new ttf_glyph_t[count];
 	texture->texture = new unsigned char[textureWidth*textureWidth*4];
 	memset(texture->texture, 0, textureWidth*textureWidth*4);
-		
+
 	texture->fontHeight = TTF_FontHeight(font);
 	texture->fontAscent = TTF_FontAscent(font);
 	texture->fontDescent = TTF_FontDescent(font);
 	texture->fontSpacing = TTF_FontLineSkip(font);
 
-	for (i = 0; i < count; ++i) 
+	for (i = 0; i < count; ++i)
 	{
 		glyph = TTF_RenderGlyph_Blended(font, i + utf8Offset, sdlColor);
 
@@ -457,13 +462,13 @@ ttf_texture_t *Texture::generateFontTexture(char *filename, int pointSize,
 	      image = (unsigned char*)glyph->pixels;
 
 			TTF_GlyphMetrics(font, i + utf8Offset,
-								  &texture->glyphs[i].minx, &texture->glyphs[i].maxx, 
+								  &texture->glyphs[i].minx, &texture->glyphs[i].maxx,
 								  &texture->glyphs[i].miny, &texture->glyphs[i].maxy,
 								  &texture->glyphs[i].advance);
 
 	      texture->glyphs[i].w = glyph->w;
 	      texture->glyphs[i].h = glyph->h;
-			
+
 	      if (xx + texture->glyphs[i].w > ((int)textureWidth - 1))
 	      {
 				yy += hh;
@@ -478,13 +483,13 @@ ttf_texture_t *Texture::generateFontTexture(char *filename, int pointSize,
 				texture->glyphs[i].x = xx;
 				texture->glyphs[i].y = yy;
 	      }
-			
+
 	      xx += glyph->w;
-			
+
 			if (verbose)
 			{
 				printf("0x%x : %ix%i @ %i, %i\n", i + utf8Offset,
-						 texture->glyphs[i].w, texture->glyphs[i].h, 
+						 texture->glyphs[i].w, texture->glyphs[i].h,
 						 texture->glyphs[i].x, texture->glyphs[i].y);
 			}
 
@@ -494,13 +499,13 @@ ttf_texture_t *Texture::generateFontTexture(char *filename, int pointSize,
 				w = texture->glyphs[i].x + k%glyph->w;
 				h = texture->glyphs[i].y + k/glyph->w;
 				offset = (w + h*textureWidth);
-				
+
 				if (verbose)
 				{
-					printf("Offset: %i; Pixel: %i,%i; Data: 0x%08x\n", 
+					printf("Offset: %i; Pixel: %i,%i; Data: 0x%08x\n",
 							 offset, w, h, *((unsigned int *)&image[k*4]));
 				}
-				
+
 				/* 32-bit ARGB to RGBA */
 				b = image[k*4+3];
 				texture->texture[offset*4]   = image[k*4]   = image[k*4+1];
@@ -549,7 +554,7 @@ void Texture::initSDL_TTF()
 		fprintf(stderr, "initSDL_TTF> Error is [%s].\n", SDL_GetError());
 	}
 	else
-	{	
+	{
 		mFlags |= fUseSDL_TTF;
 
 		printf("@ Started SDL_TTF subsystem...\n");
@@ -620,7 +625,7 @@ void Texture::useMultiTexture(float u, float v)
 void Texture::bindMultiTexture(int texture0, int texture1)
 {
 	if (//(int)a == mTextureId && (int)b == mTextureId2 ||
-		 !mTextureIds || 
+		 !mTextureIds ||
 		 texture0 < 0 || texture0 > (int)mTextureCount ||
 		 texture1 < 0 || texture1 > (int)mTextureCount)
    {
@@ -658,7 +663,7 @@ int Texture::getTextureCount()
 
 
 
-int Texture::loadBuffer(unsigned char *image, 
+int Texture::loadBuffer(unsigned char *image,
 								unsigned int width, unsigned int height,
 								ColorMode mode, unsigned int bpp)
 {
@@ -676,7 +681,7 @@ int Texture::loadBuffer(unsigned char *image,
 }
 
 
-void convertARGB32bppToRGBA32bpp(unsigned char *image, 
+void convertARGB32bppToRGBA32bpp(unsigned char *image,
 											unsigned int w, unsigned int h)
 {
 	unsigned int i, size = w*h;
@@ -695,7 +700,7 @@ void convertARGB32bppToRGBA32bpp(unsigned char *image,
 }
 
 
-int Texture::loadBufferSlot(unsigned char *image, 
+int Texture::loadBufferSlot(unsigned char *image,
 									 unsigned int width, unsigned int height,
 									 ColorMode mode, unsigned int bpp,
 									 unsigned int slot)
@@ -724,7 +729,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 			printf("Texture::Load> ERROR Unsupported GREYSCALE, %i bpp\n", bpp);
 			return -2;
 		}
-		
+
 		bytes = 1;
 		glcMode = GL_LUMINANCE;
 		break;
@@ -734,7 +739,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 			printf("Texture::Load> ERROR Unsupported RGBA, %i bpp\n", bpp);
 			return -2;
 		}
-		
+
 		bytes = 3;
 		glcMode = GL_RGB;
 		break;
@@ -749,7 +754,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 			printf("Texture::Load> ERROR Unsupported RGBA/ARGB, %i bpp\n", bpp);
 			return -2;
 		}
-		
+
 		bytes = 4;
 		glcMode = GL_RGBA;
 		break;
@@ -761,7 +766,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glEnable(GL_DEPTH_TEST);
 	glShadeModel(GL_SMOOTH);
-  
+
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	glBindTexture(GL_TEXTURE_2D, mTextureIds[slot]);
@@ -772,19 +777,19 @@ int Texture::loadBufferSlot(unsigned char *image,
 
 	if (mFlags & fUseMipmaps)
 	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
 							 GL_NEAREST_MIPMAP_LINEAR);
 		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
 							 GL_LINEAR_MIPMAP_LINEAR);
-		
+
 		gluBuild2DMipmaps(GL_TEXTURE_2D, bytes, width, height,
 								glcMode, GL_UNSIGNED_BYTE, image);
 	}
 	else
 	{
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		
+
 		glTexImage2D(GL_TEXTURE_2D, 0, glcMode, width, height, 0,
 						 glcMode, GL_UNSIGNED_BYTE, image);
 	}
@@ -831,7 +836,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
   while (!done)
   {
     snprintf(filename, 1024, "%s-%03i.png", base, count++);
-    
+
     f = fopen(filename, "rb");
 
     if (f)
@@ -854,7 +859,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
 
   mtk_image__png_save(f, image, width, height, 3);
   fclose(f);
-	
+
   delete [] image;
 
   printf("glScreenShot> Took screenshot '%s'.\n", filename);
@@ -868,15 +873,15 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
   bool done = false;
   int i, j, size;
   unsigned char comment_lenght;
-  unsigned char colormap_type; 
-  unsigned char image_type;    
-  unsigned short colormap_index;      
-  unsigned short colormap_lenght;     
-  unsigned char colormap_bbp;         
+  unsigned char colormap_type;
+  unsigned char image_type;
+  unsigned short colormap_index;
+  unsigned short colormap_lenght;
+  unsigned char colormap_bbp;
   unsigned short origin_x;
   unsigned short origin_y;
-  unsigned short swidth;   
-  unsigned short sheight;  
+  unsigned short swidth;
+  unsigned short sheight;
   char comment[32] = "Mongoose TGA 0.0.1\0";
   unsigned char tmp, bpp, desc_flags;
 
@@ -896,7 +901,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
   while (!done)
   {
     snprintf(filename, 1024, "%s-%04i.tga", base, count++);
-    
+
     f = fopen(filename, "rb");
 
     if (f)
@@ -941,7 +946,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
 
   // Write TGA header
   fwrite(&comment_lenght, 1, 1, f);
-  fwrite(&colormap_type, 1, 1, f); 
+  fwrite(&colormap_type, 1, 1, f);
   fwrite(&image_type, 1, 1, f);
   fwrite(&colormap_index, 2, 1, f);
   fwrite(&colormap_lenght, 2, 1, f);
@@ -957,7 +962,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
   fwrite(&comment, 1, comment_lenght, f);
 
   size = width * height * 3;
- 
+
   for (i = 0; i < size; i += 3)
   {
     tmp = image[i];
@@ -994,7 +999,7 @@ int Texture::loadPNG(char *filename)
 
 
 	f = fopen(filename, "rb");
-  
+
 	if (!f)
 	{
 		perror("Couldn't load file");
@@ -1012,7 +1017,7 @@ int Texture::loadPNG(char *filename)
 			image = image2;
 			w = h = 256;
 		}
-		
+
 		if (image)
 		{
 			id = loadBuffer(image, w, h,
@@ -1056,7 +1061,7 @@ int Texture::loadTGA(char *filename)
 
 
 	f = fopen(filename, "rb");
-  
+
 	if (!f)
 	{
 		perror("Couldn't load file");
@@ -1077,10 +1082,10 @@ int Texture::loadTGA(char *filename)
 
 		if (image)
 		{
-			id = loadBuffer(image, w, h, 
+			id = loadBuffer(image, w, h,
 								 (type == 4) ? RGBA : RGB,
 								 (type == 4) ? 32 : 24);
-			
+
 			printf("%c", (id == -1) ? 'x' : 'o');
 			fflush(stdout);
 
@@ -1111,7 +1116,7 @@ int Texture::nextPower(int seed)
 {
   int i;
 
-  for(i = 1; i < seed; i *= 2) 
+  for(i = 1; i < seed; i *= 2)
     ;
 
   return i;
@@ -1119,8 +1124,8 @@ int Texture::nextPower(int seed)
 
 
 /* This code based off on gluScaleImage()  */
-unsigned char *Texture::scaleBuffer(unsigned char *image, 
-												int width,  int height,	
+unsigned char *Texture::scaleBuffer(unsigned char *image,
+												int width,  int height,
 												int components)
 {
    int i, j, k;
@@ -1141,14 +1146,14 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
    height = nextPower(height);
    width = nextPower(width);
 
-   if (height > 256) 
+   if (height > 256)
      height = 256;
-    
-   if (width > 256) 
+
+   if (width > 256)
      width = 256;
 
    // Check to see if scaling is needed
-   if (height == original_height && width == original_width) 
+   if (height == original_height && width == original_width)
 		return NULL;
 
 	//printf("%i\n", components);
@@ -1170,17 +1175,17 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
    }
 
    // Copy user data to float format.
-   for (i = 0; i < original_height * original_width * components; ++i) 
+   for (i = 0; i < original_height * original_width * components; ++i)
    {
      tempin[i] = (float)image[i];
    }
 
    // Determine which filter to use by checking ratios.
-   if (width > 1) 
+   if (width > 1)
    {
      sx = (float)(original_width - 1) / (float)(width - 1);
-   } 
-   else 
+   }
+   else
    {
      sx = (float)(original_width - 1);
    }
@@ -1188,13 +1193,13 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
    if (height > 1)
    {
      sy = (float)(original_height - 1) / (float) (height - 1);
-   } 
-   else 
+   }
+   else
    {
      sy = (float)(original_height - 1);
    }
 
-   if (sx < 1.0 && sy < 1.0) 
+   if (sx < 1.0 && sy < 1.0)
    {
      /* Magnify both width and height:  use weighted sample of 4 pixels */
      int i0, i1, j0, j1;
@@ -1206,24 +1211,24 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
      float s1, s2;
      float* dst;
 
-     for(i = 0; i < height; ++i) 
+     for(i = 0; i < height; ++i)
      {
        i0 = (int)(i * sy);
        i1 = i0 + 1;
 
-       if (i1 >= original_height) 
+       if (i1 >= original_height)
        {
 			 i1 = original_height - 1;
        }
 
        alpha = i * sy - i0;
 
-       for (j = 0; j < width; ++j) 
+       for (j = 0; j < width; ++j)
        {
 			 j0 = (int) (j * sx);
 			 j1 = j0 + 1;
 
-			 if (j1 >= original_width) 
+			 if (j1 >= original_width)
 			 {
 				 j1 = original_width - 1;
 			 }
@@ -1238,16 +1243,16 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
 
 			 dst = tempout + (i * width + j) * components;
 
-			 for (k = 0; k < components; ++k) 
+			 for (k = 0; k < components; ++k)
 			 {
 				 s1 = *src00++ * (1.0 - beta) + *src01++ * beta;
 				 s2 = *src10++ * (1.0 - beta) + *src11++ * beta;
 				 *dst++ = s1 * (1.0 - alpha) + s2 * alpha;
-			 } 
+			 }
        }
-     }     
+     }
    }
-   else 
+   else
    {
      /* Shrink width and/or height:  use an unweighted box filter */
      int i0, i1;
@@ -1256,22 +1261,22 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
      float sum;
      float* dst;
 
-     for (i = 0; i < height; ++i) 
+     for (i = 0; i < height; ++i)
      {
        i0 = (int) (i * sy);
        i1 = i0 + 1;
 
-       if (i1 >= original_height) 
+       if (i1 >= original_height)
        {
 			 i1 = original_height - 1;
        }
 
-       for (j = 0; j < width; ++j) 
+       for (j = 0; j < width; ++j)
        {
 			 j0 = (int) (j * sx);
 			 j1 = j0 + 1;
 
-			 if (j1 >= original_width) 
+			 if (j1 >= original_width)
 			 {
 				 j1 = original_width - 1;
 			 }
@@ -1279,15 +1284,15 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
 			 dst = tempout + (i * width + j) * components;
 
 			 /* Compute average of pixels in the rectangle (i0,j0)-(i1,j1) */
-			 for (k = 0; k < components; ++k) 
+			 for (k = 0; k < components; ++k)
 			 {
 				 sum = 0.0;
 
-				 for (ii = i0; ii <= i1; ++ii) 
+				 for (ii = i0; ii <= i1; ++ii)
 				 {
-					 for (jj = j0; jj <= j1; ++jj) 
+					 for (jj = j0; jj <= j1; ++jj)
 					 {
-						 sum += *(tempin + (ii * original_width + jj) 
+						 sum += *(tempin + (ii * original_width + jj)
 									 * components + k);
 					 }
 				 }
@@ -1295,12 +1300,12 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
 				 sum /= ( j1 - j0 + 1 ) * ( i1 - i0 + 1 );
 				 *dst++ = sum;
 			 }
-       } 
+       }
      }
    }
 
    // Copy to our results.
-   for( i = 0; i < height * width * components; ++i) 
+   for( i = 0; i < height * width * components; ++i)
    {
      timage[i] = (unsigned char)tempout[i];
    }

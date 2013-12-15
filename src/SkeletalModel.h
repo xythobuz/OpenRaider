@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,20 +10,20 @@
  * Comments: This is the factored out skeletal model class
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- Test Defines -----------------------------------------------
- *           
- * UNIT_TEST_SKELETALMODEL - Builds SkeletalModel class as a console unit test 
  *
- *-- History ------------------------------------------------ 
+ *-- Test Defines -----------------------------------------------
+ *
+ * UNIT_TEST_SKELETALMODEL - Builds SkeletalModel class as a console unit test
+ *
+ *-- History ------------------------------------------------
  *
  * 2003.05.19:
  * Mongoose - Created
  ================================================================*/
 
-// TODO 
+// TODO
 // Start cutting off old hacks by simple force use of method interface
 // Also move the publicly exposed attributes out  =)
 // Better animation system in general - this is memory wasteful
@@ -31,8 +31,8 @@
 #ifndef GUARD__OPENRAIDER_MONGOOSE_SKELETALMODEL_H_
 #define GUARD__OPENRAIDER_MONGOOSE_SKELETALMODEL_H_
 
-#include <mstl/Vector.h>
-#include <hel/math.h>
+#include "mstl/Vector.h"
+#include "hel/math.h"
 
 
 typedef struct bone_tag_s
@@ -90,12 +90,12 @@ class SkeletalModel
 
 	SkeletalModel();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of SkeletalModel
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2003.05.19: 
+	 * 2003.05.19:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -106,7 +106,7 @@ class SkeletalModel
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2003.05.19: 
+	 * 2003.05.19:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 

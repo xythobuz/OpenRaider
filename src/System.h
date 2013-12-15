@@ -1,23 +1,23 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : UnRaider, OpenRaider, RaiderUnification 2003
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
  * Object  : System
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
+ *
  *-- Test Defines -----------------------------------------------
  *
- * UNIT_TEST_SYSTEM - Builds System class as a console unit test 
+ * UNIT_TEST_SYSTEM - Builds System class as a console unit test
  *
- *-- History ------------------------------------------------ 
+ *-- History ------------------------------------------------
  *
  * 2002.08.09:
  * Mongoose - Created
@@ -27,8 +27,8 @@
 #ifndef GUARD__UNRAIDER_MONGOOSE_SYSTEM_H_
 #define GUARD__UNRAIDER_MONGOOSE_SYSTEM_H_
 
-#include <mstl/Map.h>
-#include <mstl/Vector.h>
+#include "mstl/Map.h"
+#include "mstl/Vector.h"
 
 // TODO: Replace with unicode compatible key codes
 #define SYS_MOUSE_LEFT    6000
@@ -55,12 +55,12 @@
 #define SYS_KEY_F11       1010
 #define SYS_KEY_F12       1011
 
-typedef enum 
+typedef enum
 {
   SYS_MOD_KEY_LSHIFT = 1,
   SYS_MOD_KEY_RSHIFT = 2,
-  SYS_MOD_KEY_LCTRL  = 4, 
-  SYS_MOD_KEY_RCTRL  = 8, 
+  SYS_MOD_KEY_LCTRL  = 4,
+  SYS_MOD_KEY_RCTRL  = 8,
   SYS_MOD_KEY_LALT   = 16,
   SYS_MOD_KEY_RALT   = 32
 
@@ -77,12 +77,12 @@ public:
 
 	System();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of System
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09: 
+	 * 2002.08.09:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -93,7 +93,7 @@ public:
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09: 
+	 * 2002.08.09:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -114,13 +114,13 @@ public:
 	 * 2003.06.03:
 	 * Mongoose - Made into a printf string caching system
 	 *
-    * 2001.12.31: 
+    * 2001.12.31:
     * Mongoose - Created, was GLString::glPrintf
     ------------------------------------------------------*/
 
 	static char *fullPath(char *path, char end);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Returns allocated string of path, with
 	 *        expansion of unix home enviroment char and
 	 *        makes sure string ends in "end" char
@@ -129,14 +129,14 @@ public:
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.17: 
+	 * 2002.08.17:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	static char *getFileFromFullPath(char *filename);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -146,20 +146,20 @@ public:
 
 	virtual unsigned int getTicks();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Returns number of milliseconds since start of
 	 *        program
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.06.06: 
+	 * 2002.06.06:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	static int downloadToBuffer(char *urlString, 
+	static int downloadToBuffer(char *urlString,
 										 unsigned char **buffer, unsigned int *size);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Downloads something into passed buffer,
 	 *        Returns < 0 on error, 0 on sucess
 	 *
@@ -171,7 +171,7 @@ public:
 
 	static int downloadToFile(char *urlString, char *filename);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Downloads something into a disk file,
 	 *        Returns < 0 on error, 0 on sucess
 	 *
@@ -216,7 +216,7 @@ public:
 	 *        <Key> is a valid keyboard code
 	 *        <Event> is a valid game event Id
 	 *
-	 * Post : Sets <Event> binding <Cmd> to <Key> press 
+	 * Post : Sets <Event> binding <Cmd> to <Key> press
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -231,29 +231,29 @@ public:
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.27: 
+	 * 2001.05.27:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual void gameFrame() = 0;
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual void handleMouseMotionEvent(float x, float y) = 0;
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -261,7 +261,7 @@ public:
 	/*------------------------------------------------------
 	 * Pre  : <Key> is a valid keyboard code
 	 *
-	 * Post : Recieves <Event> bound to <Cmd> from <Key> press 
+	 * Post : Recieves <Event> bound to <Cmd> from <Key> press
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -283,7 +283,7 @@ public:
 
 	virtual void handleCommand(char *command, unsigned int mode) = 0;
 	/*------------------------------------------------------
-	 * Pre  : <Command> is valid keyword optionally followed 
+	 * Pre  : <Command> is valid keyword optionally followed
 	 *        by ' ' (space) seperated and argument(s)
 	 *
 	 *        <Mode> is the current type or resource mode
@@ -296,7 +296,7 @@ public:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	virtual void handleConsoleKeyPressEvent(unsigned int key, 
+	virtual void handleConsoleKeyPressEvent(unsigned int key,
 														 unsigned int mod) = 0;
 	/*------------------------------------------------------
 	 * Pre  : <Key> is a valid keyboard code
@@ -311,100 +311,100 @@ public:
 
 	virtual void handleKeyPressEvent(unsigned int key, unsigned int mod) = 0;
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual void handleKeyReleaseEvent(unsigned int key, unsigned int mod) = 0;
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual void initGL();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	virtual void initVideo(unsigned int width, unsigned int height, 
+	virtual void initVideo(unsigned int width, unsigned int height,
 								  bool fullscreen) = 0;
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual int loadResourceFile(char *filename);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Init the resource vars
 	 *
 	 *        Returns less than zero value on error
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.27: 
+	 * 2001.05.27:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	static void resetTicks();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual void resizeGL(unsigned int width, unsigned int height);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual void runGame() = 0;
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void setConsoleMode(bool on);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Turns console key events on/off,
-	 *        mostly for allowing text entry vs key 
+	 *        mostly for allowing text entry vs key
 	 *        impluse commands
 	 *
 	 *-- History ------------------------------------------
@@ -415,56 +415,56 @@ public:
 
 	void setDriverGL(const char *driver);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void setFastCardPerformance(bool isFast);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual void shutdown(int code) = 0;
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual void swapBuffersGL() = 0;
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	virtual void toggleFullscreen() = 0;
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.09?: 
+	 * 2002.08.09?:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -511,7 +511,7 @@ public:
 
 	bool rc_command(char *symbol, char *command);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Returns true if <Command> matches <Symbol>
 	 *        command string
 	 *
@@ -520,7 +520,7 @@ public:
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.03.23: 
+	 * 2002.03.23:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -528,7 +528,7 @@ public:
 	/*------------------------------------------------------
 	 * Pre  : Buffer is "true" or "false"
 	 *
-	 * Post : Returns 0 if <Buffer> is "true" or "false" 
+	 * Post : Returns 0 if <Buffer> is "true" or "false"
 	 *        and sets <Val> accordingly
 	 *
 	 *        Returns -1 for null string
@@ -536,7 +536,7 @@ public:
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.03.23: 
+	 * 2002.03.23:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -547,7 +547,7 @@ public:
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.06.06: 
+	 * 2002.06.06:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 #endif

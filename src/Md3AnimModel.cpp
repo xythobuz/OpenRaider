@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: Md3 animation model class
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.06.19:
  * Mongoose - Created
@@ -25,11 +25,15 @@
 #include <ctype.h>
 
 #ifdef USING_OPENGL
-#   include <GL/gl.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
 #endif
 
-#include <hel/math.h>
-#include <hel/Quaternion.h>
+#include "hel/math.h"
+#include "hel/Quaternion.h"
 #include "Md3AnimModel.h"
 
 
@@ -104,7 +108,7 @@ void Md3AnimModel::toggleFlag(Md3AnimModelFlags flag)
 }
 
 
-// Mongoose 2002.06.29, FIXME: Add handler here to avoid 
+// Mongoose 2002.06.29, FIXME: Add handler here to avoid
 //   using animations not loaded
 void Md3AnimModel::setAnimUpper(md3_animation_id_t anim)
 {
@@ -165,7 +169,7 @@ void Md3AnimModel::setAnimUpper(md3_animation_id_t anim)
 }
 
 
-// Mongoose 2002.06.29, FIXME: Add handler here to avoid 
+// Mongoose 2002.06.29, FIXME: Add handler here to avoid
 //   using animations not loaded
 void Md3AnimModel::setAnimLower(md3_animation_id_t anim)
 {
@@ -409,22 +413,22 @@ int Md3AnimModel::loadAnimations(char *modelPath)
 					firstFrame = atoi(buffer);
 					++state;
 					i = 0;
-					break; 
+					break;
 				case 1:
 					numFrames = atoi(buffer);
 					++state;
 					i = 0;
-					break; 
+					break;
 				case 2:
 					loopingFrames = atoi(buffer);
 					++state;
 					i = 0;
-					break; 
+					break;
 				case 3:
 					framesPerSecond = atoi(buffer);
 					state = 4; // override comment buffer block
 					i = 0;
-					break; 
+					break;
 				}
 			}
 			break;
@@ -439,7 +443,7 @@ int Md3AnimModel::loadAnimations(char *modelPath)
 			{
 				for (j = 0; j < i; ++j)
 				{
-					if (!isdigit(buffer[j]) && !isupper(buffer[j]) && 
+					if (!isdigit(buffer[j]) && !isupper(buffer[j]) &&
 						 buffer[j] != '_')
 					{
 						printf("WARNING: Stripping '%s'.\n", buffer);
@@ -447,7 +451,7 @@ int Md3AnimModel::loadAnimations(char *modelPath)
 						j = i;
 					}
 				}
-				
+
 				i = 0;
 			}
 			else
@@ -488,19 +492,19 @@ int Md3AnimModel::loadAnimations(char *modelPath)
 
 				if (m_debug > 0)
 				{
-					printf("<%s> %3i %3i %3i %3i \t'%s' \t(%i)\n", 
+					printf("<%s> %3i %3i %3i %3i \t'%s' \t(%i)\n",
 							 (id == UNSUPPORTED) ? "Unsupported" : "",
-							 firstFrame, numFrames, 
+							 firstFrame, numFrames,
 							 loopingFrames, framesPerSecond, buffer, id);
 				}
 
-				addAnim(buffer, id, firstFrame, numFrames, 
+				addAnim(buffer, id, firstFrame, numFrames,
 								loopingFrames, framesPerSecond);
 
 				i = 0;
 			}
 			else if (strncmp("TORSO_", buffer, 6) == 0)
-			{				
+			{
 				if (strncmp("TORSO_GESTURE\0", buffer, 14) == 0)
 				{
 					id = TORSO_GESTURE;
@@ -533,25 +537,25 @@ int Md3AnimModel::loadAnimations(char *modelPath)
 				{
 					id = UNSUPPORTED;
 				}
-			
+
 				if (m_debug > 0)
 				{
-					printf("<%s> %3i %3i %3i %3i \t'%s' (%i)\n", 
+					printf("<%s> %3i %3i %3i %3i \t'%s' (%i)\n",
 							 (id == UNSUPPORTED) ? "Unsupported" : "",
-							 firstFrame, numFrames, 
+							 firstFrame, numFrames,
 							 loopingFrames, framesPerSecond, buffer, id);
 				}
 
 				if (id != UNSUPPORTED)
 				{
-					addAnim(buffer, id, firstFrame, numFrames, 
+					addAnim(buffer, id, firstFrame, numFrames,
 							  loopingFrames, framesPerSecond);
 				}
 
 				i = 0;
 			}
 			else if (strncmp("LEGS_", buffer, 5) == 0)
-			{				
+			{
 				if (strncmp("LEGS_WALKCR\0", buffer, 12) == 0)
 				{
 					id = LEGS_WALKCR;
@@ -559,43 +563,43 @@ int Md3AnimModel::loadAnimations(char *modelPath)
 				else if (strncmp("LEGS_WALK\0", buffer, 10) == 0)
 				{
 					id = LEGS_WALK;
-				}	
+				}
 				else if (strncmp("LEGS_RUN\0", buffer, 9) == 0)
 				{
 					id = LEGS_RUN;
-				}	
+				}
 				else if (strncmp("LEGS_BACK\0", buffer, 10) == 0)
 				{
 					id = LEGS_BACK;
-				}	
+				}
 				else if (strncmp("LEGS_SWIM\0", buffer, 10) == 0)
 				{
 					id = LEGS_SWIM;
-				}	
+				}
 				else if (strncmp("LEGS_JUMPB\0", buffer, 11) == 0)
 				{
 					id = LEGS_JUMPB;
-				}	
+				}
 				else if (strncmp("LEGS_LANDB\0", buffer, 11) == 0)
 				{
 					id = LEGS_LANDB;
-				}	
+				}
 				else if (strncmp("LEGS_IDLECR\0", buffer, 12) == 0)
 				{
 					id = LEGS_IDLECR;
-				}	
+				}
 				else if (strncmp("LEGS_JUMP\0", buffer, 10) == 0)
 				{
 					id = LEGS_JUMP;
-				}	
+				}
 				else if (strncmp("LEGS_LAND\0", buffer, 10) == 0)
 				{
 					id = LEGS_LAND;
-				}	
+				}
 				else if (strncmp("LEGS_IDLE\0", buffer, 10) == 0)
 				{
 					id = LEGS_IDLE;
-				}	
+				}
 				else if (strncmp("LEGS_TURN\0", buffer, 10) == 0)
 				{
 					id = LEGS_TURN;
@@ -603,19 +607,19 @@ int Md3AnimModel::loadAnimations(char *modelPath)
 				else
 				{
 					id = UNSUPPORTED;
-				}	
+				}
 
 				if (m_debug > 0)
 				{
-					printf("<%s> %3i %3i %3i %3i \t'%s' (%i)\n", 
+					printf("<%s> %3i %3i %3i %3i \t'%s' (%i)\n",
 							 (id == UNSUPPORTED) ? "Unsupported" : "",
-							 firstFrame, numFrames, 
+							 firstFrame, numFrames,
 							 loopingFrames, framesPerSecond, buffer, id);
 				}
 
 				if (id != UNSUPPORTED)
 				{
-					addAnim(buffer, id, firstFrame, numFrames, 
+					addAnim(buffer, id, firstFrame, numFrames,
 							  loopingFrames, framesPerSecond);
 				}
 
@@ -624,7 +628,7 @@ int Md3AnimModel::loadAnimations(char *modelPath)
 			else if (strncmp("sexf", buffer, 4) == 0)
 			{
 				m_sex = MD3_SEX_FEMALE;
-				
+
 				if (m_debug > 0)
 				{
 					printf("<> sex = female\n");
@@ -734,12 +738,12 @@ int Md3AnimModel::loadAnimations(char *modelPath)
 ////////////////////////////////////////////////////////////
 
 void Md3AnimModel::setCurrentTime(Md3 &model)
-{ 
+{
 	int animationSpeed;
 	float elapsedTime = 0.0f;
 	float time, t;
 
-	
+
 	// No animations in this model
 	if (model.numAnimations == 0)
 	{
@@ -759,10 +763,10 @@ void Md3AnimModel::setCurrentTime(Md3 &model)
 	// Tells out far from the current key frame to the next key frame.
 	t = (elapsedTime / (1000.0f / animationSpeed));
 
-	//printf("t = %f, et = %f, lt = %f, fps = %i\n", 
+	//printf("t = %f, et = %f, lt = %f, fps = %i\n",
 	//		 t, elapsedTime, model.lastTime, animationSpeed);
 
-	// If our elapsed time goes over the desired time segment, start over 
+	// If our elapsed time goes over the desired time segment, start over
 	// and go to the next key frame.
 	if (elapsedTime >= (1000.0f / animationSpeed))
 	{
@@ -797,11 +801,11 @@ void Md3AnimModel::updateModel(Md3 &model)
 	model.nextFrame = (model.currentFrame + 1) % endFrame;
 
 	// Wrap to first frame if past last
-	if (model.nextFrame == 0) 
+	if (model.nextFrame == 0)
 	{
 		model.nextFrame = startFrame;
 	}
-	
+
 	// Set interpolating time 0.0 - 1.0 ( start to end of animation)
 	setCurrentTime(model);
 }
@@ -820,9 +824,9 @@ void Md3AnimModel::initMd3(Md3 &model, unsigned int id)
 
 
 int Md3AnimModel::addAnim(char *modelPath, md3_animation_id_t id,
-								  unsigned int firstFrame, 
-								  unsigned int numFrames, 
-								  unsigned int loopingFrames, 
+								  unsigned int firstFrame,
+								  unsigned int numFrames,
+								  unsigned int loopingFrames,
 								  unsigned int framesPerSecond)
 {
 	if (m_animCount == 30)
@@ -853,7 +857,7 @@ int Md3AnimModel::addAnim(char *modelPath, md3_animation_id_t id,
 }
 
 
-int Md3AnimModel::loadMd3(Md3 &model, char *base, char *modelPath, char *skin, 
+int Md3AnimModel::loadMd3(Md3 &model, char *base, char *modelPath, char *skin,
 								  md3_lod_t modelLoD)
 {
 	char filename[256];
@@ -869,10 +873,10 @@ int Md3AnimModel::loadMd3(Md3 &model, char *base, char *modelPath, char *skin,
 	len = strlen(modelPath);
 
 	// Load model with requested LoD
-	snprintf(filename, l, "%s%s%s%s", modelPath, 
-				(modelPath[len-1] == '/') ? "" : "/", 
+	snprintf(filename, l, "%s%s%s%s", modelPath,
+				(modelPath[len-1] == '/') ? "" : "/",
 				base,
-				(modelLoD == MD3_LOD_HIGH) ? ".md3" : 
+				(modelLoD == MD3_LOD_HIGH) ? ".md3" :
 				(modelLoD == MD3_LOD_MED) ? "_1.md3" : "_2.md3");
 
 	model.reset();
@@ -886,7 +890,7 @@ int Md3AnimModel::loadMd3(Md3 &model, char *base, char *modelPath, char *skin,
 	// Load skin if requested
 	if (skin && skin[0])
 	{
-		snprintf(filename, l, "%s%s%s_%s.skin", modelPath, 
+		snprintf(filename, l, "%s%s%s_%s.skin", modelPath,
 					(modelPath[len-1] == '/') ? "" : "/", base, skin);
 
 		if (loadSkin(model, filename))
@@ -917,7 +921,7 @@ int Md3AnimModel::loadMd3(Md3 &model, char *base, char *modelPath, char *skin,
 					filename[j] = '/';
 				}
 
-				// Lowercase alphabet MSDOS is case insensitive 
+				// Lowercase alphabet MSDOS is case insensitive
 				// data created with it's skin names are bad
 				if (filename[j] > 64 && filename[j] < 91)
 				{
@@ -962,9 +966,9 @@ int Md3AnimModel::cacheTexture(char *texture)
 		texTest[texNumTest].name_len = len+1;
 		strncpy(texTest[texNumTest].name, texture, len+1);
 		texTest[texNumTest].name[len] = 0;
-				
+
 		id = texNumTest;
-				
+
 		texNumTest++;
 	}
 
@@ -1049,7 +1053,7 @@ int Md3AnimModel::loadSkin(Md3 &model, char *filename)
 				for (j = 0; j < m; ++j)
 				{
 					if (strncmp(mesh, meshes[j].name, 68) == 0)
-					{				
+					{
 						switch (i)
 						{
 						case 1:
@@ -1097,7 +1101,7 @@ int Md3AnimModel::loadShader(Md3 &model, char *filename)
 	if (model.idTest == 4)
 	{
 		m_weapon.texTest[0] = cacheTexture("models/weapons/machinegun/skin2.tga");
-		
+
 		for (i = m_weapon.getNumMeshes() - 1; i > 0; --i)
 		{
 			m_weapon.texTest[i] = m_weapon.texTest[0];
@@ -1143,7 +1147,7 @@ void Md3AnimModel::render()
 
 		if (errors < 8)
 		{
-			printf("ERROR: %i. Not all animations loaded %i/24\n", 
+			printf("ERROR: %i. Not all animations loaded %i/24\n",
 					 errors+1, m_animCount);
 			++errors;
 		}
@@ -1179,13 +1183,13 @@ void Md3AnimModel::renderModel(Md3 &model)
 #ifdef USING_OPENGL
 	unsigned int i, j, k, numBones, numMeshes;
 	unsigned int index, currentIndex, nextIndex, maxIndex;
-	md3_mesh_t *meshes, *mesh;	
+	md3_mesh_t *meshes, *mesh;
 	md3_bone_t *bones, *bone;
 
 
 	numMeshes = model.getNumMeshes();
 	meshes = model.getMeshes();
-	
+
 	if (mFlags & fRenderBones)
 	{
 		numBones = model.getNumBones();
@@ -1219,9 +1223,9 @@ void Md3AnimModel::renderModel(Md3 &model)
 
 		// Try to avoid bad models/loading taking down the subsystem
 		// and also handle bad data as well as we can
-		if ((int)model.currentFrame >= mesh->num_frames || 
+		if ((int)model.currentFrame >= mesh->num_frames ||
 			 (int)model.nextFrame >= mesh->num_frames)
-		{			
+		{
 			if (mFlags & fRenderingWarnings)
 			{
 				fprintf(stderr, "renderModel> WARNING: Frame index would be out of bounds\n model[%i].mesh[%i], %i out of %i frames\n",
@@ -1243,7 +1247,7 @@ void Md3AnimModel::renderModel(Md3 &model)
 			{
 				index = mesh->tris[j].triangle[k];
 
-				if (index + nextIndex > maxIndex || 
+				if (index + nextIndex > maxIndex ||
 					 index + currentIndex > maxIndex)
 				{
 					currentIndex = 0;
@@ -1260,7 +1264,7 @@ void Md3AnimModel::renderModel(Md3 &model)
 				{
 					glTexCoord2fv(mesh->texel[index].st);
 				}
-				
+
 				if (mFlags & fDisableMeshInterpolate)
 				{
 					glVertex3f(mesh->vertex[index + currentIndex].pos[0],
@@ -1292,7 +1296,7 @@ void Md3AnimModel::renderModel(Md3 &model)
 void renderBone(vec3_t min, vec3_t max, vec3_t center, vec_t scale)
 {
 	glDisable(GL_TEXTURE_2D);
-	
+
 	//scale *= 0.2f;
 
 	glPushMatrix();
@@ -1335,7 +1339,7 @@ void renderBone(vec3_t min, vec3_t max, vec3_t center, vec_t scale)
 	// min, bottom quad
 	glVertex3f(min[0], min[1], min[2]);
 	glVertex3f(min[0], max[1], min[2]);
-    
+
 	glVertex3f(min[0], min[1], min[2]);
 	glVertex3f(max[0], min[1], min[2]);
 
@@ -1356,7 +1360,7 @@ void renderLaserSight()
 
 	glDisable(GL_TEXTURE_2D);
 
-	glPushMatrix();			
+	glPushMatrix();
 	glScalef(100, 100, 100);
 
 	// Draw two long quads that skrink and fade the they go further out
@@ -1367,14 +1371,14 @@ void renderLaserSight()
 	glColor4f(0.3-d, 0.1, 0.1, 0.5);
 	glVertex3f(lenght, 0.1, 0.0);
 	glVertex3f(lenght,  0.0, 0.0);
-	
+
 	glColor4f(0.9-d, 0.1, 0.1, 0.5);
 	glVertex3f(start, 0.0, 0.0);
 	glVertex3f(start, 0.0, 0.2);
-	glColor4f(0.3-d, 0.1, 0.1, 0.5);		
+	glColor4f(0.3-d, 0.1, 0.1, 0.5);
 	glVertex3f(lenght, 0.0, 0.1);
 	glVertex3f(lenght, 0.0, 0.0);
-	glEnd();		
+	glEnd();
 
 	glPopMatrix();
 
@@ -1468,40 +1472,40 @@ void Md3AnimModel::renderTag(unsigned int id)
 	for (i = 0; i < t; ++i)
 	{
 		if (slaves[i] > 0)
-		{	
+		{
 			// Using digiben's tag anim notes
-			// To find the current translation position for 
+			// To find the current translation position for
 			// this frame of animation, we multiply
-			// the currentFrame by the number of tags, 
+			// the currentFrame by the number of tags,
 			// then add i.  This is similar to how
 			// the vertex key frames are interpolated.
 			pos[0] = tags[f*t+i].center[0];
 			pos[1] = tags[f*t+i].center[1];
 			pos[2] = tags[f*t+i].center[2];
-			
+
 			// Grab the next key frame translation position
 			nextPos[0] = tags[nf*t+i].center[0];
 			nextPos[1] = tags[nf*t+i].center[1];
 			nextPos[2] = tags[nf*t+i].center[2];
 
 			// By using the equation: p(t) = p0 + t(p1 - p0), with a time t,
-			// we create a new translation position that 
-			// is closer to the next key frame.			
+			// we create a new translation position that
+			// is closer to the next key frame.
 			pos[0] = pos[0] + time * (nextPos[0] - pos[0]);
 			pos[1] = pos[1] + time * (nextPos[1] - pos[1]);
 			pos[2] = pos[2] + time * (nextPos[2] - pos[2]);
 
-			// Now comes the more complex interpolation.  Just like 
-			// the translation, we want to store the current and 
+			// Now comes the more complex interpolation.  Just like
+			// the translation, we want to store the current and
 			// next key frame rotation matrix, then interpolate
 			// between the 2.
 
-			// Get a pointer to the start of the 3x3 rotation matrix 
+			// Get a pointer to the start of the 3x3 rotation matrix
 			// for the current frame
 			//matrix = &tags[f*t+i].rotation[0][0];
 			convertQuake3ToHelMatrix(tags[f*t+i].rotation, matrix);
 
-			// Get a pointer to the start of the 3x3 rotation matrix 
+			// Get a pointer to the start of the 3x3 rotation matrix
 			// for the next frame
 			//nextMatrix = &tags[nf*t+i].rotation[0][0];
 			convertQuake3ToHelMatrix(tags[nf*t+i].rotation, nextMatrix);
@@ -1511,13 +1515,13 @@ void Md3AnimModel::renderTag(unsigned int id)
 			q.setByMatrix(matrix);
 			qNext.setByMatrix(nextMatrix);
 
-			// Using spherical linear interpolation, find the 
+			// Using spherical linear interpolation, find the
 			// interpolated quaternion
 			qInterpolate = Quaternion::slerp(q, qNext, time);
 
 			// Here we convert the interpolated quaternion into a matrix
 			qInterpolate.getMatrix(finalMatrix);
-			
+
 			glPushMatrix();
 
 			if (mFlags & fDisableTagInterpolate)
@@ -1526,7 +1530,7 @@ void Md3AnimModel::renderTag(unsigned int id)
 				//glTranslatef(pos[0]*64, pos[1]*64, pos[2]*64);
 				matrix[12] = pos[0]*scaleHack;
 				matrix[13] = pos[1]*scaleHack;
-				matrix[14] = pos[2]*scaleHack;	
+				matrix[14] = pos[2]*scaleHack;
 				glMultMatrixf(matrix);
 			}
 			else
@@ -1535,7 +1539,7 @@ void Md3AnimModel::renderTag(unsigned int id)
 				//glTranslatef(pos[0]*64, pos[1]*64, pos[2]*64);
 				finalMatrix[12] = pos[0]*scaleHack;
 				finalMatrix[13] = pos[1]*scaleHack;
-				finalMatrix[14] = pos[2]*scaleHack;	
+				finalMatrix[14] = pos[2]*scaleHack;
 				glMultMatrixf(finalMatrix);
 			}
 
@@ -1587,10 +1591,10 @@ void loadMd3(char *model, char *skin, char *weapon)
 	snprintf(pathname, 255, "data/models/players/%s", model);
 	pathname[255] = 0;
 
-	if (gMd3.load(pathname, skin, MD3_LOD_HIGH) < 0) 
-	{ 
+	if (gMd3.load(pathname, skin, MD3_LOD_HIGH) < 0)
+	{
 		printf("ERROR: MD3 '%s' not loaded\n", pathname);
-	} 
+	}
 	else
 	{
 		snprintf(pathname, 255, "data/models/weapons2/%s", weapon);
@@ -1601,23 +1605,23 @@ void loadMd3(char *model, char *skin, char *weapon)
 			printf("Couldn't load weapon model '%s'.\n", pathname);
 		}
 
-		gMd3.setAnimUpper(TORSO_STAND); 
+		gMd3.setAnimUpper(TORSO_STAND);
 		gMd3.setAnimLower(LEGS_IDLE);
 
 		// Setup textures
 		printf("\nLoading textures: ");
-		for (i = 0; i < gMd3.texNumTest; ++i) 
-		{ 
-			snprintf(pathname, 255, "data/%s", gMd3.texTest[i].name); 
+		for (i = 0; i < gMd3.texNumTest; ++i)
+		{
+			snprintf(pathname, 255, "data/%s", gMd3.texTest[i].name);
 			pathname[255] = 0;
 
-			gMd3.texTest[i].gl_texture_id = gTexture.loadTGA(pathname); 
-			
-			if (gMd3.texTest[i].gl_texture_id < 0) 
-			{ 
-				printf("ERROR: Md3 texture '%s' not loaded\n", pathname); 
+			gMd3.texTest[i].gl_texture_id = gTexture.loadTGA(pathname);
+
+			if (gMd3.texTest[i].gl_texture_id < 0)
+			{
+				printf("ERROR: Md3 texture '%s' not loaded\n", pathname);
 			}
-		} 
+		}
 	}
 }
 
@@ -1629,8 +1633,8 @@ void renderScene()
 	float x, y, time;
 
 
-	gluLookAt(0.0, 0.0, -256.0, 
-				 0.0, 8.0, 0.0, 
+	gluLookAt(0.0, 0.0, -256.0,
+				 0.0, 8.0, 0.0,
 				 0.0, 1.0, 0.0);
 
 
@@ -1691,15 +1695,15 @@ void renderScene()
 		glBegin(GL_LINE_LOOP);
 		for (y = -size; y < size; y += step)
 		{
-			glVertex3f(x + step, 0.0f, y);	
-			glVertex3f(x, 0.0f, y);	
+			glVertex3f(x + step, 0.0f, y);
+			glVertex3f(x, 0.0f, y);
 			glVertex3f(x, 0.0f, y + step);
 			glVertex3f(x + step, 0.0f, y + step);
 		}
 		glEnd();
 	}
 	glPopMatrix();
-	
+
 	// Draw model
 	glEnable(GL_TEXTURE_2D);
 	glColor3f(1.0f, 1.0f, 1.0f);
@@ -1763,14 +1767,14 @@ void initScene(int argc, char *argv[])
 	printf("UP/DOWN    - Adjust scene pitch\n");
 	printf("RIGHT/LEFT - Adjust scene yaw\n");
 	printf("----------------------------------\n");
-	printf("1 - Toggle tag interpolating\n");   
+	printf("1 - Toggle tag interpolating\n");
 	printf("2 - Toggle animation\n");
 	printf("3 - Toggle bone rendering\n");
 	printf("4 - Toggle weapon rendering\n");
 	printf("5 - Toggle mesh interpolating\n");
 	printf("6 - Toggle scene rotation\n");
-	printf("7 - Toggle rendering warning reporting\n");      
-	printf("8 - Toggle alpha blending\n");      
+	printf("7 - Toggle rendering warning reporting\n");
+	printf("8 - Toggle alpha blending\n");
 	printf("w - Toggle wireframe rendering\n");
 	printf("[ - Loop through lower animations\n");
 	printf("] - Loop through upper animations\n");
@@ -1911,7 +1915,7 @@ void handleKey(int key)
 
 		if (wireframe)
 		{
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); 
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		}
 		else
 		{
@@ -2070,7 +2074,7 @@ void event_resize(int width, int height)
 	gWidth = width;
 	gHeight = height;
 
-	glViewport(0, 0, width, height); 
+	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -2117,7 +2121,7 @@ void init_gl(unsigned int width, unsigned int height)
 	gTexture.reset();
 	gTexture.setFlag(Texture::fUseMipmaps);
 	gTexture.setMaxTextureCount(64);
-	
+
 }
 
 
@@ -2148,7 +2152,7 @@ int main_gl(int argc, char *argv[])
 	  if (SDL_GL_LoadLibrary("libGL.so") < 0)
 	  {
 		  SDL_ClearError();
-    
+
 		  // Fallback 2
 		  if (SDL_GL_LoadLibrary("libGL.so.1") < 0)
 		  {
@@ -2175,7 +2179,7 @@ int main_gl(int argc, char *argv[])
   gSDLWindow = SDL_SetVideoMode(width, height, 16, flags);
   SDL_WM_SetCaption("Md3AnimModel Test", "Md3AnimModel Test");
   SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-  
+
   // Init rendering
   init_gl(width, height);
   initScene(argc, argv);
@@ -2195,7 +2199,7 @@ int main_gl(int argc, char *argv[])
 			  break;
 		  case SDL_MOUSEBUTTONDOWN:
 		  case SDL_MOUSEBUTTONUP:
-			  break;	
+			  break;
 		  case SDL_KEYDOWN:
 			  mkeys = (unsigned int)SDL_GetModState();
 			  mod = 0;
@@ -2235,12 +2239,12 @@ int main_gl(int argc, char *argv[])
 					  SDL_WM_ToggleFullScreen(gSDLWindow);
 				  }
 			  }
-			  
+
 			  handleKey(key);
 			  break;
 		  case SDL_KEYUP:
 			  break;
-		  case SDL_VIDEORESIZE:			  
+		  case SDL_VIDEORESIZE:
 			  event_resize(event.resize.w, event.resize.h);
 
 			  width = event.resize.w;
@@ -2252,7 +2256,7 @@ int main_gl(int argc, char *argv[])
 
 	  event_display(width, height);
   }
-  
+
   return 0;
 }
 
@@ -2295,7 +2299,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		printf("\n\n%s LoD path skin_name\neg %s 0 /usr/local/games/quake3/qbase3/players/slash/ default [weapon_path weapon_name]\n", 
+		printf("\n\n%s LoD path skin_name\neg %s 0 /usr/local/games/quake3/qbase3/players/slash/ default [weapon_path weapon_name]\n",
 				 argv[0], argv[0]);
 	}
 }

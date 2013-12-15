@@ -1,23 +1,23 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
  * Object  : OpenGLMesh
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- Test Defines -----------------------------------------------
- *           
- * UNIT_TEST_OPENGLMESH - Builds OpenGLMesh class as a console unit test 
  *
- *-- History ------------------------------------------------ 
+ *-- Test Defines -----------------------------------------------
+ *
+ * UNIT_TEST_OPENGLMESH - Builds OpenGLMesh class as a console unit test
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.08.23:
  * Mongoose - Created
@@ -27,7 +27,7 @@
 #ifndef GUARD__OPENRAIDER_MONGOOSE_OPENGLMESH_H_
 #define GUARD__OPENRAIDER_MONGOOSE_OPENGLMESH_H_
 
-#include <hel/math.h>
+#include "hel/math.h"
 
 // TODO: Unify the parallel systems here, arrays and the allocate/set
 
@@ -36,7 +36,7 @@ typedef enum
 {
 	OpenGLMeshModeSolid          = 0,
 	OpenGLMeshModeWireframe      = 1,
-	OpenGLMeshModeTexture        = 2,	
+	OpenGLMeshModeTexture        = 2,
 	OpenGLMeshModeMultiTexture   = 3
 
 } OpenGLMeshMode;
@@ -60,10 +60,10 @@ typedef struct tris_s
 	unsigned int cnum_alpha_triangles;
 
 	unsigned int num_texcoors;
-	vec2_t *texcoors; 
+	vec2_t *texcoors;
 
 	unsigned int num_texcoors2;
-	vec2_t *texcoors2; 
+	vec2_t *texcoors2;
 
 	// Arrays of triangle indices sorted by texture
 	unsigned int num_triangles;
@@ -71,7 +71,7 @@ typedef struct tris_s
 
 	// Arrays of alpha triangle indices sorted by texture
 	unsigned int num_alpha_triangles;
-	unsigned int *alpha_triangles; // ABCABCABC... 
+	unsigned int *alpha_triangles; // ABCABCABC...
 
 } tris_t;
 
@@ -87,10 +87,10 @@ typedef struct rect_s
 	unsigned int cnum_alpha_quads;
 
 	unsigned int num_texcoors;
-	vec2_t *texcoors; 
+	vec2_t *texcoors;
 
 	unsigned int num_texcoors2;
-	vec2_t *texcoors2; 
+	vec2_t *texcoors2;
 
 	// Arrays of rectangle indices sorted by texture
 	unsigned int num_quads;
@@ -113,12 +113,12 @@ class OpenGLMesh
 
 	OpenGLMesh();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of OpenGLMesh
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.23: 
+	 * 2002.08.23:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -129,7 +129,7 @@ class OpenGLMesh
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.08.23: 
+	 * 2002.08.23:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -140,7 +140,7 @@ class OpenGLMesh
 
 	void drawAlpha();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Render alpha polygons
 	 *
 	 *-- History ------------------------------------------
@@ -151,7 +151,7 @@ class OpenGLMesh
 
 	void drawSolid();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Render solid polygons
 	 *
 	 *-- History ------------------------------------------
@@ -167,8 +167,8 @@ class OpenGLMesh
 
 	void allocateColors(unsigned int n);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -178,8 +178,8 @@ class OpenGLMesh
 
 	void allocateNormals(unsigned int n);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -189,8 +189,8 @@ class OpenGLMesh
 
 	void allocateRectangles(unsigned int n);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -200,8 +200,8 @@ class OpenGLMesh
 
 	void allocateTriangles(unsigned int n);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -211,8 +211,8 @@ class OpenGLMesh
 
 	void allocateVertices(unsigned int n);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -223,8 +223,8 @@ class OpenGLMesh
 	void bufferColorArray(unsigned int colorCount, vec_t *colors,
 								 unsigned int colorWidth);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -234,8 +234,8 @@ class OpenGLMesh
 
 	void bufferNormalArray(unsigned int normalCount, vec_t *normals);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -243,12 +243,12 @@ class OpenGLMesh
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	void bufferTriangles(unsigned int count, 
-								unsigned int *indices, vec_t *texCoords, 
+	void bufferTriangles(unsigned int count,
+								unsigned int *indices, vec_t *texCoords,
 								int *textures, unsigned int *flags);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -258,8 +258,8 @@ class OpenGLMesh
 
 	void bufferVertexArray(unsigned int vertexCount, vec_t *vertices);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -269,8 +269,8 @@ class OpenGLMesh
 
 	void setColor(unsigned int index, float r, float g, float b, float a);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -280,8 +280,8 @@ class OpenGLMesh
 
 	void setColor(unsigned int index, float rgba[4]);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -291,8 +291,8 @@ class OpenGLMesh
 
 	void setNormal(unsigned int index, float i, float j, float k);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -302,8 +302,8 @@ class OpenGLMesh
 
 	void setVertex(unsigned int index, float x, float y, float z);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -314,8 +314,8 @@ class OpenGLMesh
 #ifdef NOT_IMPLEMENTED
 	void sortFacesByTexture();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -326,8 +326,8 @@ class OpenGLMesh
 	void addFace(int textureIndex, int textureIndexB, unsigned int flags,
 					 unsigned int vertexIndexCount, vec_t *vertexIndices);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -335,12 +335,12 @@ class OpenGLMesh
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	void addTexTiledFace(int textureIndex, int textureIndexB, 
-								unsigned int flags, unsigned int indexCount, 
+	void addTexTiledFace(int textureIndex, int textureIndexB,
+								unsigned int flags, unsigned int indexCount,
 								vec_t *vertexIndices, vec_t *texcoords);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -350,8 +350,8 @@ class OpenGLMesh
 
 	void bufferTexcoords(unsigned int texcoordCount, vec_t *texcoords);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -361,8 +361,8 @@ class OpenGLMesh
 
 	void duplicateArraysForTexTiledTexcoords();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -391,7 +391,7 @@ class OpenGLMesh
 	unsigned int mNumQuads;
 	rect_t *mQuads;
 
-	
+
 	unsigned int mTriangleCount;
 	int *mTriangleTextures;
 	unsigned int *mTriangleIndices;

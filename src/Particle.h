@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: Partcle system's atomic base
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2001.08.13:
  * Mongoose - Created
@@ -23,7 +23,7 @@
 #ifndef __FREYJA_MONGOOSE_PARTICLE_H_
 #define __FREYJA_MONGOOSE_PARTICLE_H_
 
-#include <hel/math.h>
+#include "hel/math.h"
 
 class Particle
 {
@@ -31,12 +31,12 @@ class Particle
 
   Particle();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Constructs an object of Particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -47,40 +47,40 @@ class Particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
 	void setActive(bool active);
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Toggles active state of particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   void Force(float x, float y, float z);
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Sets gravity/force acting on particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   void Reset();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Resets particle to defaults
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -91,7 +91,7 @@ class Particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -104,7 +104,7 @@ class Particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -115,7 +115,7 @@ class Particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -126,62 +126,62 @@ class Particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   float Life();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Returns current life ( blend ) of particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   void Update();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Ajusts for particle life cycle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   int Texture();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Returens texture binding for this particle
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   bool isActive();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Returns active value
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   void TextureId(int t);
   /*------------------------------------------------------
-   * Pre  : 
-   * Post : 
+   * Pre  :
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -189,9 +189,9 @@ class Particle
  private:
 
 	bool _active;           /* Is this particle in use? */
-	
+
 	float _life;            /* Life of particle  */
-	
+
 	float _blend;           /* Blend amount or fade */
 
 	int _texture;           /* Texture polygon to use */

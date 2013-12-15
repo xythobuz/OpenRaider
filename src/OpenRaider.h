@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: This is the main class for OpenRaider
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.08.24:
  * Mongoose - Finally made into Singleton
@@ -27,9 +27,9 @@
 #define GUARD__OPENRAIDER_MONGOOSE_OPENRAIDER_H_
 
 
-#include <mstl/List.h>
-#include <mstl/Map.h>
-#include <mstl/Vector.h>
+#include "mstl/List.h"
+#include "mstl/Map.h"
+#include "mstl/Vector.h"
 #include "TombRaider.h"
 #include "Camera.h"
 #include "Render.h"
@@ -87,13 +87,13 @@ class OpenRaider : public SDLSystem
 
 	static OpenRaider *Instance();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs the object of OpenRaider or
 	 *        returns pointer to it if previously allocated
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.08.24: 
+	 * 2001.08.24:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -104,7 +104,7 @@ class OpenRaider : public SDLSystem
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -120,23 +120,23 @@ class OpenRaider : public SDLSystem
 
 	void start();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Init the Game
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void handleMouseMotionEvent(float x, float y);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Mouse motion input used
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.06.04: 
+	 * 2001.06.04:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -144,7 +144,7 @@ class OpenRaider : public SDLSystem
 	/*------------------------------------------------------
 	 * Pre  : <Key> is a valid keyboard code
 	 *
-	 * Post : Recieves <Event> bound to <Cmd> from <Key> press 
+	 * Post : Recieves <Event> bound to <Cmd> from <Key> press
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -166,7 +166,7 @@ class OpenRaider : public SDLSystem
 
 	 void handleCommand(char *command, unsigned int mode);
 	/*------------------------------------------------------
-	 * Pre  : <Command> is valid keyword optionally followed 
+	 * Pre  : <Command> is valid keyword optionally followed
 	 *        by ' ' (space) seperated and argument(s)
 	 *
 	 *        <Mode> is the current type or resource mode
@@ -199,14 +199,14 @@ class OpenRaider : public SDLSystem
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.27: 
+	 * 2001.05.27:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void initGL();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -216,13 +216,13 @@ class OpenRaider : public SDLSystem
 
 	void gameFrame();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : One game physics/time frame passes
 	 *        Also renders one frame per call
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -249,12 +249,12 @@ class OpenRaider : public SDLSystem
 
 	OpenRaider();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of OpenRaider
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -272,45 +272,45 @@ class OpenRaider : public SDLSystem
 
 	void consoleCommand(char *cmd);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * ????.??.??: 
+	 * ????.??.??:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void soundEvent(int type, int id, vec3_t pos, vec3_t angles);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.06.16: 
+	 * 2002.06.16:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 //	void entityEvent(entity_t &e, RaiderEvent event);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.06.16: 
+	 * 2002.06.16:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void processPakSounds();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.06.04: 
+	 * 2001.06.04:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -321,37 +321,37 @@ class OpenRaider : public SDLSystem
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.06.04: 
+	 * 2001.06.04:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void initTextures();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Generates all textures or mipmaps
 	 *        needed for fonts, splash, ext particles
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.28: 
+	 * 2001.05.28:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void processTextures();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Generates tombraider textures or mipmaps
 	 *        needed for sprites, rooms, and models
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.28: 
+	 * 2001.05.28:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void processSprites();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Generates render sprite sequences
 	 *
 	 *-- History ------------------------------------------
@@ -359,29 +359,29 @@ class OpenRaider : public SDLSystem
 	 * 2001.06.06:
 	 * Mongoose - All new functionality
 	 *
-	 * 2001.05.28: 
+	 * 2001.05.28:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
-	
+
 	void processMoveables();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.06.08: 
+	 * 2001.06.08:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
-	
+
 	void processMoveable(int index, int i, int *ent, List <skeletal_model_t *> &cache2, List <unsigned int> &cache, int object_id);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.04.06: 
+	 * 2002.04.06:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -393,7 +393,7 @@ class OpenRaider : public SDLSystem
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.26: 
+	 * 2001.05.26:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -405,19 +405,19 @@ class OpenRaider : public SDLSystem
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
-	
+
 	void loadLevel(char *filename);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Loads validated level pak from diskfile 
+	 * Pre  :
+	 * Post : Loads validated level pak from diskfile
 	 *        using maplist
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -453,10 +453,10 @@ class OpenRaider : public SDLSystem
 
 	// Game vars //////////////
 
-	Vector <char *> mMusicList;  /* List of game level music */ 
+	Vector <char *> mMusicList;  /* List of game level music */
 
-	Vector <char *> mMapList;    /* List of game maps */ 
-	
+	Vector <char *> mMapList;    /* List of game maps */
+
 	char m_mapName[32];          /* Current map filename */
 
 	char *m_pakDir;              /* Current pak directory */

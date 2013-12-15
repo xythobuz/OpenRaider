@@ -1,10 +1,10 @@
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
- * Object  : 
+ * Object  :
  * License : GPL See file COPYING, also (C) 2000 Mongoose
  * Comments: TGA plug-in
  *
@@ -12,10 +12,10 @@
  *                 2 bits for RGBA | RGB | GREY
  *                 val for depth
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2001-10-25:
  * Mongoose - support for screen origin bit
@@ -62,7 +62,7 @@ int mtk_image__tga_check(FILE *f)
 }
 
 
-int mtk_image__tga_load(FILE *f, unsigned char **image, 
+int mtk_image__tga_load(FILE *f, unsigned char **image,
 			unsigned int *width, unsigned int *height, char *type)
 {
   mtk_image_tga_t header;
@@ -85,7 +85,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
 
   // Read TGA header
   fread(&header.comment_lenght, 1, 1, f);
-  fread(&header.colormap_type, 1, 1, f); 
+  fread(&header.colormap_type, 1, 1, f);
   fread(&header.image_type, 1, 1, f);
   fread(&header.colormap_index, 2, 1, f);
   fread(&header.colormap_lenght, 2, 1, f);
@@ -133,17 +133,17 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
   }
 
 #ifdef DEBUG_TGA
-  printf("TGA [%ix%i@%ibpp, %it, %ix, %iy, %uf]\n", 
-	 header.width, header.height, header.bpp, header.image_type,  
+  printf("TGA [%ix%i@%ibpp, %it, %ix, %iy, %uf]\n",
+	 header.width, header.height, header.bpp, header.image_type,
 	 header.origin_x, header.origin_y,
 	 header.desc_flags);
 #endif
 
   // Comments can be 0 - 255
-  if (header.comment_lenght) 
+  if (header.comment_lenght)
   {
     fread(&comment, 1, header.comment_lenght, f);
-    
+
     for (i = 0; i < 255; ++i)
     {
       if (comment[i] > 32 && comment[i] < 127)
@@ -162,7 +162,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
 
   size = header.width * header.height;
 
-  if (!size || (!(header.colormap_type == 0 && 
+  if (!size || (!(header.colormap_type == 0 &&
 		  (header.image_type == 2 || header.image_type == 10))))
   {
     fprintf(stderr, "mtk_image__tga_load> Unknown image format.\n");
@@ -189,7 +189,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
       for (i = 0; i < size;)
       {
 	fread(&packet, 1, 1, f);
-	
+
 	if (packet & 0x80)  // Run Lenght
 	{
 	  packet = (packet &0x7F) + 1;
@@ -207,7 +207,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
 	else // RAW
 	{
 	  packet = (packet &0x7F) + 1;
-	  
+
 	  for (j = 0; j < packet; j++)
 	  {
 	    fread(&pixel, 4, 1, f);
@@ -229,7 +229,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
       }
 
       for (i = 0; i < size; i += 4)
-      { 
+      {
 	tmp = (*image)[i];
 	(*image)[i] = (*image)[i + 2];
 	(*image)[i + 2] = tmp;
@@ -242,15 +242,15 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
     if (must_flip)
     {
       swap_row = new unsigned char [header.width * 4];
-      
-      for (i = 0, (int)j = header.height-1; (int)i < header.height/2; i++, j--)
+
+      for (i = 0, j = header.height-1; (int)i < header.height/2; i++, j--)
       {
 	memcpy(swap_row, &(*image)[i*header.width*4], header.width*4);
-	memcpy(&(*image)[i*header.width*4], &(*image)[j*header.width*4], 
+	memcpy(&(*image)[i*header.width*4], &(*image)[j*header.width*4],
 	       header.width*4);
 	memcpy(&(*image)[j*header.width*4], swap_row, header.width*4);
       }
-			
+
       delete [] swap_row;
     }
     break;
@@ -315,11 +315,11 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
     if (must_flip)
     {
       swap_row = new unsigned char [header.width * 3];
-      
+
       for (i = 0, j = header.height - 1; (int)i < header.height / 2; i++, j--)
       {
 	memcpy(swap_row, &(*image)[i*header.width*3], header.width*3);
-	memcpy(&(*image)[i*header.width*3], &(*image)[j*header.width*3], 
+	memcpy(&(*image)[i*header.width*3], &(*image)[j*header.width*3],
 	       header.width*3);
 	memcpy(&(*image)[j*header.width*3], swap_row, header.width*3);
       }
@@ -328,13 +328,13 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
     }
 
     break;
-  case 8: 
+  case 8:
     printf("tga_load> 8bpp Not implemented\n");
     break;
   default:
     ;
   }
-    
+
 #ifdef DEBUG_TGA
   char c;
 
@@ -348,7 +348,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
   printf("\n");
 #endif
 
-  return 0; 
+  return 0;
 }
 
 
@@ -356,7 +356,7 @@ int mtk_image__tga_save(FILE *f, unsigned char *image,
 			unsigned int width, unsigned int height, char type)
 {
   mtk_image_tga_t header;
-  unsigned int size; 
+  unsigned int size;
   //  unsigned int i;
   //  unsigned char tmp;
   char comment[64];
@@ -374,7 +374,7 @@ int mtk_image__tga_save(FILE *f, unsigned char *image,
 
   header.comment_lenght = strlen(comment);
   header.colormap_type = 0;
-  
+
   // No colormaps
   header.colormap_index = 0;
   header.colormap_lenght = 0;
@@ -405,7 +405,7 @@ int mtk_image__tga_save(FILE *f, unsigned char *image,
 
   // Write TGA header
   fwrite(&header.comment_lenght, 1, 1, f);
-  fwrite(&header.colormap_type, 1, 1, f); 
+  fwrite(&header.colormap_type, 1, 1, f);
   fwrite(&header.image_type, 1, 1, f);
   fwrite(&header.colormap_index, 2, 1, f);
   fwrite(&header.colormap_lenght, 2, 1, f);
@@ -426,7 +426,7 @@ int mtk_image__tga_save(FILE *f, unsigned char *image,
   {
   case 32:
     size = header.width * header.height * 4;
- 
+
     //for (i = 0; i < size; i += 4)
     //{
     //  tmp = image[i];
@@ -436,7 +436,7 @@ int mtk_image__tga_save(FILE *f, unsigned char *image,
     break;
   case 24:
     size = header.width * header.height * 3;
- 
+
     //for (i = 0; i < size; i += 3)
     //{
     //  tmp = image[i];
@@ -474,7 +474,7 @@ int mtk_image__tga_save_filename(unsigned char *image,
   va_start(args, s);
   vsnprintf(buffer, 1023, s, args);
   va_end(args);
-  
+
   f = fopen(buffer, "wb");
 
   if (!f)
@@ -496,7 +496,7 @@ int main(int argc, char *argv[])
   FILE *f;
   unsigned char *image;
   unsigned int width;
-  unsigned int height; 
+  unsigned int height;
   char type;
 
   if (argc > 1)

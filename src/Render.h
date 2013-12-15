@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Render
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: This is the renderer class for OpenRaider
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2001.05.21:
  * Mongoose - Created
@@ -23,10 +23,10 @@
 #ifndef GUARD__RENDER_MONGOOSE_RENDER_H_
 #define GUARD__RENDER_MONGOOSE_RENDER_H_
 
-#include <mstl/List.h>
-#include <mstl/Vector.h>
-#include <hel/Matrix.h>
-#include <hel/ViewVolume.h>
+#include "mstl/List.h"
+#include "mstl/Vector.h"
+#include "hel/Matrix.h"
+#include "hel/ViewVolume.h"
 #include "Light.h"
 #include "World.h"
 #include "SkeletalModel.h"
@@ -120,18 +120,18 @@ class Render
 	////////////////////////////////////////////////////////////
 	// Constructors
 	////////////////////////////////////////////////////////////
-	
+
 	Render();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of Render
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
-	
+
 	~Render();
 	/*------------------------------------------------------
 	 * Pre  : Render object is allocated
@@ -139,10 +139,10 @@ class Render
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
-	
+
 
 	////////////////////////////////////////////////////////////
 	// Public Accessors
@@ -150,23 +150,23 @@ class Render
 
 	void screenShot(char *filenameBase);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Makes a screenshot, writes to disk as file
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.20: 
+	 * 2002.12.20:
 	 * Mongoose - Created, factored out of OpenRaider class
 	 ------------------------------------------------------*/
 
 	int getMode();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Gets current rendering mode
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -177,8 +177,8 @@ class Render
 
 	void addRoom(RenderRoom *rRoom);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -188,34 +188,34 @@ class Render
 
 	void Init(int width, int height, bool fastCard);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Starts and sets up OpenGL target
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.05.21: 
+	 * 2001.05.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	void loadTexture(unsigned char *image, 
+	void loadTexture(unsigned char *image,
 						  unsigned int width, unsigned int height,
 						  unsigned int id);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Loads textures in a certian id slot
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.20: 
+	 * 2002.12.20:
 	 * Mongoose - Created, factored out of OpenRaider class
 	 ------------------------------------------------------*/
 
-	void initTextures(char *textureDir, unsigned int *numLoaded, 
+	void initTextures(char *textureDir, unsigned int *numLoaded,
 							unsigned int *nextId);
 	/*------------------------------------------------------
 	 * Pre  : textureDir is valid and exists with textures
 	 * Post : Sets up textures for OpenRaider
-	 *        Returns number of loaded textures and 
+	 *        Returns number of loaded textures and
 	 *
 	 *        numLoaded will update number of
 	 *        external textures loaded
@@ -224,7 +224,7 @@ class Render
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.20: 
+	 * 2002.12.20:
 	 * Mongoose - Created, factored out of OpenRaider class
 	 ------------------------------------------------------*/
 
@@ -238,11 +238,11 @@ class Render
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.25: 
+	 * 2002.12.25:
 	 * Mongoose - Created, factored out of UnRaider class
 	 ------------------------------------------------------*/
 
-	void initEmitter(char *name, unsigned int size, 
+	void initEmitter(char *name, unsigned int size,
 						  unsigned int snowTex1, unsigned int snowTex2);
 	/*------------------------------------------------------
 	 * Pre  : Textures are init and these args are valid
@@ -257,12 +257,12 @@ class Render
 
 	void ClearWorld();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Removes current world/entity/etc geometery
    *
    *-- History ------------------------------------------
    *
-   * 2001.05.21: 
+   * 2001.05.21:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -275,84 +275,84 @@ class Render
    *
    *-- History ------------------------------------------
    *
-   * 2002.03.21: 
+   * 2002.03.21:
    * Mongoose - Created
    ------------------------------------------------------*/
 
 	void setMode(int n);
   /*------------------------------------------------------
-   * Pre  : 
-   * Post : 
+   * Pre  :
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.05.21: 
+   * 2001.05.21:
    * Mongoose - Created
    ------------------------------------------------------*/
 
 	void Update(int width, int height);
   /*------------------------------------------------------
-   * Pre  : 
-   * Post : 
+   * Pre  :
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.05.21: 
+   * 2001.05.21:
    * Mongoose - Created
    ------------------------------------------------------*/
 
 	void Display();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Renders a single game frame
    *
    *-- History ------------------------------------------
    *
-   * 2001.05.21: 
+   * 2001.05.21:
    * Mongoose - Created
    ------------------------------------------------------*/
-	
+
 	void setSkyMesh(int index, bool rot);
   /*------------------------------------------------------
-   * Pre  : 
-   * Post : 
+   * Pre  :
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.05.21: 
+   * 2001.05.21:
    * Mongoose - Created
    ------------------------------------------------------*/
-	
+
 	void ViewModel(entity_t *ent, int index);
   /*------------------------------------------------------
-   * Pre  : 
-   * Post : 
+   * Pre  :
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.05.21: 
+   * 2001.05.21:
    * Mongoose - Created
    ------------------------------------------------------*/
-	
+
 	void RegisterCamera(Camera *camera);
   /*------------------------------------------------------
-   * Pre  : 
-   * Post : 
+   * Pre  :
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.05.21: 
+   * 2001.05.21:
    * Mongoose - Created
    ------------------------------------------------------*/
 
    GLString *GetString();
    /*------------------------------------------------------
-    * Pre  : 
+    * Pre  :
     * Post : Returns GL text output agent
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.04: 
+    * 2002.01.04:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -364,7 +364,7 @@ class Render
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -375,7 +375,7 @@ class Render
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -397,13 +397,13 @@ private:
 	 * 2002.12.16:
 	 * Mongoose - Moved to Render class
 	 *
-	 * 2001.06.06: 
+	 * 2001.06.06:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	bool isVisible(float x, float y, float z);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Is point in view volume?
 	 *
 	 *-- History ------------------------------------------
@@ -414,7 +414,7 @@ private:
 
 	bool isVisible(float x, float y, float z, float radius);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Is sphere in view volume?
 	 *
 	 *-- History ------------------------------------------
@@ -435,7 +435,7 @@ private:
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -448,7 +448,7 @@ private:
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -459,7 +459,7 @@ private:
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -471,7 +471,7 @@ private:
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -482,7 +482,7 @@ private:
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -498,10 +498,10 @@ private:
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
-	
+
 	void drawRoomModel(static_model_t *mesh);
    /*------------------------------------------------------
     * Pre  : Texture is init
@@ -509,10 +509,10 @@ private:
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
-	
+
 	void drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type);
    /*------------------------------------------------------
     * Pre  : Texture is init, type is object containing mesh
@@ -520,10 +520,10 @@ private:
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
-	
+
 	void drawSprite(sprite_t *sprite);
    /*------------------------------------------------------
     * Pre  : Texture is init
@@ -531,7 +531,7 @@ private:
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -548,7 +548,7 @@ private:
 
 	void tmpRenderModelMesh(model_mesh_t *r_mesh, texture_tri_t *ttri);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Let them eat cake...
 	 *
 	 *-- History ------------------------------------------
