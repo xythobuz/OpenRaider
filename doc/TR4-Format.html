@@ -1,0 +1,308 @@
+<html>
+<head>
+<style>
+H2 { background-color:#A0DAFE }
+table.code	{ background-color:#FECEA0 }
+td.type_data { width:80; font-weight:bold }
+td.comment { background-color:#FFB369 }
+</style>
+</head>
+<body>
+
+<center>
+<h1>TR4 file format</h1>
+</center>
+
+<br>
+<h3>Contributors: Rgbold, Turbo Pascal, Yuri Zhivago, Dr. Willard, TRWad, Popov, others ?</h3>
+
+This document describes only differences between TR3 and TR4 file format. Please, refer to the TRosetta Stone document
+to get informations about TR1 / TR2 and TR3 file format.<br>
+This document is not complete, there are yet some unknowns. Feel free to fill in the blanks and let us know that we can
+modify this document.
+<br><br>
+<ul>
+<li><a href="#TypesUsed">Types used</a></li>
+<li><a href="#GeneralFormat">General format of a .TR4 file</a></li>
+<li><a href="#GeometryBlock">Format of the geometry block</a></li>
+	<ul>
+		<li><a href="#RoomLights">Room Lights</a></li>
+		<li><a href="#TriQuads">Tri & Quad polys in mesh objects</a></li>
+		<li><a href="#FlyByCameras">Flyby cameras</a></li>
+		<li><a href="#AIData">Cinematic frames replaced by AI data</a></li>
+		<li><a href="#SpriteTexture">Changes in tr2_sprite_texture</a></li>
+		<li><a href="#MeshObjects">Mesh objects</a></li>
+		<li><a href="#ObjectTextures">Object textures</a></li>
+		<li><a href="#Animations">Animations</a></li>
+		<li><a href="#Miscellaneous">Miscellaneous</a></li>
+	</ul>
+</ul>
+<br>
+<hr>
+<h2><a name="TypesUsed">Types used</a></h2>
+
+<table border="1">
+<tr bgcolor="#e0e0e0"><th>name</th><th>size</th></tr>
+<tr><th>bit8</th><td>a signed 8 bits</td></tr>
+<tr><th>bitu8</th><td>an unsigned 8 bits</td></tr>
+<tr><th>bit16</th><td>a signed 16 bits</td></tr>
+<tr><th>bitu16</th><td>an unsigned 16 bits</td></tr>
+<tr><th>bit32</th><td>a signed 32 bits</td></tr>
+<tr><th>bitu32</th><td>an unsigned 32 bits</td></tr>
+<tr><th>float</th><td>a 4 bytes float</td></tr>
+</table>
+<br>
+Other types can be used: if it's the case, refer to the TRosetta Stone document to have their definitions (for eg: tr2_color)
+
+<h2><a name="GeneralFormat">General format of a .TR4 file</a></h2>
+
+<table class="code" cellspacing="0">
+<tr><td class="type_data">bitu32</td><td>"TR4",0</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu16</td><td>Number of non bumped room tiles</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu16</td><td>Number of tiles for objects</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu16</td><td>Number of bumped room tiles</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu32</td><td>Uncompressed size of texture 1</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu32</td><td>Compressed size of texture 1</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu8[]</td><td>(compressed) Texture 1 (32 bits texture)</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu32</td><td>Uncompressed size of texture 2</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu32</td><td>Compressed size of texture 2</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu8[]</td><td>(compressed) Texture 2 (16 bits texture)</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu32</td><td>Uncompressed size of texture 3</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu32</td><td>Compressed size of texture 3</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu8[]</td><td>(compressed) Texture 3 (32 bits texture)<td>-> a 256x512 texture with the font & sky</td></tr>
+<tr><td class="type_data">bitu32</td><td>Uncompressed size of geometry</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu32</td><td>Compressed size of geometry</td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu8[]</td><td>(compressed) <a href="#GeometryBlock">Geometry</a></td><td>&nbsp;</td></tr>
+<tr><td class="type_data">bitu32</td><td>num_sounds</td><td>&nbsp;</td></tr>
+<tr><td colspan="3"><b>num_sounds * struct TR4_TrailingSound</b></td></tr>
+<tr><td colspan="3">{</td></tr>
+<tr><td class="type_data">bitu32</td><td>UncompSize;</td><td class="comment">// Uncompressed sound size</td></tr>
+<tr><td class="type_data">bitu32</td><td>CompSize;</td><td class="comment">// Compressed sound size -> compression is ADPCM (WAV format)</td></tr>
+<tr><td class="type_data">bitu8</td><td>sound_data[];</td><td class="comment">// data of the sound - size is CompSize bitu8</td></tr>
+<tr><td colspan="3">}</td></tr>
+</table>
+<br>
+<u>Notes</u>
+
+<ul>
+<li>the compression used is the zlib one</li>
+<li>sounds have a Riff wave format</li>
+<li>for the level to be played correctly with the TRLE engine, sounds must not be compressed.
+In addition, they must be at 22.05 Khz / 16 bits per sample / mono (at least, this format works !)</li>
+</ul>
+
+<h2><a name="GeometryBlock">Format of the geometry block</a></h2>
+
+-> same structures than in TR3 format, except:
+
+<h3><a name="RoomLights">Room Lights</a></h3>
+
+<table class="code" cellspacing="0">
+<tr><td colspan="3" class="comment">// Follows a D3D light structure, I think, could be wrong (46 bytes)</td></tr>
+<tr><td colspan="3">typedef struct</td></tr>
+<tr><td colspan="3">{</td></tr>
+<tr><td class="type_data">bit32</td><td>Xposition;</td><td class="comment">// world coords</td></tr>
+<tr><td class="type_data">bit32</td><td>Yposition;</td><td class="comment">// world coords</td></tr>
+<tr><td class="type_data">bit32</td><td>Zposition;</td><td class="comment">// world coords</td></tr>
+<tr><td class="type_data">tr2_colour</td><td>Color;</td><td class="comment">// three bytes rgb values</td></tr>
+<tr><td class="type_data">bitu8</td><td>LightType;</td><td class="comment">// same as D3D (i.e. 2 is for spotlight)</td></tr>
+<tr><td class="type_data">bitu8</td><td>unknown;</td><td class="comment">// always 0xff?</td></tr>
+<tr><td class="type_data">bitu8</td><td>Intensity;</td><td class="comment">&nbsp;</td></tr>
+<tr><td class="type_data">float</td><td>In;</td><td class="comment">&nbsp;</td></tr>
+<tr><td class="type_data">float</td><td>Out;</td><td class="comment">&nbsp;</td></tr>
+<tr><td class="type_data">float</td><td>Length;</td><td class="comment">&nbsp;</td></tr>
+<tr><td class="type_data">float</td><td>Cutoff;</td><td class="comment">&nbsp;</td></tr>
+<tr><td class="type_data">float</td><td>X,Y,Z;<td class="comment">// direction??</td></tr>
+<tr><td colspan="3">} <b>tr4_room_light</b>;</td></tr>
+</table>
+
+<h3><a name="TriQuads">Tri & Quad polys in mesh objects</a></h3>
+
+<table class="code" cellspacing="0">
+<tr><td colspan="3" class="comment">// Triangle surface (10 bytes)</td></tr>
+<tr><td colspan="3">typedef struct</td></tr>
+<tr><td colspan="3">{</td></tr>
+<tr><td class="type_data">bitu16</td><td>Vertices[3];</td><td class="comment">// The 3 vertices of a tri</td></tr>
+<tr><td class="type_data">bitu16</td><td>Texture;</td><td class="comment">// Object-texture index</td></tr>
+<tr><td class="type_data">bitu16</td><td>Lighting;</td><td class="comment">// transparency flag & strength of the hilight</td></tr>
+<tr><td colspan="3">} <b>tr4_face3</b>;</td></tr>
+</table>
+<br>
+<table class="code" cellspacing="0">
+<tr><td colspan="3" class="comment">// Quadrangle surface (12 bytes)</td></tr>
+<tr><td colspan="3">typedef struct</td></tr>
+<tr><td colspan="3">{</td></tr>
+<tr><td class="type_data">bitu16</td><td>Vertices[4];</td><td class="comment">// The 4 vertices of a quad</td></tr>
+<tr><td class="type_data">bitu16</td><td>Texture;</td><td class="comment">// Object-texture index</td></tr>
+<tr><td class="type_data">bitu16</td><td>Lighting;</td><td class="comment">// transparency flag & strength of the hilight</td></tr>
+<tr><td colspan="3">} <b>tr4_face4</b>;</td></tr>
+</table>
+<br>
+The new field Lighting has this layout:<br><br>
+
+<table border="1">
+<td><nobr>Bit 0</nobr></td><td>if set, alpha channel = intensity (same meaning that when the Attribute field of tr2_object_texture is 2. Cf TRosetta stone document)</td></tr>
+<td valign="top"><nobr>Bits 1->7</nobr></td><td>strength of the hilight. In TR4, objects can exhibit some kind of light reflection when seen from some particular angles.
+These bits give the strength of this effect: the more bigger the value is, the more visible is the effect.</td></tr>
+</table>
+<br>
+<u>Notes</u>
+
+<ul>
+<li>As in TR3, the Texture field can have its bit 15 set -> only for tris & quads used by rooms - unknown meaning</li>
+<li>The extra field Lighting exists only for tris / quads making <u>meshes</u> (used by moveables and static meshes), <u>not</u>
+for tris / quads making rooms !</li>
+</ul>
+
+<h3><a name="FlyByCameras">Flyby cameras</a></h3>
+
+Before SoundSources (cf. TRosetta stone document) is a new field for Flyby_Camera data:<br><br>
+
+<table class="code" cellspacing="0">
+<tr><td class="type_data">bitu32</td><td>Number_of_FBCameras;</td><td>&nbsp;</td></tr>
+<tr><td colspan="3" class="comment">// Data for a flyby camera (40 bytes)</td></tr>
+<tr><td colspan="3">typedef struct</td></tr>
+<tr><td colspan="3">{</td></tr>
+<tr><td class="type_data">bit32</td><td>pos[6];</td><td class="comment">// Positions ? (x1,y1,z1,x2,y2,z2)</td></tr>
+<tr><td class="type_data">bitu8</td><td>index[2];</td><td class="comment">// A pair of indices</td></tr>
+<tr><td class="type_data">bitu16</td><td>Unknown[5];</td><td class="comment">// ??</td></tr>
+<tr><td class="type_data">bit32</td><td>ID;</td><td class="comment">// Index of something</td></tr>
+<tr><td colspan="3">} <b>tr4_extra_camera</b>;</td></tr>
+</table>
+
+<h3><a name="AIData">Cinematic frames replaced by AI data</a></h3>
+
+There are no cinematic frames in TR4. Instead of that, there is the following structure:<br><br>
+
+<table class="code" cellspacing="0">
+<tr><td class="type_data">bitu32</td><td>num_AIData;</td><td>// this field replaces the bitu16 NumCinematicFrames of TR1/2/3 levels</td></tr>
+<tr><td colspan="3" class="comment">// Data for a AI object (24 bytes)</td></tr>
+<tr><td colspan="3">typedef struct</td></tr>
+<tr><td colspan="3">{</td></tr>
+<tr><td class="type_data">bitu16</td><td>ObjectID;</td><td class="comment">// the objectID from the AI object (AI_FOLLOW is 402)</td></tr>
+<tr><td class="type_data">bitu16</td><td>Room;</td><td class="comment">&nbsp;</td></tr>
+<tr><td class="type_data">bit32</td><td>X,Y,A;</td><td class="comment">&nbsp;</td></tr>
+<tr><td class="type_data">bitu16</td><td>OCB;</td><td class="comment">&nbsp;</td></tr>
+<tr><td class="type_data">bitu16</td><td>Flags;</td><td class="comment">// The trigger flags (button 1-5, first button has value 2)</td></tr>
+<tr><td class="type_data">bit32</td><td>Angle;</td><td class="comment">// rotation</td></tr>
+<tr><td colspan="3">} <b>tr4_AI_object</b>;</td></tr>
+</table>
+
+<h3><a name="SpriteTexture">Changes in tr2_sprite_texture</a></h3>
+
+This structure has the same size than before but some of its fields have changed of meaning:<br><br>
+
+<table class="code" cellspacing="0">
+<tr><td colspan="3" class="comment">// Data for a sprite (16 bytes)</td></tr>
+<tr><td colspan="3">typedef struct</td></tr>
+<tr><td colspan="3">{</td></tr>
+<tr><td class="type_data">bitu16</td><td>Tile;</td><td class="comment">&nbsp;</td></tr>
+<tr><td class="type_data">bitu8</td><td>unknown1;</td><td class="comment">// ??</td></tr>
+<tr><td class="type_data">bitu8</td><td>unknown2;</td><td class="comment">// ??</td></tr>
+<tr><td class="type_data">bit16</td><td>Width;</td><td class="comment">// = (real_width-1) * 256</td></tr>
+<tr><td class="type_data">bit16</td><td>Height;</td><td class="comment">// = (real_height-1) * 256</td></tr>
+<tr><td class="type_data">bit16</td><td>x1,y1;</td><td class="comment">// top-left corner of the texture</td></tr>
+<tr><td class="type_data">bit16</td><td>x2,y2;</td><td class="comment">// bottom-right corner of the texture</td></tr>
+<tr><td colspan="3">} <b>tr4_sprite_texture</b>;</td></tr>
+</table>
+<br>
+In addition, the NumSpriteTextures field (see TRosetta stone) is preceeded by the 3 ASCII bytes 'SPR'
+
+<h3><a name="MeshObjects">Mesh objects</a></h3>
+
+Meshes have no longer colored tris / quads. So, NumColoredRectangles, ColoredRectangles[], NumColoredTriangles, ColoredTriangles[]
+no longer exist in the tr2_mesh structure (cf. TRosetta stone document for the tr2_mesh_structure).
+
+<h3><a name="ObjectTextures">Object textures</a></h3>
+
+The NumObjectTextures field (see TRosetta stone) is now preceeded by \0TEX (4 bytes -> \0 is the bitu8 value 0). The structure
+tr2_object_texture itself has changed:<br><br>
+
+<table class="code" cellspacing="0">
+<tr><td colspan="3" class="comment">// Data for an object texture (38 bytes vice 20 in TR1/2/3)</td></tr>
+<tr><td colspan="3">typedef struct</td></tr>
+<tr><td colspan="3">{</td></tr>
+<tr><td class="type_data">bitu16</td><td>Attribute;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>Tile;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>Flags;</td><td class="comment">// new in TR4</td></tr>
+<tr><td class="type_data">tr2_object_texture_vert</td><td>Vertices[4];</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu32</td><td>Unknown1,Unknown2;</td><td class="comment">// new in TR4: x & y offset in something ?</td></tr>
+<tr><td class="type_data">bitu32</td><td>XSize,YSize;</td><td class="comment">// new in TR4: width-1 & height-1 of the object texture</td></tr>
+<tr><td colspan="3">} <b>tr4_object_texture</b>;</td></tr>
+</table>
+<br>
+Meaning of Flags:<br><br>
+
+<table border="1">
+<tr><td><nobr>Bits 0->2</nobr></td><td>mapping correction. It seems that these bits change the way the texture is applied...</td></tr>
+<tr><td><nobr>Bit 11->12</nobr></td><td>2 bits giving the bump mapping type. Can be 0x01 or 0x10. It's 0x00 if not bump mapped. Only textures
+for room or animated textures can be bump mapped, not meshes</td></tr>
+<tr><td><nobr>Bit 15</nobr></td><td>if set, the texture is for a tri/quad from a room or animated texture. If not set, the texture
+is for a mesh</td></tr>
+</table>
+<br>
+<u>Notes</u>
+
+<ul>
+<li>rgbold said that the Attribute field could have a value of "2" for 2-sided textures, but it seems wrong: this field has not changed in
+TR4 and the value "2" seems to mean alpha=intensity as in TR3</li>
+<li>Unknown1 and Unknown2 are said as beeing "XOffset and YOffset" by Dr.Willard, but it seems that changing these values do nothing...
+In addition, they seem not related to a second texturing as thought by Dr.Willard</li>
+<li>Tile is really bits 0 through 14: bit 15 is a flag which says, if set, that this object texture is for a triangle. If not set,
+the object texture is for a quad.</li>
+<li>In the texture coords now 0 is used for low value vice 1 (see the Xcoordinate and Ycoordinate fields of the
+tr2_object_texture_vert structure in the TRosetta Stone document)</li>
+</ul>
+
+<h3><a name="Animations">Animations</a></h3>
+
+The tr2_animation structure has changed a little:<br><br>
+
+<table class="code" cellspacing="0">
+<tr><td colspan="3" class="comment">// Data for an animation structure (40 bytes vice 32 in TR1/2/3)</td></tr>
+<tr><td colspan="3">typedef struct</td></tr>
+<tr><td colspan="3">{</td></tr>
+<tr><td class="type_data">bitu32</td><td>dwFrameOffset;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu8</td><td>bFrameRate;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu8</td><td>bFrameSize;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>wStateId;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bit16</td><td>Unknown;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bit16</td><td>sSpeed;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>wAccelLo;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bit16</td><td>sAccelHi;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu8</td><td>Unknown2[8];</td><td class="comment">// new in TR4</td></tr>
+<tr><td class="type_data">bitu16</td><td>wFrameStart;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>wFrameEnd;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>wNextAnimation;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>wNextFrame;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>wNumStateChanges;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>wStateChangeOffset;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>wNumAnimCommands;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td class="type_data">bitu16</td><td>wAnimCommand;</td><td class="comment">// same meaning than in TR3</td></tr>
+<tr><td colspan="3">} <b>tr4_animation</b>;</td></tr>
+</table>
+<br>
+<u>Notes</u>
+
+<ul>
+<li>The Unknown2[8] are not always 0 as thought by rgbold. When non zero, it seems that these bytes have the same sort of values than
+the existing (Unknown, sSpeed, wAccelLo, sAccelHi) fields (which count 8 bytes too). So these 8 unknowns could be
+(Unknown2,sSpeed2,wAccelLo2, sAccelHi2) fields...</li>
+<li>The wNumAnimCommands field can have wrong values (0xaaaa or 0xaaa7 for eg): don't know why, but if > 256, you could consider
+it to be 0 (that's what is done in TrViewer, but the real value is recorded to be use later when the level is saved: maybe
+the TR Engine needs this value...)</li>
+<li>Angles in animation frames have changed: in the single axe rotation case, you must multiply by 360/4096 instead
+of 360/1024 to get the angle in degrees (see the TRosetta Stone document for more informations about animation frames)</li>
+</ul>
+
+<h3><a name="Miscellaneous">Miscellaneous</a></h3>
+
+<ul>
+<li>There are no 8bit or 16 bit palettes</li>
+<li>There is no lightmap</li>
+<li>There are no 8 bits textures</li>
+<li>TR4 levels have an additional 6 bytes at the end of the uncompressed geometry block that seem to be always 0</li>
+</ul>
+
+</body>
+</html>

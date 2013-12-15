@@ -1,0 +1,95 @@
+
+ OpenRaider 
+ TODO ( Updated 2003.05.17 )
+ ==================================================================
+
+ [Short list]
+  * Replace USING_ defs with HAVE_ for the autoconf nutjobs
+  * Ponytail loader back in
+  * Var system, maybe using mlisp, to control entity/game
+    attributes in realtime
+  * Use new unified sector/fd system to have better world clipping
+  * Get event system up
+  * Animatated textures (tr2_opengl_ref:2027) 
+  * Any little bit of abstraction to reduce interfacing
+    with TombRaider's complexity ( Offload more work to
+    TombRaider class, but hide it behind abstract API )
+  * Replace Render::drawModelMesh with OpenGLMesh use
+  * Move OpenGLMesh array use back in...
+  * Replace color_tri_t, texture_tri_t, and model_mesh_t
+    with OpenGLMesh?
+  * Weapons animations
+  * Better user interface
+  * System abstractions should be agregates not inherited
+    also remove static members and force singleton
+    Split OpenGL dep from System
+  * Text subsystem needs looking at for possible overhaul soon
+  * Checksum matches on torsos to do special animation per 
+    known models like in my freyja demo  ;)
+
+ [OpenRaider.cpp]
+  * Remove skeletal_model_t dependency
+  * Add client system
+  * Add event system
+  * Remove all Tomb Raider format dependence, move to generics
+    * processMoveable needs to use generics
+    * processMoveables needs to use generics and metadata
+    * processSprites needs to use generics 
+    * processPakSounds needs to use generics and metadata
+    * loadLevel's looping loaders need to move into the methods 
+      which would reduce function calls and section off better
+
+ ==================================================================
+
+ [General]
+  * Automatic unit testing per system/agent
+  * Scrict time based event/animation frames
+  * Sound sampling to allow various rates traded off for ram
+  * Account for TR3+ alpha in polygon building  
+  * AutoAim for 3rd person view
+  * Metadata pak wrappers for sfx linking and previews
+
+ [ TombRaider API ]
+  * Add TR5 support and rewrite Room structures and etc as
+    seperate classes as collections inside TombRaider class
+    Move parsing into TombRaider as much as possible and improve
+    memory use of TombRaider to perhaps read a room at a time
+    off disk ( PS2 has limited memory )
+
+ [Interface]
+  * Multilevel menu system
+  * Keyboard setup in RC
+  * Key command event system needed, move it into System
+  * Improve menu system and map select screens
+  * Factor out a CVARS/RC system 
+  * Gobal options (CVARS) class
+  * Model and Map selection via preview of some kind like a pic
+  * Improve console: history, autocomplete
+
+ [Network]
+  * Playable multiplayer release
+  * TCP use for moving data like HTML and models perhaps
+  * HTML forms filler for automatic bug reporting ala 'talkback'
+  * Handle cheat proxies: Bad yaws, pos, firing rates
+  * Have server maintain game state
+  * Allow client checks to remove players clientside on peer mode
+
+ [Renderer]
+  * Animation blending ( Rewrite of translator/animator )
+    Seperate animations from models also add multibone support
+    and weld TR4+ lara vertices ( skin )
+  * New skeletal animation system ( current one mem wasteful )
+  * Use room light intensity level for static mesh (room model) rendering
+  * Add particles for weather, water drip/splash, metal material collisions, 
+    gunfire, etc
+  * Account for room attrib flags for base visual and special fx in that room
+  * Account for room vertices attrib flag for visual and special fx
+  * Needs real portal visibility system
+  * TR4 lara may needs to have mesh generation to fill in her gaps by
+    looking for vertex 'rings' that match from the 2 meshes where gaps happen
+  * Animated textures
+  * Fix lighting to work in vertexlight as well as texture
+     modes better
+  * Better visiblity with full portal system
+  * Better out of world camera handling, add smooth pan, drags
+

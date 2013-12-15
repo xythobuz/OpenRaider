@@ -1,0 +1,76 @@
+
+ OpenRaider 
+ BUGS ( Updated 2002.12.24 )
+ ==================================================================
+
+ ### Open bugs  ###################################################
+
+ [2003.05.11]
+	* New animation code can cause segfault on pushing wall
+	  repeatedly to cause a bad event animation ( rare )
+
+ [Short list] No 'Z' in kb system?
+        * Working on System wrappers soon so that will be looked at
+
+ [Short list] OpenAL has problems with gdb and segfaults
+	* Disable OpenAL in OpenRaider.init if this happens,
+	  this is considered a bug in OpenAL
+	* Try a different version of OpenAL package
+
+ [2002.12.22] SkyMesh isn't loaded or rendered correctly
+        * New World/Render style is to blame
+
+ [2002.08.16] Many levels have room polygons misrendered
+	* Likely caused by the new room mesh cache system
+	  which is still being retooled
+	* Black walls caused by other than vertex color values
+        * Vertex colors for TR3-TR4 rooms messed up
+          ( Temp hack adjusts to bright values )
+
+
+ ### Closed bugs  #################################################
+
+ [????.??.??] TR4, TR3 Segfault on some level's load in ModelSetup
+        * Seems several meshes w/o vertices are followed by
+	  an invalid mesh that claims to have polygons
+	  yet doesn't
+	* Note some TR 'meshes' are just markers for
+	  particle fx and etc
+        * Reproducable with karnak1.tr4
+	* FIXED by accounting for -1 for NULL counter use in 
+	  some TR paks
+
+ [2002.01.04] TR4 Some levels segfault on load
+	* More animation frames generated than exist
+	  caused by invalid frame_offset
+	* Reproducable with angkor1.tr4
+	* FIXED by using new algothrim for anim frame loading
+
+ [2002.01.04] TR3 rendering white in textures with alpha black
+ [2002.01.04] TR1 rendering all textures black
+	* Used to work fine, but so much as changed...
+	* Try looking at texture loading first
+	* Then try looking at vertex lighting
+	* Reproducable with level1.phd, shore.tr2
+	* FIXED fast texture cache for older tombraider data
+	  loaded textures before they were generated as
+	  32bpp textures ( they were all alpha )
+
+ [2002.01.03] TR4 'Killed'
+	* FIXED try not loading OpenAL to save some memory
+	  can't really 'fix' lack of memory
+
+ [????.??.??] TR2, TR3 Polygon coloring is wrong
+	* Seems to be caused by vertex coloring
+	* FIXED ambient light wasn't set back to WHITE
+	  before mesh rendering
+
+ [????.??.??] TR4 fread(buffer, 2, 1546, fp) returned 3092
+        * Bad fread emulation checking? ( TR4 uses compressed data )
+        * Seems to be bad linking, works correctly after rebuilds
+	* FIXED uncompressed buffer size wasn't passed in DEBUG code
+
+ [????.??.??] NormalArray segfault
+        * Only happens in FastGL mode OR when Sky meshes are enabled
+        * mesh->oglTexturedRectangleNormals becomes NULL after first frame
+        * FIXED No longer using tombraider normal arrays in new renderer

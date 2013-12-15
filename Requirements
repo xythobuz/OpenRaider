@@ -1,0 +1,26 @@
+
+ OpenRaider 
+ Requirements ( Updated 2003.07.04 )
+ ==================================================================
+
+ OpenRaider (0.1.2 'Back in Black') Requirements
+
+	* Object/Entity typing  ( Hel Entity system not required )
+	* Hel game physics: jumping, running, swimming, landing
+	* Portal transitions corrected based on type and working
+	* Damage tracing ( Simple room to room, unblocked by objects )
+	* Multiple client support for network play fully working
+	* Ability to remove certian object types from a game
+	  ( eg Remove single player enemies during DM multiplayer )
+	* Timer based event system, like in UR
+
+ OpenRaider (0.1.2 'Back in Black') Wishlist
+	* Using unified Raider engine
+	* Console based rebinding
+	* Real Menu system
+	* Patch up animation
+	* Fix colored polygon renderer
+	* Timer based animation
+	* Seperate System and OpenGL?
+	* Automake system?
+

@@ -1,0 +1,674 @@
+--------------------Configuration: OpenRaider - Win32 Debug--------------------
+Begining build with project "C:\projects\OpenRaider\OpenRaider-0.0.3\msvc\OpenRaider\OpenRaider.dsp", at root.
+Active configuration is Win32 (x86) Console Application (based on Win32 (x86) Console Application)
+
+Project's tools are:
+			"32-bit C/C++ Compiler for 80x86" with flags "/nologo /MLd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "DEBUG" /D "EXPERIMENTAL" /D "GLUT_INTERFACE" /Fp"../../bin/debug.win32/OpenRaider.pch" /YX /Fo"../../bin/debug.win32/" /Fd"../../bin/debug.win32/" /FD /c "
+			"Win32 Resource Compiler" with flags "/l 0x409 /d "_DEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"../../bin/debug.win32/OpenRaider.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glut32.lib glu32.lib zlib.dll /nologo /subsystem:console /incremental:yes /pdb:"../../bin/debug.win32/OpenRaider.pdb" /debug /machine:I386 /out:"../../bin/debug.win32/OpenRaider.exe" /pdbtype:sept "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating temp file "C:\TEMP\RSP26.tmp" with contents </nologo /MLd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "DEBUG" /D "EXPERIMENTAL" /D "GLUT_INTERFACE" /Fp"../../bin/debug.win32/OpenRaider.pch" /YX /Fo"../../bin/debug.win32/" /Fd"../../bin/debug.win32/" /FD /c 
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\Camera.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\Emitter.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_test.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\GLString.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\main.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk_tga.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\OpenRaider.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\Particle.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\Render.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\Sound.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\Texture.cpp"
+"C:\projects\OpenRaider\OpenRaider-0.0.3\src\TombRaider.cpp"
+>
+Creating command line "cl.exe @C:\TEMP\RSP26.tmp" 
+Creating temp file "C:\TEMP\RSP27.tmp" with contents <kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glut32.lib glu32.lib zlib.dll /nologo /subsystem:console /incremental:yes /pdb:"../../bin/debug.win32/OpenRaider.pdb" /debug /machine:I386 /out:"../../bin/debug.win32/OpenRaider.exe" /pdbtype:sept 
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\Camera.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\Emitter.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\gl_test.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\gl_util.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\GLString.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\main.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\mtk3d.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\mtk_tga.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\OpenRaider.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\Particle.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\Render.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\Resource.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\Sound.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\Texture.obj"
+"\projects\OpenRaider\OpenRaider-0.0.3\bin\debug.win32\TombRaider.obj">
+Creating command line "link.exe @C:\TEMP\RSP27.tmp" 
+Compiling...
+Camera.cpp
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2239: unexpected token 'identifier' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2061: syntax error : identifier 'GLboolean'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : fatal error C1003: error count exceeds 100; stopping compilation
+Emitter.cpp
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2239: unexpected token 'identifier' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2061: syntax error : identifier 'GLboolean'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : fatal error C1003: error count exceeds 100; stopping compilation
+gl_test.cpp
+gl_util.cpp
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(27) : error C2065: 'GLint' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(27) : error C2146: syntax error : missing ')' before identifier 'x'
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(27) : error C2182: 'glPrint' : illegal use of type 'void'
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(27) : error C2371: 'glPrint' : redefinition; different basic types
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(27) : error C2059: syntax error : ')'
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(33) : error C2065: 'GL_TEXTURE_2D' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(33) : error C2065: 'texture' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(33) : error C2109: subscript requires array or pointer type
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(33) : error C2501: 'glBindTexture' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(33) : error C2078: too many initializers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(36) : error C2065: 'GL_DEPTH_TEST' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(36) : error C2501: 'glDisable' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(39) : error C2065: 'GL_PROJECTION' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(39) : error C2501: 'glMatrixMode' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(46) : error C2065: '_width' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(46) : error C2065: '_height' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(46) : error C2501: 'glOrtho' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(46) : error C2078: too many initializers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(49) : error C2065: 'GL_MODELVIEW' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(49) : error C2501: 'glMatrixMode' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(49) : error C2086: 'glMatrixMode' : redefinition
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(56) : error C2065: 'x' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(56) : error C2065: 'y' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(56) : error C2501: 'glTranslated' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(56) : error C2078: too many initializers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(59) : error C2065: 'base' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(59) : error C2065: 'set' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(59) : error C2501: 'glListBase' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(62) : error C2065: 'strlen' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(62) : error C2065: 'string' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(62) : error C2065: 'GL_BYTE' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(62) : error C2501: 'glCallLists' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(62) : error C2078: too many initializers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(65) : error C2501: 'glMatrixMode' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(65) : error C2086: 'glMatrixMode' : redefinition
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(70) : error C2501: 'glMatrixMode' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(70) : error C2086: 'glMatrixMode' : redefinition
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(75) : error C2501: 'glEnable' : missing decl-specifiers
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\gl_util.cpp(76) : error C2143: syntax error : missing ';' before '}'
+GLString.cpp
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2239: unexpected token 'identifier' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2061: syntax error : identifier 'GLboolean'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : fatal error C1003: error count exceeds 100; stopping compilation
+main.cpp
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\main.cpp(35) : fatal error C1083: Cannot open include file: 'GL/glut.h': No such file or directory
+mtk3d.cpp
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(50) : warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(56) : warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(61) : warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(130) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(130) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(131) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(131) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(134) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(134) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(136) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(136) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(139) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(139) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(140) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(140) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(184) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(190) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk3d.cpp(196) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+mtk_tga.cpp
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\mtk_tga.cpp(226) : error C2106: '=' : left operand must be l-value
+OpenRaider.cpp
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\OpenRaider.cpp(28) : fatal error C1083: Cannot open include file: 'unistd.h': No such file or directory
+Particle.cpp
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Particle.cpp(33) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+Render.cpp
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2239: unexpected token 'identifier' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2061: syntax error : identifier 'GLboolean'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : fatal error C1003: error count exceeds 100; stopping compilation
+Resource.cpp
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(44) : error C2065: 'strlen' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(46) : error C2065: 'strncmp' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(48) : error C2065: 'i' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(48) : error C2065: 'j' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(50) : error C2065: 'buf' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(50) : error C2109: subscript requires array or pointer type
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(50) : error C2106: '=' : left operand must be l-value
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(51) : error C2109: subscript requires array or pointer type
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(51) : error C2106: '=' : left operand must be l-value
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(54) : error C2065: 'strcmp' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(90) : error C2065: 'printf' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(110) : error C2065: '_width' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(110) : error C2065: 'atoi' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(120) : error C2065: '_height' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(131) : error C2065: '_fast_card' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(148) : error C2065: '_no_sound' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(176) : error C2065: 'strncpy' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(180) : error C2065: '_map_list' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(180) : error C2228: left of '.Add' must have class/struct/union type
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(192) : error C2065: '_debug_map' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(205) : error C2065: '_debug_model' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(218) : error C2065: '_dump_texture' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(231) : error C2065: 'FILE' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(231) : error C2065: 'f' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(246) : error C2065: 'snprintf' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Resource.cpp(247) : fatal error C1019: unexpected #else
+Sound.cpp
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\Sound.cpp(22) : fatal error C1083: Cannot open include file: 'AL/al.h': No such file or directory
+Texture.cpp
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1135) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1136) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2239: unexpected token 'identifier' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1137) : error C2061: syntax error : identifier 'GLboolean'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1138) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1139) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1140) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1141) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1142) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1143) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1144) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1145) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1146) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1147) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1148) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1149) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1150) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1151) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1152) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1153) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1154) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1155) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1156) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1157) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1158) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2239: unexpected token 'type' following declaration of 'WINGDIAPI'
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1159) : error C2062: type 'void' unexpected
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2501: 'WINGDIAPI' : missing decl-specifiers
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : error C2086: 'WINGDIAPI' : redefinition
+C:\Program Files\DevStudio\VC\INCLUDE\GL/gl.h(1160) : fatal error C1003: error count exceeds 100; stopping compilation
+TombRaider.cpp
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\TombRaider.cpp(424) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\TombRaider.cpp(425) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\TombRaider.cpp(426) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\TombRaider.cpp(430) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\TombRaider.cpp(431) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\TombRaider.cpp(432) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\TombRaider.cpp(962) : error C2065: 'unknown_int' : undeclared identifier
+C:\projects\OpenRaider\OpenRaider-0.0.3\src\TombRaider.cpp(3602) : warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+Error executing cl.exe.
+
+
+
+OpenRaider.exe - 580 error(s), 26 warning(s)
