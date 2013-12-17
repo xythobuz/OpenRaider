@@ -227,6 +227,7 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 	m_width = width;
 	m_height = height;
 
+#ifndef __APPLE__
 	if (!m_driver || !m_driver[0] || SDL_GL_LoadLibrary(m_driver) < 0)
 	{
 		SDL_ClearError();
@@ -245,6 +246,7 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 			}
 		}
 	}
+#endif
 
 	flags = 0;
 

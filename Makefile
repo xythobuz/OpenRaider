@@ -81,7 +81,7 @@ BASE_CFLAGS=-Wall $(BASE_DEFS) \
 	-DVERSION=\"\\\"$(NAME)-$(VERSION)-$(BUILD_ID)\\\"\" \
 	-DBUILD_HOST=\"\\\"$(BUILD_HOST)\\\"\"
 
-LD_FLAGS=-L/opt/X11/lib -L/opt/local/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
+LD_FLAGS=-framework OpenGL -framework GLUT -L/opt/X11/lib -L/opt/local/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
 	-lGL -lGLU -lm $(BASE_LIBS)
 
 RELEASE_CFLAGS=$(BASE_CFLAGS) -ffast-math -funroll-loops \
