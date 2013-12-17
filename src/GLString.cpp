@@ -264,7 +264,7 @@ int GLString::BuildFontList(int index)
 }
 
 
-int GLString::glPrintf(int x, int y, int font, char *string, ...)
+int GLString::glPrintf(int x, int y, int font, const char *string, ...)
 {
 	int sz = 60;
 	int n;

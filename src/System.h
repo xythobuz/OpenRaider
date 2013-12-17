@@ -509,7 +509,7 @@ public:
 
 // Could make these static methods later, depends on API evolution
 
-	bool rc_command(char *symbol, char *command);
+	bool rc_command(const char *symbol, char *command);
 	/*------------------------------------------------------
 	 * Pre  :
 	 * Post : Returns true if <Command> matches <Symbol>

@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Mtk
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: Open GL rendering font/string class
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.01.01:
  * Mongoose - Created
@@ -42,12 +42,12 @@ class GLString
 
 	GLString();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of GLString
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.01.01: 
+	 * 2002.01.01:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -58,7 +58,7 @@ class GLString
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.01.01: 
+	 * 2002.01.01:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -70,11 +70,11 @@ class GLString
 	 *        and it's size should be 'max_fonts' since
 	 *        you need a texture per font  =)
 	 *
-    * Post : 
+    * Post :
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -88,7 +88,7 @@ class GLString
     *
     *-- History ------------------------------------------
     *
-    * 2002.03.30: 
+    * 2002.03.30:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -100,7 +100,7 @@ class GLString
     *
     *-- History ------------------------------------------
     *
-    * 2002.03.30: 
+    * 2002.03.30:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -112,7 +112,7 @@ class GLString
     *
     *-- History ------------------------------------------
     *
-    * 2002.03.30: 
+    * 2002.03.30:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -129,7 +129,7 @@ class GLString
     *
     *-- History ------------------------------------------
     *
-    * 2002.03.30: 
+    * 2002.03.30:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -140,7 +140,7 @@ class GLString
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.03: 
+    * 2002.01.03:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -154,11 +154,11 @@ class GLString
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
-   int glPrintf(int x, int y, int font, char *string, ...);
+   int glPrintf(int x, int y, int font, const char *string, ...);
    /*------------------------------------------------------
     * Pre  : X, Y are valid screen coor
 	 *        Font is valid font index
@@ -174,7 +174,7 @@ class GLString
     *
     *-- History ------------------------------------------
     *
-    * 2001.12.31: 
+    * 2001.12.31:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -182,14 +182,14 @@ class GLString
    /*------------------------------------------------------
     * Pre  : Width and Height for the GL context
 	 *        Called after scene is rendered
-	 *        
+	 *
 	 *        GL Culling disabled
 	 *
     * Post : Renders strings over GL scene
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.01: 
+    * 2002.01.01:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -200,7 +200,7 @@ class GLString
     *
     *-- History ------------------------------------------
     *
-    * 2002.01.04: 
+    * 2002.01.04:
     * Mongoose - Created
     ------------------------------------------------------*/
 
@@ -215,7 +215,7 @@ class GLString
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.01.01: 
+	 * 2002.01.01:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 #endif
@@ -235,7 +235,7 @@ class GLString
 
 	int *_font_base;	               /* Font GL list, base index list */
 
-	gl_string_t *_string;            /* Buffered strings and their 
+	gl_string_t *_string;            /* Buffered strings and their
 													properities */
 
 	float _scale;                    /* Default scale factor for new strings */

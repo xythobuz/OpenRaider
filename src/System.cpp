@@ -166,7 +166,7 @@ char *System::fullPath(char *path, char end)
 
 	if (path[0] == '~')
 	{
-#ifdef unix
+#if defined(unix) || defined(__APPLE__)
 		env = getenv("HOME");
 
 		if (!env || !env[0])
@@ -192,6 +192,8 @@ char *System::fullPath(char *path, char end)
 				dir[i] = path[1+(i-lenEnv)];
 			}
 		}
+#else
+#error Platform not supported!
 #endif
 	}
 	else
@@ -667,7 +669,7 @@ void System::resizeGL(unsigned int w, unsigned int h)
 
 // Mongoose 2002.03.23, Checks command to see if it's same
 //   as symbol, then returns the arg list in command buffer
-bool rc_command(char *symbol, char *command)
+bool rc_command(const char *symbol, char *command)
 {
 	int i, j, lens, lenc;
 
