@@ -517,9 +517,8 @@ void System::initGL()
 {
 	char *s;
 
-
 	// Print driver support information
-	printf("\n\n\t## GL Driver Info ##\n");
+	printf("\n\n\t## GL Driver Info 1 ##\n");
 	printf("\tVendor     : %s\n", glGetString(GL_VENDOR));
 	printf("\tRenderer   : %s\n", glGetString(GL_RENDERER));
 	printf("\tVersion    : %s\n", glGetString(GL_VERSION));

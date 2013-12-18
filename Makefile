@@ -90,8 +90,12 @@ BASE_CFLAGS=-Wall $(BASE_DEFS) \
 	-DVERSION=\"\\\"$(NAME)-$(VERSION)-$(BUILD_ID)\\\"\" \
 	-DBUILD_HOST=\"\\\"$(BUILD_HOST)\\\"\"
 
-LD_FLAGS=-L/opt/X11/lib -L/opt/local/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
-	-lGL -lGLU -lm $(BASE_LIBS)
+LD_FLAGS=-L/opt/X11/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
+	 -lm $(BASE_LIBS)
+
+ifneq ($(UNAME),Darwin)
+LD_FLAGS+=-lGL -lGLU
+endif
 
 RELEASE_CFLAGS=$(BASE_CFLAGS) -ffast-math -funroll-loops \
 	-fomit-frame-pointer -fexpensive-optimizations -O2

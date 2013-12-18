@@ -36,13 +36,7 @@
 #endif
 
 #ifdef HAVE_OPENGL
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#else
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
+#include <SDL/SDL_opengl.h>
 #else
 #   error "SDLSystem requires -DHAVE_OPENGL"
 #endif
@@ -221,7 +215,7 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 
 	// Create GL context
 	SDL_Init(SDL_INIT_VIDEO);
-	printf("@Created OpenGL Context...\n");
+	printf("@ Created OpenGL Context...\n");
 	atexit(SDL_Quit);
 
 	m_width = width;

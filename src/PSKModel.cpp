@@ -2342,7 +2342,7 @@ void shutdown_gl()
 void init_gl(unsigned int width, unsigned int height)
 {
 	// Print driver support information
-	printf("\n\n\t## GL Driver Info ##\n");
+	printf("\n\n\t## GL Driver Info 3 ##\n");
 	printf("\tVendor     : %s\n", glGetString(GL_VENDOR));
 	printf("\tRenderer   : %s\n", glGetString(GL_RENDERER));
 	printf("\tVersion    : %s\n", glGetString(GL_VERSION));
