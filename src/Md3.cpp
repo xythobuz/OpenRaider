@@ -842,7 +842,7 @@ int Md3::save(char *filename)
 // Private Mutators
 ////////////////////////////////////////////////////////////
 
-void Md3::printDebug(char *method, char *s, ...)
+void Md3::printDebug(const char *method, const char *s, ...)
 {
 	va_list args;
 
@@ -860,7 +860,7 @@ void Md3::printDebug(char *method, char *s, ...)
 }
 
 
-void Md3::printError(char *method, char *s, ...)
+void Md3::printError(const char *method, const char *s, ...)
 {
 	va_list args;
 
@@ -873,7 +873,7 @@ void Md3::printError(char *method, char *s, ...)
 }
 
 
-void Md3::printWarning(char *method, char *s, ...)
+void Md3::printWarning(const char *method, const char *s, ...)
 {
 	va_list args;
 

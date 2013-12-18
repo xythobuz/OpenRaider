@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*==========================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://gooseegg.sourceforge.net
@@ -17,11 +17,11 @@
  *           so - since this class is desgined using their specs...
  *
  *-- Test Defines -----------------------------------------------------
- *           
- * UNIT_TEST_MD3      - Builds Md3 class as a console unit test program 
+ *
+ * UNIT_TEST_MD3      - Builds Md3 class as a console unit test program
  * UNIT_TEST_MD3_LV2  - Does more debugging when used with unit test
  *
- *-- History ---------------------------------------------------------- 
+ *-- History ----------------------------------------------------------
  *
  * 2002.10.19:
  * Mongoose - Interface update, Animation support starts
@@ -53,21 +53,21 @@ typedef float mat3_t[3][3];
 
 typedef struct md3_tag_s
 {
-  char name[64];    /* Name of 'tag' as it's usually 
-							  called in the md3 files try to 
-							  see it as a sub-mesh/seperate 
-							  mesh-part. 
-							  
-							  Sometimes this 64 string may 
-							  contain some garbage, but 
+  char name[64];    /* Name of 'tag' as it's usually
+							  called in the md3 files try to
+							  see it as a sub-mesh/seperate
+							  mesh-part.
+
+							  Sometimes this 64 string may
+							  contain some garbage, but
 							  i've been told this is because
 							  some tools leave garbage in
 							  those strings, but they ARE
 							  strings... */
 
   vec3_t center;    /* Relative position of tag */
- 
-  mat3_t rotation;  /* The direction the tag is facing 
+
+  mat3_t rotation;  /* The direction the tag is facing
 							  relative to the rest of the model */
 
 } md3_tag_t;
@@ -79,7 +79,7 @@ typedef struct md3_boneframe_s
   float  maxs[3];
   float  center[3];
   float  scale;
-  char   creator[16]; 
+  char   creator[16];
 
 } md3_bone_t;
 
@@ -87,7 +87,7 @@ typedef struct md3_boneframe_s
 typedef struct md3_skin_s
 {
   char name[68];       /* Name of skin used by mesh
-								  65 chars, 
+								  65 chars,
 								  32 bit aligned == 68 chars  */
 
   int index;           /* For shader use (skin is a shader) */
@@ -113,10 +113,10 @@ typedef struct md3_vertex_s
 {
   signed short pos[3];       /* Vertex X/Y/Z coordinate */
 
-  unsigned char st[2];       /* Enviromental mapping 
-										  texture coordinates 
+  unsigned char st[2];       /* Enviromental mapping
+										  texture coordinates
 										  (Acutally encoded normal?) */
-	
+
 	float norm[3];            /* Decoded normal from above decoded */
 
 } md3_vertex_t;
@@ -128,37 +128,37 @@ typedef struct md3_mesh_s
 
   char id[4];          /* Mesh alias id, must be IDP3  */
 
-  char name[68];       /* Name of mesh  
+  char name[68];       /* Name of mesh
 								  65 chars,
 								  32 bit aligned == 68 chars */
   int flags;
 
 
-  int  num_frames;     /* Number of VertexMorph frames 
+  int  num_frames;     /* Number of VertexMorph frames
 								  in mesh */
 
   int num_shaders;     /* Number of shaders in mesh*/
 
-  int  num_skins;      /* Number of skins in mesh, 
+  int  num_skins;      /* Number of skins in mesh,
 								  for backwards compatibility with
 								  incorrect/obsolete spec  */
 
   int  num_vertices;   /* Number of vertices */
- 
+
   int  num_triangles;  /* Number of triangles */
- 
-  int  tris_offset;    /* Starting position of 
-								  Triangle data, relative 
+
+  int  tris_offset;    /* Starting position of
+								  Triangle data, relative
 								  to start of Mesh_Header  */
 
   int  header_size;    /* Size of header  */
-  
-  int  texel_offset;   /* Starting position of 
-								  texvector data, relative 
+
+  int  texel_offset;   /* Starting position of
+								  texvector data, relative
 								  to start of Mesh_Header */
- 
-  int  vertex_offset;  /* Starting position of 
-								  vertex data,relative 
+
+  int  vertex_offset;  /* Starting position of
+								  vertex data,relative
 								  to start of Mesh_Header  */
 
   int  mesh_size;      /* Size of mesh  */
@@ -171,7 +171,7 @@ typedef struct md3_mesh_s
   md3_tri_index_t *tris;  /* Triangles */
 
   md3_texel_t *texel;     /* Texels */
-  
+
   md3_vertex_t *vertex;   /* Vertices */
 
 } md3_mesh_t;
@@ -192,7 +192,7 @@ public:
 
 	Md3();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Md3 object is constructed
 	 *
 	 *-- History ------------------------------------------
@@ -230,10 +230,10 @@ public:
 	////////////////////////////////////////////////////////////
 	// Public Accessors
 	////////////////////////////////////////////////////////////
-  
+
 	unsigned int getNumMeshes();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Mesh count is returned
 	 *
 	 *-- History ------------------------------------------
@@ -245,7 +245,7 @@ public:
 
 	unsigned int getNumTags();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Tag count is returned
 	 *
 	 *-- History ------------------------------------------
@@ -254,10 +254,10 @@ public:
 	 * Mongoose - Created, Obsoletes:
 	 *            2000.06.03, int NumTags();
 	 ------------------------------------------------------*/
-  
+
 	unsigned int getNumBones();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Bone count is returned
 	 *
 	 *-- History ------------------------------------------
@@ -269,7 +269,7 @@ public:
 
 	md3_mesh_t *getMeshes();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Mesh list is returned
 	 *
 	 *-- History ------------------------------------------
@@ -278,10 +278,10 @@ public:
 	 * Mongoose - Created, Obsoletes:
 	 *            2000.06.03, md3_mesh_t *Mesh();
 	 ------------------------------------------------------*/
-  
+
 	md3_tag_t *getTags();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Tag list is returned
 	 *
 	 *-- History ------------------------------------------
@@ -290,10 +290,10 @@ public:
 	 * Mongoose - Created, Obsoletes:
 	 *            2000.06.03, md3_tag_t *Tag();
 	 ------------------------------------------------------*/
-  
+
 	md3_bone_t *getBones();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Bone list is returned
 	 *
 	 *-- History ------------------------------------------
@@ -307,10 +307,10 @@ public:
 	////////////////////////////////////////////////////////////
 	// Public Mutators
 	////////////////////////////////////////////////////////////
-  
+
 	void toggleFlag(Md3Flag flag);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Toggles a flag
 	 *
 	 *-- History ------------------------------------------
@@ -321,7 +321,7 @@ public:
 
 	void reset();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Resets all model data
 	 *
 	 *-- History ------------------------------------------
@@ -332,7 +332,7 @@ public:
 
 	void setDebug(unsigned char level);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : level 0 = errors, 1 = warnings, 2 = debug1
 	 *
 	 *-- History ------------------------------------------
@@ -343,7 +343,7 @@ public:
 
 	int load(char *filename);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Error code is returned, 0 no error
 	 *        Md3 filename is read into memory
 	 *
@@ -355,7 +355,7 @@ public:
 
 	int save(char *filename);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Error code is returned, 0 no error
 	 *        Md3 saved as filename
 	 *
@@ -377,7 +377,7 @@ public:
 	unsigned int nextFrame;
 	float time;
 	float lastTime;
- 
+
 private:
 
 	////////////////////////////////////////////////////////////
@@ -389,9 +389,9 @@ private:
 	// Private Mutators
 	////////////////////////////////////////////////////////////
 
-	void printError(char *method, char *s, ...);
+	void printError(const char *method, const char *s, ...);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Dumps error to stderr
 	 *
 	 *-- History ------------------------------------------
@@ -400,9 +400,9 @@ private:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	void printWarning(char *method, char *s, ...);
+	void printWarning(const char *method, const char *s, ...);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Dumps warning to stderr
 	 *
 	 *-- History ------------------------------------------
@@ -411,7 +411,7 @@ private:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	void printDebug(char *method, char *s, ...);
+	void printDebug(const char *method, const char *s, ...);
 	/*------------------------------------------------------
 	 * Pre  : Debugging is on
 	 * Post : Dumps debug info
@@ -425,7 +425,7 @@ private:
 	void createMeshes(unsigned int num);
 	/*------------------------------------------------------
 	 * Pre  : Model hasn't been init yet
-	 * Post : Allocates num of meshes for model 
+	 * Post : Allocates num of meshes for model
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -438,7 +438,7 @@ private:
 	void createTags(unsigned int num);
 	/*------------------------------------------------------
 	 * Pre  : Model hasn't been init yet
-	 * Post : Allocates num of tags for model 
+	 * Post : Allocates num of tags for model
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -451,7 +451,7 @@ private:
 	void createBones(unsigned int num);
 	/*------------------------------------------------------
 	 * Pre  : Model hasn't been init yet
-	 * Post : Allocates num of bones for model 
+	 * Post : Allocates num of bones for model
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -471,26 +471,26 @@ private:
 
 	int m_version;            /* Version number, always 15 */
 
-	char m_filename[68];      /* Sometimes left blank... 
-										  65 chars, 32bit aligned == 
+	char m_filename[68];      /* Sometimes left blank...
+										  65 chars, 32bit aligned ==
 										  68 chars */
- 
+
 	int m_num_bones;          /* Number of Bone */
 
 	int m_num_tags;           /* Number of 'tags' per Bone */
 
-	int m_num_meshes;         /* Number of meshes/skins */ 
+	int m_num_meshes;         /* Number of meshes/skins */
 
 	int m_max_skins;          /* Maximum number of unique skins
-										  used in md3 file */ 
+										  used in md3 file */
 
-	int m_header_length;      /* Always equal to the length of 
-										  this header */ 
+	int m_header_length;      /* Always equal to the length of
+										  this header */
 
-	int m_tag_start;          /* Starting position of 
-										  tag-structures */ 
+	int m_tag_start;          /* Starting position of
+										  tag-structures */
 
-	int m_surfaces_start;     /* Starting position of 
+	int m_surfaces_start;     /* Starting position of
 										  geometeric data (mesh structures) */
 
 	int m_file_size;          /* Size of file */

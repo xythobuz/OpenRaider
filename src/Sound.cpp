@@ -23,6 +23,9 @@
 #ifdef __APPLE__
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
+#include <AL/alut.h>
+// Another dirty hack to get to use OpenAL and FreeALUT on Mac OS X
+#define AL_FORMAT_WAVE_EXT 0x10002
 #else
 #   include <AL/al.h>
 #   include <AL/alc.h>
@@ -158,7 +161,10 @@ int Sound::add(char *filename, int *source, unsigned int flags)
 		return -2;
 	}
 
-   err = alutLoadWAV(filename, &data, &format, &size, &bits, &freq);
+   // err = alutLoadWAV(filename, &data, &format, &size, &bits, &freq);
+   // DEPRECATED?! Dirty solution:
+   alutLoadWAVFile(filename, &format, &data, &size, &freq);
+   err = AL_TRUE;
 
    if (err == AL_FALSE)
 	{

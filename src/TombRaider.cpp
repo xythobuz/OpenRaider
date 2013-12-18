@@ -6243,7 +6243,7 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
 }
 
 
-void TombRaider::print(char *methodName, char *s, ...)
+void TombRaider::print(const char *methodName, const char *s, ...)
 {
     va_list args;
 
@@ -6255,7 +6255,7 @@ void TombRaider::print(char *methodName, char *s, ...)
 }
 
 
-void TombRaider::printDebug(char *methodName, char *s, ...)
+void TombRaider::printDebug(const char *methodName, const char *s, ...)
 {
   va_list args;
 

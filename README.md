@@ -6,6 +6,20 @@ This project aims to get OpenRaider running in a modern Unix.
 
 ## Dependencies
 
+On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough:
+
+    sudo port install libsdl libsdl_ttf cmake
+
+You will also need an installed [X11 Server](http://xquartz.macosforge.org/trac)!
+
+Also, to get Sound, get [freealut](https://github.com/vancegroup/freealut) and compile it like this:
+
+    mkdir build
+    cd build
+    cmake .. -DCMAKE_INSTALL_PREFIX:STRING="/opt/local" -DCMAKE_C_FLAGS:STRING="-O2"
+    make
+    sudo make install
+
 + Linux 2.4.16 SMP kernel (Debian distrobution)
 + GCC 2.95.2 compiler and supporting development packages
 + X11 4.1.0 with X11 development package
@@ -13,12 +27,6 @@ This project aims to get OpenRaider running in a modern Unix.
 + SDL 1.2.1 development package
 + OpenAL 0.0.6 development package
 + libz 1.1.3 development package
-
-On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough:
-
-    sudo port install libsdl libsdl_ttf
-
-You will also need an installed [X11 Server](http://xquartz.macosforge.org/trac)!
 
 ## License
 
