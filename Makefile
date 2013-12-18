@@ -121,6 +121,15 @@ bundle: release
 	cp mac_dist/openraider.icns bin/OpenRaider.app/Contents/Resources/openraider.icns
 	cp bin/release/OpenRaider bin/OpenRaider.app/Contents/MacOS/OpenRaider
 
+bundle-image: bundle
+	hdiutil create -size 32m -fs HFS+ -volname "OpenRaider" bin/tmp.dmg
+	hdiutil attach bin/tmp.dmg
+	cp -r bin/OpenRaider.app /Volumes/OpenRaider/OpenRaider.app
+	osascript -e 'tell application "Finder" to make alias file to POSIX file "/Applications" at POSIX file "/Volumes/OpenRaider/"'
+	hdiutil detach /Volumes/OpenRaider
+	hdiutil convert bin/tmp.dmg -format UDZO -o bin/OpenRaider.dmg
+	rm -rf bin/tmp.dmg
+
 all: debug release prof
 
 debug:
@@ -223,6 +232,7 @@ endif
 
 clean: clean-emacs clean-build clean-test clean-obj clean-dep
 	@-rm -rf bin/OpenRaider.app
+	@-rm -rf bin/OpenRaider.dmg
 
 clean-dep:
 	@-echo "Cleaning dependencies                        "
