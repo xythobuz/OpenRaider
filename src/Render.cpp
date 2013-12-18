@@ -199,7 +199,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 {
 	char filename[128];
 	bool fastCard = mFlags & Render::fFastCard;
-	char *console = "Toggle the Console with [`] key, Menu with <esc>";
+	const char *console = "Toggle the Console with [`] key, Menu with <esc>";
 	int font_id;
 	int snow1_id;
 	int snow2_id;
@@ -383,7 +383,7 @@ void Render::loadMd3(char *model, char *skin)
 }
 
 
-void Render::initEmitter(char *name, unsigned int size,
+void Render::initEmitter(const char *name, unsigned int size,
 								 unsigned int snowTex1, unsigned int snowTex2)
 {
 #ifdef USING_EMITTER

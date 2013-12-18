@@ -226,7 +226,7 @@ class OpenRaider : public SDLSystem
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	void print(bool dump_stdout, char *format, ...);
+	void print(bool dump_stdout, const char *format, ...);
 	/*------------------------------------------------------
 	 * Pre  : Use like printf
 	 *

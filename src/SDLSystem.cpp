@@ -158,7 +158,7 @@ unsigned int SDLSystem::getTicks()
 ////////////////////////////////////////////////////////////
 
 #ifdef FIXME
-void SDLSystem::bindKeyCommand(char *cmd, int key, int event)
+void SDLSystem::bindKeyCommand(const char *cmd, int key, int event)
 {
 	if (key > 255)
 	{

@@ -235,14 +235,14 @@ void percent_callback(int p)
 }
 
 
-void openraider_warning(char *func_name, char *warning,
-								char *filename, int line)
+void openraider_warning(const char *func_name, const char *warning,
+								const char *filename, int line)
 {
 	printf("%s> WARNING %s %s:%i\n", func_name, warning, filename, line);
 }
 
-void openraider_error(char *func_name, char *error,
-							 char *filename, int line)
+void openraider_error(const char *func_name, const char *error,
+							 const char *filename, int line)
 {
 	printf("%s> ERROR %s %s:%i\n", func_name, error, filename, line);
 }
@@ -800,7 +800,7 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
 }
 
 
-void OpenRaider::print(bool dump_stdout, char *format, ...)
+void OpenRaider::print(bool dump_stdout, const char *format, ...)
 {
 	static char buffer[128];
 	va_list args;

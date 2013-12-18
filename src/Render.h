@@ -242,7 +242,7 @@ class Render
 	 * Mongoose - Created, factored out of UnRaider class
 	 ------------------------------------------------------*/
 
-	void initEmitter(char *name, unsigned int size,
+	void initEmitter(const char *name, unsigned int size,
 						  unsigned int snowTex1, unsigned int snowTex2);
 	/*------------------------------------------------------
 	 * Pre  : Textures are init and these args are valid

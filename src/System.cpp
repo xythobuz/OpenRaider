@@ -101,7 +101,7 @@ System::~System()
 // Public Accessors
 ////////////////////////////////////////////////////////////
 
-char *System::bufferString(char *string, ...)
+char *System::bufferString(const char *string, ...)
 {
 	int sz = 60;
 	int n;
@@ -155,7 +155,7 @@ char *System::bufferString(char *string, ...)
 }
 
 
-char *System::fullPath(char *path, char end)
+char *System::fullPath(const char *path, char end)
 {
 	unsigned int i, lenPath, lenEnv, len;
 	char *env, *dir;
@@ -346,7 +346,7 @@ unsigned int System::addCommandMode(const char *command)
 }
 
 // FIXME: Modifer support later
-void System::bindKeyCommand(char *cmd, unsigned int key, int event)
+void System::bindKeyCommand(const char *cmd, unsigned int key, int event)
 {
 	printf("Bound command '%s' -> event %i (0x%x key)\n", cmd, event, key);
 	mKeyEvents.Add(key, event);
@@ -388,7 +388,7 @@ void System::command(const char *cmd)
 }
 
 
-int System::loadResourceFile(char *filename)
+int System::loadResourceFile(const char *filename)
 {
 	char buffer[256];
 	bool line_comment = false;

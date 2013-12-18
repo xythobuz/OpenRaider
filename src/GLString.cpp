@@ -172,7 +172,7 @@ void GLString::setActive(unsigned int string, bool active)
 }
 
 
-void GLString::SetString(unsigned int string, char *s, ...)
+void GLString::SetString(unsigned int string, const char *s, ...)
 {
 	va_list args;
 	gl_string_t *str;

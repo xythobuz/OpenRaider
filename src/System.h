@@ -102,7 +102,7 @@ public:
 	// Public Accessors
 	////////////////////////////////////////////////////////////
 
-   static char *bufferString(char *string, ...);
+   static char *bufferString(const char *string, ...);
    /*------------------------------------------------------
     * Pre  : <String> is a valid string with valid args
 	 *
@@ -118,7 +118,7 @@ public:
     * Mongoose - Created, was GLString::glPrintf
     ------------------------------------------------------*/
 
-	static char *fullPath(char *path, char end);
+	static char *fullPath(const char *path, char end);
 	/*------------------------------------------------------
 	 * Pre  :
 	 * Post : Returns allocated string of path, with
@@ -210,7 +210,7 @@ public:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	virtual void bindKeyCommand(char *cmd, unsigned int key, int event);
+	virtual void bindKeyCommand(const char *cmd, unsigned int key, int event);
 	/*------------------------------------------------------
 	 * Pre  : <Cmd> is a valid command string
 	 *        <Key> is a valid keyboard code
@@ -354,7 +354,7 @@ public:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	virtual int loadResourceFile(char *filename);
+	virtual int loadResourceFile(const char *filename);
 	/*------------------------------------------------------
 	 * Pre  :
 	 * Post : Init the resource vars

@@ -118,7 +118,7 @@ class GLString
 
 	void setActive(unsigned int string, bool active);
 
-	void SetString(unsigned int string, char *s, ...);
+	void SetString(unsigned int string, const char *s, ...);
    /*------------------------------------------------------
     * Pre  : String is valid gl_string id
 	 *        Args form the string to fill String buffer
