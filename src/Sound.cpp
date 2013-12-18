@@ -75,6 +75,7 @@ int Sound::init()
 {
 	int fd;
 
+#ifndef __APPLE__
 	fd = open("/dev/dsp", O_RDWR);
 
 	if (fd < 0)
@@ -84,6 +85,7 @@ int Sound::init()
 	}
 
 	close(fd);
+#endif
 
 #ifdef HAVE_OPENAL
 	alutInit(NULL, 0);

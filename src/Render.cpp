@@ -486,11 +486,11 @@ void Render::Init(int width, int height, bool fast_card)
 	}
 
 	// Print driver support information
-	printf("\n\n\t## GL Driver Info 2 ##\n");
-	printf("\tVendor     : %s\n", glGetString(GL_VENDOR));
-	printf("\tRenderer   : %s\n", glGetString(GL_RENDERER));
-	printf("\tVersion    : %s\n", glGetString(GL_VERSION));
-	printf("\tExtensions : %s\n\n\n", (char*)glGetString(GL_EXTENSIONS));
+	printf("\n## GL Driver Info ##\n");
+	printf("Vendor     : %s\n", glGetString(GL_VENDOR));
+	printf("Renderer   : %s\n", glGetString(GL_RENDERER));
+	printf("Version    : %s\n\n", glGetString(GL_VERSION));
+	//printf("\tExtensions : %s\n\n\n", (char*)glGetString(GL_EXTENSIONS));
 
     // Testing for goodies
 	// Mongoose 2001.12.31, Fixed string use to check for bad strings

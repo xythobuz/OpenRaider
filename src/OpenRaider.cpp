@@ -94,17 +94,15 @@ void killOpenRaiderSingleton()
 	delete OpenRaider::Instance();
 
 #ifdef DEBUG_MEMEORY
-	printf("\n\n[Mongoose MEMEORY_DEBUG]\nMemory leak table:\n");
+	printf("\n[Mongoose MEMEORY_DEBUG]\nMemory leak table:\n");
 	dump_memory_report();
 #endif
 
-	printf("\n\n\tThanks for testing %s\n", VERSION);
-	printf("\tPlease file bug reports and submit video card performance\n\n");
-	printf("\tBuild date : %s @ %s\n", __DATE__, __TIME__);
-	printf("\tBuild host : %s\n", BUILD_HOST);
-	printf("\tEmail bugs : mongoose@users.sourceforge.net\n");
-	printf("\tWeb site   : http://openraider.sourceforge.net\n\n");
-	printf("Thanks for playing\n");
+	printf("\nThanks for testing %s\n", VERSION);
+	printf("Please file bug reports\n\n");
+	printf("Build date: %s @ %s\n", __DATE__, __TIME__);
+	printf("Build host: %s\n", BUILD_HOST);
+	printf("Web site  : http://github.com/xythobuz/OpenRaider\n");
 }
 
 
