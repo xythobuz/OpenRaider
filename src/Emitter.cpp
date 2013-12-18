@@ -68,7 +68,7 @@ int compareParticleDist(const void *voidA, const void *voidB)
 }
 
 
-Emitter::Emitter(char *name, int n)
+Emitter::Emitter(const char *name, int n)
 {
 	_name = NULL;
 	_flags = 0;
@@ -172,7 +172,7 @@ void Emitter::ParticleArray(int n)
 }
 
 
-void Emitter::Name(char *name)
+void Emitter::Name(const char *name)
 {
 	int l;
 

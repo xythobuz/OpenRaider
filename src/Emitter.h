@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: Particle emitter for freyja
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2001.08.13:
  * Mongoose - Now using new Particle class!
@@ -33,14 +33,14 @@ class Emitter
 {
  public:
 
-	typedef enum 
+	typedef enum
 	{
 		fUseFrustumCulling = 1,
 		fUseDepthSorting = 2
 	} EmitterFlags;
 
 
-  Emitter(char *name, int n);
+  Emitter(const char *name, int n);
   /*------------------------------------------------------
    * Pre  : name is a valid C string
 	*        n is a number greater than 0
@@ -49,7 +49,7 @@ class Emitter
    *
    *-- History ------------------------------------------
    *
-   * 2001.06.30: 
+   * 2001.06.30:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -60,29 +60,29 @@ class Emitter
    *
    *-- History ------------------------------------------
    *
-   * 2001.06.30: 
+   * 2001.06.30:
    * Mongoose - Created
    ------------------------------------------------------*/
 
    Particle *Particles();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Returns particle array
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   int Count();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Returns number of particles emitted
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -93,7 +93,7 @@ class Emitter
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -104,7 +104,7 @@ class Emitter
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -115,7 +115,7 @@ class Emitter
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -126,33 +126,33 @@ class Emitter
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   unsigned int Flags();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Returns emitter flags
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 
 
   void Flags(unsigned int flag, bool op);
   /*------------------------------------------------------
-   * Pre  : 
-   * Post : Set and Unset flag with op 
+   * Pre  :
+   * Post : Set and Unset flag with op
 	*
 	*          true - set
 	*          flase - unset
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 
@@ -162,108 +162,108 @@ class Emitter
    * Post : Allocates the particle array and sets the count.
 	*        If the array has been allocated previously, then
 	*        the array is deallocated and a new one made.
-	*         
+	*
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   void Draw();
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Renders particles
    *
    *-- History ------------------------------------------
    *
-   * 2001.06.30: 
+   * 2001.06.30:
    * Mongoose - Created
    ------------------------------------------------------*/
 
-  void Name(char *name);
+  void Name(const char *name);
   /*------------------------------------------------------
    * Pre  : name is a valid C string
    * Post : Sets the emitters name
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
   void SetTextureId(int id);
   /*------------------------------------------------------
-   * Pre  : 
+   * Pre  :
    * Post : Resets all particle texture ids
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.13: 
+   * 2001.08.13:
    * Mongoose - Created
    ------------------------------------------------------*/
 
-  void TextureId(unsigned int particle_start, unsigned int particle_end, 
+  void TextureId(unsigned int particle_start, unsigned int particle_end,
 					  int id);
   /*------------------------------------------------------
-   * Pre  : particle_start and particle_end are a valid 
+   * Pre  : particle_start and particle_end are a valid
 	*        range of particles in the array
 	*
 	*        id is a valid texture id
 	*
-   * Post : 
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 
-  void Color(unsigned int particle_start, unsigned int particle_end, 
+  void Color(unsigned int particle_start, unsigned int particle_end,
 				 float r, float g, float b);
   /*------------------------------------------------------
-   * Pre  : particle_start and particle_end are a valid 
+   * Pre  : particle_start and particle_end are a valid
 	*        range of particles in the array
 	*
 	*        r,g,b are colors 0.0 to 1.0
 	*
-   * Post : 
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 
-  void Speed(unsigned int particle_start, unsigned int particle_end, 
+  void Speed(unsigned int particle_start, unsigned int particle_end,
 				 float x, float y, float z);
   /*------------------------------------------------------
-   * Pre  : particle_start and particle_end are a valid 
+   * Pre  : particle_start and particle_end are a valid
 	*        range of particles in the array
 	*
 	*        take note speed inits at 2000, lower is faster
 	*
-   * Post : 
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 
-  void Force(unsigned int particle_start, unsigned int particle_end, 
+  void Force(unsigned int particle_start, unsigned int particle_end,
 				 float x, float y, float z);
   /*------------------------------------------------------
-   * Pre  : particle_start and particle_end are a valid 
+   * Pre  : particle_start and particle_end are a valid
 	*        range of particles in the array
 	*
 	*        Force/Gravity acting on particles
 	*
-   * Post : 
+   * Post :
    *
    *-- History ------------------------------------------
    *
-   * 2001.08.14: 
+   * 2001.08.14:
    * Mongoose - Created
    ------------------------------------------------------*/
 

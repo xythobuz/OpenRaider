@@ -197,7 +197,7 @@ public:
 	// Public Mutators
 	////////////////////////////////////////////////////////////
 
-	virtual unsigned int addCommandMode(char *command);
+	virtual unsigned int addCommandMode(const char *command);
 	/*------------------------------------------------------
 	 * Pre  : <Command> is valid command mode for the
 	 *        resource file, eg "[Engine.OpenGL.Driver]"
@@ -224,7 +224,7 @@ public:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	virtual void command(char *cmd);
+	virtual void command(const char *cmd);
 	/*------------------------------------------------------
 	 * Pre  : cmd is a valid command string
 	 * Post : cmd sets it's var
@@ -488,7 +488,7 @@ public:
 
 	bool mConsoleMode;         /* Using text (console) event handler? */
 
-	Vector<char *> mCmdModes;	/* Dynamic resource command collection */
+	Vector<const char *> mCmdModes;	/* Dynamic resource command collection */
 
 	unsigned int mCommandMode;	/* Current resource command mode */
 

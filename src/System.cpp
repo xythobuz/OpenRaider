@@ -332,7 +332,7 @@ int System::downloadToFile(char *urlString, char *filename)
 // Public Mutators
 ////////////////////////////////////////////////////////////
 
-unsigned int System::addCommandMode(char *command)
+unsigned int System::addCommandMode(const char *command)
 {
 	if (command && command[0] == '[')
 	{
@@ -353,9 +353,10 @@ void System::bindKeyCommand(char *cmd, unsigned int key, int event)
 }
 
 
-void System::command(char *cmd)
+void System::command(const char *cmd)
 {
 	bool modeFound = false;
+    char *cmdbuf;
 
 
 	if (!cmd || !cmd[0]) // Null command string
@@ -380,7 +381,9 @@ void System::command(char *cmd)
 	}
 	else // Execute a command in current mode, eg "stat fps"
 	{
-		handleCommand(cmd, mCommandMode);
+        cmdbuf = new char[strlen(cmd) + 1];
+        strncpy(cmdbuf, cmd, strlen(cmd) + 1);
+		handleCommand(cmdbuf, mCommandMode);
 	}
 }
 

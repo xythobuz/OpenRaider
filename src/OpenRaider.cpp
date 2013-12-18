@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: This is the main class for OpenRaider
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2001.05.21:
  * Mongoose - Created
@@ -31,7 +31,7 @@
 #   include "memeory_test.h"
 #endif
 
-#ifdef USING_MD3 
+#ifdef USING_MD3
 #   include "Md3AnimModel.h"
 Md3AnimModel gMd3;
 #endif
@@ -75,11 +75,11 @@ OpenRaider *OpenRaider::mInstance = 0x0;
 
 OpenRaider *OpenRaider::Instance()
 {
-	if (mInstance == 0x0) 
+	if (mInstance == 0x0)
 	{
 		mInstance = new OpenRaider();
 	}
-	
+
 	return mInstance;
 }
 
@@ -96,7 +96,7 @@ void killOpenRaiderSingleton()
 #ifdef DEBUG_MEMEORY
 	printf("\n\n[Mongoose MEMEORY_DEBUG]\nMemory leak table:\n");
 	dump_memory_report();
-#endif	
+#endif
 
 	printf("\n\n\tThanks for testing %s\n", VERSION);
 	printf("\tPlease file bug reports and submit video card performance\n\n");
@@ -141,7 +141,7 @@ OpenRaider::OpenRaider() : SDLSystem()
 
 OpenRaider::~OpenRaider()
 {
-	// Mongoose 2002.01.02, FIXME GL call to critical section, 
+	// Mongoose 2002.01.02, FIXME GL call to critical section,
 	//   needs mutex really
 	m_render.setMode(Render::modeDisabled);
 	sleep(1);
@@ -235,13 +235,13 @@ void percent_callback(int p)
 }
 
 
-void openraider_warning(char *func_name, char *warning, 
+void openraider_warning(char *func_name, char *warning,
 								char *filename, int line)
 {
 	printf("%s> WARNING %s %s:%i\n", func_name, warning, filename, line);
 }
 
-void openraider_error(char *func_name, char *error, 
+void openraider_error(char *func_name, char *error,
 							 char *filename, int line)
 {
 	printf("%s> ERROR %s %s:%i\n", func_name, error, filename, line);
@@ -554,13 +554,13 @@ void OpenRaider::handleBoundKeyReleaseEvent(unsigned int key)
 	{
 	case '`': // Temp hack also until console is rolled back
 		//i = 2;
-		
+
 		if (mConsoleMode)
 		{
 			//buffer[0] = '>';
 			//buffer[1] = ' ';
 			//buffer[2] = 0;
-			
+
 			mText->setActive(textConsole, true);
 		}
 		else
@@ -604,7 +604,7 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
 			buffer[0] = '>';
 			buffer[1] = ' ';
 			buffer[2] = 0;
-			
+
 			mText->setActive(textConsole, true);
 		}
 		else
@@ -619,7 +619,7 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
 		{
 		case SYS_KEY_UP:
 			i = lastCmd[0];
-			
+
 			lastCmd[0] = '>';
 			mText->SetString(textConsole, lastCmd);
 			break;
@@ -635,10 +635,10 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
 		case '\n':
 			strncpy(lastCmd, buffer, 63);
 			lastCmd[0] = i;
-			
+
 			command("[OpenRaider.Console]");
 			command(buffer);
-			
+
 			i = 2;
 			buffer[0] = '>';
 			buffer[1] = ' ';
@@ -657,10 +657,10 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
 					if (key == '-')
 						key = '_';
 				}
-				
+
 				buffer[i++] = key;
 			}
-			
+
 			buffer[i] = 0;
 		}
 	}
@@ -713,7 +713,7 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
 			{
 				mMapList.start();
 			}
-			
+
 			if (mMapList.current())
 			{
 				mText->SetString(textMenu, "Load %s?", mMapList.current());
@@ -771,7 +771,7 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
 		if (LARA)
 		{
 			SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
-			
+
 			if (mdl)
 			{
 				mdl->setIdleAnimation(mdl->getIdleAnimation() - 1);
@@ -784,7 +784,7 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
 		if (LARA)
 		{
 			SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
-			
+
 			if (mdl)
 			{
 				mdl->setIdleAnimation(mdl->getIdleAnimation() + 1);
@@ -805,19 +805,19 @@ void OpenRaider::print(bool dump_stdout, char *format, ...)
 	static char buffer[128];
 	va_list args;
 	unsigned int l;
-	
+
 
 	va_start(args, format);
 	vsnprintf(buffer, 128, format, args);
-	
+
 	l = strlen(buffer);
-	
+
 	if (!l || !buffer[0])
 	{
 		return;
 	}
 
-	// Strip message of an trailing carrage return 
+	// Strip message of an trailing carrage return
 	if (buffer[l-1] == '\n')
 	{
 		buffer[l-1] = 0;
@@ -835,9 +835,9 @@ void OpenRaider::print(bool dump_stdout, char *format, ...)
 		fprintf(stdout, "> %s\n",  buffer);
 	}
 
-	va_end(args);	
-	
-	// Mongoose 2002.08.14, Currently, you must request 
+	va_end(args);
+
+	// Mongoose 2002.08.14, Currently, you must request
 	//   frame redraws in this mode
 	if (m_flags & OpenRaider_Loading)
 	{
@@ -902,7 +902,7 @@ void OpenRaider::start()
 	m_render.setMode(Render::modeDisabled);
 	m_render.Init(m_width, m_height, m_fastCard);
 	m_render.initTextures(m_homeDir, &m_texOffset, &mLevelTextureOffset);
-	
+
 	m_render.RegisterCamera(&m_camera);
 	mText = m_render.GetString();
 
@@ -952,7 +952,7 @@ void OpenRaider::initSound()
 		if (!mSound.add(filename, &id, SoundFlagsLoop))
 		{
 			mSound.play(id);
-			
+
 			printf("m");
 			fflush(stdout);
 		}
@@ -979,7 +979,7 @@ void OpenRaider::processPakSounds()
 	//float pos[3];
 	unsigned int i;
 	int id;
-	
+
 	/* detail
 		short sample;
 		short volume;
@@ -998,8 +998,8 @@ void OpenRaider::processPakSounds()
 	}
 
 	for (i = 0; i < m_tombraider.getSoundSamplesCount(); ++i)
-	{ 
-		print(false, "Processing pak sounds: %i / %i", 
+	{
+		print(false, "Processing pak sounds: %i / %i",
 				i, m_tombraider.getSoundSamplesCount());
 
 		m_tombraider.getSoundSample(i, &riffSz, &riff);
@@ -1019,7 +1019,7 @@ void OpenRaider::processPakSounds()
 		//pos[1] = sound[i].y;
 		//pos[2] = sound[i].z;
 		//mSound.SourceAt(id, pos);
-		
+
 		printf(".");
 		fflush(stdout);
 	}
@@ -1039,7 +1039,7 @@ void OpenRaider::loadLevel(char *mapname)
 	m_render.ClearWorld();
 	gWorld.destroy();
 
-	// Mongoose 2002.01.02, Now draw load screen, since external 
+	// Mongoose 2002.01.02, Now draw load screen, since external
 	//   GL textures are loaded and renderer is initialized
 	m_render.setMode(Render::modeLoadScreen);
 	gameFrame();
@@ -1049,22 +1049,22 @@ void OpenRaider::loadLevel(char *mapname)
 	snprintf(filename, 254, "%s%s", m_pakDir, mapname);
 	filename[255] = 0;
 	len = strlen(filename);
-	
+
 	for (i = len, j = 0; i > 0; --i, ++j)
 	{
 		if (filename[i] == '/' || filename[i] == '\\')
 			break;
 	}
-	
+
 	j--;
-	
+
 	memset(m_mapName, 0, 32);
-	
+
 	for (i = 0; i < len - j && i < 30; ++i)
 	{
 		m_mapName[i] = filename[i + len - j];
 	}
-	
+
 	m_tombraider.setDebug(m_flags & OpenRaider_DebugMap);
 
 	m_flags |= OpenRaider_Loading;
@@ -1078,14 +1078,14 @@ void OpenRaider::loadLevel(char *mapname)
 	else
 	{
 		char altSfx[256];
-		
+
 		switch (m_tombraider.getEngine())
 		{
 		case TR_VERSION_2:
 		case TR_VERSION_3:
 			snprintf(altSfx, 255, "%s.sfx", filename);
 			print(true, "Loading alternate SFX for TR2 or TR3 pak...\n");
-			
+
 			m_tombraider.loadSFX(altSfx);
 			break;
 		default:
@@ -1101,10 +1101,10 @@ void OpenRaider::loadLevel(char *mapname)
 	m_render.setMode(Render::modeDisabled);
 	sleep(1);
 	processTextures();
-	m_render.setMode(Render::modeLoadScreen);	
-	print(true, "Level textures cached\n");	
+	m_render.setMode(Render::modeLoadScreen);
+	print(true, "Level textures cached\n");
 
-	// Cache/process rooms 
+	// Cache/process rooms
 	printf("Processing rooms: ");
 
    for (i = 0; i < m_tombraider.NumRooms(); ++i)
@@ -1122,7 +1122,7 @@ void OpenRaider::loadLevel(char *mapname)
 	{
 		m_render.setMode(Render::modeDisabled);
 		processModel(i);
-		m_render.setMode(Render::modeLoadScreen);	
+		m_render.setMode(Render::modeLoadScreen);
 		print(false, "Processing meshes: %i/%i", i, m_tombraider.getMeshCount());
 	}
 
@@ -1151,7 +1151,7 @@ void OpenRaider::loadLevel(char *mapname)
 	display_memory_usage();
 #endif
 
-	// Mongoose 2002.01.02, FIXME GL call to critical section, 
+	// Mongoose 2002.01.02, FIXME GL call to critical section,
 	//   needs mutex really
 	m_render.setMode(Render::modeDisabled);
 	sleep(2);
@@ -1193,8 +1193,8 @@ void OpenRaider::gameFrame()
 			if (mdl)
 			{
 				float elapsed = time - mdl->lastTime;
-				
-				
+
+
 				if (elapsed > mdl->rate)
 				{
 					if (mdl->getAnimation() == 0 &&
@@ -1209,7 +1209,7 @@ void OpenRaider::gameFrame()
 					{
 						eventAnimTest(TR_ANIAMTION_RUN);
 					}
-					
+
 					mdl->setFrame(mdl->getFrame()+1);
 					mdl->lastTime = elapsed / mdl->rate;
 				}
@@ -1244,10 +1244,10 @@ void OpenRaider::gameFrame()
 	{
 		static unsigned int frames = 0;
 		static float lastTime = 0.0f;
-		
-		
+
+
 		++frames;
-		
+
 		// Only update every second, so it can't be affected
 		// by fast/slow cards it only counts frames instead
 		// of estimating
@@ -1255,7 +1255,7 @@ void OpenRaider::gameFrame()
 		{
 			if (mText)
 				mText->SetString(1, "FPS %d", frames);
-			
+
 			lastTime = time;
 			frames = 0;
 		}
@@ -1280,7 +1280,7 @@ void OpenRaider::processTextures()
 		print(false, "Processing textures: %i/%i", i, m_tombraider.NumTextures());
 
 		m_tombraider.Texture(i, &image, &bumpmap);
-		
+
 		// Overwrite any previous level textures on load
 		m_render.loadTexture(image, 256, 256, mLevelTextureOffset + i);
 
@@ -1353,18 +1353,18 @@ void OpenRaider::processSprites()
 
 	for (i = 0; i < m_tombraider.NumItems() - 1; ++i)
 	{
-		print(false, "Processing sprites in Items: %i/%i", 
+		print(false, "Processing sprites in Items: %i/%i",
 				i, m_tombraider.NumItems());
 
 		// It's a mesh, skip it
-		if (m_tombraider.Engine() == TR_VERSION_1 && item[i].intensity1 == -1) 
+		if (m_tombraider.Engine() == TR_VERSION_1 && item[i].intensity1 == -1)
 			continue;
 
 		k = item[i].object_id;
 
 		// Search the SpriteSequence list
 		//  (if we didn't already decide that it's a mesh)
-		for (j = 0; j < (int)m_tombraider.NumSpriteSequences(); ++j) 
+		for (j = 0; j < (int)m_tombraider.NumSpriteSequences(); ++j)
 		{
 			if (sprite_sequence[j].object_id == k)
 			{
@@ -1400,7 +1400,7 @@ void OpenRaider::processSprites()
 					r_mesh->sprite[l].vertex[1].pos[0] = -width2 / 2.0;
 					r_mesh->sprite[l].vertex[2].pos[0] = width2 / 2.0;
 					r_mesh->sprite[l].vertex[3].pos[0] = width2 / 2.0;
-					
+
 					r_mesh->sprite[l].vertex[0].pos[1] = 0;
 					r_mesh->sprite[l].vertex[1].pos[1] = -height2;
 					r_mesh->sprite[l].vertex[2].pos[1] = -height2;
@@ -1456,19 +1456,19 @@ void OpenRaider::processMoveables()
 	mesh = m_tombraider.Mesh();
 	object_texture = m_tombraider.ObjectTextures();
 	item = m_tombraider.Item();
-	animation = m_tombraider.Animation();	
+	animation = m_tombraider.Animation();
 	sprite_sequence = m_tombraider.SpriteSequence();
-	
+
 	printf("Processing skeletal models: ");
 
 	for (i = 0; i < m_tombraider.NumItems(); ++i)
 	{
 		object_id = item[i].object_id;
-		
+
 		// It may not be a moveable, test for sprite
 		if (!(m_tombraider.Engine() == TR_VERSION_1 && item[i].intensity1 == -1))
 		{
-			for (j = 0; j < (int)m_tombraider.NumSpriteSequences(); ++j) 
+			for (j = 0; j < (int)m_tombraider.NumSpriteSequences(); ++j)
 			{
 				if (sprite_sequence[j].object_id == object_id)
 					break;
@@ -1482,10 +1482,10 @@ void OpenRaider::processMoveables()
 				continue;
 			}
 		}
-	  
+
 		for (j = 0; j < (int)m_tombraider.NumMoveables(); ++j)
 		{
-			if ((int)moveable[j].object_id == object_id) 
+			if ((int)moveable[j].object_id == object_id)
 				break;
 		}
 
@@ -1503,7 +1503,7 @@ void OpenRaider::processMoveables()
 	// Get models that aren't items
 	for (i = 0; i < m_tombraider.NumMoveables(); ++i)
 	{
-		print(false, "Processing skeletal models: %i/%i", 
+		print(false, "Processing skeletal models: %i/%i",
 				i, m_tombraider.NumMoveables());
 
 		switch ((int)moveable[i].object_id)
@@ -1518,23 +1518,23 @@ void OpenRaider::processMoveables()
 			{
 			case TR_VERSION_1:
 				switch ((int)moveable[i].object_id)
-				{ 
+				{
 				case TombRaider1::LaraMutant:
-					processMoveable(i, i, &ent, cache2, cache, 
+					processMoveable(i, i, &ent, cache2, cache,
 										 (int)moveable[i].object_id);
 					break;
 				}
 				break;
 			case TR_VERSION_4:
 				switch ((int)moveable[i].object_id)
-				{ 
+				{
 				case TR4_PISTOLS_ANIM:
 				case TR4_UZI_ANIM:
-				case TR4_SHOTGUN_ANIM: 
+				case TR4_SHOTGUN_ANIM:
 				case TR4_CROSSBOW_ANIM:
 				case TR4_GRENADE_GUN_ANIM:
 				case TR4_SIXSHOOTER_ANIM:
-					processMoveable(i, i, &ent, cache2, cache, 
+					processMoveable(i, i, &ent, cache2, cache,
 										 (int)moveable[i].object_id);
 					break;
 				}
@@ -1549,8 +1549,8 @@ void OpenRaider::processMoveables()
 }
 
 
-void OpenRaider::processMoveable(int index, int i, int *ent, 
-											List <skeletal_model_t *> &cache2, 
+void OpenRaider::processMoveable(int index, int i, int *ent,
+											List <skeletal_model_t *> &cache2,
 											List <unsigned int> &cache, int object_id)
 {
 	skeletal_model_t *r_model = NULL;
@@ -1586,7 +1586,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 	pos[0] = item[i].x;
 	pos[1] = item[i].y;
 	pos[2] = item[i].z;
-	  
+
 	yaw = ((item[i].angle >> 14) & 0x03);
 	yaw *= 90;
 
@@ -1599,7 +1599,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 	thing->angles[1] = yaw;
 	thing->objectId = moveable[index].object_id;
 	thing->moving = false;
-	thing->animate = false; 
+	thing->animate = false;
 
 	sModel = new SkeletalModel();
 	m_render.addSkeletalModel(sModel);
@@ -1661,7 +1661,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 			r_model->tr4Overlay = false;
 		}
 
-		r_model->ponytailId = 0;	
+		r_model->ponytailId = 0;
 	}
 	else
 	{
@@ -1700,7 +1700,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 
 	// FIXME: Might be better UID for each model, but this seems
 	//        to work well
-	j = object_id;  
+	j = object_id;
 
 	// We only want one copy of the skeletal model in memory
 	if (cache.Empty() || cache.SearchKey(j) == UINT_MAX)
@@ -1747,7 +1747,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 				r_model->ponytailId = k;
 				r_model->ponytailMeshId = moveable[index].starting_mesh;
 				r_model->ponytailNumMeshes = ((moveable[index].num_meshes > 0) ?
-													  moveable[index].num_meshes : 0);	
+													  moveable[index].num_meshes : 0);
 				r_model->ponytailAngle = -90.0f;
 				r_model->ponytail[0] = 0;
 				r_model->ponytail[1] = -20;
@@ -1781,9 +1781,9 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 #ifdef DEBUG
 	if (m_flags & OpenRaider_DebugModel)
 	{
-		printf("\nanimation = %i, num_animations = %i\n", 
+		printf("\nanimation = %i, num_animations = %i\n",
 				 moveable[index].animation, aloop);
-		printf("\nitem[%i].flags = %i\nentity[%i]\n", 
+		printf("\nitem[%i].flags = %i\nentity[%i]\n",
 				 i, item[i].flags, thing->id);
 	}
 #endif
@@ -1805,23 +1805,23 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 #ifdef DEBUG
 		if (m_flags & OpenRaider_DebugModel)
 		{
-			printf("animation[%i] state and unknowns = %i, %i, %i, %i, %i\n", 
+			printf("animation[%i] state and unknowns = %i, %i, %i, %i, %i\n",
 					 a, animation[a].state_id, animation[a].unknown1,
 					 animation[a].unknown2, animation[a].unknown3,
 					 animation[a].unknown4);
-			printf("animation[%i].frame_rate = %i\n", 
+			printf("animation[%i].frame_rate = %i\n",
 					 a, animation[a].frame_rate);
-			printf("animation[%i].next_animation = %i\n", 
+			printf("animation[%i].next_animation = %i\n",
 					 a, animation[a].next_animation);
-			printf("animation[%i].frame_offset = %i\n", 
+			printf("animation[%i].frame_offset = %i\n",
 					 a, animation[a].frame_offset);
-			printf("animation[%i].anim_command = %i\n", 
+			printf("animation[%i].anim_command = %i\n",
 					 a, animation[a].anim_command);
-			printf("animation[%i].num_anim_commands = %i\n", 
+			printf("animation[%i].num_anim_commands = %i\n",
 					 a, animation[a].num_anim_commands);
-			printf("animation[%i].state_change_offset = %i\n", 
+			printf("animation[%i].state_change_offset = %i\n",
 					 a, animation[a].state_change_offset);
-			printf("              frame_offset = %i\n", 
+			printf("              frame_offset = %i\n",
 					 frame_offset);
 		}
 #endif
@@ -1833,31 +1833,31 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 			// quick substitution (so she doesn't appear as a bunch of thighs)
 			if (index == 0 && m_tombraider.Engine() == TR_VERSION_3)
 			{
-				for (j = 0; j < (int)m_tombraider.NumMoveables() && !index; ++j) 
+				for (j = 0; j < (int)m_tombraider.NumMoveables() && !index; ++j)
 				{
 					if (moveable[j].object_id == 315)
 						index = j;
 				}
 			}
-    
+
 			// Fix Lara in TR4
 			if (index == 0 && m_tombraider.Engine() == TR_VERSION_4)
 			{
-				for (j = 0; j < (int)m_tombraider.NumMoveables() && !index; ++j) 
+				for (j = 0; j < (int)m_tombraider.NumMoveables() && !index; ++j)
 				{
 					// Body is ItemID 8, joints are ItemID 9
 					//  (TR4 demo: body is ItemID 10, joints are ItemID 11)
-					if (moveable[j].object_id == 8)   
+					if (moveable[j].object_id == 8)
 						index = j;
 				}
 			}
-			else if (moveable[index].object_id == 8 && 
+			else if (moveable[index].object_id == 8 &&
 						m_tombraider.Engine() == TR_VERSION_4)
-			{  
-				// KLUDGE to do "skinning"	
+			{
+				// KLUDGE to do "skinning"
 				index = 0;
-	
-				for (j = 0; j < (int)m_tombraider.NumMoveables() && !index; ++j) 
+
+				for (j = 0; j < (int)m_tombraider.NumMoveables() && !index; ++j)
 				{
 					// Body is ItemID 8, joints are ItemID 9
 					//  (TR4 demo: body is ItemID 10, joints are ItemID 11)
@@ -1869,12 +1869,12 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 #ifdef DEBUG
 			if (m_flags & OpenRaider_DebugModel)
 			{
-				printf("animation[%i].boneframe[%i] = offset %i, step %i\n", 
+				printf("animation[%i].boneframe[%i] = offset %i, step %i\n",
 						 a, f, frame_offset, frame_step);
 			}
 #endif
 
-			// Mongoose 2002.08.15, Was 
+			// Mongoose 2002.08.15, Was
 			//   if (frame_offset + 8 > _tombraider.NumFrames())
 			if (frame_offset > m_tombraider.NumFrames())
 			{
@@ -1901,14 +1901,14 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 			l = 9;   // First angle offset in this Frame
 
 			// Run through the tag and calculate the rotation and offset
-			for (j = 0; j < (int)moveable[index].num_meshes; ++j) 
-			{ 
+			for (j = 0; j < (int)moveable[index].num_meshes; ++j)
+			{
 				tag = new bone_tag_t;
 				bone->tag.pushBack(tag);
 				tag->off[0] = 0.0;
 				tag->off[1] = 0.0;
 				tag->off[2] = 0.0;
-				tag->flag = 0x00;				  
+				tag->flag = 0x00;
 				tag->rot[0] = 0.0;
 				tag->rot[1] = 0.0;
 				tag->rot[2] = 0.0;
@@ -1929,10 +1929,10 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 				else  // Nonprimary tag - position relative to first tag
 				{
 					int *tree;
-					// Hack: moveable[index].mesh_tree is a byte offset 
+					// Hack: moveable[index].mesh_tree is a byte offset
 					//       into mesh_tree[], so we have to convert to index
 					tree = (int *)meshtree;
-					mesh_tree = (tr2_meshtree_t *)&tree[moveable[index].mesh_tree 
+					mesh_tree = (tr2_meshtree_t *)&tree[moveable[index].mesh_tree
 																	+ ((j - 1) * 4)];
 
 					tag->off[0] = mesh_tree->x;
@@ -1950,7 +1950,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 
 	if (i == skyMesh)
 	{
-		m_render.setSkyMesh(i, //moveable[i].starting_mesh, 
+		m_render.setSkyMesh(i, //moveable[i].starting_mesh,
 								  (m_tombraider.Engine() == TR_VERSION_2));
 	}
 
@@ -1970,7 +1970,7 @@ int compareFaceTextureId(const void *voidA, const void *voidB)
 	// less than
 	if (a->texture < b->texture)
 		return -1;
-	
+
 	// greater than ( no need for equal )
 	return 1;
 }
@@ -1986,24 +1986,24 @@ void setupTextureColor(texture_tri_t *r_tri, Render *render, float *colorf)
 	color[1] = (unsigned char)(colorf[1]*255.0f);
 	color[2] = (unsigned char)(colorf[2]*255.0f);
 	color[3] = (unsigned char)(colorf[3]*255.0f);
-	
+
 	((unsigned char *)(&colorI))[3] = color[0];
 	((unsigned char *)(&colorI))[2] = color[1];
 	((unsigned char *)(&colorI))[1] = color[2];
 	((unsigned char *)(&colorI))[0] = color[3];
-	
+
 	if (!gColorTextureHACK.find(colorI))
 	{
 		gColorTextureHACK.pushBack(colorI);
 		r_tri->texture = gTextureOffset + gColorTextureHACK.size();
 
-		render->loadTexture(Texture::generateColorTexture(color, 32, 32), 
-								  32, 32, 
+		render->loadTexture(Texture::generateColorTexture(color, 32, 32),
+								  32, 32,
 								  r_tri->texture);
 
 #ifdef DEBUG_COLOR_TEXTURE_GEN
-		printf("Color 0x%02x%02x%02x%02x | 0x%08xto texture[%i]?\n", 
-				 color[0], color[1], color[2], color[3], colorI, 
+		printf("Color 0x%02x%02x%02x%02x | 0x%08xto texture[%i]?\n",
+				 color[0], color[1], color[2], color[3], colorI,
 				 gColorTextureHACK.size());
 #endif
 	}
@@ -2012,10 +2012,10 @@ void setupTextureColor(texture_tri_t *r_tri, Render *render, float *colorf)
 		//printf("Color already loaded %i -> 0x%08x\n",
 		//		 gColorTextureHACK.getCurrentIndex(),
 		//		 gColorTextureHACK.current());
-		
+
 		r_tri->texture = gTextureOffset + gColorTextureHACK.getCurrentIndex();
 	}
-	
+
 	//r_tri->texture = white; // White texture
 }
 
@@ -2026,10 +2026,10 @@ void OpenRaider::processModel(int index)
 	int vertexIndices[6];
 	float st[12];
 	float color[4];
-	unsigned short transparency;	
+	unsigned short transparency;
 	texture_tri_t *r_tri;
 
-	
+
 	// Assert common sense
 	if (index < 0 || !m_tombraider.isMeshValid(index))
 	{
@@ -2050,7 +2050,7 @@ void OpenRaider::processModel(int index)
 
 	// FIXME: Arrays don't work either  =)
 	// Mesh geometery, colors, etc
-	m_tombraider.getMeshVertexArrays(index, 
+	m_tombraider.getMeshVertexArrays(index,
 												&mesh->vertexCount, &mesh->vertices,
 												&mesh->normalCount, &mesh->normals,
 												&mesh->colorCount,  &mesh->colors);
@@ -2064,18 +2064,18 @@ void OpenRaider::processModel(int index)
    {
 		r_tri = new texture_tri_t;
 
-		m_tombraider.getMeshTexturedTriangle(index, i, 
+		m_tombraider.getMeshTexturedTriangle(index, i,
 														 r_tri->index,
 														 r_tri->st,
 														 &r_tri->texture,
 														 &r_tri->transparency);
-		
+
 		r_tri->texture += m_texOffset;
 
 		// Add to face vector
 		mesh->texturedTriangles.pushBack(r_tri);
 	}
-      
+
 
 	// Coloured Triangles
 	count = m_tombraider.getMeshColoredTriangleCount(index);
@@ -2085,7 +2085,7 @@ void OpenRaider::processModel(int index)
    {
 		r_tri = new texture_tri_t;
 
-		m_tombraider.getMeshColoredTriangle(index, i, 
+		m_tombraider.getMeshColoredTriangle(index, i,
 														r_tri->index,
 														color);
 		r_tri->st[0] = color[0];
@@ -2112,13 +2112,13 @@ void OpenRaider::processModel(int index)
 
 	for (i = 0; i < count; ++i)
    {
-		m_tombraider.getMeshTexturedRectangle(index, i, 
+		m_tombraider.getMeshTexturedRectangle(index, i,
 														  vertexIndices,
 														  st,
 														  &texture,
 														  &transparency);
 
-		r_tri = new texture_tri_t;	
+		r_tri = new texture_tri_t;
 
 		for (j = 0; j < 3; ++j)
 			r_tri->index[j] = vertexIndices[j];
@@ -2132,21 +2132,21 @@ void OpenRaider::processModel(int index)
 		// Add to face vector
 		mesh->texturedRectangles.pushBack(r_tri);
 
-		r_tri = new texture_tri_t;	
+		r_tri = new texture_tri_t;
 
 		for (j = 3; j < 6; ++j)
 			r_tri->index[j-3] = vertexIndices[j];
 
 		for (j = 6; j < 12; ++j)
 			r_tri->st[j-6] = st[j];
-	
+
 		r_tri->texture = texture + m_texOffset;
 		r_tri->transparency = transparency;
 
 		// Add to face vector
 		mesh->texturedRectangles.pushBack(r_tri);
 	}
-    
+
 
 	// Coloured Rectangles
 	count = m_tombraider.getMeshColoredRectangleCount(index);
@@ -2154,7 +2154,7 @@ void OpenRaider::processModel(int index)
 
 	for (i = 0; i < count; ++i)
    {
-		m_tombraider.getMeshColoredRectangle(index, i, 
+		m_tombraider.getMeshColoredRectangle(index, i,
 														 vertexIndices,
 														 color);
 
@@ -2265,7 +2265,7 @@ void OpenRaider::processRoom(int index)
 	// Mongoose 2002.04.03, Setup 3d transform
 #ifdef MATRIX_TRANSFORMS
 	//mtkMatrixIdentity(transform);
-	//mtkMatrixTranslate(transform, 
+	//mtkMatrixTranslate(transform,
 	//						 r_mesh->pos[0], r_mesh->pos[1], r_mesh->pos[2]);
 	transform.setIdentity();
 	transform.translate(r_mesh->pos);
@@ -2286,8 +2286,8 @@ void OpenRaider::processRoom(int index)
 	for (i = 0; i < count; ++i)
 	{
 		portal_t *portal = new portal_t;
-	
-		m_tombraider.getRoomPortal(index, i, 
+
+		m_tombraider.getRoomPortal(index, i,
 											&portal->adjoining_room, portal->normal,
 											portalVertices);
 
@@ -2319,18 +2319,18 @@ void OpenRaider::processRoom(int index)
 	// List of sectors in this room
 	unsigned int sectorFlags;
 	int floorDataIndex, boxIndex, roomBelow, roomAbove;
-	count = m_tombraider.getRoomSectorCount(index, &r_mesh->numZSectors, 
+	count = m_tombraider.getRoomSectorCount(index, &r_mesh->numZSectors,
 														 &r_mesh->numXSectors);
 	r_mesh->sectors.reserve(count);
 	r_mesh->sectors.setError(0x0);
- 
+
 	for (i = 0; i < count; ++i)
 	{
 		sector_t *sector = new sector_t;
 
 		m_tombraider.getRoomSector(index, i, &sectorFlags,
 											&sector->ceiling, &sector->floor,
-											&floorDataIndex, &boxIndex, &roomBelow, 
+											&floorDataIndex, &boxIndex, &roomBelow,
 											&roomAbove);
 
 		if (sectorFlags & tombraiderSector_wall)
@@ -2352,10 +2352,10 @@ void OpenRaider::processRoom(int index)
 
 	// FIXME: Only to be done only on room[0]?  I don't think so...
 	for (i = 0; !index && i < count; ++i)
-	{ 
+	{
 		box_t *box = new box_t;
 
-		m_tombraider.getRoomBox(index, i, 
+		m_tombraider.getRoomBox(index, i,
 										box->a.pos, box->b.pos, box->c.pos, box->d.pos);
 
 		r_mesh->boxes.pushBack(box);
@@ -2372,7 +2372,7 @@ void OpenRaider::processRoom(int index)
 	{
 		Light *light = new Light();
 
-		m_tombraider.getRoomLight(index, i, 
+		m_tombraider.getRoomLight(index, i,
 										  light->mPos, light->mColor, light->mDir,
 										  &light->mAtt, &light->mCutoff,
 										  &lightType, &lightFlags);
@@ -2389,7 +2389,7 @@ void OpenRaider::processRoom(int index)
 		default:
 			light->mType = Light::typePoint;
 		}
-				
+
 		rRoom->lights.pushBack(light);
 	}
 
@@ -2413,11 +2413,11 @@ void OpenRaider::processRoom(int index)
 												&colorCount, &colorArray);
 
 	rRoom->mesh.bufferVertexArray(vertexCount, (vec_t *)vertexArray);
-	rRoom->mesh.bufferNormalArray(normalCount, (vec_t *)normalArray); 
+	rRoom->mesh.bufferNormalArray(normalCount, (vec_t *)normalArray);
 	rRoom->mesh.bufferColorArray(vertexCount, (vec_t *)colorArray, 4);
 
 	m_tombraider.getRoomTriangles(index, m_texOffset,
-											&triCount, &indices, &texCoords, &textures, 
+											&triCount, &indices, &texCoords, &textures,
 											&flags);
 
 	rRoom->mesh.bufferTriangles(triCount, indices, texCoords, textures, flags);
@@ -2431,7 +2431,7 @@ void OpenRaider::processRoom(int index)
 	rRoom->mesh.allocateColors(count);
 
 	for (i = 0; i < count; ++i)
-	{	
+	{
 		m_tombraider.getRoomVertex(index, i, xyz, rgba);
 
 		rRoom->mesh.setVertex(i, xyz[0], xyz[1], xyz[2]);
@@ -2441,9 +2441,9 @@ void OpenRaider::processRoom(int index)
 	// Mongoose 2002.06.09, Setup allocation of meshes and polygons
 	// Counters ( Textured polygon lists are allocated per texture)
 	//          ( Textures are mapped to these meshes )
-	int triangle_counter[TextureLimit]; 
+	int triangle_counter[TextureLimit];
 	int triangle_counter_alpha[TextureLimit];
-	int rectangle_counter[TextureLimit]; 
+	int rectangle_counter[TextureLimit];
 	int rectangle_counter_alpha[TextureLimit];
 	int tris_mesh_map[TextureLimit];
 	int rect_mesh_map[TextureLimit];
@@ -2470,17 +2470,17 @@ void OpenRaider::processRoom(int index)
 
 	count = m_tombraider.getRoomTriangleCount(index);
 
-	// Mongoose 2002.08.15, Presort by alpha and texture and setup mapping 
+	// Mongoose 2002.08.15, Presort by alpha and texture and setup mapping
 	for (t = 0; t < count; ++t)
    {
-		m_tombraider.getRoomTriangle(index, t, 
+		m_tombraider.getRoomTriangle(index, t,
 											  indices, texCoords, &texture, &flags);
 
 		texture += m_texOffset;
 
 		if (texture > (int)TextureLimit)
 		{
-			print(true, "Handling bad room[%i].tris[%i].texture = %i", 
+			print(true, "Handling bad room[%i].tris[%i].texture = %i",
 					index, t, texture);
 			texture = TextureLimit - 1;
 		}
@@ -2514,7 +2514,7 @@ void OpenRaider::processRoom(int index)
 
 		if (texture > (int)TextureLimit)
 		{
-			print(true, "Handling bad room[%i].quad[%i].texture = %i", 
+			print(true, "Handling bad room[%i].quad[%i].texture = %i",
 					index, r, texture);
 			texture = TextureLimit - 1;
 		}
@@ -2625,10 +2625,10 @@ void OpenRaider::processRoom(int index)
 
 	for (t = 0; t < count; ++t)
    {
-		m_tombraider.getRoomTriangle(index, t, 
+		m_tombraider.getRoomTriangle(index, t,
 											  indices, texCoords, &texture, &flags);
 
-		// Adjust texture id using m_texOffset to map into 
+		// Adjust texture id using m_texOffset to map into
 		// correct textures
 		texture += m_texOffset;
 
@@ -2641,7 +2641,7 @@ void OpenRaider::processRoom(int index)
 			v = indices[i];
 
 			if ((flags & tombraiderFace_Alpha ||
-				  flags & tombraiderFace_PartialAlpha) && 
+				  flags & tombraiderFace_PartialAlpha) &&
 				 rRoom->mesh.mTris[j].num_alpha_triangles > 0)
 			{
 				q = rRoom->mesh.mTris[j].cnum_alpha_triangles*3+i;
@@ -2685,10 +2685,10 @@ void OpenRaider::processRoom(int index)
 
 	for (r = 0; r < count; ++r)
    {
-		m_tombraider.getRoomRectangle(index, r, 
+		m_tombraider.getRoomRectangle(index, r,
 											  indices, texCoords, &texture, &flags);
 
-		// Adjust texture id using m_texOffset to map into 
+		// Adjust texture id using m_texOffset to map into
 		// correct textures
 		texture += m_texOffset;
 
@@ -2699,7 +2699,7 @@ void OpenRaider::processRoom(int index)
 
 		j = rect_mesh_map[texture] - 1;
 
-		if (rRoom->mesh.mQuads[j].num_quads <= 0 && 
+		if (rRoom->mesh.mQuads[j].num_quads <= 0 &&
 			 rRoom->mesh.mQuads[j].num_alpha_quads <= 0)
 			continue;
 
@@ -2710,7 +2710,7 @@ void OpenRaider::processRoom(int index)
 			v = indices[i];
 
 			if ((flags & tombraiderFace_Alpha ||
-				  flags & tombraiderFace_PartialAlpha) && 
+				  flags & tombraiderFace_PartialAlpha) &&
 				 rRoom->mesh.mQuads[j].num_alpha_quads > 0)
 			{
 				q = rRoom->mesh.mQuads[j].cnum_alpha_quads*4+i;
@@ -2760,7 +2760,7 @@ void OpenRaider::processRoom(int index)
 
 		m_tombraider.getRoomModel(index, i,
 										  &model->index, model->pos, &model->yaw);
-		
+
 		r_mesh->models.pushBack(model);
 	}
 
@@ -2776,7 +2776,7 @@ void OpenRaider::processRoom(int index)
 		sprite_t *sprite = new sprite_t;
 
 		m_tombraider.getRoomSprite(index, i,
-											10.0f, &sprite->texture, sprite->pos, 
+											10.0f, &sprite->texture, sprite->pos,
 											spriteVertices, spriteTexCoords);
 
 		sprite->texture += m_texOffset; // OpenRaider preloads some textures
@@ -2868,7 +2868,7 @@ void OpenRaider::consoleCommand(char *cmd)
 
 		print(true, "Diconnecting...");
 		net.killClientThread();
-	}			
+	}
 	else if (rc_command("connect", cmd))
 	{
 		Network &net = *Network::Instance();
@@ -2878,7 +2878,7 @@ void OpenRaider::consoleCommand(char *cmd)
 
 		net.setRemoteHost(cmd);
 		net.spawnClientThread();
-	}	
+	}
 	else if (rc_command("fly", cmd))
 	{
 		mNoClipping = worldMoveType_fly;
@@ -2910,7 +2910,7 @@ void OpenRaider::consoleCommand(char *cmd)
 			LARA->moveType = worldMoveType_noClipping;
 		}
 
-		print(false, "World clipping is [OFF]");	
+		print(false, "World clipping is [OFF]");
 	}
 	else if (rc_command("mem", cmd))
 	{
@@ -2918,7 +2918,7 @@ void OpenRaider::consoleCommand(char *cmd)
 		if (rc_command("usage", cmd))
 		{
 			display_memory_usage();
-		}	
+		}
 		else if (rc_command("report", cmd))
 		{
 			dump_memory_report();
@@ -2926,7 +2926,7 @@ void OpenRaider::consoleCommand(char *cmd)
 #else
 		printf("This build isn't DEBUG_MEMEORY enabled\n");
 #endif
-	}			
+	}
 	else if (rc_command("loadlevel", cmd))
 	{
 		loadLevel(cmd);
@@ -3102,7 +3102,7 @@ void OpenRaider::consoleCommand(char *cmd)
 		else
 		{
 			m_render.clearFlags(Render::fOneRoom);
-		}		
+		}
 	}
 	else if (rc_command("r_allrooms", cmd))
 	{
@@ -3165,7 +3165,7 @@ void OpenRaider::consoleCommand(char *cmd)
 	{
 		if (atoi(cmd))
 		{
-			m_render.clearFlags(Render::fUsePortals);	
+			m_render.clearFlags(Render::fUsePortals);
 		}
 		else
 		{
@@ -3312,8 +3312,8 @@ void OpenRaider::consoleCommand(char *cmd)
 			if (LARA)
 			{
 				print(true, "Room %2i  Pos %.0f %.0f %.0f  Yaw %.0f  Pitch %.0f",
-						LARA->room, 
-						LARA->pos[0], LARA->pos[1], LARA->pos[2], 
+						LARA->room,
+						LARA->pos[0], LARA->pos[1], LARA->pos[2],
 						helRadToDeg(LARA->angles[1]),
 						helRadToDeg(LARA->angles[2]));
 			}
@@ -3324,7 +3324,7 @@ void OpenRaider::consoleCommand(char *cmd)
 			{
 				if (LARA)
 				{
-					print(true, "Room[%i] flags: 0x%x", 
+					print(true, "Room[%i] flags: 0x%x",
 							LARA->room,
 							gWorld.getRoomInfo(LARA->room));
 				}
@@ -3338,7 +3338,7 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
 {
 	bool b;
 	int i;
-	
+
 
 	// So we can use switch stmt, translate the Ids
 	mode = mMode[mode];
@@ -3399,7 +3399,7 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
 		}
 		else
 		{
-			printf("Command> [Audio.OpenAL] Unknown command '%s'\n", cmd);		
+			printf("Command> [Audio.OpenAL] Unknown command '%s'\n", cmd);
 		}
 		break;
 	case 2: // [OpenRaider.Engine]
@@ -3454,7 +3454,7 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
 
 				if (m_tombraider.checkMime(fullPathMap) == 0)
 				{
-					printf("Validated pak: '%s'\n", 
+					printf("Validated pak: '%s'\n",
 							 fullPathMap);
 					delete [] fullPathMap;
 
