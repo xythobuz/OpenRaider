@@ -114,6 +114,13 @@ auto: $(BUILD_SELECT)
 
 targets: $(TARGETS)
 
+bundle: release
+	mkdir -p bin/OpenRaider.app/Contents/MacOS
+	mkdir -p bin/OpenRaider.app/Contents/Resources
+	cp mac_dist/Info.plist bin/OpenRaider.app/Contents/Info.plist
+	cp mac_dist/openraider.icns bin/OpenRaider.app/Contents/Resources/openraider.icns
+	cp bin/release/OpenRaider bin/OpenRaider.app/Contents/MacOS/OpenRaider
+
 all: debug release prof
 
 debug:
@@ -215,6 +222,7 @@ endif
 #################################################################
 
 clean: clean-emacs clean-build clean-test clean-obj clean-dep
+	@-rm -rf bin/OpenRaider.app
 
 clean-dep:
 	@-echo "Cleaning dependencies                        "
