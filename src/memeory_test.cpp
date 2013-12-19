@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : MTK
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: Memory testing tool kit
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.03.27:
  * Mongoose - Created
@@ -235,7 +235,7 @@ void tree_rotate_left(rbtree_t **root, rbtree_t *tree)
 	if (tree->parent)  // Not root
 	{
 		uncle = (tree->parent)->left;
-		
+
 		// Mix up at hosptial, switch parent's children!
 		if (tree == uncle)
 		{
@@ -286,7 +286,7 @@ void tree_rotate_right(rbtree_t **root, rbtree_t *tree)
 
 	if (left)
 	{
-		left->parent = tree->parent;  
+		left->parent = tree->parent;
 	}
 
 	parent = tree->parent;
@@ -330,7 +330,7 @@ rbtree_t *tree_insert(rbtree_t **root, void *data, DWORD key)
 
 	tree = *root;
 	prev = 0x0;
-		
+
 	do
 	{
 		prev = tree;
@@ -359,7 +359,7 @@ rbtree_t *tree_insert(rbtree_t **root, void *data, DWORD key)
 	else
 	{
 		prev->right = tree_new(data, key);
-		tree = prev->right;		
+		tree = prev->right;
 	}
 
 	tree->parent = prev;
@@ -372,64 +372,64 @@ rbtree_t *tree_insert(rbtree_t **root, void *data, DWORD key)
 		// Parent is a left child
 		if (tree->parent == tree->parent->parent->left)
 		{
-			// Tree's right uncle 
+			// Tree's right uncle
 			uncle = tree->parent->parent->right;
-			
+
 			// Parent and Uncle are RED
          if ((uncle) && (uncle->color == RB_RED))
-			{ 
+			{
            // Change Parent and Uncle to BLACK, make grandparent RED
            tree->parent->color = RB_BLACK;
-           uncle->color = RB_BLACK; 
+           uncle->color = RB_BLACK;
            tree->parent->parent->color = RB_RED;
 
-			  // Continue from grandparent 
+			  // Continue from grandparent
            tree = tree->parent->parent;
-         } 
+         }
          else  // Parent is RED and Uncle is BLACK
 			{
-				// Tree is a right child 
+				// Tree is a right child
 				if (tree == tree->parent->right)
 				{
-					tree_rotate_left(root, tree->parent); 
-					tree = tree->left; 
+					tree_rotate_left(root, tree->parent);
+					tree = tree->left;
 				}
 
-				tree->parent->color = RB_BLACK; 
-				tree->parent->parent->color = RB_RED; 
-				tree_rotate_right(root, tree->parent->parent); 
-         } 
-		} 
+				tree->parent->color = RB_BLACK;
+				tree->parent->parent->color = RB_RED;
+				tree_rotate_right(root, tree->parent->parent);
+         }
+		}
 		else // Parent is a right child
-		{  
-			// Tree's left uncle 
+		{
+			// Tree's left uncle
 			uncle = tree->parent->parent->left;
-			
+
 			// Parent and Uncle are RED
          if ((uncle) && (uncle->color == RB_RED))
-			{ 
+			{
            // Change Parent and Uncle to BLACK, make grandparent RED
            tree->parent->color = RB_BLACK;
-           uncle->color = RB_BLACK; 
+           uncle->color = RB_BLACK;
            tree->parent->parent->color = RB_RED;
 
-			  // Continue from grandparent 
+			  // Continue from grandparent
            tree = tree->parent->parent;
-         } 
+         }
          else  // Parent is RED and Uncle is BLACK
 			{
-				// Tree is a left child 
+				// Tree is a left child
 				if (tree == tree->parent->left)
 				{
-					tree_rotate_right(root, tree->parent); 
-					tree = tree->right; 
+					tree_rotate_right(root, tree->parent);
+					tree = tree->right;
 				}
 
-				tree->parent->color = RB_BLACK; 
-				tree->parent->parent->color = RB_RED; 
-				tree_rotate_left(root, tree->parent->parent); 
-         } 
-		} 
+				tree->parent->color = RB_BLACK;
+				tree->parent->parent->color = RB_RED;
+				tree_rotate_left(root, tree->parent->parent);
+         }
+		}
 	}
 
 	(*root)->color = RB_BLACK;
@@ -450,20 +450,20 @@ int tree_print(rbtree_t *tree, void (*print_func)(void *))
 		i += tree_print(tree->left, print_func);
 		printf(",\n");
 	}
-	
+
 	if (tree->data && print_func)
 	{
 		(*print_func)(tree->data);
 
 #ifdef DEBUG_MEMEORY_RBTREE
-		printf(" :%s%s)", 
+		printf(" :%s%s)",
 				 (!tree->parent) ? " (root, " : " ("),
 				 (tree->color == RB_BLACK) ? "black" : "red");
 #endif
 	}
 
 	++i;
-	
+
 	if (tree->right)
 	{
 		printf(",\n");
@@ -472,7 +472,7 @@ int tree_print(rbtree_t *tree, void (*print_func)(void *))
 
 	if (!tree->parent)
 	{
-		printf("\n%i nodes, %u bytes each : %i bytes\n", 
+		printf("\n%i nodes, %u bytes each : %i bytes\n",
 				 i, sizeof(rbtree_t), i * sizeof(rbtree_t));
 	}
 
@@ -548,7 +548,7 @@ rbtree_t *tree_get_predecessor(rbtree_t *root,rbtree_t *tree)
 		}
 
 		return predecessor;
-	}		
+	}
 }
 
 
@@ -566,7 +566,7 @@ void tree_restore_after_remove(rbtree_t **root, rbtree_t *tree)
 
 	while ((tree != (*root)) && (tree->color == RB_BLACK)) // was parent->color
 	{
-		if (tree == parent->left) 
+		if (tree == parent->left)
 		{
 			sibling = parent->right;
 
@@ -674,7 +674,7 @@ void tree_restore_after_remove(rbtree_t **root, rbtree_t *tree)
 }
 
 
-void tree_remove(rbtree_t **root, rbtree_t *tree) 
+void tree_remove(rbtree_t **root, rbtree_t *tree)
 {
 	rbtree_t *left, *right, *parent, *prev, *cur;
 
@@ -782,11 +782,11 @@ void __print_meminfo(meminfo_t *meminfo)
 {
 	if (meminfo)
 	{
-		printf("<addr 0x%08lx, sz %lu, \"%s\":%u>", 
-				 meminfo->address, 
+		printf("<addr 0x%08lx, sz %lu, \"%s\":%u>",
+				 meminfo->address,
 				 meminfo->size,
-				 (!meminfo->filename) ? "?" : meminfo->filename->filename, 
-				 meminfo->line); 
+				 (!meminfo->filename) ? "?" : meminfo->filename->filename,
+				 meminfo->line);
 	}
 }
 
@@ -852,8 +852,8 @@ void display_memory_usage()
 
 	while (cur)
 	{
-		printf(" %s : ( %lu bytes, %3.2f%% )\n", 
-				 cur->filename, cur->size, 
+		printf(" %s : ( %lu bytes, %3.2f%% )\n",
+				 cur->filename, cur->size,
 				 100.0 * ((float)cur->size / (float)MEMEORY_USED));
 
 		cur = cur->next;
@@ -883,7 +883,7 @@ void display_memory_usage()
 					break;
 				}
 			}
-			
+
 			printf("\n");
 		}
 
@@ -894,14 +894,14 @@ void display_memory_usage()
 
 	printf("Memory usage summary:\n");
 
-	printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n", 
+	printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n",
 			 MEMEORY_USED, (double)MEMEORY_USED / 1024000.0);
-	printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n", 
+	printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n",
 			 MEMEORYA_USED, (double)MEMEORYA_USED / 1024000.0);
-	printf(" Untracked m-string memory : %lu bytes\n", 
+	printf(" Untracked m-string memory : %lu bytes\n",
 			 MEMEORYC_USED);
 
-	printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n", 
+	printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n",
 			 MEMEORY_USED + MEMEORYA_USED + MEMEORYC_USED,
 			 (double)(MEMEORY_USED + MEMEORYA_USED + MEMEORYC_USED) / 1024000.0);
 
@@ -909,14 +909,14 @@ void display_memory_usage()
 
 	printf("Memory max usage summary:\n");
 
-	printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n", 
+	printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n",
 			 MAX_MEMEORY_USED, (double)MAX_MEMEORY_USED / 1024000.0);
-	printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n", 
+	printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n",
 			 MAX_MEMEORYA_USED, (double)MAX_MEMEORYA_USED / 1024000.0);
-	printf(" Untracked m-string memory : %lu bytes\n", 
+	printf(" Untracked m-string memory : %lu bytes\n",
 			 MAX_MEMEORYC_USED);
 
-	printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n", 
+	printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n",
 			 MAX_MEMEORY_USED + MAX_MEMEORYA_USED + MAX_MEMEORYC_USED,
 			 (double)(MAX_MEMEORY_USED + MAX_MEMEORYA_USED + MAX_MEMEORYC_USED) / 1024000.0);
 
@@ -933,8 +933,8 @@ void dump_memory_report()
 	printf(" Memeory status report\n");
 	printf("============================================================\n");
 	printf("Memory tracking table:\n");
-	i = tree_print(MEMEORY_INFO, __print_meminfo);
-	printf("%i records, %u bytes each : %i bytes\n", 
+	i = tree_print(MEMEORY_INFO, (void (*)(void *))&__print_meminfo);
+	printf("%i records, %u bytes each : %i bytes\n",
 			 i, sizeof(meminfo_t), i * sizeof(meminfo_t));
 	display_memory_usage();
 	printf("============================================================\n\n");
@@ -998,7 +998,7 @@ void add_track(DWORD addr, DWORD size, const char *filename, DWORD line_num)
 				memfile = memfile->next;
 			}
 		}
-		
+
 		if (!memfile)
 		{
 			memfile = (meminfo_filename_t *)malloc(sizeof(meminfo_filename_t));
@@ -1090,8 +1090,8 @@ void remove_track(DWORD addr)
 
 			if (meminfo->size == 0)
 			{
-				printf("\nERROR: %s:%u Deallocated 0 bytes\n", 
-						 (meminfo->filename) ? meminfo->filename->filename : "?", 
+				printf("\nERROR: %s:%u Deallocated 0 bytes\n",
+						 (meminfo->filename) ? meminfo->filename->filename : "?",
 						 meminfo->line);
 			}
 
@@ -1126,13 +1126,13 @@ void remove_track(DWORD addr)
 			cur = cur->next;
 
 			MEMEORYC_USED -= sizeof(meminfo_filename_t);
-			
+
 			if (del->filename)
 			{
 				MEMEORYC_USED -= del->filename_len;
 				free(del->filename);
 			}
-			
+
 			free(del);
 		}
 	}
@@ -1146,20 +1146,18 @@ void remove_track(DWORD addr)
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-void *operator new(unsigned int size, const char *file, int line)
+void *operator new(size_t size, const char *file, int line)
 {
 	void *ptr = (void *)malloc(size);
-	
 
 	add_track((DWORD)ptr, size, file, line);
 	return ptr;
 };
 
 
-void *operator new [](unsigned int size, const char *file, int line)
+void *operator new [](size_t size, const char *file, int line)
 {
 	void *ptr = (void *)malloc(size);
-	
 
 	add_track((DWORD)ptr, size, file, line);
 	return ptr;
