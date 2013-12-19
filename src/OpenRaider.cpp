@@ -863,10 +863,13 @@ void OpenRaider::start()
 
 	if (loadResourceFile(filename) < 0)
 	{
+
+        printf("Could not find ~/.OpenRaider/OpenRaider.init\n");
 		if (loadResourceFile("OpenRaider.init") < 0)
 		{
 			shutdown(-1);
 		}
+        printf("Loaded defaults...\n");
 	}
 
 	delete [] filename;

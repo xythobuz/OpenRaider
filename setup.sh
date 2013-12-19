@@ -1,4 +1,7 @@
 #!/bin/sh
+
+## If you modify this file, do the same changes to mac_dist/OpenRaider!!!
+
 echo "Setting up OpenRaider for user $USER..."
 mkdir -p ~/.OpenRaider
 cp data/OpenRaider.init ~/.OpenRaider/
