@@ -117,9 +117,18 @@ targets: $(TARGETS)
 bundle: release
 	mkdir -p bin/OpenRaider.app/Contents/MacOS
 	mkdir -p bin/OpenRaider.app/Contents/Resources
+	mkdir -p bin/OpenRaider.app/Contents/Frameworks
 	cp mac_dist/Info.plist bin/OpenRaider.app/Contents/Info.plist
 	cp mac_dist/openraider.icns bin/OpenRaider.app/Contents/Resources/openraider.icns
 	cp bin/release/OpenRaider bin/OpenRaider.app/Contents/MacOS/OpenRaider
+	cp /opt/local/lib/libalut.0.1.0.dylib bin/OpenRaider.app/Contents/Frameworks/libalut.0.1.0.dylib
+	cp /opt/local/lib/libSDL_ttf-2.0.0.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL_ttf-2.0.0.dylib
+	cp /opt/local/lib/libz.1.dylib bin/OpenRaider.app/Contents/Frameworks/libz.1.dylib
+	cp /opt/local/lib/libSDL-1.2.0.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL-1.2.0.dylib
+	install_name_tool -change /opt/local/lib/libalut.0.1.0.dylib @executable_path/../Frameworks/libalut.0.1.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider
+	install_name_tool -change /opt/local/lib/libSDL_ttf-2.0.0.dylib @executable_path/../Frameworks/libSDL_ttf-2.0.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider
+	install_name_tool -change /opt/local/lib/libz.1.dylib @executable_path/../Frameworks/libz.1.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider
+	install_name_tool -change /opt/local/lib/libSDL-1.2.0.dylib @executable_path/../Frameworks/libSDL-1.2.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider
 
 bundle-image: bundle
 	hdiutil create -size 32m -fs HFS+ -volname "OpenRaider" bin/tmp.dmg
