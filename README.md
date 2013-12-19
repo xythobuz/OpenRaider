@@ -8,7 +8,7 @@ This project aims to get OpenRaider running in a modern Unix.
 
 On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies:
 
-    sudo port install libsdl libsdl_ttf cmake
+    sudo port install zlib cmake libsdl libsdl_ttf
 
 You will also need an installed [X11 Server](http://xquartz.macosforge.org/trac)!
 
@@ -20,7 +20,9 @@ Also, to get Sound, get [freealut](https://github.com/vancegroup/freealut) and c
     make
     sudo make install
 
-Then, just make OpenRaider and run bin/debug/OpenRaider!
+Then, just `make debug` and run bin/debug/OpenRaider.
+
+Alternatively, run `make bundle` to create a Mac App Bundle, or `make bundle-image` to put this App Bundle in a Distributable .DMG file.
 
 ## License
 
