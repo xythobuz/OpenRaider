@@ -148,9 +148,6 @@ int TombRaider::NumAnimations()
 
 unsigned int TombRaider::NumFrames()
 {
-	if (_num_frames < 0)
-		return 0;
-
 	return _num_frames;
 }
 
@@ -257,8 +254,8 @@ int TombRaider::getNumAnimsForMoveable(int moveable_index)
 	tr2_moveable_t *next_moveable = 0x0;
 
 
-	if (moveable_index >= 0 &&
-		 moveable_index <= (int)_num_moveables || _num_moveables < 1)
+	if ((moveable_index >= 0 &&
+		 moveable_index <= (int)_num_moveables) || _num_moveables < 1)
 	{
 		moveable = &_moveables[moveable_index];
 	}
@@ -500,9 +497,9 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 	  l = strlen(filename);
 
 	  // Looking for pattern "filename.trc"
-	  if (filename[l-1] == 'c' || filename[l-1] == 'C' &&
-			filename[l-2] == 'r' || filename[l-2] == 'R' &&
-			filename[l-3] == 't' || filename[l-3] == 'T')
+	  if ((filename[l-1] == 'c' || filename[l-1] == 'C') &&
+			(filename[l-2] == 'r' || filename[l-2] == 'R') &&
+			(filename[l-3] == 't' || filename[l-3] == 'T'))
 	  {
 		  printDebug("Load", "This is really a TR5 pak");
 		  mEngineVersion = TR_VERSION_5;
@@ -3193,7 +3190,6 @@ unsigned int TombRaider::getRoomSectorCount(unsigned int roomIndex,
 
 		return (mRoomsTR5[roomIndex].numZSectors *
 				  mRoomsTR5[roomIndex].numXSectors);
-		break;
 	default:
 		// width of sector list
 		*zSectorsCount = _rooms[roomIndex].num_zsectors;
@@ -3203,7 +3199,7 @@ unsigned int TombRaider::getRoomSectorCount(unsigned int roomIndex,
 
 		count = _rooms[roomIndex].num_zsectors * _rooms[roomIndex].num_xsectors;
 
-		return ((count < 0) ? 0 : count);
+		return count;
 	}
 
 	return 0;

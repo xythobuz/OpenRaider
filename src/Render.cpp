@@ -1901,13 +1901,13 @@ void Render::drawSprite(sprite_t *sprite)
 	// So just draw normal texture, no case 2
 	case Render::modeSolid:
 		glBegin(GL_TRIANGLE_STRIP);
-		glColor3f(sprite->texel[0].st[0], sprite->texel[0].st[2], 0.5);
+		glColor3f(sprite->texel[0].st[0], sprite->texel[0].st[1], 0.5);
 		glVertex3fv(sprite->vertex[0].pos);
 
 		glColor3f(sprite->texel[1].st[0], sprite->texel[1].st[1], 0.5);
 		glVertex3fv(sprite->vertex[1].pos);
 
-		glColor3f(sprite->texel[3].st[0], sprite->texel[3].st[2], 0.5);
+		glColor3f(sprite->texel[3].st[0], sprite->texel[3].st[1], 0.5);
 		glVertex3fv(sprite->vertex[3].pos);
 
 		glColor3f(sprite->texel[2].st[0], sprite->texel[2].st[1], 0.5);

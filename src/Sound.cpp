@@ -73,9 +73,9 @@ Sound::~Sound()
 
 int Sound::init()
 {
+#ifndef __APPLE__
 	int fd;
 
-#ifndef __APPLE__
 	fd = open("/dev/dsp", O_RDWR);
 
 	if (fd < 0)
@@ -127,7 +127,7 @@ void Sound::sourceAt(int source, float pos[3])
 int Sound::add(char *filename, int *source, unsigned int flags)
 {
 #ifdef HAVE_OPENAL
-   ALsizei size, freq, bits;
+   ALsizei size, freq;
    ALenum format;
    ALvoid *data;
    ALboolean err;
@@ -198,7 +198,7 @@ int Sound::add(char *filename, int *source, unsigned int flags)
 int Sound::add(unsigned char *wav, int *source, unsigned int flags)
 {
 #ifdef HAVE_OPENAL
-   ALsizei size, freq;
+   ALsizei size = 0, freq = 0;
    ALvoid *data;
 #endif
 

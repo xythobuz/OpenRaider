@@ -210,7 +210,7 @@ void Emitter::TextureId(unsigned int particle_start,
 	unsigned int i;
 
 
-	if ((particle_start >= 0 && particle_start < _count) &&
+	if ((particle_start < _count) &&
 		 (particle_end > 0 && particle_end <= _count) &&
 		 (particle_start < particle_end))
 	{
@@ -226,7 +226,7 @@ void Emitter::Color(unsigned int particle_start, unsigned int particle_end,
 	unsigned int i;
 
 
-	if ((particle_start >= 0 && particle_start < _count) &&
+	if ((particle_start < _count) &&
 		 (particle_end > 0 && particle_end <= _count) &&
 		 (particle_start < particle_end))
 	{
@@ -242,7 +242,7 @@ void Emitter::Speed(unsigned int particle_start, unsigned int particle_end,
 	unsigned int i;
 
 
-	if ((particle_start >= 0 && particle_start < _count) &&
+	if ((particle_start < _count) &&
 		 (particle_end > 0 && particle_end <= _count) &&
 		 (particle_start < particle_end))
 	{
@@ -258,7 +258,7 @@ void Emitter::Force(unsigned int particle_start, unsigned int particle_end,
 	unsigned int i;
 
 
-	if ((particle_start >= 0 && particle_start < _count) &&
+	if ((particle_start < _count) &&
 		 (particle_end > 0 && particle_end <= _count) &&
 		 (particle_start < particle_end))
 	{

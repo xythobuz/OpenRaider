@@ -587,7 +587,7 @@ private:
 
 	unsigned int *mNextTextureId;
 
-	float mSplash;
+	// float mSplash;
 
 	int mLock;
 

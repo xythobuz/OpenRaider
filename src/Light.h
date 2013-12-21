@@ -81,11 +81,11 @@ class Light
 
  private:
 
-	unsigned int mFlags;        /* Flags for this light */
+	//unsigned int mFlags;        /* Flags for this light */
 
-	unsigned int mId;           /* Unique identifier of this light */
+	//unsigned int mId;           /* Unique identifier of this light */
 
-	char *mName;                /* Light name */
+	//char *mName;                /* Light name */
 };
 
 #endif

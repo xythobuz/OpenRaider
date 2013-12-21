@@ -1199,7 +1199,7 @@ void OpenRaider::gameFrame()
 				if (elapsed > mdl->rate)
 				{
 					if (mdl->getAnimation() == 0 &&
-						 mdl->getFrame() == 2 ||  mdl->getFrame() == 10)
+						 (mdl->getFrame() == 2 ||  mdl->getFrame() == 10))
 					{
 						if (m_flags & OpenRaider_EnableSound)
 						{

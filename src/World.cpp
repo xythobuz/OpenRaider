@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: The game world ( model )
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.12.16:
  * Mongoose - Created
@@ -66,7 +66,7 @@ int World::getRoomByLocation(int index, float x, float y, float z)
 				return index;
 		}
 	}
-	
+
 	return getRoomByLocation(x, y, z);
 }
 
@@ -80,17 +80,17 @@ int World::getRoomByLocation(float x, float y, float z)
 	for (mRooms.start(); mRooms.forward(); mRooms.next())
 	{
 		room = mRooms.current();
-	
+
 		if (!room)
 			continue;
 
 		if (x > room->bbox_min[0] && x < room->bbox_max[0] &&
 			 z > room->bbox_min[2] && z < room->bbox_max[2])
-		{			
+		{
 			// This room contains current position
 			if (y > room->bbox_min[1] && y < room->bbox_max[1])
 				return mRooms.getCurrentIndex();
-			
+
 			// This room is above or below current position
 			hop = mRooms.getCurrentIndex();
 		}
@@ -104,7 +104,7 @@ int World::getRoomByLocation(float x, float y, float z)
 }
 
 
-int World::getAdjoiningRoom(int index, 
+int World::getAdjoiningRoom(int index,
 									 float x, float y, float z,
 									 float x2, float y2, float z2)
 {
@@ -118,14 +118,14 @@ int World::getAdjoiningRoom(int index,
 
 	if (room)
 	{
-		for (room->portals.start(); room->portals.forward(); 
+		for (room->portals.start(); room->portals.forward();
 			  room->portals.next())
 		{
 			portal = room->portals.current();
-			
+
 			if (!portal)
 				continue;
-			
+
 			if (helIntersectionLineAndPolygon(intersect, p1, p2, 4,
 														 portal->vertices))
 			{
@@ -146,11 +146,11 @@ int World::getSector(int room, float x, float z, float *floor, float *ceiling)
 
 
 	r = mRooms[room];
-	
+
 	if (!r)
 		return -1;
 
-	sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) + 
+	sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) +
 				 (((int)z - (int)r->pos[2]) / 1024));
 
 	if (sector > -1)
@@ -169,7 +169,7 @@ int World::getSector(int room, float x, float z, float *floor, float *ceiling)
 
 
 int World::getSector(int room, float x, float z)
-{	
+{
 	int sector;
 	room_mesh_t *r;
 
@@ -181,7 +181,7 @@ int World::getSector(int room, float x, float z)
 		return -1;
 	}
 
-	sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) + 
+	sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) +
 				 (((int)z - (int)r->pos[2]) / 1024));
 
 	if (sector < 0)
@@ -247,7 +247,7 @@ bool World::getHeightAtPosition(int index, float x, float *y, float z)
 		return false;
 	}
 
-	// Mongoose 2002.08.14, It's 0302 - give me a fucking break -- 
+	// Mongoose 2002.08.14, It's 0302 - give me a fucking break --
 	//   this works albeit poorly  =)
 	for (i = 0; (int)i < room->num_boxes; ++i)
 	{
@@ -467,7 +467,7 @@ void World::moveEntity(entity_t *e, char movement)
 	{
 #define ADJ_ROOM_CHECK
 #ifdef ADJ_ROOM_CHECK
-		room = getAdjoiningRoom(e->room,  
+		room = getAdjoiningRoom(e->room,
 										e->pos[0],  e->pos[1], e->pos[2],
 										x, y, z);
 #else
@@ -491,7 +491,7 @@ void World::moveEntity(entity_t *e, char movement)
 	roomFlags = getRoomInfo(room);
 	sector = getSector(room, x, z, &floor, &ceiling);
 	wall = isWall(room, sector);
-	
+
 	// If you're underwater you may want to swim  =)
 	// ...if you're worldMoveType_walkNoSwim, you better hope it's shallow
 	if (roomFlags & roomFlag_underWater && e->moveType == worldMoveType_walk)
@@ -503,14 +503,14 @@ void World::moveEntity(entity_t *e, char movement)
 	if (!(roomFlags & roomFlag_underWater) && e->moveType == worldMoveType_swim)
 	{
 		e->moveType = worldMoveType_walk;
-	}	
+	}
 
-	// Mongoose 2002.09.02, Add check for room -> room transition 
+	// Mongoose 2002.09.02, Add check for room -> room transition
 	//   ( Only allow by movement between rooms by using portals )
-	if ((e->moveType == worldMoveType_noClipping ||
-		  e->moveType == worldMoveType_fly ||
-		  e->moveType == worldMoveType_swim) ||
-		 room > -1 && !wall)
+	if (((e->moveType == worldMoveType_noClipping) ||
+		  (e->moveType == worldMoveType_fly) ||
+		  (e->moveType == worldMoveType_swim)) ||
+		 ((room > -1) && (!wall)))
 	{
 		e->room = room;
 
@@ -576,7 +576,7 @@ void World::moveEntity(entity_t *e, char movement)
 			// This is to force false gravity, by making camera stay on ground
 			e->pos[1] = h; //roomFloor->bbox_min[1];
 
-			// Check for camera below terrian and correct 
+			// Check for camera below terrian and correct
 			if (e->pos[1] < h - camHeight)
 			{
 				e->pos[1] = h - camHeight;
@@ -637,7 +637,7 @@ void World::clear()
 	for (mRooms.start(); mRooms.forward(); mRooms.next())
 	{
 		room = mRooms.current();
-	
+
 		if (room)
 		{
 			room->portals.erase();
@@ -657,7 +657,7 @@ void World::clear()
 		if (!mesh)
 			continue;
 
-		for (mesh->texturedTriangles.start(); 
+		for (mesh->texturedTriangles.start();
 			  mesh->texturedTriangles.forward();
 			  mesh->texturedTriangles.next())
 		{
@@ -672,7 +672,7 @@ void World::clear()
 				delete mesh->coloredTriangles.current();
 		}
 
-		for (mesh->texturedRectangles.start(); 
+		for (mesh->texturedRectangles.start();
 			  mesh->texturedRectangles.forward();
 			  mesh->texturedRectangles.next())
 		{
@@ -704,7 +704,7 @@ void World::clear()
 	for (mSprites.start(); mSprites.forward(); mSprites.next())
 	{
 		sprite = mSprites.current();
-	
+
 		if (!sprite)
 			continue;
 
@@ -719,12 +719,12 @@ void World::clear()
 	for (mModels.start(); mModels.forward(); mModels.next())
 	{
 		model = mModels.current();
-	
+
 		if (!model)
 			continue;
 
 		// No smart pointers, so skip if deleted once  =)
-		if (!cache.SearchKey(model) == UINT_MAX)
+		if (!cache.SearchKey(model))
 		{
 			cache.Add(model);
 		}
@@ -733,7 +733,7 @@ void World::clear()
 			continue;
 		}
 
-		for (model->animation.start(); model->animation.forward(); 
+		for (model->animation.start(); model->animation.forward();
 			  model->animation.next())
 		{
 			animation  = model->animation.current();
@@ -741,7 +741,7 @@ void World::clear()
 			if (!animation)
 				continue;
 
-			for (animation->frame.start(); animation->frame.forward(); 
+			for (animation->frame.start(); animation->frame.forward();
 				  animation->frame.next())
 			{
 				boneframe = animation->frame.current();
@@ -749,20 +749,20 @@ void World::clear()
 				if (!boneframe)
 					continue;
 
-				for (boneframe->tag.start(); boneframe->tag.forward(); 
+				for (boneframe->tag.start(); boneframe->tag.forward();
 					  boneframe->tag.next())
 				{
 					tag = boneframe->tag.current();
-					
+
 					if (!tag)
 						continue;
 
 					delete tag;
-				}		
+				}
 
 				delete boneframe;
 			}
-			
+
 			delete animation;
 		}
 

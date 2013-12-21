@@ -2,7 +2,9 @@
 
 [OpenRaider](http://openraider.sourceforge.net) is an Open Source implementation of the classic Tomb Raider Game Engine. It was abandoned in 2003.
 
-This project aims to get OpenRaider running in a modern Unix.
+This project aims to get OpenRaider in a more usable state.
+
+If you just want to see OpenRaider doing something, without installing any of the dependencies needed to build OpenRaider, install [XQuartz](http://xquartz.macosforge.org/trac) (if you don't have it already) and grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
 
 ## Configuration
 
@@ -15,7 +17,7 @@ On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts]
 
     sudo port install zlib cmake libsdl libsdl_ttf
 
-You also need the  [XQuartz](http://xquartz.macosforge.org/trac) X11 Server.
+You also need the [XQuartz](http://xquartz.macosforge.org/trac) X11 Server.
 
 To get Sound, you need [freealut](https://github.com/vancegroup/freealut). Get, compile and install it like this:
 

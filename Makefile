@@ -264,7 +264,9 @@ endif
 
 #################################################################
 
-clean: clean-emacs clean-build clean-test clean-obj clean-dep
+clean: clean-small clean-dep
+
+clean-small: clean-emacs clean-build clean-test clean-obj 
 	@-rm -rf bin/OpenRaider.app
 	@-rm -rf bin/OpenRaider.dmg
 
