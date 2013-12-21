@@ -35,7 +35,7 @@ Just `make debug` and run `bin/debug/OpenRaider` for a debug build.
 
 ## Usage
 
-See the original `README.old` file. In the Main Menu, <Esc> will allow you to select a level to play.
+See the original `README.old` file. In the Main Menu, &lt;Esc&gt; will allow you to select a level to play.
 
 ## License
 
