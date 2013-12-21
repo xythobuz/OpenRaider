@@ -4,25 +4,38 @@
 
 This project aims to get OpenRaider running in a modern Unix.
 
-## Building
+## Configuration
 
-On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies:
+OpenRaider needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.
+These are stored in `~/.OpenRaider`. Running the included `setup.sh` will create/copy the necessary files and directories.
+
+## Dependencies
+
+On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 
     sudo port install zlib cmake libsdl libsdl_ttf
 
-You will also need an installed [X11 Server](http://xquartz.macosforge.org/trac)!
+You also need the  [XQuartz](http://xquartz.macosforge.org/trac) X11 Server.
 
-Also, to get Sound, get [freealut](https://github.com/vancegroup/freealut) and compile it like this:
+To get Sound, you need [freealut](https://github.com/vancegroup/freealut). Get, compile and install it like this:
 
+    git clone git@github.com:vancegroup/freealut.git
     mkdir build
     cd build
     cmake .. -DCMAKE_INSTALL_PREFIX:STRING="/opt/local" -DCMAKE_C_FLAGS:STRING="-O2"
     make
     sudo make install
 
-Then, just `make debug` and run bin/debug/OpenRaider.
+## Building
 
-Alternatively, run `make bundle` to create a Mac App Bundle, or `make bundle-image` to put this App Bundle in a Distributable .DMG file.
+Just `make debug` and run `bin/debug/OpenRaider` for a debug build.
+`make release` builds a release binary.
+`make bundle` creates a Mac App Bundle that also runs the setup script, if necessary.
+`make bundle-image` packs the App Bundle into a DMG ready for distribution.
+
+## Usage
+
+See the original `README.old` file. In the Main Menu, <Esc> will allow you to select a level to play.
 
 ## License
 
