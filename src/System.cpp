@@ -25,6 +25,7 @@
 #include <sys/types.h>
 #include <string.h>
 #include <stdarg.h>
+#include <cmath>
 
 #ifdef USING_OPENGL
 #ifdef __APPLE__
@@ -650,7 +651,13 @@ void System::resizeGL(unsigned int w, unsigned int h)
 	glLoadIdentity();
 
 	// Adjust clipping
-	gluPerspective(m_fovY, ((GLdouble)w)/((GLdouble)h), m_clipNear, m_clipFar);
+    // gluPerspective is deprecated!
+	// gluPerspective(m_fovY, ((GLdouble)w)/((GLdouble)h), m_clipNear, m_clipFar);
+    // Fix: http://stackoverflow.com/a/2417756
+    GLfloat fH = tan(float(m_fovY / 360.0f * 3.14159f)) * m_clipNear;
+    GLfloat fW = fH * ((GLdouble)w)/((GLdouble)h);
+    glFrustum(-fW, fW, -fH, fH, m_clipNear, m_clipFar);
+
 	glMatrixMode(GL_MODELVIEW);
 }
 

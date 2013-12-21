@@ -30,6 +30,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <cmath>
 
 #ifdef MEMEORY_TEST
 #   include "memeory_test.h"
@@ -289,7 +290,13 @@ void SDLSystem::resize(unsigned int width, unsigned int height)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(m_fovY, aspect, m_clipNear, m_clipFar);
+
+    // gluPerspective is deprecated!
+	// gluPerspective(m_fovY, aspect, m_clipNear, m_clipFar);
+    // fix: http://stackoverflow.com/a/2417756
+    GLfloat fH = tan(float(m_fovY / 360.0f * 3.14159f) ) * m_clipNear;
+    GLfloat fW = fH * aspect;
+    glFrustum(-fW, fW, -fH, fH, m_clipNear, m_clipFar);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
