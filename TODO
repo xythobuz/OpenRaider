@@ -1,3 +1,5 @@
+Mac Setup Script:
+- Check not only for existence of ~/.OpenRaider but for all necessary files, so the user can update.
 
  OpenRaider 
  TODO ( Updated 2003.05.17 )
