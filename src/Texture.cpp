@@ -699,6 +699,7 @@ void convertARGB32bppToRGBA32bpp(unsigned char *image,
 	}
 }
 
+GLint deprecated_gluBuild2DMipmaps(GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *data);
 
 int Texture::loadBufferSlot(unsigned char *image,
 									 unsigned int width, unsigned int height,
@@ -783,8 +784,9 @@ int Texture::loadBufferSlot(unsigned char *image,
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
 							 GL_LINEAR_MIPMAP_LINEAR);
 
-		gluBuild2DMipmaps(GL_TEXTURE_2D, bytes, width, height,
-								glcMode, GL_UNSIGNED_BYTE, image);
+		//gluBuild2DMipmaps(GL_TEXTURE_2D, bytes, width, height, glcMode, GL_UNSIGNED_BYTE, image);
+        // gluBuild2DMipmaps is deprecated. Replacement by xythobuz
+        deprecated_gluBuild2DMipmaps(GL_TEXTURE_2D, bytes, width, height, glcMode, GL_UNSIGNED_BYTE, image);
 	}
 	else
 	{
@@ -797,6 +799,15 @@ int Texture::loadBufferSlot(unsigned char *image,
 	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 	return slot;
+}
+
+
+// http://mmmovania.blogspot.de/2011/01/opengl-30-and-above-deprecated-func-and.html
+// http://www.g-truc.net/post-0256.html
+GLint deprecated_gluBuild2DMipmaps(GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *data) {
+    glTexParameteri(target, GL_GENERATE_MIPMAP, GL_TRUE);
+    glTexImage2D(target, 0, internalFormat, width, height, 0, format, type, data);
+    return 0;
 }
 
 
