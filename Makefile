@@ -115,58 +115,14 @@ auto: $(BUILD_SELECT)
 targets: $(TARGETS)
 
 bundle: release
-	mkdir -p bin/OpenRaider.app/Contents/MacOS
-	mkdir -p bin/OpenRaider.app/Contents/Resources/defaults
-	mkdir -p bin/OpenRaider.app/Contents/Frameworks
-	cp mac_dist/Info.plist bin/OpenRaider.app/Contents/Info.plist
-	cp mac_dist/openraider.icns bin/OpenRaider.app/Contents/Resources/openraider.icns
-	cp mac_dist/OpenRaider bin/OpenRaider.app/Contents/MacOS/OpenRaider
-	cp bin/release/OpenRaider bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	cp data/* bin/OpenRaider.app/Contents/Resources/defaults/
-	cp /opt/local/lib/libalut.0.1.0.dylib bin/OpenRaider.app/Contents/Frameworks/libalut.0.1.0.dylib
-	cp /opt/local/lib/libSDL_ttf-2.0.0.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL_ttf-2.0.0.dylib
-	cp /opt/local/lib/libz.1.dylib bin/OpenRaider.app/Contents/Frameworks/libz.1.dylib
-	cp /opt/local/lib/libSDL-1.2.0.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL-1.2.0.dylib
-	cp /opt/local/lib/libbz2.1.0.dylib bin/OpenRaider.app/Contents/Frameworks/libbz2.1.0.dylib
-	cp /opt/local/lib/libfreetype.6.dylib bin/OpenRaider.app/Contents/Frameworks/libfreetype.6.dylib
-	cp /opt/local/lib/libpng15.15.dylib bin/OpenRaider.app/Contents/Frameworks/libpng15.15.dylib
-	# OpenRaider-bin
-	install_name_tool -change /opt/local/lib/libalut.0.1.0.dylib @executable_path/../Frameworks/libalut.0.1.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/local/lib/libSDL_ttf-2.0.0.dylib @executable_path/../Frameworks/libSDL_ttf-2.0.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/local/lib/libz.1.dylib @executable_path/../Frameworks/libz.1.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/local/lib/libSDL-1.2.0.dylib @executable_path/../Frameworks/libSDL-1.2.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/X11/lib/libXmu.6.dylib /usr/X11/lib/libXmu.6.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/X11/lib/libXt.6.dylib /usr/X11/lib/libXt.6.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/X11/lib/libSM.6.dylib /usr/X11/lib/libSM.6.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/X11/lib/libICE.6.dylib /usr/X11/lib/libICE.6.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/X11/lib/libXext.6.dylib /usr/X11/lib/libXext.6.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/X11/lib/libX11.6.dylib /usr/X11/lib/libX11.6.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	install_name_tool -change /opt/X11/lib/libXi.6.dylib /usr/X11/lib/libXi.6.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
-	# libSDL-1.2.0.dylib
-	install_name_tool -change /opt/local/lib/libX11.6.dylib /usr/X11/lib/libX11.6.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL-1.2.0.dylib
-	install_name_tool -change /opt/local/lib/libXext.6.dylib /usr/X11/lib/libXext.6.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL-1.2.0.dylib
-	install_name_tool -change /opt/local/lib/libXrandr.2.dylib /usr/X11/lib/libXrandr.2.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL-1.2.0.dylib
-	install_name_tool -change /opt/local/lib/libXrender.1.dylib /usr/X11/lib/libXrender.1.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL-1.2.0.dylib
-	# libSDL_ttf-2.0.0.dylib
-	install_name_tool -change /opt/local/lib/libSDL-1.2.0.dylib @executable_path/../Frameworks/libSDL-1.2.0.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL_ttf-2.0.0.dylib
-	install_name_tool -change /opt/local/lib/libfreetype.6.dylib @executable_path/../Frameworks/libfreetype.6.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL_ttf-2.0.0.dylib
-	install_name_tool -change /opt/local/lib/libz.1.dylib @executable_path/../Frameworks/libz.1.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL_ttf-2.0.0.dylib
-	install_name_tool -change /opt/local/lib/libbz2.1.0.dylib @executable_path/../Frameworks/libbz2.1.0.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL_ttf-2.0.0.dylib
-	# libfreetype.6.dylib
-	install_name_tool -change /opt/local/lib/libz.1.dylib @executable_path/../Frameworks/libz.1.dylib bin/OpenRaider.app/Contents/Frameworks/libfreetype.6.dylib
-	install_name_tool -change /opt/local/lib/libbz2.1.0.dylib @executable_path/../Frameworks/libbz2.1.0.dylib bin/OpenRaider.app/Contents/Frameworks/libfreetype.6.dylib
-	install_name_tool -change /opt/local/lib/libpng15.15.dylib @executable_path/../Frameworks/libpng15.15.dylib bin/OpenRaider.app/Contents/Frameworks/libfreetype.6.dylib
-	# libpng15.15.dylib
-	install_name_tool -change /opt/local/lib/libz.1.dylib @executable_path/../Frameworks/libz.1.dylib bin/OpenRaider.app/Contents/Frameworks/libpng15.15.dylib
+	mac_dist/bundle.sh
+	mac_dist/frameworks.sh
 
 bundle-image: bundle
-	hdiutil create -size 32m -fs HFS+ -volname "OpenRaider" bin/tmp.dmg
-	hdiutil attach bin/tmp.dmg
-	cp -r bin/OpenRaider.app /Volumes/OpenRaider/OpenRaider.app
-	osascript -e 'tell application "Finder" to make alias file to POSIX file "/Applications" at POSIX file "/Volumes/OpenRaider/"'
-	hdiutil detach /Volumes/OpenRaider
-	hdiutil convert bin/tmp.dmg -format UDZO -o bin/OpenRaider.dmg
-	rm -rf bin/tmp.dmg
+	mac_dist/image.sh
+
+bundle-archive: bundle
+	mac_dist/archive.sh
 
 all: debug release prof
 
@@ -269,6 +225,7 @@ clean: clean-small clean-dep
 clean-small: clean-emacs clean-build clean-test clean-obj 
 	@-rm -rf bin/OpenRaider.app
 	@-rm -rf bin/OpenRaider.dmg
+	@-rm -rf bin/OpenRaider.zip
 
 clean-dep:
 	@-echo "Cleaning dependencies                        "
