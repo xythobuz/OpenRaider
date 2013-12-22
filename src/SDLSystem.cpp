@@ -204,7 +204,7 @@ void SDLSystem::glPrintf3d(float x, float y, float z, char *string)
 
 void SDLSystem::setGrabMouse(bool on)
 {
-	on ? SDL_WM_GrabInput(SDL_GRAB_ON) : SDL_WM_GrabInput(SDL_GRAB_OFF);
+	SDL_WM_GrabInput(on ? SDL_GRAB_ON : SDL_GRAB_OFF);
 }
 
 
@@ -491,6 +491,7 @@ void SDLSystem::runGame()
 				{
 					if (event.type == SDL_KEYDOWN)
 					{
+                        printf("Toggling console: %d!\n", mConsoleMode);
 						mConsoleMode = !mConsoleMode;
 						// Tmp hack
 						handleConsoleKeyPressEvent(mConsoleKey, 0);
@@ -501,6 +502,7 @@ void SDLSystem::runGame()
 					switch (event.type)
 					{
 					case SDL_KEYDOWN:
+                        printf("Console key press!\n");
 						handleConsoleKeyPressEvent(key, mod);
 						break;
 					default:
@@ -512,6 +514,7 @@ void SDLSystem::runGame()
 					//if (key < 255 && mKeyEvents[key] != 0)
 					key = mKeyEvents[key];
 
+                    printf("Bound key press!\n");
 					switch (event.type)
 					{
 					case SDL_KEYDOWN:
@@ -523,6 +526,7 @@ void SDLSystem::runGame()
 				}
 				else // 'Classic' key event handlers
 				{
+                    printf("Unbound key press!\n");
 					switch (event.type)
 					{
 					case SDL_KEYDOWN:
