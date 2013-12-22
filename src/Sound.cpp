@@ -24,8 +24,6 @@
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
 #include <AL/alut.h>
-// Another dirty hack to get to use OpenAL and FreeALUT on Mac OS X
-#define AL_FORMAT_WAVE_EXT 0x10002
 #else
 #   include <AL/al.h>
 #   include <AL/alc.h>
@@ -127,10 +125,10 @@ void Sound::sourceAt(int source, float pos[3])
 int Sound::add(char *filename, int *source, unsigned int flags)
 {
 #ifdef HAVE_OPENAL
-   ALsizei size, freq;
+   ALsizei size;
+   ALfloat freq;
    ALenum format;
    ALvoid *data;
-   ALboolean err;
 #endif
 
 
@@ -164,11 +162,10 @@ int Sound::add(char *filename, int *source, unsigned int flags)
 	}
 
    // err = alutLoadWAV(filename, &data, &format, &size, &bits, &freq);
-   // DEPRECATED?! Dirty solution:
-   alutLoadWAVFile(filename, &format, &data, &size, &freq);
-   err = AL_TRUE;
+   // is deprecated!
+   data = alutLoadMemoryFromFile(filename, &format, &size, &freq);
 
-   if (err == AL_FALSE)
+   if (alGetError() != AL_NO_ERROR)
 	{
 	   fprintf(stderr, "Could not load %s\n", filename);
 	   return -3;
@@ -233,8 +230,9 @@ int Sound::add(unsigned char *wav, int *source, unsigned int flags)
 		return -2;
 	}
 
-	// AL_FORMAT_WAVE_EXT
-   alBufferData(mBuffer[mNextBuffer], AL_FORMAT_WAVE_EXT, data, size, freq);
+#warning "AL_FORMAT_WAVE_EXT does not exist on Mac!"
+   // alBufferData(mBuffer[mNextBuffer], AL_FORMAT_WAVE_EXT, data, size, freq);
+   alBufferData(mBuffer[mNextBuffer], 0x10002, data, size, freq);
 
    alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
 
