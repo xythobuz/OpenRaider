@@ -116,6 +116,7 @@ targets: $(TARGETS)
 
 bundle: release
 	mac_dist/bundle.sh
+	mac_dist/plist.sh $(NAME) $(VERSION) $(BUILD_ID) > bin/OpenRaider.app/Contents/Info.plist
 	mac_dist/frameworks.sh
 
 bundle-image: bundle
