@@ -112,6 +112,9 @@ TARGETS=$(BUILDDIR)/$(NAME)
 ################################################################
 auto: $(BUILD_SELECT)
 
+run: $(BUILD_SELECT)
+	bin/$(BUILD_SELECT)/OpenRaider
+
 targets: $(TARGETS)
 
 bundle: release
