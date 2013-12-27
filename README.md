@@ -6,14 +6,17 @@ This project aims to get OpenRaider in a more usable state.
 
 If you just want to see OpenRaider doing something, without installing any of the dependencies needed to build OpenRaider, install [XQuartz](http://xquartz.macosforge.org/trac) (if you don't have it already) and grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
 
-## Documentation
-
-All included documentation was moved into the [OpenRaider Repo Wiki](https://github.com/xythobuz/OpenRaider/wiki/_pages)!
-
 ## Configuration
 
 OpenRaider needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.
 These are stored in `~/.OpenRaider`. Running the included `setup.sh` will create/copy the necessary files and directories. The Mac App Bundle will do this for you automatically.
+
+You still need to add level files in `~/.OpenRaider/paks/` and add them to `~/.OpenRaider/OpenRaider.init`.
+Dust off your old Tomb Raider CDs or grab some [custom levels](http://www.aspidetr.com/levels/yvel-woods-v1-5/) from the interwebs.
+
+## Documentation
+
+All included documentation was moved into the [OpenRaider Repo Wiki](https://github.com/xythobuz/OpenRaider/wiki/_pages)!
 
 ## Dependencies
 
