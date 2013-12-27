@@ -294,7 +294,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 	err = mString.glPrintf(mWidth - 14 * strlen(VERSION),
 								  mHeight-24*3, 0, VERSION);
 	mString.SetString(0, VERSION);
-	mString.Scale(1.0);
+	mString.Scale(0.5);
 
 	if (err)
 	{
@@ -1298,7 +1298,11 @@ void Render::drawLoadScreen()
 		glVertex3f(x - w, y - h, z);
 		glEnd();
 
-		wrap += 0.0012f;
+		// wrap += 0.0012f;
+        // The Loading Screen sat around for 25s, doing nothing.
+        // Incrementing wrap by a much bigger number speeds up the animation
+        // thus greatly reducing startup time?! -- xythobuz
+        wrap += 0.05;
 
 		if (wrap > 1.121096f)
 			mTexture.disableMultiTexture();

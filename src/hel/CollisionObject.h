@@ -2,26 +2,13 @@
 /*================================================================
  *
  * Project : libHel
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
  * Object  : CollisionObject
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments: Bounding volume class for world/vis
- *           culling/clipping/collision stuff
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- Test Defines -----------------------------------------------
- *
- * UNIT_TEST_BOUNDINGVOLUME - Builds BoundingVolume class unit test
+ * Comments: Was missing from SourceForge!
  *
  *-- History ------------------------------------------------
  *
- * 2002.11.27:
- * Mongoose - Created
+ * 2013.12.27:
+ * xythobuz - Created as stub, was missing
  ================================================================*/
 
 
@@ -37,28 +24,6 @@ class CollisionObject
 	////////////////////////////////////////////////////////////
 	// Constructors
 	////////////////////////////////////////////////////////////
-
-	CollisionObject();
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Constructs an object of CollisionObject
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.11.27:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	~CollisionObject();
-	/*------------------------------------------------------
-	 * Pre  : CollisionObject object is allocated
-	 * Post : Deconstructs an object of CollisionObject
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.11.27:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
 
 
 	////////////////////////////////////////////////////////////

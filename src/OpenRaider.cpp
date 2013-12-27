@@ -144,7 +144,7 @@ OpenRaider::~OpenRaider()
 	// Mongoose 2002.01.02, FIXME GL call to critical section,
 	//   needs mutex really
 	m_render.setMode(Render::modeDisabled);
-	sleep(1);
+	//sleep(1); // Why should we sleep here? -- xythobuz
 
 	printf("Removing World...\n");
 	gWorld.destroy();
@@ -920,7 +920,8 @@ void OpenRaider::start()
 	//gWorld.setFlag(World::fEnableHopping);
 
 	resetTicks();
-	runGame();
+
+    runGame();
 }
 
 
@@ -1102,7 +1103,7 @@ void OpenRaider::loadLevel(char *mapname)
 	// Mongoose 2002.08.16, Used to cache TR4 textures at 10% of file load
 	//   in a callback - then with other engines process them here
 	m_render.setMode(Render::modeDisabled);
-	sleep(1);
+	//sleep(1); // Why should we sleep here? -- xythobuz
 	processTextures();
 	m_render.setMode(Render::modeLoadScreen);
 	print(true, "Level textures cached\n");
@@ -1157,7 +1158,7 @@ void OpenRaider::loadLevel(char *mapname)
 	// Mongoose 2002.01.02, FIXME GL call to critical section,
 	//   needs mutex really
 	m_render.setMode(Render::modeDisabled);
-	sleep(2);
+	//sleep(2);
 
 	// Draw game, level is loaded
 	m_render.setMode(Render::modeVertexLight);

@@ -2,41 +2,21 @@
 /*================================================================
  *
  * Project : libHel
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
  * Object  : CollisionObject
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments: Bounding volume class for world/vis
- *           culling/clipping/collision stuff
+ * Comments: Was missing from SourceForge!
  *
+ *-- History ------------------------------------------------
  *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2002.11.27:
- * Mongoose - Created
- =================================================================*/
+ * 2013.12.27:
+ * xythobuz - Created as stub, was missing
+ ================================================================*/
 
 #include "CollisionObject.h"
 
-#warning CollisionObject is not yet implemented!
-#include <stdio.h>
 
 ////////////////////////////////////////////////////////////
 // Constructors
 ////////////////////////////////////////////////////////////
-
-CollisionObject::CollisionObject()
-{
-}
-
-
-CollisionObject::~CollisionObject()
-{
-}
 
 
 ////////////////////////////////////////////////////////////
@@ -44,7 +24,6 @@ CollisionObject::~CollisionObject()
 ////////////////////////////////////////////////////////////
 
 bool CollisionObject::intersectPoint(Vector3d p) {
-    printf("Unimplemented CollisionObject::intersectPoint() called!\n");
     return 0;
 }
 
