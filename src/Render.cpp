@@ -596,8 +596,6 @@ void Render::Init(int width, int height, bool fast_card)
 	glPolygonMode(GL_FRONT, GL_FILL);
 
 	glMatrixMode(GL_MODELVIEW);
-
-    printf("\nm O.o m\n");
 }
 
 

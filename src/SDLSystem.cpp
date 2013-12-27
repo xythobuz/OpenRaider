@@ -250,7 +250,7 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 	if (fullscreen)
 	{
 		flags |= SDL_FULLSCREEN;
-		SDL_ShowCursor(SDL_DISABLE);
+        SDL_ShowCursor(SDL_DISABLE);
 	}
 
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);

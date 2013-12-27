@@ -6,10 +6,14 @@ This project aims to get OpenRaider in a more usable state.
 
 If you just want to see OpenRaider doing something, without installing any of the dependencies needed to build OpenRaider, install [XQuartz](http://xquartz.macosforge.org/trac) (if you don't have it already) and grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
 
+## Documentation
+
+All included documentation was moved into the [OpenRaider Repo Wiki](https://github.com/xythobuz/OpenRaider/wiki/_pages)!
+
 ## Configuration
 
 OpenRaider needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.
-These are stored in `~/.OpenRaider`. Running the included `setup.sh` will create/copy the necessary files and directories.
+These are stored in `~/.OpenRaider`. Running the included `setup.sh` will create/copy the necessary files and directories. The Mac App Bundle will do this for you automatically.
 
 ## Dependencies
 
@@ -30,7 +34,10 @@ To get Sound, you need [freealut](https://github.com/vancegroup/freealut). Get, 
 
 ## Building
 
-Just `make debug` and run `bin/debug/OpenRaider` for a debug build.
+If you installed the dependencies using MacPorts, you'll need to have `/opt/local/bin` in your `$PATH` before you can execute make.
+If you're using Bash, the MacPorts installer should have automatically edited your configuration.
+
+Just run `make debug` and run `bin/debug/OpenRaider` for a debug build.
 `make release` builds a release binary.
 `make bundle` creates a Mac App Bundle that also runs the setup script, if necessary.
 `make bundle-image` packs the App Bundle into a DMG ready for distribution.

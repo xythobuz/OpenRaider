@@ -14,5 +14,6 @@ if [ ! -d "~/.OpenRaider" ]; then
     cp ../Resources/defaults/*.ttf ~/.OpenRaider/data
     cp ../Resources/defaults/*.tr2 ~/.OpenRaider/paks/custom
     echo "DONE"
+    osascript -e 'tell app "System Events" to display alert "Initial Configuration stored in ~/.OpenRaider\n\nView and edit OpenRaider.init to your needs..."'
 fi
 ./OpenRaider-bin

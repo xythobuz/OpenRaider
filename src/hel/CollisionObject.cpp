@@ -22,6 +22,8 @@
 
 #include "CollisionObject.h"
 
+#warning CollisionObject is not yet implemented!
+#include <stdio.h>
 
 ////////////////////////////////////////////////////////////
 // Constructors
@@ -42,6 +44,7 @@ CollisionObject::~CollisionObject()
 ////////////////////////////////////////////////////////////
 
 bool CollisionObject::intersectPoint(Vector3d p) {
+    printf("Unimplemented CollisionObject::intersectPoint() called!\n");
     return 0;
 }
 

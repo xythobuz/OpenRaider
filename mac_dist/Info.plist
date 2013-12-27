@@ -11,7 +11,7 @@
         <key>CFBundleIconFile</key>
         <string>openraider.icns</string>
         <key>CFBundleIdentifier</key>
-        <string>org.xythobuz.openraider</string>
+        <string>de.xythobuz.openraider</string>
         <key>CFBundleInfoDictionaryVersion</key>
         <string>6.0</string>
         <key>CFBundleLongVersionString</key>
@@ -29,6 +29,6 @@
         <key>CSResourcesFileMapped</key>
         <true/>
         <key>NSHumanReadableCopyright</key>
-        <string>Copyright 2013</string>
+        <string>Copyright 2001 - 2013</string>
 </dict>
 </plist>

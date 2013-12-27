@@ -93,7 +93,7 @@ void killOpenRaiderSingleton()
 	// Requires public deconstructor
     // Causes pointer-being-freed-not-allocated error!
 	//delete OpenRaider::Instance();
-#warning "We can't delete our Game Instance without a not-allocated-free error. Somethings fishy here."
+#warning "Can't delete OpenRaider::Instance() without a not-allocated-free error. Something is fishy here..."
 
 #ifdef DEBUG_MEMEORY
 	printf("\n[Mongoose MEMEORY_DEBUG]\nMemory leak table:\n");
