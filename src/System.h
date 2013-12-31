@@ -494,6 +494,8 @@ public:
 
 	unsigned int mConsoleKey;	/* Console toggle event now handled lower */
 
+    bool mFullscreen;
+
  private:
 
 	////////////////////////////////////////////////////////////

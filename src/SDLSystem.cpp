@@ -247,7 +247,8 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 
 	flags |= SDL_OPENGL;
 
-	if (fullscreen)
+    mFullscreen = fullscreen;
+	if (mFullscreen)
 	{
 		flags |= SDL_FULLSCREEN;
         SDL_ShowCursor(SDL_DISABLE);
@@ -278,6 +279,8 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 
 void SDLSystem::resize(unsigned int width, unsigned int height)
 {
+    int flags;
+
 	GLfloat aspect;
 
 
@@ -302,7 +305,11 @@ void SDLSystem::resize(unsigned int width, unsigned int height)
 	glLoadIdentity();
 
 	// Resize window
-	mWindow = SDL_SetVideoMode(width, height, 16, SDL_OPENGL);
+    flags = SDL_OPENGL;
+    if (mFullscreen)
+        flags |= SDL_FULLSCREEN;
+
+	mWindow = SDL_SetVideoMode(width, height, 16, flags);
 
 	// Resize context
 	resizeGL(width, height);
@@ -491,7 +498,6 @@ void SDLSystem::runGame()
 				{
 					if (event.type == SDL_KEYDOWN)
 					{
-                        printf("Toggling console: %d!\n", mConsoleMode);
 						mConsoleMode = !mConsoleMode;
 						// Tmp hack
 						handleConsoleKeyPressEvent(mConsoleKey, 0);
@@ -502,7 +508,6 @@ void SDLSystem::runGame()
 					switch (event.type)
 					{
 					case SDL_KEYDOWN:
-                        printf("Console key press!\n");
 						handleConsoleKeyPressEvent(key, mod);
 						break;
 					default:
@@ -514,7 +519,6 @@ void SDLSystem::runGame()
 					//if (key < 255 && mKeyEvents[key] != 0)
 					key = mKeyEvents[key];
 
-                    printf("Bound key press!\n");
 					switch (event.type)
 					{
 					case SDL_KEYDOWN:
@@ -526,7 +530,6 @@ void SDLSystem::runGame()
 				}
 				else // 'Classic' key event handlers
 				{
-                    printf("Unbound key press!\n");
 					switch (event.type)
 					{
 					case SDL_KEYDOWN:
@@ -568,8 +571,45 @@ void SDLSystem::toggleFullscreen()
 {
 	if (mWindow)
 	{
+        mFullscreen = !mFullscreen;
 		SDL_ShowCursor(SDL_DISABLE);
-		SDL_WM_ToggleFullScreen(mWindow);
+
+        // SDL_WM_ToggleFullScreen does not work on all platforms
+        // eg. Mac OS X
+		// SDL_WM_ToggleFullScreen(mWindow);
+
+        // I added a mFullscreen flag to this class. Then I modified it's
+        // resize() method to use the SDL_FULLSCREEN flag in the
+        // SetVideoMode() call based on the mFullscreen flag.
+        // Then, I modified this method to find out an available
+        // resolution for the fullscreen mode.
+        // Now you can see something when switching to Fullscreen,
+        // but it's full of graphical glitches...? I don't know...
+        // -- xythobuz 2013-12-31
+        int width, height;
+        if (mFullscreen) {
+            m_old_width = m_width;
+            m_old_height = m_height;
+            SDL_Rect **dimensions = SDL_ListModes(NULL, SDL_OPENGL | SDL_FULLSCREEN);
+            if (dimensions == NULL) {
+                printf("Can't enter fullscreen!\n");
+                mFullscreen = !mFullscreen;
+            }
+            if (dimensions != (SDL_Rect **)-1) {
+                // TODO dont just use first available resolution...
+                width = dimensions[0]->w;
+                height = dimensions[0]->h;
+            } else {
+                // No restrictions, use current resolution
+                width = m_width;
+                height = m_height;
+            }
+        }
+        if (!mFullscreen) {
+            width = m_old_width;
+            height = m_old_height;
+        }
+        resize(width, height);
 	}
 }
 

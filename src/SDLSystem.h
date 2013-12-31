@@ -220,6 +220,9 @@ class SDLSystem : public System
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
+ protected:
+    int m_old_width;
+    int m_old_height;
 
  private:
 
