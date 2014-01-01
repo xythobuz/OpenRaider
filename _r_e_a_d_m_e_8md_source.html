@@ -8,13 +8,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -73,20 +66,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('_r_e_a_d_m_e_8md.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -124,65 +103,63 @@ $(document).ready(function(){initNavTree('_r_e_a_d_m_e_8md.html','');});
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">## Documentation</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;All included documentation was moved into the [<a class="code" href="class_open_raider.html">OpenRaider</a> Repo Wiki](https:<span class="comment">//github.com/xythobuz/OpenRaider/wiki/_pages)!</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;All previously included documentation was moved into the [<a class="code" href="class_open_raider.html">OpenRaider</a> Repo Wiki](https:<span class="comment">//github.com/xythobuz/OpenRaider/wiki/_pages)!</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">## Dependencies</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;On Mac OS X 10.9 with [XCode](https:<span class="comment">//developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    sudo port install zlib cmake libsdl libsdl_ttf</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;A more or less recent [Doxygen documentation](http:<span class="comment">//xythobuz.github.io/OpenRaider/) of OpenRaider should be on the Github Pages for OpenRaider.</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">## Dependencies</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;On Mac OS X 10.9 with [XCode](https:<span class="comment">//developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;You also need the [XQuartz](http:<span class="comment">//xquartz.macosforge.org/trac) X11 Server.</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    sudo port install zlib cmake libsdl libsdl_ttf</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;To <span class="keyword">get</span> <a class="code" href="class_sound.html">Sound</a>, you need [freealut](https:<span class="comment">//github.com/vancegroup/freealut). Get, compile and install it like this:</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;You also need the [XQuartz](http:<span class="comment">//xquartz.macosforge.org/trac) X11 Server.</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    git clone git@github.com:vancegroup/freealut.git</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    mkdir build</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    cd build</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    cmake .. -DCMAKE_INSTALL_PREFIX:STRING=<span class="stringliteral">&quot;/opt/local&quot;</span> -DCMAKE_C_FLAGS:STRING=<span class="stringliteral">&quot;-O2&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    make</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    sudo make install</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">## Building</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;If you installed the dependencies <span class="keyword">using</span> MacPorts, you<span class="stringliteral">&#39;ll need to have `/opt/local/bin` in your `$PATH` before you can execute make.</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="stringliteral">If you&#39;</span>re <span class="keyword">using</span> Bash, the MacPorts installer should have automatically edited your configuration.</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;Just run `make debug` and run `bin/debug/<a class="code" href="class_open_raider.html">OpenRaider</a>` <span class="keywordflow">for</span> <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> debug build.</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;`make release` builds <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> release binary.</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;`make bundle` creates <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> Mac App Bundle that also runs the setup script, <span class="keywordflow">if</span> necessary.</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;`make bundle-image` packs the App Bundle into <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> DMG ready <span class="keywordflow">for</span> distribution.</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;## Usage</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;To <span class="keyword">get</span> <a class="code" href="class_sound.html">Sound</a>, you need [freealut](https:<span class="comment">//github.com/vancegroup/freealut). Get, compile and install it like this:</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    git clone git@github.com:vancegroup/freealut.git</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    mkdir build</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    cd build</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    cmake .. -DCMAKE_INSTALL_PREFIX:STRING=<span class="stringliteral">&quot;/opt/local&quot;</span> -DCMAKE_C_FLAGS:STRING=<span class="stringliteral">&quot;-O2&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    make</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    sudo make install</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">## Building</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;If you installed the dependencies <span class="keyword">using</span> MacPorts, you<span class="stringliteral">&#39;ll need to have `/opt/local/bin` in your `$PATH` before you can execute make.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="stringliteral">If you&#39;</span>re <span class="keyword">using</span> Bash, the MacPorts installer should have automatically edited your configuration.</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;Just run `make debug` and run `bin/debug/<a class="code" href="class_open_raider.html">OpenRaider</a>` <span class="keywordflow">for</span> <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> debug build.</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;`make release` builds <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> release binary.</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;`make bundle` creates <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> Mac App Bundle that also runs the setup script, <span class="keywordflow">if</span> necessary.</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;`make bundle-image` packs the App Bundle into <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> DMG ready <span class="keywordflow">for</span> distribution.</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;See the original `README.old` file. In the Main Menu, &amp;lt;Esc&amp;gt; will allow you to select <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> level to play.</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;## Usage</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;## License</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;See the original `README.old` file. In the Main Menu, &amp;lt;Esc&amp;gt; will allow you to select <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a> level to play.</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<a class="code" href="class_open_raider.html">OpenRaider</a> is based on code, specs, and alogrithms from:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;## License</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;+ GooseEgg/Freyja 3d Modelers by Mongoose</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;+ TR Rosetta Stone spec sheet by Anonymous</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;+ TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;All code should be GPLed, unless otherwise noted.</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<a class="code" href="class_open_raider.html">OpenRaider</a> is based on code, specs, and alogrithms from:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;+ GooseEgg/Freyja 3d Modelers by Mongoose</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;+ TR Rosetta Stone spec sheet by Anonymous</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;+ TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;2013 Housekeeping by xythobuz.</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;All code should be GPLed, unless otherwise noted.</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;2013 Housekeeping by xythobuz.</div>
 <div class="ttc" id="class_sound_html"><div class="ttname"><a href="class_sound.html">Sound</a></div><div class="ttdef"><b>Definition:</b> <a href="_sound_8h_source.html#l00043">Sound.h:43</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_ae7d18e86426895053287f7804575536b"><div class="ttname"><a href="_tomb_raider_8h.html#ae7d18e86426895053287f7804575536b">in</a></div><div class="ttdeci">float in</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l06262">TombRaider.h:6262</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_ac24cea2bfcc927fd29bc74d1086707d8"><div class="ttname"><a href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a></div><div class="ttdeci">unsigned char * data</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l06257">TombRaider.h:6257</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_aa4c2a5552e9bc49b1816ff532f558c74"><div class="ttname"><a href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a></div><div class="ttdeci">int a</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l06258">TombRaider.h:6258</a></div></div>
 <div class="ttc" id="class_open_raider_html"><div class="ttname"><a href="class_open_raider.html">OpenRaider</a></div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8h_source.html#l00080">OpenRaider.h:80</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="_r_e_a_d_m_e_8md.html">README.md</a></li>
-    <li class="footer">Generated on Tue Dec 31 2013 19:34:59 for OpenRaider by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
 </body>
 </html>
