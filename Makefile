@@ -47,13 +47,17 @@ DEBUG_OBJ=
 BASE_DEFS += -DHAVE_OPENAL
 
 ifeq ($(UNAME),Darwin)
-BASE_LIBS += -lalut
-BASE_LIBS += -framework OpenAL
+AUDIO_LIBS += -lalut
+AUDIO_LIBS += -L/opt/local/lib
+AUDIO_LIBS += -I/opt/local/include
+AUDIO_LIBS += -framework OpenAL
 BASE_LIBS += -framework OpenGL
 BASE_LIBS += -framework GLUT
 else
-BASE_LIBS += -lopenal
+AUDIO_LIBS += -lopenal
 endif
+
+BASE_LIBS += $(AUDIO_LIBS)
 
 # libferit, File transfer via HTTP/FTP/etc support
 LIBFERIT_LIB=/usr/local/lib/libferit.so
@@ -512,8 +516,11 @@ Network.test:
 Sound.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(TEST_FLAGS) -DUNIT_TEST_SOUND \
-		-DUSING_OPENAL -lopenal \
+		-DUSING_OPENAL -DHAVE_OPENAL $(AUDIO_LIBS) \
 		src/Sound.cpp -o $(BUILD_TEST_DIR)/Sound.test
+ifeq ($(UNAME),Darwin)
+	install_name_tool -change libalut.0.1.0.dylib /opt/local/lib/libalut.0.1.0.dylib $(BUILD_TEST_DIR)/Sound.test
+endif
 
 #################################################################
 

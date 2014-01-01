@@ -301,13 +301,13 @@ int main(int argc, char* argv[])
 	{
 		snd.init();
 		printf("Loading %s\n", argv[1]);
-		ret = snd.addFile(argv[1], &id, SoundFlagsNone);
+		ret = snd.addFile(argv[1], &id, snd.SoundFlagsNone);
 		printf("Load returned %i\n", ret);
 		printf("Playing %u::%s\n", id, argv[1]);
 		snd.play(id);
 
 		printf("Waiting...\n");
-		sleep(5);
+		sleep(1);
 
 		f = fopen(argv[1], "rb");
 
@@ -323,14 +323,14 @@ int main(int argc, char* argv[])
 			fclose(f);
 
 			printf("Loading buffer of %s\n", argv[1]);
-			ret = snd.addFile(buf, &id, SoundFlagsNone);
+			ret = snd.addWave(buf, &id, snd.SoundFlagsNone);
 			printf("Load returned %i\n", ret);
 			printf("Playing buffer of %u::%s\n", id, argv[1]);
 			snd.play(id);
 
 			delete [] buf;
 			printf("Waiting...\n");
-			sleep(5);
+			sleep(1);
 		}
 	}
 	else
