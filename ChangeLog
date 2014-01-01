@@ -5,12 +5,17 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140101 ]
+	* Fixed mouse grabbing in fullscreen mode. Also make mouse
+	  invisible and grab it in windowed mode
+
 	[ 20131231 ]
-	* Added bool mFullscreen to SDLSystem, tried to fix Fullscreen mode on Mac
-	  still not working correctly, but better :)
+	* Added bool mFullscreen to SDLSystem, tried to fix Fullscreen
+	  mode on Mac, still not working correctly, but better :)
 
 	[ 20131227 ]
-	* Moved included documents into GitHub Repo wiki (https://github.com/xythobuz/OpenRaider/wiki)
+	* Moved included documents into GitHub Repo wiki
+	  (https://github.com/xythobuz/OpenRaider/wiki)
 	* Reduced start up time by increasing animation speed
 
 	[ 20131221 ]
