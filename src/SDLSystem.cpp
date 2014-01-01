@@ -484,6 +484,15 @@ void SDLSystem::runGame()
 					break;
 				}
 
+#ifdef __APPLE__
+                // Handle CMD+Q to quit in all circumstances
+                if (key == 'q') {
+                    if (mod & SYS_MOD_KEY_LMETA) {
+                        shutdown(0);
+                    }
+                }
+#endif
+
 #ifdef UNICODE_SUPPORT
 				// JML: if a std key was pressed get it ascii code
 				if (!specialKey && key != 0)
