@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140102 ]
+	* Replaced the (unknown) included sample sound file
+
 	[ 20140101 ]
 	* Fixed Wavebuffer loading of Sound subsystem, as well as
 	  making the Sound Unit Test buildable on Mac.

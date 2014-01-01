@@ -53,7 +53,9 @@ See the original `README.old` file. In the Main Menu, &lt;Esc&gt; will allow you
 
 ## License
 
-The included font, Droid Sans Mono, was created by Steve Matteson and is licensed under the [Apache 2.0 License](http://www.droidfonts.com/licensing/).
+The included example Font, [Droid Sans Mono](http://www.droidfonts.com/licensing/), was created by Steve Matteson and is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
+
+The included sample WAV file is made from the [Falling Mate ringtone](http://brechler-web.de/fallingmate/) by [Plaetzchen](http://plaetzchen.cc).
 
 OpenRaider is based on code, specs, and alogrithms from:
 
@@ -63,4 +65,4 @@ OpenRaider is based on code, specs, and alogrithms from:
 
 All code should be GPLed, unless otherwise noted.
 
-2013 Housekeeping by xythobuz.
+2013 improvements & clean-up by xythobuz.
