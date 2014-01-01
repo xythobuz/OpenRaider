@@ -110,7 +110,7 @@ void Sound::sourceAt(int source, float pos[3])
 }
 
 
-// Mongoose 2002.01.04, FIXME seperate sourcing and buffering
+//! \fixme Seperate sourcing and buffering, Mongoose 2002.01.04
 int Sound::addFile(char *filename, int *source, unsigned int flags)
 {
 #ifdef HAVE_OPENAL
@@ -180,13 +180,12 @@ int Sound::addFile(char *filename, int *source, unsigned int flags)
 #endif
 }
 
-/*!
- * \todo Reimplement, not using deprecated FORMAT specifier
- */
-int Sound::addWave(unsigned char *wav, int *source, unsigned int flags)
+int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags)
 {
 #ifdef HAVE_OPENAL
-   ALsizei size = 0, freq = 0;
+   ALsizei size;
+   ALfloat freq;
+   ALenum format;
    ALvoid *data;
 #endif
 
@@ -221,9 +220,21 @@ int Sound::addWave(unsigned char *wav, int *source, unsigned int flags)
 		return -2;
 	}
 
-#warning "AL_FORMAT_WAVE_EXT does not exist on Mac!"
-   // alBufferData(mBuffer[mNextBuffer], AL_FORMAT_WAVE_EXT, data, size, freq);
-   alBufferData(mBuffer[mNextBuffer], 0x10002, data, size, freq);
+    //AL_FORMAT_WAVE_EXT does not exist on Mac!"
+    // alBufferData(mBuffer[mNextBuffer], AL_FORMAT_WAVE_EXT, data, size, freq);
+    // Idea: Fill Buffer with
+    // alutLoadMemoryFromFileImage
+    //     (const ALvoid *data, ALsizei length, ALenum *format, ALsizei *size, ALfloat *frequency)
+
+    data = alutLoadMemoryFromFileImage(wav, length, &format, &size, &freq);
+
+    if ((alGetError() != AL_NO_ERROR) || (data == NULL)) {
+	   fprintf(stderr, "Could not load wav buffer\n");
+	   return -3;
+    }
+
+
+   alBufferData(mBuffer[mNextBuffer], format, data, size, freq);
 
    alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
 
@@ -323,7 +334,7 @@ int main(int argc, char* argv[])
 			fclose(f);
 
 			printf("Loading buffer of %s\n", argv[1]);
-			ret = snd.addWave(buf, &id, snd.SoundFlagsNone);
+			ret = snd.addWave(buf, l, &id, snd.SoundFlagsNone);
 			printf("Load returned %i\n", ret);
 			printf("Playing buffer of %u::%s\n", id, argv[1]);
 			snd.play(id);

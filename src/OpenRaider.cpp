@@ -1011,7 +1011,7 @@ void OpenRaider::processPakSounds()
 
 		m_tombraider.getSoundSample(i, &riffSz, &riff);
 
-		mSound.addWave(riff, &id, mSound.SoundFlagsNone);
+		mSound.addWave(riff, riffSz, &id, mSound.SoundFlagsNone);
 
 		if (id == TR_SOUND_F_PISTOL && id > 0)
 		{

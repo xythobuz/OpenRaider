@@ -64,13 +64,12 @@ public:
     /*!
      * \brief Load wav file from buffer
      * \param wav not NULL! Is a valid waveform buffer!
+     * \param length length of wav buffer
      * \param source not NULL! Returns new source ID or -1 on error.
      * \param flags (un)set options. Use SoundFlags enum
      * \returns 0 for no error or < 0 error flag
-     *
-     * \todo not yet implemented!
      */
-    int addWave(unsigned char *wav, int *source, unsigned int flags);
+    int addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags);
 
     /*!
      * \brief Play sound source
