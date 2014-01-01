@@ -251,8 +251,10 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 	if (mFullscreen)
 	{
 		flags |= SDL_FULLSCREEN;
-        SDL_ShowCursor(SDL_DISABLE);
 	}
+
+    SDL_ShowCursor(SDL_DISABLE);
+    setGrabMouse(true); // Always grab mouse!
 
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
