@@ -1,37 +1,19 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file Sound.h
+ * \brief This is the audio manager Header
  *
- * Project : OpenRaider
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Sound
- * License : No use w/o permission (C) 2001 Mongoose
- * Comments: This is the audio manager for OpenRaider
+ * Defining UNIT_TEST_SOUND builds Sound class as a console unit test
  *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- Test Defines -----------------------------------------------
- *
- * UNIT_TEST_SOUND - Builds Sound class as a console unit test
- *
- *-- History ----------------------------------------------------
- *
- * 2002.09.13:
- * Mongoose - API follows new code style guidelines
- *
- * 2002.01.03:
- * Mongoose - Flags use added
- *
- * 2001.05.23:
- * Mongoose - Created
- ================================================================*/
+ * \author Mongoose
+ * \author xythobuz
+ */
 
 #ifndef __OPENRAIDER_MONGOOSE_SOUND_H_
 #define __OPENRAIDER_MONGOOSE_SOUND_H_
 
+/*!
+ * \brief This is the audio manager for OpenRaider
+ */
 class Sound {
 public:
 
@@ -85,6 +67,8 @@ public:
      * \param source not NULL! Returns new source ID or -1 on error.
      * \param flags (un)set options. Use SoundFlags enum
      * \returns 0 for no error or < 0 error flag
+     *
+     * \todo not yet implemented!
      */
     int addWave(unsigned char *wav, int *source, unsigned int flags);
 

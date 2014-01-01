@@ -1,23 +1,12 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file Sound.cpp
+ * \brief This is the audio manager Implementation
  *
- * Project : OpenRaider
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Sound
- * License : No use w/o permission (C) 2001 Mongoose
- * Comments: This is the audio manager for OpenRaider
+ * Defining UNIT_TEST_SOUND builds Sound class as a console unit test
  *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2001.05.23:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ * \author xythobuz
+ */
 
 #ifdef HAVE_OPENAL
 #ifdef __APPLE__
@@ -25,10 +14,10 @@
 #include <OpenAL/alc.h>
 #include <AL/alut.h>
 #else
-#   include <AL/al.h>
-#   include <AL/alc.h>
-#   include <AL/alut.h>
-#   include <AL/alext.h>
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alut.h>
+#include <AL/alext.h>
 #endif
 #endif
 
@@ -43,7 +32,7 @@
 #include "Sound.h"
 
 #ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#include "memeory_test.h"
 #endif
 
 
@@ -191,7 +180,9 @@ int Sound::addFile(char *filename, int *source, unsigned int flags)
 #endif
 }
 
-
+/*!
+ * \todo Reimplement, not using deprecated FORMAT specifier
+ */
 int Sound::addWave(unsigned char *wav, int *source, unsigned int flags)
 {
 #ifdef HAVE_OPENAL
@@ -230,8 +221,7 @@ int Sound::addWave(unsigned char *wav, int *source, unsigned int flags)
 		return -2;
 	}
 
-// This method isn't used yet...
-//#warning "AL_FORMAT_WAVE_EXT does not exist on Mac!"
+#warning "AL_FORMAT_WAVE_EXT does not exist on Mac!"
    // alBufferData(mBuffer[mNextBuffer], AL_FORMAT_WAVE_EXT, data, size, freq);
    alBufferData(mBuffer[mNextBuffer], 0x10002, data, size, freq);
 
@@ -292,6 +282,12 @@ void Sound::stop(int source)
 
 
 #ifdef UNIT_TEST_SOUND
+/*!
+ * \brief Sound Unit Test
+ * \param argc Number of arguments. Has to be > 1
+ * \param argv Argument array. argv[1] will be played as wav file
+ * \returns always zero
+ */
 int main(int argc, char* argv[])
 {
 	Sound snd;
@@ -305,7 +301,7 @@ int main(int argc, char* argv[])
 	{
 		snd.init();
 		printf("Loading %s\n", argv[1]);
-		ret = snd.add(argv[1], &id, SoundFlagsNone);
+		ret = snd.addFile(argv[1], &id, SoundFlagsNone);
 		printf("Load returned %i\n", ret);
 		printf("Playing %u::%s\n", id, argv[1]);
 		snd.play(id);
@@ -327,7 +323,7 @@ int main(int argc, char* argv[])
 			fclose(f);
 
 			printf("Loading buffer of %s\n", argv[1]);
-			ret = snd.add(buf, &id, SoundFlagsNone);
+			ret = snd.addFile(buf, &id, SoundFlagsNone);
 			printf("Load returned %i\n", ret);
 			printf("Playing buffer of %u::%s\n", id, argv[1]);
 			snd.play(id);
