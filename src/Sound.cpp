@@ -17,7 +17,6 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <AL/alut.h>
-#include <AL/alext.h>
 #endif
 #endif
 
