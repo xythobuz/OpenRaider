@@ -744,6 +744,15 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
 			toggleFullscreen();
 		}
 		break;
+
+#ifdef __APPLE__
+    // Handle CMD+Q to quit
+    case 'q':
+        if (mod & SYS_MOD_KEY_LMETA) {
+            shutdown(0);
+        }
+        break;
+#endif
 	}
 
 	////////////////////////////////////////////////////////////

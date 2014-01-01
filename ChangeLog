@@ -6,6 +6,7 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140101 ]
+	* Implemented CMD + Q shortcut on Mac to quit
 	* Added bool mFirstMouseEvent to SDLSystem used to ignore
 	  the first received mouse event, because its faulty, thanks
 	  to an SDL bug:

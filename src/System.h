@@ -62,7 +62,10 @@ typedef enum
   SYS_MOD_KEY_LCTRL  = 4,
   SYS_MOD_KEY_RCTRL  = 8,
   SYS_MOD_KEY_LALT   = 16,
-  SYS_MOD_KEY_RALT   = 32
+  SYS_MOD_KEY_RALT   = 32,
+
+  SYS_MOD_KEY_LMETA = 64,
+  SYS_MOD_KEY_RMETA = 128,
 
 } sdl_sys_mod_key_t;
 

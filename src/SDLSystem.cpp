@@ -399,6 +399,12 @@ void SDLSystem::runGame()
 				if (mkeys & KMOD_RALT)
 					mod |= SYS_MOD_KEY_RALT;
 
+                if (mkeys & KMOD_LMETA)
+					mod |= SYS_MOD_KEY_LMETA;
+
+				if (mkeys & KMOD_RMETA)
+					mod |= SYS_MOD_KEY_RMETA;
+
 				key = event.key.keysym.sym;
 				specialKey = false;
 
