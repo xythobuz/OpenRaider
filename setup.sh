@@ -1,6 +1,6 @@
 #!/bin/sh
 
-## If you modify this file, do the same changes to mac_dist/OpenRaider!!!
+## If you modify this file, do similar changes in mac_dist/OpenRaider.sh
 
 echo "Setting up OpenRaider for user $USER..."
 mkdir -p ~/.OpenRaider

@@ -3,8 +3,8 @@
 
 [Video.OpenGL]
 Driver=/usr/lib/libGL.so.1
-Width=640
-Height=480
+Width=1280
+Height=720
 FastCard=true
 FullScreen=false
 Font=~/.OpenRaider/data/test.ttf
@@ -19,8 +19,8 @@ Enable=false
 Port=27910
 
 [Input.Mouse]
-SensitivityX=2.0
-SensitivityY=0.5
+SensitivityX=1.0
+SensitivityY=1.0
 
 [OpenRaider.Engine]
 PakDir=~/.OpenRaider/paks/

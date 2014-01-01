@@ -53,6 +53,8 @@ See the original `README.old` file. In the Main Menu, &lt;Esc&gt; will allow you
 
 ## License
 
+The included font, Droid Sans Mono, was created by Steve Matteson and is licensed under the [Apache 2.0 License](http://www.droidfonts.com/licensing/).
+
 OpenRaider is based on code, specs, and alogrithms from:
 
 + GooseEgg/Freyja 3d Modelers by Mongoose
