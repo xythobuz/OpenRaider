@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -10,14 +10,14 @@
  * Comments: This is the audio manager for OpenRaider
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
  *
  *-- Test Defines -----------------------------------------------
- *           
- * UNIT_TEST_SOUND - Builds Sound class as a console unit test 
  *
- *-- History ---------------------------------------------------- 
+ * UNIT_TEST_SOUND - Builds Sound class as a console unit test
+ *
+ *-- History ----------------------------------------------------
  *
  * 2002.09.13:
  * Mongoose - API follows new code style guidelines
@@ -32,150 +32,80 @@
 #ifndef __OPENRAIDER_MONGOOSE_SOUND_H_
 #define __OPENRAIDER_MONGOOSE_SOUND_H_
 
-typedef enum
-{
-	SoundFlagsNone = 0,            /* No FX */
-	SoundFlagsLoop = 1             /* Enable looping during playback */
+class Sound {
+public:
 
-} SoundFlags;
+    typedef enum {
+        SoundFlagsNone = 0, //!< No FX
+        SoundFlagsLoop = 1  //!< Enable looping during playback
+    } SoundFlags;
 
+    /*!
+     * \brief Constructs an object of Sound
+     */
+    Sound();
 
-class Sound
-{
- public:
+    /*!
+     * \brief Deconstructs an object of Sound
+     */
+    ~Sound();
 
-  Sound();
-  /*------------------------------------------------------
-   * Pre  : 
-   * Post : Constructs an object of Sound
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.05.23: 
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Initialize sound system
+     * \returns 0 on success or < 0 error flags
+     */
+    int init();
 
-  ~Sound();
-  /*------------------------------------------------------
-   * Pre  : Sound object is allocated
-   * Post : Deconstructs an object of Sound
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.05.23: 
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Move listener and repositions them
+     * \param pos New position for listener
+     * \param angle New orientation for listener
+     */
+    void listenAt(float pos[3], float angle[3]);
 
-  int init();
-  /*------------------------------------------------------
-   * Pre  : 
-   * Post : Initializes sound system
-	*
-	*        No error returns 0 all others returns < 0
-	*        error flags
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.05.23: 
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Move sound source to position
+     * \param source valid source id
+     * \param pos new position for source
+     */
+    void sourceAt(int source, float pos[3]);
 
-  void listenAt(float pos[3], float angle[3]);
-  /*------------------------------------------------------
-   * Pre  : pos and angles are valid for listener
-   * Post : Moves listener and repositions them
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.05.23: 
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Load wav file from disk
+     * \param filename not NULL!
+     * \param source not NULL! Returns new source ID or -1 on error.
+     * \param flags (un)set options. Use SoundFlags enum
+     * \returns 0 for no error or < 0 error flag
+     */
+    int addFile(char *filename, int *source, unsigned int flags);
 
-  void sourceAt(int source, float pos[3]);
-  /*------------------------------------------------------
-   * Pre  : source and pos are valid for source
-   * Post : Moves sound source to position
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.05.23: 
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Load wav file from buffer
+     * \param wav not NULL! Is a valid waveform buffer!
+     * \param source not NULL! Returns new source ID or -1 on error.
+     * \param flags (un)set options. Use SoundFlags enum
+     * \returns 0 for no error or < 0 error flag
+     */
+    int addWave(unsigned char *wav, int *source, unsigned int flags);
 
-  int add(char *filename, int *source, unsigned int flags);
-  /*------------------------------------------------------
-   * Pre  : filename and source aren't NULL
-	*        flags (un)set options
-	*
-   * Post : Loads wav file from disk
-	*
-	*        Source returns it's sound source id, 
-	*        source id is set -1 for error
-	*
-	*        Returns either 0 for no error or < 0 error 
-	*        flag
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.05.23: 
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Play sound source
+     * \param source sound source to play
+     */
+    void play(int source);
 
-  // FIXME: Not implemented yet
-  int add(unsigned char *wav, int *source, unsigned int flags);
-  /*------------------------------------------------------
-   * Pre  : wav and source aren't NULL
-	*        wav is a valid waveform buffer
-	*
-	*        flags (un)set options
-	*
-   * Post : Loads wav file from buffer
-	*
-	*        Source returns it's sound source id, 
-	*        source id is set -1 for error
-	*
-	*        Returns either 0 for no error or < 0 error 
-	*        flag
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.05.23: 
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Stop playing sound source
+     * \param source sound source to stop
+     */
+    void stop(int source);
 
-  void play(int source);
-  /*------------------------------------------------------
-   * Pre  : 
-   * Post : Play sound source
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.05.23: 
-   * Mongoose - Created
-   ------------------------------------------------------*/
-
-  void stop(int source);
-  /*------------------------------------------------------
-   * Pre  : 
-   * Post : Stop playing sound source
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.05.23: 
-   * Mongoose - Created
-   ------------------------------------------------------*/
-
- private:
-
-  bool mInit;                    /* Guard to ensure ausio system is active */
-
-  unsigned int mBuffer[256];     /* Audio buffer id list */
-
-  unsigned int mSource[256];     /* Audio source id list */
-
-  unsigned int mNextBuffer;      /* Audio buffer id cursor */
-
-  unsigned int mNextSource;      /* Audio source id cursor */
+private:
+    bool mInit;                    //!< Guard to ensure ausio system is active
+    unsigned int mBuffer[256];     //!< Audio buffer id list
+    unsigned int mSource[256];     //!< Audio source id list
+    unsigned int mNextBuffer;      //!< Audio buffer id cursor
+    unsigned int mNextSource;      //!< Audio source id cursor
 };
 
 #endif

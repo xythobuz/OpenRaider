@@ -966,7 +966,7 @@ void OpenRaider::initSound()
 		snprintf(filename, 126, "%s%s", m_audioDir, mMusicList[0]);
 		filename[127] = 0;
 
-		if (!mSound.add(filename, &id, SoundFlagsLoop))
+		if (!mSound.addFile(filename, &id, mSound.SoundFlagsLoop))
 		{
 			mSound.play(id);
 
@@ -977,7 +977,7 @@ void OpenRaider::initSound()
 
 	//snprintf(filename, 126, "%s%s", m_homeDir, "sample.wav");
 	//filename[127] = 0;
-	//mSound.add(filename, &m_testSFX, SoundFlagsNone);
+	//mSound.addFile(filename, &m_testSFX, mSound.SoundFlagsNone);
 
 	printf(".");
 	fflush(stdout);
@@ -1021,7 +1021,7 @@ void OpenRaider::processPakSounds()
 
 		m_tombraider.getSoundSample(i, &riffSz, &riff);
 
-		mSound.add(riff, &id, SoundFlagsNone);
+		mSound.addWave(riff, &id, mSound.SoundFlagsNone);
 
 		if (id == TR_SOUND_F_PISTOL && id > 0)
 		{

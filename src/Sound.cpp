@@ -122,7 +122,7 @@ void Sound::sourceAt(int source, float pos[3])
 
 
 // Mongoose 2002.01.04, FIXME seperate sourcing and buffering
-int Sound::add(char *filename, int *source, unsigned int flags)
+int Sound::addFile(char *filename, int *source, unsigned int flags)
 {
 #ifdef HAVE_OPENAL
    ALsizei size;
@@ -192,7 +192,7 @@ int Sound::add(char *filename, int *source, unsigned int flags)
 }
 
 
-int Sound::add(unsigned char *wav, int *source, unsigned int flags)
+int Sound::addWave(unsigned char *wav, int *source, unsigned int flags)
 {
 #ifdef HAVE_OPENAL
    ALsizei size = 0, freq = 0;
@@ -230,7 +230,8 @@ int Sound::add(unsigned char *wav, int *source, unsigned int flags)
 		return -2;
 	}
 
-#warning "AL_FORMAT_WAVE_EXT does not exist on Mac!"
+// This method isn't used yet...
+//#warning "AL_FORMAT_WAVE_EXT does not exist on Mac!"
    // alBufferData(mBuffer[mNextBuffer], AL_FORMAT_WAVE_EXT, data, size, freq);
    alBufferData(mBuffer[mNextBuffer], 0x10002, data, size, freq);
 
