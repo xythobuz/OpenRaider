@@ -6,6 +6,10 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140101 ]
+	* Added bool mFirstMouseEvent to SDLSystem used to ignore
+	  the first received mouse event, because its faulty, thanks
+	  to an SDL bug:
+	  http://gamedev.stackexchange.com/questions/33519/trap-mouse-in-sdl#comment56642_33554
 	* Fixed incredibly slow mouse/camera movements
 	* Fixed mouse grabbing in fullscreen mode. Also make mouse
 	  invisible and grab it in windowed mode

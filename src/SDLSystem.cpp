@@ -130,6 +130,7 @@ SDLSystem::SDLSystem() : System()
 	mWindow = 0x0;
 	gWidth = &m_width;
 	gHeight = &m_height;
+    mFirstMouseEvent = false;
 }
 
 
@@ -340,7 +341,11 @@ void SDLSystem::runGame()
 				break;
 			case SDL_MOUSEMOTION:
 				// Wrap motion
-				handleMouseMotionEvent(event.motion.xrel/2, -event.motion.yrel/2);
+                if (!mFirstMouseEvent) {
+                    mFirstMouseEvent = true;
+                } else {
+                    handleMouseMotionEvent(event.motion.xrel/2, event.motion.yrel/2);
+                }
 				break;
 			case SDL_MOUSEBUTTONDOWN:
 			case SDL_MOUSEBUTTONUP:
