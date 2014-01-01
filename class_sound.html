@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -72,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -84,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_sound-members.html">List of all members</a>  </div>
@@ -92,46 +94,94 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>This is the audio manager for <a class="el" href="class_open_raider.html">OpenRaider</a>.  
+ <a href="class_sound.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_sound_8h_source.html">Sound.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a6ffdae62cb2dc7589c0ec12bd4846eee"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eee">SoundFlags</a> { <a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eeea638d6e4330149070cc5f051558475205">SoundFlagsNone</a> = 0, 
+<a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eeea324a2e68682c8aa0b21bbcbf02630dca">SoundFlagsLoop</a> = 1
+ }</td></tr>
+<tr class="separator:a6ffdae62cb2dc7589c0ec12bd4846eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a539c205cdf06fe2c621fd77c37bcfac9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a539c205cdf06fe2c621fd77c37bcfac9">Sound</a> ()</td></tr>
+<tr class="memdesc:a539c205cdf06fe2c621fd77c37bcfac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an object of <a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a>.  <a href="#a539c205cdf06fe2c621fd77c37bcfac9">More...</a><br/></td></tr>
 <tr class="separator:a539c205cdf06fe2c621fd77c37bcfac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0907389078bf740be2a5763366ad3376"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a0907389078bf740be2a5763366ad3376">~Sound</a> ()</td></tr>
+<tr class="memdesc:a0907389078bf740be2a5763366ad3376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a>.  <a href="#a0907389078bf740be2a5763366ad3376">More...</a><br/></td></tr>
 <tr class="separator:a0907389078bf740be2a5763366ad3376"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ac0d7e6e2df583764ebfe0e3c0cbe34"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a9ac0d7e6e2df583764ebfe0e3c0cbe34">init</a> ()</td></tr>
+<tr class="memdesc:a9ac0d7e6e2df583764ebfe0e3c0cbe34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize sound system.  <a href="#a9ac0d7e6e2df583764ebfe0e3c0cbe34">More...</a><br/></td></tr>
 <tr class="separator:a9ac0d7e6e2df583764ebfe0e3c0cbe34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a333d11f2f3edca7c96e1b05de407df70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a333d11f2f3edca7c96e1b05de407df70">listenAt</a> (float <a class="el" href="_tomb_raider_8h.html#a31b8c57eea45694ee2ee7fda37c43cd8">pos</a>[3], float <a class="el" href="_tomb_raider_8h.html#a63177970cacb40efba67ce501ea89210">angle</a>[3])</td></tr>
+<tr class="memdesc:a333d11f2f3edca7c96e1b05de407df70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move listener and repositions them.  <a href="#a333d11f2f3edca7c96e1b05de407df70">More...</a><br/></td></tr>
 <tr class="separator:a333d11f2f3edca7c96e1b05de407df70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56fc4197a3238d811b1b739abb395a06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a56fc4197a3238d811b1b739abb395a06">sourceAt</a> (int source, float <a class="el" href="_tomb_raider_8h.html#a31b8c57eea45694ee2ee7fda37c43cd8">pos</a>[3])</td></tr>
+<tr class="memdesc:a56fc4197a3238d811b1b739abb395a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move sound source to position.  <a href="#a56fc4197a3238d811b1b739abb395a06">More...</a><br/></td></tr>
 <tr class="separator:a56fc4197a3238d811b1b739abb395a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ee64329bec022a252364869523e73c1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a8ee64329bec022a252364869523e73c1">add</a> (char *filename, int *source, unsigned int <a class="el" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a>)</td></tr>
-<tr class="separator:a8ee64329bec022a252364869523e73c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a007f341bc667d6285e896d34edc40b1f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a007f341bc667d6285e896d34edc40b1f">add</a> (unsigned char *wav, int *source, unsigned int <a class="el" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a>)</td></tr>
-<tr class="separator:a007f341bc667d6285e896d34edc40b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13b54abb4d28660e06b507799aaffd4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a13b54abb4d28660e06b507799aaffd4e">addFile</a> (char *filename, int *source, unsigned int <a class="el" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a>)</td></tr>
+<tr class="memdesc:a13b54abb4d28660e06b507799aaffd4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load wav file from disk.  <a href="#a13b54abb4d28660e06b507799aaffd4e">More...</a><br/></td></tr>
+<tr class="separator:a13b54abb4d28660e06b507799aaffd4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a912a44fdc59b1b115a3b68615c4086e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a912a44fdc59b1b115a3b68615c4086e8">addWave</a> (unsigned char *wav, int *source, unsigned int <a class="el" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a>)</td></tr>
+<tr class="memdesc:a912a44fdc59b1b115a3b68615c4086e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load wav file from buffer.  <a href="#a912a44fdc59b1b115a3b68615c4086e8">More...</a><br/></td></tr>
+<tr class="separator:a912a44fdc59b1b115a3b68615c4086e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec9ee494c3029f675f0d8e6ab3ebdfc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#aec9ee494c3029f675f0d8e6ab3ebdfc1">play</a> (int source)</td></tr>
+<tr class="memdesc:aec9ee494c3029f675f0d8e6ab3ebdfc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Play sound source.  <a href="#aec9ee494c3029f675f0d8e6ab3ebdfc1">More...</a><br/></td></tr>
 <tr class="separator:aec9ee494c3029f675f0d8e6ab3ebdfc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46c9dd362e76a684a2d814bcdb37b358"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a46c9dd362e76a684a2d814bcdb37b358">stop</a> (int source)</td></tr>
+<tr class="memdesc:a46c9dd362e76a684a2d814bcdb37b358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop playing sound source.  <a href="#a46c9dd362e76a684a2d814bcdb37b358">More...</a><br/></td></tr>
 <tr class="separator:a46c9dd362e76a684a2d814bcdb37b358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a59c303b2f626e069533505ebd9380aa4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a59c303b2f626e069533505ebd9380aa4">mInit</a></td></tr>
+<tr class="memdesc:a59c303b2f626e069533505ebd9380aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guard to ensure ausio system is active.  <a href="#a59c303b2f626e069533505ebd9380aa4">More...</a><br/></td></tr>
 <tr class="separator:a59c303b2f626e069533505ebd9380aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66de2856a0bfc14bfb79e2992cf3c51e"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a66de2856a0bfc14bfb79e2992cf3c51e">mBuffer</a> [256]</td></tr>
+<tr class="memdesc:a66de2856a0bfc14bfb79e2992cf3c51e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio buffer id list.  <a href="#a66de2856a0bfc14bfb79e2992cf3c51e">More...</a><br/></td></tr>
 <tr class="separator:a66de2856a0bfc14bfb79e2992cf3c51e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28d9901d7620fec01b4947fa54de9fd9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a28d9901d7620fec01b4947fa54de9fd9">mSource</a> [256]</td></tr>
+<tr class="memdesc:a28d9901d7620fec01b4947fa54de9fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio source id list.  <a href="#a28d9901d7620fec01b4947fa54de9fd9">More...</a><br/></td></tr>
 <tr class="separator:a28d9901d7620fec01b4947fa54de9fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45eeb6e3a80218f23e52d5c87d6b4263"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a45eeb6e3a80218f23e52d5c87d6b4263">mNextBuffer</a></td></tr>
+<tr class="memdesc:a45eeb6e3a80218f23e52d5c87d6b4263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio buffer id cursor.  <a href="#a45eeb6e3a80218f23e52d5c87d6b4263">More...</a><br/></td></tr>
 <tr class="separator:a45eeb6e3a80218f23e52d5c87d6b4263"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2756a114f371ab67b4a9af8237bf7f9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#aa2756a114f371ab67b4a9af8237bf7f9">mNextSource</a></td></tr>
+<tr class="memdesc:aa2756a114f371ab67b4a9af8237bf7f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio source id cursor.  <a href="#aa2756a114f371ab67b4a9af8237bf7f9">More...</a><br/></td></tr>
 <tr class="separator:aa2756a114f371ab67b4a9af8237bf7f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00043">43</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<div class="textblock"><p>This is the audio manager for <a class="el" href="class_open_raider.html">OpenRaider</a>. </p>
+
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00017">17</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a6ffdae62cb2dc7589c0ec12bd4846eee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eee">Sound::SoundFlags</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a6ffdae62cb2dc7589c0ec12bd4846eeea638d6e4330149070cc5f051558475205"></a>SoundFlagsNone</em>&nbsp;</td><td class="fielddoc">
+<p>No FX. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a6ffdae62cb2dc7589c0ec12bd4846eeea324a2e68682c8aa0b21bbcbf02630dca"></a>SoundFlagsLoop</em>&nbsp;</td><td class="fielddoc">
+<p>Enable looping during playback. </p>
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00020">20</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a539c205cdf06fe2c621fd77c37bcfac9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -145,7 +195,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00051">51</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Constructs an object of <a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a>. </p>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00040">40</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -162,17 +214,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00061">61</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Deconstructs an object of <a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a>. </p>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00050">50</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a8ee64329bec022a252364869523e73c1"></a>
+<a class="anchor" id="a13b54abb4d28660e06b507799aaffd4e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Sound::add </td>
+          <td class="memname">int Sound::addFile </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>filename</em>, </td>
@@ -197,16 +251,27 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00125">125</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Load wav file from disk. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>not NULL! </td></tr>
+    <tr><td class="paramname">source</td><td>not NULL! Returns new source ID or -1 on error. </td></tr>
+    <tr><td class="paramname">flags</td><td>(un)set options. Use SoundFlags enum </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag </dd></dl>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00114">114</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a007f341bc667d6285e896d34edc40b1f"></a>
+<a class="anchor" id="a912a44fdc59b1b115a3b68615c4086e8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Sound::add </td>
+          <td class="memname">int Sound::addWave </td>
           <td>(</td>
           <td class="paramtype">unsigned char *&#160;</td>
           <td class="paramname"><em>wav</em>, </td>
@@ -231,7 +296,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00195">195</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Load wav file from buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wav</td><td>not NULL! Is a valid waveform buffer! </td></tr>
+    <tr><td class="paramname">source</td><td>not NULL! Returns new source ID or -1 on error. </td></tr>
+    <tr><td class="paramname">flags</td><td>(un)set options. Use SoundFlags enum </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>not yet implemented! </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Reimplement, not using deprecated FORMAT specifier </dd></dl>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00186">186</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -248,7 +326,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00072">72</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Initialize sound system. </p>
+<dl class="section return"><dt>Returns</dt><dd>0 on success or &lt; 0 error flags </dd></dl>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00061">61</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -276,7 +357,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00101">101</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Move listener and repositions them. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>New position for listener </td></tr>
+    <tr><td class="paramname">angle</td><td>New orientation for listener </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00090">90</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -294,7 +384,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00256">256</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Play sound source. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>sound source to play </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00247">247</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -322,7 +420,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00113">113</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Move sound source to position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>valid source id </td></tr>
+    <tr><td class="paramname">pos</td><td>new position for source </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00102">102</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -340,7 +447,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00276">276</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Stop playing sound source. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>sound source to stop </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00267">267</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,7 +478,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00172">172</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Audio buffer id list. </p>
+
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00089">89</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -385,7 +502,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00170">170</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Guard to ensure ausio system is active. </p>
+
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00088">88</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -407,7 +526,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00176">176</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Audio buffer id cursor. </p>
+
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00091">91</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -429,7 +550,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00178">178</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Audio source id cursor. </p>
+
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00092">92</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -451,7 +574,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00174">174</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Audio source id list. </p>
+
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00090">90</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>

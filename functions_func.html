@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,7 +111,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -126,18 +127,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>add()
 : <a class="el" href="class_quaternion.html#af187178f089437852ea37d5e1e25012e">Quaternion</a>
 , <a class="el" href="class_vector.html#a7b2acd4f170cf55e5366a689f5844fc4">Vector&lt; Object &gt;</a>
-, <a class="el" href="class_sound.html#a007f341bc667d6285e896d34edc40b1f">Sound</a>
-</li>
-<li>Add()
-: <a class="el" href="class_map.html#a78e6a397b04b914a5a855decfb9cab5e">Map&lt; K, D &gt;</a>
-, <a class="el" href="class_list.html#ac001996b229308e379db407f588c2fce">List&lt; T &gt;</a>
-</li>
-<li>add()
-: <a class="el" href="class_sound.html#a8ee64329bec022a252364869523e73c1">Sound</a>
 </li>
 <li>Add()
 : <a class="el" href="class_list.html#a3b9167532f0fd446b5e9e079a59c34ea">List&lt; T &gt;</a>
 , <a class="el" href="class_map.html#a8ba0be09be59bbdad1d764084323081f">Map&lt; K, D &gt;</a>
+, <a class="el" href="class_list.html#ac001996b229308e379db407f588c2fce">List&lt; T &gt;</a>
+, <a class="el" href="class_map.html#a78e6a397b04b914a5a855decfb9cab5e">Map&lt; K, D &gt;</a>
 </li>
 <li>addAnim()
 : <a class="el" href="class_md3_anim_model.html#a8e4741d23a4be7e2a24dfccc89069d05">Md3AnimModel</a>
@@ -147,6 +142,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>addEntity()
 : <a class="el" href="class_world.html#afa77419fadc10a5adb56df012271c1ee">World</a>
+</li>
+<li>addFile()
+: <a class="el" href="class_sound.html#a13b54abb4d28660e06b507799aaffd4e">Sound</a>
 </li>
 <li>addMesh()
 : <a class="el" href="class_world.html#a07480a8394304f7dbd292db8b5787760">World</a>
@@ -163,6 +161,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>addSprite()
 : <a class="el" href="class_world.html#a56290e115ce1ac65273712a4b07ca4ed">World</a>
+</li>
+<li>addWave()
+: <a class="el" href="class_sound.html#a912a44fdc59b1b115a3b68615c4086e8">Sound</a>
 </li>
 <li>adjustTexel()
 : <a class="el" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">TombRaider</a>

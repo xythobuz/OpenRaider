@@ -26,7 +26,7 @@ var searchData=
   ['setdata',['SetData',['../class_tree_node.html#aff443a6030790a5f37e006feb605b93e',1,'TreeNode']]],
   ['setdebug',['setDebug',['../class_md3.html#a1413e3ed679deb86141094f2f3448524',1,'Md3::setDebug()'],['../class_md3_anim_model.html#a97e0954e0a72d31ab1d97926f1f5eb69',1,'Md3AnimModel::setDebug()'],['../class_network.html#a78aff9c89b833b74b92829e7d6250a66',1,'Network::setDebug()'],['../class_tomb_raider.html#a104b6b4f075e4ed897055a6a500334d7',1,'TombRaider::setDebug()']]],
   ['setdrivergl',['setDriverGL',['../class_system.html#ac9e1cbe8dabee382c71db905182626d4',1,'System']]],
-  ['seterror',['setError',['../class_vector.html#af9476ae271b9b7260f648801abeeae0f',1,'Vector::setError()'],['../class_map.html#a8dec1252811ac8fb56345b95872124b0',1,'Map::SetError()']]],
+  ['seterror',['SetError',['../class_map.html#a8dec1252811ac8fb56345b95872124b0',1,'Map::SetError()'],['../class_vector.html#af9476ae271b9b7260f648801abeeae0f',1,'Vector::setError()']]],
   ['setfastcardperformance',['setFastCardPerformance',['../class_system.html#a4bfd2a89ff9e971ece5e88087cd3af24',1,'System']]],
   ['setflag',['setFlag',['../class_md3_anim_model.html#ac9bbbd49eed169aec2c249f1c63ffd21',1,'Md3AnimModel::setFlag()'],['../class_texture.html#a305ac8ed2401d8282f132a11c332a2a1',1,'Texture::setFlag()'],['../class_world.html#a6fa83a895e170f78e2f3a677a748bf42',1,'World::setFlag()']]],
   ['setflags',['setFlags',['../class_render.html#afd402df2d4eb19b0abdb66690f1b3f68',1,'Render']]],

@@ -48,7 +48,7 @@ var searchData=
   ['restoreredblackafterinsert',['RestoreRedBlackAfterInsert',['../class_tree.html#a55354d9c0d8f0b9b79bf24d00fb5d6ec',1,'Tree']]],
   ['restoreredblackafterremove',['RestoreRedBlackAfterRemove',['../class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107',1,'Tree']]],
   ['rgb',['RGB',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496af7d1af8e5f3b864a48c081ca85112240',1,'Texture']]],
-  ['rgba',['rgba',['../structcolor__s.html#a3393d864dde7f89a66db1754322989b3',1,'color_s::rgba()'],['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496a6a2e558c55ef02327963bae8c0938256',1,'Texture::RGBA()']]],
+  ['rgba',['RGBA',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496a6a2e558c55ef02327963bae8c0938256',1,'Texture::RGBA()'],['../structcolor__s.html#a3393d864dde7f89a66db1754322989b3',1,'color_s::rgba()']]],
   ['right',['right',['../structrbtree__s.html#a7356a3a13cd51d22e8732885536863f2',1,'rbtree_s']]],
   ['right_5fside',['right_side',['../structtr2__sprite__texture__s.html#a9a3561fa50caa2f9438108f90e077eff',1,'tr2_sprite_texture_s::right_side()'],['../_tomb_raider_8h.html#a85b36afd2fad1e36e6cebccfda8f0588',1,'right_side():&#160;TombRaider.h']]],
   ['rightside',['rightSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa13d7562aae131d95dd43be32c9c3db5a',1,'ViewVolume']]],
