@@ -10,7 +10,7 @@ var searchData=
   ['addroom',['addRoom',['../class_render.html#ae351d5faf0ba22ea2017b6cc343c4971',1,'Render::addRoom()'],['../class_world.html#acc7c158cc8dcfca85ae849ebd43a83b2',1,'World::addRoom()']]],
   ['addskeletalmodel',['addSkeletalModel',['../class_render.html#a5b33d805bff1cd715b1eed7b73eb94ab',1,'Render']]],
   ['addsprite',['addSprite',['../class_world.html#a56290e115ce1ac65273712a4b07ca4ed',1,'World']]],
-  ['addwave',['addWave',['../class_sound.html#a912a44fdc59b1b115a3b68615c4086e8',1,'Sound']]],
+  ['addwave',['addWave',['../class_sound.html#aecb014051cbedd55b0a76ece2e7b011b',1,'Sound']]],
   ['adjusttexel',['adjustTexel',['../class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83',1,'TombRaider']]],
   ['allocatecolors',['allocateColors',['../class_open_g_l_mesh.html#a62a687051244faa25b3e1e33fe99b48d',1,'OpenGLMesh']]],
   ['allocatenormals',['allocateNormals',['../class_open_g_l_mesh.html#a8d6438d560ff67c0ecd505aba265706a',1,'OpenGLMesh']]],

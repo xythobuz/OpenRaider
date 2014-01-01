@@ -19,7 +19,7 @@ var searchData=
   ['addroom',['addRoom',['../class_render.html#ae351d5faf0ba22ea2017b6cc343c4971',1,'Render::addRoom()'],['../class_world.html#acc7c158cc8dcfca85ae849ebd43a83b2',1,'World::addRoom()']]],
   ['addskeletalmodel',['addSkeletalModel',['../class_render.html#a5b33d805bff1cd715b1eed7b73eb94ab',1,'Render']]],
   ['addsprite',['addSprite',['../class_world.html#a56290e115ce1ac65273712a4b07ca4ed',1,'World']]],
-  ['addwave',['addWave',['../class_sound.html#a912a44fdc59b1b115a3b68615c4086e8',1,'Sound']]],
+  ['addwave',['addWave',['../class_sound.html#aecb014051cbedd55b0a76ece2e7b011b',1,'Sound']]],
   ['adj_5froom_5fcheck',['ADJ_ROOM_CHECK',['../_world_8cpp.html#a92af581958e424066fec088609f58cb2',1,'World.cpp']]],
   ['adjacentrooms',['adjacentRooms',['../structroom__mesh__s.html#a3a02b185a57d061bac3162d618365a6e',1,'room_mesh_s']]],
   ['adjoining_5froom',['adjoining_room',['../structtr2__room__portal__s.html#aec7678dc2b643141fa9d2a6f0b64c823',1,'tr2_room_portal_s::adjoining_room()'],['../structportal__s.html#a8706638b7348c650526836d2d6a88052',1,'portal_s::adjoining_room()'],['../_tomb_raider_8h.html#a80203cfbb71feedb84bae16eaed40199',1,'adjoining_room():&#160;TombRaider.h']]],

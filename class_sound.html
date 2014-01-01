@@ -127,9 +127,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a13b54abb4d28660e06b507799aaffd4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a13b54abb4d28660e06b507799aaffd4e">addFile</a> (char *filename, int *source, unsigned int <a class="el" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a>)</td></tr>
 <tr class="memdesc:a13b54abb4d28660e06b507799aaffd4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load wav file from disk.  <a href="#a13b54abb4d28660e06b507799aaffd4e">More...</a><br/></td></tr>
 <tr class="separator:a13b54abb4d28660e06b507799aaffd4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a912a44fdc59b1b115a3b68615c4086e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a912a44fdc59b1b115a3b68615c4086e8">addWave</a> (unsigned char *wav, int *source, unsigned int <a class="el" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a>)</td></tr>
-<tr class="memdesc:a912a44fdc59b1b115a3b68615c4086e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load wav file from buffer.  <a href="#a912a44fdc59b1b115a3b68615c4086e8">More...</a><br/></td></tr>
-<tr class="separator:a912a44fdc59b1b115a3b68615c4086e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb014051cbedd55b0a76ece2e7b011b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#aecb014051cbedd55b0a76ece2e7b011b">addWave</a> (unsigned char *wav, unsigned int <a class="el" href="_tomb_raider_8h.html#a6150639f5295064e97e299a9206d16b1">length</a>, int *source, unsigned int <a class="el" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a>)</td></tr>
+<tr class="memdesc:aecb014051cbedd55b0a76ece2e7b011b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load wav file from buffer.  <a href="#aecb014051cbedd55b0a76ece2e7b011b">More...</a><br/></td></tr>
+<tr class="separator:aecb014051cbedd55b0a76ece2e7b011b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec9ee494c3029f675f0d8e6ab3ebdfc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#aec9ee494c3029f675f0d8e6ab3ebdfc1">play</a> (int source)</td></tr>
 <tr class="memdesc:aec9ee494c3029f675f0d8e6ab3ebdfc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Play sound source.  <a href="#aec9ee494c3029f675f0d8e6ab3ebdfc1">More...</a><br/></td></tr>
 <tr class="separator:aec9ee494c3029f675f0d8e6ab3ebdfc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,13 +261,14 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag</dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000003">FIXME:</a></b></dt><dd>Seperate sourcing and buffering, Mongoose 2002.01.04 </dd></dl>
 
 <p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00114">114</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a912a44fdc59b1b115a3b68615c4086e8"></a>
+<a class="anchor" id="aecb014051cbedd55b0a76ece2e7b011b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -276,6 +277,12 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">unsigned char *&#160;</td>
           <td class="paramname"><em>wav</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -301,16 +308,15 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wav</td><td>not NULL! Is a valid waveform buffer! </td></tr>
+    <tr><td class="paramname">length</td><td>length of wav buffer </td></tr>
     <tr><td class="paramname">source</td><td>not NULL! Returns new source ID or -1 on error. </td></tr>
     <tr><td class="paramname">flags</td><td>(un)set options. Use SoundFlags enum </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>not yet implemented! </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Reimplement, not using deprecated FORMAT specifier </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag </dd></dl>
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00186">186</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00183">183</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -393,7 +399,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00247">247</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00258">258</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -456,7 +462,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00267">267</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00278">278</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -481,7 +487,7 @@ Private Attributes</h2></td></tr>
 
 <p>Audio buffer id list. </p>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00089">89</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00088">88</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -505,7 +511,7 @@ Private Attributes</h2></td></tr>
 
 <p>Guard to ensure ausio system is active. </p>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00088">88</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00087">87</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -529,7 +535,7 @@ Private Attributes</h2></td></tr>
 
 <p>Audio buffer id cursor. </p>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00091">91</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00090">90</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -553,7 +559,7 @@ Private Attributes</h2></td></tr>
 
 <p>Audio source id cursor. </p>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00092">92</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00091">91</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -577,7 +583,7 @@ Private Attributes</h2></td></tr>
 
 <p>Audio source id list. </p>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00090">90</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00089">89</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
