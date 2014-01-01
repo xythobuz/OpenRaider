@@ -1,23 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
- * 
- * Project : Freyja
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Particle
- * License : No use w/o permission (C)2001Mongoose
- * Comments: Partcle system's atomic base
+/*!
+ * \file Particle.cpp
+ * \brief Particle system base implementation
  *
- *
- *           This file was generated using Mongoose's C++ 
- *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
- *
- * 2001.08.13:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -26,7 +12,6 @@
 #ifdef DEBUG_MEMEORY
 #   include "memeory_test.h"
 #endif
-
 
 
 Particle::Particle()
@@ -91,20 +76,20 @@ void Particle::Reset()
 	_blend = (float)(rand() % 100) / 1000.0 + 0.003;
 
 	_pos[0] = _pos[1] = _pos[2] = 0.0;
-	
+
 	_dir[0] = (float)((rand() % 50) - 26.0) * 10.0;
 	_dir[1] = (float)((rand() % 50) - 25.0) * 10.0;
 	_dir[2] = _dir[1];
-	
+
 	_force[0] = 0.0;
 	_force[1] = -0.8;
 	_force[2] = 0.0;
 #else
-	// FIXME: _blend prob should have nonstatic range
+	//! \fixme _blend prob should have nonstatic range
 	_blend = (float)(0.003 + (0.1 * rand() / (RAND_MAX + 1.0))); // high order
-	//_blend = (float)(rand() % 100) / 1000.0 + 0.003; 
+	//_blend = (float)(rand() % 100) / 1000.0 + 0.003;
 
-	// FIXME: Reset these using some nonstatic functions and values later
+	//! \fixme Reset these using some nonstatic functions and values later
 	_life = 1.0;
 
 	_pos[0] = _pos[1] = _pos[2] = 0.0;
@@ -148,7 +133,7 @@ void Particle::Update()
 	_pos[0] += _dir[0] / _speed[0];
 	_pos[1] += _dir[1] / _speed[1];
 	_pos[2] += _dir[2] / _speed[2];
-	
+
 	// Adjust particle direction
 	_dir[0] += _force[0];
 	_dir[1] += _force[1];
@@ -156,7 +141,7 @@ void Particle::Update()
 
 	// Adjust particle blending/life
 	_life -= _blend;
-	
+
 	// Reset 'dead' OR fully blended particles
 	if (_life < 0.0)
 	{
@@ -172,6 +157,6 @@ int Particle::Texture()
 
 
 bool Particle::isActive()
-{ 
+{
 	return _active;
 }

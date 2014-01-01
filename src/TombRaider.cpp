@@ -4075,7 +4075,7 @@ int TombRaider::loadSFX(char *filename)
 
 	if (!f)
 	{
-		perror("Couldn't load file: ");
+		perror("Couldn't load SFX file");
 		return -1;
 	}
 
