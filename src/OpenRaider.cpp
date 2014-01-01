@@ -362,7 +362,8 @@ void OpenRaider::handleMouseMotionEvent(float x, float y)
 {
 	if (x > 0)
 	{
-		m_camera.command(CAMERA_ROTATE_RIGHT);
+        while (x-- > 0) // Tried to fix very slow camera movements
+            m_camera.command(CAMERA_ROTATE_RIGHT);
 
 		if (LARA)
 		{
@@ -382,7 +383,8 @@ void OpenRaider::handleMouseMotionEvent(float x, float y)
 	}
 	else if (x < 0)
 	{
-		m_camera.command(CAMERA_ROTATE_LEFT);
+        while (x++ < 0) // Tried to fix very slow camera movements
+            m_camera.command(CAMERA_ROTATE_LEFT);
 
 		if (LARA)
 		{
@@ -402,9 +404,11 @@ void OpenRaider::handleMouseMotionEvent(float x, float y)
 	}
 
 	if (y > 0)
-		m_camera.command(CAMERA_ROTATE_UP);
+        while (y-- > 0) // Tried to fix very slow camera movements
+            m_camera.command(CAMERA_ROTATE_UP);
 	else if (y < 0)
-		m_camera.command(CAMERA_ROTATE_DOWN);
+        while (y++ < 0) // Tried to fix very slow camera movements
+            m_camera.command(CAMERA_ROTATE_DOWN);
 
 	if (LARA)
 	{

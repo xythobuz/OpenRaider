@@ -340,7 +340,7 @@ void SDLSystem::runGame()
 				break;
 			case SDL_MOUSEMOTION:
 				// Wrap motion
-				handleMouseMotionEvent(event.motion.xrel*2, event.motion.yrel*2);
+				handleMouseMotionEvent(event.motion.xrel/2, -event.motion.yrel/2);
 				break;
 			case SDL_MOUSEBUTTONDOWN:
 			case SDL_MOUSEBUTTONUP:
