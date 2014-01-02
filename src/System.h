@@ -1,28 +1,12 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file System.h
+ * \brief Mostly defines the interface of System implementations.
  *
- * Project : UnRaider, OpenRaider, RaiderUnification 2003
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : System
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments:
+ * Currently only SDL is used, but there was a GLUT implementation.
  *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- Test Defines -----------------------------------------------
- *
- * UNIT_TEST_SYSTEM - Builds System class as a console unit test
- *
- *-- History ------------------------------------------------
- *
- * 2002.08.09:
- * Mongoose - Created
- ================================================================*/
-
+ * \author Mongoose
+ * \author xythobuz
+ */
 
 #ifndef GUARD__UNRAIDER_MONGOOSE_SYSTEM_H_
 #define GUARD__UNRAIDER_MONGOOSE_SYSTEM_H_
@@ -30,7 +14,7 @@
 #include "mstl/Map.h"
 #include "mstl/Vector.h"
 
-// TODO: Replace with unicode compatible key codes
+//! \todo Replace with unicode compatible key codes
 #define SYS_MOUSE_LEFT    6000
 #define SYS_MOUSE_RIGHT   6001
 #define SYS_MOUSE_MIDDLE  6002
@@ -55,18 +39,15 @@
 #define SYS_KEY_F11       1010
 #define SYS_KEY_F12       1011
 
-typedef enum
-{
-  SYS_MOD_KEY_LSHIFT = 1,
-  SYS_MOD_KEY_RSHIFT = 2,
-  SYS_MOD_KEY_LCTRL  = 4,
-  SYS_MOD_KEY_RCTRL  = 8,
-  SYS_MOD_KEY_LALT   = 16,
-  SYS_MOD_KEY_RALT   = 32,
-
-  SYS_MOD_KEY_LMETA = 64,
-  SYS_MOD_KEY_RMETA = 128,
-
+typedef enum {
+    SYS_MOD_KEY_LSHIFT = 1,
+    SYS_MOD_KEY_RSHIFT = 2,
+    SYS_MOD_KEY_LCTRL  = 4,
+    SYS_MOD_KEY_RCTRL  = 8,
+    SYS_MOD_KEY_LALT   = 16,
+    SYS_MOD_KEY_RALT   = 32,
+    SYS_MOD_KEY_LMETA  = 64,
+    SYS_MOD_KEY_RMETA  = 128,
 } sdl_sys_mod_key_t;
 
 
@@ -74,485 +55,243 @@ class System
 {
 public:
 
-	////////////////////////////////////////////////////////////
-	// Constructors
-	////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    // Constructors
+    ////////////////////////////////////////////////////////////
 
-	System();
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Constructs an object of System
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Constructs an object of System
+     */
+    System();
 
-	virtual ~System();
-	/*------------------------------------------------------
-	 * Pre  : System object is allocated
-	 * Post : Deconstructs an object of System
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Deconstructs an object of System
+     */
+    virtual ~System();
 
 
-	////////////////////////////////////////////////////////////
-	// Public Accessors
-	////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    // Public Accessors
+    ////////////////////////////////////////////////////////////
 
-   static char *bufferString(const char *string, ...);
-   /*------------------------------------------------------
-    * Pre  : <String> is a valid string with valid args
-	 *
-    * Post : Generates a buufered string for the printf
-	 *        call
-    *
-    *-- History ------------------------------------------
-    *
-	 * 2003.06.03:
-	 * Mongoose - Made into a printf string caching system
-	 *
-    * 2001.12.31:
-    * Mongoose - Created, was GLString::glPrintf
-    ------------------------------------------------------*/
+    /*!
+     * \brief Generates a buufered string for the printf call
+     * \param string Format string like for printf
+     * \returns string in a buffer
+     */
+    static char *bufferString(const char *string, ...);
 
-	static char *fullPath(const char *path, char end);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Returns allocated string of path, with
-	 *        expansion of unix home enviroment char and
-	 *        makes sure string ends in "end" char
-	 *
-	 *        end = 0 appends no addional char
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.17:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Expansion of unix home enviroment char.
+     * Also makes sure string ends in "end" char.
+     * \param path path string
+     * \param end end character. 0 appends no additional char
+     * \returns allocated string of path with expansions
+     */
+    static char *fullPath(const char *path, char end);
 
-	static char *getFileFromFullPath(char *filename);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.07.05:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Only returns last part of a path string.
+     * \param filename Path to a file
+     * \returns Name of the file in filename, without path in front
+     */
+    static char *getFileFromFullPath(char *filename);
 
-	virtual unsigned int getTicks();
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Returns number of milliseconds since start of
-	 *        program
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.06.06:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Gets the game tick
+     * \returns number of milliseconds since start of program
+     */
+    virtual unsigned int getTicks();
 
-	static int downloadToBuffer(char *urlString,
-										 unsigned char **buffer, unsigned int *size);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Downloads something into passed buffer,
-	 *        Returns < 0 on error, 0 on sucess
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.07.12:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Downloads something into passed buffer
+     * \todo Not yet implemented!
+     * \param urlString URL of thing to download
+     * \param buffer array of strings as target
+     * \param size size of  buffer
+     * \returns < 0 on error, 0 on success
+     */
+    static int downloadToBuffer(char *urlString,
+                                         unsigned char **buffer, unsigned int *size);
 
-	static int downloadToFile(char *urlString, char *filename);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Downloads something into a disk file,
-	 *        Returns < 0 on error, 0 on sucess
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.07.12:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Downloads something into a disk file.
+     * Supports HTTP and FTP.
+     * \param urlString URL of thing to download
+     * \param filename file that should be created/filled
+     * \returns < 0 on error, 0 on success. -1000 if libferit not linked
+     */
+    static int downloadToFile(char *urlString, char *filename);
 
-	static int createDir(char *path);
-	/*------------------------------------------------------
-	 * Pre  : Creates directory
-	 * Post : Returns -1 on error
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.07.12:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Created a directory
+     * \param path Directory to create
+     * \returns -1 on error
+     */
+    static int createDir(char *path);
 
 
-	////////////////////////////////////////////////////////////
-	// Public Mutators
-	////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    // Public Mutators
+    ////////////////////////////////////////////////////////////
 
-	virtual unsigned int addCommandMode(const char *command);
-	/*------------------------------------------------------
-	 * Pre  : <Command> is valid command mode for the
-	 *        resource file, eg "[Engine.OpenGL.Driver]"
-	 *
-	 * Post : Returns Id given to mode
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.03.23:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Created a new Command Mode.
+     * \param command valid command mode for the resource file, eg "[Engine.OpenGL.Driver]"
+     * \returns id given to mode
+     */
+    virtual unsigned int addCommandMode(const char *command);
 
-	virtual void bindKeyCommand(const char *cmd, unsigned int key, int event);
-	/*------------------------------------------------------
-	 * Pre  : <Cmd> is a valid command string
-	 *        <Key> is a valid keyboard code
-	 *        <Event> is a valid game event Id
-	 *
-	 * Post : Sets <Event> binding <Cmd> to <Key> press
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.06.03:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Binds a key to a command
+     * \param cmd valid command string for event
+     * \param key valid keyboard code
+     * \param event valid game event id
+     */
+    virtual void bindKeyCommand(const char *cmd, unsigned int key, int event);
 
-	virtual void command(const char *cmd);
-	/*------------------------------------------------------
-	 * Pre  : cmd is a valid command string
-	 * Post : cmd sets it's var
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2001.05.27:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void gameFrame() = 0;
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void handleMouseMotionEvent(float x, float y) = 0;
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void handleBoundKeyPressEvent(unsigned int key) = 0;
-	/*------------------------------------------------------
-	 * Pre  : <Key> is a valid keyboard code
-	 *
-	 * Post : Recieves <Event> bound to <Cmd> from <Key> press
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.06.03:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void handleBoundKeyReleaseEvent(unsigned int key) = 0;
-	/*------------------------------------------------------
-	 * Pre  : <Key> is a valid keyboard code
-	 *
-	 * Post : Recieves <Event> bound to <Cmd> from <Key> release
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.06.03:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void handleCommand(char *command, unsigned int mode) = 0;
-	/*------------------------------------------------------
-	 * Pre  : <Command> is valid keyword optionally followed
-	 *        by ' ' (space) seperated and argument(s)
-	 *
-	 *        <Mode> is the current type or resource mode
-	 *
-	 * Post : Executes valid command based on keyword
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.03.23:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void handleConsoleKeyPressEvent(unsigned int key,
-														 unsigned int mod) = 0;
-	/*------------------------------------------------------
-	 * Pre  : <Key> is a valid keyboard code
-	 *
-	 * Post : Recieves <Key> code from text input in console mode
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.06.03:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void handleKeyPressEvent(unsigned int key, unsigned int mod) = 0;
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void handleKeyReleaseEvent(unsigned int key, unsigned int mod) = 0;
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void initGL();
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void initVideo(unsigned int width, unsigned int height,
-								  bool fullscreen) = 0;
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual int loadResourceFile(const char *filename);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Init the resource vars
-	 *
-	 *        Returns less than zero value on error
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2001.05.27:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	static void resetTicks();
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void resizeGL(unsigned int width, unsigned int height);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void runGame() = 0;
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	void setConsoleMode(bool on);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Turns console key events on/off,
-	 *        mostly for allowing text entry vs key
-	 *        impluse commands
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.06.03:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	void setDriverGL(const char *driver);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	void setFastCardPerformance(bool isFast);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void shutdown(int code) = 0;
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void swapBuffersGL() = 0;
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	virtual void toggleFullscreen() = 0;
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post :
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.08.09?:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
- protected:
-
-	unsigned int m_width;      /* Width of the viewport */
-
-	unsigned int m_height;     /* Height of the viewport */
-
-	bool m_fastCard;           /* Assume expensive calls are fine if true */
-
-	char *m_driver;            /* String for dynamic use of GL library */
-
-	float m_clipNear;          /* Clip near distance */
-
-	float m_clipFar;           /* Clip far distance */
-
-	float m_fovY;              /* Field of vision */
-
-	Map<unsigned int, int> mKeyEvents;	/* Single key press event mappings */
-
-	bool mConsoleMode;         /* Using text (console) event handler? */
-
-	Vector<const char *> mCmdModes;	/* Dynamic resource command collection */
-
-	unsigned int mCommandMode;	/* Current resource command mode */
-
-	unsigned int mConsoleKey;	/* Console toggle event now handled lower */
-
-    bool mFullscreen;
-
- private:
-
-	////////////////////////////////////////////////////////////
-	// Private Accessors
-	////////////////////////////////////////////////////////////
+    /*!
+     * \brief Executes a command string
+     * \param cmd valid command string, cmd sets its var
+     */
+    virtual void command(const char *cmd);
 
 
-	////////////////////////////////////////////////////////////
-	// Private Mutators
-	////////////////////////////////////////////////////////////
+    virtual void gameFrame() = 0;
+
+
+    virtual void handleMouseMotionEvent(float x, float y) = 0;
+
+    /*!
+     * \brief Receives the event bound to the command from the key press
+     * \param key key pressed
+     */
+    virtual void handleBoundKeyPressEvent(unsigned int key) = 0;
+
+    /*!
+     * \brief Receives the event bound to the command from the key release
+     * \param key key released
+     */
+    virtual void handleBoundKeyReleaseEvent(unsigned int key) = 0;
+
+    /*!
+     * \brief Executes valid command based on keyword
+     * \param command valid keyword, optionally followed by space separated arguments
+     * \param mode current type or resource mode
+     */
+    virtual void handleCommand(char *command, unsigned int mode) = 0;
+
+    /*!
+     * \brief Receives key code from text input in console mode
+     * \param key is a valid keyboard code
+     * \param mod modifier key
+     */
+    virtual void handleConsoleKeyPressEvent(unsigned int key,
+                                                         unsigned int mod) = 0;
+
+
+    virtual void handleKeyPressEvent(unsigned int key, unsigned int mod) = 0;
+
+
+    virtual void handleKeyReleaseEvent(unsigned int key, unsigned int mod) = 0;
+
+
+    virtual void initGL();
+
+
+    virtual void initVideo(unsigned int width, unsigned int height,
+                                  bool fullscreen) = 0;
+
+    /*!
+     * \brief Init the resource vars
+     * \param filename resource file
+     * \returns < 0 on error
+     */
+    virtual int loadResourceFile(const char *filename);
+
+
+    static void resetTicks();
+
+
+    virtual void resizeGL(unsigned int width, unsigned int height);
+
+
+    virtual void runGame() = 0;
+
+    /*!
+     * \brief Turns console key events on/off
+     * Mostly for allowing text entry vs key impulse commands
+     * \param on new state
+     */
+    void setConsoleMode(bool on);
+
+
+    void setDriverGL(const char *driver);
+
+
+    void setFastCardPerformance(bool isFast);
+
+
+    virtual void shutdown(int code) = 0;
+
+
+    virtual void swapBuffersGL() = 0;
+
+
+    virtual void toggleFullscreen() = 0;
+
+protected:
+
+    unsigned int m_width; //!< Width of the viewport
+    unsigned int m_height; //!< Height of the viewport
+    bool m_fastCard; //!< Assume expensive calls are fine if true
+    char *m_driver; //!< String for dynamic use of GL library
+    float m_clipNear; //!< Clip near distance
+    float m_clipFar; //!< Clip far distance
+    float m_fovY; //!< Field of vision
+    Map<unsigned int, int> mKeyEvents; //!< Single key press event mappings
+    bool mConsoleMode; //!< Using text (console) event handler?
+    Vector<const char *> mCmdModes; //!< Dynamic resource command collection
+    unsigned int mCommandMode; //!< Current resource command mode
+    unsigned int mConsoleKey; //!< Console toggle event now handled lower
+
+private:
+
+    ////////////////////////////////////////////////////////////
+    // Private Accessors
+    ////////////////////////////////////////////////////////////
+
+
+    ////////////////////////////////////////////////////////////
+    // Private Mutators
+    ////////////////////////////////////////////////////////////
 };
 
 
-// Could make these static methods later, depends on API evolution
+//! \todo Could make these static methods later, depends on API evolution
 
-	bool rc_command(const char *symbol, char *command);
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Returns true if <Command> matches <Symbol>
-	 *        command string
-	 *
-	 *        Returns the rest of the argument list back in
-	 *        <Command> buffer, if any
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.03.23:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Checks if Command matches Symbol.
+     * Returns the rest of the argument list back in command buffer, if any
+     * \param symbol command string
+     * \param command with arguments
+     * \returns true if command matches symbol
+     */
+    bool rc_command(const char *symbol, char *command);
 
-	int rc_get_bool(char *buffer, bool *val);
-	/*------------------------------------------------------
-	 * Pre  : Buffer is "true" or "false"
-	 *
-	 * Post : Returns 0 if <Buffer> is "true" or "false"
-	 *        and sets <Val> accordingly
-	 *
-	 *        Returns -1 for null string
-	 *        Returns -2 if string isn't "true" or "false"
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.03.23:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Interpret a string as a bool
+     * \param buffer "true" or "false"
+     * \param val is set to boolean interpretation of buffer
+     * \returns -1 for null string, -2 if string is not "true" or "false"
+     */
+    int rc_get_bool(char *buffer, bool *val);
 
-	unsigned int system_timer(int state);
-	/*------------------------------------------------------
-	 * Pre  : 0 - reset, 1 - get number of ticks
-	 * Post : Sets timer state and returns number of ticks
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.06.06:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+    /*!
+     * \brief Sets timer state and returns number of ticks
+     * \param state 0 - reset, 1 - get number of ticks
+     * \returns number of ticks
+     */
+    unsigned int system_timer(int state);
+
 #endif

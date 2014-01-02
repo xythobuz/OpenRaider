@@ -278,6 +278,10 @@ clean-deb:
 
 #################################################################
 
+docs:
+	doxygen
+	cp -R doc/html/* ../apache/ # My local test webserver
+
 redhat:
 	cd $(DEB_DIR) && \
 		alien --to-rpm $(NAME_DEB)_$(VERSION_DEB)-1_$(ARCH).deb

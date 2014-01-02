@@ -1,23 +1,11 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file System.cpp
+ * \brief Mostly defines the interface of System implementations.
  *
- * Project : UnRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : System
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments:
+ * Currently only SDL is used, but there was a GLUT implementation.
  *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2002.08.09:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -38,27 +26,26 @@
 #endif
 
 #ifdef HAVE_LIBFERIT
-#   include <ferit/Url.h>
-#   include <ferit/TcpProtocol.h>
-#   include <ferit/Http.h>
-#   include <ferit/Ftp.h>
+#include <ferit/Url.h>
+#include <ferit/TcpProtocol.h>
+#include <ferit/Http.h>
+#include <ferit/Ftp.h>
 #endif
 
 #if defined(linux) || defined(__APPLE__)
-#   include <time.h>
-#   include <sys/time.h>
+#include <time.h>
+#include <sys/time.h>
 #endif
 
 #ifdef MEMEORY_TEST
-#   include "memeory_test.h"
+#include "memeory_test.h"
 #endif
 
 #ifdef PS2_LINUX
-#   include "ps2linux.h"
+#include "ps2linux.h"
 #endif
 
 #include "System.h"
-
 
 ////////////////////////////////////////////////////////////
 // Constructors
@@ -348,7 +335,7 @@ unsigned int System::addCommandMode(const char *command)
 	}
 }
 
-// FIXME: Modifer support later
+//! \fixme Modifer support later
 void System::bindKeyCommand(const char *cmd, unsigned int key, int event)
 {
 	printf("Bound command '%s' -> event %i (0x%x key)\n", cmd, event, key);
@@ -779,25 +766,3 @@ unsigned int system_timer(int state)
 	return 0;
 }
 
-
-////////////////////////////////////////////////////////////
-// Unit Test code
-////////////////////////////////////////////////////////////
-
-#ifdef UNIT_TEST_SYSTEM
-int runSystemUnitTest(int argc, char *argv[])
-{
-	return 0;
-}
-
-
-int main(int argc, char *argv[])
-{
-	System test;
-
-
-	printf("[System class test]\n");
-
-	return runSystemUnitTest(argc, argv);
-}
-#endif
