@@ -50,7 +50,9 @@ typedef enum {
     SYS_MOD_KEY_RMETA  = 128,
 } sdl_sys_mod_key_t;
 
-
+/*!
+ * \brief Basic Interface for System implementations (SDLSystem)
+ */
 class System
 {
 public:
