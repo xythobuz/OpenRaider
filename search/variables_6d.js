@@ -102,7 +102,7 @@ var searchData=
   ['mforce',['mForce',['../class_mass.html#a20dea8073c256d5f4556631634cd9d73',1,'Mass']]],
   ['mfreadmode',['mFreadMode',['../class_tomb_raider.html#a27ebd761363f9cee614bbfb60b7cb92f',1,'TombRaider']]],
   ['mfrustum',['mFrustum',['../class_emitter.html#a02e1570c18fd5294181c3d65c80a87e3',1,'Emitter::mFrustum()'],['../class_view_volume.html#a4ac92d7ceb518d5b371d5ed171317641',1,'ViewVolume::mFrustum()']]],
-  ['mfullscreen',['mFullscreen',['../class_system.html#a55b47aaadb49281cd795b3ad405dddd3',1,'System']]],
+  ['mfullscreen',['mFullscreen',['../class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3',1,'SDLSystem']]],
   ['mheight',['mHeight',['../class_render.html#acc6cfe7571c10c1b17f2da7399a063b8',1,'Render']]],
   ['mid',['mId',['../class_camera.html#a8a07f315157e3b63fc77058420c1074e',1,'Camera::mId()'],['../class_entity.html#a2e0b14260c8f0581cf9effb4eab72b5d',1,'Entity::mId()']]],
   ['midleanimation',['mIdleAnimation',['../class_skeletal_model.html#aaf074e987bb2a6217a6e44bc52111960',1,'SkeletalModel']]],

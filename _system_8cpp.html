@@ -93,6 +93,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">System.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Mostly defines the interface of <a class="el" href="class_system.html">System</a> implementations.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;stdio.h&gt;</code><br/>
 <code>#include &lt;sys/stat.h&gt;</code><br/>
@@ -107,13 +110,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a23a20ce358ec01f9110793d0a5071d5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_system_8cpp.html#a23a20ce358ec01f9110793d0a5071d5b">rc_command</a> (const char *symbol, char *command)</td></tr>
+<tr class="memdesc:a23a20ce358ec01f9110793d0a5071d5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if Command matches Symbol. Returns the rest of the argument list back in command buffer, if any.  <a href="#a23a20ce358ec01f9110793d0a5071d5b">More...</a><br/></td></tr>
 <tr class="separator:a23a20ce358ec01f9110793d0a5071d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad14f12862bc728c06dbe0b1765717196"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_system_8cpp.html#ad14f12862bc728c06dbe0b1765717196">rc_get_bool</a> (char *buffer, bool *val)</td></tr>
+<tr class="memdesc:ad14f12862bc728c06dbe0b1765717196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpret a string as a bool.  <a href="#ad14f12862bc728c06dbe0b1765717196">More...</a><br/></td></tr>
 <tr class="separator:ad14f12862bc728c06dbe0b1765717196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57df6a2c43cb3e1245ddbbe00a59d811"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_system_8cpp.html#a57df6a2c43cb3e1245ddbbe00a59d811">system_timer</a> (int state)</td></tr>
+<tr class="memdesc:a57df6a2c43cb3e1245ddbbe00a59d811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets timer state and returns number of ticks.  <a href="#a57df6a2c43cb3e1245ddbbe00a59d811">More...</a><br/></td></tr>
 <tr class="separator:a57df6a2c43cb3e1245ddbbe00a59d811"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Mostly defines the interface of <a class="el" href="class_system.html">System</a> implementations. </p>
+<p>Currently only SDL is used, but there was a GLUT implementation.</p>
+<dl class="section author"><dt>Author</dt><dd>Mongoose </dd></dl>
+
+<p>Definition in file <a class="el" href="_system_8cpp_source.html">System.cpp</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a23a20ce358ec01f9110793d0a5071d5b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -138,7 +150,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_system_8cpp_source.html#l00683">683</a> of file <a class="el" href="_system_8cpp_source.html">System.cpp</a>.</p>
+<p>Checks if Command matches Symbol. Returns the rest of the argument list back in command buffer, if any. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Could make these static methods later, depends on API evolution </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">symbol</td><td>command string </td></tr>
+    <tr><td class="paramname">command</td><td>with arguments </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if command matches symbol </dd></dl>
+
+<p>Definition at line <a class="el" href="_system_8cpp_source.html#l00670">670</a> of file <a class="el" href="_system_8cpp_source.html">System.cpp</a>.</p>
 
 </div>
 </div>
@@ -166,7 +189,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_system_8cpp_source.html#l00713">713</a> of file <a class="el" href="_system_8cpp_source.html">System.cpp</a>.</p>
+<p>Interpret a string as a bool. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>"true" or "false" </td></tr>
+    <tr><td class="paramname">val</td><td>is set to boolean interpretation of buffer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 for null string, -2 if string is not "true" or "false" </dd></dl>
+
+<p>Definition at line <a class="el" href="_system_8cpp_source.html#l00700">700</a> of file <a class="el" href="_system_8cpp_source.html">System.cpp</a>.</p>
 
 </div>
 </div>
@@ -184,7 +217,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_system_8cpp_source.html#l00731">731</a> of file <a class="el" href="_system_8cpp_source.html">System.cpp</a>.</p>
+<p>Sets timer state and returns number of ticks. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>0 - reset, 1 - get number of ticks </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of ticks </dd></dl>
+
+<p>Definition at line <a class="el" href="_system_8cpp_source.html#l00718">718</a> of file <a class="el" href="_system_8cpp_source.html">System.cpp</a>.</p>
 
 </div>
 </div>

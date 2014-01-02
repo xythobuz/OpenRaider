@@ -5,7 +5,6 @@ var searchData=
   ['_7eemitter',['~Emitter',['../class_emitter.html#a0af9a50316daf2580cde9b99fe7c6f96',1,'Emitter']]],
   ['_7eentity',['~Entity',['../class_entity.html#adf6d3f7cb1b2ba029b6b048a395cc8ae',1,'Entity']]],
   ['_7eglstring',['~GLString',['../class_g_l_string.html#af2d7696e405af08b41eb86ecda6811ce',1,'GLString']]],
-  ['_7eglutsystem',['~GLUTSystem',['../class_g_l_u_t_system.html#aaec9f2444865a7b06c45d2b56833cc56',1,'GLUTSystem']]],
   ['_7elight',['~Light',['../class_light.html#ad0e59fad13bb6cfadc25b2c477e9ddc7',1,'Light']]],
   ['_7elist',['~List',['../class_list.html#a2b58189090f6e5ce52939c9195e59e85',1,'List']]],
   ['_7elistnode',['~ListNode',['../class_list_node.html#abe41245574baa42781b71f70e49fd06b',1,'ListNode']]],

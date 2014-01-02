@@ -19,7 +19,7 @@ var searchData=
   ['directionvectorz',['directionVectorZ',['../structtr5__light__s.html#ad4a053c3efd0fb001edd1105c38648cd',1,'tr5_light_s']]],
   ['directionvectorz2',['directionVectorZ2',['../structtr5__light__s.html#ac10c98bf97ab3621cc00a1ccc22f7d84',1,'tr5_light_s']]],
   ['disablemultitexture',['disableMultiTexture',['../class_texture.html#a481dee2e69a3ad281146a506d5352a78',1,'Texture']]],
-  ['display',['Display',['../class_render.html#a7e223719c00e1e9fe74aa430d4099058',1,'Render::Display()'],['../_g_l_u_t_system_8cpp.html#a4ea013001a5fb47853d0fab8f8de35cd',1,'display():&#160;GLUTSystem.cpp']]],
+  ['display',['Display',['../class_render.html#a7e223719c00e1e9fe74aa430d4099058',1,'Render']]],
   ['display_5fmemory_5fusage',['display_memory_usage',['../memeory__test_8h.html#a66b6a17c8dc326f5b2afcd592436e898',1,'memeory_test.h']]],
   ['dist',['dist',['../class_render_room.html#a68ea14ad6a87222494febea89e1b4c1a',1,'RenderRoom']]],
   ['divide',['divide',['../class_quaternion.html#a958be9504c7e111445f73521f764b806',1,'Quaternion']]],

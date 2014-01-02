@@ -12,7 +12,6 @@ var searchData=
   ['generations',['generations',['../structutx__header__t.html#a76a9b93529eeece91d81a694d0964292',1,'utx_header_t']]],
   ['gfontfilename',['gFontFilename',['../_open_raider_8cpp.html#ac415716ac3e6a5b10b49f26dbd199a9e',1,'OpenRaider.cpp']]],
   ['gfonttest',['gFontTest',['../_texture_8cpp.html#a7de671118f1216f2dc7ead9579b9d209',1,'Texture.cpp']]],
-  ['gglutsystem',['gGlutSystem',['../_g_l_u_t_system_8cpp.html#a544a543cc437c31999a3b209407352ad',1,'GLUTSystem.cpp']]],
   ['gheight',['gHeight',['../_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1',1,'SDLSystem.cpp']]],
   ['gl_5ftexture_5fid',['gl_texture_id',['../structmd3__texture__s.html#affc4d00292edfb883e95ecf0fe400f41',1,'md3_texture_s']]],
   ['glaramodel',['gLaraModel',['../_open_raider_8cpp.html#a3da3ebca8bec57d7693a63fe558df3b2',1,'OpenRaider.cpp']]],

@@ -124,6 +124,5 @@ var searchData=
   ['glprintf3d',['glPrintf3d',['../class_s_d_l_system.html#a6884ef14810507fddbbc38f3d75838f5',1,'SDLSystem']]],
   ['glscreenshot',['glScreenShot',['../class_texture.html#a89b987185fefb6e2594fd188cec0dd35',1,'Texture']]],
   ['glstring',['GLString',['../class_g_l_string.html#a2162c4369a763853c1b395d07a2620fc',1,'GLString']]],
-  ['glutsystem',['GLUTSystem',['../class_g_l_u_t_system.html#a9a036d3ce438e89e1cb6899aa8c20ba5',1,'GLUTSystem']]],
   ['gravitysimulation',['GravitySimulation',['../class_gravity_simulation.html#a72e0d7f7f4a9fe22e1ff2affd7a5a580',1,'GravitySimulation']]]
 ];

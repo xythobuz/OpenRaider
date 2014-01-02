@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['save',['save',['../class_md3.html#a68e0b790848209115092483dc8840f17',1,'Md3::save()'],['../class_mtk_image.html#a3ec1490c61e420ba10a66316f13b39b2',1,'MtkImage::Save()']]],
+  ['save',['Save',['../class_mtk_image.html#a3ec1490c61e420ba10a66316f13b39b2',1,'MtkImage::Save()'],['../class_md3.html#a68e0b790848209115092483dc8840f17',1,'Md3::save()']]],
   ['scale',['scale',['../class_matrix.html#a9626b2d019c0a728e1b828daeae4198e',1,'Matrix::scale(vec_t x, vec_t y, vec_t z)'],['../class_matrix.html#aedc9d5fa8e2c6f7b0f24267ca84262ff',1,'Matrix::scale(const vec_t *xyz)'],['../class_quaternion.html#a474442a8741e536d30a76da376b78a75',1,'Quaternion::scale()'],['../class_g_l_string.html#a8b827de6f864f2e78042329092f364c9',1,'GLString::Scale()'],['../class_mtk_image.html#a4c49c4703ff829f334200a2f3c7241f5',1,'MtkImage::Scale()']]],
   ['scalebuffer',['scaleBuffer',['../class_texture.html#afe79ddb351c7d9ddcd3ab7f9e7528f8c',1,'Texture']]],
   ['screenshot',['screenShot',['../class_render.html#a26e8b0e6b0f7a07f19213acd43f0bec6',1,'Render']]],
@@ -63,7 +63,7 @@ var searchData=
   ['setuptexturecolor',['setupTextureColor',['../_open_raider_8cpp.html#a3319c47a58e16c6b40d462a4e77fbbab',1,'OpenRaider.cpp']]],
   ['setupworldmatrices',['setupWorldMatrices',['../class_p_s_k_model_renderer.html#a73587c55e3ff85d4d9af14acf527772d',1,'PSKModelRenderer']]],
   ['setvertex',['setVertex',['../class_open_g_l_mesh.html#ad352977c2a037776362316d583a58619',1,'OpenGLMesh']]],
-  ['shutdown',['shutdown',['../class_g_l_u_t_system.html#a7c4f27043b8f1e82199af2b28e66f31a',1,'GLUTSystem::shutdown()'],['../class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52',1,'SDLSystem::shutdown()'],['../class_system.html#a093e8086d883f45eab583c7e014b2c62',1,'System::shutdown()']]],
+  ['shutdown',['shutdown',['../class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52',1,'SDLSystem::shutdown()'],['../class_system.html#a093e8086d883f45eab583c7e014b2c62',1,'System::shutdown()']]],
   ['simulate',['simulate',['../class_mass.html#ac437b1f35a2b259f3ccf38c7166e29ac',1,'Mass::simulate()'],['../class_particle_mass.html#aa73b1a9b6afec62e2a44ac07b1123033',1,'ParticleMass::simulate()'],['../class_simulation.html#aa4cff92d33da1c50614996c308dffc7b',1,'Simulation::simulate()']]],
   ['simulation',['Simulation',['../class_simulation.html#a5b224cc5b36bcc8eb29689aff223de41',1,'Simulation']]],
   ['size',['size',['../class_vector.html#a4d8a4a8b30e7394fa8fb43b0d65c65c2',1,'Vector']]],
@@ -75,7 +75,6 @@ var searchData=
   ['sourceat',['sourceAt',['../class_sound.html#a56fc4197a3238d811b1b739abb395a06',1,'Sound']]],
   ['spawnclientthread',['spawnClientThread',['../class_network.html#acb97a8f4718abbac1ada2818ba2ab8d3',1,'Network']]],
   ['spawnserverthread',['spawnServerThread',['../class_network.html#a0f0d03884e83cb1f305bbba1847b5b57',1,'Network']]],
-  ['special',['special',['../_g_l_u_t_system_8cpp.html#a42b4e1505fa41d975209a6fc5e7f4230',1,'GLUTSystem.cpp']]],
   ['specialtextile',['SpecialTexTile',['../class_tomb_raider.html#ac1a11195630da2aaca17667ead152afd',1,'TombRaider']]],
   ['speed',['Speed',['../class_emitter.html#a0efb8b7f3cf22941488e6f28dc355717',1,'Emitter::Speed()'],['../class_particle.html#ab27a88ae7b5e865134a61946eca85a52',1,'Particle::Speed()']]],
   ['springsimulation',['SpringSimulation',['../class_spring_simulation.html#a6e8cc32388ef79eb6c25091ac1ab6f98',1,'SpringSimulation']]],
@@ -89,7 +88,7 @@ var searchData=
   ['stop',['stop',['../class_sound.html#a46c9dd362e76a684a2d814bcdb37b358',1,'Sound']]],
   ['subtract',['subtract',['../class_quaternion.html#a633b5e36b9842320b4187b00cb6d2fd3',1,'Quaternion']]],
   ['swap',['swap',['../class_vector.html#a8fac2747c642607c39d6c4fe5931e8d8',1,'Vector']]],
-  ['swapbuffersgl',['swapBuffersGL',['../class_g_l_u_t_system.html#abd6970bde4111d7710a2d5e6f57801a8',1,'GLUTSystem::swapBuffersGL()'],['../class_s_d_l_system.html#aad3caf289a517570274380e132928bbf',1,'SDLSystem::swapBuffersGL()'],['../class_system.html#a86b1f943e24397df6287ea53e2d499cd',1,'System::swapBuffersGL()']]],
+  ['swapbuffersgl',['swapBuffersGL',['../class_s_d_l_system.html#aad3caf289a517570274380e132928bbf',1,'SDLSystem::swapBuffersGL()'],['../class_system.html#a86b1f943e24397df6287ea53e2d499cd',1,'System::swapBuffersGL()']]],
   ['system',['System',['../class_system.html#ae317936c9bcf1374d61745572e0f2f8a',1,'System']]],
   ['system_5ftimer',['system_timer',['../_system_8cpp.html#a57df6a2c43cb3e1245ddbbe00a59d811',1,'system_timer(int state):&#160;System.cpp'],['../_system_8h.html#a57df6a2c43cb3e1245ddbbe00a59d811',1,'system_timer(int state):&#160;System.cpp']]]
 ];

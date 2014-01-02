@@ -25,7 +25,7 @@ var searchData=
   ['next_5fpurple',['NEXT_PURPLE',['../_render_8cpp.html#a0986bed04aff1dced11ed5bcbbd95777',1,'Render.cpp']]],
   ['nextanimation',['NextAnimation',['../structtr5__animation__s.html#afb7d7b103f2a11c9ea3a062a648c9ddb',1,'tr5_animation_s']]],
   ['nextframe',['nextFrame',['../class_md3.html#a29013a9e81cf0eed4bb0420067b22c15',1,'Md3::nextFrame()'],['../structtr5__animation__s.html#a957b55b066fa720c56494422f1758160',1,'tr5_animation_s::NextFrame()']]],
-  ['nextpower',['nextPower',['../class_texture.html#a37d3df01b882afc40482b695c09e916e',1,'Texture::nextPower()'],['../class_mtk_image.html#a2521d7298f1b91c481d5a2fa450709f6',1,'MtkImage::NextPower()']]],
+  ['nextpower',['NextPower',['../class_mtk_image.html#a2521d7298f1b91c481d5a2fa450709f6',1,'MtkImage::NextPower()'],['../class_texture.html#a37d3df01b882afc40482b695c09e916e',1,'Texture::nextPower()']]],
   ['nextstate',['nextState',['../structactor__entity__s.html#aac9bb0b1ec60112f3ae6a1e509c6ed49',1,'actor_entity_s']]],
   ['norm',['norm',['../structmd3__vertex__s.html#a2e3ac5d37a3ead17dfe2cd285f254390',1,'md3_vertex_s']]],
   ['normal',['normal',['../structtr2__room__portal__s.html#a3fb07f3328e6d410c8e8081e8afbaa4d',1,'tr2_room_portal_s::normal()'],['../structportal__s.html#a36df6a2a690891b9e3b828025ffb9b17',1,'portal_s::normal()'],['../_tomb_raider_8h.html#ae1e8a7a0914009bf398e4c97940d4a59',1,'normal():&#160;TombRaider.h']]],

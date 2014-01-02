@@ -4,7 +4,7 @@ var searchData=
   ['network',['Network',['../class_network.html#a3cc2fb4f8fa4d507077e8da85ce5a1c8',1,'Network']]],
   ['newroomrenderlist',['newRoomRenderList',['../class_render.html#a6e22a8cff8ef993db48cc79ed602ac5e',1,'Render']]],
   ['next',['Next',['../class_list_node.html#a71ad29bcc3e33a8e4c70599312f078bd',1,'ListNode::Next()'],['../class_list_node.html#a09cffe3c0b61b8b8696afe69fa8d97c1',1,'ListNode::Next(ListNode&lt; T &gt; *next)'],['../class_list.html#a066be32a62bdff2e3b0801c8bbd6123e',1,'List::Next()'],['../class_map_node.html#a5cca705450a812a60500602e608403b6',1,'MapNode::Next()'],['../class_map_node.html#a50b35dc0f907458a7b8361ffee34a519',1,'MapNode::Next(MapNode&lt; K, D &gt; *next)'],['../class_map.html#a4c189d03275f4131bab98e3528dd7b7c',1,'Map::Next()'],['../class_vector.html#a292a9e84540e6faac5152416be31dbfb',1,'Vector::next()']]],
-  ['nextpower',['nextPower',['../class_texture.html#a37d3df01b882afc40482b695c09e916e',1,'Texture::nextPower()'],['../class_mtk_image.html#a2521d7298f1b91c481d5a2fa450709f6',1,'MtkImage::NextPower()']]],
+  ['nextpower',['NextPower',['../class_mtk_image.html#a2521d7298f1b91c481d5a2fa450709f6',1,'MtkImage::NextPower()'],['../class_texture.html#a37d3df01b882afc40482b695c09e916e',1,'Texture::nextPower()']]],
   ['normalize',['normalize',['../class_quaternion.html#a48e6bafb249c895ed25f29dc9170e11e',1,'Quaternion::normalize()'],['../class_vector3d.html#a3b031247cf3fba0d1370359702e97bd8',1,'Vector3d::normalize()']]],
   ['numanimations',['NumAnimations',['../class_tomb_raider.html#aa4211c639b56273f48406ba5e58dd944',1,'TombRaider']]],
   ['numelements',['NumElements',['../class_tree.html#a9848f0c0025d64e02657197ea22a938a',1,'Tree']]],

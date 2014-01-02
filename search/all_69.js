@@ -23,7 +23,7 @@ var searchData=
   ['initsdl_5fttf',['initSDL_TTF',['../class_texture.html#ac6cb919e2a319d275da47af00cc4e5dc',1,'Texture']]],
   ['initsound',['initSound',['../class_open_raider.html#a5a572f857af3afb85d4735c48026b91b',1,'OpenRaider']]],
   ['inittextures',['initTextures',['../class_open_raider.html#a1d4c0171c1218263ceda823e1d4bc953',1,'OpenRaider::initTextures()'],['../class_render.html#acf24790fbb7221704b7865d44d89cc2c',1,'Render::initTextures()']]],
-  ['initvideo',['initVideo',['../class_g_l_u_t_system.html#a7897ca7d6ef2c603c313f69911ba100b',1,'GLUTSystem::initVideo()'],['../class_s_d_l_system.html#a580b3102d110eadf2d3168201dab91fe',1,'SDLSystem::initVideo()'],['../class_system.html#aadc9ca8df6b2d8f45cca7374da99777c',1,'System::initVideo()']]],
+  ['initvideo',['initVideo',['../class_s_d_l_system.html#a580b3102d110eadf2d3168201dab91fe',1,'SDLSystem::initVideo()'],['../class_system.html#aadc9ca8df6b2d8f45cca7374da99777c',1,'System::initVideo()']]],
   ['input',['input',['../structtr5__light__s.html#aaf0121937983cac42e7f6d88246f5818',1,'tr5_light_s']]],
   ['insert',['Insert',['../class_tree_node.html#aa9bbfe95a7912737dfd1c4839ac7f970',1,'TreeNode::Insert()'],['../class_tree.html#a884b25ab8e7273ae01fd052d828cef8f',1,'Tree::Insert()']]],
   ['instance',['Instance',['../class_network.html#af5bf407932ea1cd43dea4bc36b9e07c5',1,'Network::Instance()'],['../class_open_raider.html#afc3684aeeb91d6ee09b8ad1a193e1f14',1,'OpenRaider::Instance()']]],

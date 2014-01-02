@@ -6,7 +6,7 @@ var searchData=
   ['deprecated_5fglulookat',['deprecated_gluLookAt',['../_render_8cpp.html#a6bd53f77232730f0850ad6cabc6534ab',1,'Render.cpp']]],
   ['destroy',['destroy',['../class_world.html#a02d69ed7161ba4b4cb07471eb1bf2ec9',1,'World']]],
   ['disablemultitexture',['disableMultiTexture',['../class_texture.html#a481dee2e69a3ad281146a506d5352a78',1,'Texture']]],
-  ['display',['Display',['../class_render.html#a7e223719c00e1e9fe74aa430d4099058',1,'Render::Display()'],['../_g_l_u_t_system_8cpp.html#a4ea013001a5fb47853d0fab8f8de35cd',1,'display():&#160;GLUTSystem.cpp']]],
+  ['display',['Display',['../class_render.html#a7e223719c00e1e9fe74aa430d4099058',1,'Render']]],
   ['display_5fmemory_5fusage',['display_memory_usage',['../memeory__test_8h.html#a66b6a17c8dc326f5b2afcd592436e898',1,'memeory_test.h']]],
   ['divide',['divide',['../class_quaternion.html#a958be9504c7e111445f73521f764b806',1,'Quaternion']]],
   ['dot',['dot',['../class_quaternion.html#a3eee17d5277c9104aaa1b023680186b5',1,'Quaternion::dot()'],['../class_vector3d.html#a43f2f7721cc087492c74031ef7454c9f',1,'Vector3d::dot()']]],
