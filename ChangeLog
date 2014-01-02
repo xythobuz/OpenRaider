@@ -6,6 +6,9 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140102 ]
+	* Improved the Mac build steps...
+	  Freealut now in /usr/local so we don't need to call
+	  install_name_tool on the built binary
 	* Removed the old & unused GLUTSystem
 	* Replaced the (unknown) included sample sound file
 	* Removed some redundant build config defines

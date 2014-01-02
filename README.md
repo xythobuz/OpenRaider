@@ -33,7 +33,7 @@ To get Sound, you need [freealut](https://github.com/vancegroup/freealut). Get, 
     git clone git@github.com:vancegroup/freealut.git
     mkdir build
     cd build
-    cmake .. -DCMAKE_INSTALL_PREFIX:STRING="/opt/local" -DCMAKE_C_FLAGS:STRING="-O2"
+    cmake .. -DCMAKE_INSTALL_PREFIX:STRING="/usr/local" -DCMAKE_C_FLAGS:STRING="-O2"
     make
     sudo make install
 

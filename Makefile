@@ -30,7 +30,7 @@ UNAME=$(shell uname -s)
 # -DMULTITEXTURE		Add OpenGL multitexturing
 # -DUNICODE_SUPPORT		Add unicode/internation keyboard support
 # -DUSING_EMITTER_IN_GAME	Run particle test in game
-BASE_DEFS=$(shell sdl-config --cflags) -Isrc -I/opt/local/include -DSDL_INTERFACE \
+BASE_DEFS=$(shell sdl-config --cflags) -Isrc -DSDL_INTERFACE \
 	-DUSING_OPENGL -DZLIB_SUPPORT -DUSING_EMITTER \
 	-DUSING_OPENAL -DUSING_MTK_TGA -DUSING_PTHREADS \
 	-DUSING_HEL -DHAVE_SDL_TTF
@@ -44,16 +44,21 @@ DEBUG_OBJ=
 
 ifeq ($(UNAME),Darwin)
 AUDIO_LIBS += -lalut
-AUDIO_LIBS += -L/opt/local/lib
-AUDIO_LIBS += -I/opt/local/include
 AUDIO_LIBS += -framework OpenAL
+AUDIO_LIBS += -L/usr/local/lib
+AUDIO_DEFS += -I/usr/local/include
+BASE_LIBS += -L/opt/local/lib
+BASE_DEFS += -I/opt/local/include
 BASE_LIBS += -framework OpenGL
 BASE_LIBS += -framework GLUT
 else
 AUDIO_LIBS += -lopenal
+BASE_LIBS += -L/usr/local/lib
+BASE_DEFS += -I/usr/local/include
 endif
 
 BASE_LIBS += $(AUDIO_LIBS)
+BASE_DEFS += $(AUDIO_DEFS)
 
 # libferit, File transfer via HTTP/FTP/etc support
 LIBFERIT_LIB=/usr/local/lib/libferit.so
@@ -218,9 +223,6 @@ OBJS = \
 
 $(BUILDDIR)/$(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(LD_FLAGS) -o $@ $(OBJS)
-ifeq ($(UNAME),Darwin)
-	install_name_tool -change libalut.0.1.0.dylib /opt/local/lib/libalut.0.1.0.dylib $@
-endif
 
 #################################################################
 
