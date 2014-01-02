@@ -8,7 +8,7 @@
  * \author xythobuz
  */
 
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
 #ifdef __APPLE__
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
@@ -50,7 +50,7 @@ Sound::~Sound()
 {
 	if (mInit)
 	{
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
 		alutExit();
 #endif
 	}
@@ -73,7 +73,7 @@ int Sound::init()
 	close(fd);
 #endif
 
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
 	alutInit(NULL, 0);
 
 	mInit = true;
@@ -91,7 +91,7 @@ void Sound::listenAt(float pos[3], float angle[3])
 	if (!mInit)
 		return;
 
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
 	alListenerfv(AL_POSITION, pos);
 	alListenerfv(AL_ORIENTATION, angle);
 #endif
@@ -103,7 +103,7 @@ void Sound::sourceAt(int source, float pos[3])
 	if (!mInit || source < 0)
 		return;
 
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
 	alSourcefv(mSource[source-1], AL_POSITION, pos);
 #endif
 }
@@ -112,7 +112,7 @@ void Sound::sourceAt(int source, float pos[3])
 //! \fixme Seperate sourcing and buffering, Mongoose 2002.01.04
 int Sound::addFile(char *filename, int *source, unsigned int flags)
 {
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
    ALsizei size;
    ALfloat freq;
    ALenum format;
@@ -128,7 +128,7 @@ int Sound::addFile(char *filename, int *source, unsigned int flags)
 
 	*source = -1;
 
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
    alGetError();
 
 	alGenBuffers(1, &mBuffer[mNextBuffer]);
@@ -181,7 +181,7 @@ int Sound::addFile(char *filename, int *source, unsigned int flags)
 
 int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags)
 {
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
    ALsizei size;
    ALfloat freq;
    ALenum format;
@@ -196,7 +196,7 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
 	*source = -1;
 
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
 	data = wav;
 
    alGetError();
@@ -268,7 +268,7 @@ void Sound::play(int source)
 		return;
 	}
 
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
 	alSourcePlay(mSource[source-1]);
 #endif
 }
@@ -282,7 +282,7 @@ void Sound::stop(int source)
 		return;
 	}
 
-#ifdef HAVE_OPENAL
+#ifdef USING_OPENAL
 	alSourceStop(mSource[source-1]);
 #endif
 }

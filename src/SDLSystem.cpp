@@ -33,17 +33,17 @@
 #include <cmath>
 
 #ifdef MEMEORY_TEST
-#   include "memeory_test.h"
+#include "memeory_test.h"
 #endif
 
-#ifdef HAVE_OPENGL
+#ifdef USING_OPENGL
 #include <SDL/SDL_opengl.h>
 #else
-#   error "SDLSystem requires -DHAVE_OPENGL"
+#error "SDLSystem requires -DUSING_OPENGL"
 #endif
 
 #ifdef PS2_LINUX
-#   include "ps2.h"
+#include "ps2.h"
 #endif
 
 #include "SDLSystem.h"

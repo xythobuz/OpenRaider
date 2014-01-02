@@ -33,7 +33,7 @@ UNAME=$(shell uname -s)
 BASE_DEFS=$(shell sdl-config --cflags) -Isrc -I/opt/local/include -DSDL_INTERFACE \
 	-DUSING_OPENGL -DZLIB_SUPPORT -DUSING_EMITTER \
 	-DUSING_OPENAL -DUSING_MTK_TGA -DUSING_PTHREADS \
-	-DUSING_HEL -DHAVE_SDL_TTF -DHAVE_OPENGL
+	-DUSING_HEL -DHAVE_SDL_TTF
 
 BASE_LIBS=$(shell sdl-config --libs) -lz -lstdc++ \
 	-lpthread -lSDL_ttf
@@ -41,10 +41,6 @@ BASE_LIBS=$(shell sdl-config --libs) -lz -lstdc++ \
 # -DDEBUG_GL
 DEBUG_DEFS=-DDEBUG -DEXPERIMENTAL
 DEBUG_OBJ=
-
-###############################################################
-# OpenAL, Sound support
-BASE_DEFS += -DHAVE_OPENAL
 
 ifeq ($(UNAME),Darwin)
 AUDIO_LIBS += -lalut
@@ -516,7 +512,7 @@ Network.test:
 Sound.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(TEST_FLAGS) -DUNIT_TEST_SOUND \
-		-DUSING_OPENAL -DHAVE_OPENAL $(AUDIO_LIBS) \
+		-DUSING_OPENAL $(AUDIO_LIBS) \
 		src/Sound.cpp -o $(BUILD_TEST_DIR)/Sound.test
 ifeq ($(UNAME),Darwin)
 	install_name_tool -change libalut.0.1.0.dylib /opt/local/lib/libalut.0.1.0.dylib $(BUILD_TEST_DIR)/Sound.test
