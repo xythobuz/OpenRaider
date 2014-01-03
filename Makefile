@@ -337,20 +337,6 @@ tarball:
 		--exclude bin --exclude CVS --exclude *~ 
 	@-echo "[DONE]"
 
-PSKModel.zip:
-	@-echo "Making PSKModel pak                             " 
-	@-zip ../pskmodel-$(BUILD_ID)-src.zip \
-		Makefile deps.sh README.PSKModel \
-		src/PSKModel.h src/PSKModel.cpp \
-		src/UTPackage.h src/UTPackage.cpp \
-		src/Texture.h src/Texture.cpp \
-		src/mtk_tga.cpp src/mtk_tga.h
-	@-echo "[DONE]"
-	@-echo "Making test data pak                            " 
-	@-zip -r ../pskmodel-$(BUILD_ID)-data.zip \
-		data/models/test/ 
-	@-echo "[DONE]"
-
 backup:
 	$(MAKE) tarball
 	@-cd .. && cp $(NAME)-$(VERSION)-$(BUILD_ID).tar.gz ~/Backup
@@ -498,20 +484,3 @@ endif
 
 #################################################################
 
-PSKModel.test:
-	mkdir -p $(BUILD_TEST_DIR)
-	$(MAKE) targets NAME=PSKModel.test BUILDDIR=$(BUILD_TEST_DIR) \
-	OBJS="$(BUILD_TEST_DIR)/PSKModel.o $(BUILD_TEST_DIR)/UTPackage.o $(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/Texture.o" \
-	CFLAGS="-Wall -O0 -g -Isrc -DUNIT_TEST_PSKMODEL -DUSING_OPENGL $(shell sdl-config --cflags) -DUSING_MTK_TGA -DHAVE_SDL_TTF" \
-	LD_FLAGS="-lm -lstdc++ -lGL -lGLU $(shell sdl-config --libs) -lSDL_ttf"
-
-#################################################################
-
-UTPackage.test:
-	mkdir -p $(BUILD_TEST_DIR)
-	$(MAKE) targets NAME=UTPackage.test BUILDDIR=$(BUILD_TEST_DIR) \
-	OBJS="$(BUILD_TEST_DIR)/UTPackage.o $(BUILD_TEST_DIR)/mtk_tga.o" \
-	CFLAGS="-Wall -O0 -g -Isrc -DUNIT_TEST_UTPACKAGE -DUSING_MTK_TGA" \
-	LD_FLAGS="-lm -lstdc++"
-
-#################################################################

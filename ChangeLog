@@ -6,6 +6,7 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140103 ]
+	* Removed more (unused?) code, PSKModel & UTPackage
 	* Removed unused MD3, mtk3d, MtkImage stuff!
 
 	[ 20140102 ]

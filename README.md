@@ -2,7 +2,7 @@
 
 [OpenRaider](http://openraider.sourceforge.net) is an Open Source implementation of the classic Tomb Raider Game Engine. It was abandoned in 2003.
 
-This project aims to get OpenRaider in a more usable state.
+This project aims to get OpenRaider in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...
 
 If you just want to see OpenRaider doing something, without installing any of the dependencies needed to build OpenRaider, install [XQuartz](http://xquartz.macosforge.org/trac) (if you don't have it already) and grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
 
