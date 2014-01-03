@@ -1,23 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file GLString.cpp
+ * \brief Open GL rendering font/string class
  *
- * Project : Mtk
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : GLString
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments: Open GL rendering font/string class
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2002.01.01:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #include <string.h>
 #include <stdio.h>
@@ -34,9 +20,8 @@
 #include "GLString.h"
 
 #ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#include "memeory_test.h"
 #endif
-
 
 
 GLString::GLString()
