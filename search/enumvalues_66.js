@@ -1,7 +1,6 @@
 var searchData=
 [
   ['fallrooms',['fAllRooms',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a57ce95eef774317385ace0e4dbac62b0',1,'Render']]],
-  ['fanimate',['fAnimate',['../class_md3_anim_model.html#a0c4bf8f09a109d16f4f51ff006679211aecc15fb378c7d65de42d130e913f418f',1,'Md3AnimModel']]],
   ['fanimateallmodels',['fAnimateAllModels',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a1493fe88ead33204bf4bc81ffb60f809',1,'Render']]],
   ['farside',['farSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa121f0f04a582b598f4cee366415cce97',1,'ViewVolume']]],
   ['fconverteuler',['fConvertEuler',['../class_p_s_k_model_renderer.html#a55eb4924bdc4cdbadc1538a38b45fddca8d490977f2075728ce99c770c074b645',1,'PSKModelRenderer']]],
@@ -15,10 +14,6 @@ var searchData=
   ['fdebugpointload',['fDebugPointLoad',['../class_p_s_k_model.html#a739e7061cee8a0b19eeb99073d644de7a382decf78a68103720ec0ee90ccdcb7e',1,'PSKModel']]],
   ['fdebuguvload',['fDebugUVLoad',['../class_p_s_k_model.html#a739e7061cee8a0b19eeb99073d644de7a6718d1a5fafa90531bc7e9cb91cc787b',1,'PSKModel']]],
   ['fdebugweightload',['fDebugWeightLoad',['../class_p_s_k_model.html#a739e7061cee8a0b19eeb99073d644de7a711f903db9362471336681bc5db719cb',1,'PSKModel']]],
-  ['fdecodenormals',['fDecodeNormals',['../class_md3.html#adfca37117ad18c040f597a1ce46bedaeacac1af3c1344bb8ef0dc3ac5d1729d7e',1,'Md3']]],
-  ['fdisablemeshinterpolate',['fDisableMeshInterpolate',['../class_md3_anim_model.html#a0c4bf8f09a109d16f4f51ff006679211a4951e9a90e6b2e9fe916a202cf159613',1,'Md3AnimModel']]],
-  ['fdisabletaginterpolate',['fDisableTagInterpolate',['../class_md3_anim_model.html#a0c4bf8f09a109d16f4f51ff006679211a36c1864ac9d4d81e20e6b9d611a02a96',1,'Md3AnimModel']]],
-  ['fdrawweapon',['fDrawWeapon',['../class_md3_anim_model.html#a0c4bf8f09a109d16f4f51ff006679211a3c623d7c390e7379fc40f3ff0b9225e7',1,'Md3AnimModel']]],
   ['fenablehopping',['fEnableHopping',['../class_world.html#a8351ca6caa0f7553e2c1a357aba2dc7fa1de31fd5bb19d4f24b8c895c408b9bdb',1,'World']]],
   ['fentitymodels',['fEntityModels',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7ab260e241f81d4cb295f9c49b99e4c292',1,'Render']]],
   ['ffastcard',['fFastCard',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a1e6c8006242fcf4cda24cf17c8727baf',1,'Render']]],
@@ -31,9 +26,8 @@ var searchData=
   ['fopenglmesh_5fusevertexarray',['fOpenGLMesh_UseVertexArray',['../_open_g_l_mesh_8h.html#ab17a8b5592dfef0d843b0506e2e6a1deaf804a7c3ab215a3394498238c90707dd',1,'OpenGLMesh.h']]],
   ['fparticles',['fParticles',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7aba356a9f4e55d352f255b7226eecadaa',1,'Render']]],
   ['fportals',['fPortals',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a4750679956e846c66cce0118c0f8e890',1,'Render']]],
-  ['frenderbones',['fRenderBones',['../class_md3_anim_model.html#a0c4bf8f09a109d16f4f51ff006679211a4c97ce153d27e8cb02577b0114125e51',1,'Md3AnimModel::fRenderBones()'],['../class_p_s_k_model_renderer.html#a55eb4924bdc4cdbadc1538a38b45fddca856792d05af848268426d94a7eab9e71',1,'PSKModelRenderer::fRenderBones()']]],
+  ['frenderbones',['fRenderBones',['../class_p_s_k_model_renderer.html#a55eb4924bdc4cdbadc1538a38b45fddca856792d05af848268426d94a7eab9e71',1,'PSKModelRenderer']]],
   ['frenderfaces',['fRenderFaces',['../class_p_s_k_model_renderer.html#a55eb4924bdc4cdbadc1538a38b45fddca2d25b9ca9e28a223980f36d85ac1e142',1,'PSKModelRenderer']]],
-  ['frenderingwarnings',['fRenderingWarnings',['../class_md3_anim_model.html#a0c4bf8f09a109d16f4f51ff006679211aa33a39263ea573ccb6e02f176bcd3999',1,'Md3AnimModel']]],
   ['frenderpoints',['fRenderPoints',['../class_p_s_k_model_renderer.html#a55eb4924bdc4cdbadc1538a38b45fddca6c44d13d7667ac527e094e125c3b574a',1,'PSKModelRenderer']]],
   ['frenderponytail',['fRenderPonytail',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a235e9bb779dc9541d82d9c40cc889459',1,'Render']]],
   ['frendertexture',['fRenderTexture',['../class_p_s_k_model_renderer.html#a55eb4924bdc4cdbadc1538a38b45fddcacfb8aca65a779fdba8485cb1e909108c',1,'PSKModelRenderer']]],
@@ -48,7 +42,6 @@ var searchData=
   ['fusefrustumculling',['fUseFrustumCulling',['../class_emitter.html#a5e64a6fdb28e2021c44601bce14d1f5ba0b1ad3b078d7ae97ca1b1fd77f358e0e',1,'Emitter']]],
   ['fusemipmaps',['fUseMipmaps',['../class_texture.html#a87b2fed2c768145467cd9c260c54413aa339735b02d78eca67cda6cd19af45dd6',1,'Texture']]],
   ['fusemultitexture',['fUseMultiTexture',['../class_texture.html#a87b2fed2c768145467cd9c260c54413aadef4a836917f066a4d0c424496e852e5',1,'Texture']]],
-  ['fusenormals',['fUseNormals',['../class_md3_anim_model.html#a0c4bf8f09a109d16f4f51ff006679211a05aaa468abc8fddbffa6b18cb441c275',1,'Md3AnimModel']]],
   ['fuseportals',['fUsePortals',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7af57c07ef1432466fe58cc434ab63fea5',1,'Render']]],
   ['fusesdl_5fttf',['fUseSDL_TTF',['../class_texture.html#a87b2fed2c768145467cd9c260c54413aa675e50939bea377c7b2ae26e79401b4b',1,'Texture']]],
   ['fviewmodel',['fViewModel',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a4858b87f84e6fc6068776110de3d486a',1,'Render']]]

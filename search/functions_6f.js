@@ -16,7 +16,5 @@ var searchData=
   ['operator_3d',['operator=',['../class_quaternion.html#a9cf7fd3318ffdd50e6567c84d24c20e9',1,'Quaternion::operator=()'],['../class_vector3d.html#ac3366e0f60dcd2e8b94306741391899d',1,'Vector3d::operator=()']]],
   ['operator_3d_3d',['operator==',['../class_quaternion.html#ac753c725050060a9241623c6bf648d1f',1,'Quaternion']]],
   ['operator_5b_5d',['operator[]',['../class_list.html#a65537a67de60fe19037e72d3480d24eb',1,'List::operator[]()'],['../class_map.html#a5efeeb9a0567d80ca17e16935096236f',1,'Map::operator[]()'],['../class_tree.html#a409d84ae2cc7dba95f1543dbd8b13c9f',1,'Tree::operator[]()'],['../class_vector.html#a1f16f0a02db741b7b248317ed9f45f67',1,'Vector::operator[]()']]],
-  ['orientation',['Orientation',['../class_emitter.html#aa2080c184aceaf26f32952c4742ec2f0',1,'Emitter::Orientation(float x, float y, float z)'],['../class_emitter.html#a04ea95ebd765943a92e407e54c358a29',1,'Emitter::Orientation(float *x, float *y, float *z)']]],
-  ['originalheight',['OriginalHeight',['../class_mtk_image.html#a8cbc686b3c3626e54254312ae9b2525d',1,'MtkImage']]],
-  ['originalwidth',['OriginalWidth',['../class_mtk_image.html#a82b5e839961f4a9eecbcda28bc2dc6c2',1,'MtkImage']]]
+  ['orientation',['Orientation',['../class_emitter.html#aa2080c184aceaf26f32952c4742ec2f0',1,'Emitter::Orientation(float x, float y, float z)'],['../class_emitter.html#a04ea95ebd765943a92e407e54c358a29',1,'Emitter::Orientation(float *x, float *y, float *z)']]]
 ];

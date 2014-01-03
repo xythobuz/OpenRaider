@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['h',['h',['../structttf__glyph__t.html#a7d18418f1ebc8e8b5f4e854295732718',1,'ttf_glyph_t']]],
+  ['h',['h',['../_texture_8h.html#a7d18418f1ebc8e8b5f4e854295732718',1,'ttf_glyph_t']]],
   ['handleboundkeypressevent',['handleBoundKeyPressEvent',['../class_open_raider.html#aa908c43aeee0df9aa71aa377d2c62d45',1,'OpenRaider::handleBoundKeyPressEvent()'],['../class_system.html#ac0dd30a42fffd6e5c288d7f815007732',1,'System::handleBoundKeyPressEvent()']]],
   ['handleboundkeyreleaseevent',['handleBoundKeyReleaseEvent',['../class_open_raider.html#aae6c39b204754746de3085d2127cde2c',1,'OpenRaider::handleBoundKeyReleaseEvent()'],['../class_system.html#a65f2dbd9177785e8dd964481591c0d35',1,'System::handleBoundKeyReleaseEvent()']]],
   ['handlecommand',['handleCommand',['../class_open_raider.html#ae1fa63178b7af5fb6ee0519390efc2fd',1,'OpenRaider::handleCommand()'],['../class_system.html#aa8dcdf4d75bce2cbb8d63c6109155092',1,'System::handleCommand()']]],
@@ -8,10 +8,9 @@ var searchData=
   ['handlekeypressevent',['handleKeyPressEvent',['../class_open_raider.html#a70c655bfd1aae0d4f10e490840fec09a',1,'OpenRaider::handleKeyPressEvent()'],['../class_system.html#a39aa758190c36caecd80ecd88957ba22',1,'System::handleKeyPressEvent()']]],
   ['handlekeyreleaseevent',['handleKeyReleaseEvent',['../class_open_raider.html#adf1c3505742b8c5e53946ed4d87c3609',1,'OpenRaider::handleKeyReleaseEvent()'],['../class_system.html#aa656b0e5028db399d683ff7a04b2b0e6',1,'System::handleKeyReleaseEvent()']]],
   ['handlemousemotionevent',['handleMouseMotionEvent',['../class_open_raider.html#a8d6a1893b6df72cb86be3a4102e1bebf',1,'OpenRaider::handleMouseMotionEvent()'],['../class_system.html#a2040ef3b12148143e6c73099f2f7ab60',1,'System::handleMouseMotionEvent()']]],
-  ['header',['header',['../structnetwork__frame__s.html#ab433182eb0b91e8869f024ba35c79e4f',1,'network_frame_s']]],
-  ['header_5fsize',['header_size',['../structmd3__mesh__s.html#a2911e9153af546bcd0fd834e46794b90',1,'md3_mesh_s']]],
-  ['health',['health',['../structactor__entity__s.html#ae89363894f846856d43c6c0dd012217d',1,'actor_entity_s']]],
-  ['height',['Height',['../class_mtk_image.html#add9a95eca92873ccf11692c069abf207',1,'MtkImage::Height()'],['../structmtk__image__tga__s.html#ab5c00a985fa801932a6161844feea3ae',1,'mtk_image_tga_s::height()'],['../structtr2__sprite__texture__s.html#aea3150ac32ff6b47ea03f42db93ade07',1,'tr2_sprite_texture_s::height()'],['../_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497',1,'height():&#160;TombRaider.h']]],
+  ['header',['header',['../_network_8h.html#ab433182eb0b91e8869f024ba35c79e4f',1,'network_frame_s']]],
+  ['health',['health',['../_world_8h.html#ae89363894f846856d43c6c0dd012217d',1,'actor_entity_s']]],
+  ['height',['height',['../mtk__tga_8h.html#ab5c00a985fa801932a6161844feea3ae',1,'mtk_image_tga_s::height()'],['../_tomb_raider_8h.html#aea3150ac32ff6b47ea03f42db93ade07',1,'tr2_sprite_texture_s::height()'],['../_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497',1,'height():&#160;TombRaider.h']]],
   ['hel_5f180_5fover_5fpi',['HEL_180_OVER_PI',['../math_8h.html#aa19f6cd359bca0292ab22515c68900f6',1,'math.h']]],
   ['hel_5f2_5fpi',['HEL_2_PI',['../math_8h.html#ad1c1597bf7cd4e529280c3b6f944d0d1',1,'math.h']]],
   ['hel_5fdeg_5fto_5frad',['HEL_DEG_TO_RAD',['../math_8h.html#ac5580680f5eab508c9dd997836b36e88',1,'math.h']]],
@@ -34,11 +33,11 @@ var searchData=
   ['helradtodeg',['helRadToDeg',['../math_8cpp.html#ae5875bb6409379b162d66b85a47e6c54',1,'helRadToDeg(vec_t rad):&#160;math.cpp'],['../math_8h.html#ae5875bb6409379b162d66b85a47e6c54',1,'helRadToDeg(vec_t rad):&#160;math.cpp']]],
   ['helrandomnum',['helRandomNum',['../math_8cpp.html#a48d59a44c2fc4b6fb5b5b3e36924667d',1,'helRandomNum(vec_t from, vec_t to):&#160;math.cpp'],['../math_8h.html#a48d59a44c2fc4b6fb5b5b3e36924667d',1,'helRandomNum(vec_t from, vec_t to):&#160;math.cpp']]],
   ['helvectormatrixmult4dv',['helVectorMatrixMult4dv',['../math_8cpp.html#a65913f075efcff37001724e60582cbfb',1,'helVectorMatrixMult4dv(double v[4], matrix_t m, double result[4]):&#160;math.cpp'],['../math_8h.html#a65913f075efcff37001724e60582cbfb',1,'helVectorMatrixMult4dv(double v[4], matrix_t m, double result[4]):&#160;math.cpp']]],
-  ['heritagecount',['heritageCount',['../structutx__header__t.html#aa45aa9f8e197f6eb4b6155a277118c7e',1,'utx_header_t']]],
-  ['heritageoffset',['heritageOffset',['../structutx__header__t.html#adc94d47dc08f6656e8ab6a388a315cc2',1,'utx_header_t']]],
-  ['heritagetable',['heritageTable',['../structutx__header__t.html#a9882c78bb35ba3f3e4c8c47047146666',1,'utx_header_t']]],
+  ['heritagecount',['heritageCount',['../_u_t_package_8h.html#aa45aa9f8e197f6eb4b6155a277118c7e',1,'utx_header_t']]],
+  ['heritageoffset',['heritageOffset',['../_u_t_package_8h.html#adc94d47dc08f6656e8ab6a388a315cc2',1,'utx_header_t']]],
+  ['heritagetable',['heritageTable',['../_u_t_package_8h.html#a9882c78bb35ba3f3e4c8c47047146666',1,'utx_header_t']]],
   ['hex_5fdump',['hex_dump',['../_u_t_package_8cpp.html#a504f839bfeeed66c7bc8d17f08286e2e',1,'UTPackage.cpp']]],
   ['hex_5fdump_5fbuffer',['hex_dump_buffer',['../_u_t_package_8cpp.html#a5f5b1b733d2ab2a1eeb2e6e8b62a4d69',1,'UTPackage.cpp']]],
   ['hex_5fdump_5ffile',['hex_dump_file',['../_u_t_package_8cpp.html#adcf84a14f72507ee83bf6e882897e849',1,'UTPackage.cpp']]],
-  ['high',['high',['../structtr2__anim__dispatch__s.html#a2775ad64ffa88b5b5b39758790b70c53',1,'tr2_anim_dispatch_s::high()'],['../_tomb_raider_8h.html#a023d2c31542f7bcfa59cc067f3b2171e',1,'high():&#160;TombRaider.h']]]
+  ['high',['high',['../_tomb_raider_8h.html#a2775ad64ffa88b5b5b39758790b70c53',1,'tr2_anim_dispatch_s::high()'],['../_tomb_raider_8h.html#a023d2c31542f7bcfa59cc067f3b2171e',1,'high():&#160;TombRaider.h']]]
 ];

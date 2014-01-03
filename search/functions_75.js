@@ -6,7 +6,6 @@ var searchData=
   ['updateclip',['updateClip',['../class_view_volume.html#a711a3a873833132e6416c0ef6209b2dc',1,'ViewVolume']]],
   ['updateframe',['updateFrame',['../class_view_volume.html#aeb60a83c073a2f4fb75cbd45fe24e281',1,'ViewVolume::updateFrame(matrix_t proj, matrix_t mdl)'],['../class_view_volume.html#a4ebd3a87b4810d04ac4fbaf3490d30bb',1,'ViewVolume::updateFrame()']]],
   ['updatefrustum',['updateFrustum',['../class_view_volume.html#a243eda64c5e38f2afe6fc4eaa2476a8f',1,'ViewVolume']]],
-  ['updatemodel',['updateModel',['../class_md3_anim_model.html#a43d17df63e0b862f5a34edbebdd45d26',1,'Md3AnimModel']]],
   ['updateviewvolume',['updateViewVolume',['../class_render.html#a3cee96657b2d590cc392c7b4f48d96c4',1,'Render']]],
   ['use_5futx_5findex',['use_utx_index',['../_u_t_package_8cpp.html#ab4a25ad09a7207126e45b740c286fade',1,'UTPackage.cpp']]],
   ['usemultitexture',['useMultiTexture',['../class_texture.html#a45202c7f1196df7d69c4adc046280ea6',1,'Texture::useMultiTexture(float u, float v)'],['../class_texture.html#ab20351d7226315c1a864365afdef9bf3',1,'Texture::useMultiTexture(float aU, float aV, float bU, float bV)']]],

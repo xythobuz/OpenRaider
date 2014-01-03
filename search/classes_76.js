@@ -24,6 +24,6 @@ var searchData=
   ['vector_3c_20sprite_5fseq_5fs_20_2a_20_3e',['Vector&lt; sprite_seq_s * &gt;',['../class_vector.html',1,'']]],
   ['vector_3c_20static_5fmodel_5fs_20_2a_20_3e',['Vector&lt; static_model_s * &gt;',['../class_vector.html',1,'']]],
   ['vector_3c_20texture_5ftri_5fs_20_2a_20_3e',['Vector&lt; texture_tri_s * &gt;',['../class_vector.html',1,'']]],
-  ['vertex_5fs',['vertex_s',['../structvertex__s.html',1,'']]],
+  ['vertex_5fs',['vertex_s',['../_world_8h.html#structvertex__s',1,'']]],
   ['viewvolume',['ViewVolume',['../class_view_volume.html',1,'']]]
 ];
