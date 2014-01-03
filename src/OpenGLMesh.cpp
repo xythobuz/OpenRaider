@@ -1,23 +1,11 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file OpenGLMesh.cpp
+ * \brief OpenGL Mesh
  *
- * Project : OpenRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : OpenGLMesh
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments:
+ * Defining UNIT_TEST_OPENGLMESH builds OpenGLMesh class as a console unit test
  *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2002.08.23:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>

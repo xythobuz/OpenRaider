@@ -123,8 +123,9 @@ OpenRaider::OpenRaider() : SDLSystem()
 	m_testSFX = -1;
 	mNoClipping = 0;
 
-	// TODO, Replace numbers with enum modes
-	// Only do this when you know the amount of commands + 1 ( 0 reserved )
+	/*! \todo Replace numbers with enum modes.
+	 * Only do this when you know the amount of commands + 1 (0 reserved)
+     */
 	mMode[addCommandMode("[OpenRaider.Engine]")] = 2;
 	mMode[addCommandMode("[Network.Server]")] = 5;
 	mMode[addCommandMode("[Video.OpenGL]")] = 0;

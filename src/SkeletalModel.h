@@ -1,32 +1,15 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file SkeletalModel.h
+ * \brief This is the factored out skeletal model class
  *
- * Project : OpenRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : SkeletalModel
- * License : No use w/o permission (C) 2003 Mongoose
- * Comments: This is the factored out skeletal model class
+ * Defining UNIT_TEST_SKELETALMODEL builds SkeletalModel class as a console unit test
  *
+ * \author Mongoose
  *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- Test Defines -----------------------------------------------
- *
- * UNIT_TEST_SKELETALMODEL - Builds SkeletalModel class as a console unit test
- *
- *-- History ------------------------------------------------
- *
- * 2003.05.19:
- * Mongoose - Created
- ================================================================*/
-
-// TODO
-// Start cutting off old hacks by simple force use of method interface
-// Also move the publicly exposed attributes out  =)
-// Better animation system in general - this is memory wasteful
+ * \todo Start cutting off old hacks by simple force use of method interface.
+ * Also move the publicly exposed attributes out  =)
+ * Better animation system in general - this is memory wasteful
+ */
 
 #ifndef GUARD__OPENRAIDER_MONGOOSE_SKELETALMODEL_H_
 #define GUARD__OPENRAIDER_MONGOOSE_SKELETALMODEL_H_

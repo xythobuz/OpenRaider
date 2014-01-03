@@ -619,7 +619,7 @@ void SDLSystem::toggleFullscreen()
                 mFullscreen = !mFullscreen;
             }
             if (dimensions != (SDL_Rect **)-1) {
-                // TODO dont just use first available resolution...
+                //! \fixme Don't just use first available resolution...
                 width = dimensions[0]->w;
                 height = dimensions[0]->h;
             } else {
