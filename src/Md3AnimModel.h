@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,13 +10,13 @@
  * Comments: Md3 animation model class
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
  *
  *
  *-- Test Defines -----------------------------------------------
- *           
- * UNIT_TEST_MD3 - Builds Md3 class as a console unit test 
+ *
+ * UNIT_TEST_MD3 - Builds Md3 class as a console unit test
  *
  *-- History ----------------------------------------------------
  *
@@ -47,7 +47,7 @@ typedef enum
 
 } md3_sex_t;
 
-typedef enum 
+typedef enum
 {
 	UNSUPPORTED = -1,
 	BOTH_DEATH1 = 0,		// The first twirling death animation
@@ -56,7 +56,7 @@ typedef enum
 	BOTH_DEAD2,				// The end of the second twirling death animation
 	BOTH_DEATH3,			// The back flip death animation
 	BOTH_DEAD3,				// The end of the back flip death animation
-	TORSO_GESTURE,			// The torso's gesturing animation	
+	TORSO_GESTURE,			// The torso's gesturing animation
 	TORSO_ATTACK,			// The torso's attack1 animation
 	TORSO_ATTACK2,			// The torso's attack2 animation
 	TORSO_DROP,				// The torso's weapon drop animation
@@ -122,7 +122,7 @@ class Md3AnimModel
 
 	Md3AnimModel();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Md3AnimModel object is deconstructed
 	 *
 	 *-- History ------------------------------------------
@@ -149,7 +149,7 @@ class Md3AnimModel
 
 	unsigned int getFlags();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Gets option flags
 	 *
 	 *-- History ------------------------------------------
@@ -160,7 +160,7 @@ class Md3AnimModel
 
 	md3_animation_id_t getAnimUpper();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Get animation for upper model
 	 *
 	 *-- History ------------------------------------------
@@ -171,7 +171,7 @@ class Md3AnimModel
 
 	md3_animation_id_t getAnimLower();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Get animation for lower model
 	 *
 	 *-- History ------------------------------------------
@@ -187,7 +187,7 @@ class Md3AnimModel
 
 	void setFlag(Md3AnimModelFlags flag);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Sets option flag
 	 *
 	 *-- History ------------------------------------------
@@ -198,7 +198,7 @@ class Md3AnimModel
 
 	void toggleFlag(Md3AnimModelFlags flag);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Clear/Set option flag
 	 *
 	 *-- History ------------------------------------------
@@ -209,7 +209,7 @@ class Md3AnimModel
 
 	void setAnimUpper(md3_animation_id_t anim);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Animation is set for upper model
 	 *
 	 *-- History ------------------------------------------
@@ -220,7 +220,7 @@ class Md3AnimModel
 
 	void setAnimLower(md3_animation_id_t anim);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Animation is set for lower model
 	 *
 	 *-- History ------------------------------------------
@@ -231,7 +231,7 @@ class Md3AnimModel
 
 	void setDebug(unsigned char level);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : level 0 = errors, 1 = warnings, 2 = debug1
 	 *
 	 *-- History ------------------------------------------
@@ -250,7 +250,7 @@ class Md3AnimModel
 	 *
 	 *           eg 'default' or 'red' or 'blue' etc
 	 *
-	 *        modelLoD - Level of detail to use, 
+	 *        modelLoD - Level of detail to use,
 	 *
 	 * Post : Error code is returned, 0 no error
 	 *        Md3s are read into memory
@@ -258,9 +258,9 @@ class Md3AnimModel
 	 *-- History ------------------------------------------
 	 *
 	 *
-	 * 2002.12.29: 
+	 * 2002.12.29:
 	 * Mongoose - Progressively loads lower LoDs if it can't
-	 *            find passed LoD 
+	 *            find passed LoD
 	 *
 	 * 2002.06.19:
 	 * Mongoose - Created
@@ -268,7 +268,7 @@ class Md3AnimModel
 
 	int loadAnimations(char *modelPath);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Loads animations for composite model
 	 *
 	 *-- History ------------------------------------------
@@ -277,9 +277,9 @@ class Md3AnimModel
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	int loadWeapon(char *modelPath, char *name);
+	int loadWeapon(char *modelPath, const char *name);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Loads a weapon model
 	 *
 	 *-- History ------------------------------------------
@@ -340,7 +340,7 @@ private:
 
 	void setCurrentTime(Md3 &model);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : time is set for model animation
 	 *
 	 *-- History ------------------------------------------
@@ -351,7 +351,7 @@ private:
 
 	void updateModel(Md3 &model);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Sets up md3 for next render pass
 	 *
 	 *-- History ------------------------------------------
@@ -362,7 +362,7 @@ private:
 
 	void initMd3(Md3 &model, unsigned int id);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Sets up md3 init animation values
 	 *
 	 *-- History ------------------------------------------
@@ -371,11 +371,11 @@ private:
 	 * Mongoose - Created, obsoletes old anim arrays
 	 ------------------------------------------------------*/
 
-	int addAnim(char *modelPath, md3_animation_id_t id, 
-					unsigned int firstFrame, unsigned int numFrames, 
+	int addAnim(char *modelPath, md3_animation_id_t id,
+					unsigned int firstFrame, unsigned int numFrames,
 					unsigned int loopingFrames, unsigned int framesPerSecond);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Sets up animation array
 	 *
 	 *-- History ------------------------------------------
@@ -384,10 +384,10 @@ private:
 	 * Mongoose - Created, forked off load()
 	 ------------------------------------------------------*/
 
-	int loadMd3(Md3 &model, char *base, char *modelPath, char *skin, 
+	int loadMd3(Md3 &model, const char *base, char *modelPath, char *skin,
 					md3_lod_t modelLoD);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Loads model and if given skin
 	 *
 	 *-- History ------------------------------------------
@@ -398,7 +398,7 @@ private:
 
 	int loadSkin(Md3 &model, char *filename);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Loads skin for model
 	 *
 	 *-- History ------------------------------------------
@@ -409,7 +409,7 @@ private:
 
 	int loadShader(Md3 &model, char *filename);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Loads shader for model
 	 *
 	 *-- History ------------------------------------------
@@ -420,7 +420,7 @@ private:
 
 	void connectModels(char *tagName, Md3 &modelA, Md3 &modelB);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Connects models as A slave to B master
 	 *
 	 *-- History ------------------------------------------
@@ -431,7 +431,7 @@ private:
 
 	int cacheTexture(char *texture);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Sets up texture filename caching
 	 *
 	 *-- History ------------------------------------------

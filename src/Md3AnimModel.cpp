@@ -315,7 +315,7 @@ int Md3AnimModel::load(char *modelPath, char *skin, md3_lod_t modelLoD)
 }
 
 
-int Md3AnimModel::loadWeapon(char *modelPath, char *name)
+int Md3AnimModel::loadWeapon(char *modelPath, const char *name)
 {
 	int err = 0;
 
@@ -857,7 +857,7 @@ int Md3AnimModel::addAnim(char *modelPath, md3_animation_id_t id,
 }
 
 
-int Md3AnimModel::loadMd3(Md3 &model, char *base, char *modelPath, char *skin,
+int Md3AnimModel::loadMd3(Md3 &model, const char *base, char *modelPath, char *skin,
 								  md3_lod_t modelLoD)
 {
 	char filename[256];

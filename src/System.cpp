@@ -65,8 +65,6 @@ System::System()
 
 	mConsoleMode = false;
 
-    mFullscreen = false;
-
 	printf("[System.Core]\n");
 
 	// Hack for bad Map class, as well as reserved commands

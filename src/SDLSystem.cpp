@@ -131,6 +131,7 @@ SDLSystem::SDLSystem() : System()
 	gWidth = &m_width;
 	gHeight = &m_height;
     mFirstMouseEvent = false;
+    mFullscreen = false;
 }
 
 

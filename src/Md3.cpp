@@ -567,7 +567,7 @@ int Md3::load(char *filename)
 				unsigned char lat, lng;
 
 
-				normal = (unsigned short)m_meshes[i].vertex[j].st;
+				normal = *((unsigned short *)m_meshes[i].vertex[j].st);
 				lat = (unsigned char)((normal & 255) * (2 * M_PI) / 255.0);
 				lng = (unsigned char)(((normal >> 8) & 255) * (2 * M_PI) / 255.0);
 

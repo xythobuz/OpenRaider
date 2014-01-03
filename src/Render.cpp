@@ -372,7 +372,7 @@ void Render::loadMd3(char *model, char *skin)
 		{
 			snprintf(filename, 255, "data/%s", gMd3.texTest[i].name);
 
-			gMd3.texTest[i].gl_texture_id = mTexture.loadTGA(filename, true);
+			gMd3.texTest[i].gl_texture_id = mTexture.loadTGA(filename);
 
 			if (gMd3.texTest[i].gl_texture_id < 0)
 			{
