@@ -228,20 +228,6 @@ class Render
 	 * Mongoose - Created, factored out of OpenRaider class
 	 ------------------------------------------------------*/
 
-	void loadMd3(char *model, char *skin);
-	/*------------------------------------------------------
-	 * Pre  : model is dir that holds an Md3 model data group
-	 *        skin is a skin in that dir
-	 *
-	 * Post : Loads an Md3 model with animation for a nice
-	 *        xmas easter egg that might show up in CVS later
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.12.25:
-	 * Mongoose - Created, factored out of UnRaider class
-	 ------------------------------------------------------*/
-
 	void initEmitter(const char *name, unsigned int size,
 						  unsigned int snowTex1, unsigned int snowTex2);
 	/*------------------------------------------------------

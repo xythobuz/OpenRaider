@@ -28,12 +28,7 @@
 #include <sys/types.h>
 
 #ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
-#endif
-
-#ifdef USING_MD3
-#   include "Md3AnimModel.h"
-Md3AnimModel gMd3;
+#include "memeory_test.h"
 #endif
 
 #include "World.h"
@@ -192,21 +187,6 @@ OpenRaider::~OpenRaider()
 
 void eventAnimTest(int anim)
 {
-#ifdef USING_MD3
-	switch (anim)
-	{
-	case TR_ANIAMTION_TURN_R:
-	case TR_ANIAMTION_TURN_L:
-		//gMd3.setAnimLower(LEGS_TURN);
-		break;
-	case TR_ANIAMTION_RUN:
-		gMd3.setAnimLower(LEGS_RUN);
-		break;
-	default:
-		gMd3.setAnimLower(LEGS_IDLE);
-	}
-#endif
-
 	if (LARA)
 	{
 		SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
@@ -2837,15 +2817,6 @@ void OpenRaider::consoleCommand(char *cmd)
 	if (rc_command("quit", cmd))
 	{
 		shutdown(0);
-	}
-	else if (rc_command("md3", cmd))
-	{
-#ifdef USING_MD3
-		m_render.loadMd3(cmd, "default");
-		print(true, "\nYou've found an Easter Egg!\n");
-#else
-		print(true, "\nThis build isn't MD3 Easter Egg enabled\n");
-#endif
 	}
 	else if (rc_command("port", cmd))
 	{

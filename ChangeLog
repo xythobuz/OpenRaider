@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140103 ]
+	* Removed MD3 stuff!
+
 	[ 20140102 ]
 	* Improved the Mac build steps...
 	  Freealut now in /usr/local so we don't need to call

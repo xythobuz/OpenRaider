@@ -31,20 +31,15 @@
 #include <string.h>
 
 #ifdef USING_EMITTER
-#   include "Emitter.h"
+#include "Emitter.h"
 #endif
 
 #ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#include "memeory_test.h"
 #endif
 
 #ifdef DEBUG_GL
-#   include "gl_test.cpp"
-#endif
-
-#ifdef USING_MD3
-#   include "Md3AnimModel.h"
-extern Md3AnimModel gMd3;
+#include "gl_test.cpp"
 #endif
 
 #include "Render.h"
@@ -344,48 +339,6 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 	printf("\n");
 
 	*numLoaded = numTextures;
-}
-
-
-void Render::loadMd3(char *model, char *skin)
-{
-#ifdef USING_MD3
-	char filename[256];
-
-
-	snprintf(filename, 255, "data/models/players/%s", model);
-
-	if (gMd3.load(filename, skin, MD3_LOD_HIGH) < 0)
-	{
-		printf("ERROR: MD3 '%s' not loaded\n", filename);
-	}
-	else
-	{
-		gMd3.loadWeapon("data/models/weapons2/railgun", "railgun");
-		gMd3.loadWeapon("data/models/weapons2/plasma", "plasma");
-		gMd3.loadWeapon("data/models/weapons2/machinegun", "machinegun");
-		gMd3.setAnimUpper(TORSO_STAND);
-		gMd3.setAnimLower(LEGS_WALK);
-
-		// Setup textures
-		for (unsigned int i = 0; i < gMd3.texNumTest; ++i)
-		{
-			snprintf(filename, 255, "data/%s", gMd3.texTest[i].name);
-
-			gMd3.texTest[i].gl_texture_id = mTexture.loadTGA(filename);
-
-			if (gMd3.texTest[i].gl_texture_id < 0)
-			{
-				printf("ERROR: Md3 texture '%s' not loaded\n", filename);
-			}
-			else
-			{
-				(*mNumTexturesLoaded)++;
-				(*mNextTextureId) = gMd3.texTest[i].gl_texture_id;
-			}
-		}
-	}
-#endif
 }
 
 
@@ -1412,17 +1365,7 @@ void Render::drawObjects()
 		glRotated(mCamera->getYaw(), 0, 1, 0);
 #endif
 
-#ifdef USING_MD3
-		glPushMatrix();
-		glTranslated(0, -250, -250);
-		glRotatef(90.0f, 1, 0, 0);
-		glRotatef(90.0f, 0, 0, 1);
-		glScalef(0.15, 0.15, 0.15);
-		gMd3.render();
-		glPopMatrix();
-#else
 		drawModel((SkeletalModel *)LARA->tmpHook);
-#endif
 		glPopMatrix();
 	}
 

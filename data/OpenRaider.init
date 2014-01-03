@@ -74,12 +74,10 @@ bind +crouch 99
 bind +left 97
 bind +right 100
 #bind +attack 122
-#md3 data/models/players/laracroft	# Load this Md3 directory
 #r_light 1				# Enable GL Lighting
 #r_fog 1				# Enable depth fog
 #r_particle 1				# Enable particle test
 #r_portal 1				# Enable portal rendering
-#set mousegrab 1			# Enable mouse grabbing
 
 
 # Support for external configs

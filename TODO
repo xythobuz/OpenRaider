@@ -5,8 +5,6 @@
       - Check not only for existence of ~/.OpenRaider but for all
         necessary files, so the user can update.
 
-    * Get MD3 stuff (what does it even do?) to build
-
     * Fix up the UNIT tests. Maybe move them into separate files?
 
     * Remove install_name_tool in Makefile, as it is a problem with

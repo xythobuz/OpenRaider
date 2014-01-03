@@ -161,13 +161,6 @@ ded:
 	CFLAGS="$(DEBUG_CFLAGS) -DDEDICATED_SERVER" \
 	LD_FLAGS="$(LD_FLAGS)"
 
-md3:
-	@-mkdir -p $(BUILD_DEBUG_DIR)
-	$(MAKE) targets BUILDDIR=$(BUILD_DEBUG_DIR) \
-	DEBUG_OBJ="$(BUILD_DEBUG_DIR)/endian.o $(BUILD_DEBUG_DIR)/Md3.o $(BUILD_DEBUG_DIR)/Md3AnimModel.o" \
-	CFLAGS="$(DEBUG_CFLAGS) -DUSING_MD3" \
-	LD_FLAGS="$(LD_FLAGS)"
-
 # -DDEBUG_MEMEORY_VERBOSE
 # -DDEBUG_MEMEORY
 memory:
@@ -389,27 +382,6 @@ TombRaider.test:
 	OBJS="$(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/memeory_test.o" \
 	CFLAGS="$(BASE_CFLAGS) -g -D__TOMBRAIDER_TEST__ -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMEORY" \
 	LD_FLAGS="-lz"
-
-#################################################################
-
-MD3ANIMMODEL_CFLAGS=-DUSING_OPENGL -DUNIT_TEST_MD3ANIMMODEL_SDL \
-	-DUSING_MTK_TGA -DUSING_HEL $(shell sdl-config --cflags) \
-	-DHAVE_SDL_TTF
-MD3ANIMMODEL_LDFLAGS=-lm -lstdc++ -lGL -lGLU $(shell sdl-config --libs) \
-	-lSDL_ttf
-MD3ANIMMODEL_OBJS=$(BUILD_TEST_DIR)/mtk_tga.o \
-	$(BUILD_TEST_DIR)/Texture.o $(BUILD_TEST_DIR)/endian.o \
-	$(BUILD_TEST_DIR)/Quaternion.o \
-	$(BUILD_TEST_DIR)/Md3.o $(BUILD_TEST_DIR)/Md3AnimModel.o
-
-Md3AnimModel.test:
-	mkdir -p $(BUILD_TEST_DIR)
-	$(MAKE) targets \
-	NAME=Md3AnimModel.test \
-	BUILDDIR=$(BUILD_TEST_DIR) \
-	OBJS="$(MD3ANIMMODEL_OBJS)" \
-	CFLAGS=" -Wall -O0 -g -Isrc $(MD3ANIMMODEL_CFLAGS)" \
-	LD_FLAGS="$(MD3ANIMMODEL_LDFLAGS)"
 
 #################################################################
 
