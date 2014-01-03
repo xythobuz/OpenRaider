@@ -6,7 +6,7 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140103 ]
-	* Removed MD3 stuff!
+	* Removed unused MD3, mtk3d, MtkImage stuff!
 
 	[ 20140102 ]
 	* Improved the Mac build steps...
