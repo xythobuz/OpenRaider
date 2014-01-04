@@ -410,7 +410,13 @@ gl_string_t *GLString::GetString(unsigned int id)
 
 #ifdef __TEST__
 
+#include <math.h>
+
+#ifdef __APPLE__
+#include <OpenGL/glu.h>
+#else
 #include <GL/glu.h>
+#endif
 
 #ifdef HAVE_MTK
 #   include "Texture.h"
@@ -533,9 +539,9 @@ void init_gl(unsigned int width, unsigned int height,
 	else
 	{
 		id[0] = gTexture.loadTGA("data/font-0.tga");
-		id[1] = gTexture.loadTGA("data/font-1.tga");
-		id[2] = gTexture.loadTGA("data/font-2.tga");
-		id[3] = gTexture.loadTGA("data/font-3.tga");
+		id[1] = gTexture.loadTGA("data/font-0.tga");
+		id[2] = gTexture.loadTGA("data/font-0.tga");
+		id[3] = gTexture.loadTGA("data/font-0.tga");
 	}
 
 	printf("%i %i %i %i\n", id[0], id[1], id[2], id[3]);
@@ -596,6 +602,7 @@ int main_gl(int argc, char *argv[])
   // Create GL context
   SDL_Init(SDL_INIT_VIDEO);
 
+#ifndef __APPLE__
   if (!driver || !driver[0] || SDL_GL_LoadLibrary(driver) < 0)
   {
 	  SDL_ClearError();
@@ -614,6 +621,7 @@ int main_gl(int argc, char *argv[])
 		  }
 	  }
   }
+#endif
 
   flags = SDL_OPENGL | SDL_GL_DOUBLEBUFFER;
 

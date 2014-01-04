@@ -5,6 +5,12 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140104 ]
+	* Hel Unit Test build & passes
+	* Spring & Simulation Tests unbuildable, missing files?
+	* GLString Unit Test builds, works not every time?
+	* TombRaider Unit & Regression Test working
+
 	[ 20140103 ]
 	* Removed more (unused?) code, PSKModel & UTPackage
 	* Removed unused MD3, mtk3d, MtkImage stuff!

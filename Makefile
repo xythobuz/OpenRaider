@@ -15,13 +15,12 @@ NAME_DEB=openraider
 MAJOR_VERSION=0
 MINOR_VERSION=1
 MICRO_VERSION=2
-BUILD_ID=20140102
+BUILD_ID=$(shell date "+%Y%m%d")
 PRE=
 VERSION=$(MAJOR_VERSION).$(MINOR_VERSION).$(MICRO_VERSION)$(PRE)
 VERSION_DEB=$(MAJOR_VERSION).$(MINOR_VERSION).$(MICRO_VERSION).$(BUILD_ID)
 BUILD_HOST=$(shell uname -s -n -r -m)
 ARCH=$(shell uname -m)
-#ARCH=i386
 UNAME=$(shell uname -s)
 
 ###############################################################
@@ -166,7 +165,7 @@ ded:
 memory:
 	@-mkdir -p $(BUILD_MEM_DIR)
 	$(MAKE) targets BUILDDIR=$(BUILD_MEM_DIR) \
-	DEBUG_OBJ="$(BUILD_MEM_DIR)/memeory_test.o" \
+	DEBUG_OBJ="$(BUILD_MEM_DIR)/memory_test.o" \
 	CFLAGS="$(DEBUG_CFLAGS) -DDEBUG_MEMEORY" \
 	LD_FLAGS="$(LD_FLAGS)"
 
@@ -367,10 +366,22 @@ TombRaider.test:
 	$(MAKE) targets NAME=TombRaider.test BUILDDIR=$(BUILD_TEST_DIR) \
 	OBJS="$(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/memeory_test.o" \
 	CFLAGS="$(BASE_CFLAGS) -g -D__TOMBRAIDER_TEST__ -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMEORY" \
-	LD_FLAGS="-lz"
+	LD_FLAGS="-lz -lstdc++"
 
 #################################################################
 
+ifeq ($(UNAME),Darwin)
+GLString.test:
+	mkdir -p $(BUILD_TEST_DIR)
+	$(CC) -Wall -Isrc -D__TEST__ -DHAVE_MTK -DHAVE_SDL -DUSING_MTK_TGA \
+	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
+	-I/opt/local/include -I/usr/local/include \
+	-framework OpenGL \
+	-framework GLUT \
+	-lm -lstdc++ \
+	src/Texture.cpp src/mtk_tga.cpp \
+	src/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
+else
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -Isrc -D__TEST__ -DHAVE_MTK -DHAVE_SDL -DUSING_MTK_TGA \
@@ -378,9 +389,15 @@ GLString.test:
 	-lGL -lGLU -lm \
 	src/Texture.cpp src/mtk_tga.cpp \
 	src/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
+endif
 
 #################################################################
+
+# CollisionObject and HeightCollisionObject seem to be missing?
+# -- xythobuz, 2014-01-04
+
 SIMULATION_CFLAGS=-Wall -O0 -g -Isrc $(shell sdl-config --cflags) \
+		-I/opt/local/include \
 		-DUSING_OPENGL -DUSING_HEL -DUSING_MTK_TGA \
 		-DUNIT_TEST_SIMULATION
 SIMULATION_OBJS=$(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/Texture.o \
@@ -399,12 +416,17 @@ Simulation.test:
 	$(MAKE) targets NAME=Simulation.test BUILDDIR=$(BUILD_TEST_DIR) \
 		OBJS="$(SIMULATION_OBJS)" \
 		CFLAGS="$(SIMULATION_CFLAGS)" \
-		LD_FLAGS="-lm -lstdc++ -lGL -lGLU $(shell sdl-config --libs)"
+		LD_FLAGS="-lm -lstdc++ -lSDL_ttf -lSDL -lGL -lGLU $(shell sdl-config --libs)"
 
 #################################################################
+
+# Spring files seem to be missing?
+# -- xythobuz, 2014-01-04
+
 HEL_PARTICLE_CFLAGS=-Wall -O0 -g -Isrc $(shell sdl-config --cflags) \
+		-I/opt/local/include \
 		-DUSING_OPENGL -DUSING_HEL -DUSING_MTK_TGA \
-		-DUNIT_TEST_SPRING -DHAVE_SDL_TTF -lSDL_ttf
+		-DUNIT_TEST_SPRING -DHAVE_SDL_TTF
 HEL_PARTICLE_OBJS=$(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/Texture.o \
 		$(BUILD_TEST_DIR)/Mass.o \
 		$(BUILD_TEST_DIR)/Spring.o \
@@ -422,7 +444,7 @@ Spring.test:
 	$(MAKE) targets NAME=Spring.test BUILDDIR=$(BUILD_TEST_DIR) \
 		OBJS="$(HEL_PARTICLE_OBJS)" \
 		CFLAGS="$(HEL_PARTICLE_CFLAGS)" \
-		LD_FLAGS="-lm -lstdc++ -lGL -lGLU $(shell sdl-config --libs)"
+		LD_FLAGS="-lm -lstdc++ -lSDL_ttf-lGL -lGLU $(shell sdl-config --libs)"
 
 #################################################################
 
@@ -441,7 +463,7 @@ Matrix.test:
 Quaternion.test:
 	@-echo "Building Quaternion unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -DQUATERNION_UNIT_TEST -lm -lstdc++ -Isrc \
+	$(CC) -Wall -g -DUNIT_TEST_QUATERNION -lm -lstdc++ -Isrc \
 	src/hel/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
 	@-echo "================================================="
 	@-echo "Running Quaternion unit test"
@@ -451,18 +473,18 @@ Math.test:
 	@-echo "Building Math unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -DMATH_UNIT_TEST -lm -lstdc++ -Isrc \
-	src/hel/math.cpp -o $(BUILD_TEST_DIR)/Math.test
+	src/hel/math.cpp src/hel/Vector3d.cpp -o $(BUILD_TEST_DIR)/Math.test
 	@-echo "================================================="
 	@-echo "Running hel unit test"
 	$(BUILD_TEST_DIR)/Math.test
 
 #################################################################
 
-Memeory.test:
+Memory.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -D__TEST__ -lstdc++ \
 	-DDEBUG_MEMEORY -DDEBUG_MEMEORY_ERROR \
-	src/memeory_test.cpp -o $(BUILD_TEST_DIR)/memeory_test.test
+	src/memeory_test.cpp -o $(BUILD_TEST_DIR)/memory_test.test
 
 #################################################################
 

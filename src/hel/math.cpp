@@ -25,7 +25,7 @@ void helVectorMatrixMult4dv(double v[4], matrix_t m, double result[4])
 }
 
 
-bool tmpHelSphereIntersectLine(Vector3d pos, Vector3d lastPos, 
+bool tmpHelSphereIntersectLine(Vector3d pos, Vector3d lastPos,
 										 Vector3d center, vec_t radius)
 {
 	Vector3d seg, segToCenter, delta;
@@ -65,12 +65,12 @@ vec_t helIntersectionOfAbstractSpheres(vec3_t centerA, vec_t radiusA,
 
 	dist = Vector3d::dot(d, d);
 	minDist = radiusA + radiusB;
-	
+
 	return (dist <= minDist * minDist);
 }
 
 
-inline vec_t square(vec_t a) 
+inline vec_t square(vec_t a)
 {
 	return a * a;
 }
@@ -85,10 +85,10 @@ int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius,
 {
 	// float x , y , z;
 	vec_t a, b, c, mu, i ;
-	
 
-	a = (square(posB[0] - posA[0]) + 
-		  square(posB[1] - posA[1]) + 
+
+	a = (square(posB[0] - posA[0]) +
+		  square(posB[1] - posA[1]) +
 		  square(posB[2] - posA[2]));
 	b = (2 * ((posB[0] - posA[0]) * (posA[0] - center[0]) +
 				 (posB[1] - posA[1]) * (posA[1] - center[1]) +
@@ -96,12 +96,12 @@ int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius,
 	c = (square(center[0]) + square(center[1]) +
 		  square(center[2]) + square(posA[0]) +
 		  square(posA[1]) + square(posA[2]) -
-		  2 * (center[0]*posA[0] + center[1]*posA[1] + center[2]*posA[2]) - 
+		  2 * (center[0]*posA[0] + center[1]*posA[1] + center[2]*posA[2]) -
 		  square(radius));
 
 	i = b * b - 4 * a * c;
 
-	
+
 	if (i < 0.0)
 	{
 		// No intersection
@@ -120,13 +120,13 @@ int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius,
 	else
 	{
 		// Two intersections
-		
+
 		// First intersection
 		mu = (-b + sqrt( square(b) - 4*a*c)) / (2*a);
 		intersectionA[1] = posA[0] + mu*(posB[0]-posA[0]);
 		intersectionA[2] = posA[1] + mu*(posB[1]-posA[1]);
 		intersectionA[3] = posA[2] + mu*(posB[2]-posA[2]);
-		
+
 		// Second intersection
 		mu = (-b - sqrt(square(b) - 4*a*c)) / (2*a);
 		intersectionB[0] = posA[0] + mu*(posB[0]-posA[0]);
@@ -163,10 +163,10 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
 
 	// find D
 	//d = (normal[0] * ploygon[0][0] -
-	//	  normal[1] * ploygon[0][1] - 
+	//	  normal[1] * ploygon[0][1] -
 	//	  normal[2] * ploygon[0][2]);
 	d = (normal.mVec[0] * ploygon[0][0] -
-		  normal.mVec[1] * ploygon[0][1] - 
+		  normal.mVec[1] * ploygon[0][1] -
 		  normal.mVec[2] * ploygon[0][2]);
 
 	// line segment parallel to plane?
@@ -196,7 +196,7 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
 	intersect[0] = b.mVec[0];
 	intersect[1] = b.mVec[1];
 	intersect[2] = b.mVec[2];
-	
+
 
 	// See if the intercept is bound by polygon by winding number
 #ifdef WINDING_NUMBERS_TRIANGLE
@@ -233,9 +233,9 @@ vec_t helDistToSphereFromPlane3v(vec3_t center,	vec_t radius, vec4_t plane)
 	vec_t d;
 
 
-	d = (plane[0] * center[0] + 
+	d = (plane[0] * center[0] +
 		  plane[1] * center[1] +
-		  plane[2] * center[2] + 
+		  plane[2] * center[2] +
 		  plane[3]);
 
 	if (d <= -radius)
@@ -253,9 +253,9 @@ vec_t helDistToBboxFromPlane3v(vec3_t min, vec3_t max, vec4_t plane)
 
 	helMidpoint3v(min, max, center);
 
-	d = (plane[0] * center[0] + 
-		  plane[1] * center[1] + 
-		  plane[2] * center[2] + 
+	d = (plane[0] * center[0] +
+		  plane[1] * center[1] +
+		  plane[2] * center[2] +
 		  plane[3]);
 
 	radius = helDist3v(max, center);
@@ -270,7 +270,7 @@ vec_t helDistToBboxFromPlane3v(vec3_t min, vec3_t max, vec4_t plane)
 vec_t helDist3v(vec3_t a, vec3_t b)
 {
 	return (sqrt( ((b[0] - a[0]) * (b[0] - a[0])) +
-					  ((b[1] - a[1]) * (b[1] - a[1])) + 
+					  ((b[1] - a[1]) * (b[1] - a[1])) +
 					  ((b[2] - a[2]) * (b[2] - a[2]))));
 }
 
@@ -284,19 +284,19 @@ void helMidpoint3v(vec3_t a, vec3_t b, vec3_t mid)
 
 
 vec_t helNorm4v(vec4_t v)
-{ 
+{
 	return (sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2] + v[3]*v[3]));
 }
 
 
 vec_t helNorm3v(vec3_t v)
-{ 
+{
 	return (sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]));
-} 
+}
 
 
 vec_t helNorm2v(vec2_t v)
-{ 
+{
 	return (sqrt(v[0]*v[0] + v[1]*v[1]));
 }
 
@@ -321,7 +321,7 @@ vec_t helDegToRad(vec_t degrees)
 vec_t helRadToDeg(vec_t rad)
 {
 #ifdef COMPUTE
-	return ((rad / HEL_PI) * 180.0); 
+	return ((rad / HEL_PI) * 180.0);
 #else
 	// rad * (PI / 180.0);
 	return (rad * HEL_PI_OVER_180);
@@ -334,14 +334,14 @@ vec_t helRadToDeg(vec_t rad)
 
 void helMathTest()
 {
-	printf("180/PI: %f, %f, %f\n", 
-			 HEL_180_OVER_PI, 
+	printf("180/PI: %f, %f, %f\n",
+			 HEL_180_OVER_PI,
 			 180.0f / HEL_PI,
 			 180.0 / M_PI);
 }
 
 
-int main(int argc, char *argv)
+int main(int argc, char *argv[])
 {
 	helMathTest();
 
