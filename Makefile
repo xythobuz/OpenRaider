@@ -11,7 +11,7 @@
 BUILD_SELECT=debug
 
 NAME=OpenRaider
-NAME_DEB=openraider
+NAME_TAR=openraider
 MAJOR_VERSION=0
 MINOR_VERSION=1
 MICRO_VERSION=2
@@ -20,15 +20,15 @@ PRE=
 VERSION=$(MAJOR_VERSION).$(MINOR_VERSION).$(MICRO_VERSION)$(PRE)
 VERSION_DEB=$(MAJOR_VERSION).$(MINOR_VERSION).$(MICRO_VERSION).$(BUILD_ID)
 BUILD_HOST=$(shell uname -s -n -r -m)
-ARCH=$(shell uname -m)
+ARCH=$(shell uname -m -s | sed -e "s/ /-/g")
 UNAME=$(shell uname -s)
 
 ###############################################################
 
-# -DUSING_OPENAL		Add OpenAL sound support
-# -DMULTITEXTURE		Add OpenGL multitexturing
-# -DUNICODE_SUPPORT		Add unicode/internation keyboard support
+# -DMULTITEXTURE			Add OpenGL multitexturing
+# -DUNICODE_SUPPORT			Add unicode/internation keyboard support
 # -DUSING_EMITTER_IN_GAME	Run particle test in game
+
 BASE_DEFS=$(shell sdl-config --cflags) -Isrc -DSDL_INTERFACE \
 	-DUSING_OPENGL -DZLIB_SUPPORT -DUSING_EMITTER \
 	-DUSING_OPENAL -DUSING_MTK_TGA -DUSING_PTHREADS \
@@ -220,25 +220,25 @@ $(BUILDDIR)/$(NAME) : $(OBJS)
 
 clean: clean-small clean-dep
 
-clean-small: clean-emacs clean-build clean-test clean-obj 
+clean-small: clean-build clean-test clean-obj 
 	@-rm -rf bin/OpenRaider.app
 	@-rm -rf bin/OpenRaider.dmg
 	@-rm -rf bin/OpenRaider.zip
 
 clean-dep:
-	@-echo "Cleaning dependencies                        "
+	@-echo "Cleaning dependencies"
 	@-rm -f depend
 	@-echo "[DONE]"
 
 clean-test:
-	@-echo "Cleaning test builds                         "
+	@-echo "Cleaning test builds"
 	@-rm -f $(BUILD_TEST_DIR)/*.o
 	@-rm -f $(BUILD_TEST_DIR)/*.test
 	@-rm -rf $(BUILD_TEST_DIR)/*.build
 	@-echo "[DONE]"
 
 clean-obj:
-	@-echo "Cleaning objects                             "
+	@-echo "Cleaning objects"
 	@-rm -f $(BUILD_PROF_DIR)/*.o
 	@-rm -f $(BUILD_DEBUG_DIR)/*.o
 	@-rm -f $(BUILD_RELEASE_DIR)/*.o
@@ -246,23 +246,14 @@ clean-obj:
 	@-rm -f $(BUILD_MEM_DIR)/*.o
 	@-echo "[DONE]"
 
-clean-emacs:
-	@-echo "Cleaning emacs files                         "
-	@-rm -f `find . -name "*~" -print`
-	@-echo "[DONE]"
-
 clean-build:
-	@-echo "Cleaning builds                              "
+	@-echo "Cleaning builds"
 	@-rm -f $(BUILD_PROF_DIR)/$(NAME)
 	@-rm -f $(BUILD_DEBUG_DIR)/$(NAME)
 	@-rm -f $(BUILD_RELEASE_DIR)/$(NAME)
 	@-rm -f $(BUILD_MEM_DIR)/$(NAME)
 	@-echo "[DONE]"
 
-clean-deb:
-	@-echo "Cleaning DEBs                                "
-	@-rm -rf $(DEB_DIR)
-	@-echo "[DONE]"
 
 #################################################################
 
@@ -270,76 +261,25 @@ clean-deb:
 
 #################################################################
 
-docs:
-	doxygen
-	cp -R doc/html/* ../apache/ # My local test webserver
-
-redhat:
-	cd $(DEB_DIR) && \
-		alien --to-rpm $(NAME_DEB)_$(VERSION_DEB)-1_$(ARCH).deb
-
-debian:
-	$(MAKE) tarball
-	$(MAKE) clean-deb
-	mkdir -p $(DEB_DIR)
-	cp ../$(NAME_DEB)-$(VERSION_DEB).tar.gz $(DEB_DIR)
-	cd $(DEB_DIR) && tar zxvf $(NAME_DEB)-$(VERSION_DEB).tar.gz && mv $(TREE_DIR) $(NAME_DEB)-$(VERSION_DEB) && cd $(NAME_DEB)-$(VERSION_DEB) && make deb-init && make deb
-
-deb-init:
-	dh_make -c gpl -s \
-	-e mongoose@icculus.org -f ../$(NAME_DEB)-$(VERSION_DEB).tar.gz
-	@-cp debian/control debian/control.old
-	@-sed -e "s/<insert up to 60 chars description>/Open source Tomb Raider series clone/g" debian/control.old > debian/control
-	@-rm -f debian/control.old
-	@-cp debian/control debian/control.old
-	@-sed -e "s/<insert long description, indented with spaces>/OpenRaider is an open source multiplayer and single player Tomb Raider clone for linux and Playstation 2. It uses the game data such as models, sound, levels,  and animation from the popular 3d series Tomb Raider by Core Design./g" debian/control.old > debian/control
-	@-rm -f debian/control.old
-
-deb:
-	dpkg-buildpackage -rfakeroot
-
-apt:
-	cd $(DEB_DIR) && dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
-	cd $(DEB_DIR) && dpkg-scansources . /dev/null | gzip -9c > Sources.gz
-
-apt-upload:
-	scp $(DEB_DIR)/Packages.gz \
-		$(DEB_DIR)/Sources.gz \
-		$(DEB_DIR)/$(NAME_DEB)*.diff.gz  \
-		$(DEB_DIR)/$(NAME_DEB)*.deb \
-		$(DEB_DIR)/$(NAME_DEB)*.dsc \
-		$(DEB_DIR)/$(NAME_DEB)*.orig.tar.gz \
-	orbital.sf.net:~/openraider/htdocs/debian/
+ifneq ($(UNAME),Darwin)
 
 install:
 	mkdir -p $(INSTALL_SHARE)/data
 	cp setup.sh $(INSTALL_SHARE)
 	cp data/* $(INSTALL_SHARE)/data
 	mkdir -p $(INSTALL_DOC)
-	cp README ChangeLog BUGS TODO $(INSTALL_DOC)
+	cp README.md README.old ChangeLog BUGS TODO $(INSTALL_DOC)
 	mkdir -p $(INSTALL_BIN)
 	cp bin/$(BUILD_SELECT)/OpenRaider $(INSTALL_BIN)
 
-bin-tarball:
-	$(MAKE) clean-obj
-	@-cd .. && tar zcvf $(NAME_DEB)-$(VERSION_DEB)-$(ARCH).tar.gz \
+bin-tarball: clean-build clean-test clean-obj $(BUILD_SELECT)
+	@-cd .. && tar zcvf $(NAME_TAR)-$(VERSION_DEB)-$(ARCH).tar.gz \
 		$(TREE_DIR)/Makefile $(TREE_DIR)/data \
 		$(TREE_DIR)/bin/$(BUILD_SELECT)/OpenRaider \
-		$(TREE_DIR)/README $(TREE_DIR)/ChangeLog \
+		$(TREE_DIR)/README.md $(TREE_DIR)/ChangeLog \
 		$(TREE_DIR)/BUGS $(TREE_DIR)/TODO
 
-tarball:
-	@-echo "Making tarball                                  " 
-	@-cd .. && tar zcvf $(NAME_DEB)-$(VERSION_DEB).tar.gz \
-		$(TREE_DIR) --exclude old --exclude models \
-		--exclude semantic.cache --exclude TAGS \
-		--exclude bin --exclude CVS --exclude *~ 
-	@-echo "[DONE]"
-
-backup:
-	$(MAKE) tarball
-	@-cd .. && cp $(NAME)-$(VERSION)-$(BUILD_ID).tar.gz ~/Backup
-
+endif
 
 #################################################################
 # Unit Test builds
