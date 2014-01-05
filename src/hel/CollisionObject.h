@@ -54,4 +54,9 @@ class CollisionObject
 	/* */
 };
 
+class HeightCollisionObject : public CollisionObject {
+public:
+    HeightCollisionObject(int a, int b);
+};
+
 #endif

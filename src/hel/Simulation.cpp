@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Hel
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,15 +10,16 @@
  * Comments: This class simulates mass physics
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2003.06.02:
  * Mongoose - Created, based on algorithms from Erkin Tunca
  =================================================================*/
 
+#include <math.h>
 #include "Simulation.h"
 
 
@@ -72,7 +73,7 @@ bool Simulation::collisionDetected(Mass *mass)
 	{
 		if ((mObjects.current())->intersectPoint(mass->mPos))
 		{
-			detected = true; 
+			detected = true;
 			resolveCollision(mass, mObjects.current());
 		}
 	}
@@ -88,7 +89,7 @@ void Simulation::generateMasses(unsigned int count, vec_t mass)
 
 
 void Simulation::generateMasses(unsigned int count, vec_t mass,
-										  const Vector3d &position, 
+										  const Vector3d &position,
 										  const Vector3d &velocity)
 {
 	unsigned int i;
@@ -205,7 +206,7 @@ void renderScene(float time, float lastTime)
 	//glColor4f(mColor, g, b, life);
 
 	// Render tristrip quad
-	for (gEmitter->mMasses.start(); gEmitter->mMasses.forward(); 
+	for (gEmitter->mMasses.start(); gEmitter->mMasses.forward();
 		  gEmitter->mMasses.next())
 	{
 		m = gEmitter->mMasses.current();
@@ -241,19 +242,19 @@ void renderScene(float time, float lastTime)
 			z = m->mPos.mVec[2];
 
 			glBegin(GL_TRIANGLE_STRIP);
-			
+
 			glTexCoord2d(1.0, 1.0);
 			glVertex3f(x + 25, y + 25, z);
-			
+
 			glTexCoord2d(0.0, 1.0);
 			glVertex3f(x - 25, y + 25, z);
-			
+
 			glTexCoord2d(1.0, 0.0);
 			glVertex3f(x + 25, y - 25, z);
-			
+
 			glTexCoord2d(0.0, 0.0);
 			glVertex3f(x - 25, y - 25, z);
-			
+
 			glEnd();
 		}
 	}
@@ -261,7 +262,7 @@ void renderScene(float time, float lastTime)
 #else
 	glBegin(GL_POINTS);
 
-	for (gEmitter.mMasses.start(); gEmitter.mMasses.forward(); 
+	for (gEmitter.mMasses.start(); gEmitter.mMasses.forward();
 		  gEmitter.mMasses.next())
 	{
 		m = gEmitter.mMasses.current();
@@ -295,10 +296,10 @@ void handleKey(int key)
 	case 'r':
 		gGravityEmitter.clear();
 
-		gGravityEmitter.generateMasses(1, 1.0f, 
+		gGravityEmitter.generateMasses(1, 1.0f,
 												 Vector3d(0.0f, 0.0f, 0.0f),
 												 Vector3d(0.0f, 96.0f, -64.0f));
-		gGravityEmitter.generateMasses(1, 1.0f, 
+		gGravityEmitter.generateMasses(1, 1.0f,
 												 Vector3d(-128.0f, 0.0f, 0.0f),
 												 Vector3d(32.0f, 96.0f, 0.0f));
 		gGravityEmitter.generateMasses(1, 1.0f,
@@ -402,18 +403,18 @@ int runSimulationUnitTest(int argc, char *argv[])
 
 	// Masses created above the origin, traveling down on Y axis
 	// as if it where in a vacuum pulled by gravity
-	gGravityEmitter.generateMasses(1, 1.0f, 
+	gGravityEmitter.generateMasses(1, 1.0f,
 											 Vector3d(0.0f, 0.0f, 0.0f),
 											 Vector3d(0.0f, 96.0f, 0.0f));
-	gGravityEmitter.generateMasses(1, 1.0f, 
+	gGravityEmitter.generateMasses(1, 1.0f,
 											 Vector3d(-64.0f, 1424.0f, 0.0f),
 											 Vector3d(-9.8f, 0.0f, 0.0f));
 	gGravityEmitter.generateMasses(1, 1.0f,
 											 Vector3d(64.0f, 1424.0f, 0.0f),
 											 Vector3d(9.8f, 0.0f, 0.0f));
 
-	//InternalBBoxCollisionObject *obj = 
-	//new InternalBBoxCollisionObject(-9999, 0, -9999, 
+	//InternalBBoxCollisionObject *obj =
+	//new InternalBBoxCollisionObject(-9999, 0, -9999,
 	//										 9999, 9999, 9999);
 
 	HeightCollisionObject *obj = new HeightCollisionObject(0, 9999);
@@ -425,13 +426,13 @@ int runSimulationUnitTest(int argc, char *argv[])
 	// Spring
 	gSpringEmitter.connectionPos = Vector3d(0.0f, 200.0f, 0.0f);
 	gSpringEmitter.springConstant = 0.3f;
-	gSpringEmitter.generateMasses(1, 0.5f, 
+	gSpringEmitter.generateMasses(1, 0.5f,
 											Vector3d(0.0f, -512.0f, 0.0f),
 											Vector3d(3.0f, 0.0f, 0.0f));
-	gSpringEmitter.generateMasses(1, 0.5f, 
+	gSpringEmitter.generateMasses(1, 0.5f,
 											Vector3d(-512.0f, -128.0f, 0.0f),
 											Vector3d(0.0f, 3.0f, 0.0f));
-	gSpringEmitter.generateMasses(1, 0.5f, 
+	gSpringEmitter.generateMasses(1, 0.5f,
 											Vector3d(512.0f, -128.0f, 0.0f),
 											Vector3d(0.0f, 0.0f, 0.3f));
 

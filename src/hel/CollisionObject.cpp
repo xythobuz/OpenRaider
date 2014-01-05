@@ -42,25 +42,6 @@ bool CollisionObject::intersectPoint(Vector3d p) {
 ////////////////////////////////////////////////////////////
 
 
-////////////////////////////////////////////////////////////
-// Unit Test code
-////////////////////////////////////////////////////////////
+HeightCollisionObject::HeightCollisionObject(int a, int b) {
 
-#ifdef UNIT_TEST_CollisionObject
-int runCollisionObjectUnitTest()
-{
-	CollisionObject col;
-
-	return 0;
 }
-
-
-int main(int argc, char *argv[])
-{
-	printf("[CollisionObject class test]\n");
-
-	runCollisionObjectUnitTest();
-
-	return 0;
-}
-#endif

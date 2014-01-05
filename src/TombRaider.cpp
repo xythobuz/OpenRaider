@@ -53,6 +53,8 @@
 
 #ifdef ZLIB_SUPPORT
 #   include "zlib.h"
+#else
+#warning "No zlib. Won't support TR4+ files!"
 #endif
 
 #ifdef __TEST_TR5_DUMP_TGA

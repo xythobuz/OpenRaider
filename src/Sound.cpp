@@ -18,6 +18,8 @@
 #include <AL/alc.h>
 #include <AL/alut.h>
 #endif
+#else
+#warning "No OpenAL support. Won't play sound!"
 #endif
 
 #include <time.h>

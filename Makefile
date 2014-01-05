@@ -350,12 +350,21 @@ SIMULATION_OBJS=$(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/Texture.o \
 		$(BUILD_TEST_DIR)/Quaternion.o \
 		$(BUILD_TEST_DIR)/math.o
 
+ifeq ($(UNAME),Darwin)
+Simulation.test:
+	mkdir -p $(BUILD_TEST_DIR)
+	$(MAKE) targets NAME=Simulation.test BUILDDIR=$(BUILD_TEST_DIR) \
+		OBJS="$(SIMULATION_OBJS)" \
+		CFLAGS="$(SIMULATION_CFLAGS)" \
+		LD_FLAGS="-lm -lstdc++ -lSDL_ttf -lSDL -framework OpenGL -framework GLUT $(shell sdl-config --libs)"
+else
 Simulation.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(MAKE) targets NAME=Simulation.test BUILDDIR=$(BUILD_TEST_DIR) \
 		OBJS="$(SIMULATION_OBJS)" \
 		CFLAGS="$(SIMULATION_CFLAGS)" \
 		LD_FLAGS="-lm -lstdc++ -lSDL_ttf -lSDL -lGL -lGLU $(shell sdl-config --libs)"
+endif
 
 #################################################################
 

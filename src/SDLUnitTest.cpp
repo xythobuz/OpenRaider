@@ -455,6 +455,7 @@ int main_gl(int argc, char *argv[])
   SDL_Init(SDL_INIT_VIDEO);
   printf("\n@Created OpenGL Context...\n");
 
+#ifndef __APPLE__
   if (!driver || !driver[0] || SDL_GL_LoadLibrary(driver) < 0)
   {
 	  SDL_ClearError();
@@ -473,6 +474,7 @@ int main_gl(int argc, char *argv[])
 		  }
 	  }
   }
+#endif
 
   flags = SDL_OPENGL;
 

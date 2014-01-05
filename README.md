@@ -72,4 +72,4 @@ OpenRaider is based on code, specs, and alogrithms from:
 
 All code should be GPLed, unless otherwise noted.
 
-2013 improvements & clean-up by xythobuz.
+2013, 2014 improvements & clean-up by xythobuz.
