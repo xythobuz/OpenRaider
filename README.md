@@ -22,7 +22,8 @@ Dust off your old Tomb Raider CDs or grab some [custom levels](http://www.aspide
 
 ## Documentation
 
-All previously included documentation was moved into the [OpenRaider Repo Wiki](https://github.com/xythobuz/OpenRaider/wiki/_pages)!
+All previously included documentation was moved into the [OpenRaider Repo Wiki](https://github.com/xythobuz/OpenRaider/wiki/_pages).
+Also take a look at the [BUGS](https://github.com/xythobuz/OpenRaider/wiki/Bugs), [TODO](https://github.com/xythobuz/OpenRaider/wiki/To-Do) and [Requirements](https://github.com/xythobuz/OpenRaider/wiki/Requirements).
 
 A more or less recent [Doxygen documentation](http://xythobuz.github.io/OpenRaider/) of OpenRaider should be on the Github Pages for OpenRaider.
 
