@@ -12,7 +12,6 @@ var searchData=
   ['instance',['Instance',['../class_network.html#af5bf407932ea1cd43dea4bc36b9e07c5',1,'Network::Instance()'],['../class_open_raider.html#afc3684aeeb91d6ee09b8ad1a193e1f14',1,'OpenRaider::Instance()']]],
   ['intersectpoint',['intersectPoint',['../class_collision_object.html#a40d0a9fe2d8135c9e0d6af8d1ca76282',1,'CollisionObject']]],
   ['inverse',['inverse',['../class_quaternion.html#a5928af21cd48bf0a788cdaca8ccc8615',1,'Quaternion']]],
-  ['invert_5fmatrix',['invert_matrix',['../_p_s_k_model_8cpp.html#a3234241869f782ea24f59e9a28db85b7',1,'PSKModel.cpp']]],
   ['isactive',['isActive',['../class_particle.html#aaada33b8c789228eac5012ef5dbb15fa',1,'Particle']]],
   ['isbboxinfrustum',['isBboxInFrustum',['../class_view_volume.html#acede344f69bc36f6d071ed9cc8e35c03',1,'ViewVolume']]],
   ['isbehind',['isBehind',['../class_camera.html#a20b7877433e94d79cec8ae6b4c08f3bc',1,'Camera']]],

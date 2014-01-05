@@ -68,7 +68,7 @@ var searchData=
   ['treenode',['TreeNode',['../class_tree_node.html',1,'']]],
   ['treenode_3c_20k_2c_20mapnode_3c_20k_2c_20d_20_3e_20_2a_20_3e',['TreeNode&lt; K, MapNode&lt; K, D &gt; * &gt;',['../class_tree_node.html',1,'']]],
   ['treenode_3c_20unsigned_20int_2c_20mapnode_3c_20unsigned_20int_2c_20int_20_3e_20_2a_20_3e',['TreeNode&lt; unsigned int, MapNode&lt; unsigned int, int &gt; * &gt;',['../class_tree_node.html',1,'']]],
-  ['tris_5fs',['tris_s',['../_open_g_l_mesh_8h.html#structtris__s',1,'']]],
+  ['tris_5fs',['tris_s',['../class_open_g_l_mesh.html#struct_open_g_l_mesh_1_1tris__s',1,'OpenGLMesh']]],
   ['ttf_5fglyph_5ft',['ttf_glyph_t',['../_texture_8h.html#structttf__glyph__t',1,'']]],
   ['ttf_5ftexture_5ft',['ttf_texture_t',['../_texture_8h.html#structttf__texture__t',1,'']]]
 ];

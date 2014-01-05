@@ -41,8 +41,5 @@ var searchData=
   ['eventtimer',['eventTimer',['../_world_8h.html#a8d5372990bda04406360f39809630edd',1,'actor_entity_s']]],
   ['eweapondischarge',['eWeaponDischarge',['../_world_8h.html#afc445ca2a21bdc9b879736295a33084aaa8d8f96ee879c910f0e042f9b5708905',1,'World.h']]],
   ['ewounded',['eWounded',['../_world_8h.html#afc445ca2a21bdc9b879736295a33084aa9ccbd082b79cc1449fb660a952f360b3',1,'World.h']]],
-  ['exportcount',['exportCount',['../_u_t_package_8h.html#aca5935eb4c9f92b0f0d4d05e37ed8fe7',1,'utx_generation_t::exportCount()'],['../_u_t_package_8h.html#a80d7612752bc06f1e70be08970be0822',1,'utx_header_t::exportCount()']]],
-  ['exportoffset',['exportOffset',['../_u_t_package_8h.html#ad6bfeae5c71f5109d53c07d25ad35d91',1,'utx_header_t']]],
-  ['exporttable',['exportTable',['../_u_t_package_8h.html#a19c2d23b71b3b3a29fb232a055056147',1,'utx_header_t']]],
   ['extractmeshes',['extractMeshes',['../class_tomb_raider.html#a6972a37348fb59f3e2eb5a89c419bda4',1,'TombRaider']]]
 ];

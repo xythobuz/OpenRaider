@@ -7,7 +7,5 @@ var searchData=
   ['hel_5fpi_5fover_5f180',['HEL_PI_OVER_180',['../math_8h.html#a1d647a57d1d2696ccfde1891744d5620',1,'math.h']]],
   ['hel_5fpi_5fover_5f2',['HEL_PI_OVER_2',['../math_8h.html#aad30cc1e59b61c73ef3477570f8ea5ed',1,'math.h']]],
   ['hel_5fpi_5fover_5f4',['HEL_PI_OVER_4',['../math_8h.html#a98045ed5387f47b6c29e29385cfd3545',1,'math.h']]],
-  ['hel_5frad_5fto_5fdeg',['HEL_RAD_TO_DEG',['../math_8h.html#a56921ad9ad32c40390417e797e5aca1b',1,'math.h']]],
-  ['hex_5fdump_5fbuffer',['hex_dump_buffer',['../_u_t_package_8cpp.html#a5f5b1b733d2ab2a1eeb2e6e8b62a4d69',1,'UTPackage.cpp']]],
-  ['hex_5fdump_5ffile',['hex_dump_file',['../_u_t_package_8cpp.html#adcf84a14f72507ee83bf6e882897e849',1,'UTPackage.cpp']]]
+  ['hel_5frad_5fto_5fdeg',['HEL_RAD_TO_DEG',['../math_8h.html#a56921ad9ad32c40390417e797e5aca1b',1,'math.h']]]
 ];

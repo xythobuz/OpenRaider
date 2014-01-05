@@ -118,7 +118,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="math_8cpp.html#ab52fba159cc018b54b358a68569d7184">   28</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="math_8cpp.html#ab52fba159cc018b54b358a68569d7184">tmpHelSphereIntersectLine</a>(<a class="code" href="class_vector3d.html">Vector3d</a> <a class="code" href="_tomb_raider_8h.html#a31b8c57eea45694ee2ee7fda37c43cd8">pos</a>, <a class="code" href="class_vector3d.html">Vector3d</a> lastPos, </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="math_8cpp.html#ab52fba159cc018b54b358a68569d7184">   28</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="math_8cpp.html#ab52fba159cc018b54b358a68569d7184">tmpHelSphereIntersectLine</a>(<a class="code" href="class_vector3d.html">Vector3d</a> <a class="code" href="_tomb_raider_8h.html#a31b8c57eea45694ee2ee7fda37c43cd8">pos</a>, <a class="code" href="class_vector3d.html">Vector3d</a> lastPos,</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                         <a class="code" href="class_vector3d.html">Vector3d</a> center, <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> radius)</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_vector3d.html">Vector3d</a> seg, segToCenter, delta;</div>
@@ -158,12 +158,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    dist = <a class="code" href="class_vector3d.html#a43f2f7721cc087492c74031ef7454c9f">Vector3d::dot</a>(d, d);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    minDist = radiusA + radiusB;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> (dist &lt;= minDist * minDist);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">   73</a></span>&#160;<span class="keyword">inline</span> <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>) </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">   73</a></span>&#160;<span class="keyword">inline</span> <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>)</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> a * <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
@@ -178,10 +178,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// float x , y , z;</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>, <a class="code" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>, c, mu, i ;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    a = (<a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(posB[0] - posA[0]) + </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;          <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(posB[1] - posA[1]) + </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    a = (<a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(posB[0] - posA[0]) +</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;          <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(posB[1] - posA[1]) +</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;          <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(posB[2] - posA[2]));</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    b = (2 * ((posB[0] - posA[0]) * (posA[0] - center[0]) +</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                 (posB[1] - posA[1]) * (posA[1] - center[1]) +</div>
@@ -189,12 +189,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    c = (<a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(center[0]) + <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(center[1]) +</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;          <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(center[2]) + <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(posA[0]) +</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;          <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(posA[1]) + <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(posA[2]) -</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;          2 * (center[0]*posA[0] + center[1]*posA[1] + center[2]*posA[2]) - </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;          2 * (center[0]*posA[0] + center[1]*posA[1] + center[2]*posA[2]) -</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;          <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(radius));</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    i = b * b - 4 * a * c;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span> (i &lt; 0.0)</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">// No intersection</span></div>
@@ -213,13 +213,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="comment">// Two intersections</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="comment">// First intersection</span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        mu = (-b + sqrt( <a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(b) - 4*a*c)) / (2*a);</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        intersectionA[1] = posA[0] + mu*(posB[0]-posA[0]);</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        intersectionA[2] = posA[1] + mu*(posB[1]-posA[1]);</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        intersectionA[3] = posA[2] + mu*(posB[2]-posA[2]);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="comment">// Second intersection</span></div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        mu = (-b - sqrt(<a class="code" href="math_8cpp.html#a9fd00c7be85ed806fee1c84e09207353">square</a>(b) - 4*a*c)) / (2*a);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        intersectionB[0] = posA[0] + mu*(posB[0]-posA[0]);</div>
@@ -256,10 +256,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="comment">// find D</span></div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="comment">//d = (normal[0] * ploygon[0][0] -</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="comment">//    normal[1] * ploygon[0][1] - </span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="comment">//    normal[1] * ploygon[0][1] -</span></div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">//    normal[2] * ploygon[0][2]);</span></div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    d = (normal.<a class="code" href="class_vector3d.html#a2f6f3237833233ca4ac954067ae718b6">mVec</a>[0] * ploygon[0][0] -</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;          normal.<a class="code" href="class_vector3d.html#a2f6f3237833233ca4ac954067ae718b6">mVec</a>[1] * ploygon[0][1] - </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;          normal.<a class="code" href="class_vector3d.html#a2f6f3237833233ca4ac954067ae718b6">mVec</a>[1] * ploygon[0][1] -</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;          normal.<a class="code" href="class_vector3d.html#a2f6f3237833233ca4ac954067ae718b6">mVec</a>[2] * ploygon[0][2]);</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="comment">// line segment parallel to plane?</span></div>
@@ -289,7 +289,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    intersect[0] = b.<a class="code" href="class_vector3d.html#a2f6f3237833233ca4ac954067ae718b6">mVec</a>[0];</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    intersect[1] = b.<a class="code" href="class_vector3d.html#a2f6f3237833233ca4ac954067ae718b6">mVec</a>[1];</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    intersect[2] = b.<a class="code" href="class_vector3d.html#a2f6f3237833233ca4ac954067ae718b6">mVec</a>[2];</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="comment">// See if the intercept is bound by polygon by winding number</span></div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">#ifdef WINDING_NUMBERS_TRIANGLE</span></div>
@@ -326,9 +326,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> d;</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    d = (plane[0] * center[0] + </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    d = (plane[0] * center[0] +</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;          plane[1] * center[1] +</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;          plane[2] * center[2] + </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;          plane[2] * center[2] +</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;          plane[3]);</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span> (d &lt;= -radius)</div>
@@ -346,9 +346,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="math_8cpp.html#a959db38358c72fbfb3b4d26305532b56">helMidpoint3v</a>(min, max, center);</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    d = (plane[0] * center[0] + </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;          plane[1] * center[1] + </div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;          plane[2] * center[2] + </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    d = (plane[0] * center[0] +</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;          plane[1] * center[1] +</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;          plane[2] * center[2] +</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;          plane[3]);</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    radius = <a class="code" href="math_8cpp.html#a814a21f6b834626cd5f09e492d35b6c8">helDist3v</a>(max, center);</div>
@@ -363,7 +363,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00270"></a><span class="lineno"><a class="line" href="math_8h.html#a814a21f6b834626cd5f09e492d35b6c8">  270</a></span>&#160;<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="math_8cpp.html#a814a21f6b834626cd5f09e492d35b6c8">helDist3v</a>(<a class="code" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>, <a class="code" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="code" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>)</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;{</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordflow">return</span> (sqrt( ((b[0] - a[0]) * (b[0] - a[0])) +</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                      ((b[1] - a[1]) * (b[1] - a[1])) + </div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                      ((b[1] - a[1]) * (b[1] - a[1])) +</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                      ((b[2] - a[2]) * (b[2] - a[2]))));</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;}</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
@@ -377,19 +377,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
 <div class="line"><a name="l00286"></a><span class="lineno"><a class="line" href="math_8cpp.html#a58bfe47f3bccbcd683835e0b00bee8c7">  286</a></span>&#160;<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="math_8cpp.html#a58bfe47f3bccbcd683835e0b00bee8c7">helNorm4v</a>(<a class="code" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> v)</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;{ </div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;{</div>
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="keywordflow">return</span> (sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2] + v[3]*v[3]));</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;}</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
 <div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="math_8cpp.html#ad51de9c47e4245e74d487d3e5832245a">  292</a></span>&#160;<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="math_8cpp.html#ad51de9c47e4245e74d487d3e5832245a">helNorm3v</a>(<a class="code" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> v)</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;{ </div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;{</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <span class="keywordflow">return</span> (sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]));</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;} </div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;}</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
 <div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="math_8cpp.html#ad92c6257b59d86d482bba42ccec779ce">  298</a></span>&#160;<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="math_8cpp.html#ad92c6257b59d86d482bba42ccec779ce">helNorm2v</a>(<a class="code" href="math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> v)</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;{ </div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;{</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordflow">return</span> (sqrt(v[0]*v[0] + v[1]*v[1]));</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;}</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
@@ -414,7 +414,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00321"></a><span class="lineno"><a class="line" href="math_8h.html#ae5875bb6409379b162d66b85a47e6c54">  321</a></span>&#160;<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="math_8cpp.html#ae5875bb6409379b162d66b85a47e6c54">helRadToDeg</a>(<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> rad)</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;{</div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="preprocessor">#ifdef COMPUTE</span></div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">return</span> ((rad / <a class="code" href="math_8h.html#ae3a3b2343e42a1bc979927cd206d3e4d">HEL_PI</a>) * 180.0); </div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">return</span> ((rad / <a class="code" href="math_8h.html#ae3a3b2343e42a1bc979927cd206d3e4d">HEL_PI</a>) * 180.0);</div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor"></span>    <span class="comment">// rad * (PI / 180.0);</span></div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordflow">return</span> (rad * <a class="code" href="math_8h.html#a1d647a57d1d2696ccfde1891744d5620">HEL_PI_OVER_180</a>);</div>
@@ -427,14 +427,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="keywordtype">void</span> helMathTest()</div>
 <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;{</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    printf(<span class="stringliteral">&quot;180/PI: %f, %f, %f\n&quot;</span>, </div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;             <a class="code" href="math_8h.html#aa19f6cd359bca0292ab22515c68900f6">HEL_180_OVER_PI</a>, </div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    printf(<span class="stringliteral">&quot;180/PI: %f, %f, %f\n&quot;</span>,</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;             <a class="code" href="math_8h.html#aa19f6cd359bca0292ab22515c68900f6">HEL_180_OVER_PI</a>,</div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;             180.0f / <a class="code" href="math_8h.html#ae3a3b2343e42a1bc979927cd206d3e4d">HEL_PI</a>,</div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;             180.0 / M_PI);</div>
 <div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;}</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_vector_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv)</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_vector_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
 <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;{</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    helMathTest();</div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>

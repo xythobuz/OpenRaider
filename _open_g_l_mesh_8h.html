@@ -88,283 +88,198 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">OpenGLMesh.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>OpenGL Mesh.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="math_8h_source.html">hel/math.h</a>&quot;</code><br/>
 </div>
 <p><a href="_open_g_l_mesh_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:structtris__s"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_mesh_8h.html#structtris__s">tris_s</a></td></tr>
-<tr class="separator:structtris__s"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structrect__s"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_mesh_8h.html#structrect__s">rect_s</a></td></tr>
-<tr class="separator:structrect__s"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_g_l_mesh.html">OpenGLMesh</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:ac4bc0687a0f8eb43753ae402b31196a9"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="_open_g_l_mesh_8h.html#structtris__s">tris_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_mesh_8h.html#ac4bc0687a0f8eb43753ae402b31196a9">tris_t</a></td></tr>
-<tr class="separator:ac4bc0687a0f8eb43753ae402b31196a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7126a98087338dfbab7b8dfe70d1fd5"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="_open_g_l_mesh_8h.html#structrect__s">rect_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_mesh_8h.html#ad7126a98087338dfbab7b8dfe70d1fd5">rect_t</a></td></tr>
-<tr class="separator:ad7126a98087338dfbab7b8dfe70d1fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a11b2c1b3778bca0fc6a967a78c46e65a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_mesh_8h.html#a11b2c1b3778bca0fc6a967a78c46e65a">OpenGLMeshMode</a> { <a class="el" href="_open_g_l_mesh_8h.html#a11b2c1b3778bca0fc6a967a78c46e65aa7984c2612888dc5f7750d461383ee5ba">OpenGLMeshModeSolid</a> = 0, 
-<a class="el" href="_open_g_l_mesh_8h.html#a11b2c1b3778bca0fc6a967a78c46e65aadb3d7fb1da1375429ceb3db25c83945f">OpenGLMeshModeWireframe</a> = 1, 
-<a class="el" href="_open_g_l_mesh_8h.html#a11b2c1b3778bca0fc6a967a78c46e65aa48e5e992d7f503f742df0a517eb4d7e4">OpenGLMeshModeTexture</a> = 2, 
-<a class="el" href="_open_g_l_mesh_8h.html#a11b2c1b3778bca0fc6a967a78c46e65aaed74e006cb63a54e6391bd01c06053f5">OpenGLMeshModeMultiTexture</a> = 3
- }</td></tr>
-<tr class="separator:a11b2c1b3778bca0fc6a967a78c46e65a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab17a8b5592dfef0d843b0506e2e6a1de"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_mesh_8h.html#ab17a8b5592dfef0d843b0506e2e6a1de">OpenGLMeshFlags</a> { <a class="el" href="_open_g_l_mesh_8h.html#ab17a8b5592dfef0d843b0506e2e6a1dea3c196ce2dd12bdffb89eb665125ae853">fOpenGLMesh_Transparent</a> = 1, 
-<a class="el" href="_open_g_l_mesh_8h.html#ab17a8b5592dfef0d843b0506e2e6a1deaea10e1a21c1fc24c463456e841b31d18">fOpenGLMesh_BumpMap</a> = 2, 
-<a class="el" href="_open_g_l_mesh_8h.html#ab17a8b5592dfef0d843b0506e2e6a1deaf804a7c3ab215a3394498238c90707dd">fOpenGLMesh_UseVertexArray</a> = 4
- }</td></tr>
-<tr class="separator:ab17a8b5592dfef0d843b0506e2e6a1de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_open_g_l_mesh_1_1tris__s"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_g_l_mesh.html#struct_open_g_l_mesh_1_1tris__s">OpenGLMesh::tris_s</a></td></tr>
+<tr class="separator:struct_open_g_l_mesh_1_1tris__s"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_open_g_l_mesh_1_1rect__s"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_g_l_mesh.html#struct_open_g_l_mesh_1_1rect__s">OpenGLMesh::rect_s</a></td></tr>
+<tr class="separator:struct_open_g_l_mesh_1_1rect__s"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="structtris__s" id="structtris__s"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>OpenGL Mesh. </p>
+<p>Defining UNIT_TEST_OPENGLMESH builds <a class="el" href="class_open_g_l_mesh.html">OpenGLMesh</a> class as a console unit test</p>
+<dl class="section author"><dt>Author</dt><dd>Mongoose</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Unify the parallel systems here, arrays and the allocate/set </dd></dl>
+
+<p>Definition in file <a class="el" href="_open_g_l_mesh_8h_source.html">OpenGLMesh.h</a>.</p>
+</div><hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="struct_open_g_l_mesh_1_1tris__s" id="struct_open_g_l_mesh_1_1tris__s"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct tris_s</td>
+          <td class="memname">struct OpenGLMesh::tris_s</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_open_g_l_mesh_8h_source.html#l00052">52</a> of file <a class="el" href="_open_g_l_mesh_8h_source.html">OpenGLMesh.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_g_l_mesh_8h_source.html#l00033">33</a> of file <a class="el" href="_open_g_l_mesh_8h_source.html">OpenGLMesh.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a718eeb65ccbca5990593876a38279482"></a>unsigned int *</td>
+<a class="anchor" id="ad262cab86891244cd75b2a7fc21d9b2c"></a>unsigned int *</td>
 <td class="fieldname">
 alpha_triangles</td>
 <td class="fielddoc">
-</td></tr>
+ABCABCABC... </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a13b204d6a8746aa29b7c90476989ac42"></a>unsigned int</td>
+<a class="anchor" id="abef85678abe078afb5973a9e62347e3c"></a>unsigned int</td>
 <td class="fieldname">
 cnum_alpha_triangles</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aa083ab645dde2908a264cc4544581ca9"></a>unsigned int</td>
+<a class="anchor" id="a8ac6bc63ca04bb38dbd66cdc437af6c1"></a>unsigned int</td>
 <td class="fieldname">
 cnum_triangles</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a685980521acc9420ccc219d45c2433a9"></a>unsigned int</td>
+<a class="anchor" id="a07391f7bd67dc612f413561fd05f1ffe"></a>unsigned int</td>
 <td class="fieldname">
 num_alpha_triangles</td>
 <td class="fielddoc">
-</td></tr>
+Arrays of alpha triangle indices sorted by texture. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="abb2d85f2e7c666dbb79aae046837cdd2"></a>unsigned int</td>
+<a class="anchor" id="ab857a70773591b2b25635cd9cbb62fd5"></a>unsigned int</td>
 <td class="fieldname">
 num_texcoors</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a04eb19147c7e6548d2132509cb0bec70"></a>unsigned int</td>
+<a class="anchor" id="a9e7cf5132e64a4ffc7df4d9bdb1512c9"></a>unsigned int</td>
 <td class="fieldname">
 num_texcoors2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a5aa479501259b6bf3f7841f8aeae0920"></a>unsigned int</td>
+<a class="anchor" id="af3004697b90ace12084e7927381adb71"></a>unsigned int</td>
 <td class="fieldname">
 num_triangles</td>
 <td class="fielddoc">
-</td></tr>
+Arrays of triangle indices sorted by texture. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a89d86e5705ec5092e7b0138b4633368c"></a><a class="el" href="math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
+<a class="anchor" id="a5b1de986d2be41dbdfc3a8e3d781cea1"></a><a class="el" href="math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
 <td class="fieldname">
 texcoors</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aa20a5714cdb6beedb0589670151cb20a"></a><a class="el" href="math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
+<a class="anchor" id="aa7f61fbd538b970b4d516c95be635d73"></a><a class="el" href="math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
 <td class="fieldname">
 texcoors2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aea3d723a8f725ccd11ee2ba05bb9c954"></a>int</td>
+<a class="anchor" id="a818c46cd9a0a83529431192759948c7b"></a>int</td>
 <td class="fieldname">
 texture</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a3efb8e773c29b04aa0d9b51598d7e62a"></a>unsigned int *</td>
+<a class="anchor" id="a5d41120bd87cae70f3110db70bb6dc50"></a>unsigned int *</td>
 <td class="fieldname">
 triangles</td>
 <td class="fielddoc">
-</td></tr>
+ABCABCABC... </td></tr>
 </table>
 
 </div>
 </div>
-<a name="structrect__s" id="structrect__s"></a>
+<a name="struct_open_g_l_mesh_1_1rect__s" id="struct_open_g_l_mesh_1_1rect__s"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct rect_s</td>
+          <td class="memname">struct OpenGLMesh::rect_s</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_open_g_l_mesh_8h_source.html#l00079">79</a> of file <a class="el" href="_open_g_l_mesh_8h_source.html">OpenGLMesh.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_g_l_mesh_8h_source.html#l00057">57</a> of file <a class="el" href="_open_g_l_mesh_8h_source.html">OpenGLMesh.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="abcff685ae41d81373d1b1390737dd2e1"></a>unsigned int *</td>
+<a class="anchor" id="ae30ddda71611e05e856c2405673aeb80"></a>unsigned int *</td>
 <td class="fieldname">
 alpha_quads</td>
 <td class="fielddoc">
-</td></tr>
+ABCDABCDABCD... </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ab2184110d5361e71eff6fb8d36d8acd0"></a>unsigned int</td>
+<a class="anchor" id="ac83042db0fda56ee047b65abae76452b"></a>unsigned int</td>
 <td class="fieldname">
 cnum_alpha_quads</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="af8b212c31cf35d6437c3a526cfb1ed1d"></a>unsigned int</td>
+<a class="anchor" id="a45d2fec4fb351f7aec4d6856103ad958"></a>unsigned int</td>
 <td class="fieldname">
 cnum_quads</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aa721ee70862e481441e09d2da36ca113"></a>unsigned int</td>
+<a class="anchor" id="a1c3191751812a2080c6190ce1587c403"></a>unsigned int</td>
 <td class="fieldname">
 num_alpha_quads</td>
 <td class="fielddoc">
-</td></tr>
+Arrays of alpha rectangle indices sorted by texture. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ab960835b386cc09781157b2e5e153936"></a>unsigned int</td>
+<a class="anchor" id="ab89cbedda1dc897093b3100ababc7162"></a>unsigned int</td>
 <td class="fieldname">
 num_quads</td>
 <td class="fielddoc">
-</td></tr>
+Arrays of rectangle indices sorted by texture. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a196ed90c67959a7e556a82ca97dfe924"></a>unsigned int</td>
+<a class="anchor" id="a3c7f9c8e3528186d539c06222a893d21"></a>unsigned int</td>
 <td class="fieldname">
 num_texcoors</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a19b43580678ad5c345b0ba941a22e42e"></a>unsigned int</td>
+<a class="anchor" id="ae3bf5010fce8d3f5bb100e0c74c3fd97"></a>unsigned int</td>
 <td class="fieldname">
 num_texcoors2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ac2e4944fe497f1070a00474cab236db3"></a>unsigned int *</td>
+<a class="anchor" id="aa8652da02d787cbd0d064dfe146f16ce"></a>unsigned int *</td>
 <td class="fieldname">
 quads</td>
 <td class="fielddoc">
-</td></tr>
+ABCDABCDABCD... </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a648d0d8bfb3e43b5ef2b17adfdba1bb6"></a><a class="el" href="math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
+<a class="anchor" id="a10433e02df4efd616a4e12ae37d31493"></a><a class="el" href="math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
 <td class="fieldname">
 texcoors</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ad8a6addd36479ff1ef602141b44b2661"></a><a class="el" href="math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
+<a class="anchor" id="a429ad213706756608aa9bbe43d40ea57"></a><a class="el" href="math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
 <td class="fieldname">
 texcoors2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aad558df8d5e8da61fe08a19428154a4b"></a>int</td>
+<a class="anchor" id="ae85186d0cfee7712e16b4333fdc7ddff"></a>int</td>
 <td class="fieldname">
 texture</td>
 <td class="fielddoc">
 </td></tr>
 </table>
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="ad7126a98087338dfbab7b8dfe70d1fd5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="_open_g_l_mesh_8h.html#structrect__s">rect_s</a>  <a class="el" href="_open_g_l_mesh_8h.html#ad7126a98087338dfbab7b8dfe70d1fd5">rect_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ac4bc0687a0f8eb43753ae402b31196a9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="_open_g_l_mesh_8h.html#structtris__s">tris_s</a>  <a class="el" href="_open_g_l_mesh_8h.html#ac4bc0687a0f8eb43753ae402b31196a9">tris_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a class="anchor" id="ab17a8b5592dfef0d843b0506e2e6a1de"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="_open_g_l_mesh_8h.html#ab17a8b5592dfef0d843b0506e2e6a1de">OpenGLMeshFlags</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ab17a8b5592dfef0d843b0506e2e6a1dea3c196ce2dd12bdffb89eb665125ae853"></a>fOpenGLMesh_Transparent</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab17a8b5592dfef0d843b0506e2e6a1deaea10e1a21c1fc24c463456e841b31d18"></a>fOpenGLMesh_BumpMap</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab17a8b5592dfef0d843b0506e2e6a1deaf804a7c3ab215a3394498238c90707dd"></a>fOpenGLMesh_UseVertexArray</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="_open_g_l_mesh_8h_source.html#l00044">44</a> of file <a class="el" href="_open_g_l_mesh_8h_source.html">OpenGLMesh.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a11b2c1b3778bca0fc6a967a78c46e65a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="_open_g_l_mesh_8h.html#a11b2c1b3778bca0fc6a967a78c46e65a">OpenGLMeshMode</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a11b2c1b3778bca0fc6a967a78c46e65aa7984c2612888dc5f7750d461383ee5ba"></a>OpenGLMeshModeSolid</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a11b2c1b3778bca0fc6a967a78c46e65aadb3d7fb1da1375429ceb3db25c83945f"></a>OpenGLMeshModeWireframe</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a11b2c1b3778bca0fc6a967a78c46e65aa48e5e992d7f503f742df0a517eb4d7e4"></a>OpenGLMeshModeTexture</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a11b2c1b3778bca0fc6a967a78c46e65aaed74e006cb63a54e6391bd01c06053f5"></a>OpenGLMeshModeMultiTexture</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="_open_g_l_mesh_8h_source.html#l00035">35</a> of file <a class="el" href="_open_g_l_mesh_8h_source.html">OpenGLMesh.h</a>.</p>
 
 </div>
 </div>

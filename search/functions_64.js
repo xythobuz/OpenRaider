@@ -25,6 +25,5 @@ var searchData=
   ['drawskymesh',['drawSkyMesh',['../class_render.html#adfa399c2fd290283eae9ddf2c9c4e8f1',1,'Render']]],
   ['drawsolid',['drawSolid',['../class_open_g_l_mesh.html#ad06890591572d90232ebccdb7b5f6cc9',1,'OpenGLMesh']]],
   ['drawsprite',['drawSprite',['../class_render.html#adb9398eab81029fbcb5853cba21b27df',1,'Render']]],
-  ['dump_5ffile',['dump_file',['../_u_t_package_8cpp.html#a72abe2992410565f27b11d77db007492',1,'UTPackage.cpp']]],
   ['dump_5fmemory_5freport',['dump_memory_report',['../memeory__test_8h.html#a89534cb919b8ce84fa59463181ff3357',1,'memeory_test.h']]]
 ];

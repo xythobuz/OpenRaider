@@ -82,8 +82,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a href="http://openraider.sourceforge.net">OpenRaider</a> is an Open Source implementation of the classic Tomb Raider Game Engine. It was abandoned in 2003.</p>
-<p>This project aims to get <a class="el" href="class_open_raider.html">OpenRaider</a> in a more usable state.</p>
-<p>If you just want to see <a class="el" href="class_open_raider.html">OpenRaider</a> doing something, without installing any of the dependencies needed to build <a class="el" href="class_open_raider.html">OpenRaider</a>, install <a href="http://xquartz.macosforge.org/trac">XQuartz</a> (if you don't have it already) and grab the Mac App Bundle from the <a href="https://github.com/xythobuz/OpenRaider/releases">most recent release</a>.</p>
+<p>This project aims to get <a class="el" href="class_open_raider.html">OpenRaider</a> in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...</p>
+<p>Currently, my focus is on building and running under Mac OS X. However, my changes should not break the Linux "buildability" :)</p>
+<p>If you just want to see <a class="el" href="class_open_raider.html">OpenRaider</a> doing something on your Mac, without installing any of the dependencies needed to build <a class="el" href="class_open_raider.html">OpenRaider</a>, install <a href="http://xquartz.macosforge.org/trac">XQuartz</a> (if you don't have it already) and grab the Mac App Bundle from the <a href="https://github.com/xythobuz/OpenRaider/releases">most recent release</a>. If you don't install XQuartz, Mac OS X should prompt you to do so on the first launch of <a class="el" href="class_open_raider.html">OpenRaider</a>.</p>
+<p>It seems as if <a class="el" href="class_open_raider.html">OpenRaider</a> will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!</p>
 <h2>Configuration</h2>
 <p><a class="el" href="class_open_raider.html">OpenRaider</a> needs some configuration files, and level data and assets from custom levels or the Tomb Raider games. These are stored in <code>~/.<a class="el" href="class_open_raider.html">OpenRaider</a></code>. Running the included <code>setup.sh</code> will create/copy the necessary files and directories. The Mac App Bundle will do this for you automatically.</p>
 <p>You still need to add level files in <code>~/.OpenRaider/paks/</code> and add them to <code>~/.OpenRaider/OpenRaider.init</code>. Dust off your old Tomb Raider CDs or grab some <a href="http://www.aspidetr.com/levels/yvel-woods-v1-5/">custom levels</a> from the interwebs.</p>
@@ -93,17 +95,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h2>Dependencies</h2>
 <p>On Mac OS X 10.9 with <a href="https://developer.apple.com/xcode/">XCode</a> and <a href="http://www.macports.org">MacPorts</a> installed, the following should be enough to get all dependencies that are available as port: </p>
 <pre class="fragment">sudo port install zlib cmake libsdl libsdl_ttf
-</pre><p>You also need the <a href="http://xquartz.macosforge.org/trac">XQuartz</a> X11 Server.</p>
-<p>To get <a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a>, you need <a href="https://github.com/vancegroup/freealut">freealut</a>. Get, compile and install it like this: </p>
+</pre><p>cmake is only needed for <a href="https://github.com/vancegroup/freealut">freealut</a>, which you'll need to enable sound output. Get, compile and install freealut like this: </p>
 <pre class="fragment">git clone git@github.com:vancegroup/freealut.git
 mkdir build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX:STRING="/usr/local" -DCMAKE_C_FLAGS:STRING="-O2"
 make
 sudo make install
-</pre><h2>Building</h2>
+</pre><p>You'll also need the <a href="http://xquartz.macosforge.org/trac">XQuartz</a> X11 Server.</p>
+<h2>Building</h2>
 <p>If you installed the dependencies using MacPorts, you'll need to have <code>/opt/local/bin</code> in your <code>$PATH</code> before you can execute make. If you're using Bash, the MacPorts installer should have automatically edited your configuration.</p>
-<p>Just run <code>make debug</code> and run <code>bin/debug/OpenRaider</code> for a debug build. <code>make release</code> builds a release binary. <code>make bundle</code> creates a Mac App Bundle that also runs the setup script, if necessary. <code>make bundle-image</code> packs the App Bundle into a DMG ready for distribution.</p>
+<p>Just run <code>make debug</code> and run <code>bin/debug/OpenRaider</code> for a debug build. <code>make release</code> builds a release binary. <code>make bundle</code> creates a Mac App Bundle that also runs the setup script, if necessary.</p>
 <h2>Usage</h2>
 <p>See the original <code>README.old</code> file. In the Main Menu, &lt;Esc&gt; will allow you to select a level to play.</p>
 <h2>License</h2>

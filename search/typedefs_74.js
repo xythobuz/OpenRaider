@@ -16,5 +16,5 @@ var searchData=
   ['tr5_5froom_5flayer_5ft',['tr5_room_layer_t',['../_tomb_raider_8h.html#a18ba9eadc4ce6e4bb3f5aae195e53f8b',1,'TombRaider.h']]],
   ['tr5_5froom_5ft',['tr5_room_t',['../_tomb_raider_8h.html#af44039a6918f015433f1bcae394d0edf',1,'TombRaider.h']]],
   ['tr5_5fvertex_5ft',['tr5_vertex_t',['../_tomb_raider_8h.html#af08acbb9a9d97ef4d9e182c2bab23da2',1,'TombRaider.h']]],
-  ['tris_5ft',['tris_t',['../_open_g_l_mesh_8h.html#ac4bc0687a0f8eb43753ae402b31196a9',1,'OpenGLMesh.h']]]
+  ['tris_5ft',['tris_t',['../class_open_g_l_mesh.html#aaef08d51b5253e2c76dee49fa1019459',1,'OpenGLMesh']]]
 ];

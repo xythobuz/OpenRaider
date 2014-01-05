@@ -18,6 +18,5 @@ var searchData=
   ['multiply',['multiply',['../class_matrix.html#a0b21af02cbe86d3a7c9a8afa40ee9e00',1,'Matrix::multiply(const Matrix &amp;a, const Matrix &amp;b)'],['../class_matrix.html#a6c9efd11a47dc46259783025a5fd692f',1,'Matrix::multiply(const matrix_t a, const matrix_t b, matrix_t result)'],['../class_quaternion.html#a2b3a0b49b297f14ffac5e96e661d529f',1,'Quaternion::multiply()']]],
   ['multiply3v',['multiply3v',['../class_matrix.html#ae427221b4d5ec2d9b6a4106995cf1267',1,'Matrix']]],
   ['multiply4d',['multiply4d',['../class_matrix.html#a8852e9da02a86b65545ada5525d23c54',1,'Matrix']]],
-  ['multiply4v',['multiply4v',['../class_matrix.html#a8e9897cf13eb8cdf09f330d15ea07571',1,'Matrix']]],
-  ['multiply_5fmatrix',['multiply_matrix',['../_p_s_k_model_8cpp.html#a78cfc091e0f79a7183a7be13dd02b5d6',1,'PSKModel.cpp']]]
+  ['multiply4v',['multiply4v',['../class_matrix.html#a8e9897cf13eb8cdf09f330d15ea07571',1,'Matrix']]]
 ];

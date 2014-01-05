@@ -33,11 +33,5 @@ var searchData=
   ['helradtodeg',['helRadToDeg',['../math_8cpp.html#ae5875bb6409379b162d66b85a47e6c54',1,'helRadToDeg(vec_t rad):&#160;math.cpp'],['../math_8h.html#ae5875bb6409379b162d66b85a47e6c54',1,'helRadToDeg(vec_t rad):&#160;math.cpp']]],
   ['helrandomnum',['helRandomNum',['../math_8cpp.html#a48d59a44c2fc4b6fb5b5b3e36924667d',1,'helRandomNum(vec_t from, vec_t to):&#160;math.cpp'],['../math_8h.html#a48d59a44c2fc4b6fb5b5b3e36924667d',1,'helRandomNum(vec_t from, vec_t to):&#160;math.cpp']]],
   ['helvectormatrixmult4dv',['helVectorMatrixMult4dv',['../math_8cpp.html#a65913f075efcff37001724e60582cbfb',1,'helVectorMatrixMult4dv(double v[4], matrix_t m, double result[4]):&#160;math.cpp'],['../math_8h.html#a65913f075efcff37001724e60582cbfb',1,'helVectorMatrixMult4dv(double v[4], matrix_t m, double result[4]):&#160;math.cpp']]],
-  ['heritagecount',['heritageCount',['../_u_t_package_8h.html#aa45aa9f8e197f6eb4b6155a277118c7e',1,'utx_header_t']]],
-  ['heritageoffset',['heritageOffset',['../_u_t_package_8h.html#adc94d47dc08f6656e8ab6a388a315cc2',1,'utx_header_t']]],
-  ['heritagetable',['heritageTable',['../_u_t_package_8h.html#a9882c78bb35ba3f3e4c8c47047146666',1,'utx_header_t']]],
-  ['hex_5fdump',['hex_dump',['../_u_t_package_8cpp.html#a504f839bfeeed66c7bc8d17f08286e2e',1,'UTPackage.cpp']]],
-  ['hex_5fdump_5fbuffer',['hex_dump_buffer',['../_u_t_package_8cpp.html#a5f5b1b733d2ab2a1eeb2e6e8b62a4d69',1,'UTPackage.cpp']]],
-  ['hex_5fdump_5ffile',['hex_dump_file',['../_u_t_package_8cpp.html#adcf84a14f72507ee83bf6e882897e849',1,'UTPackage.cpp']]],
   ['high',['high',['../_tomb_raider_8h.html#a2775ad64ffa88b5b5b39758790b70c53',1,'tr2_anim_dispatch_s::high()'],['../_tomb_raider_8h.html#a023d2c31542f7bcfa59cc067f3b2171e',1,'high():&#160;TombRaider.h']]]
 ];

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['package',['package',['../_u_t_package_8h.html#a5d567bbc1d315f28d42526797e8c4a75',1,'utx_export_table_t::package()'],['../_u_t_package_8h.html#a0dd2bdc0f4317728042858d578943e3c',1,'utx_import_table_t::package()']]],
   ['parent',['parent',['../memeory__test_8cpp.html#ad9ee34b439bcc8138d194c9264fc9129',1,'rbtree_s']]],
-  ['parentindex',['parentIndex',['../_p_s_k_model_8h.html#a8a6caa0618777341297892475a671a32',1,'psk_bone_t']]],
   ['pigtails',['pigtails',['../_skeletal_model_8h.html#a0b1d6c6065a32540201f9595961a411d',1,'skeletal_model_s']]],
   ['pink',['PINK',['../_render_8cpp.html#aac1687aa2e733566a4532bc79438d0a6',1,'Render.cpp']]],
   ['pitch',['pitch',['../_network_8h.html#a3bf509498215e154585a789cab7a8271',1,'network_packet_s']]],

@@ -19,7 +19,6 @@ var searchData=
   ['bone_5fframe_5ft',['bone_frame_t',['../_skeletal_model_8h.html#ae80460a0175af629bfdc36284cd8e73d',1,'SkeletalModel.h']]],
   ['bone_5ftag_5fs',['bone_tag_s',['../_skeletal_model_8h.html#structbone__tag__s',1,'']]],
   ['bone_5ftag_5ft',['bone_tag_t',['../_skeletal_model_8h.html#aba1924d94715ea5d4ee4965ca26078ab',1,'SkeletalModel.h']]],
-  ['boneindex',['boneIndex',['../_p_s_k_model_8h.html#a2fba856ac8816c477ff17f09c5fbb35c',1,'psk_weight_t']]],
   ['bottom_5fside',['bottom_side',['../_tomb_raider_8h.html#af4be372abb5fdad8994390dd79a01382',1,'tr2_sprite_texture_s::bottom_side()'],['../_tomb_raider_8h.html#a1bcf81e6888ca082f00dc1a7ea9e1486',1,'bottom_side():&#160;TombRaider.h']]],
   ['bottomside',['bottomSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa652d0bb9e7f48692c8460139f6efde5c',1,'ViewVolume']]],
   ['bounding_5fbox',['bounding_box',['../_tomb_raider_8h.html#a2eb4042cb61741aa6ea3eff4b79967a2',1,'tr2_staticmesh_s::bounding_box()'],['../_tomb_raider_8h.html#a69740956f19439622fe00bccc863f1bb',1,'bounding_box():&#160;TombRaider.h']]],
