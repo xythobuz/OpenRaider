@@ -4,7 +4,9 @@
 
 This project aims to get OpenRaider in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...
 
-If you just want to see OpenRaider doing something, without installing any of the dependencies needed to build OpenRaider, install [XQuartz](http://xquartz.macosforge.org/trac) (if you don't have it already) and grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
+If you just want to see OpenRaider doing something on your Mac, without installing any of the dependencies needed to build OpenRaider, install [XQuartz](http://xquartz.macosforge.org/trac) (if you don't have it already) and grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
+
+It seems as if OpenRaider will currently only work on Little Endian platforms. This is not nice and will hopefully be fixed in the future!
 
 ## Configuration
 

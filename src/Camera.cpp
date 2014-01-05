@@ -32,6 +32,7 @@
  * Mongoose - Created
  =================================================================*/
 
+#include <stdio.h>
 #include <math.h>
 #include "hel/math.h"
 #include "Camera.h"
@@ -238,6 +239,7 @@ void Camera::setSensitivityX(float angle)
 	mRotateDelta = helDegToRad(angle);
 }
 
+
 ////////
 void Camera::command(enum camera_command cmd)
 {
@@ -290,13 +292,17 @@ void Camera::command(enum camera_command cmd)
 #endif
 	  break;
  case CAMERA_ROTATE_UP:
-	 mTheta2 += mRotateDelta2;
-	 rotate(mTheta2, 1.0, 0.0, 0.0);
+     if (mTheta2 < (M_PI / 2)) {
+	    mTheta2 += mRotateDelta2;
+	    rotate(mTheta2, 1.0, 0.0, 0.0);
+     }
 	 break;
  case CAMERA_ROTATE_DOWN:
-	 mTheta2 -= mRotateDelta2;
-	 rotate(mTheta2, 1.0, 0.0, 0.0);
-	 break;
+     if (mTheta2 > -(M_PI / 2)) {
+         mTheta2 -= mRotateDelta2;
+         rotate(mTheta2, 1.0, 0.0, 0.0);
+     }
+     break;
  case CAMERA_ROTATE_RIGHT:
 	 mTheta += mRotateDelta;
 	 rotate(mTheta, 0.0, 1.0, 0.0);
@@ -325,7 +331,7 @@ void Camera::command(enum camera_command cmd)
 }
 
 
-// FIXME: Mostly invalid for QUAT_CAM (can rotate on XYZ)
+//! \fixme Mostly invalid for QUAT_CAM (can rotate on XYZ)
 bool Camera::isBehind(int x, int z)
 {
   double bTheta, bCameraX, bCameraZ, Distance;
