@@ -1071,8 +1071,10 @@ void OpenRaider::loadLevel(char *mapname)
 		{
 		case TR_VERSION_2:
 		case TR_VERSION_3:
-			snprintf(altSfx, 255, "%s.sfx", filename);
-			print(true, "Loading alternate SFX for TR2 or TR3 pak...\n");
+            // Now loads eg. "tr3/MAIN.SFX" instead of "tr3/SHORE.TR2.sfx"
+            filename[len - j] = '\0';
+			snprintf(altSfx, 255, "%sMAIN.SFX", filename);
+			print(true, "Loading alternate SFX for TR2 or TR3 pak at %sMAIN.SFX\n", filename);
 
 			m_tombraider.loadSFX(altSfx);
 			break;

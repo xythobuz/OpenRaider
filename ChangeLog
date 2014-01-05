@@ -6,6 +6,7 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140105 ]
+	* Fixed the TR2 & TR3 SFX file loading to read the original MAIN.SFX
 	* Fixed strange Mouse Y-Axis Overflow bug
 	* Cleanup of Makefile
 

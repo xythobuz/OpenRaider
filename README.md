@@ -4,9 +4,13 @@
 
 This project aims to get OpenRaider in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...
 
-If you just want to see OpenRaider doing something on your Mac, without installing any of the dependencies needed to build OpenRaider, install [XQuartz](http://xquartz.macosforge.org/trac) (if you don't have it already) and grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
+Currently, my focus is on building and running under Mac OS X.
+However, my changes should not break the Linux "buildability" :)
 
-It seems as if OpenRaider will currently only work on Little Endian platforms. This is not nice and will hopefully be fixed in the future!
+If you just want to see OpenRaider doing something on your Mac, without installing any of the dependencies needed to build OpenRaider, install [XQuartz](http://xquartz.macosforge.org/trac) (if you don't have it already) and grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
+If you don't install XQuartz, Mac OS X should prompt you to do so on the first launch of OpenRaider.
+
+It seems as if OpenRaider will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!
 
 ## Configuration
 
@@ -28,9 +32,8 @@ On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts]
 
     sudo port install zlib cmake libsdl libsdl_ttf
 
-You also need the [XQuartz](http://xquartz.macosforge.org/trac) X11 Server.
-
-To get Sound, you need [freealut](https://github.com/vancegroup/freealut). Get, compile and install it like this:
+cmake is only needed for [freealut](https://github.com/vancegroup/freealut), which you'll need to enable sound output.
+Get, compile and install freealut like this:
 
     git clone git@github.com:vancegroup/freealut.git
     mkdir build
@@ -38,6 +41,8 @@ To get Sound, you need [freealut](https://github.com/vancegroup/freealut). Get, 
     cmake .. -DCMAKE_INSTALL_PREFIX:STRING="/usr/local" -DCMAKE_C_FLAGS:STRING="-O2"
     make
     sudo make install
+
+You'll also need the [XQuartz](http://xquartz.macosforge.org/trac) X11 Server.
 
 ## Building
 
@@ -47,7 +52,6 @@ If you're using Bash, the MacPorts installer should have automatically edited yo
 Just run `make debug` and run `bin/debug/OpenRaider` for a debug build.
 `make release` builds a release binary.
 `make bundle` creates a Mac App Bundle that also runs the setup script, if necessary.
-`make bundle-image` packs the App Bundle into a DMG ready for distribution.
 
 ## Usage
 
