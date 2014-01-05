@@ -2,5 +2,5 @@
 
 echo Creating ZIP file..
 cd bin
-zip -r OpenRaider.zip OpenRaider.app ../BUGS ../ChangeLog ../COPYING ../README.md ../README.old ../Requirements ../TODO
+zip -r OpenRaider.zip OpenRaider.app ../ChangeLog ../COPYING ../README.md ../README.old
 echo Archive ready!

@@ -268,7 +268,7 @@ install:
 	cp setup.sh $(INSTALL_SHARE)
 	cp data/* $(INSTALL_SHARE)/data
 	mkdir -p $(INSTALL_DOC)
-	cp README.md README.old ChangeLog BUGS TODO $(INSTALL_DOC)
+	cp README.md README.old ChangeLog
 	mkdir -p $(INSTALL_BIN)
 	cp bin/$(BUILD_SELECT)/OpenRaider $(INSTALL_BIN)
 
@@ -276,8 +276,7 @@ bin-tarball: clean-build clean-test clean-obj $(BUILD_SELECT)
 	@-cd .. && tar zcvf $(NAME_TAR)-$(VERSION_DEB)-$(ARCH).tar.gz \
 		$(TREE_DIR)/Makefile $(TREE_DIR)/data \
 		$(TREE_DIR)/bin/$(BUILD_SELECT)/OpenRaider \
-		$(TREE_DIR)/README.md $(TREE_DIR)/ChangeLog \
-		$(TREE_DIR)/BUGS $(TREE_DIR)/TODO
+		$(TREE_DIR)/README.md $(TREE_DIR)/ChangeLog
 
 endif
 
