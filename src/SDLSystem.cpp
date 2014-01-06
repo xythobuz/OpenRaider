@@ -218,7 +218,7 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 
 	// Create GL context
 	SDL_Init(SDL_INIT_VIDEO);
-	printf("@ Created OpenGL Context...\n");
+	printf("Created OpenGL Context\n");
 	atexit(SDL_Quit);
 
 	m_width = width;

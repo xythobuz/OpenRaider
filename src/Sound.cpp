@@ -79,9 +79,9 @@ int Sound::init()
 	alutInit(NULL, 0);
 
 	mInit = true;
-	printf("@Created OpenAL Context...\n");
+	printf("Created OpenAL Context\n");
 #else
-	printf("*Couldn't create sound Context...\n");
+	printf("Couldn't create sound Context!\n");
 #endif
 
 	return 0;
@@ -124,7 +124,7 @@ int Sound::addFile(char *filename, int *source, unsigned int flags)
 
 	if (!mInit || !filename || !source)
 	{
-		printf("Sound::Add> ERROR pre condition assertion failed\n");
+		printf("Sound::AddFile> ERROR pre condition assertion failed\n");
 		return -1000;
 	}
 
@@ -137,7 +137,7 @@ int Sound::addFile(char *filename, int *source, unsigned int flags)
 
 	if (alGetError() != AL_NO_ERROR)
    {
-		fprintf(stderr, "Sound::Init> alGenBuffers call failed\n");
+		fprintf(stderr, "Sound::AddFile> alGenBuffers call failed\n");
 		return -1;
 	}
 
@@ -147,7 +147,7 @@ int Sound::addFile(char *filename, int *source, unsigned int flags)
 
 	if (alGetError() != AL_NO_ERROR)
    {
-		fprintf(stderr, "Sound::Init> alGenSources call failed\n");
+		fprintf(stderr, "Sound::AddFile> alGenSources call failed\n");
 		return -2;
 	}
 
@@ -192,7 +192,7 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
 	if (!mInit || !wav || !source)
 	{
-		printf("Sound::Add> ERROR pre condition assertion failed\n");
+		printf("Sound::AddWave> ERROR pre condition assertion failed\n");
 		return -1000;
 	}
 
@@ -207,7 +207,7 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
 	if (alGetError() != AL_NO_ERROR)
    {
-		fprintf(stderr, "Sound::Init> alGenBuffers call failed\n");
+		fprintf(stderr, "Sound::AddWave> alGenBuffers call failed\n");
 		return -1;
 	}
 
@@ -217,7 +217,7 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
 	if (alGetError() != AL_NO_ERROR)
    {
-		fprintf(stderr, "Sound::Init> alGenSources call failed\n");
+		fprintf(stderr, "Sound::AddWave> alGenSources call failed\n");
 		return -2;
 	}
 

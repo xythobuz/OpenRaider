@@ -219,7 +219,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 		mTexture.setFlag(Texture::fUseMipmaps);
 	}
 
-	printf("Processing textures: ");
+	printf("Processing Textures:\n");
 
 	color[0] = 0xff;
 	color[1] = 0xff;

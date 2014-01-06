@@ -196,10 +196,10 @@ void glPrint2d(float x, float y, float scale, char *string)
 	glTranslatef(x, y, 0);
 	glScalef(scale, scale, 1);
 
-	/* FIXME:
+	/*! \fixme
 	 * Add utf-8 dencoding of char* string
 	 *
-	 *	Also this string must be preprocessed to have glyph offsets
+	 * Also this string must be preprocessed to have glyph offsets
 	 * instead of ASCII text in it and support counts over 256 */
 	glListBase(font->drawListBase - font->utf8Offset);
 	glCallLists(strlen(string), GL_BYTE, string);
@@ -264,7 +264,7 @@ int Texture::loadFontTTF(char *filename,
 	if (texture)
 	{
 #ifdef DUMP_TTF_TGA
-		FILE *f = fopen("/tmp/font.tga", "wb");
+		FILE *f = fopen("font.tga", "wb");
 		if (f)
 		{
 			mtk_image__tga_save(f, texture->texture, 256, 256, 4);
@@ -272,7 +272,7 @@ int Texture::loadFontTTF(char *filename,
 		}
 		else
 		{
-			perror("/tmp/ttf_font.tga");
+			perror("ttf_font.tga");
 		}
 #endif
 
@@ -308,7 +308,7 @@ gl_font_t *Texture::generateFont(ttf_texture_t *texture)
 	if (!texture)
 		return NULL;
 
-	printf("@ Generating gl font from texture...\n");
+	printf("Generating gl font from texture...\n");
 
 	font = new gl_font_t;
 	font->utf8Offset = texture->utf8Offset;
@@ -439,7 +439,7 @@ ttf_texture_t *Texture::generateFontTexture(char *filename, int pointSize,
 	TTF_SetFontStyle(font, renderStyle);
 
 	/* Allocate a new TTF font texture */
-	printf("@ Creating font texture from '%s'...\n", filename);
+	printf("Creating font texture from '%s'...\n", filename);
 	texture = new ttf_texture_t;
 	texture->width = textureWidth;
 	texture->utf8Offset = utf8Offset;
@@ -557,7 +557,7 @@ void Texture::initSDL_TTF()
 	{
 		mFlags |= fUseSDL_TTF;
 
-		printf("@ Started SDL_TTF subsystem...\n");
+		printf("Started SDL_TTF subsystem!\n");
 		atexit(TTF_Quit);
 	}
 #endif
@@ -1035,9 +1035,6 @@ int Texture::loadPNG(char *filename)
 								 (type == 4) ? RGBA : RGB,
 								 (type == 4) ? 32 : 24);
 
-			printf("%c", (id == -1) ? 'x' : 'o');
-			fflush(stdout);
-
 			delete [] image;
 		}
 
@@ -1096,9 +1093,6 @@ int Texture::loadTGA(char *filename)
 			id = loadBuffer(image, w, h,
 								 (type == 4) ? RGBA : RGB,
 								 (type == 4) ? 32 : 24);
-
-			printf("%c", (id == -1) ? 'x' : 'o');
-			fflush(stdout);
 
 			delete [] image;
 		}
