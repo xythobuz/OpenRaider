@@ -2,8 +2,6 @@
  * \file OpenGLMesh.h
  * \brief OpenGL Mesh
  *
- * Defining UNIT_TEST_OPENGLMESH builds OpenGLMesh class as a console unit test
- *
  * \author Mongoose
  *
  * \todo Unify the parallel systems here, arrays and the allocate/set

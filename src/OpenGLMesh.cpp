@@ -2,8 +2,6 @@
  * \file OpenGLMesh.cpp
  * \brief OpenGL Mesh
  *
- * Defining UNIT_TEST_OPENGLMESH builds OpenGLMesh class as a console unit test
- *
  * \author Mongoose
  */
 
@@ -620,25 +618,3 @@ void OpenGLMesh::setVertex(unsigned int index, float x, float y, float z)
 // Private Mutators
 ////////////////////////////////////////////////////////////
 
-
-////////////////////////////////////////////////////////////
-// Unit Test code
-////////////////////////////////////////////////////////////
-
-#ifdef UNIT_TEST_OPENGLMESH
-int runOpenGLMeshUnitTest(int argc, char *argv[])
-{
-	return 0;
-}
-
-
-int main(int argc, char *argv[])
-{
-	OpenGLMesh test;
-
-
-	printf("[OpenGLMesh class test]\n");
-
-	return runOpenGLMeshUnitTest(argc, argv);
-}
-#endif

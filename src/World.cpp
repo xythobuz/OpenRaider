@@ -772,24 +772,3 @@ void World::clear()
 	mModels.clear();
 }
 
-
-////////////////////////////////////////////////////////////
-// Unit Test code
-////////////////////////////////////////////////////////////
-
-#ifdef UNIT_TEST_WORLD
-int runWorldUnitTest(int argc, char *argv[])
-{
-	return 0;
-}
-
-
-int main(int argc, char *argv[])
-{
-	printf("[World class test]\n");
-
-	runWorldUnitTest(argc, argv);
-
-	return 0;
-}
-#endif

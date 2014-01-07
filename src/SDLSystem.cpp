@@ -642,25 +642,3 @@ void SDLSystem::swapBuffersGL()
 	SDL_GL_SwapBuffers();
 }
 
-
-////////////////////////////////////////////////////////////
-// Unit Test code
-////////////////////////////////////////////////////////////
-
-#ifdef __UNIT_TEST__
-int SDL::unitTest(int argc, char *argv[])
-{
-	return 0;
-}
-
-
-int main(int argc, char *argv[])
-{
-	SDL test;
-
-
-	printf("[SDL class test]\n");
-
-	return test._UnitTest(argc, argv);
-}
-#endif
