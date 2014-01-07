@@ -5,6 +5,12 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140107 ]
+	* Removed even more unused files (mstl/Vector.cpp)
+	* Removed hel/Simulation, as it depends on missing files
+	  (hel/CollisionObject)
+	* Improved Makefile portability
+
 	[ 20140106 ]
 	* Hel Simulation Test builds, but doesn't work!
 

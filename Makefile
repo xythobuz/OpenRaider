@@ -46,18 +46,20 @@ AUDIO_LIBS += -lalut
 AUDIO_LIBS += -framework OpenAL
 AUDIO_LIBS += -L/usr/local/lib
 AUDIO_DEFS += -I/usr/local/include
-BASE_LIBS += -L/opt/local/lib
-BASE_DEFS += -I/opt/local/include
-BASE_LIBS += -framework OpenGL
-BASE_LIBS += -framework GLUT
+GL_LIBS += -framework OpenGL
+GL_LIBS += -L/opt/local/lib
+GL_DEFS += -I/opt/local/include
 else
 AUDIO_LIBS += -lopenal
-BASE_LIBS += -L/usr/local/lib
-BASE_DEFS += -I/usr/local/include
+GL_LIBS += -lGL -lGLU
+GL_LIBS += -L/usr/local/lib
+GL_DEFS += -I/usr/local/include
 endif
 
 BASE_LIBS += $(AUDIO_LIBS)
+BASE_LIBS += $(GL_LIBS)
 BASE_DEFS += $(AUDIO_DEFS)
+BASE_DEFS += $(GL_DEFS)
 
 # libferit, File transfer via HTTP/FTP/etc support
 LIBFERIT_LIB=/usr/local/lib/libferit.so
@@ -96,10 +98,6 @@ BASE_CFLAGS=-Wall $(BASE_DEFS) \
 
 LD_FLAGS=-L/usr/X11/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
 	 -lm $(BASE_LIBS)
-
-ifneq ($(UNAME),Darwin)
-LD_FLAGS+=-lGL -lGLU
-endif
 
 RELEASE_CFLAGS=$(BASE_CFLAGS) -ffast-math -funroll-loops \
 	-fomit-frame-pointer -O2
@@ -180,16 +178,13 @@ depend:
 # Later hel will become a seperate library once it matures
 HEL_OBJ = \
 	$(BUILDDIR)/Mass.o \
-	$(BUILDDIR)/Simulation.o \
 	$(BUILDDIR)/Vector3d.o \
 	$(BUILDDIR)/Matrix.o \
 	$(BUILDDIR)/ViewVolume.o \
-	$(BUILDDIR)/CollisionObject.o \
 	$(BUILDDIR)/BoundingVolume.o \
 	$(BUILDDIR)/Quaternion.o \
 	$(BUILDDIR)/math.o \
 	$(BUILDDIR)/Entity.o
-	#$(BUILDDIR)/Spring.o
 
 OBJS = \
 	$(DEBUG_OBJ) \
@@ -309,90 +304,13 @@ TombRaider.test:
 
 #################################################################
 
-ifeq ($(UNAME),Darwin)
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -Isrc -D__TEST__ -DHAVE_MTK -DHAVE_SDL -DUSING_MTK_TGA \
 	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
-	-I/opt/local/include -I/usr/local/include \
-	-framework OpenGL \
-	-framework GLUT \
-	-lm -lstdc++ \
+	$(GL_LIBS) $(GL_DEFS) -lm -lstdc++ \
 	src/Texture.cpp src/mtk_tga.cpp \
 	src/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
-else
-GLString.test:
-	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -Isrc -D__TEST__ -DHAVE_MTK -DHAVE_SDL -DUSING_MTK_TGA \
-	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
-	-lGL -lGLU -lm \
-	src/Texture.cpp src/mtk_tga.cpp \
-	src/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
-endif
-
-#################################################################
-
-# CollisionObject and HeightCollisionObject seem to be missing?
-# -- xythobuz, 2014-01-04
-
-SIMULATION_CFLAGS=-Wall -O0 -g -Isrc $(shell sdl-config --cflags) \
-		-I/opt/local/include \
-		-DUSING_OPENGL -DUSING_HEL -DUSING_MTK_TGA \
-		-DUNIT_TEST_SIMULATION
-SIMULATION_OBJS=$(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/Texture.o \
-		$(BUILD_TEST_DIR)/Mass.o \
-		$(BUILD_TEST_DIR)/CollisionObject.o \
-		$(BUILD_TEST_DIR)/Simulation.o \
-		$(BUILD_TEST_DIR)/Vector3d.o \
-		$(BUILD_TEST_DIR)/Matrix.o \
-		$(BUILD_TEST_DIR)/ViewVolume.o \
-		$(BUILD_TEST_DIR)/BoundingVolume.o \
-		$(BUILD_TEST_DIR)/Quaternion.o \
-		$(BUILD_TEST_DIR)/math.o
-
-ifeq ($(UNAME),Darwin)
-Simulation.test:
-	mkdir -p $(BUILD_TEST_DIR)
-	$(MAKE) targets NAME=Simulation.test BUILDDIR=$(BUILD_TEST_DIR) \
-		OBJS="$(SIMULATION_OBJS)" \
-		CFLAGS="$(SIMULATION_CFLAGS)" \
-		LD_FLAGS="-lm -lstdc++ -lSDL_ttf -lSDL -framework OpenGL -framework GLUT $(shell sdl-config --libs)"
-else
-Simulation.test:
-	mkdir -p $(BUILD_TEST_DIR)
-	$(MAKE) targets NAME=Simulation.test BUILDDIR=$(BUILD_TEST_DIR) \
-		OBJS="$(SIMULATION_OBJS)" \
-		CFLAGS="$(SIMULATION_CFLAGS)" \
-		LD_FLAGS="-lm -lstdc++ -lSDL_ttf -lSDL -lGL -lGLU $(shell sdl-config --libs)"
-endif
-
-#################################################################
-
-# Spring files seem to be missing?
-# -- xythobuz, 2014-01-04
-
-HEL_PARTICLE_CFLAGS=-Wall -O0 -g -Isrc $(shell sdl-config --cflags) \
-		-I/opt/local/include \
-		-DUSING_OPENGL -DUSING_HEL -DUSING_MTK_TGA \
-		-DUNIT_TEST_SPRING -DHAVE_SDL_TTF
-HEL_PARTICLE_OBJS=$(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/Texture.o \
-		$(BUILD_TEST_DIR)/Mass.o \
-		$(BUILD_TEST_DIR)/Spring.o \
-		$(BUILD_TEST_DIR)/CollisionObject.o \
-		$(BUILD_TEST_DIR)/Simulation.o \
-		$(BUILD_TEST_DIR)/Vector3d.o \
-		$(BUILD_TEST_DIR)/Matrix.o \
-		$(BUILD_TEST_DIR)/ViewVolume.o \
-		$(BUILD_TEST_DIR)/BoundingVolume.o \
-		$(BUILD_TEST_DIR)/Quaternion.o \
-		$(BUILD_TEST_DIR)/math.o
-
-Spring.test:
-	mkdir -p $(BUILD_TEST_DIR)
-	$(MAKE) targets NAME=Spring.test BUILDDIR=$(BUILD_TEST_DIR) \
-		OBJS="$(HEL_PARTICLE_OBJS)" \
-		CFLAGS="$(HEL_PARTICLE_CFLAGS)" \
-		LD_FLAGS="-lm -lstdc++ -lSDL_ttf-lGL -lGLU $(shell sdl-config --libs)"
 
 #################################################################
 
