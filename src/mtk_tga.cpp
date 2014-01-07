@@ -512,10 +512,15 @@ int main(int argc, char *argv[])
     if (!mtk_image__tga_check(f))
     {
       if (!mtk_image__tga_load(f, &image, &width, &height, &type))
-	delete [] image;
+      {
+        printf("Loaded %s successfully!\n", argv[1]);
+        delete [] image;
+      }
     }
 
     fclose(f);
+  } else {
+      printf("Usage: %s testfile.tga\n", argv[0]);
   }
 
   return 0;
