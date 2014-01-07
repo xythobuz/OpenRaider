@@ -36,7 +36,6 @@
 #include "mstl/List.h"
 #include "mstl/Vector.h"
 #include "hel/math.h"
-#include "hel/Mass.h"
 
 
 // Mirrors TombRaider class' room flags really
@@ -161,7 +160,6 @@ typedef struct entity_s
 	void *tmpHook;
 	bool animate;
 
-	Mass mass;
 	/*
 	  float time, lastTime;
 	  int state, lastState;

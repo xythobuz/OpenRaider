@@ -177,35 +177,32 @@ depend:
 
 # Later hel will become a seperate library once it matures
 HEL_OBJ = \
-	$(BUILDDIR)/Mass.o \
-	$(BUILDDIR)/Vector3d.o \
-	$(BUILDDIR)/Matrix.o \
-	$(BUILDDIR)/ViewVolume.o \
-	$(BUILDDIR)/BoundingVolume.o \
-	$(BUILDDIR)/Quaternion.o \
 	$(BUILDDIR)/math.o \
-	$(BUILDDIR)/Entity.o
+	$(BUILDDIR)/Matrix.o \
+	$(BUILDDIR)/Quaternion.o \
+	$(BUILDDIR)/Vector3d.o \
+	$(BUILDDIR)/ViewVolume.o
 
 OBJS = \
 	$(DEBUG_OBJ) \
 	$(HEL_OBJ) \
-	$(BUILDDIR)/mtk_tga.o \
-	$(BUILDDIR)/System.o \
-	$(BUILDDIR)/SDLSystem.o \
-	$(BUILDDIR)/OpenRaider.o \
-	$(BUILDDIR)/World.o \
-	$(BUILDDIR)/TombRaider.o \
-	$(BUILDDIR)/GLString.o \
 	$(BUILDDIR)/Camera.o \
-	$(BUILDDIR)/OpenGLMesh.o \
-	$(BUILDDIR)/Render.o \
-	$(BUILDDIR)/Sound.o \
-	$(BUILDDIR)/Network.o \
-	$(BUILDDIR)/Texture.o \
 	$(BUILDDIR)/Emitter.o \
+	$(BUILDDIR)/GLString.o \
+	$(BUILDDIR)/Light.o \
+	$(BUILDDIR)/mtk_tga.o \
+	$(BUILDDIR)/Network.o \
+	$(BUILDDIR)/OpenGLMesh.o \
+	$(BUILDDIR)/OpenRaider.o \
 	$(BUILDDIR)/Particle.o \
+	$(BUILDDIR)/Render.o \
+	$(BUILDDIR)/SDLSystem.o \
 	$(BUILDDIR)/SkeletalModel.o \
-	$(BUILDDIR)/Light.o
+	$(BUILDDIR)/Sound.o \
+	$(BUILDDIR)/System.o \
+	$(BUILDDIR)/Texture.o \
+	$(BUILDDIR)/TombRaider.o \
+	$(BUILDDIR)/World.o
 
 
 $(BUILDDIR)/$(NAME) : $(OBJS)

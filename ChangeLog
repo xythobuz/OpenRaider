@@ -6,9 +6,13 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140107 ]
-	* Removed even more unused files (mstl/Vector.cpp)
-	* Removed hel/Simulation, as it depends on missing files
-	  (hel/CollisionObject)
+	* Removed hel/Mass. There was an object of this class in World,
+	  but it was never used!
+	* Removed even more unused files (mstl/Vector.cpp,
+	  hel/BoundingVolume.cpp, hel/Entity.cpp, hel/ParticleMass.h,
+	  mstl/Stack.h)
+	* Completely removed hel/Simulation, as it depends on missing
+	  files (hel/CollisionObject)
 	* Improved Makefile portability
 
 	[ 20140106 ]
