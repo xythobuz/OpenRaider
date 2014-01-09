@@ -210,7 +210,7 @@ $(BUILDDIR)/$(NAME) : $(OBJS)
 
 #################################################################
 
-clean: clean-small clean-dep
+clean: clean-small clean-dep clean-doc
 
 clean-small: clean-build clean-test clean-obj 
 	@-rm -rf bin/OpenRaider.app
@@ -244,6 +244,11 @@ clean-build:
 	@-rm -f $(BUILD_DEBUG_DIR)/$(NAME)
 	@-rm -f $(BUILD_RELEASE_DIR)/$(NAME)
 	@-rm -f $(BUILD_MEM_DIR)/$(NAME)
+	@-echo "[DONE]"
+
+clean-doc:
+	@-echo "Cleaning docs"
+	@-rm -rf doc
 	@-echo "[DONE]"
 
 
