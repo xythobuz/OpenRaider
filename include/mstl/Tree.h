@@ -47,11 +47,11 @@
 #include <stdio.h>
 
 #ifdef USE_IOSTREAM
-#   include <iostream.h>
+#include <iostream.h>
 #endif
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 

@@ -29,7 +29,7 @@ UNAME=$(shell uname -s)
 # -DUNICODE_SUPPORT			Add unicode/internation keyboard support
 # -DUSING_EMITTER_IN_GAME	Run particle test in game
 
-BASE_DEFS=$(shell sdl-config --cflags) -Isrc -DSDL_INTERFACE \
+BASE_DEFS=$(shell sdl-config --cflags) -Iinclude -DSDL_INTERFACE \
 	-DUSING_OPENGL -DZLIB_SUPPORT -DUSING_EMITTER \
 	-DUSING_OPENAL -DUSING_MTK_TGA -DUSING_PTHREADS \
 	-DUSING_HEL -DHAVE_SDL_TTF
@@ -158,13 +158,13 @@ ded:
 	CFLAGS="$(DEBUG_CFLAGS) -DDEDICATED_SERVER" \
 	LD_FLAGS="$(LD_FLAGS)"
 
-# -DDEBUG_MEMEORY_VERBOSE
-# -DDEBUG_MEMEORY
+# -DDEBUG_MEMORY_VERBOSE
+# -DDEBUG_MEMORY
 memory:
 	@-mkdir -p $(BUILD_MEM_DIR)
 	$(MAKE) targets BUILDDIR=$(BUILD_MEM_DIR) \
 	DEBUG_OBJ="$(BUILD_MEM_DIR)/memory_test.o" \
-	CFLAGS="$(DEBUG_CFLAGS) -DDEBUG_MEMEORY" \
+	CFLAGS="$(DEBUG_CFLAGS) -DDEBUG_MEMORY" \
 	LD_FLAGS="$(LD_FLAGS)"
 
 depend:
@@ -295,15 +295,15 @@ TombRaider.reg_test:
 TombRaider.test:
 	@-mkdir -p $(BUILD_TEST_DIR)
 	$(MAKE) targets NAME=TombRaider.test BUILDDIR=$(BUILD_TEST_DIR) \
-	OBJS="$(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/memeory_test.o" \
-	CFLAGS="$(BASE_CFLAGS) -g -D__TOMBRAIDER_TEST__ -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMEORY" \
+	OBJS="$(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/memory_test.o" \
+	CFLAGS="$(BASE_CFLAGS) -g -D__TOMBRAIDER_TEST__ -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMORY" \
 	LD_FLAGS="-lz -lstdc++"
 
 #################################################################
 
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -Isrc -D__TEST__ -DHAVE_MTK -DHAVE_SDL -DUSING_MTK_TGA \
+	$(CC) -Wall -Iinclude -D__TEST__ -DHAVE_MTK -DHAVE_SDL -DUSING_MTK_TGA \
 	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
 	$(GL_LIBS) $(GL_DEFS) -lm -lstdc++ \
 	src/Texture.cpp src/mtk_tga.cpp \
@@ -316,7 +316,7 @@ Hel.test: Quaternion.test Matrix.test Math.test
 Matrix.test:
 	@-echo "Building Matrix unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -DMATRIX_UNIT_TEST -lm -lstdc++ -Isrc \
+	$(CC) -Wall -g -DMATRIX_UNIT_TEST -lm -lstdc++ -Iinclude \
 	src/hel/Matrix.cpp src/hel/Quaternion.cpp src/hel/Vector3d.cpp \
 	-o $(BUILD_TEST_DIR)/Matrix.test
 	@-echo "================================================="
@@ -326,7 +326,7 @@ Matrix.test:
 Quaternion.test:
 	@-echo "Building Quaternion unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -DUNIT_TEST_QUATERNION -lm -lstdc++ -Isrc \
+	$(CC) -Wall -g -DUNIT_TEST_QUATERNION -lm -lstdc++ -Iinclude \
 	src/hel/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
 	@-echo "================================================="
 	@-echo "Running Quaternion unit test"
@@ -335,7 +335,7 @@ Quaternion.test:
 Math.test:
 	@-echo "Building Math unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -DMATH_UNIT_TEST -lm -lstdc++ -Isrc \
+	$(CC) -Wall -g -DMATH_UNIT_TEST -lm -lstdc++ -Iinclude \
 	src/hel/math.cpp src/hel/Vector3d.cpp -o $(BUILD_TEST_DIR)/Math.test
 	@-echo "================================================="
 	@-echo "Running hel unit test"
@@ -345,9 +345,9 @@ Math.test:
 
 Memory.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -D__TEST__ -lstdc++ \
-	-DDEBUG_MEMEORY -DDEBUG_MEMEORY_ERROR \
-	src/memeory_test.cpp -o $(BUILD_TEST_DIR)/memory_test.test
+	$(CC) -Wall -g -lstdc++ -Iinclude \
+	-DDEBUG_MEMORY -DDEBUG_MEMORY_ERROR \
+	src/memory_test.cpp test/memory_test.cpp -o $(BUILD_TEST_DIR)/memory_test.test
 
 #################################################################
 

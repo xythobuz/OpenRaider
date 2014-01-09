@@ -27,14 +27,14 @@
 #include <math.h>
 #include <sys/types.h>
 
-#ifdef DEBUG_MEMEORY
-#include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
-#include "World.h"
-#include "SkeletalModel.h"
-#include "TombRaider1.h" // tmp stop-gap
-#include "OpenRaider.h"
+#include <World.h>
+#include <SkeletalModel.h>
+#include <TombRaider1.h> // tmp stop-gap
+#include <OpenRaider.h>
 
 enum OpenRaiderText { textConsole = 2, textMenu = 3, textOutput = 4 };
 
@@ -90,8 +90,8 @@ void killOpenRaiderSingleton()
 	//delete OpenRaider::Instance();
 #warning "Can't delete OpenRaider::Instance() without a not-allocated-free error. Something is fishy here..."
 
-#ifdef DEBUG_MEMEORY
-	printf("\n[Mongoose MEMEORY_DEBUG]\nMemory leak table:\n");
+#ifdef DEBUG_MEMORY
+	printf("\n[Mongoose MEMORY_DEBUG]\nMemory leak table:\n");
 	dump_memory_report();
 #endif
 
@@ -1127,7 +1127,7 @@ void OpenRaider::loadLevel(char *mapname)
 	// Cache/process sound fx
 	processPakSounds();
 
-#ifdef DEBUG_MEMEORY
+#ifdef DEBUG_MEMORY
 	// Right before pak is cleared will be highest use or memory
 	display_memory_usage();
 #endif
@@ -1137,7 +1137,7 @@ void OpenRaider::loadLevel(char *mapname)
 
 	print(true, "Level pak freed from memory, Starting game...");
 
-#ifdef DEBUG_MEMEORY
+#ifdef DEBUG_MEMORY
 	display_memory_usage();
 #endif
 
@@ -2895,7 +2895,7 @@ void OpenRaider::consoleCommand(char *cmd)
 	}
 	else if (rc_command("mem", cmd))
 	{
-#ifdef DEBUG_MEMEORY
+#ifdef DEBUG_MEMORY
 		if (rc_command("usage", cmd))
 		{
 			display_memory_usage();
@@ -2905,7 +2905,7 @@ void OpenRaider::consoleCommand(char *cmd)
 			dump_memory_report();
 		}
 #else
-		printf("This build isn't DEBUG_MEMEORY enabled\n");
+		printf("This build isn't DEBUG_MEMORY enabled\n");
 #endif
 	}
 	else if (rc_command("loadlevel", cmd))

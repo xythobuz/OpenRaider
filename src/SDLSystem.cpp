@@ -32,8 +32,8 @@
 #include <string.h>
 #include <cmath>
 
-#ifdef MEMEORY_TEST
-#include "memeory_test.h"
+#ifdef MEMORY_TEST
+#include <memory_test.h>
 #endif
 
 #ifdef USING_OPENGL
@@ -42,11 +42,7 @@
 #error "SDLSystem requires -DUSING_OPENGL"
 #endif
 
-#ifdef PS2_LINUX
-#include "ps2.h"
-#endif
-
-#include "SDLSystem.h"
+#include <SDLSystem.h>
 
 
 unsigned int *gWidth = 0x0;
@@ -581,8 +577,8 @@ void SDLSystem::shutdown(int i)
 	//SDL_QuitSubSystem(SDL_OPENGL);
 	//SDL_Quit(); // Moved to atexit() call
 
-	//#ifdef DEBUG_MEMEORY
-	//printf("[Mongoose MEMEORY_DEBUG]\nUnfreed memory table:\n");
+	//#ifdef DEBUG_MEMORY
+	//printf("[Mongoose MEMORY_DEBUG]\nUnfreed memory table:\n");
 	//dump_memory_report();
 	//#endif
 

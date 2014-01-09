@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -10,11 +10,11 @@
  * Comments: mtk Template list
  *
  *           UINT_MAX is an error condition, used in place of -1
- * 
- *           This file was generated using Mongoose's C++ 
+ *
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2000-10-26:
  * Mongoose - Created
@@ -28,11 +28,11 @@
 #include <limits.h>
 #include <stdio.h>
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
- 
+
 template <class T> class ListNode
 {
  public:
@@ -155,7 +155,7 @@ template <class T> class List
 
       last = current;
       current = current->Next();
-    }    
+    }
 
     return 0;
   }
@@ -184,7 +184,7 @@ template <class T> class List
 
       last = current;
       current = current->Next();
-    }    
+    }
 
     return UINT_MAX;
   }
@@ -228,7 +228,7 @@ template <class T> class List
 
 	if (_current == current)
 	  _current = NULL;
-	
+
 	delete current;
 	_num_items--;
 
@@ -237,7 +237,7 @@ template <class T> class List
 
       last = current;
       current = current->Next();
-    }    
+    }
   }
 
   void Remove(T data)
@@ -259,7 +259,7 @@ template <class T> class List
 	{
 	  last->Next(current->Next());
 	}
-	
+
 	if (_current == current)
 	  _current = NULL;
 
@@ -271,7 +271,7 @@ template <class T> class List
 
       last = current;
       current = current->Next();
-    }    
+    }
   }
 
   bool Empty()
@@ -291,7 +291,7 @@ template <class T> class List
 
     printf(" [%i] {\n", _num_items);
 
-    
+
     while (current)
     {
       printf("#%i, ", current->Id());
@@ -304,7 +304,7 @@ template <class T> class List
       fflush(stdout);
     }
 
-    printf(" }\n");    
+    printf(" }\n");
   }
 
 
@@ -314,7 +314,7 @@ template <class T> class List
 
     printf("List %i {\n", _num_items);
 
-    
+
     while (current)
     {
       //current->Print();
@@ -354,7 +354,7 @@ template <class T> class List
   {
     if (!_current)
       return UINT_MAX;
-    
+
     return _current->Id();
   }
 
@@ -407,7 +407,7 @@ template <class T> class List
 	{
 	  node->Id(i);
 	  node->Next(current);
-	  
+
 	  if (current == _head)
 	    _head = node;
 	  else if (last)

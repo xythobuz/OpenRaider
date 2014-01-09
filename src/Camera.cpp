@@ -34,11 +34,12 @@
 
 #include <stdio.h>
 #include <math.h>
-#include "hel/math.h"
-#include "Camera.h"
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#include <hel/math.h>
+#include <Camera.h>
+
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 

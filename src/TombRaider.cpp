@@ -49,20 +49,21 @@
 #include <math.h>
 #include <string.h>
 #include <stdarg.h>
-#include "TombRaider.h"
+
+#include <TombRaider.h>
 
 #ifdef ZLIB_SUPPORT
-#   include "zlib.h"
+#include <zlib.h>
 #else
 #warning "No zlib. Won't support TR4+ files!"
 #endif
 
 #ifdef __TEST_TR5_DUMP_TGA
-#   include "mtk_tga.h"
+#include <mtk_tga.h>
 #endif
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 
@@ -6828,7 +6829,7 @@ int main(int argc, char *argv[])
 {
 	test_main(argc, argv);
 
-#ifdef DEBUG_MEMEORY
+#ifdef DEBUG_MEMORY
   dump_memory_report();
 #endif
 

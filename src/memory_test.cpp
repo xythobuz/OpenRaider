@@ -5,7 +5,7 @@
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
- * Object  : memeory_test
+ * Object  : memory_test
  * License : No use w/o permission (C) 2002 Mongoose
  * Comments: Memory testing tool kit
  *
@@ -23,26 +23,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define UNIT_TEST_MEMORY
+#include <memory_test.h>
 
-#define DWORD unsigned long
 #define USE_ITERATIVE_TREE_INSERT
-
-
-typedef enum { RB_BLACK = 0, RB_RED = 1 } rbtree_color_t;
-
-typedef struct rbtree_s
-{
-	void *data;
-	DWORD key;
-
-	rbtree_color_t color;
-
-	struct rbtree_s *left;
-	struct rbtree_s *right;
-	struct rbtree_s *parent;
-
-} rbtree_t;
-
 
 
 bool tree_check(rbtree_t *tree, char *file, int line)
@@ -455,7 +439,7 @@ int tree_print(rbtree_t *tree, void (*print_func)(void *))
 	{
 		(*print_func)(tree->data);
 
-#ifdef DEBUG_MEMEORY_RBTREE
+#ifdef DEBUG_MEMORY_RBTREE
 		printf(" :%s%s)",
 				 (!tree->parent) ? " (root, " : " ("),
 				 (tree->color == RB_BLACK) ? "black" : "red");
@@ -745,21 +729,7 @@ void tree_remove(rbtree_t **root, rbtree_t *tree)
 }
 
 
-#ifdef DEBUG_MEMEORY
-
-#define ZERO_ALLOC_SLOTS 3
-
-typedef struct meminfo_filename_s
-{
-	char *filename;
-	char filename_len;
-	DWORD size;
-	unsigned int alloc_zero;
-	unsigned short int alloc_zero_at_line[ZERO_ALLOC_SLOTS];
-
-	struct meminfo_filename_s *next;
-
-} meminfo_filename_t;
+#ifdef DEBUG_MEMORY
 
 
 typedef struct meminfo_s
@@ -793,14 +763,14 @@ void __print_meminfo(meminfo_t *meminfo)
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 
-rbtree_t *MEMEORY_INFO = 0;
-meminfo_filename_t *MEMEORY_FILENAME = 0;
-long MEMEORY_USED  = 0L;
-long MEMEORYA_USED = 0L;
-long MEMEORYC_USED = 0L;
-long MAX_MEMEORY_USED = 0L;
-long MAX_MEMEORYA_USED = 0L;
-long MAX_MEMEORYC_USED = 0L;
+rbtree_t *MEMORY_INFO = 0;
+meminfo_filename_t *MEMORY_FILENAME = 0;
+long MEMORY_USED  = 0L;
+long MEMORYA_USED = 0L;
+long MEMORYC_USED = 0L;
+long MAX_MEMORY_USED = 0L;
+long MAX_MEMORYA_USED = 0L;
+long MAX_MEMORYC_USED = 0L;
 
 
 typedef enum
@@ -818,19 +788,19 @@ long memory_used(memory_query_t query)
 	switch (query)
 	{
 	case MEMORY_USED_BY_PROGRAM:
-		return MEMEORY_USED;
+		return MEMORY_USED;
 		break;
 	case MAX_MEMORY_USED_BY_PROGRAM:
-		return MAX_MEMEORY_USED;
+		return MAX_MEMORY_USED;
 		break;
 	case MAX_MEMORY_USED_BY_OVERHEAD:
-		return MAX_MEMEORYA_USED + MAX_MEMEORYC_USED;
+		return MAX_MEMORYA_USED + MAX_MEMORYC_USED;
 		break;
 	case MEMORY_USED_BY_OVERHEAD:
-		return MEMEORYA_USED + MEMEORYC_USED;
+		return MEMORYA_USED + MEMORYC_USED;
 		break;
 	case MEMORY_USED_TOTAL:
-		return MEMEORY_USED + MEMEORYA_USED + MEMEORYC_USED;
+		return MEMORY_USED + MEMORYA_USED + MEMORYC_USED;
 		break;
 	default:
 		;
@@ -843,7 +813,7 @@ long memory_used(memory_query_t query)
 void display_memory_usage()
 {
 	unsigned int i;
-	meminfo_filename_t *cur = MEMEORY_FILENAME;
+	meminfo_filename_t *cur = MEMORY_FILENAME;
 
 
 	printf("\n============================================================\n");
@@ -854,14 +824,14 @@ void display_memory_usage()
 	{
 		printf(" %s : ( %lu bytes, %3.2f%% )\n",
 				 cur->filename, cur->size,
-				 100.0 * ((float)cur->size / (float)MEMEORY_USED));
+				 100.0 * ((float)cur->size / (float)MEMORY_USED));
 
 		cur = cur->next;
 	}
 
 	printf("------------------------------------------------------------\n");
 
-	cur = MEMEORY_FILENAME;
+	cur = MEMORY_FILENAME;
 
 	printf("Memory special errors per file:\n");
 
@@ -895,30 +865,30 @@ void display_memory_usage()
 	printf("Memory usage summary:\n");
 
 	printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n",
-			 MEMEORY_USED, (double)MEMEORY_USED / 1024000.0);
+			 MEMORY_USED, (double)MEMORY_USED / 1024000.0);
 	printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n",
-			 MEMEORYA_USED, (double)MEMEORYA_USED / 1024000.0);
+			 MEMORYA_USED, (double)MEMORYA_USED / 1024000.0);
 	printf(" Untracked m-string memory : %lu bytes\n",
-			 MEMEORYC_USED);
+			 MEMORYC_USED);
 
 	printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n",
-			 MEMEORY_USED + MEMEORYA_USED + MEMEORYC_USED,
-			 (double)(MEMEORY_USED + MEMEORYA_USED + MEMEORYC_USED) / 1024000.0);
+			 MEMORY_USED + MEMORYA_USED + MEMORYC_USED,
+			 (double)(MEMORY_USED + MEMORYA_USED + MEMORYC_USED) / 1024000.0);
 
 	printf("------------------------------------------------------------\n");
 
 	printf("Memory max usage summary:\n");
 
 	printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n",
-			 MAX_MEMEORY_USED, (double)MAX_MEMEORY_USED / 1024000.0);
+			 MAX_MEMORY_USED, (double)MAX_MEMORY_USED / 1024000.0);
 	printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n",
-			 MAX_MEMEORYA_USED, (double)MAX_MEMEORYA_USED / 1024000.0);
+			 MAX_MEMORYA_USED, (double)MAX_MEMORYA_USED / 1024000.0);
 	printf(" Untracked m-string memory : %lu bytes\n",
-			 MAX_MEMEORYC_USED);
+			 MAX_MEMORYC_USED);
 
 	printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n",
-			 MAX_MEMEORY_USED + MAX_MEMEORYA_USED + MAX_MEMEORYC_USED,
-			 (double)(MAX_MEMEORY_USED + MAX_MEMEORYA_USED + MAX_MEMEORYC_USED) / 1024000.0);
+			 MAX_MEMORY_USED + MAX_MEMORYA_USED + MAX_MEMORYC_USED,
+			 (double)(MAX_MEMORY_USED + MAX_MEMORYA_USED + MAX_MEMORYC_USED) / 1024000.0);
 
 	printf("============================================================\n");
 }
@@ -930,10 +900,10 @@ void dump_memory_report()
 
 
 	printf("\n============================================================\n");
-	printf(" Memeory status report\n");
+	printf(" Memory status report\n");
 	printf("============================================================\n");
 	printf("Memory tracking table:\n");
-	i = tree_print(MEMEORY_INFO, (void (*)(void *))&__print_meminfo);
+	i = tree_print(MEMORY_INFO, (void (*)(void *))&__print_meminfo);
 	printf("%i records, %u bytes each : %i bytes\n",
 			 i, sizeof(meminfo_t), i * sizeof(meminfo_t));
 	display_memory_usage();
@@ -953,18 +923,18 @@ void add_track(DWORD addr, DWORD size, const char *filename, DWORD line_num)
 	unsigned int len, i;
 
 
-	MEMEORY_USED += size;
+	MEMORY_USED += size;
 
-	if (MEMEORY_USED > MAX_MEMEORY_USED)
+	if (MEMORY_USED > MAX_MEMORY_USED)
 	{
-		MAX_MEMEORY_USED = MEMEORY_USED;
+		MAX_MEMORY_USED = MEMORY_USED;
 	}
 
-	MEMEORYA_USED += sizeof(meminfo_t);
+	MEMORYA_USED += sizeof(meminfo_t);
 
-	if (MEMEORYA_USED > MAX_MEMEORYA_USED)
+	if (MEMORYA_USED > MAX_MEMORYA_USED)
 	{
-		MAX_MEMEORYA_USED = MEMEORYA_USED;
+		MAX_MEMORYA_USED = MEMORYA_USED;
 	}
 
 	meminfo = (meminfo_t *)malloc(sizeof(meminfo_t));
@@ -985,9 +955,9 @@ void add_track(DWORD addr, DWORD size, const char *filename, DWORD line_num)
 
 		memfile = memfile_prev = 0;
 
-		if (MEMEORY_FILENAME)
+		if (MEMORY_FILENAME)
 		{
-			memfile = MEMEORY_FILENAME;
+			memfile = MEMORY_FILENAME;
 
 			while (memfile)
 			{
@@ -1013,19 +983,19 @@ void add_track(DWORD addr, DWORD size, const char *filename, DWORD line_num)
 			memfile->alloc_zero_at_line[1] = 0;
 			memfile->alloc_zero_at_line[2] = 0;
 
-			MEMEORYC_USED += sizeof(meminfo_filename_t) + memfile->filename_len;
+			MEMORYC_USED += sizeof(meminfo_filename_t) + memfile->filename_len;
 
-			if (MEMEORYC_USED > MAX_MEMEORYC_USED)
-				MAX_MEMEORYC_USED = MEMEORYC_USED;
+			if (MEMORYC_USED > MAX_MEMORYC_USED)
+				MAX_MEMORYC_USED = MEMORYC_USED;
 
 			if (memfile_prev)
 			{
 				memfile_prev->next = memfile;
 			}
 
-			if (!MEMEORY_FILENAME)
+			if (!MEMORY_FILENAME)
 			{
-				MEMEORY_FILENAME = memfile;
+				MEMORY_FILENAME = memfile;
 			}
 		}
 
@@ -1054,10 +1024,10 @@ void add_track(DWORD addr, DWORD size, const char *filename, DWORD line_num)
 		}
 	}
 
-	MEMEORYA_USED += sizeof(rbtree_t);
-	tree_insert(&MEMEORY_INFO, meminfo, meminfo->address);
+	MEMORYA_USED += sizeof(rbtree_t);
+	tree_insert(&MEMORY_INFO, meminfo, meminfo->address);
 
-#ifdef DEBUG_MEMEORY_VERBOSE
+#ifdef DEBUG_MEMORY_VERBOSE
 	printf("add_track> addr 0x%08lx, size %lu, filename %s, line %lu\n",
 			 addr, size, filename, line_num);
 #endif
@@ -1073,7 +1043,7 @@ void remove_track(DWORD addr)
 	rbtree_t *tree = 0;
 
 
-	tree = tree_find(MEMEORY_INFO, addr);
+	tree = tree_find(MEMORY_INFO, addr);
 
 	if (tree)
 	{
@@ -1081,7 +1051,7 @@ void remove_track(DWORD addr)
 
 		if (meminfo)
 		{
-			tree_remove(&MEMEORY_INFO, tree);
+			tree_remove(&MEMORY_INFO, tree);
 
 			if (meminfo->filename)
 			{
@@ -1095,41 +1065,41 @@ void remove_track(DWORD addr)
 						 meminfo->line);
 			}
 
-			MEMEORY_USED -= meminfo->size;
-			MEMEORYA_USED -= sizeof(meminfo_t);
-			MEMEORYA_USED -= sizeof(rbtree_t);
+			MEMORY_USED -= meminfo->size;
+			MEMORYA_USED -= sizeof(meminfo_t);
+			MEMORYA_USED -= sizeof(rbtree_t);
 
 			free(meminfo);
 		}
 	}
 	else
 	{
-#ifndef DEBUG_MEMEORY_ERROR_OFF
+#ifndef DEBUG_MEMORY_ERROR_OFF
 		printf("\nERROR: remove_track> Unknown addr 0x%08lx ", addr);
 		delete_check(0, 0, 1);
 		printf("?\n");
 #endif
 	}
 
-	if (!MEMEORY_INFO)
+	if (!MEMORY_INFO)
 	{
 		meminfo_filename_t *cur;
 		meminfo_filename_t *del;
 
 
-		cur = MEMEORY_FILENAME;
-		MEMEORY_FILENAME = 0;
+		cur = MEMORY_FILENAME;
+		MEMORY_FILENAME = 0;
 
 		while (cur)
 		{
 			del = cur;
 			cur = cur->next;
 
-			MEMEORYC_USED -= sizeof(meminfo_filename_t);
+			MEMORYC_USED -= sizeof(meminfo_filename_t);
 
 			if (del->filename)
 			{
-				MEMEORYC_USED -= del->filename_len;
+				MEMORYC_USED -= del->filename_len;
 				free(del->filename);
 			}
 
@@ -1137,7 +1107,7 @@ void remove_track(DWORD addr)
 		}
 	}
 
-#ifdef DEBUG_MEMEORY_VERBOSE
+#ifdef DEBUG_MEMORY_VERBOSE
 	printf("remove_track> addr 0x%lx\n", addr);
 #endif
 }
@@ -1211,149 +1181,3 @@ void operator delete [](void *p)
 };
 #endif
 
-
-
-////////////////////////////////////////////////////////////
-// Unit Test code
-////////////////////////////////////////////////////////////
-
-#ifdef __TEST__
-#include "memeory_test.h"
-
-#define PRINT_TEST_BREAK_LINE	printf("\n############################################################\n\n");
-
-int memeory_test_unit_test(int argc, char *argv[])
-{
-	int *i, *j, *k, *l, *m, *n, *o;
-
-
-	PRINT_TEST_BREAK_LINE
-	printf("Memeory test\n");
-	PRINT_TEST_BREAK_LINE
-
-	printf(">\ti = new int;  %s:%i\n", __FILE__, __LINE__);
-	i = new int;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tdelete i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
-	delete i;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	PRINT_TEST_BREAK_LINE
-
-	printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
-	i = new int[3];
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tdelete [] i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
-	delete [] i;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	PRINT_TEST_BREAK_LINE
-
-	printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
-	i = new int[3];
-	printf(">\tj = new int; (%p)  %s:%i\n", j, __FILE__, __LINE__);
-	j = new int;
-	printf(">\tk = new int[3]; (%p)  %s:%i\n", k, __FILE__, __LINE__);
-	k = new int[3];
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-	printf(">\tdelete [] i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
-	delete [] i;
-	printf(">\tdelete j; (%p)  %s:%i\n", j, __FILE__, __LINE__);
-	delete j;
-	printf(">\tdelete [] k; (%p)  %s:%i\n", k, __FILE__, __LINE__);
-	delete [] k;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	PRINT_TEST_BREAK_LINE
-
-	printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
-	i = new int[3];
-	printf(">\tj = new int; (%p)  %s:%i\n", j, __FILE__, __LINE__);
-	j = new int;
-	printf(">\tk = new int[3]; (%p)  %s:%i\n", k, __FILE__, __LINE__);
-	k = new int[3];
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-	printf(">\tdelete j; (%p)  %s:%i\n", j, __FILE__, __LINE__);
-	delete j;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-	printf(">\tj = new int[3]; (%p)  %s:%i\n", j, __FILE__, __LINE__);
-	j = new int[3];
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-	printf(">\tl = new int[3]; (%p)  %s:%i\n", l, __FILE__, __LINE__);
-	l = new int[3];
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-	printf(">\tm = new int[3]; (%p)  %s:%i\n", m, __FILE__, __LINE__);
-	m = new int[3];
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tn = new int[3]; (%p)  %s:%i\n", n, __FILE__, __LINE__);
-	n = new int[3];
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\to = new int[3]; (%p)  %s:%i\n", o, __FILE__, __LINE__);
-	o = new int[3];
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tdelete [] k; (%p)  %s:%i\n", k, __FILE__, __LINE__);
-	delete [] k;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tdelete [] j; (%p)  %s:%i\n", j, __FILE__, __LINE__);
-	delete [] j;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tdelete [] l; (%p)  %s:%i\n", l, __FILE__, __LINE__);
-	delete [] l;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tdelete [] m; (%p)  %s:%i\n", m, __FILE__, __LINE__);
-	delete [] m;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tdelete [] n; (%p)  %s:%i\n", n, __FILE__, __LINE__);
-	delete [] n;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tdelete [] o; (%p)  %s:%i\n", o, __FILE__, __LINE__);
-	delete [] o;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	printf(">\tdelete [] i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
-	delete [] i;
-	dump_memory_report();
-	tree_valid_report(MEMEORY_INFO);
-
-	PRINT_TEST_BREAK_LINE
-
-	return 0;
-}
-
-
-int main(int argc, char *argv[])
-{
-	printf("[memeory_test test]\n");
-
-	return memeory_test_unit_test(argc, argv);
-}
-#endif

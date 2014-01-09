@@ -1,25 +1,25 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : UnRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
  * Object  : Network
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.06.21:
  * Mongoose - Created
  =================================================================*/
 
-#include "Network.h"
+#include <Network.h>
 
 #include <unistd.h>
 #include <signal.h>
@@ -70,11 +70,11 @@ Network *Network::mInstance = 0x0;
 
 Network *Network::Instance()
 {
-	if (mInstance == 0x0) 
+	if (mInstance == 0x0)
 	{
 		mInstance = new Network();
 	}
-	
+
 	return mInstance;
 }
 
@@ -82,7 +82,7 @@ Network *Network::Instance()
 void killNetworkSingleton()
 {
 	printf("Shutting down Network...\n");
-	
+
 	// Requires public deconstructor
 	delete Network::Instance();
 }
@@ -145,7 +145,7 @@ unsigned int Network::getUID()
 	srand(tv.tv_usec);
 
 	return ((unsigned int)(tv.tv_sec * getRandom(2.0, 3.3) -
-								  tv.tv_sec * getRandom(1.0, 2.0)) + 
+								  tv.tv_sec * getRandom(1.0, 2.0)) +
 			  (unsigned int)(tv.tv_usec * getRandom(2.0, 3.3) -
 								  tv.tv_usec * getRandom(1.0, 2.0)) +
 			  (unsigned int)getRandom(666.0, 5000.0));
@@ -285,7 +285,7 @@ int Network::runServer()
 	struct sockaddr_in s_in, from;
 	char hostid[64];
 	network_frame_t f;
-	unsigned int i;	
+	unsigned int i;
 	unsigned int packetsRecieved = 0;
 
 
@@ -309,7 +309,7 @@ int Network::runServer()
 			return -1;
 		}
 
-		printf("Server: gethostname returned '%s'\n", hostid); 
+		printf("Server: gethostname returned '%s'\n", hostid);
 		fflush(stdout);
 	}
 
@@ -346,8 +346,8 @@ int Network::runServer()
 
 	cip = ntohl(s_in.sin_addr.s_addr);
 
-	printf("Server: Started on ( %i.%i.%i.%i:%i )\n", 
-			 cip >> 24, cip << 8 >> 24, 
+	printf("Server: Started on ( %i.%i.%i.%i:%i )\n",
+			 cip >> 24, cip << 8 >> 24,
 			 cip << 16 >> 24, cip << 24 >> 24, s_in.sin_port);
 
 	for (; !mKillClient;)
@@ -356,7 +356,7 @@ int Network::runServer()
 
 		// 1. Wait for event
 		// 2. Get inbound frame
-		cc = recvfrom(socket_fd, &f, sizeof(network_frame_t), 0, 
+		cc = recvfrom(socket_fd, &f, sizeof(network_frame_t), 0,
 						  (struct sockaddr *)&from, &fsize);
 
 		if (cc < 0)
@@ -396,7 +396,7 @@ int Network::runServer()
 					gClients[i].frameExpected = 0;
 					++gNumClients;
 
-					printf("Server: %u made connection, as client %i\n", 
+					printf("Server: %u made connection, as client %i\n",
 							 gClients[i].uid, i);
 					break;
 				}
@@ -417,12 +417,12 @@ int Network::runServer()
 
 		if (mDebug)
 		{
-			printf("Server: Client (Famliy %d, Address %i.%i.%i.%i:%d)\n", 
-					 ntohs(from.sin_family), cip >> 24, cip << 8 >> 24, 
-					 cip << 16 >> 24, cip << 24 >> 24, 
+			printf("Server: Client (Famliy %d, Address %i.%i.%i.%i:%d)\n",
+					 ntohs(from.sin_family), cip >> 24, cip << 8 >> 24,
+					 cip << 16 >> 24, cip << 24 >> 24,
 					 ntohs(from.sin_port));
 
-			printf("Server: Datalink layer recieved: packet seq %i\n", 
+			printf("Server: Datalink layer recieved: packet seq %i\n",
 					 f.seq);
 		}
 
@@ -453,9 +453,9 @@ int Network::runServer()
 			to_network_layer(f.data);
 			gClients[i].frameExpected = !gClients[i].frameExpected;
 		}
-		
+
 		fflush(stdout);
-		
+
 #ifdef UNIT_TEST_NETWORK
 		if ((rand() % 10 == 0))
 		{
@@ -463,7 +463,7 @@ int Network::runServer()
 			continue;
 		}
 #endif
-		
+
 		// 4. Send ACK, w/ piggyback if requested
 		if (mPiggyBack)
 		{
@@ -476,7 +476,7 @@ int Network::runServer()
 				printf("SERVER> Sending data by piggyback\n");
 			}
 
-			cc = sendto(socket_fd, &gPiggyBack, sizeof(gPiggyBack), 0, 
+			cc = sendto(socket_fd, &gPiggyBack, sizeof(gPiggyBack), 0,
 							(struct sockaddr *)&from, sizeof(from));
 		}
 		else
@@ -485,10 +485,10 @@ int Network::runServer()
 			f.seq = 0;
 			f.uid = gUID;
 
-			cc = sendto(socket_fd, &f, sizeof(f), 0, 
+			cc = sendto(socket_fd, &f, sizeof(f), 0,
 							(struct sockaddr *)&from, sizeof(from));
 		}
-		
+
 		if (cc < 0)
 		{
 			perror("Server: send_udp:sendto");
@@ -519,15 +519,15 @@ void Network::runClient()
 	fd_set  readfds;
 	unsigned int packetsSent = 0;
 	unsigned int seq = 0;
-	char timedOut = 1;  
+	char timedOut = 1;
 
 	if (!mRemoteHost || !mRemoteHost[0])
 	{
 		return;
 	}
 
-	memset((char*) &timeout, 0, sizeof(timeout)); 
-	timeout.tv_sec = 5; 
+	memset((char*) &timeout, 0, sizeof(timeout));
+	timeout.tv_sec = 5;
 
 	socket_fd = socket(AF_INET, SOCK_DGRAM, 0);
 
@@ -536,10 +536,10 @@ void Network::runClient()
 		perror("Client: send_udp: socket");
 		exit(0);
 	}
-    
+
 	if ((hostptr = gethostbyname(mRemoteHost)) == NULL)
 	{
-		fprintf(stderr, "Client: send_udp: invalid host name, %s\n", 
+		fprintf(stderr, "Client: send_udp: invalid host name, %s\n",
 				  mRemoteHost);
 		exit(0);
 	}
@@ -560,7 +560,7 @@ void Network::runClient()
 #endif
 
 
-	// init	
+	// init
 	f.data.send = 0;
 	f.seq = 0;
 
@@ -608,7 +608,7 @@ void Network::runClient()
 				printf("Client: Sending packet %i\n", f.seq);
 			}
 
-			cc = sendto(socket_fd, &f, sizeof(f), 0, 
+			cc = sendto(socket_fd, &f, sizeof(f), 0,
 							(struct sockaddr *)&dest, sizeof(dest));
 
 			if (cc < 0)
@@ -631,16 +631,16 @@ void Network::runClient()
 
 		// 4. Wait for +ack or resend
 		FD_ZERO(&readfds);
- 
+
 		// Setup socket to listen on here
 		FD_SET(socket_fd, &readfds);
 
 		// Set timeout in milliseconds
-		timeout.tv_usec = 850; 
+		timeout.tv_usec = 850;
 
 		cc = select(socket_fd + 1, &readfds, NULL, NULL, &timeout);
 
-		if ((cc < 0) && (errno != EINTR)) 
+		if ((cc < 0) && (errno != EINTR))
 		{
 			// there was an local error with select
 		}
@@ -659,8 +659,8 @@ void Network::runClient()
 		f.header = 0;
 
 		fsize = sizeof(dest);
-		cc = recvfrom(socket_fd, &f, sizeof(f), 0, 
-						  (struct sockaddr *)&dest, &fsize); 
+		cc = recvfrom(socket_fd, &f, sizeof(f), 0,
+						  (struct sockaddr *)&dest, &fsize);
 
 		if (cc < 0)
 		{

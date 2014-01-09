@@ -7,10 +7,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "Particle.h"
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#include <Particle.h>
+
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 

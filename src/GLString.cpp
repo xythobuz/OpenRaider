@@ -15,12 +15,11 @@
 #include <GL/gl.h>
 #endif
 
-#include "Texture.h"
+#include <Texture.h>
+#include <GLString.h>
 
-#include "GLString.h"
-
-#ifdef DEBUG_MEMEORY
-#include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 
@@ -419,12 +418,12 @@ gl_string_t *GLString::GetString(unsigned int id)
 #endif
 
 #ifdef HAVE_MTK
-#   include "Texture.h"
-#   include "mtk_tga.h"
+#include <Texture.h>
+#include <mtk_tga.h>
 
 Texture gTexture;
 #else
-#   error "Requires MTK: Texture and mtk_tga"
+#error "Requires MTK: Texture and mtk_tga"
 #endif
 
 

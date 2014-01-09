@@ -37,15 +37,11 @@
 #include <sys/time.h>
 #endif
 
-#ifdef MEMEORY_TEST
-#include "memeory_test.h"
+#ifdef MEMORY_TEST
+#include <memory_test.h>
 #endif
 
-#ifdef PS2_LINUX
-#include "ps2linux.h"
-#endif
-
-#include "System.h"
+#include <System.h>
 
 ////////////////////////////////////////////////////////////
 // Constructors

@@ -10,7 +10,8 @@
 #else
 #include <GL/gl.h>
 #endif
-#include "OpenGLMesh.h"
+
+#include <OpenGLMesh.h>
 
 
 ////////////////////////////////////////////////////////////

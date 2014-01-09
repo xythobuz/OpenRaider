@@ -27,10 +27,10 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include "mtk_tga.h"
+#include <mtk_tga.h>
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 

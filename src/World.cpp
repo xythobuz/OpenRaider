@@ -19,12 +19,13 @@
  * Mongoose - Created
  =================================================================*/
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 #include <math.h>
-#include "World.h"
+
+#include <World.h>
 
 
 ////////////////////////////////////////////////////////////

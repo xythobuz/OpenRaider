@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -8,11 +8,11 @@
  * Object  : Map
  * License : No use w/o permission (C) 2000-2002 Mongoose
  * Comments: mtk Template list
- * 
- *           This file was generated using Mongoose's C++ 
+ *
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.02.19:
  * Mongoose - Using RBTree and list overlay for faster access
@@ -25,7 +25,7 @@
  * Mongoose - Binary tree overlay started... at 0300  /_\ Zzzz
  *
  * 2002.02.01:
- * Mongoose - Dug out of cobwebs and fixed up 
+ * Mongoose - Dug out of cobwebs and fixed up
  *            Yes, I believe in code reuse!  =)
  *
  * 2000.10.26:
@@ -38,10 +38,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "Tree.h"
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#include <mstl/Tree.h>
+
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 
@@ -57,47 +58,47 @@ public:
 		_next = NULL;
 	}
 
-	
+
 	~MapNode()
 	{
 	}
-	
+
 
 	void Key(K key)
 	{
 		_key = key;
 	}
-	
+
 
 	K Key()
 	{
 		return _key;
 	}
-	
+
 
 	void Data(D data)
 	{
     _data = data;
 	}
-	
+
 
 	D Data()
 	{
 		return _data;
 	}
-	
+
 
 	MapNode<K, D> *Next()
 	{
 		return _next;
 	}
-	
+
 
 	void Next(MapNode<K, D> *next)
 	{
 		_next = next;
 	}
-	
+
 private:
 
 	MapNode<K, D> *_next;
@@ -111,7 +112,7 @@ private:
 template <class K, class D> class Map
 {
 public:
-	
+
 	Map()
 	{
 		UnSetError();
@@ -120,20 +121,20 @@ public:
 		_current = NULL;
 		_cache = NULL;
 	}
-	
-	
+
+
 	~Map()
 	{
 		Clear();
 	}
-	
+
 
 	void Clear()
 	{
 		UnSetError();
 		_num_items = 0;
 		_cache = NULL;
-		
+
 		while (_head)
 		{
 			_current = _head;
@@ -149,13 +150,13 @@ public:
 	{
 		_error = true;
 	}
-	
+
 
 	void UnSetError()
 	{
 		_error = false;
 	}
-	
+
 
 	bool GetError()
 	{
@@ -167,7 +168,7 @@ public:
 	{
 		MapNode<K, D> *current = NULL;
 		MapNode<K, D> *next = NULL;
-		
+
 
 		if (_head)
 		{
@@ -190,7 +191,7 @@ public:
 				if (_error)
 					return false;
 			}
-			
+
 			if (current)
 			{
 				_cache = _current = current;
@@ -207,16 +208,16 @@ public:
 	{
 		return FindDataByKey(key);
 	}
-	
+
 
 	K FindKeyByData(D data)
 	{
 		MapNode<K, D> *current = _head;
 		MapNode<K, D> *last = NULL;
-		
+
 
 		UnSetError();
-		
+
 		while (current)
 		{
 			// Found
@@ -225,7 +226,7 @@ public:
 				_cache = current;
 				return current->Key();
 			}
-			
+
 			last = current;
 			current = current->Next();
 		}
@@ -275,7 +276,7 @@ public:
 			{
 				current = _tree.SearchByKey(key, &_error);
 			}
-			
+
 			if (current)
 			{
 				_cache = _current = current;
@@ -288,12 +289,12 @@ public:
 		return false;
 	}
 
-	
+
 	bool Add(K key, D data)
 	{
 		MapNode<K, D> *node;
-		
-		
+
+
 		UnSetError();
 		node = new MapNode<K, D>(key, data);
 		_num_items++;
@@ -323,7 +324,7 @@ public:
 				if (current->Key() > node->Key())
 				{
 					node->Next(current);
-					
+
 					if (current == _head)
 					{
 						_head = node;
@@ -340,7 +341,7 @@ public:
 				last = current;
 				current = current->Next();
 			}
-			
+
 			// Append
 			last->Next(node);
 		}
@@ -349,7 +350,7 @@ public:
 			_head = node;
 		}
 
-		_tree.Insert(node->Key(), node);		
+		_tree.Insert(node->Key(), node);
 		return true;
 	}
 
@@ -358,7 +359,7 @@ public:
 	{
 		MapNode<K, D> *current = _head;
 		MapNode<K, D> *last = NULL;
-		
+
 
 		UnSetError();
 
@@ -377,7 +378,7 @@ public:
 				{
 					last->Next(current->Next());
 				}
-				
+
 				if (_current == current)
 				{
 					_current = NULL;
@@ -386,10 +387,10 @@ public:
 				_tree.RemoveByKey(current->Key());
 				delete current;
 				_num_items--;
-				
+
 				return;
 			}
-			
+
 			last = current;
 			current = current->Next();
 		}
@@ -402,7 +403,7 @@ public:
 	{
 		MapNode<K, D> *current = _head;
 		MapNode<K, D> *last = NULL;
-		
+
 
 		UnSetError();
 
@@ -421,7 +422,7 @@ public:
 				{
 					last->Next(current->Next());
 				}
-				
+
 				if (_current == current)
 				{
 					_current = NULL;
@@ -430,10 +431,10 @@ public:
 				_tree.RemoveByKey(current->Key());
 				delete current;
 				_num_items--;
-				
+
 				return;
 			}
-			
+
 			last = current;
 			current = current->Next();
 		}
@@ -473,7 +474,7 @@ public:
 		}
 
 		printf(" [%i] {\n", _num_items);
-		
+
 		while (current)
 		{
 			printf("(");
@@ -482,11 +483,11 @@ public:
 			(*print_data_func)(current->Data());
 			printf("), ");
 
-			current = current->Next();			
+			current = current->Next();
 			fflush(stdout);
 		}
-		
-		printf(" }\n");    
+
+		printf(" }\n");
 	}
 
 
@@ -509,7 +510,7 @@ public:
 		{
 			_current = _current->Next();
 		}
-		
+
 		return (_current != NULL);
 	}
 
@@ -523,13 +524,13 @@ public:
 	K CurrentKey()
 	{
 		UnSetError();
-		
+
 		if (!_current)
 		{
 			SetError();
 			return 0;
 		}
-		
+
 		return _current->Key();
 	}
 
@@ -537,26 +538,26 @@ public:
 	D Current()
 	{
 		UnSetError();
-		
+
 		if (!_current)
 		{
 			SetError();
 			return 0;
 		}
-		
+
 		return _current->Data();
 	}
 
 private:
-	
+
 	unsigned int _num_items;
-	
+
 	bool _error;
-	
+
 	Tree<K, MapNode<K, D> *> _tree;
 
 	MapNode<K, D> *_head;
-	
+
 	MapNode<K, D> *_current;
 
 	MapNode<K, D> *_cache;

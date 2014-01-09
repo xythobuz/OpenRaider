@@ -19,7 +19,7 @@
  * Mongoose - Created
  =================================================================*/
 
-#include "Light.h"
+#include <Light.h>
 
 
 Light::Light()

@@ -29,10 +29,11 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #endif
-#include "Emitter.h"
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#include <Emitter.h>
+
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 vec_t Emitter::mFrustum[6][4];

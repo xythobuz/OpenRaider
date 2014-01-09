@@ -1,33 +1,33 @@
 /*==========================================================================
- * 
- * Project : MDDC 
+ *
+ * Project : MDDC
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440
  * Email   : stu7440@westga.edu
- * Object  : 
+ * Object  :
  * Comments: This is the endian utils.
  *
  *           See file COPYING for license details.
  *
- *           Based on type converting code by: 
- *           Michael Vance <mkv102@psu.edu> 
- * 
- *-- History ---------------------------------------------------------- 
+ *           Based on type converting code by:
+ *           Michael Vance <mkv102@psu.edu>
+ *
+ *-- History ----------------------------------------------------------
  *
  * 2000-03-17:
- * Mongoose: Created, I combined some endian checking with fread wrapper 
+ * Mongoose: Created, I combined some endian checking with fread wrapper
  ==========================================================================*/
 
-#include "endian.h"
+#include <endian.h>
 
 
 int fread_u_int_small(unsigned int *ptr, FILE *stream)
-{  
+{
 #ifdef BIG_ENDIAN
    unsigned char b1, b2, b3, b4;
    unsigned int l;
 #endif
- 
+
    if (fread(ptr, 4, 1, stream) != 1)
    {
       printf("FreadSmallInt> Failed fread.\n");
@@ -35,7 +35,7 @@ int fread_u_int_small(unsigned int *ptr, FILE *stream)
    }
 
 #ifdef BIG_ENDIAN
-   l = *ptr; 
+   l = *ptr;
 
    b1 = l & 255;
    b2 = ( l >> 8 ) & 255;
@@ -49,12 +49,12 @@ int fread_u_int_small(unsigned int *ptr, FILE *stream)
 
 
 int fread_int_small(int *ptr, FILE *stream)
-{  
+{
 #ifdef BIG_ENDIAN
    unsigned char b1, b2, b3, b4;
    int l;
 #endif
- 
+
    if (fread(ptr, 4, 1, stream) != 1)
    {
       printf("FreadSmallInt> Failed fread.\n");
@@ -62,7 +62,7 @@ int fread_int_small(int *ptr, FILE *stream)
    }
 
 #ifdef BIG_ENDIAN
-   l = *ptr; 
+   l = *ptr;
 
    b1 = l & 255;
    b2 = ( l >> 8 ) & 255;
@@ -75,17 +75,17 @@ int fread_int_small(int *ptr, FILE *stream)
 }
 
 int fread_float_small(float *ptr, FILE *stream)
-{  
+{
 #ifdef BIG_ENDIAN
    union
    {
       unsigned char b[4];
-      float f; 
+      float f;
    } in, out;
-	
+
    float l;
 #endif
- 
+
    if (fread(ptr, 4, 1, stream) != 1)
    {
       printf("FreadSmallFloat> Failed fread.\n");
@@ -93,14 +93,14 @@ int fread_float_small(float *ptr, FILE *stream)
    }
 
 #ifdef BIG_ENDIAN
-   l = *ptr; 
+   l = *ptr;
 
    in.f = l;
    out.b[0] = in.b[3];
    out.b[1] = in.b[2];
    out.b[2] = in.b[1];
    out.b[3] = in.b[0];
-	
+
    *ptr = out.f;
 #endif
 

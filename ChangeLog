@@ -5,6 +5,11 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140109 ]
+	* Renamed all memeory references to memory
+	* Moved headers into include/
+	* Put Unit Tests into test/
+
 	[ 20140107 ]
 	* Removed hel/Mass. There was an object of this class in World,
 	  but it was never used!

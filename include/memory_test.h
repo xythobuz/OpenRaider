@@ -21,10 +21,10 @@
 
 #include <cstddef>
 
-#ifndef __MTK_MONGOOSE_MEMEORY_TEST_H_
-#define __MTK_MONGOOSE_MEMEORY_TEST_H_
+#ifndef __MTK_MONGOOSE_MEMORY_TEST_H_
+#define __MTK_MONGOOSE_MEMORY_TEST_H_
 
-#ifdef DEBUG_MEMEORY
+#if defined(DEBUG_MEMORY) && !defined(UNIT_TEST_MEMORY)
 
 #define DEBUG_NEW new(__FILE__, __LINE__)
 void *operator new(size_t size, const char *file, int line);
@@ -63,7 +63,7 @@ void operator delete [](void *p);
 	void dump_memory_report();
 	/*------------------------------------------------------
 	 * Pre  :
-	 * Post : Dumps raw Tree holding memeory accounting
+	 * Post : Dumps raw Tree holding memory accounting
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -71,5 +71,42 @@ void operator delete [](void *p);
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
+#ifdef DEBUG_MEMORY
+
+    #define DWORD unsigned long
+    #define ZERO_ALLOC_SLOTS 3
+
+    typedef enum { RB_BLACK = 0, RB_RED = 1 } rbtree_color_t;
+
+    typedef struct rbtree_s {
+        void *data;
+        DWORD key;
+        rbtree_color_t color;
+        struct rbtree_s *left;
+        struct rbtree_s *right;
+        struct rbtree_s *parent;
+    } rbtree_t;
+
+    typedef struct meminfo_filename_s {
+        char *filename;
+        char filename_len;
+        DWORD size;
+        unsigned int alloc_zero;
+        unsigned short int alloc_zero_at_line[ZERO_ALLOC_SLOTS];
+        struct meminfo_filename_s *next;
+    } meminfo_filename_t;
+
+    extern rbtree_t *MEMORY_INFO;
+    extern meminfo_filename_t *MEMORY_FILENAME;
+    extern long MEMORY_USED;
+    extern long MEMORYA_USED;
+    extern long MEMORYC_USED;
+    extern long MAX_MEMORY_USED;
+    extern long MAX_MEMORYA_USED;
+    extern long MAX_MEMORYC_USED;
+
+    void tree_valid_report(rbtree_t *root);
+
+#endif
 
 #endif

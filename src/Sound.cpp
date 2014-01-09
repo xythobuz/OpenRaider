@@ -30,10 +30,11 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "Sound.h"
 
-#ifdef DEBUG_MEMEORY
-#include "memeory_test.h"
+#include <Sound.h>
+
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 

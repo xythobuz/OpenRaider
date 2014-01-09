@@ -31,18 +31,14 @@
 #include <string.h>
 
 #ifdef USING_EMITTER
-#include "Emitter.h"
+#include <Emitter.h>
 #endif
 
-#ifdef DEBUG_MEMEORY
-#include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
-#ifdef DEBUG_GL
-#include "gl_test.cpp"
-#endif
-
-#include "Render.h"
+#include <Render.h>
 
 extern entity_t *LARA;
 extern World gWorld;

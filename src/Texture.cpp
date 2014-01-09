@@ -33,20 +33,20 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 #ifdef USING_MTK_TGA
-#   include "mtk_tga.h"
+#include <mtk_tga.h>
 #endif
 
 #ifdef USING_MTK_PNG
-#   include "mtk_png.h"
+#include <mtk_png.h>
 #endif
 
 #ifdef HAVE_SDL_TTF
-#   include <SDL/SDL_ttf.h>
+#include <SDL/SDL_ttf.h>
 #endif
 
 #ifdef __APPLE__
@@ -57,7 +57,7 @@
 #include <GL/glu.h>
 #endif
 
-#include "Texture.h"
+#include <Texture.h>
 
 //Texture *gTextureManager = 0x0;
 gl_font_t *gFontTest = 0x0;

@@ -27,8 +27,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifdef DEBUG_MEMEORY
-#   include "memeory_test.h"
+#ifdef DEBUG_MEMORY
+#include <memory_test.h>
 #endif
 
 
