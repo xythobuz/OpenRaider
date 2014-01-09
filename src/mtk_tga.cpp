@@ -490,7 +490,7 @@ int mtk_image__tga_save_filename(unsigned char *image,
 }
 
 
-#ifdef __TEST_
+#ifdef UNIT_TEST_TGA
 int main(int argc, char *argv[])
 {
   FILE *f;
