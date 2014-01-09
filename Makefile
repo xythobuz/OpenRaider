@@ -323,7 +323,7 @@ Matrix.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -DMATRIX_UNIT_TEST -lm -lstdc++ -Iinclude \
 	src/hel/Matrix.cpp src/hel/Quaternion.cpp src/hel/Vector3d.cpp \
-	-o $(BUILD_TEST_DIR)/Matrix.test
+	test/hel/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
 	@-echo "================================================="
 	@-echo "Running Matrix unit test"
 	$(BUILD_TEST_DIR)/Matrix.test
@@ -332,7 +332,7 @@ Quaternion.test:
 	@-echo "Building Quaternion unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -DUNIT_TEST_QUATERNION -lm -lstdc++ -Iinclude \
-	src/hel/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
+	src/hel/Quaternion.cpp test/hel/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
 	@-echo "================================================="
 	@-echo "Running Quaternion unit test"
 	$(BUILD_TEST_DIR)/Quaternion.test
@@ -341,7 +341,7 @@ Math.test:
 	@-echo "Building Math unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -DMATH_UNIT_TEST -lm -lstdc++ -Iinclude \
-	src/hel/math.cpp src/hel/Vector3d.cpp -o $(BUILD_TEST_DIR)/Math.test
+	src/hel/math.cpp src/hel/Vector3d.cpp test/hel/math.cpp -o $(BUILD_TEST_DIR)/Math.test
 	@-echo "================================================="
 	@-echo "Running hel unit test"
 	$(BUILD_TEST_DIR)/Math.test

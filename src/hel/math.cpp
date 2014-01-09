@@ -328,23 +328,3 @@ vec_t helRadToDeg(vec_t rad)
 #endif
 }
 
-
-#ifdef MATH_UNIT_TEST
-#include <stdio.h>
-
-void helMathTest()
-{
-	printf("180/PI: %f, %f, %f\n",
-			 HEL_180_OVER_PI,
-			 180.0f / HEL_PI,
-			 180.0 / M_PI);
-}
-
-
-int main(int argc, char *argv[])
-{
-	helMathTest();
-
-	return 0;
-}
-#endif

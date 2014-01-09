@@ -403,29 +403,3 @@ Quaternion Quaternion::subtract(Quaternion a, Quaternion b)
 // Private Mutators
 ////////////////////////////////////////////////////////////
 
-
-////////////////////////////////////////////////////////////
-// Unit Test code
-////////////////////////////////////////////////////////////
-
-#ifdef UNIT_TEST_QUATERNION
-
-#include <stdio.h>
-
-int runQuaternionUnitTest(int argc, char *argv[])
-{
-    //! \todo Implement Quaternion Unit Tests!
-    printf("Not implemented!\n");
-	return 0;
-}
-
-
-int main(int argc, char *argv[])
-{
-	printf("[Quaternion class test]\n");
-
-	runQuaternionUnitTest(argc, argv);
-
-	return 0;
-}
-#endif
