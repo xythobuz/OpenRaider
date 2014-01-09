@@ -371,8 +371,8 @@ endif
 
 TGA.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(TEST_FLAGS) -DUNIT_TEST_TGA \
-		src/mtk_tga.cpp -o $(BUILD_TEST_DIR)/TGA.test
+	$(CC) $(TEST_FLAGS) \
+		src/mtk_tga.cpp test/mtk_tga.cpp -o $(BUILD_TEST_DIR)/TGA.test
 
 #################################################################
 
