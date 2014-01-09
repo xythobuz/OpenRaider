@@ -275,7 +275,7 @@ endif
 #################################################################
 # Unit Test builds
 #################################################################
-TEST_FLAGS=-Wall -g -O0 -DDEBUG -lstdc++
+TEST_FLAGS=-Wall -g -O0 -DDEBUG -lstdc++ -Iinclude
 
 TEST_MAP_TR5=~/projects/Data/models/tombraider/tr5/demo.trc
 TEST_MAP_TR4=~/projects/Data/models/tombraider/tr4/angkor1.tr4
@@ -303,7 +303,7 @@ TombRaider.test:
 
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -Iinclude -D__TEST__ -DHAVE_MTK -DHAVE_SDL -DUSING_MTK_TGA \
+	$(CC) -Wall -Iinclude -DHAVE_MTK -DHAVE_SDL -DUSING_MTK_TGA \
 	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
 	$(GL_LIBS) $(GL_DEFS) -lm -lstdc++ \
 	src/Texture.cpp src/mtk_tga.cpp \
@@ -360,9 +360,9 @@ Network.test:
 
 Sound.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(TEST_FLAGS) -DUNIT_TEST_SOUND \
-		-DUSING_OPENAL $(AUDIO_LIBS) \
-		src/Sound.cpp -o $(BUILD_TEST_DIR)/Sound.test
+	$(CC) $(TEST_FLAGS) \
+		-DUSING_OPENAL $(AUDIO_LIBS) $(AUDIO_DEFS) \
+		src/Sound.cpp test/Sound.cpp -o $(BUILD_TEST_DIR)/Sound.test
 ifeq ($(UNAME),Darwin)
 	install_name_tool -change libalut.0.1.0.dylib /opt/local/lib/libalut.0.1.0.dylib $(BUILD_TEST_DIR)/Sound.test
 endif

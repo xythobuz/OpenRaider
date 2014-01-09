@@ -2,8 +2,6 @@
  * \file Sound.h
  * \brief This is the audio manager Header
  *
- * Defining UNIT_TEST_SOUND builds Sound class as a console unit test
- *
  * \author Mongoose
  * \author xythobuz
  */
