@@ -119,16 +119,6 @@ public:
     gl_string_t *GetString(unsigned int id);
 
 
-#ifdef __TEST__
-    /*!
-     * \brief Tests GLString
-     * \param argc length of argv
-     * \param argv array of argument strings
-     * \returns 0 on success or an error id
-     */
-    int _RegressionTest(int argc, char *argv[]);
-#endif
-
 private:
     unsigned int _num_string_max; //!< Max number of strings buffered
     unsigned int _num_font_max; //!< Max number of font faces

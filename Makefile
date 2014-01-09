@@ -307,7 +307,7 @@ GLString.test:
 	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
 	$(GL_LIBS) $(GL_DEFS) -lm -lstdc++ \
 	src/Texture.cpp src/mtk_tga.cpp \
-	src/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
+	src/GLString.cpp test/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
 
 #################################################################
 
