@@ -58,6 +58,19 @@ Just run `make debug` and run `bin/debug/OpenRaider` for a debug build.
 
 See the original `README.old` file. In the Main Menu, &lt;Esc&gt; will allow you to select a level to play.
 
+### Configuration file
+
+OpenRaider will try to load `~/.OpenRaider/OpenRaider.init` or, if it doesn't exist, `OpenRaider.init` from the current directory.
+Running `setup.sh` will create a minimal configuration in your home directory.
+
+The configuration file format is very simple:
+* Anything following a `#` up to the next `\n` will be ignored.
+* Lines starting with an `@` mark a "preprocessor" command. The only one currently implemented is `@include`, allowing you to include another file as configuration file.
+* Lines surrounded with `[]`, eg. `[Engine.OpenGL.Driver]` set the mode for following commands.
+* Everything else is interpreted as command for the current mode.
+
+See `README.old` for a (probably incomplete) list of available commands.
+
 ## License
 
 The included example Font, [Droid Sans Mono](http://www.droidfonts.com/licensing/), was created by Steve Matteson and is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).

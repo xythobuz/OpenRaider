@@ -393,7 +393,7 @@ int System::loadResourceFile(const char *filename)
 		return -1;
 	}
 
-	printf("Resource system \n");
+	printf("Loading %s...\n", filename);
 
 	i = 0;
 	buffer[0] = 0;

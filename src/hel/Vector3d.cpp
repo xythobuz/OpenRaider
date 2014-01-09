@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Hel
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: Math vector
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------- 
+ *
+ *-- History -------------------------------------------------
  *
  * 2002.12.24:
  * Mongoose - Created
@@ -81,7 +81,7 @@ vec_t Vector3d::magnitude()
 Vector3d Vector3d::unit()
 {
 	vec_t norm = magnitude();
-	
+
 	return Vector3d(mVec[0] / norm,
 						 mVec[1] / norm,
 						 mVec[2] / norm);
@@ -106,7 +106,7 @@ Vector3d Vector3d::operator -(const Vector3d &v)
 {
 	return Vector3d(mVec[0] - v.mVec[0],
 						 mVec[1] - v.mVec[1],
-						 mVec[2] - v.mVec[2]);	
+						 mVec[2] - v.mVec[2]);
 }
 
 
@@ -114,7 +114,7 @@ Vector3d Vector3d::operator -()
 {
 	return Vector3d(-mVec[0],
 						 -mVec[1],
-						 -mVec[2]);	
+						 -mVec[2]);
 }
 
 
@@ -144,7 +144,7 @@ vec_t Vector3d::operator *(const Vector3d &v)
 //{
 //	vec3_t v;
 //
-//	return 
+//	return
 //}
 
 
@@ -155,7 +155,7 @@ vec_t Vector3d::operator *(const Vector3d &v)
 void Vector3d::normalize()
 {
 	vec_t norm = magnitude();
-	
+
 	mVec[0] /= norm;
 	mVec[1] /= norm;
 	mVec[2] /= norm;
@@ -211,25 +211,3 @@ void Vector3d::operator *=(vec_t s)
 // Private Mutators
 ////////////////////////////////////////////////////////////
 
-
-////////////////////////////////////////////////////////////
-// Unit Test code
-////////////////////////////////////////////////////////////
-
-#ifdef UNIT_TEST_VECTOR3D
-int runVector3dUnitTest(int argc, char *argv[])
-{
-	Vector3d test;
-
-	return 0;
-}
-
-
-int main(int argc, char *argv[])
-{
-	printf("[Vector3d class test]\n");
-	runVector3dUnitTest(argc, argv);
-
-	return 0;
-}
-#endif
