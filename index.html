@@ -90,7 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><a class="el" href="class_open_raider.html">OpenRaider</a> needs some configuration files, and level data and assets from custom levels or the Tomb Raider games. These are stored in <code>~/.<a class="el" href="class_open_raider.html">OpenRaider</a></code>. Running the included <code>setup.sh</code> will create/copy the necessary files and directories. The Mac App Bundle will do this for you automatically.</p>
 <p>You still need to add level files in <code>~/.OpenRaider/paks/</code> and add them to <code>~/.OpenRaider/OpenRaider.init</code>. Dust off your old Tomb Raider CDs or grab some <a href="http://www.aspidetr.com/levels/yvel-woods-v1-5/">custom levels</a> from the interwebs.</p>
 <h2>Documentation</h2>
-<p>All previously included documentation was moved into the <a href="https://github.com/xythobuz/OpenRaider/wiki/_pages">OpenRaider Repo Wiki</a>!</p>
+<p>All previously included documentation was moved into the <a href="https://github.com/xythobuz/OpenRaider/wiki/_pages">OpenRaider Repo Wiki</a>. Also take a look at the <a href="https://github.com/xythobuz/OpenRaider/wiki/Bugs">BUGS</a>, <a href="https://github.com/xythobuz/OpenRaider/wiki/To-Do">TODO</a> and <a href="https://github.com/xythobuz/OpenRaider/wiki/Requirements">Requirements</a>.</p>
 <p>A more or less recent <a href="http://xythobuz.github.io/OpenRaider/">Doxygen documentation</a> of <a class="el" href="class_open_raider.html">OpenRaider</a> should be on the Github Pages for <a class="el" href="class_open_raider.html">OpenRaider</a>.</p>
 <h2>Dependencies</h2>
 <p>On Mac OS X 10.9 with <a href="https://developer.apple.com/xcode/">XCode</a> and <a href="http://www.macports.org">MacPorts</a> installed, the following should be enough to get all dependencies that are available as port: </p>
@@ -108,6 +108,16 @@ sudo make install
 <p>Just run <code>make debug</code> and run <code>bin/debug/OpenRaider</code> for a debug build. <code>make release</code> builds a release binary. <code>make bundle</code> creates a Mac App Bundle that also runs the setup script, if necessary.</p>
 <h2>Usage</h2>
 <p>See the original <code>README.old</code> file. In the Main Menu, &lt;Esc&gt; will allow you to select a level to play.</p>
+<h3>Configuration file</h3>
+<p><a class="el" href="class_open_raider.html">OpenRaider</a> will try to load <code>~/.OpenRaider/OpenRaider.init</code> or, if it doesn't exist, <code>OpenRaider.init</code> from the current directory. Running <code>setup.sh</code> will create a minimal configuration in your home directory.</p>
+<p>The configuration file format is very simple:</p>
+<ul>
+<li>Anything following a <code>#</code> up to the next <code>\n</code> will be ignored.</li>
+<li>Lines starting with an <code>@</code> mark a "preprocessor" command. The only one currently implemented is <code>@include</code>, allowing you to include another file as configuration file.</li>
+<li>Lines surrounded with <code>[]</code>, eg. <code>[Engine.OpenGL.Driver]</code> set the mode for following commands.</li>
+<li>Everything else is interpreted as command for the current mode.</li>
+</ul>
+<p>See <code>README.old</code> for a (probably incomplete) list of available commands.</p>
 <h2>License</h2>
 <p>The included example Font, <a href="http://www.droidfonts.com/licensing/">Droid Sans Mono</a>, was created by Steve Matteson and is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.</p>
 <p>The included sample WAV file is made from the <a href="http://brechler-web.de/fallingmate/">Falling Mate ringtone</a> by <a href="http://plaetzchen.cc">Plaetzchen</a>.</p>
@@ -118,7 +128,7 @@ sudo make install
 <li>TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose</li>
 </ul>
 <p>All code should be GPLed, unless otherwise noted.</p>
-<p>2013 improvements &amp; clean-up by xythobuz. </p>
+<p>2013, 2014 improvements &amp; clean-up by xythobuz. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

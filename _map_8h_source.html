@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>OpenRaider: src/mstl/Map.h Source File</title>
+<title>OpenRaider: include/Map.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_167059f11972046032960f672354e21d.html">mstl</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_map_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*================================================================</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Project : Freyja</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Author  : Mongoose</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Website : http://www.westga.edu/~stu7440/</span></div>
@@ -101,11 +101,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * Object  : Map</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * License : No use w/o permission (C) 2000-2002 Mongoose</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Comments: mtk Template list</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *           This file was generated using Mongoose&#39;s C++ </span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *           This file was generated using Mongoose&#39;s C++</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *           template generator script.  &lt;stu7440@westga.edu&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *-- History ------------------------------------------------ </span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *-- History ------------------------------------------------</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * 2002.02.19:</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * Mongoose - Using RBTree and list overlay for faster access</span></div>
@@ -118,7 +118,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> * Mongoose - Binary tree overlay started... at 0300  /_\ Zzzz</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * 2002.02.01:</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * Mongoose - Dug out of cobwebs and fixed up </span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * Mongoose - Dug out of cobwebs and fixed up</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> *            Yes, I believe in code reuse!  =)</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> * 2000.10.26:</span></div>
@@ -131,582 +131,583 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_tree_8h.html">Tree.h</a>&quot;</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifdef DEBUG_MEMEORY</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#   include &quot;<a class="code" href="memeory__test_8h.html">memeory_test.h</a>&quot;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_tree_8h.html">Tree.h</a>&gt;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#ifdef DEBUG_MEMORY</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="memory__test_8h.html">memory_test.h</a>&gt;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_map_node.html">   49</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> K, <span class="keyword">class</span> D&gt; <span class="keyword">class </span><a class="code" href="class_map_node.html">MapNode</a></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_map_node.html#a9facee387df0ae088b2a24d34af08bbd">   53</a></span>&#160;    <a class="code" href="class_map_node.html#a9facee387df0ae088b2a24d34af08bbd">MapNode</a>(K key, D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">_data</a>  = <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">_key</a> = key;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">_next</a> = NULL;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_map_node.html#ac54f7f38bbab4d7b1f8e0c6e7f277f47">   61</a></span>&#160;    <a class="code" href="class_map_node.html#ac54f7f38bbab4d7b1f8e0c6e7f277f47">~MapNode</a>()</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_map_node.html">   50</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> K, <span class="keyword">class</span> D&gt; <span class="keyword">class </span><a class="code" href="class_map_node.html">MapNode</a></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="class_map_node.html#a9facee387df0ae088b2a24d34af08bbd">   54</a></span>&#160;    <a class="code" href="class_map_node.html#a9facee387df0ae088b2a24d34af08bbd">MapNode</a>(K key, D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">_data</a>  = <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">_key</a> = key;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">_next</a> = NULL;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_map_node.html#ac54f7f38bbab4d7b1f8e0c6e7f277f47">   62</a></span>&#160;    <a class="code" href="class_map_node.html#ac54f7f38bbab4d7b1f8e0c6e7f277f47">~MapNode</a>()</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">   66</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>(K key)</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">_key</a> = key;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">   67</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>(K key)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">_key</a> = key;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_map_node.html#a158c5a7b7e92af8b3fee8d336c79a1f7">   72</a></span>&#160;    K <a class="code" href="class_map_node.html#a158c5a7b7e92af8b3fee8d336c79a1f7">Key</a>()</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">_key</a>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_map_node.html#a158c5a7b7e92af8b3fee8d336c79a1f7">   73</a></span>&#160;    K <a class="code" href="class_map_node.html#a158c5a7b7e92af8b3fee8d336c79a1f7">Key</a>()</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">_key</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">   78</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>(D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">_data</a> = <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">   79</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>(D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">_data</a> = <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_map_node.html#a28a09c35604024f7031c32b9d10cc815">   84</a></span>&#160;    D <a class="code" href="class_map_node.html#a28a09c35604024f7031c32b9d10cc815">Data</a>()</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">_data</a>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="class_map_node.html#a28a09c35604024f7031c32b9d10cc815">   85</a></span>&#160;    D <a class="code" href="class_map_node.html#a28a09c35604024f7031c32b9d10cc815">Data</a>()</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">_data</a>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="class_map_node.html#a5cca705450a812a60500602e608403b6">   90</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>()</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">_next</a>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="class_map_node.html#a5cca705450a812a60500602e608403b6">   91</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>()</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">_next</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="class_map_node.html#a50b35dc0f907458a7b8361ffee34a519">   96</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map_node.html#a50b35dc0f907458a7b8361ffee34a519">Next</a>(<a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *next)</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">_next</a> = next;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">  103</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">_next</a>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">  105</a></span>&#160;    K <a class="code" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">_key</a>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">  107</a></span>&#160;    D <a class="code" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">_data</a>;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;};</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="class_map_node.html#a50b35dc0f907458a7b8361ffee34a519">   97</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map_node.html#a50b35dc0f907458a7b8361ffee34a519">Next</a>(<a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *next)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">_next</a> = next;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">  104</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">_next</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">  106</a></span>&#160;    K <a class="code" href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">_key</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">  108</a></span>&#160;    D <a class="code" href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">_data</a>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="class_map.html">  111</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> K, <span class="keyword">class</span> D&gt; <span class="keyword">class </span><a class="code" href="class_map.html">Map</a></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    </div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="class_map.html#ac14d3b1d48327d2fa1da8509a44fc5f4">  115</a></span>&#160;    <a class="code" href="class_map.html#ac14d3b1d48327d2fa1da8509a44fc5f4">Map</a>()</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a> = 0;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = NULL;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = NULL;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = NULL;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    </div>
-<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="class_map.html#a16856a9133cae938098f763c126c4322">  125</a></span>&#160;    <a class="code" href="class_map.html#a16856a9133cae938098f763c126c4322">~Map</a>()</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="class_map.html#aecce2b567cfba2ab7b62983b57b08cdd">Clear</a>();</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="class_map.html">  112</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> K, <span class="keyword">class</span> D&gt; <span class="keyword">class </span><a class="code" href="class_map.html">Map</a></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="class_map.html#ac14d3b1d48327d2fa1da8509a44fc5f4">  116</a></span>&#160;    <a class="code" href="class_map.html#ac14d3b1d48327d2fa1da8509a44fc5f4">Map</a>()</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a> = 0;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = NULL;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = NULL;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = NULL;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="class_map.html#a16856a9133cae938098f763c126c4322">  126</a></span>&#160;    <a class="code" href="class_map.html#a16856a9133cae938098f763c126c4322">~Map</a>()</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="class_map.html#aecce2b567cfba2ab7b62983b57b08cdd">Clear</a>();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="class_map.html#aecce2b567cfba2ab7b62983b57b08cdd">  131</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#aecce2b567cfba2ab7b62983b57b08cdd">Clear</a>()</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a> = 0;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = NULL;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">while</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        {</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>-&gt;Next();</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            <span class="keyword">delete</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a81e9e349540ff4589bf68fba3fffc368">Clear</a>();</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="class_map.html#aecce2b567cfba2ab7b62983b57b08cdd">  132</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#aecce2b567cfba2ab7b62983b57b08cdd">Clear</a>()</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a> = 0;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = NULL;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">while</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>-&gt;Next();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keyword">delete</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a81e9e349540ff4589bf68fba3fffc368">Clear</a>();</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">  148</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>()</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    {</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">  149</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>()</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">  154</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>()</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    {</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">  155</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>()</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    }</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="class_map.html#a742ec0d2d2a338d4aa736014988dd18f">  160</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a742ec0d2d2a338d4aa736014988dd18f">GetError</a>()</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    }</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="class_map.html#a742ec0d2d2a338d4aa736014988dd18f">  161</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a742ec0d2d2a338d4aa736014988dd18f">GetError</a>()</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    }</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="class_map.html#a5654659075b5cf1a1d711d50f5034286">  166</a></span>&#160;    D <a class="code" href="class_map.html#a5654659075b5cf1a1d711d50f5034286">FindDataByKey</a>(K key)</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    {</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = NULL;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *next = NULL;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="class_map.html#a5654659075b5cf1a1d711d50f5034286">  167</a></span>&#160;    D <a class="code" href="class_map.html#a5654659075b5cf1a1d711d50f5034286">FindDataByKey</a>(K key)</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    {</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = NULL;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *next = NULL;</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        {</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>)</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            {</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                next = <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>-&gt;Next();</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            }</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            <span class="comment">// Mongoose 2002.02.19, Optimize for sequential searches</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <span class="keywordflow">if</span> (next &amp;&amp; key == next-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>())</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                current = next;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            }</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <span class="keywordflow">else</span> <span class="comment">// Mongoose 2002.02.19, Use search algorithm otherwise</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            {</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                current = <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a6d0c860b84ce3fc2f849284744680cd6">SearchByKey</a>(key, &amp;<a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>);</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>)</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            }</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            </div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keywordflow">if</span> (current)</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = current;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                <span class="keywordflow">return</span> current-&gt;<a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>();</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            }</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        }</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>)</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                next = <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>-&gt;Next();</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <span class="comment">// Mongoose 2002.02.19, Optimize for sequential searches</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">if</span> (next &amp;&amp; key == next-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>())</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                current = next;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            }</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="keywordflow">else</span> <span class="comment">// Mongoose 2002.02.19, Use search algorithm otherwise</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                current = <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a6d0c860b84ce3fc2f849284744680cd6">SearchByKey</a>(key, &amp;<a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <span class="keywordflow">if</span> (current)</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            {</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = current;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                <span class="keywordflow">return</span> current-&gt;<a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>();</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        }</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
-<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="class_map.html#a5efeeb9a0567d80ca17e16935096236f">  206</a></span>&#160;    D <a class="code" href="class_map.html#a5efeeb9a0567d80ca17e16935096236f">operator [] </a>(K key)</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    {</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a5654659075b5cf1a1d711d50f5034286">FindDataByKey</a>(key);</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="class_map.html#a5efeeb9a0567d80ca17e16935096236f">  207</a></span>&#160;    D <a class="code" href="class_map.html#a5efeeb9a0567d80ca17e16935096236f">operator [] </a>(K key)</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a5654659075b5cf1a1d711d50f5034286">FindDataByKey</a>(key);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    }</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
-<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="class_map.html#a2ec482165aa9f591ff833784943c28f5">  212</a></span>&#160;    K <a class="code" href="class_map.html#a2ec482165aa9f591ff833784943c28f5">FindKeyByData</a>(D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    {</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *last = NULL;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
+<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="class_map.html#a2ec482165aa9f591ff833784943c28f5">  213</a></span>&#160;    K <a class="code" href="class_map.html#a2ec482165aa9f591ff833784943c28f5">FindKeyByData</a>(D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    {</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *last = NULL;</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        </div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="keywordflow">while</span> (current)</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="comment">// Found</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="keywordflow">if</span> (current-&gt;<a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>() == <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = current;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <span class="keywordflow">return</span> current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>();</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            }</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            </div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            last = current;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        }</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <span class="keywordflow">while</span> (current)</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        {</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="comment">// Found</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            <span class="keywordflow">if</span> (current-&gt;<a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>() == <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = current;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                <span class="keywordflow">return</span> current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>();</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            last = current;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno"><a class="line" href="class_map.html#a45a1e151883d30cc83e2342bfbeb524d">  239</a></span>&#160;    D <a class="code" href="class_map.html#a45a1e151883d30cc83e2342bfbeb524d">getCache</a>()</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    {</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> == 0x0)</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        {</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            printf(<span class="stringliteral">&quot;Map::getCache&gt; Bad request - should segfault\n&quot;</span>);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        }</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>-&gt;Data();</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    }</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="class_map.html#a45a1e151883d30cc83e2342bfbeb524d">  240</a></span>&#160;    D <a class="code" href="class_map.html#a45a1e151883d30cc83e2342bfbeb524d">getCache</a>()</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> == 0x0)</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            printf(<span class="stringliteral">&quot;Map::getCache&gt; Bad request - should segfault\n&quot;</span>);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        }</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>-&gt;Data();</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    }</div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
-<div class="line"><a name="l00250"></a><span class="lineno"><a class="line" href="class_map.html#ae875e5c9c9d01fb907849accef3b1822">  250</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#ae875e5c9c9d01fb907849accef3b1822">findKey</a>(K key)</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    {</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = NULL;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *next = NULL;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        {</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>)</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            {</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>-&gt;Key() == key)</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                {</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                }</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                next = <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>-&gt;Next();</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            }</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            <span class="comment">// Mongoose 2002.02.19, Optimize for sequential searches</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="keywordflow">if</span> (next &amp;&amp; key == next-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>())</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            {</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                current = next;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            }</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            <span class="keywordflow">else</span> <span class="comment">// Mongoose 2002.02.19, Use search algorithm otherwise</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            {</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                current = <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a6d0c860b84ce3fc2f849284744680cd6">SearchByKey</a>(key, &amp;<a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>);</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            }</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            </div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            <span class="keywordflow">if</span> (current)</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            {</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = current;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                <span class="comment">//curData = current-&gt;Data();</span></div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            }</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        }</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    }</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    </div>
-<div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="class_map.html#a8ba0be09be59bbdad1d764084323081f">  292</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a8ba0be09be59bbdad1d764084323081f">Add</a>(K key, D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    {</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *node;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        </div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        node = <span class="keyword">new</span> <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a>(key, <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>++;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8ba0be09be59bbdad1d764084323081f">Add</a>(node);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    }</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="class_map.html#ae875e5c9c9d01fb907849accef3b1822">  251</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#ae875e5c9c9d01fb907849accef3b1822">findKey</a>(K key)</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    {</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = NULL;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *next = NULL;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        {</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>)</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            {</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>-&gt;Key() == key)</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                {</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                }</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                next = <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>-&gt;Next();</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            }</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="comment">// Mongoose 2002.02.19, Optimize for sequential searches</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <span class="keywordflow">if</span> (next &amp;&amp; key == next-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>())</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            {</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                current = next;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            }</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            <span class="keywordflow">else</span> <span class="comment">// Mongoose 2002.02.19, Use search algorithm otherwise</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            {</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                current = <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a6d0c860b84ce3fc2f849284744680cd6">SearchByKey</a>(key, &amp;<a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            }</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            <span class="keywordflow">if</span> (current)</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            {</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = current;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                <span class="comment">//curData = current-&gt;Data();</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            }</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        }</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    }</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
+<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="class_map.html#a8ba0be09be59bbdad1d764084323081f">  293</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a8ba0be09be59bbdad1d764084323081f">Add</a>(K key, D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    {</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *node;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        node = <span class="keyword">new</span> <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a>(key, <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>++;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8ba0be09be59bbdad1d764084323081f">Add</a>(node);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    }</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
-<div class="line"><a name="l00304"></a><span class="lineno"><a class="line" href="class_map.html#a78e6a397b04b914a5a855decfb9cab5e">  304</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a78e6a397b04b914a5a855decfb9cab5e">Add</a>(<a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *node)</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    {</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *last = NULL;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
+<div class="line"><a name="l00305"></a><span class="lineno"><a class="line" href="class_map.html#a78e6a397b04b914a5a855decfb9cab5e">  305</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a78e6a397b04b914a5a855decfb9cab5e">Add</a>(<a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *node)</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    {</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *last = NULL;</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="keywordflow">if</span> (!node)</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        {</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            last = NULL;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            <span class="keywordflow">while</span> (current)</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            {</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                <span class="comment">// Prepend</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                <span class="keywordflow">if</span> (current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>() &gt; node-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>())</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                {</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                    node-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(current);</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                    </div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                    <span class="keywordflow">if</span> (current == <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                    {</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                        <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = node;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                    }</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (last)</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                    {</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                        last-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(node);</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                    }</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                    <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a884b25ab8e7273ae01fd052d828cef8f">Insert</a>(node-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>(), node);</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                }</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                last = current;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            }</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            </div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="comment">// Append</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            last-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(node);</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        }</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        {</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = node;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;        }</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a884b25ab8e7273ae01fd052d828cef8f">Insert</a>(node-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>(), node);        </div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    }</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <span class="keywordflow">if</span> (!node)</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        {</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            last = NULL;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            <span class="keywordflow">while</span> (current)</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            {</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                <span class="comment">// Prepend</span></div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                <span class="keywordflow">if</span> (current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>() &gt; node-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>())</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                {</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                    node-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(current);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                    <span class="keywordflow">if</span> (current == <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                    {</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                        <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = node;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                    }</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (last)</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                    {</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                        last-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(node);</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                    }</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                    <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a884b25ab8e7273ae01fd052d828cef8f">Insert</a>(node-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>(), node);</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                }</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                last = current;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            }</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            <span class="comment">// Append</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            last-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(node);</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        }</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        {</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = node;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        }</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a884b25ab8e7273ae01fd052d828cef8f">Insert</a>(node-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>(), node);</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    }</div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
-<div class="line"><a name="l00357"></a><span class="lineno"><a class="line" href="class_map.html#a8294230cfa23b82ba17606bf9c09cb68">  357</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a8294230cfa23b82ba17606bf9c09cb68">RemoveByKey</a>(K key)</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    {</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *last = NULL;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        </div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
+<div class="line"><a name="l00358"></a><span class="lineno"><a class="line" href="class_map.html#a8294230cfa23b82ba17606bf9c09cb68">  358</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a8294230cfa23b82ba17606bf9c09cb68">RemoveByKey</a>(K key)</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    {</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *last = NULL;</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = NULL;</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        <span class="keywordflow">while</span> (current)</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        {</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;            <span class="comment">// Remove</span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            <span class="keywordflow">if</span> (current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>() == key)</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            {</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                <span class="keywordflow">if</span> (current == <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                {</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                    <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                }</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                {</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                    last-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>());</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                }</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                </div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> == current)</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                {</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                    <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = NULL;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                }</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a5f8151ca8cf0651cead608b76397b9fe">RemoveByKey</a>(current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>());</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                <span class="keyword">delete</span> current;</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>--;</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                </div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            }</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            </div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            last = current;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;            current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        }</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    }</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = NULL;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        <span class="keywordflow">while</span> (current)</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        {</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            <span class="comment">// Remove</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            <span class="keywordflow">if</span> (current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>() == key)</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            {</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                <span class="keywordflow">if</span> (current == <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                {</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                    <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                }</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                {</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                    last-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>());</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                }</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> == current)</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                {</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                    <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = NULL;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                }</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a5f8151ca8cf0651cead608b76397b9fe">RemoveByKey</a>(current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>());</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                <span class="keyword">delete</span> current;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>--;</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            }</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;            last = current;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        }</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    }</div>
 <div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;</div>
-<div class="line"><a name="l00401"></a><span class="lineno"><a class="line" href="class_map.html#a3be4d5b3d59af872bf5c82578aed46eb">  401</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a3be4d5b3d59af872bf5c82578aed46eb">RemoveByData</a>(D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    {</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *last = NULL;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        </div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;</div>
+<div class="line"><a name="l00402"></a><span class="lineno"><a class="line" href="class_map.html#a3be4d5b3d59af872bf5c82578aed46eb">  402</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a3be4d5b3d59af872bf5c82578aed46eb">RemoveByData</a>(D <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    {</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *last = NULL;</div>
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = NULL;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        <span class="keywordflow">while</span> (current)</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        {</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            <span class="comment">// Remove</span></div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            <span class="keywordflow">if</span> (current-&gt;<a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>() == <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            {</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                <span class="keywordflow">if</span> (current == <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                {</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                    <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                }</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                {</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                    last-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>());</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                }</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                </div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> == current)</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                {</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                    <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = NULL;</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                }</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a5f8151ca8cf0651cead608b76397b9fe">RemoveByKey</a>(current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>());</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                <span class="keyword">delete</span> current;</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;                <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>--;</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;                </div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;            }</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            </div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            last = current;</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        }</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    }</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = NULL;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        <span class="keywordflow">while</span> (current)</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;        {</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            <span class="comment">// Remove</span></div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            <span class="keywordflow">if</span> (current-&gt;<a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>() == <a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>)</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;            {</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                <span class="keywordflow">if</span> (current == <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>)</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                {</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                    <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                }</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                {</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                    last-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>(current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>());</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                }</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> == current)</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                {</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                    <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = NULL;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                }</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>.<a class="code" href="class_tree.html#a5f8151ca8cf0651cead608b76397b9fe">RemoveByKey</a>(current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>());</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;                <span class="keyword">delete</span> current;</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;                <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>--;</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            }</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            last = current;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;            current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        }</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    }</div>
 <div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;</div>
-<div class="line"><a name="l00445"></a><span class="lineno"><a class="line" href="class_map.html#a4f05c8b23a06466099614b6203a29bba">  445</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a4f05c8b23a06466099614b6203a29bba">Empty</a>()</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    {</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> == NULL);</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    }</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;</div>
+<div class="line"><a name="l00446"></a><span class="lineno"><a class="line" href="class_map.html#a4f05c8b23a06466099614b6203a29bba">  446</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a4f05c8b23a06466099614b6203a29bba">Empty</a>()</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    {</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a> == NULL);</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    }</div>
 <div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;</div>
-<div class="line"><a name="l00451"></a><span class="lineno"><a class="line" href="class_map.html#ada132deea30741726b677dd42aa2916c">  451</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_map.html#ada132deea30741726b677dd42aa2916c">count</a>()</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    {</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>;</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    }</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;</div>
-<div class="line"><a name="l00456"></a><span class="lineno"><a class="line" href="class_map.html#ac182abff64a69359bd9c6817d605f5df">  456</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_map.html#ac182abff64a69359bd9c6817d605f5df">NumItems</a>()</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    {</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>;</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    }</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;</div>
+<div class="line"><a name="l00452"></a><span class="lineno"><a class="line" href="class_map.html#ada132deea30741726b677dd42aa2916c">  452</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_map.html#ada132deea30741726b677dd42aa2916c">count</a>()</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    {</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    }</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;</div>
+<div class="line"><a name="l00457"></a><span class="lineno"><a class="line" href="class_map.html#ac182abff64a69359bd9c6817d605f5df">  457</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_map.html#ac182abff64a69359bd9c6817d605f5df">NumItems</a>()</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    {</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>;</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    }</div>
 <div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;</div>
-<div class="line"><a name="l00462"></a><span class="lineno"><a class="line" href="class_map.html#a1c845f6fb0d6515804651e0a92b5834b">  462</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a1c845f6fb0d6515804651e0a92b5834b">Print</a>(<span class="keywordtype">void</span> (*print_key_func)(K), <span class="keywordtype">void</span> (*print_data_func)(D))</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    {</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;</div>
+<div class="line"><a name="l00463"></a><span class="lineno"><a class="line" href="class_map.html#a1c845f6fb0d6515804651e0a92b5834b">  463</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a1c845f6fb0d6515804651e0a92b5834b">Print</a>(<span class="keywordtype">void</span> (*print_key_func)(K), <span class="keywordtype">void</span> (*print_data_func)(D))</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    {</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *current = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
 <div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;        <span class="keywordflow">if</span> (!print_key_func || !print_data_func)</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;        {</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;        }</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;        printf(<span class="stringliteral">&quot; [%i] {\n&quot;</span>, <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>);</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;        </div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;        <span class="keywordflow">while</span> (current)</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;        {</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;            printf(<span class="stringliteral">&quot;(&quot;</span>);</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;            (*print_key_func)(current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>());</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;            printf(<span class="stringliteral">&quot;, &quot;</span>);</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;            (*print_data_func)(current-&gt;<a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>());</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;            printf(<span class="stringliteral">&quot;), &quot;</span>);</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;            current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();          </div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;            fflush(stdout);</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;        }</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;        </div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        printf(<span class="stringliteral">&quot; }\n&quot;</span>);    </div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    }</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;        <span class="keywordflow">if</span> (!print_key_func || !print_data_func)</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;        {</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        }</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;        printf(<span class="stringliteral">&quot; [%i] {\n&quot;</span>, <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>);</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;        <span class="keywordflow">while</span> (current)</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;        {</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;            printf(<span class="stringliteral">&quot;(&quot;</span>);</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;            (*print_key_func)(current-&gt;<a class="code" href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">Key</a>());</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;            printf(<span class="stringliteral">&quot;, &quot;</span>);</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;            (*print_data_func)(current-&gt;<a class="code" href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">Data</a>());</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;            printf(<span class="stringliteral">&quot;), &quot;</span>);</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;            current = current-&gt;<a class="code" href="class_map_node.html#a5cca705450a812a60500602e608403b6">Next</a>();</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;            fflush(stdout);</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;        }</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;        printf(<span class="stringliteral">&quot; }\n&quot;</span>);</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    }</div>
 <div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;</div>
-<div class="line"><a name="l00493"></a><span class="lineno"><a class="line" href="class_map.html#a8f5ced483c711dca6974aae03b85940b">  493</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a8f5ced483c711dca6974aae03b85940b">Reset</a>()</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;    {</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    }</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;</div>
+<div class="line"><a name="l00494"></a><span class="lineno"><a class="line" href="class_map.html#a8f5ced483c711dca6974aae03b85940b">  494</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a8f5ced483c711dca6974aae03b85940b">Reset</a>()</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    {</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;        <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;        <a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a> = <a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    }</div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;</div>
-<div class="line"><a name="l00500"></a><span class="lineno"><a class="line" href="class_map.html#af468d5ad1dbdce062268c8a3ce68a021">  500</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#af468d5ad1dbdce062268c8a3ce68a021">operator ++ </a>(<span class="keywordtype">int</span> dummy)</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    {</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Next</a>();</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    }</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;</div>
+<div class="line"><a name="l00501"></a><span class="lineno"><a class="line" href="class_map.html#af468d5ad1dbdce062268c8a3ce68a021">  501</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#af468d5ad1dbdce062268c8a3ce68a021">operator ++ </a>(<span class="keywordtype">int</span> dummy)</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    {</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Next</a>();</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    }</div>
 <div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;</div>
-<div class="line"><a name="l00506"></a><span class="lineno"><a class="line" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">  506</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Next</a>()</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    {</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        {</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;            <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Next();</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;        }</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;        </div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> != NULL);</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    }</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;</div>
+<div class="line"><a name="l00507"></a><span class="lineno"><a class="line" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">  507</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Next</a>()</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    {</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;        {</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;            <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Next();</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;        }</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> != NULL);</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    }</div>
 <div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;</div>
-<div class="line"><a name="l00517"></a><span class="lineno"><a class="line" href="class_map.html#a949415003edcc2a98b581671dcb99d1b">  517</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a949415003edcc2a98b581671dcb99d1b">CurrentExists</a>()</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    {</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> != 0);</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    }</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;</div>
+<div class="line"><a name="l00518"></a><span class="lineno"><a class="line" href="class_map.html#a949415003edcc2a98b581671dcb99d1b">  518</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a949415003edcc2a98b581671dcb99d1b">CurrentExists</a>()</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;    {</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> != 0);</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    }</div>
 <div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;</div>
-<div class="line"><a name="l00523"></a><span class="lineno"><a class="line" href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">  523</a></span>&#160;    K <a class="code" href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">CurrentKey</a>()</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    {</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        </div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        {</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;        }</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        </div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Key();</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    }</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;</div>
+<div class="line"><a name="l00524"></a><span class="lineno"><a class="line" href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">  524</a></span>&#160;    K <a class="code" href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">CurrentKey</a>()</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    {</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;        {</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        }</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Key();</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;    }</div>
 <div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;</div>
-<div class="line"><a name="l00537"></a><span class="lineno"><a class="line" href="class_map.html#adece3694e6821f5b35a695be3587babb">  537</a></span>&#160;    D <a class="code" href="class_map.html#adece3694e6821f5b35a695be3587babb">Current</a>()</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;    {</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        </div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;        {</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;        }</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;        </div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Data();</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;    }</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;    </div>
-<div class="line"><a name="l00552"></a><span class="lineno"><a class="line" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">  552</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>;</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;    </div>
-<div class="line"><a name="l00554"></a><span class="lineno"><a class="line" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">  554</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>;</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;    </div>
-<div class="line"><a name="l00556"></a><span class="lineno"><a class="line" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">  556</a></span>&#160;    <a class="code" href="class_tree.html">Tree&lt;K, MapNode&lt;K, D&gt;</a> *&gt; <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>;</div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;</div>
-<div class="line"><a name="l00558"></a><span class="lineno"><a class="line" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">  558</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;    </div>
-<div class="line"><a name="l00560"></a><span class="lineno"><a class="line" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">  560</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>;</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;</div>
-<div class="line"><a name="l00562"></a><span class="lineno"><a class="line" href="class_map.html#a3502d4704f69475d8674c24ae604b556">  562</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>;</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;};</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="class_map_html_a742ec0d2d2a338d4aa736014988dd18f"><div class="ttname"><a href="class_map.html#a742ec0d2d2a338d4aa736014988dd18f">Map::GetError</a></div><div class="ttdeci">bool GetError()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00160">Map.h:160</a></div></div>
-<div class="ttc" id="class_map_html_a78e6a397b04b914a5a855decfb9cab5e"><div class="ttname"><a href="class_map.html#a78e6a397b04b914a5a855decfb9cab5e">Map::Add</a></div><div class="ttdeci">bool Add(MapNode&lt; K, D &gt; *node)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00304">Map.h:304</a></div></div>
-<div class="ttc" id="class_map_html_a5654659075b5cf1a1d711d50f5034286"><div class="ttname"><a href="class_map.html#a5654659075b5cf1a1d711d50f5034286">Map::FindDataByKey</a></div><div class="ttdeci">D FindDataByKey(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00166">Map.h:166</a></div></div>
-<div class="ttc" id="class_map_node_html_ac54f7f38bbab4d7b1f8e0c6e7f277f47"><div class="ttname"><a href="class_map_node.html#ac54f7f38bbab4d7b1f8e0c6e7f277f47">MapNode::~MapNode</a></div><div class="ttdeci">~MapNode()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00061">Map.h:61</a></div></div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;</div>
+<div class="line"><a name="l00538"></a><span class="lineno"><a class="line" href="class_map.html#adece3694e6821f5b35a695be3587babb">  538</a></span>&#160;    D <a class="code" href="class_map.html#adece3694e6821f5b35a695be3587babb">Current</a>()</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    {</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;        {</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;        }</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Data();</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    }</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;</div>
+<div class="line"><a name="l00553"></a><span class="lineno"><a class="line" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">  553</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>;</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;</div>
+<div class="line"><a name="l00555"></a><span class="lineno"><a class="line" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">  555</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>;</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;</div>
+<div class="line"><a name="l00557"></a><span class="lineno"><a class="line" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">  557</a></span>&#160;    <a class="code" href="class_tree.html">Tree&lt;K, MapNode&lt;K, D&gt;</a> *&gt; <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>;</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;</div>
+<div class="line"><a name="l00559"></a><span class="lineno"><a class="line" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">  559</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;</div>
+<div class="line"><a name="l00561"></a><span class="lineno"><a class="line" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">  561</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>;</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;</div>
+<div class="line"><a name="l00563"></a><span class="lineno"><a class="line" href="class_map.html#a3502d4704f69475d8674c24ae604b556">  563</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>;</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;};</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_map_html_a742ec0d2d2a338d4aa736014988dd18f"><div class="ttname"><a href="class_map.html#a742ec0d2d2a338d4aa736014988dd18f">Map::GetError</a></div><div class="ttdeci">bool GetError()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00161">Map.h:161</a></div></div>
+<div class="ttc" id="class_map_html_a78e6a397b04b914a5a855decfb9cab5e"><div class="ttname"><a href="class_map.html#a78e6a397b04b914a5a855decfb9cab5e">Map::Add</a></div><div class="ttdeci">bool Add(MapNode&lt; K, D &gt; *node)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00305">Map.h:305</a></div></div>
+<div class="ttc" id="class_map_html_a5654659075b5cf1a1d711d50f5034286"><div class="ttname"><a href="class_map.html#a5654659075b5cf1a1d711d50f5034286">Map::FindDataByKey</a></div><div class="ttdeci">D FindDataByKey(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00167">Map.h:167</a></div></div>
+<div class="ttc" id="class_map_node_html_ac54f7f38bbab4d7b1f8e0c6e7f277f47"><div class="ttname"><a href="class_map_node.html#ac54f7f38bbab4d7b1f8e0c6e7f277f47">MapNode::~MapNode</a></div><div class="ttdeci">~MapNode()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00062">Map.h:62</a></div></div>
 <div class="ttc" id="class_tree_html_a5f8151ca8cf0651cead608b76397b9fe"><div class="ttname"><a href="class_tree.html#a5f8151ca8cf0651cead608b76397b9fe">Tree::RemoveByKey</a></div><div class="ttdeci">bool RemoveByKey(Key key)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00510">Tree.h:510</a></div></div>
-<div class="ttc" id="class_map_node_html_a28a09c35604024f7031c32b9d10cc815"><div class="ttname"><a href="class_map_node.html#a28a09c35604024f7031c32b9d10cc815">MapNode::Data</a></div><div class="ttdeci">D Data()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00084">Map.h:84</a></div></div>
-<div class="ttc" id="class_map_html_a8f5ced483c711dca6974aae03b85940b"><div class="ttname"><a href="class_map.html#a8f5ced483c711dca6974aae03b85940b">Map::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00493">Map.h:493</a></div></div>
-<div class="ttc" id="class_map_html_a16856a9133cae938098f763c126c4322"><div class="ttname"><a href="class_map.html#a16856a9133cae938098f763c126c4322">Map::~Map</a></div><div class="ttdeci">~Map()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00125">Map.h:125</a></div></div>
-<div class="ttc" id="class_map_html_a4adf6b7d87378dd094e6ba1ad32e5a23"><div class="ttname"><a href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">Map::_num_items</a></div><div class="ttdeci">unsigned int _num_items</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00552">Map.h:552</a></div></div>
-<div class="ttc" id="class_map_node_html"><div class="ttname"><a href="class_map_node.html">MapNode</a></div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00049">Map.h:49</a></div></div>
-<div class="ttc" id="class_map_node_html_ab5d8f43a4083fb6c0560ee25daf9fd6d"><div class="ttname"><a href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">MapNode::_key</a></div><div class="ttdeci">K _key</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00105">Map.h:105</a></div></div>
-<div class="ttc" id="class_map_node_html_ac681f39ad0f09b2aaa2c1e12a5d0f2c9"><div class="ttname"><a href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">MapNode::_data</a></div><div class="ttdeci">D _data</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00107">Map.h:107</a></div></div>
-<div class="ttc" id="class_map_html_a3be4d5b3d59af872bf5c82578aed46eb"><div class="ttname"><a href="class_map.html#a3be4d5b3d59af872bf5c82578aed46eb">Map::RemoveByData</a></div><div class="ttdeci">void RemoveByData(D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00401">Map.h:401</a></div></div>
-<div class="ttc" id="class_map_html_a949415003edcc2a98b581671dcb99d1b"><div class="ttname"><a href="class_map.html#a949415003edcc2a98b581671dcb99d1b">Map::CurrentExists</a></div><div class="ttdeci">bool CurrentExists()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00517">Map.h:517</a></div></div>
-<div class="ttc" id="class_map_html_a4c189d03275f4131bab98e3528dd7b7c"><div class="ttname"><a href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Map::Next</a></div><div class="ttdeci">bool Next()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00506">Map.h:506</a></div></div>
-<div class="ttc" id="memeory__test_8h_html"><div class="ttname"><a href="memeory__test_8h.html">memeory_test.h</a></div></div>
-<div class="ttc" id="class_map_html_aaa609d6afa6ca5af36f3521e70304e97"><div class="ttname"><a href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">Map::_tree</a></div><div class="ttdeci">Tree&lt; K, MapNode&lt; K, D &gt; * &gt; _tree</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00556">Map.h:556</a></div></div>
-<div class="ttc" id="class_map_html_ab6ee2d035883d8a530a853e93f022bf8"><div class="ttname"><a href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">Map::_error</a></div><div class="ttdeci">bool _error</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00554">Map.h:554</a></div></div>
-<div class="ttc" id="class_map_html_aecce2b567cfba2ab7b62983b57b08cdd"><div class="ttname"><a href="class_map.html#aecce2b567cfba2ab7b62983b57b08cdd">Map::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00131">Map.h:131</a></div></div>
-<div class="ttc" id="class_map_html_a8294230cfa23b82ba17606bf9c09cb68"><div class="ttname"><a href="class_map.html#a8294230cfa23b82ba17606bf9c09cb68">Map::RemoveByKey</a></div><div class="ttdeci">void RemoveByKey(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00357">Map.h:357</a></div></div>
-<div class="ttc" id="class_map_node_html_a9facee387df0ae088b2a24d34af08bbd"><div class="ttname"><a href="class_map_node.html#a9facee387df0ae088b2a24d34af08bbd">MapNode::MapNode</a></div><div class="ttdeci">MapNode(K key, D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00053">Map.h:53</a></div></div>
+<div class="ttc" id="class_map_node_html_a28a09c35604024f7031c32b9d10cc815"><div class="ttname"><a href="class_map_node.html#a28a09c35604024f7031c32b9d10cc815">MapNode::Data</a></div><div class="ttdeci">D Data()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00085">Map.h:85</a></div></div>
+<div class="ttc" id="class_map_html_a8f5ced483c711dca6974aae03b85940b"><div class="ttname"><a href="class_map.html#a8f5ced483c711dca6974aae03b85940b">Map::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00494">Map.h:494</a></div></div>
+<div class="ttc" id="class_map_html_a16856a9133cae938098f763c126c4322"><div class="ttname"><a href="class_map.html#a16856a9133cae938098f763c126c4322">Map::~Map</a></div><div class="ttdeci">~Map()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00126">Map.h:126</a></div></div>
+<div class="ttc" id="class_map_html_a4adf6b7d87378dd094e6ba1ad32e5a23"><div class="ttname"><a href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">Map::_num_items</a></div><div class="ttdeci">unsigned int _num_items</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00553">Map.h:553</a></div></div>
+<div class="ttc" id="class_map_node_html"><div class="ttname"><a href="class_map_node.html">MapNode</a></div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00050">Map.h:50</a></div></div>
+<div class="ttc" id="class_map_node_html_ab5d8f43a4083fb6c0560ee25daf9fd6d"><div class="ttname"><a href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">MapNode::_key</a></div><div class="ttdeci">K _key</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00106">Map.h:106</a></div></div>
+<div class="ttc" id="class_map_node_html_ac681f39ad0f09b2aaa2c1e12a5d0f2c9"><div class="ttname"><a href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">MapNode::_data</a></div><div class="ttdeci">D _data</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00108">Map.h:108</a></div></div>
+<div class="ttc" id="class_map_html_a3be4d5b3d59af872bf5c82578aed46eb"><div class="ttname"><a href="class_map.html#a3be4d5b3d59af872bf5c82578aed46eb">Map::RemoveByData</a></div><div class="ttdeci">void RemoveByData(D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00402">Map.h:402</a></div></div>
+<div class="ttc" id="class_map_html_a949415003edcc2a98b581671dcb99d1b"><div class="ttname"><a href="class_map.html#a949415003edcc2a98b581671dcb99d1b">Map::CurrentExists</a></div><div class="ttdeci">bool CurrentExists()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00518">Map.h:518</a></div></div>
+<div class="ttc" id="class_map_html_a4c189d03275f4131bab98e3528dd7b7c"><div class="ttname"><a href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Map::Next</a></div><div class="ttdeci">bool Next()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00507">Map.h:507</a></div></div>
+<div class="ttc" id="class_map_html_aaa609d6afa6ca5af36f3521e70304e97"><div class="ttname"><a href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">Map::_tree</a></div><div class="ttdeci">Tree&lt; K, MapNode&lt; K, D &gt; * &gt; _tree</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00557">Map.h:557</a></div></div>
+<div class="ttc" id="class_map_html_ab6ee2d035883d8a530a853e93f022bf8"><div class="ttname"><a href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">Map::_error</a></div><div class="ttdeci">bool _error</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00555">Map.h:555</a></div></div>
+<div class="ttc" id="class_map_html_aecce2b567cfba2ab7b62983b57b08cdd"><div class="ttname"><a href="class_map.html#aecce2b567cfba2ab7b62983b57b08cdd">Map::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00132">Map.h:132</a></div></div>
+<div class="ttc" id="class_map_html_a8294230cfa23b82ba17606bf9c09cb68"><div class="ttname"><a href="class_map.html#a8294230cfa23b82ba17606bf9c09cb68">Map::RemoveByKey</a></div><div class="ttdeci">void RemoveByKey(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00358">Map.h:358</a></div></div>
+<div class="ttc" id="class_map_node_html_a9facee387df0ae088b2a24d34af08bbd"><div class="ttname"><a href="class_map_node.html#a9facee387df0ae088b2a24d34af08bbd">MapNode::MapNode</a></div><div class="ttdeci">MapNode(K key, D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00054">Map.h:54</a></div></div>
 <div class="ttc" id="class_tree_html_a81e9e349540ff4589bf68fba3fffc368"><div class="ttname"><a href="class_tree.html#a81e9e349540ff4589bf68fba3fffc368">Tree::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00540">Tree.h:540</a></div></div>
-<div class="ttc" id="class_map_html_a2ec482165aa9f591ff833784943c28f5"><div class="ttname"><a href="class_map.html#a2ec482165aa9f591ff833784943c28f5">Map::FindKeyByData</a></div><div class="ttdeci">K FindKeyByData(D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00212">Map.h:212</a></div></div>
+<div class="ttc" id="class_map_html_a2ec482165aa9f591ff833784943c28f5"><div class="ttname"><a href="class_map.html#a2ec482165aa9f591ff833784943c28f5">Map::FindKeyByData</a></div><div class="ttdeci">K FindKeyByData(D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00213">Map.h:213</a></div></div>
 <div class="ttc" id="class_tree_html"><div class="ttname"><a href="class_tree.html">Tree</a></div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00403">Tree.h:403</a></div></div>
-<div class="ttc" id="class_map_html_a4f05c8b23a06466099614b6203a29bba"><div class="ttname"><a href="class_map.html#a4f05c8b23a06466099614b6203a29bba">Map::Empty</a></div><div class="ttdeci">bool Empty()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00445">Map.h:445</a></div></div>
-<div class="ttc" id="class_map_html"><div class="ttname"><a href="class_map.html">Map</a></div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00111">Map.h:111</a></div></div>
-<div class="ttc" id="class_map_node_html_a5cca705450a812a60500602e608403b6"><div class="ttname"><a href="class_map_node.html#a5cca705450a812a60500602e608403b6">MapNode::Next</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * Next()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00090">Map.h:90</a></div></div>
-<div class="ttc" id="class_map_html_a1c845f6fb0d6515804651e0a92b5834b"><div class="ttname"><a href="class_map.html#a1c845f6fb0d6515804651e0a92b5834b">Map::Print</a></div><div class="ttdeci">void Print(void(*print_key_func)(K), void(*print_data_func)(D))</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00462">Map.h:462</a></div></div>
-<div class="ttc" id="class_map_html_ae875e5c9c9d01fb907849accef3b1822"><div class="ttname"><a href="class_map.html#ae875e5c9c9d01fb907849accef3b1822">Map::findKey</a></div><div class="ttdeci">bool findKey(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00250">Map.h:250</a></div></div>
-<div class="ttc" id="class_map_html_a09c719176c17c36c6bf505b9f21fdd10"><div class="ttname"><a href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">Map::CurrentKey</a></div><div class="ttdeci">K CurrentKey()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00523">Map.h:523</a></div></div>
-<div class="ttc" id="class_map_node_html_a50b35dc0f907458a7b8361ffee34a519"><div class="ttname"><a href="class_map_node.html#a50b35dc0f907458a7b8361ffee34a519">MapNode::Next</a></div><div class="ttdeci">void Next(MapNode&lt; K, D &gt; *next)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00096">Map.h:96</a></div></div>
-<div class="ttc" id="_tomb_raider_8h_html_ac24cea2bfcc927fd29bc74d1086707d8"><div class="ttname"><a href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a></div><div class="ttdeci">unsigned char * data</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l06257">TombRaider.h:6257</a></div></div>
-<div class="ttc" id="class_map_html_adece3694e6821f5b35a695be3587babb"><div class="ttname"><a href="class_map.html#adece3694e6821f5b35a695be3587babb">Map::Current</a></div><div class="ttdeci">D Current()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00537">Map.h:537</a></div></div>
+<div class="ttc" id="class_map_html_a4f05c8b23a06466099614b6203a29bba"><div class="ttname"><a href="class_map.html#a4f05c8b23a06466099614b6203a29bba">Map::Empty</a></div><div class="ttdeci">bool Empty()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00446">Map.h:446</a></div></div>
+<div class="ttc" id="class_map_html"><div class="ttname"><a href="class_map.html">Map</a></div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00112">Map.h:112</a></div></div>
+<div class="ttc" id="class_map_node_html_a5cca705450a812a60500602e608403b6"><div class="ttname"><a href="class_map_node.html#a5cca705450a812a60500602e608403b6">MapNode::Next</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * Next()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00091">Map.h:91</a></div></div>
+<div class="ttc" id="class_map_html_a1c845f6fb0d6515804651e0a92b5834b"><div class="ttname"><a href="class_map.html#a1c845f6fb0d6515804651e0a92b5834b">Map::Print</a></div><div class="ttdeci">void Print(void(*print_key_func)(K), void(*print_data_func)(D))</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00463">Map.h:463</a></div></div>
+<div class="ttc" id="class_map_html_ae875e5c9c9d01fb907849accef3b1822"><div class="ttname"><a href="class_map.html#ae875e5c9c9d01fb907849accef3b1822">Map::findKey</a></div><div class="ttdeci">bool findKey(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00251">Map.h:251</a></div></div>
+<div class="ttc" id="class_map_html_a09c719176c17c36c6bf505b9f21fdd10"><div class="ttname"><a href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">Map::CurrentKey</a></div><div class="ttdeci">K CurrentKey()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00524">Map.h:524</a></div></div>
+<div class="ttc" id="class_map_node_html_a50b35dc0f907458a7b8361ffee34a519"><div class="ttname"><a href="class_map_node.html#a50b35dc0f907458a7b8361ffee34a519">MapNode::Next</a></div><div class="ttdeci">void Next(MapNode&lt; K, D &gt; *next)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00097">Map.h:97</a></div></div>
+<div class="ttc" id="_tomb_raider_8h_html_ac24cea2bfcc927fd29bc74d1086707d8"><div class="ttname"><a href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a></div><div class="ttdeci">unsigned char * data</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00478">TombRaider.h:478</a></div></div>
+<div class="ttc" id="class_map_html_adece3694e6821f5b35a695be3587babb"><div class="ttname"><a href="class_map.html#adece3694e6821f5b35a695be3587babb">Map::Current</a></div><div class="ttdeci">D Current()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00538">Map.h:538</a></div></div>
 <div class="ttc" id="_tree_8h_html"><div class="ttname"><a href="_tree_8h.html">Tree.h</a></div></div>
-<div class="ttc" id="class_map_html_af468d5ad1dbdce062268c8a3ce68a021"><div class="ttname"><a href="class_map.html#af468d5ad1dbdce062268c8a3ce68a021">Map::operator++</a></div><div class="ttdeci">bool operator++(int dummy)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00500">Map.h:500</a></div></div>
-<div class="ttc" id="class_map_html_ac182abff64a69359bd9c6817d605f5df"><div class="ttname"><a href="class_map.html#ac182abff64a69359bd9c6817d605f5df">Map::NumItems</a></div><div class="ttdeci">unsigned int NumItems()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00456">Map.h:456</a></div></div>
-<div class="ttc" id="class_map_html_ab7d2abc885d9999a8043a4890b2c814c"><div class="ttname"><a href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">Map::UnSetError</a></div><div class="ttdeci">void UnSetError()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00154">Map.h:154</a></div></div>
-<div class="ttc" id="class_map_html_ada132deea30741726b677dd42aa2916c"><div class="ttname"><a href="class_map.html#ada132deea30741726b677dd42aa2916c">Map::count</a></div><div class="ttdeci">unsigned int count()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00451">Map.h:451</a></div></div>
+<div class="ttc" id="class_map_html_af468d5ad1dbdce062268c8a3ce68a021"><div class="ttname"><a href="class_map.html#af468d5ad1dbdce062268c8a3ce68a021">Map::operator++</a></div><div class="ttdeci">bool operator++(int dummy)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00501">Map.h:501</a></div></div>
+<div class="ttc" id="class_map_html_ac182abff64a69359bd9c6817d605f5df"><div class="ttname"><a href="class_map.html#ac182abff64a69359bd9c6817d605f5df">Map::NumItems</a></div><div class="ttdeci">unsigned int NumItems()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00457">Map.h:457</a></div></div>
+<div class="ttc" id="class_map_html_ab7d2abc885d9999a8043a4890b2c814c"><div class="ttname"><a href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">Map::UnSetError</a></div><div class="ttdeci">void UnSetError()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00155">Map.h:155</a></div></div>
+<div class="ttc" id="class_map_html_ada132deea30741726b677dd42aa2916c"><div class="ttname"><a href="class_map.html#ada132deea30741726b677dd42aa2916c">Map::count</a></div><div class="ttdeci">unsigned int count()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00452">Map.h:452</a></div></div>
 <div class="ttc" id="class_tree_html_a6d0c860b84ce3fc2f849284744680cd6"><div class="ttname"><a href="class_tree.html#a6d0c860b84ce3fc2f849284744680cd6">Tree::SearchByKey</a></div><div class="ttdeci">Data SearchByKey(Key key, bool *error)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00427">Tree.h:427</a></div></div>
-<div class="ttc" id="class_map_node_html_a158c5a7b7e92af8b3fee8d336c79a1f7"><div class="ttname"><a href="class_map_node.html#a158c5a7b7e92af8b3fee8d336c79a1f7">MapNode::Key</a></div><div class="ttdeci">K Key()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00072">Map.h:72</a></div></div>
-<div class="ttc" id="class_map_html_a8ba0be09be59bbdad1d764084323081f"><div class="ttname"><a href="class_map.html#a8ba0be09be59bbdad1d764084323081f">Map::Add</a></div><div class="ttdeci">bool Add(K key, D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00292">Map.h:292</a></div></div>
+<div class="ttc" id="class_map_node_html_a158c5a7b7e92af8b3fee8d336c79a1f7"><div class="ttname"><a href="class_map_node.html#a158c5a7b7e92af8b3fee8d336c79a1f7">MapNode::Key</a></div><div class="ttdeci">K Key()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00073">Map.h:73</a></div></div>
+<div class="ttc" id="class_map_html_a8ba0be09be59bbdad1d764084323081f"><div class="ttname"><a href="class_map.html#a8ba0be09be59bbdad1d764084323081f">Map::Add</a></div><div class="ttdeci">bool Add(K key, D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00293">Map.h:293</a></div></div>
 <div class="ttc" id="class_tree_html_a884b25ab8e7273ae01fd052d828cef8f"><div class="ttname"><a href="class_tree.html#a884b25ab8e7273ae01fd052d828cef8f">Tree::Insert</a></div><div class="ttdeci">void Insert(Key key, Data data)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00475">Tree.h:475</a></div></div>
-<div class="ttc" id="class_map_html_affc7ba9d3665f4c3e42c0eea4b657da4"><div class="ttname"><a href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">Map::_head</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _head</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00558">Map.h:558</a></div></div>
-<div class="ttc" id="class_map_html_a3502d4704f69475d8674c24ae604b556"><div class="ttname"><a href="class_map.html#a3502d4704f69475d8674c24ae604b556">Map::_cache</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _cache</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00562">Map.h:562</a></div></div>
-<div class="ttc" id="class_map_html_ac14d3b1d48327d2fa1da8509a44fc5f4"><div class="ttname"><a href="class_map.html#ac14d3b1d48327d2fa1da8509a44fc5f4">Map::Map</a></div><div class="ttdeci">Map()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00115">Map.h:115</a></div></div>
-<div class="ttc" id="class_map_node_html_a361bcdfa2ffc87060a975ca7c71194cd"><div class="ttname"><a href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">MapNode::Key</a></div><div class="ttdeci">void Key(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00066">Map.h:66</a></div></div>
-<div class="ttc" id="class_map_html_a45a1e151883d30cc83e2342bfbeb524d"><div class="ttname"><a href="class_map.html#a45a1e151883d30cc83e2342bfbeb524d">Map::getCache</a></div><div class="ttdeci">D getCache()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00239">Map.h:239</a></div></div>
-<div class="ttc" id="class_map_html_a8dec1252811ac8fb56345b95872124b0"><div class="ttname"><a href="class_map.html#a8dec1252811ac8fb56345b95872124b0">Map::SetError</a></div><div class="ttdeci">void SetError()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00148">Map.h:148</a></div></div>
-<div class="ttc" id="class_map_html_a8a3bb4ac3094bb563026be8ec9202ebe"><div class="ttname"><a href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">Map::_current</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _current</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00560">Map.h:560</a></div></div>
-<div class="ttc" id="class_map_html_a5efeeb9a0567d80ca17e16935096236f"><div class="ttname"><a href="class_map.html#a5efeeb9a0567d80ca17e16935096236f">Map::operator[]</a></div><div class="ttdeci">D operator[](K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00206">Map.h:206</a></div></div>
-<div class="ttc" id="class_map_node_html_a3449f324e1caded5fa87148a698c9d7f"><div class="ttname"><a href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">MapNode::_next</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _next</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00103">Map.h:103</a></div></div>
-<div class="ttc" id="class_map_node_html_a7a4733cd6c63db023cb9fbdf6ebc7efc"><div class="ttname"><a href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">MapNode::Data</a></div><div class="ttdeci">void Data(D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00078">Map.h:78</a></div></div>
+<div class="ttc" id="class_map_html_affc7ba9d3665f4c3e42c0eea4b657da4"><div class="ttname"><a href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">Map::_head</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _head</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00559">Map.h:559</a></div></div>
+<div class="ttc" id="class_map_html_a3502d4704f69475d8674c24ae604b556"><div class="ttname"><a href="class_map.html#a3502d4704f69475d8674c24ae604b556">Map::_cache</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _cache</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00563">Map.h:563</a></div></div>
+<div class="ttc" id="memory__test_8h_html"><div class="ttname"><a href="memory__test_8h.html">memory_test.h</a></div></div>
+<div class="ttc" id="class_map_html_ac14d3b1d48327d2fa1da8509a44fc5f4"><div class="ttname"><a href="class_map.html#ac14d3b1d48327d2fa1da8509a44fc5f4">Map::Map</a></div><div class="ttdeci">Map()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00116">Map.h:116</a></div></div>
+<div class="ttc" id="class_map_node_html_a361bcdfa2ffc87060a975ca7c71194cd"><div class="ttname"><a href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">MapNode::Key</a></div><div class="ttdeci">void Key(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00067">Map.h:67</a></div></div>
+<div class="ttc" id="class_map_html_a45a1e151883d30cc83e2342bfbeb524d"><div class="ttname"><a href="class_map.html#a45a1e151883d30cc83e2342bfbeb524d">Map::getCache</a></div><div class="ttdeci">D getCache()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00240">Map.h:240</a></div></div>
+<div class="ttc" id="class_map_html_a8dec1252811ac8fb56345b95872124b0"><div class="ttname"><a href="class_map.html#a8dec1252811ac8fb56345b95872124b0">Map::SetError</a></div><div class="ttdeci">void SetError()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00149">Map.h:149</a></div></div>
+<div class="ttc" id="class_map_html_a8a3bb4ac3094bb563026be8ec9202ebe"><div class="ttname"><a href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">Map::_current</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _current</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00561">Map.h:561</a></div></div>
+<div class="ttc" id="class_map_html_a5efeeb9a0567d80ca17e16935096236f"><div class="ttname"><a href="class_map.html#a5efeeb9a0567d80ca17e16935096236f">Map::operator[]</a></div><div class="ttdeci">D operator[](K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00207">Map.h:207</a></div></div>
+<div class="ttc" id="class_map_node_html_a3449f324e1caded5fa87148a698c9d7f"><div class="ttname"><a href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">MapNode::_next</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _next</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00104">Map.h:104</a></div></div>
+<div class="ttc" id="class_map_node_html_a7a4733cd6c63db023cb9fbdf6ebc7efc"><div class="ttname"><a href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">MapNode::Data</a></div><div class="ttdeci">void Data(D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00079">Map.h:79</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

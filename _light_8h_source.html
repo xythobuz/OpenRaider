@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>OpenRaider: src/Light.h Source File</title>
+<title>OpenRaider: include/Light.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -116,7 +116,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef __FREYJA_MONGOOSE_LIGHT_H_</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __FREYJA_MONGOOSE_LIGHT_H_</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="math_8h.html">hel/math.h</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_mat_math_8h.html">MatMath.h</a>&gt;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_light.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_light.html">Light</a></div>
@@ -160,15 +160,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
 <div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="class_light.html#a30ef1d35d9feddb64743e56f5d697f56">   68</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_light.html#a30ef1d35d9feddb64743e56f5d697f56">mSpecular</a>[4];         <span class="comment">/* Specular color */</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="class_light.html#a729c9e57393dd34502bd9fba92edd6e3">   70</a></span>&#160;    <a class="code" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> <a class="code" href="class_light.html#a729c9e57393dd34502bd9fba92edd6e3">mPos</a>;                <span class="comment">/* Light position in 3 space */</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="class_light.html#a729c9e57393dd34502bd9fba92edd6e3">   70</a></span>&#160;    <a class="code" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> <a class="code" href="class_light.html#a729c9e57393dd34502bd9fba92edd6e3">mPos</a>;                <span class="comment">/* Light position in 3 space */</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_light.html#a380cb4557975efaaca1124c4f7da5381">   72</a></span>&#160;    <a class="code" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="code" href="class_light.html#a380cb4557975efaaca1124c4f7da5381">mDir</a>;                <span class="comment">/* Light direction */</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_light.html#a380cb4557975efaaca1124c4f7da5381">   72</a></span>&#160;    <a class="code" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="code" href="class_light.html#a380cb4557975efaaca1124c4f7da5381">mDir</a>;                <span class="comment">/* Light direction */</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
 <div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="class_light.html#aaee0b8a8827e732509e43360ac7fa340">   74</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_light.html#aaee0b8a8827e732509e43360ac7fa340">mAtt</a>;                 <span class="comment">/* */</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_light.html#a7721a2fa803167bb9fb20d67cac6105f">   76</a></span>&#160;    <a class="code" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> <a class="code" href="class_light.html#a7721a2fa803167bb9fb20d67cac6105f">mColor</a>;              <span class="comment">/* Color of light */</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_light.html#a7721a2fa803167bb9fb20d67cac6105f">   76</a></span>&#160;    <a class="code" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> <a class="code" href="class_light.html#a7721a2fa803167bb9fb20d67cac6105f">mColor</a>;              <span class="comment">/* Color of light */</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_light.html#ac3828ad45dae9b73c1e999c5246d8d35">   78</a></span>&#160;    <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="class_light.html#ac3828ad45dae9b73c1e999c5246d8d35">mCutoff</a>;              <span class="comment">/* Fade out distance */</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_light.html#ac3828ad45dae9b73c1e999c5246d8d35">   78</a></span>&#160;    <a class="code" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="code" href="class_light.html#ac3828ad45dae9b73c1e999c5246d8d35">mCutoff</a>;              <span class="comment">/* Fade out distance */</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="class_light.html#a8e0ab66109f7a158d4a366d24df5c452">   80</a></span>&#160;    <a class="code" href="class_light.html#a37554f58128e556420bb4e7f30ab938e">FreyjaLightType</a> <a class="code" href="class_light.html#a8e0ab66109f7a158d4a366d24df5c452">mType</a>;      <span class="comment">/* Type of light */</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
@@ -182,11 +182,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="math_8h_html"><div class="ttname"><a href="math_8h.html">math.h</a></div></div>
+<div class="ttc" id="_mat_math_8h_html_afc6d3c0cf1cf7a2d9eab8a73060c6c2c"><div class="ttname"><a href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a></div><div class="ttdeci">float vec4_t[4]</div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00039">MatMath.h:39</a></div></div>
 <div class="ttc" id="class_light_html_a37554f58128e556420bb4e7f30ab938ea418968f46d17af2212f5caae2200e34c"><div class="ttname"><a href="class_light.html#a37554f58128e556420bb4e7f30ab938ea418968f46d17af2212f5caae2200e34c">Light::typeDirectional</a></div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00037">Light.h:37</a></div></div>
 <div class="ttc" id="class_light_html_a7721a2fa803167bb9fb20d67cac6105f"><div class="ttname"><a href="class_light.html#a7721a2fa803167bb9fb20d67cac6105f">Light::mColor</a></div><div class="ttdeci">vec4_t mColor</div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00076">Light.h:76</a></div></div>
 <div class="ttc" id="class_light_html"><div class="ttname"><a href="class_light.html">Light</a></div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00029">Light.h:29</a></div></div>
-<div class="ttc" id="math_8h_html_a54109d17b44e074abb1d39f7aa02584b"><div class="ttname"><a href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></div><div class="ttdeci">float vec3_t[3]</div><div class="ttdef"><b>Definition:</b> <a href="math_8h_source.html#l00038">math.h:38</a></div></div>
+<div class="ttc" id="_mat_math_8h_html"><div class="ttname"><a href="_mat_math_8h.html">MatMath.h</a></div></div>
 <div class="ttc" id="class_light_html_ac3828ad45dae9b73c1e999c5246d8d35"><div class="ttname"><a href="class_light.html#ac3828ad45dae9b73c1e999c5246d8d35">Light::mCutoff</a></div><div class="ttdeci">vec_t mCutoff</div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00078">Light.h:78</a></div></div>
 <div class="ttc" id="class_light_html_a729c9e57393dd34502bd9fba92edd6e3"><div class="ttname"><a href="class_light.html#a729c9e57393dd34502bd9fba92edd6e3">Light::mPos</a></div><div class="ttdeci">vec4_t mPos</div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00070">Light.h:70</a></div></div>
 <div class="ttc" id="class_light_html_a09789826b0af4efe8998a0dab06d49d8"><div class="ttname"><a href="class_light.html#a09789826b0af4efe8998a0dab06d49d8">Light::mAmbient</a></div><div class="ttdeci">float mAmbient[4]</div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00064">Light.h:64</a></div></div>
@@ -195,13 +195,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_light_html_a8e0ab66109f7a158d4a366d24df5c452"><div class="ttname"><a href="class_light.html#a8e0ab66109f7a158d4a366d24df5c452">Light::mType</a></div><div class="ttdeci">FreyjaLightType mType</div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00080">Light.h:80</a></div></div>
 <div class="ttc" id="class_light_html_a37554f58128e556420bb4e7f30ab938ea17f434198fffe568aea6a10cf96b8de5"><div class="ttname"><a href="class_light.html#a37554f58128e556420bb4e7f30ab938ea17f434198fffe568aea6a10cf96b8de5">Light::typeSpot</a></div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00036">Light.h:36</a></div></div>
 <div class="ttc" id="class_light_html_aeb5df09a25a32f19fdffa761268ba24f"><div class="ttname"><a href="class_light.html#aeb5df09a25a32f19fdffa761268ba24f">Light::Light</a></div><div class="ttdeci">Light()</div><div class="ttdef"><b>Definition:</b> <a href="_light_8cpp_source.html#l00025">Light.cpp:25</a></div></div>
-<div class="ttc" id="math_8h_html_a34b8d82aced6931bd3a572041e59aa7d"><div class="ttname"><a href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a></div><div class="ttdeci">float vec_t</div><div class="ttdef"><b>Definition:</b> <a href="math_8h_source.html#l00036">math.h:36</a></div></div>
+<div class="ttc" id="_mat_math_8h_html_a34b8d82aced6931bd3a572041e59aa7d"><div class="ttname"><a href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a></div><div class="ttdeci">float vec_t</div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00036">MatMath.h:36</a></div></div>
 <div class="ttc" id="class_light_html_a30ef1d35d9feddb64743e56f5d697f56"><div class="ttname"><a href="class_light.html#a30ef1d35d9feddb64743e56f5d697f56">Light::mSpecular</a></div><div class="ttdeci">float mSpecular[4]</div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00068">Light.h:68</a></div></div>
-<div class="ttc" id="math_8h_html_afc6d3c0cf1cf7a2d9eab8a73060c6c2c"><div class="ttname"><a href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a></div><div class="ttdeci">float vec4_t[4]</div><div class="ttdef"><b>Definition:</b> <a href="math_8h_source.html#l00039">math.h:39</a></div></div>
 <div class="ttc" id="class_light_html_a37554f58128e556420bb4e7f30ab938eaaa020c0804868a8cbd973b351ec22d5b"><div class="ttname"><a href="class_light.html#a37554f58128e556420bb4e7f30ab938eaaa020c0804868a8cbd973b351ec22d5b">Light::typePoint</a></div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00035">Light.h:35</a></div></div>
 <div class="ttc" id="class_light_html_a2b6f7e8fc1b5c5d700a7f1a2e6a83c71"><div class="ttname"><a href="class_light.html#a2b6f7e8fc1b5c5d700a7f1a2e6a83c71">Light::mDiffuse</a></div><div class="ttdeci">float mDiffuse[4]</div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00066">Light.h:66</a></div></div>
 <div class="ttc" id="class_light_html_a380cb4557975efaaca1124c4f7da5381"><div class="ttname"><a href="class_light.html#a380cb4557975efaaca1124c4f7da5381">Light::mDir</a></div><div class="ttdeci">vec3_t mDir</div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00072">Light.h:72</a></div></div>
 <div class="ttc" id="class_light_html_a37554f58128e556420bb4e7f30ab938e"><div class="ttname"><a href="class_light.html#a37554f58128e556420bb4e7f30ab938e">Light::FreyjaLightType</a></div><div class="ttdeci">FreyjaLightType</div><div class="ttdef"><b>Definition:</b> <a href="_light_8h_source.html#l00033">Light.h:33</a></div></div>
+<div class="ttc" id="_mat_math_8h_html_a54109d17b44e074abb1d39f7aa02584b"><div class="ttname"><a href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></div><div class="ttdeci">float vec3_t[3]</div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00038">MatMath.h:38</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

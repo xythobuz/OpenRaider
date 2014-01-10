@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['rbtree_5fcolor_5ft',['rbtree_color_t',['../memeory__test_8cpp.html#ae6cc7281f2ce26420d9dfc7fe3b16b9c',1,'memeory_test.cpp']]],
   ['renderflags',['RenderFlags',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7',1,'Render']]],
   ['rendermeshtype',['RenderMeshType',['../class_render.html#abc9be40e4be3e1b64792ce4c03b751c8',1,'Render']]],
   ['rendermode',['RenderMode',['../class_render.html#a02ac8862c9a3c0e0a23a151f5bbf97b0',1,'Render']]],

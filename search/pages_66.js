@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fix_20me',['Fix Me',['../fixme.html',1,'']]]
+  ['fix_2dme_20entries',['Fix-Me Entries',['../fixme.html',1,'']]]
 ];

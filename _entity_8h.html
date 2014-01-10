@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>OpenRaider: src/hel/Entity.h File Reference</title>
+<title>OpenRaider: include/Entity.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c23d7741964813e8b40dcc3cde2fa389.html">hel</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -94,18 +94,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Entity.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="math_8h_source.html">hel/math.h</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="_bounding_volume_8h_source.html">hel/BoundingVolume.h</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="_quaternion_8h_source.html">hel/Quaternion.h</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="_vector3d_8h_source.html">hel/Vector3d.h</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="_mass_8h_source.html">hel/Mass.h</a>&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="_mat_math_8h_source.html">MatMath.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="_bounding_volume_8h_source.html">BoundingVolume.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="_quaternion_8h_source.html">Quaternion.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="_vector3d_8h_source.html">Vector3d.h</a>&gt;</code><br/>
+<code>#include &lt;Mass.h&gt;</code><br/>
 </div>
 <p><a href="_entity_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html">Entity</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:class_entity"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_entity_8h.html#class_entity">Entity</a></td></tr>
+<tr class="separator:class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -116,6 +116,60 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="separator:ae47225424cc0ecbe50e6c49c44565b45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="class_entity" id="class_entity"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">class Entity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock">
+<p>Definition at line <a class="el" href="_entity_8h_source.html#l00047">47</a> of file <a class="el" href="_entity_8h_source.html">Entity.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a843ab98fff8da7d74ef654fc450726af"></a><a class="el" href="_entity_8h.html#ae47225424cc0ecbe50e6c49c44565b45">EntityFlag</a></td>
+<td class="fieldname">
+mFlag</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a2e0b14260c8f0581cf9effb4eab72b5d"></a>unsigned int</td>
+<td class="fieldname">
+mId</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a42a195ba5eeca6a224c55bb200a02d11"></a>Mass</td>
+<td class="fieldname">
+mMass</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a04414b076b9abcf80de1595a190bc136"></a><a class="el" href="class_quaternion.html">Quaternion</a></td>
+<td class="fieldname">
+mOrientation</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a7054d3167be88499fcf5b628d821c6f1"></a><a class="el" href="class_vector3d.html">Vector3d</a></td>
+<td class="fieldname">
+mPos</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a09780e3d0e6b16e3d2f8b52b47af305b"></a><a class="el" href="_bounding_volume_8h.html#class_bounding_volume">BoundingVolume</a></td>
+<td class="fieldname">
+mVolume</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="ae47225424cc0ecbe50e6c49c44565b45"></a>
 <div class="memitem">

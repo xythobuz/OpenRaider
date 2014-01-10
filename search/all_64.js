@@ -1,11 +1,11 @@
 var searchData=
 [
   ['d',['d',['../_world_8h.html#a24b939e7dc3b2bd1b7a5cce423b035d0',1,'box_s']]],
-  ['data',['data',['../memeory__test_8cpp.html#ab2f86edbdf92651935839f51a2663566',1,'rbtree_s::data()'],['../_network_8h.html#adb3e6842ca04fded88e48c567c177d61',1,'network_packet_s::data()'],['../_network_8h.html#ac7efcc797e5b7fb8d26562fc4db40329',1,'network_frame_s::data()'],['../_tomb_raider_8h.html#af213b95d62e2ab0561ef112bf43114e8',1,'tr2_room_s::data()'],['../class_list_node.html#a340a4a53750d1182a124a071c76837f7',1,'ListNode::Data(T data)'],['../class_list_node.html#a84e798d025e41c496190193377caa816',1,'ListNode::Data()'],['../class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc',1,'MapNode::Data(D data)'],['../class_map_node.html#a28a09c35604024f7031c32b9d10cc815',1,'MapNode::Data()'],['../class_stack_node.html#a414b6ced822a0caef3b4d8b4c8b3289a',1,'StackNode::Data(T data)'],['../class_stack_node.html#a2eb2ba413826c363e18c8a14880fc2ab',1,'StackNode::Data()'],['../_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8',1,'data():&#160;TombRaider.h']]],
-  ['debug_5fdelete',['DEBUG_DELETE',['../memeory__test_8h.html#a54f5107dc1887541554378234433e448',1,'memeory_test.h']]],
-  ['debug_5fnew',['DEBUG_NEW',['../memeory__test_8h.html#ae506a7a05c7311380f9160324fa2c047',1,'memeory_test.h']]],
-  ['delete',['delete',['../memeory__test_8h.html#a7dd106d12d0756ea0f88d56257a933ae',1,'memeory_test.h']]],
-  ['delete_5fcheck',['delete_check',['../memeory__test_8h.html#a5762173692a9be28f5796fea71983273',1,'memeory_test.h']]],
+  ['data',['data',['../_network_8h.html#adb3e6842ca04fded88e48c567c177d61',1,'network_packet_s::data()'],['../_network_8h.html#ac7efcc797e5b7fb8d26562fc4db40329',1,'network_frame_s::data()'],['../_tomb_raider_8h.html#af213b95d62e2ab0561ef112bf43114e8',1,'tr2_room_s::data()'],['../class_list_node.html#a340a4a53750d1182a124a071c76837f7',1,'ListNode::Data(T data)'],['../class_list_node.html#a84e798d025e41c496190193377caa816',1,'ListNode::Data()'],['../class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc',1,'MapNode::Data(D data)'],['../class_map_node.html#a28a09c35604024f7031c32b9d10cc815',1,'MapNode::Data()'],['../_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8',1,'data():&#160;TombRaider.h']]],
+  ['debug_5fdelete',['DEBUG_DELETE',['../memory__test_8h.html#a54f5107dc1887541554378234433e448',1,'memory_test.h']]],
+  ['debug_5fnew',['DEBUG_NEW',['../memory__test_8h.html#ae506a7a05c7311380f9160324fa2c047',1,'memory_test.h']]],
+  ['delete',['delete',['../memory__test_8h.html#a7dd106d12d0756ea0f88d56257a933ae',1,'memory_test.h']]],
+  ['delete_5fcheck',['delete_check',['../memory__test_8h.html#a5762173692a9be28f5796fea71983273',1,'memory_test.h']]],
   ['deprecated_5fglubuild2dmipmaps',['deprecated_gluBuild2DMipmaps',['../_texture_8cpp.html#ac90870d538f2d9159e912b0b07e7c532',1,'Texture.cpp']]],
   ['deprecated_5fglulookat',['deprecated_gluLookAt',['../_render_8cpp.html#a6bd53f77232730f0850ad6cabc6534ab',1,'Render.cpp']]],
   ['desc_5fflags',['desc_flags',['../mtk__tga_8h.html#a69615eaf5e5f636df6c9f07d8185e74a',1,'mtk_image_tga_s']]],
@@ -19,7 +19,7 @@ var searchData=
   ['directionvectorz2',['directionVectorZ2',['../_tomb_raider_8h.html#ac10c98bf97ab3621cc00a1ccc22f7d84',1,'tr5_light_s']]],
   ['disablemultitexture',['disableMultiTexture',['../class_texture.html#a481dee2e69a3ad281146a506d5352a78',1,'Texture']]],
   ['display',['Display',['../class_render.html#a7e223719c00e1e9fe74aa430d4099058',1,'Render']]],
-  ['display_5fmemory_5fusage',['display_memory_usage',['../memeory__test_8h.html#a66b6a17c8dc326f5b2afcd592436e898',1,'memeory_test.h']]],
+  ['display_5fmemory_5fusage',['display_memory_usage',['../memory__test_8h.html#a66b6a17c8dc326f5b2afcd592436e898',1,'memory_test.h']]],
   ['dist',['dist',['../class_render_room.html#a68ea14ad6a87222494febea89e1b4c1a',1,'RenderRoom']]],
   ['divide',['divide',['../class_quaternion.html#a958be9504c7e111445f73521f764b806',1,'Quaternion']]],
   ['doors',['doors',['../_tomb_raider_8h.html#ad735a49f7d5744e57ca4f2e8088102dc',1,'tr5_room_s']]],
@@ -40,6 +40,8 @@ var searchData=
   ['drawskymesh',['drawSkyMesh',['../class_render.html#adfa399c2fd290283eae9ddf2c9c4e8f1',1,'Render']]],
   ['drawsolid',['drawSolid',['../class_open_g_l_mesh.html#ad06890591572d90232ebccdb7b5f6cc9',1,'OpenGLMesh']]],
   ['drawsprite',['drawSprite',['../class_render.html#adb9398eab81029fbcb5853cba21b27df',1,'Render']]],
-  ['dump_5fmemory_5freport',['dump_memory_report',['../memeory__test_8h.html#a89534cb919b8ce84fa59463181ff3357',1,'memeory_test.h']]],
-  ['dword',['DWORD',['../memeory__test_8cpp.html#aa39b39d94407451a6ec0226479db68cf',1,'memeory_test.cpp']]]
+  ['dump_5flara_5fstuff',['dump_lara_stuff',['../test_2_tomb_raider_8cpp.html#a68685774b098c518967491c29323e4c8',1,'TombRaider.cpp']]],
+  ['dump_5fmemory_5freport',['dump_memory_report',['../memory__test_8h.html#a89534cb919b8ce84fa59463181ff3357',1,'memory_test.h']]],
+  ['dump_5fmesh',['dump_mesh',['../test_2_tomb_raider_8cpp.html#a92fa7a6ab5e29c8a71780c6eb9142a18',1,'TombRaider.cpp']]],
+  ['dump_5ftextures',['dump_textures',['../test_2_tomb_raider_8cpp.html#a41adf3c25f63aa88abd0ed9d1a83072d',1,'TombRaider.cpp']]]
 ];

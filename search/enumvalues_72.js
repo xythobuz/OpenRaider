@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['rb_5fblack',['RB_BLACK',['../memeory__test_8cpp.html#ae6cc7281f2ce26420d9dfc7fe3b16b9ca01e52e8a460dcfe9e7f37354ef1d1f0f',1,'memeory_test.cpp']]],
-  ['rb_5fred',['RB_RED',['../memeory__test_8cpp.html#ae6cc7281f2ce26420d9dfc7fe3b16b9ca4c2b066fa67c57701ab221e9469145de',1,'memeory_test.cpp']]],
   ['rgb',['RGB',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496af7d1af8e5f3b864a48c081ca85112240',1,'Texture']]],
   ['rgba',['RGBA',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496a6a2e558c55ef02327963bae8c0938256',1,'Texture']]],
   ['rightside',['rightSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa13d7562aae131d95dd43be32c9c3db5a',1,'ViewVolume']]],
