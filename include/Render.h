@@ -23,20 +23,20 @@
 #ifndef GUARD__RENDER_MONGOOSE_RENDER_H_
 #define GUARD__RENDER_MONGOOSE_RENDER_H_
 
-#include "mstl/List.h"
-#include "mstl/Vector.h"
-#include "hel/Matrix.h"
-#include "hel/ViewVolume.h"
-#include "Light.h"
-#include "World.h"
-#include "SkeletalModel.h"
-#include "OpenGLMesh.h"
-#include "Texture.h"
-#include "Camera.h"
-#include "GLString.h"
+#include <List.h>
+#include <Vector.h>
+#include <Matrix.h>
+#include <ViewVolume.h>
+#include <Light.h>
+#include <World.h>
+#include <SkeletalModel.h>
+#include <OpenGLMesh.h>
+#include <Texture.h>
+#include <Camera.h>
+#include <GLString.h>
 
 #ifdef USING_EMITTER
-#   include "Emitter.h"
+#include <Emitter.h>
 #endif
 
 
@@ -50,7 +50,7 @@ public:
 
 	~RenderRoom()
 	{
-		// FIXME: hangs when erasing - might be shared pointers somewhere
+		//! \fixme Hangs when erasing - might be shared pointers somewhere
 		//lights.erase();
 	}
 
@@ -342,7 +342,7 @@ class Render
     * Mongoose - Created
     ------------------------------------------------------*/
 
-	// FIXME: Should be private
+	//! \fixme Should be private
    void drawLoadScreen();
    /*------------------------------------------------------
     * Pre  : Texture is init

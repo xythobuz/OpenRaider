@@ -27,16 +27,16 @@
 #define GUARD__OPENRAIDER_MONGOOSE_OPENRAIDER_H_
 
 
-#include "mstl/List.h"
-#include "mstl/Map.h"
-#include "mstl/Vector.h"
-#include "TombRaider.h"
-#include "Camera.h"
-#include "Render.h"
-#include "Sound.h"
-#include "SDLSystem.h"
-#include "Network.h"
-#include "World.h"
+#include <List.h>
+#include <Map.h>
+#include <Vector.h>
+#include <TombRaider.h>
+#include <Camera.h>
+#include <Render.h>
+#include <Sound.h>
+#include <SDLSystem.h>
+#include <Network.h>
+#include <World.h>
 
 
 typedef enum

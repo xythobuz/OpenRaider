@@ -537,8 +537,9 @@ void World::moveEntity(entity_t *e, char movement)
 			break;
 		}
 
-		// FIXME: Test for vector (move vector) / plane (portal) collision here
-		//        to see if we need to switch rooms... man...
+		/*! \fixme Test for vector (move vector) / plane (portal) collision here
+		 * to see if we need to switch rooms... man...
+         */
 
 		h = y;
 		getHeightAtPosition(room, x, &h, z);

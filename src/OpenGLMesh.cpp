@@ -1,5 +1,5 @@
 /*!
- * \file OpenGLMesh.cpp
+ * \file src/OpenGLMesh.cpp
  * \brief OpenGL Mesh
  *
  * \author Mongoose
@@ -248,7 +248,7 @@ void OpenGLMesh::drawSolid()
 
 		glPointSize(1.0f);
 
-		return; // FIXME
+		return; //! \fixme
 
 		for (j = 0; j < mQuads[i].num_quads; ++j)
 		{
@@ -532,7 +532,7 @@ void OpenGLMesh::bufferTriangles(unsigned int count,
 	mTriangleFlags = flags;
 	mTriangleTexCoordArray = texCoords;
 
-	// FIXME: sortTrianglesByTexture();
+	//! \fixme sortTrianglesByTexture();
 }
 
 

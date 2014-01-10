@@ -1,66 +1,45 @@
-/*================================================================
+/*!
+ * \file test/mtk_tga.cpp
+ * \brief The TGA reader Unit Test
  *
- * Project : Freyja
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  :
- * License : GPL See file COPYING, also (C) 2000 Mongoose
- * Comments: TGA plug-in
- *
- *           TODO: type should pass more info
- *                 2 bits for RGBA | RGB | GREY
- *                 val for depth
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2001-10-25:
- * Mongoose - support for screen origin bit
- *
- * 2000-10-15:
- * Mongoose - Created
- ================================================================*/
-
-#include <string.h>
-#include <stdarg.h>
-
+ * \author xythobuz
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <greatest.h>
 #include <mtk_tga.h>
 
-int main(int argc, char *argv[])
-{
-  FILE *f;
-  unsigned char *image;
-  unsigned int width;
-  unsigned int height;
-  char type;
+#define TESTFILE "data/font-0.tga"
+FILE *f = NULL;
 
-  if (argc > 1)
-  {
-    f = fopen(argv[1], "r");
+TEST checkFile() {
+    ASSERTm("File wasn't opened. Please run the suite!", f != NULL);
+    ASSERT_FALSEm("File is invalid?!", mtk_image__tga_check(f));
+    PASS();
+}
 
-    if (!f)
-    {
-      perror("Failed to open file> ");
-      return -1;
-    }
+TEST loadFile() {
+    unsigned char *image;
+    unsigned int width, height;
+    char type;
+    ASSERTm("File wasn't opened. Please run the suite!", f != NULL);
+    ASSERT_FALSEm("File couldn't be loaded!", mtk_image__tga_load(f, &image, &width, &height, &type));
+    printf("\nWidth: %u\nHeight: %u\nType: %d\n", width, height, type);
+    PASS();
+}
 
-    if (!mtk_image__tga_check(f))
-    {
-      if (!mtk_image__tga_load(f, &image, &width, &height, &type))
-      {
-        printf("Loaded %s successfully!\n", argv[1]);
-        delete [] image;
-      }
-    }
-
+SUITE(tgaSuite) {
+    f = fopen(TESTFILE, "r");
+    RUN_TEST(checkFile);
+    RUN_TEST(loadFile);
     fclose(f);
-  } else {
-      printf("Usage: %s testfile.tga\n", argv[0]);
-  }
+}
 
-  return 0;
+GREATEST_MAIN_DEFS();
+
+int main(int argc, char *argv[]) {
+    GREATEST_MAIN_BEGIN();
+    RUN_SUITE(tgaSuite);
+    GREATEST_MAIN_END();
 }
 

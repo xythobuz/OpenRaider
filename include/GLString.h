@@ -1,5 +1,5 @@
 /*!
- * \file GLString.h
+ * \file include/GLString.h
  * \brief Open GL rendering font/string class
  *
  * \author Mongoose

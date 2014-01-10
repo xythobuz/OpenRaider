@@ -21,7 +21,7 @@
 
 #include <math.h>
 
-#include <hel/Vector3d.h>
+#include <Vector3d.h>
 
 
 ////////////////////////////////////////////////////////////

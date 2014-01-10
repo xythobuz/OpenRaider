@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include <hel/Quaternion.h>
+#include <Quaternion.h>
 
 int runQuaternionUnitTest(int argc, char *argv[])
 {

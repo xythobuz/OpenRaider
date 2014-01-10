@@ -1,36 +1,35 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Hel
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
- * Object  : Vector3d
+ * Object  : Quaternion
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: Math vector
+ * Comments: Quaternion now in C++ class form fresh from the grove
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
+ *
  *-- Test Defines -----------------------------------------------
- *           
- * UNIT_TEST_VECTOR3D - Builds Vector3d class as a console unit test 
  *
- *-- History ------------------------------------------------ 
+ * UNIT_TEST_QUATERNION - Builds Quaternion class as a console unit test
  *
- * 2002.12.24:
- * Mongoose - Created
+ *-- History ------------------------------------------------
+ *
+ * 2002.12.16:
+ * Mongoose - Created, based on mtk3d ( freyja )
  ================================================================*/
 
 
-#ifndef GUARD__HEL_MONGOOSE_VECTOR3D_H_
-#define GUARD__HEL_MONGOOSE_VECTOR3D_H_
+#ifndef GUARD__HEL_MONGOOSE_QUATERNION_H_
+#define GUARD__HEL_MONGOOSE_QUATERNION_H_
 
+#include <MatMath.h>
 
-#include <hel/math.h>
-
-class Vector3d
+class Quaternion
 {
  public:
 
@@ -38,47 +37,47 @@ class Vector3d
 	// Constructors
 	////////////////////////////////////////////////////////////
 
-	Vector3d();
+	Quaternion();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Constructs an object of Vector3d
+	 * Pre  :
+	 * Post : Constructs an object of Quaternion
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.24: 
+	 * 2002.12.16:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	Vector3d(vec3_t v);
+	Quaternion(vec_t w, vec_t x, vec_t y, vec_t z);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Constructs an object of Vector3d
+	 * Pre  :
+	 * Post : Constructs an object of Quaternion
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.24: 
+	 * 2002.12.16:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	Vector3d(vec_t x, vec_t y, vec_t z);
+	Quaternion(vec4_t v);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Constructs an object of Vector3d
+	 * Pre  : v { w, x, y, z }
+	 * Post : Constructs an object of Quaternion
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.24: 
+	 * 2002.12.16:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	~Vector3d();
+	~Quaternion();
 	/*------------------------------------------------------
-	 * Pre  : Vector3d object is allocated
-	 * Post : Deconstructs an object of Vector3d
+	 * Pre  : Quaternion object is allocated
+	 * Post : Deconstructs an object of Quaternion
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.24: 
+	 * 2002.12.16:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -87,10 +86,10 @@ class Vector3d
 	// Public Accessors
 	////////////////////////////////////////////////////////////
 
-	static vec_t dot(const Vector3d &u, const Vector3d &v);
+	void getMatrix(matrix_t m);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns dot product of U and V vectors
+	 * Pre  : Matrix is valid
+	 * Post : Returns col order matrix equiv of this quaternion
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -98,10 +97,116 @@ class Vector3d
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	static Vector3d cross(const Vector3d &u, const Vector3d &v);
+	Quaternion operator =(const Quaternion &q);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns cross product of U and V vectors
+	 * Pre  :
+	 * Post : Asigns Q to this quaternion
+	 *        returns (this) resultant quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion operator *(const Quaternion &q);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Multiplies Q and this quaternion
+	 *        returns resultant quaternion
+	 *        ( Use normalize() call for unit quaternion )
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion operator /(const Quaternion &q);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Dividess Q from this quaternion
+	 *        returns quotient quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion operator +(const Quaternion &q);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Adds Q and this quaternion
+	 *        returns resultant quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion operator -(const Quaternion &q);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Subtracts Q from this quaternion
+	 *        returns resultant quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	bool operator ==(const Quaternion &q);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Compares Q to this quaternion
+	 *        returns boolean true if equal, otherwise false
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion conjugate();
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Returns conjugate of this quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion scale(vec_t s);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Returns scaled result of this quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion inverse();
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Returns inverse of this quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	static vec_t dot(Quaternion a, Quaternion b);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Returns dot product of A and B quaternions
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -111,8 +216,8 @@ class Vector3d
 
 	vec_t magnitude();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns magnitude this vector
+	 * Pre  :
+	 * Post : Returns magnitude this quaternion
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -120,87 +225,14 @@ class Vector3d
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	Vector3d unit();
+	static Quaternion slerp(Quaternion a, Quaternion b, vec_t time);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns normalized copy of this vector
+	 * Pre  :
+	 * Post : Interpolates between A and B rotations and
+	 *        returns resultant quaternion using
+	 *        spherical linear interpolation:
 	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.05.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	static Vector3d zeroVector();
-	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns the Zero vector <0, 0, 0>
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.06.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	Vector3d operator +(const Vector3d &v);
-	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns a vector = this vector + v
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.05.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	Vector3d operator -(const Vector3d &v);
-	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns a vector = this vector - v
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.05.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	Vector3d operator -();
-	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns a copy of this vector, negated
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.05.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	Vector3d operator *(vec_t s);
-	/*------------------------------------------------------
-	 * Pre  : S is scalar to scale by
-	 * Post : Returns scale by S of this vector ( mult )
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.05.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	Vector3d operator /(vec_t s);
-	/*------------------------------------------------------
-	 * Pre  : S is scalar to scale by
-	 * Post : Returns scale by S of this vector ( div )
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.05.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	vec_t operator *(const Vector3d &v);
-	/*------------------------------------------------------
-	 * Pre  : V is vector to dot by
-	 * Post : Returns dot by V with this vector
+	 *        I = (((B . A)^ -1)^ Time) A
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -213,10 +245,32 @@ class Vector3d
 	// Public Mutators
 	////////////////////////////////////////////////////////////
 
+	void setIdentity();
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Sets this quaternion to identity
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	void set(vec_t angle, vec_t x, vec_t y, vec_t z);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Sets this quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
 	void normalize();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Normalizes *this vector
+	 * Pre  :
+	 * Post : Normalize this quaternion
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -224,21 +278,10 @@ class Vector3d
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	void zero();
+	void copy(Quaternion q);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post :This is set to the Zero vector <0, 0, 0>
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2003.06.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	void operator =(const Vector3d &v);
-	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : this = v, values are assigned   =)
+	 * Pre  :
+	 * Post : Set this quaternion using q
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -246,10 +289,10 @@ class Vector3d
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	void operator +=(const Vector3d &v);
+	void setByMatrix(matrix_t m);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : this += v, values are sumed, assigned   =)
+	 * Pre  : Matrix is valid column order
+	 * Post : Sets matrix equiv of this quaternion
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -257,29 +300,6 @@ class Vector3d
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	void operator -=(const Vector3d &v);
-	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : this -= v, values are diffed, assigned   =)
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.05.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	void operator *=(vec_t s);
-	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : this *= s, values are scaled, assigned   =)
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.05.08:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	vec3_t mVec;   /* Vector data */
 
  private:
 
@@ -287,11 +307,59 @@ class Vector3d
 	// Private Accessors
 	////////////////////////////////////////////////////////////
 
+	Quaternion multiply(Quaternion a, Quaternion b);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Multiplies A and B quaternions
+	 *        returns resultant quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion divide(Quaternion a, Quaternion b);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Divides B from A quaternion
+	 *        returns quotient quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion add(Quaternion a, Quaternion b);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Adds A and B quaternions
+	 *        returns resultant quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
+
+	Quaternion subtract(Quaternion a, Quaternion b);
+	/*------------------------------------------------------
+	 * Pre  :
+	 * Post : Subtracts B from A quaternion
+	 *        returns resultant quaternion
+	 *
+	 *-- History ------------------------------------------
+	 *
+	 * 2002.05.08:
+	 * Mongoose - Created
+	 ------------------------------------------------------*/
 
 	////////////////////////////////////////////////////////////
 	// Private Mutators
 	////////////////////////////////////////////////////////////
 
+	vec_t mW, mX, mY, mZ;          /* Quaternion */
 };
 
 #endif

@@ -1,5 +1,5 @@
 /*!
- * \file Sound.cpp
+ * \file test/Sound.cpp
  * \brief This is the audio manager Unit Test
  *
  * \author Mongoose

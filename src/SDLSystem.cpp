@@ -171,7 +171,7 @@ void SDLSystem::glPrintf2d(float x, float y, char *string)
 {
 #ifdef HAVE_SDL_TTF
 #   ifdef FIXME
-	// FIXME: Filler
+	//! \fixme Filler
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBegin(GL_TRIANGLE_STRIP);
 	glTexCoord2f(texMinX, texMinY); glVertex2i(x,   y  );
@@ -187,8 +187,9 @@ void SDLSystem::glPrintf2d(float x, float y, char *string)
 void SDLSystem::glPrintf3d(float x, float y, float z, char *string)
 {
 #ifdef HAVE_SDL_TTF_FIXME
-	// FIXME: Filler
-	// FIXME: Billboarding here requires a yaw jackass   =)
+	/*! \fixme Filler
+	 * Billboarding here requires a yaw jackass =)
+     */
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBegin(GL_TRIANGLE_STRIP);
 	glTexCoord2f(texMinX, texMinY); glVertex2i(x,   y  );
@@ -364,11 +365,11 @@ void SDLSystem::runGame()
 
 				if (event.button.state == SDL_PRESSED)
 				{
-					handleKeyPressEvent(btn, 0); // FIXME: mod not used
+					handleKeyPressEvent(btn, 0); //! \fixme mod not used
 				}
 				else
 				{
-					handleKeyReleaseEvent(btn, 0); // FIXME: mod not used
+					handleKeyReleaseEvent(btn, 0); //! \fixme mod not used
 				}
 				break;
 			case SDL_KEYUP:
@@ -504,9 +505,10 @@ void SDLSystem::runGame()
 					}
 				}
 #else
-				// FIXME: Avoid passing modifers as a key, since the
-				// consoles using this expect text characters, add unicode
-				// support later when they're able to handle it
+				/*! \fixme Avoid passing modifers as a key, since the
+				 * consoles using this expect text characters, add unicode
+				 * support later when they're able to handle it
+                 */
 				if (key > 255 && key < 1000)
 				{
 					key = 0;

@@ -426,7 +426,7 @@ int TombRaider::checkMime(char *filename)
      return -1;
    }
 
-	/* FIXME: Endianess */
+	//! \fixme Endianess
    fread(&version, sizeof(version), 1, f);
 	fclose(f);
 
@@ -474,7 +474,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 	mReset = false;
 
    Fread(&mPakVersion, sizeof(mPakVersion), 1, f);
-   //FIXME: endian
+   //! \fixme endian
 
    printDebug("Load", "mPakVersion = %u", mPakVersion);
 
@@ -776,7 +776,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
      if (mEngineVersion != TR_VERSION_1)
      {
-       //FIXME: need endian checking here
+       //! \fixme need endian checking here
        Fread(_textile16, sizeof(tr2_textile16_t), _num_textiles, f);
        printDebug("Load", "Read in 16bit texture tiles");
      }
@@ -790,7 +790,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
    printDebug("Load", "_unknown_t = 0x%x", _unknown_t);
 
    /* Read raw room data */
-   //FIXME: needs endian checking
+   //! \fixme needs endian checking
    Fread(&_num_rooms, sizeof(_num_rooms), 1, f);
    printDebug("Load", "_num_rooms = %i", _num_rooms);
 
@@ -806,7 +806,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 		}
 
      /* Read RoomInfo */
-     //FIXME: endian check needed
+     //! \fixme endian check needed
      Fread(&_rooms[i].info, sizeof(tr2_room_info_t), 1, f);
 
      printDebug("Load", "_rooms[%i].info =\n { x=%i, z=%i, yt=%i, yb=%i}",
@@ -825,7 +825,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
      /* Identify vertices */
      data_offset = 0;
-     //FIXME: endian
+     //! \fixme endian
      _rooms[i].room_data.num_vertices = *(short *)(_rooms[i].data);
 
      data_offset += sizeof(_rooms[0].room_data.num_vertices);
@@ -865,13 +865,13 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 					  _rooms[i].data + data_offset, data_size);
        }
 
-       //FIXME: endian conversions for verts needed
+       //! \fixme endian conversions for verts needed
      }
 
      data_offset += data_size;
 
      /* identify rectangles */
-     //FIXME: endian conversion
+     //! \fixme endian conversion
      _rooms[i].room_data.num_rectangles =
        *(short *)(_rooms[i].data + data_offset);
 
@@ -899,7 +899,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 				 _rooms[i].room_data.rectangles[j].texture &= 0x7fff;
 			 }
        }
-       //FIXME: endian conversion
+       //! \fixme endian conversion
      }
 
      data_offset += data_size;
@@ -907,7 +907,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      /* Identify triangles */
      _rooms[i].room_data.num_triangles =
        *(short *)(_rooms[i].data + data_offset);
-     //FIXME: endian
+     //! \fixme endian
 
      data_offset += sizeof(_rooms[0].room_data.num_triangles);
      data_size = _rooms[i].room_data.num_triangles * sizeof(tr2_tri_t);
@@ -933,7 +933,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 			 {
 				 _rooms[i].room_data.triangles[j].texture &= 0x7fff;
 			 }
-			 //FIXME: endian
+			 //! \fixme endian
        }
      }
 
@@ -942,7 +942,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
       /* Identify sprites */
       _rooms[i].room_data.num_sprites =
 			*(short *)(_rooms[i].data + data_offset);
-      //FIXME: endian
+      //! \fixme endian
 
       data_offset += sizeof(_rooms[0].room_data.num_sprites);
       data_size = _rooms[i].room_data.num_sprites * sizeof(tr2_room_sprite_t);
@@ -969,7 +969,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 				}
 			}
 
-			//FIXME: endian
+			//! \fixme endian
       }
 
       /* Free the raw room data */
@@ -977,7 +977,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
       _rooms[i].data = NULL;
 
       /* Read door info */
-      //FIXME: endian
+      //! \fixme endian
       Fread(&_rooms[i].num_portals, sizeof(_rooms[0].num_portals), 1, f);
 
       printDebug("Load", "_rooms[%i].num_portals = %i",
@@ -990,10 +990,10 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
       Fread(_rooms[i].portals, sizeof(tr2_room_portal_t),
 	    _rooms[i].num_portals, f);
-      //FIXME: endian
+      //! \fixme endian
 
       /* Read sector info */
-      //FIXME: endian
+      //! \fixme endian
       Fread(&_rooms[i].num_zsectors, sizeof(_rooms[0].num_zsectors), 1, f);
       Fread(&_rooms[i].num_xsectors, sizeof(_rooms[0].num_xsectors), 1, f);
 
@@ -1014,7 +1014,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
       Fread(_rooms[i].sector_list, sizeof(tr2_room_sector_t),
 	    _rooms[i].num_zsectors * _rooms[i].num_xsectors, f);
-      //FIXME: endian
+      //! \fixme endian
 
       printDebug("Load", "Read %u room sectors",
 		 _rooms[i].num_zsectors * _rooms[i].num_xsectors);
@@ -1045,7 +1045,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
       }
 
       /* Read room lighting info */
-       //FIXME: endian
+       //! \fixme endian
       Fread(&_rooms[i].num_lights, sizeof(_rooms[i].num_lights), 1, f);
 
       printDebug("Load", "_rooms[%i].num_lights = %u",
@@ -1106,11 +1106,11 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 						_rooms[i].num_lights, f);
 			}
       }
-      //FIXME: endian
+      //! \fixme endian
 
       /* Read Static Mesh Data */
       Fread(&_rooms[i].num_static_meshes, sizeof(unsigned short), 1, f);
-      //FIXME: endian
+      //! \fixme endian
 
       printDebug("Load", "_rooms[%i].num_static_meshes = %u",
 					  i, _rooms[i].num_static_meshes);
@@ -1142,16 +1142,16 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 						_rooms[i].num_static_meshes, f);
 			}
       }
-      //FIXME: endian
+      //! \fixme endian
 
       Fread(&_rooms[i].alternate_room, sizeof(short), 1, f);
-      //FIXME: endian
+      //! \fixme endian
 
       printDebug("Load", "_rooms[%i].alternate_room = %i",
 		 i, _rooms[i].alternate_room);
 
       Fread(&_rooms[i].flags, sizeof(short), 1, f);
-      //FIXME: endian
+      //! \fixme endian
 
       printDebug("Load", "_rooms[%i].flags = 0x%x",
 					  i, _rooms[i].flags);
@@ -1188,12 +1188,12 @@ int TombRaider::Load(char *filename, void (*percent)(int))
    {
      _floor_data = new unsigned short[_num_floor_data];
      Fread(_floor_data, sizeof(short), _num_floor_data, f);
-     //FIXME: endian
+     //! \fixme endian
    }
 
    /* Read mesh data */
    Fread(&num_mesh_data_words, sizeof(num_mesh_data_words), 1, f);
-   //FIXME: endian
+   //! \fixme endian
 
    printDebug("Load", "num_mesh_data_words = %u", num_mesh_data_words);
 
@@ -1205,13 +1205,13 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
    /* Read mesh pointers */
    Fread(&num_mesh_pointers, sizeof(num_mesh_pointers), 1, f);
-   //FIXME: endian
+   //! \fixme endian
 
    printDebug("Load", "num_mesh_pointers = %u", num_mesh_pointers);
 
    mesh_pointer_list = new unsigned int[num_mesh_pointers];
    Fread(mesh_pointer_list, sizeof(unsigned int), num_mesh_pointers, f);
-   //FIXME: endian
+   //! \fixme endian
 
    printDebug("Load", "Read mesh_pointer_list");
 
@@ -1222,7 +1222,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
    /* Read animations */
    Fread(&_num_animations, sizeof(_num_animations), 1, f);
-   //FIXME: endian
+   //! \fixme endian
 
    printDebug("Load", "_num_animations = %u", _num_animations);
 
@@ -1264,11 +1264,11 @@ int TombRaider::Load(char *filename, void (*percent)(int))
          Fread(_animations, sizeof(tr2_animation_t), _num_animations, f);
      }
    }
-   //FIXME: endian
+   //! \fixme endian
 
    /* Read state changes */
    Fread(&_num_state_changes, sizeof(_num_state_changes), 1, f);
-   //FIXME: endian
+   //! \fixme endian
 
 
    if (percent)
@@ -1282,11 +1282,11 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
      Fread(_state_changes, sizeof(tr2_state_change_t), _num_state_changes, f);
    }
-   //FIXME: endian
+   //! \fixme endian
 
    /* Read AnimDispatches */
    Fread(&_num_anim_dispatches, sizeof(_num_anim_dispatches), 1, f);
-   //FIXME: endian
+   //! \fixme endian
 
    printDebug("Load", "_num_anim_dispatches = %u", _num_anim_dispatches);
 
@@ -1298,11 +1298,11 @@ int TombRaider::Load(char *filename, void (*percent)(int))
       Fread(_anim_dispatches, sizeof(tr2_anim_dispatch_t),
 	    _num_anim_dispatches, f);
    }
-   //FIXME: endian
+   //! \fixme endian
 
    /* Read anim commands */
    Fread(&_num_anim_commands, sizeof(_num_anim_commands), 1, f);
-   //FIXME: endian
+   //! \fixme endian
 
    printDebug("Load", "_num_anim_commands = %u", _num_anim_commands);
 
@@ -1313,11 +1313,11 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      _anim_commands = new tr2_anim_command_t[_num_anim_commands];
      Fread(_anim_commands, sizeof(tr2_anim_command_t), _num_anim_commands, f);
    }
-   //FIXME: endian
+   //! \fixme endian
 
    /* Read MeshTrees */
    Fread(&_num_mesh_trees, sizeof(_num_mesh_trees), 1, f);
-   //FIXME: endian
+   //! \fixme endian
 
    printDebug("Load", "_num_mesh_trees = %u", _num_mesh_trees);
 
@@ -1328,11 +1328,11 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      _mesh_trees = new tr2_meshtree_t[_num_mesh_trees];
      Fread(_mesh_trees, sizeof(int), _num_mesh_trees, f);
    }
-   //FIXME: endian
+   //! \fixme endian
 
    /* Read frames */
    Fread(&_num_frames, sizeof(_num_frames), 1, f);
-   //FIXME: endian
+   //! \fixme endian
 
    printDebug("Load", "_num_frames = %u", _num_frames);
 
@@ -1342,7 +1342,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
    {
      _frames = new unsigned short[_num_frames];
      Fread(_frames, 2, _num_frames, f);
-     //FIXME: endian
+     //! \fixme endian
 
      if (mEngineVersion == TR_VERSION_1)
      {
@@ -1373,7 +1373,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
    /* Read moveables */
    Fread(&_num_moveables, sizeof(_num_moveables), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_moveables = %u", _num_moveables);
 
 	_moveables = 0x0;
@@ -1384,10 +1384,10 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      _moveables = new tr2_moveable_t[_num_moveables];
      Fread(_moveables, 18, _num_moveables, f);
    }
-   //FIXME: endian
+   //! \fixme endian
 
    Fread(&_num_static_meshes, sizeof(int), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_static_meshes = %u", _num_static_meshes);
 
    // SAFE EXIT //////////////////////////
@@ -1399,7 +1399,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      _static_meshes = new tr2_staticmesh_t[_num_static_meshes];
      Fread(_static_meshes, sizeof(tr2_staticmesh_t),
 	   _num_static_meshes, f);
-     //FIXME: endian
+     //! \fixme endian
    }
 
 	_object_textures = 0x0;
@@ -1409,7 +1409,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      /* Read object textures */
      Fread(&_num_object_textures, sizeof(int), 1, f);
      printDebug("Load", "_num_object_textures = %u", _num_object_textures);
-     //FIXME: endian
+     //! \fixme endian
 
      if (_num_object_textures > 0)
      {
@@ -1418,7 +1418,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
        Fread(_object_textures, sizeof(tr2_object_texture_t),
 	     _num_object_textures, f);
      }
-     //FIXME: endian
+     //! \fixme endian
    }
 
 
@@ -1436,7 +1436,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
    /* Read sprite textures */
    Fread(&_num_sprite_textures, sizeof(int), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_sprite_textures = %u", _num_sprite_textures);
 
 	_sprite_textures = 0x0;
@@ -1447,11 +1447,11 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      Fread(_sprite_textures, sizeof(tr2_sprite_texture_t),
 	   _num_sprite_textures, f);
    }
-   //FIXME: endian
+   //! \fixme endian
 
    /* Read sprite texture data (?) */
    Fread(&_num_sprite_sequences, sizeof(int), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_sprite_sequences = %u", _num_sprite_sequences);
 
 	_sprite_sequences = 0x0;
@@ -1462,11 +1462,11 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      Fread(_sprite_sequences, sizeof(tr2_sprite_sequence_t),
 	   _num_sprite_sequences, f);
    }
-   //FIXME: endian
+   //! \fixme endian
 
    /* Read cameras */
    Fread(&_num_cameras, sizeof(_num_cameras), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_cameras = %i", _num_cameras);
 
 	_cameras = 0x0;
@@ -1475,7 +1475,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
    {
      _cameras = new tr2_camera_t[_num_cameras];
      Fread(_cameras, sizeof(tr2_camera_t), _num_cameras, f);
-     //FIXME: endian
+     //! \fixme endian
    }
 
 	if (mEngineVersion == TR_VERSION_4)
@@ -1497,7 +1497,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
    /* Read sound effects (?) */
    Fread(&_num_sound_sources, sizeof(_num_sound_sources), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_sound_sources = %i", _num_sound_sources);
 
 	_sound_sources = 0x0;
@@ -1518,7 +1518,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
        Fread(_sound_sources, sizeof(tr2_sound_source_t),
 	     _num_sound_sources, f);
      }
-     //FIXME: endian
+     //! \fixme endian
    }
 
 #ifdef OBSOLETE
@@ -1539,7 +1539,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
    /* Read boxes */
    Fread(&_num_boxes, sizeof(_num_boxes), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_boxes = %i", _num_boxes);
 
 	_boxes = 0x0;
@@ -1559,7 +1559,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 		  tr1box = new tr1_box[_num_boxes];
 
 		  Fread(tr1box, sizeof(struct tr1_box), _num_boxes, f);
-		  //FIXME: endian
+		  //! \fixme endian
 
          for (j = 0; j < _num_boxes; ++j)
 			{
@@ -1577,12 +1577,12 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      {
        Fread(_boxes, sizeof(tr2_box_t), _num_boxes, f);
      }
-     //FIXME: endian
+     //! \fixme endian
    }
 
    /* Read overlaps (?) */
    Fread(&_num_overlaps, sizeof(_num_overlaps), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_overlaps = %i", _num_overlaps);
 
 	_overlaps = 0x0;
@@ -1591,7 +1591,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
    {
      _overlaps = new short[_num_overlaps];
      Fread(_overlaps, 2, _num_overlaps, f);
-     //FIXME: endian
+     //! \fixme endian
    }
 
 	_zones = 0x0;
@@ -1609,12 +1609,12 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      {
        Fread(_zones, 20, _num_boxes, f);
      }
-     //FIXME: endian
+     //! \fixme endian
    }
 
    /* Read animation textures (?) */
    Fread(&_num_animated_textures, sizeof(_num_animated_textures), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_animated_textures = %i", _num_animated_textures);
 
 	_animated_textures = 0x0;
@@ -1623,7 +1623,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
    {
      _animated_textures = new short[_num_animated_textures];
      Fread(_animated_textures, 2, _num_animated_textures, f);
-     //FIXME: endian
+     //! \fixme endian
    }
 
    if (mEngineVersion >= TR_VERSION_3)
@@ -1639,7 +1639,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
       }
 
       Fread(&_num_object_textures, sizeof(_num_object_textures), 1, f);
-      //FIXME: endian
+      //! \fixme endian
 
       printDebug("Load", "_num_object_textures = %i", _num_object_textures);
 
@@ -1650,7 +1650,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 			// Used to be 2 * num, and I forgot why...
 			_object_textures = new tr2_object_texture_t[_num_object_textures];
 
-			//FIXME: This is fu fu fu fu fu fu
+			//! \fixme This is fu fu fu fu fu fu
 			if (mEngineVersion == TR_VERSION_4)
 	      {
 				int jjj, kkk;
@@ -1690,12 +1690,12 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 						_num_object_textures, f);
 			}
       }
-      //FIXME: endian
+      //! \fixme endian
    }
 
    /* Read items */
    Fread(&_num_items, sizeof(_num_items), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_items = %i", _num_items);
 
 	_items = 0x0;
@@ -1718,7 +1718,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
        Fread(_items, sizeof(tr2_item_t), _num_items, f);
      }
    }
-   //FIXME: endian
+   //! \fixme endian
 
    /* Read LightMaps */
    _light_map = new unsigned char[32 * 256];
@@ -1786,7 +1786,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 		unsigned short num_cinematic_frames;
 
      Fread(&num_cinematic_frames, sizeof(num_cinematic_frames), 1, f);
-     //FIXME: endian
+     //! \fixme endian
 
 	  _num_cinematic_frames = num_cinematic_frames;
 
@@ -1807,7 +1807,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
    /* Read demodata (?) */
    Fread(&_num_demo_data, sizeof(_num_demo_data), 1, f);
-   //FIXME: endian
+   //! \fixme endian
    printDebug("Load", "_num_demo_data = %i", _num_demo_data);
 
 	_demo_data = 0x0;
@@ -1826,7 +1826,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
    if (mEngineVersion == TR_VERSION_1)
    {
      Fread(mSoundMap, sizeof(short), 256, f);
-     //memset(_sound_map, 0, 370 * sizeof(short));   //FIXME: KLUDGE!!!
+     //memset(_sound_map, 0, 370 * sizeof(short));   //! \fixme KLUDGE!!!
    }
    else
    {
@@ -1839,12 +1839,12 @@ int TombRaider::Load(char *filename, void (*percent)(int))
        Fread(mSoundMap, sizeof(short), 370, f);
      }
    }
-   //FIXME: endian
+   //! \fixme endian
 
    /* Read SoundDetails */
    Fread(&mNumSoundDetails, sizeof(mNumSoundDetails), 1, f);
    printDebug("Load", "mNumSoundDetails = %i", mNumSoundDetails);
-   //FIXME: endian
+   //! \fixme endian
 
 	mSoundDetails = 0x0;
 
@@ -1853,7 +1853,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      mSoundDetails = new tr2_sound_details_t[mNumSoundDetails];
      Fread(mSoundDetails, sizeof(tr2_sound_details_t), mNumSoundDetails, f);
    }
-   //FIXME: endian
+   //! \fixme endian
 
 	// Read sound sample indices
 	mSampleIndices = 0x0;
@@ -1881,7 +1881,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 		if (mNumSampleIndices > 0)
 		{
 			mSampleIndices = new int[mNumSampleIndices];
-			// FIXME: (Endian)
+			//! \fixme (Endian)
 			Fread(mSampleIndices, 4, mNumSampleIndices, f);
 		}
 		break;
@@ -1889,7 +1889,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 		mFreadMode = TR_FREAD_NORMAL;
 		// 0x46464952
 
-		// FIXME: (Endian) Read bitu32 / u_int32_t
+		//! \fixme (Endian) Read bitu32 / u_int32_t
 		Fread(&mNumTR4Samples, 4, 1, f);
 		printDebug("Load", "mNumTR4Samples = %i", mNumTR4Samples);
 
@@ -1979,14 +1979,14 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 		}
 		break;
 	default:
-		// FIXME: (Endian) Read bit32 / int32_t
+		//! \fixme (Endian) Read bit32 / int32_t
 		Fread(&mNumSampleIndices, 4, 1, f);
 		printDebug("Load", "mNumSampleIndices = %i", mNumSampleIndices);
 
 		if (mNumSampleIndices > 0)
 		{
 			mSampleIndices = new int[mNumSampleIndices];
-			// FIXME: (Endian)
+			//! \fixme (Endian)
 			Fread(mSampleIndices, 4, mNumSampleIndices, f);
 		}
    }
@@ -1998,7 +1998,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
      delete [] mCompressedLevelData;
    }
 
-	// FIXME: memory damage?
+	//! \fixme memory damage?
 	mCompressedLevelData = NULL;
 #endif
 
@@ -2187,7 +2187,7 @@ int TombRaider::getMeshCount()
 }
 
 
-// FIXME: Needs refinement once the ideal format it's feeding is refined
+//! \fixme Needs refinement once the ideal format it's feeding is refined
 // I should stick a HACK postfix on the method name - it's temporary
 // until an array format can be crafted from a pinned down design and
 // RE notes review session ( eg what about TR5? )
@@ -2315,7 +2315,7 @@ void TombRaider::getMeshTexturedRectangle(unsigned int meshIndex,
 	{
 		givenWarning = true;
 
-		// FIXME: Use Material class to handle greyscale alpha intensity
+		//! \fixme Use Material class to handle greyscale alpha intensity
 		//        (partial alpha)
 		print("getMeshTexturedRectangle",
 				"TR3+ greyscale alpha intensity not implmented, %s:%i",
@@ -2364,7 +2364,7 @@ void TombRaider::getMeshTexturedTriangle(unsigned int meshIndex,
 	{
 		givenWarning = true;
 
-		// FIXME: Use Material class to handle greyscale alpha intensity
+		//! \fixme Use Material class to handle greyscale alpha intensity
 		//        (partial alpha)
 		print("getMeshTexturedTriangle",
 				"TR3+ greyscale alpha intensity not implmented, %s:%i",
@@ -2425,7 +2425,7 @@ int TombRaider::getMeshColoredRectangleCount(unsigned int meshIndex)
 }
 
 
-// FIXME: Perhaps making color an 8bit intensity would be a better idea
+//! \fixme Perhaps making color an 8bit intensity would be a better idea
 void TombRaider::getMeshVertexArrays(unsigned int meshIndex,
 												 unsigned int *vertexCount, float **verts,
 												 unsigned int *normalCount, float **norms,
@@ -2597,7 +2597,7 @@ void TombRaider::getRoomInfo(unsigned int index,
 		// Bounding Box setup
 		for (i = 0; i < mRoomsTR5[index].numLayers; ++i)
 		{
-			// FIXME: check the boxes are in min, max order in TRC
+			//! \fixme check the boxes are in min, max order in TRC
 
 			if (i == 0)
 			{
@@ -3000,7 +3000,7 @@ unsigned int TombRaider::getRoomPortalCount(unsigned int roomIndex)
 }
 
 
-// FIXME: No TRC support
+//! \fixme No TRC support
 void TombRaider::getRoomRectangle(unsigned int roomIndex,
 											 unsigned int rectangleIndex,
 											 unsigned int *indices, float *texCoords,
@@ -3539,7 +3539,7 @@ unsigned int TombRaider::getRoomTriangleCount(unsigned int roomIndex)
 }
 
 
-// FIXME: No TR5 support
+//! \fixme No TR5 support
 void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
 										 float *xyz, float *rgba)
 {
@@ -3655,7 +3655,7 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
 				(*normals)[k*3+1] = mRoomsTR5[roomIndex].faces[i].verts[j].ny;
 				(*normals)[k*3+2] = mRoomsTR5[roomIndex].faces[i].verts[j].nz;
 
-				// FIXME: Ah, yeah this may be wrong
+				//! \fixme Ah, yeah this may be wrong
 				c = ((unsigned char *)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[1];
 				(*colors)[k*4] = (float)c / 255.0f;
 				c = ((unsigned char *)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[2];
@@ -3670,7 +3670,7 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
 	default:
 		*vertexCount = count;
 		*vertices = new float[count*3];
-		*normalCount = 0;  // FIXME: Do some TR1-TR4 levels support normals here?
+		*normalCount = 0;  //! \fixme Do some TR1-TR4 levels support normals here?
 		*normals = 0x0;
 		*colorCount = count;
 		*colors = new float[count*4];
@@ -3930,7 +3930,7 @@ void TombRaider::getSoundSample(unsigned int index,
 	switch (Engine())
 	{
 	case TR_VERSION_1:
-		// FIXME: This implies higher tmp memory cost ( copy safety )
+		//! \fixme This implies higher tmp memory cost ( copy safety )
 		getRiffData(bytes, &riff);
 
 		if (riff && (int)index < mNumSampleIndices)
@@ -4137,7 +4137,7 @@ void TombRaider::reset()
 		return;
 	}
 
-  // FIXME: Palettes aren't the same size anymore
+  //! \fixme Palettes aren't the same size anymore
   //memset(_palette8, 0, 256);
   //memset(_palette16, 0, 256);
 
@@ -4336,7 +4336,7 @@ void TombRaider::reset()
   if (_textile32)
     delete [] _textile32;
 
-  // FIXME: Damaged memory causes delete to not set pointer to NULL?
+  //! \fixme Damaged memory causes delete to not set pointer to NULL?
   _tex_special = NULL;
   _textile8 = NULL;
   _textile16 = NULL;
@@ -4435,7 +4435,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
 		/* Get Centre + Unknowns */
 		memcpy(&mMeshes[i].centre.x, mesh_pointer, 10);
-		//FIXME: endian
+		//! \fixme endian
 
 		// depending on the interpretation of the unknowns that follow the Centre
 		// element, more endian conversion may be necessary
@@ -4443,7 +4443,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
 		/* Get number of vertices */
 		memcpy(&mMeshes[i].num_vertices, mesh_pointer, 2);
-		//FIXME: endian
+		//! \fixme endian
 
 		printDebug("ExtractMeshes", "mMeshes[%i].num_vertices = %u",
 					  i, mMeshes[i].num_vertices);
@@ -4459,13 +4459,13 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 			mMeshes[i].vertices = new tr2_vertex_t[mMeshes[i].num_vertices];
 
 		memcpy(mMeshes[i].vertices, mesh_pointer, size);
-		//FIXME: endian
+		//! \fixme endian
 
 		mesh_pointer += size;
 
 		/* Get number of normals */
 		memcpy(&mMeshes[i].num_normals, mesh_pointer, sizeof(unsigned short));
-		//FIXME: endian
+		//! \fixme endian
 
 		mesh_pointer += sizeof(unsigned short);
 		negative_size = (mMeshes[i].num_normals < 0);
@@ -4501,14 +4501,14 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
 			memcpy(mMeshes[i].normals, mesh_pointer, size);
 		}
-		//FIXME: endian
+		//! \fixme endian
 
 		mesh_pointer += size;
 
 		/* Get number of textured rectangles */
 		memcpy(&mMeshes[i].num_textured_rectangles,
 				 mesh_pointer, sizeof(unsigned short));
-		//FIXME: endian
+		//! \fixme endian
 
 		mesh_pointer += sizeof(unsigned short);
 		mMeshes[i].num_textured_rectangles =
@@ -4543,7 +4543,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 			{
 				memcpy(mMeshes[i].textured_rectangles, mesh_pointer, size);
 			}
-			//FIXME: endian
+			//! \fixme endian
 
 			if (mEngineVersion != TR_VERSION_4)
 				mesh_pointer += size;
@@ -4552,7 +4552,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 		/* Get number of textured triangles */
 		memcpy(&mMeshes[i].num_textured_triangles,
 				 mesh_pointer, sizeof(unsigned short));
-		//FIXME: endian
+		//! \fixme endian
 
 		mesh_pointer += sizeof(unsigned short);
 		mMeshes[i].num_textured_triangles =
@@ -4592,7 +4592,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 			{
 				memcpy(mMeshes[i].textured_triangles, mesh_pointer, size);
 			}
-			//FIXME: endian
+			//! \fixme endian
 
 			if (mEngineVersion != TR_VERSION_4)
 				mesh_pointer += size;
@@ -4613,7 +4613,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 		/* Get number of coloured rectangles */
 		memcpy(&mMeshes[i].num_coloured_rectangles, mesh_pointer,
 				 sizeof(unsigned short));
-		//FIXME: endian
+		//! \fixme endian
 		mesh_pointer += sizeof(unsigned short);
 		mMeshes[i].num_coloured_rectangles =
       (short)abs(mMeshes[i].num_coloured_rectangles);
@@ -4633,14 +4633,14 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 		if (mMeshes[i].num_coloured_rectangles > 0)
 		{
 			memcpy(mMeshes[i].coloured_rectangles, mesh_pointer, size);
-			//FIXME: endian
+			//! \fixme endian
 			mesh_pointer += size;
 		}
 
 		/* Get number of coloured triangles */
 		memcpy(&mMeshes[i].num_coloured_triangles, mesh_pointer,
 				 sizeof(unsigned short));
-		//FIXME: endian
+		//! \fixme endian
 
 		mesh_pointer += sizeof(unsigned short);
 		mMeshes[i].num_coloured_triangles =
@@ -4661,7 +4661,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 		if (mMeshes[i].num_coloured_triangles > 0)
 		{
 			memcpy(mMeshes[i].coloured_triangles, mesh_pointer, size);
-			//FIXME: endian
+			//! \fixme endian
 
 			mesh_pointer += size;
 		}
@@ -4859,7 +4859,7 @@ unsigned char *TombRaider::getTexTile(int texture)
 		case TR_VERSION_3: // Account for alpha flags
 			for (j = 0; j < (int)_num_object_textures; j++)
 			{
-				// FIXME: This kind of works for lighting - but messes up lara
+				//! \fixme This kind of works for lighting - but messes up lara
 #ifdef FIXME
 				if (_object_textures[j].tile == texture &&
 					 _object_textures[j].transparency_flags == 1)
@@ -4994,7 +4994,7 @@ unsigned char *TombRaider::getTexTile(int texture)
 }
 
 
-// FIXME: Move these data about to make full use in the class  ;)
+//! \fixme Move these data about to make full use in the class  ;)
 int TombRaider::loadTR5(FILE *f, void (*percent)(int))
 {
 	unsigned int level_data_sz, riffOffset, seperator0;
@@ -6155,7 +6155,7 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
 		fseek(f, u, SEEK_SET);
 	}
 
-	// FIXME: (Endian) Read bitu32 / u_int32_t
+	//! \fixme (Endian) Read bitu32 / u_int32_t
 	Fread(&mNumTR4Samples, 4, 1, f);
 	printDebug("Load", "mNumTR4Samples = %i", mNumTR4Samples);
 

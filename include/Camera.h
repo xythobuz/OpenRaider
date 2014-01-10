@@ -38,9 +38,9 @@
 #ifndef __HEL_MONGOOSE_CAMERA_H_
 #define __HEL_MONGOOSE_CAMERA_H_
 
-#include "hel/math.h"
-#include "hel/Matrix.h"
-#include "hel/Quaternion.h"
+#include <MatMath.h>
+#include <Matrix.h>
+#include <Quaternion.h>
 
 enum camera_command                /* Interactive camera control */
 {

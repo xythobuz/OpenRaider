@@ -1,5 +1,5 @@
 /*!
- * \file System.cpp
+ * \file src/System.cpp
  * \brief Mostly defines the interface of System implementations.
  *
  * Currently only SDL is used, but there was a GLUT implementation.

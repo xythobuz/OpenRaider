@@ -137,10 +137,11 @@ OpenRaider::OpenRaider() : SDLSystem()
 
 OpenRaider::~OpenRaider()
 {
-	// Mongoose 2002.01.02, FIXME GL call to critical section,
-	//   needs mutex really
+	/*! \fixme GL call to critical section,
+	 * needs mutex really -- Mongoose 2002.01.02
+     */
 	m_render.setMode(Render::modeDisabled);
-	//sleep(1); // Why should we sleep here? -- xythobuz
+	sleep(1);
 
 	printf("Removing World...\n");
 	gWorld.destroy();
@@ -1141,10 +1142,11 @@ void OpenRaider::loadLevel(char *mapname)
 	display_memory_usage();
 #endif
 
-	// Mongoose 2002.01.02, FIXME GL call to critical section,
-	//   needs mutex really
+	/*! \fixme GL call to critical section,
+	 * needs mutex really -- Mongoose 2002.01.02
+     */
 	m_render.setMode(Render::modeDisabled);
-	//sleep(2);
+	sleep(1);
 
 	// Draw game, level is loaded
 	m_render.setMode(Render::modeVertexLight);
@@ -1608,7 +1610,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 		}
 	}
 
-	// FIXME: Check here and see if we already have one for object_id later
+	//! \fixme Check here and see if we already have one for object_id later
 	// if (gWorld.isCachedSkeletalModel(moveable[index].object_id))
 	// {
 	//   thing->modelId = m_render.add(sModel);
@@ -1688,8 +1690,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 		return;
 	}
 
-	// FIXME: Might be better UID for each model, but this seems
-	//        to work well
+	//! \fixme Might be better UID for each model, but this seems to work well
 	j = object_id;
 
 	// We only want one copy of the skeletal model in memory
@@ -2023,7 +2024,7 @@ void OpenRaider::processModel(int index)
 	// Assert common sense
 	if (index < 0 || !m_tombraider.isMeshValid(index))
 	{
-		// FIXME: allow sparse lists with matching ids instead?
+		//! \fixme allow sparse lists with matching ids instead?
 		gWorld.addMesh(NULL); // Filler, to make meshes array ids align
 		printf("x");
 		fflush(stdout);
@@ -2038,7 +2039,7 @@ void OpenRaider::processModel(int index)
 	// Mongoose 2002.08.30, Testing support for 'shootable' models ( traceable )
 	m_tombraider.getMeshCollisionInfo(index, mesh->center, &mesh->radius);
 
-	// FIXME: Arrays don't work either  =)
+	//! \fixme Arrays don't work either  =)
 	// Mesh geometery, colors, etc
 	m_tombraider.getMeshVertexArrays(index,
 												&mesh->vertexCount, &mesh->vertices,
@@ -2266,7 +2267,7 @@ void OpenRaider::processRoom(int index)
 	float portalVertices[12];
 	count = m_tombraider.getRoomPortalCount(index);
 
-	// FIXME: OR wrongly uses a cached adj room list for rendering vis
+	//! \fixme OR wrongly uses a cached adj room list for rendering vis
 	r_mesh->adjacentRooms.reserve(count + 1);
 	r_mesh->adjacentRooms.setError(-1);
 
@@ -2304,7 +2305,7 @@ void OpenRaider::processRoom(int index)
 
 	// Physics/gameplay use /////////////////////////////
 
-	// FIXME: Use more of sector structure, boxes, and floordata
+	//! \fixme Use more of sector structure, boxes, and floordata
 
 	// List of sectors in this room
 	unsigned int sectorFlags;
@@ -2340,7 +2341,7 @@ void OpenRaider::processRoom(int index)
 	r_mesh->boxes.reserve(count);
 	r_mesh->boxes.setError(0x0);
 
-	// FIXME: Only to be done only on room[0]?  I don't think so...
+	//! fixme Only to be done only on room[0]?  I don't think so...
 	for (i = 0; !index && i < count; ++i)
 	{
 		box_t *box = new box_t;

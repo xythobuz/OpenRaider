@@ -21,7 +21,7 @@
 
 #include <math.h>
 
-#include <hel/Quaternion.h>
+#include <Quaternion.h>
 
 
 ////////////////////////////////////////////////////////////

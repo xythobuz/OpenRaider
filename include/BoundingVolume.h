@@ -28,7 +28,7 @@
 #ifndef GUARD__LIBHEL_MONGOOSE_BOUNDINGVOLUME_H_
 #define GUARD__LIBHEL_MONGOOSE_BOUNDINGVOLUME_H_
 
-#include <hel/math.h>
+#include <MatMath.h>
 
 
 class BoundingSphere

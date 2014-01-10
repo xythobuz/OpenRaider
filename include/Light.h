@@ -23,7 +23,7 @@
 #ifndef __FREYJA_MONGOOSE_LIGHT_H_
 #define __FREYJA_MONGOOSE_LIGHT_H_
 
-#include "hel/math.h"
+#include <MatMath.h>
 
 
 class Light

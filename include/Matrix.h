@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,10 +10,10 @@
  * Comments: 3d Matrix in class form
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2003.06.17:
  * Mongoose - Now in column order to match OpenGL user needs,
@@ -28,9 +28,9 @@
 #define GUARD__FREYJA_MONGOOSE_MATRIX_H_
 
 
-#include <hel/math.h>
-#include <hel/Quaternion.h>
-#include <hel/Vector3d.h>
+#include <MatMath.h>
+#include <Quaternion.h>
+#include <Vector3d.h>
 
 	///////////////////////////////////////////////
 	// Multidim map for row order encoding       //
@@ -61,29 +61,29 @@ class Matrix
 
 	Matrix();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of Matrix
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.05.11: 
+	 * 2002.05.11:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	Matrix(matrix_t mat);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of Matrix
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.05.11: 
+	 * 2002.05.11:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	Matrix(Quaternion &q);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Converts and asigns Q to a Matrix
 	 *        returns quaternion as Matrix
 	 *
@@ -100,7 +100,7 @@ class Matrix
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.05.11: 
+	 * 2002.05.11:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -110,7 +110,7 @@ class Matrix
 
 	void getMatrix(matrix_t mat);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Returns this matrix copy
 	 *
 	 *-- History ------------------------------------------
@@ -121,7 +121,7 @@ class Matrix
 
 	void getTransposeMatrix(matrix_t mat);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Returns this matrix transposed
 	 *
 	 *-- History ------------------------------------------
@@ -132,7 +132,7 @@ class Matrix
 
 	bool getInvert(matrix_t mat);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Returns this matrix inverted
 	 *
 	 *-- History ------------------------------------------
@@ -156,7 +156,7 @@ class Matrix
 	/*------------------------------------------------------
 	 * Pre  : Multiplies <V> vector (double[4]) and <This> matrix
 	 *
-	 * Post : Returns <Result> vector, 
+	 * Post : Returns <Result> vector,
 	 *        <V> and <Result> maybe be the same vector
 	 *
 	 *-- History ------------------------------------------
@@ -169,7 +169,7 @@ class Matrix
 	/*------------------------------------------------------
 	 * Pre  : Multiplies <V> vector and <This> matrix
 	 *
-	 * Post : Returns <Result> vector, 
+	 * Post : Returns <Result> vector,
 	 *        <V> and <Result> maybe be the same vector
 	 *
 	 *-- History ------------------------------------------
@@ -182,7 +182,7 @@ class Matrix
 	/*------------------------------------------------------
 	 * Pre  : Multiplies <V> vector and <This> matrix
 	 *
-	 * Post : Returns <Result> vector, 
+	 * Post : Returns <Result> vector,
 	 *        <V> and <Result> maybe be the same vector
 	 *
 	 *-- History ------------------------------------------
@@ -193,7 +193,7 @@ class Matrix
 
 	void print();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Prints matrix values to stdout
 	 *
 	 *-- History ------------------------------------------
@@ -204,7 +204,7 @@ class Matrix
 
 	bool isIdentity();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Is this matrix the identity matrix?
 	 *
 	 *-- History ------------------------------------------
@@ -242,7 +242,7 @@ class Matrix
 
 	void setIdentity();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Sets to identity matrix
 	 *
 	 *-- History ------------------------------------------
@@ -253,7 +253,7 @@ class Matrix
 
 	void setMatrix(matrix_t mat);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Set the matrix ( dangerous, scary boo )
 	 *
 	 *-- History ------------------------------------------
@@ -286,7 +286,7 @@ class Matrix
 
 	void scale(vec_t x, vec_t y, vec_t z);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Scales object in 3 space
 	 *
 	 *-- History ------------------------------------------
@@ -297,7 +297,7 @@ class Matrix
 
 	void scale(const vec_t *xyz);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Scales object in 3 space
 	 *
 	 *-- History ------------------------------------------
@@ -308,7 +308,7 @@ class Matrix
 
 	void translate(vec_t x, vec_t y, vec_t z);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Translates ( moves ) object in 3 space
 	 *
 	 *-- History ------------------------------------------
@@ -319,7 +319,7 @@ class Matrix
 
 	void translate(const vec_t *xyz);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Translates ( moves ) object in 3 space
 	 *
 	 *-- History ------------------------------------------
@@ -330,7 +330,7 @@ class Matrix
 
 	void transpose();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Transpose this matrix
 	 *
 	 *-- History ------------------------------------------
@@ -355,7 +355,7 @@ class Matrix
 
 	void copy(matrix_t source, matrix_t dest);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Copys value of source to dest
 	 *
 	 *-- History ------------------------------------------

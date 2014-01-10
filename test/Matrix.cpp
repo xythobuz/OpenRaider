@@ -23,7 +23,7 @@
 #include <math.h>
 #include <strings.h>
 
-#include <hel/Matrix.h>
+#include <Matrix.h>
 
 
 /* <Order> is (r)ow or (c)ol */

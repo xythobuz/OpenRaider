@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : hel
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
@@ -10,14 +10,14 @@
  * Comments: This is the viewing volume for culling use
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- Test Defines -----------------------------------------------
- *           
- * UNIT_TEST_VIEWVOLUME - Builds ViewVolume class as a console unit test 
  *
- *-- History ------------------------------------------------ 
+ *-- Test Defines -----------------------------------------------
+ *
+ * UNIT_TEST_VIEWVOLUME - Builds ViewVolume class as a console unit test
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.12.15:
  * Mongoose - Created
@@ -27,8 +27,8 @@
 #ifndef GUARD__HEL_MONGOOSE_VIEWVOLUME_H_
 #define GUARD__HEL_MONGOOSE_VIEWVOLUME_H_
 
-#include <hel/Matrix.h>
-#include <hel/BoundingVolume.h>
+#include <Matrix.h>
+#include <BoundingVolume.h>
 
 class ViewVolume
 {
@@ -59,12 +59,12 @@ class ViewVolume
 
 	ViewVolume();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of ViewVolume
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -75,7 +75,7 @@ class ViewVolume
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -86,48 +86,48 @@ class ViewVolume
 
 	bool isBoundingVolumeInFrustum(BoundingVolume bvol);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns true if frustum contains the given 
+	 * Pre  :
+	 * Post : Returns true if frustum contains the given
 	 *        bounding volume
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	bool isBoundingSphereInFrustum(BoundingSphere bvol);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns true if frustum contains the given 
+	 * Pre  :
+	 * Post : Returns true if frustum contains the given
 	 *        bounding volume
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	bool isBoundingBoxInFrustum(BoundingBox bvol);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : Returns true if frustum contains the given 
+	 * Pre  :
+	 * Post : Returns true if frustum contains the given
 	 *        bounding volume
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	bool isPointInFrustum(vec_t x, vec_t y, vec_t z);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -138,7 +138,7 @@ class ViewVolume
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -149,19 +149,19 @@ class ViewVolume
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	vec_t getDistToSphereFromNear(vec_t x, vec_t y, vec_t z, vec_t radius);
 	/*------------------------------------------------------
 	 * Pre  : Abstract sphere is valid
-	 * Post : Returns distance to abstract sphere 
+	 * Post : Returns distance to abstract sphere
 	 *        bounding volume
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -173,7 +173,7 @@ class ViewVolume
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.12.15: 
+	 * 2002.12.15:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -190,7 +190,7 @@ class ViewVolume
 
 	void getPlane(ViewVolumeSide p, vec4_t plane);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Get a copy of a given plane in view volume
 	 *
 	 *-- History ------------------------------------------
@@ -199,7 +199,7 @@ class ViewVolume
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	
+
 	////////////////////////////////////////////////////////////
 	// Public Mutators
 	////////////////////////////////////////////////////////////

@@ -1,5 +1,5 @@
 /*!
- * \file GLString.cpp
+ * \file test/GLString.cpp
  * \brief Open GL rendering font/string Unit Test
  *
  * \author Mongoose

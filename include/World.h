@@ -30,12 +30,12 @@
 #define BAD_BLOOD  // For temp rendering use
 
 #ifdef BAD_BLOOD
-#   include "SkeletalModel.h"
+#include <SkeletalModel.h>
 #endif
 
-#include "mstl/List.h"
-#include "mstl/Vector.h"
-#include "hel/math.h"
+#include <List.h>
+#include <Vector.h>
+#include <MatMath.h>
 
 
 // Mirrors TombRaider class' room flags really
@@ -103,9 +103,10 @@ typedef struct sprite_seq_s
 } sprite_seq_t;
 
 
-// FIXME: For now shaders are textures on tex objects
-//        and materials on color objects.  If -1
-//        then it doesn't have that information yet.
+/*! \fixme For now shaders are textures on tex objects
+ * and materials on color objects. If -1
+ * then it doesn't have that information yet.
+ */
 
 typedef struct texture_tri_s
 {
@@ -210,7 +211,7 @@ typedef struct sector_s
 
 } sector_t;
 
-// FIXME: No room mesh list or sprites and etc
+//! \fixme No room mesh list or sprites and etc
 typedef struct room_mesh_s
 {
 	Vector<int> adjacentRooms;

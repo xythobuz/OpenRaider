@@ -32,7 +32,7 @@ UNAME=$(shell uname -s)
 BASE_DEFS=$(shell sdl-config --cflags) -Iinclude -DSDL_INTERFACE \
 	-DUSING_OPENGL -DZLIB_SUPPORT -DUSING_EMITTER \
 	-DUSING_OPENAL -DUSING_MTK_TGA -DUSING_PTHREADS \
-	-DUSING_HEL -DHAVE_SDL_TTF
+	-DHAVE_SDL_TTF
 
 BASE_LIBS=$(shell sdl-config --libs) -lz -lstdc++ \
 	-lpthread -lSDL_ttf
@@ -175,26 +175,20 @@ depend:
 
 ################################################################
 
-# Later hel will become a seperate library once it matures
-HEL_OBJ = \
-	$(BUILDDIR)/math.o \
-	$(BUILDDIR)/Matrix.o \
-	$(BUILDDIR)/Quaternion.o \
-	$(BUILDDIR)/Vector3d.o \
-	$(BUILDDIR)/ViewVolume.o
-
 OBJS = \
 	$(DEBUG_OBJ) \
-	$(HEL_OBJ) \
 	$(BUILDDIR)/Camera.o \
 	$(BUILDDIR)/Emitter.o \
 	$(BUILDDIR)/GLString.o \
 	$(BUILDDIR)/Light.o \
+	$(BUILDDIR)/MatMath.o \
+	$(BUILDDIR)/Matrix.o \
 	$(BUILDDIR)/mtk_tga.o \
 	$(BUILDDIR)/Network.o \
 	$(BUILDDIR)/OpenGLMesh.o \
 	$(BUILDDIR)/OpenRaider.o \
 	$(BUILDDIR)/Particle.o \
+	$(BUILDDIR)/Quaternion.o \
 	$(BUILDDIR)/Render.o \
 	$(BUILDDIR)/SDLSystem.o \
 	$(BUILDDIR)/SkeletalModel.o \
@@ -202,6 +196,8 @@ OBJS = \
 	$(BUILDDIR)/System.o \
 	$(BUILDDIR)/Texture.o \
 	$(BUILDDIR)/TombRaider.o \
+	$(BUILDDIR)/Vector3d.o \
+	$(BUILDDIR)/ViewVolume.o \
 	$(BUILDDIR)/World.o
 
 
@@ -324,8 +320,8 @@ Matrix.test:
 	@-echo "Building Matrix unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
-	src/hel/Matrix.cpp src/hel/Quaternion.cpp src/hel/Vector3d.cpp \
-	test/hel/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
+	src/Matrix.cpp src/Quaternion.cpp src/Vector3d.cpp \
+	test/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
 	@-echo "================================================="
 	@-echo "Running Matrix unit test"
 	$(BUILD_TEST_DIR)/Matrix.test
@@ -334,7 +330,7 @@ Quaternion.test:
 	@-echo "Building Quaternion unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
-	src/hel/Quaternion.cpp test/hel/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
+	src/Quaternion.cpp test/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
 	@-echo "================================================="
 	@-echo "Running Quaternion unit test"
 	$(BUILD_TEST_DIR)/Quaternion.test
@@ -343,7 +339,7 @@ Math.test:
 	@-echo "Building Math unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
-	src/hel/math.cpp src/hel/Vector3d.cpp test/hel/math.cpp -o $(BUILD_TEST_DIR)/Math.test
+	src/MatMath.cpp src/Vector3d.cpp test/MatMath.cpp -o $(BUILD_TEST_DIR)/Math.test
 	@-echo "================================================="
 	@-echo "Running hel unit test"
 	$(BUILD_TEST_DIR)/Math.test

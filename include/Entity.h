@@ -27,11 +27,11 @@
 #ifndef GUARD__HEL_MONGOOSE_ENTITY_H_
 #define GUARD__HEL_MONGOOSE_ENTITY_H_
 
-#include <hel/math.h>
-#include <hel/BoundingVolume.h>
-#include <hel/Quaternion.h>
-#include <hel/Vector3d.h>
-#include <hel/Mass.h>
+#include <MatMath.h>
+#include <BoundingVolume.h>
+#include <Quaternion.h>
+#include <Vector3d.h>
+#include <Mass.h>
 
 
 typedef enum

@@ -1,5 +1,5 @@
 /*!
- * \file OpenGLMesh.h
+ * \file include/OpenGLMesh.h
  * \brief OpenGL Mesh
  *
  * \author Mongoose
@@ -10,7 +10,7 @@
 #ifndef GUARD__OPENRAIDER_MONGOOSE_OPENGLMESH_H_
 #define GUARD__OPENRAIDER_MONGOOSE_OPENGLMESH_H_
 
-#include "hel/math.h"
+#include <MatMath.h>
 
 class OpenGLMesh {
 public:

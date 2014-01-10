@@ -779,7 +779,7 @@ void Render::Display()
 		return;
 		break;
 	case Render::modeLoadScreen:
-		// Mongoose 2002.01.01, FIXME entry for seperate main drawing method
+		//! \fixme entry for seperate main drawing method -- Mongoose 2002.01.01
 		drawLoadScreen();
 		return;
 	default:
@@ -1123,7 +1123,8 @@ void Render::buildRoomRenderList(RenderRoom *rRoom)
 	if (!rRoom || !rRoom->room)
 		return;
 
-	// Must be visible, FIXME: Add depth sorting here - remove multipass
+	// Must be visible
+    //! \fixme Add depth sorting here - remove multipass
 	if (!isVisible(rRoom->room->bbox_min, rRoom->room->bbox_max))
 		return;
 
@@ -1218,7 +1219,7 @@ void Render::drawLoadScreen()
 		return;
 
 	// Mongoose 2002.01.01, Rendered while game is loading...
-	//   FIXME seperate logo/particle coor later
+	//! \fixme seperate logo/particle coor later
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -1585,7 +1586,7 @@ void draw_bbox(vec3_t min, vec3_t max, bool draw_points)
 	glPointSize(4.0);
 	//glLineWidth(1.25);
 
-	//FIXME: Need to make custom color key for this
+	//! \fixme Need to make custom color key for this
 	glColor3fv(RED);
 
 	glBegin(GL_POINTS);
@@ -1662,7 +1663,7 @@ void draw_bbox_color(vec3_t min, vec3_t max, bool draw_points,
 	glPointSize(4.0);
 	//glLineWidth(1.25);
 
-	//FIXME: Need to make custom color key for this
+	//! \fixme Need to make custom color key for this
 	glColor3fv(c1);
 
 	glBegin(GL_POINTS);
@@ -2033,7 +2034,7 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
 
 	// If they pass NULL structs let it hang up - this is tmp
 
-	// FIXME: Duh, vis tests need to be put back
+	//! \fixme Duh, vis tests need to be put back
 	//if (!isVisible(r_mesh->center,	r_mesh->radius, r_mesh->bbox))
 	//{
 	//	 return;
@@ -2082,7 +2083,7 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
 #endif
 
 
-	// Mongoose 2002.01.08, FIXME 'AMBIENT'
+	//! \fixme 'AMBIENT' -- Mongoose 2002.01.08
 	glColor3fv(WHITE);
 
 	if (mMode == modeWireframe)

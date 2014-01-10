@@ -1,5 +1,5 @@
 /*!
- * \file System.h
+ * \file include/System.h
  * \brief Mostly defines the interface of System implementations.
  *
  * Currently only SDL is used, but there was a GLUT implementation.
@@ -11,8 +11,8 @@
 #ifndef GUARD__UNRAIDER_MONGOOSE_SYSTEM_H_
 #define GUARD__UNRAIDER_MONGOOSE_SYSTEM_H_
 
-#include "mstl/Map.h"
-#include "mstl/Vector.h"
+#include <Map.h>
+#include <Vector.h>
 
 //! \todo Replace with unicode compatible key codes
 #define SYS_MOUSE_LEFT    6000

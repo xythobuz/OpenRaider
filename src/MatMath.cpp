@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include <hel/math.h>
-#include <hel/Vector3d.h>
-#include <hel/Matrix.h>
+#include <MatMath.h>
+#include <Vector3d.h>
+#include <Matrix.h>
 
 #define COMPUTE
 

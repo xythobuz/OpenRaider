@@ -29,7 +29,7 @@
 #   error "SDLSystem requires -DSDL_INTERFACE"
 #endif
 
-#include "System.h"
+#include <System.h>
 
 class SDLSystem : public System
 {

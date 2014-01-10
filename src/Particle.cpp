@@ -1,5 +1,5 @@
 /*!
- * \file Particle.cpp
+ * \file src/Particle.cpp
  * \brief Particle system base implementation
  *
  * \author Mongoose

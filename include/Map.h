@@ -39,7 +39,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <mstl/Tree.h>
+#include <Tree.h>
 
 #ifdef DEBUG_MEMORY
 #include <memory_test.h>

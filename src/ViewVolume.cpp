@@ -23,7 +23,7 @@
 
 #include <math.h>
 
-#include <hel/ViewVolume.h>
+#include <ViewVolume.h>
 
 
 ////////////////////////////////////////////////////////////

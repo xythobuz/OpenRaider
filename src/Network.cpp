@@ -444,7 +444,7 @@ int Network::runServer()
 			}
 		}
 
-		// FIXME: Combine with above, duh
+		//! \fixme Combine with above, duh
 		// 3. Send to network layer
 		if (gClients[i].frameExpected == f.header)
 		{

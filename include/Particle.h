@@ -1,5 +1,5 @@
 /*!
- * \file Particle.h
+ * \file include/Particle.h
  * \brief Particle system base header
  *
  * \author Mongoose
@@ -8,7 +8,7 @@
 #ifndef __FREYJA_MONGOOSE_PARTICLE_H_
 #define __FREYJA_MONGOOSE_PARTICLE_H_
 
-#include "hel/math.h"
+#include <MatMath.h>
 
 /*!
  * \brief Partcle systems atomic base

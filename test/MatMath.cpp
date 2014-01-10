@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include <hel/math.h>
+#include <MatMath.h>
 
 void helMathTest()
 {

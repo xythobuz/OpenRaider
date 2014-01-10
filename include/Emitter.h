@@ -26,7 +26,7 @@
 #ifndef __FREYJA_MONGOOSE_EMITTER_H_
 #define __FREYJA_MONGOOSE_EMITTER_H_
 
-#include "Particle.h"
+#include <Particle.h>
 
 
 class Emitter

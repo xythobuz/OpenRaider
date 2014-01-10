@@ -35,7 +35,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include <hel/math.h>
+#include <MatMath.h>
 #include <Camera.h>
 
 #ifdef DEBUG_MEMORY

@@ -1,5 +1,5 @@
 /*!
- * \file SkeletalModel.h
+ * \file include/SkeletalModel.h
  * \brief This is the factored out skeletal model class
  *
  * Defining UNIT_TEST_SKELETALMODEL builds SkeletalModel class as a console unit test
@@ -14,8 +14,8 @@
 #ifndef GUARD__OPENRAIDER_MONGOOSE_SKELETALMODEL_H_
 #define GUARD__OPENRAIDER_MONGOOSE_SKELETALMODEL_H_
 
-#include "mstl/Vector.h"
-#include "hel/math.h"
+#include <Vector.h>
+#include <MatMath.h>
 
 
 typedef struct bone_tag_s
