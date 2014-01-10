@@ -6,6 +6,7 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140109 ]
+	* Added greatest Test Framework, rewrote Sound Test
 	* Renamed all memeory references to memory
 	* Moved headers into include/
 	* Put Unit Tests into test/
