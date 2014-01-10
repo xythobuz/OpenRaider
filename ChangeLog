@@ -6,6 +6,8 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140110 ]
+	* Removed endian.(h/cpp) as it shouldn't be needed. See:
+	  http://commandcenter.blogspot.de/2012/04/byte-order-fallacy.html
 	* Removed empty Light.cpp
 	* All Unit Tests build without warning
 	* Converted many FIXME comments to be in the doxygen documentation
