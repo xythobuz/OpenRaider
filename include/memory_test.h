@@ -45,67 +45,56 @@ void operator delete [](void *p);
 #define delete DEBUG_DELETE
 
 
-	void delete_check(const char *file, int line, int print);
+void delete_check(const char *file, int line, int print);
 
-	void display_memory_usage();
+void display_memory_usage();
 
-	long memory_used();
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Returns amount of total memory used
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.03.27:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+long memory_used();
+/*------------------------------------------------------
+ * Pre  :
+ * Post : Returns amount of total memory used
+ *
+ *-- History ------------------------------------------
+ *
+ * 2002.03.27:
+ * Mongoose - Created
+ ------------------------------------------------------*/
 
-	void dump_memory_report();
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Dumps raw Tree holding memory accounting
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.03.27:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
+void dump_memory_report();
+/*------------------------------------------------------
+ * Pre  :
+ * Post : Dumps raw Tree holding memory accounting
+ *
+ *-- History ------------------------------------------
+ *
+ * 2002.03.27:
+ * Mongoose - Created
+ ------------------------------------------------------*/
 
 #ifdef DEBUG_MEMORY
 
-    #define DWORD unsigned long
-    #define ZERO_ALLOC_SLOTS 3
+#define DWORD unsigned long
+#define ZERO_ALLOC_SLOTS 3
 
-    typedef enum { RB_BLACK = 0, RB_RED = 1 } rbtree_color_t;
+typedef enum { RB_BLACK = 0, RB_RED = 1 } rbtree_color_t;
 
-    typedef struct rbtree_s {
-        void *data;
-        DWORD key;
-        rbtree_color_t color;
-        struct rbtree_s *left;
-        struct rbtree_s *right;
-        struct rbtree_s *parent;
-    } rbtree_t;
+typedef struct rbtree_s {
+    void *data;
+    DWORD key;
+    rbtree_color_t color;
+    struct rbtree_s *left;
+    struct rbtree_s *right;
+    struct rbtree_s *parent;
+} rbtree_t;
 
-    typedef struct meminfo_filename_s {
-        char *filename;
-        char filename_len;
-        DWORD size;
-        unsigned int alloc_zero;
-        unsigned short int alloc_zero_at_line[ZERO_ALLOC_SLOTS];
-        struct meminfo_filename_s *next;
-    } meminfo_filename_t;
-
-    extern rbtree_t *MEMORY_INFO;
-    extern meminfo_filename_t *MEMORY_FILENAME;
-    extern long MEMORY_USED;
-    extern long MEMORYA_USED;
-    extern long MEMORYC_USED;
-    extern long MAX_MEMORY_USED;
-    extern long MAX_MEMORYA_USED;
-    extern long MAX_MEMORYC_USED;
-
-    void tree_valid_report(rbtree_t *root);
+typedef struct meminfo_filename_s {
+    char *filename;
+    char filename_len;
+    DWORD size;
+    unsigned int alloc_zero;
+    unsigned short int alloc_zero_at_line[ZERO_ALLOC_SLOTS];
+    struct meminfo_filename_s *next;
+} meminfo_filename_t;
 
 #endif
 

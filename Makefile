@@ -296,12 +296,14 @@ TombRaider.reg_test:
 	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR4) > /tmp/log.tr4
 	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR5) > /tmp/log.tr5
 
+TR_FLAGS = -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMORY
 
 TombRaider.test:
 	@-mkdir -p $(BUILD_TEST_DIR)
+	$(CC) -Wall -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
 	$(MAKE) targets NAME=TombRaider.test BUILDDIR=$(BUILD_TEST_DIR) \
-	OBJS="$(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/memory_test.o" \
-	CFLAGS="$(BASE_CFLAGS) -g -D__TOMBRAIDER_TEST__ -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMORY" \
+	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/memory_test.o" \
+	CFLAGS="$(BASE_CFLAGS) -g $(TR_FLAGS)" \
 	LD_FLAGS="-lz -lstdc++"
 
 #################################################################
@@ -321,7 +323,7 @@ Hel.test: Quaternion.test Matrix.test Math.test
 Matrix.test:
 	@-echo "Building Matrix unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -DMATRIX_UNIT_TEST -lm -lstdc++ -Iinclude \
+	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
 	src/hel/Matrix.cpp src/hel/Quaternion.cpp src/hel/Vector3d.cpp \
 	test/hel/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
 	@-echo "================================================="
@@ -331,7 +333,7 @@ Matrix.test:
 Quaternion.test:
 	@-echo "Building Quaternion unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -DUNIT_TEST_QUATERNION -lm -lstdc++ -Iinclude \
+	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
 	src/hel/Quaternion.cpp test/hel/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
 	@-echo "================================================="
 	@-echo "Running Quaternion unit test"
@@ -340,7 +342,7 @@ Quaternion.test:
 Math.test:
 	@-echo "Building Math unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -DMATH_UNIT_TEST -lm -lstdc++ -Iinclude \
+	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
 	src/hel/math.cpp src/hel/Vector3d.cpp test/hel/math.cpp -o $(BUILD_TEST_DIR)/Math.test
 	@-echo "================================================="
 	@-echo "Running hel unit test"
@@ -358,8 +360,8 @@ Memory.test:
 
 Network.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(TEST_FLAGS) -DUNIT_TEST_NETWORK \
-	src/Network.cpp -o $(BUILD_TEST_DIR)/Network.test
+	$(CC) $(TEST_FLAGS) \
+	src/Network.cpp test/Network.cpp -o $(BUILD_TEST_DIR)/Network.test
 
 #################################################################
 

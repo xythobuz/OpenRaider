@@ -29,7 +29,7 @@
 #define USE_ITERATIVE_TREE_INSERT
 
 
-bool tree_check(rbtree_t *tree, char *file, int line)
+bool tree_check(rbtree_t *tree, const char *file, int line)
 {
 	bool ret = true;
 
@@ -456,7 +456,7 @@ int tree_print(rbtree_t *tree, void (*print_func)(void *))
 
 	if (!tree->parent)
 	{
-		printf("\n%i nodes, %u bytes each : %i bytes\n",
+		printf("\n%i nodes, %lu bytes each : %lu bytes\n",
 				 i, sizeof(rbtree_t), i * sizeof(rbtree_t));
 	}
 
@@ -904,7 +904,7 @@ void dump_memory_report()
 	printf("============================================================\n");
 	printf("Memory tracking table:\n");
 	i = tree_print(MEMORY_INFO, (void (*)(void *))&__print_meminfo);
-	printf("%i records, %u bytes each : %i bytes\n",
+	printf("%i records, %lu bytes each : %lu bytes\n",
 			 i, sizeof(meminfo_t), i * sizeof(meminfo_t));
 	display_memory_usage();
 	printf("============================================================\n\n");

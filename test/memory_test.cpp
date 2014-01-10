@@ -25,6 +25,17 @@
 
 #include <memory_test.h>
 
+extern rbtree_t *MEMORY_INFO;
+extern meminfo_filename_t *MEMORY_FILENAME;
+extern long MEMORY_USED;
+extern long MEMORYA_USED;
+extern long MEMORYC_USED;
+extern long MAX_MEMORY_USED;
+extern long MAX_MEMORYA_USED;
+extern long MAX_MEMORYC_USED;
+
+void tree_valid_report(rbtree_t *root);
+
 #define PRINT_TEST_BREAK_LINE	printf("\n############################################################\n\n");
 
 int memory_test_unit_test(int argc, char *argv[])
@@ -36,116 +47,116 @@ int memory_test_unit_test(int argc, char *argv[])
 	printf("Memory test\n");
 	PRINT_TEST_BREAK_LINE
 
-	printf(">\ti = new int;  %s:%i\n", __FILE__, __LINE__);
 	i = new int;
+	printf(">\ti = new int; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tdelete i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	delete i;
+	printf(">\tdelete i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
 	PRINT_TEST_BREAK_LINE
 
-	printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	i = new int[3];
+	printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tdelete [] i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	delete [] i;
+	printf(">\tdelete [] i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
 	PRINT_TEST_BREAK_LINE
 
-	printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	i = new int[3];
-	printf(">\tj = new int; (%p)  %s:%i\n", j, __FILE__, __LINE__);
+	printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	j = new int;
-	printf(">\tk = new int[3]; (%p)  %s:%i\n", k, __FILE__, __LINE__);
+	printf(">\tj = new int; (%p)  %s:%i\n", j, __FILE__, __LINE__);
 	k = new int[3];
+	printf(">\tk = new int[3]; (%p)  %s:%i\n", k, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
-	printf(">\tdelete [] i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	delete [] i;
-	printf(">\tdelete j; (%p)  %s:%i\n", j, __FILE__, __LINE__);
+	printf(">\tdelete [] i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	delete j;
-	printf(">\tdelete [] k; (%p)  %s:%i\n", k, __FILE__, __LINE__);
+	printf(">\tdelete j; (%p)  %s:%i\n", j, __FILE__, __LINE__);
 	delete [] k;
+	printf(">\tdelete [] k; (%p)  %s:%i\n", k, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
 	PRINT_TEST_BREAK_LINE
 
-	printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	i = new int[3];
-	printf(">\tj = new int; (%p)  %s:%i\n", j, __FILE__, __LINE__);
+	printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	j = new int;
-	printf(">\tk = new int[3]; (%p)  %s:%i\n", k, __FILE__, __LINE__);
+	printf(">\tj = new int; (%p)  %s:%i\n", j, __FILE__, __LINE__);
 	k = new int[3];
+	printf(">\tk = new int[3]; (%p)  %s:%i\n", k, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
-	printf(">\tdelete j; (%p)  %s:%i\n", j, __FILE__, __LINE__);
 	delete j;
+	printf(">\tdelete j; (%p)  %s:%i\n", j, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
-	printf(">\tj = new int[3]; (%p)  %s:%i\n", j, __FILE__, __LINE__);
 	j = new int[3];
+	printf(">\tj = new int[3]; (%p)  %s:%i\n", j, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
-	printf(">\tl = new int[3]; (%p)  %s:%i\n", l, __FILE__, __LINE__);
 	l = new int[3];
+	printf(">\tl = new int[3]; (%p)  %s:%i\n", l, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
-	printf(">\tm = new int[3]; (%p)  %s:%i\n", m, __FILE__, __LINE__);
 	m = new int[3];
+	printf(">\tm = new int[3]; (%p)  %s:%i\n", m, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tn = new int[3]; (%p)  %s:%i\n", n, __FILE__, __LINE__);
 	n = new int[3];
+	printf(">\tn = new int[3]; (%p)  %s:%i\n", n, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\to = new int[3]; (%p)  %s:%i\n", o, __FILE__, __LINE__);
 	o = new int[3];
+	printf(">\to = new int[3]; (%p)  %s:%i\n", o, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tdelete [] k; (%p)  %s:%i\n", k, __FILE__, __LINE__);
 	delete [] k;
+	printf(">\tdelete [] k; (%p)  %s:%i\n", k, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tdelete [] j; (%p)  %s:%i\n", j, __FILE__, __LINE__);
 	delete [] j;
+	printf(">\tdelete [] j; (%p)  %s:%i\n", j, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tdelete [] l; (%p)  %s:%i\n", l, __FILE__, __LINE__);
 	delete [] l;
+	printf(">\tdelete [] l; (%p)  %s:%i\n", l, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tdelete [] m; (%p)  %s:%i\n", m, __FILE__, __LINE__);
 	delete [] m;
+	printf(">\tdelete [] m; (%p)  %s:%i\n", m, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tdelete [] n; (%p)  %s:%i\n", n, __FILE__, __LINE__);
 	delete [] n;
+	printf(">\tdelete [] n; (%p)  %s:%i\n", n, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tdelete [] o; (%p)  %s:%i\n", o, __FILE__, __LINE__);
 	delete [] o;
+	printf(">\tdelete [] o; (%p)  %s:%i\n", o, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 
-	printf(">\tdelete [] i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	delete [] i;
+	printf(">\tdelete [] i; (%p)  %s:%i\n", i, __FILE__, __LINE__);
 	dump_memory_report();
 	tree_valid_report(MEMORY_INFO);
 

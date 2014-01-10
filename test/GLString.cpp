@@ -128,19 +128,18 @@ void init_gl(unsigned int width, unsigned int height,
 		{
 			if (j < 4)
 			{
-				id[j++] = gTexture.loadTGA(argv[i]);
+				id[j] = gTexture.loadTGA(argv[i]);
 			}
 		}
 	}
 	else
 	{
-		id[0] = gTexture.loadTGA("data/font-0.tga");
-		id[1] = gTexture.loadTGA("data/font-0.tga");
-		id[2] = gTexture.loadTGA("data/font-0.tga");
-		id[3] = gTexture.loadTGA("data/font-0.tga");
+		// id[0] = gTexture.loadTGA("data/font-0.tga");
+		// id[1] = gTexture.loadTGA("data/font-1.tga");
+		// id[2] = gTexture.loadTGA("data/font-2.tga");
+		// id[3] = gTexture.loadTGA("data/font-3.tga");
+        id[0] = id[1] = id[2] = id[3] = gTexture.loadTGA("data/font-0.tga");
 	}
-
-	printf("%i %i %i %i\n", id[0], id[1], id[2], id[3]);
 
 	TEXT->Init(4, 4, id);
 	i = TEXT->glPrintf((width/2)-12*5, height/2, 0,
@@ -150,9 +149,8 @@ void init_gl(unsigned int width, unsigned int height,
 		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
 	}
 
-	i = TEXT->glPrintf((width/2)-10*7, height/2+32, 1,
+	i = TEXT->glPrintf((width/2)-12*5, height/2+32, 1,
 							 "[font %i] GLString Test", id[1]);
-
 	if (i)
 	{
 		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
@@ -162,15 +160,14 @@ void init_gl(unsigned int width, unsigned int height,
 	TEXT->Scale(s);
 
 	i = TEXT->glPrintf((width/2)-10*7, height/2+64, 1,
-							 "[font %i] Scaled by %.3f", id[1], s);
-
+							 "[font %i] Scaled by %.1f", id[2], s);
 	if (i)
 	{
 		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
 	}
-	i = TEXT->glPrintf((width/2)-10*7, height/2-32, 0,
-							 "[font %i] Scaled by %.3f", id[0], s);
 
+	i = TEXT->glPrintf((width/2)-10*7, height/2-32, 0,
+							 "[font %i] Scaled by %.1f", id[3], s);
 	if (i)
 	{
 		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
@@ -184,9 +181,11 @@ int main_gl(int argc, char *argv[])
   unsigned int mkeys, mod, key;
   int flags;
   unsigned int width = 640;
-  unsigned int height = 460;
+  unsigned int height = 480;
   bool fullscreen = false;
+#ifndef __APPLE__
   char *driver = NULL;
+#endif
 
 
   // Setup clean up on exit
