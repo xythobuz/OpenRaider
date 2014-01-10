@@ -6,6 +6,7 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140110 ]
+	* All Unit Tests build without warning
 	* Converted many FIXME comments to be in the doxygen documentation
 	* Removed hel & mstl folders, moved into parent directory
 	* mtk_tga Unit Test uses greatest

@@ -6,8 +6,10 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <greatest.h>
+
 #include <mtk_tga.h>
+
+#include "greatest.h"
 
 #define TESTFILE "data/font-0.tga"
 FILE *f = NULL;

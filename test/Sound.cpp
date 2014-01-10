@@ -8,8 +8,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include <greatest.h>
 #include <Sound.h>
+
+#include "greatest.h"
 
 #define TESTFILE "data/sample.wav"
 

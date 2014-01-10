@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*==========================================================================
- * 
+ *
  * Project : MTK, Freyja, OpenRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440
@@ -10,13 +10,13 @@
  *
  *           See file COPYING for license details.
  *
- * 
- *-- History ---------------------------------------------------------- 
  *
- * 2003.06.30, 
+ *-- History ----------------------------------------------------------
+ *
+ * 2003.06.30,
  * Mongoose - API update, SDL_TTF support moved here, misc features
  *            SDL_TTF support based on Sam Lantinga's public domain
- *            SDL_TTF demo functions and algorithms 
+ *            SDL_TTF demo functions and algorithms
  *
  * 2001.05.29:
  * Mongoose - Removed legacy code and done clean up
@@ -39,14 +39,14 @@ typedef struct
 	int x, y, w, h;
 	int minx; int maxx; int miny; int maxy; int advance;
 
-} ttf_glyph_t; 
+} ttf_glyph_t;
 
 typedef struct
 {
 	unsigned int utf8Offset;
-	unsigned int count;   
+	unsigned int count;
 
-/* [utf8Offset -> utf8Offset+count], 
+/* [utf8Offset -> utf8Offset+count],
 	 matches indexing into glyphs[0 -> count] for texcoords, etc
 	----------------------------------------
 	41     -> 126     ASCII English w/ special chars,
@@ -62,7 +62,7 @@ typedef struct
 	int fontDescent;
 	int fontSpacing;
 
-} ttf_texture_t; 
+} ttf_texture_t;
 
 
 typedef struct
@@ -102,7 +102,7 @@ class Texture
 
    Texture();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of Texture
 	 *
 	 *-- History ------------------------------------------
@@ -110,7 +110,7 @@ class Texture
 	 * 2001.05.29:
 	 * Mongoose - Big code clean up, documentation
 	 *
-	 * 2000.10.05: 
+	 * 2000.10.05:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -124,7 +124,7 @@ class Texture
 	 * 2001.05.29:
 	 * Mongoose - Big code clean up, documentation
 	 *
-	 * 2000.10.05: 
+	 * 2000.10.05:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -134,13 +134,13 @@ class Texture
 	////////////////////////////////////////////////////////////
 
 	static unsigned char *generateColorTexture(unsigned char rgba[4],
-															 unsigned int width, 
+															 unsigned int width,
 															 unsigned int height);
 	/*------------------------------------------------------
 	 * Pre  : <Rgba> is 32bpp RGBA color
 	 *        <Width> and <Height> are powers of two, pref
 	 *        the same number
-	 * Post : 
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -150,8 +150,8 @@ class Texture
 
 	gl_font_t *generateFont(ttf_texture_t *texture);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -159,7 +159,7 @@ class Texture
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	ttf_texture_t *generateFontTexture(char *filename, int pointSize, 
+	ttf_texture_t *generateFontTexture(const char *filename, int pointSize,
 												  unsigned int textureWidth,
 												  unsigned char color[3],
 												  unsigned int utf8Offset,
@@ -172,7 +172,7 @@ class Texture
 	 *        <Color> is RGB 24bit color
 	 *        <Utf8Offset> is offset into font's encoding chart
 	 *        <Count> is number of glyphs to read from offset start
-	 *        <Verbose> dumps debug info to stdout 
+	 *        <Verbose> dumps debug info to stdout
 	 *
 	 * Post : Generates a font texture with typeset info from TTF
 	 *
@@ -188,7 +188,7 @@ class Texture
 
    int getTextureCount();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Returns number of textures in use, or -1 for
 	 *        error ( Not initalized )
 	 *
@@ -197,16 +197,16 @@ class Texture
 	 * 2001.05.29:
 	 * Mongoose - Big code clean up, documentation
 	 *
-	 * 2000.10.05: 
+	 * 2000.10.05:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void glScreenShot(char *base, unsigned int width, unsigned int height);
 	/*------------------------------------------------------
-	 * Pre  : <Base> is base filename, 
+	 * Pre  : <Base> is base filename,
 	 *        <Width> and <Height> are viewport dim
 	 *
-	 * Post : Dumps a screenshot to disk, 
+	 * Post : Dumps a screenshot to disk,
 	 *        avoids overwriting files with same base name
 	 *
 	 *-- History ------------------------------------------
@@ -222,7 +222,7 @@ class Texture
 
 	void bindMultiTexture(int texture0, int texture1);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Sets up multitexture rendering with passed texture ids
 	 *
 	 *-- History ------------------------------------------
@@ -241,13 +241,13 @@ class Texture
 	 * 2001.05.29:
 	 * Mongoose - Big code clean up, documentation
 	 *
-	 * 2000.10.05: 
+	 * 2000.10.05:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void clearFlag(TextureFlag flag);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : CLears a option flag
 	 *
 	 *-- History ------------------------------------------
@@ -258,8 +258,8 @@ class Texture
 
 	void disableMultiTexture();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -269,7 +269,7 @@ class Texture
 
 	void initSDL_TTF();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Loads SDL_TTF if avalible
 	 *
 	 *-- History ------------------------------------------
@@ -278,8 +278,8 @@ class Texture
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-   int loadBuffer(unsigned char *image, 
-						unsigned int width, unsigned int height, 
+   int loadBuffer(unsigned char *image,
+						unsigned int width, unsigned int height,
 						ColorMode mode, unsigned int bpp);
 	/*------------------------------------------------------
 	 * Pre  : image must be a valid pixmap that agrees
@@ -292,12 +292,12 @@ class Texture
 	 * 2001.05.29:
 	 * Mongoose - Big code clean up, documentation
 	 *
-	 * 2000.10.05: 
+	 * 2000.10.05:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-   int loadBufferSlot(unsigned char *image, 
-							 unsigned int width, unsigned int height, 
+   int loadBufferSlot(unsigned char *image,
+							 unsigned int width, unsigned int height,
 							 ColorMode mode, unsigned int bpp,
 							 unsigned int slot);
 	/*------------------------------------------------------
@@ -308,14 +308,14 @@ class Texture
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.09.05: 
+	 * 2002.09.05:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	int loadColorTexture(unsigned char rgba[4],
 								unsigned int width, unsigned int height);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Generates and loads a solid color texture,
 	 *        returns texture Id or -1 if failed
 	 *
@@ -325,14 +325,14 @@ class Texture
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	int loadFontTTF(char *filename, 
+	int loadFontTTF(const char *filename,
 						 unsigned int utf8Offset, unsigned int count);
 	/*------------------------------------------------------
 	 * Pre  : <Filename> of TTF font
 	 *        <Utf8Offset> is offset into UNICODE table
 	 *        <Count> is number of glyphs to load
 	 *
-	 * Post : Loads a TTF, 
+	 * Post : Loads a TTF,
 	 *        Generates: texture image, glyph list, and drawlist
 	 *
 	 *        Returns font id if sucessful, or < 0 if error
@@ -343,7 +343,7 @@ class Texture
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	int loadPNG(char *filename);
+	int loadPNG(const char *filename);
 	/*------------------------------------------------------
 	 * Pre  : Texture is init and filename/file is valid
 	 * Post : Loads PNG as texture and returns ID or -1 error
@@ -354,7 +354,7 @@ class Texture
 	 * Mongoose - Created, from Freyja
 	 ------------------------------------------------------*/
 
-	int loadTGA(char *filename);
+	int loadTGA(const char *filename);
 	/*------------------------------------------------------
 	 * Pre  : Texture is init and filename/file is valid
 	 * Post : Loads TGA as texture and returns ID or -1 error
@@ -367,7 +367,7 @@ class Texture
 
    void reset();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Resets all texture data
 	 *
 	 *-- History ------------------------------------------
@@ -375,13 +375,13 @@ class Texture
 	 * 2001.05.29:
 	 * Mongoose - Big code clean up, documentation
 	 *
-	 * 2000.10.05: 
+	 * 2000.10.05:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void setFlag(TextureFlag flag);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Sets a option flag
 	 *
 	 *-- History ------------------------------------------
@@ -393,7 +393,7 @@ class Texture
 	void setMaxTextureCount(unsigned int n);
 	/*------------------------------------------------------
 	 * Pre  : n is max number of textures you wish to allow
-	 * Post : Sets up GL texturing, and must be called 
+	 * Post : Sets up GL texturing, and must be called
 	 *        as the first setup step
 	 *
 	 *-- History ------------------------------------------
@@ -401,14 +401,14 @@ class Texture
 	 * 2001.05.29:
 	 * Mongoose - Big code clean up, documentation
 	 *
-	 * 2000.10.05: 
+	 * 2000.10.05:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	void useMultiTexture(float u, float v);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -418,8 +418,8 @@ class Texture
 
 	void useMultiTexture(float aU, float aV, float bU, float bV);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -436,8 +436,8 @@ class Texture
 
 	int nextPower(int seed);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -445,11 +445,11 @@ class Texture
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
-	unsigned char *scaleBuffer(unsigned char *image, int width, int height,	
+	unsigned char *scaleBuffer(unsigned char *image, int width, int height,
 										int components);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -465,7 +465,7 @@ class Texture
    unsigned int *mTextureIds;		/* GL texture list */
 
    unsigned int mTextureCount;	/* Texture counter */
-	
+
    unsigned int mTextureLimit;	/* The texture limit */
 
 	unsigned int mFlags;				/* Class options */
@@ -479,8 +479,8 @@ class Texture
 /* Experimental testing */
 void bufferedPrintf(char *string, unsigned int len, char *s, ...);
 
-void glPrint3d(float x, float y, float z, 
-					float pitch, float yaw, float roll, 
+void glPrint3d(float x, float y, float z,
+					float pitch, float yaw, float roll,
 					float scale,
 					char *string);
 
@@ -488,7 +488,7 @@ void glPrint2d(float x, float y, float scale, char *string);
 
 	void glEnterMode2d(unsigned int width, unsigned int height);
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : OpenGL ortho projection
 	 *
 	 *-- History ------------------------------------------
@@ -499,7 +499,7 @@ void glPrint2d(float x, float y, float scale, char *string);
 
 	void glExitMode2d();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : OpenGL model matrix projection
 	 *
 	 *-- History ------------------------------------------

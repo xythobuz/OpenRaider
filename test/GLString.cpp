@@ -37,7 +37,12 @@ void event_resize(int width, int height)
 	aspect = (GLfloat)width/(GLfloat)height;
 
 	// Mongoose 2002.01.01, Setup view volume, with a nice FOV
-	gluPerspective(40.0, aspect, 1, 2000);
+    // gluPerspective is deprecated!
+	// gluPerspective(40.0, aspect, 1, 2000);
+    // fix: http://stackoverflow.com/a/2417756
+    GLfloat fH = tan(float(40.0 / 360.0f * 3.14159f));
+    GLfloat fW = fH * aspect;
+    glFrustum(-fW, fW, -fH, fH, 1, 2000);
 
 	glMatrixMode(GL_MODELVIEW);
 }

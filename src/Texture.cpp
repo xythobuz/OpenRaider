@@ -242,7 +242,7 @@ void glPrint3d(float x, float y, float z,
 }
 
 
-int Texture::loadFontTTF(char *filename,
+int Texture::loadFontTTF(const char *filename,
 								 unsigned int utf8Offset, unsigned int count)
 {
 	ttf_texture_t *texture;
@@ -380,7 +380,7 @@ gl_font_t *Texture::generateFont(ttf_texture_t *texture)
 }
 
 
-ttf_texture_t *Texture::generateFontTexture(char *filename, int pointSize,
+ttf_texture_t *Texture::generateFontTexture(const char *filename, int pointSize,
 														  unsigned int textureWidth,
 														  unsigned char color[3],
 														  unsigned int utf8Offset,
@@ -998,7 +998,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
 }
 
 
-int Texture::loadPNG(char *filename)
+int Texture::loadPNG(const char *filename)
 {
 #ifdef USING_MTK_PNG
 	FILE *f;
@@ -1057,7 +1057,7 @@ int Texture::loadPNG(char *filename)
 }
 
 
-int Texture::loadTGA(char *filename)
+int Texture::loadTGA(const char *filename)
 {
 #ifdef USING_MTK_TGA
 	FILE *f;

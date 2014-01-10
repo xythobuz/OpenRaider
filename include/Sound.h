@@ -57,7 +57,7 @@ public:
      * \param flags (un)set options. Use SoundFlags enum
      * \returns 0 for no error or < 0 error flag
      */
-    int addFile(char *filename, int *source, unsigned int flags);
+    int addFile(const char *filename, int *source, unsigned int flags);
 
     /*!
      * \brief Load wav file from buffer

@@ -111,7 +111,7 @@ void Sound::sourceAt(int source, float pos[3])
 
 
 //! \fixme Seperate sourcing and buffering, Mongoose 2002.01.04
-int Sound::addFile(char *filename, int *source, unsigned int flags)
+int Sound::addFile(const char *filename, int *source, unsigned int flags)
 {
 #ifdef USING_OPENAL
    ALsizei size;
