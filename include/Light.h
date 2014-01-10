@@ -38,29 +38,6 @@ class Light
 	} FreyjaLightType;
 
 
-	Light();
-	/*------------------------------------------------------
-	 * Pre  :
-	 * Post : Constructs an object of Light
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.01.27:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-	~Light();
-	/*------------------------------------------------------
-	 * Pre  : Light object is allocated
-	 * Post : Deconstructs an object of Light
-	 *
-	 *-- History ------------------------------------------
-	 *
-	 * 2002.01.27:
-	 * Mongoose - Created
-	 ------------------------------------------------------*/
-
-
 	float mAmbient[4];          /* Ambient color */
 
 	float mDiffuse[4];          /* Diffuse color */

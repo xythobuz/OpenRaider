@@ -180,7 +180,6 @@ OBJS = \
 	$(BUILDDIR)/Camera.o \
 	$(BUILDDIR)/Emitter.o \
 	$(BUILDDIR)/GLString.o \
-	$(BUILDDIR)/Light.o \
 	$(BUILDDIR)/MatMath.o \
 	$(BUILDDIR)/Matrix.o \
 	$(BUILDDIR)/mtk_tga.o \
