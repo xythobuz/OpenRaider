@@ -21,6 +21,9 @@
 
 #include <SkeletalModel.h>
 
+#ifdef MEMORY_TEST
+#include <memory_test.h>
+#endif
 
 ////////////////////////////////////////////////////////////
 // Constructors

@@ -8,6 +8,8 @@
 	[ 20140111 ]
 	* Only one way of conversion between Deg and Rad in MatMath
 	* Use the same style of include guards in all headers
+	* Added memory test to SkeletalModel. Adding to OpenGLMesh causes
+	  a segfault on launch
 
 	[ 20140110 ]
 	* Removed endian.(h/cpp) as it shouldn't be needed. See:
