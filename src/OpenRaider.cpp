@@ -3296,8 +3296,8 @@ void OpenRaider::consoleCommand(char *cmd)
 				print(true, "Room %2i  Pos %.0f %.0f %.0f  Yaw %.0f  Pitch %.0f",
 						LARA->room,
 						LARA->pos[0], LARA->pos[1], LARA->pos[2],
-						helRadToDeg(LARA->angles[1]),
-						helRadToDeg(LARA->angles[2]));
+						HEL_RAD_TO_DEG(LARA->angles[1]),
+						HEL_RAD_TO_DEG(LARA->angles[2]));
 			}
 		}
 		else if (rc_command("room", cmd))

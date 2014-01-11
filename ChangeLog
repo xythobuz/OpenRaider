@@ -5,6 +5,10 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140111 ]
+	* Only one way of conversion between Deg and Rad in MatMath
+	* Use the same style of include guards in all headers
+
 	[ 20140110 ]
 	* Removed endian.(h/cpp) as it shouldn't be needed. See:
 	  http://commandcenter.blogspot.de/2012/04/byte-order-fallacy.html

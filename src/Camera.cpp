@@ -55,8 +55,8 @@ Camera::Camera()
 	mFlags = 0;
 	mViewDistance = 14.0;
 	mTranslateDelta = 256.0;
-	mRotateDelta = helDegToRad(15.0);
- 	mRotateDelta2 = helDegToRad(5.0);
+	mRotateDelta = HEL_DEG_TO_RAD(15.0);
+ 	mRotateDelta2 = HEL_DEG_TO_RAD(5.0);
 	mFlags &= Camera_FlyMode;
 	reset();
 }
@@ -103,7 +103,7 @@ void Camera::getTarget(vec3_t target)
 
 float Camera::getYaw()
 {
-	return helRadToDeg(mTheta);
+	return HEL_RAD_TO_DEG(mTheta);
 }
 
 
@@ -231,13 +231,13 @@ void Camera::reset()
 
 void Camera::setSensitivityY(float angle)
 {
-	mRotateDelta2 = helDegToRad(angle);
+	mRotateDelta2 = HEL_DEG_TO_RAD(angle);
 }
 
 
 void Camera::setSensitivityX(float angle)
 {
-	mRotateDelta = helDegToRad(angle);
+	mRotateDelta = HEL_DEG_TO_RAD(angle);
 }
 
 

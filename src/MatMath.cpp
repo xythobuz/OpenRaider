@@ -7,8 +7,6 @@
 #include <Vector3d.h>
 #include <Matrix.h>
 
-#define COMPUTE
-
 bool tmpHelSphereIntersectLine(Vector3d pos, Vector3d lastPos,
 										 Vector3d center, vec_t radius)
 {
@@ -288,27 +286,5 @@ vec_t helNorm2v(vec2_t v)
 vec_t helRandomNum(vec_t from, vec_t to)
 {
 	return from + (to*rand()/(RAND_MAX+1.0));
-}
-
-
-vec_t helDegToRad(vec_t degrees)
-{
-#ifdef COMPUTE
-	return ((degrees / 180.0) * HEL_PI);
-#else
-	// degrees * (180.0 / PI);
-	return (degrees * HEL_180_OVER_PI);
-#endif
-}
-
-
-vec_t helRadToDeg(vec_t rad)
-{
-#ifdef COMPUTE
-	return ((rad / HEL_PI) * 180.0);
-#else
-	// rad * (PI / 180.0);
-	return (rad * HEL_PI_OVER_180);
-#endif
 }
 

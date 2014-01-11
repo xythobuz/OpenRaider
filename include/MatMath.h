@@ -104,28 +104,6 @@ void helMidpoint3v(vec3_t a, vec3_t b, vec3_t mid);
  ------------------------------------------------------*/
 
 
-vec_t helDegToRad(vec_t degrees);
-/*------------------------------------------------------
- * Pre  : Given angle in degrees
- * Post : Returns angle in radians
- *
- *-- History ------------------------------------------
- *
- * 1999.06.14:
- * Mongoose - Created, from mtk3d
- ------------------------------------------------------*/
-
-vec_t helRadToDeg(vec_t rad);
-/*------------------------------------------------------
- * Pre  : Given angle in radians
- * Post : Returns angle in degrees
- *
- *-- History ------------------------------------------
- *
- * 1999.06.14:
- * Mongoose - Created, from mtk3d
- ------------------------------------------------------*/
-
 vec_t helRandomNum(vec_t from, vec_t to);
 
 #endif
