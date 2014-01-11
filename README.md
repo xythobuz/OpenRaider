@@ -77,6 +77,8 @@ The included example Font, [Droid Sans Mono](http://www.droidfonts.com/licensing
 
 The included sample WAV file is made from the [Falling Mate ringtone](http://brechler-web.de/fallingmate/) by [Plaetzchen](http://plaetzchen.cc).
 
+The included Unit Test Framework [greatest](https://github.com/silentbicycle/greatest/) by Scott Vokes is licensed under the [ISC License](http://www.isc.org/downloads/software-support-policy/isc-license/).
+
 OpenRaider is based on code, specs, and alogrithms from:
 
 + GooseEgg/Freyja 3d Modelers by Mongoose

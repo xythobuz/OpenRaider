@@ -6,35 +6,42 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <mtk_tga.h>
-
 #include "greatest.h"
 
-#define TESTFILE "data/font-0.tga"
-FILE *f = NULL;
+//! \todo generate list?
+const char *testFiles[] = {
+    "data/font-0.tga",
+    "data/particle.tga",
+    "data/snow.tga",
+    "data/snow2.tga",
+    "data/splash.tga",
+    "data/white.tga"
+};
 
-TEST checkFile() {
-    ASSERTm("File wasn't opened. Please run the suite!", f != NULL);
+TEST checkFile(FILE *f) {
+    ASSERTm("File wasn't opened.", f != NULL);
     ASSERT_FALSEm("File is invalid?!", mtk_image__tga_check(f));
     PASS();
 }
 
-TEST loadFile() {
+TEST loadFile(FILE *f) {
     unsigned char *image;
     unsigned int width, height;
     char type;
-    ASSERTm("File wasn't opened. Please run the suite!", f != NULL);
+    ASSERTm("File wasn't opened.", f != NULL);
     ASSERT_FALSEm("File couldn't be loaded!", mtk_image__tga_load(f, &image, &width, &height, &type));
     printf("\nWidth: %u\nHeight: %u\nType: %d\n", width, height, type);
     PASS();
 }
 
 SUITE(tgaSuite) {
-    f = fopen(TESTFILE, "r");
-    RUN_TEST(checkFile);
-    RUN_TEST(loadFile);
-    fclose(f);
+    for (int i = 0; i < (sizeof(testFiles) / sizeof(testFiles[0])); i++) {
+        FILE *f = fopen(testFiles[i], "r");
+        RUN_TESTp(checkFile, f);
+        RUN_TESTp(loadFile, f);
+        fclose(f);
+    }
 }
 
 GREATEST_MAIN_DEFS();

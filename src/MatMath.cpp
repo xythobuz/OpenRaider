@@ -9,22 +9,6 @@
 
 #define COMPUTE
 
-void helVectorMatrixMult4dv(double v[4], matrix_t m, double result[4])
-{
-	/* Column major */
-	result[0] = m[ 0] * v[0] + m[ 4] * v[1] + m[ 8] * v[2] + m[12] * v[3];
-	result[1] = m[ 1] * v[0] + m[ 5] * v[1] + m[ 9] * v[2] + m[13] * v[3];
-	result[2] = m[ 2] * v[0] + m[ 6] * v[1] + m[10] * v[2] + m[14] * v[3];
-	result[3] = m[ 3] * v[0] + m[ 7] * v[1] + m[11] * v[2] + m[15] * v[3];
-
-	/* Row major */
-   //result[0] = m[ 0] * v[0] + m[ 1] * v[1] + m[ 2] * v[2] + m[ 3] * v[3];
-	//result[1] = m[ 4] * v[0] + m[ 5] * v[1] + m[ 6] * v[2] + m[ 7] * v[3];
-	//result[2] = m[ 8] * v[0] + m[ 9] * v[1] + m[10] * v[2] + m[11] * v[3];
-	//result[3] = m[12] * v[0] + m[13] * v[1] + m[14] * v[2] + m[15] * v[3];
-}
-
-
 bool tmpHelSphereIntersectLine(Vector3d pos, Vector3d lastPos,
 										 Vector3d center, vec_t radius)
 {

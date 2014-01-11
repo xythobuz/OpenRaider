@@ -17,6 +17,12 @@
 #ifndef GREATEST_H
 #define GREATEST_H
 
+#ifdef __cplusplus
+#define __STDC_VERSION__ 19901L
+extern "C"
+{
+#endif
+
 #define GREATEST_VERSION_MAJOR 0
 #define GREATEST_VERSION_MINOR 9
 #define GREATEST_VERSION_PATCH 3
@@ -295,13 +301,13 @@ void GREATEST_SET_TEARDOWN_CB(greatest_teardown_cb *cb, void *udata);
         }                                                               \
         greatest_info.msg = NULL;                                       \
     } while (0)
-        
+
 #define GREATEST_PASSm(MSG)                                             \
     do {                                                                \
         greatest_info.msg = MSG;                                        \
         return 0;                                                       \
     } while (0)
-        
+
 #define GREATEST_FAILm(MSG)                                             \
     do {                                                                \
         greatest_info.fail_file = __FILE__;                             \
@@ -587,5 +593,9 @@ greatest_run_info greatest_info
 #endif /* C99 */
 #define RUN_TESTp      GREATEST_RUN_TESTp
 #endif /* USE_ABBREVS */
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

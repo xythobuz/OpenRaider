@@ -1,19 +1,19 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : Freyja
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
- * Object  : 
+ * Object  :
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.05.11:
  * Mongoose - Created
@@ -83,7 +83,7 @@ vec_t helDistToBboxFromPlane3v(vec3_t min, vec3_t max, vec4_t plane);
 
 vec_t helDist3v(vec3_t a, vec3_t b);
 /*------------------------------------------------------
- * Pre  : Given point A and B 
+ * Pre  : Given point A and B
  * Post : Returns length of line segment
  *
  *-- History ------------------------------------------
@@ -94,7 +94,7 @@ vec_t helDist3v(vec3_t a, vec3_t b);
 
 void helMidpoint3v(vec3_t a, vec3_t b, vec3_t mid);
 /*------------------------------------------------------
- * Pre  : Given point A and B 
+ * Pre  : Given point A and B
  * Post : Returns midpoint of line segment
  *
  *-- History ------------------------------------------
@@ -128,6 +128,4 @@ vec_t helRadToDeg(vec_t rad);
 
 vec_t helRandomNum(vec_t from, vec_t to);
 
-/* Some cruft for ye olde mtk3d compatibility */
-void helVectorMatrixMult4dv(double v[4], matrix_t m, double result[4]);
 #endif
