@@ -31,7 +31,7 @@ UNAME=$(shell uname -s)
 
 BASE_DEFS=$(shell sdl-config --cflags) -Iinclude -DSDL_INTERFACE \
 	-DUSING_OPENGL -DZLIB_SUPPORT -DUSING_EMITTER \
-	-DUSING_OPENAL -DUSING_MTK_TGA -DUSING_PTHREADS \
+	-DUSING_OPENAL -DUSING_TGA -DUSING_PTHREADS \
 	-DHAVE_SDL_TTF
 
 BASE_LIBS=$(shell sdl-config --libs) -lz -lstdc++ \
@@ -182,7 +182,7 @@ OBJS = \
 	$(BUILDDIR)/GLString.o \
 	$(BUILDDIR)/MatMath.o \
 	$(BUILDDIR)/Matrix.o \
-	$(BUILDDIR)/mtk_tga.o \
+	$(BUILDDIR)/tga.o \
 	$(BUILDDIR)/Network.o \
 	$(BUILDDIR)/OpenGLMesh.o \
 	$(BUILDDIR)/OpenRaider.o \
@@ -297,7 +297,7 @@ TombRaider.test:
 	@-mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
 	$(MAKE) targets NAME=TombRaider.test BUILDDIR=$(BUILD_TEST_DIR) \
-	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/mtk_tga.o $(BUILD_TEST_DIR)/memory_test.o" \
+	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/tga.o $(BUILD_TEST_DIR)/memory_test.o" \
 	CFLAGS="$(BASE_CFLAGS) -g $(TR_FLAGS)" \
 	LD_FLAGS="-lz -lstdc++"
 
@@ -371,7 +371,7 @@ Sound.test:
 TGA.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(TEST_FLAGS) \
-		src/mtk_tga.cpp test/mtk_tga.cpp -o $(BUILD_TEST_DIR)/TGA.test
+		src/tga.cpp test/tga.cpp -o $(BUILD_TEST_DIR)/TGA.test
 
 #################################################################
 

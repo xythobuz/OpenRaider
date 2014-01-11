@@ -1,12 +1,12 @@
 /*!
- * \file test/mtk_tga.cpp
+ * \file test/tga.cpp
  * \brief The TGA reader Unit Test
  *
  * \author xythobuz
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <mtk_tga.h>
+#include <tga.h>
 #include "greatest.h"
 
 //! \todo generate list?

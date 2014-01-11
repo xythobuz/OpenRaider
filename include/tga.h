@@ -19,8 +19,8 @@
  * Mongoose - Created
  ================================================================*/
 
-#ifndef _MTK_TGA_H
-#define _MTK_TGA_H
+#ifndef _TGA_H
+#define _TGA_H
 
 #include <stdio.h>
 

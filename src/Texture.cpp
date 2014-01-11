@@ -1,7 +1,7 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*==========================================================================
  *
- * Project : MTK, Freyja, OpenRaider
+ * Project : Freyja, OpenRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440
  * Email   : stu7440@westga.edu
@@ -37,12 +37,12 @@
 #include <memory_test.h>
 #endif
 
-#ifdef USING_MTK_TGA
-#include <mtk_tga.h>
+#ifdef USING_TGA
+#include <tga.h>
 #endif
 
-#ifdef USING_MTK_PNG
-#include <mtk_png.h>
+#ifdef USING_PNG
+#include <png.h>
 #endif
 
 #ifdef HAVE_SDL_TTF
@@ -831,7 +831,7 @@ void Texture::bindTextureId(unsigned int n)
 
 void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
 {
-#ifdef USING_MTK_PNG
+#ifdef USING_PNG
   FILE *f;
   int sz = width*height;
   unsigned char *image = new unsigned char[sz*3];
@@ -1002,7 +1002,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
 
 int Texture::loadPNG(const char *filename)
 {
-#ifdef USING_MTK_PNG
+#ifdef USING_PNG
 	FILE *f;
 	unsigned char *image = NULL;
 	unsigned char *image2 = NULL;
@@ -1053,7 +1053,7 @@ int Texture::loadPNG(const char *filename)
 
 	return id;
 #else
-	printf("ERROR: MTK PNG support not enabled in this build\n");
+	printf("ERROR: PNG support not enabled in this build\n");
 	return -1;
 #endif
 }
@@ -1061,7 +1061,7 @@ int Texture::loadPNG(const char *filename)
 
 int Texture::loadTGA(const char *filename)
 {
-#ifdef USING_MTK_TGA
+#ifdef USING_TGA
 	FILE *f;
 	unsigned char *image = NULL;
 	unsigned char *image2 = NULL;
@@ -1109,7 +1109,7 @@ int Texture::loadTGA(const char *filename)
 
 	return id;
 #else
-	printf("ERROR: MTK TGA support not enabled in this build\n");
+	printf("ERROR: TGA support not enabled in this build\n");
 	return -1;
 #endif
 }

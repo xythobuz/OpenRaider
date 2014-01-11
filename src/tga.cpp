@@ -27,7 +27,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include <mtk_tga.h>
+#include <tga.h>
 
 #ifdef DEBUG_MEMORY
 #include <memory_test.h>
