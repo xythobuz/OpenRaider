@@ -1,4 +1,10 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
+/*!
+ *
+ * \file src/MatMath.cpp
+ * \brief Vector and Matrix math
+ *
+ * \author Mongoose
+ */
 
 #include <stdlib.h>
 #include <math.h>
@@ -122,7 +128,7 @@ int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius,
 
 int helIntersectionLineAndPolygon(vec3_t intersect,
 											 vec3_t p1, vec3_t p2,
-											 unsigned int vertexCount, vec3_t *ploygon)
+											 unsigned int vertexCount, vec3_t *polygon)
 {
 	//	vec3_t normal, a, b;
 	Vector3d a, b, normal, pA, pB;
@@ -134,22 +140,22 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
 	pB = Vector3d(p2);
 
 	// Find normal
-	//mtkVectorSubtract(ploygon[1], ploygon[0], a);
-	a = Vector3d(ploygon[1]) - Vector3d(ploygon[0]);
-	//mtkVectorSubtract(ploygon[2], ploygon[0], b);
-	b = Vector3d(ploygon[2]) - Vector3d(ploygon[0]);
+	//mtkVectorSubtract(polygon[1], polygon[0], a);
+	a = Vector3d(polygon[1]) - Vector3d(polygon[0]);
+	//mtkVectorSubtract(polygon[2], polygon[0], b);
+	b = Vector3d(polygon[2]) - Vector3d(polygon[0]);
 	normal = Vector3d::cross(a, b);
 	//mtkVectorCrossProduct(a, b, normal);
 	normal.normalize();
 	//mtkVectorNormalize(normal, normal);
 
 	// find D
-	//d = (normal[0] * ploygon[0][0] -
-	//	  normal[1] * ploygon[0][1] -
-	//	  normal[2] * ploygon[0][2]);
-	d = (normal.mVec[0] * ploygon[0][0] -
-		  normal.mVec[1] * ploygon[0][1] -
-		  normal.mVec[2] * ploygon[0][2]);
+	//d = (normal[0] * polygon[0][0] -
+	//	  normal[1] * polygon[0][1] -
+	//	  normal[2] * polygon[0][2]);
+	d = (normal.mVec[0] * polygon[0][0] -
+		  normal.mVec[1] * polygon[0][1] -
+		  normal.mVec[2] * polygon[0][2]);
 
 	// line segment parallel to plane?
 	//mtkVectorSubtract(p2, p1, a); // cache p2 - p1 => a
@@ -182,11 +188,11 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
 
 	// See if the intercept is bound by polygon by winding number
 #ifdef WINDING_NUMBERS_TRIANGLE
-	mtkVectorSubtract(ploygon[0], intersect, a);
+	mtkVectorSubtract(polygon[0], intersect, a);
 	mtkVectorNormalize(a, a);
-	mtkVectorSubtract(ploygon[1], intersect, b);
+	mtkVectorSubtract(polygon[1], intersect, b);
 	mtkVectorNormalize(b, b);
-	mtkVectorSubtract(ploygon[2], intersect, c);
+	mtkVectorSubtract(polygon[2], intersect, c);
 	mtkVectorNormalize(c, c);
 
 	t0 = mtkVectorDotProduct(a, b);
@@ -198,9 +204,9 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
 	if (total - 360 < 0.0)
 		return 0;
 #else // assume convex polygons here for sure
-	//mtkVectorSubtract(intersect, ploygon[0], a);
+	//mtkVectorSubtract(intersect, polygon[0], a);
 	//theta = mtkVectorDotProduct(a, normal);
-	theta = Vector3d::dot(b - Vector3d(ploygon[0]), normal); // b = intersect
+	theta = Vector3d::dot(b - Vector3d(polygon[0]), normal); // b = intersect
 
 	if (theta >= 90.0) // Yeah I know
 		return 0;
@@ -285,6 +291,6 @@ vec_t helNorm2v(vec2_t v)
 
 vec_t helRandomNum(vec_t from, vec_t to)
 {
-	return from + (to*rand()/(RAND_MAX+1.0));
+	return from + ((to - from) * rand() / (RAND_MAX + 1.0));
 }
 

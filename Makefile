@@ -365,9 +365,6 @@ Sound.test:
 	$(CC) $(TEST_FLAGS) \
 		-DUSING_OPENAL $(AUDIO_LIBS) $(AUDIO_DEFS) \
 		src/Sound.cpp test/Sound.cpp -o $(BUILD_TEST_DIR)/Sound.test
-ifeq ($(UNAME),Darwin)
-	install_name_tool -change libalut.0.1.0.dylib /opt/local/lib/libalut.0.1.0.dylib $(BUILD_TEST_DIR)/Sound.test
-endif
 
 #################################################################
 

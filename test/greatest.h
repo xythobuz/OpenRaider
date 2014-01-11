@@ -1,6 +1,9 @@
 /*
  * Copyright (c) 2011 Scott Vokes <vokes.s@gmail.com>
  *
+ * Modified 2014 by Thomas Buck <xythobuz@xythobuz.de>
+ * --> C++ support
+ *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
  * copyright notice and this permission notice appear in all copies.
@@ -18,7 +21,7 @@
 #define GREATEST_H
 
 #ifdef __cplusplus
-#define __STDC_VERSION__ 19901L
+#define __STDC_VERSION__ 19901L // C++ compilers support var args
 extern "C"
 {
 #endif
