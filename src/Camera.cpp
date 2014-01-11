@@ -265,32 +265,12 @@ void Camera::command(enum camera_command cmd)
 	  mPos[1] -= (mTranslateDelta * sin(mTheta2));
 	  break;
   case CAMERA_MOVE_LEFT:
-#ifdef OBSOLETE
-	  //mPos[0] -= (mTranslateDelta * sin(mTheta2+MTK_PI_OVER_4));
-	  mPos[1] -= (mTranslateDelta * cos(mTheta));
-
-	  if (mFlags & Camera_FlyMode)
-	  {
-		  mPos[2] -= (mTranslateDelta * cos(mTheta2+MTK_PI_OVER_4));
-	  }
-#else
 	  mPos[0] -= (mTranslateDelta * sin(mTheta - 90.0f));
 	  mPos[2] -= (mTranslateDelta * cos(mTheta - 90.0f));
-#endif
 	  break;
   case CAMERA_MOVE_RIGHT:
-#ifdef OBSOLETE  // I have no idea when it got out of hand
-	  //mPos[0] += (mTranslateDelta * sin(mTheta2+MTK_PI_OVER_4));
-	  mPos[1] += (mTranslateDelta * cos(mTheta));
-
-	  if (mFlags & Camera_FlyMode)
-	  {
-		  mPos[2] += (mTranslateDelta * cos(mTheta2+MTK_PI_OVER_4));
-	  }
-#else
 	  mPos[0] -= (mTranslateDelta * sin(mTheta + 90.0f));
 	  mPos[2] -= (mTranslateDelta * cos(mTheta + 90.0f));
-#endif
 	  break;
  case CAMERA_ROTATE_UP:
      if (mTheta2 < (M_PI / 2)) {

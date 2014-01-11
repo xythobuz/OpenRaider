@@ -6,15 +6,16 @@
  * \author Mongoose
  */
 
+#include <math.h>
+
 #ifndef _MATMATH_H
 #define _MATMATH_H
 
-#define HEL_PI           3.14159265358979323846 //!< pi
-#define HEL_PI_OVER_2    1.57079632679489661923 //!< pi/2
-#define HEL_2_PI         6.28318530717958647692 //!< pi*2
-#define HEL_PI_OVER_4    0.78539816339744830962 //!< pi/4
-#define HEL_PI_OVER_180  0.017453292519943295   //!< pi/180
-#define HEL_180_OVER_PI  57.295779513082323     //!< 180/pi
+#define HEL_PI           M_PI //!< pi
+#define HEL_2_PI         (M_PI * 2.0) //!< pi*2
+#define HEL_PI_OVER_4    M_PI_4 //!< pi/4
+#define HEL_PI_OVER_180  (M_PI / 180.0) //!< pi/180
+#define HEL_180_OVER_PI  (180.0 / M_PI) //!< 180/pi
 
 #define HEL_RAD_TO_DEG(x) ((x) * HEL_180_OVER_PI) //!< Convert radians to degrees
 #define HEL_DEG_TO_RAD(x) ((x) * HEL_PI_OVER_180) //!< Convert degrees to radians

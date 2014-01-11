@@ -21,7 +21,6 @@ vec_t testBounds[][2] = {
 
 TEST constants() {
     ASSERT_EQm("Pi not correct!", HEL_PI, M_PI);
-    ASSERT_EQm("Pi/2 not correct!", HEL_PI_OVER_2, (M_PI / 2.0));
     ASSERT_EQm("2Pi not correct!", HEL_2_PI, (M_PI * 2.0));
     ASSERT_EQm("Pi/4 not correct!", HEL_PI_OVER_4, (M_PI / 4.0));
     ASSERT_EQm("Pi/180 not correct!", HEL_PI_OVER_180, (M_PI / 180.0));
