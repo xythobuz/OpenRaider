@@ -252,21 +252,12 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 	}
 
 	extern char *gFontFilename;
-	if (mTexture.loadFontTTF(gFontFilename,
+	if ((font_id = mTexture.loadFontTTF(gFontFilename,
 									  //0x303f, 0x3093-0x303f)) // Hiragana
-									  32, 126 - 32)  // ASCII
+									  32, 126 - 32))  // ASCII
 		 > -1)
 	{
 		++numTextures;
-	}
-
-	snprintf(filename, 126, "%s%s", textureDir, "font-0.tga");
-	filename[127] = 0;
-
-	if ((font_id = mTexture.loadTGA(filename)) > -1)
-	{
-		++numTextures;
-        printf("Loaded TGA Font into %d\n", font_id);
 	}
 
 	// Werid that it isn't linear, must be some storage deal in Texture

@@ -11,7 +11,6 @@
 
 //! \todo generate list?
 const char *testFiles[] = {
-    "data/font-0.tga",
     "data/particle.tga",
     "data/snow.tga",
     "data/snow2.tga",

@@ -6,6 +6,8 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140111 ]
+	* Rewrote GLString Unit Test, now using TTF Font
+	* Removed included TGA font and loading code
 	* Rewrote Matrix Unit Test now using greatest
 	* Documented MatMath, fixed bug in helRandomNum(),
 	  added better Unit Test
