@@ -21,8 +21,8 @@
  ================================================================*/
 
 
-#ifndef __FREYJA_MONGOOSE_LIST_H_
-#define __FREYJA_MONGOOSE_LIST_H_
+#ifndef _LIST_H_
+#define _LIST_H_
 
 #include <stdlib.h>
 #include <limits.h>

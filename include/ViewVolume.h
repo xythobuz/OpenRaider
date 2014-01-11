@@ -24,8 +24,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__HEL_MONGOOSE_VIEWVOLUME_H_
-#define GUARD__HEL_MONGOOSE_VIEWVOLUME_H_
+#ifndef _VIEWVOLUME_H_
+#define _VIEWVOLUME_H_
 
 #include <Matrix.h>
 #include <BoundingVolume.h>

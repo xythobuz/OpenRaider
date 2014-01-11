@@ -25,8 +25,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__LIBHEL_MONGOOSE_BOUNDINGVOLUME_H_
-#define GUARD__LIBHEL_MONGOOSE_BOUNDINGVOLUME_H_
+#ifndef _BOUNDINGVOLUME_H_
+#define _BOUNDINGVOLUME_H_
 
 #include <MatMath.h>
 

@@ -20,8 +20,8 @@
  ================================================================*/
 
 
-#ifndef __FREYJA_MONGOOSE_MATH_H
-#define __FREYJA_MONGOOSE_MATH_H
+#ifndef _MATMATH_H
+#define _MATMATH_H
 
 #define HEL_PI           3.14159265358979323846  /* pi */
 #define HEL_PI_OVER_2    1.57079632679489661923  /* pi/2 */

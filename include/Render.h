@@ -20,8 +20,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__RENDER_MONGOOSE_RENDER_H_
-#define GUARD__RENDER_MONGOOSE_RENDER_H_
+#ifndef _RENDER_H_
+#define _RENDER_H_
 
 #include <List.h>
 #include <Vector.h>

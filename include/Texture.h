@@ -29,8 +29,8 @@
  ==========================================================================*/
 
 
-#ifndef __MTK_MONGOOSE_MTKTEXTURE_H
-#define __MTK_MONGOOSE_MTKTEXTURE_H
+#ifndef _TEXTURE_H
+#define _TEXTURE_H
 
 #include <stdio.h>
 

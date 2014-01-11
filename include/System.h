@@ -8,8 +8,8 @@
  * \author xythobuz
  */
 
-#ifndef GUARD__UNRAIDER_MONGOOSE_SYSTEM_H_
-#define GUARD__UNRAIDER_MONGOOSE_SYSTEM_H_
+#ifndef _SYSTEM_H_
+#define _SYSTEM_H_
 
 #include <Map.h>
 #include <Vector.h>

@@ -20,8 +20,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__UNRAIDER_MONGOOSE_SDLSYSTEM_H_
-#define GUARD__UNRAIDER_MONGOOSE_SDLSYSTEM_H_
+#ifndef _SDLSYSTEM_H_
+#define _SDLSYSTEM_H_
 
 #ifdef SDL_INTERFACE
 #   include <SDL/SDL.h>

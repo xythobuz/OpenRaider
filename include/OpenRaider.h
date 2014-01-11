@@ -23,8 +23,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__OPENRAIDER_MONGOOSE_OPENRAIDER_H_
-#define GUARD__OPENRAIDER_MONGOOSE_OPENRAIDER_H_
+#ifndef _OPENRAIDER_H_
+#define _OPENRAIDER_H_
 
 
 #include <List.h>

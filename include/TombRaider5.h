@@ -1,19 +1,22 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
- * Object  : 
+ * Object  :
  * License : GPL, also (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
- *-- History ------------------------------------------------ 
+ *-- History ------------------------------------------------
  *
  * 2002.04.04:
  * Mongoose - Created, based on work by ? ( one of the TRE guys )
  ================================================================*/
+
+#ifndef _TOMBRAIDER5_H_
+#define _TOMBRAIDER5_H_
 
 typedef enum
 {
@@ -484,3 +487,5 @@ typedef enum
 		TR4_OBJ_MISC_SPRITES = 464
 
 } tr4_objects_t;
+
+#endif

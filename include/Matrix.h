@@ -24,8 +24,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__FREYJA_MONGOOSE_MATRIX_H_
-#define GUARD__FREYJA_MONGOOSE_MATRIX_H_
+#ifndef _MATRIX_H_
+#define _MATRIX_H_
 
 
 #include <MatMath.h>

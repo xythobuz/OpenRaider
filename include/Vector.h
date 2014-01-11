@@ -21,8 +21,8 @@
  ================================================================*/
 
 
-#ifndef __FREYJA_MONGOOSE_VECTOR_H_
-#define __FREYJA_MONGOOSE_VECTOR_H_
+#ifndef _VECTOR_H_
+#define _VECTOR_H_
 
 #include <stdlib.h>
 #include <stdio.h>

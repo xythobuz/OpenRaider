@@ -35,8 +35,8 @@
  ================================================================*/
 
 
-#ifndef __HEL_MONGOOSE_CAMERA_H_
-#define __HEL_MONGOOSE_CAMERA_H_
+#ifndef _CAMERA_H_
+#define _CAMERA_H_
 
 #include <MatMath.h>
 #include <Matrix.h>

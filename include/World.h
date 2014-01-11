@@ -24,8 +24,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__OPENRAIDER_MONGOOSE_WORLD_H_
-#define GUARD__OPENRAIDER_MONGOOSE_WORLD_H_
+#ifndef _WORLD_H_
+#define _WORLD_H_
 
 #define BAD_BLOOD  // For temp rendering use
 

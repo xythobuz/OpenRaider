@@ -24,8 +24,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__HEL_MONGOOSE_QUATERNION_H_
-#define GUARD__HEL_MONGOOSE_QUATERNION_H_
+#ifndef _QUATERNION_H_
+#define _QUATERNION_H_
 
 #include <MatMath.h>
 

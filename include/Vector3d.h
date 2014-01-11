@@ -24,8 +24,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__HEL_MONGOOSE_VECTOR3D_H_
-#define GUARD__HEL_MONGOOSE_VECTOR3D_H_
+#ifndef _VECTOR3D_H_
+#define _VECTOR3D_H_
 
 
 #include <MatMath.h>

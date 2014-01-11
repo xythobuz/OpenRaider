@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : OpenRaider
  * Author  : Mongoose
  * Website : http://www.westga.edu/~stu7440/
@@ -9,17 +9,17 @@
  * License : GPL, See file COPYING for details
  * Comments: Loads TR 1 states and etc
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * Mongoose - Created, based on:
  *                TR Rosetta Stone ( TombRaider pak format specs )
  ================================================================*/
 
-#ifndef __OPENRAIDER_MONGOOSE_TOMBRAIDER1_H_
-#define __OPENRAIDER_MONGOOSE_TOMBRAIDER1_H_
+#ifndef _TOMBRAIDER1_H_
+#define _TOMBRAIDER1_H_
 
 
 class TombRaider1
@@ -30,7 +30,7 @@ public:
 
 	~TombRaider1();
 
-	enum Items 
+	enum Items
    {
 		Lara = 0,
 		PistolAnimation  = 1,

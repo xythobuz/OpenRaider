@@ -1,27 +1,27 @@
 /* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
 /*================================================================
- * 
+ *
  * Project : UnRaider
  * Author  : Terry 'Mongoose' Hendrix II
  * Website : http://www.westga.edu/~stu7440/
  * Email   : stu7440@westga.edu
  * Object  : Network
  * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 
+ * Comments:
  *
  *
- *           This file was generated using Mongoose's C++ 
+ *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
- * 
- *-- History ------------------------------------------------ 
+ *
+ *-- History ------------------------------------------------
  *
  * 2002.06.21:
  * Mongoose - Created
  ================================================================*/
 
 
-#ifndef __UNRAIDER_MONGOOSE_NETWORK_H_
-#define __UNRAIDER_MONGOOSE_NETWORK_H_
+#ifndef _NETWORK_H_
+#define _NETWORK_H_
 
 /*----------------------------------------------
  * The packet holds the data for the network
@@ -86,13 +86,13 @@ class Network
 
 	static Network *Instance();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs the object of Network or
 	 *        returns pointer to it if previously allocated
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2001.08.24: 
+	 * 2001.08.24:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
@@ -103,18 +103,18 @@ class Network
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.06.21: 
+	 * 2002.06.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 
 	////////////////////////////////////////////////////////////
 	// Public Accessors
 	////////////////////////////////////////////////////////////
-	
+
 	network_frame_t &getPiggyBack();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -124,8 +124,8 @@ class Network
 
 	unsigned int getUID();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -135,8 +135,8 @@ class Network
 
 	float getRandom(float from, float to);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -146,8 +146,8 @@ class Network
 
 	int getPort();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -161,8 +161,8 @@ class Network
 
 	void setDebug(bool toggle);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -172,8 +172,8 @@ class Network
 
 	void setPort(unsigned int port);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -183,8 +183,8 @@ class Network
 
 	void setBindHost(char *s);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -194,8 +194,8 @@ class Network
 
 	void setRemoteHost(char *s);
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -205,8 +205,8 @@ class Network
 
 	void killServerThread();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -216,8 +216,8 @@ class Network
 
 	void killClientThread();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -227,8 +227,8 @@ class Network
 
 	void spawnServerThread();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -238,8 +238,8 @@ class Network
 
 	void spawnClientThread();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -249,8 +249,8 @@ class Network
 
 	int runServer();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -260,8 +260,8 @@ class Network
 
 	void runClient();
 	/*------------------------------------------------------
-	 * Pre  : 
-	 * Post : 
+	 * Pre  :
+	 * Post :
 	 *
 	 *-- History ------------------------------------------
 	 *
@@ -277,12 +277,12 @@ class Network
 
 	Network();
 	/*------------------------------------------------------
-	 * Pre  : 
+	 * Pre  :
 	 * Post : Constructs an object of Network
 	 *
 	 *-- History ------------------------------------------
 	 *
-	 * 2002.06.21: 
+	 * 2002.06.21:
 	 * Mongoose - Created
 	 ------------------------------------------------------*/
 

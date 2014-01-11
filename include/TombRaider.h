@@ -66,8 +66,8 @@
  *                TR Rosetta Stone ( TombRaider pak format specs )
  ================================================================*/
 
-#ifndef __OPENRAIDER_MONGOOSE_TOMBRAIDER_H_
-#define __OPENRAIDER_MONGOOSE_TOMBRAIDER_H_
+#ifndef _TOMBRAIDER_H_
+#define _TOMBRAIDER_H_
 
 #ifdef WIN32
 // Have to remove GCC packing, by removing in preprocessor

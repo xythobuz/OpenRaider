@@ -5,8 +5,8 @@
  * \author Mongoose
  */
 
-#ifndef __FREYJA_MONGOOSE_PARTICLE_H_
-#define __FREYJA_MONGOOSE_PARTICLE_H_
+#ifndef _PARTICLE_H_
+#define _PARTICLE_H_
 
 #include <MatMath.h>
 

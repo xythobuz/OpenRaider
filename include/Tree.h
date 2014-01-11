@@ -40,8 +40,8 @@
  ================================================================*/
 
 
-#ifndef __FREYJA_MONGOOSE_TREE_H_
-#define __FREYJA_MONGOOSE_TREE_H_
+#ifndef _TREE_H_
+#define _TREE_H_
 
 #include <stdlib.h>
 #include <stdio.h>

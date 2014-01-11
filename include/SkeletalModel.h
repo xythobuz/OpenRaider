@@ -11,8 +11,8 @@
  * Better animation system in general - this is memory wasteful
  */
 
-#ifndef GUARD__OPENRAIDER_MONGOOSE_SKELETALMODEL_H_
-#define GUARD__OPENRAIDER_MONGOOSE_SKELETALMODEL_H_
+#ifndef _SKELETALMODEL_H_
+#define _SKELETALMODEL_H_
 
 #include <Vector.h>
 #include <MatMath.h>

@@ -6,8 +6,8 @@
  * \author xythobuz
  */
 
-#ifndef __OPENRAIDER_MONGOOSE_SOUND_H_
-#define __OPENRAIDER_MONGOOSE_SOUND_H_
+#ifndef _SOUND_H_
+#define _SOUND_H_
 
 /*!
  * \brief This is the audio manager for OpenRaider

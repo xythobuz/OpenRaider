@@ -21,8 +21,8 @@
 
 #include <cstddef>
 
-#ifndef __MTK_MONGOOSE_MEMORY_TEST_H_
-#define __MTK_MONGOOSE_MEMORY_TEST_H_
+#ifndef _MEMORY_TEST_H_
+#define _MEMORY_TEST_H_
 
 #if defined(DEBUG_MEMORY) && !defined(UNIT_TEST_MEMORY)
 

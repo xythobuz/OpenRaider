@@ -33,8 +33,8 @@
  ================================================================*/
 
 
-#ifndef __FREYJA_MONGOOSE_MAP_H_
-#define __FREYJA_MONGOOSE_MAP_H_
+#ifndef _MAP_H_
+#define _MAP_H_
 
 #include <stdlib.h>
 #include <stdio.h>

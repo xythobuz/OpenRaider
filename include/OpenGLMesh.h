@@ -7,8 +7,8 @@
  * \todo Unify the parallel systems here, arrays and the allocate/set
  */
 
-#ifndef GUARD__OPENRAIDER_MONGOOSE_OPENGLMESH_H_
-#define GUARD__OPENRAIDER_MONGOOSE_OPENGLMESH_H_
+#ifndef _OPENGLMESH_H_
+#define _OPENGLMESH_H_
 
 #include <MatMath.h>
 

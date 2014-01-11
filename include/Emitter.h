@@ -23,8 +23,8 @@
  ================================================================*/
 
 
-#ifndef __FREYJA_MONGOOSE_EMITTER_H_
-#define __FREYJA_MONGOOSE_EMITTER_H_
+#ifndef _EMITTER_H_
+#define _EMITTER_H_
 
 #include <Particle.h>
 

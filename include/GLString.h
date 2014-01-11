@@ -6,8 +6,8 @@
  * \author xythobuz
  */
 
-#ifndef __MTK_MONGOOSE_GLSTRING_H_
-#define __MTK_MONGOOSE_GLSTRING_H_
+#ifndef _GLSTRING_H_
+#define _GLSTRING_H_
 
 /*!
  * \brief Internal data structure representing GL Strings

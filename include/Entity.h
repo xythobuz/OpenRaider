@@ -24,8 +24,8 @@
  ================================================================*/
 
 
-#ifndef GUARD__HEL_MONGOOSE_ENTITY_H_
-#define GUARD__HEL_MONGOOSE_ENTITY_H_
+#ifndef _ENTITY_H_
+#define _ENTITY_H_
 
 #include <MatMath.h>
 #include <BoundingVolume.h>
