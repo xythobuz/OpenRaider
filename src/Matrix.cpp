@@ -442,7 +442,62 @@ void Matrix::copy(matrix_t source, matrix_t dest)
 
 void Matrix::multiply(const matrix_t a, const matrix_t b, matrix_t result)
 {
-	/* Generated code for matrix mult */
+	/* Generated code for matrix mult
+     * Code used:
+
+    // char order is argument
+	int i, j, k;
+	if (order == 'r')
+	{
+		printf("// Row order\n");
+	}
+	else
+	{
+		printf("// Column order\n");
+	}
+	for (i = 0; i < 4; ++i)
+	{
+		for (j = 0; j < 4; ++j)
+		{
+			if (order == 'r')
+			{
+				printf("result[%2i] = ", j+i*4);
+			}
+			else
+			{
+				printf("result[%2i] = ", j+i*4);
+			}
+			for (k = 0; k < 4; ++k)
+			{
+				if (order == 'r')
+				{
+					printf("a[%2i] * b[%2i]%s",
+							  k+i*4, j+k*4, (k == 3) ? ";\n" : " + ");
+				}
+				else
+				{
+					printf("a[%2i] * b[%2i]%s",
+							 i+k*4, k+j*4, (k == 3) ? ";\n" : " + ");
+				}
+				//sum+=(elements[i+k*4]*m.elements[k+j*4]);
+			}
+			//result.elements[i+j*4]=sum;
+		}
+		printf("\n");
+	}
+	printf("\n");
+	printf("// Transpose\n");
+	for(i = 0; i < 4; ++i)
+	{
+		for (j = 0; j < 4; ++j)
+		{
+			printf("a[%2i] = b[%2i]%s",
+					 j+i*4, i+j*4, (j == 3) ? ";\n" : "; ");
+		}
+	}
+
+     * was in test/Matrix.cpp
+     */
 #ifdef COLUMN_ORDER
 	/* Column order */
 	result[ 0] = a[ 0] * b[ 0] + a[ 4] * b[ 1] + a[ 8] * b[ 2] + a[12] * b[ 3];
