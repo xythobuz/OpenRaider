@@ -88,12 +88,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">MatMath.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_vector.html">Vector</a> and <a class="el" href="class_matrix.html">Matrix</a> math.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;math.h&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_mat_math_8h_source.html">MatMath.h</a>&gt;</code><br/>
@@ -102,15 +104,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <p><a href="src_2_mat_math_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:add1922c3577beb657e54eb077d86b358"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#add1922c3577beb657e54eb077d86b358">COMPUTE</a></td></tr>
-<tr class="separator:add1922c3577beb657e54eb077d86b358"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a65913f075efcff37001724e60582cbfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#a65913f075efcff37001724e60582cbfb">helVectorMatrixMult4dv</a> (double v[4], <a class="el" href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a> m, double result[4])</td></tr>
-<tr class="separator:a65913f075efcff37001724e60582cbfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab52fba159cc018b54b358a68569d7184"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#ab52fba159cc018b54b358a68569d7184">tmpHelSphereIntersectLine</a> (<a class="el" href="class_vector3d.html">Vector3d</a> <a class="el" href="_tomb_raider_8h.html#a31b8c57eea45694ee2ee7fda37c43cd8">pos</a>, <a class="el" href="class_vector3d.html">Vector3d</a> lastPos, <a class="el" href="class_vector3d.html">Vector3d</a> center, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> radius)</td></tr>
 <tr class="separator:ab52fba159cc018b54b358a68569d7184"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac86519e2486796873c4130fe337770dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#ac86519e2486796873c4130fe337770dc">helIntersectionOfAbstractSpheres</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> centerA, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> radiusA, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> centerB, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> radiusB)</td></tr>
@@ -119,15 +114,20 @@ Functions</h2></td></tr>
 <tr class="separator:a9fd00c7be85ed806fee1c84e09207353"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2181826a3071cc2ce84764c84f047887"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#a2181826a3071cc2ce84764c84f047887">helIntersectionOfAbstractSphereAndLine</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> center, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> radius, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> posA, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> posB, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> intersectionA, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> intersectionB)</td></tr>
 <tr class="separator:a2181826a3071cc2ce84764c84f047887"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac14395f592eade6af1e7a5ae75f4a9da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#ac14395f592eade6af1e7a5ae75f4a9da">helIntersectionLineAndPolygon</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> intersect, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> p1, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> p2, unsigned int vertexCount, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> *ploygon)</td></tr>
-<tr class="separator:ac14395f592eade6af1e7a5ae75f4a9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b46896679f7360c0e8edd62dd88720"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#aa1b46896679f7360c0e8edd62dd88720">helIntersectionLineAndPolygon</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> intersect, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> p1, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> p2, unsigned int vertexCount, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> *polygon)</td></tr>
+<tr class="memdesc:aa1b46896679f7360c0e8edd62dd88720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate Intersection of a line and a polygon.  <a href="#aa1b46896679f7360c0e8edd62dd88720">More...</a><br/></td></tr>
+<tr class="separator:aa1b46896679f7360c0e8edd62dd88720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26d3632b2481d742563c0bdddf822b7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#a26d3632b2481d742563c0bdddf822b7c">helDistToSphereFromPlane3v</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> center, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> radius, <a class="el" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> plane)</td></tr>
+<tr class="memdesc:a26d3632b2481d742563c0bdddf822b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the distance from a sphere to a plane.  <a href="#a26d3632b2481d742563c0bdddf822b7c">More...</a><br/></td></tr>
 <tr class="separator:a26d3632b2481d742563c0bdddf822b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95d4941d9290b0979f22f9ab691d8dec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#a95d4941d9290b0979f22f9ab691d8dec">helDistToBboxFromPlane3v</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> min, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> max, <a class="el" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> plane)</td></tr>
+<tr class="memdesc:a95d4941d9290b0979f22f9ab691d8dec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the distance from a box to a plane.  <a href="#a95d4941d9290b0979f22f9ab691d8dec">More...</a><br/></td></tr>
 <tr class="separator:a95d4941d9290b0979f22f9ab691d8dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a814a21f6b834626cd5f09e492d35b6c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#a814a21f6b834626cd5f09e492d35b6c8">helDist3v</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="el" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="el" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>)</td></tr>
+<tr class="memdesc:a814a21f6b834626cd5f09e492d35b6c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the length of a line segment / the distance between two points.  <a href="#a814a21f6b834626cd5f09e492d35b6c8">More...</a><br/></td></tr>
 <tr class="separator:a814a21f6b834626cd5f09e492d35b6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a959db38358c72fbfb3b4d26305532b56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#a959db38358c72fbfb3b4d26305532b56">helMidpoint3v</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="el" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="el" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> mid)</td></tr>
+<tr class="memdesc:a959db38358c72fbfb3b4d26305532b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the midpoint between two points / of a line segment.  <a href="#a959db38358c72fbfb3b4d26305532b56">More...</a><br/></td></tr>
 <tr class="separator:a959db38358c72fbfb3b4d26305532b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58bfe47f3bccbcd683835e0b00bee8c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#a58bfe47f3bccbcd683835e0b00bee8c7">helNorm4v</a> (<a class="el" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> v)</td></tr>
 <tr class="separator:a58bfe47f3bccbcd683835e0b00bee8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,46 +136,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ad92c6257b59d86d482bba42ccec779ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#ad92c6257b59d86d482bba42ccec779ce">helNorm2v</a> (<a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> v)</td></tr>
 <tr class="separator:ad92c6257b59d86d482bba42ccec779ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48d59a44c2fc4b6fb5b5b3e36924667d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#a48d59a44c2fc4b6fb5b5b3e36924667d">helRandomNum</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> from, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> to)</td></tr>
+<tr class="memdesc:a48d59a44c2fc4b6fb5b5b3e36924667d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates a pseudo-random number.  <a href="#a48d59a44c2fc4b6fb5b5b3e36924667d">More...</a><br/></td></tr>
 <tr class="separator:a48d59a44c2fc4b6fb5b5b3e36924667d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af787d0870412433ba9e0d7a592d424e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#af787d0870412433ba9e0d7a592d424e9">helDegToRad</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> degrees)</td></tr>
-<tr class="separator:af787d0870412433ba9e0d7a592d424e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5875bb6409379b162d66b85a47e6c54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2_mat_math_8cpp.html#ae5875bb6409379b162d66b85a47e6c54">helRadToDeg</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> rad)</td></tr>
-<tr class="separator:ae5875bb6409379b162d66b85a47e6c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="add1922c3577beb657e54eb077d86b358"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define COMPUTE</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_vector.html">Vector</a> and <a class="el" href="class_matrix.html">Matrix</a> math. </p>
+<dl class="section author"><dt>Author</dt><dd>Mongoose </dd></dl>
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00010">10</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="af787d0870412433ba9e0d7a592d424e9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> helDegToRad </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td>
-          <td class="paramname"><em>degrees</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00310">310</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
-
-</div>
-</div>
+<p>Definition in file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a814a21f6b834626cd5f09e492d35b6c8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -200,7 +169,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00270">270</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Calculate the length of a line segment / the distance between two points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>First point </td></tr>
+    <tr><td class="paramname">b</td><td>Second point </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distance/length </dd></dl>
+
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00258">258</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -234,7 +213,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00248">248</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Calculate the distance from a box to a plane. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>Minimum Point of a bounding box </td></tr>
+    <tr><td class="paramname">max</td><td>Maximum Point of a bounding box </td></tr>
+    <tr><td class="paramname">plane</td><td>Plane </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distance </dd></dl>
+
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00236">236</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -268,11 +258,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00231">231</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Calculate the distance from a sphere to a plane. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">center</td><td>Center of sphere </td></tr>
+    <tr><td class="paramname">radius</td><td>Radius of sphere </td></tr>
+    <tr><td class="paramname">plane</td><td>Plane </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distance </dd></dl>
+
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00219">219</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac14395f592eade6af1e7a5ae75f4a9da"></a>
+<a class="anchor" id="aa1b46896679f7360c0e8edd62dd88720"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -304,7 +305,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> *&#160;</td>
-          <td class="paramname"><em>ploygon</em>&#160;</td>
+          <td class="paramname"><em>polygon</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -314,7 +315,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00141">141</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Calculate Intersection of a line and a polygon. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">intersect</td><td>Where the intersection is stored, if it exists </td></tr>
+    <tr><td class="paramname">p1</td><td>First point of line segment </td></tr>
+    <tr><td class="paramname">p2</td><td>Second point of line segment </td></tr>
+    <tr><td class="paramname">vertexCount</td><td>number of vertices in polygon </td></tr>
+    <tr><td class="paramname">polygon</td><td>polygon vertex array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if there is no intersection </dd></dl>
+
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00129">129</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -366,7 +380,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00081">81</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00069">69</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -406,7 +420,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00058">58</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00046">46</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -440,7 +454,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00278">278</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Calculates the midpoint between two points / of a line segment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>First point </td></tr>
+    <tr><td class="paramname">b</td><td>Second point </td></tr>
+    <tr><td class="paramname">mid</td><td>Midpoint will be stored here </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00266">266</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -458,7 +482,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00298">298</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00286">286</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -476,7 +500,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00292">292</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00280">280</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -494,25 +518,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00286">286</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae5875bb6409379b162d66b85a47e6c54"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> helRadToDeg </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td>
-          <td class="paramname"><em>rad</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00321">321</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00274">274</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -540,41 +546,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00304">304</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Calculates a pseudo-random number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>Lower bound of resulting number </td></tr>
+    <tr><td class="paramname">to</td><td>Upper bound </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>random number </dd></dl>
 
-</div>
-</div>
-<a class="anchor" id="a65913f075efcff37001724e60582cbfb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void helVectorMatrixMult4dv </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>v</em>[4], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a>&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>result</em>[4]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00012">12</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00292">292</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -600,7 +582,7 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00073">73</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00061">61</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>
@@ -640,7 +622,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00028">28</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_mat_math_8cpp_source.html#l00016">16</a> of file <a class="el" href="src_2_mat_math_8cpp_source.html">MatMath.cpp</a>.</p>
 
 </div>
 </div>

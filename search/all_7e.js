@@ -3,7 +3,6 @@ var searchData=
   ['_7ecamera',['~Camera',['../class_camera.html#ad1897942d0ccf91052386388a497349f',1,'Camera']]],
   ['_7eemitter',['~Emitter',['../class_emitter.html#a0af9a50316daf2580cde9b99fe7c6f96',1,'Emitter']]],
   ['_7eglstring',['~GLString',['../class_g_l_string.html#af2d7696e405af08b41eb86ecda6811ce',1,'GLString']]],
-  ['_7elight',['~Light',['../class_light.html#ad0e59fad13bb6cfadc25b2c477e9ddc7',1,'Light']]],
   ['_7elist',['~List',['../class_list.html#a2b58189090f6e5ce52939c9195e59e85',1,'List']]],
   ['_7elistnode',['~ListNode',['../class_list_node.html#abe41245574baa42781b71f70e49fd06b',1,'ListNode']]],
   ['_7emap',['~Map',['../class_map.html#a16856a9133cae938098f763c126c4322',1,'Map']]],

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name',['name',['../_world_8h.html#a5e10f0ee7b431503e0df619e97e24cea',1,'actor_entity_s::name()'],['../class_emitter.html#a39612464ef82815d77b8bde93dff0e49',1,'Emitter::Name()']]],
+  ['name',['Name',['../class_emitter.html#a39612464ef82815d77b8bde93dff0e49',1,'Emitter::Name()'],['../_world_8h.html#a5e10f0ee7b431503e0df619e97e24cea',1,'actor_entity_s::name()']]],
   ['nearside',['nearSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa76c161e162121970963890db4e23e6be',1,'ViewVolume']]],
   ['negative_5flength',['negative_length',['../_tomb_raider_8h.html#a01b878e42cb2dfbe5fffaa6a7d325d65',1,'tr2_sprite_sequence_s::negative_length()'],['../_tomb_raider_8h.html#a990974d37f65ae93636f440535074148',1,'negative_length():&#160;TombRaider.h']]],
   ['network',['Network',['../class_network.html',1,'Network'],['../class_network.html#a3cc2fb4f8fa4d507077e8da85ce5a1c8',1,'Network::Network()']]],
@@ -79,7 +79,7 @@ var searchData=
   ['numsprites',['NumSprites',['../class_tomb_raider.html#a0403b91e697e5c72b78fc672beb503e9',1,'TombRaider']]],
   ['numspritesequences',['NumSpriteSequences',['../class_tomb_raider.html#a6ea5c5a13f452cfbeb12c1d7a3dd6684',1,'TombRaider']]],
   ['numstatechanges',['NumStateChanges',['../_tomb_raider_8h.html#a4ab5078e60b6f91cac3159384ed2dab2',1,'tr5_animation_s']]],
-  ['numstaticmeshes',['NumStaticMeshes',['../class_tomb_raider.html#aada96db1b6eab04e2bbc29aae0791ae3',1,'TombRaider::NumStaticMeshes()'],['../_tomb_raider_8h.html#a17e064b31e414aff359107fc17379042',1,'tr5_room_s::numStaticMeshes()']]],
+  ['numstaticmeshes',['numStaticMeshes',['../_tomb_raider_8h.html#a17e064b31e414aff359107fc17379042',1,'tr5_room_s::numStaticMeshes()'],['../class_tomb_raider.html#aada96db1b6eab04e2bbc29aae0791ae3',1,'TombRaider::NumStaticMeshes()']]],
   ['numtexturedrectangles',['numTexturedRectangles',['../_tomb_raider_8h.html#a07bdd4e38e1fff5a24efc8f539e0d5bd',1,'tr5_mesh_s']]],
   ['numtexturedtriangles',['numTexturedTriangles',['../_tomb_raider_8h.html#ab79f2d04a16fb783b4d842e5a0c4effd',1,'tr5_mesh_s']]],
   ['numtextures',['NumTextures',['../class_tomb_raider.html#a87812c99ac732a78c0584c2e08c11585',1,'TombRaider']]],

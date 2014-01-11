@@ -16,7 +16,7 @@ var searchData=
   ['setbymatrix',['setByMatrix',['../class_quaternion.html#ab151dc2eb6d3be9885118b6b80c12a9d',1,'Quaternion']]],
   ['setchar',['SetChar',['../class_g_l_string.html#ad0e2fcc79abb2c2adce45de3aee9da96',1,'GLString']]],
   ['setchild',['SetChild',['../class_tree_node.html#ab28d6bc8c6ed058e975e395c598f4820',1,'TreeNode']]],
-  ['setcolor',['setColor',['../class_open_g_l_mesh.html#abeefc9d60bb6022b69870524af2aa994',1,'OpenGLMesh::setColor(unsigned int index, float r, float g, float b, float a)'],['../class_open_g_l_mesh.html#a85ca7c84c2f29a1723a9f05bf587af13',1,'OpenGLMesh::setColor(unsigned int index, float rgba[4])'],['../class_tree_node.html#a5cd893400b8530459e755ba89576bf79',1,'TreeNode::SetColor()']]],
+  ['setcolor',['SetColor',['../class_tree_node.html#a5cd893400b8530459e755ba89576bf79',1,'TreeNode::SetColor()'],['../class_open_g_l_mesh.html#abeefc9d60bb6022b69870524af2aa994',1,'OpenGLMesh::setColor(unsigned int index, float r, float g, float b, float a)'],['../class_open_g_l_mesh.html#a85ca7c84c2f29a1723a9f05bf587af13',1,'OpenGLMesh::setColor(unsigned int index, float rgba[4])']]],
   ['setconsolemode',['setConsoleMode',['../class_system.html#aa3c0a19fb8115d138d0f97811d14532c',1,'System']]],
   ['setcurrentindex',['setCurrentIndex',['../class_vector.html#aba282e6244b3b6012c42a5daad229ced',1,'Vector']]],
   ['setdata',['SetData',['../class_tree_node.html#aff443a6030790a5f37e006feb605b93e',1,'TreeNode']]],

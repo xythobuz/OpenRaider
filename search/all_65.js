@@ -12,8 +12,6 @@ var searchData=
   ['emitterflags',['EmitterFlags',['../class_emitter.html#a5e64a6fdb28e2021c44601bce14d1f5b',1,'Emitter']]],
   ['empty',['empty',['../class_vector.html#a82e899c6fb4771fee489f30a07a5c5a2',1,'Vector::empty()'],['../class_list.html#af4e5c9ead70957ebab8d2d4d2ac6f83f',1,'List::Empty()'],['../class_map.html#a4f05c8b23a06466099614b6203a29bba',1,'Map::Empty()']]],
   ['end',['end',['../greatest_8h.html#a2fa7f49fb44a09b271905d6b51105330',1,'greatest_run_info::end()'],['../class_vector.html#a2e5cbbdc05f0f8b71dd91b46c7aad0ac',1,'Vector::end()']]],
-  ['endian_2ecpp',['endian.cpp',['../endian_8cpp.html',1,'']]],
-  ['endian_2eh',['endian.h',['../endian_8h.html',1,'']]],
   ['endportaloffset',['endPortalOffset',['../_tomb_raider_8h.html#a8e495e48c49b3fcada25ad3e1be140d1',1,'tr5_room_s']]],
   ['endsdoffset',['endSDOffset',['../_tomb_raider_8h.html#a82d2cbb63c16cbde7f3d5914ce632668',1,'tr5_room_s']]],
   ['enemy',['enemy',['../_world_8h.html#a9b366f42b6b84732e5dcc00218318bd5',1,'actor_entity_s']]],

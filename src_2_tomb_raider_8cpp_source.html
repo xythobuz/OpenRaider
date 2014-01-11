@@ -501,7 +501,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;</div>
 <div class="line"><a name="l00409"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#ad9bb8953123f5aee9f7b4e378e51cfff">  409</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_tomb_raider.html#ad9bb8953123f5aee9f7b4e378e51cfff">TombRaider::checkMime</a>(<span class="keywordtype">char</span> *filename)</div>
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;{</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;   FILE *<a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;   FILE *f;</div>
 <div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> version;</div>
 <div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;</div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;</div>
@@ -542,7 +542,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;</div>
 <div class="line"><a name="l00451"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#ab0b3654b61c54f5c54c0865dd9d6ea2a">  451</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_tomb_raider.html#ab0b3654b61c54f5c54c0865dd9d6ea2a">TombRaider::Load</a>(<span class="keywordtype">char</span> *filename, <span class="keywordtype">void</span> (*percent)(<span class="keywordtype">int</span>))</div>
 <div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;{</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;   FILE *<a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;   FILE *f;</div>
 <div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;   <span class="keywordtype">int</span> i, j, l;</div>
 <div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> num_mesh_data_words, num_mesh_pointers, data_size, data_offset;</div>
 <div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *mesh_pointer_list;</div>
@@ -2577,7 +2577,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l02567"></a><span class="lineno"> 2567</span>&#160;                                      <span class="keywordtype">float</span> bboxMin[3], <span class="keywordtype">float</span> bboxMax[3])</div>
 <div class="line"><a name="l02568"></a><span class="lineno"> 2568</span>&#160;{</div>
 <div class="line"><a name="l02569"></a><span class="lineno"> 2569</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i, n;</div>
-<div class="line"><a name="l02570"></a><span class="lineno"> 2570</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l02570"></a><span class="lineno"> 2570</span>&#160;    <span class="keywordtype">float</span> f;</div>
 <div class="line"><a name="l02571"></a><span class="lineno"> 2571</span>&#160;</div>
 <div class="line"><a name="l02572"></a><span class="lineno"> 2572</span>&#160;</div>
 <div class="line"><a name="l02573"></a><span class="lineno"> 2573</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="class_tomb_raider.html#ac84fd26947ae435bac953a490ecacaf4">isRoomValid</a>(index))</div>
@@ -2682,23 +2682,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l02673"></a><span class="lineno"> 2673</span>&#160;            f = <a class="code" href="class_tomb_raider.html#a21c7e165d52937379000402c82796294">_rooms</a>[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].room_data.vertices[i].vertex.x;</div>
 <div class="line"><a name="l02674"></a><span class="lineno"> 2674</span>&#160;</div>
 <div class="line"><a name="l02675"></a><span class="lineno"> 2675</span>&#160;            <span class="keywordflow">if</span> (f &lt; bboxMin[0])</div>
-<div class="line"><a name="l02676"></a><span class="lineno"> 2676</span>&#160;                bboxMin[0] = <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l02676"></a><span class="lineno"> 2676</span>&#160;                bboxMin[0] = f;</div>
 <div class="line"><a name="l02677"></a><span class="lineno"> 2677</span>&#160;            <span class="keywordflow">if</span> (f &gt; bboxMax[0])</div>
-<div class="line"><a name="l02678"></a><span class="lineno"> 2678</span>&#160;                bboxMax[0] = <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l02678"></a><span class="lineno"> 2678</span>&#160;                bboxMax[0] = f;</div>
 <div class="line"><a name="l02679"></a><span class="lineno"> 2679</span>&#160;</div>
 <div class="line"><a name="l02680"></a><span class="lineno"> 2680</span>&#160;            f = <a class="code" href="class_tomb_raider.html#a21c7e165d52937379000402c82796294">_rooms</a>[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].room_data.vertices[i].vertex.y;</div>
 <div class="line"><a name="l02681"></a><span class="lineno"> 2681</span>&#160;</div>
 <div class="line"><a name="l02682"></a><span class="lineno"> 2682</span>&#160;            <span class="keywordflow">if</span> (f &lt; bboxMin[1])</div>
-<div class="line"><a name="l02683"></a><span class="lineno"> 2683</span>&#160;                bboxMin[1] = <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l02683"></a><span class="lineno"> 2683</span>&#160;                bboxMin[1] = f;</div>
 <div class="line"><a name="l02684"></a><span class="lineno"> 2684</span>&#160;            <span class="keywordflow">if</span> (f &gt; bboxMax[1])</div>
-<div class="line"><a name="l02685"></a><span class="lineno"> 2685</span>&#160;                bboxMax[1] = <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l02685"></a><span class="lineno"> 2685</span>&#160;                bboxMax[1] = f;</div>
 <div class="line"><a name="l02686"></a><span class="lineno"> 2686</span>&#160;</div>
 <div class="line"><a name="l02687"></a><span class="lineno"> 2687</span>&#160;            f = <a class="code" href="class_tomb_raider.html#a21c7e165d52937379000402c82796294">_rooms</a>[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].room_data.vertices[i].vertex.z;</div>
 <div class="line"><a name="l02688"></a><span class="lineno"> 2688</span>&#160;</div>
 <div class="line"><a name="l02689"></a><span class="lineno"> 2689</span>&#160;            <span class="keywordflow">if</span> (f &lt; bboxMin[2])</div>
-<div class="line"><a name="l02690"></a><span class="lineno"> 2690</span>&#160;                bboxMin[2] = <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l02690"></a><span class="lineno"> 2690</span>&#160;                bboxMin[2] = f;</div>
 <div class="line"><a name="l02691"></a><span class="lineno"> 2691</span>&#160;            <span class="keywordflow">if</span> (f &gt; bboxMax[2])</div>
-<div class="line"><a name="l02692"></a><span class="lineno"> 2692</span>&#160;                bboxMax[2] = <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l02692"></a><span class="lineno"> 2692</span>&#160;                bboxMax[2] = f;</div>
 <div class="line"><a name="l02693"></a><span class="lineno"> 2693</span>&#160;        }</div>
 <div class="line"><a name="l02694"></a><span class="lineno"> 2694</span>&#160;</div>
 <div class="line"><a name="l02695"></a><span class="lineno"> 2695</span>&#160;        <span class="keywordflow">break</span>;</div>
@@ -2712,7 +2712,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l02703"></a><span class="lineno"> 2703</span>&#160;                                      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<a class="code" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a>)</div>
 <div class="line"><a name="l02704"></a><span class="lineno"> 2704</span>&#160;{</div>
 <div class="line"><a name="l02705"></a><span class="lineno"> 2705</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">float</span> dd = 10000.0; <span class="comment">// 4095.0;</span></div>
-<div class="line"><a name="l02706"></a><span class="lineno"> 2706</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l02706"></a><span class="lineno"> 2706</span>&#160;    <span class="keywordtype">float</span> f;</div>
 <div class="line"><a name="l02707"></a><span class="lineno"> 2707</span>&#160;</div>
 <div class="line"><a name="l02708"></a><span class="lineno"> 2708</span>&#160;</div>
 <div class="line"><a name="l02709"></a><span class="lineno"> 2709</span>&#160;    *flags = 0; <span class="comment">// reset</span></div>
@@ -2741,7 +2741,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l02732"></a><span class="lineno"> 2732</span>&#160;            f /= dd;</div>
 <div class="line"><a name="l02733"></a><span class="lineno"> 2733</span>&#160;        }</div>
 <div class="line"><a name="l02734"></a><span class="lineno"> 2734</span>&#160;</div>
-<div class="line"><a name="l02735"></a><span class="lineno"> 2735</span>&#160;        *attenuation = <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l02735"></a><span class="lineno"> 2735</span>&#160;        *attenuation = f;</div>
 <div class="line"><a name="l02736"></a><span class="lineno"> 2736</span>&#160;        *flags |= <a class="code" href="_tomb_raider_8h.html#acce6fcc9da37749a35943c92a0f648deaeb59d9bbb05d07a983959ec4ed119f31">tombraiderLight_useAttenuation</a>;</div>
 <div class="line"><a name="l02737"></a><span class="lineno"> 2737</span>&#160;</div>
 <div class="line"><a name="l02738"></a><span class="lineno"> 2738</span>&#160;        pos[0] = <a class="code" href="class_tomb_raider.html#a21c7e165d52937379000402c82796294">_rooms</a>[roomIndex].lights[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].x;</div>
@@ -3663,13 +3663,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l03656"></a><span class="lineno"> 3656</span>&#160;                (*normals)[k*3+2] = <a class="code" href="class_tomb_raider.html#a18a3aeacbc99390188e8dd8375a8201f">mRoomsTR5</a>[roomIndex].<a class="code" href="_tomb_raider_8h.html#ae25c269477ad2f071be3d476e5c85fcf">faces</a>[i].<a class="code" href="_tomb_raider_8h.html#a64d211e582b5e4a228363a91e58d74f0">verts</a>[j].<a class="code" href="_tomb_raider_8h.html#a636db5b52179a5053eb03fb2db0364e2">nz</a>;</div>
 <div class="line"><a name="l03657"></a><span class="lineno"> 3657</span>&#160;</div>
 <div class="line"><a name="l03659"></a><span class="lineno"> 3659</span>&#160;                c = ((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *)&amp;<a class="code" href="class_tomb_raider.html#a18a3aeacbc99390188e8dd8375a8201f">mRoomsTR5</a>[roomIndex].faces[i].verts[j].vColor)[1];</div>
-<div class="line"><a name="l03660"></a><span class="lineno"> 3660</span>&#160;                (*colors)[k*4] = (float)c / 255.0<a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l03660"></a><span class="lineno"> 3660</span>&#160;                (*colors)[k*4] = (float)c / 255.0f;</div>
 <div class="line"><a name="l03661"></a><span class="lineno"> 3661</span>&#160;                c = ((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *)&amp;<a class="code" href="class_tomb_raider.html#a18a3aeacbc99390188e8dd8375a8201f">mRoomsTR5</a>[roomIndex].faces[i].verts[j].vColor)[2];</div>
-<div class="line"><a name="l03662"></a><span class="lineno"> 3662</span>&#160;                (*colors)[k*4+1] = (float)c / 255.0<a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l03662"></a><span class="lineno"> 3662</span>&#160;                (*colors)[k*4+1] = (float)c / 255.0f;</div>
 <div class="line"><a name="l03663"></a><span class="lineno"> 3663</span>&#160;                c = ((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *)&amp;<a class="code" href="class_tomb_raider.html#a18a3aeacbc99390188e8dd8375a8201f">mRoomsTR5</a>[roomIndex].faces[i].verts[j].vColor)[3];</div>
-<div class="line"><a name="l03664"></a><span class="lineno"> 3664</span>&#160;                (*colors)[k*4+2] = (float)c / 255.0<a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l03664"></a><span class="lineno"> 3664</span>&#160;                (*colors)[k*4+2] = (float)c / 255.0f;</div>
 <div class="line"><a name="l03665"></a><span class="lineno"> 3665</span>&#160;                c = ((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *)&amp;<a class="code" href="class_tomb_raider.html#a18a3aeacbc99390188e8dd8375a8201f">mRoomsTR5</a>[roomIndex].faces[i].verts[j].vColor)[0];</div>
-<div class="line"><a name="l03666"></a><span class="lineno"> 3666</span>&#160;                (*colors)[k*4+3] = (float)c / 255.0<a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l03666"></a><span class="lineno"> 3666</span>&#160;                (*colors)[k*4+3] = (float)c / 255.0f;</div>
 <div class="line"><a name="l03667"></a><span class="lineno"> 3667</span>&#160;            }</div>
 <div class="line"><a name="l03668"></a><span class="lineno"> 3668</span>&#160;        }</div>
 <div class="line"><a name="l03669"></a><span class="lineno"> 3669</span>&#160;        <span class="keywordflow">break</span>;</div>
@@ -4075,7 +4075,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l04072"></a><span class="lineno"> 4072</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l04073"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#a3299f360388f4693dcdf0dddac9866af"> 4073</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_tomb_raider.html#a3299f360388f4693dcdf0dddac9866af">TombRaider::loadSFX</a>(<span class="keywordtype">char</span> *filename)</div>
 <div class="line"><a name="l04074"></a><span class="lineno"> 4074</span>&#160;{</div>
-<div class="line"><a name="l04075"></a><span class="lineno"> 4075</span>&#160;    FILE *<a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a> = fopen(filename, <span class="stringliteral">&quot;rb&quot;</span>);</div>
+<div class="line"><a name="l04075"></a><span class="lineno"> 4075</span>&#160;    FILE *f = fopen(filename, <span class="stringliteral">&quot;rb&quot;</span>);</div>
 <div class="line"><a name="l04076"></a><span class="lineno"> 4076</span>&#160;    <span class="keywordtype">long</span> bytes = 0;</div>
 <div class="line"><a name="l04077"></a><span class="lineno"> 4077</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *<a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>;</div>
 <div class="line"><a name="l04078"></a><span class="lineno"> 4078</span>&#160;</div>
@@ -4397,14 +4397,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l04396"></a><span class="lineno"> 4396</span>&#160;}</div>
 <div class="line"><a name="l04397"></a><span class="lineno"> 4397</span>&#160;</div>
 <div class="line"><a name="l04398"></a><span class="lineno"> 4398</span>&#160;</div>
-<div class="line"><a name="l04399"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#ad6351cba6c63667ef2820eab99b459e2"> 4399</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_tomb_raider.html#ad6351cba6c63667ef2820eab99b459e2">TombRaider::setRoomVertexLightingFactor</a>(<span class="keywordtype">float</span> <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>)</div>
+<div class="line"><a name="l04399"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#ad6351cba6c63667ef2820eab99b459e2"> 4399</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_tomb_raider.html#ad6351cba6c63667ef2820eab99b459e2">TombRaider::setRoomVertexLightingFactor</a>(<span class="keywordtype">float</span> f)</div>
 <div class="line"><a name="l04400"></a><span class="lineno"> 4400</span>&#160;{</div>
-<div class="line"><a name="l04401"></a><span class="lineno"> 4401</span>&#160;    <a class="code" href="class_tomb_raider.html#a6cd276afc8caa0deb8adea1ea458d4ed">mRoomVertexLightingFactor</a> = <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l04401"></a><span class="lineno"> 4401</span>&#160;    <a class="code" href="class_tomb_raider.html#a6cd276afc8caa0deb8adea1ea458d4ed">mRoomVertexLightingFactor</a> = f;</div>
 <div class="line"><a name="l04402"></a><span class="lineno"> 4402</span>&#160;}</div>
 <div class="line"><a name="l04403"></a><span class="lineno"> 4403</span>&#160;</div>
-<div class="line"><a name="l04404"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#af77dc1073abd181911534586ea24c7d1"> 4404</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_tomb_raider.html#af77dc1073abd181911534586ea24c7d1">TombRaider::setTexelScalingFactor</a>(<span class="keywordtype">float</span> <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>)</div>
+<div class="line"><a name="l04404"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#af77dc1073abd181911534586ea24c7d1"> 4404</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_tomb_raider.html#af77dc1073abd181911534586ea24c7d1">TombRaider::setTexelScalingFactor</a>(<span class="keywordtype">float</span> f)</div>
 <div class="line"><a name="l04405"></a><span class="lineno"> 4405</span>&#160;{</div>
-<div class="line"><a name="l04406"></a><span class="lineno"> 4406</span>&#160;    <a class="code" href="class_tomb_raider.html#a7c44a018378a4d085ff5243ce55370b5">mTexelScale</a> = <a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>;</div>
+<div class="line"><a name="l04406"></a><span class="lineno"> 4406</span>&#160;    <a class="code" href="class_tomb_raider.html#a7c44a018378a4d085ff5243ce55370b5">mTexelScale</a> = f;</div>
 <div class="line"><a name="l04407"></a><span class="lineno"> 4407</span>&#160;}</div>
 <div class="line"><a name="l04408"></a><span class="lineno"> 4408</span>&#160;</div>
 <div class="line"><a name="l04410"></a><span class="lineno"> 4410</span>&#160;<span class="comment">// Private Accessors</span></div>
@@ -4655,7 +4655,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l04669"></a><span class="lineno"> 4669</span>&#160;}</div>
 <div class="line"><a name="l04670"></a><span class="lineno"> 4670</span>&#160;</div>
 <div class="line"><a name="l04671"></a><span class="lineno"> 4671</span>&#160;</div>
-<div class="line"><a name="l04672"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#a1ad7e8d383c430839d106d510b5b465a"> 4672</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_tomb_raider.html#a1ad7e8d383c430839d106d510b5b465a">TombRaider::Fread</a>(<span class="keywordtype">void</span> *buffer, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> count, FILE *<a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>)</div>
+<div class="line"><a name="l04672"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#a1ad7e8d383c430839d106d510b5b465a"> 4672</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_tomb_raider.html#a1ad7e8d383c430839d106d510b5b465a">TombRaider::Fread</a>(<span class="keywordtype">void</span> *buffer, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> count, FILE *f)</div>
 <div class="line"><a name="l04673"></a><span class="lineno"> 4673</span>&#160;{</div>
 <div class="line"><a name="l04674"></a><span class="lineno"> 4674</span>&#160;<span class="preprocessor">#ifdef ZLIB_SUPPORT</span></div>
 <div class="line"><a name="l04675"></a><span class="lineno"> 4675</span>&#160;<span class="preprocessor"></span>   <span class="keywordtype">int</span> num_read;</div>
@@ -4979,7 +4979,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l04994"></a><span class="lineno"> 4994</span>&#160;}</div>
 <div class="line"><a name="l04995"></a><span class="lineno"> 4995</span>&#160;</div>
 <div class="line"><a name="l04996"></a><span class="lineno"> 4996</span>&#160;</div>
-<div class="line"><a name="l04998"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#ac3fe45e77a539acf29c17f9a077293b6"> 4998</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_tomb_raider.html#ac3fe45e77a539acf29c17f9a077293b6">TombRaider::loadTR5</a>(FILE *<a class="code" href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a>, <span class="keywordtype">void</span> (*percent)(<span class="keywordtype">int</span>))</div>
+<div class="line"><a name="l04998"></a><span class="lineno"><a class="line" href="class_tomb_raider.html#ac3fe45e77a539acf29c17f9a077293b6"> 4998</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_tomb_raider.html#ac3fe45e77a539acf29c17f9a077293b6">TombRaider::loadTR5</a>(FILE *f, <span class="keywordtype">void</span> (*percent)(<span class="keywordtype">int</span>))</div>
 <div class="line"><a name="l04999"></a><span class="lineno"> 4999</span>&#160;{</div>
 <div class="line"><a name="l05000"></a><span class="lineno"> 5000</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> level_data_sz, riffOffset, seperator0;</div>
 <div class="line"><a name="l05001"></a><span class="lineno"> 5001</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> portalOffset, nextRoomOffset, thisRoomOffset;</div>
@@ -6286,7 +6286,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_tomb_raider_html_a0ea65b616a4a7111a1eafc7db975f4dd"><div class="ttname"><a href="class_tomb_raider.html#a0ea65b616a4a7111a1eafc7db975f4dd">TombRaider::getMeshVertexArrays</a></div><div class="ttdeci">void getMeshVertexArrays(unsigned int meshIndex, unsigned int *vertexCount, float **verts, unsigned int *normalCount, float **norms, unsigned int *colorCount, float **colors)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l02429">TombRaider.cpp:2429</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_a218332fc406fbe7f8cbf75f91ed3d934"><div class="ttname"><a href="class_tomb_raider.html#a218332fc406fbe7f8cbf75f91ed3d934">TombRaider::getRoomTriangle</a></div><div class="ttdeci">void getRoomTriangle(unsigned int roomIndex, unsigned int triangleIndex, unsigned int *indices, float *texCoords, int *texture, unsigned int *flags)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l03371">TombRaider.cpp:3371</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_ad3bb1e37cc33c1c3770d2a604ec59a83"><div class="ttname"><a href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">TombRaider::adjustTexel</a></div><div class="ttdeci">float adjustTexel(unsigned char texel, char offset)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l02018">TombRaider.cpp:2018</a></div></div>
-<div class="ttc" id="test_2mtk__tga_8cpp_html_a3efb0e1a16208deecbd84c15401f7cf8"><div class="ttname"><a href="test_2mtk__tga_8cpp.html#a3efb0e1a16208deecbd84c15401f7cf8">f</a></div><div class="ttdeci">FILE * f</div><div class="ttdef"><b>Definition:</b> <a href="test_2mtk__tga_8cpp_source.html#l00013">mtk_tga.cpp:13</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_aa316fb40cab7ad7f1614f7d1a960727b"><div class="ttname"><a href="class_tomb_raider.html#aa316fb40cab7ad7f1614f7d1a960727b">TombRaider::_num_anim_commands</a></div><div class="ttdeci">unsigned int _num_anim_commands</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l02628">TombRaider.h:2628</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_af194d2be6f2ed1118eb5a75b1222cde3"><div class="ttname"><a href="_tomb_raider_8h.html#af194d2be6f2ed1118eb5a75b1222cde3">tr5_room_s::roomX</a></div><div class="ttdeci">float roomX</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l01167">TombRaider.h:1167</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_aa6a59fe91f5d6bbea4d57dd409b599cca857306ad1243cbc71130991f721492a7"><div class="ttname"><a href="_tomb_raider_8h.html#aa6a59fe91f5d6bbea4d57dd409b599cca857306ad1243cbc71130991f721492a7">TR_VERSION_3</a></div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00088">TombRaider.h:88</a></div></div>

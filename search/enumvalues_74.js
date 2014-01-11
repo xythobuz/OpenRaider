@@ -514,7 +514,7 @@ var searchData=
   ['tr_5fversion_5f4',['TR_VERSION_4',['../_tomb_raider_8h.html#aa6a59fe91f5d6bbea4d57dd409b599cca04df4a888c3a53709cb1f71a4c73abb8',1,'TombRaider.h']]],
   ['tr_5fversion_5f5',['TR_VERSION_5',['../_tomb_raider_8h.html#aa6a59fe91f5d6bbea4d57dd409b599cca6f4cb72167f4da67699a672210fd1112',1,'TombRaider.h']]],
   ['tr_5fversion_5funknown',['TR_VERSION_UNKNOWN',['../_tomb_raider_8h.html#aa6a59fe91f5d6bbea4d57dd409b599ccad871133a03ad5421801167f193e32501',1,'TombRaider.h']]],
-  ['typedirectional',['typeDirectional',['../class_light.html#a37554f58128e556420bb4e7f30ab938ea418968f46d17af2212f5caae2200e34c',1,'Light']]],
-  ['typepoint',['typePoint',['../class_light.html#a37554f58128e556420bb4e7f30ab938eaaa020c0804868a8cbd973b351ec22d5b',1,'Light']]],
-  ['typespot',['typeSpot',['../class_light.html#a37554f58128e556420bb4e7f30ab938ea17f434198fffe568aea6a10cf96b8de5',1,'Light']]]
+  ['typedirectional',['typeDirectional',['../_light_8h.html#a661d9480e01af8b1612860b9630ef5f8a418968f46d17af2212f5caae2200e34c',1,'Light']]],
+  ['typepoint',['typePoint',['../_light_8h.html#a661d9480e01af8b1612860b9630ef5f8aaa020c0804868a8cbd973b351ec22d5b',1,'Light']]],
+  ['typespot',['typeSpot',['../_light_8h.html#a661d9480e01af8b1612860b9630ef5f8a17f434198fffe568aea6a10cf96b8de5',1,'Light']]]
 ];
