@@ -305,11 +305,11 @@ TombRaider.test:
 
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -Iinclude -DHAVE_MTK -DHAVE_SDL -DUSING_MTK_TGA \
+	$(CC) -Wall -Iinclude -DHAVE_SDL_TTF -DHAVE_SDL \
 	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
-	$(GL_LIBS) $(GL_DEFS) -lm -lstdc++ \
-	src/Texture.cpp src/mtk_tga.cpp \
-	src/GLString.cpp test/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
+	$(GL_LIBS) $(GL_DEFS) -lSDL_ttf -lm -lstdc++ \
+	src/Texture.cpp src/GLString.cpp \
+	test/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
 
 #################################################################
 

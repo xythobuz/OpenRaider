@@ -285,13 +285,15 @@ int Texture::loadFontTTF(const char *filename,
 		delete [] texture->texture;
 		delete [] texture->glyphs;
 		delete texture;
+
+        return gFontTest->textureId;
 	}
 	else
 	{
 		return -2;
 	}
 
-	return 0;
+	return -3;
 }
 
 

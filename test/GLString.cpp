@@ -13,13 +13,11 @@
 #include <GL/glu.h>
 #endif
 
-#ifdef HAVE_MTK
+#ifdef HAVE_SDL_TTF
 #include <Texture.h>
-#include <mtk_tga.h>
-
 Texture gTexture;
 #else
-#error "Requires MTK: Texture and mtk_tga"
+#error "Requires SDL_TTF"
 #endif
 
 #include <GLString.h>
@@ -77,8 +75,11 @@ void event_display(int width, int height)
 	glDisable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glEnable(GL_TEXTURE_2D);
-	glColor3f(0.1, 0.2, 1.0);
+	glColor3f(0.75, 0.5, 1.0);
+
+    glEnterMode2d(width, height);
 	TEXT->Render(width, height);
+    glExitMode2d();
 
 	glFlush();
 	swap_buffers();
@@ -103,14 +104,11 @@ void shutdown_gl()
 	SDL_Quit();
 }
 
-
-void init_gl(unsigned int width, unsigned int height,
-				 int argc, char *argv[])
+void init_gl(unsigned int width, unsigned int height)
 {
-	int i, j;
-	int id[4];
-	float s = 1.0;
-
+    int i;
+	int id;
+    const char *errorText = "TEXT->glPrintf> ERROR code %i\n";
 
 	// Setup GL
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -127,56 +125,30 @@ void init_gl(unsigned int width, unsigned int height,
 	gTexture.setFlag(Texture::fUseMipmaps);
 	gTexture.setMaxTextureCount(32);
 
-	if (argc > 1)
-	{
-		for (i = 1, j = 0; i < argc; ++i, ++j)
-		{
-			if (j < 4)
-			{
-				id[j] = gTexture.loadTGA(argv[i]);
-			}
-		}
-	}
-	else
-	{
-		// id[0] = gTexture.loadTGA("data/font-0.tga");
-		// id[1] = gTexture.loadTGA("data/font-1.tga");
-		// id[2] = gTexture.loadTGA("data/font-2.tga");
-		// id[3] = gTexture.loadTGA("data/font-3.tga");
-        id[0] = id[1] = id[2] = id[3] = gTexture.loadTGA("data/font-0.tga");
-	}
+    id = gTexture.loadFontTTF("data/test.ttf", 32, 126 - 32);  // ASCII
 
-	TEXT->Init(4, 4, id);
-	i = TEXT->glPrintf((width/2)-12*5, height/2, 0,
-							 "[font %i] GLString Test", id[0]);
-	if (i)
-	{
-		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
+	TEXT->Init(4, 1, &id);
+    i = TEXT->glPrintf((width/2)-50, height/2-32, 0, "OpenRaider");
+    if (i) {
+        printf(errorText, i);
+    }
+	i = TEXT->glPrintf((width/2)-50, height/2, 0, "GLString");
+	if (i) {
+	    printf(errorText, i);
 	}
-
-	i = TEXT->glPrintf((width/2)-12*5, height/2+32, 1,
-							 "[font %i] GLString Test", id[1]);
-	if (i)
-	{
-		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
+	TEXT->Scale(1.2);
+	i = TEXT->glPrintf((width/2)-100, height/2+32, 0, "Unit Test by Mongoose");
+	if (i) {
+        printf(errorText, i);
+    }
+	i = TEXT->glPrintf((width/2)-100, height/2+64, 0, "ported to TTF by xythobuz");
+	if (i) {
+        printf(errorText, i);
 	}
-
-	s = 1.1;
-	TEXT->Scale(s);
-
-	i = TEXT->glPrintf((width/2)-10*7, height/2+64, 1,
-							 "[font %i] Scaled by %.1f", id[2], s);
-	if (i)
-	{
-		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
-	}
-
-	i = TEXT->glPrintf((width/2)-10*7, height/2-32, 0,
-							 "[font %i] Scaled by %.1f", id[3], s);
-	if (i)
-	{
-		printf("TEXT->glPrintf> ERROR code %i ( 0 means no error )\n", i);
-	}
+    TEXT->setActive(0, true);
+    TEXT->setActive(1, true);
+    TEXT->setActive(2, true);
+    TEXT->setActive(3, true);
 }
 
 
@@ -223,7 +195,7 @@ int main_gl(int argc, char *argv[])
   }
 #endif
 
-  flags = SDL_OPENGL | SDL_GL_DOUBLEBUFFER;
+  flags = SDL_OPENGL | SDL_GL_DOUBLEBUFFER | SDL_RESIZABLE;
 
   if (fullscreen)
   {
@@ -241,7 +213,7 @@ int main_gl(int argc, char *argv[])
   SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 
   // Init rendering
-  init_gl(width, height, argc, argv);
+  init_gl(width, height);
 
   for (;;)
   {
@@ -284,6 +256,12 @@ int main_gl(int argc, char *argv[])
 			  if (mkeys & KMOD_RALT)
 				  mod |= KMOD_RALT;
 
+              if (mkeys & KMOD_LMETA)
+                  mod |= KMOD_LMETA;
+
+              if (mkeys & KMOD_RMETA)
+                  mod |= KMOD_RMETA;
+
 			  key = event.key.keysym.sym;
 
 			  switch (key)
@@ -291,15 +269,22 @@ int main_gl(int argc, char *argv[])
 			  case 0x1B: // 27d, ESC
 				  exit(0);
 				  break;
+#ifdef __APPLE__
+              case 113: // q
+                  if ((mod & KMOD_RMETA) || (mod & KMOD_LMETA))
+                      exit(0);
+                  break;
+#endif
+              case 114: // r
+                  break;
 			  }
 			  break;
 		  case SDL_KEYUP:
 			  break;
 		  case SDL_VIDEORESIZE:
-			  event_resize(event.resize.w, event.resize.h);
-
 			  width = event.resize.w;
 			  height = event.resize.h;
+			  event_resize(width, height);
 			  event_display(width, height);
 			  break;
 		  }
