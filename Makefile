@@ -314,6 +314,15 @@ GLString.test:
 #################################################################
 
 Hel.test: Quaternion.test Matrix.test Math.test
+	@-echo "================================================="
+	@-echo "Running Matrix unit test"
+	$(BUILD_TEST_DIR)/Matrix.test
+	@-echo "================================================="
+	$(BUILD_TEST_DIR)/Math.test
+	@-echo "Running hel Math unit test"
+	@-echo "================================================="
+	@-echo "Running Quaternion unit test"
+	$(BUILD_TEST_DIR)/Quaternion.test
 
 Matrix.test:
 	@-echo "Building Matrix unit test"
@@ -321,27 +330,18 @@ Matrix.test:
 	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
 	src/Matrix.cpp src/Quaternion.cpp src/Vector3d.cpp \
 	test/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
-	@-echo "================================================="
-	@-echo "Running Matrix unit test"
-	$(BUILD_TEST_DIR)/Matrix.test
 
 Quaternion.test:
 	@-echo "Building Quaternion unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
 	src/Quaternion.cpp test/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
-	@-echo "================================================="
-	@-echo "Running Quaternion unit test"
-	$(BUILD_TEST_DIR)/Quaternion.test
 
 Math.test:
 	@-echo "Building Math unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
 	src/MatMath.cpp src/Vector3d.cpp test/MatMath.cpp -o $(BUILD_TEST_DIR)/Math.test
-	@-echo "================================================="
-	@-echo "Running hel unit test"
-	$(BUILD_TEST_DIR)/Math.test
 
 #################################################################
 
