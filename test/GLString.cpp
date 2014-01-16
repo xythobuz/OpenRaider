@@ -195,7 +195,7 @@ int main_gl(int argc, char *argv[])
   }
 #endif
 
-  flags = SDL_OPENGL | SDL_GL_DOUBLEBUFFER | SDL_RESIZABLE;
+  flags = SDL_OPENGL | SDL_GL_DOUBLEBUFFER;
 
   if (fullscreen)
   {

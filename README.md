@@ -56,8 +56,6 @@ Just run `make debug` and run `bin/debug/OpenRaider` for a debug build.
 
 ## Usage
 
-See the original `README.old` file. In the Main Menu, &lt;Esc&gt; will allow you to select a level to play.
-
 ### Configuration file
 
 OpenRaider will try to load `~/.OpenRaider/OpenRaider.init` or, if it doesn't exist, `OpenRaider.init` from the current directory.
@@ -69,7 +67,139 @@ The configuration file format is very simple:
 * Lines surrounded with `[]`, eg. `[Engine.OpenGL.Driver]` set the mode for following commands.
 * Everything else is interpreted as command for the current mode.
 
-See `README.old` for a (probably incomplete) list of available commands.
+### Level PAKs
+
+You can use paks from any Tomb Raider version supported and most user made paks for Tomb Raider.
+Only PHD, TR1, TR2, TR3, and TR4 paks are supported as of this writing.
+
+Edit 'Map' lines in your OpenRaider.init as needed.
+I suggest removing all your Map=... lines to begin with, since no maps are bundled with this release.
+
+### Sound FXs
+
+Setting up external sound SFX, for TR2 and TR3 paks only.
+
+TR2 and TR3 paks (both have file extension `.tr2`) don't have sound data contained in the pak itself, but instead
+they share a common SFX file (often MAIN.SFX) for each pak from a given Tomb Raider version.
+
+Previously, OpenRaider tried to load an SFX file with the same name as the level file, with `.sfx` added to the end.
+You had to create a symlink for each level to the SFX file if you were using original Tomb Raider levels, like this:
+
+    cd ~/.OpenRaider/paks/tr3/
+    cp /mnt/cdrom/data/MAIN.SFX .
+    for i in *.tr2; do ln -s MAIN.SFX $i.sfx; done
+
+Now, OpenRaider just tries to load a `MAIN.SFX` in the same folder as the level file.
+If you want to change this behaviour, this happens around line 1075 of `src/OpenRaider.cpp`.
+
+### Key Bindings
+
+| Key                      | Action                                       |
+| ------------------------:|:-------------------------------------------- |
+| &lt;Alt&gt;&lt;Enter&gt; | Toggle fullscreen                            |
+| &lt;Esc&gt;              | Interactive Level load menu                  |
+| `                        | Console toggle on/off                        |
+| Mouse                    | Turn                                         |
+| MouseBtn Left            | Shoot                                        |
+| w                        | Move forward                                 |
+| s                        | Move back                                    |
+| e                        | Move down                                    |
+| q                        | Move up                                      |
+| r                        | Play sound quick test                        |
+| /                        | Drop a waypoint test (formally undocumented) |
+| [ ]                      | Adjust idle animation for testing            |
+
+### Console Commands
+
+Console commands (BOOL is now '0' or '1' for less typing).
+Pressing &lt;UP&gt; will go back to last command entered (saves typing).
+
+#### Network
+
+| Command          | Action                                |
+| ----------------:|:------------------------------------- |
+| server           | Start network listen server           |
+| killserver       | Stop network listen server            |
+| port INT         | Set network port number               |
+| connect HOSTNAME | Connect to network server at HOSTNAME |
+| disconnect       | Disconnect from network server        |
+
+#### Game
+
+| Command             | Action                                                 |
+| -------------------:|:------------------------------------------------------ |
+| quit                | Quit the game                                          |
+| sshot               | Take screenshot                                        |
+| play INT            | Play sound fx with number                              |
+| loadlevel STRING    | Load level with mapname STRING                         |
+| sensitivity.x FLOAT | Set mouse sensitivity for X movement                   |
+| sensitivity.y FLOAT | Set mouse sensitivity for Y movement                   |
+| fullscreen          | Toggles fullscreen mode                                |
+| walk                | Toggle world clipping on                               |
+| ghost               | Toggle world clipping off                              |
+| fly                 | Toggle world clipping off without gravity              |
+| noclip              | Toggle world clipping in cycle                         |
+| hop                 | Toggle room hopping hack                               |
+| showfps BOOL        | Show FPS                                               |
+| mem ARG             | Prints memory report, where ARG is `usage` or `report` |
+| resize STRING       | Change resolution to `xga`, `svga` or `vga`            |
+
+#### Render
+
+| Command          | Action                                       |
+| ----------------:|:-------------------------------------------- |
+| wireframe        | Render in wireframe (for debugging)          |
+| solid            | Render solid color polygons                  |
+| texture          | Render with textures                         |
+| vertexlight      | Render with vertexlights                     |
+| titlescreen      | Render titlescreen                           |
+| r_animate BOOL   | Animate all models at once                   |
+| r_upf BOOL       | Update room render list once per frame       |
+| r_ponytail BOOL  | Render ponytail on Lara                      |
+| r_pigtails BOOL  | Render ponytails as pigtails on Lara         |
+| r_ponyangle INT  | Set rotation of ponytail on Lara             |
+| r_ponyx INT      | Set X offset of ponytail on Lara             |
+| r_ponyy INT      | Set Y offset of ponytail on Lara             |
+| r_ponyz INT      | Set Z offset of ponytail on Lara             |
+| r_viewmodel INT  | Load skeletal model with index INT           |
+| r_fog BOOL       | Render fog toggle                            |
+| r_portal BOOL    | Render portals in rooms                      |
+| r_particle BOOL  | Render particles                             |
+| r_vmodel BOOL    | Render view model                            |
+| r_sprite BOOL    | Render sprites (room fx and items)           |
+| r_roommodel BOOL | Render room models                           |
+| r_entmodel BOOL  | Render entity models                         |
+| r_light BOOL     | Render with GL lights                        |
+| r_ralpha BOOL    | Render alpha pass for rooms                  |
+| r_vis BOOL       | Render using visibility checking             |
+| r_oneroom        | Render only the current room                 |
+| r_allrooms       | Render all rooms in the level (debug/stress) |
+
+#### Set Commands
+
+| Command        | Action                    |
+| --------------:|:------------------------- |
+| mousegrab BOOL | Set mouse grabbing on/off |
+
+#### Stat Commands
+
+| Command | Action                 |
+| -------:|:---------------------- |
+| fps     | Toggle showing FPS     |
+| pos     | Show current location  |
+| room    |                        |
+| flags   | Show room flags in hex |
+
+### Wireframe mode colors
+
+* Red (thick) lines are portal outlines
+* Red (thin) lines are triangle room polygons
+* Black lines are quadralateral room polygons
+* White meshes are entities
+* Blue meshes are sprites
+* Yellow meshes are room models
+* Green lines with red endpoints are room bboxes
+* Pink dots are visibility checks
 
 ## License
 
