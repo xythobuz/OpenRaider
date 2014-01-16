@@ -1,7 +1,7 @@
 var searchData=
 [
   ['textureflag',['TextureFlag',['../class_texture.html#a87b2fed2c768145467cd9c260c54413a',1,'Texture']]],
-  ['tga_5ftype_5ft',['tga_type_t',['../mtk__tga_8h.html#aa10934a8bc956c001867a8f3afe71b83',1,'mtk_tga.h']]],
+  ['tga_5ftype_5ft',['tga_type_t',['../tga_8h.html#aa10934a8bc956c001867a8f3afe71b83',1,'tga.h']]],
   ['tombraiderface_5fflags',['tombraiderFace_Flags',['../_tomb_raider_8h.html#a369d64e0f9693e2fd0ed9494f4b7da99',1,'TombRaider.h']]],
   ['tombraiderlightflags',['tombraiderLightFlags',['../_tomb_raider_8h.html#acce6fcc9da37749a35943c92a0f648de',1,'TombRaider.h']]],
   ['tombraiderlighttype',['tombraiderLightType',['../_tomb_raider_8h.html#a1d283e1808ad55675c2cd5054492fd1b',1,'TombRaider.h']]],

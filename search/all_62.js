@@ -31,7 +31,7 @@ var searchData=
   ['box_5fs',['box_s',['../_world_8h.html#structbox__s',1,'']]],
   ['box_5ft',['box_t',['../_world_8h.html#a965bfb699f6a9537079a8d8c638f59c1',1,'World.h']]],
   ['boxes',['boxes',['../_world_8h.html#ac5f2d9c2862d4137e93ad1210778e2af',1,'room_mesh_s']]],
-  ['bpp',['bpp',['../mtk__tga_8h.html#a8b5e2dacfb11c95e53b1b2951cb40826',1,'mtk_image_tga_s']]],
+  ['bpp',['bpp',['../tga_8h.html#a8b5e2dacfb11c95e53b1b2951cb40826',1,'mtk_image_tga_s']]],
   ['buffercolorarray',['bufferColorArray',['../class_open_g_l_mesh.html#aba167de7791fefc714cd237336cd0a98',1,'OpenGLMesh']]],
   ['bufferedprintf',['bufferedPrintf',['../_texture_8h.html#a4336d89f7962686c8e07942ca829d4b8',1,'bufferedPrintf(char *string, unsigned int len, char *s,...):&#160;Texture.cpp'],['../_texture_8cpp.html#a4336d89f7962686c8e07942ca829d4b8',1,'bufferedPrintf(char *string, unsigned int len, char *s,...):&#160;Texture.cpp']]],
   ['buffernormalarray',['bufferNormalArray',['../class_open_g_l_mesh.html#a93c32ab1cad68bb8119a5ca7ff31dfe1',1,'OpenGLMesh']]],

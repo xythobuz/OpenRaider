@@ -9,7 +9,7 @@ var searchData=
   ['loadbuffer',['loadBuffer',['../class_texture.html#a3d40bbf05574035fb8c2093fca3a6ee7',1,'Texture']]],
   ['loadbufferslot',['loadBufferSlot',['../class_texture.html#a1ef7fdf1e3ac760512b1e30b623ae608',1,'Texture']]],
   ['loadcolortexture',['loadColorTexture',['../class_texture.html#a18fd6e2d8ca4f854652c9f437b7a9961',1,'Texture']]],
-  ['loadfile',['loadFile',['../test_2mtk__tga_8cpp.html#aa3dcf3db87be2f211aba1fe081072c86',1,'loadFile(FILE *f):&#160;mtk_tga.cpp'],['../test_2_sound_8cpp.html#a20361aaf981ec8bfabb4b326a4b03778',1,'loadFile():&#160;Sound.cpp']]],
+  ['loadfile',['loadFile',['../test_2_sound_8cpp.html#a20361aaf981ec8bfabb4b326a4b03778',1,'loadFile():&#160;Sound.cpp'],['../test_2tga_8cpp.html#aa3dcf3db87be2f211aba1fe081072c86',1,'loadFile(FILE *f):&#160;tga.cpp']]],
   ['loadfontttf',['loadFontTTF',['../class_texture.html#a1c961286594357d003dce3cad2613d6b',1,'Texture']]],
   ['loadlevel',['loadLevel',['../class_open_raider.html#a9a8f99fb95921302256266ca8d445e22',1,'OpenRaider']]],
   ['loadpng',['loadPNG',['../class_texture.html#a5543bd94450bf7bd037631562ff185fc',1,'Texture']]],

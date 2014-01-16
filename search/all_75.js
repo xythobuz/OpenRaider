@@ -22,7 +22,7 @@ var searchData=
   ['unknownr7',['unknownR7',['../_tomb_raider_8h.html#a3536c4113f72214e272c48f775ff07e1',1,'tr5_room_s']]],
   ['unknownr8',['unknownR8',['../_tomb_raider_8h.html#adfc1fb094d1a81aa7b9c56346ab16970',1,'tr5_room_s']]],
   ['unseterror',['UnSetError',['../class_map.html#ab7d2abc885d9999a8043a4890b2c814c',1,'Map']]],
-  ['update',['update',['../class_camera.html#a42cda7239981a5618660d04bd5893556',1,'Camera::update()'],['../class_particle.html#a9ff98679ed52065d043d29a5af7a8980',1,'Particle::Update()'],['../class_render.html#a289501f6251e10f01cff7319fce55eca',1,'Render::Update()']]],
+  ['update',['Update',['../class_particle.html#a9ff98679ed52065d043d29a5af7a8980',1,'Particle::Update()'],['../class_render.html#a289501f6251e10f01cff7319fce55eca',1,'Render::Update()'],['../class_camera.html#a42cda7239981a5618660d04bd5893556',1,'Camera::update()']]],
   ['updateclip',['updateClip',['../class_view_volume.html#a711a3a873833132e6416c0ef6209b2dc',1,'ViewVolume']]],
   ['updateframe',['updateFrame',['../class_view_volume.html#aeb60a83c073a2f4fb75cbd45fe24e281',1,'ViewVolume::updateFrame(matrix_t proj, matrix_t mdl)'],['../class_view_volume.html#a4ebd3a87b4810d04ac4fbaf3490d30bb',1,'ViewVolume::updateFrame()']]],
   ['updatefrustum',['updateFrustum',['../class_view_volume.html#a243eda64c5e38f2afe6fc4eaa2476a8f',1,'ViewVolume']]],

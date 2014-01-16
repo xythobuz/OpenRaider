@@ -4,6 +4,7 @@ var searchData=
   ['radinput',['radInput',['../_tomb_raider_8h.html#a9a0b8cde84e8e471f18a8f9e3aa49256',1,'tr5_light_s']]],
   ['radius',['radius',['../_world_8h.html#af4e7f170dd070e184933fc36e1157da6',1,'sprite_s::radius()'],['../_world_8h.html#a04c27e2eff003ba0aca36c69ca477ba5',1,'model_mesh_s::radius()']]],
   ['radoutput',['radOutput',['../_tomb_raider_8h.html#a615702797ec71da8ebd588a2bec23749',1,'tr5_light_s']]],
+  ['random',['random',['../test_2_mat_math_8cpp.html#a6be6d9e6fb783b936790839619041438',1,'MatMath.cpp']]],
   ['range',['range',['../_tomb_raider_8h.html#a484ec84c8c840ed2300e595d90e7c07b',1,'tr5_light_s']]],
   ['rate',['rate',['../_skeletal_model_8h.html#a71af39487008b22e2d14b191418cce3e',1,'animation_frame_s::rate()'],['../class_skeletal_model.html#a72969ebee514d17acc00ae65e85df9a5',1,'SkeletalModel::rate()']]],
   ['rc_5fcommand',['rc_command',['../_system_8h.html#a23a20ce358ec01f9110793d0a5071d5b',1,'rc_command(const char *symbol, char *command):&#160;System.cpp'],['../_system_8cpp.html#a23a20ce358ec01f9110793d0a5071d5b',1,'rc_command(const char *symbol, char *command):&#160;System.cpp']]],
@@ -35,7 +36,7 @@ var searchData=
   ['restoreredblackafterinsert',['RestoreRedBlackAfterInsert',['../class_tree.html#a55354d9c0d8f0b9b79bf24d00fb5d6ec',1,'Tree']]],
   ['restoreredblackafterremove',['RestoreRedBlackAfterRemove',['../class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107',1,'Tree']]],
   ['rgb',['RGB',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496af7d1af8e5f3b864a48c081ca85112240',1,'Texture']]],
-  ['rgba',['RGBA',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496a6a2e558c55ef02327963bae8c0938256',1,'Texture::RGBA()'],['../_world_8h.html#a3393d864dde7f89a66db1754322989b3',1,'color_s::rgba()']]],
+  ['rgba',['rgba',['../_world_8h.html#a3393d864dde7f89a66db1754322989b3',1,'color_s::rgba()'],['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496a6a2e558c55ef02327963bae8c0938256',1,'Texture::RGBA()']]],
   ['right_5fside',['right_side',['../_tomb_raider_8h.html#a9a3561fa50caa2f9438108f90e077eff',1,'tr2_sprite_texture_s::right_side()'],['../_tomb_raider_8h.html#a85b36afd2fad1e36e6cebccfda8f0588',1,'right_side():&#160;TombRaider.h']]],
   ['rightside',['rightSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa13d7562aae131d95dd43be32c9c3db5a',1,'ViewVolume']]],
   ['roll',['roll',['../_tomb_raider_8h.html#a08369262411e5e66a819b9be6390f9b8',1,'tr5_flyby_camera_s']]],
@@ -59,7 +60,7 @@ var searchData=
   ['rotate',['rotate',['../class_camera.html#a4a45040f06f24a53af7f17bbcc610f22',1,'Camera::rotate()'],['../class_matrix.html#a4af9aa609e3d61e5a327b1018d03442a',1,'Matrix::rotate(vec_t x, vec_t y, vec_t z)'],['../class_matrix.html#a727c4a0fe56b3bf02a187aa8a023b6e0',1,'Matrix::rotate(const vec_t *xyz)']]],
   ['rotateleft',['RotateLeft',['../class_tree.html#a5db0346067d0be04aede6e65b4a5714b',1,'Tree']]],
   ['rotateright',['RotateRight',['../class_tree.html#a78435582c4282e4ac6c5ae39345270db',1,'Tree']]],
-  ['rotation',['rotation',['../_tomb_raider_8h.html#a089c62570afaa9d9c8f65c7be20b2502',1,'tr2_room_staticmesh_s::rotation()'],['../_tomb_raider_8h.html#a10234be880878c25f3fd1ee0a737d341',1,'rotation():&#160;TombRaider.h']]],
+  ['rotation',['rotation',['../_tomb_raider_8h.html#a089c62570afaa9d9c8f65c7be20b2502',1,'tr2_room_staticmesh_s::rotation()'],['../_tomb_raider_8h.html#a10234be880878c25f3fd1ee0a737d341',1,'rotation():&#160;TombRaider.h'],['../test_2_matrix_8cpp.html#ac018134f2b1db66fed74a28d611578ce',1,'rotation(int axis):&#160;Matrix.cpp']]],
   ['rotx',['rotx',['../_tomb_raider_8h.html#a95d06665504166f902c41d82b0f6ed66',1,'tr2_cinematic_frame_s::rotx()'],['../_tomb_raider_8h.html#a1dc028d6c6f5d7d5f3e1d192893d63c6',1,'rotx():&#160;TombRaider.h']]],
   ['roty',['roty',['../_tomb_raider_8h.html#acb6653de309b3ef81cfe448d18a261e7',1,'tr2_cinematic_frame_s::roty()'],['../_tomb_raider_8h.html#afd5555a0586e1aca54a183953105d66f',1,'roty():&#160;TombRaider.h']]],
   ['rotz',['rotz',['../_tomb_raider_8h.html#a3474df5e72594454fd89f250ebe92645',1,'tr2_cinematic_frame_s::rotz()'],['../_tomb_raider_8h.html#a7f6c6e326b731debb268d763daec3a0a',1,'rotz():&#160;TombRaider.h']]],
@@ -70,7 +71,6 @@ var searchData=
   ['run_5ftestp',['RUN_TESTp',['../greatest_8h.html#a6b38164fb342e3502eaf7693c04640c7',1,'greatest.h']]],
   ['runclient',['runClient',['../class_network.html#af02602120320c587393d1561b09c4bd5',1,'Network']]],
   ['rungame',['runGame',['../class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde',1,'SDLSystem::runGame()'],['../class_system.html#a8a79288481fd978a08c12b4777571ad8',1,'System::runGame()']]],
-  ['runmatrixunittest',['runMatrixUnitTest',['../test_2_matrix_8cpp.html#a2885e2402f62b574dbe067c82a2d4b1f',1,'Matrix.cpp']]],
   ['runquaternionunittest',['runQuaternionUnitTest',['../test_2_quaternion_8cpp.html#acdde9a6b018404899f1ea7bf58134fa6',1,'Quaternion.cpp']]],
   ['runserver',['runServer',['../class_network.html#a3fb79cf27a1cf0a7b6f34a29d394b922',1,'Network']]]
 ];

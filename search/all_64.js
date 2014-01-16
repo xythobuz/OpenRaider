@@ -8,7 +8,7 @@ var searchData=
   ['delete_5fcheck',['delete_check',['../memory__test_8h.html#a5762173692a9be28f5796fea71983273',1,'memory_test.h']]],
   ['deprecated_5fglubuild2dmipmaps',['deprecated_gluBuild2DMipmaps',['../_texture_8cpp.html#ac90870d538f2d9159e912b0b07e7c532',1,'Texture.cpp']]],
   ['deprecated_5fglulookat',['deprecated_gluLookAt',['../_render_8cpp.html#a6bd53f77232730f0850ad6cabc6534ab',1,'Render.cpp']]],
-  ['desc_5fflags',['desc_flags',['../mtk__tga_8h.html#a69615eaf5e5f636df6c9f07d8185e74a',1,'mtk_image_tga_s']]],
+  ['desc_5fflags',['desc_flags',['../tga_8h.html#a69615eaf5e5f636df6c9f07d8185e74a',1,'mtk_image_tga_s']]],
   ['destroy',['destroy',['../class_world.html#a02d69ed7161ba4b4cb07471eb1bf2ec9',1,'World']]],
   ['dim_5fwhite',['DIM_WHITE',['../_render_8cpp.html#a0ab9b7f311d31ce860c3e4872c683382',1,'Render.cpp']]],
   ['directionvectorx',['directionVectorX',['../_tomb_raider_8h.html#a95e4202955221695ea718d5c66c2c576',1,'tr5_light_s']]],

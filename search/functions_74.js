@@ -11,6 +11,7 @@ var searchData=
   ['tombraider',['TombRaider',['../class_tomb_raider.html#a2cd451dc244348ecc629b15fe0c041be',1,'TombRaider']]],
   ['tombraider1',['TombRaider1',['../class_tomb_raider1.html#a0b759142e0906f30837cc85d541f39ab',1,'TombRaider1']]],
   ['translate',['translate',['../class_camera.html#ac9e53556c53beee69c77a97e2a1c1068',1,'Camera::translate()'],['../class_matrix.html#a214b7e4f6ec101d2a22ddd05215b9afc',1,'Matrix::translate(vec_t x, vec_t y, vec_t z)'],['../class_matrix.html#abe83d3fe49361b7c64f87af1d1fa03f5',1,'Matrix::translate(const vec_t *xyz)']]],
+  ['translation',['translation',['../test_2_matrix_8cpp.html#a3d2e7d28b111b5620d23d57efdccf36f',1,'Matrix.cpp']]],
   ['transpose',['transpose',['../class_matrix.html#aa753de1a2ed37c8eb934e06823fee179',1,'Matrix']]],
   ['tree',['Tree',['../class_tree.html#a1084aca0845fdd054d5bcfcb4c171f39',1,'Tree']]],
   ['tree_5fcheck',['tree_check',['../src_2memory__test_8cpp.html#a24eac029a7492426fb48478fd899ad6c',1,'memory_test.cpp']]],
@@ -26,5 +27,6 @@ var searchData=
   ['tree_5frotate_5fright',['tree_rotate_right',['../src_2memory__test_8cpp.html#a45af26caea0ee44c5875862da48659b3',1,'memory_test.cpp']]],
   ['tree_5fvalid_5freport',['tree_valid_report',['../src_2memory__test_8cpp.html#aca52060e7fa79a4473eea88c9ea8f009',1,'tree_valid_report(rbtree_t *root):&#160;memory_test.cpp'],['../test_2memory__test_8cpp.html#aca52060e7fa79a4473eea88c9ea8f009',1,'tree_valid_report(rbtree_t *root):&#160;memory_test.cpp']]],
   ['treenode',['TreeNode',['../class_tree_node.html#aa33fd6c2a40d43c39c7e93613dd040cf',1,'TreeNode']]],
-  ['treenodeshallowcopy',['TreeNodeShallowCopy',['../class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6',1,'Tree']]]
+  ['treenodeshallowcopy',['TreeNodeShallowCopy',['../class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6',1,'Tree']]],
+  ['types',['types',['../test_2_mat_math_8cpp.html#a16b3cce7bcd8f42ee0c451d5163eeff1',1,'MatMath.cpp']]]
 ];

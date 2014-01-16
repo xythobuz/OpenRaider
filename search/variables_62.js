@@ -11,5 +11,5 @@ var searchData=
   ['bounding_5fbox',['bounding_box',['../_tomb_raider_8h.html#a2eb4042cb61741aa6ea3eff4b79967a2',1,'tr2_staticmesh_s::bounding_box()'],['../_tomb_raider_8h.html#a69740956f19439622fe00bccc863f1bb',1,'bounding_box():&#160;TombRaider.h']]],
   ['box_5findex',['box_index',['../_tomb_raider_8h.html#a69100fb15aa13b6d1f51144308d19c3c',1,'tr2_room_sector_s::box_index()'],['../_tomb_raider_8h.html#a1bc7bca3d518d9951b26a6261cad67e6',1,'box_index():&#160;TombRaider.h']]],
   ['boxes',['boxes',['../_world_8h.html#ac5f2d9c2862d4137e93ad1210778e2af',1,'room_mesh_s']]],
-  ['bpp',['bpp',['../mtk__tga_8h.html#a8b5e2dacfb11c95e53b1b2951cb40826',1,'mtk_image_tga_s']]]
+  ['bpp',['bpp',['../tga_8h.html#a8b5e2dacfb11c95e53b1b2951cb40826',1,'mtk_image_tga_s']]]
 ];

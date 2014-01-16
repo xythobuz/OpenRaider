@@ -42,7 +42,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="https://github.com/xythobuz/OpenRaider/wiki/_pages"><span>Documentation</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -107,7 +106,6 @@ sudo make install
 <p>If you installed the dependencies using MacPorts, you'll need to have <code>/opt/local/bin</code> in your <code>$PATH</code> before you can execute make. If you're using Bash, the MacPorts installer should have automatically edited your configuration.</p>
 <p>Just run <code>make debug</code> and run <code>bin/debug/OpenRaider</code> for a debug build. <code>make release</code> builds a release binary. <code>make bundle</code> creates a Mac App Bundle that also runs the setup script, if necessary.</p>
 <h2>Usage</h2>
-<p>See the original <code>README.old</code> file. In the Main Menu, &lt;Esc&gt; will allow you to select a level to play.</p>
 <h3>Configuration file</h3>
 <p><a class="el" href="class_open_raider.html">OpenRaider</a> will try to load <code>~/.OpenRaider/OpenRaider.init</code> or, if it doesn't exist, <code>OpenRaider.init</code> from the current directory. Running <code>setup.sh</code> will create a minimal configuration in your home directory.</p>
 <p>The configuration file format is very simple:</p>
@@ -117,7 +115,186 @@ sudo make install
 <li>Lines surrounded with <code>[]</code>, eg. <code>[Engine.OpenGL.Driver]</code> set the mode for following commands.</li>
 <li>Everything else is interpreted as command for the current mode.</li>
 </ul>
-<p>See <code>README.old</code> for a (probably incomplete) list of available commands.</p>
+<h3>Level PAKs</h3>
+<p>You can use paks from any Tomb Raider version supported and most user made paks for Tomb Raider. Only PHD, TR1, TR2, TR3, and TR4 paks are supported as of this writing.</p>
+<p>Edit '<a class="el" href="class_map.html">Map</a>' lines in your OpenRaider.init as needed. I suggest removing all your <a class="el" href="class_map.html">Map</a>=... lines to begin with, since no maps are bundled with this release.</p>
+<h3><a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a> FXs</h3>
+<p>Setting up external sound SFX, for TR2 and TR3 paks only.</p>
+<p>TR2 and TR3 paks (both have file extension <code>.tr2</code>) don't have sound data contained in the pak itself, but instead they share a common SFX file (often MAIN.SFX) for each pak from a given Tomb Raider version.</p>
+<p>Previously, <a class="el" href="class_open_raider.html">OpenRaider</a> tried to load an SFX file with the same name as the level file, with <code>.sfx</code> added to the end. You had to create a symlink for each level to the SFX file if you were using original Tomb Raider levels, like this: </p>
+<pre class="fragment">cd ~/.OpenRaider/paks/tr3/
+cp /mnt/cdrom/data/MAIN.SFX .
+for i in *.tr2; do ln -s MAIN.SFX $i.sfx; done
+</pre><p>Now, <a class="el" href="class_open_raider.html">OpenRaider</a> just tries to load a <code>MAIN.SFX</code> in the same folder as the level file. If you want to change this behaviour, this happens around line 1075 of <code><a class="el" href="_open_raider_8cpp.html">src/OpenRaider.cpp</a></code>.</p>
+<h3>Key Bindings</h3>
+<table class="doxtable">
+<tr>
+<th align="right">Key </th><th align="left">Action  </th></tr>
+<tr>
+<td align="right">&lt;Alt&gt;&lt;Enter&gt; </td><td align="left">Toggle fullscreen </td></tr>
+<tr>
+<td align="right">&lt;Esc&gt; </td><td align="left">Interactive Level load menu </td></tr>
+<tr>
+<td align="right">` </td><td align="left">Console toggle on/off </td></tr>
+<tr>
+<td align="right">Mouse </td><td align="left">Turn </td></tr>
+<tr>
+<td align="right">MouseBtn Left </td><td align="left">Shoot </td></tr>
+<tr>
+<td align="right">w </td><td align="left">Move forward </td></tr>
+<tr>
+<td align="right">s </td><td align="left">Move back </td></tr>
+<tr>
+<td align="right">e </td><td align="left">Move down </td></tr>
+<tr>
+<td align="right">q </td><td align="left">Move up </td></tr>
+<tr>
+<td align="right">r </td><td align="left">Play sound quick test </td></tr>
+<tr>
+<td align="right">/ </td><td align="left">Drop a waypoint test (formally undocumented) </td></tr>
+<tr>
+<td align="right">[ ] </td><td align="left">Adjust idle animation for testing </td></tr>
+</table>
+<h3>Console Commands</h3>
+<p>Console commands (BOOL is now '0' or '1' for less typing). Pressing &lt;UP&gt; will go back to last command entered (saves typing).</p>
+<h4><a class="el" href="class_network.html">Network</a></h4>
+<table class="doxtable">
+<tr>
+<th align="right">Command </th><th align="left">Action  </th></tr>
+<tr>
+<td align="right">server </td><td align="left">Start network listen server </td></tr>
+<tr>
+<td align="right">killserver </td><td align="left">Stop network listen server </td></tr>
+<tr>
+<td align="right">port INT </td><td align="left">Set network port number </td></tr>
+<tr>
+<td align="right">connect HOSTNAME </td><td align="left">Connect to network server at HOSTNAME </td></tr>
+<tr>
+<td align="right">disconnect </td><td align="left">Disconnect from network server </td></tr>
+</table>
+<h4>Game</h4>
+<table class="doxtable">
+<tr>
+<th align="right">Command </th><th align="left">Action  </th></tr>
+<tr>
+<td align="right">quit </td><td align="left">Quit the game </td></tr>
+<tr>
+<td align="right">sshot </td><td align="left">Take screenshot </td></tr>
+<tr>
+<td align="right">play INT </td><td align="left">Play sound fx with number </td></tr>
+<tr>
+<td align="right">loadlevel STRING </td><td align="left">Load level with mapname STRING </td></tr>
+<tr>
+<td align="right">sensitivity.x FLOAT </td><td align="left">Set mouse sensitivity for X movement </td></tr>
+<tr>
+<td align="right">sensitivity.y FLOAT </td><td align="left">Set mouse sensitivity for Y movement </td></tr>
+<tr>
+<td align="right">fullscreen </td><td align="left">Toggles fullscreen mode </td></tr>
+<tr>
+<td align="right">walk </td><td align="left">Toggle world clipping on </td></tr>
+<tr>
+<td align="right">ghost </td><td align="left">Toggle world clipping off </td></tr>
+<tr>
+<td align="right">fly </td><td align="left">Toggle world clipping off without gravity </td></tr>
+<tr>
+<td align="right">noclip </td><td align="left">Toggle world clipping in cycle </td></tr>
+<tr>
+<td align="right">hop </td><td align="left">Toggle room hopping hack </td></tr>
+<tr>
+<td align="right">showfps BOOL </td><td align="left">Show FPS </td></tr>
+<tr>
+<td align="right">mem ARG </td><td align="left">Prints memory report, where ARG is <code>usage</code> or <code>report</code> </td></tr>
+<tr>
+<td align="right">resize STRING </td><td align="left">Change resolution to <code>xga</code>, <code>svga</code> or <code>vga</code> </td></tr>
+</table>
+<h4><a class="el" href="class_render.html">Render</a></h4>
+<table class="doxtable">
+<tr>
+<th align="right">Command </th><th align="left">Action  </th></tr>
+<tr>
+<td align="right">wireframe </td><td align="left"><a class="el" href="class_render.html">Render</a> in wireframe (for debugging) </td></tr>
+<tr>
+<td align="right">solid </td><td align="left"><a class="el" href="class_render.html">Render</a> solid color polygons </td></tr>
+<tr>
+<td align="right">texture </td><td align="left"><a class="el" href="class_render.html">Render</a> with textures </td></tr>
+<tr>
+<td align="right">vertexlight </td><td align="left"><a class="el" href="class_render.html">Render</a> with vertexlights </td></tr>
+<tr>
+<td align="right">titlescreen </td><td align="left"><a class="el" href="class_render.html">Render</a> titlescreen </td></tr>
+<tr>
+<td align="right">r_animate BOOL </td><td align="left">Animate all models at once </td></tr>
+<tr>
+<td align="right">r_upf BOOL </td><td align="left">Update room render list once per frame </td></tr>
+<tr>
+<td align="right">r_ponytail BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> ponytail on Lara </td></tr>
+<tr>
+<td align="right">r_pigtails BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> ponytails as pigtails on Lara </td></tr>
+<tr>
+<td align="right">r_ponyangle INT </td><td align="left">Set rotation of ponytail on Lara </td></tr>
+<tr>
+<td align="right">r_ponyx INT </td><td align="left">Set X offset of ponytail on Lara </td></tr>
+<tr>
+<td align="right">r_ponyy INT </td><td align="left">Set Y offset of ponytail on Lara </td></tr>
+<tr>
+<td align="right">r_ponyz INT </td><td align="left">Set Z offset of ponytail on Lara </td></tr>
+<tr>
+<td align="right">r_viewmodel INT </td><td align="left">Load skeletal model with index INT </td></tr>
+<tr>
+<td align="right">r_fog BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> fog toggle </td></tr>
+<tr>
+<td align="right">r_portal BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> portals in rooms </td></tr>
+<tr>
+<td align="right">r_particle BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> particles </td></tr>
+<tr>
+<td align="right">r_vmodel BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> view model </td></tr>
+<tr>
+<td align="right">r_sprite BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> sprites (room fx and items) </td></tr>
+<tr>
+<td align="right">r_roommodel BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> room models </td></tr>
+<tr>
+<td align="right">r_entmodel BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> entity models </td></tr>
+<tr>
+<td align="right">r_light BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> with GL lights </td></tr>
+<tr>
+<td align="right">r_ralpha BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> alpha pass for rooms </td></tr>
+<tr>
+<td align="right">r_vis BOOL </td><td align="left"><a class="el" href="class_render.html">Render</a> using visibility checking </td></tr>
+<tr>
+<td align="right">r_oneroom </td><td align="left"><a class="el" href="class_render.html">Render</a> only the current room </td></tr>
+<tr>
+<td align="right">r_allrooms </td><td align="left"><a class="el" href="class_render.html">Render</a> all rooms in the level (debug/stress) </td></tr>
+</table>
+<h4>Set Commands</h4>
+<table class="doxtable">
+<tr>
+<th align="right">Command </th><th align="left">Action  </th></tr>
+<tr>
+<td align="right">mousegrab BOOL </td><td align="left">Set mouse grabbing on/off </td></tr>
+</table>
+<h4>Stat Commands</h4>
+<table class="doxtable">
+<tr>
+<th align="right">Command </th><th align="left">Action  </th></tr>
+<tr>
+<td align="right">fps </td><td align="left">Toggle showing FPS </td></tr>
+<tr>
+<td align="right">pos </td><td align="left">Show current location </td></tr>
+<tr>
+<td align="right">room </td><td align="left"></td></tr>
+<tr>
+<td align="right">flags </td><td align="left">Show room flags in hex </td></tr>
+</table>
+<h3>Wireframe mode colors</h3>
+<ul>
+<li>Red (thick) lines are portal outlines</li>
+<li>Red (thin) lines are triangle room polygons</li>
+<li>Black lines are quadralateral room polygons</li>
+<li>White meshes are entities</li>
+<li>Blue meshes are sprites</li>
+<li>Yellow meshes are room models</li>
+<li>Green lines with red endpoints are room bboxes</li>
+<li>Pink dots are visibility checks</li>
+</ul>
 <h2>License</h2>
 <p>The included example Font, <a href="http://www.droidfonts.com/licensing/">Droid Sans Mono</a>, was created by Steve Matteson and is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.</p>
 <p>The included sample WAV file is made from the <a href="http://brechler-web.de/fallingmate/">Falling Mate ringtone</a> by <a href="http://plaetzchen.cc">Plaetzchen</a>.</p>

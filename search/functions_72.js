@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['random',['random',['../test_2_mat_math_8cpp.html#a6be6d9e6fb783b936790839619041438',1,'MatMath.cpp']]],
   ['rc_5fcommand',['rc_command',['../_system_8h.html#a23a20ce358ec01f9110793d0a5071d5b',1,'rc_command(const char *symbol, char *command):&#160;System.cpp'],['../_system_8cpp.html#a23a20ce358ec01f9110793d0a5071d5b',1,'rc_command(const char *symbol, char *command):&#160;System.cpp']]],
   ['rc_5fget_5fbool',['rc_get_bool',['../_system_8h.html#ad14f12862bc728c06dbe0b1765717196',1,'rc_get_bool(char *buffer, bool *val):&#160;System.cpp'],['../_system_8cpp.html#ad14f12862bc728c06dbe0b1765717196',1,'rc_get_bool(char *buffer, bool *val):&#160;System.cpp']]],
   ['registercamera',['RegisterCamera',['../class_render.html#adf3f7af21cd66748df2208758ff005cd',1,'Render']]],
@@ -22,9 +23,9 @@ var searchData=
   ['rotate',['rotate',['../class_camera.html#a4a45040f06f24a53af7f17bbcc610f22',1,'Camera::rotate()'],['../class_matrix.html#a4af9aa609e3d61e5a327b1018d03442a',1,'Matrix::rotate(vec_t x, vec_t y, vec_t z)'],['../class_matrix.html#a727c4a0fe56b3bf02a187aa8a023b6e0',1,'Matrix::rotate(const vec_t *xyz)']]],
   ['rotateleft',['RotateLeft',['../class_tree.html#a5db0346067d0be04aede6e65b4a5714b',1,'Tree']]],
   ['rotateright',['RotateRight',['../class_tree.html#a78435582c4282e4ac6c5ae39345270db',1,'Tree']]],
+  ['rotation',['rotation',['../test_2_matrix_8cpp.html#ac018134f2b1db66fed74a28d611578ce',1,'Matrix.cpp']]],
   ['runclient',['runClient',['../class_network.html#af02602120320c587393d1561b09c4bd5',1,'Network']]],
   ['rungame',['runGame',['../class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde',1,'SDLSystem::runGame()'],['../class_system.html#a8a79288481fd978a08c12b4777571ad8',1,'System::runGame()']]],
-  ['runmatrixunittest',['runMatrixUnitTest',['../test_2_matrix_8cpp.html#a2885e2402f62b574dbe067c82a2d4b1f',1,'Matrix.cpp']]],
   ['runquaternionunittest',['runQuaternionUnitTest',['../test_2_quaternion_8cpp.html#acdde9a6b018404899f1ea7bf58134fa6',1,'Quaternion.cpp']]],
   ['runserver',['runServer',['../class_network.html#a3fb79cf27a1cf0a7b6f34a29d394b922',1,'Network']]]
 ];

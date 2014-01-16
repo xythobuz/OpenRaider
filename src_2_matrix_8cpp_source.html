@@ -42,7 +42,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="https://github.com/xythobuz/OpenRaider/wiki/_pages"><span>Documentation</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -525,55 +524,110 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;</div>
 <div class="line"><a name="l00443"></a><span class="lineno"><a class="line" href="class_matrix.html#a6c9efd11a47dc46259783025a5fd692f">  443</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_matrix.html#a0b21af02cbe86d3a7c9a8afa40ee9e00">Matrix::multiply</a>(<span class="keyword">const</span> <a class="code" href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a> <a class="code" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>, <span class="keyword">const</span> <a class="code" href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a> <a class="code" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>, <a class="code" href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a> result)</div>
 <div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;{</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="comment">/* Generated code for matrix mult */</span></div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="preprocessor">#ifdef COLUMN_ORDER</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="preprocessor"></span>    <span class="comment">/* Column order */</span></div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    result[ 0] = a[ 0] * b[ 0] + a[ 4] * b[ 1] + a[ 8] * b[ 2] + a[12] * b[ 3];</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    result[ 1] = a[ 0] * b[ 4] + a[ 4] * b[ 5] + a[ 8] * b[ 6] + a[12] * b[ 7];</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    result[ 2] = a[ 0] * b[ 8] + a[ 4] * b[ 9] + a[ 8] * b[10] + a[12] * b[11];</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    result[ 3] = a[ 0] * b[12] + a[ 4] * b[13] + a[ 8] * b[14] + a[12] * b[15];</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    result[ 4] = a[ 1] * b[ 0] + a[ 5] * b[ 1] + a[ 9] * b[ 2] + a[13] * b[ 3];</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    result[ 5] = a[ 1] * b[ 4] + a[ 5] * b[ 5] + a[ 9] * b[ 6] + a[13] * b[ 7];</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    result[ 6] = a[ 1] * b[ 8] + a[ 5] * b[ 9] + a[ 9] * b[10] + a[13] * b[11];</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    result[ 7] = a[ 1] * b[12] + a[ 5] * b[13] + a[ 9] * b[14] + a[13] * b[15];</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    result[ 8] = a[ 2] * b[ 0] + a[ 6] * b[ 1] + a[10] * b[ 2] + a[14] * b[ 3];</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    result[ 9] = a[ 2] * b[ 4] + a[ 6] * b[ 5] + a[10] * b[ 6] + a[14] * b[ 7];</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    result[10] = a[ 2] * b[ 8] + a[ 6] * b[ 9] + a[10] * b[10] + a[14] * b[11];</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    result[11] = a[ 2] * b[12] + a[ 6] * b[13] + a[10] * b[14] + a[14] * b[15];</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    result[12] = a[ 3] * b[ 0] + a[ 7] * b[ 1] + a[11] * b[ 2] + a[15] * b[ 3];</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    result[13] = a[ 3] * b[ 4] + a[ 7] * b[ 5] + a[11] * b[ 6] + a[15] * b[ 7];</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    result[14] = a[ 3] * b[ 8] + a[ 7] * b[ 9] + a[11] * b[10] + a[15] * b[11];</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    result[15] = a[ 3] * b[12] + a[ 7] * b[13] + a[11] * b[14] + a[15] * b[15];</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="preprocessor"></span>    <span class="comment">/* Row order */</span></div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    result[ 0] = a[ 0] * b[ 0] + a[ 1] * b[ 4] + a[ 2] * b[ 8] + a[ 3] * b[12];</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    result[ 1] = a[ 0] * b[ 1] + a[ 1] * b[ 5] + a[ 2] * b[ 9] + a[ 3] * b[13];</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    result[ 2] = a[ 0] * b[ 2] + a[ 1] * b[ 6] + a[ 2] * b[10] + a[ 3] * b[14];</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    result[ 3] = a[ 0] * b[ 3] + a[ 1] * b[ 7] + a[ 2] * b[11] + a[ 3] * b[15];</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    result[ 4] = a[ 4] * b[ 0] + a[ 5] * b[ 4] + a[ 6] * b[ 8] + a[ 7] * b[12];</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    result[ 5] = a[ 4] * b[ 1] + a[ 5] * b[ 5] + a[ 6] * b[ 9] + a[ 7] * b[13];</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    result[ 6] = a[ 4] * b[ 2] + a[ 5] * b[ 6] + a[ 6] * b[10] + a[ 7] * b[14];</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    result[ 7] = a[ 4] * b[ 3] + a[ 5] * b[ 7] + a[ 6] * b[11] + a[ 7] * b[15];</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    result[ 8] = a[ 8] * b[ 0] + a[ 9] * b[ 4] + a[10] * b[ 8] + a[11] * b[12];</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    result[ 9] = a[ 8] * b[ 1] + a[ 9] * b[ 5] + a[10] * b[ 9] + a[11] * b[13];</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    result[10] = a[ 8] * b[ 2] + a[ 9] * b[ 6] + a[10] * b[10] + a[11] * b[14];</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    result[11] = a[ 8] * b[ 3] + a[ 9] * b[ 7] + a[10] * b[11] + a[11] * b[15];</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    result[12] = a[12] * b[ 0] + a[13] * b[ 4] + a[14] * b[ 8] + a[15] * b[12];</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    result[13] = a[12] * b[ 1] + a[13] * b[ 5] + a[14] * b[ 9] + a[15] * b[13];</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    result[14] = a[12] * b[ 2] + a[13] * b[ 6] + a[14] * b[10] + a[15] * b[14];</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    result[15] = a[12] * b[ 3] + a[13] * b[ 7] + a[14] * b[11] + a[15] * b[15];</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="comment">/* Generated code for matrix mult</span></div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="comment">     * Code used:</span></div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;<span class="comment">    // char order is argument</span></div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;<span class="comment">    int i, j, k;</span></div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;<span class="comment">    if (order == &#39;r&#39;)</span></div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="comment">        printf(&quot;// Row order\n&quot;);</span></div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">    else</span></div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="comment">        printf(&quot;// Column order\n&quot;);</span></div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="comment">    for (i = 0; i &lt; 4; ++i)</span></div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="comment">        for (j = 0; j &lt; 4; ++j)</span></div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;<span class="comment">        {</span></div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="comment">            if (order == &#39;r&#39;)</span></div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="comment">            {</span></div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;<span class="comment">                printf(&quot;result[%2i] = &quot;, j+i*4);</span></div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="comment">            }</span></div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="comment">            else</span></div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="comment">            {</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="comment">                printf(&quot;result[%2i] = &quot;, j+i*4);</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="comment">            }</span></div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="comment">            for (k = 0; k &lt; 4; ++k)</span></div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="comment">            {</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="comment">                if (order == &#39;r&#39;)</span></div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="comment">                {</span></div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="comment">                    printf(&quot;a[%2i] * b[%2i]%s&quot;,</span></div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="comment">                              k+i*4, j+k*4, (k == 3) ? &quot;;\n&quot; : &quot; + &quot;);</span></div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment">                }</span></div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment">                else</span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment">                {</span></div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="comment">                    printf(&quot;a[%2i] * b[%2i]%s&quot;,</span></div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;<span class="comment">                             i+k*4, k+j*4, (k == 3) ? &quot;;\n&quot; : &quot; + &quot;);</span></div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;<span class="comment">                }</span></div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="comment">                //sum+=(elements[i+k*4]*m.elements[k+j*4]);</span></div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;<span class="comment">            }</span></div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment">            //result.elements[i+j*4]=sum;</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;<span class="comment">        printf(&quot;\n&quot;);</span></div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;<span class="comment">    printf(&quot;\n&quot;);</span></div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="comment">    printf(&quot;// Transpose\n&quot;);</span></div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;<span class="comment">    for(i = 0; i &lt; 4; ++i)</span></div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="comment">        for (j = 0; j &lt; 4; ++j)</span></div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="comment">        {</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="comment">            printf(&quot;a[%2i] = b[%2i]%s&quot;,</span></div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="comment">                     j+i*4, i+j*4, (j == 3) ? &quot;;\n&quot; : &quot;; &quot;);</span></div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="comment">     * was in test/Matrix.cpp</span></div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="preprocessor">#ifdef COLUMN_ORDER</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="preprocessor"></span>    <span class="comment">/* Column order */</span></div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    result[ 0] = a[ 0] * b[ 0] + a[ 4] * b[ 1] + a[ 8] * b[ 2] + a[12] * b[ 3];</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    result[ 1] = a[ 0] * b[ 4] + a[ 4] * b[ 5] + a[ 8] * b[ 6] + a[12] * b[ 7];</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    result[ 2] = a[ 0] * b[ 8] + a[ 4] * b[ 9] + a[ 8] * b[10] + a[12] * b[11];</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    result[ 3] = a[ 0] * b[12] + a[ 4] * b[13] + a[ 8] * b[14] + a[12] * b[15];</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    result[ 4] = a[ 1] * b[ 0] + a[ 5] * b[ 1] + a[ 9] * b[ 2] + a[13] * b[ 3];</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    result[ 5] = a[ 1] * b[ 4] + a[ 5] * b[ 5] + a[ 9] * b[ 6] + a[13] * b[ 7];</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    result[ 6] = a[ 1] * b[ 8] + a[ 5] * b[ 9] + a[ 9] * b[10] + a[13] * b[11];</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    result[ 7] = a[ 1] * b[12] + a[ 5] * b[13] + a[ 9] * b[14] + a[13] * b[15];</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    result[ 8] = a[ 2] * b[ 0] + a[ 6] * b[ 1] + a[10] * b[ 2] + a[14] * b[ 3];</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    result[ 9] = a[ 2] * b[ 4] + a[ 6] * b[ 5] + a[10] * b[ 6] + a[14] * b[ 7];</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    result[10] = a[ 2] * b[ 8] + a[ 6] * b[ 9] + a[10] * b[10] + a[14] * b[11];</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    result[11] = a[ 2] * b[12] + a[ 6] * b[13] + a[10] * b[14] + a[14] * b[15];</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    result[12] = a[ 3] * b[ 0] + a[ 7] * b[ 1] + a[11] * b[ 2] + a[15] * b[ 3];</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;    result[13] = a[ 3] * b[ 4] + a[ 7] * b[ 5] + a[11] * b[ 6] + a[15] * b[ 7];</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    result[14] = a[ 3] * b[ 8] + a[ 7] * b[ 9] + a[11] * b[10] + a[15] * b[11];</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    result[15] = a[ 3] * b[12] + a[ 7] * b[13] + a[11] * b[14] + a[15] * b[15];</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="preprocessor"></span>    <span class="comment">/* Row order */</span></div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    result[ 0] = a[ 0] * b[ 0] + a[ 1] * b[ 4] + a[ 2] * b[ 8] + a[ 3] * b[12];</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    result[ 1] = a[ 0] * b[ 1] + a[ 1] * b[ 5] + a[ 2] * b[ 9] + a[ 3] * b[13];</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;    result[ 2] = a[ 0] * b[ 2] + a[ 1] * b[ 6] + a[ 2] * b[10] + a[ 3] * b[14];</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;    result[ 3] = a[ 0] * b[ 3] + a[ 1] * b[ 7] + a[ 2] * b[11] + a[ 3] * b[15];</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;    result[ 4] = a[ 4] * b[ 0] + a[ 5] * b[ 4] + a[ 6] * b[ 8] + a[ 7] * b[12];</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;    result[ 5] = a[ 4] * b[ 1] + a[ 5] * b[ 5] + a[ 6] * b[ 9] + a[ 7] * b[13];</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;    result[ 6] = a[ 4] * b[ 2] + a[ 5] * b[ 6] + a[ 6] * b[10] + a[ 7] * b[14];</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;    result[ 7] = a[ 4] * b[ 3] + a[ 5] * b[ 7] + a[ 6] * b[11] + a[ 7] * b[15];</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    result[ 8] = a[ 8] * b[ 0] + a[ 9] * b[ 4] + a[10] * b[ 8] + a[11] * b[12];</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;    result[ 9] = a[ 8] * b[ 1] + a[ 9] * b[ 5] + a[10] * b[ 9] + a[11] * b[13];</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;    result[10] = a[ 8] * b[ 2] + a[ 9] * b[ 6] + a[10] * b[10] + a[11] * b[14];</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    result[11] = a[ 8] * b[ 3] + a[ 9] * b[ 7] + a[10] * b[11] + a[11] * b[15];</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    result[12] = a[12] * b[ 0] + a[13] * b[ 4] + a[14] * b[ 8] + a[15] * b[12];</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    result[13] = a[12] * b[ 1] + a[13] * b[ 5] + a[14] * b[ 9] + a[15] * b[13];</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    result[14] = a[12] * b[ 2] + a[13] * b[ 6] + a[14] * b[10] + a[15] * b[14];</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    result[15] = a[12] * b[ 3] + a[13] * b[ 7] + a[14] * b[11] + a[15] * b[15];</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;</div>
 <div class="ttc" id="src_2_matrix_8cpp_html_a04fad4ee8b40909b70143ff909580d07"><div class="ttname"><a href="src_2_matrix_8cpp.html#a04fad4ee8b40909b70143ff909580d07">MAT</a></div><div class="ttdeci">#define MAT(m, r, c)</div></div>
-<div class="ttc" id="_mat_math_8h_html_a77c204b7581ee7d9cae27cd0b16c8dec"><div class="ttname"><a href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a></div><div class="ttdeci">vec_t matrix_t[16]</div><div class="ttdoc">Used as Column_major in every class now! </div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00026">MatMath.h:26</a></div></div>
-<div class="ttc" id="_mat_math_8h_html_afc6d3c0cf1cf7a2d9eab8a73060c6c2c"><div class="ttname"><a href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a></div><div class="ttdeci">float vec4_t[4]</div><div class="ttdoc">4D Vector </div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00025">MatMath.h:25</a></div></div>
+<div class="ttc" id="_mat_math_8h_html_a77c204b7581ee7d9cae27cd0b16c8dec"><div class="ttname"><a href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a></div><div class="ttdeci">vec_t matrix_t[16]</div><div class="ttdoc">Used as Column_major in every class now! </div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00027">MatMath.h:27</a></div></div>
+<div class="ttc" id="_mat_math_8h_html_afc6d3c0cf1cf7a2d9eab8a73060c6c2c"><div class="ttname"><a href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a></div><div class="ttdeci">float vec4_t[4]</div><div class="ttdoc">4D Vector </div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00026">MatMath.h:26</a></div></div>
 <div class="ttc" id="class_matrix_html_a2dba13c45127354c9f75ef576f49269b"><div class="ttname"><a href="class_matrix.html#a2dba13c45127354c9f75ef576f49269b">Matrix::Matrix</a></div><div class="ttdeci">Matrix()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00032">Matrix.cpp:32</a></div></div>
 <div class="ttc" id="class_matrix_html_a9626b2d019c0a728e1b828daeae4198e"><div class="ttname"><a href="class_matrix.html#a9626b2d019c0a728e1b828daeae4198e">Matrix::scale</a></div><div class="ttdeci">void scale(vec_t x, vec_t y, vec_t z)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00337">Matrix.cpp:337</a></div></div>
 <div class="ttc" id="class_matrix_html_a99ba97122b8fdd54e95290caf80fc8e2"><div class="ttname"><a href="class_matrix.html#a99ba97122b8fdd54e95290caf80fc8e2">Matrix::print</a></div><div class="ttdeci">void print()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00279">Matrix.cpp:279</a></div></div>
@@ -589,25 +643,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_matrix_html_af0bf49a31a4e4e9eed132e93835b1345"><div class="ttname"><a href="class_matrix.html#af0bf49a31a4e4e9eed132e93835b1345">Matrix::getMatrix</a></div><div class="ttdeci">void getMatrix(matrix_t mat)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00193">Matrix.cpp:193</a></div></div>
 <div class="ttc" id="class_matrix_html_a6c48fc3456034b2cd1bc6782a277c74e"><div class="ttname"><a href="class_matrix.html#a6c48fc3456034b2cd1bc6782a277c74e">Matrix::getInvert</a></div><div class="ttdeci">bool getInvert(matrix_t mat)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00064">Matrix.cpp:64</a></div></div>
 <div class="ttc" id="class_matrix_html_a9b1c3627f573d78a2f08623fdfef990f"><div class="ttname"><a href="class_matrix.html#a9b1c3627f573d78a2f08623fdfef990f">Matrix::~Matrix</a></div><div class="ttdeci">~Matrix()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00054">Matrix.cpp:54</a></div></div>
-<div class="ttc" id="_tomb_raider_8h_html_af5a45dbcaa926b186e6f71d08212acc3"><div class="ttname"><a href="_tomb_raider_8h.html#af5a45dbcaa926b186e6f71d08212acc3">out</a></div><div class="ttdeci">float out</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00484">TombRaider.h:484</a></div></div>
+<div class="ttc" id="_tomb_raider_8h_html_af5a45dbcaa926b186e6f71d08212acc3"><div class="ttname"><a href="_tomb_raider_8h.html#af5a45dbcaa926b186e6f71d08212acc3">out</a></div><div class="ttdeci">float out</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00068">TombRaider.h:68</a></div></div>
 <div class="ttc" id="class_vector3d_html_a2f6f3237833233ca4ac954067ae718b6"><div class="ttname"><a href="class_vector3d.html#a2f6f3237833233ca4ac954067ae718b6">Vector3d::mVec</a></div><div class="ttdeci">vec3_t mVec</div><div class="ttdef"><b>Definition:</b> <a href="_vector3d_8h_source.html#l00282">Vector3d.h:282</a></div></div>
 <div class="ttc" id="class_matrix_html"><div class="ttname"><a href="class_matrix.html">Matrix</a></div><div class="ttdef"><b>Definition:</b> <a href="_matrix_8h_source.html#l00054">Matrix.h:54</a></div></div>
-<div class="ttc" id="_tomb_raider_8h_html_a6150e0515f7202e2fb518f7206ed97dc"><div class="ttname"><a href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a></div><div class="ttdeci">short x</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00476">TombRaider.h:476</a></div></div>
-<div class="ttc" id="_mat_math_8h_html_a34b8d82aced6931bd3a572041e59aa7d"><div class="ttname"><a href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a></div><div class="ttdeci">float vec_t</div><div class="ttdoc">1D Vector, aka float </div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00022">MatMath.h:22</a></div></div>
+<div class="ttc" id="_tomb_raider_8h_html_a6150e0515f7202e2fb518f7206ed97dc"><div class="ttname"><a href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a></div><div class="ttdeci">short x</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00060">TombRaider.h:60</a></div></div>
+<div class="ttc" id="_mat_math_8h_html_a34b8d82aced6931bd3a572041e59aa7d"><div class="ttname"><a href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a></div><div class="ttdeci">float vec_t</div><div class="ttdoc">1D Vector, aka float </div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00023">MatMath.h:23</a></div></div>
 <div class="ttc" id="class_matrix_html_ae0608a019e6dc42d0c6461788adc35c0"><div class="ttname"><a href="class_matrix.html#ae0608a019e6dc42d0c6461788adc35c0">Matrix::copy</a></div><div class="ttdeci">void copy(matrix_t source, matrix_t dest)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00415">Matrix.cpp:415</a></div></div>
 <div class="ttc" id="class_vector3d_html"><div class="ttname"><a href="class_vector3d.html">Vector3d</a></div><div class="ttdef"><b>Definition:</b> <a href="_vector3d_8h_source.html#l00033">Vector3d.h:33</a></div></div>
 <div class="ttc" id="class_matrix_html_a0b21af02cbe86d3a7c9a8afa40ee9e00"><div class="ttname"><a href="class_matrix.html#a0b21af02cbe86d3a7c9a8afa40ee9e00">Matrix::multiply</a></div><div class="ttdeci">Matrix multiply(const Matrix &amp;a, const Matrix &amp;b)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00208">Matrix.cpp:208</a></div></div>
 <div class="ttc" id="class_matrix_html_a8852e9da02a86b65545ada5525d23c54"><div class="ttname"><a href="class_matrix.html#a8852e9da02a86b65545ada5525d23c54">Matrix::multiply4d</a></div><div class="ttdeci">void multiply4d(double *v, double *result)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00255">Matrix.cpp:255</a></div></div>
-<div class="ttc" id="_tomb_raider_8h_html_aa4c2a5552e9bc49b1816ff532f558c74"><div class="ttname"><a href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a></div><div class="ttdeci">int a</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00479">TombRaider.h:479</a></div></div>
+<div class="ttc" id="_tomb_raider_8h_html_aa4c2a5552e9bc49b1816ff532f558c74"><div class="ttname"><a href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a></div><div class="ttdeci">int a</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00063">TombRaider.h:63</a></div></div>
 <div class="ttc" id="class_matrix_html_ae1c2332cd7da463bfcab55d3e122886f"><div class="ttname"><a href="class_matrix.html#ae1c2332cd7da463bfcab55d3e122886f">Matrix::isIdentity</a></div><div class="ttdeci">bool isIdentity()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00297">Matrix.cpp:297</a></div></div>
-<div class="ttc" id="_tomb_raider_8h_html_a0a2f84ed7838f07779ae24c5a9086d33"><div class="ttname"><a href="_tomb_raider_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a></div><div class="ttdeci">short y</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00477">TombRaider.h:477</a></div></div>
+<div class="ttc" id="_tomb_raider_8h_html_a0a2f84ed7838f07779ae24c5a9086d33"><div class="ttname"><a href="_tomb_raider_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a></div><div class="ttdeci">short y</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00061">TombRaider.h:61</a></div></div>
 <div class="ttc" id="class_matrix_html_aa8efbfaa87d0a99cf3cd17d4fb66e978"><div class="ttname"><a href="class_matrix.html#aa8efbfaa87d0a99cf3cd17d4fb66e978">Matrix::mMatrix</a></div><div class="ttdeci">matrix_t mMatrix</div><div class="ttdef"><b>Definition:</b> <a href="_matrix_8h_source.html#l00342">Matrix.h:342</a></div></div>
 <div class="ttc" id="class_matrix_html_a214b7e4f6ec101d2a22ddd05215b9afc"><div class="ttname"><a href="class_matrix.html#a214b7e4f6ec101d2a22ddd05215b9afc">Matrix::translate</a></div><div class="ttdeci">void translate(vec_t x, vec_t y, vec_t z)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00391">Matrix.cpp:391</a></div></div>
-<div class="ttc" id="_tomb_raider_8h_html_a14f94e529dff0b8bfba8e16fbe9755d6"><div class="ttname"><a href="_tomb_raider_8h.html#a14f94e529dff0b8bfba8e16fbe9755d6">z</a></div><div class="ttdeci">short z</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00478">TombRaider.h:478</a></div></div>
+<div class="ttc" id="_tomb_raider_8h_html_a14f94e529dff0b8bfba8e16fbe9755d6"><div class="ttname"><a href="_tomb_raider_8h.html#a14f94e529dff0b8bfba8e16fbe9755d6">z</a></div><div class="ttdeci">short z</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00062">TombRaider.h:62</a></div></div>
 <div class="ttc" id="src_2_matrix_8cpp_html_ab05eff8e781b00b86776d167de0be400"><div class="ttname"><a href="src_2_matrix_8cpp.html#ab05eff8e781b00b86776d167de0be400">SWAP_ROWS</a></div><div class="ttdeci">#define SWAP_ROWS(a, b)</div></div>
-<div class="ttc" id="_tomb_raider_8h_html_a41cede1b4c0d05cff170ad5761f70964"><div class="ttname"><a href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a></div><div class="ttdeci">unsigned char b</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00478">TombRaider.h:478</a></div></div>
+<div class="ttc" id="_tomb_raider_8h_html_a41cede1b4c0d05cff170ad5761f70964"><div class="ttname"><a href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a></div><div class="ttdeci">unsigned char b</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00062">TombRaider.h:62</a></div></div>
 <div class="ttc" id="class_matrix_html_ae427221b4d5ec2d9b6a4106995cf1267"><div class="ttname"><a href="class_matrix.html#ae427221b4d5ec2d9b6a4106995cf1267">Matrix::multiply3v</a></div><div class="ttdeci">void multiply3v(vec3_t v, vec3_t result)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00244">Matrix.cpp:244</a></div></div>
-<div class="ttc" id="_mat_math_8h_html_a54109d17b44e074abb1d39f7aa02584b"><div class="ttname"><a href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></div><div class="ttdeci">float vec3_t[3]</div><div class="ttdoc">3D Vector </div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00024">MatMath.h:24</a></div></div>
+<div class="ttc" id="_mat_math_8h_html_a54109d17b44e074abb1d39f7aa02584b"><div class="ttname"><a href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></div><div class="ttdeci">float vec3_t[3]</div><div class="ttdoc">3D Vector </div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00025">MatMath.h:25</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

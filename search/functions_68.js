@@ -13,7 +13,6 @@ var searchData=
   ['helintersectionlineandpolygon',['helIntersectionLineAndPolygon',['../_mat_math_8h.html#aa1b46896679f7360c0e8edd62dd88720',1,'helIntersectionLineAndPolygon(vec3_t intersect, vec3_t p1, vec3_t p2, unsigned int vertexCount, vec3_t *polygon):&#160;MatMath.cpp'],['../src_2_mat_math_8cpp.html#aa1b46896679f7360c0e8edd62dd88720',1,'helIntersectionLineAndPolygon(vec3_t intersect, vec3_t p1, vec3_t p2, unsigned int vertexCount, vec3_t *polygon):&#160;MatMath.cpp']]],
   ['helintersectionofabstractsphereandline',['helIntersectionOfAbstractSphereAndLine',['../src_2_mat_math_8cpp.html#a2181826a3071cc2ce84764c84f047887',1,'MatMath.cpp']]],
   ['helintersectionofabstractspheres',['helIntersectionOfAbstractSpheres',['../src_2_mat_math_8cpp.html#ac86519e2486796873c4130fe337770dc',1,'MatMath.cpp']]],
-  ['helmathtest',['helMathTest',['../test_2_mat_math_8cpp.html#a75f0f2dcc18bbdba2d336014399308f2',1,'MatMath.cpp']]],
   ['helmidpoint3v',['helMidpoint3v',['../_mat_math_8h.html#a959db38358c72fbfb3b4d26305532b56',1,'helMidpoint3v(vec3_t a, vec3_t b, vec3_t mid):&#160;MatMath.cpp'],['../src_2_mat_math_8cpp.html#a959db38358c72fbfb3b4d26305532b56',1,'helMidpoint3v(vec3_t a, vec3_t b, vec3_t mid):&#160;MatMath.cpp']]],
   ['helnorm2v',['helNorm2v',['../src_2_mat_math_8cpp.html#ad92c6257b59d86d482bba42ccec779ce',1,'MatMath.cpp']]],
   ['helnorm3v',['helNorm3v',['../src_2_mat_math_8cpp.html#ad51de9c47e4245e74d487d3e5832245a',1,'MatMath.cpp']]],
