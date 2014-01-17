@@ -1,6 +1,6 @@
 #!/bin/sh
 echo Moving dynamic libraries into place
-cp /opt/local/lib/libalut.0.1.0.dylib bin/OpenRaider.app/Contents/Frameworks/libalut.0.1.0.dylib
+cp /usr/local/lib/libalut.0.dylib bin/OpenRaider.app/Contents/Frameworks/libalut.0.dylib
 cp /opt/local/lib/libSDL_ttf-2.0.0.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL_ttf-2.0.0.dylib
 cp /opt/local/lib/libz.1.dylib bin/OpenRaider.app/Contents/Frameworks/libz.1.dylib
 cp /opt/local/lib/libSDL-1.2.0.dylib bin/OpenRaider.app/Contents/Frameworks/libSDL-1.2.0.dylib
@@ -9,7 +9,7 @@ cp /opt/local/lib/libfreetype.6.dylib bin/OpenRaider.app/Contents/Frameworks/lib
 cp /opt/local/lib/libpng15.15.dylib bin/OpenRaider.app/Contents/Frameworks/libpng15.15.dylib
 
 echo Fixing Paths for OpenRaider-bin
-install_name_tool -change /opt/local/lib/libalut.0.1.0.dylib @executable_path/../Frameworks/libalut.0.1.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
+install_name_tool -change /usr/local/lib/libalut.0.dylib @executable_path/../Frameworks/libalut.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
 install_name_tool -change /opt/local/lib/libSDL_ttf-2.0.0.dylib @executable_path/../Frameworks/libSDL_ttf-2.0.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
 install_name_tool -change /opt/local/lib/libz.1.dylib @executable_path/../Frameworks/libz.1.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
 install_name_tool -change /opt/local/lib/libSDL-1.2.0.dylib @executable_path/../Frameworks/libSDL-1.2.0.dylib bin/OpenRaider.app/Contents/MacOS/OpenRaider-bin
