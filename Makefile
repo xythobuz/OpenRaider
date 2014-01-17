@@ -221,6 +221,7 @@ clean-dep:
 clean-test:
 	@-echo "Cleaning test builds"
 	@-rm -f $(BUILD_TEST_DIR)/*.o
+	@-rm -rf $(BUILD_TEST_DIR)/*.dSYM
 	@-rm -f $(BUILD_TEST_DIR)/*.test
 	@-rm -rf $(BUILD_TEST_DIR)/*.build
 	@-echo "[DONE]"
@@ -278,11 +279,36 @@ endif
 #################################################################
 TEST_FLAGS=$(WARNINGS) -g -O0 -DDEBUG -lstdc++ -Iinclude
 
-TEST_MAP_TR5=~/projects/Data/models/tombraider/tr5/demo.trc
-TEST_MAP_TR4=~/projects/Data/models/tombraider/tr4/angkor1.tr4
-TEST_MAP_TR3=~/projects/Data/models/tombraider/tr3/scotland.tr2
-TEST_MAP_TR2=~/projects/Data/models/tombraider/tr2/unwater.tr2
-TEST_MAP_TR1=~/projects/Data/models/tombraider/tr1/level1.phd
+TEST_MAP_TR5=~/.OpenRaider/paks/tr5/demo.trc
+TEST_MAP_TR4=~/.OpenRaider/paks/tr4/angkor1.tr4
+TEST_MAP_TR3=~/.OpenRaider/paks/tr3/scotland.tr2
+TEST_MAP_TR2=~/.OpenRaider/paks/tr2/unwater.tr2
+TEST_MAP_TR1=~/.OpenRaider/paks/tr1/level1.phd
+
+test.build: Matrix.test Math.test Memory.test Network.test Sound.test TGA.test GLString.test TombRaider.test
+
+test: test.build
+	@-echo "================================================="
+	@-echo "Running Memory unit test"
+	$(BUILD_TEST_DIR)/memory_test.test
+	@-echo "================================================="
+	@-echo "Running Matrix unit test"
+	$(BUILD_TEST_DIR)/Matrix.test
+	@-echo "================================================="
+	@-echo "Running Math unit test"
+	$(BUILD_TEST_DIR)/Math.test
+	@-echo "================================================="
+	@-echo "Running Sound unit test"
+	$(BUILD_TEST_DIR)/Sound.test
+	@-echo "================================================="
+	@-echo "Running TGA unit test"
+	$(BUILD_TEST_DIR)/TGA.test
+	@-echo "================================================="
+	@-echo "Running GLString unit test"
+	$(BUILD_TEST_DIR)/GLString.test
+	@-echo "================================================="
+	@-echo "Running TombRaider unit test"
+	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR1)
 
 TombRaider.reg_test:
 	$(MAKE) TombRaider.test
@@ -314,29 +340,12 @@ GLString.test:
 
 #################################################################
 
-Hel.test: Quaternion.test Matrix.test Math.test
-	@-echo "================================================="
-	@-echo "Running Matrix unit test"
-	$(BUILD_TEST_DIR)/Matrix.test
-	@-echo "================================================="
-	$(BUILD_TEST_DIR)/Math.test
-	@-echo "Running hel Math unit test"
-	@-echo "================================================="
-	@-echo "Running Quaternion unit test"
-	$(BUILD_TEST_DIR)/Quaternion.test
-
 Matrix.test:
 	@-echo "Building Matrix unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
 	src/Matrix.cpp src/Quaternion.cpp src/Vector3d.cpp \
 	test/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
-
-Quaternion.test:
-	@-echo "Building Quaternion unit test"
-	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
-	src/Quaternion.cpp test/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
 
 Math.test:
 	@-echo "Building Math unit test"

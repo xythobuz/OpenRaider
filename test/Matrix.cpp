@@ -115,7 +115,7 @@ TEST precision() {
 }
 
 SUITE(matrixSuite) {
-    for (int i = 0; i < sizeof(initialValues) / sizeof(initialValues[0]); i++) {
+    for (unsigned int i = 0; i < sizeof(initialValues) / sizeof(initialValues[0]); i++) {
         for (int mode = 0; mode < 3; mode++) {
             RUN_TESTp(identity, initialValues[i], mode);
         }

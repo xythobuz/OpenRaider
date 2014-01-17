@@ -71,13 +71,13 @@ TEST random(vec_t bound[2]) {
 SUITE(mathSuite) {
     RUN_TEST(constants);
     RUN_TEST(types);
-    for (int i = 0; i < (sizeof(testDegrees) / sizeof(testDegrees[0])); i++) {
+    for (unsigned int i = 0; i < (sizeof(testDegrees) / sizeof(testDegrees[0])); i++) {
         RUN_TESTp(conversionToRad, testDegrees[i]);
     }
-    for (int i = 0; i < (sizeof(testRads) / sizeof(testRads[0])); i++) {
+    for (unsigned int i = 0; i < (sizeof(testRads) / sizeof(testRads[0])); i++) {
         RUN_TESTp(conversionToDeg, testRads[i]);
     }
-    for (int i = 0; i < sizeof(testBounds) / sizeof(testBounds[0]); i++) {
+    for (unsigned int i = 0; i < sizeof(testBounds) / sizeof(testBounds[0]); i++) {
         RUN_TESTp(random, testBounds[i]);
     }
 }

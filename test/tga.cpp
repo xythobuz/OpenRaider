@@ -35,7 +35,7 @@ TEST loadFile(FILE *f) {
 }
 
 SUITE(tgaSuite) {
-    for (int i = 0; i < (sizeof(testFiles) / sizeof(testFiles[0])); i++) {
+    for (unsigned int i = 0; i < (sizeof(testFiles) / sizeof(testFiles[0])); i++) {
         FILE *f = fopen(testFiles[i], "r");
         RUN_TESTp(checkFile, f);
         RUN_TESTp(loadFile, f);
