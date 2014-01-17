@@ -66,7 +66,7 @@ typedef enum
 	OpenRaider_DumpTexture  =  16,
 	OpenRaider_FullScreen   =  32,
 	OpenRaider_Loading      =  64,
-	OpenRaider_GameRunning  = 128,
+	OpenRaider_GameRunning  = 128
 
 } OpenRaiderFlags;
 

@@ -21,7 +21,7 @@
 #define GREATEST_H
 
 #ifdef __cplusplus
-#define __STDC_VERSION__ 19901L // C++ compilers support var args
+#define __STDC_VERSION__ 19901L // C++11 compilers support var args
 extern "C"
 {
 #endif

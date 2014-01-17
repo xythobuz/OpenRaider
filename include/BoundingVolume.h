@@ -70,7 +70,7 @@ class BoundingVolume
 
 	BoundingSphere mSphere;    /* Bounding sphere of this volume */
 
-	BoundingBox mBox;;         /* Bounding box of this volume */
+	BoundingBox mBox;          /* Bounding box of this volume */
 
  private:
 

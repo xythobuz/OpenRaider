@@ -1122,7 +1122,7 @@ void *operator new(size_t size, const char *file, int line)
 
 	add_track((DWORD)ptr, size, file, line);
 	return ptr;
-};
+}
 
 
 void *operator new [](size_t size, const char *file, int line)
@@ -1171,13 +1171,13 @@ void operator delete(void *p)
 {
 	remove_track((DWORD)p);
 	free(p);
-};
+}
 
 
 void operator delete [](void *p)
 {
 	remove_track((DWORD)p);
 	free(p);
-};
+}
 #endif
 

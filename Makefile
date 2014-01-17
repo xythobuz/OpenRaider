@@ -91,8 +91,9 @@ INSTALL_INCLUDE=$(DESTDIR)/usr/include
 
 ###############################################################
 CC=gcc
+WARNINGS=-std=c++11 -Wall -Wextra -pedantic -Wno-unused-parameter
 
-BASE_CFLAGS=-Wall $(BASE_DEFS) \
+BASE_CFLAGS=$(WARNINGS) $(BASE_DEFS) \
 	-DVERSION=\"\\\"$(NAME)-$(VERSION)-$(BUILD_ID)\\\"\" \
 	-DBUILD_HOST=\"\\\"$(BUILD_HOST)\\\"\"
 
@@ -275,7 +276,7 @@ endif
 #################################################################
 # Unit Test builds
 #################################################################
-TEST_FLAGS=-Wall -g -O0 -DDEBUG -lstdc++ -Iinclude
+TEST_FLAGS=$(WARNINGS) -g -O0 -DDEBUG -lstdc++ -Iinclude
 
 TEST_MAP_TR5=~/projects/Data/models/tombraider/tr5/demo.trc
 TEST_MAP_TR4=~/projects/Data/models/tombraider/tr4/angkor1.tr4
@@ -295,7 +296,7 @@ TR_FLAGS = -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMORY
 
 TombRaider.test:
 	@-mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
+	$(CC) $(WARNINGS) -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
 	$(MAKE) targets NAME=TombRaider.test BUILDDIR=$(BUILD_TEST_DIR) \
 	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/tga.o $(BUILD_TEST_DIR)/memory_test.o" \
 	CFLAGS="$(BASE_CFLAGS) -g $(TR_FLAGS)" \
@@ -305,7 +306,7 @@ TombRaider.test:
 
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -Iinclude -DHAVE_SDL_TTF -DHAVE_SDL \
+	$(CC) $(WARNINGS) -Iinclude -DHAVE_SDL_TTF -DHAVE_SDL \
 	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
 	$(GL_LIBS) $(GL_DEFS) -lSDL_ttf -lm -lstdc++ \
 	src/Texture.cpp src/GLString.cpp \
@@ -327,27 +328,27 @@ Hel.test: Quaternion.test Matrix.test Math.test
 Matrix.test:
 	@-echo "Building Matrix unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
+	$(CC) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
 	src/Matrix.cpp src/Quaternion.cpp src/Vector3d.cpp \
 	test/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
 
 Quaternion.test:
 	@-echo "Building Quaternion unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
+	$(CC) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
 	src/Quaternion.cpp test/Quaternion.cpp -o $(BUILD_TEST_DIR)/Quaternion.test
 
 Math.test:
 	@-echo "Building Math unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -lm -lstdc++ -Iinclude \
+	$(CC) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
 	src/MatMath.cpp src/Vector3d.cpp test/MatMath.cpp -o $(BUILD_TEST_DIR)/Math.test
 
 #################################################################
 
 Memory.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) -Wall -g -lstdc++ -Iinclude \
+	$(CC) $(WARNINGS) -g -lstdc++ -Iinclude \
 	-DDEBUG_MEMORY -DDEBUG_MEMORY_ERROR \
 	src/memory_test.cpp test/memory_test.cpp -o $(BUILD_TEST_DIR)/memory_test.test
 

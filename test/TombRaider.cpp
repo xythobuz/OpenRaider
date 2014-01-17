@@ -53,7 +53,7 @@
 #include <TombRaider.h>
 
 #ifdef __TEST_TR5_DUMP_TGA
-#include <mtk_tga.h>
+#include <tga.h>
 #endif
 
 #ifdef DEBUG_MEMORY
