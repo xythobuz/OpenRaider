@@ -91,14 +91,14 @@ INSTALL_INCLUDE=$(DESTDIR)/usr/include
 
 ###############################################################
 CC=gcc
-WARNINGS=-Wno-padded -Wno-packed -Wno-documentation
+WARNINGS=-Weverything -Wno-padded -Wno-packed -Wno-documentation
 WARNINGS+=-Wno-documentation-unknown-command -Wno-format-nonliteral
 WARNINGS+=-Wno-covered-switch-default -Wno-global-constructors
 WARNINGS+=-Wno-exit-time-destructors
 
 WARNINGS+=-Wno-conversion -Wno-sign-conversion -Wno-shorten-64-to-32
 
-FLAGS_ALL=-std=c++11 -Weverything $(WARNINGS)
+FLAGS_ALL=-std=c++11
 
 BASE_CFLAGS=$(FLAGS_ALL) $(BASE_DEFS) \
 	-DVERSION=\"\\\"$(NAME)-$(VERSION)-$(BUILD_ID)\\\"\" \
@@ -110,7 +110,7 @@ LD_FLAGS=-L/usr/X11/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
 RELEASE_CFLAGS=$(BASE_CFLAGS) -ffast-math -funroll-loops \
 	-fomit-frame-pointer -O2
 
-DEBUG_CFLAGS=$(BASE_CFLAGS) -g -O0 $(DEBUG_DEFS)
+DEBUG_CFLAGS=$(BASE_CFLAGS) -g -O0 $(DEBUG_DEFS) $(WARNINGS)
 
 ################################################################
 
