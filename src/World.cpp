@@ -127,7 +127,7 @@ int World::getAdjoiningRoom(int index,
 			if (!portal)
 				continue;
 
-			if (helIntersectionLineAndPolygon(intersect, p1, p2, 4,
+			if (helIntersectionLineAndPolygon(intersect, p1, p2, // 4,
 														 portal->vertices))
 			{
 				return portal->adjoining_room;
@@ -431,8 +431,13 @@ void World::moveEntity(entity_t *e, char movement)
 	case worldMoveType_walk:
 		pitch = 0.0f;  // in the future pitch could control jump up blocks here
 		break;
+
+    case worldMoveType_noClipping:
+    case worldMoveType_fly:
+    case worldMoveType_swim:
 	default:
 		pitch = e->angles[2];
+        break;
 	}
 
 	switch (movement)

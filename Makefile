@@ -91,9 +91,16 @@ INSTALL_INCLUDE=$(DESTDIR)/usr/include
 
 ###############################################################
 CC=gcc
-WARNINGS=-std=c++11 -Wall -Wextra -pedantic -Wno-unused-parameter
+WARNINGS=-Wno-padded -Wno-packed -Wno-documentation
+WARNINGS+=-Wno-documentation-unknown-command -Wno-format-nonliteral
+WARNINGS+=-Wno-covered-switch-default -Wno-global-constructors
+WARNINGS+=-Wno-exit-time-destructors
 
-BASE_CFLAGS=$(WARNINGS) $(BASE_DEFS) \
+WARNINGS+=-Wno-conversion -Wno-sign-conversion -Wno-shorten-64-to-32
+
+FLAGS_ALL=-std=c++11 -Weverything $(WARNINGS)
+
+BASE_CFLAGS=$(FLAGS_ALL) $(BASE_DEFS) \
 	-DVERSION=\"\\\"$(NAME)-$(VERSION)-$(BUILD_ID)\\\"\" \
 	-DBUILD_HOST=\"\\\"$(BUILD_HOST)\\\"\"
 
@@ -183,7 +190,6 @@ OBJS = \
 	$(BUILDDIR)/GLString.o \
 	$(BUILDDIR)/MatMath.o \
 	$(BUILDDIR)/Matrix.o \
-	$(BUILDDIR)/tga.o \
 	$(BUILDDIR)/Network.o \
 	$(BUILDDIR)/OpenGLMesh.o \
 	$(BUILDDIR)/OpenRaider.o \
@@ -195,6 +201,7 @@ OBJS = \
 	$(BUILDDIR)/Sound.o \
 	$(BUILDDIR)/System.o \
 	$(BUILDDIR)/Texture.o \
+	$(BUILDDIR)/TGA.o \
 	$(BUILDDIR)/TombRaider.o \
 	$(BUILDDIR)/Vector3d.o \
 	$(BUILDDIR)/ViewVolume.o \
@@ -277,7 +284,7 @@ endif
 #################################################################
 # Unit Test builds
 #################################################################
-TEST_FLAGS=$(WARNINGS) -g -O0 -DDEBUG -lstdc++ -Iinclude
+TEST_FLAGS=$(FLAGS_ALL) -g -O0 -DDEBUG -lstdc++ -Iinclude
 
 TEST_MAP_TR5=~/.OpenRaider/paks/tr5/demo.trc
 TEST_MAP_TR4=~/.OpenRaider/paks/tr4/angkor1.tr4
@@ -322,9 +329,9 @@ TR_FLAGS = -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMORY
 
 TombRaider.test:
 	@-mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(WARNINGS) -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
+	$(CC) $(FLAGS_ALL) -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
 	$(MAKE) targets NAME=TombRaider.test BUILDDIR=$(BUILD_TEST_DIR) \
-	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/tga.o $(BUILD_TEST_DIR)/memory_test.o" \
+	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/TGA.o $(BUILD_TEST_DIR)/memory_test.o" \
 	CFLAGS="$(BASE_CFLAGS) -g $(TR_FLAGS)" \
 	LD_FLAGS="-lz -lstdc++"
 
@@ -332,7 +339,7 @@ TombRaider.test:
 
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(WARNINGS) -Iinclude -DHAVE_SDL_TTF -DHAVE_SDL \
+	$(CC) $(FLAGS_ALL) -Iinclude -DHAVE_SDL_TTF -DHAVE_SDL \
 	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
 	$(GL_LIBS) $(GL_DEFS) -lSDL_ttf -lm -lstdc++ \
 	src/Texture.cpp src/GLString.cpp \
@@ -343,21 +350,21 @@ GLString.test:
 Matrix.test:
 	@-echo "Building Matrix unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
+	$(CC) $(FLAGS_ALL) -g -lm -lstdc++ -Iinclude \
 	src/Matrix.cpp src/Quaternion.cpp src/Vector3d.cpp \
 	test/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
 
 Math.test:
 	@-echo "Building Math unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
+	$(CC) $(FLAGS_ALL) -g -lm -lstdc++ -Iinclude \
 	src/MatMath.cpp src/Vector3d.cpp test/MatMath.cpp -o $(BUILD_TEST_DIR)/Math.test
 
 #################################################################
 
 Memory.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(WARNINGS) -g -lstdc++ -Iinclude \
+	$(CC) $(FLAGS_ALL) -g -lstdc++ -Iinclude \
 	-DDEBUG_MEMORY -DDEBUG_MEMORY_ERROR \
 	src/memory_test.cpp test/memory_test.cpp -o $(BUILD_TEST_DIR)/memory_test.test
 
@@ -381,7 +388,7 @@ Sound.test:
 TGA.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(TEST_FLAGS) \
-		src/tga.cpp test/tga.cpp -o $(BUILD_TEST_DIR)/TGA.test
+		src/TGA.cpp test/TGA.cpp -o $(BUILD_TEST_DIR)/TGA.test
 
 #################################################################
 

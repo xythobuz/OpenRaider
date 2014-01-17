@@ -27,7 +27,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include <tga.h>
+#include <TGA.h>
 
 #ifdef DEBUG_MEMORY
 #include <memory_test.h>
@@ -391,6 +391,8 @@ int mtk_image__tga_save(FILE *f, unsigned char *image,
   case 4:
     header.image_type = TGA_TYPE__COLOR;
     header.desc_flags = 32;
+    header.bpp = 32;
+    break;
   case 2:
     header.bpp = 32;
     break;

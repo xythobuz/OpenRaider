@@ -498,7 +498,12 @@ public:
 	}
 
 
-	bool operator ++ (int dummy)
+	bool operator ++ (int)
+	{
+		return Next();
+	}
+
+    bool operator ++ ()
 	{
 		return Next();
 	}

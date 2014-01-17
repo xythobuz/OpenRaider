@@ -337,7 +337,12 @@ template <class T> class List
     _cache = _head;
   }
 
-  bool operator ++ (int dummy)
+  bool operator ++ (int)
+  {
+    return Next();
+  }
+
+  bool operator ++ ()
   {
     return Next();
   }

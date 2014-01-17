@@ -159,7 +159,7 @@ vec_t ViewVolume::getDistToSphereFromNear(vec_t x, vec_t y, vec_t z,
 														vec_t radius)
 {
    unsigned int p;
-   vec_t d;
+   vec_t d = 0.0;
 
    for (p = 0; p < 6; ++p)
    {

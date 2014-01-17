@@ -27,15 +27,24 @@ typedef float vec4_t[4];    //!< 4D Vector
 typedef vec_t matrix_t[16]; //!< Used as _Column_major_ in every class now!
 
 /*!
+ * \fixme Add Documentation or remove, as it is unused?
+ */
+vec_t helIntersectionOfAbstractSpheres(vec3_t centerA, vec_t radiusA, vec3_t centerB, vec_t radiusB);
+
+/*!
+ * \fixme Add Documentation or remove, as it is unused?
+ */
+int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius, vec3_t posA, vec3_t posB, vec3_t intersectionA, vec3_t intersectionB);
+
+/*!
  * \brief Calculate Intersection of a line and a polygon
  * \param intersect Where the intersection is stored, if it exists
  * \param p1 First point of line segment
  * \param p2 Second point of line segment
- * \param vertexCount number of vertices in polygon
- * \param polygon polygon vertex array
+ * \param polygon polygon vertex array (0 to 2 are used)
  * \returns 0 if there is no intersection
  */
-int helIntersectionLineAndPolygon(vec3_t intersect, vec3_t p1, vec3_t p2, unsigned int vertexCount, vec3_t *polygon);
+int helIntersectionLineAndPolygon(vec3_t intersect, vec3_t p1, vec3_t p2, vec3_t *polygon);
 
 /*!
  * \brief Calculate the distance from a sphere to a plane

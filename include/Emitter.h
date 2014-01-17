@@ -273,6 +273,9 @@ class Emitter
 
  private:
 
+    static int compareParticleDist(const void *voidA, const void *voidB);
+
+
 	char *_name;              /* Emitter name */
 
 	unsigned int _flags;      /* Emitter flags */

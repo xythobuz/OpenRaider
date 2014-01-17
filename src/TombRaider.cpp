@@ -59,7 +59,7 @@
 #endif
 
 #ifdef __TEST_TR5_DUMP_TGA
-#include <tga.h>
+#include <TGA.h>
 #endif
 
 #ifdef DEBUG_MEMORY

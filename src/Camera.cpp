@@ -306,6 +306,7 @@ void Camera::command(enum camera_command cmd)
   case CAMERA_SPEED_DOWN:
     if (--mTranslateDelta < 0.0)
       mTranslateDelta = 1.0;
+    break;
   default:
     ;
   }

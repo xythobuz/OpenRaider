@@ -38,7 +38,7 @@
 #endif
 
 #ifdef USING_TGA
-#include <tga.h>
+#include <TGA.h>
 #endif
 
 #ifdef USING_PNG

@@ -8,8 +8,6 @@
 	[ 20140117 ]
 	* Now using C++11 standard.
 	* Turned on many more warnings and silenced some of them.
-	  There are a lot of unused parameters, so this warning is still turned
-	  off.
 	* Removed empty Quaternion Unit Test
 
 	[ 20140111 ]

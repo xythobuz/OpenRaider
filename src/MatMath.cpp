@@ -13,35 +13,6 @@
 #include <Vector3d.h>
 #include <Matrix.h>
 
-bool tmpHelSphereIntersectLine(Vector3d pos, Vector3d lastPos,
-										 Vector3d center, vec_t radius)
-{
-	Vector3d seg, segToCenter, delta;
-	vec_t s, dSquare;
-
-
-	seg = pos - lastPos;
-	segToCenter = center - lastPos;
-
-	s = seg * segToCenter;
-
-	if (s >= 1.0f || s <= 0.0f)
-		return false;
-
-	seg.normalize();
-	seg = seg * s;
-	seg = seg + lastPos;
-
-	delta = seg - center;
-
-	dSquare = delta * delta;
-
-	if (radius >= dSquare)
-		return true;
-	else
-		return false;
-}
-
 
 vec_t helIntersectionOfAbstractSpheres(vec3_t centerA, vec_t radiusA,
 													vec3_t centerB, vec_t radiusB)
@@ -128,7 +99,7 @@ int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius,
 
 int helIntersectionLineAndPolygon(vec3_t intersect,
 											 vec3_t p1, vec3_t p2,
-											 unsigned int vertexCount, vec3_t *polygon)
+											 vec3_t *polygon)
 {
 	//	vec3_t normal, a, b;
 	Vector3d a, b, normal, pA, pB;
