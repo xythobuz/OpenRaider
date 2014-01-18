@@ -5,7 +5,11 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140118 ]
+	* Removed unused (and pretty empty) Entity class
+
 	[ 20140117 ]
+	* Reenabled room hopping on launch
 	* Now using C++11 standard.
 	* Turned on many more warnings and silenced some of them.
 	* Removed empty Quaternion Unit Test

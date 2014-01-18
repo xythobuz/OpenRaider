@@ -902,7 +902,8 @@ void OpenRaider::start()
 	initSound();
 
 	// Old room movement
-	//gWorld.setFlag(World::fEnableHopping);
+	gWorld.setFlag(World::fEnableHopping);
+    // reenabled, what should be the new room movement? --xythobuz
 
 	resetTicks();
 
