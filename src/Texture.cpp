@@ -183,12 +183,14 @@ void glPrint2d(float x, float y, float scale, char *string)
 		static int errors = 0;
 
 		if (errors < 10)
-			printf("ERROR: glPrintf2d failed, %i\n", ++errors);
+			printf("ERROR: glPrint2d failed, %i\n", ++errors);
 		return;
 	}
 
 	glPushMatrix();
 	glBindTexture(GL_TEXTURE_2D, font->textureId);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTranslatef(x, y, 0);
 	glScalef(scale, scale, 1);
 
@@ -215,12 +217,14 @@ void glPrint3d(float x, float y, float z,
 		static int errors = 0;
 
 		if (errors < 10)
-			printf("ERROR: glPrintf3d failed, %i\n", ++errors);
+			printf("ERROR: glPrint3d failed, %i\n", ++errors);
 		return;
 	}
 
 	glPushMatrix();
 	glBindTexture(GL_TEXTURE_2D, font->textureId);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTranslatef(x, y, z);
 	glRotatef(roll,  1, 0, 0);
 	glRotatef(yaw,   0, 1, 0);

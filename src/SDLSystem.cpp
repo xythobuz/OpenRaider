@@ -98,41 +98,6 @@ void SDLSystem::bindKeyCommand(const char *cmd, int key, int event)
 #endif
 
 
-
-void SDLSystem::glPrintf2d(float x, float y, char *string)
-{
-#ifdef HAVE_SDL_TTF
-#   ifdef FIXME
-	//! \fixme Filler
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glBegin(GL_TRIANGLE_STRIP);
-	glTexCoord2f(texMinX, texMinY); glVertex2i(x,   y  );
-	glTexCoord2f(texMaxX, texMinY); glVertex2i(x+w, y  );
-	glTexCoord2f(texMinX, texMaxY); glVertex2i(x,   y+h);
-	glTexCoord2f(texMaxX, texMaxY); glVertex2i(x+w, y+h);
-	glEnd();
-#   endif
-#endif
-}
-
-
-void SDLSystem::glPrintf3d(float x, float y, float z, char *string)
-{
-#ifdef HAVE_SDL_TTF_FIXME
-	/*! \fixme Filler
-	 * Billboarding here requires a yaw jackass =)
-     */
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glBegin(GL_TRIANGLE_STRIP);
-	glTexCoord2f(texMinX, texMinY); glVertex2i(x,   y  );
-	glTexCoord2f(texMaxX, texMinY); glVertex2i(x+w, y  );
-	glTexCoord2f(texMinX, texMaxY); glVertex2i(x,   y+h);
-	glTexCoord2f(texMaxX, texMaxY); glVertex2i(x+w, y+h);
-	glEnd();
-#endif
-}
-
-
 void SDLSystem::setGrabMouse(bool on)
 {
 	SDL_WM_GrabInput(on ? SDL_GRAB_ON : SDL_GRAB_OFF);

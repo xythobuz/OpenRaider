@@ -6,9 +6,12 @@
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140119 ]
+	* Enabled linear texture filtering for fonts, resulting in nicer
+	  looking down scaling
 	* Removed unused TGA font parts of GLString with slight API changes
 	* Modified GLString Unit Test to work with new GLString
-	* Removed unused glDrawGrid & glDrawAxis from SDLSystem
+	* Removed unused glDrawGrid, glDrawAxis, glPrintf2d, glPrintf3d
+	  from SDLSystem
 	* Silenced many more warnings
 
 	[ 20140118 ]

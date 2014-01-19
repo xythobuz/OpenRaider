@@ -54,9 +54,6 @@ GLString::~GLString()
 
 void GLString::Init(unsigned int max_strings)
 {
-	unsigned int i;
-
-
 	if (!max_strings)
 	{
 		return;

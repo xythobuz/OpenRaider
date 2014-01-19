@@ -110,7 +110,7 @@ LD_FLAGS=-L/usr/X11/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
 	 -lm $(BASE_LIBS)
 
 RELEASE_CFLAGS=$(BASE_CFLAGS) -ffast-math -funroll-loops \
-	-fomit-frame-pointer -O2
+	-fomit-frame-pointer -O2 -Wall
 
 DEBUG_CFLAGS=$(BASE_CFLAGS) -g -O0 $(DEBUG_DEFS) $(WARNINGS)
 
