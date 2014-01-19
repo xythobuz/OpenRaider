@@ -1247,7 +1247,7 @@ void OpenRaider::gameFrame()
 		if (time - lastTime > 100.0f)
 		{
 			if (mText)
-				mText->SetString(1, "FPS %d", frames);
+				mText->SetString(1, "%dFPS", frames);
 
 			lastTime = time;
 			frames = 0;

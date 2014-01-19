@@ -231,7 +231,7 @@ void glPrint3d(float x, float y, float z,
 	glRotatef(pitch, 0, 0, 1);
 	glScalef(scale, scale, scale);
 
-	/* FIXME:
+	/*! \fixme
 	 * Add utf-8 dencoding of char* string
 	 *
 	 *	Also this string must be preprocessed to have glyph offsets
@@ -278,7 +278,7 @@ int Texture::loadFontTTF(const char *filename,
 
 		gFontTest = generateFont(texture);
 
-		/* FIXME: Until UTF8 decoder is working, we map from
+		/*! \fixme Until UTF8 decoder is working, we map from
 			ASCII when rendering */
 		gFontTest->utf8Offset = 32; // hack to use ASCII strings to test unicode
 

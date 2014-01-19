@@ -15,7 +15,6 @@
 typedef struct gl_string_s {
     int x; //!< X Coordinate
     int y; //!< Y Coordinate
-    int font; //!< Font ID
     float scale; //!< Scale factor
     char *text; //!< Text buffer
     bool active; //!< active state
@@ -39,12 +38,10 @@ public:
     ~GLString();
 
     /*!
-     * \brief Set max number of strings and font faces
+     * \brief Set max number of strings
      * \param max_strings maximum number of strings
-     * \param max_fonts maximum number of fonts and length of tex_map
-     * \param tex_map int array as a map of font texture ids
      */
-    void Init(unsigned int max_strings, unsigned int max_fonts, int *tex_map);
+    void Init(unsigned int max_strings);
 
     /*!
      * \brief Sets a single byte in a string
@@ -86,21 +83,13 @@ public:
     void Scale(float scale);
 
     /*!
-     * \brief Adds a new font face to font list
-     * \param index valid index into the font base list
-     * \returns index of font on no error, -1 on full font list
-     */
-    int BuildFontList(int index);
-
-    /*!
      * \brief Generates a new string and renders it to the gl target
      * \param x valid X screen coordinate
      * \param y valid Y screen coordinate
-     * \param font valid font index
      * \param string valid format string with args like for printf
-     * \returns 0 on success, -1 on invalid string, -2 on full string list, -3 on full font list
+     * \returns 0 on success, -1 on invalid string, -2 on full string list
      */
-    int glPrintf(int x, int y, int font, const char *string, ...);
+    int glPrintf(int x, int y, const char *string, ...);
 
     /*!
      * \brief Renders strings over GL scene.
@@ -121,11 +110,7 @@ public:
 
 private:
     unsigned int _num_string_max; //!< Max number of strings buffered
-    unsigned int _num_font_max; //!< Max number of font faces
-    unsigned int _num_font; //!< Current number of font faces
     unsigned int _num_string; //!< Current number of strings buffered
-    int *_font_texture; //!< Font texture mapping to actual texture index
-    int *_font_base; //!< Font GL list, base index list
     gl_string_t *_string; //!< Buffered strings and their properities
     float _scale; //!< Default scale factor for new strings
 };

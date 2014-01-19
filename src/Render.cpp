@@ -197,7 +197,6 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 	int snow2_id;
 	int bg_id;
 	int err;
-	int id[5];
 	unsigned int numTextures = 0;
 	unsigned char color[4];
 
@@ -267,61 +266,57 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
 	// Setup particle system test
 	initEmitter("Snow test", 650, snow1_id, snow2_id);
 
-	// Mongoose 2002.01.01, Temp placement of GLString init
-	id[0] = font_id;
-	id[4] = id[3] = id[2] = id[1] = -1;
-
-	mString.Init(5, 5, id);
+	mString.Init(5);
 
 	// String 0: OpenRaider version in lower right corner
 	mString.Scale(1.00);
 	err = mString.glPrintf(mWidth - 15 * strlen(VERSION),
-								  mHeight-35, 0, VERSION);
+								  mHeight-35, VERSION);
 	mString.SetString(0, VERSION);
 
 	if (err)
 	{
-		printf("\n*** GLPrint test: ERROR %i font_tex %i\n", err, id[0]);
+		printf("\n*** GLPrint test: ERROR %i\n", err);
 	}
 
 	// String 1: Used for FPS in game text output
-	mString.Scale(1.0);
-	err = mString.glPrintf(8, mHeight - 35, 0, "                ");
+	mString.Scale(0.75);
+	err = mString.glPrintf(8, mHeight - 25, "                ");
     mString.SetString(1, "                ");
 
 	if (err)
 	{
-		printf("\n*** GLPrint test: ERROR %i font_tex %i\n", err, id[0]);
+		printf("\n*** GLPrint test: ERROR %i\n", err);
 	}
 
 	// String 2: Used for game console
     mString.Scale(1.0);
-	err = mString.glPrintf(8, 25, 0, console);
+	err = mString.glPrintf(8, 25, console);
     mString.SetString(2, console);
 
 	if (err)
 	{
-		printf("\n*** GLPrint test: ERROR %i font_tex %i\n", err, id[0]);
+		printf("\n*** GLPrint test: ERROR %i\n", err);
 	}
 
 	// String 3: Used for one line map select menu
 	mString.Scale(1.75);
-	err = mString.glPrintf(mWidth/2-235, mHeight/2-24, 0, menu);
+	err = mString.glPrintf(mWidth/2-235, mHeight/2-24, menu);
     mString.SetString(3, menu);
 
 	if (err)
 	{
-		printf("\n*** GLPrint test: ERROR %i font_tex %i\n", err, id[0]);
+		printf("\n*** GLPrint test: ERROR %i\n", err);
 	}
 
 	// String 4: Used for one line in game text output
 	mString.Scale(1.0);
-	err = mString.glPrintf(8, 55, 0, "                    ");
+	err = mString.glPrintf(8, 55, "                    ");
     mString.SetString(4, "                    ");
 
 	if (err)
 	{
-		printf("\n*** GLPrint test: ERROR %i font_tex %i\n", err, id[0]);
+		printf("\n*** GLPrint test: ERROR %i\n", err);
 	}
 
 	printf("\n");

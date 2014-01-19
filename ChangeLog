@@ -5,6 +5,10 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140119 ]
+	* Removed unused TGA font parts of GLString
+	* Removed unused glDrawGrid & glDrawAxis from SDLSystem
+
 	[ 20140118 ]
 	* Removed unused (and pretty empty) Entity class
 

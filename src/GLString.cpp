@@ -26,12 +26,8 @@
 GLString::GLString()
 {
 	_num_string_max = 0;
-	_num_font_max = 0;
-	_num_font = 0;
 	_num_string = 0;
 	_scale = 1.0;
-	_font_texture = NULL;
-	_font_base = NULL;
 	_string = NULL;
 }
 
@@ -39,22 +35,6 @@ GLString::GLString()
 GLString::~GLString()
 {
 	unsigned int i;
-
-
-	for (i = 0; i < _num_font; ++i)
-	{
-		glDeleteLists(_font_base[i], 256);
-	}
-
-	if (_font_texture)
-	{
-		delete [] _font_texture;
-	}
-
-	if (_font_base)
-	{
-		delete [] _font_base;
-	}
 
 	if (_string)
 	{
@@ -72,33 +52,18 @@ GLString::~GLString()
 }
 
 
-void GLString::Init(unsigned int max_strings, unsigned int max_fonts,
-						  int *tex_map)
+void GLString::Init(unsigned int max_strings)
 {
 	unsigned int i;
 
 
-	if (!max_strings || !max_fonts || !tex_map)
+	if (!max_strings)
 	{
 		return;
 	}
 
 	_num_string_max = max_strings;
-	_num_font_max = max_fonts;
-
-	_font_texture = new int[max_fonts];
-	_font_base = new int[max_fonts];
 	_string = new gl_string_t[max_strings];
-
-	for (i = 0; i < max_fonts; ++i)
-	{
-		_font_texture[i] = tex_map[i];
-
-		if (BuildFontList(i) < 0)
-		{
-			printf("GLString::Init> BuildFontList failed for %i\n", i);
-		}
-	}
 }
 
 
@@ -190,65 +155,7 @@ void GLString::Scale(float scale)
 }
 
 
-int GLString::BuildFontList(int index)
-{
-	int i;
-	float cx;
-	float cy;
-
-
-	if (_num_font >= _num_font_max || index < 0 || index >= (int)_num_font_max)
-	{
-		return -1;
-	}
-
-	_font_base[index] = glGenLists(256);
-	glBindTexture(GL_TEXTURE_2D, _font_texture[index]);
-
-	// Mongoose 2002.01.01, Generate 256 lists per font
-	//   one per symbol
-	for (i = 0; i < 256; i++)
-	{
-		/* X Position Of Current Character */
-		cx = 1 - (float)(i % 16) / 16.0f;
-		/* Y Position Of Current Character */
-		cy = 1 - (float)(i / 16) / 16.0f;
-
-		/* Start Building A List */
-		glNewList(_font_base[index] + (255 - i), GL_COMPILE);
-		/* Use A Quad For Each Character */
-		glBegin(GL_QUADS);
-		/* Texture Coord (Bottom Left) */
-		glTexCoord2f(cx - 0.0625, cy);
-		/* Vertex Coord (Bottom Left) */
-		glVertex2i(0, 0);
-
-		/* Texture Coord (Bottom Right) */
-		glTexCoord2f(cx, cy);
-		/* Vertex Coord (Bottom Right) */
-		glVertex2i(16, 0);
-
-		/* Texture Coord (Top Right) */
-		glTexCoord2f(cx, cy - 0.0625f);
-		 /* Vertex Coord (Top Right) */
-		glVertex2i(16, 16);
-
-		/* Texture Coord (Top Left) */
-		glTexCoord2f(cx - 0.0625f, cy - 0.0625f);
-		/* Vertex Coord (Top Left) */
-		glVertex2i(0, 16);
-		glEnd();
-
-		/* Move To The Left Of The Character */
-		glTranslated(10, 0, 0);
-		glEndList();
-	}
-
-	return 0;
-}
-
-
-int GLString::glPrintf(int x, int y, int font, const char *string, ...)
+int GLString::glPrintf(int x, int y, const char *string, ...)
 {
 	int sz = 60;
 	int n;
@@ -267,11 +174,6 @@ int GLString::glPrintf(int x, int y, int font, const char *string, ...)
 		return -2;
 	}
 
-	if (font < 0 || font > (int)_num_font_max)
-	{
-		return -3;
-	}
-
 	// Mongoose 2002.01.01, Assume no longer than 'sz' wide lines
 	//   on first try
 	_string[_num_string].text = new char[sz];
@@ -282,9 +184,6 @@ int GLString::glPrintf(int x, int y, int font, const char *string, ...)
 	//  Mongoose 2002.01.01, Setup position
 	_string[_num_string].x = x;
 	_string[_num_string].y = y;
-
-	//  Mongoose 2002.01.01, Setup font list base index to use
-	_string[_num_string].font = font;
 
 	va_start(args, string);
 
@@ -336,48 +235,6 @@ void GLString::Render(int width, int height)
 {
 	unsigned int i;
 
-#ifndef HAVE_SDL_TTF
-	// Mongoose 2001.12.31, Start the evil font rendering...
-	glLoadIdentity();
-	glDisable(GL_DEPTH_TEST);
-
-	// Mongoose 2001.12.31, New 'flat' projection
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	glOrtho(0, width, 0, height, -1, 1);
-
-	// Mongoose 2001.12.31, New rendering matrix
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-
-	// Mongoose 2001.12.31, Rasterize strings' text
-	for (i = 0; i < _num_string; ++i)
-	{
-		if (_string[i].active)
-		{
-			glPushMatrix();
-			glBindTexture(GL_TEXTURE_2D, _font_texture[_string[i].font]);
-			glTranslated(_string[i].x, _string[i].y, 0);
-			glScaled(_string[i].scale, _string[i].scale, _string[i].scale);
-			glListBase(_font_base[_string[i].font] - 32);
-			glCallLists(strlen(_string[i].text), GL_BYTE, _string[i].text);
-			glPopMatrix();
-		}
-	}
-
-
-	// Mongoose 2001.12.31, Restore scene projection
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-
-	// Mongoose 2001.12.31, Restore scene matrix
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
-
-	glEnable(GL_DEPTH_TEST);
-#else
 	for (i = 0; i < _num_string; ++i)
 	{
 		if (_string[i].active)
@@ -387,7 +244,6 @@ void GLString::Render(int width, int height)
 						 _string[i].text);
 		}
 	}
-#endif
 }
 
 

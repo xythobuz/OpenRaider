@@ -48,74 +48,6 @@
 unsigned int *gWidth = 0x0;
 unsigned int *gHeight = 0x0;
 
-/* 500, 50 */
-void glDrawGrid(float size, float step)
-{
-	float x, y;
-
-
-	// Draw grid
-	glPushMatrix();
-	glScalef(2.0f, 2.0f, 2.0f);
-	glColor3f(0.4f, 0.4f, 0.6f);
-
-	for (x = -size; x < size; x += step)
-	{
-		glBegin(GL_LINE_LOOP);
-		for (y = -size; y < size; y += step)
-		{
-			glVertex3f(x + step, 0.0f, y);
-			glVertex3f(x, 0.0f, y);
-			glVertex3f(x, 0.0f, y + step);
-			glVertex3f(x + step, 0.0f, y + step);
-		}
-		glEnd();
-	}
-
-	glPopMatrix();
-}
-
-void glDrawAxis(float length, float arrowLenght)
-{
-	/* Draw axis list to show bone orientation */
-	glBegin(GL_LINES);
-
-	/* X axis */
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(-8.0f, 0.0f, 0.0f);
-	glVertex3f(8.0f, 0.0f, 0.0f);
-
-	/* X direction */
-	glVertex3f(8.0f, 0.0f, 0.0f);
-	glVertex3f(7.0f, 1.0f, 0.0f);
-	glVertex3f(8.0f, 0.0f, 0.0f);
-	glVertex3f(7.0f, -1.0f, 0.0f);
-
-	/* Y axis */
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(0.0f, -8.0f, 0.0f);
-	glVertex3f(0.0f, 8.0f, 0.0f);
-
-	/* Y direction */
-	glVertex3f(0.0f, 8.0f, 0.0f);
-	glVertex3f(0.0f, 7.0f, 1.0f);
-	glVertex3f(0.0f, 8.0f, 0.0f);
-	glVertex3f(0.0f, 7.0f, -1.0f);
-
-	/* Z axis */
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(0.0f, 0.0f, -8.0f);
-	glVertex3f(0.0f, 0.0f, 8.0f);
-
-	/* Z direction */
-	glVertex3f(0.0f, 0.0f, 8.0f);
-	glVertex3f(0.0f, 1.0f, 7.0f);
-	glVertex3f(0.0f, 0.0f, 8.0f);
-	glVertex3f(0.0f, -1.0f, 7.0f);
-
-	glEnd();
-}
-
 
 ////////////////////////////////////////////////////////////
 // Constructors
@@ -210,7 +142,7 @@ void SDLSystem::setGrabMouse(bool on)
 void SDLSystem::initVideo(unsigned int width, unsigned int height,
 								  bool fullscreen)
 {
-	int flags; //, x, y;
+	int flags = 0; //, x, y;
 
 
 	// Create GL context
@@ -242,15 +174,11 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 	}
 #endif
 
-	flags = 0;
-
 	flags |= SDL_OPENGL;
 
     mFullscreen = fullscreen;
 	if (mFullscreen)
-	{
 		flags |= SDL_FULLSCREEN;
-	}
 
     SDL_ShowCursor(SDL_DISABLE);
     setGrabMouse(true); // Always grab mouse!
@@ -280,7 +208,7 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
 
 void SDLSystem::resize(unsigned int width, unsigned int height)
 {
-    int flags;
+    int flags = 0;
 
 	GLfloat aspect;
 
@@ -306,7 +234,8 @@ void SDLSystem::resize(unsigned int width, unsigned int height)
 	glLoadIdentity();
 
 	// Resize window
-    flags = SDL_OPENGL;
+    flags |= SDL_OPENGL;
+
     if (mFullscreen)
         flags |= SDL_FULLSCREEN;
 
