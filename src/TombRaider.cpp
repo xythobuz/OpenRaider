@@ -251,7 +251,7 @@ int TombRaider::getNumAnimsForMoveable(int moveable_index)
 	 **************************************************************************/
 
 	int start_anim;
-	int next_start_anim;
+	int next_start_anim = 0xFFFF;
 	tr2_moveable_t *last_moveable = 0x0;
 	tr2_moveable_t *moveable = 0x0;
 	tr2_moveable_t *next_moveable = 0x0;
@@ -439,7 +439,6 @@ int TombRaider::checkMime(char *filename)
    case 0xfffffff0:           // bogus
    case 0x00345254:           // "TR4\0"
 		return 0;
-     break;
    default:
 		;
    }
@@ -892,8 +891,6 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
        if (mEngineVersion >= TR_VERSION_3)
        {
-			 int j;
-
 			 for (j = 0; j < _rooms[i].room_data.num_rectangles; ++j)
 	       {
 				 _rooms[i].room_data.rectangles[j].texture &= 0x7fff;
@@ -927,8 +924,6 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
        if (mEngineVersion >= TR_VERSION_3)
        {
-			 int j;
-
 			 for (j = 0; j < _rooms[i].room_data.num_triangles; ++j)
 			 {
 				 _rooms[i].room_data.triangles[j].texture &= 0x7fff;
@@ -961,8 +956,6 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
 			if (mEngineVersion >= TR_VERSION_3)
 	      {
-				int j;
-
 				for (j = 0; j < _rooms[i].room_data.num_sprites; j++)
 	         {
 					_rooms[i].room_data.sprites[j].texture &= 0x7fff;
@@ -1978,17 +1971,21 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 #endif
 		}
 		break;
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_5:
+    case TR_VERSION_UNKNOWN:
 	default:
 		//! \fixme (Endian) Read bit32 / int32_t
 		Fread(&mNumSampleIndices, 4, 1, f);
 		printDebug("Load", "mNumSampleIndices = %i", mNumSampleIndices);
-
 		if (mNumSampleIndices > 0)
 		{
 			mSampleIndices = new int[mNumSampleIndices];
 			//! \fixme (Endian)
 			Fread(mSampleIndices, 4, mNumSampleIndices, f);
 		}
+        break;
    }
 
 #ifdef ZLIB_SUPPORT
@@ -2150,6 +2147,11 @@ void TombRaider::getColor(int index, float color[4])
 		//color[2] = (_palette8[index].b & 0xfd) / 64.0;
 		color[3] = 1.0;
 		break;
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
+    case TR_VERSION_5:
+    case TR_VERSION_UNKNOWN:
 	default:
 		color[0] = (float)(_palette16[index] & 0xff) / 256.0;
 		color[1] = (float)((_palette16[index] >> 8) & 0xff) / 256.0;
@@ -2225,6 +2227,11 @@ void TombRaider::getMeshColoredRectangle(unsigned int meshIndex,
 	case TR_VERSION_1:
 		getColor(mMeshes[meshIndex].coloured_rectangles[faceIndex].texture & 0xff, color);
 		break;
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
+    case TR_VERSION_5:
+    case TR_VERSION_UNKNOWN:
 	default:
 		getColor((mMeshes[meshIndex].coloured_rectangles[faceIndex].texture>>8) & 0xff, color);
 	}
@@ -2251,6 +2258,11 @@ void TombRaider::getMeshColoredTriangle(unsigned int meshIndex,
 		getColor(mMeshes[meshIndex].coloured_triangles[faceIndex].texture & 0xff,
 					color);
 		break;
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
+    case TR_VERSION_5:
+    case TR_VERSION_UNKNOWN:
 	default:
 		getColor((mMeshes[meshIndex].coloured_triangles[faceIndex].texture>>8) & 0xff,
 					color);
@@ -2493,6 +2505,13 @@ void TombRaider::getMeshVertexArrays(unsigned int meshIndex,
 			case TR_VERSION_4:
 			case TR_VERSION_3:
 				colorValue /= 16384.0;
+                //! \fixme Should we really fall through here?!?
+                break; // just testing -- xythobuz, 20140119
+
+            case TR_VERSION_1:
+            case TR_VERSION_2:
+            case TR_VERSION_5:
+            case TR_VERSION_UNKNOWN:
 			default:
 				colorValue = (1.0 - (colorValue / 8192.0));
 				break;
@@ -2522,8 +2541,14 @@ int TombRaider::getRoomBox(unsigned int roomIndex, unsigned int index,
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
-	default: // TR1-TR5
+
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
+    case TR_VERSION_5:
       xyzA[0] = (unsigned short)_boxes[index].xmin * 1024.0;
       xyzA[1] = (short)_boxes[index].true_floor;
       xyzA[2] = (unsigned short)_boxes[index].zmin * 1024.0;
@@ -2553,8 +2578,13 @@ unsigned int TombRaider::getRoomBoxCount(unsigned int roomIndex)
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
-	default:  // TR1-TR5
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
+    case TR_VERSION_5:
 		return _num_boxes;
 	}
 
@@ -2712,7 +2742,6 @@ int TombRaider::getRoomLight(unsigned int roomIndex, unsigned int index,
 	{
 	case TR_VERSION_UNKNOWN:
 		return -1;
-		break;
 	case TR_VERSION_1:
 	case TR_VERSION_2:
 	case TR_VERSION_3:
@@ -2838,7 +2867,10 @@ unsigned int TombRaider::getRoomLightCount(unsigned int roomIndex)
 		break;
 	case TR_VERSION_5:
 		return mRoomsTR5[roomIndex].numRoomLights;
-		break;
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 	default:
 		return _rooms[roomIndex].num_lights;
 	}
@@ -2859,8 +2891,8 @@ int TombRaider::getRoomModel(unsigned int roomIndex, unsigned int index,
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		return -1;
-		break;
 	case TR_VERSION_5:
 		count = NumStaticMeshes();
 
@@ -2880,7 +2912,10 @@ int TombRaider::getRoomModel(unsigned int roomIndex, unsigned int index,
 			}
 		}
 		break;
-	default:  // TR1-TR4
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		count = NumStaticMeshes();
 
 		for (i = 0; i < count; ++i)
@@ -2912,11 +2947,14 @@ unsigned int TombRaider::getRoomModelCount(unsigned int roomIndex)
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		return mRoomsTR5[roomIndex].numStaticMeshes;
-		break;
-	default:  // TR1-TR4
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		return _rooms[roomIndex].num_static_meshes;
 	}
 
@@ -2934,6 +2972,7 @@ int TombRaider::getRoomPortal(unsigned int roomIndex, unsigned int index,
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		*adjoiningRoom = mRoomsTR5[roomIndex].doors[index].adjoining_room;
@@ -2955,7 +2994,10 @@ int TombRaider::getRoomPortal(unsigned int roomIndex, unsigned int index,
 		vertices[10] = mRoomsTR5[roomIndex].doors[index].vertices[3].y;
 		vertices[11] = mRoomsTR5[roomIndex].doors[index].vertices[3].z;
 		break;
-	default:  // TR1-TR4
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		*adjoiningRoom = _rooms[roomIndex].portals[index].adjoining_room;
 
 		normal[0] = _rooms[roomIndex].portals[index].normal.x;// / NORMAL_SCALE;
@@ -2988,11 +3030,14 @@ unsigned int TombRaider::getRoomPortalCount(unsigned int roomIndex)
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		return mRoomsTR5[roomIndex].numDoors;
-		break;
-	default:  // TR1-TR4
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		return _rooms[roomIndex].num_portals;
 	}
 
@@ -3013,6 +3058,7 @@ void TombRaider::getRoomRectangle(unsigned int roomIndex,
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
@@ -3041,7 +3087,10 @@ void TombRaider::getRoomRectangle(unsigned int roomIndex,
 			count += mRoomsTR5[roomIndex].layers[i].numLayerRectangles;
 		}
 		break;
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		tIndex = _rooms[roomIndex].room_data.rectangles[rectangleIndex].texture;
 		*texture = _object_textures[tIndex].tile;
 		*flags = 0;
@@ -3082,6 +3131,7 @@ unsigned int TombRaider::getRoomRectangleCount(unsigned int roomIndex)
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
@@ -3090,8 +3140,10 @@ unsigned int TombRaider::getRoomRectangleCount(unsigned int roomIndex)
 		}
 
 		return count;
-		break;
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		return ((_rooms[roomIndex].room_data.num_rectangles < 0) ? 0 :
 				  _rooms[roomIndex].room_data.num_rectangles);
 	}
@@ -3119,6 +3171,7 @@ int TombRaider::getRoomSector(unsigned int roomIndex, unsigned int index,
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		*floorDataIndex = mRoomsTR5[roomIndex].sectors[index].fd_index;
@@ -3135,7 +3188,10 @@ int TombRaider::getRoomSector(unsigned int roomIndex, unsigned int index,
 		*floor = mRoomsTR5[roomIndex].sectors[index].floor * 256.0f;
 		*ceiling = mRoomsTR5[roomIndex].sectors[index].ceiling * 256.0f;
 		break;
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		*floorDataIndex = _rooms[roomIndex].sector_list[index].fd_index;
 		*boxIndex = _rooms[roomIndex].sector_list[index].box_index;
 		*roomBelow = _rooms[roomIndex].sector_list[index].room_below;
@@ -3183,6 +3239,7 @@ unsigned int TombRaider::getRoomSectorCount(unsigned int roomIndex,
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		// width of sector list
@@ -3193,7 +3250,10 @@ unsigned int TombRaider::getRoomSectorCount(unsigned int roomIndex,
 
 		return (mRoomsTR5[roomIndex].numZSectors *
 				  mRoomsTR5[roomIndex].numXSectors);
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		// width of sector list
 		*zSectorsCount = _rooms[roomIndex].num_zsectors;
 
@@ -3355,11 +3415,14 @@ unsigned int TombRaider::getRoomSpriteCount(unsigned int roomIndex)
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		return 0; // No room sprites in TRC
-		break;
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		return ((_rooms[roomIndex].room_data.num_sprites < 0) ?
 				  0 : _rooms[roomIndex].room_data.num_sprites);
 	}
@@ -3380,6 +3443,7 @@ void TombRaider::getRoomTriangle(unsigned int roomIndex,
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
@@ -3408,7 +3472,10 @@ void TombRaider::getRoomTriangle(unsigned int roomIndex,
 			count += mRoomsTR5[roomIndex].layers[i].numLayerTriangles;
 		}
 		break;
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		tIndex = _rooms[roomIndex].room_data.triangles[triangleIndex].texture;
 		*texture = _object_textures[tIndex].tile;
 		*flags = 0;
@@ -3454,6 +3521,7 @@ void TombRaider::getRoomTriangles(unsigned int index, int textureOffset,
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		for (i = 0, count = 0; i < mRoomsTR5[index].numLayers; ++i)
@@ -3461,9 +3529,12 @@ void TombRaider::getRoomTriangles(unsigned int index, int textureOffset,
 			count += mRoomsTR5[index].layers[i].numLayerTriangles;
 		}
 
-		// FIXME!!!
+		//! \fixme !!!
 		break;
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		// Generate textured triangles
 		count = ((_rooms[index].room_data.num_triangles < 0) ? 0 :
 					_rooms[index].room_data.num_triangles);
@@ -3521,6 +3592,7 @@ unsigned int TombRaider::getRoomTriangleCount(unsigned int roomIndex)
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
@@ -3529,8 +3601,10 @@ unsigned int TombRaider::getRoomTriangleCount(unsigned int roomIndex)
 		}
 
 		return count;
-		break;
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		return ((_rooms[roomIndex].room_data.num_triangles < 0) ? 0 :
 				  _rooms[roomIndex].room_data.num_triangles);
 	}
@@ -3551,9 +3625,14 @@ void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
 	switch (getEngine())
 	{
 	case TR_VERSION_5:
-		// FIXME!!!
+		//! \fixme !!!
 		print("getRoomVertex", "Error: No TRC implementation is the answer");
 		break;
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
+    case TR_VERSION_UNKNOWN:
 	default:
 		vertex = &_rooms[index].room_data.vertices[i].vertex;
 
@@ -3585,6 +3664,9 @@ void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
 			rgba[2] = color_value + ((float)_rooms[index].room_light_colour.b /
 											 mRoomVertexLightingFactor);
 			break;
+        case TR_VERSION_2:
+        case TR_VERSION_5: // Not really...
+        case TR_VERSION_UNKNOWN:
 		default:
 			color_value = _rooms[index].room_data.vertices[i].lighting1;
 			color_value = (1.1 - (color_value / 8192.0));
@@ -3634,6 +3716,7 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		*vertexCount = count;
@@ -3667,7 +3750,10 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
 			}
 		}
 		break;
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		*vertexCount = count;
 		*vertices = new float[count*3];
 		*normalCount = 0;  //! \fixme Do some TR1-TR4 levels support normals here?
@@ -3695,6 +3781,9 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
 				color_value = _rooms[roomIndex].room_data.vertices[i].lighting1;
 				color_value /= 16384.0;
 				break;
+            case TR_VERSION_2:
+            case TR_VERSION_5:
+            case TR_VERSION_UNKNOWN:
 			default:
 				color_value = _rooms[roomIndex].room_data.vertices[i].lighting1;
 				color_value = (1.1 - (color_value / 8192.0));
@@ -3716,6 +3805,10 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
 							  ((float)_rooms[roomIndex].room_light_colour.b /
 								mRoomVertexLightingFactor));
 				break;
+            case TR_VERSION_1:
+            case TR_VERSION_2:
+            case TR_VERSION_5:
+            case TR_VERSION_UNKNOWN:
 			default:
 				rgba[0] = color_value;
 				rgba[1] = color_value;
@@ -3752,6 +3845,7 @@ unsigned int TombRaider::getRoomVertexCount(unsigned int roomIndex)
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+	default:
 		break;
 	case TR_VERSION_5:
 		for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
@@ -3760,8 +3854,10 @@ unsigned int TombRaider::getRoomVertexCount(unsigned int roomIndex)
 		}
 
 		return count;
-		break;
-	default:
+    case TR_VERSION_1:
+    case TR_VERSION_2:
+    case TR_VERSION_3:
+    case TR_VERSION_4:
 		return ((_rooms[roomIndex].room_data.num_vertices < 0) ? 0 :
 				  _rooms[roomIndex].room_data.num_vertices);
 	}
@@ -3792,6 +3888,9 @@ int TombRaider::getSkyModelId()
 	case TR_VERSION_4:
 		id = 459;
 		break;
+    case TR_VERSION_1:
+    case TR_VERSION_5:
+    case TR_VERSION_UNKNOWN:
 	default:
 		return -1;
 	}
@@ -3989,6 +4088,7 @@ void TombRaider::getSoundSample(unsigned int index,
 	case TR_VERSION_5:
 		getRiffDataTR4(index, bytes, data);
 		break;
+    case TR_VERSION_UNKNOWN:
 	default:
 		;
 	}
@@ -4016,6 +4116,7 @@ unsigned int TombRaider::getSoundSamplesCount()
 	case TR_VERSION_5:
 		count = mNumTR4Samples;
 		break;
+    case TR_VERSION_UNKNOWN:
 	default:
 		count = 0;
 	}
@@ -4042,6 +4143,7 @@ bool TombRaider::isRoomValid(int index)
 	switch (getEngine())
 	{
 	case TR_VERSION_UNKNOWN:
+    default:
 		break;
 	case TR_VERSION_5:
 		if (index < _num_rooms &&
@@ -4705,7 +4807,7 @@ int TombRaider::Fread(void *buffer, size_t size, size_t count, FILE *f)
       print("Fread", "ERROR: Failed fread. Should Abort. @ 0x%x", offset);
       reset();
       exit(2);
-      return -1;
+      // return -1; // Unreachable anyways
    }
 
    return count;
@@ -4748,7 +4850,7 @@ int TombRaider::getRiffOffsets(unsigned char *riffData,
 										 unsigned int **offsets,
 										 unsigned int numOffsets)
 {
-	unsigned int i, j, riffCount, state;
+	unsigned int i, j = 0, riffCount, state;
 
 	*offsets = new unsigned int[numOffsets];
 
@@ -4985,6 +5087,10 @@ unsigned char *TombRaider::getTexTile(int texture)
 				}
 			}
 			break;
+        case TR_VERSION_1:
+        case TR_VERSION_2:
+        case TR_VERSION_5:
+        case TR_VERSION_UNKNOWN:
 		default:
 			;
 		}

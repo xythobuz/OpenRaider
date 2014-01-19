@@ -107,7 +107,6 @@ void shutdown_gl()
 void init_gl(unsigned int width, unsigned int height)
 {
     int i;
-	int id;
     const char *errorText = "TEXT->glPrintf> ERROR code %i\n";
 
 	// Setup GL
@@ -125,23 +124,23 @@ void init_gl(unsigned int width, unsigned int height)
 	gTexture.setFlag(Texture::fUseMipmaps);
 	gTexture.setMaxTextureCount(32);
 
-    id = gTexture.loadFontTTF("data/test.ttf", 32, 126 - 32);  // ASCII
+    gTexture.loadFontTTF("data/test.ttf", 32, 126 - 32);  // ASCII
 
-	TEXT->Init(4, 1, &id);
-    i = TEXT->glPrintf((width/2)-50, height/2-32, 0, "OpenRaider");
+	TEXT->Init(4);
+    i = TEXT->glPrintf((width/2)-50, height/2-32, "OpenRaider");
     if (i) {
         printf(errorText, i);
     }
-	i = TEXT->glPrintf((width/2)-50, height/2, 0, "GLString");
+	i = TEXT->glPrintf((width/2)-50, height/2, "GLString");
 	if (i) {
 	    printf(errorText, i);
 	}
 	TEXT->Scale(1.2);
-	i = TEXT->glPrintf((width/2)-100, height/2+32, 0, "Unit Test by Mongoose");
+	i = TEXT->glPrintf((width/2)-100, height/2+32, "Unit Test by Mongoose");
 	if (i) {
         printf(errorText, i);
     }
-	i = TEXT->glPrintf((width/2)-100, height/2+64, 0, "ported to TTF by xythobuz");
+	i = TEXT->glPrintf((width/2)-100, height/2+64, "ported to TTF by xythobuz");
 	if (i) {
         printf(errorText, i);
 	}

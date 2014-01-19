@@ -41,10 +41,6 @@
 #include <TGA.h>
 #endif
 
-#ifdef USING_PNG
-#include <png.h>
-#endif
-
 #ifdef HAVE_SDL_TTF
 #include <SDL/SDL_ttf.h>
 #endif
@@ -831,52 +827,6 @@ void Texture::bindTextureId(unsigned int n)
 
 void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
 {
-#ifdef USING_PNG
-  FILE *f;
-  int sz = width*height;
-  unsigned char *image = new unsigned char[sz*3];
-  char filename[1024];
-  static int count = 0;
-  bool done = false;
-
-
-  if (!image)
-  {
-    printf("glScreenShot> ERROR: Couldn't allocate image!\n");
-    return;
-  }
-
-  while (!done)
-  {
-    snprintf(filename, 1024, "%s-%03i.png", base, count++);
-
-    f = fopen(filename, "rb");
-
-    if (f)
-      fclose(f);
-    else
-      done = true;
-  }
-
-  f = fopen(filename, "wb");
-
-  if (!f)
-  {
-    printf("glScreenShot> ERROR: Couldn't write screenshot.\n");
-    perror("glScreenShot> ERROR: ");
-    return;
-  }
-
-  // Capture frame buffer
-  glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, image);
-
-  mtk_image__png_save(f, image, width, height, 3);
-  fclose(f);
-
-  delete [] image;
-
-  printf("glScreenShot> Took screenshot '%s'.\n", filename);
-#else
   FILE *f;
   int sz = width*height;
   unsigned char *image = new unsigned char[sz*3];
@@ -996,66 +946,6 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
   delete [] image;
 
   printf("Took screenshot '%s'.\n", filename);
-#endif
-}
-
-
-int Texture::loadPNG(const char *filename)
-{
-#ifdef USING_PNG
-	FILE *f;
-	unsigned char *image = NULL;
-	unsigned char *image2 = NULL;
-	unsigned int w, h;
-	char type;
-	int id = -1;
-
-
-	f = fopen(filename, "rb");
-
-	if (!f)
-	{
-		perror("Couldn't load file");
-	}
-	else if (!mtk_image__png_check(f))
-	{
-		mtk_image__png_load(f, &image, &w, &h, &type);
-
-		type += 2;
-
-		image2 = scaleBuffer(image, w, h, (type == 4) ? 4 : 3);
-
-		if (image2)
-		{
-			image = image2;
-			w = h = 256;
-		}
-
-		if (image)
-		{
-			id = loadBuffer(image, w, h,
-								 (type == 4) ? RGBA : RGB,
-								 (type == 4) ? 32 : 24);
-
-			delete [] image;
-		}
-
-		if (f)
-		{
-			fclose(f);
-		}
-	}
-
-	if (id == -1)
-	{
-		printf("Texture::loadPNG> ERROR: Failed to load '%s'\n", filename);
-	}
-
-	return id;
-#else
-	printf("ERROR: PNG support not enabled in this build\n");
-	return -1;
-#endif
 }
 
 

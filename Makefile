@@ -94,7 +94,9 @@ CC=gcc
 WARNINGS=-Weverything -Wno-padded -Wno-packed -Wno-documentation
 WARNINGS+=-Wno-documentation-unknown-command -Wno-format-nonliteral
 WARNINGS+=-Wno-covered-switch-default -Wno-global-constructors
-WARNINGS+=-Wno-exit-time-destructors
+WARNINGS+=-Wno-exit-time-destructors -Wno-c++98-compat-pedantic
+WARNINGS+=-Wno-disabled-macro-expansion -Wno-missing-variable-declarations
+WARNINGS+=-Wno-missing-prototypes
 
 WARNINGS+=-Wno-conversion -Wno-sign-conversion -Wno-shorten-64-to-32
 
@@ -329,7 +331,7 @@ TR_FLAGS = -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMORY
 
 TombRaider.test:
 	@-mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(FLAGS_ALL) -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
+	$(CC) $(FLAGS_ALL) $(WARNINGS) -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
 	$(MAKE) targets NAME=TombRaider.test BUILDDIR=$(BUILD_TEST_DIR) \
 	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/TGA.o $(BUILD_TEST_DIR)/memory_test.o" \
 	CFLAGS="$(BASE_CFLAGS) -g $(TR_FLAGS)" \
@@ -339,7 +341,7 @@ TombRaider.test:
 
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(FLAGS_ALL) -Iinclude -DHAVE_SDL_TTF -DHAVE_SDL \
+	$(CC) $(FLAGS_ALL) $(WARNINGS) -Iinclude -DHAVE_SDL_TTF -DHAVE_SDL \
 	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
 	$(GL_LIBS) $(GL_DEFS) -lSDL_ttf -lm -lstdc++ \
 	src/Texture.cpp src/GLString.cpp \
@@ -350,21 +352,21 @@ GLString.test:
 Matrix.test:
 	@-echo "Building Matrix unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(FLAGS_ALL) -g -lm -lstdc++ -Iinclude \
+	$(CC) $(FLAGS_ALL) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
 	src/Matrix.cpp src/Quaternion.cpp src/Vector3d.cpp \
 	test/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
 
 Math.test:
 	@-echo "Building Math unit test"
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(FLAGS_ALL) -g -lm -lstdc++ -Iinclude \
+	$(CC) $(FLAGS_ALL) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
 	src/MatMath.cpp src/Vector3d.cpp test/MatMath.cpp -o $(BUILD_TEST_DIR)/Math.test
 
 #################################################################
 
 Memory.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(FLAGS_ALL) -g -lstdc++ -Iinclude \
+	$(CC) $(FLAGS_ALL) $(WARNINGS) -g -lstdc++ -Iinclude \
 	-DDEBUG_MEMORY -DDEBUG_MEMORY_ERROR \
 	src/memory_test.cpp test/memory_test.cpp -o $(BUILD_TEST_DIR)/memory_test.test
 
@@ -372,14 +374,14 @@ Memory.test:
 
 Network.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(TEST_FLAGS) \
+	$(CC) $(TEST_FLAGS) $(WARNINGS) \
 	src/Network.cpp test/Network.cpp -o $(BUILD_TEST_DIR)/Network.test
 
 #################################################################
 
 Sound.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(TEST_FLAGS) \
+	$(CC) $(TEST_FLAGS) $(WARNINGS) \
 		-DUSING_OPENAL $(AUDIO_LIBS) $(AUDIO_DEFS) \
 		src/Sound.cpp test/Sound.cpp -o $(BUILD_TEST_DIR)/Sound.test
 
@@ -387,7 +389,7 @@ Sound.test:
 
 TGA.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(TEST_FLAGS) \
+	$(CC) $(TEST_FLAGS) $(WARNINGS) \
 		src/TGA.cpp test/TGA.cpp -o $(BUILD_TEST_DIR)/TGA.test
 
 #################################################################
