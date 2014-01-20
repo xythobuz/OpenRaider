@@ -1,28 +1,12 @@
-/*================================================================
+/*!
+ * \file src/tga.cpp
+ * \brief TGA image reader/writer
  *
- * Project : Freyja
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  :
- * License : GPL See file COPYING, also (C) 2000 Mongoose
- * Comments: TGA plug-in
+ * \todo type should pass more info (2 bits for RGBA|RGB|GREY; val for depth)
  *
- *           TODO: type should pass more info
- *                 2 bits for RGBA | RGB | GREY
- *                 val for depth
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2001-10-25:
- * Mongoose - support for screen origin bit
- *
- * 2000-10-15:
- * Mongoose - Created
- ================================================================*/
+ * \author Mongoose
+ * \author xythobuz
+ */
 
 #include <string.h>
 #include <stdarg.h>
@@ -34,7 +18,7 @@
 #endif
 
 
-int mtk_image__tga_check(FILE *f)
+int tga_check(FILE *f)
 {
     char buffer[10];
 
@@ -62,10 +46,10 @@ int mtk_image__tga_check(FILE *f)
 }
 
 
-int mtk_image__tga_load(FILE *f, unsigned char **image,
+int tga_load(FILE *f, unsigned char **image,
         unsigned int *width, unsigned int *height, char *type)
 {
-    mtk_image_tga_t header;
+    tga_t header;
     char comment[256];
     unsigned char pixel[4];
     unsigned char *swap_row = NULL;
@@ -77,7 +61,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
 
     if (!f)
     {
-        fprintf(stderr, "mtk_image__tga_load> Invalid parameters.\n");
+        fprintf(stderr, "tga_load> Invalid parameters.\n");
         return -1;
     }
 
@@ -165,7 +149,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
     if (!size || (!(header.colormap_type == 0 &&
                     (header.image_type == 2 || header.image_type == 10))))
     {
-        fprintf(stderr, "mtk_image__tga_load> Unknown image format.\n");
+        fprintf(stderr, "tga_load> Unknown image format.\n");
         return -2;
     }
 
@@ -223,7 +207,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
                 case TGA_TYPE__COLOR:
                     if (fread((*image), size, 1, f) < 1)
                     {
-                        fprintf(stderr, "mtk_image__tga_load> Image fread failed.\n");
+                        fprintf(stderr, "tga_load> Image fread failed.\n");
                         delete [] *image;
                         return -4;
                     }
@@ -296,7 +280,7 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
                 case TGA_TYPE__COLOR:
                     if (fread((*image), size, 1, f) < 1)
                     {
-                        fprintf(stderr, "mtk_image__tga_load> Image fread failed.\n");
+                        fprintf(stderr, "tga_load> Image fread failed.\n");
                         delete [] *image;
                         return -4;
                     }
@@ -352,10 +336,10 @@ int mtk_image__tga_load(FILE *f, unsigned char **image,
 }
 
 
-int mtk_image__tga_save(FILE *f, unsigned char *image,
+int tga_save(FILE *f, unsigned char *image,
         unsigned int width, unsigned int height, char type)
 {
-    mtk_image_tga_t header;
+    tga_t header;
     unsigned int size;
     //  unsigned int i;
     //  unsigned char tmp;
@@ -364,7 +348,7 @@ int mtk_image__tga_save(FILE *f, unsigned char *image,
 
     if (!f || !image || !width || !height)
     {
-        fprintf(stderr, "mtk_image__tga_save> Invalid parameters.\n");
+        fprintf(stderr, "tga_save> Invalid parameters.\n");
         return -1;
     }
 
@@ -454,7 +438,7 @@ int mtk_image__tga_save(FILE *f, unsigned char *image,
     // Write image data
     if (fwrite(image, size, 1, f) < 1)
     {
-        perror("mtk_image__tga_save> Disk write failed.\n");
+        perror("tga_save> Disk write failed.\n");
         return -2;
     }
 
@@ -462,7 +446,7 @@ int mtk_image__tga_save(FILE *f, unsigned char *image,
 }
 
 
-int mtk_image__tga_save_filename(unsigned char *image,
+int tga_save_filename(unsigned char *image,
         unsigned int width, unsigned int height,
         char type,
         char *s, ...)
@@ -485,7 +469,7 @@ int mtk_image__tga_save_filename(unsigned char *image,
         return -1;
     }
 
-    v = mtk_image__tga_save(f, image, width, height, type);
+    v = tga_save(f, image, width, height, type);
     fclose(f);
 
     return v;

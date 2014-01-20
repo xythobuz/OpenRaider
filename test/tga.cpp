@@ -20,7 +20,7 @@ const char *testFiles[] = {
 
 TEST checkFile(FILE *f) {
     ASSERTm("File wasn't opened.", f != NULL);
-    ASSERT_FALSEm("File is invalid?!", mtk_image__tga_check(f));
+    ASSERT_FALSEm("File is invalid?!", tga_check(f));
     PASS();
 }
 
@@ -29,7 +29,7 @@ TEST loadFile(FILE *f) {
     unsigned int width, height;
     char type;
     ASSERTm("File wasn't opened.", f != NULL);
-    ASSERT_FALSEm("File couldn't be loaded!", mtk_image__tga_load(f, &image, &width, &height, &type));
+    ASSERT_FALSEm("File couldn't be loaded!", tga_load(f, &image, &width, &height, &type));
     printf("\nWidth: %u\nHeight: %u\nType: %d\n", width, height, type);
     PASS();
 }

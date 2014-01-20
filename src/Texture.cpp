@@ -265,7 +265,7 @@ int Texture::loadFontTTF(const char *filename,
         FILE *f = fopen("font.tga", "wb");
         if (f)
         {
-            mtk_image__tga_save(f, texture->texture, 256, 256, 4);
+            tga_save(f, texture->texture, 256, 256, 4);
             fclose(f);
         }
         else
@@ -957,9 +957,9 @@ int Texture::loadTGA(const char *filename)
     {
         perror("Couldn't load file");
     }
-    else if (!mtk_image__tga_check(f))
+    else if (!tga_check(f))
     {
-        mtk_image__tga_load(f, &image, &w, &h, &type);
+        tga_load(f, &image, &w, &h, &type);
 
         type += 2;
 
