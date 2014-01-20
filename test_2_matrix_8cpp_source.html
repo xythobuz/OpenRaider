@@ -126,19 +126,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    a.<a class="code" href="class_matrix.html#a48c5c0f50b75914c6f943a1116b10bf0">setMatrix</a>(m);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">switch</span> (mode) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">case</span> 0:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        a.<a class="code" href="class_matrix.html#a7c56f28d03ac651fbb3c9af5c5fac653">setIdentity</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">case</span> 1:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        c.<a class="code" href="class_matrix.html#a7c56f28d03ac651fbb3c9af5c5fac653">setIdentity</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        b.<a class="code" href="class_matrix.html#a7c56f28d03ac651fbb3c9af5c5fac653">setIdentity</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        a = c * <a class="code" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">case</span> 2:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        a.<a class="code" href="class_matrix.html#a7c56f28d03ac651fbb3c9af5c5fac653">setIdentity</a>();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        b.setIdentity();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        a = a * <a class="code" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">case</span> 0:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            a.<a class="code" href="class_matrix.html#a7c56f28d03ac651fbb3c9af5c5fac653">setIdentity</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            c.<a class="code" href="class_matrix.html#a7c56f28d03ac651fbb3c9af5c5fac653">setIdentity</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            b.<a class="code" href="class_matrix.html#a7c56f28d03ac651fbb3c9af5c5fac653">setIdentity</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            a = c * <a class="code" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            a.<a class="code" href="class_matrix.html#a7c56f28d03ac651fbb3c9af5c5fac653">setIdentity</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            b.setIdentity();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            a = a * <a class="code" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="greatest_8h.html#af343b20373ba49a92fce523e948f2ab3">ASSERT</a>(a.<a class="code" href="class_matrix.html#ae1c2332cd7da463bfcab55d3e122886f">isIdentity</a>());</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="greatest_8h.html#aba5c54fadff8d880b1945dde87496e31">PASS</a>();</div>
@@ -201,7 +201,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
 <div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="test_2_matrix_8cpp.html#af48372ec73021e418169d2ca71ca1465">  117</a></span>&#160;<a class="code" href="greatest_8h.html#ac259c3f55c7c90396ea276c14641bc01">SUITE</a>(matrixSuite) {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <span class="keyword">sizeof</span>(<a class="code" href="test_2_matrix_8cpp.html#a417549cf1f39d98998e0300900cfcf90">initialValues</a>) / <span class="keyword">sizeof</span>(<a class="code" href="test_2_matrix_8cpp.html#a417549cf1f39d98998e0300900cfcf90">initialValues</a>[0]); i++) {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; <span class="keyword">sizeof</span>(<a class="code" href="test_2_matrix_8cpp.html#a417549cf1f39d98998e0300900cfcf90">initialValues</a>) / <span class="keyword">sizeof</span>(<a class="code" href="test_2_matrix_8cpp.html#a417549cf1f39d98998e0300900cfcf90">initialValues</a>[0]); i++) {</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> mode = 0; mode &lt; 3; mode++) {</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <a class="code" href="greatest_8h.html#a6b38164fb342e3502eaf7693c04640c7">RUN_TESTp</a>(<a class="code" href="test_2_matrix_8cpp.html#a25dbe7f27caa893ffc4306b9aee68ea8">identity</a>, <a class="code" href="test_2_matrix_8cpp.html#a417549cf1f39d98998e0300900cfcf90">initialValues</a>[i], mode);</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        }</div>
@@ -223,7 +223,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="greatest_8h.html#a236d59be56f900b1b1459a0fe3d2c5cb">GREATEST_MAIN_END</a>();</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="ttc" id="_open_raider_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="_open_raider_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8cpp_source.html#l03565">OpenRaider.cpp:3565</a></div></div>
+<div class="ttc" id="_open_raider_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="_open_raider_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8cpp_source.html#l03566">OpenRaider.cpp:3566</a></div></div>
 <div class="ttc" id="_mat_math_8h_html_a77c204b7581ee7d9cae27cd0b16c8dec"><div class="ttname"><a href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a></div><div class="ttdeci">vec_t matrix_t[16]</div><div class="ttdoc">Used as Column_major in every class now! </div><div class="ttdef"><b>Definition:</b> <a href="_mat_math_8h_source.html#l00027">MatMath.h:27</a></div></div>
 <div class="ttc" id="test_2_matrix_8cpp_html_aba62d1981eacd8236615c58bdbc4b9b5"><div class="ttname"><a href="test_2_matrix_8cpp.html#aba62d1981eacd8236615c58bdbc4b9b5">i12</a></div><div class="ttdeci">unsigned char i12</div><div class="ttdef"><b>Definition:</b> <a href="test_2_matrix_8cpp_source.html#l00023">Matrix.cpp:23</a></div></div>
 <div class="ttc" id="class_matrix_html_a9626b2d019c0a728e1b828daeae4198e"><div class="ttname"><a href="class_matrix.html#a9626b2d019c0a728e1b828daeae4198e">Matrix::scale</a></div><div class="ttdeci">void scale(vec_t x, vec_t y, vec_t z)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_matrix_8cpp_source.html#l00337">Matrix.cpp:337</a></div></div>

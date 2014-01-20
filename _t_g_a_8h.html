@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>OpenRaider: include/tga.h File Reference</title>
+<title>OpenRaider: include/TGA.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,152 +88,133 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">tga.h File Reference</div>  </div>
+<div class="title">TGA.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br/>
 </div>
-<p><a href="tga_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="_t_g_a_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:structmtk__image__tga__s"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#structmtk__image__tga__s">mtk_image_tga_s</a></td></tr>
-<tr class="separator:structmtk__image__tga__s"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a80fab004cb0030c3d8c8985275175e05"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="tga_8h.html#structmtk__image__tga__s">mtk_image_tga_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#a80fab004cb0030c3d8c8985275175e05">mtk_image_tga_t</a></td></tr>
-<tr class="separator:a80fab004cb0030c3d8c8985275175e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structmtk__image__tga__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#structmtk__image__tga__t">mtk_image_tga_t</a></td></tr>
+<tr class="separator:structmtk__image__tga__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:aa10934a8bc956c001867a8f3afe71b83"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a> { <br/>
-&#160;&#160;<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a6ef01cfa8dd6a02991e8b5899f3063a0">TGA_TYPE__NO_DATA</a> = 0, 
-<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a4661ad810c980e8ae42bf120a2822f55">TGA_TYPE__MAPPED</a> = 1, 
-<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a355b39379657c22d08350671dfc8edec">TGA_TYPE__COLOR</a> = 2, 
-<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a443ecaac7156e3364b2499dc7adc6ac9">TGA_TYPE__GREYSCALE</a> = 3, 
+<tr class="memitem:aa10934a8bc956c001867a8f3afe71b83"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a> { <br/>
+&#160;&#160;<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a6ef01cfa8dd6a02991e8b5899f3063a0">TGA_TYPE__NO_DATA</a> = 0, 
+<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a4661ad810c980e8ae42bf120a2822f55">TGA_TYPE__MAPPED</a> = 1, 
+<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a355b39379657c22d08350671dfc8edec">TGA_TYPE__COLOR</a> = 2, 
+<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a443ecaac7156e3364b2499dc7adc6ac9">TGA_TYPE__GREYSCALE</a> = 3, 
 <br/>
-&#160;&#160;<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83aebd9f64d06c7208f90ecadf8f74d2cac">TGA_TYPE__MAPPED_RLE</a> = 9, 
-<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a156fe86edaa5eb5b17f9278b2dff3431">TGA_TYPE__COLOR_RLE</a> = 10
+&#160;&#160;<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83aebd9f64d06c7208f90ecadf8f74d2cac">TGA_TYPE__MAPPED_RLE</a> = 9, 
+<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a156fe86edaa5eb5b17f9278b2dff3431">TGA_TYPE__COLOR_RLE</a> = 10
 <br/>
  }</td></tr>
 <tr class="separator:aa10934a8bc956c001867a8f3afe71b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a229b70da12cda0fc4f3b410892f31061"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#a229b70da12cda0fc4f3b410892f31061">mtk_image__tga_check</a> (FILE *f)</td></tr>
+<tr class="memitem:a229b70da12cda0fc4f3b410892f31061"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#a229b70da12cda0fc4f3b410892f31061">mtk_image__tga_check</a> (FILE *f)</td></tr>
 <tr class="separator:a229b70da12cda0fc4f3b410892f31061"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16c9895ae073185161c501934346798f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#a16c9895ae073185161c501934346798f">mtk_image__tga_load</a> (FILE *f, unsigned char **image, unsigned int *<a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int *<a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char *type)</td></tr>
+<tr class="memitem:a16c9895ae073185161c501934346798f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#a16c9895ae073185161c501934346798f">mtk_image__tga_load</a> (FILE *f, unsigned char **image, unsigned int *<a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int *<a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char *type)</td></tr>
 <tr class="separator:a16c9895ae073185161c501934346798f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7df76296224b50e7c576714955241c5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a> (FILE *f, unsigned char *image, unsigned int <a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int <a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char type)</td></tr>
+<tr class="memitem:a7df76296224b50e7c576714955241c5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a> (FILE *f, unsigned char *image, unsigned int <a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int <a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char type)</td></tr>
 <tr class="separator:a7df76296224b50e7c576714955241c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5db3486404abd1f121e025858881e4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#ad5db3486404abd1f121e025858881e4f">mtk_image__tga_save_filename</a> (unsigned char *image, unsigned int <a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int <a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char type, char *s,...)</td></tr>
+<tr class="memitem:ad5db3486404abd1f121e025858881e4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#ad5db3486404abd1f121e025858881e4f">mtk_image__tga_save_filename</a> (unsigned char *image, unsigned int <a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int <a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char type, char *s,...)</td></tr>
 <tr class="separator:ad5db3486404abd1f121e025858881e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="structmtk__image__tga__s" id="structmtk__image__tga__s"></a>
+<a name="structmtk__image__tga__t" id="structmtk__image__tga__t"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct mtk_image_tga_s</td>
+          <td class="memname">struct mtk_image_tga_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="tga_8h_source.html#l00043">43</a> of file <a class="el" href="tga_8h_source.html">tga.h</a>.</p>
+<p>Definition at line <a class="el" href="_t_g_a_8h_source.html#l00043">43</a> of file <a class="el" href="_t_g_a_8h_source.html">TGA.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a8b5e2dacfb11c95e53b1b2951cb40826"></a>unsigned char</td>
+<a class="anchor" id="a8950d6a837873db13a69bdb93c76c75f"></a>unsigned char</td>
 <td class="fieldname">
 bpp</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a66af353324dcd78964a6ee0729f5680e"></a>unsigned char</td>
+<a class="anchor" id="ad83158180dddde2ed8c290375a397b80"></a>unsigned char</td>
 <td class="fieldname">
 colormap_bbp</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aebb69ab275ae0bbdcb8a034b59605831"></a>unsigned short</td>
+<a class="anchor" id="a6a1020a100bf28f9f0719d5791643bae"></a>unsigned short</td>
 <td class="fieldname">
 colormap_index</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a056672661b485ccc51e1987931aa2a94"></a>unsigned short</td>
+<a class="anchor" id="a63e45b8347ab370470c9a017a87d3917"></a>unsigned short</td>
 <td class="fieldname">
 colormap_lenght</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a4b672e300f096b00de1ca7068296630c"></a>unsigned char</td>
+<a class="anchor" id="aa7b1e9368bd7db20df287f2db7402991"></a>unsigned char</td>
 <td class="fieldname">
 colormap_type</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="af164fb195080817c6783c06bdbbce37a"></a>unsigned char</td>
+<a class="anchor" id="aff1e3cf8465519fb7068df207a666991"></a>unsigned char</td>
 <td class="fieldname">
 comment_lenght</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a69615eaf5e5f636df6c9f07d8185e74a"></a>unsigned char</td>
+<a class="anchor" id="a18814fb584b6e33e07d533519ef77cac"></a>unsigned char</td>
 <td class="fieldname">
 desc_flags</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ab5c00a985fa801932a6161844feea3ae"></a>unsigned short</td>
+<a class="anchor" id="aeac09f5d76ade6dfd9bdd8e17e84d3c8"></a>unsigned short</td>
 <td class="fieldname">
 height</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a0deb863821e6aac28cd4c7ebb13327ed"></a>unsigned char</td>
+<a class="anchor" id="a5e4834f8321f9c94c1ae9f34949dbf0f"></a>unsigned char</td>
 <td class="fieldname">
 image_type</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ada0bbd5d3bde64a2a1a75263d246580c"></a>unsigned short</td>
+<a class="anchor" id="a285c2df263b55d237381ebb8ce77ae8c"></a>unsigned short</td>
 <td class="fieldname">
 origin_x</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a4cd53d49978ed335aaeb17ef742bd4cb"></a>unsigned short</td>
+<a class="anchor" id="a5edcd104d17e06967ac692feb1d76c04"></a>unsigned short</td>
 <td class="fieldname">
 origin_y</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a26ded94fb682ac3aa34b25e46a94a6bc"></a>unsigned short</td>
+<a class="anchor" id="a4d331aa567893197cdf9e2f235c219a8"></a>unsigned short</td>
 <td class="fieldname">
 width</td>
 <td class="fielddoc">
 </td></tr>
 </table>
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="a80fab004cb0030c3d8c8985275175e05"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="tga_8h.html#structmtk__image__tga__s">mtk_image_tga_s</a>  <a class="el" href="tga_8h.html#a80fab004cb0030c3d8c8985275175e05">mtk_image_tga_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -243,7 +224,7 @@ width</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a></td>
+          <td class="memname">enum <a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -262,7 +243,7 @@ width</td>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="tga_8h_source.html#l00028">28</a> of file <a class="el" href="tga_8h_source.html">tga.h</a>.</p>
+<p>Definition at line <a class="el" href="_t_g_a_8h_source.html#l00028">28</a> of file <a class="el" href="_t_g_a_8h_source.html">TGA.h</a>.</p>
 
 </div>
 </div>
@@ -281,7 +262,7 @@ width</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2tga_8cpp_source.html#l00037">37</a> of file <a class="el" href="src_2tga_8cpp_source.html">tga.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_t_g_a_8cpp_source.html#l00037">37</a> of file <a class="el" href="src_2_t_g_a_8cpp_source.html">TGA.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,7 +308,7 @@ width</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2tga_8cpp_source.html#l00065">65</a> of file <a class="el" href="src_2tga_8cpp_source.html">tga.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_t_g_a_8cpp_source.html#l00065">65</a> of file <a class="el" href="src_2_t_g_a_8cpp_source.html">TGA.cpp</a>.</p>
 
 </div>
 </div>
@@ -373,7 +354,7 @@ width</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2tga_8cpp_source.html#l00355">355</a> of file <a class="el" href="src_2tga_8cpp_source.html">tga.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_t_g_a_8cpp_source.html#l00355">355</a> of file <a class="el" href="src_2_t_g_a_8cpp_source.html">TGA.cpp</a>.</p>
 
 </div>
 </div>
@@ -425,7 +406,7 @@ width</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2tga_8cpp_source.html#l00463">463</a> of file <a class="el" href="src_2tga_8cpp_source.html">tga.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_t_g_a_8cpp_source.html#l00465">465</a> of file <a class="el" href="src_2_t_g_a_8cpp_source.html">TGA.cpp</a>.</p>
 
 </div>
 </div>

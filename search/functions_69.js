@@ -2,7 +2,8 @@ var searchData=
 [
   ['id',['Id',['../class_list_node.html#ad6e218ffa6729d0d9ba3076a7b73ed43',1,'ListNode::Id(unsigned int id)'],['../class_list_node.html#a481cf9d8cec18d1b3263d6253fa779c5',1,'ListNode::Id()']]],
   ['identity',['identity',['../test_2_matrix_8cpp.html#a25dbe7f27caa893ffc4306b9aee68ea8',1,'Matrix.cpp']]],
-  ['init',['init',['../class_sound.html#a9ac0d7e6e2df583764ebfe0e3c0cbe34',1,'Sound::init()'],['../class_g_l_string.html#a5dbc4b5cd6346567ae49dd67b6d6d268',1,'GLString::Init()'],['../class_render.html#aab667edb92dfa7b0802d96ce0ace7c7d',1,'Render::Init()']]],
+  ['init',['init',['../class_sound.html#a9ac0d7e6e2df583764ebfe0e3c0cbe34',1,'Sound::init()'],['../class_g_l_string.html#a2a97f47f470044bf73788a48bcb4165f',1,'GLString::Init()'],['../class_render.html#aab667edb92dfa7b0802d96ce0ace7c7d',1,'Render::Init()']]],
+  ['init_5fgl',['init_gl',['../test_2_g_l_string_8cpp.html#af70aa494f16268cd033dbc56e6c024a8',1,'GLString.cpp']]],
   ['initemitter',['initEmitter',['../class_render.html#a1fd10b1f55973cfb2136989488420f75',1,'Render']]],
   ['initgl',['initGL',['../class_open_raider.html#a052263b9c969fcaa3d09c872857fdd70',1,'OpenRaider::initGL()'],['../class_system.html#aa69c83209d4b66269bca93fd7177c2d9',1,'System::initGL()']]],
   ['initsdl_5fttf',['initSDL_TTF',['../class_texture.html#ac6cb919e2a319d275da47af00cc4e5dc',1,'Texture']]],

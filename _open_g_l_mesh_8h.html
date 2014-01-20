@@ -103,10 +103,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_g_l_mesh.html">OpenGLMesh</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_open_g_l_mesh_1_1tris__s"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_g_l_mesh.html#struct_open_g_l_mesh_1_1tris__s">OpenGLMesh::tris_s</a></td></tr>
-<tr class="separator:struct_open_g_l_mesh_1_1tris__s"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_open_g_l_mesh_1_1rect__s"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_g_l_mesh.html#struct_open_g_l_mesh_1_1rect__s">OpenGLMesh::rect_s</a></td></tr>
-<tr class="separator:struct_open_g_l_mesh_1_1rect__s"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structtris__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_mesh_8h.html#structtris__t">tris_t</a></td></tr>
+<tr class="separator:structtris__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structrect__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_mesh_8h.html#structrect__t">rect_t</a></td></tr>
+<tr class="separator:structrect__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>OpenGL Mesh. </p>
@@ -115,12 +115,12 @@ Classes</h2></td></tr>
 
 <p>Definition in file <a class="el" href="_open_g_l_mesh_8h_source.html">OpenGLMesh.h</a>.</p>
 </div><hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="struct_open_g_l_mesh_1_1tris__s" id="struct_open_g_l_mesh_1_1tris__s"></a>
+<a name="structtris__t" id="structtris__t"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct OpenGLMesh::tris_s</td>
+          <td class="memname">struct tris_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -129,67 +129,67 @@ Classes</h2></td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ad262cab86891244cd75b2a7fc21d9b2c"></a>unsigned int *</td>
+<a class="anchor" id="a688826e8cd91f33eab4c98c77371cbe5"></a>unsigned int *</td>
 <td class="fieldname">
 alpha_triangles</td>
 <td class="fielddoc">
 ABCABCABC... </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="abef85678abe078afb5973a9e62347e3c"></a>unsigned int</td>
+<a class="anchor" id="a0186788e2a5b3593520b70e71390e117"></a>unsigned int</td>
 <td class="fieldname">
 cnum_alpha_triangles</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a8ac6bc63ca04bb38dbd66cdc437af6c1"></a>unsigned int</td>
+<a class="anchor" id="a8a8dfbf18a41cd6e4c14d2ce936b9901"></a>unsigned int</td>
 <td class="fieldname">
 cnum_triangles</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a07391f7bd67dc612f413561fd05f1ffe"></a>unsigned int</td>
+<a class="anchor" id="a27b167dc1b6df550e84227452cfe611b"></a>unsigned int</td>
 <td class="fieldname">
 num_alpha_triangles</td>
 <td class="fielddoc">
 Arrays of alpha triangle indices sorted by texture. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ab857a70773591b2b25635cd9cbb62fd5"></a>unsigned int</td>
+<a class="anchor" id="a23fe7c8844764da079270a99b5eca0de"></a>unsigned int</td>
 <td class="fieldname">
 num_texcoors</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a9e7cf5132e64a4ffc7df4d9bdb1512c9"></a>unsigned int</td>
+<a class="anchor" id="a1c605738fe258ab59ac921d4353dc832"></a>unsigned int</td>
 <td class="fieldname">
 num_texcoors2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="af3004697b90ace12084e7927381adb71"></a>unsigned int</td>
+<a class="anchor" id="a7e9219af574e4c0bbc842377d74bb2ca"></a>unsigned int</td>
 <td class="fieldname">
 num_triangles</td>
 <td class="fielddoc">
 Arrays of triangle indices sorted by texture. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a5b1de986d2be41dbdfc3a8e3d781cea1"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
+<a class="anchor" id="adcd35b0da493d1c9f4e453dc1e65b635"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
 <td class="fieldname">
 texcoors</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aa7f61fbd538b970b4d516c95be635d73"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
+<a class="anchor" id="a2164b0da43b44410218d955782a2b760"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
 <td class="fieldname">
 texcoors2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a818c46cd9a0a83529431192759948c7b"></a>int</td>
+<a class="anchor" id="a0653c625ea179bae99fcc9dc1ec6a4c4"></a>int</td>
 <td class="fieldname">
 texture</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a5d41120bd87cae70f3110db70bb6dc50"></a>unsigned int *</td>
+<a class="anchor" id="a332f68b1fbebc8fa561f8d45beba6a8e"></a>unsigned int *</td>
 <td class="fieldname">
 triangles</td>
 <td class="fielddoc">
@@ -198,12 +198,12 @@ ABCABCABC... </td></tr>
 
 </div>
 </div>
-<a name="struct_open_g_l_mesh_1_1rect__s" id="struct_open_g_l_mesh_1_1rect__s"></a>
+<a name="structrect__t" id="structrect__t"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct OpenGLMesh::rect_s</td>
+          <td class="memname">struct rect_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -212,67 +212,67 @@ ABCABCABC... </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ae30ddda71611e05e856c2405673aeb80"></a>unsigned int *</td>
+<a class="anchor" id="adb182dbc24e00c12d29363cfe305a497"></a>unsigned int *</td>
 <td class="fieldname">
 alpha_quads</td>
 <td class="fielddoc">
 ABCDABCDABCD... </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ac83042db0fda56ee047b65abae76452b"></a>unsigned int</td>
+<a class="anchor" id="a17ddbadd72f3b875c4d40e3ff4f19f25"></a>unsigned int</td>
 <td class="fieldname">
 cnum_alpha_quads</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a45d2fec4fb351f7aec4d6856103ad958"></a>unsigned int</td>
+<a class="anchor" id="a2e62d023b635964c0823a79a7eddea8b"></a>unsigned int</td>
 <td class="fieldname">
 cnum_quads</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a1c3191751812a2080c6190ce1587c403"></a>unsigned int</td>
+<a class="anchor" id="adbfdd0d986ba9a45cc2e0077e41d0d57"></a>unsigned int</td>
 <td class="fieldname">
 num_alpha_quads</td>
 <td class="fielddoc">
 Arrays of alpha rectangle indices sorted by texture. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ab89cbedda1dc897093b3100ababc7162"></a>unsigned int</td>
+<a class="anchor" id="ab466cf95675691913652a0844aced51b"></a>unsigned int</td>
 <td class="fieldname">
 num_quads</td>
 <td class="fielddoc">
 Arrays of rectangle indices sorted by texture. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a3c7f9c8e3528186d539c06222a893d21"></a>unsigned int</td>
+<a class="anchor" id="a954d1a7499676c1a877aad52abfe9088"></a>unsigned int</td>
 <td class="fieldname">
 num_texcoors</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ae3bf5010fce8d3f5bb100e0c74c3fd97"></a>unsigned int</td>
+<a class="anchor" id="a2567620e6fd1cf8fc0a7b5acceddaf94"></a>unsigned int</td>
 <td class="fieldname">
 num_texcoors2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aa8652da02d787cbd0d064dfe146f16ce"></a>unsigned int *</td>
+<a class="anchor" id="a2511005a7ab52f5cdcaa00d7091247cc"></a>unsigned int *</td>
 <td class="fieldname">
 quads</td>
 <td class="fielddoc">
 ABCDABCDABCD... </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a10433e02df4efd616a4e12ae37d31493"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
+<a class="anchor" id="adafe78a310a4ae624f7bdae4a60ae8e5"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
 <td class="fieldname">
 texcoors</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a429ad213706756608aa9bbe43d40ea57"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
+<a class="anchor" id="a0c3c6841435e9f518af279acc4f8d00c"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a> *</td>
 <td class="fieldname">
 texcoors2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ae85186d0cfee7712e16b4333fdc7ddff"></a>int</td>
+<a class="anchor" id="ad65d6fe45e04750829f5b121c29e20d4"></a>int</td>
 <td class="fieldname">
 texture</td>
 <td class="fielddoc">

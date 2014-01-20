@@ -4,7 +4,7 @@ var searchData=
   ['rc_5fcommand',['rc_command',['../_system_8h.html#a23a20ce358ec01f9110793d0a5071d5b',1,'rc_command(const char *symbol, char *command):&#160;System.cpp'],['../_system_8cpp.html#a23a20ce358ec01f9110793d0a5071d5b',1,'rc_command(const char *symbol, char *command):&#160;System.cpp']]],
   ['rc_5fget_5fbool',['rc_get_bool',['../_system_8h.html#ad14f12862bc728c06dbe0b1765717196',1,'rc_get_bool(char *buffer, bool *val):&#160;System.cpp'],['../_system_8cpp.html#ad14f12862bc728c06dbe0b1765717196',1,'rc_get_bool(char *buffer, bool *val):&#160;System.cpp']]],
   ['registercamera',['RegisterCamera',['../class_render.html#adf3f7af21cd66748df2208758ff005cd',1,'Render']]],
-  ['remove',['remove',['../class_vector.html#a08172247e172056d7c013843644a82d9',1,'Vector::remove()'],['../class_list.html#a5ec048b4d7b3c2a196410acf8b1a5859',1,'List::Remove()'],['../class_tree.html#a7d8bd4a9e879cb22bf6365641e981bd8',1,'Tree::Remove()']]],
+  ['remove',['Remove',['../class_list.html#a5ec048b4d7b3c2a196410acf8b1a5859',1,'List::Remove()'],['../class_tree.html#a7d8bd4a9e879cb22bf6365641e981bd8',1,'Tree::Remove()'],['../class_vector.html#a08172247e172056d7c013843644a82d9',1,'Vector::remove()']]],
   ['removebydata',['RemoveByData',['../class_map.html#a3be4d5b3d59af872bf5c82578aed46eb',1,'Map::RemoveByData()'],['../class_tree.html#aa3658d36476982ea896adaabc76711af',1,'Tree::RemoveByData()']]],
   ['removebykey',['RemoveByKey',['../class_map.html#a8294230cfa23b82ba17606bf9c09cb68',1,'Map::RemoveByKey()'],['../class_tree.html#a5f8151ca8cf0651cead608b76397b9fe',1,'Tree::RemoveByKey()']]],
   ['removeid',['RemoveId',['../class_list.html#a27d4669d245922be8c0661c6edfc4578',1,'List']]],
@@ -26,6 +26,5 @@ var searchData=
   ['rotation',['rotation',['../test_2_matrix_8cpp.html#ac018134f2b1db66fed74a28d611578ce',1,'Matrix.cpp']]],
   ['runclient',['runClient',['../class_network.html#af02602120320c587393d1561b09c4bd5',1,'Network']]],
   ['rungame',['runGame',['../class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde',1,'SDLSystem::runGame()'],['../class_system.html#a8a79288481fd978a08c12b4777571ad8',1,'System::runGame()']]],
-  ['runquaternionunittest',['runQuaternionUnitTest',['../test_2_quaternion_8cpp.html#acdde9a6b018404899f1ea7bf58134fa6',1,'Quaternion.cpp']]],
   ['runserver',['runServer',['../class_network.html#a3fb79cf27a1cf0a7b6f34a29d394b922',1,'Network']]]
 ];

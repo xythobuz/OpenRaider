@@ -1,9 +1,9 @@
 var searchData=
 [
   ['end',['end',['../greatest_8h.html#a2fa7f49fb44a09b271905d6b51105330',1,'greatest_run_info']]],
-  ['endportaloffset',['endPortalOffset',['../_tomb_raider_8h.html#a8e495e48c49b3fcada25ad3e1be140d1',1,'tr5_room_s']]],
-  ['endsdoffset',['endSDOffset',['../_tomb_raider_8h.html#a82d2cbb63c16cbde7f3d5914ce632668',1,'tr5_room_s']]],
-  ['enemy',['enemy',['../_world_8h.html#a9b366f42b6b84732e5dcc00218318bd5',1,'actor_entity_s']]],
-  ['eventtime',['eventTime',['../_world_8h.html#a08a3aaaf0278362c66f9e9c3aefc56e7',1,'actor_entity_s']]],
-  ['eventtimer',['eventTimer',['../_world_8h.html#a8d5372990bda04406360f39809630edd',1,'actor_entity_s']]]
+  ['endportaloffset',['endPortalOffset',['../_tomb_raider_8h.html#a97625a96c6d15b14f4b184e311ef31bd',1,'tr5_room_t']]],
+  ['endsdoffset',['endSDOffset',['../_tomb_raider_8h.html#a0968c07c233d78e050c1fe70b91ba39d',1,'tr5_room_t']]],
+  ['enemy',['enemy',['../_world_8h.html#acdb6e9cd388c797b59d04af165fbc825',1,'actor_entity_t']]],
+  ['eventtime',['eventTime',['../_world_8h.html#a0974194c32277deba23f6466d653f039',1,'actor_entity_t']]],
+  ['eventtimer',['eventTimer',['../_world_8h.html#a394f217e736c28b4d394ff0d3b8db515',1,'actor_entity_t']]]
 ];

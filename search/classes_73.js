@@ -1,12 +1,12 @@
 var searchData=
 [
   ['sdlsystem',['SDLSystem',['../class_s_d_l_system.html',1,'']]],
-  ['sector_5fs',['sector_s',['../_world_8h.html#structsector__s',1,'']]],
-  ['skeletal_5fmodel_5fs',['skeletal_model_s',['../_skeletal_model_8h.html#structskeletal__model__s',1,'']]],
+  ['sector_5ft',['sector_t',['../_world_8h.html#structsector__t',1,'']]],
+  ['skeletal_5fmodel_5ft',['skeletal_model_t',['../_skeletal_model_8h.html#structskeletal__model__t',1,'']]],
   ['skeletalmodel',['SkeletalModel',['../class_skeletal_model.html',1,'']]],
   ['sound',['Sound',['../class_sound.html',1,'']]],
-  ['sprite_5fs',['sprite_s',['../_world_8h.html#structsprite__s',1,'']]],
-  ['sprite_5fseq_5fs',['sprite_seq_s',['../_world_8h.html#structsprite__seq__s',1,'']]],
-  ['static_5fmodel_5fs',['static_model_s',['../_world_8h.html#structstatic__model__s',1,'']]],
+  ['sprite_5fseq_5ft',['sprite_seq_t',['../_world_8h.html#structsprite__seq__t',1,'']]],
+  ['sprite_5ft',['sprite_t',['../_world_8h.html#structsprite__t',1,'']]],
+  ['static_5fmodel_5ft',['static_model_t',['../_world_8h.html#structstatic__model__t',1,'']]],
   ['system',['System',['../class_system.html',1,'']]]
 ];

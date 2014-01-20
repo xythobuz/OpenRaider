@@ -106,9 +106,9 @@ Public Types</h2></td></tr>
 <a class="el" href="class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496afe7e1260a718928d97ecc208055c042b">ARGB</a>
  }</td></tr>
 <tr class="separator:a43b9b9d60943d3fa5a11cc2d80958496"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87b2fed2c768145467cd9c260c54413a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413a">TextureFlag</a> { <a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aa339735b02d78eca67cda6cd19af45dd6">fUseMipmaps</a> = 1, 
-<a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aadef4a836917f066a4d0c424496e852e5">fUseMultiTexture</a> = 2, 
-<a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aa675e50939bea377c7b2ae26e79401b4b">fUseSDL_TTF</a> = 4
+<tr class="memitem:a87b2fed2c768145467cd9c260c54413a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413a">TextureFlag</a> { <a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aa339735b02d78eca67cda6cd19af45dd6">fUseMipmaps</a> = (1 &lt;&lt; 0), 
+<a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aadef4a836917f066a4d0c424496e852e5">fUseMultiTexture</a> = (1 &lt;&lt; 1), 
+<a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aa675e50939bea377c7b2ae26e79401b4b">fUseSDL_TTF</a> = (1 &lt;&lt; 2)
  }</td></tr>
 <tr class="separator:a87b2fed2c768145467cd9c260c54413a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -250,7 +250,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00070">70</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00064">64</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -267,7 +267,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00086">86</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00080">80</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -296,7 +296,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00627">627</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00614">614</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -314,7 +314,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00816">816</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00803">803</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +332,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00575">575</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00562">562</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,7 +349,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00596">596</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00583">583</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -391,7 +391,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00102">102</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00096">96</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -409,7 +409,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00300">300</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00298">298</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +467,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00385">385</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00379">379</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -484,7 +484,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00661">661</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00648">648</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -518,7 +518,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00832">832</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00819">819</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -535,7 +535,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00549">549</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00538">538</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -581,7 +581,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00668">668</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00655">655</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -633,7 +633,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00706">706</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00693">693</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -667,7 +667,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00535">535</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00524">524</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -700,8 +700,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000036">FIXME:</a></b></dt><dd>Until UTF8 decoder is working, we map from ASCII when rendering </dd></dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00245">245</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00243">243</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -719,8 +720,6 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l01003">1003</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a5bcfb2bb4c1a318217a42a30286f8315"></a>
@@ -737,7 +736,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l01062">1062</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00943">943</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -763,7 +762,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l01122">1122</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l01003">1003</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -780,7 +779,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00582">582</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00569">569</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -828,7 +827,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l01134">1134</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l01015">1015</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -846,7 +845,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00569">569</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00556">556</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -864,7 +863,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00651">651</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00638">638</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -892,7 +891,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00617">617</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00604">604</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -932,7 +931,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00607">607</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00594">594</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>

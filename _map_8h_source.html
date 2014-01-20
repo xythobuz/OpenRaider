@@ -590,71 +590,76 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    }</div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;</div>
 <div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;</div>
-<div class="line"><a name="l00501"></a><span class="lineno"><a class="line" href="class_map.html#af468d5ad1dbdce062268c8a3ce68a021">  501</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#af468d5ad1dbdce062268c8a3ce68a021">operator ++ </a>(<span class="keywordtype">int</span> dummy)</div>
+<div class="line"><a name="l00501"></a><span class="lineno"><a class="line" href="class_map.html#aad56afaf4e718717983c5355f2d19bdb">  501</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a62e101b621529e4cc07314fa65249d77">operator ++ </a>(<span class="keywordtype">int</span>)</div>
 <div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    {</div>
 <div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Next</a>();</div>
 <div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    }</div>
 <div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;</div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;</div>
-<div class="line"><a name="l00507"></a><span class="lineno"><a class="line" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">  507</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Next</a>()</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    {</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;        {</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;            <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Next();</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;        }</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> != NULL);</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    }</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;</div>
-<div class="line"><a name="l00518"></a><span class="lineno"><a class="line" href="class_map.html#a949415003edcc2a98b581671dcb99d1b">  518</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a949415003edcc2a98b581671dcb99d1b">CurrentExists</a>()</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;    {</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> != 0);</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    }</div>
+<div class="line"><a name="l00506"></a><span class="lineno"><a class="line" href="class_map.html#a62e101b621529e4cc07314fa65249d77">  506</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a62e101b621529e4cc07314fa65249d77">operator ++ </a>()</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    {</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Next</a>();</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    }</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;</div>
+<div class="line"><a name="l00512"></a><span class="lineno"><a class="line" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">  512</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Next</a>()</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    {</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;        {</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;            <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> = <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Next();</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;        }</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> != NULL);</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    }</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;</div>
 <div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;</div>
-<div class="line"><a name="l00524"></a><span class="lineno"><a class="line" href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">  524</a></span>&#160;    K <a class="code" href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">CurrentKey</a>()</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    {</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00523"></a><span class="lineno"><a class="line" href="class_map.html#a949415003edcc2a98b581671dcb99d1b">  523</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#a949415003edcc2a98b581671dcb99d1b">CurrentExists</a>()</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    {</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a> != 0);</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;    }</div>
 <div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;        {</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        }</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Key();</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;    }</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;</div>
-<div class="line"><a name="l00538"></a><span class="lineno"><a class="line" href="class_map.html#adece3694e6821f5b35a695be3587babb">  538</a></span>&#160;    D <a class="code" href="class_map.html#adece3694e6821f5b35a695be3587babb">Current</a>()</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    {</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;</div>
+<div class="line"><a name="l00529"></a><span class="lineno"><a class="line" href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">  529</a></span>&#160;    K <a class="code" href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">CurrentKey</a>()</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;    {</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        {</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        }</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Key();</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    }</div>
 <div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;        {</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;        }</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Data();</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    }</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;</div>
+<div class="line"><a name="l00543"></a><span class="lineno"><a class="line" href="class_map.html#adece3694e6821f5b35a695be3587babb">  543</a></span>&#160;    D <a class="code" href="class_map.html#adece3694e6821f5b35a695be3587babb">Current</a>()</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    {</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;        <a class="code" href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">UnSetError</a>();</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>)</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;        {</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;            <a class="code" href="class_map.html#a8dec1252811ac8fb56345b95872124b0">SetError</a>();</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;        }</div>
 <div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;</div>
-<div class="line"><a name="l00553"></a><span class="lineno"><a class="line" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">  553</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>;</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;</div>
-<div class="line"><a name="l00555"></a><span class="lineno"><a class="line" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">  555</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>;</div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;</div>
-<div class="line"><a name="l00557"></a><span class="lineno"><a class="line" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">  557</a></span>&#160;    <a class="code" href="class_tree.html">Tree&lt;K, MapNode&lt;K, D&gt;</a> *&gt; <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>;</div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;</div>
-<div class="line"><a name="l00559"></a><span class="lineno"><a class="line" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">  559</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;</div>
-<div class="line"><a name="l00561"></a><span class="lineno"><a class="line" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">  561</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>;</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;</div>
-<div class="line"><a name="l00563"></a><span class="lineno"><a class="line" href="class_map.html#a3502d4704f69475d8674c24ae604b556">  563</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>;</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;};</div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>-&gt;Data();</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    }</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;</div>
+<div class="line"><a name="l00558"></a><span class="lineno"><a class="line" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">  558</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">_num_items</a>;</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;</div>
+<div class="line"><a name="l00560"></a><span class="lineno"><a class="line" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">  560</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">_error</a>;</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;</div>
+<div class="line"><a name="l00562"></a><span class="lineno"><a class="line" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">  562</a></span>&#160;    <a class="code" href="class_tree.html">Tree&lt;K, MapNode&lt;K, D&gt;</a> *&gt; <a class="code" href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">_tree</a>;</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;</div>
+<div class="line"><a name="l00564"></a><span class="lineno"><a class="line" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">  564</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">_head</a>;</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;</div>
+<div class="line"><a name="l00566"></a><span class="lineno"><a class="line" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">  566</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">_current</a>;</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;</div>
+<div class="line"><a name="l00568"></a><span class="lineno"><a class="line" href="class_map.html#a3502d4704f69475d8674c24ae604b556">  568</a></span>&#160;    <a class="code" href="class_map_node.html">MapNode&lt;K, D&gt;</a> *<a class="code" href="class_map.html#a3502d4704f69475d8674c24ae604b556">_cache</a>;</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;};</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="class_map_html_a742ec0d2d2a338d4aa736014988dd18f"><div class="ttname"><a href="class_map.html#a742ec0d2d2a338d4aa736014988dd18f">Map::GetError</a></div><div class="ttdeci">bool GetError()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00161">Map.h:161</a></div></div>
 <div class="ttc" id="class_map_html_a78e6a397b04b914a5a855decfb9cab5e"><div class="ttname"><a href="class_map.html#a78e6a397b04b914a5a855decfb9cab5e">Map::Add</a></div><div class="ttdeci">bool Add(MapNode&lt; K, D &gt; *node)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00305">Map.h:305</a></div></div>
 <div class="ttc" id="class_map_html_a5654659075b5cf1a1d711d50f5034286"><div class="ttname"><a href="class_map.html#a5654659075b5cf1a1d711d50f5034286">Map::FindDataByKey</a></div><div class="ttdeci">D FindDataByKey(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00167">Map.h:167</a></div></div>
@@ -663,15 +668,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_map_node_html_a28a09c35604024f7031c32b9d10cc815"><div class="ttname"><a href="class_map_node.html#a28a09c35604024f7031c32b9d10cc815">MapNode::Data</a></div><div class="ttdeci">D Data()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00085">Map.h:85</a></div></div>
 <div class="ttc" id="class_map_html_a8f5ced483c711dca6974aae03b85940b"><div class="ttname"><a href="class_map.html#a8f5ced483c711dca6974aae03b85940b">Map::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00494">Map.h:494</a></div></div>
 <div class="ttc" id="class_map_html_a16856a9133cae938098f763c126c4322"><div class="ttname"><a href="class_map.html#a16856a9133cae938098f763c126c4322">Map::~Map</a></div><div class="ttdeci">~Map()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00126">Map.h:126</a></div></div>
-<div class="ttc" id="class_map_html_a4adf6b7d87378dd094e6ba1ad32e5a23"><div class="ttname"><a href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">Map::_num_items</a></div><div class="ttdeci">unsigned int _num_items</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00553">Map.h:553</a></div></div>
+<div class="ttc" id="class_map_html_a4adf6b7d87378dd094e6ba1ad32e5a23"><div class="ttname"><a href="class_map.html#a4adf6b7d87378dd094e6ba1ad32e5a23">Map::_num_items</a></div><div class="ttdeci">unsigned int _num_items</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00558">Map.h:558</a></div></div>
 <div class="ttc" id="class_map_node_html"><div class="ttname"><a href="class_map_node.html">MapNode</a></div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00050">Map.h:50</a></div></div>
 <div class="ttc" id="class_map_node_html_ab5d8f43a4083fb6c0560ee25daf9fd6d"><div class="ttname"><a href="class_map_node.html#ab5d8f43a4083fb6c0560ee25daf9fd6d">MapNode::_key</a></div><div class="ttdeci">K _key</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00106">Map.h:106</a></div></div>
 <div class="ttc" id="class_map_node_html_ac681f39ad0f09b2aaa2c1e12a5d0f2c9"><div class="ttname"><a href="class_map_node.html#ac681f39ad0f09b2aaa2c1e12a5d0f2c9">MapNode::_data</a></div><div class="ttdeci">D _data</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00108">Map.h:108</a></div></div>
 <div class="ttc" id="class_map_html_a3be4d5b3d59af872bf5c82578aed46eb"><div class="ttname"><a href="class_map.html#a3be4d5b3d59af872bf5c82578aed46eb">Map::RemoveByData</a></div><div class="ttdeci">void RemoveByData(D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00402">Map.h:402</a></div></div>
-<div class="ttc" id="class_map_html_a949415003edcc2a98b581671dcb99d1b"><div class="ttname"><a href="class_map.html#a949415003edcc2a98b581671dcb99d1b">Map::CurrentExists</a></div><div class="ttdeci">bool CurrentExists()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00518">Map.h:518</a></div></div>
-<div class="ttc" id="class_map_html_a4c189d03275f4131bab98e3528dd7b7c"><div class="ttname"><a href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Map::Next</a></div><div class="ttdeci">bool Next()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00507">Map.h:507</a></div></div>
-<div class="ttc" id="class_map_html_aaa609d6afa6ca5af36f3521e70304e97"><div class="ttname"><a href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">Map::_tree</a></div><div class="ttdeci">Tree&lt; K, MapNode&lt; K, D &gt; * &gt; _tree</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00557">Map.h:557</a></div></div>
-<div class="ttc" id="class_map_html_ab6ee2d035883d8a530a853e93f022bf8"><div class="ttname"><a href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">Map::_error</a></div><div class="ttdeci">bool _error</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00555">Map.h:555</a></div></div>
+<div class="ttc" id="class_map_html_a949415003edcc2a98b581671dcb99d1b"><div class="ttname"><a href="class_map.html#a949415003edcc2a98b581671dcb99d1b">Map::CurrentExists</a></div><div class="ttdeci">bool CurrentExists()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00523">Map.h:523</a></div></div>
+<div class="ttc" id="class_map_html_a4c189d03275f4131bab98e3528dd7b7c"><div class="ttname"><a href="class_map.html#a4c189d03275f4131bab98e3528dd7b7c">Map::Next</a></div><div class="ttdeci">bool Next()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00512">Map.h:512</a></div></div>
+<div class="ttc" id="class_map_html_a62e101b621529e4cc07314fa65249d77"><div class="ttname"><a href="class_map.html#a62e101b621529e4cc07314fa65249d77">Map::operator++</a></div><div class="ttdeci">bool operator++()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00506">Map.h:506</a></div></div>
+<div class="ttc" id="class_map_html_aaa609d6afa6ca5af36f3521e70304e97"><div class="ttname"><a href="class_map.html#aaa609d6afa6ca5af36f3521e70304e97">Map::_tree</a></div><div class="ttdeci">Tree&lt; K, MapNode&lt; K, D &gt; * &gt; _tree</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00562">Map.h:562</a></div></div>
+<div class="ttc" id="class_map_html_ab6ee2d035883d8a530a853e93f022bf8"><div class="ttname"><a href="class_map.html#ab6ee2d035883d8a530a853e93f022bf8">Map::_error</a></div><div class="ttdeci">bool _error</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00560">Map.h:560</a></div></div>
 <div class="ttc" id="class_map_html_aecce2b567cfba2ab7b62983b57b08cdd"><div class="ttname"><a href="class_map.html#aecce2b567cfba2ab7b62983b57b08cdd">Map::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00132">Map.h:132</a></div></div>
 <div class="ttc" id="class_map_html_a8294230cfa23b82ba17606bf9c09cb68"><div class="ttname"><a href="class_map.html#a8294230cfa23b82ba17606bf9c09cb68">Map::RemoveByKey</a></div><div class="ttdeci">void RemoveByKey(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00358">Map.h:358</a></div></div>
 <div class="ttc" id="class_map_node_html_a9facee387df0ae088b2a24d34af08bbd"><div class="ttname"><a href="class_map_node.html#a9facee387df0ae088b2a24d34af08bbd">MapNode::MapNode</a></div><div class="ttdeci">MapNode(K key, D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00054">Map.h:54</a></div></div>
@@ -683,12 +689,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_map_node_html_a5cca705450a812a60500602e608403b6"><div class="ttname"><a href="class_map_node.html#a5cca705450a812a60500602e608403b6">MapNode::Next</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * Next()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00091">Map.h:91</a></div></div>
 <div class="ttc" id="class_map_html_a1c845f6fb0d6515804651e0a92b5834b"><div class="ttname"><a href="class_map.html#a1c845f6fb0d6515804651e0a92b5834b">Map::Print</a></div><div class="ttdeci">void Print(void(*print_key_func)(K), void(*print_data_func)(D))</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00463">Map.h:463</a></div></div>
 <div class="ttc" id="class_map_html_ae875e5c9c9d01fb907849accef3b1822"><div class="ttname"><a href="class_map.html#ae875e5c9c9d01fb907849accef3b1822">Map::findKey</a></div><div class="ttdeci">bool findKey(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00251">Map.h:251</a></div></div>
-<div class="ttc" id="class_map_html_a09c719176c17c36c6bf505b9f21fdd10"><div class="ttname"><a href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">Map::CurrentKey</a></div><div class="ttdeci">K CurrentKey()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00524">Map.h:524</a></div></div>
+<div class="ttc" id="class_map_html_a09c719176c17c36c6bf505b9f21fdd10"><div class="ttname"><a href="class_map.html#a09c719176c17c36c6bf505b9f21fdd10">Map::CurrentKey</a></div><div class="ttdeci">K CurrentKey()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00529">Map.h:529</a></div></div>
 <div class="ttc" id="class_map_node_html_a50b35dc0f907458a7b8361ffee34a519"><div class="ttname"><a href="class_map_node.html#a50b35dc0f907458a7b8361ffee34a519">MapNode::Next</a></div><div class="ttdeci">void Next(MapNode&lt; K, D &gt; *next)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00097">Map.h:97</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_ac24cea2bfcc927fd29bc74d1086707d8"><div class="ttname"><a href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a></div><div class="ttdeci">unsigned char * data</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00062">TombRaider.h:62</a></div></div>
-<div class="ttc" id="class_map_html_adece3694e6821f5b35a695be3587babb"><div class="ttname"><a href="class_map.html#adece3694e6821f5b35a695be3587babb">Map::Current</a></div><div class="ttdeci">D Current()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00538">Map.h:538</a></div></div>
+<div class="ttc" id="class_map_html_adece3694e6821f5b35a695be3587babb"><div class="ttname"><a href="class_map.html#adece3694e6821f5b35a695be3587babb">Map::Current</a></div><div class="ttdeci">D Current()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00543">Map.h:543</a></div></div>
 <div class="ttc" id="_tree_8h_html"><div class="ttname"><a href="_tree_8h.html">Tree.h</a></div></div>
-<div class="ttc" id="class_map_html_af468d5ad1dbdce062268c8a3ce68a021"><div class="ttname"><a href="class_map.html#af468d5ad1dbdce062268c8a3ce68a021">Map::operator++</a></div><div class="ttdeci">bool operator++(int dummy)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00501">Map.h:501</a></div></div>
 <div class="ttc" id="class_map_html_ac182abff64a69359bd9c6817d605f5df"><div class="ttname"><a href="class_map.html#ac182abff64a69359bd9c6817d605f5df">Map::NumItems</a></div><div class="ttdeci">unsigned int NumItems()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00457">Map.h:457</a></div></div>
 <div class="ttc" id="class_map_html_ab7d2abc885d9999a8043a4890b2c814c"><div class="ttname"><a href="class_map.html#ab7d2abc885d9999a8043a4890b2c814c">Map::UnSetError</a></div><div class="ttdeci">void UnSetError()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00155">Map.h:155</a></div></div>
 <div class="ttc" id="class_map_html_ada132deea30741726b677dd42aa2916c"><div class="ttname"><a href="class_map.html#ada132deea30741726b677dd42aa2916c">Map::count</a></div><div class="ttdeci">unsigned int count()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00452">Map.h:452</a></div></div>
@@ -696,14 +701,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_map_node_html_a158c5a7b7e92af8b3fee8d336c79a1f7"><div class="ttname"><a href="class_map_node.html#a158c5a7b7e92af8b3fee8d336c79a1f7">MapNode::Key</a></div><div class="ttdeci">K Key()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00073">Map.h:73</a></div></div>
 <div class="ttc" id="class_map_html_a8ba0be09be59bbdad1d764084323081f"><div class="ttname"><a href="class_map.html#a8ba0be09be59bbdad1d764084323081f">Map::Add</a></div><div class="ttdeci">bool Add(K key, D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00293">Map.h:293</a></div></div>
 <div class="ttc" id="class_tree_html_a884b25ab8e7273ae01fd052d828cef8f"><div class="ttname"><a href="class_tree.html#a884b25ab8e7273ae01fd052d828cef8f">Tree::Insert</a></div><div class="ttdeci">void Insert(Key key, Data data)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00475">Tree.h:475</a></div></div>
-<div class="ttc" id="class_map_html_affc7ba9d3665f4c3e42c0eea4b657da4"><div class="ttname"><a href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">Map::_head</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _head</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00559">Map.h:559</a></div></div>
-<div class="ttc" id="class_map_html_a3502d4704f69475d8674c24ae604b556"><div class="ttname"><a href="class_map.html#a3502d4704f69475d8674c24ae604b556">Map::_cache</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _cache</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00563">Map.h:563</a></div></div>
+<div class="ttc" id="class_map_html_affc7ba9d3665f4c3e42c0eea4b657da4"><div class="ttname"><a href="class_map.html#affc7ba9d3665f4c3e42c0eea4b657da4">Map::_head</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _head</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00564">Map.h:564</a></div></div>
+<div class="ttc" id="class_map_html_a3502d4704f69475d8674c24ae604b556"><div class="ttname"><a href="class_map.html#a3502d4704f69475d8674c24ae604b556">Map::_cache</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _cache</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00568">Map.h:568</a></div></div>
 <div class="ttc" id="memory__test_8h_html"><div class="ttname"><a href="memory__test_8h.html">memory_test.h</a></div></div>
 <div class="ttc" id="class_map_html_ac14d3b1d48327d2fa1da8509a44fc5f4"><div class="ttname"><a href="class_map.html#ac14d3b1d48327d2fa1da8509a44fc5f4">Map::Map</a></div><div class="ttdeci">Map()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00116">Map.h:116</a></div></div>
 <div class="ttc" id="class_map_node_html_a361bcdfa2ffc87060a975ca7c71194cd"><div class="ttname"><a href="class_map_node.html#a361bcdfa2ffc87060a975ca7c71194cd">MapNode::Key</a></div><div class="ttdeci">void Key(K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00067">Map.h:67</a></div></div>
 <div class="ttc" id="class_map_html_a45a1e151883d30cc83e2342bfbeb524d"><div class="ttname"><a href="class_map.html#a45a1e151883d30cc83e2342bfbeb524d">Map::getCache</a></div><div class="ttdeci">D getCache()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00240">Map.h:240</a></div></div>
 <div class="ttc" id="class_map_html_a8dec1252811ac8fb56345b95872124b0"><div class="ttname"><a href="class_map.html#a8dec1252811ac8fb56345b95872124b0">Map::SetError</a></div><div class="ttdeci">void SetError()</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00149">Map.h:149</a></div></div>
-<div class="ttc" id="class_map_html_a8a3bb4ac3094bb563026be8ec9202ebe"><div class="ttname"><a href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">Map::_current</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _current</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00561">Map.h:561</a></div></div>
+<div class="ttc" id="class_map_html_a8a3bb4ac3094bb563026be8ec9202ebe"><div class="ttname"><a href="class_map.html#a8a3bb4ac3094bb563026be8ec9202ebe">Map::_current</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _current</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00566">Map.h:566</a></div></div>
 <div class="ttc" id="class_map_html_a5efeeb9a0567d80ca17e16935096236f"><div class="ttname"><a href="class_map.html#a5efeeb9a0567d80ca17e16935096236f">Map::operator[]</a></div><div class="ttdeci">D operator[](K key)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00207">Map.h:207</a></div></div>
 <div class="ttc" id="class_map_node_html_a3449f324e1caded5fa87148a698c9d7f"><div class="ttname"><a href="class_map_node.html#a3449f324e1caded5fa87148a698c9d7f">MapNode::_next</a></div><div class="ttdeci">MapNode&lt; K, D &gt; * _next</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00104">Map.h:104</a></div></div>
 <div class="ttc" id="class_map_node_html_a7a4733cd6c63db023cb9fbdf6ebc7efc"><div class="ttname"><a href="class_map_node.html#a7a4733cd6c63db023cb9fbdf6ebc7efc">MapNode::Data</a></div><div class="ttdeci">void Data(D data)</div><div class="ttdef"><b>Definition:</b> <a href="_map_8h_source.html#l00079">Map.h:79</a></div></div>

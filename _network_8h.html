@@ -89,7 +89,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Network.h File Reference</div>  </div>
@@ -100,10 +99,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:structnetwork__packet__s"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#structnetwork__packet__s">network_packet_s</a></td></tr>
-<tr class="separator:structnetwork__packet__s"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structnetwork__frame__s"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#structnetwork__frame__s">network_frame_s</a></td></tr>
-<tr class="separator:structnetwork__frame__s"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structnetwork__packet__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a></td></tr>
+<tr class="separator:structnetwork__packet__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structnetwork__frame__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#structnetwork__frame__t">network_frame_t</a></td></tr>
+<tr class="separator:structnetwork__frame__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html">Network</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -114,29 +113,22 @@ Macros</h2></td></tr>
 <tr class="memitem:a896e6f75f46f03fc6426789d0a7137af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#a896e6f75f46f03fc6426789d0a7137af">BIND_HOST_STR_SZ</a>&#160;&#160;&#160;64</td></tr>
 <tr class="separator:a896e6f75f46f03fc6426789d0a7137af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a7224dfed71f733b74b14441ef22e1028"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="_network_8h.html#structnetwork__packet__s">network_packet_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#a7224dfed71f733b74b14441ef22e1028">network_packet_t</a></td></tr>
-<tr class="separator:a7224dfed71f733b74b14441ef22e1028"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac89be539ff5ffaa686f57f94ba6db7e5"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="_network_8h.html#structnetwork__frame__s">network_frame_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#ac89be539ff5ffaa686f57f94ba6db7e5">network_frame_t</a></td></tr>
-<tr class="separator:ac89be539ff5ffaa686f57f94ba6db7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a209c1691a6e97ae572659772a6f94e7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#a209c1691a6e97ae572659772a6f94e7b">from_network_layer</a> (<a class="el" href="_network_8h.html#a7224dfed71f733b74b14441ef22e1028">network_packet_t</a> *p, unsigned int *last_id)</td></tr>
+<tr class="memitem:a209c1691a6e97ae572659772a6f94e7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#a209c1691a6e97ae572659772a6f94e7b">from_network_layer</a> (<a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a> *p, unsigned int *last_id)</td></tr>
 <tr class="separator:a209c1691a6e97ae572659772a6f94e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3345bcb791358be30bd2daee0818faab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#a3345bcb791358be30bd2daee0818faab">to_network_layer</a> (<a class="el" href="_network_8h.html#a7224dfed71f733b74b14441ef22e1028">network_packet_t</a> p)</td></tr>
+<tr class="memitem:a3345bcb791358be30bd2daee0818faab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#a3345bcb791358be30bd2daee0818faab">to_network_layer</a> (<a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a> p)</td></tr>
 <tr class="separator:a3345bcb791358be30bd2daee0818faab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51a8daf6f5cca510976bd14eec391c6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#a51a8daf6f5cca510976bd14eec391c6c">killNetworkSingleton</a> ()</td></tr>
 <tr class="separator:a51a8daf6f5cca510976bd14eec391c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="structnetwork__packet__s" id="structnetwork__packet__s"></a>
+<a name="structnetwork__packet__t" id="structnetwork__packet__t"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct network_packet_s</td>
+          <td class="memname">struct network_packet_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -145,67 +137,67 @@ Functions</h2></td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="afefd862f4c4737770928a7d57bd8261a"></a>int</td>
+<a class="anchor" id="aad331e71c23b5b0a19e0a1a76ec8839f"></a>int</td>
 <td class="fieldname">
 aframe</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a3ca048802d2b756c8f48794ba8be2c24"></a>int</td>
+<a class="anchor" id="a27fef50d4fb8f5939c515e8e22e96008"></a>int</td>
 <td class="fieldname">
 bframe</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a45f51dd5dcb16becd3d359a4c3165d96"></a>unsigned int</td>
+<a class="anchor" id="a02139074922e8e0983ac1b63a9bdc6da"></a>unsigned int</td>
 <td class="fieldname">
 cid</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="adb3e6842ca04fded88e48c567c177d61"></a>char</td>
+<a class="anchor" id="ab10b7e290f9e3120c87961be11d7c3e5"></a>char</td>
 <td class="fieldname">
 data[32]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aa8e256aefc09a5776e13451c03b3baf5"></a>char</td>
+<a class="anchor" id="ac0b89dd37b1df0a566e8d2f6b5005ccc"></a>char</td>
 <td class="fieldname">
 gurantee</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a3bf509498215e154585a789cab7a8271"></a>float</td>
+<a class="anchor" id="aa17dc2752feadf08b7b435dc0d238614"></a>float</td>
 <td class="fieldname">
 pitch</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ab97dfd560443ff6c5c830318dd65ce68"></a>unsigned int</td>
+<a class="anchor" id="a56a5650d1bd0c806844eaf3847e2b1d6"></a>unsigned int</td>
 <td class="fieldname">
 port</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a00b130299f1ad1bdfc330feee84c6d67"></a>float</td>
+<a class="anchor" id="ad2e3ca5236349ae5006f00e05b10f385"></a>float</td>
 <td class="fieldname">
 pos[3]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a75c11da3770304a8048104c2190506eb"></a>char</td>
+<a class="anchor" id="aa1425faaaeaaa01b4feb4b86ba8cc4ee"></a>char</td>
 <td class="fieldname">
 send</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a075e5ae5e68418beeb38ef65437c5abb"></a>int</td>
+<a class="anchor" id="a60f6912613fe75e645d853bb449abe64"></a>int</td>
 <td class="fieldname">
 view_model</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a834e8504a99c0d8e593fd51e6f293375"></a>float</td>
+<a class="anchor" id="a273167823b55dd18e1b4a9c3f20e7923"></a>float</td>
 <td class="fieldname">
 yaw</td>
 <td class="fielddoc">
@@ -214,12 +206,12 @@ yaw</td>
 
 </div>
 </div>
-<a name="structnetwork__frame__s" id="structnetwork__frame__s"></a>
+<a name="structnetwork__frame__t" id="structnetwork__frame__t"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct network_frame_s</td>
+          <td class="memname">struct network_frame_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -228,25 +220,25 @@ yaw</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ac7efcc797e5b7fb8d26562fc4db40329"></a><a class="el" href="_network_8h.html#a7224dfed71f733b74b14441ef22e1028">network_packet_t</a></td>
+<a class="anchor" id="ad924e71a6d563b477d8f33d01189ecea"></a><a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a></td>
 <td class="fieldname">
 data</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ab433182eb0b91e8869f024ba35c79e4f"></a>unsigned int</td>
+<a class="anchor" id="ad97a72bff4a3264b4aee2be24624475e"></a>unsigned int</td>
 <td class="fieldname">
 header</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ac56d5c51ca256b81e6c08db27ba44671"></a>unsigned int</td>
+<a class="anchor" id="a63ab1c2412a79b84befd7616e6f85729"></a>unsigned int</td>
 <td class="fieldname">
 seq</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a38c95e1e638bd27039a2eaa66147aa81"></a>unsigned int</td>
+<a class="anchor" id="a654ae2deebd697e855dd7a711d7a1343"></a>unsigned int</td>
 <td class="fieldname">
 uid</td>
 <td class="fielddoc">
@@ -284,31 +276,6 @@ uid</td>
 
 </div>
 </div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="ac89be539ff5ffaa686f57f94ba6db7e5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="_network_8h.html#structnetwork__frame__s">network_frame_s</a>  <a class="el" href="_network_8h.html#ac89be539ff5ffaa686f57f94ba6db7e5">network_frame_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a7224dfed71f733b74b14441ef22e1028"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="_network_8h.html#structnetwork__packet__s">network_packet_s</a>  <a class="el" href="_network_8h.html#a7224dfed71f733b74b14441ef22e1028">network_packet_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a209c1691a6e97ae572659772a6f94e7b"></a>
 <div class="memitem">
@@ -317,7 +284,7 @@ uid</td>
         <tr>
           <td class="memname">void from_network_layer </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_network_8h.html#a7224dfed71f733b74b14441ef22e1028">network_packet_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a> *&#160;</td>
           <td class="paramname"><em>p</em>, </td>
         </tr>
         <tr>
@@ -362,7 +329,7 @@ uid</td>
         <tr>
           <td class="memname">void to_network_layer </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_network_8h.html#a7224dfed71f733b74b14441ef22e1028">network_packet_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a>&#160;</td>
           <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>

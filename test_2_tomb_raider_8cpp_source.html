@@ -145,7 +145,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_tomb_raider_8h.html">TombRaider.h</a>&gt;</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#ifdef __TEST_TR5_DUMP_TGA</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &lt;mtk_tga.h&gt;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="_t_g_a_8h.html">TGA.h</a>&gt;</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#ifdef DEBUG_MEMORY</span></div>
@@ -170,7 +170,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    printf(<span class="stringliteral">&quot;\n\t[Texture dumping for &#39;%s&#39;]\n&quot;</span>, mapname);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt; tr-&gt;<a class="code" href="class_tomb_raider.html#a87812c99ac732a78c0584c2e08c11585">NumTextures</a>(); i++)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;   {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        tr-&gt;<a class="code" href="class_tomb_raider.html#a26d2dc7e32ee92ac70c28d66a112fd72">Texture</a>(i, &amp;image, &amp;bumpmap);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">if</span> (image)</div>
@@ -181,7 +181,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keywordflow">if</span> (f)</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">if</span> (!<a class="code" href="tga_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a>(f, image, 256, 256, 4))</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">if</span> (!<a class="code" href="_t_g_a_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a>(f, image, 256, 256, 4))</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    printf(<span class="stringliteral">&quot;\tWrote texture %s\n&quot;</span>, buffer);</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                fclose(f);</div>
@@ -208,7 +208,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">if</span> (f)</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keywordflow">if</span> (!<a class="code" href="tga_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a>(f, bumpmap, 256, 256, 4))</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keywordflow">if</span> (!<a class="code" href="_t_g_a_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a>(f, bumpmap, 256, 256, 4))</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                    printf(<span class="stringliteral">&quot;\tWrote texture %s\n&quot;</span>, buffer);</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                fclose(f);</div>
@@ -219,7 +219,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt; tr-&gt;<a class="code" href="class_tomb_raider.html#ad23df94eb682e6cd1582f92e73c327f7">NumSpecialTextures</a>(); i++)</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;   {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    {</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        image = tr-&gt;<a class="code" href="class_tomb_raider.html#ac1a11195630da2aaca17667ead152afd">SpecialTexTile</a>(i);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        snprintf(buffer, 128, <span class="stringliteral">&quot;%s-%03i-special.tga&quot;</span>, mapname, i);</div>
@@ -228,7 +228,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">if</span> (f)</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        {</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="tga_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a>(f, image, 256, 256, 4))</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="_t_g_a_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a>(f, image, 256, 256, 4))</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                printf(<span class="stringliteral">&quot;\tWrote texture %s\n&quot;</span>, buffer);</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            fclose(f);</div>
@@ -251,7 +251,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    tr2_object_texture_t *object_texture = NULL;</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    tr2_mesh_t *meshes = NULL;</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> v, check;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;   <span class="keywordtype">int</span> i, <a class="code" href="_tomb_raider_8h.html#ad272e0dc2663f3b00914f1d3ee2b4668">triangles</a>, <a class="code" href="_tomb_raider_8h.html#a45f1a80f79ad70c4987b1fcf2c6a05a4">rectangles</a>, t_index;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">int</span> i, <a class="code" href="_tomb_raider_8h.html#ad272e0dc2663f3b00914f1d3ee2b4668">triangles</a>, <a class="code" href="_tomb_raider_8h.html#a45f1a80f79ad70c4987b1fcf2c6a05a4">rectangles</a>, t_index;</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordtype">char</span> buffer[128];</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordtype">float</span> rgba[4];</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordtype">float</span> s, t;</div>
@@ -293,12 +293,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    fwrite(&amp;meshes[index].<a class="code" href="_tomb_raider_8h.html#a4c0b0f66a65dd89e464f850518609d29">collision_size</a>, 4, 1, f);</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;   <span class="comment">// Textured triangles ////////////////////////</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="comment">// Textured triangles ////////////////////////</span></div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    fwrite(&amp;check, 4, 1, f);</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    triangles = meshes[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].num_textured_triangles;</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordflow">for</span> (i = 0; triangles &gt; 0 &amp;&amp; i &lt; <a class="code" href="_tomb_raider_8h.html#ad272e0dc2663f3b00914f1d3ee2b4668">triangles</a>; i++)</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;   {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    {</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        t_index = meshes[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].textured_triangles[i].texture;</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <span class="comment">// Store texture info</span></div>
@@ -323,24 +323,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="comment">// Store texels</span></div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        s = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#af0232eb45ae816a6eda00e5c46bc6f2e">xpixel</a>,</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#a7231c93e886172df396c0316214a1d9e">xcoordinate</a>);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#a7231c93e886172df396c0316214a1d9e">xcoordinate</a>);</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        t = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#ab8fb40c8e72917f37c084fcacc71a6cc">ypixel</a>,</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#acb904c2018cb75590a75a38ed52564d4">ycoordinate</a>);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#acb904c2018cb75590a75a38ed52564d4">ycoordinate</a>);</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        fwrite(&amp;s, 4, 1, f);</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        fwrite(&amp;t, 4, 1, f);</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        s = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].xpixel,</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].xcoordinate);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].xcoordinate);</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        t = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].ypixel,</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].ycoordinate);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].ycoordinate);</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        fwrite(&amp;s, 4, 1, f);</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        fwrite(&amp;t, 4, 1, f);</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        s = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].xpixel,</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].xcoordinate);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].xcoordinate);</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        t = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].ypixel,</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].ycoordinate);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].ycoordinate);</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        fwrite(&amp;s, 4, 1, f);</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        fwrite(&amp;t, 4, 1, f);</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    }</div>
@@ -348,12 +348,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    fwrite(&amp;check, 4, 1, f);</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;   <span class="comment">// Textured rectangles ////////////////////////</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="comment">// Textured rectangles ////////////////////////</span></div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    fwrite(&amp;check, 4, 1, f);</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    rectangles = meshes[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].num_textured_rectangles;</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">for</span> (i = 0; rectangles &gt; 0 &amp;&amp; i &lt; <a class="code" href="_tomb_raider_8h.html#a45f1a80f79ad70c4987b1fcf2c6a05a4">rectangles</a>; i++)</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;   {</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    {</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        t_index = meshes[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].textured_rectangles[i].texture;</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        <span class="comment">// Store texture info</span></div>
@@ -383,43 +383,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        <span class="comment">// Store texels</span></div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        s = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#af0232eb45ae816a6eda00e5c46bc6f2e">xpixel</a>,</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#a7231c93e886172df396c0316214a1d9e">xcoordinate</a>);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#a7231c93e886172df396c0316214a1d9e">xcoordinate</a>);</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        t = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#ab8fb40c8e72917f37c084fcacc71a6cc">ypixel</a>,</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#acb904c2018cb75590a75a38ed52564d4">ycoordinate</a>);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[0].<a class="code" href="_tomb_raider_8h.html#acb904c2018cb75590a75a38ed52564d4">ycoordinate</a>);</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        fwrite(&amp;s, 4, 1, f);</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        fwrite(&amp;t, 4, 1, f);</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        s = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].xpixel,</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].xcoordinate);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].xcoordinate);</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        t = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].ypixel,</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].ycoordinate);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[1].ycoordinate);</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        fwrite(&amp;s, 4, 1, f);</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        fwrite(&amp;t, 4, 1, f);</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        s = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].xpixel,</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].xcoordinate);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].xcoordinate);</div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        t = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].ypixel,</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].ycoordinate);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[2].ycoordinate);</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        fwrite(&amp;s, 4, 1, f);</div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        fwrite(&amp;t, 4, 1, f);</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        s = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[3].xpixel,</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[3].xcoordinate);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[3].xcoordinate);</div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        t = tr-&gt;<a class="code" href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">adjustTexel</a>(object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[3].ypixel,</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                                  object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[3].ycoordinate);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                object_texture[t_index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[3].ycoordinate);</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        fwrite(&amp;s, 4, 1, f);</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        fwrite(&amp;t, 4, 1, f);</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    }</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    fwrite(&amp;check, 4, 1, f);</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;   <span class="comment">// Coloured triangles ////////////////////////</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="comment">// Coloured triangles ////////////////////////</span></div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    fwrite(&amp;check, 4, 1, f);</div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    triangles = meshes[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].num_coloured_triangles;</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <span class="keywordflow">for</span> (i = 0; triangles &gt; 0 &amp;&amp; i &lt; <a class="code" href="_tomb_raider_8h.html#ad272e0dc2663f3b00914f1d3ee2b4668">triangles</a>; i++)</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;   {</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    {</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        <span class="comment">// Store vertices</span></div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        v = meshes[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].coloured_triangles[i].vertices[0];</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        fwrite(&amp;meshes[index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[v].<a class="code" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>, 2, 1, f);</div>
@@ -439,13 +439,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <span class="comment">// Store color</span></div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        <span class="keywordflow">switch</span> (tr-&gt;<a class="code" href="class_tomb_raider.html#aa020667e2394f5c3a8173ee0231ef0fb">Engine</a>())</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        {</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_tomb_raider_8h.html#aa6a59fe91f5d6bbea4d57dd409b599ccac9c86eddc3c1c834b1efe8a3cbd56894">TR_VERSION_1</a>:</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;            tr-&gt;<a class="code" href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">getColor</a>(meshes[index].<a class="code" href="_tomb_raider_8h.html#a005298b20384f061f02cd99373d6d986">coloured_triangles</a>[i].<a class="code" href="_tomb_raider_8h.html#a0ceb7a70d67e7c73f608040b0a4aa757">texture</a></div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                                 &amp; 0xff, rgba);</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;            tr-&gt;<a class="code" href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">getColor</a>((meshes[index].<a class="code" href="_tomb_raider_8h.html#a005298b20384f061f02cd99373d6d986">coloured_triangles</a>[i].<a class="code" href="_tomb_raider_8h.html#a0ceb7a70d67e7c73f608040b0a4aa757">texture</a>&gt;&gt;8)</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                                 &amp; 0xff, rgba);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="_tomb_raider_8h.html#aa6a59fe91f5d6bbea4d57dd409b599ccac9c86eddc3c1c834b1efe8a3cbd56894">TR_VERSION_1</a>:</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                tr-&gt;<a class="code" href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">getColor</a>(meshes[index].<a class="code" href="_tomb_raider_8h.html#a005298b20384f061f02cd99373d6d986">coloured_triangles</a>[i].<a class="code" href="_tomb_raider_8h.html#a0ceb7a70d67e7c73f608040b0a4aa757">texture</a></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                        &amp; 0xff, rgba);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                tr-&gt;<a class="code" href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">getColor</a>((meshes[index].<a class="code" href="_tomb_raider_8h.html#a005298b20384f061f02cd99373d6d986">coloured_triangles</a>[i].<a class="code" href="_tomb_raider_8h.html#a0ceb7a70d67e7c73f608040b0a4aa757">texture</a>&gt;&gt;8)</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                        &amp; 0xff, rgba);</div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        }</div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        s = rgba[0];</div>
@@ -461,12 +461,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    fwrite(&amp;check, 4, 1, f);</div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;   <span class="comment">// Coloured rectangles ////////////////////////</span></div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="comment">// Coloured rectangles ////////////////////////</span></div>
 <div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    fwrite(&amp;check, 4, 1, f);</div>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    rectangles = meshes[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].num_coloured_rectangles;</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;</div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="keywordflow">for</span> (i = 0; rectangles &gt; 0 &amp;&amp; i &lt; <a class="code" href="_tomb_raider_8h.html#a45f1a80f79ad70c4987b1fcf2c6a05a4">rectangles</a>; i++)</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;   {</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    {</div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        <span class="comment">// Store vertices</span></div>
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        v = meshes[<a class="code" href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a>].coloured_rectangles[i].vertices[0];</div>
 <div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        fwrite(&amp;meshes[index].<a class="code" href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a>[v].<a class="code" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>, 2, 1, f);</div>
@@ -491,13 +491,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        <span class="comment">// Store color</span></div>
 <div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        <span class="keywordflow">switch</span> (tr-&gt;<a class="code" href="class_tomb_raider.html#aa020667e2394f5c3a8173ee0231ef0fb">Engine</a>())</div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;        {</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_tomb_raider_8h.html#aa6a59fe91f5d6bbea4d57dd409b599ccac9c86eddc3c1c834b1efe8a3cbd56894">TR_VERSION_1</a>:</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            tr-&gt;<a class="code" href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">getColor</a>(meshes[index].<a class="code" href="_tomb_raider_8h.html#a552f3525768d4b48f05475af74a8d1bc">coloured_rectangles</a>[i].<a class="code" href="_tomb_raider_8h.html#a0ceb7a70d67e7c73f608040b0a4aa757">texture</a></div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                                 &amp; 0xff, rgba);</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            tr-&gt;<a class="code" href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">getColor</a>((meshes[index].<a class="code" href="_tomb_raider_8h.html#a552f3525768d4b48f05475af74a8d1bc">coloured_rectangles</a>[i].<a class="code" href="_tomb_raider_8h.html#a0ceb7a70d67e7c73f608040b0a4aa757">texture</a>&gt;&gt;8)</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                                 &amp; 0xff, rgba);</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="_tomb_raider_8h.html#aa6a59fe91f5d6bbea4d57dd409b599ccac9c86eddc3c1c834b1efe8a3cbd56894">TR_VERSION_1</a>:</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                tr-&gt;<a class="code" href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">getColor</a>(meshes[index].<a class="code" href="_tomb_raider_8h.html#a552f3525768d4b48f05475af74a8d1bc">coloured_rectangles</a>[i].<a class="code" href="_tomb_raider_8h.html#a0ceb7a70d67e7c73f608040b0a4aa757">texture</a></div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                        &amp; 0xff, rgba);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                tr-&gt;<a class="code" href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">getColor</a>((meshes[index].<a class="code" href="_tomb_raider_8h.html#a552f3525768d4b48f05475af74a8d1bc">coloured_rectangles</a>[i].<a class="code" href="_tomb_raider_8h.html#a0ceb7a70d67e7c73f608040b0a4aa757">texture</a>&gt;&gt;8)</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                        &amp; 0xff, rgba);</div>
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        }</div>
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
 <div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        s = rgba[0];</div>
@@ -561,11 +561,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;        {</div>
 <div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;            <span class="keywordflow">switch</span> (moveable[i].<a class="code" href="_tomb_raider_8h.html#a9a0a56b799e0e94d5951e1ee11108a3e">object_id</a>)</div>
 <div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;            {</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;            <span class="keywordflow">case</span> 8: <span class="comment">// Joints, ( interconnecting skin/ploys )</span></div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;            <span class="keywordflow">case</span> 9:</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;                fprintf(f, <span class="stringliteral">&quot;TR4 lara joints (%i)\n&quot;</span>, i);</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;                j = moveable[i].starting_mesh;</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;                n = moveable[i].num_meshes + j;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;                <span class="keywordflow">case</span> 8: <span class="comment">// Joints, ( interconnecting skin/ploys )</span></div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;                <span class="keywordflow">case</span> 9:</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;                    fprintf(f, <span class="stringliteral">&quot;TR4 lara joints (%i)\n&quot;</span>, i);</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;                    j = moveable[i].starting_mesh;</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;                    n = moveable[i].num_meshes + j;</div>
 <div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;            }</div>
 <div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;        }</div>
 <div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;</div>
@@ -608,7 +608,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    <span class="keywordflow">if</span> (total)</div>
 <div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    {</div>
 <div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;        printf(<span class="stringliteral">&quot;Dumped %ibytes (%.2f MB) of audio samples\n&quot;</span>,</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;                 total, (<span class="keywordtype">float</span>)total/1024000.0);</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;                total, (<span class="keywordtype">float</span>)total/1024000.0);</div>
 <div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    }</div>
 <div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;}</div>
 <div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;</div>
@@ -621,78 +621,78 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;</div>
 <div class="line"><a name="l00530"></a><span class="lineno"><a class="line" href="test_2_tomb_raider_8cpp.html#a225542f6ca1f8158933f2a7897ad0339">  530</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="test_2_tomb_raider_8cpp.html#a225542f6ca1f8158933f2a7897ad0339">test_main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
 <div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;{</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;  <a class="code" href="class_tomb_raider.html">TombRaider</a> tr;</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;  <span class="keywordtype">char</span> mapname[128];</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;  <span class="keywordtype">int</span> len, i, j;</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;    <a class="code" href="class_tomb_raider.html">TombRaider</a> tr;</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;    <span class="keywordtype">char</span> mapname[128];</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    <span class="keywordtype">int</span> len, i, j;</div>
 <div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;</div>
 <div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;  printf(<span class="stringliteral">&quot;[TombRaider class test]\n&quot;</span>);</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    printf(<span class="stringliteral">&quot;[TombRaider class test]\n&quot;</span>);</div>
 <div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;  tr.<a class="code" href="class_tomb_raider.html#a104b6b4f075e4ed897055a6a500334d7">setDebug</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    tr.<a class="code" href="class_tomb_raider.html#a104b6b4f075e4ed897055a6a500334d7">setDebug</a>(<span class="keyword">true</span>);</div>
 <div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;  <span class="keywordflow">if</span> (argc &gt; 2)</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;  {</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;      <span class="comment">// Strip for mapname //////////////////////////////</span></div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;      len = strlen(argv[2]);</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    <span class="keywordflow">if</span> (argc &gt; 2)</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    {</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;        <span class="comment">// Strip for mapname //////////////////////////////</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;        len = strlen(argv[2]);</div>
 <div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;      <span class="keywordflow">for</span> (i = len, j = 0; i &gt; 0; i--, j++)</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;          <span class="keywordflow">if</span> (argv[2][i] == <span class="charliteral">&#39;/&#39;</span> || argv[2][i] == <span class="charliteral">&#39;\\&#39;</span>)</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;              <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;        <span class="keywordflow">for</span> (i = len, j = 0; i &gt; 0; i--, j++)</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;            <span class="keywordflow">if</span> (argv[2][i] == <span class="charliteral">&#39;/&#39;</span> || argv[2][i] == <span class="charliteral">&#39;\\&#39;</span>)</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;      j--;</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;        j--;</div>
 <div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;      memset(mapname, 0, 128);</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;        memset(mapname, 0, 128);</div>
 <div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;      <span class="keywordflow">for</span> (i = 0; i &lt; len - j &amp;&amp; i &lt; 30; i++)</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;          mapname[i] = argv[2][i + len - j];</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; len - j &amp;&amp; i &lt; 30; i++)</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;            mapname[i] = argv[2][i + len - j];</div>
 <div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;</div>
 <div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;</div>
 <div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;    <span class="keywordflow">if</span> (strncmp(argv[1], <span class="stringliteral">&quot;load&quot;</span>, 4) == 0)</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    {</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;      <span class="keywordflow">if</span> (!tr.<a class="code" href="class_tomb_raider.html#ab0b3654b61c54f5c54c0865dd9d6ea2a">Load</a>(argv[2], <a class="code" href="_open_raider_8cpp.html#a18b6043df2c0301ca82f8e721ec27b80">percent_callback</a>))</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;        {</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;        printf(<span class="stringliteral">&quot;\nmain: Load reports success.\n&quot;</span>);</div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;        }</div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;    }</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(argv[1], <span class="stringliteral">&quot;dump&quot;</span>, 4) == 0)</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;    {</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;      <span class="keywordflow">if</span> (!tr.<a class="code" href="class_tomb_raider.html#ab0b3654b61c54f5c54c0865dd9d6ea2a">Load</a>(argv[2], <a class="code" href="_open_raider_8cpp.html#a18b6043df2c0301ca82f8e721ec27b80">percent_callback</a>))</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;        {</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;        printf(<span class="stringliteral">&quot;\nmain: Load reports success.\n&quot;</span>);</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;        <span class="keywordflow">if</span> (strncmp(argv[1], <span class="stringliteral">&quot;load&quot;</span>, 4) == 0)</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;        {</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;            <span class="keywordflow">if</span> (!tr.<a class="code" href="class_tomb_raider.html#ab0b3654b61c54f5c54c0865dd9d6ea2a">Load</a>(argv[2], <a class="code" href="_open_raider_8cpp.html#a18b6043df2c0301ca82f8e721ec27b80">percent_callback</a>))</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;            {</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;                printf(<span class="stringliteral">&quot;\nmain: Load reports success.\n&quot;</span>);</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;            }</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;        }</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(argv[1], <span class="stringliteral">&quot;dump&quot;</span>, 4) == 0)</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;        {</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;            <span class="keywordflow">if</span> (!tr.<a class="code" href="class_tomb_raider.html#ab0b3654b61c54f5c54c0865dd9d6ea2a">Load</a>(argv[2], <a class="code" href="_open_raider_8cpp.html#a18b6043df2c0301ca82f8e721ec27b80">percent_callback</a>))</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;            {</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;                printf(<span class="stringliteral">&quot;\nmain: Load reports success.\n&quot;</span>);</div>
 <div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;</div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;          <a class="code" href="test_2_tomb_raider_8cpp.html#a41adf3c25f63aa88abd0ed9d1a83072d">dump_textures</a>(&amp;tr, mapname);</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;                <a class="code" href="test_2_tomb_raider_8cpp.html#a41adf3c25f63aa88abd0ed9d1a83072d">dump_textures</a>(&amp;tr, mapname);</div>
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;          printf(<span class="stringliteral">&quot;Mesh dumping: &quot;</span>);</div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;          <span class="keywordflow">for</span> (i = 0; i &lt; tr.<a class="code" href="class_tomb_raider.html#a2d7ce61391e8e11331abb6db883ae35e">getMeshCount</a>(); i++)</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;          {</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;              <a class="code" href="test_2_tomb_raider_8cpp.html#a92fa7a6ab5e29c8a71780c6eb9142a18">dump_mesh</a>(&amp;tr, mapname, i);</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;          }</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;                printf(<span class="stringliteral">&quot;Mesh dumping: &quot;</span>);</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;                <span class="keywordflow">for</span> (i = 0; i &lt; tr.<a class="code" href="class_tomb_raider.html#a2d7ce61391e8e11331abb6db883ae35e">getMeshCount</a>(); i++)</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                {</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                    <a class="code" href="test_2_tomb_raider_8cpp.html#a92fa7a6ab5e29c8a71780c6eb9142a18">dump_mesh</a>(&amp;tr, mapname, i);</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                }</div>
 <div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;          <span class="keywordflow">if</span> (argc &gt; 3)</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;          {</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;              printf(<span class="stringliteral">&quot;\nLoading external sound SFX.\n&quot;</span>);</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;              tr.<a class="code" href="class_tomb_raider.html#a3299f360388f4693dcdf0dddac9866af">loadSFX</a>(argv[3]);</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;          }</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                <span class="keywordflow">if</span> (argc &gt; 3)</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                {</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                    printf(<span class="stringliteral">&quot;\nLoading external sound SFX.\n&quot;</span>);</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;                    tr.<a class="code" href="class_tomb_raider.html#a3299f360388f4693dcdf0dddac9866af">loadSFX</a>(argv[3]);</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;                }</div>
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;          <a class="code" href="test_2_tomb_raider_8cpp.html#a68685774b098c518967491c29323e4c8">dump_lara_stuff</a>(mapname, tr);</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;                <a class="code" href="test_2_tomb_raider_8cpp.html#a68685774b098c518967491c29323e4c8">dump_lara_stuff</a>(mapname, tr);</div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;          printf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;        }</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;        {</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;            printf(<span class="stringliteral">&quot;\nmain: Load failed.\n&quot;</span>);</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;        }</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;    }</div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;      printf(<span class="stringliteral">&quot;\n\n%s [ load | dump ] filename [sound.sfx]\n&quot;</span>, argv[0]);</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;  }</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;  {</div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;    printf(<span class="stringliteral">&quot;\n\n%s [ load | dump ] filename [sound.sfx]\n&quot;</span>, argv[0]);</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;  }</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;                printf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            }</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;            {</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;                printf(<span class="stringliteral">&quot;\nmain: Load failed.\n&quot;</span>);</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;            }</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;        }</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;            printf(<span class="stringliteral">&quot;\n\n%s [ load | dump ] filename [sound.sfx]\n&quot;</span>, argv[0]);</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;    }</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;    {</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;        printf(<span class="stringliteral">&quot;\n\n%s [ load | dump ] filename [sound.sfx]\n&quot;</span>, argv[0]);</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;    }</div>
 <div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;}</div>
 <div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;</div>
 <div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;</div>
@@ -701,27 +701,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;    <a class="code" href="test_2_tomb_raider_8cpp.html#a225542f6ca1f8158933f2a7897ad0339">test_main</a>(argc, argv);</div>
 <div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;</div>
 <div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;<span class="preprocessor">#ifdef DEBUG_MEMORY</span></div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;<span class="preprocessor"></span>  <a class="code" href="memory__test_8h.html#a89534cb919b8ce84fa59463181ff3357">dump_memory_report</a>();</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;<span class="preprocessor"></span>    <a class="code" href="memory__test_8h.html#a89534cb919b8ce84fa59463181ff3357">dump_memory_report</a>();</div>
 <div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;}</div>
 <div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;</div>
 <div class="ttc" id="_tomb_raider_8h_html_a57fd11040c1a3f0675100910a404a06d"><div class="ttname"><a href="_tomb_raider_8h.html#a57fd11040c1a3f0675100910a404a06d">tile</a></div><div class="ttdeci">unsigned char tile[256 *256]</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00060">TombRaider.h:60</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a621fdf49230a92a8e9d50fad86979b6d"><div class="ttname"><a href="_tomb_raider_8h.html#a621fdf49230a92a8e9d50fad86979b6d">transparency_flags</a></div><div class="ttdeci">unsigned short transparency_flags</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00060">TombRaider.h:60</a></div></div>
-<div class="ttc" id="_open_raider_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="_open_raider_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8cpp_source.html#l03565">OpenRaider.cpp:3565</a></div></div>
-<div class="ttc" id="tga_8h_html_a7df76296224b50e7c576714955241c5f"><div class="ttname"><a href="tga_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a></div><div class="ttdeci">int mtk_image__tga_save(FILE *f, unsigned char *image, unsigned int width, unsigned int height, char type)</div><div class="ttdef"><b>Definition:</b> <a href="src_2tga_8cpp_source.html#l00355">tga.cpp:355</a></div></div>
+<div class="ttc" id="_open_raider_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="_open_raider_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8cpp_source.html#l03566">OpenRaider.cpp:3566</a></div></div>
+<div class="ttc" id="_t_g_a_8h_html"><div class="ttname"><a href="_t_g_a_8h.html">TGA.h</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_a7d108ab7210eb1dd3d1239980565b407"><div class="ttname"><a href="class_tomb_raider.html#a7d108ab7210eb1dd3d1239980565b407">TombRaider::Mesh</a></div><div class="ttdeci">tr2_mesh_t * Mesh()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l00219">TombRaider.cpp:219</a></div></div>
 <div class="ttc" id="memory__test_8h_html_a89534cb919b8ce84fa59463181ff3357"><div class="ttname"><a href="memory__test_8h.html#a89534cb919b8ce84fa59463181ff3357">dump_memory_report</a></div><div class="ttdeci">void dump_memory_report()</div></div>
-<div class="ttc" id="class_tomb_raider_html_ad3bb1e37cc33c1c3770d2a604ec59a83"><div class="ttname"><a href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">TombRaider::adjustTexel</a></div><div class="ttdeci">float adjustTexel(unsigned char texel, char offset)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l02018">TombRaider.cpp:2018</a></div></div>
+<div class="ttc" id="class_tomb_raider_html_ad3bb1e37cc33c1c3770d2a604ec59a83"><div class="ttname"><a href="class_tomb_raider.html#ad3bb1e37cc33c1c3770d2a604ec59a83">TombRaider::adjustTexel</a></div><div class="ttdeci">float adjustTexel(unsigned char texel, char offset)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l02015">TombRaider.cpp:2015</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a552f3525768d4b48f05475af74a8d1bc"><div class="ttname"><a href="_tomb_raider_8h.html#a552f3525768d4b48f05475af74a8d1bc">coloured_rectangles</a></div><div class="ttdeci">tr2_quad_t * coloured_rectangles</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00079">TombRaider.h:79</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a9a0a56b799e0e94d5951e1ee11108a3e"><div class="ttname"><a href="_tomb_raider_8h.html#a9a0a56b799e0e94d5951e1ee11108a3e">object_id</a></div><div class="ttdeci">unsigned short object_id</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00067">TombRaider.h:67</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a3106bc4410c82f8e35a055ef04e13960"><div class="ttname"><a href="_tomb_raider_8h.html#a3106bc4410c82f8e35a055ef04e13960">vertices</a></div><div class="ttdeci">unsigned short vertices[4]</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00060">TombRaider.h:60</a></div></div>
 <div class="ttc" id="test_2_tomb_raider_8cpp_html_a41adf3c25f63aa88abd0ed9d1a83072d"><div class="ttname"><a href="test_2_tomb_raider_8cpp.html#a41adf3c25f63aa88abd0ed9d1a83072d">dump_textures</a></div><div class="ttdeci">void dump_textures(TombRaider *tr, char *mapname)</div><div class="ttdef"><b>Definition:</b> <a href="test_2_tomb_raider_8cpp_source.html#l00064">TombRaider.cpp:64</a></div></div>
-<div class="ttc" id="class_tomb_raider_html_a4aa866233ba062830aa6e15c2be38ac2"><div class="ttname"><a href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">TombRaider::getColor</a></div><div class="ttdeci">void getColor(int index, float color[4])</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l02140">TombRaider.cpp:2140</a></div></div>
+<div class="ttc" id="class_tomb_raider_html_a4aa866233ba062830aa6e15c2be38ac2"><div class="ttname"><a href="class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2">TombRaider::getColor</a></div><div class="ttdeci">void getColor(int index, float color[4])</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l02137">TombRaider.cpp:2137</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html"><div class="ttname"><a href="_tomb_raider_8h.html">TombRaider.h</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_aa020667e2394f5c3a8173ee0231ef0fb"><div class="ttname"><a href="class_tomb_raider.html#aa020667e2394f5c3a8173ee0231ef0fb">TombRaider::Engine</a></div><div class="ttdeci">tr2_version_type Engine()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l00301">TombRaider.cpp:301</a></div></div>
-<div class="ttc" id="class_tomb_raider_html_adc75cf7e49ba1b02cec58e769c81ed6b"><div class="ttname"><a href="class_tomb_raider.html#adc75cf7e49ba1b02cec58e769c81ed6b">TombRaider::getSoundSamplesCount</a></div><div class="ttdeci">unsigned int getSoundSamplesCount()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l03998">TombRaider.cpp:3998</a></div></div>
+<div class="ttc" id="class_tomb_raider_html_adc75cf7e49ba1b02cec58e769c81ed6b"><div class="ttname"><a href="class_tomb_raider.html#adc75cf7e49ba1b02cec58e769c81ed6b">TombRaider::getSoundSamplesCount</a></div><div class="ttdeci">unsigned int getSoundSamplesCount()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l04098">TombRaider.cpp:4098</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a005298b20384f061f02cd99373d6d986"><div class="ttname"><a href="_tomb_raider_8h.html#a005298b20384f061f02cd99373d6d986">coloured_triangles</a></div><div class="ttdeci">tr2_tri_t * coloured_triangles</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00082">TombRaider.h:82</a></div></div>
 <div class="ttc" id="class_tomb_raider_html"><div class="ttname"><a href="class_tomb_raider.html">TombRaider</a></div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l01390">TombRaider.h:1390</a></div></div>
 <div class="ttc" id="test_2_tomb_raider_8cpp_html_a225542f6ca1f8158933f2a7897ad0339"><div class="ttname"><a href="test_2_tomb_raider_8cpp.html#a225542f6ca1f8158933f2a7897ad0339">test_main</a></div><div class="ttdeci">int test_main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="test_2_tomb_raider_8cpp_source.html#l00530">TombRaider.cpp:530</a></div></div>
@@ -732,26 +732,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="_tomb_raider_8h_html_ad272e0dc2663f3b00914f1d3ee2b4668"><div class="ttname"><a href="_tomb_raider_8h.html#ad272e0dc2663f3b00914f1d3ee2b4668">triangles</a></div><div class="ttdeci">tr2_tri_t * triangles</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00065">TombRaider.h:65</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_ac1a11195630da2aaca17667ead152afd"><div class="ttname"><a href="class_tomb_raider.html#ac1a11195630da2aaca17667ead152afd">TombRaider::SpecialTexTile</a></div><div class="ttdeci">unsigned char * SpecialTexTile(int texture)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l00352">TombRaider.cpp:352</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_ad5961d00ab45a7d92c79062a0e4fff35"><div class="ttname"><a href="class_tomb_raider.html#ad5961d00ab45a7d92c79062a0e4fff35">TombRaider::Moveable</a></div><div class="ttdeci">tr2_moveable_t * Moveable()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l00319">TombRaider.cpp:319</a></div></div>
-<div class="ttc" id="class_tomb_raider_html_a104b6b4f075e4ed897055a6a500334d7"><div class="ttname"><a href="class_tomb_raider.html#a104b6b4f075e4ed897055a6a500334d7">TombRaider::setDebug</a></div><div class="ttdeci">void setDebug(bool toggle)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l04393">TombRaider.cpp:4393</a></div></div>
+<div class="ttc" id="class_tomb_raider_html_a104b6b4f075e4ed897055a6a500334d7"><div class="ttname"><a href="class_tomb_raider.html#a104b6b4f075e4ed897055a6a500334d7">TombRaider::setDebug</a></div><div class="ttdeci">void setDebug(bool toggle)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l04495">TombRaider.cpp:4495</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_ae5b32ae7feb6c42c2a70e615b7724798"><div class="ttname"><a href="_tomb_raider_8h.html#ae5b32ae7feb6c42c2a70e615b7724798">num_textured_rectangles</a></div><div class="ttdeci">short num_textured_rectangles</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00072">TombRaider.h:72</a></div></div>
 <div class="ttc" id="test_2_tomb_raider_8cpp_html_a68685774b098c518967491c29323e4c8"><div class="ttname"><a href="test_2_tomb_raider_8cpp.html#a68685774b098c518967491c29323e4c8">dump_lara_stuff</a></div><div class="ttdeci">void dump_lara_stuff(char *mapname, TombRaider &amp;tr)</div><div class="ttdef"><b>Definition:</b> <a href="test_2_tomb_raider_8cpp_source.html#l00430">TombRaider.cpp:430</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a526c3cc213d959b5bf246c5d9834a097"><div class="ttname"><a href="_tomb_raider_8h.html#a526c3cc213d959b5bf246c5d9834a097">num_textured_triangles</a></div><div class="ttdeci">short num_textured_triangles</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00075">TombRaider.h:75</a></div></div>
-<div class="ttc" id="class_tomb_raider_html_a2d7ce61391e8e11331abb6db883ae35e"><div class="ttname"><a href="class_tomb_raider.html#a2d7ce61391e8e11331abb6db883ae35e">TombRaider::getMeshCount</a></div><div class="ttdeci">int getMeshCount()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l02184">TombRaider.cpp:2184</a></div></div>
+<div class="ttc" id="class_tomb_raider_html_a2d7ce61391e8e11331abb6db883ae35e"><div class="ttname"><a href="class_tomb_raider.html#a2d7ce61391e8e11331abb6db883ae35e">TombRaider::getMeshCount</a></div><div class="ttdeci">int getMeshCount()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l02186">TombRaider.cpp:2186</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_aa6a59fe91f5d6bbea4d57dd409b599cca04df4a888c3a53709cb1f71a4c73abb8"><div class="ttname"><a href="_tomb_raider_8h.html#aa6a59fe91f5d6bbea4d57dd409b599cca04df4a888c3a53709cb1f71a4c73abb8">TR_VERSION_4</a></div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00089">TombRaider.h:89</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_ad23df94eb682e6cd1582f92e73c327f7"><div class="ttname"><a href="class_tomb_raider.html#ad23df94eb682e6cd1582f92e73c327f7">TombRaider::NumSpecialTextures</a></div><div class="ttdeci">int NumSpecialTextures()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l00375">TombRaider.cpp:375</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_aeffdfa521d80639f427e3ceea395c9c3"><div class="ttname"><a href="class_tomb_raider.html#aeffdfa521d80639f427e3ceea395c9c3">TombRaider::NumMoveables</a></div><div class="ttdeci">int NumMoveables()</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l00134">TombRaider.cpp:134</a></div></div>
 <div class="ttc" id="class_tomb_raider_html_a26d2dc7e32ee92ac70c28d66a112fd72"><div class="ttname"><a href="class_tomb_raider.html#a26d2dc7e32ee92ac70c28d66a112fd72">TombRaider::Texture</a></div><div class="ttdeci">void Texture(int texture, unsigned char **image, unsigned char **bumpmap)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l00381">TombRaider.cpp:381</a></div></div>
+<div class="ttc" id="_t_g_a_8h_html_a7df76296224b50e7c576714955241c5f"><div class="ttname"><a href="_t_g_a_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a></div><div class="ttdeci">int mtk_image__tga_save(FILE *f, unsigned char *image, unsigned int width, unsigned int height, char type)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_t_g_a_8cpp_source.html#l00355">TGA.cpp:355</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a45f1a80f79ad70c4987b1fcf2c6a05a4"><div class="ttname"><a href="_tomb_raider_8h.html#a45f1a80f79ad70c4987b1fcf2c6a05a4">rectangles</a></div><div class="ttdeci">tr2_quad_t * rectangles</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00063">TombRaider.h:63</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a6150e0515f7202e2fb518f7206ed97dc"><div class="ttname"><a href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a></div><div class="ttdeci">short x</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00060">TombRaider.h:60</a></div></div>
-<div class="ttc" id="class_tomb_raider_html_a0b3a626ab515ed4ec77941f31053b5a7"><div class="ttname"><a href="class_tomb_raider.html#a0b3a626ab515ed4ec77941f31053b5a7">TombRaider::getSoundSample</a></div><div class="ttdeci">void getSoundSample(unsigned int index, unsigned int *bytes, unsigned char **data)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l03921">TombRaider.cpp:3921</a></div></div>
+<div class="ttc" id="class_tomb_raider_html_a0b3a626ab515ed4ec77941f31053b5a7"><div class="ttname"><a href="class_tomb_raider.html#a0b3a626ab515ed4ec77941f31053b5a7">TombRaider::getSoundSample</a></div><div class="ttdeci">void getSoundSample(unsigned int index, unsigned int *bytes, unsigned char **data)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l04020">TombRaider.cpp:4020</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_af7de93063def61152c245b6b2919ae71"><div class="ttname"><a href="_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71">index</a></div><div class="ttdeci">unsigned char index[2]</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00061">TombRaider.h:61</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_aa7cc04120188f85af20f4df0e2ef42ab"><div class="ttname"><a href="_tomb_raider_8h.html#aa7cc04120188f85af20f4df0e2ef42ab">num_vertices</a></div><div class="ttdeci">short num_vertices</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00060">TombRaider.h:60</a></div></div>
-<div class="ttc" id="class_tomb_raider_html_ab0b3654b61c54f5c54c0865dd9d6ea2a"><div class="ttname"><a href="class_tomb_raider.html#ab0b3654b61c54f5c54c0865dd9d6ea2a">TombRaider::Load</a></div><div class="ttdeci">int Load(char *filename, void(*percent)(int))</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l00451">TombRaider.cpp:451</a></div></div>
+<div class="ttc" id="class_tomb_raider_html_ab0b3654b61c54f5c54c0865dd9d6ea2a"><div class="ttname"><a href="class_tomb_raider.html#ab0b3654b61c54f5c54c0865dd9d6ea2a">TombRaider::Load</a></div><div class="ttdeci">int Load(char *filename, void(*percent)(int))</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l00450">TombRaider.cpp:450</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_ab8fb40c8e72917f37c084fcacc71a6cc"><div class="ttname"><a href="_tomb_raider_8h.html#ab8fb40c8e72917f37c084fcacc71a6cc">ypixel</a></div><div class="ttdeci">unsigned char ypixel</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00063">TombRaider.h:63</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a0a2f84ed7838f07779ae24c5a9086d33"><div class="ttname"><a href="_tomb_raider_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a></div><div class="ttdeci">short y</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00061">TombRaider.h:61</a></div></div>
 <div class="ttc" id="memory__test_8h_html"><div class="ttname"><a href="memory__test_8h.html">memory_test.h</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a14f94e529dff0b8bfba8e16fbe9755d6"><div class="ttname"><a href="_tomb_raider_8h.html#a14f94e529dff0b8bfba8e16fbe9755d6">z</a></div><div class="ttdeci">short z</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00062">TombRaider.h:62</a></div></div>
-<div class="ttc" id="class_tomb_raider_html_a3299f360388f4693dcdf0dddac9866af"><div class="ttname"><a href="class_tomb_raider.html#a3299f360388f4693dcdf0dddac9866af">TombRaider::loadSFX</a></div><div class="ttdeci">int loadSFX(char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l04073">TombRaider.cpp:4073</a></div></div>
+<div class="ttc" id="class_tomb_raider_html_a3299f360388f4693dcdf0dddac9866af"><div class="ttname"><a href="class_tomb_raider.html#a3299f360388f4693dcdf0dddac9866af">TombRaider::loadSFX</a></div><div class="ttdeci">int loadSFX(char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="src_2_tomb_raider_8cpp_source.html#l04175">TombRaider.cpp:4175</a></div></div>
 <div class="ttc" id="_open_raider_8cpp_html_a18b6043df2c0301ca82f8e721ec27b80"><div class="ttname"><a href="_open_raider_8cpp.html#a18b6043df2c0301ca82f8e721ec27b80">percent_callback</a></div><div class="ttdeci">void percent_callback(int p)</div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8cpp_source.html#l00204">OpenRaider.cpp:204</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_af0232eb45ae816a6eda00e5c46bc6f2e"><div class="ttname"><a href="_tomb_raider_8h.html#af0232eb45ae816a6eda00e5c46bc6f2e">xpixel</a></div><div class="ttdeci">unsigned char xpixel</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00061">TombRaider.h:61</a></div></div>
 <div class="ttc" id="test_2_tomb_raider_8cpp_html_a92fa7a6ab5e29c8a71780c6eb9142a18"><div class="ttname"><a href="test_2_tomb_raider_8cpp.html#a92fa7a6ab5e29c8a71780c6eb9142a18">dump_mesh</a></div><div class="ttdeci">void dump_mesh(TombRaider *tr, char *mapname, int index)</div><div class="ttdef"><b>Definition:</b> <a href="test_2_tomb_raider_8cpp_source.html#l00157">TombRaider.cpp:157</a></div></div>
