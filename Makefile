@@ -32,7 +32,6 @@ UNAME=$(shell uname -s)
 BASE_DEFS=$(shell sdl-config --cflags) -Iinclude -DSDL_INTERFACE \
 	-DUSING_OPENGL -DZLIB_SUPPORT -DUSING_EMITTER \
 	-DUSING_OPENAL -DUSING_TGA -DUSING_PTHREADS \
-	-DHAVE_SDL_TTF
 
 BASE_LIBS=$(shell sdl-config --libs) -lz -lstdc++ \
 	-lpthread -lSDL_ttf
@@ -341,7 +340,7 @@ TombRaider.test:
 
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(FLAGS_ALL) $(WARNINGS) -Iinclude -DHAVE_SDL_TTF -DHAVE_SDL \
+	$(CC) $(FLAGS_ALL) $(WARNINGS) -Iinclude \
 	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
 	$(GL_LIBS) $(GL_DEFS) -lSDL_ttf -lm -lstdc++ \
 	src/Texture.cpp src/GLString.cpp \

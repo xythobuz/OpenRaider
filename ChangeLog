@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140120 ]
+	* Removed HAVE_SDL & HAVE_SDL_TTF flags. SDL & TTF always required!
+
 	[ 20140119 ]
 	* Enabled linear texture filtering for fonts, resulting in nicer
 	  looking down scaling

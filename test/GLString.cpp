@@ -6,23 +6,19 @@
  */
 
 #include <math.h>
-
+#include <SDL/SDL.h>
 #ifdef __APPLE__
 #include <OpenGL/glu.h>
 #else
 #include <GL/glu.h>
 #endif
 
-#ifdef HAVE_SDL_TTF
 #include <Texture.h>
-Texture gTexture;
-#else
-#error "Requires SDL_TTF"
-#endif
-
 #include <GLString.h>
 
 GLString *TEXT;
+SDL_Surface *SDL_WINDOW = NULL;
+Texture gTexture;
 
 void swap_buffers();
 
@@ -84,13 +80,6 @@ void event_display(int width, int height)
 	glFlush();
 	swap_buffers();
 }
-
-
-#ifdef HAVE_SDL
-#include <SDL/SDL.h>
-
-
-SDL_Surface *SDL_WINDOW = NULL;
 
 
 void swap_buffers()
@@ -292,9 +281,6 @@ int main_gl(int argc, char *argv[])
 
   return 0;
 }
-#else
-#error "Requires SDL to create GL Context"
-#endif
 
 int main(int argc, char *argv[])
 {

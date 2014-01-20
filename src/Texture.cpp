@@ -41,9 +41,7 @@
 #include <TGA.h>
 #endif
 
-#ifdef HAVE_SDL_TTF
 #include <SDL/SDL_ttf.h>
-#endif
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -299,7 +297,6 @@ int Texture::loadFontTTF(const char *filename,
 
 gl_font_t *Texture::generateFont(ttf_texture_t *texture)
 {
-#ifdef HAVE_SDL_TTF
 	const float spacing = 4.0;
 	unsigned int i;
 	float u, v, u2, v2;
@@ -376,9 +373,6 @@ gl_font_t *Texture::generateFont(ttf_texture_t *texture)
 	}
 
 	return font;
-#else
-	return NULL;
-#endif
 }
 
 
@@ -389,7 +383,6 @@ ttf_texture_t *Texture::generateFontTexture(const char *filename, int pointSize,
 														  unsigned int count,
 														  char verbose)
 {
-#ifdef HAVE_SDL_TTF
 	unsigned int i;
 	int xx = 0, yy = 0, hh = 0, k, h, w, offset;
 	unsigned char b;
@@ -521,10 +514,6 @@ ttf_texture_t *Texture::generateFontTexture(const char *filename, int pointSize,
 	TTF_CloseFont(font);
 
 	return texture;
-#else
-	printf("SDL_TTF not enabled in this build.\n");
-	return NULL;
-#endif
 }
 
 
@@ -548,7 +537,6 @@ int Texture::loadColorTexture(unsigned char rgba[4],
 
 void Texture::initSDL_TTF()
 {
-#ifdef HAVE_SDL_TTF
 	// Initialize the TTF library
 	if (TTF_Init() < 0)
 	{
@@ -562,7 +550,6 @@ void Texture::initSDL_TTF()
 		printf("Started SDL_TTF subsystem!\n");
 		atexit(TTF_Quit);
 	}
-#endif
 }
 
 

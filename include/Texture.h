@@ -90,9 +90,9 @@ class Texture
 
 	enum TextureFlag
 	{
-		fUseMipmaps			= 1,
-		fUseMultiTexture	= 2,
-		fUseSDL_TTF			= 4
+		fUseMipmaps			= (1 << 0),
+		fUseMultiTexture	= (1 << 1),
+        fUseSDL_TTF         = (1 << 2)
 	};
 
 
