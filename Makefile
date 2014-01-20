@@ -202,7 +202,7 @@ OBJS = \
 	$(BUILDDIR)/Sound.o \
 	$(BUILDDIR)/System.o \
 	$(BUILDDIR)/Texture.o \
-	$(BUILDDIR)/TGA.o \
+	$(BUILDDIR)/tga.o \
 	$(BUILDDIR)/TombRaider.o \
 	$(BUILDDIR)/Vector3d.o \
 	$(BUILDDIR)/ViewVolume.o \
@@ -293,7 +293,7 @@ TEST_MAP_TR3=~/.OpenRaider/paks/tr3/scotland.tr2
 TEST_MAP_TR2=~/.OpenRaider/paks/tr2/unwater.tr2
 TEST_MAP_TR1=~/.OpenRaider/paks/tr1/level1.phd
 
-test.build: Matrix.test Math.test Memory.test Network.test Sound.test TGA.test GLString.test TombRaider.test
+test.build: Matrix.test Math.test Memory.test Network.test Sound.test tga.test GLString.test TombRaider.test
 
 test: test.build
 	@-echo "================================================="
@@ -310,7 +310,7 @@ test: test.build
 	$(BUILD_TEST_DIR)/Sound.test
 	@-echo "================================================="
 	@-echo "Running TGA unit test"
-	$(BUILD_TEST_DIR)/TGA.test
+	$(BUILD_TEST_DIR)/tga.test
 	@-echo "================================================="
 	@-echo "Running GLString unit test"
 	$(BUILD_TEST_DIR)/GLString.test
@@ -332,7 +332,7 @@ TombRaider.test:
 	@-mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(FLAGS_ALL) $(WARNINGS) -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
 	$(MAKE) targets NAME=TombRaider.test BUILDDIR=$(BUILD_TEST_DIR) \
-	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/TGA.o $(BUILD_TEST_DIR)/memory_test.o" \
+	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/tga.o $(BUILD_TEST_DIR)/memory_test.o" \
 	CFLAGS="$(BASE_CFLAGS) -g $(TR_FLAGS)" \
 	LD_FLAGS="-lz -lstdc++"
 
@@ -386,10 +386,10 @@ Sound.test:
 
 #################################################################
 
-TGA.test:
+tga.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(TEST_FLAGS) $(WARNINGS) \
-		src/TGA.cpp test/TGA.cpp -o $(BUILD_TEST_DIR)/TGA.test
+		src/tga.cpp test/tga.cpp -o $(BUILD_TEST_DIR)/tga.test
 
 #################################################################
 

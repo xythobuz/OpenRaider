@@ -22,15 +22,12 @@ Texture gTexture;
 
 void swap_buffers();
 
-
-void event_resize(int width, int height)
-{
-    GLfloat aspect;
-
+void event_resize(int width, int height) {
     glMatrixMode(GL_PROJECTION);
-    aspect = (GLfloat)width/(GLfloat)height;
+    GLfloat aspect = (GLfloat)width/(GLfloat)height;
 
     // Mongoose 2002.01.01, Setup view volume, with a nice FOV
+    // xythobuz:
     // gluPerspective is deprecated!
     // gluPerspective(40.0, aspect, 1, 2000);
     // fix: http://stackoverflow.com/a/2417756
@@ -41,11 +38,8 @@ void event_resize(int width, int height)
     glMatrixMode(GL_MODELVIEW);
 }
 
-
-void event_display(int width, int height)
-{
+void event_display(int width, int height) {
     static float x = 0.0, y = 0.0, z = -150.0, r = 0.0;
-
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -81,20 +75,16 @@ void event_display(int width, int height)
     swap_buffers();
 }
 
-
-void swap_buffers()
-{
+void swap_buffers() {
     SDL_GL_SwapBuffers();
 }
 
 
-void shutdown_gl()
-{
+void shutdown_gl() {
     SDL_Quit();
 }
 
-void init_gl(unsigned int width, unsigned int height)
-{
+void init_gl(unsigned int width, unsigned int height) {
     int i;
     const char *errorText = "TEXT->glPrintf> ERROR code %i\n";
 
@@ -139,9 +129,7 @@ void init_gl(unsigned int width, unsigned int height)
     TEXT->setActive(3, true);
 }
 
-
-int main_gl(int argc, char *argv[])
-{
+int main_gl(int argc, char *argv[]) {
     SDL_Event event;
     unsigned int mkeys, mod, key;
     int flags;
@@ -151,7 +139,6 @@ int main_gl(int argc, char *argv[])
 #ifndef __APPLE__
     char *driver = NULL;
 #endif
-
 
     // Setup clean up on exit
     atexit(shutdown_gl);
@@ -163,18 +150,15 @@ int main_gl(int argc, char *argv[])
     SDL_Init(SDL_INIT_VIDEO);
 
 #ifndef __APPLE__
-    if (!driver || !driver[0] || SDL_GL_LoadLibrary(driver) < 0)
-    {
+    if (!driver || !driver[0] || SDL_GL_LoadLibrary(driver) < 0) {
         SDL_ClearError();
 
         // Fallback 1
-        if (SDL_GL_LoadLibrary("libGL.so") < 0)
-        {
+        if (SDL_GL_LoadLibrary("libGL.so") < 0) {
             SDL_ClearError();
 
             // Fallback 2
-            if (SDL_GL_LoadLibrary("libGL.so.1") < 0)
-            {
+            if (SDL_GL_LoadLibrary("libGL.so.1") < 0) {
                 fprintf(stderr, "main_gl> SDL_GL_LoadLibrary failed!\n");
                 fprintf(stderr, "main_gl> Error is [%s].\n", SDL_GetError());
                 exit(1);
@@ -185,8 +169,7 @@ int main_gl(int argc, char *argv[])
 
     flags = SDL_OPENGL | SDL_GL_DOUBLEBUFFER;
 
-    if (fullscreen)
-    {
+    if (fullscreen) {
         flags |= SDL_FULLSCREEN;
         SDL_ShowCursor(SDL_DISABLE);
     }
@@ -203,17 +186,14 @@ int main_gl(int argc, char *argv[])
     // Init rendering
     init_gl(width, height);
 
-    for (;;)
-    {
+    for (;;) {
         // Pause for 10-20 ms
         SDL_Delay(10);
 
         event_display(width, height);
 
-        while (SDL_PollEvent(&event))
-        {
-            switch (event.type)
-            {
+        while (SDL_PollEvent(&event)) {
+            switch (event.type) {
                 case SDL_QUIT:
                     exit(0);
                     break;
@@ -282,10 +262,7 @@ int main_gl(int argc, char *argv[])
     return 0;
 }
 
-int main(int argc, char *argv[])
-{
-    printf("[GLString class test]\n");
-
+int main(int argc, char *argv[]) {
     TEXT = new GLString();
     main_gl(argc, argv);
     return 0;

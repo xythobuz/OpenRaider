@@ -3,6 +3,7 @@
  * \brief Open GL rendering font/string class
  *
  * \author Mongoose
+ * \author xythobuz
  */
 
 #include <string.h>
@@ -23,8 +24,7 @@
 #endif
 
 
-GLString::GLString()
-{
+GLString::GLString() {
     _num_string_max = 0;
     _num_string = 0;
     _scale = 1.0;
@@ -32,111 +32,68 @@ GLString::GLString()
 }
 
 
-GLString::~GLString()
-{
-    unsigned int i;
-
-    if (_string)
-    {
-
-        for (i = 0; i < _num_string; ++i)
-        {
+GLString::~GLString() {
+    if (_string) {
+        for (unsigned int i = 0; i < _num_string; ++i) {
             if (_string[i].text)
-            {
                 delete [] _string[i].text;
-            }
         }
-
         delete [] _string;
     }
 }
 
 
-void GLString::Init(unsigned int max_strings)
-{
+void GLString::Init(unsigned int max_strings) {
     if (!max_strings)
-    {
         return;
-    }
 
     _num_string_max = max_strings;
     _string = new gl_string_t[max_strings];
 }
 
 
-void GLString::SetChar(unsigned int string, unsigned int pos, char c)
-{
+void GLString::SetChar(unsigned int string, unsigned int pos, char c) {
     gl_string_t *str = GetString(string);
-
-
     if (str && pos < str->len)
-    {
         str->text[pos] = c;
-    }
 }
 
 
-unsigned int GLString::GetStringLen(unsigned int string)
-{
+unsigned int GLString::GetStringLen(unsigned int string) {
     gl_string_t *str = GetString(string);
-
-
     if (str)
-    {
         return str->len;
-    }
-
     return 0;
 }
 
 
-char *GLString::GetBuffer(unsigned int string)
-{
+char *GLString::GetBuffer(unsigned int string) {
     gl_string_t *str = GetString(string);
-
-
     if (str)
-    {
         return str->text;
-    }
-
     return 0;
 }
 
 
-void GLString::setActive(unsigned int string, bool active)
-{
-    gl_string_t *str;
-
-
-    str = GetString(string);
-
+void GLString::setActive(unsigned int string, bool active) {
+    gl_string_t *str = GetString(string);
     if (str)
-    {
         str->active = active;
-    }
 }
 
 
-void GLString::SetString(unsigned int string, const char *s, ...)
-{
+void GLString::SetString(unsigned int string, const char *s, ...) {
     va_list args;
     gl_string_t *str;
     unsigned int len;
 
-
     str = GetString(string);
 
-    if (s && s[0] && str)
-    {
+    if (s && s[0] && str) {
         str->active = true;
-
         len = strlen(s);
-
         if (len > str->len)
-        {
             len = str->len - 1;
-        }
 
         va_start(args, s);
         vsnprintf(str->text, str->len-2, s, args);
@@ -146,14 +103,12 @@ void GLString::SetString(unsigned int string, const char *s, ...)
 }
 
 
-void GLString::Scale(float scale)
-{
+void GLString::Scale(float scale) {
     _scale = scale;
 }
 
 
-int GLString::glPrintf(int x, int y, const char *string, ...)
-{
+int GLString::glPrintf(int x, int y, const char *string, ...) {
     int sz = 60;
     int n;
     va_list args;
@@ -162,14 +117,10 @@ int GLString::glPrintf(int x, int y, const char *string, ...)
     // Mongoose 2002.01.01, Only allow valid strings
     //   we must assume it's NULL terminated also if it passes...
     if (!string || !string[0])
-    {
         return -1;
-    }
 
     if (_num_string > _num_string_max)
-    {
         return -2;
-    }
 
     // Mongoose 2002.01.01, Assume no longer than 'sz' wide lines
     //   on first try
@@ -188,34 +139,24 @@ int GLString::glPrintf(int x, int y, const char *string, ...)
     n = vsnprintf(_string[_num_string].text, sz, string, args);
 
     // Mongoose 2002.01.01, Realloc correct amount if truncated
-    while (1)
-    {
+    while (1) {
         if (n > -1 && n < sz)
-        {
             break;
-        }
 
-        // Mongoose 2002.01.01, For glibc 2.1
-        if (n > -1)
-        {
+        if (n > -1) { // glibc 2.1
             sz = n + 1;
             delete [] _string[_num_string].text;
             _string[_num_string].text = new char[sz];
             n = vsnprintf(_string[_num_string].text, sz, string, args);
-
             break;
-        }
-        else // glibc 2.0
-        {
+        } else { // glibc 2.0
             sz *= 2;
             delete [] _string[_num_string].text;
             _string[_num_string].text = new char[sz];
             n = vsnprintf(_string[_num_string].text, sz, string, args);
         }
     }
-
     va_end(args);
-
 
     // Mongoose 2002.01.04, Remeber string size, for future rebuffering use
     _string[_num_string].len = sz;
@@ -228,29 +169,17 @@ int GLString::glPrintf(int x, int y, const char *string, ...)
 }
 
 
-void GLString::Render(int width, int height)
-{
-    unsigned int i;
-
-    for (i = 0; i < _num_string; ++i)
-    {
+void GLString::Render(int width, int height) {
+    for (unsigned int i = 0; i < _num_string; ++i) {
         if (_string[i].active)
-        {
-            glPrint2d(_string[i].x, _string[i].y,
-                    _string[i].scale,
-                    _string[i].text);
-        }
+            glPrint2d(_string[i].x, _string[i].y, _string[i].scale, _string[i].text);
     }
 }
 
 
-gl_string_t *GLString::GetString(unsigned int id)
-{
+gl_string_t *GLString::GetString(unsigned int id) {
     if (id < _num_string)
-    {
         return _string + id;
-    }
-
     return NULL;
 }
 
