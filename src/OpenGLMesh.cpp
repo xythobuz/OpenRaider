@@ -20,130 +20,130 @@
 
 OpenGLMesh::OpenGLMesh()
 {
-	mNumVertices = 0;
-	mVertices = 0x0;
+    mNumVertices = 0;
+    mVertices = 0x0;
 
-	mNumNormals = 0;
-	mNormals = 0x0;
+    mNumNormals = 0;
+    mNormals = 0x0;
 
-	mNumColors = 0;
-	mColors = 0x0;
+    mNumColors = 0;
+    mColors = 0x0;
 
-	mNumTris = 0;
-	mTris = 0x0;
+    mNumTris = 0;
+    mTris = 0x0;
 
-	mNumQuads = 0;
-	mQuads = 0x0;
+    mNumQuads = 0;
+    mQuads = 0x0;
 
-	mVertexArray = 0x0;
-	mNormalArray = 0x0;
-	mColorArray = 0x0;
+    mVertexArray = 0x0;
+    mNormalArray = 0x0;
+    mColorArray = 0x0;
 
-	mTriangleCount = 0;
-	mTriangleTextures = 0x0;
-	mTriangleIndices = 0x0;
-	mTriangleFlags = 0x0;
-	mTriangleTexCoordArray = 0x0;
+    mTriangleCount = 0;
+    mTriangleTextures = 0x0;
+    mTriangleIndices = 0x0;
+    mTriangleFlags = 0x0;
+    mTriangleTexCoordArray = 0x0;
 
-	mFlags = 0;
-	mMode = OpenGLMeshModeTexture;
+    mFlags = 0;
+    mMode = OpenGLMeshModeTexture;
 }
 
 
 OpenGLMesh::~OpenGLMesh()
 {
-	unsigned int i;
+    unsigned int i;
 
 
-	if (mVertices)
-	{
-		delete [] mVertices;
-	}
+    if (mVertices)
+    {
+        delete [] mVertices;
+    }
 
-	if (mNormals)
-	{
-		delete [] mNormals;
-	}
+    if (mNormals)
+    {
+        delete [] mNormals;
+    }
 
-	if (mColors)
-	{
-		delete [] mColors;
-	}
+    if (mColors)
+    {
+        delete [] mColors;
+    }
 
-	if (mTris)
-	{
-		for (i = 0; i < mNumTris; ++i)
-		{
-			if (mTris[i].triangles)
-				delete [] mTris[i].triangles;
+    if (mTris)
+    {
+        for (i = 0; i < mNumTris; ++i)
+        {
+            if (mTris[i].triangles)
+                delete [] mTris[i].triangles;
 
-			if (mTris[i].alpha_triangles)
-				delete [] mTris[i].alpha_triangles;
+            if (mTris[i].alpha_triangles)
+                delete [] mTris[i].alpha_triangles;
 
-			if (mTris[i].texcoors)
-				delete [] mTris[i].texcoors;
+            if (mTris[i].texcoors)
+                delete [] mTris[i].texcoors;
 
-			if (mTris[i].texcoors2)
-				delete [] mTris[i].texcoors2;
-		}
+            if (mTris[i].texcoors2)
+                delete [] mTris[i].texcoors2;
+        }
 
-		delete [] mTris;
-	}
+        delete [] mTris;
+    }
 
-	if (mQuads)
-	{
-		for (i = 0; i < mNumQuads; ++i)
-		{
-			if (mQuads[i].quads)
-				delete [] mQuads[i].quads;
+    if (mQuads)
+    {
+        for (i = 0; i < mNumQuads; ++i)
+        {
+            if (mQuads[i].quads)
+                delete [] mQuads[i].quads;
 
-			if (mQuads[i].alpha_quads)
-				delete [] mQuads[i].alpha_quads;
+            if (mQuads[i].alpha_quads)
+                delete [] mQuads[i].alpha_quads;
 
-			if (mQuads[i].texcoors)
-				delete [] mQuads[i].texcoors;
+            if (mQuads[i].texcoors)
+                delete [] mQuads[i].texcoors;
 
-			if (mQuads[i].texcoors2)
-				delete [] mQuads[i].texcoors2;
-		}
+            if (mQuads[i].texcoors2)
+                delete [] mQuads[i].texcoors2;
+        }
 
-		delete [] mQuads;
-	}
+        delete [] mQuads;
+    }
 
-	if (mVertexArray)
-	{
-		delete [] mVertexArray;
-	}
+    if (mVertexArray)
+    {
+        delete [] mVertexArray;
+    }
 
-	if (mNormalArray)
-	{
-		delete [] mNormalArray;
-	}
+    if (mNormalArray)
+    {
+        delete [] mNormalArray;
+    }
 
-	if (mColorArray)
-	{
-		delete [] mColorArray;
-	}
+    if (mColorArray)
+    {
+        delete [] mColorArray;
+    }
 
-	if (mTriangleTextures)
-	{
-		delete [] mTriangleTextures;
-	}
+    if (mTriangleTextures)
+    {
+        delete [] mTriangleTextures;
+    }
 
-	if (mTriangleIndices)
-	{
-		delete [] mTriangleIndices;
-	}
+    if (mTriangleIndices)
+    {
+        delete [] mTriangleIndices;
+    }
 
-	if (mTriangleFlags)
-	{
-		delete [] mTriangleFlags;
-	}
+    if (mTriangleFlags)
+    {
+        delete [] mTriangleFlags;
+    }
 
-	if (mTriangleTexCoordArray)
-	{
-		delete [] mTriangleTexCoordArray;
-	}
+    if (mTriangleTexCoordArray)
+    {
+        delete [] mTriangleTexCoordArray;
+    }
 }
 
 
@@ -153,238 +153,238 @@ OpenGLMesh::~OpenGLMesh()
 
 void OpenGLMesh::drawAlpha()
 {
-	unsigned int i, j, k, index;
+    unsigned int i, j, k, index;
 
 
-	// Render quadralaterals
-	for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i)
-	{
-		switch (mMode)
-		{
-		case OpenGLMeshModeWireframe:
-			glColor3f(0.0, 0.0, 1.0);
-		case OpenGLMeshModeSolid:
-			// Bind WHITE texture for solid colors
-			glBindTexture(GL_TEXTURE_2D, 0);
-			break;
-		default:
-			// Bind texture id for textures
-			glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
-		}
+    // Render quadralaterals
+    for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i)
+    {
+        switch (mMode)
+        {
+            case OpenGLMeshModeWireframe:
+                glColor3f(0.0, 0.0, 1.0);
+            case OpenGLMeshModeSolid:
+                // Bind WHITE texture for solid colors
+                glBindTexture(GL_TEXTURE_2D, 0);
+                break;
+            default:
+                // Bind texture id for textures
+                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
+        }
 
-		glBegin(GL_QUADS);
+        glBegin(GL_QUADS);
 
-		for (j = 0; j < mQuads[i].num_alpha_quads; ++j)
-		{
-			for (k = 0; k < 4; ++k)
-			{
-				index = mQuads[i].alpha_quads[j*4+k];
+        for (j = 0; j < mQuads[i].num_alpha_quads; ++j)
+        {
+            for (k = 0; k < 4; ++k)
+            {
+                index = mQuads[i].alpha_quads[j*4+k];
 
-				glTexCoord2fv(mQuads[i].texcoors2[j*4+k]);
-				glColor4fv(mColors[index]);
-				glVertex3fv(mVertices[index]);
-			}
-		}
+                glTexCoord2fv(mQuads[i].texcoors2[j*4+k]);
+                glColor4fv(mColors[index]);
+                glVertex3fv(mVertices[index]);
+            }
+        }
 
-		glEnd();
-	}
+        glEnd();
+    }
 
-	// Render triangles
-	for (mTris ? i = 0 : i = mNumTris; i < mNumTris; ++i)
-	{
-		switch (mMode)
-		{
-		case OpenGLMeshModeWireframe:
-			glColor3f(0.0, 1.0, 0.0);
-		case OpenGLMeshModeSolid:
-			// Bind WHITE texture for solid colors
-			glBindTexture(GL_TEXTURE_2D, 0);
-			break;
-		default:
-			// Bind texture id for textures
-			glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
-		}
+    // Render triangles
+    for (mTris ? i = 0 : i = mNumTris; i < mNumTris; ++i)
+    {
+        switch (mMode)
+        {
+            case OpenGLMeshModeWireframe:
+                glColor3f(0.0, 1.0, 0.0);
+            case OpenGLMeshModeSolid:
+                // Bind WHITE texture for solid colors
+                glBindTexture(GL_TEXTURE_2D, 0);
+                break;
+            default:
+                // Bind texture id for textures
+                glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
+        }
 
-		glBegin(GL_TRIANGLES);
+        glBegin(GL_TRIANGLES);
 
-		for (j = 0; j < mTris[i].num_alpha_triangles; ++j)
-		{
-			for (k = 0; k < 3; ++k)
-			{
-				index = mTris[i].alpha_triangles[j*3+k];
+        for (j = 0; j < mTris[i].num_alpha_triangles; ++j)
+        {
+            for (k = 0; k < 3; ++k)
+            {
+                index = mTris[i].alpha_triangles[j*3+k];
 
-				glTexCoord2fv(mTris[i].texcoors2[j*3+k]);
-				glColor4fv(mColors[index]);
-				glVertex3fv(mVertices[index]);
-			}
-		}
+                glTexCoord2fv(mTris[i].texcoors2[j*3+k]);
+                glColor4fv(mColors[index]);
+                glVertex3fv(mVertices[index]);
+            }
+        }
 
-		glEnd();
-	}
+        glEnd();
+    }
 }
 
 
 void OpenGLMesh::drawSolid()
 {
-	unsigned int i, j, k, index;
+    unsigned int i, j, k, index;
 
 
-	if (mFlags & fOpenGLMesh_UseVertexArray)
-	{
-		//glEnableClientState(GL_VERTEX_ARRAY);
-		//glVertexPointer(3, GL_FLOAT, 0, mVertexArray);
+    if (mFlags & fOpenGLMesh_UseVertexArray)
+    {
+        //glEnableClientState(GL_VERTEX_ARRAY);
+        //glVertexPointer(3, GL_FLOAT, 0, mVertexArray);
 
-		glPointSize(2.0f);
-		glColor3f(1.0f, 1.0f, 1.0f);
-		glBegin(GL_TRIANGLES);
+        glPointSize(2.0f);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_TRIANGLES);
 
-		for (i = 0; i < mTriangleCount*3; ++i)
-		{
-			//glArrayElement(mTriangleIndices[i]);
-			glVertex3fv(mVertexArray+mTriangleIndices[i]);
-		}
+        for (i = 0; i < mTriangleCount*3; ++i)
+        {
+            //glArrayElement(mTriangleIndices[i]);
+            glVertex3fv(mVertexArray+mTriangleIndices[i]);
+        }
 
-		glEnd();
+        glEnd();
 
-		glPointSize(1.0f);
+        glPointSize(1.0f);
 
-		return; //! \fixme
+        return; //! \fixme
 
-		for (j = 0; j < mQuads[i].num_quads; ++j)
-		{
-			for (k = 0; k < 4; ++k)
-			{
-				index = mQuads[i].quads[j*4+k];
+        for (j = 0; j < mQuads[i].num_quads; ++j)
+        {
+            for (k = 0; k < 4; ++k)
+            {
+                index = mQuads[i].quads[j*4+k];
 
-				glTexCoord2fv(mQuads[i].texcoors[j*4+k]);
-				glArrayElement(mQuads[i].quads[j*4+k]);
-			}
-		}
+                glTexCoord2fv(mQuads[i].texcoors[j*4+k]);
+                glArrayElement(mQuads[i].quads[j*4+k]);
+            }
+        }
 
-		return;
-	}
+        return;
+    }
 
-	// Render quadralaterals
-	for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i)
-	{
-		switch (mMode)
-		{
-		case OpenGLMeshModeSolid:
-			glColor3f(0.0, 0.0, 0.0);
-			break;
-		case OpenGLMeshModeWireframe:
-			// Bind WHITE texture for solid colors
-			glBindTexture(GL_TEXTURE_2D, 0);
-			break;
+    // Render quadralaterals
+    for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i)
+    {
+        switch (mMode)
+        {
+            case OpenGLMeshModeSolid:
+                glColor3f(0.0, 0.0, 0.0);
+                break;
+            case OpenGLMeshModeWireframe:
+                // Bind WHITE texture for solid colors
+                glBindTexture(GL_TEXTURE_2D, 0);
+                break;
 #ifdef MULTITEXTURE
-		case OpenGLMeshModeMultiTexture:
-			glActiveTextureARB(GL_TEXTURE0_ARB);
-			glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
+            case OpenGLMeshModeMultiTexture:
+                glActiveTextureARB(GL_TEXTURE0_ARB);
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
 
-			glActiveTextureARB(GL_TEXTURE1_ARB);
-			glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, mQuads[i].bumpmap+1);
-			break;
+                glActiveTextureARB(GL_TEXTURE1_ARB);
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, mQuads[i].bumpmap+1);
+                break;
 #endif
-		default:
-			// Bind texture id for textures
-			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
-		}
+            default:
+                // Bind texture id for textures
+                glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
+        }
 
-		glBegin(GL_QUADS);
+        glBegin(GL_QUADS);
 
-		for (j = 0; j < mQuads[i].num_quads; ++j)
-		{
-			for (k = 0; k < 4; ++k)
-			{
-				index = mQuads[i].quads[j*4+k];
+        for (j = 0; j < mQuads[i].num_quads; ++j)
+        {
+            for (k = 0; k < 4; ++k)
+            {
+                index = mQuads[i].quads[j*4+k];
 
-				glColor4fv(mColors[index]);
+                glColor4fv(mColors[index]);
 
 #ifdef MULTITEXTURE
-				if (mMode == OpenGLMeshModeMultiTexture)
-				{
-					glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
-												 mQuads[i].texcoors[j*4+k]);
-					glMultiTexCoord2fvARB(GL_TEXTURE1_ARB,
-												 mQuads[i].texcoors[j*4+k]);
-				}
-				else
+                if (mMode == OpenGLMeshModeMultiTexture)
+                {
+                    glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
+                            mQuads[i].texcoors[j*4+k]);
+                    glMultiTexCoord2fvARB(GL_TEXTURE1_ARB,
+                            mQuads[i].texcoors[j*4+k]);
+                }
+                else
 #endif
-					glTexCoord2fv(mQuads[i].texcoors[j*4+k]);
+                    glTexCoord2fv(mQuads[i].texcoors[j*4+k]);
 
-				glVertex3fv(mVertices[index]);
-			}
-		}
+                glVertex3fv(mVertices[index]);
+            }
+        }
 
-		glEnd();
-	}
+        glEnd();
+    }
 
-	// Render triangles
-	for (mTris ? i = 0 : i = mNumTris; i < mNumTris; ++i)
-	{
-		switch (mMode)
-		{
-		case OpenGLMeshModeSolid:
-			glColor3f(1.0, 0.0, 0.0);
-			break;
-		case OpenGLMeshModeWireframe:
-			// Bind WHITE texture for solid colors
-			glBindTexture(GL_TEXTURE_2D, 0);
-			break;
+    // Render triangles
+    for (mTris ? i = 0 : i = mNumTris; i < mNumTris; ++i)
+    {
+        switch (mMode)
+        {
+            case OpenGLMeshModeSolid:
+                glColor3f(1.0, 0.0, 0.0);
+                break;
+            case OpenGLMeshModeWireframe:
+                // Bind WHITE texture for solid colors
+                glBindTexture(GL_TEXTURE_2D, 0);
+                break;
 #ifdef MULTITEXTURE
-		case OpenGLMeshModeMultiTexture:
-			glActiveTextureARB(GL_TEXTURE0_ARB);
-			glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
+            case OpenGLMeshModeMultiTexture:
+                glActiveTextureARB(GL_TEXTURE0_ARB);
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
 
-			glActiveTextureARB(GL_TEXTURE1_ARB);
-			glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, mTris[i].bumpmap+1);
-			break;
+                glActiveTextureARB(GL_TEXTURE1_ARB);
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, mTris[i].bumpmap+1);
+                break;
 #endif
-		default:
-			// Bind texture id for textures
-			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
-		}
+            default:
+                // Bind texture id for textures
+                glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+                glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
+        }
 
-		glBegin(GL_TRIANGLES);
+        glBegin(GL_TRIANGLES);
 
-		for (j = 0; j < mTris[i].num_triangles; ++j)
-		{
-			for (k = 0; k < 3; ++k)
-			{
-				index = mTris[i].triangles[j*3+k];
+        for (j = 0; j < mTris[i].num_triangles; ++j)
+        {
+            for (k = 0; k < 3; ++k)
+            {
+                index = mTris[i].triangles[j*3+k];
 
 #ifdef MULTITEXTURE
-				if (mMode == OpenGLMeshModeMultiTexture)
-				{
-					glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
-												 mTris[i].texcoors[j*3+k]);
-					glMultiTexCoord2fvARB(GL_TEXTURE1_ARB,
-												 mTris[i].texcoors[j*3+k]);
-				}
-				else
+                if (mMode == OpenGLMeshModeMultiTexture)
+                {
+                    glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
+                            mTris[i].texcoors[j*3+k]);
+                    glMultiTexCoord2fvARB(GL_TEXTURE1_ARB,
+                            mTris[i].texcoors[j*3+k]);
+                }
+                else
 #endif
-					glTexCoord2fv(mTris[i].texcoors[j*3+k]);
+                    glTexCoord2fv(mTris[i].texcoors[j*3+k]);
 
-				glColor4fv(mColors[index]);
-				glVertex3fv(mVertices[index]);
-			}
-		}
+                glColor4fv(mColors[index]);
+                glVertex3fv(mVertices[index]);
+            }
+        }
 
-		glEnd();
-	}
+        glEnd();
+    }
 
 #ifdef MULTITEXTURE
-	if (mMode == OpenGLMeshModeMultiTexture)
-	{
-		glDisable(GL_TEXTURE_2D);
-		glActiveTextureARB(GL_TEXTURE0_ARB);
-	}
+    if (mMode == OpenGLMeshModeMultiTexture)
+    {
+        glDisable(GL_TEXTURE_2D);
+        glActiveTextureARB(GL_TEXTURE0_ARB);
+    }
 #endif
 }
 
@@ -395,218 +395,218 @@ void OpenGLMesh::drawSolid()
 
 void OpenGLMesh::allocateColors(unsigned int n)
 {
-	if (mColors)
-	{
-		mNumColors = 0;
-		delete [] mColors;
-	}
+    if (mColors)
+    {
+        mNumColors = 0;
+        delete [] mColors;
+    }
 
-	if (!n)
-	{
-		return;
-	}
+    if (!n)
+    {
+        return;
+    }
 
-	mNumColors = n;
-	mColors = new vec4_t[mNumColors];
+    mNumColors = n;
+    mColors = new vec4_t[mNumColors];
 }
 
 
 void OpenGLMesh::allocateNormals(unsigned int n)
 {
-	if (mNormals)
-	{
-		mNumNormals = 0;
-		delete [] mNormals;
-	}
+    if (mNormals)
+    {
+        mNumNormals = 0;
+        delete [] mNormals;
+    }
 
-	if (!n)
-	{
-		return;
-	}
+    if (!n)
+    {
+        return;
+    }
 
-	mNumNormals = n;
-	mNormals = new vec3_t[mNumNormals];
+    mNumNormals = n;
+    mNormals = new vec3_t[mNumNormals];
 }
 
 
 void OpenGLMesh::allocateRectangles(unsigned int n)
 {
-	if (mQuads)
-	{
-		mNumQuads = 0;
-		delete [] mQuads;
-	}
+    if (mQuads)
+    {
+        mNumQuads = 0;
+        delete [] mQuads;
+    }
 
-	if (!n)
-	{
-		return;
-	}
+    if (!n)
+    {
+        return;
+    }
 
-	mNumQuads = n;
-	mQuads = new rect_t[mNumQuads];
+    mNumQuads = n;
+    mQuads = new rect_t[mNumQuads];
 }
 
 
 void OpenGLMesh::allocateTriangles(unsigned int n)
 {
-	if (mTris)
-	{
-		mNumTris = 0;
-		delete [] mTris;
-	}
+    if (mTris)
+    {
+        mNumTris = 0;
+        delete [] mTris;
+    }
 
-	if (!n)
-	{
-		return;
-	}
+    if (!n)
+    {
+        return;
+    }
 
-	mNumTris = n;
-	mTris = new tris_t[mNumTris];
+    mNumTris = n;
+    mTris = new tris_t[mNumTris];
 }
 
 
 void OpenGLMesh::allocateVertices(unsigned int n)
 {
-	if (mVertices)
-	{
-		mNumVertices = 0;
-		delete [] mVertices;
-	}
+    if (mVertices)
+    {
+        mNumVertices = 0;
+        delete [] mVertices;
+    }
 
-	if (!n)
-	{
-		return;
-	}
+    if (!n)
+    {
+        return;
+    }
 
-	mNumVertices = n;
-	mVertices = new vec3_t[mNumVertices];
+    mNumVertices = n;
+    mVertices = new vec3_t[mNumVertices];
 }
 
 
 void OpenGLMesh::bufferColorArray(unsigned int colorCount, vec_t *colors,
-											 unsigned int colorWidth)
+        unsigned int colorWidth)
 {
-	if (mColors)
-	{
-		mNumColors = 0;
-		delete [] mColors;
-	}
+    if (mColors)
+    {
+        mNumColors = 0;
+        delete [] mColors;
+    }
 
-	if (!colorCount)
-	{
-		return;
-	}
+    if (!colorCount)
+    {
+        return;
+    }
 
-		//mColorWidth = colorWidth;  // for now assume 4 always
-	mNumColors = colorCount;
-	mColorArray = colors;
+    //mColorWidth = colorWidth;  // for now assume 4 always
+    mNumColors = colorCount;
+    mColorArray = colors;
 }
 
 
 void OpenGLMesh::bufferNormalArray(unsigned int normalCount, vec_t *normals)
 {
-	if (mNormals)
-	{
-		mNumNormals = 0;
-		delete [] mNormals;
-	}
+    if (mNormals)
+    {
+        mNumNormals = 0;
+        delete [] mNormals;
+    }
 
-	if (!normalCount)
-	{
-		return;
-	}
+    if (!normalCount)
+    {
+        return;
+    }
 
-	mNumNormals = normalCount;
-	mNormalArray = normals;
+    mNumNormals = normalCount;
+    mNormalArray = normals;
 }
 
 
 void OpenGLMesh::bufferTriangles(unsigned int count,
-											unsigned int *indices, vec_t *texCoords,
-											int *textures, unsigned int *flags)
+        unsigned int *indices, vec_t *texCoords,
+        int *textures, unsigned int *flags)
 {
 
-	mTriangleCount = count;
-	mTriangleTextures = textures;
-	mTriangleIndices = indices;
-	mTriangleFlags = flags;
-	mTriangleTexCoordArray = texCoords;
+    mTriangleCount = count;
+    mTriangleTextures = textures;
+    mTriangleIndices = indices;
+    mTriangleFlags = flags;
+    mTriangleTexCoordArray = texCoords;
 
-	//! \fixme sortTrianglesByTexture();
+    //! \fixme sortTrianglesByTexture();
 }
 
 
 void OpenGLMesh::bufferVertexArray(unsigned int vertexCount, vec_t *vertices)
 {
-	if (mVertices)
-	{
-		mNumVertices = 0;
-		delete [] mVertices;
-	}
+    if (mVertices)
+    {
+        mNumVertices = 0;
+        delete [] mVertices;
+    }
 
-	if (!vertexCount)
-	{
-		return;
-	}
+    if (!vertexCount)
+    {
+        return;
+    }
 
-	mNumVertices = vertexCount;
-	mVertexArray = vertices;
-	mFlags |= fOpenGLMesh_UseVertexArray;
+    mNumVertices = vertexCount;
+    mVertexArray = vertices;
+    mFlags |= fOpenGLMesh_UseVertexArray;
 }
 
 
 void OpenGLMesh::setColor(unsigned int index,
-								  float r, float g, float b, float a)
+        float r, float g, float b, float a)
 {
-	if (index > mNumColors)
-	{
-		return;
-	}
+    if (index > mNumColors)
+    {
+        return;
+    }
 
-	mColors[index][0] = r;
-	mColors[index][1] = g;
-	mColors[index][2] = b;
-		mColors[index][3] = a;
+    mColors[index][0] = r;
+    mColors[index][1] = g;
+    mColors[index][2] = b;
+    mColors[index][3] = a;
 }
 
 
 void OpenGLMesh::setColor(unsigned int index, float rgba[4])
 {
-	if (index > mNumColors)
-	{
-		return;
-	}
+    if (index > mNumColors)
+    {
+        return;
+    }
 
-	mColors[index][0] = rgba[0];
-	mColors[index][1] = rgba[1];
-	mColors[index][2] = rgba[2];
-	mColors[index][3] = rgba[3];
+    mColors[index][0] = rgba[0];
+    mColors[index][1] = rgba[1];
+    mColors[index][2] = rgba[2];
+    mColors[index][3] = rgba[3];
 }
 
 
 void OpenGLMesh::setNormal(unsigned int index, float i, float j, float k)
 {
-	if (index > mNumNormals)
-	{
-		return;
-	}
+    if (index > mNumNormals)
+    {
+        return;
+    }
 
-	mNormals[index][0] = i;
-	mNormals[index][1] = j;
-	mNormals[index][2] = k;
+    mNormals[index][0] = i;
+    mNormals[index][1] = j;
+    mNormals[index][2] = k;
 }
 
 
 void OpenGLMesh::setVertex(unsigned int index, float x, float y, float z)
 {
-	if (index > mNumVertices)
-	{
-		return;
-	}
+    if (index > mNumVertices)
+    {
+        return;
+    }
 
-	mVertices[index][0] = x;
-	mVertices[index][1] = y;
-	mVertices[index][2] = z;
+    mVertices[index][0] = x;
+    mVertices[index][1] = y;
+    mVertices[index][2] = z;
 }
 
 

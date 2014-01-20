@@ -52,18 +52,18 @@ TEST loadFile() {
         FAIL();
     }
     fseek(f, 0, SEEK_END);
-	l = ftell(f);
-	fseek(f, 0, SEEK_SET);
-	buf = new unsigned char[l];
-	fread(buf, l, 1, f);
-	fclose(f);
-	if ((ret = sound.addWave(buf, l, &id, sound.SoundFlagsNone)) != 0) {
+    l = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    buf = new unsigned char[l];
+    fread(buf, l, 1, f);
+    fclose(f);
+    if ((ret = sound.addWave(buf, l, &id, sound.SoundFlagsNone)) != 0) {
         printf("Couldn't add buffer (%d)!", ret);
         FAIL();
     }
-	sound.play(id);
-	delete [] buf;
-	sleep(2);
+    sound.play(id);
+    delete [] buf;
+    sleep(2);
     PASS();
 }
 

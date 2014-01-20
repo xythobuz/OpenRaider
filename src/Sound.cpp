@@ -39,73 +39,73 @@
 
 Sound::Sound()
 {
-	mSource[0] = 0;
-	mBuffer[0] = 0;
-	mNextBuffer = 0;
-	mNextSource = 0;
-	mInit = false;
+    mSource[0] = 0;
+    mBuffer[0] = 0;
+    mNextBuffer = 0;
+    mNextSource = 0;
+    mInit = false;
 }
 
 
 Sound::~Sound()
 {
-	if (mInit)
-	{
+    if (mInit)
+    {
 #ifdef USING_OPENAL
-		alutExit();
+        alutExit();
 #endif
-	}
+    }
 }
 
 
 int Sound::init()
 {
 #ifndef __APPLE__
-	int fd;
+    int fd;
 
-	fd = open("/dev/dsp", O_RDWR);
+    fd = open("/dev/dsp", O_RDWR);
 
-	if (fd < 0)
-	{
-		perror("Sound::Init> Could not open /dev/dsp : ");
-		return -1;
-	}
+    if (fd < 0)
+    {
+        perror("Sound::Init> Could not open /dev/dsp : ");
+        return -1;
+    }
 
-	close(fd);
+    close(fd);
 #endif
 
 #ifdef USING_OPENAL
-	alutInit(NULL, 0);
+    alutInit(NULL, 0);
 
-	mInit = true;
-	printf("Created OpenAL Context\n");
+    mInit = true;
+    printf("Created OpenAL Context\n");
 #else
-	printf("Couldn't create sound Context!\n");
+    printf("Couldn't create sound Context!\n");
 #endif
 
-	return 0;
+    return 0;
 }
 
 
 void Sound::listenAt(float pos[3], float angle[3])
 {
-	if (!mInit)
-		return;
+    if (!mInit)
+        return;
 
 #ifdef USING_OPENAL
-	alListenerfv(AL_POSITION, pos);
-	alListenerfv(AL_ORIENTATION, angle);
+    alListenerfv(AL_POSITION, pos);
+    alListenerfv(AL_ORIENTATION, angle);
 #endif
 }
 
 
 void Sound::sourceAt(int source, float pos[3])
 {
-	if (!mInit || source < 0)
-		return;
+    if (!mInit || source < 0)
+        return;
 
 #ifdef USING_OPENAL
-	alSourcefv(mSource[source-1], AL_POSITION, pos);
+    alSourcefv(mSource[source-1], AL_POSITION, pos);
 #endif
 }
 
@@ -114,111 +114,111 @@ void Sound::sourceAt(int source, float pos[3])
 int Sound::addFile(const char *filename, int *source, unsigned int flags)
 {
 #ifdef USING_OPENAL
-   ALsizei size;
-   ALfloat freq;
-   ALenum format;
-   ALvoid *data;
+    ALsizei size;
+    ALfloat freq;
+    ALenum format;
+    ALvoid *data;
 #endif
 
 
-	if (!mInit || !filename || !source)
-	{
-		printf("Sound::AddFile> ERROR pre condition assertion failed\n");
-		return -1000;
-	}
+    if (!mInit || !filename || !source)
+    {
+        printf("Sound::AddFile> ERROR pre condition assertion failed\n");
+        return -1000;
+    }
 
-	*source = -1;
+    *source = -1;
 
 #ifdef USING_OPENAL
-   alGetError();
+    alGetError();
 
-	alGenBuffers(1, &mBuffer[mNextBuffer]);
+    alGenBuffers(1, &mBuffer[mNextBuffer]);
 
-	if (alGetError() != AL_NO_ERROR)
-   {
-		fprintf(stderr, "Sound::AddFile> alGenBuffers call failed\n");
-		return -1;
-	}
+    if (alGetError() != AL_NO_ERROR)
+    {
+        fprintf(stderr, "Sound::AddFile> alGenBuffers call failed\n");
+        return -1;
+    }
 
-   alGetError();
+    alGetError();
 
-   alGenSources(1, &mSource[mNextSource]);
+    alGenSources(1, &mSource[mNextSource]);
 
-	if (alGetError() != AL_NO_ERROR)
-   {
-		fprintf(stderr, "Sound::AddFile> alGenSources call failed\n");
-		return -2;
-	}
+    if (alGetError() != AL_NO_ERROR)
+    {
+        fprintf(stderr, "Sound::AddFile> alGenSources call failed\n");
+        return -2;
+    }
 
-   // err = alutLoadWAV(filename, &data, &format, &size, &bits, &freq);
-   // is deprecated!
-   data = alutLoadMemoryFromFile(filename, &format, &size, &freq);
+    // err = alutLoadWAV(filename, &data, &format, &size, &bits, &freq);
+    // is deprecated!
+    data = alutLoadMemoryFromFile(filename, &format, &size, &freq);
 
-   if (alGetError() != AL_NO_ERROR)
-	{
-	   fprintf(stderr, "Could not load %s\n", filename);
-	   return -3;
-   }
+    if (alGetError() != AL_NO_ERROR)
+    {
+        fprintf(stderr, "Could not load %s\n", filename);
+        return -3;
+    }
 
-   alBufferData(mBuffer[mNextBuffer], format, data, size, freq);
+    alBufferData(mBuffer[mNextBuffer], format, data, size, freq);
 
-   alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
+    alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
 
-	if (flags & SoundFlagsLoop)
-	{
-		alSourcei(mSource[mNextSource], AL_LOOPING, 1);
-	}
+    if (flags & SoundFlagsLoop)
+    {
+        alSourcei(mSource[mNextSource], AL_LOOPING, 1);
+    }
 
-   ++mNextBuffer;
-   ++mNextSource;
+    ++mNextBuffer;
+    ++mNextSource;
 
-	*source = mNextBuffer;
+    *source = mNextBuffer;
 
-   return 0;
+    return 0;
 #else
-	return -1;
+    return -1;
 #endif
 }
 
 int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags)
 {
 #ifdef USING_OPENAL
-   ALsizei size;
-   ALfloat freq;
-   ALenum format;
-   ALvoid *data;
+    ALsizei size;
+    ALfloat freq;
+    ALenum format;
+    ALvoid *data;
 #endif
 
-	if (!mInit || !wav || !source)
-	{
-		printf("Sound::AddWave> ERROR pre condition assertion failed\n");
-		return -1000;
-	}
+    if (!mInit || !wav || !source)
+    {
+        printf("Sound::AddWave> ERROR pre condition assertion failed\n");
+        return -1000;
+    }
 
-	*source = -1;
+    *source = -1;
 
 #ifdef USING_OPENAL
-	data = wav;
+    data = wav;
 
-   alGetError();
+    alGetError();
 
-	alGenBuffers(1, &mBuffer[mNextBuffer]);
+    alGenBuffers(1, &mBuffer[mNextBuffer]);
 
-	if (alGetError() != AL_NO_ERROR)
-   {
-		fprintf(stderr, "Sound::AddWave> alGenBuffers call failed\n");
-		return -1;
-	}
+    if (alGetError() != AL_NO_ERROR)
+    {
+        fprintf(stderr, "Sound::AddWave> alGenBuffers call failed\n");
+        return -1;
+    }
 
-   alGetError();
+    alGetError();
 
-   alGenSources(1, &mSource[mNextSource]);
+    alGenSources(1, &mSource[mNextSource]);
 
-	if (alGetError() != AL_NO_ERROR)
-   {
-		fprintf(stderr, "Sound::AddWave> alGenSources call failed\n");
-		return -2;
-	}
+    if (alGetError() != AL_NO_ERROR)
+    {
+        fprintf(stderr, "Sound::AddWave> alGenSources call failed\n");
+        return -2;
+    }
 
     //AL_FORMAT_WAVE_EXT does not exist on Mac!"
     // alBufferData(mBuffer[mNextBuffer], AL_FORMAT_WAVE_EXT, data, size, freq);
@@ -229,62 +229,62 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     data = alutLoadMemoryFromFileImage(wav, length, &format, &size, &freq);
 
     if ((alGetError() != AL_NO_ERROR) || (data == NULL)) {
-	   fprintf(stderr, "Could not load wav buffer\n");
-	   return -3;
+        fprintf(stderr, "Could not load wav buffer\n");
+        return -3;
     }
 
 
-   alBufferData(mBuffer[mNextBuffer], format, data, size, freq);
+    alBufferData(mBuffer[mNextBuffer], format, data, size, freq);
 
-   alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
+    alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
 
-	if (flags & SoundFlagsLoop)
-	{
-		alSourcei(mSource[mNextSource], AL_LOOPING, 1);
-	}
+    if (flags & SoundFlagsLoop)
+    {
+        alSourcei(mSource[mNextSource], AL_LOOPING, 1);
+    }
 
-   ++mNextBuffer;
-   ++mNextSource;
+    ++mNextBuffer;
+    ++mNextSource;
 
-	*source = mNextBuffer;
+    *source = mNextBuffer;
 
-   return 0;
+    return 0;
 #else
-	return -1;
+    return -1;
 #endif
 }
 
 
 void Sound::play(int source)
 {
-	if (!mInit)
-	{
-		printf("Sound::Play> ERROR: Sound not initialized\n");
-		return;
-	}
+    if (!mInit)
+    {
+        printf("Sound::Play> ERROR: Sound not initialized\n");
+        return;
+    }
 
-	if (source < 0)
-	{
-		printf("Sound::Play> ERROR: Source Id invalid\n");
-		return;
-	}
+    if (source < 0)
+    {
+        printf("Sound::Play> ERROR: Source Id invalid\n");
+        return;
+    }
 
 #ifdef USING_OPENAL
-	alSourcePlay(mSource[source-1]);
+    alSourcePlay(mSource[source-1]);
 #endif
 }
 
 
 void Sound::stop(int source)
 {
-	if (!mInit || source < 0)
-	{
-		printf("Sound::Stop> ERROR pre condition assertion failed\n");
-		return;
-	}
+    if (!mInit || source < 0)
+    {
+        printf("Sound::Stop> ERROR pre condition assertion failed\n");
+        return;
+    }
 
 #ifdef USING_OPENAL
-	alSourceStop(mSource[source-1]);
+    alSourceStop(mSource[source-1]);
 #endif
 }
 

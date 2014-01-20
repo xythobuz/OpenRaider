@@ -149,8 +149,8 @@ template <class T> class List
       // Found
       if (current->Id() == id)
       {
-	_cache = current;
-	return current->Data();
+    _cache = current;
+    return current->Data();
       }
 
       last = current;
@@ -178,8 +178,8 @@ template <class T> class List
       // Found
       if (current->Data() == data)
       {
-	_cache = current;
-	return current->Id();
+    _cache = current;
+    return current->Id();
       }
 
       last = current;
@@ -219,20 +219,20 @@ template <class T> class List
       // Remove
       if (current->Id() == id)
       {
-	if (current == _head)
-	  _head = current->Next();
-	else
-	{
-	  last->Next(current->Next());
-	}
+    if (current == _head)
+      _head = current->Next();
+    else
+    {
+      last->Next(current->Next());
+    }
 
-	if (_current == current)
-	  _current = NULL;
+    if (_current == current)
+      _current = NULL;
 
-	delete current;
-	_num_items--;
+    delete current;
+    _num_items--;
 
-	return;
+    return;
       }
 
       last = current;
@@ -253,20 +253,20 @@ template <class T> class List
       // Remove
       if (current->Data() == data)
       {
-	if (current == _head)
-	  _head = current->Next();
-	else
-	{
-	  last->Next(current->Next());
-	}
+    if (current == _head)
+      _head = current->Next();
+    else
+    {
+      last->Next(current->Next());
+    }
 
-	if (_current == current)
-	  _current = NULL;
+    if (_current == current)
+      _current = NULL;
 
-	delete current;
-	_num_items--;
+    delete current;
+    _num_items--;
 
-	return;
+    return;
       }
 
       last = current;
@@ -323,7 +323,7 @@ template <class T> class List
       current = current->Next();
 
       if (current)
-	printf(", ");
+    printf(", ");
 
       fflush(stdout);
     }
@@ -401,29 +401,29 @@ template <class T> class List
       //EXP
       if (_last)
       {
-	i = _last->Id();
-	current = _last;
+    i = _last->Id();
+    current = _last;
       }
 
       while (current)
       {
-	// Prepend
-	if (current->Id() > i)
-	{
-	  node->Id(i);
-	  node->Next(current);
+    // Prepend
+    if (current->Id() > i)
+    {
+      node->Id(i);
+      node->Next(current);
 
-	  if (current == _head)
-	    _head = node;
-	  else if (last)
-	    last->Next(node);
+      if (current == _head)
+        _head = node;
+      else if (last)
+        last->Next(node);
 
-	  return node->Id();
-	}
+      return node->Id();
+    }
 
-	i++;
-	last = current;
-	current = current->Next();
+    i++;
+    last = current;
+    current = current->Next();
       }
 
       // Append

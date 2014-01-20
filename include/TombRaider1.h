@@ -26,38 +26,38 @@ class TombRaider1
 {
 public:
 
-	TombRaider1();
+    TombRaider1();
 
-	~TombRaider1();
+    ~TombRaider1();
 
-	enum Items
+    enum Items
    {
-		Lara = 0,
-		PistolAnimation  = 1,
-		ShotgunAnimation = 2,
-		MagnumAnimation = 3,
-		LaraAlternate = 4, // Lara's home appearance, wounded, or turned to gold
-		UziAnimation = 5,
-		LaraMutant = 6,
-		Wolf = 7,
-		Bear = 8,
-		Bat = 9
-	};
+        Lara = 0,
+        PistolAnimation  = 1,
+        ShotgunAnimation = 2,
+        MagnumAnimation = 3,
+        LaraAlternate = 4, // Lara's home appearance, wounded, or turned to gold
+        UziAnimation = 5,
+        LaraMutant = 6,
+        Wolf = 7,
+        Bear = 8,
+        Bat = 9
+    };
 
-	enum WolfStates
-	{
-		WolfState_Walking   = 1,
-		WolfState_Running   = 2,
-		WolfState_Jumping   = 3,
-		WolfState_Stalking  = 5,
-		WolfState_JumpingAttack   = 6,
-		WolfState_Attacking = 7,
-		WolfState_Lying     = 8,  // down
-		WolfState_Getting   = 9,  // ready to strike
-		WolfState_RunningJump   = 10,
-		WolfState_Dying     = 11,
-		WolfState_Biting    = 12
-	};
+    enum WolfStates
+    {
+        WolfState_Walking   = 1,
+        WolfState_Running   = 2,
+        WolfState_Jumping   = 3,
+        WolfState_Stalking  = 5,
+        WolfState_JumpingAttack   = 6,
+        WolfState_Attacking = 7,
+        WolfState_Lying     = 8,  // down
+        WolfState_Getting   = 9,  // ready to strike
+        WolfState_RunningJump   = 10,
+        WolfState_Dying     = 11,
+        WolfState_Biting    = 12
+    };
 };
 
 #ifdef FIXME_DONT_COMPILE

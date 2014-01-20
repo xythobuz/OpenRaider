@@ -7,6 +7,8 @@
 
 	[ 20140120 ]
 	* Removed HAVE_SDL & HAVE_SDL_TTF flags. SDL & TTF always required!
+	* Converted all tabs to spaces (4 spaces per tab)
+	* Auto indented all cpp files
 
 	[ 20140119 ]
 	* Enabled linear texture filtering for fonts, resulting in nicer
@@ -169,7 +171,7 @@
 	[ 20030701 ]
 	* Removing OpenRaider Map use for level/music string storage
 	  ( This means if you set a map to a certain number in rc, then
-	    you can no longer call it by 'load #' )
+		you can no longer call it by 'load #' )
 	* Fixed PSKModel unit test build
 	* Fixed Hel Simulation, Spring unit test builds
 	
@@ -428,7 +430,7 @@
 
 	* TR4 pak sound reading and dumping 
 	  ( I couldn't find any paks using compression - however
-	    my algorithm can handle those that may )
+		my algorithm can handle those that may )
 	* Sound read from TR1 paks agian ( TombRaider.test can dump them )
 	* TR4 ponytail type guessing algorithm works with TR4 paks
 	  ( May not apply to all custom lara models )
@@ -1063,7 +1065,7 @@
 	* Worked on portal code (testing)
 	* Since adding quaternion camera, segfault on exit... hhmmm...
 	* Finished quaternion based camera and rendering
- 	* Planning to break mtk3d into base type classes and expand it as
+	* Planning to break mtk3d into base type classes and expand it as
 	  a library with learping functions for use in animation also  =)
 	* Started on quaternion camera and quaternion support in mtk3d
 	* TR4 sound fx postioning loader starts
@@ -1082,14 +1084,14 @@
  OpenRaider (0.0.3-20010602) Mongoose <mongoose@users.sourceforge.net>
 
 	* SDL is very slow atm ( drag ass )
-   	  You can edit Makefile to set it to use it if you want
+	  You can edit Makefile to set it to use it if you want
 	* Finished basic test SDL interface
 	* Started on item sprite loading (likes a little more, but not priority)
 	* Aren't you all gald I ditched render engine #1 now?  ;)
 	* New sprite rendering code
 	* Fixed bug that drew static room meshes twice
 	* Fixed bug that drew alpha sorted tris 3 times
-   	  (Fixes all known alpha rendering bugs)
+	  (Fixes all known alpha rendering bugs)
 	* Room sprite loading code
 	* Cleaned code, fixed some documentation
 	* Started work on Resource agent, not ready to replace old code yet
@@ -1108,7 +1110,7 @@
 	* SDL support starts back
 	* Added my old linux joystick code
 	* Basic sorted alpha poly render second pass with very small penalty
-   	  ( An all new rendering feature never in engine before )
+	  ( An all new rendering feature never in engine before )
 	* Figured out best way to sort alpha polys exp with rooms only for now
 	* SkyMesh support ( rendering/identifing ) for TR2 and TR3
 	* Static mesh rendering back ( doesn't use room lighting 
@@ -1124,7 +1126,7 @@
 	* Code clean up
 	* Item sprite and room sprite loader code about finished
 	* Finished adding my screenshot code from Freyja, and
-   	  made it produce TGAs instead of PPMs ( cmd 'S' )
+	  made it produce TGAs instead of PPMs ( cmd 'S' )
 
 
  OpenRaider (0.0.3-20010528) Mongoose <mongoose@users.sourceforge.net>
@@ -1132,14 +1134,14 @@
 	* POublic CVS Release 
 	* Vertex lighting now functional and stable in new engine
 	* Fix for TR4 water alpha via textile generator, but
-   	  some light shards are still black - might be other
-   	  alpha flags that are unknown
+	  some light shards are still black - might be other
+	  alpha flags that are unknown
 	* New level loader using _map_list
 	* New Map list RC rule
 	* Start of item sprite code in new engine
- 	* Leaving old Texture calls for compaiblity with obsolete
+	* Leaving old Texture calls for compaiblity with obsolete
 	* New textile loading by moving new code into Freyja's
-   	  TombRaider module to handle *all pixmap generation
+	  TombRaider module to handle *all pixmap generation
 	* User documentation
 
 
@@ -1149,7 +1151,7 @@
 	* Resource system back in
 	* AL init threaded off
 	* Switched order of AL and GL inits 
-   	  ( so you can have in game progess loader for loading )
+	  ( so you can have in game progess loader for loading )
 
 
  OpenRaider (0.0.3-20010526) Mongoose <mongoose@users.sourceforge.net>
@@ -1188,7 +1190,7 @@
 	* TR4 texture fixes ported from gegg
 	* Fixed segfault on texture handling
 	* Removed splash screen code completely
-   	  ( Will later use loader screens just like TR )
+	  ( Will later use loader screens just like TR )
 
 
  OpenRaider (0.0.2-20010522) Mongoose <mongoose@users.sourceforge.net>

@@ -40,19 +40,19 @@ TEST identity(vec_t init[4], int mode) {
     a.setMatrix(m);
 
     switch (mode) {
-    case 0:
-        a.setIdentity();
-        break;
-    case 1:
-        c.setIdentity();
-        b.setIdentity();
-        a = c * b;
-        break;
-    case 2:
-        a.setIdentity();
-        b.setIdentity();
-        a = a * b;
-        break;
+        case 0:
+            a.setIdentity();
+            break;
+        case 1:
+            c.setIdentity();
+            b.setIdentity();
+            a = c * b;
+            break;
+        case 2:
+            a.setIdentity();
+            b.setIdentity();
+            a = a * b;
+            break;
     }
     ASSERT(a.isIdentity());
     PASS();
@@ -95,22 +95,22 @@ TEST rotation(int axis) {
 
 TEST precision() {
     Matrix a;
-	printf("Prescision test...\n");
-	a.setIdentity();
-	printf(" -> Rotate (0, 0, 90 degrees)\n");
-	a.rotate(0, 0, 90*0.01745329251994329f);
-	printf(" -> Translate (10, 20, 30)\n");
-	a.translate(10, 20, 30);
-	printf(" -> scale (10, 10, 10)\n");
-	a.scale(10, 10, 10);
-	a.print();
-	printf("\n -> scale (0.1, 0.1, 0.1)\n");
-	a.scale(0.1, 0.1, 0.1);
-	printf(" -> Translate (-10, -20, -30)\n");
-	a.translate(-10, -20, -30);
-	printf(" -> Rotate (0, 0, -90 degrees)\n");
-	a.rotate(0, 0, -90*0.01745329251994329f);
-	a.print();
+    printf("Prescision test...\n");
+    a.setIdentity();
+    printf(" -> Rotate (0, 0, 90 degrees)\n");
+    a.rotate(0, 0, 90*0.01745329251994329f);
+    printf(" -> Translate (10, 20, 30)\n");
+    a.translate(10, 20, 30);
+    printf(" -> scale (10, 10, 10)\n");
+    a.scale(10, 10, 10);
+    a.print();
+    printf("\n -> scale (0.1, 0.1, 0.1)\n");
+    a.scale(0.1, 0.1, 0.1);
+    printf(" -> Translate (-10, -20, -30)\n");
+    a.translate(-10, -20, -30);
+    printf(" -> Rotate (0, 0, -90 degrees)\n");
+    a.rotate(0, 0, -90*0.01745329251994329f);
+    a.print();
     PASS();
 }
 

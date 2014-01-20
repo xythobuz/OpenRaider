@@ -53,7 +53,7 @@ int helIntersectionLineAndPolygon(vec3_t intersect, vec3_t p1, vec3_t p2, vec3_t
  * \param plane Plane
  * \returns distance
  */
-vec_t helDistToSphereFromPlane3v(vec3_t center,	vec_t radius, vec4_t plane);
+vec_t helDistToSphereFromPlane3v(vec3_t center, vec_t radius, vec4_t plane);
 
 /*!
  * \brief Calculate the distance from a box to a plane

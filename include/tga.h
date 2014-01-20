@@ -45,7 +45,7 @@ typedef struct mtk_image_tga_s
   unsigned char comment_lenght;       /* Number of bytes in comment */
   unsigned char colormap_type;        /* 0 No colormap; 1 Has colormap  */
   unsigned char image_type;           /* 1 Colormapped, 2 Unmapped;
-					 9 Colormapped RLE; 10 Unmapped RLE */
+                     9 Colormapped RLE; 10 Unmapped RLE */
 
   unsigned short colormap_index;      /* Index of first color map entry */
   unsigned short colormap_lenght;     /* Number of color map entries */
@@ -73,7 +73,7 @@ typedef struct mtk_image_tga_s
    ------------------------------------------------------*/
 
   int mtk_image__tga_load(FILE *f, unsigned char **image,
-			 unsigned int *width, unsigned int *height, char *type);
+             unsigned int *width, unsigned int *height, char *type);
   /*------------------------------------------------------
    * Pre  : Filename is a valid image file
    * Post : Image is either a valid pixmap or NULL
@@ -85,7 +85,7 @@ typedef struct mtk_image_tga_s
    ------------------------------------------------------*/
 
   int mtk_image__tga_save(FILE *f, unsigned char *image,
-			  unsigned int width, unsigned int height, char type);
+              unsigned int width, unsigned int height, char type);
   /*------------------------------------------------------
    * Pre  :
    * Post : Image is saved to diskfile if valid and can
@@ -98,9 +98,9 @@ typedef struct mtk_image_tga_s
 
 
   int mtk_image__tga_save_filename(unsigned char *image,
-				   unsigned int width, unsigned int height,
-				   char type,
-				   char *s, ...);
+                   unsigned int width, unsigned int height,
+                   char type,
+                   char *s, ...);
   /*------------------------------------------------------
    * Pre  :
    * Post : Image is saved to diskfile if valid and can
