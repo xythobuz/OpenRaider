@@ -33,7 +33,9 @@ On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts]
 
     sudo port install zlib cmake libsdl libsdl_ttf
 
-cmake is only needed for [freealut](https://github.com/vancegroup/freealut), which you'll need to enable sound output.
+A similar command for the package manager of your favorite Linux Distribution should do the trick.
+
+cmake is only needed to build [freealut](https://github.com/vancegroup/freealut), which you'll need to enable sound output on Mac OS X.
 Get, compile and install freealut like this:
 
     git clone git@github.com:vancegroup/freealut.git
@@ -43,7 +45,9 @@ Get, compile and install freealut like this:
     make
     sudo make install
 
-You'll also need the [XQuartz](http://xquartz.macosforge.org/trac) X11 Server.
+Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won't need to compile freealut.
+
+You'll also need the [XQuartz](http://xquartz.macosforge.org/trac) X11 Server if you're on Mac OS X, as Apple is no longer bundling their own X.
 
 ## Building
 
