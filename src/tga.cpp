@@ -17,14 +17,10 @@
 #include <memory_test.h>
 #endif
 
-
-int tga_check(FILE *f)
-{
+int tga_check(FILE *f) {
     char buffer[10];
 
-
-    if (!f)
-    {
+    if (!f) {
         perror("tga_check> Passed invalid file.\n");
         return -1;
     }
@@ -33,22 +29,17 @@ int tga_check(FILE *f)
     fseek(f, 0, SEEK_SET);
     fread(buffer, 8, 1, f);
 
-    // buffer[1] = 0 - Means not color mapped ( 1 would mean mapped )
+    // buffer[1] = 0 - Means not color mapped (1 would mean mapped)
     if (!(buffer[1] == 0 && (buffer[2] == TGA_TYPE__COLOR ||
                     //buffer[2] == TGA_TYPE__GREYSCALE ||
-                    buffer[2] == TGA_TYPE__COLOR_RLE)))
-    {
+                    buffer[2] == TGA_TYPE__COLOR_RLE))) {
         printf("tga_check> Inavlid or unknown TGA format.\n");
         return -2;
     }
-
     return 0;
 }
 
-
-int tga_load(FILE *f, unsigned char **image,
-        unsigned int *width, unsigned int *height, char *type)
-{
+int tga_load(FILE *f, unsigned char **image, unsigned int *width, unsigned int *height, char *type) {
     tga_t header;
     char comment[256];
     unsigned char pixel[4];
@@ -58,9 +49,7 @@ int tga_load(FILE *f, unsigned char **image,
     unsigned int size;
     unsigned int i, j;
 
-
-    if (!f)
-    {
+    if (!f) {
         fprintf(stderr, "tga_load> Invalid parameters.\n");
         return -1;
     }
@@ -101,19 +90,17 @@ int tga_load(FILE *f, unsigned char **image,
     *width = header.width;
     *height = header.height;
 
-    switch (header.bpp)
-    {
+    switch (header.bpp) {
         case 32:
-            *type = 2;//32;
+            *type = 2; //32;
             break;
         case 24:
-            *type = 1;//24;
+            *type = 1; //24;
             break;
         case 8:
-            *type = 0;//8;
-            break;
         default:
-            *type = 0;
+            *type = 0; //8;
+            break;
     }
 
 #ifdef DEBUG_TGA
@@ -124,78 +111,50 @@ int tga_load(FILE *f, unsigned char **image,
 #endif
 
     // Comments can be 0 - 255
-    if (header.comment_lenght)
-    {
+    if (header.comment_lenght) {
         fread(&comment, 1, header.comment_lenght, f);
-
-        for (i = 0; i < 255; ++i)
-        {
-            if (comment[i] > 32 && comment[i] < 127)
-            {
-            }
-            else
-            {
+        for (i = 0; i < 255; ++i) {
+            if (!(comment[i] > 32 && comment[i] < 127))
                 comment[i] = 183; // print a dot for invalid text
-            }
         }
-
         comment[255] = 0;
-
         printf("Comment: '%s'\n", comment);
     }
 
+    *image = NULL;
     size = header.width * header.height;
 
-    if (!size || (!(header.colormap_type == 0 &&
-                    (header.image_type == 2 || header.image_type == 10))))
-    {
+    if (!size || (!(header.colormap_type == 0 && (header.image_type == 2 || header.image_type == 10)))) {
         fprintf(stderr, "tga_load> Unknown image format.\n");
         return -2;
     }
 
-    *image = NULL;
-
     // Mongoose: Added 'screen origin bit' support back here
-    if (!(header.desc_flags & 32))
-    {
+    if (!(header.desc_flags & 32)) {
         must_flip = true;
     }
 
-    switch (header.bpp)
-    {
+    switch (header.bpp) {
         case 32:
             size *= 4;
             *image = new unsigned char [size];
-
-            switch (header.image_type)
-            {
+            switch (header.image_type) {
                 case TGA_TYPE__COLOR_RLE:
-                    for (i = 0; i < size;)
-                    {
+                    for (i = 0; i < size;) {
                         fread(&packet, 1, 1, f);
-
-                        if (packet & 0x80)  // Run Lenght
-                        {
+                        if (packet & 0x80) { // Run Length
                             packet = (packet &0x7F) + 1;
-
                             fread(&pixel, 4, 1, f);
-
-                            for (j = 0; j < packet; j++)
-                            {
+                            for (j = 0; j < packet; j++) {
                                 (*image)[i++] = pixel[2];
                                 (*image)[i++] = pixel[1];
                                 (*image)[i++] = pixel[0];
                                 (*image)[i++] = pixel[3];
                             }
-                        }
-                        else // RAW
-                        {
+                        } else { // RAW
                             packet = (packet &0x7F) + 1;
-
-                            for (j = 0; j < packet; j++)
-                            {
+                            for (j = 0; j < packet; j++) {
                                 fread(&pixel, 4, 1, f);
-
                                 (*image)[i++] = pixel[2];
                                 (*image)[i++] = pixel[1];
                                 (*image)[i++] = pixel[0];
@@ -205,15 +164,12 @@ int tga_load(FILE *f, unsigned char **image,
                     }
                     break;
                 case TGA_TYPE__COLOR:
-                    if (fread((*image), size, 1, f) < 1)
-                    {
+                    if (fread((*image), size, 1, f) < 1) {
                         fprintf(stderr, "tga_load> Image fread failed.\n");
                         delete [] *image;
                         return -4;
                     }
-
-                    for (i = 0; i < size; i += 4)
-                    {
+                    for (i = 0; i < size; i += 4) {
                         tmp = (*image)[i];
                         (*image)[i] = (*image)[i + 2];
                         (*image)[i + 2] = tmp;
@@ -222,54 +178,36 @@ int tga_load(FILE *f, unsigned char **image,
                 default:
                     ;
             }
-
-            if (must_flip)
-            {
+            if (must_flip) {
                 swap_row = new unsigned char [header.width * 4];
-
-                for (i = 0, j = header.height-1; (int)i < header.height/2; i++, j--)
-                {
+                for (i = 0, j = header.height-1; (int)i < header.height/2; i++, j--) {
                     memcpy(swap_row, &(*image)[i*header.width*4], header.width*4);
                     memcpy(&(*image)[i*header.width*4], &(*image)[j*header.width*4],
                             header.width*4);
                     memcpy(&(*image)[j*header.width*4], swap_row, header.width*4);
                 }
-
                 delete [] swap_row;
             }
             break;
         case 24:
             size *= 3;
             *image = new unsigned char [size];
-
-            switch (header.image_type)
-            {
+            switch (header.image_type) {
                 case TGA_TYPE__COLOR_RLE:
-                    for (i = 0; i < size;)
-                    {
+                    for (i = 0; i < size;) {
                         fread(&packet, 1, 1, f);
-
-                        if (packet & 0x80)  // Run Lenght
-                        {
+                        if (packet & 0x80) { // Run Length
                             packet = (packet &0x7F) + 1;
-
                             fread(&pixel, 3, 1, f);
-
-                            for (j = 0; j < packet; j++)
-                            {
+                            for (j = 0; j < packet; j++) {
                                 (*image)[i++] = pixel[2];
                                 (*image)[i++] = pixel[1];
                                 (*image)[i++] = pixel[0];
                             }
-                        }
-                        else // RAW
-                        {
+                        } else { // RAW
                             packet = (packet &0x7F) + 1;
-
-                            for (j = 0; j < packet; j++)
-                            {
+                            for (j = 0; j < packet; j++) {
                                 fread(&pixel, 3, 1, f);
-
                                 (*image)[i++] = pixel[2];
                                 (*image)[i++] = pixel[1];
                                 (*image)[i++] = pixel[0];
@@ -278,15 +216,12 @@ int tga_load(FILE *f, unsigned char **image,
                     }
                     break;
                 case TGA_TYPE__COLOR:
-                    if (fread((*image), size, 1, f) < 1)
-                    {
+                    if (fread((*image), size, 1, f) < 1) {
                         fprintf(stderr, "tga_load> Image fread failed.\n");
                         delete [] *image;
                         return -4;
                     }
-
-                    for (i = 0; i < size; i += 3)
-                    {
+                    for (i = 0; i < size; i += 3) {
                         tmp = (*image)[i];
                         (*image)[i] = (*image)[i + 2];
                         (*image)[i + 2] = tmp;
@@ -295,22 +230,16 @@ int tga_load(FILE *f, unsigned char **image,
                 default:
                     ;
             }
-
-            if (must_flip)
-            {
+            if (must_flip) {
                 swap_row = new unsigned char [header.width * 3];
-
-                for (i = 0, j = header.height - 1; (int)i < header.height / 2; i++, j--)
-                {
+                for (i = 0, j = header.height - 1; (int)i < header.height / 2; i++, j--) {
                     memcpy(swap_row, &(*image)[i*header.width*3], header.width*3);
                     memcpy(&(*image)[i*header.width*3], &(*image)[j*header.width*3],
                             header.width*3);
                     memcpy(&(*image)[j*header.width*3], swap_row, header.width*3);
                 }
-
                 delete [] swap_row;
             }
-
             break;
         case 8:
             printf("tga_load> 8bpp Not implemented\n");
@@ -321,39 +250,29 @@ int tga_load(FILE *f, unsigned char **image,
 
 #ifdef DEBUG_TGA
     char c;
-
-    printf("Comment:\n");
-
-    while (fread(&c, 1, 1, f) == 1)
-    {
+    printf("TGA Comment: ");
+    while (fread(&c, 1, 1, f) == 1) {
         printf("%c", c);
     }
-
     printf("\n");
 #endif
 
     return 0;
 }
 
-
-int tga_save(FILE *f, unsigned char *image,
-        unsigned int width, unsigned int height, char type)
-{
+int tga_save(FILE *f, unsigned char *image, unsigned int width, unsigned int height, char type) {
     tga_t header;
     unsigned int size;
-    //  unsigned int i;
-    //  unsigned char tmp;
     char comment[64];
+    //unsigned int i;
+    //unsigned char tmp;
 
-
-    if (!f || !image || !width || !height)
-    {
+    if (!f || !image || !width || !height) {
         fprintf(stderr, "tga_save> Invalid parameters.\n");
         return -1;
     }
 
-    // Mongoose 2002.01.10, Heh, kind of silly
-    strncpy(comment, "Mongoose TGA 20030711", 63);
+    strncpy(comment, "OpenRaider TGA", 63);
     comment[63] = 0;
 
     header.comment_lenght = strlen(comment);
@@ -370,8 +289,7 @@ int tga_save(FILE *f, unsigned char *image,
 
     header.desc_flags = 0;
 
-    switch (type)
-    {
+    switch (type) {
         case 4:
             header.image_type = TGA_TYPE__COLOR;
             header.desc_flags = 32;
@@ -406,10 +324,7 @@ int tga_save(FILE *f, unsigned char *image,
     // Write comment
     fwrite(&comment, 1, header.comment_lenght, f);
 
-    size = header.width * header.height;
-
-    switch (header.bpp)
-    {
+    switch (header.bpp) {
         case 32:
             size = header.width * header.height * 4;
 
@@ -431,47 +346,34 @@ int tga_save(FILE *f, unsigned char *image,
             //}
             break;
         case 8:
+        default:
             size = header.width * header.height;
             break;
     }
 
     // Write image data
-    if (fwrite(image, size, 1, f) < 1)
-    {
+    if (fwrite(image, size, 1, f) < 1) {
         perror("tga_save> Disk write failed.\n");
         return -2;
     }
-
     return 0;
 }
 
-
-int tga_save_filename(unsigned char *image,
-        unsigned int width, unsigned int height,
-        char type,
-        char *s, ...)
-{
+int tga_save_filename(unsigned char *image, unsigned int width, unsigned int height, char type, char *s, ...) {
     char buffer[1024];
     FILE *f;
     int v;
     va_list args;
-
-
     va_start(args, s);
     vsnprintf(buffer, 1023, s, args);
     va_end(args);
-
     f = fopen(buffer, "wb");
-
-    if (!f)
-    {
+    if (!f) {
         perror(buffer);
         return -1;
     }
-
     v = tga_save(f, image, width, height, type);
     fclose(f);
-
     return v;
 }
 
