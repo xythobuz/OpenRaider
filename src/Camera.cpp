@@ -1,36 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file src/Camera.cpp
+ * \brief OpenGL camera class
  *
- * Project : Freyja
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Camera
- * License : No use w/o permission (C) 2001 Mongoose
- * Comments: OpenGL camera class for Freyja
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2002.12.16:
- * Mongoose - Removed perspective setting and OpenGL dependency
- *            API changes to reflect new direction of this object:
- *              Removing outdated algorithms and code
- *              And refactoring the class in general
- *
- * 2001.06.06:
- * Mongoose - Moving GLU code into here to setup break up
- *            into Camera base class, DynamicCamera,
- *            and GLUCamera child classes
- *
- * 2001.06.04:
- * Mongoose - Quaternion based compile option
- *
- * 2001.05.18:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #include <stdio.h>
 #include <math.h>

@@ -1,18 +1,43 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/Camera.h
+ * \brief OpenGL camera class
  *
- * Project : Hel
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Camera
- * License : No use w/o permission (C) 2001 Mongoose
- * Comments: OpenGL camera class for Freyja
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
+ * \author Mongoose
+ */
+#ifndef _CAMERA_H_
+#define _CAMERA_H_
+
+#include <MatMath.h>
+#include <Matrix.h>
+#include <Quaternion.h>
+
+/*!
+ * \brief Commands for interactive camera control
+ */
+enum camera_command {
+  CAMERA_MOVE_FORWARD = 1,
+  CAMERA_MOVE_BACKWARD,
+  CAMERA_MOVE_UP,
+  CAMERA_MOVE_DOWN,
+  CAMERA_ROTATE_RIGHT,
+  CAMERA_ROTATE_LEFT,
+  CAMERA_SPEED_UP,
+  CAMERA_SPEED_DOWN,
+  CAMERA_ROTATE_UP,
+  CAMERA_ROTATE_DOWN,
+  CAMERA_MOVE_LEFT,
+  CAMERA_MOVE_RIGHT
+};
+
+/*!
+ * \brief Flags a camera can have
+ */
+enum CameraFlags {
+    Camera_FlyMode = (1 << 0) //!< Camera is flying free?
+};
+
+/*!
+ * \brief OpenGL camera class
  *
  * 2002.12.16:
  * Mongoose - Removed perspective setting and OpenGL dependency
@@ -32,128 +57,53 @@
  * Mongoose - Created, based on my old GL camera code
  *            that has been used in GooseEgg since alpha
  *            and algorithms from Yuri Zhivago's trview
- ================================================================*/
-
-
-#ifndef _CAMERA_H_
-#define _CAMERA_H_
-
-#include <MatMath.h>
-#include <Matrix.h>
-#include <Quaternion.h>
-
-enum camera_command                /* Interactive camera control */
-{
-  CAMERA_MOVE_FORWARD = 1,
-  CAMERA_MOVE_BACKWARD,
-  CAMERA_MOVE_UP,
-  CAMERA_MOVE_DOWN,
-  CAMERA_ROTATE_RIGHT,
-  CAMERA_ROTATE_LEFT,
-  CAMERA_SPEED_UP,
-  CAMERA_SPEED_DOWN,
-  CAMERA_ROTATE_UP,
-  CAMERA_ROTATE_DOWN,
-  CAMERA_MOVE_LEFT,
-  CAMERA_MOVE_RIGHT
-};
-
-enum CameraFlags
-{
-    Camera_FlyMode = 1
-};
-
-
-class Camera
-{
- public:
-
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
-
+ */
+class Camera {
+public:
+    /*!
+     * \brief Constructs an object of Camera
+     */
     Camera();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of Camera
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Deconstructs an object of Camera
+     */
     ~Camera();
-    /*------------------------------------------------------
-     * Pre  : Camera object is allocated
-     * Post : Deconstructs an object of Camera
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Get this cameras ID
+     * \returns id
+     */
     unsigned int getId();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns this camera's id
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Returns the current position
+     * \param pos where the position will be stored
+     */
     void getPosition(vec3_t pos);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns current position
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Returns the up vector
+     * \param up where the up vector will be stored
+     */
     void getUp(vec3_t up);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns up vector
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get the target currently looked at
+     * \param target where the target will be stored
+     */
     void getTarget(vec3_t target);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns target ( look at pos )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get current yaw in degrees
+     * \returns yaw in degrees
+     */
     float getYaw();
-    /*------------------------------------------------------
-     * Pre  : Get current yaw in degrees
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.22:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get angle/yaw of camera
+     * \returns theta angle/yaw of camera
+     */
     double getRadianYaw();
     /*------------------------------------------------------
      * Pre  :
@@ -165,206 +115,111 @@ class Camera
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get current angle/pitch
+     * \returns current pitch in degrees
+     */
     float getPitch();
-    /*------------------------------------------------------
-     * Pre  : Get current pitch in degrees
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.22:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get angle/pitch of camera
+     * \returns phi angle/pitch of camera
+     */
     double getRadianPitch();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns phi angle/pitch of camera
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.26:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Check if the coordinate is behind camera eye
+     * \param x X coordinate to check
+     * \param z Z coordinate to check
+     * \returns true if (x, z) is behind camera eye
+     */
     bool isBehind(int x, int z);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns true if (x, z) is behind camera eye
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.26:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Rotate the camera
+     * \param angle angle in radians
+     * \param x X coordinate of axis
+     * \param y Y coordinate of axis
+     * \param z Z coordinate of axis
+     */
     void rotate(float angle, float x, float y, float z);
-    /*------------------------------------------------------
-     * Pre  : x,y,z axis; angle in radians
-     * Post : Rotates camera
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.04:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Set Camera position
+     * \param x new X coordinate
+     * \param y new Y coordinate
+     * \param z new Z coordinate
+     */
     void translate(float x, float y, float z);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Camera position is set to x,y,z
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Set the Camera to its initial state
+     */
     void reset();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Camera is set to inital state
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Sets the X rotation delta
+     * \param angle thetas rotation delta in degrees
+     */
     void setSensitivityX(float angle);
-    /*------------------------------------------------------
-     * Pre  : angle is theta's rotation delta in degrees
-     * Post : Sets rotation delta
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.04:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Sets the Y rotation delta
+     * \param angle thetas rotation delta in degrees
+     */
     void setSensitivityY(float angle);
-    /*------------------------------------------------------
-     * Pre  : angle is theta's rotation delta in degrees
-     * Post : Sets rotation delta
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.04:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Sends interactive command to camera
+     * \param cmd valid camera command
+     */
     void command(enum camera_command cmd);
-    /*------------------------------------------------------
-     * Pre  : Command is valid camera command
-     * Post : Sends interactive command to camera
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-   void setSpeed(float s);
-   /*------------------------------------------------------
-    * Pre  : s is 256 or greater in general
-    * Post : Sets 'speed'
-    *
-    *-- History ------------------------------------------
-    *
-    * 2002.01.02:
-    * Mongoose - Created
-    ------------------------------------------------------*/
+    /*!
+     * \brief Sets speed
+     * \param s new speed, is 256 or greater in general
+     */
+    void setSpeed(float s);
 
+    /*!
+     * \brief Updates view target
+     */
     void update();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Updates view target
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Set current position
+     * \param pos new position
+     */
     void setPosition(vec3_t pos);
-    /*------------------------------------------------------
-     * Pre  : Set current position
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Sets the up vector
+     * \param up new up vector
+     */
     void setUp(vec3_t up);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets up vector
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Sets target (look at pos)
+     * \param target new target
+     */
     void setTarget(vec3_t target);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets target ( look at pos )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
- private:
-
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
-
-    unsigned int mId;           /* Unquie id */
-
-    Quaternion mQ;              /* Quaternion for rotation */
-
-    unsigned int mFlags;        /* For testing with flags  */
-
-    double mPos[4];             /* Location in 3 space (aka eye) */
-
-    double mTarget[4];          /* Postition we're looking at  */
-
-    double mUp[4];              /* Up vector  */
-
-    double mSide[4];            /* Side vector  */
-
-    double mViewDistance;      /* Distance from target */
-
-    double mTranslateDelta;    /* Step size to move */
-
-    double mRotateDelta;       /* Radians to rotate  Y */
-
-    double mTheta;              /* View angle  Y */
-
-    double mRotateDelta2;      /* Radians to rotate  Z */
-
-    double mTheta2;             /* View angle  Z */
-
-    bool mUpdate;               /* Check to see if view needs updating */
-
-    static unsigned int mCounter;   /* Id system use */
+private:
+    unsigned int mId;             //!< Unique id
+    Quaternion mQ;                //!< Quaternion for rotation
+    unsigned int mFlags;          //!< For testing with flags
+    double mPos[4];               //!< Location in 3 space (aka eye)
+    double mTarget[4];            //!< Postition we're looking at
+    double mUp[4];                //!< Up vector
+    double mSide[4];              //!< Side vector
+    double mViewDistance;         //!< Distance from target
+    double mTranslateDelta;       //!< Step size to move
+    double mRotateDelta;          //!< Radians to rotate Y
+    double mTheta;                //!< View angle Y
+    double mRotateDelta2;         //!< Radians to rotate Z
+    double mTheta2;               //!< View angle Z
+    bool mUpdate;                 //!< Check to see if view needs updating
+    static unsigned int mCounter; //!< Id system use
 };
 
 #endif

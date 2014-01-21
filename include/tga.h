@@ -29,19 +29,18 @@ typedef enum {
  * \brief Data structure representing TGA file header
  */
 typedef struct {
-    unsigned char comment_lenght;       /*!< Number of bytes in comment */
-    unsigned char colormap_type;        /*!< 0 No colormap; 1 Has colormap  */
-    unsigned char image_type;           /*!< 1 Colormapped; 2 Unmapped;
-                                             9 Colormapped RLE; 10 Unmapped RLE */
-    unsigned short colormap_index;      /*!< Index of first color map entry */
-    unsigned short colormap_lenght;     /*!< Number of color map entries */
-    unsigned char colormap_bbp;         /*!< 16, 24, or 32 bits per pixel format */
-    unsigned short origin_x;            /*!< X coor of lower-left corner */
-    unsigned short origin_y;            /*!< Y coor of lower-left corner */
-    unsigned short width;               /*!< Width in pixels */
-    unsigned short height;              /*!< Height in pixels */
-    unsigned char bpp;                  /*!< Number of bits in a pixel index */
-    unsigned char desc_flags;           /*!< Various magic bits */
+    unsigned char comment_lenght;       //!< Number of bytes in comment
+    unsigned char colormap_type;        //!< 0 No colormap; 1 Has colormap
+    unsigned char image_type;           //!< 1 Colormapped; 2 Unmapped; 9 Colormapped RLE; 10 Unmapped RLE
+    unsigned short colormap_index;      //!< Index of first color map entry
+    unsigned short colormap_lenght;     //!< Number of color map entries
+    unsigned char colormap_bbp;         //!< 16, 24, or 32 bits per pixel format
+    unsigned short origin_x;            //!< X coor of lower-left corner
+    unsigned short origin_y;            //!< Y coor of lower-left corner
+    unsigned short width;               //!< Width in pixels
+    unsigned short height;              //!< Height in pixels
+    unsigned char bpp;                  //!< Number of bits in a pixel index
+    unsigned char desc_flags;           //!< Various magic bits
 } tga_t;
 
 /*!

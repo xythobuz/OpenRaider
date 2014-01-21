@@ -1,23 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file src/SkeletalModel.cpp
+ * \brief This is the factored out skeletal model class
  *
- * Project : OpenRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : SkeletalModel
- * License : No use w/o permission (C) 2003 Mongoose
- * Comments: This is the factored out skeletal model class
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2003.05.19:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #include <SkeletalModel.h>
 
