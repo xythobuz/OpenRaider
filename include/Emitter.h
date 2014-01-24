@@ -1,292 +1,179 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/Emitter.h
+ * \brief Particle emitter class.
  *
- * Project : Freyja
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Emitter
- * License : No use w/o permission (C)2001Mongoose
- * Comments: Particle emitter for freyja
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2001.08.13:
- * Mongoose - Now using new Particle class!
- *
- * 2001.06.30:
- * Mongoose - Created
- ================================================================*/
-
+ * \author Mongoose
+ */
 
 #ifndef _EMITTER_H_
 #define _EMITTER_H_
 
 #include <Particle.h>
 
+/*!
+ * \brief Particle emitter class.
+ */
+class Emitter {
+public:
 
-class Emitter
-{
- public:
-
-    typedef enum
-    {
-        fUseFrustumCulling = 1,
-        fUseDepthSorting = 2
+    /*!
+     * \brief Flags an Emitter can have
+     */
+    typedef enum {
+        fUseFrustumCulling = (1 << 0), //!< Use frustum culling
+        fUseDepthSorting   = (1 << 1)  //!< Use depth sorting
     } EmitterFlags;
 
 
-  Emitter(const char *name, int n);
-  /*------------------------------------------------------
-   * Pre  : name is a valid C string
-    *        n is a number greater than 0
-    *
-   * Post : Constructs an object of Emitter
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.06.30:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Constructs an object of Emitter
+     * \param name valid C string
+     * \param n greater than 0
+     */
+    Emitter(const char *name, int n);
 
-  ~Emitter();
-  /*------------------------------------------------------
-   * Pre  : Emitter object is allocated
-   * Post : Deconstructs an object of Emitter
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.06.30:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Deconstructs an object of Emitter
+     */
+    ~Emitter();
 
-   Particle *Particles();
-  /*------------------------------------------------------
-   * Pre  :
-   * Post : Returns particle array
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.14:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Get the particles
+     * \returns array of Particles
+     */
+    Particle *Particles();
 
-  int Count();
-  /*------------------------------------------------------
-   * Pre  :
-   * Post : Returns number of particles emitted
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.14:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Number of particles emitted
+     * \returns Number of particles emitted
+     */
+    int Count();
 
-  void Pos(float x, float y, float z);
-  /*------------------------------------------------------
-   * Pre  : x,y,z exist
-   * Post : Sets position of emitter in 3 space
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.13:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Sets position of emitter in 3D space
+     * \param x X coordinate
+     * \param y Y coordinate
+     * \param z Z coordinate
+     */
+    void Pos(float x, float y, float z);
 
-  void Pos(float *x, float *y, float *z);
-  /*------------------------------------------------------
-   * Pre  : x,y,z exist
-   * Post : Returns position of emitter in 3 space
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.13:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Returns position of emitter in 3D space
+     * \param x Where X coordinate will be stored
+     * \param y Where Y coordinate will be stored
+     * \param z Where Z coordinate will be stored
+     */
+    void Pos(float *x, float *y, float *z);
 
+    /*!
+     * \brief Sets orientation of emitter in 3D space
+     * \param x X coordinate
+     * \param y Y coordinate
+     * \param z Z coordinate
+     */
     void Orientation(float x, float y, float z);
-  /*------------------------------------------------------
-   * Pre  : x,y,z exist
-   * Post : Sets orientation of emitter in 3 space
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.13:
-   * Mongoose - Created
-   ------------------------------------------------------*/
 
+    /*!
+     * \brief Returns orientation of emitter in 3D space
+     * \param x Where X coordinate will be stored
+     * \param y Where Y coordinate will be stored
+     * \param z Where Z coordinate will be stored
+     */
     void Orientation(float *x, float *y, float *z);
-  /*------------------------------------------------------
-   * Pre  : x,y,z exist
-   * Post : Returns orientation of emitter in 3 space
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.13:
-   * Mongoose - Created
-   ------------------------------------------------------*/
 
-  unsigned int Flags();
-  /*------------------------------------------------------
-   * Pre  :
-   * Post : Returns emitter flags
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.14:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Get the flags of this Emitter
+     * \returns EmitterFlags
+     */
+    unsigned int Flags();
 
+    /*!
+     * \brief Set or Unset a flag
+     * \param flag EmitterFlag to change
+     * \param op new state (true - set)
+     */
+    void Flags(unsigned int flag, bool op);
 
-  void Flags(unsigned int flag, bool op);
-  /*------------------------------------------------------
-   * Pre  :
-   * Post : Set and Unset flag with op
-    *
-    *          true - set
-    *          flase - unset
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.14:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Allocates the particle array and sets the count.
+     * If the array has been allocated previously it will be
+     * deallocated and a new one made.
+     * \param n new size, greater than 0
+     */
+    void ParticleArray(int n);
 
-  void ParticleArray(int n);
-  /*------------------------------------------------------
-   * Pre  : n is a number greater than 0
-   * Post : Allocates the particle array and sets the count.
-    *        If the array has been allocated previously, then
-    *        the array is deallocated and a new one made.
-    *
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.13:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Renders the particles
+     */
+    void Draw();
 
-  void Draw();
-  /*------------------------------------------------------
-   * Pre  :
-   * Post : Renders particles
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.06.30:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Sets the emitters name
+     * \param name is a valid C string
+     */
+    void Name(const char *name);
 
-  void Name(const char *name);
-  /*------------------------------------------------------
-   * Pre  : name is a valid C string
-   * Post : Sets the emitters name
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.13:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Resets all particle texture ids
+     * \param id new id
+     * \sa Particle::TextureId()
+     */
+    void SetTextureId(int id);
 
-  void SetTextureId(int id);
-  /*------------------------------------------------------
-   * Pre  :
-   * Post : Resets all particle texture ids
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.13:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Set the texture id for a range of particles in the array
+     * \param particle_start start of range
+     * \param particle_end end of range
+     * \param id new id
+     * \sa Particle::TextureId()
+     */
+    void TextureId(unsigned int particle_start, unsigned int particle_end, int id);
 
-  void TextureId(unsigned int particle_start, unsigned int particle_end,
-                      int id);
-  /*------------------------------------------------------
-   * Pre  : particle_start and particle_end are a valid
-    *        range of particles in the array
-    *
-    *        id is a valid texture id
-    *
-   * Post :
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.14:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Set the color of a range of particles in the array
+     * \param particle_start start of range
+     * \param particle_end end of range
+     * \param r new red part of color (0.0 to 1.0)
+     * \param g new green part of color (0.0 to 1.0)
+     * \param b new blue part of color (0.0 to 1.0)
+     * \sa Particle::Color()
+     */
+    void Color(unsigned int particle_start, unsigned int particle_end, float r, float g, float b);
 
-  void Color(unsigned int particle_start, unsigned int particle_end,
-                 float r, float g, float b);
-  /*------------------------------------------------------
-   * Pre  : particle_start and particle_end are a valid
-    *        range of particles in the array
-    *
-    *        r,g,b are colors 0.0 to 1.0
-    *
-   * Post :
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.14:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Set the speed of a range of particles in the array.
+     * Take note that the speed starts out at 2000, and lower means faster.
+     * \param particle_start start of range
+     * \param particle_end end of range
+     * \param x X speed
+     * \param y Y speed
+     * \param z Z speed
+     * \sa Particle::Speed
+     */
+    void Speed(unsigned int particle_start, unsigned int particle_end, float x, float y, float z);
 
-  void Speed(unsigned int particle_start, unsigned int particle_end,
-                 float x, float y, float z);
-  /*------------------------------------------------------
-   * Pre  : particle_start and particle_end are a valid
-    *        range of particles in the array
-    *
-    *        take note speed inits at 2000, lower is faster
-    *
-   * Post :
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.14:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    /*!
+     * \brief Let a force (eg. Gravity) act on a range of particles in the array
+     * \param particle_start start of range
+     * \param particle_end end of range
+     * \param x X force
+     * \param y Y force
+     * \param z Z force
+     * \sa Particle::Force()
+     */
+    void Force(unsigned int particle_start, unsigned int particle_end, float x, float y, float z);
 
-  void Force(unsigned int particle_start, unsigned int particle_end,
-                 float x, float y, float z);
-  /*------------------------------------------------------
-   * Pre  : particle_start and particle_end are a valid
-    *        range of particles in the array
-    *
-    *        Force/Gravity acting on particles
-    *
-   * Post :
-   *
-   *-- History ------------------------------------------
-   *
-   * 2001.08.14:
-   * Mongoose - Created
-   ------------------------------------------------------*/
+    static vec_t mFrustum[6][4]; //!< View Volume copy
 
-
-    static vec_t mFrustum[6][4]; /* View Volume copy */
-
-
- private:
-
+private:
     static int compareParticleDist(const void *voidA, const void *voidB);
 
-
-    char *_name;              /* Emitter name */
-
-    unsigned int _flags;      /* Emitter flags */
-
-    vec3_t _pos;              /* Position in 3 space */
-
-    vec3_t _mangle;           /* Oreintation in 3 space */
-
-    Particle *_particle;      /* Array of particles */
-
-    unsigned int _count;      /* Particle count */
+    char *_name;         //!< Emitter name
+    unsigned int _flags; //!< Emitter flags
+    vec3_t _pos;         //!< Position in 3D space
+    vec3_t _mangle;      //!< Oreintation in 3D space
+    Particle *_particle; //!< Array of particles
+    unsigned int _count; //!< Particle count
 };
 
 #endif
