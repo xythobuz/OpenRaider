@@ -1,381 +1,213 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/Matrix.h
+ * \brief 3D Matrix
  *
- * Project : Freyja
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Matrix
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 3d Matrix in class form
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2003.06.17:
- * Mongoose - Now in column order to match OpenGL user needs,
- *            use transpose() to get row order back  =)
- *
- * 2002.05.11:
- * Mongoose - Created, based on my mtk3d matrix
- ================================================================*/
-
+ * \author Mongoose
+ */
 
 #ifndef _MATRIX_H_
 #define _MATRIX_H_
-
 
 #include <MatMath.h>
 #include <Quaternion.h>
 #include <Vector3d.h>
 
-    ///////////////////////////////////////////////
-    // Multidim map for row order encoding       //
-    ///////////////////////////////////////////////
-    // 0,0 - 0;   0,1 - 1;   0,2 - 2;   0,3 - 3  //
-    // 1,0 - 4;   1,1 - 5;   1,2 - 6;   1,3 - 7  //
-    // 2,0 - 8;   2,1 - 9;   2,2 - 10;  2,3 - 11 //
-    // 3,0 - 12;  3,1 - 13;  3,2 - 14;  3,3 - 15 //
-    ///////////////////////////////////////////////
 
-    ///////////////////////////////////////////////
-    // Multidim map for column order encoding    //
-    ///////////////////////////////////////////////
-    // 0,0 - 0;   0,1 - 4;   0,2 - 8;   0,3 - 12 //
-    // 1,0 - 1;   1,1 - 5;   1,2 - 9;   1,3 - 13 //
-    // 2,0 - 2;   2,1 - 6;   2,2 - 10;  2,3 - 14 //
-    // 3,0 - 3;   3,1 - 7;   3,2 - 11;  3,3 - 15 //
-    ///////////////////////////////////////////////
+/*!
+ * \brief 3D Matrix
+ *
+ * Multidim map for row order encoding
+ *
+ *     ///////////////////////////////////////////////
+ *     // 0,0 - 0;   0,1 - 1;   0,2 - 2;   0,3 - 3  //
+ *     // 1,0 - 4;   1,1 - 5;   1,2 - 6;   1,3 - 7  //
+ *     // 2,0 - 8;   2,1 - 9;   2,2 - 10;  2,3 - 11 //
+ *     // 3,0 - 12;  3,1 - 13;  3,2 - 14;  3,3 - 15 //
+ *     ///////////////////////////////////////////////
+ *
+ * Multidim map for column order encoding
+ *
+ *     ///////////////////////////////////////////////
+ *     // 0,0 - 0;   0,1 - 4;   0,2 - 8;   0,3 - 12 //
+ *     // 1,0 - 1;   1,1 - 5;   1,2 - 9;   1,3 - 13 //
+ *     // 2,0 - 2;   2,1 - 6;   2,2 - 10;  2,3 - 14 //
+ *     // 3,0 - 3;   3,1 - 7;   3,2 - 11;  3,3 - 15 //
+ *     ///////////////////////////////////////////////
+ */
+class Matrix {
+public:
 
-
-class Matrix
-{
- public:
-
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Constructs an object of Matrix
+     */
     Matrix();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of Matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.11:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Constructs an object of Matrix
+     * \param mat Matrix as data source
+     */
     Matrix(matrix_t mat);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of Matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.11:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Constructs an object of Matrix
+     * \param q Converts and assigns the Quaternion to the Matrix
+     */
     Matrix(Quaternion &q);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Converts and asigns Q to a Matrix
-     *        returns quaternion as Matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Deconstructs an object of Matrix
+     */
     ~Matrix();
-    /*------------------------------------------------------
-     * Pre  : Matrix object is allocated
-     * Post : Deconstructs an object of Matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.11:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Returns this matrix copy
+     * \param mat target
+     */
     void getMatrix(matrix_t mat);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns this matrix copy
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Returns this matrix transposed
+     * \param mat target
+     */
     void getTransposeMatrix(matrix_t mat);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns this matrix transposed
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Returns this matrix inverted
+     * \param mat target
+     */
     bool getInvert(matrix_t mat);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns this matrix inverted
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Multiplies two matrices
+     * \param a first matrix
+     * \param b second matrix
+     * \returns resultant matrix
+     */
     Matrix multiply(const Matrix &a, const Matrix &b);
-    /*------------------------------------------------------
-     * Pre  : Multiplies 2 matrices
-     * Post : Returns resultant matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Multiplies v vector and this matrix
+     * \param v double[4] vector
+     * \param result where the result will be stored, may be same as v
+     */
     void multiply4d(double *v, double *result);
-    /*------------------------------------------------------
-     * Pre  : Multiplies <V> vector (double[4]) and <This> matrix
-     *
-     * Post : Returns <Result> vector,
-     *        <V> and <Result> maybe be the same vector
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Multiplies v vector and this matrix
+     * \param v vector
+     * \param result where the result will be stored, may be same as v
+     */
     void multiply4v(vec4_t v, vec4_t result);
-    /*------------------------------------------------------
-     * Pre  : Multiplies <V> vector and <This> matrix
-     *
-     * Post : Returns <Result> vector,
-     *        <V> and <Result> maybe be the same vector
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Multiplies v vector and this matrix
+     * \param v vector
+     * \param result where the result will be stored, may be same as v
+     */
     void multiply3v(vec3_t v, vec3_t result);
-    /*------------------------------------------------------
-     * Pre  : Multiplies <V> vector and <This> matrix
-     *
-     * Post : Returns <Result> vector,
-     *        <V> and <Result> maybe be the same vector
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Prints matrix values to stdout
+     */
     void print();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Prints matrix values to stdout
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Is this matrix the identity matrix?
+     * \returns true if it is identity, false otherwise
+     */
     bool isIdentity();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Is this matrix the identity matrix?
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Multiplies a and this matrix
+     * \param a matrix to multiply with
+     * \returns resultant matrix
+     */
     Matrix operator *(const Matrix &a);
-    /*------------------------------------------------------
-     * Pre  : Multiplies A and this matrices
-     * Post : Returns resultant matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Multiply vector by this matrix
+     * \param v Vector to multiply with
+     * \returns resultant vector (mult)
+     */
     Vector3d operator *(Vector3d v);
-    /*------------------------------------------------------
-     * Pre  : <V> is vector to multiply by this matrix
-     * Post : Returns resultant vector ( mult )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Sets to identity matrix
+     */
     void setIdentity();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets to identity matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief S et the matrix
+     * \fixme dangerous, scary, boo!
+     * \param mat new matrix
+     */
     void setMatrix(matrix_t mat);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Set the matrix ( dangerous, scary boo )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Rotate object in 3D space
+     * \param x x rotation in radians
+     * \param y y rotation in radians
+     * \param z z rotation in radians
+     */
     void rotate(vec_t x, vec_t y, vec_t z);
-    /*------------------------------------------------------
-     * Pre  : Radian input
-     * Post : Rotates object in 3 space
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Rotate object in 3D space
+     * \param xyz rotation in radians
+     */
     void rotate(const vec_t *xyz);
-    /*------------------------------------------------------
-     * Pre  : Rotates object in 3 space, Radian input
-     * Post : Returns true on sucess
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Scale object in 3D space
+     * \param x x scaling
+     * \param y y scaling
+     * \param z z scaling
+     */
     void scale(vec_t x, vec_t y, vec_t z);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Scales object in 3 space
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Scale object in 3D space
+     * \param xyz scaling factors
+     */
     void scale(const vec_t *xyz);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Scales object in 3 space
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Translate (move) object in 3D space
+     * \param x x translation
+     * \param y y translation
+     * \param z z translation
+     */
     void translate(vec_t x, vec_t y, vec_t z);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Translates ( moves ) object in 3 space
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Translate (move) object in 3D space
+     * \param xyz translations
+     */
     void translate(const vec_t *xyz);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Translates ( moves ) object in 3 space
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Transpose this matrix
+     */
     void transpose();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Transpose this matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-    matrix_t mMatrix;      /* Data model, moved public for faster
-                                      external renderer feedback use */
+    matrix_t mMatrix; //!< Data model, moved public for faster external renderer feedback use
 
- private:
+private:
 
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Copys value from source to dest
+     * \param source source
+     * \param dest destination
+     */
     void copy(matrix_t source, matrix_t dest);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Copys value of source to dest
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Multiplies matrices a and b. Neither a or b is also the result.
+     * \param a first matrix
+     * \param b second matrix
+     * \param result wil be set to resultant matrix value
+     */
     void multiply(const matrix_t a, const matrix_t b, matrix_t result);
-    /*------------------------------------------------------
-     * Pre  : Multiplies matrices a and b
-     *        Neither a or b is also the result
-     *
-     * Post : Sets resultant matrix value ( result )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 };
 
 #endif

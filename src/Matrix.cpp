@@ -1,45 +1,24 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file src/Matrix.cpp
+ * \brief 3D Matrix
  *
- * Project : Freyja
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Matrix
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments: 3d Matrix class
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2002.05.11:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #include <stdio.h>
 #include <math.h>
 
 #include <Matrix.h>
 
-
-////////////////////////////////////////////////////////////
-// Constructors
-////////////////////////////////////////////////////////////
-
 Matrix::Matrix()
 {
     setIdentity();
 }
 
-
 Matrix::Matrix(matrix_t m)
 {
     setMatrix(m);
 }
-
 
 Matrix::Matrix(Quaternion &q)
 {
@@ -50,16 +29,9 @@ Matrix::Matrix(Quaternion &q)
     setMatrix(m);
 }
 
-
 Matrix::~Matrix()
 {
 }
-
-
-////////////////////////////////////////////////////////////
-// Public Accessors
-////////////////////////////////////////////////////////////
-
 
 bool Matrix::getInvert(matrix_t out)
 {
@@ -189,12 +161,10 @@ bool Matrix::getInvert(matrix_t out)
 #undef SWAP_ROWS
 }
 
-
 void Matrix::getMatrix(matrix_t mat)
 {
     copy(mMatrix, mat);
 }
-
 
 void Matrix::getTransposeMatrix(matrix_t m)
 {
@@ -204,28 +174,23 @@ void Matrix::getTransposeMatrix(matrix_t m)
     m[12]= mMatrix[3]; m[13]= mMatrix[7]; m[14]= mMatrix[11]; m[15]=mMatrix[15];
 }
 
-
 Matrix Matrix::multiply(const Matrix &a, const Matrix &b)
 {
     Matrix c;
-
 
     multiply(a.mMatrix, b.mMatrix, c.mMatrix);
 
     return c;
 }
 
-
 Matrix Matrix::operator *(const Matrix &a)
 {
     return multiply(a, *this);
 }
 
-
 Vector3d Matrix::operator *(Vector3d v)
 {
     vec_t x = v.mVec[0], y = v.mVec[1], z = v.mVec[2];
-
 
 #ifdef COLUMN_ORDER
     // Column order
@@ -240,41 +205,34 @@ Vector3d Matrix::operator *(Vector3d v)
 #endif
 }
 
-
 void Matrix::multiply3v(vec3_t v, vec3_t result)
 {
     vec_t x = v[0], y = v[1], z = v[2];
-
 
     result[0] = mMatrix[0]*x + mMatrix[1]*y + mMatrix[ 2]*z + mMatrix[ 3];
     result[1] = mMatrix[4]*x + mMatrix[5]*y + mMatrix[ 6]*z + mMatrix[ 7];
     result[2] = mMatrix[8]*x + mMatrix[9]*y + mMatrix[10]*z + mMatrix[11];
 }
 
-
 void Matrix::multiply4d(double *v, double *result)
 {
     double x = v[0], y = v[1], z = v[2], w = v[3];
-
 
     result[0] = mMatrix[ 0]*x + mMatrix[ 1]*y + mMatrix[ 2]*z + mMatrix[ 3]*w;
     result[1] = mMatrix[ 4]*x + mMatrix[ 5]*y + mMatrix[ 6]*z + mMatrix[ 7]*w;
     result[2] = mMatrix[ 8]*x + mMatrix[ 9]*y + mMatrix[10]*z + mMatrix[11]*w;
     result[3] = mMatrix[12]*x + mMatrix[13]*y + mMatrix[14]*z + mMatrix[15]*w;
 }
-
 
 void Matrix::multiply4v(vec4_t v, vec4_t result)
 {
     vec_t x = v[0], y = v[1], z = v[2], w = v[3];
 
-
     result[0] = mMatrix[ 0]*x + mMatrix[ 1]*y + mMatrix[ 2]*z + mMatrix[ 3]*w;
     result[1] = mMatrix[ 4]*x + mMatrix[ 5]*y + mMatrix[ 6]*z + mMatrix[ 7]*w;
     result[2] = mMatrix[ 8]*x + mMatrix[ 9]*y + mMatrix[10]*z + mMatrix[11]*w;
     result[3] = mMatrix[12]*x + mMatrix[13]*y + mMatrix[14]*z + mMatrix[15]*w;
 }
-
 
 void Matrix::print()
 {
@@ -293,7 +251,6 @@ void Matrix::print()
 #endif
 }
 
-
 bool Matrix::isIdentity()
 {
     // Hhhmm... floating point using direct comparisions
@@ -308,16 +265,10 @@ bool Matrix::isIdentity()
     return false;
 }
 
-
-////////////////////////////////////////////////////////////
-// Public Mutators
-////////////////////////////////////////////////////////////
-
 void Matrix::setMatrix(matrix_t mat)
 {
     copy(mat, mMatrix);
 }
-
 
 void Matrix::setIdentity()
 {
@@ -327,18 +278,15 @@ void Matrix::setIdentity()
     mMatrix[12] = 0; mMatrix[13] = 0; mMatrix[14] = 0; mMatrix[15] = 1;
 }
 
-
 void Matrix::scale(const vec_t *xyz)
 {
     scale(xyz[0], xyz[1], xyz[2]);
 }
 
-
 void Matrix::scale(vec_t sx, vec_t sy, vec_t sz)
 {
     matrix_t smatrix;
     matrix_t tmp;
-
 
     smatrix[ 0] = sx;smatrix[ 1] = 0; smatrix[ 2] = 0; smatrix[ 3] = 0;
     smatrix[ 4] = 0; smatrix[ 5] = sy;smatrix[ 6] = 0; smatrix[ 7] = 0;
@@ -349,17 +297,14 @@ void Matrix::scale(vec_t sx, vec_t sy, vec_t sz)
     multiply(tmp, smatrix, mMatrix);
 }
 
-
 void Matrix::rotate(const vec_t *xyz)
 {
     rotate(xyz[0], xyz[1], xyz[2]);
 }
 
-
 void Matrix::rotate(vec_t ax, vec_t ay, vec_t az)
 {
     matrix_t xmat, ymat, zmat, tmp, tmp2;
-
 
     xmat[ 0]=1;        xmat[ 1]=0;        xmat[ 2]=0;        xmat[ 3]=0;
     xmat[ 4]=0;        xmat[ 5]=cos(ax);  xmat[ 6]=sin(ax);  xmat[ 7]=0;
@@ -381,17 +326,14 @@ void Matrix::rotate(vec_t ax, vec_t ay, vec_t az)
     multiply(tmp2, zmat, mMatrix);
 }
 
-
 void Matrix::translate(const vec_t *xyz)
 {
     translate(xyz[0], xyz[1], xyz[2]);
 }
 
-
 void Matrix::translate(vec_t tx, vec_t ty, vec_t tz)
 {
     matrix_t tmat, tmp;
-
 
     tmat[ 0]=1;  tmat[ 1]=0;  tmat[ 2]=0;  tmat[ 3]=0;
     tmat[ 4]=0;  tmat[ 5]=1;  tmat[ 6]=0;  tmat[ 7]=0;
@@ -401,16 +343,6 @@ void Matrix::translate(vec_t tx, vec_t ty, vec_t tz)
     copy(mMatrix, tmp);
     multiply(tmp, tmat, mMatrix);
 }
-
-
-////////////////////////////////////////////////////////////
-// Private Accessors
-////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////
-// Private Mutators
-////////////////////////////////////////////////////////////
 
 void Matrix::copy(matrix_t source, matrix_t dest)
 {
@@ -438,7 +370,6 @@ void Matrix::copy(matrix_t source, matrix_t dest)
     dest[15] = source[15];
 #endif
 }
-
 
 void Matrix::multiply(const matrix_t a, const matrix_t b, matrix_t result)
 {
