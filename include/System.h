@@ -53,14 +53,8 @@ typedef enum {
 /*!
  * \brief Basic Interface for System implementations (SDLSystem)
  */
-class System
-{
+class System {
 public:
-
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
-
     /*!
      * \brief Constructs an object of System
      */
@@ -70,11 +64,6 @@ public:
      * \brief Deconstructs an object of System
      */
     virtual ~System();
-
-
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
 
     /*!
      * \brief Generates a buufered string for the printf call
@@ -113,8 +102,7 @@ public:
      * \param size size of  buffer
      * \returns < 0 on error, 0 on success
      */
-    static int downloadToBuffer(char *urlString,
-                                         unsigned char **buffer, unsigned int *size);
+    static int downloadToBuffer(char *urlString, unsigned char **buffer, unsigned int *size);
 
     /*!
      * \brief Downloads something into a disk file.
@@ -131,11 +119,6 @@ public:
      * \returns -1 on error
      */
     static int createDir(char *path);
-
-
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
 
     /*!
      * \brief Created a new Command Mode.
@@ -158,9 +141,7 @@ public:
      */
     virtual void command(const char *cmd);
 
-
     virtual void gameFrame() = 0;
-
 
     virtual void handleMouseMotionEvent(float x, float y) = 0;
 
@@ -188,21 +169,15 @@ public:
      * \param key is a valid keyboard code
      * \param mod modifier key
      */
-    virtual void handleConsoleKeyPressEvent(unsigned int key,
-                                                         unsigned int mod) = 0;
-
+    virtual void handleConsoleKeyPressEvent(unsigned int key, unsigned int mod) = 0;
 
     virtual void handleKeyPressEvent(unsigned int key, unsigned int mod) = 0;
 
-
     virtual void handleKeyReleaseEvent(unsigned int key, unsigned int mod) = 0;
-
 
     virtual void initGL();
 
-
-    virtual void initVideo(unsigned int width, unsigned int height,
-                                  bool fullscreen) = 0;
+    virtual void initVideo(unsigned int width, unsigned int height, bool fullscreen) = 0;
 
     /*!
      * \brief Init the resource vars
@@ -211,12 +186,9 @@ public:
      */
     virtual int loadResourceFile(const char *filename);
 
-
     static void resetTicks();
 
-
     virtual void resizeGL(unsigned int width, unsigned int height);
-
 
     virtual void runGame() = 0;
 
@@ -227,73 +199,56 @@ public:
      */
     void setConsoleMode(bool on);
 
-
     void setDriverGL(const char *driver);
-
 
     void setFastCardPerformance(bool isFast);
 
-
     virtual void shutdown(int code) = 0;
 
-
     virtual void swapBuffersGL() = 0;
-
 
     virtual void toggleFullscreen() = 0;
 
 protected:
-
-    unsigned int m_width; //!< Width of the viewport
-    unsigned int m_height; //!< Height of the viewport
-    bool m_fastCard; //!< Assume expensive calls are fine if true
-    char *m_driver; //!< String for dynamic use of GL library
-    float m_clipNear; //!< Clip near distance
-    float m_clipFar; //!< Clip far distance
-    float m_fovY; //!< Field of vision
+    unsigned int m_width;              //!< Width of the viewport
+    unsigned int m_height;             //!< Height of the viewport
+    bool m_fastCard;                   //!< Assume expensive calls are fine if true
+    char *m_driver;                    //!< String for dynamic use of GL library
+    float m_clipNear;                  //!< Clip near distance
+    float m_clipFar;                   //!< Clip far distance
+    float m_fovY;                      //!< Field of vision
     Map<unsigned int, int> mKeyEvents; //!< Single key press event mappings
-    bool mConsoleMode; //!< Using text (console) event handler?
-    Vector<const char *> mCmdModes; //!< Dynamic resource command collection
-    unsigned int mCommandMode; //!< Current resource command mode
-    unsigned int mConsoleKey; //!< Console toggle event now handled lower
-
-private:
-
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
+    bool mConsoleMode;                 //!< Using text (console) event handler?
+    Vector<const char *> mCmdModes;    //!< Dynamic resource command collection
+    unsigned int mCommandMode;         //!< Current resource command mode
+    unsigned int mConsoleKey;          //!< Console toggle event now handled lower
 };
 
 
 //! \todo Could make these static methods later, depends on API evolution
 
-    /*!
-     * \brief Checks if Command matches Symbol.
-     * Returns the rest of the argument list back in command buffer, if any
-     * \param symbol command string
-     * \param command with arguments
-     * \returns true if command matches symbol
-     */
-    bool rc_command(const char *symbol, char *command);
+/*!
+ * \brief Checks if Command matches Symbol.
+ * Returns the rest of the argument list back in command buffer, if any
+ * \param symbol command string
+ * \param command with arguments
+ * \returns true if command matches symbol
+ */
+bool rc_command(const char *symbol, char *command);
 
-    /*!
-     * \brief Interpret a string as a bool
-     * \param buffer "true" or "false"
-     * \param val is set to boolean interpretation of buffer
-     * \returns -1 for null string, -2 if string is not "true" or "false"
-     */
-    int rc_get_bool(char *buffer, bool *val);
+/*!
+ * \brief Interpret a string as a bool
+ * \param buffer "true" or "false"
+ * \param val is set to boolean interpretation of buffer
+ * \returns -1 for null string, -2 if string is not "true" or "false"
+ */
+int rc_get_bool(char *buffer, bool *val);
 
-    /*!
-     * \brief Sets timer state and returns number of ticks
-     * \param state 0 - reset, 1 - get number of ticks
-     * \returns number of ticks
-     */
-    unsigned int system_timer(int state);
+/*!
+ * \brief Sets timer state and returns number of ticks
+ * \param state 0 - reset, 1 - get number of ticks
+ * \returns number of ticks
+ */
+unsigned int system_timer(int state);
 
 #endif

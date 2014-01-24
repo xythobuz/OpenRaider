@@ -12,6 +12,9 @@
 
 #include <MatMath.h>
 
+/*!
+ * \brief OpenGL Mesh
+ */
 class OpenGLMesh {
 public:
 
@@ -78,10 +81,6 @@ public:
 
     } rect_t;
 
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
-
     /*!
      * \brief Constructs an object of OpenGLMesh
      */
@@ -92,44 +91,24 @@ public:
      */
     ~OpenGLMesh();
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
-
-
     void drawAlpha();
-
 
     void drawSolid();
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
-
-
     void allocateColors(unsigned int n);
-
 
     void allocateNormals(unsigned int n);
 
-
     void allocateRectangles(unsigned int n);
-
 
     void allocateTriangles(unsigned int n);
 
-
     void allocateVertices(unsigned int n);
-
 
     void bufferColorArray(unsigned int colorCount, vec_t *colors,
                                  unsigned int colorWidth);
 
-
     void bufferNormalArray(unsigned int normalCount, vec_t *normals);
-
 
     void bufferTriangles(unsigned int count,
                                 unsigned int *indices, vec_t *texCoords,
@@ -137,38 +116,27 @@ public:
 
     void bufferVertexArray(unsigned int vertexCount, vec_t *vertices);
 
-
     void setColor(unsigned int index, float r, float g, float b, float a);
-
 
     void setColor(unsigned int index, float rgba[4]);
 
-
     void setNormal(unsigned int index, float i, float j, float k);
-
 
     void setVertex(unsigned int index, float x, float y, float z);
 
 #ifdef NOT_IMPLEMENTED
-
-
     void sortFacesByTexture();
-
 
     void addFace(int textureIndex, int textureIndexB, unsigned int flags,
                      unsigned int vertexIndexCount, vec_t *vertexIndices);
-
 
     void addTexTiledFace(int textureIndex, int textureIndexB,
                                 unsigned int flags, unsigned int indexCount,
                                 vec_t *vertexIndices, vec_t *texcoords);
 
-
     void bufferTexcoords(unsigned int texcoordCount, vec_t *texcoords);
 
-
     void duplicateArraysForTexTiledTexcoords();
-
 #endif
 
     unsigned int mFlags;
@@ -199,18 +167,6 @@ public:
     vec_t *mVertexArray;
     vec_t *mNormalArray;
     vec_t *mColorArray;
-
-private:
-
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
-
 };
 
 #endif

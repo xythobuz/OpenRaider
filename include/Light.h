@@ -9,12 +9,18 @@
 
 #include <MatMath.h>
 
+/*!
+ * \brief The GL light class
+ */
 class Light {
 public:
+    /*!
+     * \brief Type a light can be of
+     */
     typedef enum {
-        typePoint = 1,
-        typeSpot = 2,
-        typeDirectional = 3
+        typePoint       = 1, //!< Point light
+        typeSpot        = 2, //!< Spot light
+        typeDirectional = 3  //!< Directional light
     } LightType;
 
     // These aren't used anywhere? -- xythobuz
