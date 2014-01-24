@@ -27,7 +27,7 @@ var searchData=
   ['conversiontorad',['conversionToRad',['../test_2_mat_math_8cpp.html#a68962b7a9def831c2304054c5a11ef7b',1,'MatMath.cpp']]],
   ['convertargb32bpptorgba32bpp',['convertARGB32bppToRGBA32bpp',['../_texture_8cpp.html#a1da9635b03c0f17960ee262affacdfd9',1,'Texture.cpp']]],
   ['copy',['Copy',['../class_list.html#a10935c75f2505effe31ddfeb7387e660',1,'List::Copy()'],['../class_matrix.html#ae0608a019e6dc42d0c6461788adc35c0',1,'Matrix::copy()'],['../class_quaternion.html#a0265f1485ee71ab6f2ace9b59f97e6e8',1,'Quaternion::copy()'],['../class_vector.html#a1ec87612aac7bbb21ba2ba393692ad5d',1,'Vector::copy()']]],
-  ['count',['count',['../class_map.html#ada132deea30741726b677dd42aa2916c',1,'Map::count()'],['../class_emitter.html#a5212ce459f3e7a07b8dd983dc01e1f53',1,'Emitter::Count()']]],
+  ['count',['Count',['../class_emitter.html#a5212ce459f3e7a07b8dd983dc01e1f53',1,'Emitter']]],
   ['createdir',['createDir',['../class_system.html#ab057919d9d5838e6382987e7439a4de3',1,'System']]],
   ['cross',['cross',['../class_vector3d.html#aebae00da2def3b4d107a195aff5cc1f9',1,'Vector3d']]],
   ['crossprod',['CrossProd',['../_render_8cpp.html#a2fef287cf7c955e94ebe99a8ea383c3d',1,'Render.cpp']]],
