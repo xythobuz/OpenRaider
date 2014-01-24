@@ -4147,8 +4147,12 @@ bool TombRaider::isRoomValid(int index)
             break;
         case TR_VERSION_5:
             if (index < _num_rooms &&
-                    mRoomsTR5[index].roomX != 0xcdcdcd &&
-                    mRoomsTR5[index].roomZ != 0xcdcdcd)
+                    //mRoomsTR5[index].roomX != 0xcdcdcd &&
+                    //mRoomsTR5[index].roomZ != 0xcdcdcd)
+                    *((int *)&mRoomsTR5[index].roomX) != 0xcdcdcd &&
+                    *((int *)&mRoomsTR5[index].roomZ) != 0xcdcdcd)
+                    // Cast to int * as it was comparing with float 0xcdcdcd before
+                    // -- xythobuz
             {
                 return true;
             }

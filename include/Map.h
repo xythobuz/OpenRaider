@@ -1,37 +1,16 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/Map.h
+ * \brief Template Map
  *
- * Project : Freyja
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Map
- * License : No use w/o permission (C) 2000-2002 Mongoose
- * Comments: mtk Template list
+ * Using RBTree and list overlay for faster access
  *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
+ *     Access: O(1)/O(n)/O(logn) ?
+ *     Insert: O(nlogn)          ?
+ *     Remove: O(nlogn)          ?
  *
- *-- History ------------------------------------------------
- *
- * 2002.02.19:
- * Mongoose - Using RBTree and list overlay for faster access
- *
- *            Access: O(1)/O(n)/O(logn) ?
- *            Insert: O(nlogn)          ?
- *            Remove: O(nlogn)          ?
- *
- * 2002.02.16:
- * Mongoose - Binary tree overlay started... at 0300  /_\ Zzzz
- *
- * 2002.02.01:
- * Mongoose - Dug out of cobwebs and fixed up
- *            Yes, I believe in code reuse!  =)
- *
- * 2000.10.26:
- * Mongoose - Created
- ================================================================*/
-
+ * \author Mongoose
+ * \author xythobuz
+ */
 
 #ifndef _MAP_H_
 #define _MAP_H_
@@ -45,76 +24,98 @@
 #include <memory_test.h>
 #endif
 
-
-
-template <class K, class D> class MapNode
-{
+/*!
+ * \brief Template class encapsulating a single map node
+ * \tparam K key type
+ * \tparam D data type
+ */
+template <class K, class D> class MapNode {
 public:
 
-    MapNode(K key, D data)
-    {
+    /*!
+     * \brief Construct a MapNode
+     * \param key key of this Node
+     * \param data data of this Node
+     */
+    MapNode(K key, D data) {
         _data  = data;
         _key = key;
         _next = NULL;
     }
 
-
-    ~MapNode()
-    {
+    /*!
+     * \brief Deconstruct a MapNode
+     */
+    ~MapNode() {
     }
 
-
-    void Key(K key)
-    {
+    /*!
+     * \brief Set the key of this MapNode
+     * \param key new key
+     */
+    void Key(K key) {
         _key = key;
     }
 
-
-    K Key()
-    {
+    /*!
+     * \brief Get the key of this MapNode
+     * \returns key
+     */
+    K Key() {
         return _key;
     }
 
-
-    void Data(D data)
-    {
-    _data = data;
+    /*!
+     * \brief Set the data of this MapNode
+     * \param data new data
+     */
+    void Data(D data) {
+        _data = data;
     }
 
-
-    D Data()
-    {
+    /*!
+     * \brief Get the data of this MapNode
+     * \returns data
+     */
+    D Data() {
         return _data;
     }
 
-
-    MapNode<K, D> *Next()
-    {
+    /*!
+     * \brief Get the next MapNode in the Map
+     * \returns next pointer
+     */
+    MapNode<K, D> *Next() {
         return _next;
     }
 
-
-    void Next(MapNode<K, D> *next)
-    {
+    /*!
+     * \brief Set the next MapNode in the Map
+     * \param next new next pointer
+     */
+    void Next(MapNode<K, D> *next) {
         _next = next;
     }
 
 private:
 
-    MapNode<K, D> *_next;
-
-    K _key;
-
-    D _data;
+    MapNode<K, D> *_next; //!< Next pointer
+    K _key; //!< Key of the MapNode
+    D _data; //!< Data of the MapNode
 };
 
-
-template <class K, class D> class Map
-{
+/*!
+ * \brief Template class representing a Map, mapping data to a key.
+ * \tparam K key type
+ * \tparam D data type
+ */
+template <class K, class D> class Map {
 public:
 
-    Map()
-    {
+    /*!
+     * \brief Construct a Map
+     */
+    Map() {
         UnSetError();
         _num_items = 0;
         _head = NULL;
@@ -122,78 +123,79 @@ public:
         _cache = NULL;
     }
 
-
-    ~Map()
-    {
+    /*!
+     * \brief Deconstruct a Map
+     * \sa Map::Clear()
+     */
+    ~Map() {
         Clear();
     }
 
-
-    void Clear()
-    {
+    /*!
+     * \brief Deletes every item in the Map. Clears error flag.
+     */
+    void Clear() {
         UnSetError();
         _num_items = 0;
         _cache = NULL;
-
-        while (_head)
-        {
+        while (_head) {
             _current = _head;
             _head = _head->Next();
             delete _current;
         }
-
         _tree.Clear();
     }
 
-
-    void SetError()
-    {
+    /*!
+     * \brief Set the error flag
+     */
+    void SetError() {
         _error = true;
     }
 
-
-    void UnSetError()
-    {
+    /*!
+     * \brief Unset the error flag
+     */
+    void UnSetError() {
         _error = false;
     }
 
-
-    bool GetError()
-    {
+    /*!
+     * \brief Get the error flag
+     * \returns error flag
+     */
+    bool GetError() {
         return _error;
     }
 
-
-    D FindDataByKey(K key)
-    {
+    /*!
+     * \brief Search for data with a key. Sets error flag if nothing is found.
+     * \param key key to search for
+     * \returns data matching key or 0
+     */
+    D FindDataByKey(K key) {
         MapNode<K, D> *current = NULL;
         MapNode<K, D> *next = NULL;
 
 
-        if (_head)
-        {
+        if (_head) {
             UnSetError();
 
-            if (_cache)
-            {
+            if (_cache) {
                 next = _cache->Next();
             }
 
             // Mongoose 2002.02.19, Optimize for sequential searches
-            if (next && key == next->Key())
-            {
+            if (next && key == next->Key()) {
                 current = next;
-            }
-            else // Mongoose 2002.02.19, Use search algorithm otherwise
-            {
+            } else { // Mongoose 2002.02.19, Use search algorithm otherwise
                 current = _tree.SearchByKey(key, &_error);
 
                 if (_error)
                     return false;
             }
 
-            if (current)
-            {
+            if (current) {
                 _cache = _current = current;
                 return current->Data();
             }
@@ -203,26 +205,31 @@ public:
         return 0;
     }
 
-
-    D operator [] (K key)
-    {
+    /*!
+     * \brief Search for data with a key
+     * \param key key to search for
+     * \returns data matching key or 0
+     * \sa Map::FindDataByKey()
+     */
+    D operator [] (K key) {
         return FindDataByKey(key);
     }
 
-
-    K FindKeyByData(D data)
-    {
+    /*!
+     * \brief Search for a key with specific data. Sets error flag if nothing is found.
+     * \param data data to search for
+     * \returns key matching data or 0
+     */
+    K FindKeyByData(D data) {
         MapNode<K, D> *current = _head;
         MapNode<K, D> *last = NULL;
 
 
         UnSetError();
 
-        while (current)
-        {
+        while (current) {
             // Found
-            if (current->Data() == data)
-            {
+            if (current->Data() == data) {
                 _cache = current;
                 return current->Key();
             }
@@ -236,31 +243,32 @@ public:
         return 0;
     }
 
-
-    D getCache()
-    {
-        if (_cache == 0x0)
-        {
+    /*!
+     * \brief Returns data of the cached MapNode
+     * \returns cached data
+     */
+    D getCache() {
+        if (_cache == 0x0) {
             printf("Map::getCache> Bad request - should segfault\n");
         }
 
         return _cache->Data();
     }
 
-
-    bool findKey(K key)
-    {
+    /*!
+     * \brief Check if a key is in this map. Sets error flag if nothing is found.
+     * \returns true if the key is in the map, false otherwise
+     * \sa Tree:SearchByKey()
+     */
+    bool findKey(K key) {
         MapNode<K, D> *current = NULL;
         MapNode<K, D> *next = NULL;
 
-        if (_head)
-        {
+        if (_head) {
             UnSetError();
 
-            if (_cache)
-            {
-                if (_cache->Key() == key)
-                {
+            if (_cache) {
+                if (_cache->Key() == key) {
                     return true;
                 }
 
@@ -268,17 +276,13 @@ public:
             }
 
             // Mongoose 2002.02.19, Optimize for sequential searches
-            if (next && key == next->Key())
-            {
+            if (next && key == next->Key()) {
                 current = next;
-            }
-            else // Mongoose 2002.02.19, Use search algorithm otherwise
-            {
+            } else { // Mongoose 2002.02.19, Use search algorithm otherwise
                 current = _tree.SearchByKey(key, &_error);
             }
 
-            if (current)
-            {
+            if (current) {
                 _cache = _current = current;
                 //curData = current->Data();
                 return true;
@@ -289,11 +293,14 @@ public:
         return false;
     }
 
-
-    bool Add(K key, D data)
-    {
+    /*!
+     * \brief Add a Key-Data pair to the Map, creating a new MapNode. Clears error flag.
+     * \param key key to add
+     * \param data to add
+     * \returns true on success, false if there is not enough memory
+     */
+    bool Add(K key, D data) {
         MapNode<K, D> *node;
-
 
         UnSetError();
         node = new MapNode<K, D>(key, data);
@@ -301,36 +308,33 @@ public:
         return Add(node);
     }
 
-
-    bool Add(MapNode<K, D> *node)
-    {
+    /*!
+     * \brief Add a MapNode to the Map. Clears error flag on success.
+     * \param node node to add
+     * \returns true on success, false if node is NULL
+     * \sa Tree:Insert()
+     */
+    bool Add(MapNode<K, D> *node) {
         MapNode<K, D> *current = _head;
         MapNode<K, D> *last = NULL;
-
 
         if (!node)
             return false;
 
         UnSetError();
 
-        if (_head)
-        {
+        if (_head) {
             current = _head;
             last = NULL;
 
-            while (current)
-            {
+            while (current) {
                 // Prepend
-                if (current->Key() > node->Key())
-                {
+                if (current->Key() > node->Key()) {
                     node->Next(current);
 
-                    if (current == _head)
-                    {
+                    if (current == _head) {
                         _head = node;
-                    }
-                    else if (last)
-                    {
+                    } else if (last) {
                         last->Next(node);
                     }
 
@@ -344,9 +348,7 @@ public:
 
             // Append
             last->Next(node);
-        }
-        else
-        {
+        } else {
             _head = node;
         }
 
@@ -354,33 +356,28 @@ public:
         return true;
     }
 
-
-    void RemoveByKey(K key)
-    {
+    /*!
+     * \brief Remove item with the specified key. Sets error flag if nothing is removed.
+     * \param key key to remove
+     */
+    void RemoveByKey(K key) {
         MapNode<K, D> *current = _head;
         MapNode<K, D> *last = NULL;
-
 
         UnSetError();
 
         _cache = NULL;
 
-        while (current)
-        {
+        while (current) {
             // Remove
-            if (current->Key() == key)
-            {
-                if (current == _head)
-                {
+            if (current->Key() == key) {
+                if (current == _head) {
                     _head = current->Next();
-                }
-                else
-                {
+                } else {
                     last->Next(current->Next());
                 }
 
-                if (_current == current)
-                {
+                if (_current == current) {
                     _current = NULL;
                 }
 
@@ -398,12 +395,13 @@ public:
         SetError();
     }
 
-
-    void RemoveByData(D data)
-    {
+    /*!
+     * \brief Remove item with the specified data. Sets error flag if nothing is removed.
+     * \param data data to remove
+     */
+    void RemoveByData(D data) {
         MapNode<K, D> *current = _head;
         MapNode<K, D> *last = NULL;
-
 
         UnSetError();
 
@@ -412,19 +410,14 @@ public:
         while (current)
         {
             // Remove
-            if (current->Data() == data)
-            {
-                if (current == _head)
-                {
+            if (current->Data() == data) {
+                if (current == _head) {
                     _head = current->Next();
-                }
-                else
-                {
+                } else {
                     last->Next(current->Next());
                 }
 
-                if (_current == current)
-                {
+                if (_current == current) {
                     _current = NULL;
                 }
 
@@ -442,41 +435,40 @@ public:
         SetError();
     }
 
-
-    bool Empty()
-    {
+    /*!
+     * \brief Check if the Map is empty
+     * \returns true if Map is empty, false otherwise
+     */
+    bool Empty() {
         return (_head == NULL);
     }
 
-
-    unsigned int count()
-    {
+    /*!
+     * \brief Returns number of items in the Map
+     * \returns number of items
+     */
+    unsigned int NumItems() {
         return _num_items;
     }
 
-    unsigned int NumItems()
-    {
-        return _num_items;
-    }
-
-
-    void Print(void (*print_key_func)(K), void (*print_data_func)(D))
-    {
+    /*!
+     * \brief Print the Map. Sets error flag if one or both functions aren't provided.
+     * \param print_key_func function that prints a key
+     * \param print_data_func function that prints the data
+     */
+    void Print(void (*print_key_func)(K), void (*print_data_func)(D)) {
         MapNode<K, D> *current = _head;
-
 
         UnSetError();
 
-        if (!print_key_func || !print_data_func)
-        {
+        if (!print_key_func || !print_data_func) {
             SetError();
             return;
         }
 
         printf(" [%i] {\n", _num_items);
 
-        while (current)
-        {
+        while (current) {
             printf("(");
             (*print_key_func)(current->Key());
             printf(", ");
@@ -490,48 +482,61 @@ public:
         printf(" }\n");
     }
 
-
-    void Reset()
-    {
+    /*!
+     * \brief Reset the Map iterator
+     */
+    void Reset() {
         _current = _head;
         _cache = _head;
     }
 
-
-    bool operator ++ (int)
-    {
+    /*!
+     * \brief Iterate over the Map
+     * \returns true if there is a new current element
+     * \sa Map::Next()
+     */
+    bool operator ++ (int) {
         return Next();
     }
 
-    bool operator ++ ()
-    {
+    /*!
+     * \brief Iterate over the Map
+     * \returns true if there is a new current element
+     * \sa Map::Next()
+     */
+    bool operator ++ () {
         return Next();
     }
 
-
-    bool Next()
-    {
-        if (_current)
-        {
+    /*!
+     * \brief Iterate over the Map
+     * \returns true if there is a new current element
+     * \sa Map::Next()
+     */
+    bool Next() {
+        if (_current) {
             _current = _current->Next();
         }
 
         return (_current != NULL);
     }
 
-
-    bool CurrentExists()
-    {
+    /*!
+     * \brief Check if there is a current item in the iterator
+     * \returns true if the current item exists
+     */
+    bool CurrentExists() {
         return (_current != 0);
     }
 
-
-    K CurrentKey()
-    {
+    /*!
+     * \brief Returns the key of the current item. Sets error flag if there is no current item.
+     * \returns key or 0 if there is no current item
+     */
+    K CurrentKey() {
         UnSetError();
 
-        if (!_current)
-        {
+        if (!_current) {
             SetError();
             return 0;
         }
@@ -539,13 +544,14 @@ public:
         return _current->Key();
     }
 
-
-    D Current()
-    {
+    /*!
+     * \brief Returns the data of the current item. Sets error flag if there is no current item.
+     * \returns data or 0 if there is no current item
+     */
+    D Current() {
         UnSetError();
 
-        if (!_current)
-        {
+        if (!_current) {
             SetError();
             return 0;
         }
@@ -555,16 +561,11 @@ public:
 
 private:
 
-    unsigned int _num_items;
-
-    bool _error;
-
-    Tree<K, MapNode<K, D> *> _tree;
-
-    MapNode<K, D> *_head;
-
-    MapNode<K, D> *_current;
-
-    MapNode<K, D> *_cache;
+    unsigned int _num_items; //!< Number of items in the Map
+    bool _error; //!< Error flag
+    Tree<K, MapNode<K, D> *> _tree; //!< Tree containing the MapNodes
+    MapNode<K, D> *_head; //!< First item of the Map
+    MapNode<K, D> *_current; //!< Current item for the iterator
+    MapNode<K, D> *_cache; //!< Cached item used by search & remove methods
 };
 #endif
