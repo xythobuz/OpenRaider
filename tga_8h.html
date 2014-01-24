@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>OpenRaider: include/TGA.h File Reference</title>
+<title>OpenRaider: include/tga.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2</span>
+   &#160;<span id="projectnumber">0.1.2-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -91,129 +91,146 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">TGA.h File Reference</div>  </div>
+<div class="title">tga.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>TGA image reader/writer.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br/>
 </div>
-<p><a href="_t_g_a_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="tga_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:structmtk__image__tga__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#structmtk__image__tga__t">mtk_image_tga_t</a></td></tr>
-<tr class="separator:structmtk__image__tga__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structtga__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#structtga__t">tga_t</a></td></tr>
+<tr class="memdesc:structtga__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data structure representing TGA file header.  <a href="tga_8h.html#structtga__t">More...</a><br/></td></tr>
+<tr class="separator:structtga__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:aa10934a8bc956c001867a8f3afe71b83"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a> { <br/>
-&#160;&#160;<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a6ef01cfa8dd6a02991e8b5899f3063a0">TGA_TYPE__NO_DATA</a> = 0, 
-<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a4661ad810c980e8ae42bf120a2822f55">TGA_TYPE__MAPPED</a> = 1, 
-<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a355b39379657c22d08350671dfc8edec">TGA_TYPE__COLOR</a> = 2, 
-<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a443ecaac7156e3364b2499dc7adc6ac9">TGA_TYPE__GREYSCALE</a> = 3, 
+<tr class="memitem:aa10934a8bc956c001867a8f3afe71b83"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a> { <br/>
+&#160;&#160;<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a6ef01cfa8dd6a02991e8b5899f3063a0">TGA_TYPE__NO_DATA</a> = 0, 
+<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a4661ad810c980e8ae42bf120a2822f55">TGA_TYPE__MAPPED</a> = 1, 
+<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a355b39379657c22d08350671dfc8edec">TGA_TYPE__COLOR</a> = 2, 
+<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a443ecaac7156e3364b2499dc7adc6ac9">TGA_TYPE__GREYSCALE</a> = 3, 
 <br/>
-&#160;&#160;<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83aebd9f64d06c7208f90ecadf8f74d2cac">TGA_TYPE__MAPPED_RLE</a> = 9, 
-<a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83a156fe86edaa5eb5b17f9278b2dff3431">TGA_TYPE__COLOR_RLE</a> = 10
+&#160;&#160;<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83aebd9f64d06c7208f90ecadf8f74d2cac">TGA_TYPE__MAPPED_RLE</a> = 9, 
+<a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a156fe86edaa5eb5b17f9278b2dff3431">TGA_TYPE__COLOR_RLE</a> = 10
 <br/>
  }</td></tr>
+<tr class="memdesc:aa10934a8bc956c001867a8f3afe71b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible TGA image types.  <a href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83">More...</a><br/></td></tr>
 <tr class="separator:aa10934a8bc956c001867a8f3afe71b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a229b70da12cda0fc4f3b410892f31061"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#a229b70da12cda0fc4f3b410892f31061">mtk_image__tga_check</a> (FILE *f)</td></tr>
-<tr class="separator:a229b70da12cda0fc4f3b410892f31061"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16c9895ae073185161c501934346798f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#a16c9895ae073185161c501934346798f">mtk_image__tga_load</a> (FILE *f, unsigned char **image, unsigned int *<a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int *<a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char *type)</td></tr>
-<tr class="separator:a16c9895ae073185161c501934346798f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7df76296224b50e7c576714955241c5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#a7df76296224b50e7c576714955241c5f">mtk_image__tga_save</a> (FILE *f, unsigned char *image, unsigned int <a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int <a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char type)</td></tr>
-<tr class="separator:a7df76296224b50e7c576714955241c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5db3486404abd1f121e025858881e4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_a_8h.html#ad5db3486404abd1f121e025858881e4f">mtk_image__tga_save_filename</a> (unsigned char *image, unsigned int <a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int <a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char type, char *s,...)</td></tr>
-<tr class="separator:ad5db3486404abd1f121e025858881e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2de812ae423cc1e55ce67d4fa1179984"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#a2de812ae423cc1e55ce67d4fa1179984">tga_check</a> (FILE *f)</td></tr>
+<tr class="memdesc:a2de812ae423cc1e55ce67d4fa1179984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a file is a valid TGA image.  <a href="#a2de812ae423cc1e55ce67d4fa1179984">More...</a><br/></td></tr>
+<tr class="separator:a2de812ae423cc1e55ce67d4fa1179984"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a265507d5b231776001ec513b7826ca5d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#a265507d5b231776001ec513b7826ca5d">tga_load</a> (FILE *f, unsigned char **image, unsigned int *<a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int *<a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char *type)</td></tr>
+<tr class="memdesc:a265507d5b231776001ec513b7826ca5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a TGA image from file.  <a href="#a265507d5b231776001ec513b7826ca5d">More...</a><br/></td></tr>
+<tr class="separator:a265507d5b231776001ec513b7826ca5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd53bf6a2b1a49d223faf07977b0e431"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#abd53bf6a2b1a49d223faf07977b0e431">tga_save</a> (FILE *f, unsigned char *image, unsigned int <a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int <a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char type)</td></tr>
+<tr class="memdesc:abd53bf6a2b1a49d223faf07977b0e431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a pixel buffer into a file on disk.  <a href="#abd53bf6a2b1a49d223faf07977b0e431">More...</a><br/></td></tr>
+<tr class="separator:abd53bf6a2b1a49d223faf07977b0e431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87c2678536e79ec16106c2a094b1e762"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8h.html#a87c2678536e79ec16106c2a094b1e762">tga_save_filename</a> (unsigned char *image, unsigned int <a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, unsigned int <a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, char type, char *s,...)</td></tr>
+<tr class="memdesc:a87c2678536e79ec16106c2a094b1e762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a pixel buffer into a file on disk.  <a href="#a87c2678536e79ec16106c2a094b1e762">More...</a><br/></td></tr>
+<tr class="separator:a87c2678536e79ec16106c2a094b1e762"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="structmtk__image__tga__t" id="structmtk__image__tga__t"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>TGA image reader/writer. </p>
+<dl class="section author"><dt>Author</dt><dd>Mongoose </dd>
+<dd>
+xythobuz </dd></dl>
+
+<p>Definition in file <a class="el" href="tga_8h_source.html">tga.h</a>.</p>
+</div><hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="structtga__t" id="structtga__t"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct mtk_image_tga_t</td>
+          <td class="memname">struct tga_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_t_g_a_8h_source.html#l00043">43</a> of file <a class="el" href="_t_g_a_8h_source.html">TGA.h</a>.</p>
+<div class="textblock"><p>Data structure representing TGA file header. </p>
+
+<p>Definition at line <a class="el" href="tga_8h_source.html#l00031">31</a> of file <a class="el" href="tga_8h_source.html">tga.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a8950d6a837873db13a69bdb93c76c75f"></a>unsigned char</td>
+<a class="anchor" id="aa928d84f8ba4d6437ca4e5f3d44486e5"></a>unsigned char</td>
 <td class="fieldname">
 bpp</td>
 <td class="fielddoc">
-</td></tr>
+Number of bits in a pixel index. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="ad83158180dddde2ed8c290375a397b80"></a>unsigned char</td>
+<a class="anchor" id="af6cac520516b6cfd0b8c69617c3f1a6f"></a>unsigned char</td>
 <td class="fieldname">
 colormap_bbp</td>
 <td class="fielddoc">
-</td></tr>
+16, 24, or 32 bits per pixel format </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a6a1020a100bf28f9f0719d5791643bae"></a>unsigned short</td>
+<a class="anchor" id="af7b74a1f733d387f9eea57ad01796bc4"></a>unsigned short</td>
 <td class="fieldname">
 colormap_index</td>
 <td class="fielddoc">
-</td></tr>
+Index of first color map entry. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a63e45b8347ab370470c9a017a87d3917"></a>unsigned short</td>
+<a class="anchor" id="aeffa6a5d8a8f70c0a53b20e7dd407053"></a>unsigned short</td>
 <td class="fieldname">
 colormap_lenght</td>
 <td class="fielddoc">
-</td></tr>
+Number of color map entries. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aa7b1e9368bd7db20df287f2db7402991"></a>unsigned char</td>
+<a class="anchor" id="ac067fad07c73ccde11ba9d583a404fd3"></a>unsigned char</td>
 <td class="fieldname">
 colormap_type</td>
 <td class="fielddoc">
-</td></tr>
+0 No colormap; 1 Has colormap </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aff1e3cf8465519fb7068df207a666991"></a>unsigned char</td>
+<a class="anchor" id="a4dec311825bac72c84e5acd232c36376"></a>unsigned char</td>
 <td class="fieldname">
 comment_lenght</td>
 <td class="fielddoc">
-</td></tr>
+Number of bytes in comment. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a18814fb584b6e33e07d533519ef77cac"></a>unsigned char</td>
+<a class="anchor" id="a712a92c2a1d01d3ba881216b7ea8cebc"></a>unsigned char</td>
 <td class="fieldname">
 desc_flags</td>
 <td class="fielddoc">
-</td></tr>
+Various magic bits. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="aeac09f5d76ade6dfd9bdd8e17e84d3c8"></a>unsigned short</td>
+<a class="anchor" id="a6598f348ffe7b2c5c0c59fff865b9e69"></a>unsigned short</td>
 <td class="fieldname">
 height</td>
 <td class="fielddoc">
-</td></tr>
+Height in pixels. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a5e4834f8321f9c94c1ae9f34949dbf0f"></a>unsigned char</td>
+<a class="anchor" id="a8381d5d7439e8a014c59bc844fe9d1d9"></a>unsigned char</td>
 <td class="fieldname">
 image_type</td>
 <td class="fielddoc">
-</td></tr>
+1 Colormapped; 2 Unmapped; 9 Colormapped RLE; 10 Unmapped RLE </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a285c2df263b55d237381ebb8ce77ae8c"></a>unsigned short</td>
+<a class="anchor" id="a8b1408a1c44504cfffd289934bf763ac"></a>unsigned short</td>
 <td class="fieldname">
 origin_x</td>
 <td class="fielddoc">
-</td></tr>
+X coor of lower-left corner. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a5edcd104d17e06967ac692feb1d76c04"></a>unsigned short</td>
+<a class="anchor" id="a592664a1e0b67b9d382cf1ac335292ba"></a>unsigned short</td>
 <td class="fieldname">
 origin_y</td>
 <td class="fielddoc">
-</td></tr>
+Y coor of lower-left corner. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a4d331aa567893197cdf9e2f235c219a8"></a>unsigned short</td>
+<a class="anchor" id="a0729364da9ce763f51554511eda6fc1a"></a>unsigned short</td>
 <td class="fieldname">
 width</td>
 <td class="fielddoc">
-</td></tr>
+Width in pixels. </td></tr>
 </table>
 
 </div>
@@ -224,10 +241,12 @@ width</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="_t_g_a_8h.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a></td>
+          <td class="memname">enum <a class="el" href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Possible TGA image types. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="aa10934a8bc956c001867a8f3afe71b83a6ef01cfa8dd6a02991e8b5899f3063a0"></a>TGA_TYPE__NO_DATA</em>&nbsp;</td><td class="fielddoc">
 </td></tr>
@@ -243,17 +262,17 @@ width</td>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_t_g_a_8h_source.html#l00028">28</a> of file <a class="el" href="_t_g_a_8h_source.html">TGA.h</a>.</p>
+<p>Definition at line <a class="el" href="tga_8h_source.html#l00016">16</a> of file <a class="el" href="tga_8h_source.html">tga.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a229b70da12cda0fc4f3b410892f31061"></a>
+<a class="anchor" id="a2de812ae423cc1e55ce67d4fa1179984"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int mtk_image__tga_check </td>
+          <td class="memname">int tga_check </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>f</em></td><td>)</td>
@@ -262,16 +281,25 @@ width</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_t_g_a_8cpp_source.html#l00037">37</a> of file <a class="el" href="src_2_t_g_a_8cpp_source.html">TGA.cpp</a>.</p>
+<p>Check if a file is a valid TGA image. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>file to be checked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if valid, else error condition </dd></dl>
+
+<p>Definition at line <a class="el" href="src_2tga_8cpp_source.html#l00020">20</a> of file <a class="el" href="src_2tga_8cpp_source.html">tga.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a16c9895ae073185161c501934346798f"></a>
+<a class="anchor" id="a265507d5b231776001ec513b7826ca5d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int mtk_image__tga_load </td>
+          <td class="memname">int tga_load </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>f</em>, </td>
@@ -308,16 +336,29 @@ width</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_t_g_a_8cpp_source.html#l00065">65</a> of file <a class="el" href="src_2_t_g_a_8cpp_source.html">TGA.cpp</a>.</p>
+<p>Load a TGA image from file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>valid image file </td></tr>
+    <tr><td class="paramname">image</td><td>Where the pixmap will be stored (or NULL) </td></tr>
+    <tr><td class="paramname">width</td><td>where the width will be stored </td></tr>
+    <tr><td class="paramname">height</td><td>where the height will be stored </td></tr>
+    <tr><td class="paramname">type</td><td>where the type will be stored (tga_type_t) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, else error condition </dd></dl>
+
+<p>Definition at line <a class="el" href="src_2tga_8cpp_source.html#l00042">42</a> of file <a class="el" href="src_2tga_8cpp_source.html">tga.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7df76296224b50e7c576714955241c5f"></a>
+<a class="anchor" id="abd53bf6a2b1a49d223faf07977b0e431"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int mtk_image__tga_save </td>
+          <td class="memname">int tga_save </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>f</em>, </td>
@@ -354,16 +395,29 @@ width</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_t_g_a_8cpp_source.html#l00355">355</a> of file <a class="el" href="src_2_t_g_a_8cpp_source.html">TGA.cpp</a>.</p>
+<p>Save a pixel buffer into a file on disk. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>file in which image will be saved </td></tr>
+    <tr><td class="paramname">image</td><td>pixmap to be stored </td></tr>
+    <tr><td class="paramname">width</td><td>width of pixmap/image </td></tr>
+    <tr><td class="paramname">height</td><td>height of pixmap/image </td></tr>
+    <tr><td class="paramname">type</td><td>tga_type_t to use </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, else error condition </dd></dl>
+
+<p>Definition at line <a class="el" href="src_2tga_8cpp_source.html#l00263">263</a> of file <a class="el" href="src_2tga_8cpp_source.html">tga.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad5db3486404abd1f121e025858881e4f"></a>
+<a class="anchor" id="a87c2678536e79ec16106c2a094b1e762"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int mtk_image__tga_save_filename </td>
+          <td class="memname">int tga_save_filename </td>
           <td>(</td>
           <td class="paramtype">unsigned char *&#160;</td>
           <td class="paramname"><em>image</em>, </td>
@@ -406,7 +460,20 @@ width</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_t_g_a_8cpp_source.html#l00465">465</a> of file <a class="el" href="src_2_t_g_a_8cpp_source.html">TGA.cpp</a>.</p>
+<p>Save a pixel buffer into a file on disk. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>pixmap to be stored </td></tr>
+    <tr><td class="paramname">width</td><td>width of pixmap/image </td></tr>
+    <tr><td class="paramname">height</td><td>height of pixmap/image </td></tr>
+    <tr><td class="paramname">type</td><td>tga_type_t to use </td></tr>
+    <tr><td class="paramname">s</td><td>format string for file path/name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, else error condition </dd></dl>
+
+<p>Definition at line <a class="el" href="src_2tga_8cpp_source.html#l00362">362</a> of file <a class="el" href="src_2tga_8cpp_source.html">tga.cpp</a>.</p>
 
 </div>
 </div>

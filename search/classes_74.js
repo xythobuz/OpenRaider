@@ -3,6 +3,7 @@ var searchData=
   ['texel_5ft',['texel_t',['../_world_8h.html#structtexel__t',1,'']]],
   ['texture',['Texture',['../class_texture.html',1,'']]],
   ['texture_5ftri_5ft',['texture_tri_t',['../_world_8h.html#structtexture__tri__t',1,'']]],
+  ['tga_5ft',['tga_t',['../tga_8h.html#structtga__t',1,'']]],
   ['tombraider',['TombRaider',['../class_tomb_raider.html',1,'']]],
   ['tombraider1',['TombRaider1',['../class_tomb_raider1.html',1,'']]],
   ['tr2_5fanim_5fcommand_5fs',['tr2_anim_command_s',['../_tomb_raider_8h.html#structtr2__anim__command__s',1,'']]],

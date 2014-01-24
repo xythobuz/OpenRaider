@@ -60,8 +60,8 @@ var searchData=
   ['operator_5b_5d',['operator[]',['../class_list.html#a65537a67de60fe19037e72d3480d24eb',1,'List::operator[]()'],['../class_map.html#a5efeeb9a0567d80ca17e16935096236f',1,'Map::operator[]()'],['../class_tree.html#a409d84ae2cc7dba95f1543dbd8b13c9f',1,'Tree::operator[]()'],['../class_vector.html#a1f16f0a02db741b7b248317ed9f45f67',1,'Vector::operator[]()']]],
   ['or_5fblue',['OR_BLUE',['../_render_8cpp.html#a200e65f5ca987f6506821e8ba8c33119',1,'Render.cpp']]],
   ['orientation',['Orientation',['../class_emitter.html#aa2080c184aceaf26f32952c4742ec2f0',1,'Emitter::Orientation(float x, float y, float z)'],['../class_emitter.html#a04ea95ebd765943a92e407e54c358a29',1,'Emitter::Orientation(float *x, float *y, float *z)']]],
-  ['origin_5fx',['origin_x',['../_t_g_a_8h.html#a285c2df263b55d237381ebb8ce77ae8c',1,'mtk_image_tga_t']]],
-  ['origin_5fy',['origin_y',['../_t_g_a_8h.html#a5edcd104d17e06967ac692feb1d76c04',1,'mtk_image_tga_t']]],
+  ['origin_5fx',['origin_x',['../tga_8h.html#a8b1408a1c44504cfffd289934bf763ac',1,'tga_t']]],
+  ['origin_5fy',['origin_y',['../tga_8h.html#a592664a1e0b67b9d382cf1ac335292ba',1,'tga_t']]],
   ['out',['out',['../_tomb_raider_8h.html#a1093dc9f092e2c88cdab9d617f6a67ef',1,'tr4_room_light_s::out()'],['../_tomb_raider_8h.html#af5a45dbcaa926b186e6f71d08212acc3',1,'out():&#160;TombRaider.h']]],
   ['output',['output',['../_tomb_raider_8h.html#aceff5389bac5bdef8865cad1a7271d70',1,'tr5_light_t']]],
   ['overlap_5findex',['overlap_index',['../_tomb_raider_8h.html#ac9b9347e39c0067d0116e101f081e7a9',1,'tr2_boxes_s::overlap_index()'],['../_tomb_raider_8h.html#ae09afdbde105b67fff2a38a8833bb3cc',1,'overlap_index():&#160;TombRaider.h']]]

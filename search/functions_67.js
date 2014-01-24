@@ -10,7 +10,7 @@ var searchData=
   ['getbumpmapcount',['getBumpMapCount',['../class_tomb_raider.html#a23fcfa6a92d30a4884d4a86bb0c4defe',1,'TombRaider']]],
   ['getcache',['getCache',['../class_map.html#a45a1e151883d30cc83e2342bfbeb524d',1,'Map']]],
   ['getchild',['GetChild',['../class_tree_node.html#acc8202af3468faeda13eddd705cc3714',1,'TreeNode']]],
-  ['getcolor',['GetColor',['../class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01',1,'TreeNode::GetColor()'],['../class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2',1,'TombRaider::getColor()']]],
+  ['getcolor',['getColor',['../class_tomb_raider.html#a4aa866233ba062830aa6e15c2be38ac2',1,'TombRaider::getColor()'],['../class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01',1,'TreeNode::GetColor()']]],
   ['getcurrentindex',['getCurrentIndex',['../class_vector.html#a8dba5d7cbfb3b8f21c643c931fb7aa7a',1,'Vector']]],
   ['getdata',['GetData',['../class_tree_node.html#af48bf4ab45029f3ab9a496128e543c51',1,'TreeNode']]],
   ['getdisttobboxfromnear',['getDistToBboxFromNear',['../class_view_volume.html#aea20da7235c27255d73bf090b1900842',1,'ViewVolume']]],
@@ -108,13 +108,5 @@ var searchData=
   ['glprintf3d',['glPrintf3d',['../class_s_d_l_system.html#a6884ef14810507fddbbc38f3d75838f5',1,'SDLSystem']]],
   ['glscreenshot',['glScreenShot',['../class_texture.html#a89b987185fefb6e2594fd188cec0dd35',1,'Texture']]],
   ['glstring',['GLString',['../class_g_l_string.html#a2162c4369a763853c1b395d07a2620fc',1,'GLString']]],
-  ['greatest_5fdo_5ffail',['greatest_do_fail',['../greatest_8h.html#a9a0ff3175f8bf037b8c9c52021b265ce',1,'greatest.h']]],
-  ['greatest_5fdo_5fpass',['greatest_do_pass',['../greatest_8h.html#acd92099cbb1d06e4a3cedc7fd3a946b3',1,'greatest.h']]],
-  ['greatest_5fdo_5fskip',['greatest_do_skip',['../greatest_8h.html#a4fbe3e3e5c2c61a0e662444a14ebebf0',1,'greatest.h']]],
-  ['greatest_5fmain_5fdefs',['GREATEST_MAIN_DEFS',['../test_2_mat_math_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;MatMath.cpp'],['../test_2_matrix_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;Matrix.cpp'],['../test_2_sound_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;Sound.cpp'],['../test_2_t_g_a_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;TGA.cpp']]],
-  ['greatest_5fpost_5ftest',['greatest_post_test',['../greatest_8h.html#ae5dffa9571ed5fdfafe708c33c1de633',1,'greatest.h']]],
-  ['greatest_5fpre_5ftest',['greatest_pre_test',['../greatest_8h.html#ac59900de4d8846dc57b95c0c33f67a8a',1,'greatest.h']]],
-  ['greatest_5fset_5fsetup_5fcb',['GREATEST_SET_SETUP_CB',['../greatest_8h.html#a1cdba027d4c078c75f98dc59ea64b682',1,'greatest.h']]],
-  ['greatest_5fset_5fteardown_5fcb',['GREATEST_SET_TEARDOWN_CB',['../greatest_8h.html#a1fd800f99ae9d742d0cd880cdfb8b982',1,'greatest.h']]],
-  ['greatest_5fusage',['greatest_usage',['../greatest_8h.html#abac2e288f2cfdc2ae6c85697b3ea6992',1,'greatest.h']]]
+  ['greatest_5fmain_5fdefs',['GREATEST_MAIN_DEFS',['../test_2_mat_math_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;MatMath.cpp'],['../test_2_matrix_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;Matrix.cpp'],['../test_2_sound_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;Sound.cpp'],['../test_2tga_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;tga.cpp']]]
 ];

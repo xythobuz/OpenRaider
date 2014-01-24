@@ -2,7 +2,7 @@ var searchData=
 [
   ['d',['d',['../_world_8h.html#a7f66803533a81d7b90416cf11e4129a0',1,'box_t']]],
   ['data',['data',['../_network_8h.html#ab10b7e290f9e3120c87961be11d7c3e5',1,'network_packet_t::data()'],['../_network_8h.html#ad924e71a6d563b477d8f33d01189ecea',1,'network_frame_t::data()'],['../_tomb_raider_8h.html#af213b95d62e2ab0561ef112bf43114e8',1,'tr2_room_s::data()'],['../_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8',1,'data():&#160;TombRaider.h']]],
-  ['desc_5fflags',['desc_flags',['../_t_g_a_8h.html#a18814fb584b6e33e07d533519ef77cac',1,'mtk_image_tga_t']]],
+  ['desc_5fflags',['desc_flags',['../tga_8h.html#a712a92c2a1d01d3ba881216b7ea8cebc',1,'tga_t']]],
   ['dim_5fwhite',['DIM_WHITE',['../_render_8cpp.html#a0ab9b7f311d31ce860c3e4872c683382',1,'Render.cpp']]],
   ['directionvectorx',['directionVectorX',['../_tomb_raider_8h.html#ada03dbe185e8f121479953a259455766',1,'tr5_light_t']]],
   ['directionvectorx2',['directionVectorX2',['../_tomb_raider_8h.html#a6aef8a2f07fdece489c59e59ccc8e576',1,'tr5_light_t']]],

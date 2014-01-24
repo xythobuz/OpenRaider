@@ -7,8 +7,8 @@ var searchData=
   ['off',['off',['../_skeletal_model_8h.html#a635214c79c0b7462557e5bb05f10b40f',1,'bone_tag_t']]],
   ['offset',['offset',['../_tomb_raider_8h.html#a38fd2073045a764d10e6240270537050',1,'tr2_sprite_sequence_s::offset()'],['../_tomb_raider_8h.html#a454b622807fbe2c1bf593bdc6f61da67',1,'offset():&#160;TombRaider.h']]],
   ['or_5fblue',['OR_BLUE',['../_render_8cpp.html#a200e65f5ca987f6506821e8ba8c33119',1,'Render.cpp']]],
-  ['origin_5fx',['origin_x',['../_t_g_a_8h.html#a285c2df263b55d237381ebb8ce77ae8c',1,'mtk_image_tga_t']]],
-  ['origin_5fy',['origin_y',['../_t_g_a_8h.html#a5edcd104d17e06967ac692feb1d76c04',1,'mtk_image_tga_t']]],
+  ['origin_5fx',['origin_x',['../tga_8h.html#a8b1408a1c44504cfffd289934bf763ac',1,'tga_t']]],
+  ['origin_5fy',['origin_y',['../tga_8h.html#a592664a1e0b67b9d382cf1ac335292ba',1,'tga_t']]],
   ['out',['out',['../_tomb_raider_8h.html#a1093dc9f092e2c88cdab9d617f6a67ef',1,'tr4_room_light_s::out()'],['../_tomb_raider_8h.html#af5a45dbcaa926b186e6f71d08212acc3',1,'out():&#160;TombRaider.h']]],
   ['output',['output',['../_tomb_raider_8h.html#aceff5389bac5bdef8865cad1a7271d70',1,'tr5_light_t']]],
   ['overlap_5findex',['overlap_index',['../_tomb_raider_8h.html#ac9b9347e39c0067d0116e101f081e7a9',1,'tr2_boxes_s::overlap_index()'],['../_tomb_raider_8h.html#ae09afdbde105b67fff2a38a8833bb3cc',1,'overlap_index():&#160;TombRaider.h']]]

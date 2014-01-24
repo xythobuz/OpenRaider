@@ -2,9 +2,9 @@ var searchData=
 [
   ['texture_2ecpp',['Texture.cpp',['../_texture_8cpp.html',1,'']]],
   ['texture_2eh',['Texture.h',['../_texture_8h.html',1,'']]],
-  ['tga_2ecpp',['TGA.cpp',['../src_2_t_g_a_8cpp.html',1,'']]],
-  ['tga_2ecpp',['TGA.cpp',['../test_2_t_g_a_8cpp.html',1,'']]],
-  ['tga_2eh',['TGA.h',['../_t_g_a_8h.html',1,'']]],
+  ['tga_2ecpp',['tga.cpp',['../src_2tga_8cpp.html',1,'']]],
+  ['tga_2ecpp',['tga.cpp',['../test_2tga_8cpp.html',1,'']]],
+  ['tga_2eh',['tga.h',['../tga_8h.html',1,'']]],
   ['tombraider_2ecpp',['TombRaider.cpp',['../src_2_tomb_raider_8cpp.html',1,'']]],
   ['tombraider_2ecpp',['TombRaider.cpp',['../test_2_tomb_raider_8cpp.html',1,'']]],
   ['tombraider_2eh',['TombRaider.h',['../_tomb_raider_8h.html',1,'']]],

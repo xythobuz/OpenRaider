@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2</span>
+   &#160;<span id="projectnumber">0.1.2-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -93,6 +93,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Camera.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>OpenGL camera class.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="_mat_math_8h_source.html">MatMath.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_matrix_8h_source.html">Matrix.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_quaternion_8h_source.html">Quaternion.h</a>&gt;</code><br/>
@@ -102,6 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html">Camera</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenGL camera class.  <a href="class_camera.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -123,12 +127,19 @@ Enumerations</h2></td></tr>
 <a class="el" href="_camera_8h.html#a62f899123cfb759c439a7bba11793df4a3e14d5a300ed3fd239feb2cca7905589">CAMERA_MOVE_RIGHT</a>
 <br/>
  }</td></tr>
+<tr class="memdesc:a62f899123cfb759c439a7bba11793df4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commands for interactive camera control.  <a href="_camera_8h.html#a62f899123cfb759c439a7bba11793df4">More...</a><br/></td></tr>
 <tr class="separator:a62f899123cfb759c439a7bba11793df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5383624a7aa911caba54d5d91e259edc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_camera_8h.html#a5383624a7aa911caba54d5d91e259edc">CameraFlags</a> { <a class="el" href="_camera_8h.html#a5383624a7aa911caba54d5d91e259edca536e5fee05ccc31880066a5e0961ac75">Camera_FlyMode</a> = 1
+<tr class="memitem:a5383624a7aa911caba54d5d91e259edc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_camera_8h.html#a5383624a7aa911caba54d5d91e259edc">CameraFlags</a> { <a class="el" href="_camera_8h.html#a5383624a7aa911caba54d5d91e259edca536e5fee05ccc31880066a5e0961ac75">Camera_FlyMode</a> = (1 &lt;&lt; 0)
  }</td></tr>
+<tr class="memdesc:a5383624a7aa911caba54d5d91e259edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags a camera can have.  <a href="_camera_8h.html#a5383624a7aa911caba54d5d91e259edc">More...</a><br/></td></tr>
 <tr class="separator:a5383624a7aa911caba54d5d91e259edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>OpenGL camera class. </p>
+<dl class="section author"><dt>Author</dt><dd>Mongoose </dd></dl>
+
+<p>Definition in file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="a62f899123cfb759c439a7bba11793df4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -138,6 +149,8 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Commands for interactive camera control. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a62f899123cfb759c439a7bba11793df4a5763936f2f631389ab4718f925cbc910"></a>CAMERA_MOVE_FORWARD</em>&nbsp;</td><td class="fielddoc">
 </td></tr>
@@ -165,7 +178,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00045">45</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00017">17</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>
@@ -178,12 +191,15 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Flags a camera can have. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a5383624a7aa911caba54d5d91e259edca536e5fee05ccc31880066a5e0961ac75"></a>Camera_FlyMode</em>&nbsp;</td><td class="fielddoc">
+<p><a class="el" href="class_camera.html" title="OpenGL camera class. ">Camera</a> is flying free? </p>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00061">61</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00035">35</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>
