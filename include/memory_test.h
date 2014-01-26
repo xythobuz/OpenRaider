@@ -1,28 +1,14 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/memory_test.h
+ * Memory testing Toolkit
  *
- * Project : MTK
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  :
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments: Memory testing tool kit
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2002.03.27:
- * Mongoose - Created
- ================================================================*/
-
-#include <cstddef>
+ * \author Mongoose
+ */
 
 #ifndef _MEMORY_TEST_H_
 #define _MEMORY_TEST_H_
+
+#include <cstddef>
 
 #if defined(DEBUG_MEMORY) && !defined(UNIT_TEST_MEMORY)
 
@@ -44,32 +30,20 @@ void operator delete [](void *p);
 #define new DEBUG_NEW
 #define delete DEBUG_DELETE
 
-
 void delete_check(const char *file, int line, int print);
 
 void display_memory_usage();
 
+/*!
+ * \brief Get total memory usage
+ * \returns amount of total memory used
+ */
 long memory_used();
-/*------------------------------------------------------
- * Pre  :
- * Post : Returns amount of total memory used
- *
- *-- History ------------------------------------------
- *
- * 2002.03.27:
- * Mongoose - Created
- ------------------------------------------------------*/
 
+/*!
+ * \brief Dumps raw Tree holding memory accounting
+ */
 void dump_memory_report();
-/*------------------------------------------------------
- * Pre  :
- * Post : Dumps raw Tree holding memory accounting
- *
- *-- History ------------------------------------------
- *
- * 2002.03.27:
- * Mongoose - Created
- ------------------------------------------------------*/
 
 #ifdef DEBUG_MEMORY
 

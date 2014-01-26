@@ -1,23 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file src/Network.cpp
+ * \brief Networking Singleton class
  *
- * Project : UnRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Network
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments:
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2002.06.21:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #include <Network.h>
 
@@ -690,14 +676,4 @@ void Network::runClient()
 
     mKillServer = false;
 }
-
-
-////////////////////////////////////////////////////////////
-// Private Accessors
-////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////
-// Private Mutators
-////////////////////////////////////////////////////////////
 
