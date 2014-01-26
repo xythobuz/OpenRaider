@@ -95,15 +95,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Networking Singleton class.  
+<a href="#details">More...</a></p>
+
 <p><a href="_network_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:structnetwork__packet__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a></td></tr>
+<tr class="memdesc:structnetwork__packet__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">The packet holds the data for the network.  <a href="_network_8h.html#structnetwork__packet__t">More...</a><br/></td></tr>
 <tr class="separator:structnetwork__packet__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structnetwork__frame__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#structnetwork__frame__t">network_frame_t</a></td></tr>
+<tr class="memdesc:structnetwork__frame__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">The frame holds the data for the datalink layer.  <a href="_network_8h.html#structnetwork__frame__t">More...</a><br/></td></tr>
 <tr class="separator:structnetwork__frame__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html">Network</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Networking Singleton class.  <a href="class_network.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -122,7 +128,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a51a8daf6f5cca510976bd14eec391c6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_network_8h.html#a51a8daf6f5cca510976bd14eec391c6c">killNetworkSingleton</a> ()</td></tr>
 <tr class="separator:a51a8daf6f5cca510976bd14eec391c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Networking Singleton class. </p>
+<dl class="section author"><dt>Author</dt><dd>Mongoose </dd></dl>
+
+<p>Definition in file <a class="el" href="_network_8h_source.html">Network.h</a>.</p>
+</div><hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="structnetwork__packet__t" id="structnetwork__packet__t"></a>
 <div class="memitem">
 <div class="memproto">
@@ -132,8 +143,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_network_8h_source.html#l00032">32</a> of file <a class="el" href="_network_8h_source.html">Network.h</a>.</p>
+<div class="textblock"><p>The packet holds the data for the network. </p>
+<p>This is encapsulated in the frame. </p>
+
+<p>Definition at line <a class="el" href="_network_8h_source.html#l00016">16</a> of file <a class="el" href="_network_8h_source.html">Network.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -159,13 +172,13 @@ cid</td>
 <td class="fieldname">
 data[32]</td>
 <td class="fielddoc">
-</td></tr>
+A short (32 char) string. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="ac0b89dd37b1df0a566e8d2f6b5005ccc"></a>char</td>
 <td class="fieldname">
 gurantee</td>
 <td class="fielddoc">
-</td></tr>
+TCP like. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="aa17dc2752feadf08b7b435dc0d238614"></a>float</td>
 <td class="fieldname">
@@ -215,8 +228,10 @@ yaw</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_network_8h_source.html#l00058">58</a> of file <a class="el" href="_network_8h_source.html">Network.h</a>.</p>
+<div class="textblock"><p>The frame holds the data for the datalink layer. </p>
+<p>This goes over the line. </p>
+
+<p>Definition at line <a class="el" href="_network_8h_source.html#l00035">35</a> of file <a class="el" href="_network_8h_source.html">Network.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -224,19 +239,19 @@ yaw</td>
 <td class="fieldname">
 data</td>
 <td class="fielddoc">
-</td></tr>
+The packet for the NL. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="ad97a72bff4a3264b4aee2be24624475e"></a>unsigned int</td>
 <td class="fieldname">
 header</td>
 <td class="fielddoc">
-</td></tr>
+The header flags. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="a63ab1c2412a79b84befd7616e6f85729"></a>unsigned int</td>
 <td class="fieldname">
 seq</td>
 <td class="fielddoc">
-</td></tr>
+The sequence number. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="a654ae2deebd697e855dd7a711d7a1343"></a>unsigned int</td>
 <td class="fieldname">
@@ -258,7 +273,7 @@ uid</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_network_8h_source.html#l00076">76</a> of file <a class="el" href="_network_8h_source.html">Network.h</a>.</p>
+<p>Definition at line <a class="el" href="_network_8h_source.html#l00048">48</a> of file <a class="el" href="_network_8h_source.html">Network.h</a>.</p>
 
 </div>
 </div>
@@ -272,7 +287,7 @@ uid</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_network_8h_source.html#l00075">75</a> of file <a class="el" href="_network_8h_source.html">Network.h</a>.</p>
+<p>Definition at line <a class="el" href="_network_8h_source.html#l00047">47</a> of file <a class="el" href="_network_8h_source.html">Network.h</a>.</p>
 
 </div>
 </div>
@@ -318,7 +333,7 @@ uid</td>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="src_2_network_8cpp_source.html#l00082">82</a> of file <a class="el" href="src_2_network_8cpp_source.html">Network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_network_8cpp_source.html#l00068">68</a> of file <a class="el" href="src_2_network_8cpp_source.html">Network.cpp</a>.</p>
 
 </div>
 </div>
