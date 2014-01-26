@@ -1,44 +1,21 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/Tree.h
+ * \brief Template Red-Black Tree
  *
- * Project : Freyja
- * Author  : Mongoose
- * Website : http://gooseegg.sourceforge.net/
- * Email   : mongoose@users.sourceforge.net
- * Object  : Tree
- * License : GPL See file COPYING, also (C) 2000 Mongoose
- * Comments: Template tree class, which is also the iterator
+ * Red-Black trees are a type of binary search trees
+ * with the properities:
  *
+ * * Every node is red or black.
+ * * The root node must be black.
+ * * Every leaf node is black. (null pointers)
+ * * If a node is red, then both its children are black.
+ * * Every simple path from a node to a descendant leaf contains the same number of black nodes.
+ * * Any path from the root to a leaf must not have adjacent red nodes.
  *
- *           Red-Black trees are a type of binary search trees
- *           with the properities:
+ * Define `USE_IOSTREAM` to get additional print methods
  *
- *           1. Every node is red or black.
- *           2. The root node must be black.
- *           3. Every leaf node is black. (null pointers)
- *           4. If a node is red, then both its children are black.
- *           5. Every simple path from a node to a descendant
- *              leaf contains the same number of black nodes.
- *           6. Any path from the root to a leaf must not have
- *              adjacent red nodes.
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2002.02.17:
- * Mongoose - Rewritten as a Red-Black tree
- *
- * 2002.02.16:
- * Mongoose - Dug out of cobwebs and fixed up
- *            Yes, I believe in code reuse!  =)
- *
- * 2000.10.26:
- * Mongoose - Created
- ================================================================*/
-
+ * \author Mongoose
+ */
 
 #ifndef _TREE_H_
 #define _TREE_H_
@@ -54,571 +31,538 @@
 #include <memory_test.h>
 #endif
 
-
-typedef enum
-{
-    _tree_h_black,
-    _tree_h_red
-
+/*!
+ * \brief Color a Tree node can have
+ */
+typedef enum {
+    _tree_h_black, //!< Black node
+    _tree_h_red    //!< Red node
 }  _tree_h_color_t;
 
-
-template <class Key, class Data> class TreeNode
-{
+/*!
+ * \brief Template class for a single Tree node
+ * \tparam Key key type
+ * \tparam Data data type
+ */
+template <class Key, class Data> class TreeNode {
 public:
 
-    TreeNode(Key key, Data data)
-    {
+    /*!
+     * \brief Construct a TreeNode
+     * \param key Key for this node
+     * \param data Data for this node
+     */
+    TreeNode(Key key, Data data) {
         SetColor(_tree_h_red);
         SetData(data);
         SetKey(key);
-
         SetParent(NULL);
         SetLeft(NULL);
         SetRight(NULL);
     }
 
-
-    ~TreeNode()
-    {
+    /*!
+     * \brief Deconstruct a TreeNode. Also deletes childs.
+     */
+    ~TreeNode() {
         TreeNode<Key, Data> *left;
         TreeNode<Key, Data> *right;
-
-
         left = GetLeft();
         right = GetRight();
-
         SetParent(NULL);
         SetLeft(NULL);
         SetRight(NULL);
-
-        if (left)
-        {
+        if (left) {
             left->SetParent(NULL);
             delete left;
         }
-
-        if (right)
-        {
+        if (right) {
             right->SetParent(NULL);
             delete right;
         }
     }
 
-    /// Color /////////////////////////////////////
-
-    void SetColor(_tree_h_color_t color)
-    {
+    /*!
+     * \brief Set the color
+     * \param color new color
+     */
+    void SetColor(_tree_h_color_t color) {
         _color = color;
     }
 
-
-    _tree_h_color_t GetColor()
-    {
+    /*!
+     * \brief Get the color
+     * \returns current color
+     */
+    _tree_h_color_t GetColor() {
         return _color;
     }
 
-
-    /// Left, child ///////////////////////////////
-
-    TreeNode<Key, Data> *GetChild()
-    {
+    /*!
+     * \brief Get the child
+     * \returns the left child
+     */
+    TreeNode<Key, Data> *GetChild() {
         return GetLeft();
     }
 
-
-    void SetChild(TreeNode<Key, Data> *tree)
-    {
+    /*!
+     * \brief Set the child
+     * \param tree new left child
+     */
+    void SetChild(TreeNode<Key, Data> *tree) {
         Left(tree);
     }
 
-
-    TreeNode<Key, Data> *GetLeft()
-    {
+    /*!
+     * \brief Get the child
+     * \returns the left child
+     */
+    TreeNode<Key, Data> *GetLeft() {
         return _left;
     }
 
-
-    void SetLeft(TreeNode<Key, Data> *tree)
-    {
+     /*!
+     * \brief Set the child
+     * \param tree new left child
+     */
+    void SetLeft(TreeNode<Key, Data> *tree) {
         if (tree == this)
-        {
             return;
-        }
-
         _left = tree;
-
         if (tree)
-        {
             tree->SetParent(this);
-        }
     }
 
-    /// Right, sibling ///////////////////////////
-
-    TreeNode<Key, Data> *GetSibling()
-    {
+    /*!
+     * \brief Get the sibling
+     * \returns the right child
+     */
+    TreeNode<Key, Data> *GetSibling() {
         return GetRight();
     }
 
-
-    void SetSibling(TreeNode<Key, Data> *tree)
-    {
+    /*!
+     * \brief Set the sibling
+     * \param tree new right child
+     */
+    void SetSibling(TreeNode<Key, Data> *tree) {
         SetRight(tree);
     }
 
-
-    TreeNode<Key, Data> *GetRight()
-    {
+    /*!
+     * \brief Get the sibling
+     * \returns the right child
+     */
+    TreeNode<Key, Data> *GetRight() {
         return _right;
     }
 
-
-    void SetRight(TreeNode<Key, Data> *tree)
-    {
+    /*!
+     * \brief Set the sibling
+     * \param tree new right child
+     */
+    void SetRight(TreeNode<Key, Data> *tree) {
         if (tree == this)
-        {
             return;
-        }
-
         _right = tree;
-
         if (tree)
-        {
             tree->SetParent(this);
-        }
     }
 
-    /// Data //////////////////////////////////////
-
-    Data GetData()
-    {
+    /*!
+     * \brief Get the data
+     * \returns current data
+     */
+    Data GetData() {
         return _data;
     }
 
-
-    void SetData(Data data)
-    {
+    /*!
+     * \brief Set the data
+     * \param data new data
+     */
+    void SetData(Data data) {
         _data = data;
     }
 
-    /// Key ////////////////////////////////////////
-
-    Key GetKey()
-    {
+    /*!
+     * \brief Get the key
+     * \returns current key
+     */
+    Key GetKey() {
         return _key;
     }
 
-
-    void SetKey(Key key)
-    {
+    /*!
+     * \brief Set the key
+     * \param key new key
+     */
+    void SetKey(Key key) {
         _key = key;
     }
 
-    /// Parent /////////////////////////////////////
-
-    TreeNode<Key, Data> *GetParent()
-    {
+    /*!
+     * \brief Get the parent
+     * \returns current parent
+     */
+    TreeNode<Key, Data> *GetParent() {
         return _parent;
     }
 
-
-    void SetParent(TreeNode<Key, Data> *parent)
-    {
+    /*!
+     * \brief Set the parent
+     * \param parent new parent
+     */
+    void SetParent(TreeNode<Key, Data> *parent) {
         _parent = parent;
     }
 
-
-    /// Misc ///////////////////////////////////////
-
 #ifdef USE_IOSTREAM
-    void PrintNode()
-    {
+    /*!
+     * \brief Print this node
+     */
+    void PrintNode() {
         cout << "(" << _key << ", " << _data << ", "
               << ((GetColor() == _tree_h_red) ? "Red" : "Black")
               << ")";
     }
 
-
-    void PrintInorder()
-    {
-        if (_left)
-        {
+    /*!
+     * \brief Print this node and its children in the correct order
+     */
+    void PrintInorder() {
+        if (_left) {
             _left->PrintInorder();
-            //cout << ", ";
             cout << endl;
         }
-
         PrintNode();
-
-        if (_right)
-        {
-            //cout << ", ";
+        if (_right) {
             cout << endl;
             _right->PrintInorder();
         }
     }
 #endif
 
-
-    void PrintNodeSpecial(void (*print_func_k)(Key), void (*print_func_d)(Data))
-    {
+    /*!
+     * \brief Print this node with custom methods to print key and data
+     * \param print_func_k key printing function
+     * \param print_func_d data printing function
+     */
+    void PrintNodeSpecial(void (*print_func_k)(Key), void (*print_func_d)(Data)) {
         printf("(");
-
         if (print_func_k)
             (*print_func_k)(_key);
-
         printf(", ");
-
         if (print_func_d)
             (*print_func_d)(_data);
-
         printf(", %s)", ((GetColor() == _tree_h_red) ? "Red" : "Black"));
     }
 
-
-    void PrintInorderSpecial(void (*print_func_k)(Key), void (*print_func_d)(Data))
-    {
-        if (_left)
-        {
+    /*!
+     * \brief Print this node and its children in the correct order, with custom methods to print key and data
+     * \param print_func_k key printing function
+     * \param print_func_d data printing function
+     */
+    void PrintInorderSpecial(void (*print_func_k)(Key), void (*print_func_d)(Data)) {
+        if (_left) {
             _left->PrintInorderSpecial(print_func_k, print_func_d);
             printf(",\n");
-            //          printf(", ");
         }
-
         PrintNodeSpecial(print_func_k, print_func_d);
-
-        if (_right)
-        {
+        if (_right) {
             printf(",\n");
-            //          printf(", ");
             _right->PrintInorderSpecial(print_func_k, print_func_d);
         }
     }
 
-
-    TreeNode<Key, Data> *SearchByData(Data data, bool *error)
-    {
+    /*!
+     * \brief Search this node and its children for specific data
+     * \param data data to search for
+     * \param error will be true if nothing was found
+     * \returns the TreeNode containing the data, or NULL
+     */
+    TreeNode<Key, Data> *SearchByData(Data data, bool *error) {
         TreeNode<Key, Data> *tree = NULL;
         *error = true;
-
-
-        if (_data == data)
-        {
+        if (_data == data) {
             *error = false;
             return this;
         }
-
         if (_left)
-        {
             tree = _left->SearchByData(data, error);
-        }
-
         if (_right && !tree)
-        {
             tree = _right->SearchByData(data, error);
-        }
-
         return tree;
     }
 
-
-    TreeNode<Key, Data> *SearchByKey(Key key, bool *error)
-    {
+    /*!
+     * \brief Search this node and its children for a specific key
+     * \param key key to search for
+     * \param error will be true if nothing was found
+     * \returns the TreeNode containing the key, or NULL
+     */
+    TreeNode<Key, Data> *SearchByKey(Key key, bool *error) {
         *error = false;
-
-        if (_key == key)
-        {
+        if (_key == key) {
             return this;
-        }
-        else if (_left && key < _key)
-        {
+        } else if (_left && key < _key) {
             return _left->SearchByKey(key, error);
-        }
-        else if (_right)
-        {
+        } else if (_right) {
             return _right->SearchByKey(key, error);
-        }
-        else
-        {
+        } else {
             *error = true;
             return 0; //NULL;
         }
     }
 
-
-    void Insert(TreeNode<Key, Data> *tree)
-    {
-        if (!tree || tree == this)
-        {
+    /*!
+     * \brief Insert a TreeNode after this one.
+     * If the key of the TreeNode to be inserted is smaller than the key
+     * in this TreeNode, it will be added as left child, else as right child.
+     * \param tree TreeNode to insert
+     */
+    void Insert(TreeNode<Key, Data> *tree) {
+        if (!tree || tree == this) {
             return;
         }
-
-        if (tree->GetKey() < _key)
-        {
-            if (!_left)
-            {
+        if (tree->GetKey() < _key) {
+            if (!_left) {
                 SetLeft(tree);
-            }
-            else
-            {
+            } else {
                 _left->Insert(tree);
             }
-        }
-        else
-        {
-            if (!_right)
-            {
+        } else {
+            if (!_right) {
                 SetRight(tree);
-            }
-            else
-            {
+            } else {
                 _right->Insert(tree);
             }
         }
     }
 
-
 private:
-
-    _tree_h_color_t _color;               /* Color of tree node */
-
-    Key _key;                             /* Unique identifer? */
-
-    Data _data;                           /* Data for this tree */
-
-    TreeNode<Key, Data> *_left;           /* Left or child node */
-
-    TreeNode<Key, Data> *_right;          /* Right or sibling node */
-
-    TreeNode<Key, Data> *_parent;         /* Parent of the tree node */
+    _tree_h_color_t _color;       //!< Color of tree node
+    Key _key;                     //!< Unique identifer?
+    Data _data;                   //!< Data for this tree
+    TreeNode<Key, Data> *_left;   //!< Left or child node
+    TreeNode<Key, Data> *_right;  //!< Right or sibling node
+    TreeNode<Key, Data> *_parent; //!< Parent of the tree node
 };
 
-
-////////////////////////////////////////////////////////////////
-// Iterator
-////////////////////////////////////////////////////////////////
-
-
-template <class Key, class Data> class Tree
-{
+/*!
+ * \brief Template class for a Red-Black Tree
+ * \tparam Key key datatype
+ * \tparam Data data datatype
+ */
+template <class Key, class Data> class Tree {
 public:
 
-    Tree()
-    {
+    /*!
+     * \brief Construct an object of Tree
+     */
+    Tree() {
         _error = false;
         _num_elements = 0;
         _root = 0;
     }
 
-
-    ~Tree()
-    {
+    /*!
+     * \brief Deconstruct an object of Tree
+     */
+    ~Tree() {
         Clear();
     }
 
-
-    unsigned int NumElements()
-    {
+    /*!
+     * \brief Get the number of elements
+     * \returns number of elements in this tree
+     */
+    unsigned int NumElements() {
         return _num_elements;
     }
 
-
-    Data SearchByKey(Key key, bool *error)
-    {
+    /*!
+     * \brief Search for data with a key
+     * \param key key to search for
+     * \param error will be true if nothing is found
+     * \returns Data matching Key or NULL
+     * \sa TreeNode::SearchByKey()
+     */
+    Data SearchByKey(Key key, bool *error) {
         TreeNode<Key, Data> *seeking;
-
-
         *error = true;
 
         // Mongoose 2002.02.16, Nothing to search
         if (!_root)
-        {
             return 0;
-        }
 
         seeking = _root->SearchByKey(key, error);
 
         if (seeking)
-        {
             return seeking->GetData();
-        }
 
         return 0;
     }
 
-
-    Key SearchByData(Data data, bool *error)
-    {
+    /*!
+     * \brief Search for a key with data
+     * \param data data to search for
+     * \param error will be true if nothing is found
+     * \returns Key matching Data or NULL
+     * \sa TreeNode::SearchByData()
+     */
+    Key SearchByData(Data data, bool *error) {
         TreeNode<Key, Data> *seeking;
-
-
         *error = true;
 
         // Mongoose 2002.02.16, Nothing to search
         if (!_root)
-        {
             return 0;
-        }
 
         seeking = _root->SearchByData(data, error);
 
         if (seeking)
-        {
             return seeking->GetKey();
-        }
 
         return 0;
     }
 
-
-    void Insert(Key key, Data data)
-    {
-        TreeNode<Key, Data> *tree;
-
-
-        tree = new TreeNode<Key, Data>(key, data);
+    /*!
+     * \brief Insert a key-data pair into the tree.
+     * \param key key to insert
+     * \param data corresponding to key to insert
+     * \sa TreeNode::Insert()
+     * \sa Tree::RestoreRedBlackAfterInsert()
+     */
+    void Insert(Key key, Data data) {
+        TreeNode<Key, Data> *tree = new TreeNode<Key, Data>(key, data);
         ++_num_elements;
 
-        if (_root)
-        {
+        if (_root) {
             _root->Insert(tree);
             RestoreRedBlackAfterInsert(tree);
-        }
-        else
-        {
+        } else {
             _root = tree;
             _root->SetColor(_tree_h_black);
         }
     }
 
-
-    bool RemoveByData(Data data)
-    {
+    /*!
+     * \brief Search for data and remove, if found
+     * \param data data to remove
+     * \returns true if nothing was deleted
+     * \sa TreeNode::SearchByData()
+     * \sa Tree::Remove()
+     */
+    bool RemoveByData(Data data) {
         bool error;
-
-
         if (_root)
-        {
             Remove(_root->SearchByData(data, &error));
-        }
-
         return error;
     }
 
-
-    bool RemoveByKey(Key key)
-    {
+    /*!
+     * \brief Search for a key and remove, if found
+     * \param key key to remove
+     * \returns true if nothing was deleted
+     * \sa TreeNode::SearchByKey()
+     * \sa Tree::Remove()
+     */
+    bool RemoveByKey(Key key) {
         bool error;
-
-
-        if (_root)
-        {
+        if (_root) {
 #ifdef OBSOLETE
             // Mongoose 2002.02.18, To remove duplicates
             erorr = false;
-
-            while (!error)
-            {
+            while (!error) {
 #endif
                 Remove(_root->SearchByKey(key, &error));
 #ifdef OBSOLETE
             }
 #endif
         }
-
         return error;
     }
 
-
-    void Erase()
-    {
+    /*!
+     * \brief Clear the list, deleting all TreeNodes
+     */
+    void Erase() {
         Clear();
     }
 
-
-    void Clear()
-    {
+    /*!
+     * \brief Clear the list, deleting all TreeNodes
+     */
+    void Clear() {
         if (_root)
-        {
             delete _root;
-        }
 
         _num_elements = 0;
         _error = false;
         _root = 0;
     }
 
-    /// Misc //////////////////////////////////////
-
-    Data operator [] (Key key)
-    {
+    /*!
+     * \brief Search for data with a key
+     * \param key key to search for
+     * \returns data corresponding to key, or 0
+     * \sa TreeNode::SearchByKey()
+     */
+    Data operator [] (Key key) {
         _error = false;
 
         if (_root)
-        {
             return SearchByKey(key, &_error);
-        }
 
         _error = true;
-
         return 0;
     }
 
-
 #ifdef USE_IOSTREAM
+    /*!
+     * \brief Print a/this Tree?
+     * \param tree TreeNode from which to start printing?
+     * \param height ?
+     * \param seek ?
+     * \param rightmost ?
+     * \fixme Fix documentation
+     * \sa Tree::PrintAsTree()
+     */
     void PrintTree(TreeNode<Key, Data> *tree, unsigned int height,
-                        unsigned int seek, bool rightmost)
-    {
+                        unsigned int seek, bool rightmost) {
         TreeNode<Key, Data> *left, *right, *parent;
 
-
         if (!tree)
-        {
             return;
-        }
 
         parent = tree->GetParent();
 
-        if (height == seek)
-        {
-            if (!parent)
-            {
+        if (height == seek) {
+            if (!parent) {
                 cout << endl << "[height " << height << "]   " << endl;
 
                 if (tree->GetColor() == _tree_h_red)
-                {
                     cout << "*";
-                }
-            }
-            else
-            {
-                if (parent->GetColor() == _tree_h_red &&
-                     tree->GetColor() == _tree_h_red)
-                {
+            } else {
+                if ((parent->GetColor() == _tree_h_red) && (tree->GetColor() == _tree_h_red))
                     cout << "*";
-                }
             }
 
             cout << "(" << tree->GetKey() << ", "
                   << ((tree->GetColor() == _tree_h_red) ? "red" : "blk")
                   << ")";
 
-            if (rightmost)
-            {
+            if (rightmost) {
                 cout << endl << "[height " << (height+1) << "]   " << endl;
-
                 PrintTree(_root, 0, ++seek, true);
-            }
-            else
-            {
+            } else {
                 cout << " ";
             }
 
             return;
-        }
-        else if (seek < height)
-        {
+        } else if (seek < height) {
             return;
         }
 
@@ -626,92 +570,89 @@ public:
         right = tree->GetRight();
         ++height;
 
-        if (left)
-        {
+        if (left) {
             PrintTree(left, height, seek, false);
-        }
-        else
-        {
+        } else {
             cout << "(-, blk) ";
         }
 
-        if (right)
-        {
+        if (right) {
             PrintTree(right, height, seek, rightmost);
-        }
-        else
-        {
+        } else {
             cout << "(-, blk) ";
         }
 
-        if (parent)
-        {
-            if (parent->GetRight() != tree)
-            {
+        if (parent) {
+            if (parent->GetRight() != tree) {
                 cout << " |  ";
             }
         }
     }
 
-
-    void PrintAsTree()
-    {
+    /*!
+     * \brief Print this tree as tree
+     * \sa Tree::PrintTree()
+     */
+    void PrintAsTree() {
         PrintTree(_root, 0, 0, true);
         cout << endl << "Nodes marked with * are in error" << endl;
     }
 
-
-    void Print()
-    {
+    /*!
+     * \brief Print this tree
+     * \sa TreeNode::PrintNode()
+     * \sa TreeNode::PrintInorder()
+     */
+    void Print() {
         cout << "Tree: " << _num_elements <<" elements {" << endl;
-
-        if (_root)
-        {
+        if (_root) {
             cout << "Root: ";
             _root->PrintNode();
             cout << endl;
             _root->PrintInorder();
         }
-
         cout << endl << "}" << endl;
     }
 #endif
 
-
-    void PrintSpecial(void (*print_func_k)(Key), void (*print_func_d)(Data))
-    {
+    /*!
+     * \brief Print this tree with it's keys and data
+     * \param print_func_k key printing function
+     * \param print_func_d data printing function
+     * \sa TreeNode::PrintNodeSpecial()
+     * \sa TreeNode::PrintInorderSpecial()
+     */
+    void PrintSpecial(void (*print_func_k)(Key), void (*print_func_d)(Data)) {
         printf("Tree: %i elements {\n", _num_elements);
-
-        if (_root && print_func_k && print_func_d)
-        {
+        if (_root && print_func_k && print_func_d) {
             printf("Root: ");
             _root->PrintNodeSpecial(print_func_k, print_func_d);
             printf("\n");
             _root->PrintInorderSpecial(print_func_k, print_func_d);
         }
-
         printf("\n}\n");
     }
 
-
-    Key Root()
-    {
-        if (_root)
-        {
+    /*!
+     * \brief Get the key of the root node
+     * \returns key of root node or 0
+     */
+    Key Root() {
+        if (_root) {
             return _root->GetKey();
         }
-
         return 0;
     }
 
-
-    bool Error()
-    {
+    /*!
+     * \brief Get the error flag
+     * \returns error flag
+     */
+    bool Error() {
         return _error;
     }
 
-    bool IsValidRedBlackTree()
-    {
+    bool IsValidRedBlackTree() {
         return IsValidRedBlackTreeCheck(_root, true);
     }
 
@@ -1277,12 +1218,9 @@ private:
         _root->SetColor(_tree_h_black);
     }
 
-
-    bool _error;                      /* Error reporting for operator use */
-
-    unsigned int _num_elements;       /* Number of nodes in this tree */
-
-    TreeNode<Key, Data> *_root;       /* Root node */
+    bool _error;                //!< Error reporting for operator use
+    unsigned int _num_elements; //!< Number of nodes in this tree
+    TreeNode<Key, Data> *_root; //!< Root node
 };
 
 #endif
