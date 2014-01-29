@@ -44,16 +44,16 @@ extern entity_t *LARA;
 extern World gWorld;
 
 // Colors
-const float BLACK[]        = {  0.0,  0.0,  0.0, 1.0 };
-const float DIM_WHITE[]    = {  0.5,  0.5,  0.5, 1.0 };
-const float WHITE[]        = {  1.0,  1.0,  1.0, 1.0 };
-const float RED[]          = {  1.0,  0.0,  0.0, 1.0 };
-const float GREEN[]        = {  0.0,  1.0,  0.0, 1.0 };
-const float NEXT_PURPLE[]  = {  0.3,  0.3,  0.5, 1.0 };
-const float OR_BLUE[]      = {  0.5,  0.7,  1.0, 1.0 };
-const float PINK[]         = {  1.0,  0.0,  1.0, 1.0 };
-const float YELLOW[]       = {  1.0,  1.0,  0.0, 1.0 };
-const float CYAN[]         = {  0.0,  1.0,  1.0, 1.0 };
+const float BLACK[]        = {  0.0f,  0.0f,  0.0f, 1.0f };
+const float DIM_WHITE[]    = {  0.5f,  0.5f,  0.5f, 1.0f };
+const float WHITE[]        = {  1.0f,  1.0f,  1.0f, 1.0f };
+const float RED[]          = {  1.0f,  0.0f,  0.0f, 1.0f };
+const float GREEN[]        = {  0.0f,  1.0f,  0.0f, 1.0f };
+const float NEXT_PURPLE[]  = {  0.3f,  0.3f,  0.5f, 1.0f };
+const float OR_BLUE[]      = {  0.5f,  0.7f,  1.0f, 1.0f };
+const float PINK[]         = {  1.0f,  0.0f,  1.0f, 1.0f };
+const float YELLOW[]       = {  1.0f,  1.0f,  0.0f, 1.0f };
+const float CYAN[]         = {  0.0f,  1.0f,  1.0f, 1.0f };
 
 ViewVolume gViewVolume; /* View volume for frustum culling */
 
@@ -377,7 +377,7 @@ void renderTrace(int color, vec3_t start, vec3_t end)
 {
     const float widthStart = 10.0f; //5.0f;
     const float widthEnd = 10.0f;
-    float delta = 0.01 + (0.15*rand()/(RAND_MAX+1.0)); // for flicker fx
+    float delta = helRandomNum(0.01f, 0.16f); // for flicker fx
 
 
     // Draw two long quads that skrink and fade the they go further out
@@ -386,14 +386,14 @@ void renderTrace(int color, vec3_t start, vec3_t end)
     switch (color)
     {
         case 0:
-            glColor3f(0.9 - delta, 0.2, 0.2);
+            glColor3f(0.9f - delta, 0.2f, 0.2f);
             break;
         case 1:
-            glColor3f(0.2, 0.9 - delta, 0.2);
+            glColor3f(0.2f, 0.9f - delta, 0.2f);
             break;
         case 2:
         default:
-            glColor3f(0.2, 0.2, 0.9 - delta);
+            glColor3f(0.2f, 0.2f, 0.9f - delta);
     }
 
     glVertex3f(start[0], start[1], start[2]);
@@ -635,9 +635,9 @@ void Render::setFlags(unsigned int flags)
     {
         glEnable(GL_FOG);
         glFogf(GL_FOG_MODE, GL_EXP2);
-        glFogf(GL_FOG_DENSITY, 0.00008);
-        glFogf(GL_FOG_START, 30000.0);
-        glFogf(GL_FOG_END, 50000.0);
+        glFogf(GL_FOG_DENSITY, 0.00008f);
+        glFogf(GL_FOG_START, 30000.0f);
+        glFogf(GL_FOG_END, 50000.0f);
         glFogfv(GL_FOG_COLOR, BLACK);
     }
 
@@ -710,8 +710,8 @@ void deprecated_gluLookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, flo
     f[1] = lookAtY - eyeY;
     f[2] = lookAtZ - eyeZ;
     float fMag, upMag;
-    fMag = sqrt(f[0]*f[0] + f[1]*f[1] + f[2]*f[2]);
-    upMag = sqrt(upX*upX + upY*upY + upZ*upZ);
+    fMag = sqrtf(f[0]*f[0] + f[1]*f[1] + f[2]*f[2]);
+    upMag = sqrtf(upX*upX + upY*upY + upZ*upZ);
     // normalizing the viewing vector
     f[0] = f[0]/fMag;
     f[1] = f[1]/fMag;
@@ -806,17 +806,17 @@ void Render::Display()
         camPos[1] = curPos[1] - camOffsetH; // UP is lower val
         camPos[2] = curPos[2];
 
-        camPos[0] -= (1024.0 * sin(yaw));
-        camPos[2] -= (1024.0 * cos(yaw));
+        camPos[0] -= (1024.0f * sinf(yaw));
+        camPos[2] -= (1024.0f * cosf(yaw));
 
         sector = gWorld.getSector(index, camPos[0], camPos[2]);
 
         // Handle camera out of world
         if (sector < 0 || gWorld.isWall(index, sector))
         {
-            camPos[0] = curPos[0] + (64.0 * sin(yaw));
-            camPos[1] -= 64.0;
-            camPos[2] = curPos[2] + (64.0 * cos(yaw));
+            camPos[0] = curPos[0] + (64.0f * sinf(yaw));
+            camPos[1] -= 64.0f;
+            camPos[2] = curPos[2] + (64.0f * cosf(yaw));
         }
 
         mCamera->setPosition(camPos);
@@ -832,7 +832,7 @@ void Render::Display()
     // Mongoose 2002.08.13, Quick fix to render OpenRaider upside down
     // gluLookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0, -1.0, 0.0);
 
-    deprecated_gluLookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0, -1.0, 0.0);
+    deprecated_gluLookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0f, -1.0f, 0.0f);
 
     // Update view volume for vising
     updateViewVolume();
@@ -852,13 +852,13 @@ void Render::Display()
 
             // Center of LARA
             u[0] = curPos[0];
-            u[1] = curPos[1] - 512.0;
+            u[1] = curPos[1] - 512.0f;
             u[2] = curPos[2];
 
             // Location LARA is aiming at?  ( Not finished yet )
-            v[0] = u[0] + (9000.0 * sin(LARA->angles[1]));
-            v[1] = u[1] + (9000.0 * sin(LARA->angles[2]));
-            v[2] = u[2] + (9000.0 * cos(LARA->angles[1]));
+            v[0] = u[0] + (9000.0f * sinf(LARA->angles[1]));
+            v[1] = u[1] + (9000.0f * sinf(LARA->angles[2]));
+            v[2] = u[2] + (9000.0f * cosf(LARA->angles[1]));
 
             //mtkVectorSubtract(u, v, t);
             //mtkVectorSubtract(u, curPos, s);
@@ -1212,8 +1212,8 @@ void Render::drawLoadScreen()
         glDisable(GL_LIGHTING);
 
     // Mongoose 2002.01.01, Draw logo/load screen
-    glTranslatef(0.0, 0.0, -2000.0);
-    glRotatef(180.0, 1.0, 0.0, 0.0);
+    glTranslatef(0.0f, 0.0f, -2000.0f);
+    glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
 
     // Mongoose 2002.03.26, Account for particle system not using new binds
     //   by not using them here either
@@ -1223,16 +1223,16 @@ void Render::drawLoadScreen()
         mTexture.bindMultiTexture(1, 3);
 
         glBegin(GL_TRIANGLE_STRIP);
-        mTexture.useMultiTexture(1.0, 1.0, 0.5 - wrap, 1.0);
+        mTexture.useMultiTexture(1.0f, 1.0f, 0.5f - wrap, 1.0f);
         glColor3fv(WHITE);
         glVertex3f(x + w, y + h, z);
-        mTexture.useMultiTexture(0.0, 1.0, 0.0 - wrap, 1.0);
+        mTexture.useMultiTexture(0.0f, 1.0f, 0.0f - wrap, 1.0f);
         glColor3fv(WHITE);
         glVertex3f(x - w, y + h, z);
-        mTexture.useMultiTexture(1.0, 0.0, 0.5 - wrap, 0.5);
+        mTexture.useMultiTexture(1.0f, 0.0f, 0.5f - wrap, 0.5f);
         glColor3fv(WHITE);
         glVertex3f(x + w, y - h, z);
-        mTexture.useMultiTexture(0.0, 0.0, 0.0 - wrap, 0.5);
+        mTexture.useMultiTexture(0.0f, 0.0f, 0.0f - wrap, 0.5f);
         glColor3fv(WHITE);
         glVertex3f(x - w, y - h, z);
         glEnd();
@@ -1241,7 +1241,7 @@ void Render::drawLoadScreen()
         // The Loading Screen sat around for 25s, doing nothing.
         // Incrementing wrap by a much bigger number speeds up the animation
         // thus greatly reducing startup time?! -- xythobuz
-        wrap += 0.05;
+        wrap += 0.075f;
 
         if (wrap > 1.121096f)
             mTexture.disableMultiTexture();
@@ -1435,13 +1435,13 @@ void Render::drawModel(SkeletalModel *model)
 
         if (boneframe->tag.getCurrentIndex() == 0)
         {
-            if (tag->rot[1])
+            if (!equalEpsilon(tag->rot[1], 0.0f)) // was just if (tag->rot[1])
                 glRotatef(tag->rot[1], 0, 1, 0);
 
-            if (tag->rot[0])
+            if (!equalEpsilon(tag->rot[0], 0.0f))
                 glRotatef(tag->rot[0], 1, 0, 0);
 
-            if (tag->rot[2])
+            if (!equalEpsilon(tag->rot[2], 0.0f))
                 glRotatef(tag->rot[2], 0, 0, 1);
         }
         else
@@ -1454,13 +1454,13 @@ void Render::drawModel(SkeletalModel *model)
 
             glTranslatef(tag->off[0], tag->off[1], tag->off[2]);
 
-            if (tag->rot[1])
+            if (!equalEpsilon(tag->rot[1], 0.0f))
                 glRotatef(tag->rot[1], 0, 1, 0);
 
-            if (tag->rot[0])
+            if (!equalEpsilon(tag->rot[0], 0.0f))
                 glRotatef(tag->rot[0], 1, 0, 0);
 
-            if (tag->rot[2])
+            if (!equalEpsilon(tag->rot[2], 0.0f))
                 glRotatef(tag->rot[2], 0, 0, 1);
         }
 
@@ -1495,7 +1495,7 @@ void Render::drawModel(SkeletalModel *model)
                 //   since no vertex welds are implemented yet
                 if (mdl->tr4Overlay == 1)
                 {
-                    glScalef(1.20, 1.20, 1.20);
+                    glScalef(1.20f, 1.20f, 1.20f);
                 }
 
 #ifdef EXPERIMENTAL_NON_ITEM_RENDER
@@ -1507,9 +1507,9 @@ void Render::drawModel(SkeletalModel *model)
 
                     if (i > 0)
                     {
-                        glRotatef(helRandomNum(-8.0, -10.0), 1, 0, 0);
-                        glRotatef(helRandomNum(-5.0, 5.0), 0, 1, 0);
-                        glRotatef(helRandomNum(-5.0, 5.0), 0, 0, 1);
+                        glRotatef(helRandomNum(-8.0f, -10.0f), 1, 0, 0);
+                        glRotatef(helRandomNum(-5.0f, 5.0f), 0, 1, 0);
+                        glRotatef(helRandomNum(-5.0f, 5.0f), 0, 0, 1);
 
                         glTranslatef(0.0, 0.0, mdl->ponyOff);
                     }

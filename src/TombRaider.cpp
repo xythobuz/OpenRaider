@@ -1345,7 +1345,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
             for (j = 0; j < (int)_num_animations; ++j)
             {
                 int fo = _animations[j].frame_offset / 2;
-                _animations[j].frame_size = (_frames[fo + 9] * 2) + 10;
+                _animations[j].frame_size = (unsigned char)(_frames[fo + 9] * 2) + 10;
             }
 
             for (i = 0; i < (int)_num_frames; )
@@ -1556,10 +1556,10 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
             for (j = 0; j < _num_boxes; ++j)
             {
-                _boxes[j].zmin = tr1box[j].zmin / 1024;
-                _boxes[j].zmax = tr1box[j].zmax / 1024;
-                _boxes[j].xmin = tr1box[j].xmin / 1024;
-                _boxes[j].xmax = tr1box[j].xmax / 1024;
+                _boxes[j].zmin = (unsigned char)(tr1box[j].zmin / 1024);
+                _boxes[j].zmax = (unsigned char)(tr1box[j].zmax / 1024);
+                _boxes[j].xmin = (unsigned char)(tr1box[j].xmin / 1024);
+                _boxes[j].xmax = (unsigned char)(tr1box[j].xmax / 1024);
                 _boxes[j].true_floor = tr1box[j].true_floor;
                 _boxes[j].overlap_index = tr1box[j].overlap_index;
             }
@@ -1738,14 +1738,14 @@ int TombRaider::Load(char *filename, void (*percent)(int))
             {
                 colour_tmp = _palette8[_textile8[i].tile[j]].r & 0x3f;
                 colour_tmp = colour_tmp * 31.0 / 63.0;
-                argb = ((int)colour_tmp) << 10;
+                argb = (unsigned short)(((int)colour_tmp) << 10);
                 colour_tmp = _palette8[_textile8[i].tile[j]].g & 0x3f;
                 colour_tmp = colour_tmp * 31.0 / 63.0;
-                argb |= ((int)colour_tmp) << 5;
+                argb |= (unsigned short)(((int)colour_tmp) << 5);
                 colour_tmp = _palette8[_textile8[i].tile[j]].b & 0x3f;
                 colour_tmp = colour_tmp * 31.0 / 63.0;
-                argb |= ((int)colour_tmp);
-                argb &= 0x7fff;   // ???
+                argb |= (unsigned short)((int)colour_tmp);
+                argb &= 0x7fff; // ???
 
                 if (_textile8[i].tile[j] != 0)
                     argb |= 0x8000;
@@ -2019,7 +2019,7 @@ float TombRaider::adjustTexel(unsigned char texel, char offset)
     else
         texel--;
 
-    return ((float)texel / 255.0);
+    return ((float)texel / 255.0f);
 }
 
 
@@ -2029,7 +2029,7 @@ void TombRaider::computeRotationAngles(unsigned short **frame,
         float *x, float *y, float *z)
 {
     unsigned short itmp, itmp2;
-    double angle;
+    float angle;
 
 
     itmp = (*frame)[(*frame_offset) + (*angle_offset)++];
@@ -2123,8 +2123,8 @@ void TombRaider::computeUV(tr2_object_texture_vert_t *st, float *u, float *v)
     //x += ((char)st->xcoordinate >= 0) ? 1 : -1;
     //y += ((char)st->ycoordinate >= 0) ? 1 : -1;
 
-    *u = (float)x / 255.0;
-    *v = (float)y / 255.0;
+    *u = (float)x / 255.0f;
+    *v = (float)y / 255.0f;
 }
 
 
@@ -2139,12 +2139,12 @@ void TombRaider::getColor(int index, float color[4])
     switch (getEngine())
     {
         case TR_VERSION_1:
-            color[0] = _palette8[index].r / 64.0;
-            color[1] = _palette8[index].g / 64.0;
-            color[2] = _palette8[index].b / 64.0;
-            //color[0] = (_palette8[index].r & 0xfd) / 64.0;
-            //color[1] = (_palette8[index].g & 0xfd) / 64.0;
-            //color[2] = (_palette8[index].b & 0xfd) / 64.0;
+            color[0] = _palette8[index].r / 64.0f;
+            color[1] = _palette8[index].g / 64.0f;
+            color[2] = _palette8[index].b / 64.0f;
+            //color[0] = (_palette8[index].r & 0xfd) / 64.0f;
+            //color[1] = (_palette8[index].g & 0xfd) / 64.0f;
+            //color[2] = (_palette8[index].b & 0xfd) / 64.0f;
             color[3] = 1.0;
             break;
         case TR_VERSION_2:
@@ -2153,9 +2153,9 @@ void TombRaider::getColor(int index, float color[4])
         case TR_VERSION_5:
         case TR_VERSION_UNKNOWN:
         default:
-            color[0] = (float)(_palette16[index] & 0xff) / 256.0;
-            color[1] = (float)((_palette16[index] >> 8) & 0xff) / 256.0;
-            color[2] = (float)((_palette16[index] >> 16) & 0xff) / 256.0;
+            color[0] = (float)(_palette16[index] & 0xff) / 256.0f;
+            color[1] = (float)((_palette16[index] >> 8) & 0xff) / 256.0f;
+            color[2] = (float)((_palette16[index] >> 16) & 0xff) / 256.0f;
             color[3] = 1.0;
     }
 }
@@ -2513,7 +2513,7 @@ void TombRaider::getMeshVertexArrays(unsigned int meshIndex,
                 case TR_VERSION_5:
                 case TR_VERSION_UNKNOWN:
                 default:
-                    colorValue = (1.0 - (colorValue / 8192.0));
+                    colorValue = (1.0f - (colorValue / 8192.0f));
                     break;
             }
 
@@ -2549,21 +2549,21 @@ int TombRaider::getRoomBox(unsigned int roomIndex, unsigned int index,
         case TR_VERSION_3:
         case TR_VERSION_4:
         case TR_VERSION_5:
-            xyzA[0] = (unsigned short)_boxes[index].xmin * 1024.0;
+            xyzA[0] = (unsigned short)_boxes[index].xmin * 1024.0f;
             xyzA[1] = (short)_boxes[index].true_floor;
-            xyzA[2] = (unsigned short)_boxes[index].zmin * 1024.0;
+            xyzA[2] = (unsigned short)_boxes[index].zmin * 1024.0f;
 
-            xyzB[0] = (unsigned short)_boxes[index].xmax * 1024.0;
+            xyzB[0] = (unsigned short)_boxes[index].xmax * 1024.0f;
             xyzB[1] = (short)_boxes[index].true_floor;
-            xyzB[2] = (unsigned short)_boxes[index].zmin * 1024.0;
+            xyzB[2] = (unsigned short)_boxes[index].zmin * 1024.0f;
 
-            xyzC[0] = (unsigned short)_boxes[index].xmax * 1024.0;
+            xyzC[0] = (unsigned short)_boxes[index].xmax * 1024.0f;
             xyzC[1] = (short)_boxes[index].true_floor;
-            xyzC[2] = (unsigned short)_boxes[index].zmax * 1024.0;
+            xyzC[2] = (unsigned short)_boxes[index].zmax * 1024.0f;
 
-            xyzD[0] = (unsigned short)_boxes[index].xmin * 1024.0;
+            xyzD[0] = (unsigned short)_boxes[index].xmin * 1024.0f;
             xyzD[1] = (short)_boxes[index].true_floor;
-            xyzD[2] = (unsigned short)_boxes[index].zmax * 1024.0;
+            xyzD[2] = (unsigned short)_boxes[index].zmax * 1024.0f;
     }
 
     return 0;
@@ -2769,7 +2769,7 @@ int TombRaider::getRoomLight(unsigned int roomIndex, unsigned int index,
             pos[2] = _rooms[roomIndex].lights[index].z;
             pos[3] = 1.0f;
 
-            color[0] = _rooms[roomIndex].lights[index].intensity1 / 409.60;
+            color[0] = _rooms[roomIndex].lights[index].intensity1 / 409.60f;
             color[1] = color[0];
             color[2] = color[0];
             color[3] = 1.0f;
@@ -3309,16 +3309,16 @@ void TombRaider::getRoomSprite(unsigned int roomIndex, unsigned int index,
     height2 = height * scale;
 
     // Quad
-    vertices[0] = -width2 / 2.0;
+    vertices[0] = -width2 / 2.0f;
     vertices[1] = 0;
     vertices[2] = 0;
-    vertices[3] = -width2 / 2.0;
+    vertices[3] = -width2 / 2.0f;
     vertices[4] = -height2;
     vertices[5] = 0;
-    vertices[6] = width2 / 2.0;
+    vertices[6] = width2 / 2.0f;
     vertices[7] = -height2;
     vertices[8] = 0;
-    vertices[9] = width2 / 2.0;
+    vertices[9] = width2 / 2.0f;
     vertices[10] = 0;
     vertices[11] = 0;
 
@@ -3644,7 +3644,7 @@ void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
             {
                 case TR_VERSION_1:
                     color_value = _rooms[index].room_data.vertices[i].attributes;
-                    color_value = (1.1 - (color_value / 8192.0));
+                    color_value = (1.1f - (color_value / 8192.0f));
 
                     rgba[0] = color_value;
                     rgba[1] = color_value;
@@ -3669,7 +3669,7 @@ void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
                 case TR_VERSION_UNKNOWN:
                 default:
                     color_value = _rooms[index].room_data.vertices[i].lighting1;
-                    color_value = (1.1 - (color_value / 8192.0));
+                    color_value = (1.1f - (color_value / 8192.0f));
 
                     rgba[0] = color_value;
                     rgba[1] = color_value;
@@ -3774,7 +3774,7 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
                 {
                     case TR_VERSION_1:
                         color_value = _rooms[roomIndex].room_data.vertices[i].attributes;
-                        color_value = (1.1 - (color_value / 8192.0));
+                        color_value = (1.1f - (color_value / 8192.0f));
                         break;
                     case TR_VERSION_4:
                     case TR_VERSION_3:
@@ -3786,7 +3786,7 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
                     case TR_VERSION_UNKNOWN:
                     default:
                         color_value = _rooms[roomIndex].room_data.vertices[i].lighting1;
-                        color_value = (1.1 - (color_value / 8192.0));
+                        color_value = (1.1f - (color_value / 8192.0f));
                 }
 
                 switch (getEngine())
@@ -5065,7 +5065,7 @@ unsigned char *TombRaider::getTexTile(int texture)
                                         k = image[index] + image[index + 1] + image[index + 2];
 
                                         // Set transparency based upon intensity
-                                        image[index + 3] =  (k / 3);
+                                        image[index + 3] = (unsigned char)(k / 3);
                                     }
                                     else
                                     {
@@ -5082,7 +5082,7 @@ unsigned char *TombRaider::getTexTile(int texture)
 
                                         // Set transparency based upon intensity
                                         if (offset & 0x8000)
-                                            image[index + 3] = (k / 3);
+                                            image[index + 3] = (unsigned char)(k / 3);
                                         else
                                             image[index + 3] = 0;
                                     }

@@ -634,7 +634,7 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
             case '\r':
             case '\n':
                 strncpy(lastCmd, buffer, 63);
-                lastCmd[0] = i;
+                lastCmd[0] = (char)i;
 
                 command("[OpenRaider.Console]");
                 command(buffer);
@@ -648,7 +648,7 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
                 if (mod & (SYS_MOD_KEY_RSHIFT | SYS_MOD_KEY_LSHIFT) &&
                         key > 96 && key < 122)
                 {
-                    buffer[i++] = (key - 32);
+                    buffer[i++] = (char)(key - 32);
                 }
                 else
                 {
@@ -658,7 +658,7 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
                             key = '_';
                     }
 
-                    buffer[i++] = key;
+                    buffer[i++] = (char)key;
                 }
 
                 buffer[i] = 0;
@@ -1407,12 +1407,12 @@ void OpenRaider::processSprites()
                     r_mesh->sprite[l].pos[2] = item[i].z;
                     r_mesh->sprite[l].texture = sprite->tile + m_texOffset;
 
-                    r_mesh->sprite[l].radius = width2 / 2.0;
+                    r_mesh->sprite[l].radius = width2 / 2.0f;
 
-                    r_mesh->sprite[l].vertex[0].pos[0] = -width2 / 2.0;
-                    r_mesh->sprite[l].vertex[1].pos[0] = -width2 / 2.0;
-                    r_mesh->sprite[l].vertex[2].pos[0] = width2 / 2.0;
-                    r_mesh->sprite[l].vertex[3].pos[0] = width2 / 2.0;
+                    r_mesh->sprite[l].vertex[0].pos[0] = -width2 / 2.0f;
+                    r_mesh->sprite[l].vertex[1].pos[0] = -width2 / 2.0f;
+                    r_mesh->sprite[l].vertex[2].pos[0] = width2 / 2.0f;
+                    r_mesh->sprite[l].vertex[3].pos[0] = width2 / 2.0f;
 
                     r_mesh->sprite[l].vertex[0].pos[1] = 0;
                     r_mesh->sprite[l].vertex[1].pos[1] = -height2;
@@ -1424,17 +1424,17 @@ void OpenRaider::processSprites()
                     r_mesh->sprite[l].vertex[2].pos[2] = 0;
                     r_mesh->sprite[l].vertex[3].pos[2] = 0;
 
-                    r_mesh->sprite[l].texel[3].st[0] = (double)(x+width)/TexelScale;
-                    r_mesh->sprite[l].texel[3].st[1] = (double)(y+height)/TexelScale;
+                    r_mesh->sprite[l].texel[3].st[0] = (vec_t)(x+width)/TexelScale;
+                    r_mesh->sprite[l].texel[3].st[1] = (vec_t)(y+height)/TexelScale;
 
-                    r_mesh->sprite[l].texel[2].st[0] = (double)(x+width)/TexelScale;
-                    r_mesh->sprite[l].texel[2].st[1] = (double)(y)/TexelScale;
+                    r_mesh->sprite[l].texel[2].st[0] = (vec_t)(x+width)/TexelScale;
+                    r_mesh->sprite[l].texel[2].st[1] = (vec_t)(y)/TexelScale;
 
-                    r_mesh->sprite[l].texel[1].st[0] = (double)(x) /TexelScale;
-                    r_mesh->sprite[l].texel[1].st[1] = (double)(y) /TexelScale;
+                    r_mesh->sprite[l].texel[1].st[0] = (vec_t)(x) /TexelScale;
+                    r_mesh->sprite[l].texel[1].st[1] = (vec_t)(y) /TexelScale;
 
-                    r_mesh->sprite[l].texel[0].st[0] = (double)(x) / TexelScale;
-                    r_mesh->sprite[l].texel[0].st[1] = (double)(y+height)/TexelScale;
+                    r_mesh->sprite[l].texel[0].st[0] = (vec_t)(x) / TexelScale;
+                    r_mesh->sprite[l].texel[0].st[1] = (vec_t)(y+height)/TexelScale;
 
                     printf(".");
                     fflush(stdout);
@@ -1964,7 +1964,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
                     tag->off[0] = mesh_tree->x;
                     tag->off[1] = mesh_tree->y;
                     tag->off[2] = mesh_tree->z;
-                    tag->flag = mesh_tree->flags;
+                    tag->flag = (char)mesh_tree->flags;
                 }
 
                 // Setup tag rotations
@@ -2957,11 +2957,11 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("sensitivity.x", cmd))
     {
-        m_mouseX = atof(cmd);
+        m_mouseX = static_cast<float>(atof(cmd));
     }
     else if (rc_command("sensitivity.y", cmd))
     {
-        m_mouseY = atof(cmd);
+        m_mouseY = static_cast<float>(atof(cmd));
     }
     else if (rc_command("r_pigtails", cmd))
     {
@@ -3543,11 +3543,11 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
         case 3: // [Input.Mouse]
             if (rc_command("SensitivityX", cmd))
             {
-                m_mouseX = atof(cmd);
+                m_mouseX = static_cast<float>(atof(cmd));
             }
             else if (rc_command("SensitivityY", cmd))
             {
-                m_mouseY = atof(cmd);
+                m_mouseY = static_cast<float>(atof(cmd));
             }
             else
             {
