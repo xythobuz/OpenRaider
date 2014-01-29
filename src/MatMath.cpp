@@ -8,11 +8,18 @@
 
 #include <stdlib.h>
 #include <math.h>
+#include <float.h>
 
 #include <MatMath.h>
 #include <Vector3d.h>
 #include <Matrix.h>
 
+bool equalEpsilon(vec_t a, vec_t b) {
+    vec_t epsilon = FLT_EPSILON;
+    if (fabs(a - b) <= (((fabs(b) > fabs(a)) ? fabs(b) : fabs(a)) * epsilon))
+        return true;
+    return false;
+}
 
 vec_t helIntersectionOfAbstractSpheres(vec3_t centerA, vec_t radiusA,
         vec3_t centerB, vec_t radiusB)

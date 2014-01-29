@@ -498,8 +498,7 @@ void OpenGLMesh::allocateVertices(unsigned int n)
 }
 
 
-void OpenGLMesh::bufferColorArray(unsigned int colorCount, vec_t *colors,
-        unsigned int colorWidth)
+void OpenGLMesh::bufferColorArray(unsigned int colorCount, vec_t *colors)
 {
     if (mColors)
     {
@@ -512,7 +511,6 @@ void OpenGLMesh::bufferColorArray(unsigned int colorCount, vec_t *colors,
         return;
     }
 
-    //mColorWidth = colorWidth;  // for now assume 4 always
     mNumColors = colorCount;
     mColorArray = colors;
 }

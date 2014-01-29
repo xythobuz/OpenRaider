@@ -2440,7 +2440,7 @@ void OpenRaider::processRoom(int index)
 
     rRoom->mesh.bufferVertexArray(vertexCount, (vec_t *)vertexArray);
     rRoom->mesh.bufferNormalArray(normalCount, (vec_t *)normalArray);
-    rRoom->mesh.bufferColorArray(vertexCount, (vec_t *)colorArray, 4);
+    rRoom->mesh.bufferColorArray(vertexCount, (vec_t *)colorArray);
 
     m_tombraider.getRoomTriangles(index, m_texOffset,
             &triCount, &indices, &texCoords, &textures,

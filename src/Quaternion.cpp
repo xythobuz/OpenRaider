@@ -125,7 +125,9 @@ Quaternion Quaternion::operator -(const Quaternion &q)
 
 bool Quaternion::operator ==(const Quaternion &q)
 {
-    return (mX == q.mX && mY == q.mY && mZ == q.mZ && mW == q.mW);
+    //return (mX == q.mX && mY == q.mY && mZ == q.mZ && mW == q.mW);
+    return (equalEpsilon(mX, q.mX) && equalEpsilon(mY, q.mY) &&
+            equalEpsilon(mZ, q.mZ) && equalEpsilon(mW, q.mW));
 }
 
 

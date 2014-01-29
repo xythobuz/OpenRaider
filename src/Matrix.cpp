@@ -254,12 +254,21 @@ void Matrix::print()
 bool Matrix::isIdentity()
 {
     // Hhhmm... floating point using direct comparisions
+    /*
     if (mMatrix[ 0] == 1 && mMatrix[ 1] == 0 && mMatrix[ 2] == 0 &&
             mMatrix[ 3] == 0 &&    mMatrix[ 4] == 0 && mMatrix[ 5] == 1 &&
             mMatrix[ 6] == 0 && mMatrix[ 7] == 0 && mMatrix[ 8] == 0 &&
             mMatrix[ 9] == 0 && mMatrix[10] == 1 && mMatrix[11] == 0 &&
             mMatrix[12] == 0 && mMatrix[13] == 0 && mMatrix[14] == 0 &&
             mMatrix[15] == 1)
+        return true;
+    */
+    if (equalEpsilon(mMatrix[ 0], 1.0) && equalEpsilon(mMatrix[ 1], 0.0) && equalEpsilon(mMatrix[ 2], 0.0) &&
+        equalEpsilon(mMatrix[ 3], 0.0) && equalEpsilon(mMatrix[ 4], 0.0) && equalEpsilon(mMatrix[ 5], 1.0) &&
+        equalEpsilon(mMatrix[ 6], 0.0) && equalEpsilon(mMatrix[ 7], 0.0) && equalEpsilon(mMatrix[ 8], 0.0) &&
+        equalEpsilon(mMatrix[ 9], 0.0) && equalEpsilon(mMatrix[10], 1.0) && equalEpsilon(mMatrix[11], 0.0) &&
+        equalEpsilon(mMatrix[12], 0.0) && equalEpsilon(mMatrix[13], 0.0) && equalEpsilon(mMatrix[14], 0.0) &&
+        equalEpsilon(mMatrix[15], 1.0))
         return true;
 
     return false;

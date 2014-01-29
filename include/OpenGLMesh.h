@@ -105,8 +105,7 @@ public:
 
     void allocateVertices(unsigned int n);
 
-    void bufferColorArray(unsigned int colorCount, vec_t *colors,
-                                 unsigned int colorWidth);
+    void bufferColorArray(unsigned int colorCount, vec_t *colors);
 
     void bufferNormalArray(unsigned int normalCount, vec_t *normals);
 

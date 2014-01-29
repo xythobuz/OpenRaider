@@ -8,6 +8,7 @@
 	[ 20140129 ]
 	* Removed unused libferit stuff
 	* Changed code to generate much less warnings
+	* Using relative epsilon for float comparison
 
 	[ 20140124 ]
 	* Fixed some TombRaider.cpp warnings

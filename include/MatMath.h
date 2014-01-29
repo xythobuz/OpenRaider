@@ -37,6 +37,14 @@ vec_t helIntersectionOfAbstractSpheres(vec3_t centerA, vec_t radiusA, vec3_t cen
 int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius, vec3_t posA, vec3_t posB, vec3_t intersectionA, vec3_t intersectionB);
 
 /*!
+ * \brief Compare two floats with an Epsilon.
+ * \param a first float
+ * \param b second float
+ * \returns true if a and b are probably the same.
+ */
+bool equalEpsilon(vec_t a, vec_t b);
+
+/*!
  * \brief Calculate Intersection of a line and a polygon
  * \param intersect Where the intersection is stored, if it exists
  * \param p1 First point of line segment
