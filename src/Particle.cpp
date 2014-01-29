@@ -19,9 +19,9 @@ Particle::Particle()
 {
     setActive(true);
     TextureId(0);
-    Speed(2000.0, 2000.0, 2000.0);
-    Color(1.0, 1.0, 1.0);
-    Force(0.0, 0.8, 0.0);
+    Speed(2000.0f, 2000.0f, 2000.0f);
+    Color(1.0f, 1.0f, 1.0f);
+    Force(0.0f, 0.8f, 0.0f);
 
     Reset();
 }

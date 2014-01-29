@@ -88,7 +88,7 @@ WARNINGS+=-Wno-exit-time-destructors -Wno-c++98-compat-pedantic
 WARNINGS+=-Wno-disabled-macro-expansion -Wno-missing-variable-declarations
 WARNINGS+=-Wno-missing-prototypes -Wno-pedantic
 
-WARNINGS+=-Wno-conversion -Wno-sign-conversion -Wno-shorten-64-to-32
+WARNINGS+=-Wno-shorten-64-to-32 -Wno-sign-conversion
 
 FLAGS_ALL=-std=c++11
 

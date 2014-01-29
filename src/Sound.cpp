@@ -160,7 +160,7 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags)
         return -3;
     }
 
-    alBufferData(mBuffer[mNextBuffer], format, data, size, freq);
+    alBufferData(mBuffer[mNextBuffer], format, data, size, static_cast<ALsizei>(freq));
 
     alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
 
@@ -234,7 +234,7 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     }
 
 
-    alBufferData(mBuffer[mNextBuffer], format, data, size, freq);
+    alBufferData(mBuffer[mNextBuffer], format, data, size, static_cast<ALsizei>(freq));
 
     alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
 

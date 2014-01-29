@@ -443,24 +443,24 @@ void World::moveEntity(entity_t *e, char movement)
     switch (movement)
     {
         case 'f':
-            x = e->pos[0] + (testd * sin(e->angles[1]));
-            y = e->pos[1] + (testd * sin(pitch));
-            z = e->pos[2] + (testd * cos(e->angles[1]));
+            x = e->pos[0] + (testd * sinf(e->angles[1]));
+            y = e->pos[1] + (testd * sinf(pitch));
+            z = e->pos[2] + (testd * cosf(e->angles[1]));
             break;
         case 'b':
-            x = e->pos[0] - (testd * sin(e->angles[1]));
-            y = e->pos[1] - (testd * sin(pitch));
-            z = e->pos[2] - (testd * cos(e->angles[1]));
+            x = e->pos[0] - (testd * sinf(e->angles[1]));
+            y = e->pos[1] - (testd * sinf(pitch));
+            z = e->pos[2] - (testd * cosf(e->angles[1]));
             break;
         case 'l':
-            x = e->pos[0] - (testd * sin(e->angles[1] + 90.0));
+            x = e->pos[0] - (testd * sinf(e->angles[1] + 90.0f));
             y = e->pos[1];
-            z = e->pos[2] - (testd * cos(e->angles[1] + 90.0));
+            z = e->pos[2] - (testd * cosf(e->angles[1] + 90.0f));
             break;
         case 'r':
-            x = e->pos[0] + (testd * sin(e->angles[1] + 90.0));
+            x = e->pos[0] + (testd * sinf(e->angles[1] + 90.0f));
             y = e->pos[1];
-            z = e->pos[2] + (testd * cos(e->angles[1] + 90.0));
+            z = e->pos[2] + (testd * cosf(e->angles[1] + 90.0f));
             break;
         default:
             return;
@@ -523,22 +523,22 @@ void World::moveEntity(entity_t *e, char movement)
         switch (movement)
         {
             case 'f':
-                x = e->pos[0] + (moved * sin(e->angles[1]));
-                y = e->pos[1] + (moved * sin(pitch));
-                z = e->pos[2] + (moved * cos(e->angles[1]));
+                x = e->pos[0] + (moved * sinf(e->angles[1]));
+                y = e->pos[1] + (moved * sinf(pitch));
+                z = e->pos[2] + (moved * cosf(e->angles[1]));
                 break;
             case 'b':
-                x = e->pos[0] - (moved * sin(e->angles[1]));
-                y = e->pos[1] - (moved * sin(pitch));
-                z = e->pos[2] - (moved * cos(e->angles[1]));
+                x = e->pos[0] - (moved * sinf(e->angles[1]));
+                y = e->pos[1] - (moved * sinf(pitch));
+                z = e->pos[2] - (moved * cosf(e->angles[1]));
                 break;
             case 'l':
-                x = e->pos[0] - (moved * sin(e->angles[1] + 90.0));
-                z = e->pos[2] - (moved * cos(e->angles[1] + 90.0));
+                x = e->pos[0] - (moved * sinf(e->angles[1] + 90.0f));
+                z = e->pos[2] - (moved * cosf(e->angles[1] + 90.0f));
                 break;
             case 'r':
-                x = e->pos[0] + (moved * sin(e->angles[1] + 90.0));
-                z = e->pos[2] + (moved * cos(e->angles[1] + 90.0));
+                x = e->pos[0] + (moved * sinf(e->angles[1] + 90.0f));
+                z = e->pos[2] + (moved * cosf(e->angles[1] + 90.0f));
                 break;
         }
 

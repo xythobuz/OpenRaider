@@ -75,7 +75,7 @@ Vector3d Vector3d::cross(const Vector3d &u, const Vector3d &v)
 
 vec_t Vector3d::magnitude()
 {
-    return sqrt(mVec[0]*mVec[0] + mVec[1]*mVec[1] + mVec[2]*mVec[2]);
+    return sqrtf(mVec[0]*mVec[0] + mVec[1]*mVec[1] + mVec[2]*mVec[2]);
 }
 
 

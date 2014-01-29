@@ -275,7 +275,7 @@ int tga_save(FILE *f, unsigned char *image, unsigned int width, unsigned int hei
     strncpy(comment, "OpenRaider TGA", 63);
     comment[63] = 0;
 
-    header.comment_lenght = strlen(comment);
+    header.comment_lenght = (unsigned char)strlen(comment);
     header.colormap_type = 0;
 
     // No colormaps
@@ -284,8 +284,8 @@ int tga_save(FILE *f, unsigned char *image, unsigned int width, unsigned int hei
     header.colormap_bbp = 0;
 
     header.origin_x = header.origin_y = 0;
-    header.width = width;
-    header.height = height;
+    header.width = (unsigned short)width;
+    header.height = (unsigned short)height;
 
     header.desc_flags = 0;
 

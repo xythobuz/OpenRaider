@@ -78,7 +78,7 @@ void Quaternion::getMatrix(matrix_t m)
 
     m[ 8] = 2.0f * (mX*mZ - mW*mY);
     m[ 9] = 2.0f * (mY*mZ + mW*mX);
-    m[10] = 1.0 - 2.0f * (mX*mX + mY*mY);
+    m[10] = 1.0f - 2.0f * (mX*mX + mY*mY);
     m[11] = 0.0f;
 
     m[12] = 0.0f;
@@ -157,7 +157,7 @@ vec_t Quaternion::dot(Quaternion a, Quaternion b)
 
 vec_t Quaternion::magnitude()
 {
-    return sqrt(dot(*this, *this));
+    return sqrtf(dot(*this, *this));
 }
 
 

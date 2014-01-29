@@ -191,7 +191,7 @@ void SDLSystem::resize(unsigned int width, unsigned int height)
     // gluPerspective is deprecated!
     // gluPerspective(m_fovY, aspect, m_clipNear, m_clipFar);
     // fix: http://stackoverflow.com/a/2417756
-    GLfloat fH = tan(float(m_fovY / 360.0f * 3.14159f) ) * m_clipNear;
+    GLfloat fH = tanf(m_fovY / 360.0f * 3.14159f) * m_clipNear;
     GLfloat fW = fH * aspect;
     glFrustum(-fW, fW, -fH, fH, m_clipNear, m_clipFar);
 

@@ -564,8 +564,8 @@ void System::resizeGL(unsigned int w, unsigned int h)
     // gluPerspective is deprecated!
     // gluPerspective(m_fovY, ((GLdouble)w)/((GLdouble)h), m_clipNear, m_clipFar);
     // Fix: http://stackoverflow.com/a/2417756
-    GLfloat fH = tan(float(m_fovY / 360.0f * 3.14159f)) * m_clipNear;
-    GLfloat fW = fH * ((GLdouble)w)/((GLdouble)h);
+    GLfloat fH = tanf(m_fovY / 360.0f * 3.14159f) * m_clipNear;
+    GLfloat fW = fH * ((GLfloat)w)/((GLfloat)h);
     glFrustum(-fW, fW, -fH, fH, m_clipNear, m_clipFar);
 
     glMatrixMode(GL_MODELVIEW);
