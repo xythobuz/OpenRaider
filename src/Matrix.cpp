@@ -214,16 +214,6 @@ void Matrix::multiply3v(vec3_t v, vec3_t result)
     result[2] = mMatrix[8]*x + mMatrix[9]*y + mMatrix[10]*z + mMatrix[11];
 }
 
-void Matrix::multiply4d(double *v, double *result)
-{
-    double x = v[0], y = v[1], z = v[2], w = v[3];
-
-    result[0] = mMatrix[ 0]*x + mMatrix[ 1]*y + mMatrix[ 2]*z + mMatrix[ 3]*w;
-    result[1] = mMatrix[ 4]*x + mMatrix[ 5]*y + mMatrix[ 6]*z + mMatrix[ 7]*w;
-    result[2] = mMatrix[ 8]*x + mMatrix[ 9]*y + mMatrix[10]*z + mMatrix[11]*w;
-    result[3] = mMatrix[12]*x + mMatrix[13]*y + mMatrix[14]*z + mMatrix[15]*w;
-}
-
 void Matrix::multiply4v(vec4_t v, vec4_t result)
 {
     vec_t x = v[0], y = v[1], z = v[2], w = v[3];

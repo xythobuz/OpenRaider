@@ -104,7 +104,7 @@ public:
      * \brief Get angle/yaw of camera
      * \returns theta angle/yaw of camera
      */
-    double getRadianYaw();
+    vec_t getRadianYaw();
     /*------------------------------------------------------
      * Pre  :
      * Post : Returns theta angle/yaw of camera
@@ -125,7 +125,7 @@ public:
      * \brief Get angle/pitch of camera
      * \returns phi angle/pitch of camera
      */
-    double getRadianPitch();
+    vec_t getRadianPitch();
 
     /*!
      * \brief Check if the coordinate is behind camera eye
@@ -208,16 +208,16 @@ private:
     unsigned int mId;             //!< Unique id
     Quaternion mQ;                //!< Quaternion for rotation
     unsigned int mFlags;          //!< For testing with flags
-    double mPos[4];               //!< Location in 3 space (aka eye)
-    double mTarget[4];            //!< Postition we're looking at
-    double mUp[4];                //!< Up vector
-    double mSide[4];              //!< Side vector
-    double mViewDistance;         //!< Distance from target
-    double mTranslateDelta;       //!< Step size to move
-    double mRotateDelta;          //!< Radians to rotate Y
-    double mTheta;                //!< View angle Y
-    double mRotateDelta2;         //!< Radians to rotate Z
-    double mTheta2;               //!< View angle Z
+    vec_t mPos[4];               //!< Location in 3 space (aka eye)
+    vec_t mTarget[4];            //!< Postition we're looking at
+    vec_t mUp[4];                //!< Up vector
+    vec_t mSide[4];              //!< Side vector
+    vec_t mViewDistance;         //!< Distance from target
+    vec_t mTranslateDelta;       //!< Step size to move
+    vec_t mRotateDelta;          //!< Radians to rotate Y
+    vec_t mTheta;                //!< View angle Y
+    vec_t mRotateDelta2;         //!< Radians to rotate Z
+    vec_t mTheta2;               //!< View angle Z
     bool mUpdate;                 //!< Check to see if view needs updating
     static unsigned int mCounter; //!< Id system use
 };

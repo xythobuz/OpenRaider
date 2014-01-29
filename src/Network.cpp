@@ -22,6 +22,8 @@
 #include <arpa/inet.h>
 #include <stdlib.h>
 
+#include <MatMath.h> // Random Number
+
 //#define LOCAL_BCAST
 #define MAX_CLIENTS 32
 
@@ -126,17 +128,11 @@ unsigned int Network::getUID()
 
     srand(tv.tv_usec);
 
-    return ((unsigned int)(tv.tv_sec * getRandom(2.0, 3.3) -
-                tv.tv_sec * getRandom(1.0, 2.0)) +
-            (unsigned int)(tv.tv_usec * getRandom(2.0, 3.3) -
-                tv.tv_usec * getRandom(1.0, 2.0)) +
-            (unsigned int)getRandom(666.0, 5000.0));
-}
-
-
-float Network::getRandom(float from, float to)
-{
-    return from + (to*rand()/(RAND_MAX+1.0));
+    return ((unsigned int)(tv.tv_sec * helRandomNum(2.0f, 3.3f) -
+                tv.tv_sec * helRandomNum(1.0f, 2.0f)) +
+            (unsigned int)(tv.tv_usec * helRandomNum(2.0f, 3.3f) -
+                tv.tv_usec * helRandomNum(1.0f, 2.0f)) +
+            (unsigned int)helRandomNum(666.0f, 5000.0f));
 }
 
 

@@ -67,8 +67,6 @@ public:
 
     unsigned int getUID();
 
-    float getRandom(float from, float to);
-
     int getPort();
 
     void setDebug(bool toggle);

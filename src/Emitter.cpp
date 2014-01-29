@@ -226,16 +226,16 @@ void Emitter::Draw() {
             // Render tristrip quad
             glBegin(GL_TRIANGLE_STRIP);
             glTexCoord2d(1.0, 1.0);
-            glVertex3f(x + 0.5, y + 0.5, z);
+            glVertex3f(x + 0.5f, y + 0.5f, z);
 
             glTexCoord2d(0.0, 1.0);
-            glVertex3f(x - 0.5, y + 0.5, z);
+            glVertex3f(x - 0.5f, y + 0.5f, z);
 
             glTexCoord2d(1.0, 0.0);
-            glVertex3f(x + 0.5, y - 0.5, z);
+            glVertex3f(x + 0.5f, y - 0.5f, z);
 
             glTexCoord2d(0.0, 0.0);
-            glVertex3f(x - 0.5, y - 0.5, z);
+            glVertex3f(x - 0.5f, y - 0.5f, z);
             glEnd();
 
             // Update particle's attributes for it's life cycle

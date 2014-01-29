@@ -88,13 +88,13 @@ int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius,
         // Two intersections
 
         // First intersection
-        mu = (-b + sqrt( square(b) - 4*a*c)) / (2*a);
+        mu = (-b + sqrtf( square(b) - 4.0f*a*c)) / (2.0f*a);
         intersectionA[1] = posA[0] + mu*(posB[0]-posA[0]);
         intersectionA[2] = posA[1] + mu*(posB[1]-posA[1]);
         intersectionA[3] = posA[2] + mu*(posB[2]-posA[2]);
 
         // Second intersection
-        mu = (-b - sqrt(square(b) - 4*a*c)) / (2*a);
+        mu = (-b - sqrtf(square(b) - 4.0f*a*c)) / (2.0f*a);
         intersectionB[0] = posA[0] + mu*(posB[0]-posA[0]);
         intersectionB[1] = posA[1] + mu*(posB[1]-posA[1]);
         intersectionB[2] = posA[2] + mu*(posB[2]-posA[2]);
@@ -235,7 +235,7 @@ vec_t helDistToBboxFromPlane3v(vec3_t min, vec3_t max, vec4_t plane)
 
 vec_t helDist3v(vec3_t a, vec3_t b)
 {
-    return (sqrt( ((b[0] - a[0]) * (b[0] - a[0])) +
+    return (sqrtf( ((b[0] - a[0]) * (b[0] - a[0])) +
                 ((b[1] - a[1]) * (b[1] - a[1])) +
                 ((b[2] - a[2]) * (b[2] - a[2]))));
 }
@@ -243,32 +243,32 @@ vec_t helDist3v(vec3_t a, vec3_t b)
 
 void helMidpoint3v(vec3_t a, vec3_t b, vec3_t mid)
 {
-    mid[0] = (a[0] + b[0]) / 2;
-    mid[1] = (a[1] + b[1]) / 2;
-    mid[2] = (a[2] + b[2]) / 2;
+    mid[0] = (a[0] + b[0]) / 2.0f;
+    mid[1] = (a[1] + b[1]) / 2.0f;
+    mid[2] = (a[2] + b[2]) / 2.0f;
 }
 
 
 vec_t helNorm4v(vec4_t v)
 {
-    return (sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2] + v[3]*v[3]));
+    return (sqrtf(v[0]*v[0] + v[1]*v[1] + v[2]*v[2] + v[3]*v[3]));
 }
 
 
 vec_t helNorm3v(vec3_t v)
 {
-    return (sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]));
+    return (sqrtf(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]));
 }
 
 
 vec_t helNorm2v(vec2_t v)
 {
-    return (sqrt(v[0]*v[0] + v[1]*v[1]));
+    return (sqrtf(v[0]*v[0] + v[1]*v[1]));
 }
 
 
 vec_t helRandomNum(vec_t from, vec_t to)
 {
-    return from + ((to - from) * rand() / (RAND_MAX + 1.0));
+    return from + ((to - from) * rand() / (RAND_MAX + 1.0f));
 }
 

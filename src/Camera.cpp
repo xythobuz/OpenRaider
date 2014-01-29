@@ -26,10 +26,10 @@ Camera::Camera()
 {
     mId = ++mCounter;
     mFlags = 0;
-    mViewDistance = 14.0;
-    mTranslateDelta = 256.0;
-    mRotateDelta = HEL_DEG_TO_RAD(15.0);
-    mRotateDelta2 = HEL_DEG_TO_RAD(5.0);
+    mViewDistance = 14.0f;
+    mTranslateDelta = 256.0f;
+    mRotateDelta = HEL_DEG_TO_RAD(15.0f);
+    mRotateDelta2 = HEL_DEG_TO_RAD(5.0f);
     mFlags &= Camera_FlyMode;
     reset();
 }
@@ -80,13 +80,13 @@ float Camera::getYaw()
 }
 
 
-double Camera::getRadianYaw()
+vec_t Camera::getRadianYaw()
 {
     return mTheta;
 }
 
 
-double Camera::getRadianPitch()
+vec_t Camera::getRadianPitch()
 {
     return mTheta2;
 }
@@ -100,9 +100,9 @@ void Camera::rotate(float angle, float x, float y, float z)
 {
     Quaternion t, n;
     Matrix matrix;
-    double side[4] = { 1, 0,  0, 1 };
-    double up[4] =   { 0, 1,  0, 1 };
-    double look[4] = { 0, 0, -1, 1 };
+    vec_t side[4] = { 1.0f, 0.0f,  0.0f, 1.0f };
+    vec_t up[4] =   { 0.0f, 1.0f,  0.0f, 1.0f };
+    vec_t look[4] = { 0.0f, 0.0f, -1.0f, 1.0f };
     unsigned int i;
     matrix_t m;
 
@@ -113,9 +113,9 @@ void Camera::rotate(float angle, float x, float y, float z)
 
     n.getMatrix(m);
     matrix.setMatrix(m);
-    matrix.multiply4d(side, mSide);
-    matrix.multiply4d(look, mTarget);
-    matrix.multiply4d(up, mUp);
+    matrix.multiply4v(side, mSide);
+    matrix.multiply4v(look, mTarget);
+    matrix.multiply4v(up, mUp);
 
     for (i = 0; i < 3; ++i)
     {
@@ -131,8 +131,8 @@ void Camera::rotate(float angle, float x, float y, float z)
 void Camera::translate(float x, float y, float z)
 {
     int i;
-    double result[4];
-    double v[4];
+    vec_t result[4];
+    vec_t v[4];
     matrix_t m;
     Matrix matrix;
 
@@ -160,7 +160,7 @@ void Camera::translate(float x, float y, float z)
     m[15] = 1;
 
     matrix.setMatrix(m);
-    matrix.multiply4d(v, result);
+    matrix.multiply4v(v, result);
 
     for (i = 0; i < 3; ++i)
     {
@@ -178,27 +178,27 @@ void Camera::translate(float x, float y, float z)
 
 void Camera::reset()
 {
-    mTheta = 0.0;
-    mTheta2 = 0.0;
+    mTheta = 0.0f;
+    mTheta2 = 0.0f;
 
-    mPos[0] = 0.0;
-    mPos[1] = 0.0;
-    mPos[2] = 0.0;
+    mPos[0] = 0.0f;
+    mPos[1] = 0.0f;
+    mPos[2] = 0.0f;
 
-    mTarget[0] = 0.0;
-    mTarget[1] = 0.0;
+    mTarget[0] = 0.0f;
+    mTarget[1] = 0.0f;
     mTarget[2] = mViewDistance;
 
-    mSide[0] = 1.0;
-    mSide[1] = 0.0;
-    mSide[2] = 0.0;
+    mSide[0] = 1.0f;
+    mSide[1] = 0.0f;
+    mSide[2] = 0.0f;
 
-    mUp[0] = 0.0;
-    mUp[1] = 1.0;
-    mUp[2] = 0.0;
+    mUp[0] = 0.0f;
+    mUp[1] = 1.0f;
+    mUp[2] = 0.0f;
 
     mQ.setIdentity();
-    translate(0.0, 0.0, 0.0);
+    translate(0.0f, 0.0f, 0.0f);
 }
 
 
@@ -222,63 +222,63 @@ void Camera::command(enum camera_command cmd)
         case CAMERA_MOVE_FORWARD:
             if (mFlags & Camera_FlyMode)
             {
-                mPos[2] += (mTranslateDelta * cos(mTheta));
+                mPos[2] += (mTranslateDelta * cosf(mTheta));
             }
 
-            mPos[0] += (mTranslateDelta * sin(mTheta));
-            mPos[1] += (mTranslateDelta * sin(mTheta2));
+            mPos[0] += (mTranslateDelta * sinf(mTheta));
+            mPos[1] += (mTranslateDelta * sinf(mTheta2));
             break;
         case CAMERA_MOVE_BACKWARD:
             if (mFlags & Camera_FlyMode)
             {
-                mPos[2] -= (mTranslateDelta * cos(mTheta));
+                mPos[2] -= (mTranslateDelta * cosf(mTheta));
             }
 
-            mPos[0] -= (mTranslateDelta * sin(mTheta));
-            mPos[1] -= (mTranslateDelta * sin(mTheta2));
+            mPos[0] -= (mTranslateDelta * sinf(mTheta));
+            mPos[1] -= (mTranslateDelta * sinf(mTheta2));
             break;
         case CAMERA_MOVE_LEFT:
-            mPos[0] -= (mTranslateDelta * sin(mTheta - 90.0f));
-            mPos[2] -= (mTranslateDelta * cos(mTheta - 90.0f));
+            mPos[0] -= (mTranslateDelta * sinf(mTheta - 90.0f));
+            mPos[2] -= (mTranslateDelta * cosf(mTheta - 90.0f));
             break;
         case CAMERA_MOVE_RIGHT:
-            mPos[0] -= (mTranslateDelta * sin(mTheta + 90.0f));
-            mPos[2] -= (mTranslateDelta * cos(mTheta + 90.0f));
+            mPos[0] -= (mTranslateDelta * sinf(mTheta + 90.0f));
+            mPos[2] -= (mTranslateDelta * cosf(mTheta + 90.0f));
             break;
         case CAMERA_ROTATE_UP:
             if (mTheta2 < (M_PI / 2)) {
                 mTheta2 += mRotateDelta2;
-                rotate(mTheta2, 1.0, 0.0, 0.0);
+                rotate(mTheta2, 1.0f, 0.0f, 0.0f);
             }
             break;
         case CAMERA_ROTATE_DOWN:
             if (mTheta2 > -(M_PI / 2)) {
                 mTheta2 -= mRotateDelta2;
-                rotate(mTheta2, 1.0, 0.0, 0.0);
+                rotate(mTheta2, 1.0f, 0.0f, 0.0f);
             }
             break;
         case CAMERA_ROTATE_RIGHT:
             mTheta += mRotateDelta;
-            rotate(mTheta, 0.0, 1.0, 0.0);
+            rotate(mTheta, 0.0f, 1.0f, 0.0f);
             break;
         case CAMERA_ROTATE_LEFT:
             mTheta -= mRotateDelta;
-            rotate(mTheta, 0.0, 1.0, 0.0);
+            rotate(mTheta, 0.0f, 1.0f, 0.0f);
             break;
         case CAMERA_MOVE_UP:
-            mPos[1] -= mTranslateDelta / 2.0;
-            mTarget[1] -= mTranslateDelta / 2.0;
+            mPos[1] -= mTranslateDelta / 2.0f;
+            mTarget[1] -= mTranslateDelta / 2.0f;
             break;
         case CAMERA_MOVE_DOWN:
-            mPos[1] += mTranslateDelta / 2.0;
-            mTarget[1] += mTranslateDelta / 2.0;
+            mPos[1] += mTranslateDelta / 2.0f;
+            mTarget[1] += mTranslateDelta / 2.0f;
             break;
         case CAMERA_SPEED_UP:
             ++mTranslateDelta;
             break;
         case CAMERA_SPEED_DOWN:
-            if (--mTranslateDelta < 0.0)
-                mTranslateDelta = 1.0;
+            if (--mTranslateDelta < 0.0f)
+                mTranslateDelta = 1.0f;
             break;
         default:
             ;
@@ -289,7 +289,7 @@ void Camera::command(enum camera_command cmd)
 //! \fixme Mostly invalid for QUAT_CAM (can rotate on XYZ)
 bool Camera::isBehind(int x, int z)
 {
-    double bTheta, bCameraX, bCameraZ, Distance;
+    vec_t bTheta, bCameraX, bCameraZ, Distance;
 
 
     // Set up a "virtual camera" a huge distance behind us
@@ -299,14 +299,14 @@ bool Camera::isBehind(int x, int z)
         bTheta -= HEL_2_PI;
 
     // 64k is a fair distance away...
-    bCameraX = (65536.0 * sin(bTheta)) + mPos[0];
-    bCameraZ = (65536.0 * cos(bTheta)) + mPos[2];
+    bCameraX = (65536.0f * sinf(bTheta)) + mPos[0];
+    bCameraZ = (65536.0f * cosf(bTheta)) + mPos[2];
 
     bCameraX -= x;
     bCameraZ -= z;
-    Distance = sqrt((bCameraX * bCameraX) + (bCameraZ * bCameraZ));
+    Distance = sqrtf((bCameraX * bCameraX) + (bCameraZ * bCameraZ));
 
-    return (Distance < 65536.0);
+    return (Distance < 65536.0f);
 }
 
 
@@ -318,9 +318,9 @@ void Camera::setSpeed(float s)
 
 void Camera::update()
 {
-    mTarget[2] = (mViewDistance * cos(mTheta)) + mPos[2];
-    mTarget[0] = (mViewDistance * sin(mTheta)) + mPos[0];
-    mTarget[1] = (mViewDistance * sin(mTheta2)) + mPos[1]; // + height_offset;
+    mTarget[2] = (mViewDistance * cosf(mTheta)) + mPos[2];
+    mTarget[0] = (mViewDistance * sinf(mTheta)) + mPos[0];
+    mTarget[1] = (mViewDistance * sinf(mTheta2)) + mPos[1]; // + height_offset;
 }
 
 

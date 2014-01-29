@@ -87,13 +87,6 @@ public:
 
     /*!
      * \brief Multiplies v vector and this matrix
-     * \param v double[4] vector
-     * \param result where the result will be stored, may be same as v
-     */
-    void multiply4d(double *v, double *result);
-
-    /*!
-     * \brief Multiplies v vector and this matrix
      * \param v vector
      * \param result where the result will be stored, may be same as v
      */

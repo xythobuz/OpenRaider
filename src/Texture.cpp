@@ -448,13 +448,13 @@ ttf_texture_t *Texture::generateFontTexture(const char *filename, int pointSize,
 
     for (i = 0; i < count; ++i)
     {
-        glyph = TTF_RenderGlyph_Blended(font, i + utf8Offset, sdlColor);
+        glyph = TTF_RenderGlyph_Blended(font, (Uint16)(i + utf8Offset), sdlColor);
 
         if (glyph)
         {
             image = (unsigned char*)glyph->pixels;
 
-            TTF_GlyphMetrics(font, i + utf8Offset,
+            TTF_GlyphMetrics(font, (Uint16)(i + utf8Offset),
                     &texture->glyphs[i].minx, &texture->glyphs[i].maxx,
                     &texture->glyphs[i].miny, &texture->glyphs[i].maxy,
                     &texture->glyphs[i].advance);
@@ -886,15 +886,15 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
 
     delete [] swap_row;
 
-    comment_lenght = strlen(comment);
+    comment_lenght = (unsigned char)strlen(comment);
     colormap_type = 0;
     image_type = 2;
     colormap_index = 0;
     colormap_lenght = 0;
     colormap_bbp = 0;
     origin_x = origin_y = 0;
-    swidth = width;
-    sheight = height;
+    swidth = (unsigned short)width;
+    sheight = (unsigned short)height;
     bpp = 24;
     desc_flags = 32;
 
@@ -1133,9 +1133,9 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
 
                 for (k = 0; k < components; ++k)
                 {
-                    s1 = *src00++ * (1.0 - beta) + *src01++ * beta;
-                    s2 = *src10++ * (1.0 - beta) + *src11++ * beta;
-                    *dst++ = s1 * (1.0 - alpha) + s2 * alpha;
+                    s1 = *src00++ * (1.0f - beta) + *src01++ * beta;
+                    s2 = *src10++ * (1.0f - beta) + *src11++ * beta;
+                    *dst++ = s1 * (1.0f - alpha) + s2 * alpha;
                 }
             }
         }

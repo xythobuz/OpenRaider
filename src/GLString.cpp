@@ -159,7 +159,7 @@ int GLString::glPrintf(int x, int y, const char *string, ...) {
     va_end(args);
 
     // Mongoose 2002.01.04, Remeber string size, for future rebuffering use
-    _string[_num_string].len = sz;
+    _string[_num_string].len = (unsigned short)sz;
 
     // Mongoose 2002.01.01, Incement string counter, since we just
     //   allocated a string

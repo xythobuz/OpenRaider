@@ -11,11 +11,11 @@
 #ifndef _MATMATH_H
 #define _MATMATH_H
 
-#define HEL_PI           M_PI //!< pi
-#define HEL_2_PI         (M_PI * 2.0) //!< pi*2
-#define HEL_PI_OVER_4    M_PI_4 //!< pi/4
-#define HEL_PI_OVER_180  (M_PI / 180.0) //!< pi/180
-#define HEL_180_OVER_PI  (180.0 / M_PI) //!< 180/pi
+#define HEL_PI           ((float)M_PI) //!< pi
+#define HEL_2_PI         (HEL_PI * 2.0f) //!< pi*2
+#define HEL_PI_OVER_4    (M_PI_4 / 4.0f) //!< pi/4
+#define HEL_PI_OVER_180  (HEL_PI / 180.0f) //!< pi/180
+#define HEL_180_OVER_PI  (180.0f / HEL_PI) //!< 180/pi
 
 #define HEL_RAD_TO_DEG(x) ((x) * HEL_180_OVER_PI) //!< Convert radians to degrees
 #define HEL_DEG_TO_RAD(x) ((x) * HEL_PI_OVER_180) //!< Convert degrees to radians
