@@ -331,7 +331,8 @@ void Render::initEmitter(const char *name, unsigned int size,
 #ifdef USING_EMITTER
     // Mongoose 2002.01.01, Screwing around with particle emitter test
     //   note this is backwards b/c load screen is rendered upsidedown
-    mEmitter = new Emitter(/*name*/"snow", size);
+    //mEmitter = new Emitter(/*name*/"snow", size);
+    mEmitter = new Emitter(name, size);
     mEmitter->SetTextureId(snowTex1);
     mEmitter->TextureId(120, 280, snowTex2);
     mEmitter->TextureId(400, 450, snowTex2);
@@ -712,20 +713,14 @@ void deprecated_gluLookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, flo
     fMag = sqrt(f[0]*f[0] + f[1]*f[1] + f[2]*f[2]);
     upMag = sqrt(upX*upX + upY*upY + upZ*upZ);
     // normalizing the viewing vector
-    if( fMag != 0)
-    {
-        f[0] = f[0]/fMag;
-        f[1] = f[1]/fMag;
-        f[2] = f[2]/fMag;
-    }
+    f[0] = f[0]/fMag;
+    f[1] = f[1]/fMag;
+    f[2] = f[2]/fMag;
     // normalising the up vector. no need for this here if you have your
     // up vector already normalised, which is mostly the case.
-    if( upMag != 0 )
-    {
-        upX = upX/upMag;
-        upY = upY/upMag;
-        upZ = upZ/upMag;
-    }
+    upX = upX/upMag;
+    upY = upY/upMag;
+    upZ = upZ/upMag;
     float s[3], u[3];
     CrossProd(f[0], f[1], f[2], upX, upY, upZ, s);
     CrossProd(s[0], s[1], s[2], f[0], f[1], f[2], u);
@@ -764,7 +759,6 @@ void Render::Display()
     {
         case Render::modeDisabled:
             return;
-            break;
         case Render::modeLoadScreen:
             //! \fixme entry for seperate main drawing method -- Mongoose 2002.01.01
             drawLoadScreen();
@@ -795,6 +789,8 @@ void Render::Display()
                 camOffsetH = 64.0f;
                 break;
             default:
+            case worldMoveType_walk:
+            case worldMoveType_walkNoSwim:
                 camOffsetH = 512.0f;
         }
 
@@ -1018,7 +1014,7 @@ void Render::Display()
 
     glEnterMode2d(mWidth, mHeight);
     glColor3fv(OR_BLUE);
-    mString.Render(mWidth, mHeight);
+    mString.Render();
     glExitMode2d();
 
 #ifdef USING_EMITTER
@@ -1293,7 +1289,7 @@ void Render::drawLoadScreen()
 
     glEnterMode2d(mWidth, mHeight);
     glColor3fv(OR_BLUE);
-    mString.Render(mWidth, mHeight);
+    mString.Render();
     glExitMode2d();
 
     glFlush();

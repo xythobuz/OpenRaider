@@ -25,13 +25,6 @@
 #endif
 #endif
 
-#ifdef HAVE_LIBFERIT
-#include <ferit/Url.h>
-#include <ferit/TcpProtocol.h>
-#include <ferit/Http.h>
-#include <ferit/Ftp.h>
-#endif
-
 #if defined(linux) || defined(__APPLE__)
 #include <time.h>
 #include <sys/time.h>
@@ -242,72 +235,6 @@ int System::createDir(char *path)
     return _mkdir(path);
 #else
     return mkdir(path, S_IRWXU | S_IRWXG);
-#endif
-}
-
-
-int System::downloadToBuffer(char *urlString,
-        unsigned char **buffer, unsigned int *size)
-{
-#ifdef HAVE_LIBFERIT
-    printf("ERROR: This build is libferit enabled, but func not implemented\n");
-    return -1;
-#else
-    printf("ERROR: This build not libferit enabled, unable to download\n");
-    return -1000;
-#endif
-}
-
-
-int System::downloadToFile(char *urlString, char *filename)
-{
-#ifdef HAVE_LIBFERIT
-    int err = 0;
-    unsigned int timeout = 10;
-    Url *url = 0x0;
-    TcpProtocol *client = 0x0;
-
-
-    if (!urlString || !urlString[0])
-        return -1;
-
-    url = new Url("");
-    url->UrlToSession(urlString);
-    url->Options(OPT_RESUME | OPT_QUIET);
-    url->Outfile(url->Filename());
-
-    switch (url->Protocol())
-    {
-        case FTP_SESSION:
-            client = new Ftp(timeout);
-            break;
-        case HTTP_SESSION:
-            client = new Http(timeout);
-            break;
-        default:
-            printf("Sorry the protocol used in the URL isn't unsupported.\n");
-
-            if (client)
-            {
-                delete client;
-            }
-
-            return -2;
-    }
-
-    if (client)
-    {
-        err = client->Download(url, NULL);
-        delete client;
-    }
-
-    if (url)
-        delete url;
-
-    return err;
-#else
-    printf("ERROR: This build not libferit enabled, unable to download\n");
-    return -1000;
 #endif
 }
 
@@ -754,7 +681,6 @@ unsigned int system_timer(int state)
 #else
             return (stop.tv_sec-start.tv_sec)*1000+(stop.tv_usec-start.tv_usec)/1000;
 #endif
-            break;
     }
 
     return 0;

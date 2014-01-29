@@ -215,7 +215,7 @@ void SDLSystem::runGame()
 {
     SDL_Event event;
     unsigned int mkeys, mod, key;
-    int btn;
+    int btn = 0;
     bool specialKey;
 
 
@@ -478,7 +478,7 @@ void SDLSystem::shutdown(int i)
     //dump_memory_report();
     //#endif
 
-    exit(0);
+    exit(i);
 }
 
 
@@ -501,7 +501,8 @@ void SDLSystem::toggleFullscreen()
         // Now you can see something when switching to Fullscreen,
         // but it's full of graphical glitches...? I don't know...
         // -- xythobuz 2013-12-31
-        int width, height;
+        int width = m_width,
+            height = m_height;
         if (mFullscreen) {
             m_old_width = m_width;
             m_old_height = m_height;
@@ -514,10 +515,6 @@ void SDLSystem::toggleFullscreen()
                 //! \fixme Don't just use first available resolution...
                 width = dimensions[0]->w;
                 height = dimensions[0]->h;
-            } else {
-                // No restrictions, use current resolution
-                width = m_width;
-                height = m_height;
             }
         }
         if (!mFullscreen) {

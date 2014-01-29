@@ -163,11 +163,15 @@ void OpenGLMesh::drawAlpha()
         {
             case OpenGLMeshModeWireframe:
                 glColor3f(0.0, 0.0, 1.0);
+                glBindTexture(GL_TEXTURE_2D, 0);
+                break;
             case OpenGLMeshModeSolid:
                 // Bind WHITE texture for solid colors
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
             default:
+            case OpenGLMeshModeTexture:
+            case OpenGLMeshModeMultiTexture:
                 // Bind texture id for textures
                 glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
         }
@@ -196,11 +200,15 @@ void OpenGLMesh::drawAlpha()
         {
             case OpenGLMeshModeWireframe:
                 glColor3f(0.0, 1.0, 0.0);
+                glBindTexture(GL_TEXTURE_2D, 0);
+                break;
             case OpenGLMeshModeSolid:
                 // Bind WHITE texture for solid colors
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
             default:
+            case OpenGLMeshModeTexture:
+            case OpenGLMeshModeMultiTexture:
                 // Bind texture id for textures
                 glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
         }
@@ -248,8 +256,8 @@ void OpenGLMesh::drawSolid()
 
         glPointSize(1.0f);
 
-        return; //! \fixme
-
+        //! \fixme
+        /*
         for (j = 0; j < mQuads[i].num_quads; ++j)
         {
             for (k = 0; k < 4; ++k)
@@ -260,6 +268,7 @@ void OpenGLMesh::drawSolid()
                 glArrayElement(mQuads[i].quads[j*4+k]);
             }
         }
+        */
 
         return;
     }
@@ -286,8 +295,11 @@ void OpenGLMesh::drawSolid()
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, mQuads[i].bumpmap+1);
                 break;
+#else
+            case OpenGLMeshModeMultiTexture:
 #endif
             default:
+            case OpenGLMeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
@@ -344,8 +356,11 @@ void OpenGLMesh::drawSolid()
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, mTris[i].bumpmap+1);
                 break;
+#else
+            case OpenGLMeshModeMultiTexture:
 #endif
             default:
+            case OpenGLMeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);

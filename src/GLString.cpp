@@ -169,7 +169,7 @@ int GLString::glPrintf(int x, int y, const char *string, ...) {
 }
 
 
-void GLString::Render(int width, int height) {
+void GLString::Render() {
     for (unsigned int i = 0; i < _num_string; ++i) {
         if (_string[i].active)
             glPrint2d(_string[i].x, _string[i].y, _string[i].scale, _string[i].text);

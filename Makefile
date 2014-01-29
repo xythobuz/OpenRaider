@@ -60,15 +60,6 @@ BASE_LIBS += $(GL_LIBS)
 BASE_DEFS += $(AUDIO_DEFS)
 BASE_DEFS += $(GL_DEFS)
 
-# libferit, File transfer via HTTP/FTP/etc support
-LIBFERIT_LIB=/usr/local/lib/libferit.so
-LIBFERIT=$(shell if test -e $(LIBFERIT_LIB) > /dev/null; then echo yes; fi)
-
-ifeq ($(LIBFERIT), yes)
-	BASE_DEFS += -DHAVE_LIBFERIT
-	BASE_LIBS += -lferit
-endif
-
 ###############################################################
 
 TREE_DIR=OpenRaider
@@ -95,7 +86,7 @@ WARNINGS+=-Wno-documentation-unknown-command -Wno-format-nonliteral
 WARNINGS+=-Wno-covered-switch-default -Wno-global-constructors
 WARNINGS+=-Wno-exit-time-destructors -Wno-c++98-compat-pedantic
 WARNINGS+=-Wno-disabled-macro-expansion -Wno-missing-variable-declarations
-WARNINGS+=-Wno-missing-prototypes
+WARNINGS+=-Wno-missing-prototypes -Wno-pedantic
 
 WARNINGS+=-Wno-conversion -Wno-sign-conversion -Wno-shorten-64-to-32
 

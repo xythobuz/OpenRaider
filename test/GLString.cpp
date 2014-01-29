@@ -68,7 +68,7 @@ void event_display(int width, int height) {
     glColor3f(0.75, 0.5, 1.0);
 
     glEnterMode2d(width, height);
-    TEXT->Render(width, height);
+    TEXT->Render();
     glExitMode2d();
 
     glFlush();

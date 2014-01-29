@@ -95,10 +95,8 @@ public:
      * \brief Renders strings over GL scene.
      * Should be called after scene is rendered.
      * GL Culling should be disabled.
-     * \param width width of GL context
-     * \param height height of GL context
      */
-    void Render(int width, int height);
+    void Render();
 
     /*!
      * \brief Get the String data structure for a string id

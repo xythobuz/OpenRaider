@@ -825,7 +825,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
         /* Identify vertices */
         data_offset = 0;
         //! \fixme endian
-        _rooms[i].room_data.num_vertices = *(short *)(_rooms[i].data);
+        _rooms[i].room_data.num_vertices = *(short *)(void *)(_rooms[i].data);
 
         data_offset += sizeof(_rooms[0].room_data.num_vertices);
         data_size = _rooms[i].room_data.num_vertices * sizeof(tr2_vertex_room_t);
@@ -872,7 +872,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
         /* identify rectangles */
         //! \fixme endian conversion
         _rooms[i].room_data.num_rectangles =
-            *(short *)(_rooms[i].data + data_offset);
+            *(short *)(void *)(_rooms[i].data + data_offset);
 
         data_offset += sizeof(_rooms[0].room_data.num_rectangles);
         data_size = _rooms[i].room_data.num_rectangles * sizeof(tr2_quad_t);
@@ -903,7 +903,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
         /* Identify triangles */
         _rooms[i].room_data.num_triangles =
-            *(short *)(_rooms[i].data + data_offset);
+            *(short *)(void *)(_rooms[i].data + data_offset);
         //! \fixme endian
 
         data_offset += sizeof(_rooms[0].room_data.num_triangles);
@@ -936,7 +936,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
         /* Identify sprites */
         _rooms[i].room_data.num_sprites =
-            *(short *)(_rooms[i].data + data_offset);
+            *(short *)(void *)(_rooms[i].data + data_offset);
         //! \fixme endian
 
         data_offset += sizeof(_rooms[0].room_data.num_sprites);

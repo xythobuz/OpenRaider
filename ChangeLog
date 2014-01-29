@@ -5,6 +5,10 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140129 ]
+	* Removed unused libferit stuff
+	* Changed code to generate much less warnings
+
 	[ 20140124 ]
 	* Fixed some TombRaider.cpp warnings
 

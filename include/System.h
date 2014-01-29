@@ -95,25 +95,6 @@ public:
     virtual unsigned int getTicks();
 
     /*!
-     * \brief Downloads something into passed buffer
-     * \todo Not yet implemented!
-     * \param urlString URL of thing to download
-     * \param buffer array of strings as target
-     * \param size size of  buffer
-     * \returns < 0 on error, 0 on success
-     */
-    static int downloadToBuffer(char *urlString, unsigned char **buffer, unsigned int *size);
-
-    /*!
-     * \brief Downloads something into a disk file.
-     * Supports HTTP and FTP.
-     * \param urlString URL of thing to download
-     * \param filename file that should be created/filled
-     * \returns < 0 on error, 0 on success. -1000 if libferit not linked
-     */
-    static int downloadToFile(char *urlString, char *filename);
-
-    /*!
      * \brief Created a directory
      * \param path Directory to create
      * \returns -1 on error

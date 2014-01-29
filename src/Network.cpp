@@ -23,21 +23,17 @@
 #include <stdlib.h>
 
 //#define LOCAL_BCAST
-#define NETWORK_RELIABLE
 #define MAX_CLIENTS 32
 
-typedef struct client_s
-{
+typedef struct client_s {
     unsigned int uid;
     char active;
     unsigned int seq;
     unsigned int frameExpected;
-
 } client_t;
 
-
 #ifdef USING_PTHREADS
-#   include <pthread.h>
+#include <pthread.h>
 pthread_t gPThreadId[3];
 #endif
 

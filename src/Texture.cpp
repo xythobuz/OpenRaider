@@ -290,8 +290,6 @@ int Texture::loadFontTTF(const char *filename,
     {
         return -2;
     }
-
-    return -3;
 }
 
 
@@ -498,7 +496,7 @@ ttf_texture_t *Texture::generateFontTexture(const char *filename, int pointSize,
                 if (verbose)
                 {
                     printf("Offset: %i; Pixel: %i,%i; Data: 0x%08x\n",
-                            offset, w, h, *((unsigned int *)&image[k*4]));
+                            offset, w, h, *((unsigned int *)(void *)&image[k*4]));
                 }
 
                 /* 32-bit ARGB to RGBA */
@@ -701,7 +699,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 
     if (!mTextureIds || slot >= mTextureLimit)
     {
-        printf("Texture::Load> ERROR Not initalizied or out of free slots\n");
+        printf("Texture::Load> ERROR Not initialized or out of free slots\n");
         return -1000;
     }
 
@@ -719,17 +717,15 @@ int Texture::loadBufferSlot(unsigned char *image,
                 printf("Texture::Load> ERROR Unsupported GREYSCALE, %i bpp\n", bpp);
                 return -2;
             }
-
             bytes = 1;
             glcMode = GL_LUMINANCE;
             break;
         case RGB:
             if (bpp != 24)
             {
-                printf("Texture::Load> ERROR Unsupported RGBA, %i bpp\n", bpp);
+                printf("Texture::Load> ERROR Unsupported RGB, %i bpp\n", bpp);
                 return -2;
             }
-
             bytes = 3;
             glcMode = GL_RGB;
             break;
@@ -738,19 +734,23 @@ int Texture::loadBufferSlot(unsigned char *image,
             {
                 convertARGB32bppToRGBA32bpp(image, width, height);
             }
-        case RGBA:
-            if (bpp != 32)
+            else
             {
-                printf("Texture::Load> ERROR Unsupported RGBA/ARGB, %i bpp\n", bpp);
+                printf("Texture::Load> ERROR Unsupported ARGB, %i bpp\n", bpp);
                 return -2;
             }
-
             bytes = 4;
             glcMode = GL_RGBA;
             break;
-        default:
-            printf("Texture::Load> ERROR Unknown color mode %i\n", mode);
-            return -2;
+        case RGBA:
+            if (bpp != 32)
+            {
+                printf("Texture::Load> ERROR Unsupported RGBA, %i bpp\n", bpp);
+                return -2;
+            }
+            bytes = 4;
+            glcMode = GL_RGBA;
+            break;
     }
 
     glClearColor(0.0, 0.0, 0.0, 0.0);
