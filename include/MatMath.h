@@ -13,7 +13,7 @@
 
 #define HEL_PI           ((float)M_PI) //!< pi
 #define HEL_2_PI         (HEL_PI * 2.0f) //!< pi*2
-#define HEL_PI_OVER_4    (M_PI_4 / 4.0f) //!< pi/4
+#define HEL_PI_OVER_4    (HEL_PI / 4.0f) //!< pi/4
 #define HEL_PI_OVER_180  (HEL_PI / 180.0f) //!< pi/180
 #define HEL_180_OVER_PI  (180.0f / HEL_PI) //!< 180/pi
 

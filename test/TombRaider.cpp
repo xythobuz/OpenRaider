@@ -89,7 +89,7 @@ void dump_textures(TombRaider *tr, char *mapname)
 
             if (f)
             {
-                if (!mtk_image__tga_save(f, image, 256, 256, 4))
+                if (!tga_save(f, image, 256, 256, 4))
                     printf("\tWrote texture %s\n", buffer);
 
                 fclose(f);
@@ -116,7 +116,7 @@ void dump_textures(TombRaider *tr, char *mapname)
 
             if (f)
             {
-                if (!mtk_image__tga_save(f, bumpmap, 256, 256, 4))
+                if (!tga_save(f, bumpmap, 256, 256, 4))
                     printf("\tWrote texture %s\n", buffer);
 
                 fclose(f);
@@ -136,7 +136,7 @@ void dump_textures(TombRaider *tr, char *mapname)
 
         if (f)
         {
-            if (!mtk_image__tga_save(f, image, 256, 256, 4))
+            if (!tga_save(f, image, 256, 256, 4))
                 printf("\tWrote texture %s\n", buffer);
 
             fclose(f);
@@ -352,6 +352,11 @@ void dump_mesh(TombRaider *tr, char *mapname, int index)
                         & 0xff, rgba);
                 break;
             default:
+            case TR_VERSION_UNKNOWN:
+            case TR_VERSION_2:
+            case TR_VERSION_3:
+            case TR_VERSION_4:
+            case TR_VERSION_5:
                 tr->getColor((meshes[index].coloured_triangles[i].texture>>8)
                         & 0xff, rgba);
         }
@@ -404,6 +409,11 @@ void dump_mesh(TombRaider *tr, char *mapname, int index)
                         & 0xff, rgba);
                 break;
             default:
+            case TR_VERSION_UNKNOWN:
+            case TR_VERSION_2:
+            case TR_VERSION_3:
+            case TR_VERSION_4:
+            case TR_VERSION_5:
                 tr->getColor((meshes[index].coloured_rectangles[i].texture>>8)
                         & 0xff, rgba);
         }

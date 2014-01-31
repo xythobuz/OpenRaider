@@ -62,9 +62,9 @@ TEST translation() {
     Matrix a;
     a.setIdentity();
     a.translate(10, 20, 30);
-    ASSERT(a.mMatrix[i12] == 10);
-    ASSERT(a.mMatrix[i13] == 20);
-    ASSERT(a.mMatrix[i14] == 30);
+    ASSERT(equalEpsilon(a.mMatrix[i12], 10));
+    ASSERT(equalEpsilon(a.mMatrix[i13], 20));
+    ASSERT(equalEpsilon(a.mMatrix[i14], 30));
     PASS();
 }
 
@@ -74,19 +74,19 @@ TEST rotation(int axis) {
     vec_t rot = 90 * 0.01745329251994329f;
     a.rotate((axis == 0) ? rot : 0, (axis == 1) ? rot : 0, (axis == 2) ? rot : 0);
     if (axis == 0) {
-        ASSERT(a.mMatrix[i0] == 1);
-        ASSERT(a.mMatrix[i15] == 1);
-        ASSERT(a.mMatrix[i9] == -1);
-        ASSERT(a.mMatrix[i6] == 1);
+        ASSERT(equalEpsilon(a.mMatrix[i0], 1));
+        ASSERT(equalEpsilon(a.mMatrix[i15], 1));
+        ASSERT(equalEpsilon(a.mMatrix[i9], -1));
+        ASSERT(equalEpsilon(a.mMatrix[i6], 1));
     } else if (axis == 1) {
-        ASSERT(a.mMatrix[i8] == 1);
-        ASSERT(a.mMatrix[i2] == -1);
-        ASSERT(a.mMatrix[i15] == 1);
+        ASSERT(equalEpsilon(a.mMatrix[i8], 1));
+        ASSERT(equalEpsilon(a.mMatrix[i2], -1));
+        ASSERT(equalEpsilon(a.mMatrix[i15], 1));
     } else if (axis == 2) {
-        ASSERT(a.mMatrix[i4] == -1);
-        ASSERT(a.mMatrix[i15] == 1);
-        ASSERT(a.mMatrix[i1] == 1);
-        ASSERT(a.mMatrix[i10] == 1);
+        ASSERT(equalEpsilon(a.mMatrix[i4], -1));
+        ASSERT(equalEpsilon(a.mMatrix[i15], 1));
+        ASSERT(equalEpsilon(a.mMatrix[i1], 1));
+        ASSERT(equalEpsilon(a.mMatrix[i10], 1));
     } else {
         FAIL();
     }
@@ -105,7 +105,7 @@ TEST precision() {
     a.scale(10, 10, 10);
     a.print();
     printf("\n -> scale (0.1, 0.1, 0.1)\n");
-    a.scale(0.1, 0.1, 0.1);
+    a.scale(0.1f, 0.1f, 0.1f);
     printf(" -> Translate (-10, -20, -30)\n");
     a.translate(-10, -20, -30);
     printf(" -> Rotate (0, 0, -90 degrees)\n");

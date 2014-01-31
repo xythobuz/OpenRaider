@@ -31,7 +31,7 @@ void event_resize(int width, int height) {
     // gluPerspective is deprecated!
     // gluPerspective(40.0, aspect, 1, 2000);
     // fix: http://stackoverflow.com/a/2417756
-    GLfloat fH = tan(float(40.0 / 360.0f * 3.14159f));
+    GLfloat fH = tanf(40.0f / 360.0f * 3.14159f);
     GLfloat fW = fH * aspect;
     glFrustum(-fW, fW, -fH, fH, 1, 2000);
 
@@ -39,14 +39,14 @@ void event_resize(int width, int height) {
 }
 
 void event_display(int width, int height) {
-    static float x = 0.0, y = 0.0, z = -150.0, r = 0.0;
+    static float x = 0.0f, y = 0.0f, z = -150.0f, r = 0.0f;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    glTranslatef(0.0, 0.0, -20.0);
-    glRotatef((float)cos(r)*180.0, 0.0, 0.0, 1.0);
-    r += 0.01;
+    glTranslatef(0.0f, 0.0f, -20.0f);
+    glRotatef((float)cosf(r)*180.0f, 0.0f, 0.0f, 1.0f);
+    r += 0.01f;
 
     // Mongoose 2002.01.01, Render color quad
     glDisable(GL_TEXTURE_2D);
@@ -114,7 +114,7 @@ void init_gl(unsigned int width, unsigned int height) {
     if (i) {
         printf(errorText, i);
     }
-    TEXT->Scale(1.2);
+    TEXT->Scale(1.2f);
     i = TEXT->glPrintf((width/2)-100, height/2+32, "Unit Test by Mongoose");
     if (i) {
         printf(errorText, i);
@@ -129,7 +129,7 @@ void init_gl(unsigned int width, unsigned int height) {
     TEXT->setActive(3, true);
 }
 
-int main_gl(int argc, char *argv[]) {
+[[noreturn]] void main_gl() {
     SDL_Event event;
     unsigned int mkeys, mod, key;
     int flags;
@@ -142,9 +142,6 @@ int main_gl(int argc, char *argv[]) {
 
     // Setup clean up on exit
     atexit(shutdown_gl);
-
-    // Get user settings
-    //event_init(&width, &height, &fullscreen, &driver, argc, argv);
 
     // Create GL context
     SDL_Init(SDL_INIT_VIDEO);
@@ -196,7 +193,6 @@ int main_gl(int argc, char *argv[]) {
             switch (event.type) {
                 case SDL_QUIT:
                     exit(0);
-                    break;
                 case SDL_MOUSEMOTION:
                     break;
                 case SDL_MOUSEBUTTONDOWN:
@@ -236,7 +232,6 @@ int main_gl(int argc, char *argv[]) {
                     {
                         case 0x1B: // 27d, ESC
                             exit(0);
-                            break;
 #ifdef __APPLE__
                         case 113: // q
                             if ((mod & KMOD_RMETA) || (mod & KMOD_LMETA))
@@ -258,13 +253,15 @@ int main_gl(int argc, char *argv[]) {
             }
         }
     }
-
-    return 0;
 }
 
 int main(int argc, char *argv[]) {
-    TEXT = new GLString();
-    main_gl(argc, argv);
-    return 0;
+    if (argc == 1) {
+        TEXT = new GLString();
+        main_gl();
+    } else {
+        printf("Usage:\n\t%s\n", argv[0]);
+        return 1;
+    }
 }
 

@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140131 ]
+	* All unit tests buildable again and no more warnings
+
 	[ 20140129 ]
 	* Removed unused libferit stuff
 	* Changed code to generate much less warnings

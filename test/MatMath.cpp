@@ -11,20 +11,20 @@
 #include <MatMath.h>
 #include "greatest.h"
 
-vec_t testDegrees[] = { 0.0, 30.0, 45.0, 60.0, 90.0, 360.0, -100.0 };
-vec_t testRads[] = { 0.0, 0.5236, 0.7854, 1.0472, 1.5708, 6.2832, -1.7453 };
+vec_t testDegrees[] = { 0.0f, 30.0f, 45.0f, 60.0f, 90.0f, 360.0f, -100.0f };
+vec_t testRads[] = { 0.0f, 0.5236f, 0.7854f, 1.0472f, 1.5708f, 6.2832f, -1.7453f };
 vec_t testBounds[][2] = {
-    { 0.0, 1.0 },
-    { -5.0, 5.0 },
-    { 1.0, 1.0 },
+    { 0.0f, 1.0f },
+    { -5.0f, 5.0f },
+    { 1.0f, 1.0f },
 };
 
 TEST constants() {
-    ASSERT_EQm("Pi not correct!", HEL_PI, M_PI);
-    ASSERT_EQm("2Pi not correct!", HEL_2_PI, (M_PI * 2.0));
-    ASSERT_EQm("Pi/4 not correct!", HEL_PI_OVER_4, (M_PI / 4.0));
-    ASSERT_EQm("Pi/180 not correct!", HEL_PI_OVER_180, (M_PI / 180.0));
-    ASSERT_EQm("180/Pi not correct!", HEL_180_OVER_PI, (180.0 / M_PI));
+    ASSERTm("Pi not correct!", equalEpsilon(HEL_PI, (vec_t)M_PI));
+    ASSERTm("2Pi not correct!", equalEpsilon(HEL_2_PI, ((vec_t)M_PI * 2.0f)));
+    ASSERTm("Pi/4 not correct!", equalEpsilon(HEL_PI_OVER_4, ((vec_t)M_PI / 4.0f)));
+    ASSERTm("Pi/180 not correct!", equalEpsilon(HEL_PI_OVER_180, ((vec_t)M_PI / 180.0f)));
+    ASSERTm("180/Pi not correct!", equalEpsilon(HEL_180_OVER_PI, (180.0f / (vec_t)M_PI)));
     PASS();
 }
 
@@ -38,8 +38,8 @@ TEST types() {
 
 TEST conversionToRad(vec_t deg) {
     vec_t conv = HEL_DEG_TO_RAD(deg);
-    vec_t hand = (deg * M_PI / 180.0);
-    if (conv != hand) {
+    vec_t hand = (deg * (vec_t)M_PI / 180.0f);
+    if (!equalEpsilon(conv, hand)) {
         printf("Degree to Radian conversion failed: %f != %f\n", conv, hand);
         FAIL();
     } else {
@@ -49,8 +49,8 @@ TEST conversionToRad(vec_t deg) {
 
 TEST conversionToDeg(vec_t rad) {
     vec_t conv = HEL_RAD_TO_DEG(rad);
-    vec_t hand = (rad * 180.0 / M_PI);
-    if (conv != hand) {
+    vec_t hand = (rad * 180.0f / (vec_t)M_PI);
+    if (!equalEpsilon(conv, hand)) {
         printf("Radian to Degree conversion failed: %f != %f\n", conv, hand);
         FAIL();
     } else {

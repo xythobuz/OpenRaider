@@ -66,7 +66,7 @@ typedef struct meminfo_filename_s {
     char filename_len;
     DWORD size;
     unsigned int alloc_zero;
-    unsigned short int alloc_zero_at_line[ZERO_ALLOC_SLOTS];
+    unsigned int alloc_zero_at_line[ZERO_ALLOC_SLOTS];
     struct meminfo_filename_s *next;
 } meminfo_filename_t;
 

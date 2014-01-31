@@ -24,16 +24,14 @@ void tree_valid_report(rbtree_t *root);
 
 #define PRINT_TEST_BREAK_LINE   printf("\n############################################################\n\n");
 
-int memory_test_unit_test(int argc, char *argv[])
-{
+int memory_test_unit_test() {
     int *i, *j, *k, *l, *m, *n, *o;
-
 
     PRINT_TEST_BREAK_LINE
         printf("Memory test\n");
     PRINT_TEST_BREAK_LINE
 
-        i = new int;
+    i = new int;
     printf(">\ti = new int; (%p)  %s:%i\n", i, __FILE__, __LINE__);
     dump_memory_report();
     tree_valid_report(MEMORY_INFO);
@@ -45,7 +43,7 @@ int memory_test_unit_test(int argc, char *argv[])
 
     PRINT_TEST_BREAK_LINE
 
-        i = new int[3];
+    i = new int[3];
     printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
     dump_memory_report();
     tree_valid_report(MEMORY_INFO);
@@ -57,7 +55,7 @@ int memory_test_unit_test(int argc, char *argv[])
 
     PRINT_TEST_BREAK_LINE
 
-        i = new int[3];
+    i = new int[3];
     printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
     j = new int;
     printf(">\tj = new int; (%p)  %s:%i\n", j, __FILE__, __LINE__);
@@ -76,7 +74,7 @@ int memory_test_unit_test(int argc, char *argv[])
 
     PRINT_TEST_BREAK_LINE
 
-        i = new int[3];
+    i = new int[3];
     printf(">\ti = new int[3]; (%p)  %s:%i\n", i, __FILE__, __LINE__);
     j = new int;
     printf(">\tj = new int; (%p)  %s:%i\n", j, __FILE__, __LINE__);
@@ -148,14 +146,16 @@ int memory_test_unit_test(int argc, char *argv[])
 
     PRINT_TEST_BREAK_LINE
 
-        return 0;
+    return 0;
 }
 
-
-int main(int argc, char *argv[])
-{
-    printf("[memory_test test]\n");
-
-    return memory_test_unit_test(argc, argv);
+int main(int argc, char *argv[]) {
+    if (argc != 1) {
+        printf("Usage:\n\t%s\n", argv[0]);
+        return 1;
+    } else {
+        printf("[memory_test test]\n");
+        return memory_test_unit_test();
+    }
 }
 

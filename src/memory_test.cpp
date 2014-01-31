@@ -12,9 +12,6 @@
 #define UNIT_TEST_MEMORY
 #include <memory_test.h>
 
-#define USE_ITERATIVE_TREE_INSERT
-
-
 bool tree_check(rbtree_t *tree, const char *file, int line)
 {
     bool ret = true;
@@ -722,7 +719,7 @@ typedef struct meminfo_s
 {
     DWORD address;
     DWORD size;
-    unsigned short int line;
+    unsigned int line;
     meminfo_filename_t *filename;
 
 } meminfo_t;
@@ -771,28 +768,18 @@ typedef enum
 
 long memory_used(memory_query_t query)
 {
-    switch (query)
-    {
+    switch (query) {
         case MEMORY_USED_BY_PROGRAM:
             return MEMORY_USED;
-            break;
         case MAX_MEMORY_USED_BY_PROGRAM:
             return MAX_MEMORY_USED;
-            break;
         case MAX_MEMORY_USED_BY_OVERHEAD:
             return MAX_MEMORYA_USED + MAX_MEMORYC_USED;
-            break;
         case MEMORY_USED_BY_OVERHEAD:
             return MEMORYA_USED + MEMORYC_USED;
-            break;
         case MEMORY_USED_TOTAL:
             return MEMORY_USED + MEMORYA_USED + MEMORYC_USED;
-            break;
-        default:
-            ;
     }
-
-    return 0;
 }
 
 
@@ -958,7 +945,7 @@ void add_track(DWORD addr, DWORD size, const char *filename, DWORD line_num)
         if (!memfile)
         {
             memfile = (meminfo_filename_t *)malloc(sizeof(meminfo_filename_t));
-            memfile->filename_len = len;
+            memfile->filename_len = (char)len;
             memfile->filename = (char *)malloc(len+1);
             strncpy(memfile->filename, filename, len);
             memfile->filename[len+1] = 0;

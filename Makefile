@@ -343,7 +343,7 @@ Matrix.test:
 	@-echo "Building Matrix unit test"
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(FLAGS_ALL) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
-	src/Matrix.cpp src/Quaternion.cpp src/Vector3d.cpp \
+	src/Matrix.cpp src/Quaternion.cpp src/Vector3d.cpp src/MatMath.cpp \
 	test/Matrix.cpp -o $(BUILD_TEST_DIR)/Matrix.test
 
 Math.test:
@@ -364,7 +364,7 @@ Memory.test:
 
 Network.test:
 	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(TEST_FLAGS) $(WARNINGS) \
+	$(CC) $(TEST_FLAGS) $(WARNINGS) src/MatMath.cpp src/Vector3d.cpp \
 	src/Network.cpp test/Network.cpp -o $(BUILD_TEST_DIR)/Network.test
 
 #################################################################

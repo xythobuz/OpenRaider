@@ -990,7 +990,7 @@ int Texture::loadTGA(const char *filename)
 
     return id;
 #else
-    printf("ERROR: TGA support not enabled in this build\n");
+    printf("ERROR: TGA support not enabled in this build (%s)\n", filename);
     return -1;
 #endif
 }
