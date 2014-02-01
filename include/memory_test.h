@@ -30,15 +30,24 @@ void operator delete [](void *p);
 #define new DEBUG_NEW
 #define delete DEBUG_DELETE
 
+typedef enum {
+    MEMORY_USED_BY_PROGRAM      = 1,
+    MEMORY_USED_BY_OVERHEAD     = 2,
+    MEMORY_USED_TOTAL           = 3,
+    MAX_MEMORY_USED_BY_PROGRAM  = 4,
+    MAX_MEMORY_USED_BY_OVERHEAD = 5
+} memory_query_t;
+
 void delete_check(const char *file, int line, int print);
 
 void display_memory_usage();
 
 /*!
  * \brief Get total memory usage
- * \returns amount of total memory used
+ * \param query what to return
+ * \returns amount of requested memory used
  */
-long memory_used();
+long memory_used(memory_query_t query);
 
 /*!
  * \brief Dumps raw Tree holding memory accounting

@@ -758,16 +758,6 @@ long MAX_MEMORYA_USED = 0L;
 long MAX_MEMORYC_USED = 0L;
 
 
-typedef enum
-{
-    MEMORY_USED_BY_PROGRAM      = 1,
-    MEMORY_USED_BY_OVERHEAD     = 2,
-    MEMORY_USED_TOTAL           = 3,
-    MAX_MEMORY_USED_BY_PROGRAM  = 4,
-    MAX_MEMORY_USED_BY_OVERHEAD = 5
-
-} memory_query_t;
-
 long memory_used(memory_query_t query)
 {
     switch (query) {
