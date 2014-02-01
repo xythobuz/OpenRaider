@@ -12,6 +12,8 @@
 #define UNIT_TEST_MEMORY
 #include <memory_test.h>
 
+#define DEBUG_MEMORY_ERROR_OFF
+
 bool tree_check(rbtree_t *tree, const char *file, int line)
 {
     bool ret = true;
@@ -838,30 +840,30 @@ void display_memory_usage()
     printf("Memory usage summary:\n");
 
     printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n",
-            MEMORY_USED, (double)MEMORY_USED / 1024000.0);
+            MEMORY_USED, (double)MEMORY_USED / 1048576.0);
     printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n",
-            MEMORYA_USED, (double)MEMORYA_USED / 1024000.0);
+            MEMORYA_USED, (double)MEMORYA_USED / 1048576.0);
     printf(" Untracked m-string memory : %lu bytes\n",
             MEMORYC_USED);
 
     printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n",
             MEMORY_USED + MEMORYA_USED + MEMORYC_USED,
-            (double)(MEMORY_USED + MEMORYA_USED + MEMORYC_USED) / 1024000.0);
+            (double)(MEMORY_USED + MEMORYA_USED + MEMORYC_USED) / 1048576.0);
 
     printf("------------------------------------------------------------\n");
 
     printf("Memory max usage summary:\n");
 
     printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n",
-            MAX_MEMORY_USED, (double)MAX_MEMORY_USED / 1024000.0);
+            MAX_MEMORY_USED, (double)MAX_MEMORY_USED / 1048576.0);
     printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n",
-            MAX_MEMORYA_USED, (double)MAX_MEMORYA_USED / 1024000.0);
+            MAX_MEMORYA_USED, (double)MAX_MEMORYA_USED / 1048576.0);
     printf(" Untracked m-string memory : %lu bytes\n",
             MAX_MEMORYC_USED);
 
     printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n",
             MAX_MEMORY_USED + MAX_MEMORYA_USED + MAX_MEMORYC_USED,
-            (double)(MAX_MEMORY_USED + MAX_MEMORYA_USED + MAX_MEMORYC_USED) / 1024000.0);
+            (double)(MAX_MEMORY_USED + MAX_MEMORYA_USED + MAX_MEMORYC_USED) / 1048576.0);
 
     printf("============================================================\n");
 }
@@ -869,16 +871,14 @@ void display_memory_usage()
 
 void dump_memory_report()
 {
-    int i;
-
-
     printf("\n============================================================\n");
     printf(" Memory status report\n");
     printf("============================================================\n");
     printf("Memory tracking table:\n");
-    i = tree_print(MEMORY_INFO, (void (*)(void *))&__print_meminfo);
-    printf("%i records, %lu bytes each : %lu bytes\n",
-            i, sizeof(meminfo_t), i * sizeof(meminfo_t));
+    int i = tree_print(MEMORY_INFO, (void (*)(void *))&__print_meminfo);
+    if (i != 0) {
+        printf("%i records, %lu bytes each : %lu bytes\n", i, sizeof(meminfo_t), i * sizeof(meminfo_t));
+    }
     display_memory_usage();
     printf("============================================================\n\n");
 }

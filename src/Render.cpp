@@ -259,7 +259,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
                     ++numTextures;
                 }
 
-    // Werid that it isn't linear, must be some storage deal in Texture
+    // Weird that it isn't linear, must be some storage deal in Texture
     // I forgot about Id allocation
     *nextId = font_id;
 

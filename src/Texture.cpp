@@ -262,7 +262,7 @@ int Texture::loadFontTTF(const char *filename,
     if (texture)
     {
 #ifdef DUMP_TTF_TGA
-        FILE *f = fopen("font.tga", "wb");
+        FILE *f = fopen("ttf_font.tga", "wb");
         if (f)
         {
             tga_save(f, texture->texture, 256, 256, 4);
