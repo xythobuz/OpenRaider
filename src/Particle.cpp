@@ -71,7 +71,7 @@ void Particle::Force(float x, float y, float z)
 void Particle::Reset()
 {
     // Mongoose 2002.01.01, Ah, how old is that code?
-#ifdef OBSOLOETE
+#ifdef OBSOLETE
     _active = true;
     _life = 1.0;
     _blend = (float)(rand() % 100) / 1000.0 + 0.003;

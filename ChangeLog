@@ -7,6 +7,8 @@
 
 	[ 20140201 ]
 	* Rewrote Memory Unit Test using greatest
+	* Used C++ static analysis tool cppcheck and tried to fix
+	  its warnings
 
 	[ 20140131 ]
 	* All unit tests buildable again and no more warnings

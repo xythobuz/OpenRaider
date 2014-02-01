@@ -3923,7 +3923,7 @@ void TombRaider::getSprites()
     sprite_seq_t *r_mesh;
     tr2_item_t *item;
 
-
+    r_mesh = Mesh();
     item = Item();
     sprite_textures = Sprite();
     sprite_sequence = SpriteSequence();

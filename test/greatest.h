@@ -510,38 +510,38 @@ greatest_run_info greatest_info
 /* Handle command-line arguments, etc. */
 #define GREATEST_MAIN_BEGIN()                                           \
     do {                                                                \
-        int i = 0;                                                      \
+        int _i = 0;                                                      \
         memset(&greatest_info, 0, sizeof(greatest_info));               \
         if (greatest_info.width == 0) {                                 \
             greatest_info.width = GREATEST_DEFAULT_WIDTH;               \
         }                                                               \
-        for (i = 1; i < argc; i++) {                                    \
-            if (0 == strcmp("-t", argv[i])) {                           \
-                if (argc <= i + 1) {                                    \
+        for (_i = 1; _i < argc; _i++) {                                    \
+            if (0 == strcmp("-t", argv[_i])) {                           \
+                if (argc <= _i + 1) {                                    \
                     greatest_usage(argv[0]);                            \
                     exit(EXIT_FAILURE);                                 \
                 }                                                       \
-                greatest_info.test_filter = argv[i+1];                  \
-                i++;                                                    \
-            } else if (0 == strcmp("-s", argv[i])) {                    \
-                if (argc <= i + 1) {                                    \
+                greatest_info.test_filter = argv[_i+1];                  \
+                _i++;                                                    \
+            } else if (0 == strcmp("-s", argv[_i])) {                    \
+                if (argc <= _i + 1) {                                    \
                     greatest_usage(argv[0]);                            \
                     exit(EXIT_FAILURE);                                 \
                 }                                                       \
-                greatest_info.suite_filter = argv[i+1];                 \
-                i++;                                                    \
-            } else if (0 == strcmp("-f", argv[i])) {                    \
+                greatest_info.suite_filter = argv[_i+1];                 \
+                _i++;                                                    \
+            } else if (0 == strcmp("-f", argv[_i])) {                    \
                 greatest_info.flags |= GREATEST_FLAG_FIRST_FAIL;        \
-            } else if (0 == strcmp("-v", argv[i])) {                    \
+            } else if (0 == strcmp("-v", argv[_i])) {                    \
                 greatest_info.flags |= GREATEST_FLAG_VERBOSE;           \
-            } else if (0 == strcmp("-l", argv[i])) {                    \
+            } else if (0 == strcmp("-l", argv[_i])) {                    \
                 greatest_info.flags |= GREATEST_FLAG_LIST_ONLY;         \
-            } else if (0 == strcmp("-h", argv[i])) {                    \
+            } else if (0 == strcmp("-h", argv[_i])) {                    \
                 greatest_usage(argv[0]);                                \
                 exit(EXIT_SUCCESS);                                     \
             } else {                                                    \
                 fprintf(GREATEST_STDOUT,                                \
-                    "Unknown argument '%s'\n", argv[i]);                \
+                    "Unknown argument '%s'\n", argv[_i]);                \
                 greatest_usage(argv[0]);                                \
                 exit(EXIT_FAILURE);                                     \
             }                                                           \

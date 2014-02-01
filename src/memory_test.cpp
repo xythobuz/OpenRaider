@@ -426,8 +426,8 @@ int tree_print(rbtree_t *tree, void (*print_func)(void *))
 
 #ifdef DEBUG_MEMORY_RBTREE
         printf(" :%s%s)",
-                (!tree->parent) ? " (root, " : " ("),
-            (tree->color == RB_BLACK) ? "black" : "red");
+                ((!tree->parent) ? " (root, " : " ("),
+            ((tree->color == RB_BLACK) ? "black" : "red"));
 #endif
     }
 

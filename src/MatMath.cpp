@@ -77,9 +77,9 @@ int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius,
     {
         // One intersection
         mu = -b/(2*a) ;
-        intersectionA[1] = posA[0] + mu*(posB[0]-posA[0]);
-        intersectionA[2] = posA[1] + mu*(posB[1]-posA[1]);
-        intersectionA[3] = posA[2] + mu*(posB[2]-posA[2]);
+        intersectionA[0] = posA[0] + mu*(posB[0]-posA[0]);
+        intersectionA[1] = posA[1] + mu*(posB[1]-posA[1]);
+        intersectionA[2] = posA[2] + mu*(posB[2]-posA[2]);
 
         return 1;
     }
@@ -89,9 +89,9 @@ int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius,
 
         // First intersection
         mu = (-b + sqrtf( square(b) - 4.0f*a*c)) / (2.0f*a);
-        intersectionA[1] = posA[0] + mu*(posB[0]-posA[0]);
-        intersectionA[2] = posA[1] + mu*(posB[1]-posA[1]);
-        intersectionA[3] = posA[2] + mu*(posB[2]-posA[2]);
+        intersectionA[0] = posA[0] + mu*(posB[0]-posA[0]);
+        intersectionA[1] = posA[1] + mu*(posB[1]-posA[1]);
+        intersectionA[2] = posA[2] + mu*(posB[2]-posA[2]);
 
         // Second intersection
         mu = (-b - sqrtf(square(b) - 4.0f*a*c)) / (2.0f*a);

@@ -15,87 +15,114 @@
 extern rbtree_t *MEMORY_INFO;
 bool check_red_black_tree(rbtree_t *current, bool valid, bool strict);
 
+int *i, *j, *k;
+float *l, *m, *n;
+
+void integerTeardown(void *) {
+    free(i);
+    free(j);
+    free(k);
+}
+
+void floatTeardown(void *) {
+    free(l);
+    free(m);
+    free(n);
+}
+
 TEST singleInteger() {
-    int *i = new int;
+    i = new int;
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), sizeof(int));
 
     delete i;
+    i = NULL;
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 0);
     PASS();
 }
 
 TEST arrayInteger() {
-    int *i = new int[3];
+    i = new int[3];
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 3 * sizeof(int));
 
     delete [] i;
+    i = NULL;
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 0);
     PASS();
 }
 
 TEST arrayCombinedInteger() {
-    int *i = new int[3];
-    int *j = new int;
-    int *k = new int[3];
+    i = new int[3];
+    j = new int;
+    k = new int[3];
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 7 * sizeof(int));
 
     delete [] i;
     delete j;
     delete [] k;
+    i = NULL;
+    j = NULL;
+    k = NULL;
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 0);
     PASS();
 }
 
 SUITE(integerSuite) {
+    SET_TEARDOWN(integerTeardown, NULL);
     RUN_TEST(singleInteger);
     RUN_TEST(arrayInteger);
     RUN_TEST(arrayCombinedInteger);
 }
 
 TEST singleFloat() {
-    float *i = new float;
+    l = new float;
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), sizeof(float));
 
-    delete i;
+    delete l;
+    l = NULL;
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 0);
     PASS();
 }
 
 TEST arrayFloat() {
-    float *i = new float[3];
+    l = new float[3];
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 3 * sizeof(float));
 
-    delete [] i;
+    delete [] l;
+    l = NULL;
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 0);
     PASS();
 }
 
 TEST arrayCombinedFloat() {
-    float *i = new float[3];
-    float *j = new float;
-    float *k = new float[3];
+    l = new float[3];
+    m = new float;
+    n = new float[3];
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 7 * sizeof(float));
 
-    delete [] i;
-    delete j;
-    delete [] k;
+    delete [] l;
+    delete m;
+    delete [] n;
+    l = NULL;
+    m = NULL;
+    n = NULL;
     ASSERTm("No valid red-black tree!", check_red_black_tree(MEMORY_INFO, true, true));
     ASSERT_EQm("Memory-Tracking faulty!", memory_used(MEMORY_USED_BY_PROGRAM), 0);
     PASS();
 }
 
 SUITE(floatSuite) {
+    SET_TEARDOWN(floatTeardown, NULL);
     RUN_TEST(singleFloat);
     RUN_TEST(arrayFloat);
     RUN_TEST(arrayCombinedFloat);

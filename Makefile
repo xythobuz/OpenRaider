@@ -205,6 +205,14 @@ $(BUILDDIR)/$(NAME) : $(OBJS)
 
 #################################################################
 
+check:
+	cppcheck -Iinclude $(GL_DEFS) $(AUDIO_DEFS) --enable=information .
+
+fullCheck:
+	cppcheck -Iinclude $(GL_DEFS) $(AUDIO_DEFS) --enable=all --inconclusive --std=posix .
+
+#################################################################
+
 clean: clean-small clean-dep clean-doc
 
 clean-small: clean-build clean-test clean-obj 

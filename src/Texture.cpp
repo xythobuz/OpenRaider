@@ -846,6 +846,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
         {
             delete [] image;
         }
+        delete [] swap_row;
 
         printf("glScreenShot> ERROR: Couldn't allocate image!\n");
         return;
@@ -870,6 +871,8 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
     {
         printf("glScreenShot> ERROR: Couldn't write screenshot.\n");
         perror("glScreenShot> ERROR: ");
+        delete [] image;
+        delete [] swap_row;
         return;
     }
 
@@ -929,6 +932,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
     {
         perror("glScreenShot> Disk write failed.\n");
         fclose(f);
+        delete [] image;
         return;
     }
 
@@ -1050,13 +1054,16 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
     tempin = new float[original_width * original_height * components * sizeof(float)];
     tempout = new float[width * height * components * sizeof(float)];
 
-    if (!tempout || !tempin)
+    if (!tempout || !tempin || !timage)
     {
         if (tempout)
             delete [] tempout;
 
         if (tempin)
             delete [] tempin;
+
+        if (timage)
+            delete [] timage;
 
         printf("Oh shit out of memory!\n");
         return NULL;
