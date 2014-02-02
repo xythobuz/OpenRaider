@@ -466,8 +466,6 @@ class OpenRaider : public SDLSystem
     char *m_homeDir;             /* Current home directory */
 
     Vector<entity_t *> mClients; /* Player entity/clients */
-
-    unsigned int mMaxClients;    /* Max number of clients */
 };
 
 #endif

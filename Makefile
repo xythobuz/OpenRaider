@@ -222,7 +222,8 @@ check:
 		--enable=information,warning,performance,portability .
 
 checkFull:
-	cppcheck --quiet $(CHECK_INC) --enable=all --std=posix --force .
+	cppcheck --quiet $(CHECK_INC) --enable=all --force \
+		--std=c++11 --std=posix .
 
 #################################################################
 

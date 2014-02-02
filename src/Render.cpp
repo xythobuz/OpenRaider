@@ -139,6 +139,7 @@ Render::Render()
 #endif
     mCamera = 0x0;
     mSkyMesh = -1;
+    mSkyMeshRotation = false;
     mMode = Render::modeDisabled;
     mLock = 0;
     mFlags = (Render::fRoomAlpha | Render::fViewModel | Render::fSprites |
@@ -148,6 +149,12 @@ Render::Render()
     mModels.setError(0x0);
     mRooms.setError(0x0);
     mRoomRenderList.setError(0x0);
+
+    mNextTextureId = NULL;
+    mNumTexturesLoaded = NULL;
+
+    mWidth = 640;
+    mHeight = 480;
 }
 
 
@@ -1306,13 +1313,13 @@ void Render::drawObjects()
     vec3_t curPos;
 #endif
     sprite_seq_t *sprite;
+    int frame;
 
 
     // Draw lara or other player model ( move to entity rendering method )
     if (mFlags & Render::fViewModel && LARA && LARA->tmpHook)
     {
         SkeletalModel *mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
-        int frame = mdl->getAnimation();
 
         if (mdl)
         {
@@ -1327,6 +1334,10 @@ void Render::drawObjects()
                 {
                     mdl->setFrame(0);
                 }
+            }
+            else
+            {
+                frame = mdl->getAnimation();
             }
 
             animation_frame_t *animation = mdl->model->animation[frame];
@@ -1401,7 +1412,7 @@ void Render::drawModel(SkeletalModel *model)
     if (!animation)
     {
 #ifdef DEBUG
-        printf("ERROR: No animation for model[%i].aframe[%i] %i\n",
+        printf("ERROR: No animation for model[%i].aframe[%i] %u\n",
                 mdl->id, aframe, mdl->animation.size());
 #endif
         return;

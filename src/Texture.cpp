@@ -523,7 +523,7 @@ int Texture::loadColorTexture(unsigned char rgba[4],
         unsigned int width, unsigned int height)
 {
     unsigned char *image;
-    int id = -1;
+    int id;
 
     image = generateColorTexture(rgba, width, height);
     id = loadBuffer(image, width, height, RGBA, 32);

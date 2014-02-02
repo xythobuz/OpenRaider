@@ -32,6 +32,12 @@
 
 ViewVolume::ViewVolume()
 {
+    mFrustum[0][0] = mFrustum[0][1] = mFrustum[0][2] = mFrustum[0][3] = 0.0f;
+    mFrustum[1][0] = mFrustum[1][1] = mFrustum[1][2] = mFrustum[1][3] = 0.0f;
+    mFrustum[2][0] = mFrustum[2][1] = mFrustum[2][2] = mFrustum[2][3] = 0.0f;
+    mFrustum[3][0] = mFrustum[3][1] = mFrustum[3][2] = mFrustum[3][3] = 0.0f;
+    mFrustum[4][0] = mFrustum[4][1] = mFrustum[4][2] = mFrustum[4][3] = 0.0f;
+    mFrustum[5][0] = mFrustum[5][1] = mFrustum[5][2] = mFrustum[5][3] = 0.0f;
 }
 
 
@@ -380,25 +386,3 @@ void ViewVolume::updateFrustum()
     mFrustum[5][3] /= t;
 }
 
-
-////////////////////////////////////////////////////////////
-// Unit Test code
-////////////////////////////////////////////////////////////
-
-#ifdef UNIT_TEST_VIEWVOLUME
-int runViewVolumeUnitTest(int argc, char *argv[])
-{
-    return 0;
-}
-
-
-int main(int argc, char *argv[])
-{
-    ViewVolume test;
-
-
-    printf("[ViewVolume class test]\n");
-
-    return runViewVolumeUnitTest(argc, argv);
-}
-#endif

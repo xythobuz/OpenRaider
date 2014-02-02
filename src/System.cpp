@@ -53,6 +53,7 @@ System::System()
     m_fovY     = 45.0f;
 
     mConsoleMode = false;
+    mCommandMode = 0;
 
     printf("[System.Core]\n");
 

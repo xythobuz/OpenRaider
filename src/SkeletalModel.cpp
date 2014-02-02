@@ -22,6 +22,9 @@ SkeletalModel::SkeletalModel()
     mBoneFrame = 0;
     mAnimationFrame = 0;
     mIdleAnimation = 0;
+    time = 0.0f;
+    lastTime = 0.0f;
+    rate = 0.0f;
 }
 
 

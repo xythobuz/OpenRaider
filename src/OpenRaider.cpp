@@ -123,6 +123,10 @@ OpenRaider::OpenRaider() : SDLSystem()
     m_testSFX = -1;
     mNoClipping = 0;
 
+    mText = NULL;
+    m_flags = 0;
+    m_mapName[0] = '\0';
+
     /*! \todo Replace numbers with enum modes.
      * Only do this when you know the amount of commands + 1 (0 reserved)
      */

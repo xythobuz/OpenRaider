@@ -829,14 +829,14 @@ void display_memory_usage()
 
     printf("Memory usage summary:\n");
 
-    printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n",
+    printf(" Tracked program memory    : %li bytes \t(%.2f MB)\n",
             MEMORY_USED, (double)MEMORY_USED / 1048576.0);
-    printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n",
+    printf(" Untracked overhead memory : %li bytes \t(%.2f MB)\n",
             MEMORYA_USED, (double)MEMORYA_USED / 1048576.0);
-    printf(" Untracked m-string memory : %lu bytes\n",
+    printf(" Untracked m-string memory : %li bytes\n",
             MEMORYC_USED);
 
-    printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n",
+    printf("\n Total accounted memory    : %li bytes \t(%.2f MB)\n",
             MEMORY_USED + MEMORYA_USED + MEMORYC_USED,
             (double)(MEMORY_USED + MEMORYA_USED + MEMORYC_USED) / 1048576.0);
 
@@ -844,14 +844,14 @@ void display_memory_usage()
 
     printf("Memory max usage summary:\n");
 
-    printf(" Tracked program memory    : %lu bytes \t(%.2f MB)\n",
+    printf(" Tracked program memory    : %li bytes \t(%.2f MB)\n",
             MAX_MEMORY_USED, (double)MAX_MEMORY_USED / 1048576.0);
-    printf(" Untracked overhead memory : %lu bytes \t(%.2f MB)\n",
+    printf(" Untracked overhead memory : %li bytes \t(%.2f MB)\n",
             MAX_MEMORYA_USED, (double)MAX_MEMORYA_USED / 1048576.0);
-    printf(" Untracked m-string memory : %lu bytes\n",
+    printf(" Untracked m-string memory : %li bytes\n",
             MAX_MEMORYC_USED);
 
-    printf("\n Total accounted memory    : %lu bytes \t(%.2f MB)\n",
+    printf("\n Total accounted memory    : %li bytes \t(%.2f MB)\n",
             MAX_MEMORY_USED + MAX_MEMORYA_USED + MAX_MEMORYC_USED,
             (double)(MAX_MEMORY_USED + MAX_MEMORYA_USED + MAX_MEMORYC_USED) / 1048576.0);
 

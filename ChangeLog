@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140202 ]
+	* Fixed more cppcheck warnings
+
 	[ 20140201 ]
 	* Rewrote Memory Unit Test using greatest
 	* Used C++ static analysis tool cppcheck and tried to fix

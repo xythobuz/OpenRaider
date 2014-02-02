@@ -103,6 +103,7 @@ TombRaider::TombRaider()
     mSoundMap = 0x0;
     mSoundDetails = 0x0;
     mSampleIndices = 0x0;
+    mSampleIndicesTR5 = 0x0;
     mRiffData = 0x0;
     mTR4Samples = 0x0;
     mTR4SamplesSz = 0x0;
@@ -120,6 +121,7 @@ TombRaider::TombRaider()
     mRiffAlternateLoaded = false;
     mRoomVertexLightingFactor = 50.0f;
     mTexelScale = 256.0f;
+    mRiffDataSz = 0;
 
     reset();
 }

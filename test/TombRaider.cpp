@@ -495,7 +495,7 @@ void dump_lara_stuff(char *mapname, TombRaider &tr)
 
     fclose(f);
 
-    printf("\nDumping %i audio samples: ", tr.getSoundSamplesCount());
+    printf("\nDumping %u audio samples: ", tr.getSoundSamplesCount());
 
     for (i = 0, j = 0; i < tr.getSoundSamplesCount(); ++i)
     {

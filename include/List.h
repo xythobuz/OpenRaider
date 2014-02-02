@@ -298,7 +298,7 @@ public:
         ListNode<T> *current = _head;
         printf(" [%u] {\n", _num_items);
         while (current) {
-            printf("#%i, ", current->Id());
+            printf("#%u, ", current->Id());
             if (print_func)
                 (*print_func)(current->Data());
             current = current->Next();
@@ -315,7 +315,7 @@ public:
         printf("List %u {\n", _num_items);
         while (current) {
             //current->Print();
-            printf("%i", current->Id());
+            printf("%u", current->Id());
             current = current->Next();
             if (current)
                 printf(", ");

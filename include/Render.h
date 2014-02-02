@@ -46,6 +46,8 @@ public:
     RenderRoom()
     {
         room = 0x0;
+        dist = 0.0f;
+        center[0] = center[1] = center[2] = 0.0f;
     }
 
     ~RenderRoom()

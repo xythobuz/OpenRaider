@@ -418,7 +418,7 @@ int Network::runServer()
                     cip << 16 >> 24, cip << 24 >> 24,
                     ntohs(from.sin_port));
 
-            printf("Server: Datalink layer recieved: packet seq %i\n",
+            printf("Server: Datalink layer recieved: packet seq %u\n",
                     f.seq);
         }
 
@@ -455,7 +455,7 @@ int Network::runServer()
 #ifdef UNIT_TEST_NETWORK
         if ((rand() % 10 == 0))
         {
-            printf("Server: Simulating a lost ack %i\n", f.seq);
+            printf("Server: Simulating a lost ack %u\n", f.seq);
             continue;
         }
 #endif
@@ -620,7 +620,7 @@ void Network::runClient()
         {
             if (mDebug)
             {
-                printf("Client: Sending packet %i\n", f.seq);
+                printf("Client: Sending packet %u\n", f.seq);
             }
 
             cc = sendto(socket_fd, &f, sizeof(f), 0,
@@ -664,7 +664,7 @@ void Network::runClient()
         {
             if (mDebug)
             {
-                printf("Client: Timeout detected on packet %i\n", f.seq);
+                printf("Client: Timeout detected on packet %u\n", f.seq);
             }
             timedOut = 1;
             continue;
@@ -685,7 +685,7 @@ void Network::runClient()
         {
             if (mDebug)
             {
-                printf("Client: Datalink layer recieved: packet seq %i\n", f.seq);
+                printf("Client: Datalink layer recieved: packet seq %u\n", f.seq);
                 printf("CLIENT> Msg from %u\n", f.uid);
             }
 
@@ -696,7 +696,7 @@ void Network::runClient()
         {
             if (mDebug)
             {
-                printf("Client: Recieved ack %i\n", f.seq);
+                printf("Client: Recieved ack %u\n", f.seq);
             }
 
             ++seq;
