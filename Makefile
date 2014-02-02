@@ -205,17 +205,30 @@ $(BUILDDIR)/$(NAME) : $(OBJS)
 
 #################################################################
 
-check:
-	cppcheck -Iinclude $(GL_DEFS) $(AUDIO_DEFS) --enable=information .
+CHECK_INC=-Iinclude
+#CHECK_INC+=$(GL_DEFS) $(AUDIO_DEFS)
+#ifeq ($(UNAME),Darwin)
+#SDK_ROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
+#CHECK_INC+=-I$(SDK_ROOT)/usr/include
+#CHECK_INC+=-I$(SDK_ROOT)/usr/include/malloc
+#CHECK_INC+=-I$(SDK_ROOT)/usr/include/machine
+#CHECK_INC+=-I$(SDK_ROOT)/usr/include/c++/4.2.1
+#CHECK_INC+=-I$(SDK_ROOT)/usr/include/c++/4.2.1/tr1
+#CHECK_INC+=-I$(SDK_ROOT)/usr/include/c++/4.2.1/backward
+#endif
 
-fullCheck:
-	cppcheck -Iinclude $(GL_DEFS) $(AUDIO_DEFS) --enable=all --inconclusive --std=posix .
+check:
+	cppcheck --quiet $(CHECK_INC) --force \
+		--enable=information,warning,performance,portability .
+
+checkFull:
+	cppcheck --quiet $(CHECK_INC) --enable=all --std=posix --force .
 
 #################################################################
 
 clean: clean-small clean-dep clean-doc
 
-clean-small: clean-build clean-test clean-obj 
+clean-small: clean-build clean-test clean-obj
 	@-rm -rf bin/OpenRaider.app
 	@-rm -rf bin/OpenRaider.dmg
 	@-rm -rf bin/OpenRaider.zip

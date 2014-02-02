@@ -1500,17 +1500,8 @@ int TombRaider::Load(char *filename, void (*percent)(int))
         _sound_sources =
             (tr2_sound_source_t*) new unsigned char[_num_sound_sources*40];
 
-        if (mEngineVersion == TR_VERSION_4)
-        {
-            // Mongoose 2002.04.04, was 40 sized reads before extra_camera
-            Fread(_sound_sources, sizeof(tr2_sound_source_t),
-                    _num_sound_sources, f);
-        }
-        else
-        {
-            Fread(_sound_sources, sizeof(tr2_sound_source_t),
-                    _num_sound_sources, f);
-        }
+        Fread(_sound_sources, sizeof(tr2_sound_source_t),
+                _num_sound_sources, f);
         //! \fixme endian
     }
 
@@ -1823,14 +1814,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
     }
     else
     {
-        if (mEngineVersion == TR_VERSION_4)
-        {
-            Fread(mSoundMap, sizeof(short), 370, f);
-        }
-        else
-        {
-            Fread(mSoundMap, sizeof(short), 370, f);
-        }
+        Fread(mSoundMap, sizeof(short), 370, f);
     }
     //! \fixme endian
 

@@ -171,35 +171,39 @@ void Vector3d::zero()
 }
 
 
-void Vector3d::operator =(const Vector3d &v)
+Vector3d &Vector3d::operator =(const Vector3d &v)
 {
     mVec[0] = v.mVec[0];
     mVec[1] = v.mVec[1];
     mVec[2] = v.mVec[2];
+    return *this;
 }
 
 
-void Vector3d::operator +=(const Vector3d &v)
+Vector3d &Vector3d::operator +=(const Vector3d &v)
 {
     mVec[0] += v.mVec[0];
     mVec[1] += v.mVec[1];
     mVec[2] += v.mVec[2];
+    return *this;
 }
 
 
-void Vector3d::operator -=(const Vector3d &v)
+Vector3d &Vector3d::operator -=(const Vector3d &v)
 {
     mVec[0] -= v.mVec[0];
     mVec[1] -= v.mVec[1];
     mVec[2] -= v.mVec[2];
+    return *this;
 }
 
 
-void Vector3d::operator *=(vec_t s)
+Vector3d &Vector3d::operator *=(vec_t s)
 {
     mVec[0] *= s;
     mVec[1] *= s;
     mVec[2] *= s;
+    return *this;
 }
 
 

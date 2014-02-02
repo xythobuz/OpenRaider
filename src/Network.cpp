@@ -166,7 +166,7 @@ void *server_thread(void *v)
 
 void Network::setBindHost(char *s)
 {
-    if (!s && !s[0])
+    if (!s || !s[0])
         return;
 
     strncpy(mBindHost, s, BIND_HOST_STR_SZ);
@@ -175,7 +175,7 @@ void Network::setBindHost(char *s)
 
 void Network::setRemoteHost(char *s)
 {
-    if (!s && !s[0])
+    if (!s || !s[0])
         return;
 
     strncpy(mRemoteHost, s, REMOTE_HOST_STR_SZ);
@@ -295,15 +295,33 @@ int Network::runServer()
     memset(&s_in, 0, sizeof(s_in));
     s_in.sin_family = AF_INET;
 #ifdef LOCAL_BCAST
-    struct hostent *hostptr;
-
-    if ((hostptr = gethostbyname(hostid)) == NULL)
-    {
-        fprintf(stderr, "Server: recv_udp, Invalid host name '%s'\n", hostid);
+    // Replace deprecated gethostbyname() with getaddrinfo()
+    //struct hostent *hostptr;
+    //if ((hostptr = gethostbyname(hostid)) == NULL)
+    //{
+    //    fprintf(stderr, "Server: recv_udp, Invalid host name '%s'\n", hostid);
+    //    return -1;
+    //}
+    //memcpy((void *)(&s_in.sin_addr), hostptr->h_addr, hostptr->h_length);
+    struct addrinfo *result, *res;
+    bool found = false;
+    int error = getaddrinfo(hostid, NULL, NULL, &result);
+    if (error != 0) {
+        fprintf(stderr, "Server: %s\n", gai_strerror(error));
         return -1;
     }
-
-    memcpy((void *)(&s_in.sin_addr), hostptr->h_addr, hostptr->h_length);
+    for (res = result; res != NULL; res = res->ai_next) {
+        if (res->ss_family == AF_INET) {
+            found = true;
+            memcpy((void *)&s_in, res->ai_addr, res->ai_addrlen);
+            break; // Found something suitable
+        }
+    }
+    freeaddrinfo(result);
+    if (!found) {
+        fprintf(stderr, "Server: Can't bind to %s\n", hostid);
+        return -1;
+    }
 #else
     s_in.sin_addr.s_addr = htonl(INADDR_ANY);
 #endif
@@ -348,7 +366,7 @@ int Network::runServer()
         if (mDebug)
         {
             printf("=====================================================\n");
-            printf("Packet %i\n", packetsRecieved);
+            printf("Packet %u\n", packetsRecieved);
             printf("Server: Recieved packet from %u\n",
                     f.uid);
         }
@@ -374,7 +392,7 @@ int Network::runServer()
                     gClients[i].frameExpected = 0;
                     ++gNumClients;
 
-                    printf("Server: %u made connection, as client %i\n",
+                    printf("Server: %u made connection, as client %u\n",
                             gClients[i].uid, i);
                     break;
                 }
@@ -491,10 +509,10 @@ void Network::runClient()
     unsigned int fsize, last_frame_sent = 0;
     int socket_fd, cc, done;
     struct sockaddr_in dest;
-    struct hostent *hostptr;
+    struct addrinfo *addr;
     network_frame_t f;
     struct timeval timeout;
-    fd_set  readfds;
+    fd_set readfds;
     unsigned int packetsSent = 0;
     unsigned int seq = 0;
     char timedOut = 1;
@@ -515,10 +533,16 @@ void Network::runClient()
         exit(0);
     }
 
-    if ((hostptr = gethostbyname(mRemoteHost)) == NULL)
-    {
-        fprintf(stderr, "Client: send_udp: invalid host name, %s\n",
-                mRemoteHost);
+    //if ((hostptr = gethostbyname(mRemoteHost)) == NULL)
+    //{
+    //    fprintf(stderr, "Client: send_udp: invalid host name, %s\n",
+    //            mRemoteHost);
+    //    exit(0);
+    //}
+
+    int error = getaddrinfo(mRemoteHost, NULL, NULL, &addr);
+    if (error != 0) {
+        fprintf(stderr, "Client: %s\n", gai_strerror(error));
         exit(0);
     }
 
@@ -528,7 +552,20 @@ void Network::runClient()
     int port = getPort();
     dest.sin_port = htons(port);
 #ifdef LOCAL_BCAST
-    memcpy(hostptr->h_addr, (char *) &dest.sin_addr, hostptr->h_length);
+    //memcpy(hostptr->h_addr, (char *) &dest.sin_addr, hostptr->h_length);
+    bool found = false;
+    for (struct addrinfo *res = addr; res != NULL; res = res->ai_next) {
+        if (res->ss_family == AF_INET) {
+            found = true;
+            memcpy((void *)&dest.sin_addr, res->ai_addr.sin_addr, sizeof(res->ai_addr.sin_addr));
+            break; // Found something suitable
+        }
+    }
+    freeaddrinfo(addr);
+    if (!found) {
+        fprintf(stderr, "Client: Can't connect to %s\n", hostid);
+        return;
+    }
 #else
     if (inet_pton(AF_INET, mRemoteHost, &dest.sin_addr) < 0)
     {
@@ -549,7 +586,7 @@ void Network::runClient()
         if (mDebug)
         {
             printf("=====================================================\n");
-            printf("Packet %i\n", packetsSent);
+            printf("Packet %u\n", packetsSent);
         }
 
         // 1. Get packet to send over wire

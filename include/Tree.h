@@ -456,7 +456,7 @@ public:
      * \sa Tree::Remove()
      */
     bool RemoveByData(Data data) {
-        bool error;
+        bool error = true;
         if (_root)
             Remove(_root->SearchByData(data, &error));
         return error;
@@ -470,11 +470,11 @@ public:
      * \sa Tree::Remove()
      */
     bool RemoveByKey(Key key) {
-        bool error;
+        bool error = true;
         if (_root) {
 #ifdef OBSOLETE
             // Mongoose 2002.02.18, To remove duplicates
-            erorr = false;
+            error = false;
             while (!error) {
 #endif
                 Remove(_root->SearchByKey(key, &error));
@@ -623,7 +623,7 @@ public:
      * \sa TreeNode::PrintInorderSpecial()
      */
     void PrintSpecial(void (*print_func_k)(Key), void (*print_func_d)(Data)) {
-        printf("Tree: %i elements {\n", _num_elements);
+        printf("Tree: %u elements {\n", _num_elements);
         if (_root && print_func_k && print_func_d) {
             printf("Root: ");
             _root->PrintNodeSpecial(print_func_k, print_func_d);
@@ -953,6 +953,9 @@ private:
         {
             prev = GetSuccessor(tree);
         }
+
+        if (!prev)
+            return; // Probably a good idea, as there's a check if(prev) later
 
         if (prev->GetLeft())
         {

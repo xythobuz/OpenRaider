@@ -111,7 +111,6 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
     //  vec3_t normal, a, b;
     Vector3d a, b, normal, pA, pB;
     vec_t d, denominator, mu;
-    double theta;
 
 
     pA = Vector3d(p1);
@@ -184,7 +183,7 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
 #else // assume convex polygons here for sure
     //mtkVectorSubtract(intersect, polygon[0], a);
     //theta = mtkVectorDotProduct(a, normal);
-    theta = Vector3d::dot(b - Vector3d(polygon[0]), normal); // b = intersect
+    double theta = Vector3d::dot(b - Vector3d(polygon[0]), normal); // b = intersect
 
     if (theta >= 90.0) // Yeah I know
         return 0;

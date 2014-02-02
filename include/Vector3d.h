@@ -235,7 +235,7 @@ class Vector3d
      * Mongoose - Created
      ------------------------------------------------------*/
 
-    void operator =(const Vector3d &v);
+    Vector3d &operator =(const Vector3d &v);
     /*------------------------------------------------------
      * Pre  :
      * Post : this = v, values are assigned   =)
@@ -246,7 +246,7 @@ class Vector3d
      * Mongoose - Created
      ------------------------------------------------------*/
 
-    void operator +=(const Vector3d &v);
+    Vector3d &operator +=(const Vector3d &v);
     /*------------------------------------------------------
      * Pre  :
      * Post : this += v, values are sumed, assigned   =)
@@ -257,7 +257,7 @@ class Vector3d
      * Mongoose - Created
      ------------------------------------------------------*/
 
-    void operator -=(const Vector3d &v);
+    Vector3d &operator -=(const Vector3d &v);
     /*------------------------------------------------------
      * Pre  :
      * Post : this -= v, values are diffed, assigned   =)
@@ -268,7 +268,7 @@ class Vector3d
      * Mongoose - Created
      ------------------------------------------------------*/
 
-    void operator *=(vec_t s);
+    Vector3d &operator *=(vec_t s);
     /*------------------------------------------------------
      * Pre  :
      * Post : this *= s, values are scaled, assigned   =)

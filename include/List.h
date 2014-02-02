@@ -95,7 +95,7 @@ public:
      * \brief Print this ListNode
      */
     void Print() {
-        printf("(%i, %p)",  _id, _data);
+        printf("(%u, %p)",  _id, _data);
     }
 
 private:
@@ -216,7 +216,7 @@ public:
             return SearchId(i);
         } else {
 #ifdef DEBUG_INDEX_EMPTY_LIST
-            printf("List[%i] = NULL\n", i);
+            printf("List[%u] = NULL\n", i);
 #endif
         }
         return 0;
@@ -296,7 +296,7 @@ public:
      */
     void Print(void (*print_func)(T)) {
         ListNode<T> *current = _head;
-        printf(" [%i] {\n", _num_items);
+        printf(" [%u] {\n", _num_items);
         while (current) {
             printf("#%i, ", current->Id());
             if (print_func)
@@ -312,7 +312,7 @@ public:
      */
     void Print() {
         ListNode<T> *current = _head;
-        printf("List %i {\n", _num_items);
+        printf("List %u {\n", _num_items);
         while (current) {
             //current->Print();
             printf("%i", current->Id());

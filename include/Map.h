@@ -466,7 +466,7 @@ public:
             return;
         }
 
-        printf(" [%i] {\n", _num_items);
+        printf(" [%u] {\n", _num_items);
 
         while (current) {
             printf("(");

@@ -88,14 +88,13 @@ void Quaternion::getMatrix(matrix_t m)
 }
 
 
-Quaternion Quaternion::operator =(const Quaternion &q)
+Quaternion &Quaternion::operator =(const Quaternion &q)
 {
     mW  = q.mW;
     mX = q.mX;
     mY = q.mY;
     mZ = q.mZ;
-
-    return (*this);
+    return *this;
 }
 
 

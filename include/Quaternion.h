@@ -97,7 +97,7 @@ class Quaternion
      * Mongoose - Created
      ------------------------------------------------------*/
 
-    Quaternion operator =(const Quaternion &q);
+    Quaternion &operator =(const Quaternion &q);
     /*------------------------------------------------------
      * Pre  :
      * Post : Asigns Q to this quaternion

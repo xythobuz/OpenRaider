@@ -25,7 +25,8 @@
 vec_t Emitter::mFrustum[6][4];
 
 int Emitter::compareParticleDist(const void *voidA, const void *voidB) {
-    Particle *a = (Particle *)voidA, *b = (Particle *)voidB;
+    Particle *a = const_cast<Particle *>(static_cast<const Particle *>(voidA));
+    Particle *b = const_cast<Particle *>(static_cast<const Particle *>(voidB));
     float x, y, z, distA, distB;
 
     if (!a || !b)

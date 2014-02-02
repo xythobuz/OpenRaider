@@ -191,7 +191,7 @@ void eventAnimTest(int anim)
 {
     if (LARA)
     {
-        SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
+        SkeletalModel *mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
 
         if (mdl)
         {
@@ -252,7 +252,7 @@ void from_network_layer(network_packet_t *p, unsigned int *last_id)
         p->pitch = LARA->angles[1];
         p->view_model = LARA->modelId;
 
-        SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
+        SkeletalModel *mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
 
         if (mdl)
         {
@@ -329,7 +329,7 @@ void to_network_layer(network_packet_t p)
         gPiggyBack.data.pitch = LARA->angles[2];
         gPiggyBack.data.view_model = LARA->modelId;
 
-        SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
+        SkeletalModel *mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
 
         if (mdl)
         {
@@ -769,7 +769,7 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
         case '[':
             if (LARA)
             {
-                SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
+                SkeletalModel *mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
 
                 if (mdl)
                 {
@@ -782,7 +782,7 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
         case ']':
             if (LARA)
             {
-                SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
+                SkeletalModel *mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
 
                 if (mdl)
                 {
@@ -1199,7 +1199,7 @@ void OpenRaider::gameFrame()
         default:
             if (LARA)
             {
-                mdl = (SkeletalModel *)LARA->tmpHook;
+                mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
 
                 if (mdl)
                 {
@@ -3099,7 +3099,7 @@ void OpenRaider::consoleCommand(char *cmd)
     {
         if (LARA)
         {
-            SkeletalModel *smdl = (SkeletalModel *)LARA->tmpHook;
+            SkeletalModel *smdl = static_cast<SkeletalModel *>(LARA->tmpHook);
             skeletal_model_t *mdl = gWorld.getModel(atoi(cmd));
 
             if (smdl)
@@ -3182,7 +3182,7 @@ void OpenRaider::consoleCommand(char *cmd)
     {
         if (atoi(cmd))
         {
-            m_render.clearFlags(Render::fUsePortals);
+            m_render.setFlags(Render::fUsePortals);
         }
         else
         {

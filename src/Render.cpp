@@ -112,7 +112,8 @@ int compareStaticModels(const void *voidA, const void *voidB)
 
 int compareRoomDist(const void *voidA, const void *voidB)
 {
-    RenderRoom *a = (RenderRoom *)voidA, *b = (RenderRoom *)voidB;
+    const RenderRoom *a = static_cast<const RenderRoom *>(voidA);
+    const RenderRoom *b = static_cast<const RenderRoom *>(voidB);
 
 
     if (!a || !b || !a->room || !b->room)
@@ -329,6 +330,9 @@ void Render::initEmitter(const char *name, unsigned int size,
         unsigned int snowTex1, unsigned int snowTex2)
 {
 #ifdef USING_EMITTER
+    if (mEmitter)
+        delete mEmitter; // Public, so avoid possible leak
+
     // Mongoose 2002.01.01, Screwing around with particle emitter test
     //   note this is backwards b/c load screen is rendered upsidedown
     //mEmitter = new Emitter(/*name*/"snow", size);
@@ -929,7 +933,7 @@ void Render::Display()
             // Mongoose 2002.12.24, Some entities have no animation  =p
             if (e->tmpHook)
             {
-                SkeletalModel *mdl = (SkeletalModel *)e->tmpHook;
+                SkeletalModel *mdl = static_cast<SkeletalModel *>(e->tmpHook);
 
                 if (mdl->model->animation.empty())
                     continue;
@@ -964,7 +968,7 @@ void Render::Display()
             glPushMatrix();
             glTranslatef(e->pos[0], e->pos[1], e->pos[2]);
             glRotatef(e->angles[1], 0, 1, 0);
-            drawModel((SkeletalModel *)e->tmpHook);
+            drawModel(static_cast<SkeletalModel *>(e->tmpHook));
             glPopMatrix();
         }
     }
@@ -1307,24 +1311,24 @@ void Render::drawObjects()
     // Draw lara or other player model ( move to entity rendering method )
     if (mFlags & Render::fViewModel && LARA && LARA->tmpHook)
     {
-        SkeletalModel *mdl = (SkeletalModel *)LARA->tmpHook;
+        SkeletalModel *mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
         int frame = mdl->getAnimation();
-
-
-        // Mongoose 2002.03.22, Test 'idle' aniamtions
-        if (!LARA->moving)
-        {
-            frame = mdl->getIdleAnimation();
-
-            // Mongoose 2002.08.15, Stop flickering of idle lara here
-            if (frame == 11)
-            {
-                mdl->setFrame(0);
-            }
-        }
 
         if (mdl)
         {
+
+            // Mongoose 2002.03.22, Test 'idle' aniamtions
+            if (!LARA->moving)
+            {
+                frame = mdl->getIdleAnimation();
+
+                // Mongoose 2002.08.15, Stop flickering of idle lara here
+                if (frame == 11)
+                {
+                    mdl->setFrame(0);
+                }
+            }
+
             animation_frame_t *animation = mdl->model->animation[frame];
 
             if (animation && mdl->getFrame() > (int)animation->frame.size()-1)
@@ -1345,7 +1349,7 @@ void Render::drawObjects()
         glRotated(mCamera->getYaw(), 0, 1, 0);
 #endif
 
-        drawModel((SkeletalModel *)LARA->tmpHook);
+        drawModel(static_cast<SkeletalModel *>(LARA->tmpHook));
         glPopMatrix();
     }
 
@@ -1382,7 +1386,6 @@ void Render::drawModel(SkeletalModel *model)
     bone_frame_t *boneframe2 = 0x0;
     bone_tag_t *tag;
     bone_tag_t *tag2;
-    unsigned int i;
     int bframe, aframe;
     skeletal_model_t *mdl;
 
@@ -1501,7 +1504,7 @@ void Render::drawModel(SkeletalModel *model)
 #ifdef EXPERIMENTAL_NON_ITEM_RENDER
                 drawModel(mModels[mdl->ponytail], 0, 0);
 #else
-                for (i = 0; i < mdl->ponytailNumMeshes; ++i)
+                for (unsigned int i = 0; i < mdl->ponytailNumMeshes; ++i)
                 {
                     glPushMatrix();
 
@@ -1535,7 +1538,7 @@ void Render::drawModel(SkeletalModel *model)
                     }
                 }
 
-                for (i = 0; i < mdl->ponytailNumMeshes; ++i)
+                for (unsigned int i = 0; i < mdl->ponytailNumMeshes; ++i)
                 {
                     glPopMatrix();
                 }

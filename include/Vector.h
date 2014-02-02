@@ -44,6 +44,7 @@ public:
         mReserve = 0;
         mStart = 0;
         mEnd = 0;
+        mIndex = 0;
         copy(vector);
     }
 
@@ -201,6 +202,8 @@ public:
         }
         mStart = vector.begin();
         mEnd = vector.end();
+        mError = vector.Error();
+        mIndex = vector.getCurrentIndex();
         for (i = vector.begin(); i < vector.end(); ++i) {
             mData[i] = vector[i];
         }

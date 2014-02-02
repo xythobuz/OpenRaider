@@ -466,7 +466,7 @@ void dump_lara_stuff(char *mapname, TombRaider &tr)
             j = moveable[i].starting_mesh;
             n = moveable[i].num_meshes + j;
 
-            fprintf(f, "Lara (%i)\n", i);
+            fprintf(f, "Lara (%u)\n", i);
         }
         else if (moveable[i].object_id == 30)
         {
@@ -481,7 +481,7 @@ void dump_lara_stuff(char *mapname, TombRaider &tr)
             {
                 case 8: // Joints, ( interconnecting skin/ploys )
                 case 9:
-                    fprintf(f, "TR4 lara joints (%i)\n", i);
+                    fprintf(f, "TR4 lara joints (%u)\n", i);
                     j = moveable[i].starting_mesh;
                     n = moveable[i].num_meshes + j;
             }
@@ -489,7 +489,7 @@ void dump_lara_stuff(char *mapname, TombRaider &tr)
 
         for (k = j; j < n; ++j)
         {
-            fprintf(f, "\tMesh[%i] = %i\n", (j - k), j);
+            fprintf(f, "\tMesh[%i] = %u\n", (j - k), j);
         }
     }
 
@@ -525,7 +525,7 @@ void dump_lara_stuff(char *mapname, TombRaider &tr)
 
     if (total)
     {
-        printf("Dumped %ibytes (%.2f MB) of audio samples\n",
+        printf("Dumped %ubytes (%.2f MB) of audio samples\n",
                 total, (float)total/1024000.0);
     }
 }
