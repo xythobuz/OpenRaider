@@ -136,7 +136,6 @@ typedef enum
 
 #define TR_SOUND_FOOTSTEP0    1
 #define TR_SOUND_F_PISTOL    12
-#define TR_SOUND_F_PISTOL    12
 
 enum TR4_Objects
 {

@@ -547,7 +547,7 @@ void Network::runClient()
     }
 
     // Setup connection
-    bzero((char*) &dest, sizeof(dest));
+    memset(&dest, 0, sizeof(dest));
     dest.sin_family = AF_INET;
     int port = getPort();
     dest.sin_port = htons(port);
@@ -603,7 +603,8 @@ void Network::runClient()
 
             if (!f.data.send)
             {
-                usleep(20);
+                const struct timespec tmp = {.tv_sec = 0, .tv_nsec = 20000};
+                nanosleep(&tmp, NULL);
                 continue;
             }
         }

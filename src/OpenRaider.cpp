@@ -1014,7 +1014,7 @@ void OpenRaider::processPakSounds()
 
         mSound.addWave(riff, riffSz, &id, mSound.SoundFlagsNone);
 
-        if (id == TR_SOUND_F_PISTOL && id > 0)
+        if (((i + 1) == TR_SOUND_F_PISTOL) && (id > 0))
         {
             m_testSFX = id;
         }

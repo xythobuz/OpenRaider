@@ -396,7 +396,7 @@ ttf_texture_t *Texture::generateFontTexture(const char *filename, int pointSize,
     sdlColor.g = color[1];
     sdlColor.b = color[2];
 
-    if (!mFlags & fUseSDL_TTF)
+    if (!(mFlags & fUseSDL_TTF))
     {
         printf("SDL_TTF couldn't be used... exiting\n");
         return NULL;
