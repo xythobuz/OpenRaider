@@ -88,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">memory_test.h File Reference</div>  </div>
@@ -108,15 +109,28 @@ Macros</h2></td></tr>
 <tr class="memitem:a7dd106d12d0756ea0f88d56257a933ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__test_8h.html#a7dd106d12d0756ea0f88d56257a933ae">delete</a>&#160;&#160;&#160;<a class="el" href="memory__test_8h.html#a54f5107dc1887541554378234433e448">DEBUG_DELETE</a></td></tr>
 <tr class="separator:a7dd106d12d0756ea0f88d56257a933ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a10375246ecf0c8cbb500ea017dc72222"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222">memory_query_t</a> { <br/>
+&#160;&#160;<a class="el" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a78968f65365f28f5ae55f469d978f885">MEMORY_USED_BY_PROGRAM</a> = 1, 
+<a class="el" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222af416456de685c31b7ba1edacb383a4a6">MEMORY_USED_BY_OVERHEAD</a> = 2, 
+<a class="el" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222af794b8bcb697162df2394d6fbee78d35">MEMORY_USED_TOTAL</a> = 3, 
+<a class="el" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a413f4bba9f6f132da60e8274024e5927">MAX_MEMORY_USED_BY_PROGRAM</a> = 4, 
+<br/>
+&#160;&#160;<a class="el" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a089044e9c43b7ba001526c4cd3ab69a2">MAX_MEMORY_USED_BY_OVERHEAD</a> = 5
+<br/>
+ }</td></tr>
+<tr class="separator:a10375246ecf0c8cbb500ea017dc72222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a5762173692a9be28f5796fea71983273"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__test_8h.html#a5762173692a9be28f5796fea71983273">delete_check</a> (const char *file, int line, int print)</td></tr>
 <tr class="separator:a5762173692a9be28f5796fea71983273"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66b6a17c8dc326f5b2afcd592436e898"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__test_8h.html#a66b6a17c8dc326f5b2afcd592436e898">display_memory_usage</a> ()</td></tr>
 <tr class="separator:a66b6a17c8dc326f5b2afcd592436e898"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca6c868e6dfeb30709a37a1141f501b0"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__test_8h.html#aca6c868e6dfeb30709a37a1141f501b0">memory_used</a> ()</td></tr>
-<tr class="memdesc:aca6c868e6dfeb30709a37a1141f501b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get total memory usage.  <a href="#aca6c868e6dfeb30709a37a1141f501b0">More...</a><br/></td></tr>
-<tr class="separator:aca6c868e6dfeb30709a37a1141f501b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b7cad7de396eb3f7a8acb9bfeb0b6a"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__test_8h.html#a76b7cad7de396eb3f7a8acb9bfeb0b6a">memory_used</a> (<a class="el" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222">memory_query_t</a> query)</td></tr>
+<tr class="memdesc:a76b7cad7de396eb3f7a8acb9bfeb0b6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get total memory usage.  <a href="#a76b7cad7de396eb3f7a8acb9bfeb0b6a">More...</a><br/></td></tr>
+<tr class="separator:a76b7cad7de396eb3f7a8acb9bfeb0b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89534cb919b8ce84fa59463181ff3357"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__test_8h.html#a89534cb919b8ce84fa59463181ff3357">dump_memory_report</a> ()</td></tr>
 <tr class="memdesc:a89534cb919b8ce84fa59463181ff3357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dumps raw <a class="el" href="class_tree.html" title="Template class for a Red-Black Tree. ">Tree</a> holding memory accounting.  <a href="#a89534cb919b8ce84fa59463181ff3357">More...</a><br/></td></tr>
 <tr class="separator:a89534cb919b8ce84fa59463181ff3357"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,6 +194,33 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="memory__test_8h_source.html#l00030">30</a> of file <a class="el" href="memory__test_8h_source.html">memory_test.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a10375246ecf0c8cbb500ea017dc72222"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222">memory_query_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a10375246ecf0c8cbb500ea017dc72222a78968f65365f28f5ae55f469d978f885"></a>MEMORY_USED_BY_PROGRAM</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a10375246ecf0c8cbb500ea017dc72222af416456de685c31b7ba1edacb383a4a6"></a>MEMORY_USED_BY_OVERHEAD</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a10375246ecf0c8cbb500ea017dc72222af794b8bcb697162df2394d6fbee78d35"></a>MEMORY_USED_TOTAL</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a10375246ecf0c8cbb500ea017dc72222a413f4bba9f6f132da60e8274024e5927"></a>MAX_MEMORY_USED_BY_PROGRAM</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a10375246ecf0c8cbb500ea017dc72222a089044e9c43b7ba001526c4cd3ab69a2"></a>MAX_MEMORY_USED_BY_OVERHEAD</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="memory__test_8h_source.html#l00033">33</a> of file <a class="el" href="memory__test_8h_source.html">memory_test.h</a>.</p>
 
 </div>
 </div>
@@ -248,21 +289,28 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aca6c868e6dfeb30709a37a1141f501b0"></a>
+<a class="anchor" id="a76b7cad7de396eb3f7a8acb9bfeb0b6a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">long memory_used </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222">memory_query_t</a>&#160;</td>
+          <td class="paramname"><em>query</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Get total memory usage. </p>
-<dl class="section return"><dt>Returns</dt><dd>amount of total memory used </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>what to return </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>amount of requested memory used </dd></dl>
 
 </div>
 </div>

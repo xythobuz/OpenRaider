@@ -2,7 +2,7 @@ var searchData=
 [
   ['camera',['Camera',['../class_camera.html#a01f94c3543f56ede7af49dc778f19331',1,'Camera']]],
   ['capacity',['capacity',['../class_vector.html#acac5178d51d4eb1665e95d577e3ac40c',1,'Vector']]],
-  ['check_5fred_5fblack_5ftree',['check_red_black_tree',['../src_2memory__test_8cpp.html#ad44c14140fedc94adb33b7081dbc10b5',1,'memory_test.cpp']]],
+  ['check_5fred_5fblack_5ftree',['check_red_black_tree',['../src_2memory__test_8cpp.html#ad44c14140fedc94adb33b7081dbc10b5',1,'check_red_black_tree(rbtree_t *current, bool valid, bool strict):&#160;memory_test.cpp'],['../test_2memory__test_8cpp.html#ad44c14140fedc94adb33b7081dbc10b5',1,'check_red_black_tree(rbtree_t *current, bool valid, bool strict):&#160;memory_test.cpp']]],
   ['checkfile',['checkFile',['../test_2tga_8cpp.html#a794a3d4b0cb2ade30c4c175f36b5e5cd',1,'tga.cpp']]],
   ['checkmime',['checkMime',['../class_tomb_raider.html#ad9bb8953123f5aee9f7b4e378e51cfff',1,'TombRaider']]],
   ['clear',['clear',['../class_vector.html#a962d670e50a84c725e8f2e94edcb8de6',1,'Vector::clear()'],['../class_world.html#a24f6906f2e4f0c761653a8f9e42588a6',1,'World::clear()'],['../class_list.html#ad9b354ea8484f3f539b54a48034969e3',1,'List::Clear()'],['../class_map.html#aecce2b567cfba2ab7b62983b57b08cdd',1,'Map::Clear()'],['../class_tree.html#a81e9e349540ff4589bf68fba3fffc368',1,'Tree::Clear()']]],

@@ -130,7 +130,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> tmp, packet;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> must_flip = 0;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> size;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i, j;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>, <a class="code" href="test_2memory__test_8cpp.html#aac5ac89de636e253f7727bed76266e8d">j</a>;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">if</span> (!f) {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        fprintf(stderr, <span class="stringliteral">&quot;tga_load&gt; Invalid parameters.\n&quot;</span>);</div>
@@ -196,9 +196,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">// Comments can be 0 - 255</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">if</span> (header.<a class="code" href="tga_8h.html#a4dec311825bac72c84e5acd232c36376">comment_lenght</a>) {</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        fread(&amp;comment, 1, header.<a class="code" href="tga_8h.html#a4dec311825bac72c84e5acd232c36376">comment_lenght</a>, f);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; 255; ++i) {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; 255; ++<a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>) {</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">if</span> (!(comment[i] &gt; 32 &amp;&amp; comment[i] &lt; 127))</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                comment[i] = 183; <span class="comment">// print a dot for invalid text</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                comment[<a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>] = 183; <span class="comment">// print a dot for invalid text</span></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        }</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        comment[255] = 0;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        printf(<span class="stringliteral">&quot;Comment: &#39;%s&#39;\n&quot;</span>, comment);</div>
@@ -253,8 +253,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                        <span class="keywordflow">return</span> -4;</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                    }</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    <span class="keywordflow">for</span> (i = 0; i &lt; size; i += 4) {</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                        tmp = (*image)[i];</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                        (*image)[i] = (*image)[i + 2];</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                        tmp = (*image)[<a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>];</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                        (*image)[<a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>] = (*image)[i + 2];</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                        (*image)[i + 2] = tmp;</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    }</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                    <span class="keywordflow">break</span>;</div>
@@ -305,8 +305,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                        <span class="keywordflow">return</span> -4;</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                    }</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                    <span class="keywordflow">for</span> (i = 0; i &lt; size; i += 3) {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                        tmp = (*image)[i];</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                        (*image)[i] = (*image)[i + 2];</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                        tmp = (*image)[<a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>];</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                        (*image)[<a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>] = (*image)[i + 2];</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                        (*image)[i + 2] = tmp;</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    }</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                    <span class="keywordflow">break</span>;</div>
@@ -358,7 +358,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    strncpy(comment, <span class="stringliteral">&quot;OpenRaider TGA&quot;</span>, 63);</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    comment[63] = 0;</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    header.<a class="code" href="tga_8h.html#a4dec311825bac72c84e5acd232c36376">comment_lenght</a> = strlen(comment);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    header.<a class="code" href="tga_8h.html#a4dec311825bac72c84e5acd232c36376">comment_lenght</a> = (<span class="keywordtype">unsigned</span> char)strlen(comment);</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    header.<a class="code" href="tga_8h.html#ac067fad07c73ccde11ba9d583a404fd3">colormap_type</a> = 0;</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <span class="comment">// No colormaps</span></div>
@@ -367,8 +367,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    header.<a class="code" href="tga_8h.html#af6cac520516b6cfd0b8c69617c3f1a6f">colormap_bbp</a> = 0;</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    header.<a class="code" href="tga_8h.html#a8b1408a1c44504cfffd289934bf763ac">origin_x</a> = header.<a class="code" href="tga_8h.html#a592664a1e0b67b9d382cf1ac335292ba">origin_y</a> = 0;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    header.<a class="code" href="tga_8h.html#a0729364da9ce763f51554511eda6fc1a">width</a> = <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    header.<a class="code" href="tga_8h.html#a6598f348ffe7b2c5c0c59fff865b9e69">height</a> = <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    header.<a class="code" href="tga_8h.html#a0729364da9ce763f51554511eda6fc1a">width</a> = (<span class="keywordtype">unsigned</span> short)width;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    header.<a class="code" href="tga_8h.html#a6598f348ffe7b2c5c0c59fff865b9e69">height</a> = (<span class="keywordtype">unsigned</span> short)height;</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    header.<a class="code" href="tga_8h.html#a712a92c2a1d01d3ba881216b7ea8cebc">desc_flags</a> = 0;</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
@@ -460,6 +460,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="keywordflow">return</span> v;</div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;}</div>
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
+<div class="ttc" id="test_2memory__test_8cpp_html_a9384343c8d6a756c1d78cdc73d351b8e"><div class="ttname"><a href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a></div><div class="ttdeci">int * i</div><div class="ttdef"><b>Definition:</b> <a href="test_2memory__test_8cpp_source.html#l00018">memory_test.cpp:18</a></div></div>
 <div class="ttc" id="tga_8h_html_aa10934a8bc956c001867a8f3afe71b83a355b39379657c22d08350671dfc8edec"><div class="ttname"><a href="tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a355b39379657c22d08350671dfc8edec">TGA_TYPE__COLOR</a></div><div class="ttdef"><b>Definition:</b> <a href="tga_8h_source.html#l00019">tga.h:19</a></div></div>
 <div class="ttc" id="tga_8h_html_a8381d5d7439e8a014c59bc844fe9d1d9"><div class="ttname"><a href="tga_8h.html#a8381d5d7439e8a014c59bc844fe9d1d9">tga_t::image_type</a></div><div class="ttdeci">unsigned char image_type</div><div class="ttdoc">1 Colormapped; 2 Unmapped; 9 Colormapped RLE; 10 Unmapped RLE </div><div class="ttdef"><b>Definition:</b> <a href="tga_8h_source.html#l00034">tga.h:34</a></div></div>
 <div class="ttc" id="tga_8h_html_af7b74a1f733d387f9eea57ad01796bc4"><div class="ttname"><a href="tga_8h.html#af7b74a1f733d387f9eea57ad01796bc4">tga_t::colormap_index</a></div><div class="ttdeci">unsigned short colormap_index</div><div class="ttdoc">Index of first color map entry. </div><div class="ttdef"><b>Definition:</b> <a href="tga_8h_source.html#l00035">tga.h:35</a></div></div>
@@ -479,6 +480,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="tga_8h_html"><div class="ttname"><a href="tga_8h.html">tga.h</a></div><div class="ttdoc">TGA image reader/writer. </div></div>
 <div class="ttc" id="tga_8h_html_a4dec311825bac72c84e5acd232c36376"><div class="ttname"><a href="tga_8h.html#a4dec311825bac72c84e5acd232c36376">tga_t::comment_lenght</a></div><div class="ttdeci">unsigned char comment_lenght</div><div class="ttdoc">Number of bytes in comment. </div><div class="ttdef"><b>Definition:</b> <a href="tga_8h_source.html#l00032">tga.h:32</a></div></div>
 <div class="ttc" id="tga_8h_html_aa928d84f8ba4d6437ca4e5f3d44486e5"><div class="ttname"><a href="tga_8h.html#aa928d84f8ba4d6437ca4e5f3d44486e5">tga_t::bpp</a></div><div class="ttdeci">unsigned char bpp</div><div class="ttdoc">Number of bits in a pixel index. </div><div class="ttdef"><b>Definition:</b> <a href="tga_8h_source.html#l00042">tga.h:42</a></div></div>
+<div class="ttc" id="test_2memory__test_8cpp_html_aac5ac89de636e253f7727bed76266e8d"><div class="ttname"><a href="test_2memory__test_8cpp.html#aac5ac89de636e253f7727bed76266e8d">j</a></div><div class="ttdeci">int * j</div><div class="ttdef"><b>Definition:</b> <a href="test_2memory__test_8cpp_source.html#l00018">memory_test.cpp:18</a></div></div>
 <div class="ttc" id="tga_8h_html_af6cac520516b6cfd0b8c69617c3f1a6f"><div class="ttname"><a href="tga_8h.html#af6cac520516b6cfd0b8c69617c3f1a6f">tga_t::colormap_bbp</a></div><div class="ttdeci">unsigned char colormap_bbp</div><div class="ttdoc">16, 24, or 32 bits per pixel format </div><div class="ttdef"><b>Definition:</b> <a href="tga_8h_source.html#l00037">tga.h:37</a></div></div>
 <div class="ttc" id="memory__test_8h_html"><div class="ttname"><a href="memory__test_8h.html">memory_test.h</a></div></div>
 <div class="ttc" id="tga_8h_html_abd53bf6a2b1a49d223faf07977b0e431"><div class="ttname"><a href="tga_8h.html#abd53bf6a2b1a49d223faf07977b0e431">tga_save</a></div><div class="ttdeci">int tga_save(FILE *f, unsigned char *image, unsigned int width, unsigned int height, char type)</div><div class="ttdoc">Save a pixel buffer into a file on disk. </div><div class="ttdef"><b>Definition:</b> <a href="src_2tga_8cpp_source.html#l00263">tga.cpp:263</a></div></div>

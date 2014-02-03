@@ -51,9 +51,8 @@ var searchData=
   ['getport',['getPort',['../class_network.html#a12fc96328f46ed5de5fb72fcab1a6f11',1,'Network']]],
   ['getposition',['getPosition',['../class_camera.html#a4cf0c11b62a8560c04c819f947d6f9f9',1,'Camera']]],
   ['getpredecessor',['GetPredecessor',['../class_tree.html#a5c736f48f243d1ef028458bc4769381c',1,'Tree']]],
-  ['getradianpitch',['getRadianPitch',['../class_camera.html#aa7d31323284d2ae1e3fd0682dcf2aa70',1,'Camera']]],
-  ['getradianyaw',['getRadianYaw',['../class_camera.html#a93bdc36d60071746ad93eb05bf5c7fd3',1,'Camera']]],
-  ['getrandom',['getRandom',['../class_network.html#a16fc2d9b1c27de4ed023ef13467a82b8',1,'Network']]],
+  ['getradianpitch',['getRadianPitch',['../class_camera.html#ac491d2ae53b67162c251f9ec0a1f57ea',1,'Camera']]],
+  ['getradianyaw',['getRadianYaw',['../class_camera.html#a281e098a6d0e54612b9e9286a98eea7a',1,'Camera']]],
   ['getriffdata',['getRiffData',['../class_tomb_raider.html#ac7e89473a3cdf38475ef59148cb9cbda',1,'TombRaider']]],
   ['getriffdatatr4',['getRiffDataTR4',['../class_tomb_raider.html#abd935e1e7fb62bf6438fdeb7c11abd26',1,'TombRaider']]],
   ['getriffoffsets',['getRiffOffsets',['../class_tomb_raider.html#a95b8244b7847baca00172b0e28f626e9',1,'TombRaider']]],
@@ -108,5 +107,5 @@ var searchData=
   ['glprintf3d',['glPrintf3d',['../class_s_d_l_system.html#a6884ef14810507fddbbc38f3d75838f5',1,'SDLSystem']]],
   ['glscreenshot',['glScreenShot',['../class_texture.html#a89b987185fefb6e2594fd188cec0dd35',1,'Texture']]],
   ['glstring',['GLString',['../class_g_l_string.html#a2162c4369a763853c1b395d07a2620fc',1,'GLString']]],
-  ['greatest_5fmain_5fdefs',['GREATEST_MAIN_DEFS',['../test_2_mat_math_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;MatMath.cpp'],['../test_2_matrix_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;Matrix.cpp'],['../test_2_sound_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;Sound.cpp'],['../test_2tga_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;tga.cpp']]]
+  ['greatest_5fmain_5fdefs',['GREATEST_MAIN_DEFS',['../test_2_mat_math_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;MatMath.cpp'],['../test_2_matrix_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;Matrix.cpp'],['../test_2memory__test_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;memory_test.cpp'],['../test_2_sound_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;Sound.cpp'],['../test_2tga_8cpp.html#aef7a8a5d9334dfd39adce9279e120378',1,'GREATEST_MAIN_DEFS():&#160;tga.cpp']]]
 ];

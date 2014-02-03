@@ -10,8 +10,6 @@ var searchData=
   ['display_5fmemory_5fusage',['display_memory_usage',['../memory__test_8h.html#a66b6a17c8dc326f5b2afcd592436e898',1,'memory_test.h']]],
   ['divide',['divide',['../class_quaternion.html#a958be9504c7e111445f73521f764b806',1,'Quaternion']]],
   ['dot',['dot',['../class_quaternion.html#a3eee17d5277c9104aaa1b023680186b5',1,'Quaternion::dot()'],['../class_vector3d.html#a43f2f7721cc087492c74031ef7454c9f',1,'Vector3d::dot()']]],
-  ['downloadtobuffer',['downloadToBuffer',['../class_system.html#ae8156c065d997ec20704665b3531d9cd',1,'System']]],
-  ['downloadtofile',['downloadToFile',['../class_system.html#a7ff2f925c42d9db74fd6be18ba62d9cd',1,'System']]],
   ['draw',['Draw',['../class_emitter.html#a1a7f88acfebb09e0a3ab3bc6740a7287',1,'Emitter']]],
   ['draw_5fbbox',['draw_bbox',['../_render_8cpp.html#ab6d4c31a0ea8ee4f430b8de0b0c457f1',1,'Render.cpp']]],
   ['draw_5fbbox_5fcolor',['draw_bbox_color',['../_render_8cpp.html#a5851f759764c299ce418a5451e317c49',1,'Render.cpp']]],

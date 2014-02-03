@@ -105,9 +105,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_particle.html#ac2d4235c18511d6b854d397d560bb940">setActive</a>(<span class="keyword">true</span>);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_particle.html#a44c4a1bd3345cb862da813181a579f1a">TextureId</a>(0);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_particle.html#ab27a88ae7b5e865134a61946eca85a52">Speed</a>(2000.0, 2000.0, 2000.0);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_particle.html#acefcaf0cd69fa80ed480c66918d684e0">Color</a>(1.0, 1.0, 1.0);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_particle.html#a4c675efff13a8fc8a8926e8b2c1c43c4">Force</a>(0.0, 0.8, 0.0);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_particle.html#ab27a88ae7b5e865134a61946eca85a52">Speed</a>(2000.0f, 2000.0f, 2000.0f);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_particle.html#acefcaf0cd69fa80ed480c66918d684e0">Color</a>(1.0f, 1.0f, 1.0f);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_particle.html#a4c675efff13a8fc8a8926e8b2c1c43c4">Force</a>(0.0f, 0.8f, 0.0f);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_particle.html#a77d1dccca2dc8b6c2f28025256f681b8">Reset</a>();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
@@ -157,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_particle.html#a77d1dccca2dc8b6c2f28025256f681b8">   71</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_particle.html#a77d1dccca2dc8b6c2f28025256f681b8">Particle::Reset</a>()</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Mongoose 2002.01.01, Ah, how old is that code?</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#ifdef OBSOLOETE</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#ifdef OBSOLETE</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor"></span>    <a class="code" href="class_particle.html#a8e251d2eb8d52c77a1a81d74cb6822a7">_active</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="class_particle.html#add2e411f0a81b615250f37fed22aefcd">_life</a> = 1.0;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="class_particle.html#a84942746ae1a7d543b3bd6971bc23abf">_blend</a> = (float)(rand() % 100) / 1000.0 + 0.003;</div>

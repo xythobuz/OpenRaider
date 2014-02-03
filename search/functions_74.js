@@ -28,7 +28,7 @@ var searchData=
   ['tree_5frestore_5fafter_5fremove',['tree_restore_after_remove',['../src_2memory__test_8cpp.html#abb80ebf40f1ab71a7ea99f0325855072',1,'memory_test.cpp']]],
   ['tree_5frotate_5fleft',['tree_rotate_left',['../src_2memory__test_8cpp.html#ad636797f7340e9df693fa2348c0bee33',1,'memory_test.cpp']]],
   ['tree_5frotate_5fright',['tree_rotate_right',['../src_2memory__test_8cpp.html#a45af26caea0ee44c5875862da48659b3',1,'memory_test.cpp']]],
-  ['tree_5fvalid_5freport',['tree_valid_report',['../src_2memory__test_8cpp.html#aca52060e7fa79a4473eea88c9ea8f009',1,'tree_valid_report(rbtree_t *root):&#160;memory_test.cpp'],['../test_2memory__test_8cpp.html#aca52060e7fa79a4473eea88c9ea8f009',1,'tree_valid_report(rbtree_t *root):&#160;memory_test.cpp']]],
+  ['tree_5fvalid_5freport',['tree_valid_report',['../src_2memory__test_8cpp.html#aca52060e7fa79a4473eea88c9ea8f009',1,'memory_test.cpp']]],
   ['treenode',['TreeNode',['../class_tree_node.html#aa33fd6c2a40d43c39c7e93613dd040cf',1,'TreeNode']]],
   ['treenodeshallowcopy',['TreeNodeShallowCopy',['../class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6',1,'Tree']]],
   ['types',['types',['../test_2_mat_math_8cpp.html#a16b3cce7bcd8f42ee0c451d5163eeff1',1,'MatMath.cpp']]]

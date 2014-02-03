@@ -125,9 +125,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0b21af02cbe86d3a7c9a8afa40ee9e00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_matrix.html#a0b21af02cbe86d3a7c9a8afa40ee9e00">multiply</a> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;<a class="el" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>, const <a class="el" href="class_matrix.html">Matrix</a> &amp;<a class="el" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>)</td></tr>
 <tr class="memdesc:a0b21af02cbe86d3a7c9a8afa40ee9e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies two matrices.  <a href="#a0b21af02cbe86d3a7c9a8afa40ee9e00">More...</a><br/></td></tr>
 <tr class="separator:a0b21af02cbe86d3a7c9a8afa40ee9e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8852e9da02a86b65545ada5525d23c54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_matrix.html#a8852e9da02a86b65545ada5525d23c54">multiply4d</a> (double *v, double *result)</td></tr>
-<tr class="memdesc:a8852e9da02a86b65545ada5525d23c54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies v vector and this matrix.  <a href="#a8852e9da02a86b65545ada5525d23c54">More...</a><br/></td></tr>
-<tr class="separator:a8852e9da02a86b65545ada5525d23c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e9897cf13eb8cdf09f330d15ea07571"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_matrix.html#a8e9897cf13eb8cdf09f330d15ea07571">multiply4v</a> (<a class="el" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> v, <a class="el" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> result)</td></tr>
 <tr class="memdesc:a8e9897cf13eb8cdf09f330d15ea07571"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies v vector and this matrix.  <a href="#a8e9897cf13eb8cdf09f330d15ea07571">More...</a><br/></td></tr>
 <tr class="separator:a8e9897cf13eb8cdf09f330d15ea07571"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -339,7 +336,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00347">347</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00346">346</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -437,7 +434,7 @@ Private Member Functions</h2></td></tr>
 <p>Is this matrix the identity matrix? </p>
 <dl class="section return"><dt>Returns</dt><dd>true if it is identity, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00254">254</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00244">244</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -527,7 +524,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00374">374</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00373">373</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -568,43 +565,6 @@ Private Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8852e9da02a86b65545ada5525d23c54"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Matrix::multiply4d </td>
-          <td>(</td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>v</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>result</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Multiplies v vector and this matrix. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">v</td><td>double[4] vector </td></tr>
-    <tr><td class="paramname">result</td><td>where the result will be stored, may be same as v </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00217">217</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a8e9897cf13eb8cdf09f330d15ea07571"></a>
 <div class="memitem">
 <div class="memproto">
@@ -638,7 +598,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00227">227</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00217">217</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -711,7 +671,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Prints matrix values to stdout. </p>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00237">237</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00227">227</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -755,7 +715,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00305">305</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00304">304</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -781,7 +741,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00300">300</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00299">299</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -825,7 +785,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00286">286</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00285">285</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -851,7 +811,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00281">281</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00280">280</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -870,7 +830,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Sets to identity matrix. </p>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00273">273</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00272">272</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -897,7 +857,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00268">268</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00267">267</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -941,7 +901,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00334">334</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00333">333</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -967,7 +927,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00329">329</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
+<p>Definition at line <a class="el" href="src_2_matrix_8cpp_source.html#l00328">328</a> of file <a class="el" href="src_2_matrix_8cpp_source.html">Matrix.cpp</a>.</p>
 
 </div>
 </div>
@@ -1001,7 +961,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Data model, moved public for faster external renderer feedback use. </p>
 
-<p>Definition at line <a class="el" href="_matrix_8h_source.html#l00193">193</a> of file <a class="el" href="_matrix_8h_source.html">Matrix.h</a>.</p>
+<p>Definition at line <a class="el" href="_matrix_8h_source.html#l00186">186</a> of file <a class="el" href="_matrix_8h_source.html">Matrix.h</a>.</p>
 
 </div>
 </div>

@@ -17,5 +17,9 @@ var searchData=
   ['allocatetriangles',['allocateTriangles',['../class_open_g_l_mesh.html#a3406b367a3b350d61ef4ad20bc9ac0fd',1,'OpenGLMesh']]],
   ['allocatevertices',['allocateVertices',['../class_open_g_l_mesh.html#a183582c40549a73d1f7dbedbefc75649',1,'OpenGLMesh']]],
   ['animation',['Animation',['../class_tomb_raider.html#ad0e41f69400de5f2f532d63527caf4be',1,'TombRaider']]],
+  ['arraycombinedfloat',['arrayCombinedFloat',['../test_2memory__test_8cpp.html#a8b0016a17a2ce89171f19ed10f389a2f',1,'memory_test.cpp']]],
+  ['arraycombinedinteger',['arrayCombinedInteger',['../test_2memory__test_8cpp.html#a75540548f370f03b7db6949c5e2a2b5e',1,'memory_test.cpp']]],
+  ['arrayfloat',['arrayFloat',['../test_2memory__test_8cpp.html#a84029f5eb9238a9f3e48898246a9d8ff',1,'memory_test.cpp']]],
+  ['arrayinteger',['arrayInteger',['../test_2memory__test_8cpp.html#a062751d332fba9723621c21b0612c6fe',1,'memory_test.cpp']]],
   ['assign',['assign',['../class_vector.html#a8801ce7cafe79d652fdca2864df27ea5',1,'Vector']]]
 ];

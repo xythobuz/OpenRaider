@@ -92,6 +92,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>All previously included documentation was moved into the <a href="https://github.com/xythobuz/OpenRaider/wiki/_pages">OpenRaider Repo Wiki</a>. Also take a look at the <a href="https://github.com/xythobuz/OpenRaider/wiki/Bugs">BUGS</a>, <a href="https://github.com/xythobuz/OpenRaider/wiki/To-Do">TODO</a> and <a href="https://github.com/xythobuz/OpenRaider/wiki/Requirements">Requirements</a>.</p>
 <p>A more or less recent <a href="http://xythobuz.github.io/OpenRaider/">Doxygen documentation</a> of <a class="el" href="class_open_raider.html">OpenRaider</a> should be on the Github Pages for <a class="el" href="class_open_raider.html">OpenRaider</a>.</p>
 <h2>Dependencies</h2>
+<p>Basically, <a class="el" href="class_open_raider.html">OpenRaider</a> depends on the following:</p>
+<ul>
+<li>OpenGL</li>
+<li>SDL &amp; SDL-TTF</li>
+<li>OpenAL &amp; ALUT</li>
+<li>Posix Threads</li>
+<li>zlib</li>
+</ul>
 <p>On Mac OS X 10.9 with <a href="https://developer.apple.com/xcode/">XCode</a> and <a href="http://www.macports.org">MacPorts</a> installed, the following should be enough to get all dependencies that are available as port: </p>
 <pre class="fragment">sudo port install zlib cmake libsdl libsdl_ttf
 </pre><p>A similar command for the package manager of your favorite Linux Distribution should do the trick.</p>
@@ -103,7 +111,6 @@ cmake .. -DCMAKE_INSTALL_PREFIX:STRING="/usr/local" -DCMAKE_C_FLAGS:STRING="-O2"
 make
 sudo make install
 </pre><p>Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won't need to compile freealut.</p>
-<p>You'll also need the <a href="http://xquartz.macosforge.org/trac">XQuartz</a> X11 Server if you're on Mac OS X, as Apple is no longer bundling their own X.</p>
 <h2>Building</h2>
 <p>If you installed the dependencies using MacPorts, you'll need to have <code>/opt/local/bin</code> in your <code>$PATH</code> before you can execute make. If you're using Bash, the MacPorts installer should have automatically edited your configuration.</p>
 <p>Just run <code>make debug</code> and run <code>bin/debug/OpenRaider</code> for a debug build. <code>make release</code> builds a release binary. <code>make bundle</code> creates a Mac App Bundle that also runs the setup script, if necessary.</p>

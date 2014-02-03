@@ -27,7 +27,7 @@ var searchData=
   ['ceiling',['ceiling',['../_tomb_raider_8h.html#a4e29593563192b33077195fa824e17ac',1,'tr2_room_sector_s::ceiling()'],['../_world_8h.html#a95701a29fb0c62ae700d4a03ceba17ba',1,'sector_t::ceiling()'],['../_tomb_raider_8h.html#ad02ddf1bd06b95bbb3dded0d9f56763b',1,'ceiling():&#160;TombRaider.h']]],
   ['center',['center',['../class_render_room.html#a29d62d3ab150d3eb9cc5c7124f7bb8e2',1,'RenderRoom::center()'],['../_tomb_raider_8h.html#a7fef4b54213a28bd993a676b0e7acd86',1,'tr5_mesh_t::center()'],['../_world_8h.html#ad00458103b3e9ad7aa6239f905f95f71',1,'model_mesh_t::center()']]],
   ['centre',['centre',['../_tomb_raider_8h.html#a435be7262329e82cc94de610b57c5287',1,'tr2_mesh_s::centre()'],['../_tomb_raider_8h.html#a9550e338d876f453c977be26f8459f3c',1,'centre():&#160;TombRaider.h']]],
-  ['check_5fred_5fblack_5ftree',['check_red_black_tree',['../src_2memory__test_8cpp.html#ad44c14140fedc94adb33b7081dbc10b5',1,'memory_test.cpp']]],
+  ['check_5fred_5fblack_5ftree',['check_red_black_tree',['../src_2memory__test_8cpp.html#ad44c14140fedc94adb33b7081dbc10b5',1,'check_red_black_tree(rbtree_t *current, bool valid, bool strict):&#160;memory_test.cpp'],['../test_2memory__test_8cpp.html#ad44c14140fedc94adb33b7081dbc10b5',1,'check_red_black_tree(rbtree_t *current, bool valid, bool strict):&#160;memory_test.cpp']]],
   ['check_5ftreenode',['CHECK_TREENODE',['../src_2memory__test_8cpp.html#a9a92ddb32ea0598e2e829779fea038fc',1,'memory_test.cpp']]],
   ['checkfile',['checkFile',['../test_2tga_8cpp.html#a794a3d4b0cb2ade30c4c175f36b5e5cd',1,'tga.cpp']]],
   ['checkmime',['checkMime',['../class_tomb_raider.html#ad9bb8953123f5aee9f7b4e378e51cfff',1,'TombRaider']]],

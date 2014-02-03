@@ -129,9 +129,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0261efc8c69f03e1586185c168a1d214"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_string.html#a0261efc8c69f03e1586185c168a1d214">glPrintf</a> (int <a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>, int <a class="el" href="_tomb_raider_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a>, const char *string,...)</td></tr>
 <tr class="memdesc:a0261efc8c69f03e1586185c168a1d214"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a new string and renders it to the gl target.  <a href="#a0261efc8c69f03e1586185c168a1d214">More...</a><br/></td></tr>
 <tr class="separator:a0261efc8c69f03e1586185c168a1d214"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc9db96d2b2654a154c7ce81960dadf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_string.html#adc9db96d2b2654a154c7ce81960dadf5">Render</a> (int <a class="el" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, int <a class="el" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>)</td></tr>
-<tr class="memdesc:adc9db96d2b2654a154c7ce81960dadf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders strings over GL scene. Should be called after scene is rendered. GL Culling should be disabled.  <a href="#adc9db96d2b2654a154c7ce81960dadf5">More...</a><br/></td></tr>
-<tr class="separator:adc9db96d2b2654a154c7ce81960dadf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c931e5de117cb44cea6dc141d3390a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_string.html#a8c931e5de117cb44cea6dc141d3390a1">Render</a> ()</td></tr>
+<tr class="memdesc:a8c931e5de117cb44cea6dc141d3390a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders strings over GL scene. Should be called after scene is rendered. GL Culling should be disabled.  <a href="#a8c931e5de117cb44cea6dc141d3390a1">More...</a><br/></td></tr>
+<tr class="separator:a8c931e5de117cb44cea6dc141d3390a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a76567aa78c1e9b4d85fdfaf395c469"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_g_l_string_8h.html#structgl__string__t">gl_string_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_string.html#a8a76567aa78c1e9b4d85fdfaf395c469">GetString</a> (unsigned int <a class="el" href="_tomb_raider_8h.html#a7441ef0865bcb3db9b8064dd7375c1ea">id</a>)</td></tr>
 <tr class="memdesc:a8a76567aa78c1e9b4d85fdfaf395c469"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the String data structure for a string id.  <a href="#a8a76567aa78c1e9b4d85fdfaf395c469">More...</a><br/></td></tr>
 <tr class="separator:a8a76567aa78c1e9b4d85fdfaf395c469"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -353,38 +353,20 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adc9db96d2b2654a154c7ce81960dadf5"></a>
+<a class="anchor" id="a8c931e5de117cb44cea6dc141d3390a1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void GLString::Render </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Renders strings over GL scene. Should be called after scene is rendered. GL Culling should be disabled. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">width</td><td>width of GL context </td></tr>
-    <tr><td class="paramname">height</td><td>height of GL context </td></tr>
-  </table>
-  </dd>
-</dl>
 
 <p>Definition at line <a class="el" href="src_2_g_l_string_8cpp_source.html#l00172">172</a> of file <a class="el" href="src_2_g_l_string_8cpp_source.html">GLString.cpp</a>.</p>
 
@@ -552,7 +534,7 @@ Private Attributes</h2></td></tr>
 
 <p>Current number of strings buffered. </p>
 
-<p>Definition at line <a class="el" href="_g_l_string_8h_source.html#l00113">113</a> of file <a class="el" href="_g_l_string_8h_source.html">GLString.h</a>.</p>
+<p>Definition at line <a class="el" href="_g_l_string_8h_source.html#l00111">111</a> of file <a class="el" href="_g_l_string_8h_source.html">GLString.h</a>.</p>
 
 </div>
 </div>
@@ -576,7 +558,7 @@ Private Attributes</h2></td></tr>
 
 <p>Max number of strings buffered. </p>
 
-<p>Definition at line <a class="el" href="_g_l_string_8h_source.html#l00112">112</a> of file <a class="el" href="_g_l_string_8h_source.html">GLString.h</a>.</p>
+<p>Definition at line <a class="el" href="_g_l_string_8h_source.html#l00110">110</a> of file <a class="el" href="_g_l_string_8h_source.html">GLString.h</a>.</p>
 
 </div>
 </div>
@@ -600,7 +582,7 @@ Private Attributes</h2></td></tr>
 
 <p>Default scale factor for new strings. </p>
 
-<p>Definition at line <a class="el" href="_g_l_string_8h_source.html#l00115">115</a> of file <a class="el" href="_g_l_string_8h_source.html">GLString.h</a>.</p>
+<p>Definition at line <a class="el" href="_g_l_string_8h_source.html#l00113">113</a> of file <a class="el" href="_g_l_string_8h_source.html">GLString.h</a>.</p>
 
 </div>
 </div>
@@ -624,7 +606,7 @@ Private Attributes</h2></td></tr>
 
 <p>Buffered strings and their properities. </p>
 
-<p>Definition at line <a class="el" href="_g_l_string_8h_source.html#l00114">114</a> of file <a class="el" href="_g_l_string_8h_source.html">GLString.h</a>.</p>
+<p>Definition at line <a class="el" href="_g_l_string_8h_source.html#l00112">112</a> of file <a class="el" href="_g_l_string_8h_source.html">GLString.h</a>.</p>
 
 </div>
 </div>

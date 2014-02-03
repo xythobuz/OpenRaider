@@ -116,48 +116,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="memory__test_8h.html#a1ac41480eb2e4aadd52252ee550b630a">   30</a></span>&#160;<span class="preprocessor">#define new DEBUG_NEW</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="memory__test_8h.html#a7dd106d12d0756ea0f88d56257a933ae">   31</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define delete DEBUG_DELETE</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory__test_8h.html#a5762173692a9be28f5796fea71983273">delete_check</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *file, <span class="keywordtype">int</span> line, <span class="keywordtype">int</span> print);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory__test_8h.html#a66b6a17c8dc326f5b2afcd592436e898">display_memory_usage</a>();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">long</span> <a class="code" href="memory__test_8h.html#aca6c868e6dfeb30709a37a1141f501b0">memory_used</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222">   33</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a78968f65365f28f5ae55f469d978f885">   34</a></span>&#160;    <a class="code" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a78968f65365f28f5ae55f469d978f885">MEMORY_USED_BY_PROGRAM</a>      = 1,</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222af416456de685c31b7ba1edacb383a4a6">   35</a></span>&#160;    <a class="code" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222af416456de685c31b7ba1edacb383a4a6">MEMORY_USED_BY_OVERHEAD</a>     = 2,</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222af794b8bcb697162df2394d6fbee78d35">   36</a></span>&#160;    <a class="code" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222af794b8bcb697162df2394d6fbee78d35">MEMORY_USED_TOTAL</a>           = 3,</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a413f4bba9f6f132da60e8274024e5927">   37</a></span>&#160;    <a class="code" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a413f4bba9f6f132da60e8274024e5927">MAX_MEMORY_USED_BY_PROGRAM</a>  = 4,</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a089044e9c43b7ba001526c4cd3ab69a2">   38</a></span>&#160;    <a class="code" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a089044e9c43b7ba001526c4cd3ab69a2">MAX_MEMORY_USED_BY_OVERHEAD</a> = 5</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;} <a class="code" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222">memory_query_t</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory__test_8h.html#a5762173692a9be28f5796fea71983273">delete_check</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *file, <span class="keywordtype">int</span> line, <span class="keywordtype">int</span> print);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory__test_8h.html#a89534cb919b8ce84fa59463181ff3357">dump_memory_report</a>();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#ifdef DEBUG_MEMORY</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#define DWORD unsigned long</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define ZERO_ALLOC_SLOTS 3</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> { RB_BLACK = 0, RB_RED = 1 } rbtree_color_t;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>rbtree_s {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    DWORD key;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    rbtree_color_t <a class="code" href="_tomb_raider_8h.html#abee66f35dacc890ae20fbcee59b5db52">color</a>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">struct </span>rbtree_s *left;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">struct </span>rbtree_s *right;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">struct </span>rbtree_s *parent;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;} rbtree_t;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory__test_8h.html#a66b6a17c8dc326f5b2afcd592436e898">display_memory_usage</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">long</span> <a class="code" href="memory__test_8h.html#a76b7cad7de396eb3f7a8acb9bfeb0b6a">memory_used</a>(<a class="code" href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222">memory_query_t</a> query);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory__test_8h.html#a89534cb919b8ce84fa59463181ff3357">dump_memory_report</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#ifdef DEBUG_MEMORY</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define DWORD unsigned long</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define ZERO_ALLOC_SLOTS 3</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> { RB_BLACK = 0, RB_RED = 1 } rbtree_color_t;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>meminfo_filename_s {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">char</span> *filename;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">char</span> filename_len;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    DWORD size;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> alloc_zero;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> alloc_zero_at_line[ZERO_ALLOC_SLOTS];</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">struct </span>meminfo_filename_s *next;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;} meminfo_filename_t;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>rbtree_s {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    DWORD key;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    rbtree_color_t <a class="code" href="_tomb_raider_8h.html#abee66f35dacc890ae20fbcee59b5db52">color</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">struct </span>rbtree_s *left;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">struct </span>rbtree_s *right;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">struct </span>rbtree_s *parent;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;} rbtree_t;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>meminfo_filename_s {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">char</span> *filename;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">char</span> filename_len;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    DWORD size;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> alloc_zero;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> alloc_zero_at_line[ZERO_ALLOC_SLOTS];</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">struct </span>meminfo_filename_s *next;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} meminfo_filename_t;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="memory__test_8h_html_a89534cb919b8ce84fa59463181ff3357"><div class="ttname"><a href="memory__test_8h.html#a89534cb919b8ce84fa59463181ff3357">dump_memory_report</a></div><div class="ttdeci">void dump_memory_report()</div><div class="ttdoc">Dumps raw Tree holding memory accounting. </div></div>
+<div class="ttc" id="memory__test_8h_html_a10375246ecf0c8cbb500ea017dc72222af794b8bcb697162df2394d6fbee78d35"><div class="ttname"><a href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222af794b8bcb697162df2394d6fbee78d35">MEMORY_USED_TOTAL</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__test_8h_source.html#l00036">memory_test.h:36</a></div></div>
 <div class="ttc" id="memory__test_8h_html_a66b6a17c8dc326f5b2afcd592436e898"><div class="ttname"><a href="memory__test_8h.html#a66b6a17c8dc326f5b2afcd592436e898">display_memory_usage</a></div><div class="ttdeci">void display_memory_usage()</div></div>
+<div class="ttc" id="memory__test_8h_html_a10375246ecf0c8cbb500ea017dc72222a78968f65365f28f5ae55f469d978f885"><div class="ttname"><a href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a78968f65365f28f5ae55f469d978f885">MEMORY_USED_BY_PROGRAM</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__test_8h_source.html#l00034">memory_test.h:34</a></div></div>
+<div class="ttc" id="memory__test_8h_html_a10375246ecf0c8cbb500ea017dc72222a413f4bba9f6f132da60e8274024e5927"><div class="ttname"><a href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a413f4bba9f6f132da60e8274024e5927">MAX_MEMORY_USED_BY_PROGRAM</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__test_8h_source.html#l00037">memory_test.h:37</a></div></div>
+<div class="ttc" id="memory__test_8h_html_a10375246ecf0c8cbb500ea017dc72222"><div class="ttname"><a href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222">memory_query_t</a></div><div class="ttdeci">memory_query_t</div><div class="ttdef"><b>Definition:</b> <a href="memory__test_8h_source.html#l00033">memory_test.h:33</a></div></div>
+<div class="ttc" id="memory__test_8h_html_a76b7cad7de396eb3f7a8acb9bfeb0b6a"><div class="ttname"><a href="memory__test_8h.html#a76b7cad7de396eb3f7a8acb9bfeb0b6a">memory_used</a></div><div class="ttdeci">long memory_used(memory_query_t query)</div><div class="ttdoc">Get total memory usage. </div></div>
 <div class="ttc" id="_tomb_raider_8h_html_abee66f35dacc890ae20fbcee59b5db52"><div class="ttname"><a href="_tomb_raider_8h.html#abee66f35dacc890ae20fbcee59b5db52">color</a></div><div class="ttdeci">tr2_colour_t color</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00047">TombRaider.h:47</a></div></div>
+<div class="ttc" id="memory__test_8h_html_a10375246ecf0c8cbb500ea017dc72222af416456de685c31b7ba1edacb383a4a6"><div class="ttname"><a href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222af416456de685c31b7ba1edacb383a4a6">MEMORY_USED_BY_OVERHEAD</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__test_8h_source.html#l00035">memory_test.h:35</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_ac24cea2bfcc927fd29bc74d1086707d8"><div class="ttname"><a href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a></div><div class="ttdeci">unsigned char * data</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00046">TombRaider.h:46</a></div></div>
 <div class="ttc" id="memory__test_8h_html_a5762173692a9be28f5796fea71983273"><div class="ttname"><a href="memory__test_8h.html#a5762173692a9be28f5796fea71983273">delete_check</a></div><div class="ttdeci">void delete_check(const char *file, int line, int print)</div></div>
-<div class="ttc" id="memory__test_8h_html_aca6c868e6dfeb30709a37a1141f501b0"><div class="ttname"><a href="memory__test_8h.html#aca6c868e6dfeb30709a37a1141f501b0">memory_used</a></div><div class="ttdeci">long memory_used()</div><div class="ttdoc">Get total memory usage. </div></div>
+<div class="ttc" id="memory__test_8h_html_a10375246ecf0c8cbb500ea017dc72222a089044e9c43b7ba001526c4cd3ab69a2"><div class="ttname"><a href="memory__test_8h.html#a10375246ecf0c8cbb500ea017dc72222a089044e9c43b7ba001526c4cd3ab69a2">MAX_MEMORY_USED_BY_OVERHEAD</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__test_8h_source.html#l00038">memory_test.h:38</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

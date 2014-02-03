@@ -27,7 +27,6 @@ var searchData=
   ['updateframe',['updateFrame',['../class_view_volume.html#aeb60a83c073a2f4fb75cbd45fe24e281',1,'ViewVolume::updateFrame(matrix_t proj, matrix_t mdl)'],['../class_view_volume.html#a4ebd3a87b4810d04ac4fbaf3490d30bb',1,'ViewVolume::updateFrame()']]],
   ['updatefrustum',['updateFrustum',['../class_view_volume.html#a243eda64c5e38f2afe6fc4eaa2476a8f',1,'ViewVolume']]],
   ['updateviewvolume',['updateViewVolume',['../class_render.html#a3cee96657b2d590cc392c7b4f48d96c4',1,'Render']]],
-  ['use_5fiterative_5ftree_5finsert',['USE_ITERATIVE_TREE_INSERT',['../src_2memory__test_8cpp.html#a7cedb5639fd618448b8d93f4871f691f',1,'memory_test.cpp']]],
   ['usemultitexture',['useMultiTexture',['../class_texture.html#a45202c7f1196df7d69c4adc046280ea6',1,'Texture::useMultiTexture(float u, float v)'],['../class_texture.html#ab20351d7226315c1a864365afdef9bf3',1,'Texture::useMultiTexture(float aU, float aV, float bU, float bV)']]],
   ['utf8offset',['utf8Offset',['../_texture_8h.html#ad49bb4be108862c54c9237ec12ec3ec3',1,'ttf_texture_t::utf8Offset()'],['../_texture_8h.html#a04be5888dd1a7bd7c5134bb7d8af468f',1,'gl_font_t::utf8Offset()']]],
   ['uv',['uv',['../_world_8h.html#a5ea488779b0cb30ff025143e31044a13',1,'uv_t']]],
