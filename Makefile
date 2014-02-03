@@ -29,9 +29,7 @@ UNAME=$(shell uname -s)
 # -DUNICODE_SUPPORT			Add unicode/internation keyboard support
 # -DUSING_EMITTER_IN_GAME	Run particle test in game
 
-BASE_DEFS=$(shell sdl-config --cflags) -Iinclude -DSDL_INTERFACE \
-	-DUSING_OPENGL -DZLIB_SUPPORT -DUSING_EMITTER \
-	-DUSING_OPENAL -DUSING_TGA -DUSING_PTHREADS \
+BASE_DEFS=$(shell sdl-config --cflags) -Iinclude -DUSING_EMITTER
 
 BASE_LIBS=$(shell sdl-config --libs) -lz -lstdc++ \
 	-lpthread -lSDL_ttf
@@ -49,7 +47,7 @@ GL_LIBS += -framework OpenGL
 GL_LIBS += -L/opt/local/lib
 GL_DEFS += -I/opt/local/include
 else
-AUDIO_LIBS += -lopenal
+AUDIO_LIBS += -lopenal -lalut
 GL_LIBS += -lGL -lGLU
 GL_LIBS += -L/usr/local/lib
 GL_DEFS += -I/usr/local/include
@@ -394,7 +392,7 @@ Network.test:
 Sound.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(TEST_FLAGS) $(WARNINGS) \
-		-DUSING_OPENAL $(AUDIO_LIBS) $(AUDIO_DEFS) \
+		$(AUDIO_LIBS) $(AUDIO_DEFS) \
 		src/Sound.cpp test/Sound.cpp -o $(BUILD_TEST_DIR)/Sound.test
 
 #################################################################

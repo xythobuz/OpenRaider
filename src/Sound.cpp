@@ -6,7 +6,6 @@
  * \author xythobuz
  */
 
-#ifdef USING_OPENAL
 #ifdef __APPLE__
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
@@ -15,9 +14,6 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <AL/alut.h>
-#endif
-#else
-#warning "No OpenAL support. Won't play sound!"
 #endif
 
 #include <time.h>
@@ -51,9 +47,7 @@ Sound::~Sound()
 {
     if (mInit)
     {
-#ifdef USING_OPENAL
         alutExit();
-#endif
     }
 }
 
@@ -74,14 +68,10 @@ int Sound::init()
     close(fd);
 #endif
 
-#ifdef USING_OPENAL
     alutInit(NULL, 0);
 
     mInit = true;
     printf("Created OpenAL Context\n");
-#else
-    printf("Couldn't create sound Context!\n");
-#endif
 
     return 0;
 }
@@ -92,10 +82,8 @@ void Sound::listenAt(float pos[3], float angle[3])
     if (!mInit)
         return;
 
-#ifdef USING_OPENAL
     alListenerfv(AL_POSITION, pos);
     alListenerfv(AL_ORIENTATION, angle);
-#endif
 }
 
 
@@ -104,21 +92,17 @@ void Sound::sourceAt(int source, float pos[3])
     if (!mInit || source < 0)
         return;
 
-#ifdef USING_OPENAL
     alSourcefv(mSource[source-1], AL_POSITION, pos);
-#endif
 }
 
 
 //! \fixme Seperate sourcing and buffering, Mongoose 2002.01.04
 int Sound::addFile(const char *filename, int *source, unsigned int flags)
 {
-#ifdef USING_OPENAL
     ALsizei size;
     ALfloat freq;
     ALenum format;
     ALvoid *data;
-#endif
 
 
     if (!mInit || !filename || !source)
@@ -129,7 +113,6 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags)
 
     *source = -1;
 
-#ifdef USING_OPENAL
     alGetError();
 
     alGenBuffers(1, &mBuffer[mNextBuffer]);
@@ -175,19 +158,14 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags)
     *source = mNextBuffer;
 
     return 0;
-#else
-    return -1;
-#endif
 }
 
 int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags)
 {
-#ifdef USING_OPENAL
     ALsizei size;
     ALfloat freq;
     ALenum format;
     ALvoid *data;
-#endif
 
     if (!mInit || !wav || !source)
     {
@@ -197,7 +175,6 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
     *source = -1;
 
-#ifdef USING_OPENAL
     data = wav;
 
     alGetError();
@@ -249,9 +226,6 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     *source = mNextBuffer;
 
     return 0;
-#else
-    return -1;
-#endif
 }
 
 
@@ -269,9 +243,7 @@ void Sound::play(int source)
         return;
     }
 
-#ifdef USING_OPENAL
     alSourcePlay(mSource[source-1]);
-#endif
 }
 
 
@@ -283,8 +255,6 @@ void Sound::stop(int source)
         return;
     }
 
-#ifdef USING_OPENAL
     alSourceStop(mSource[source-1]);
-#endif
 }
 

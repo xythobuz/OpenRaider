@@ -29,6 +29,14 @@ A more or less recent [Doxygen documentation](http://xythobuz.github.io/OpenRaid
 
 ## Dependencies
 
+Basically, OpenRaider depends on the following:
+
+* OpenGL
+* SDL & SDL-TTF
+* OpenAL & ALUT
+* Posix Threads
+* zlib
+
 On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 
     sudo port install zlib cmake libsdl libsdl_ttf
@@ -46,8 +54,6 @@ Get, compile and install freealut like this:
     sudo make install
 
 Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won't need to compile freealut.
-
-You'll also need the [XQuartz](http://xquartz.macosforge.org/trac) X11 Server if you're on Mac OS X, as Apple is no longer bundling their own X.
 
 ## Building
 

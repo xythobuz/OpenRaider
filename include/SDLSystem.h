@@ -23,11 +23,7 @@
 #ifndef _SDLSYSTEM_H_
 #define _SDLSYSTEM_H_
 
-#ifdef SDL_INTERFACE
-#   include <SDL/SDL.h>
-#else
-#   error "SDLSystem requires -DSDL_INTERFACE"
-#endif
+#include <SDL/SDL.h>
 
 #include <System.h>
 

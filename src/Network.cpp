@@ -34,10 +34,8 @@ typedef struct client_s {
     unsigned int frameExpected;
 } client_t;
 
-#ifdef USING_PTHREADS
 #include <pthread.h>
 pthread_t gPThreadId[3];
-#endif
 
 unsigned int gUID;
 client_t gClients[MAX_CLIENTS];
@@ -225,12 +223,7 @@ void Network::spawnServerThread()
     // For now don't handle shutting down server to start client and vv
     if (!mSpawnedServer && !mSpawnedClient)
     {
-#ifdef USING_PTHREADS
         pthread_create(gPThreadId + 0, 0, server_thread, NULL);
-#else
-        printf("Network::spawnServerThread> Build doesn't support threads\n");
-#endif
-
         mSpawnedServer = true;
     }
 }
@@ -241,12 +234,7 @@ void Network::spawnClientThread()
     // For now don't handle shutting down server to start client and vv
     if (!mSpawnedServer && !mSpawnedClient)
     {
-#ifdef USING_PTHREADS
         pthread_create(gPThreadId + 1, 0, client_thread, NULL);
-#else
-        printf("Network::spawnClientThread> Build doesn't support threads\n");
-#endif
-
         mSpawnedClient = true;
     }
 }

@@ -52,11 +52,7 @@
 
 #include <TombRaider.h>
 
-#ifdef ZLIB_SUPPORT
 #include <zlib.h>
-#else
-#warning "No zlib. Won't support TR4+ files!"
-#endif
 
 #ifdef __TEST_TR5_DUMP_TGA
 #include <TGA.h>
@@ -525,7 +521,6 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
     if (mEngineVersion == TR_VERSION_4)
     {
-#ifdef ZLIB_SUPPORT
         unsigned int sz, usz; // compressed and uncompressed size
         unsigned char *compressed_data = NULL;
         int zerr;
@@ -743,11 +738,6 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
         // Toggle Fread mode to read from decompressed data in memory, not diskfile
         mFreadMode = TR_FREAD_COMPRESSED;
-#else
-        Print("Load> ERROR: TR4 support not compiled in this build.");
-        Print("Load> Try 'make tr4' next build.  Requires zlib.");
-        return -1;
-#endif
     }
 
     if (mEngineVersion == TR_VERSION_2 || mEngineVersion == TR_VERSION_3)
@@ -1974,7 +1964,6 @@ int TombRaider::Load(char *filename, void (*percent)(int))
             break;
     }
 
-#ifdef ZLIB_SUPPORT
     if (mCompressedLevelData)
     {
         printDebug("Load", "Freeing uncompressed TR4 data");
@@ -1983,7 +1972,6 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
     //! \fixme memory damage?
     mCompressedLevelData = NULL;
-#endif
 
     fclose(f);
 
@@ -4763,9 +4751,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
 int TombRaider::Fread(void *buffer, size_t size, size_t count, FILE *f)
 {
-#ifdef ZLIB_SUPPORT
     int num_read;
-
 
     if (mFreadMode == TR_FREAD_COMPRESSED)
     {
@@ -4789,7 +4775,8 @@ int TombRaider::Fread(void *buffer, size_t size, size_t count, FILE *f)
             exit(2);
         }
     }
-#endif
+
+
     unsigned int offset = ftell(f);
 
     if (fread(buffer, size, count, f) != count)
@@ -5111,7 +5098,6 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
     if (mEngineVersion != TR_VERSION_5)
         return -1;
 
-#ifdef ZLIB_SUPPORT
     unsigned int sz, usz; // compressed and uncompressed size
     unsigned char *compressed_data = NULL;
     int zerr;
@@ -5276,11 +5262,6 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
         // Free the temporary buffer
         delete [] compressed_data;
     }
-#else
-    Print("LoadTR5> ERROR: TR5 support not compiled in this build.");
-    Print("LoadTR5> Requires zlib-devel.");
-    return -1;
-#endif
 
     if (percent)
         (*percent)(10);

@@ -37,10 +37,6 @@
 #include <memory_test.h>
 #endif
 
-#ifdef USING_TGA
-#include <TGA.h>
-#endif
-
 #include <SDL/SDL_ttf.h>
 
 #ifdef __APPLE__
@@ -51,6 +47,7 @@
 #include <GL/glu.h>
 #endif
 
+#include <TGA.h>
 #include <Texture.h>
 
 //Texture *gTextureManager = 0x0;
@@ -946,7 +943,6 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
 
 int Texture::loadTGA(const char *filename)
 {
-#ifdef USING_TGA
     FILE *f;
     unsigned char *image = NULL;
     unsigned char *image2 = NULL;
@@ -993,10 +989,6 @@ int Texture::loadTGA(const char *filename)
     }
 
     return id;
-#else
-    printf("ERROR: TGA support not enabled in this build (%s)\n", filename);
-    return -1;
-#endif
 }
 
 

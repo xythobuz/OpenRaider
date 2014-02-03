@@ -15,14 +15,12 @@
 #include <stdarg.h>
 #include <cmath>
 
-#ifdef USING_OPENGL
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #else
 #include <GL/gl.h>
 #include <GL/glu.h>
-#endif
 #endif
 
 #if defined(linux) || defined(__APPLE__)

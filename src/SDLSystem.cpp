@@ -36,11 +36,7 @@
 #include <memory_test.h>
 #endif
 
-#ifdef USING_OPENGL
 #include <SDL/SDL_opengl.h>
-#else
-#error "SDLSystem requires -DUSING_OPENGL"
-#endif
 
 #include <SDLSystem.h>
 

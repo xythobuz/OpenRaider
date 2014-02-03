@@ -7,6 +7,7 @@
 
 	[ 20140202 ]
 	* Fixed more cppcheck warnings
+	* Removed unnecessary defines (USING_xxx)
 
 	[ 20140201 ]
 	* Rewrote Memory Unit Test using greatest
