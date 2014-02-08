@@ -1,238 +1,129 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/SDLSystem.h
+ * \brief SDL System interface implementation
  *
- * Project : OpenRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : SDLSystem
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments:
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2002.06.06:
- * Mongoose - Created
- ================================================================*/
-
+ * \author Mongoose
+ */
 
 #ifndef _SDLSYSTEM_H_
 #define _SDLSYSTEM_H_
 
 #include <SDL/SDL.h>
-
 #include <System.h>
 
-class SDLSystem : public System
-{
- public:
+/*!
+ * \brief SDL System interface implementation
+ */
+class SDLSystem : public System {
+public:
 
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Constructs an object of SDLSystem
+     */
     SDLSystem();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of SDLSystem
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Deconstructs an object of SDLSystem
+     */
     virtual ~SDLSystem();
-    /*------------------------------------------------------
-     * Pre  : SDL object is allocated
-     * Post : Deconstructs an object of SDLSystem
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Get ticks
+     * \returns number of milliseconds since start of program
+     */
     virtual unsigned int getTicks();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of milliseconds since start of
-     *        program
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*
+     * \brief Sets Event binding Cmd to Key press
+     * \param cmd valid command string
+     * \param key valid keyboard code
+     * \param event valid game event id
+     */
+    //! \fixme void bindKeyCommand(const char *cmd, int key, int event);
 
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
+    /*!
+     * \brief Renders string in OpenGL (2D projection).
+     *
+     * Requires Texture::glEnterMode2d() call before entry.
+     *
+     * System::bufferString(..) can cache printf() style calls
+     * for use with this method.
+     *
+     * Call Texture::glExitMode2d after finishing calls to this method
+     * and other 2D rendering.
+     *
+     * \param x valid X world coordinate
+     * \param y valid Y world coordinate
+     * \param string valid string
+     *
+     * \sa System::bufferString()
+     * \sa Texture::glEnterMode2d()
+     * \sa Texture::glExitMode2d()
+     */
+    void glPrintf2d(float x, float y, char *string);
 
-    //FIXME: void bindKeyCommand(const char *cmd, int key, int event);
-    /*------------------------------------------------------
-     * Pre  : <Cmd> is a valid command string
-     *        <Key> is a valid keyboard code
-     *        <Event> is a valid game event Id
+    /*!
+     * \brief Renders string in OpenGL (3D projection).
      *
-     * Post : Sets <Event> binding <Cmd> to <Key> press
+     * System::bufferString(..) can cache printf() style calls
+     * for use with this method.
      *
-     *-- History ------------------------------------------
+     * \param x valid X world coordinate
+     * \param y valid Y world coordinate
+     * \param z valid Z world coordinate
+     * \param string valid string
      *
-     * 2003.06.03:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+     * \sa System::bufferString()
+     */
+    void glPrintf3d(float x, float y, float z, char *string);
 
-   void glPrintf2d(float x, float y, char *string);
-   /*------------------------------------------------------
-    * Pre  : <X>, and <Y> are valid world coordinates
-     *        <String> is a valid string
-     *
-     *        Requires glEnterMode2d() call before entry
-     *
-     *        System::bufferString(..) can cache printf()
-     *        style calls for use with this method
-     *
-    * Post : Renders string in OpenGL ( 2d projection )
-     *
-     *        Call glExitMode2d() after finishing calls
-     *        to this method and other 2d rendering
-    *
-    *-- History ------------------------------------------
-    *
-     * 2003.06.03:
-     * Mongoose - Ported to SDL_TTF
-     *
-    * 2001.12.31:
-    * Mongoose - Created
-    ------------------------------------------------------*/
+    /*!
+     * \brief Start up video subsystem
+     * \param width valid video mode width
+     * \param height valid video mode height
+     * \param fullscreen enables fullscreen rendering
+     */
+    void initVideo(unsigned int width, unsigned int height, bool fullscreen);
 
-   void glPrintf3d(float x, float y, float z, char *string);
-   /*------------------------------------------------------
-    * Pre  : <X>, <Y>, and <Z> are valid world coordinates
-     *        <String> is a valid string
-     *
-     *        System::bufferString(..) can cache printf()
-     *        style calls for use with this method
-     *
-    * Post : Renders string in OpenGL ( 3d projection )
-    *
-    *-- History ------------------------------------------
-    *
-     * 2003.06.03:
-     * Mongoose - Ported to SDL_TTF
-     *
-    * 2001.12.31:
-    * Mongoose - Created
-    ------------------------------------------------------*/
-
-    void initVideo(unsigned int width, unsigned int height,
-                        bool fullscreen);
-    /*------------------------------------------------------
-     * Pre  : Video mode request <Width> x <Height>
-     *        <Fullscreen> enables fullscreen rendering
-     *
-     * Post : Start up video subsystem
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
+    /*!
+     * \brief Resizes game window
+     * \param width new width
+     * \param height new height
+     */
     void resize(unsigned int width, unsigned int height);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Resizes game window
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.06:
-     * Mongoose - Created, from old SDLUnitTest code
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Start game loop
+     */
     void runGame();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Start game loop
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void setGrabMouse(bool on);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.01.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Shuts down the game subsystems, exits game loop
+     * \param i exit code
+     */
     void shutdown(int i);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Shutsdown the game subsystems, exits game loop
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Swaps OpenGL buffers.
+     * Call at end of frame.
+     */
     void swapBuffersGL();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Swaps OpenGL buufers ( call at end of frame )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Toggle fullscreen windowing mode
+     */
     void toggleFullscreen();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Toggle fullscreen windowing mode
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
- protected:
+protected:
     int m_old_width;
     int m_old_height;
-    bool mFirstMouseEvent; // Filter first mouse event (SDL bug)
-    bool mFullscreen; //!< Current Fullscreen/Windowed mode
+    bool mFirstMouseEvent; //!< Filter first mouse event (SDL bug)
+    bool mFullscreen;      //!< Current Fullscreen/Windowed mode
 
- private:
-
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
-
-    SDL_Surface *mWindow;   /* This is the pointer to the SDL surface */
+private:
+    SDL_Surface *mWindow;  //!< This is the pointer to the SDL surface
 };
+
 #endif

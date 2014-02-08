@@ -440,7 +440,7 @@ int Network::runServer()
 
         fflush(stdout);
 
-#ifdef UNIT_TEST_NETWORK
+#ifdef UNIT_TEST
         if ((rand() % 10 == 0))
         {
             printf("Server: Simulating a lost ack %u\n", f.seq);

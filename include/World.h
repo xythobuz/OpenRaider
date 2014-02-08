@@ -13,10 +13,6 @@
  *           This file was generated using Mongoose's C++
  *           template generator script.  <stu7440@westga.edu>
  *
- *-- Test Defines -----------------------------------------------
- *
- * UNIT_TEST_WORLD - Builds World class as a console unit test
- *
  *-- History ------------------------------------------------
  *
  * 2002.12.16:

@@ -296,7 +296,7 @@ endif
 #################################################################
 # Unit Test builds
 #################################################################
-TEST_FLAGS=$(FLAGS_ALL) -g -O0 -DDEBUG -lstdc++ -Iinclude
+TEST_FLAGS=$(FLAGS_ALL) -g -O0 -DDEBUG -DUNIT_TEST -lstdc++ -Iinclude
 
 TEST_MAP_TR5=~/.OpenRaider/paks/tr5/demo.trc
 TEST_MAP_TR4=~/.OpenRaider/paks/tr4/angkor1.tr4

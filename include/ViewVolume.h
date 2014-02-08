@@ -1,28 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/ViewVolume.h
+ * \brief Viewing Volume for culling use
  *
- * Project : hel
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : ViewVolume
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments: This is the viewing volume for culling use
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- Test Defines -----------------------------------------------
- *
- * UNIT_TEST_VIEWVOLUME - Builds ViewVolume class as a console unit test
- *
- *-- History ------------------------------------------------
- *
- * 2002.12.15:
- * Mongoose - Created
- ================================================================*/
-
+ * \author Mongoose
+ */
 
 #ifndef _VIEWVOLUME_H_
 #define _VIEWVOLUME_H_
@@ -30,265 +11,169 @@
 #include <Matrix.h>
 #include <BoundingVolume.h>
 
-class ViewVolume
-{
- public:
+/*!
+ * \brief Viewing Volume for culling use
+ */
+class ViewVolume {
+public:
 
-    enum ViewVolumeSide
-    {
-        rightSide  = 0, // Right
-        leftSide   = 1, // Left
-        bottomSide = 2, // Bottom
-        topSide    = 3, // Top
-        farSide    = 4, // Back
-        nearSide   = 5  // Front
+    /*!
+     * \brief Sides of the view volume
+     */
+    enum ViewVolumeSide {
+        rightSide  = 0, //!< Right
+        leftSide   = 1, //!< Left
+        bottomSide = 2, //!< Bottom
+        topSide    = 3, //!< Top
+        farSide    = 4, //!< Back
+        nearSide   = 5  //!< Front
     };
 
-    enum ViewVolumePlane
-    {
-        planeA = 0, // X value of normal
-        planeB = 1, // Y value of normal
-        planeC = 2, // Z value of normal
-        planeD = 3  // Distance to origin
+    /*!
+     * \brief Planes of the view volume
+     */
+    enum ViewVolumePlane {
+        planeA = 0, //!< X value of normal
+        planeB = 1, //!< Y value of normal
+        planeC = 2, //!< Z value of normal
+        planeD = 3  //!< Distance to origin
     };
 
-
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Constructs an object of ViewVolume
+     */
     ViewVolume();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of ViewVolume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Deconstructs an object of ViewVolume
+     */
     ~ViewVolume();
-    /*------------------------------------------------------
-     * Pre  : ViewVolume object is allocated
-     * Post : Deconstructs an object of ViewVolume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Check if bounding volume is in view volume
+     * \param bvol bounding volume to check
+     * \returns true if frustum contains the given bounding volume
+     */
     bool isBoundingVolumeInFrustum(BoundingVolume bvol);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns true if frustum contains the given
-     *        bounding volume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Check if bounding sphere is in view volume
+     * \param bvol bounding sphere to check
+     * \returns true if frustum contains the given bounding volume
+     */
     bool isBoundingSphereInFrustum(BoundingSphere bvol);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns true if frustum contains the given
-     *        bounding volume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Check if bounding box is in view volume
+     * \param bvol bounding box to check
+     * \returns true if frustum contains the given bounding volume
+     */
     bool isBoundingBoxInFrustum(BoundingBox bvol);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns true if frustum contains the given
-     *        bounding volume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Check if point is in view volume
+     * \param x X coordinate of point
+     * \param y Y coordinate of point
+     * \param z Z coordinate of point
+     * \returns true if point in view volume
+     */
     bool isPointInFrustum(vec_t x, vec_t y, vec_t z);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Check if bounding sphere is in view volume
+     * \param x X coordinate of a valid abstract sphere
+     * \param y Y coordinate of a valid abstract sphere
+     * \param z Z coordinate of a valid abstract sphere
+     * \param radius radius of a valid abstract sphere
+     * \returns true if abstract sphere in view volume
+     */
     bool isSphereInFrustum(vec_t x, vec_t y, vec_t z, vec_t radius);
-    /*------------------------------------------------------
-     * Pre  : Abstract sphere is valid
-     * Post : Returns true if abstract sphere in view volume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Check if bounding box is in view volume
+     * \param min minimum point of valid abstract bounding box
+     * \param max maximum point of valid abstract bounding box
+     * \returns true if abstract bounding box in view volume
+     */
     bool isBboxInFrustum(vec3_t min, vec3_t max);
-    /*------------------------------------------------------
-     * Pre  : Abstract bounding box is valid
-     * Post : Returns true if abstract bounding box in view volume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Distance to Bounding sphere
+     * \param x X coordinate of a valid abstract sphere
+     * \param y Y coordinate of a valid abstract sphere
+     * \param z Z coordinate of a valid abstract sphere
+     * \param radius radius of a valid abstract sphere
+     * \returns distance to abstract sphere bounding volume
+     */
     vec_t getDistToSphereFromNear(vec_t x, vec_t y, vec_t z, vec_t radius);
-    /*------------------------------------------------------
-     * Pre  : Abstract sphere is valid
-     * Post : Returns distance to abstract sphere
-     *        bounding volume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Distance to Bounding box
+     * \param min minimum point of a valid abstract bounding box
+     * \param max maximum point of a valid abstract bounding box
+     * \returns distance to abstract box bounding volume
+     */
     vec_t getDistToBboxFromNear(vec3_t min, vec3_t max);
-    /*------------------------------------------------------
-     * Pre  : Abstract bounding box is valid
-     * Post : Returns distance to abstract box
-     *        bounding volume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get a copy of the view volume
+     * \param frustum where frustum will be stored
+     */
     void getFrustum(vec_t frustum[6][4]);
-    /*------------------------------------------------------
-     * Pre  : Frustum is allocated 6x4 vec_t
-     * Post : Get a copy of the view volume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.26:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get a copy of a given plane in view volume
+     * \param p side
+     * \param plane wher plane will be stored
+     */
     void getPlane(ViewVolumeSide p, vec4_t plane);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Get a copy of a given plane in view volume
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.26:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Updates view volume for this frame.
+     * \param proj new projection matrix
+     * \param mdl new model matrix
+     */
     void updateFrame(matrix_t proj, matrix_t mdl);
-    /*------------------------------------------------------
-     * Pre  : Given valid projection and model matrices
-     * Post : Updates view volume for this frame
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Updates view volume for this frame.
+     *
+     * Model & Projection Matrices must be set.
+     */
     void updateFrame();
-    /*------------------------------------------------------
-     * Pre  : Called setModel() and setProjection()
-     * Post : Updates view volume for this frame
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Set this class' model matrix
+     * \param mdl new model matrix
+     */
     void setModel(matrix_t mdl);
-    /*------------------------------------------------------
-     * Pre  : It's valid model matrix
-     * Post : Sets this class' model matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Set this class' projection matrix
+     * \param proj new projection matrix
+     */
     void setProjection(matrix_t proj);
-    /*------------------------------------------------------
-     * Pre  : It's the valid projection matrix
-     * Post : Sets this class' projection matrix
+
+private:
+
+    /*!
+     * \brief Computes clipping matrix.
      *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
- private:
-
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
-
+     * Model & Projection matrices must be set!
+     */
     void updateClip();
-    /*------------------------------------------------------
-     * Pre  : model and projection matrices are set
-     * Post : Computes clipping matrix
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Computes planes of frustum.
+     *
+     * Model, Projection & Clip matrices must be set!
+     */
     void updateFrustum();
-    /*------------------------------------------------------
-     * Pre  : model, projection, clip matrices are set
-     * Post : Computes planes of frustum
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.15:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    Matrix mProjection;         /* Projection matrix */
-
-    Matrix mModel;             /* Model matrix */
-
-    Matrix mClip;               /* Clipping matrix */
-
-    vec_t mFrustum[6][4];      /* View volume */
+    Matrix mProjection;   //!< Projection matrix
+    Matrix mModel;        //!< Model matrix
+    Matrix mClip;         //!< Clipping matrix
+    vec_t mFrustum[6][4]; //!< View volume
 };
 
 #endif

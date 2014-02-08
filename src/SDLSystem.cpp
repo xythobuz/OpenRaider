@@ -1,31 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file src/SDLSystem.cpp
+ * \brief SDL System interface implementation
  *
- * Project : OpenRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : SDL
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments:
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2003.06.30,
- * Mongoose - SDL_TTF support moved to Texture class
- *
- * 2003.06.03:
- * Mongoose - SDL_TTF support based on Sam Lantinga's public domain
- *            SDL_TTF demo functions and algorithms
- *
- * 2002.06.06:
- * Mongoose - Created
- =================================================================*/
-
+ * \author Mongoose
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -40,17 +18,10 @@
 
 #include <SDLSystem.h>
 
-
 unsigned int *gWidth = 0x0;
 unsigned int *gHeight = 0x0;
 
-
-////////////////////////////////////////////////////////////
-// Constructors
-////////////////////////////////////////////////////////////
-
-SDLSystem::SDLSystem() : System()
-{
+SDLSystem::SDLSystem() : System() {
     mWindow = 0x0;
     gWidth = &m_width;
     gHeight = &m_height;
@@ -58,31 +29,16 @@ SDLSystem::SDLSystem() : System()
     mFullscreen = false;
 }
 
-
-SDLSystem::~SDLSystem()
-{
+SDLSystem::~SDLSystem() {
 }
 
-
-////////////////////////////////////////////////////////////
-// Public Accessors
-////////////////////////////////////////////////////////////
-
-unsigned int SDLSystem::getTicks()
-{
+unsigned int SDLSystem::getTicks() {
     return SDL_GetTicks();
 }
 
-
-////////////////////////////////////////////////////////////
-// Public Mutators
-////////////////////////////////////////////////////////////
-
 #ifdef FIXME
-void SDLSystem::bindKeyCommand(const char *cmd, int key, int event)
-{
-    if (key > 255)
-    {
+void SDLSystem::bindKeyCommand(const char *cmd, int key, int event) {
+    if (key > 255) {
         printf("Currently key event mapping only handles ASCII characters\n");
         return;
     }
@@ -93,18 +49,12 @@ void SDLSystem::bindKeyCommand(const char *cmd, int key, int event)
 }
 #endif
 
-
-void SDLSystem::setGrabMouse(bool on)
-{
+void SDLSystem::setGrabMouse(bool on) {
     SDL_WM_GrabInput(on ? SDL_GRAB_ON : SDL_GRAB_OFF);
 }
 
-
-void SDLSystem::initVideo(unsigned int width, unsigned int height,
-        bool fullscreen)
-{
+void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscreen) {
     int flags = 0; //, x, y;
-
 
     // Create GL context
     SDL_Init(SDL_INIT_VIDEO);
@@ -115,18 +65,15 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
     m_height = height;
 
 #ifndef __APPLE__
-    if (!m_driver || !m_driver[0] || SDL_GL_LoadLibrary(m_driver) < 0)
-    {
+    if (!m_driver || !m_driver[0] || SDL_GL_LoadLibrary(m_driver) < 0) {
         SDL_ClearError();
 
         // Fallback 1
-        if (SDL_GL_LoadLibrary("libGL.so") < 0)
-        {
+        if (SDL_GL_LoadLibrary("libGL.so") < 0) {
             SDL_ClearError();
 
             // Fallback 2
-            if (SDL_GL_LoadLibrary("libGL.so.1") < 0)
-            {
+            if (SDL_GL_LoadLibrary("libGL.so.1") < 0) {
                 fprintf(stderr, "initVideo> SDL_GL_LoadLibrary failed!\n");
                 fprintf(stderr, "initVideo> Error is [%s].\n", SDL_GetError());
                 shutdown(1);
@@ -166,13 +113,10 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height,
     resizeGL(width, height);
 }
 
-
-void SDLSystem::resize(unsigned int width, unsigned int height)
-{
+void SDLSystem::resize(unsigned int width, unsigned int height) {
     int flags = 0;
 
     GLfloat aspect;
-
 
     m_width = width;
     m_height = height;
@@ -206,24 +150,18 @@ void SDLSystem::resize(unsigned int width, unsigned int height)
     resizeGL(width, height);
 }
 
-
-void SDLSystem::runGame()
-{
+void SDLSystem::runGame() {
     SDL_Event event;
     unsigned int mkeys, mod, key;
     int btn = 0;
     bool specialKey;
 
-
-    for (;;)
-    {
+    for (;;) {
         // Pause for 10-20 ms
         SDL_Delay(10);
 
-        while (SDL_PollEvent(&event))
-        {
-            switch (event.type)
-            {
+        while (SDL_PollEvent(&event)) {
+            switch (event.type) {
                 case SDL_QUIT:
                     shutdown(0);
                     break;
@@ -240,8 +178,7 @@ void SDLSystem::runGame()
                     //handleMouseEvent(event.button.button, event.button.state,
                     //                    event.button.x, event.button.y);
 
-                    switch (event.button.button)
-                    {
+                    switch (event.button.button) {
                         case SDL_BUTTON_LEFT:
                             btn = SYS_MOUSE_LEFT;
                             break;
@@ -253,12 +190,9 @@ void SDLSystem::runGame()
                             break;
                     }
 
-                    if (event.button.state == SDL_PRESSED)
-                    {
+                    if (event.button.state == SDL_PRESSED) {
                         handleKeyPressEvent(btn, 0); //! \fixme mod not used
-                    }
-                    else
-                    {
+                    } else {
                         handleKeyReleaseEvent(btn, 0); //! \fixme mod not used
                     }
                     break;
@@ -296,8 +230,7 @@ void SDLSystem::runGame()
                     key = event.key.keysym.sym;
                     specialKey = false;
 
-                    switch (key)
-                    {
+                    switch (key) {
                         case SDLK_F1:
                             key = SYS_KEY_F1;
                             specialKey = true;
@@ -383,14 +316,10 @@ void SDLSystem::runGame()
 
 #ifdef UNICODE_SUPPORT
                     // JML: if a std key was pressed get it ascii code
-                    if (!specialKey && key != 0)
-                    {
-                        if ((event.key.keysym.unicode & 0xFF80) == 0)
-                        {
-                            key= (unsigned int)(event.key.keysym.unicode & 0x7F);
-                        }
-                        else
-                        {
+                    if (!specialKey && key != 0) {
+                        if ((event.key.keysym.unicode & 0xFF80) == 0) {
+                            key = (unsigned int)(event.key.keysym.unicode & 0x7F);
+                        } else {
                             key = 0;
                         }
                     }
@@ -399,50 +328,38 @@ void SDLSystem::runGame()
                      * consoles using this expect text characters, add unicode
                      * support later when they're able to handle it
                      */
-                    if (key > 255 && key < 1000)
-                    {
+                    if (key > 255 && key < 1000) {
                         key = 0;
                     }
 #endif
 
-                    if (key == mConsoleKey)
-                    {
-                        if (event.type == SDL_KEYDOWN)
-                        {
+                    if (key == mConsoleKey) {
+                        if (event.type == SDL_KEYDOWN) {
                             mConsoleMode = !mConsoleMode;
                             // Tmp hack
                             handleConsoleKeyPressEvent(mConsoleKey, 0);
                         }
-                    }
-                    else if (mConsoleMode) // Console keying ( text input )
-                    {
-                        switch (event.type)
-                        {
+                    } else if (mConsoleMode) { // Console keying (text input)
+                        switch (event.type) {
                             case SDL_KEYDOWN:
                                 handleConsoleKeyPressEvent(key, mod);
                                 break;
                             default:
                                 ;
                         }
-                    }
-                    else if (mKeyEvents[key] != 0)// Bound key
-                    {
+                    } else if (mKeyEvents[key] != 0) { // Bound key
                         //if (key < 255 && mKeyEvents[key] != 0)
                         key = mKeyEvents[key];
 
-                        switch (event.type)
-                        {
+                        switch (event.type) {
                             case SDL_KEYDOWN:
                                 handleBoundKeyPressEvent(key);
                                 break;
                             default:
                                 handleBoundKeyReleaseEvent(key);
                         }
-                    }
-                    else // 'Classic' key event handlers
-                    {
-                        switch (event.type)
-                        {
+                    } else { // 'Classic' key event handlers
+                        switch (event.type) {
                             case SDL_KEYDOWN:
                                 handleKeyPressEvent(key, mod);
                                 break;
@@ -463,9 +380,7 @@ void SDLSystem::runGame()
     }
 }
 
-
-void SDLSystem::shutdown(int i)
-{
+void SDLSystem::shutdown(int i) {
     //SDL_QuitSubSystem(SDL_OPENGL);
     //SDL_Quit(); // Moved to atexit() call
 
@@ -477,11 +392,8 @@ void SDLSystem::shutdown(int i)
     exit(i);
 }
 
-
-void SDLSystem::toggleFullscreen()
-{
-    if (mWindow)
-    {
+void SDLSystem::toggleFullscreen() {
+    if (mWindow) {
         mFullscreen = !mFullscreen;
         SDL_ShowCursor(SDL_DISABLE);
 
@@ -521,9 +433,7 @@ void SDLSystem::toggleFullscreen()
     }
 }
 
-
-void SDLSystem::swapBuffersGL()
-{
+void SDLSystem::swapBuffersGL() {
     SDL_GL_SwapBuffers();
 }
 

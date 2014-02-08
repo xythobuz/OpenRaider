@@ -1,365 +1,213 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/Quaternion.h
+ * \brief Quaternion
  *
- * Project : Hel
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Quaternion
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments: Quaternion now in C++ class form fresh from the grove
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- Test Defines -----------------------------------------------
- *
- * UNIT_TEST_QUATERNION - Builds Quaternion class as a console unit test
- *
- *-- History ------------------------------------------------
- *
- * 2002.12.16:
- * Mongoose - Created, based on mtk3d ( freyja )
- ================================================================*/
-
+ * \author Mongoose
+ */
 
 #ifndef _QUATERNION_H_
 #define _QUATERNION_H_
 
 #include <MatMath.h>
 
-class Quaternion
-{
- public:
+/*!
+ * \brief Quaternion
+ */
+class Quaternion {
+public:
 
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Constructs an object of Quaternion
+     */
     Quaternion();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of Quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Constructs an object of Quaternion
+     * \param w W part of new Quaternion
+     * \param x X part of new Quaternion
+     * \param y Y part of new Quaternion
+     * \param z Z part of new Quaternion
+     */
     Quaternion(vec_t w, vec_t x, vec_t y, vec_t z);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of Quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Constructs an object of Quaternion
+     * \param v contents of new Quaternion
+     */
     Quaternion(vec4_t v);
-    /*------------------------------------------------------
-     * Pre  : v { w, x, y, z }
-     * Post : Constructs an object of Quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Deconstructs an object of Quaternion
+     */
     ~Quaternion();
-    /*------------------------------------------------------
-     * Pre  : Quaternion object is allocated
-     * Post : Deconstructs an object of Quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Get column order matrix equivalent of this quaternion
+     * \param m where matrix will be stored
+     */
     void getMatrix(matrix_t m);
-    /*------------------------------------------------------
-     * Pre  : Matrix is valid
-     * Post : Returns col order matrix equiv of this quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Assign q to this quaternion
+     * \param q what to assign this quaternion to
+     * \returns this quaternion
+     */
     Quaternion &operator =(const Quaternion &q);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Asigns Q to this quaternion
-     *        returns (this) resultant quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Multiplies this quaternion.
+     *
+     * Use normalize() call for unit quaternion.
+     *
+     * \param q what to multiply this quaternion with
+     * \returns resultant quaternion
+     * \sa Quaternion::normalize()
+     */
     Quaternion operator *(const Quaternion &q);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Multiplies Q and this quaternion
-     *        returns resultant quaternion
-     *        ( Use normalize() call for unit quaternion )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Divide from this quaternion
+     * \param q what to divide from this quaternion
+     * \returns resultant quaternion
+     */
     Quaternion operator /(const Quaternion &q);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Dividess Q from this quaternion
-     *        returns quotient quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Add to this quaternion
+     * \param q what to add to this quaternion
+     * \returns resultant quaternion
+     */
     Quaternion operator +(const Quaternion &q);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Adds Q and this quaternion
-     *        returns resultant quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Subtract from this quaternion
+     * \param q what to subtract from this quaternion
+     * \returns resultant quaternion
+     */
     Quaternion operator -(const Quaternion &q);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Subtracts Q from this quaternion
-     *        returns resultant quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Compares q to this quaternion
+     * \param q what to compare this quaternion to
+     * \returns true if equal, false otherwise
+     */
     bool operator ==(const Quaternion &q);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Compares Q to this quaternion
-     *        returns boolean true if equal, otherwise false
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Conjugate this quaternion
+     * \returns Conjugate of this quaternion
+     */
     Quaternion conjugate();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns conjugate of this quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Scale this quaternion
+     * \param s scaling factor
+     * \returns Scaled result of this quaternion
+     */
     Quaternion scale(vec_t s);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns scaled result of this quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Inverse this quaternion
+     * \brief Returns inverse of this quaternion
+     */
     Quaternion inverse();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns inverse of this quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Dot Product of quaternions
+     * \param a first argument to dot product
+     * \param b second argument to dot product
+     * \returns dot product between a and b quaternions
+     */
     static vec_t dot(Quaternion a, Quaternion b);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns dot product of A and B quaternions
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Magnitude of this quaternion
+     * \returns Magnitude of this quaternion
+     */
     vec_t magnitude();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns magnitude this quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Interpolates between a and b rotations.
+     *
+     * Using spherical linear interpolation:
+     * `I = (((B . A)^-1)^Time)A`
+     *
+     * \param a first argument for slerp
+     * \param b second argument for slerp
+     * \param t time argument for slerp
+     * \returns resultant quaternion
+     */
     static Quaternion slerp(Quaternion a, Quaternion b, vec_t time);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Interpolates between A and B rotations and
-     *        returns resultant quaternion using
-     *        spherical linear interpolation:
-     *
-     *        I = (((B . A)^ -1)^ Time) A
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Sets this quaternion to identity
+     */
     void setIdentity();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets this quaternion to identity
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Sets this quaternion
+     * \param angle new angle
+     * \param x new X coordinate
+     * \param y new Y coordinate
+     * \param z new Z coordinate
+     */
     void set(vec_t angle, vec_t x, vec_t y, vec_t z);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets this quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Normalize this quaternion
+     */
     void normalize();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Normalize this quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Set this quaternion
+     * \param q will be copied into this quaternion
+     */
     void copy(Quaternion q);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Set this quaternion using q
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Sets matrix equivalent of this quaternion
+     * \param m matrix in valid column order
+     */
     void setByMatrix(matrix_t m);
-    /*------------------------------------------------------
-     * Pre  : Matrix is valid column order
-     * Post : Sets matrix equiv of this quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+private:
 
- private:
+    /*!
+     * \brief Multiplies two quaternions
+     * \param a first argument to multiplication
+     * \param b second argument to multiplication
+     * \returns resultant quaternion
+     */
+    static Quaternion multiply(Quaternion a, Quaternion b);
 
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
+    /*!
+     * \brief Divides B from A quaternion
+     * \param a first argument to division
+     * \param b second argument to division
+     * \returns quotient quaternion
+     */
+    static Quaternion divide(Quaternion a, Quaternion b);
 
-    Quaternion multiply(Quaternion a, Quaternion b);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Multiplies A and B quaternions
-     *        returns resultant quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+    /*!
+     * \brief Adds A and B quaternions
+     * \param a first argument to addition
+     * \param b second argument to addition
+     * \returns resultant quaternion
+     */
+    static Quaternion add(Quaternion a, Quaternion b);
 
-    Quaternion divide(Quaternion a, Quaternion b);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Divides B from A quaternion
-     *        returns quotient quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+    /*!
+     * \brief Subtracts B from A quaternion
+     * \param a first argument to subtraction
+     * \param b second argument to subtraction
+     * \returns resultant quaternion
+     */
+    static Quaternion subtract(Quaternion a, Quaternion b);
 
-    Quaternion add(Quaternion a, Quaternion b);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Adds A and B quaternions
-     *        returns resultant quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
-    Quaternion subtract(Quaternion a, Quaternion b);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Subtracts B from A quaternion
-     *        returns resultant quaternion
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.05.08:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
-
-    vec_t mW, mX, mY, mZ;          /* Quaternion */
+    vec_t mW; //!< Quaternion, W part
+    vec_t mX; //!< Quaternion, X part
+    vec_t mY; //!< Quaternion, Y part
+    vec_t mZ; //!< Quaternion, Z part
 };
 
 #endif
