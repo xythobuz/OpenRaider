@@ -134,7 +134,7 @@ public:
      *
      * \param a first argument for slerp
      * \param b second argument for slerp
-     * \param t time argument for slerp
+     * \param time time argument for slerp
      * \returns resultant quaternion
      */
     static Quaternion slerp(Quaternion a, Quaternion b, vec_t time);
