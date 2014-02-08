@@ -90,553 +90,463 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">SDLSystem.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_s_d_l_system_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*================================================================</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Project : OpenRaider</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Author  : Terry &#39;Mongoose&#39; Hendrix II</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Website : http://www.westga.edu/~stu7440/</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Email   : stu7440@westga.edu</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * Object  : SDL</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * License : No use w/o permission (C) 2002 Mongoose</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Comments:</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *           This file was generated using Mongoose&#39;s C++</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *           template generator script.  &lt;stu7440@westga.edu&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *-- History -------------------------------------------------</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * 2003.06.30,</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * Mongoose - SDL_TTF support moved to Texture class</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * 2003.06.03:</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * Mongoose - SDL_TTF support based on Sam Lantinga&#39;s public domain</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> *            SDL_TTF demo functions and algorithms</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> * 2002.06.06:</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> * Mongoose - Created</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> =================================================================*/</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<a href="_s_d_l_system_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifdef MEMORY_TEST</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="memory__test_8h.html">memory_test.h</a>&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;SDL/SDL_opengl.h&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_s_d_l_system_8h.html">SDLSystem.h</a>&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="_s_d_l_system_8cpp.html#acbcf0139d223849492548946243d3910">   21</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<a class="code" href="_s_d_l_system_8cpp.html#acbcf0139d223849492548946243d3910">gWidth</a> = 0x0;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1">   22</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<a class="code" href="_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1">gHeight</a> = 0x0;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a3bc62709ebb1836e195bcf0b3288cce1">   24</a></span>&#160;<a class="code" href="class_s_d_l_system.html#a3bc62709ebb1836e195bcf0b3288cce1">SDLSystem::SDLSystem</a>() : <a class="code" href="class_system.html">System</a>() {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">mWindow</a> = 0x0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="_s_d_l_system_8cpp.html#acbcf0139d223849492548946243d3910">gWidth</a> = &amp;<a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1">gHeight</a> = &amp;<a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_s_d_l_system.html#a5dcb89b53cb187afc5dec1101ba7f0d5">mFirstMouseEvent</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a772dbadad5c324b45186d524d8e9e5e8">   32</a></span>&#160;<a class="code" href="class_s_d_l_system.html#a772dbadad5c324b45186d524d8e9e5e8">SDLSystem::~SDLSystem</a>() {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#ifdef MEMORY_TEST</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="memory__test_8h.html">memory_test.h</a>&gt;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &lt;SDL/SDL_opengl.h&gt;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_s_d_l_system_8h.html">SDLSystem.h</a>&gt;</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="_s_d_l_system_8cpp.html#acbcf0139d223849492548946243d3910">   44</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<a class="code" href="_s_d_l_system_8cpp.html#acbcf0139d223849492548946243d3910">gWidth</a> = 0x0;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1">   45</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<a class="code" href="_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1">gHeight</a> = 0x0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a9dc2ce5e46f82bd0921de087285c9d31">   35</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_s_d_l_system.html#a9dc2ce5e46f82bd0921de087285c9d31">SDLSystem::getTicks</a>() {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">return</span> SDL_GetTicks();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#ifdef FIXME</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span><span class="keywordtype">void</span> <a class="code" href="class_system.html#aed748f7e5dc73f15c1038cb6edb150d0">SDLSystem::bindKeyCommand</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *cmd, <span class="keywordtype">int</span> key, <span class="keywordtype">int</span> event) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span> (key &gt; 255) {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        printf(<span class="stringliteral">&quot;Currently key event mapping only handles ASCII characters\n&quot;</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    printf(<span class="stringliteral">&quot;Bound command &#39;%s&#39; -&gt; event %i (0x%x key)\n&quot;</span>, cmd, event, key);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// Constructors</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a3bc62709ebb1836e195bcf0b3288cce1">   52</a></span>&#160;<a class="code" href="class_s_d_l_system.html#a3bc62709ebb1836e195bcf0b3288cce1">SDLSystem::SDLSystem</a>() : <a class="code" href="class_system.html">System</a>()</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">mWindow</a> = 0x0;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="_s_d_l_system_8cpp.html#acbcf0139d223849492548946243d3910">gWidth</a> = &amp;<a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1">gHeight</a> = &amp;<a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_s_d_l_system.html#a5dcb89b53cb187afc5dec1101ba7f0d5">mFirstMouseEvent</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a772dbadad5c324b45186d524d8e9e5e8">   62</a></span>&#160;<a class="code" href="class_s_d_l_system.html#a772dbadad5c324b45186d524d8e9e5e8">SDLSystem::~SDLSystem</a>()</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    keyEvents[key] = event;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a2234bc651ebcca72b63aec3995cf2221">   52</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#a2234bc651ebcca72b63aec3995cf2221">SDLSystem::setGrabMouse</a>(<span class="keywordtype">bool</span> on) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    SDL_WM_GrabInput(on ? SDL_GRAB_ON : SDL_GRAB_OFF);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a580b3102d110eadf2d3168201dab91fe">   56</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#a580b3102d110eadf2d3168201dab91fe">SDLSystem::initVideo</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>, <span class="keywordtype">bool</span> fullscreen) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a> = 0; <span class="comment">//, x, y;</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Create GL context</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    SDL_Init(SDL_INIT_VIDEO);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    printf(<span class="stringliteral">&quot;Created OpenGL Context\n&quot;</span>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    atexit(SDL_Quit);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a> = <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a> = <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// Public Accessors</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a9dc2ce5e46f82bd0921de087285c9d31">   71</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_s_d_l_system.html#a9dc2ce5e46f82bd0921de087285c9d31">SDLSystem::getTicks</a>()</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">return</span> SDL_GetTicks();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">// Public Mutators</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#ifdef FIXME</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span><span class="keywordtype">void</span> <a class="code" href="class_system.html#aed748f7e5dc73f15c1038cb6edb150d0">SDLSystem::bindKeyCommand</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *cmd, <span class="keywordtype">int</span> key, <span class="keywordtype">int</span> event)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">if</span> (key &gt; 255)</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        printf(<span class="stringliteral">&quot;Currently key event mapping only handles ASCII characters\n&quot;</span>);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    printf(<span class="stringliteral">&quot;Bound command &#39;%s&#39; -&gt; event %i (0x%x key)\n&quot;</span>, cmd, event, key);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    keyEvents[key] = event;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a2234bc651ebcca72b63aec3995cf2221">   97</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#a2234bc651ebcca72b63aec3995cf2221">SDLSystem::setGrabMouse</a>(<span class="keywordtype">bool</span> on)</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    SDL_WM_GrabInput(on ? SDL_GRAB_ON : SDL_GRAB_OFF);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a580b3102d110eadf2d3168201dab91fe">  103</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#a580b3102d110eadf2d3168201dab91fe">SDLSystem::initVideo</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>,</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">bool</span> fullscreen)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a> = 0; <span class="comment">//, x, y;</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">// Create GL context</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    SDL_Init(SDL_INIT_VIDEO);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    printf(<span class="stringliteral">&quot;Created OpenGL Context\n&quot;</span>);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    atexit(SDL_Quit);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a> = <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a> = <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#ifndef __APPLE__</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span> (!<a class="code" href="class_system.html#ae8648dbd93ade6bba590c3b232cd88bf">m_driver</a> || !<a class="code" href="class_system.html#ae8648dbd93ade6bba590c3b232cd88bf">m_driver</a>[0] || SDL_GL_LoadLibrary(<a class="code" href="class_system.html#ae8648dbd93ade6bba590c3b232cd88bf">m_driver</a>) &lt; 0)</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    {</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        SDL_ClearError();</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="comment">// Fallback 1</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">if</span> (SDL_GL_LoadLibrary(<span class="stringliteral">&quot;libGL.so&quot;</span>) &lt; 0)</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            SDL_ClearError();</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="comment">// Fallback 2</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="keywordflow">if</span> (SDL_GL_LoadLibrary(<span class="stringliteral">&quot;libGL.so.1&quot;</span>) &lt; 0)</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;initVideo&gt; SDL_GL_LoadLibrary failed!\n&quot;</span>);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;initVideo&gt; Error is [%s].\n&quot;</span>, SDL_GetError());</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                <a class="code" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">shutdown</a>(1);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            }</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    flags |= SDL_OPENGL;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a> = fullscreen;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>)</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        flags |= SDL_FULLSCREEN;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#ifndef __APPLE__</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span> (!<a class="code" href="class_system.html#ae8648dbd93ade6bba590c3b232cd88bf">m_driver</a> || !<a class="code" href="class_system.html#ae8648dbd93ade6bba590c3b232cd88bf">m_driver</a>[0] || SDL_GL_LoadLibrary(<a class="code" href="class_system.html#ae8648dbd93ade6bba590c3b232cd88bf">m_driver</a>) &lt; 0) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        SDL_ClearError();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="comment">// Fallback 1</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">if</span> (SDL_GL_LoadLibrary(<span class="stringliteral">&quot;libGL.so&quot;</span>) &lt; 0) {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            SDL_ClearError();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="comment">// Fallback 2</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">if</span> (SDL_GL_LoadLibrary(<span class="stringliteral">&quot;libGL.so.1&quot;</span>) &lt; 0) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;initVideo&gt; SDL_GL_LoadLibrary failed!\n&quot;</span>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;initVideo&gt; Error is [%s].\n&quot;</span>, SDL_GetError());</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <a class="code" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">shutdown</a>(1);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    flags |= SDL_OPENGL;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a> = fullscreen;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        flags |= SDL_FULLSCREEN;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    SDL_ShowCursor(SDL_DISABLE);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="class_s_d_l_system.html#a2234bc651ebcca72b63aec3995cf2221">setGrabMouse</a>(<span class="keyword">true</span>); <span class="comment">// Always grab mouse!</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">mWindow</a> = SDL_SetVideoMode(width, height, 16, flags);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    SDL_WM_SetCaption(VERSION, VERSION);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="comment">//SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    SDL_EnableKeyRepeat(100, SDL_DEFAULT_REPEAT_INTERVAL);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#ifdef UNICODE_SUPPORT</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor"></span>    <span class="comment">//@JML get Unicode value of key for international keyboard</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    SDL_EnableUNICODE(1);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">// Start game renderer</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="class_system.html#aa69c83209d4b66269bca93fd7177c2d9">initGL</a>();</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">// Resize context</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="class_system.html#a444b038c3eab08477c7ea13673a9b0d4">resizeGL</a>(width, height);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9">  116</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9">SDLSystem::resize</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>) {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a> = 0;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    GLfloat aspect;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a> = <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a> = <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    aspect = (GLfloat)width/(GLfloat)<a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    glViewport(0, 0, width, height);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    glMatrixMode(GL_PROJECTION);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    glLoadIdentity();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="comment">// gluPerspective is deprecated!</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="comment">// gluPerspective(m_fovY, aspect, m_clipNear, m_clipFar);</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="comment">// fix: http://stackoverflow.com/a/2417756</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    GLfloat fH = tanf(<a class="code" href="class_system.html#a8a4e289b8f715e0ee232d0294d91b5f2">m_fovY</a> / 360.0f * 3.14159f) * <a class="code" href="class_system.html#addc77fd9cc39517d87a61b64c8101f3a">m_clipNear</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    GLfloat fW = fH * aspect;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    glFrustum(-fW, fW, -fH, fH, <a class="code" href="class_system.html#addc77fd9cc39517d87a61b64c8101f3a">m_clipNear</a>, <a class="code" href="class_system.html#ae14fa2a81634bc28dc65820a1786e041">m_clipFar</a>);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    glMatrixMode(GL_MODELVIEW);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    glLoadIdentity();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="comment">// Resize window</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    flags |= SDL_OPENGL;</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    SDL_ShowCursor(SDL_DISABLE);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="class_s_d_l_system.html#a2234bc651ebcca72b63aec3995cf2221">setGrabMouse</a>(<span class="keyword">true</span>); <span class="comment">// Always grab mouse!</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>)</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        flags |= SDL_FULLSCREEN;</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <a class="code" href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">mWindow</a> = SDL_SetVideoMode(width, height, 16, flags);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    SDL_WM_SetCaption(VERSION, VERSION);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="comment">//SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    SDL_EnableKeyRepeat(100, SDL_DEFAULT_REPEAT_INTERVAL);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#ifdef UNICODE_SUPPORT</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor"></span>    <span class="comment">//@JML get Unicode value of key for international keyboard</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    SDL_EnableUNICODE(1);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="comment">// Start game renderer</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="class_system.html#aa69c83209d4b66269bca93fd7177c2d9">initGL</a>();</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="comment">// Resize context</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <a class="code" href="class_system.html#a444b038c3eab08477c7ea13673a9b0d4">resizeGL</a>(width, height);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;}</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
-<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9">  170</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9">SDLSystem::resize</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>)</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;{</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a> = 0;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    GLfloat aspect;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a> = <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a>;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a> = <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    aspect = (GLfloat)width/(GLfloat)<a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a>;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    glViewport(0, 0, width, height);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    glMatrixMode(GL_PROJECTION);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    glLoadIdentity();</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="comment">// gluPerspective is deprecated!</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="comment">// gluPerspective(m_fovY, aspect, m_clipNear, m_clipFar);</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="comment">// fix: http://stackoverflow.com/a/2417756</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    GLfloat fH = tanf(<a class="code" href="class_system.html#a8a4e289b8f715e0ee232d0294d91b5f2">m_fovY</a> / 360.0f * 3.14159f) * <a class="code" href="class_system.html#addc77fd9cc39517d87a61b64c8101f3a">m_clipNear</a>;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    GLfloat fW = fH * aspect;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    glFrustum(-fW, fW, -fH, fH, <a class="code" href="class_system.html#addc77fd9cc39517d87a61b64c8101f3a">m_clipNear</a>, <a class="code" href="class_system.html#ae14fa2a81634bc28dc65820a1786e041">m_clipFar</a>);</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    glMatrixMode(GL_MODELVIEW);</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    glLoadIdentity();</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="comment">// Resize window</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    flags |= SDL_OPENGL;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>)</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        flags |= SDL_FULLSCREEN;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <a class="code" href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">mWindow</a> = SDL_SetVideoMode(width, height, 16, flags);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="comment">// Resize context</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <a class="code" href="class_system.html#a444b038c3eab08477c7ea13673a9b0d4">resizeGL</a>(width, height);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde">  153</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde">SDLSystem::runGame</a>() {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    SDL_Event event;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> mkeys, mod, key;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordtype">int</span> btn = 0;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordtype">bool</span> specialKey;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">for</span> (;;) {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="comment">// Pause for 10-20 ms</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        SDL_Delay(10);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">while</span> (SDL_PollEvent(&amp;event)) {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">switch</span> (event.type) {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                <span class="keywordflow">case</span> SDL_QUIT:</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                    <a class="code" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">shutdown</a>(0);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                <span class="keywordflow">case</span> SDL_MOUSEMOTION:</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                    <span class="comment">// Wrap motion</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                    <span class="keywordflow">if</span> (!<a class="code" href="class_s_d_l_system.html#a5dcb89b53cb187afc5dec1101ba7f0d5">mFirstMouseEvent</a>) {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                        <a class="code" href="class_s_d_l_system.html#a5dcb89b53cb187afc5dec1101ba7f0d5">mFirstMouseEvent</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                        <a class="code" href="class_system.html#a2040ef3b12148143e6c73099f2f7ab60">handleMouseMotionEvent</a>(event.motion.xrel/2, event.motion.yrel/2);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                <span class="keywordflow">case</span> SDL_MOUSEBUTTONDOWN:</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="keywordflow">case</span> SDL_MOUSEBUTTONUP:</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    <span class="comment">//handleMouseEvent(event.button.button, event.button.state,</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    <span class="comment">//                    event.button.x, event.button.y);</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                    <span class="keywordflow">switch</span> (event.button.button) {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                        <span class="keywordflow">case</span> SDL_BUTTON_LEFT:</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                            btn = <a class="code" href="_system_8h.html#a974142330faa7c79e73f52cbeb16e139">SYS_MOUSE_LEFT</a>;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                        <span class="keywordflow">case</span> SDL_BUTTON_RIGHT:</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                            btn = <a class="code" href="_system_8h.html#a6297e268cba108755ef8bbd40a709d38">SYS_MOUSE_RIGHT</a>;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                        <span class="keywordflow">case</span> SDL_BUTTON_MIDDLE:</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                            btn = <a class="code" href="_system_8h.html#a6439eb5a948104d45a35466caff95cbe">SYS_MOUSE_MIDDLE</a>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                    }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                    <span class="keywordflow">if</span> (event.button.state == SDL_PRESSED) {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                        <a class="code" href="class_system.html#a39aa758190c36caecd80ecd88957ba22">handleKeyPressEvent</a>(btn, 0); </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                        <a class="code" href="class_system.html#aa656b0e5028db399d683ff7a04b2b0e6">handleKeyReleaseEvent</a>(btn, 0); </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                    }</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="keywordflow">case</span> SDL_KEYUP:</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keywordflow">case</span> SDL_KEYDOWN:</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                    <span class="comment">//SDL_GetMouseState(&amp;x, &amp;y); // Get cursor pos</span></div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <a class="code" href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">mWindow</a> = SDL_SetVideoMode(width, height, 16, flags);</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="comment">// Resize context</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <a class="code" href="class_system.html#a444b038c3eab08477c7ea13673a9b0d4">resizeGL</a>(width, height);</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;}</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                    mkeys = (<span class="keywordtype">unsigned</span> int)SDL_GetModState();</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                    mod = 0;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_LSHIFT)</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a423d7a749ecbd74277a9e0f9fdf563b0">SYS_MOD_KEY_LSHIFT</a>;</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
-<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde">  210</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde">SDLSystem::runGame</a>()</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;{</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    SDL_Event event;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> mkeys, mod, key;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordtype">int</span> btn = 0;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordtype">bool</span> specialKey;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_RSHIFT)</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a984b6123ff4e9a9323b28a9e0c060fcc">SYS_MOD_KEY_RSHIFT</a>;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_LCTRL)</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1af2447392b07748061da3827c6c4f82dd">SYS_MOD_KEY_LCTRL</a>;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_RCTRL)</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1ac97c9f11bc76e1e7111eeb56cabe7cf3">SYS_MOD_KEY_RCTRL</a>;</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordflow">for</span> (;;)</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    {</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="comment">// Pause for 10-20 ms</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        SDL_Delay(10);</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordflow">while</span> (SDL_PollEvent(&amp;event))</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordflow">switch</span> (event.type)</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            {</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                <span class="keywordflow">case</span> SDL_QUIT:</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    <a class="code" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">shutdown</a>(0);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                <span class="keywordflow">case</span> SDL_MOUSEMOTION:</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                    <span class="comment">// Wrap motion</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                    <span class="keywordflow">if</span> (!<a class="code" href="class_s_d_l_system.html#a5dcb89b53cb187afc5dec1101ba7f0d5">mFirstMouseEvent</a>) {</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                        <a class="code" href="class_s_d_l_system.html#a5dcb89b53cb187afc5dec1101ba7f0d5">mFirstMouseEvent</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                        <a class="code" href="class_system.html#a2040ef3b12148143e6c73099f2f7ab60">handleMouseMotionEvent</a>(event.motion.xrel/2, event.motion.yrel/2);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                    }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                <span class="keywordflow">case</span> SDL_MOUSEBUTTONDOWN:</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                <span class="keywordflow">case</span> SDL_MOUSEBUTTONUP:</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                    <span class="comment">//handleMouseEvent(event.button.button, event.button.state,</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                    <span class="comment">//                    event.button.x, event.button.y);</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                    <span class="keywordflow">switch</span> (event.button.button)</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                    {</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                        <span class="keywordflow">case</span> SDL_BUTTON_LEFT:</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                            btn = <a class="code" href="_system_8h.html#a974142330faa7c79e73f52cbeb16e139">SYS_MOUSE_LEFT</a>;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                        <span class="keywordflow">case</span> SDL_BUTTON_RIGHT:</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                            btn = <a class="code" href="_system_8h.html#a6297e268cba108755ef8bbd40a709d38">SYS_MOUSE_RIGHT</a>;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                        <span class="keywordflow">case</span> SDL_BUTTON_MIDDLE:</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                            btn = <a class="code" href="_system_8h.html#a6439eb5a948104d45a35466caff95cbe">SYS_MOUSE_MIDDLE</a>;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_LALT)</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a32a897a4c44761361c0823eaad0ccded">SYS_MOD_KEY_LALT</a>;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_RALT)</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1afad4d90fc08dd2d6a40dba5762724ec5">SYS_MOD_KEY_RALT</a>;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_LMETA)</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1aaca0425499b686d8410a45013067e3f0">SYS_MOD_KEY_LMETA</a>;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_RMETA)</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a01ecd1627e8b371cbe50fcda93c2c178">SYS_MOD_KEY_RMETA</a>;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                    key = <span class="keyword">event</span>.key.keysym.sym;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                    specialKey = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                    <span class="keywordflow">switch</span> (key) {</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                        <span class="keywordflow">case</span> SDLK_F1:</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                            key = <a class="code" href="_system_8h.html#a788bac8e3cedc92bda91baf54da5aeda">SYS_KEY_F1</a>;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                        <span class="keywordflow">case</span> SDLK_F2:</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                            key = <a class="code" href="_system_8h.html#a9aaa9da8b653501e1485e223a1a09659">SYS_KEY_F2</a>;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                        <span class="keywordflow">case</span> SDLK_F3:</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                            key = <a class="code" href="_system_8h.html#a5d86c4b12288003dd3737b65c36fffdb">SYS_KEY_F3</a>;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                        <span class="keywordflow">case</span> SDLK_F4:</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                            key = <a class="code" href="_system_8h.html#ad0708d988a90afbe7193886969c29123">SYS_KEY_F4</a>;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                        <span class="keywordflow">case</span> SDLK_F5:</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                            key = <a class="code" href="_system_8h.html#aada9fdc679ac04a3c0e386905bc18d02">SYS_KEY_F5</a>;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                    }</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                    <span class="keywordflow">if</span> (event.button.state == SDL_PRESSED)</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                    {</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                        <a class="code" href="class_system.html#a39aa758190c36caecd80ecd88957ba22">handleKeyPressEvent</a>(btn, 0); </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                    }</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                    {</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                        <a class="code" href="class_system.html#aa656b0e5028db399d683ff7a04b2b0e6">handleKeyReleaseEvent</a>(btn, 0); </div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                    }</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                <span class="keywordflow">case</span> SDL_KEYUP:</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                <span class="keywordflow">case</span> SDL_KEYDOWN:</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                    <span class="comment">//SDL_GetMouseState(&amp;x, &amp;y); // Get cursor pos</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                    mkeys = (<span class="keywordtype">unsigned</span> int)SDL_GetModState();</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                    mod = 0;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_LSHIFT)</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a423d7a749ecbd74277a9e0f9fdf563b0">SYS_MOD_KEY_LSHIFT</a>;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_RSHIFT)</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a984b6123ff4e9a9323b28a9e0c060fcc">SYS_MOD_KEY_RSHIFT</a>;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_LCTRL)</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1af2447392b07748061da3827c6c4f82dd">SYS_MOD_KEY_LCTRL</a>;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_RCTRL)</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1ac97c9f11bc76e1e7111eeb56cabe7cf3">SYS_MOD_KEY_RCTRL</a>;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_LALT)</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a32a897a4c44761361c0823eaad0ccded">SYS_MOD_KEY_LALT</a>;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_RALT)</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1afad4d90fc08dd2d6a40dba5762724ec5">SYS_MOD_KEY_RALT</a>;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_LMETA)</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1aaca0425499b686d8410a45013067e3f0">SYS_MOD_KEY_LMETA</a>;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                    <span class="keywordflow">if</span> (mkeys &amp; KMOD_RMETA)</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                        mod |= <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a01ecd1627e8b371cbe50fcda93c2c178">SYS_MOD_KEY_RMETA</a>;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                    key = <span class="keyword">event</span>.key.keysym.sym;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                    specialKey = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                    <span class="keywordflow">switch</span> (key)</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                    {</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                        <span class="keywordflow">case</span> SDLK_F1:</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                            key = <a class="code" href="_system_8h.html#a788bac8e3cedc92bda91baf54da5aeda">SYS_KEY_F1</a>;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                        <span class="keywordflow">case</span> SDLK_F2:</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                            key = <a class="code" href="_system_8h.html#a9aaa9da8b653501e1485e223a1a09659">SYS_KEY_F2</a>;</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                        <span class="keywordflow">case</span> SDLK_F3:</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                            key = <a class="code" href="_system_8h.html#a5d86c4b12288003dd3737b65c36fffdb">SYS_KEY_F3</a>;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                        <span class="keywordflow">case</span> SDLK_F4:</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                            key = <a class="code" href="_system_8h.html#ad0708d988a90afbe7193886969c29123">SYS_KEY_F4</a>;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                        <span class="keywordflow">case</span> SDLK_F5:</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                            key = <a class="code" href="_system_8h.html#aada9fdc679ac04a3c0e386905bc18d02">SYS_KEY_F5</a>;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                        <span class="keywordflow">case</span> SDLK_F6:</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                            key = <a class="code" href="_system_8h.html#a633ef922bf465251127a27994275599c">SYS_KEY_F6</a>;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                        <span class="keywordflow">case</span> SDLK_F7:</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                            key = <a class="code" href="_system_8h.html#a85ab9300876bf75fa705b6be79573f7a">SYS_KEY_F7</a>;</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                        <span class="keywordflow">case</span> SDLK_F8:</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                            key = <a class="code" href="_system_8h.html#ac68b3a7fbec4c7a78af517c2355d8308">SYS_KEY_F8</a>;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                        <span class="keywordflow">case</span> SDLK_F9:</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                            key = <a class="code" href="_system_8h.html#af3c2f6cac08827cde46d68bf037f9623">SYS_KEY_F9</a>;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                        <span class="keywordflow">case</span> SDLK_F10:</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                            key = <a class="code" href="_system_8h.html#a4976fbb5b689f077c14ad6ec9b8d4d62">SYS_KEY_F10</a>;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                        <span class="keywordflow">case</span> SDLK_F11:</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                            key = <a class="code" href="_system_8h.html#ad9fd88c872d24187f37df0da74efe49a">SYS_KEY_F11</a>;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                        <span class="keywordflow">case</span> SDLK_F12:</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                            key = <a class="code" href="_system_8h.html#a496b522026750fa336beb95f6b6c3919">SYS_KEY_F12</a>;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                        <span class="keywordflow">case</span> SDLK_UP:</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                            key = <a class="code" href="_system_8h.html#a704a6e1821351a065a5752c000ff2411">SYS_KEY_UP</a>;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                        <span class="keywordflow">case</span> SDLK_DOWN:</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                            key = <a class="code" href="_system_8h.html#a001173b091f9a0ea14633350af722ea9">SYS_KEY_DOWN</a>;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                        <span class="keywordflow">case</span> SDLK_RIGHT:</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                            key = <a class="code" href="_system_8h.html#a26bfa04bdb9c35599ccf15831f09479a">SYS_KEY_RIGHT</a>;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                        <span class="keywordflow">case</span> SDLK_LEFT:</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                            key = <a class="code" href="_system_8h.html#ad9713bd1d744b45b009107bfbb4f61ab">SYS_KEY_LEFT</a>;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                        <span class="keywordflow">case</span> SDLK_PAGEDOWN:</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                            key = <a class="code" href="_system_8h.html#a8269b0104aaa16240cc28f10069e76ef">SYS_KEY_PAGEDOWN</a>;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                        <span class="keywordflow">case</span> SDLK_PAGEUP:</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                            key = <a class="code" href="_system_8h.html#a099e6a2fa85150b4daf5b0b3eb2e5f27">SYS_KEY_PAGEUP</a>;</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                    }</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="preprocessor">#ifdef __APPLE__</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="preprocessor"></span>                    <span class="comment">// Handle CMD+Q to quit in all circumstances</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                    <span class="keywordflow">if</span> (key == <span class="charliteral">&#39;q&#39;</span>) {</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                        <span class="keywordflow">if</span> (mod &amp; <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1aaca0425499b686d8410a45013067e3f0">SYS_MOD_KEY_LMETA</a>) {</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                            <a class="code" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">shutdown</a>(0);</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                        }</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                    }</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<span class="preprocessor">#ifdef UNICODE_SUPPORT</span></div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="preprocessor"></span>                    <span class="comment">// JML: if a std key was pressed get it ascii code</span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                    <span class="keywordflow">if</span> (!specialKey &amp;&amp; key != 0)</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                    {</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                        <span class="keywordflow">if</span> ((event.key.keysym.unicode &amp; 0xFF80) == 0)</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                        {</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                            key= (<span class="keywordtype">unsigned</span> int)(event.key.keysym.unicode &amp; 0x7F);</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                        }</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                        {</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                            key = 0;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                        }</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                    }</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                    <span class="keywordflow">if</span> (key &gt; 255 &amp;&amp; key &lt; 1000)</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                    {</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                        key = 0;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                    }</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                    <span class="keywordflow">if</span> (key == <a class="code" href="class_system.html#a619937c41cce998d5a769066a2227590">mConsoleKey</a>)</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                    {</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                        <span class="keywordflow">if</span> (event.type == SDL_KEYDOWN)</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                        {</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                            <a class="code" href="class_system.html#a23012d0c7e57c529178c3e325f3e4dc2">mConsoleMode</a> = !<a class="code" href="class_system.html#a23012d0c7e57c529178c3e325f3e4dc2">mConsoleMode</a>;</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                            <span class="comment">// Tmp hack</span></div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                            <a class="code" href="class_system.html#a18bec0fded2e33f5e22b657dbbaa308f">handleConsoleKeyPressEvent</a>(<a class="code" href="class_system.html#a619937c41cce998d5a769066a2227590">mConsoleKey</a>, 0);</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                        }</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                    }</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="class_system.html#a23012d0c7e57c529178c3e325f3e4dc2">mConsoleMode</a>) <span class="comment">// Console keying ( text input )</span></div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                    {</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                        <span class="keywordflow">switch</span> (event.type)</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                        {</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                            <span class="keywordflow">case</span> SDL_KEYDOWN:</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                                <a class="code" href="class_system.html#a18bec0fded2e33f5e22b657dbbaa308f">handleConsoleKeyPressEvent</a>(key, mod);</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                                ;</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                        }</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                    }</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="class_system.html#a6cc331278f4af65f7e34a393bc07f838">mKeyEvents</a>[key] != 0)<span class="comment">// Bound key</span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                    {</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                        <span class="comment">//if (key &lt; 255 &amp;&amp; mKeyEvents[key] != 0)</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                        key = <a class="code" href="class_system.html#a6cc331278f4af65f7e34a393bc07f838">mKeyEvents</a>[key];</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;                        <span class="keywordflow">switch</span> (event.type)</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;                        {</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;                            <span class="keywordflow">case</span> SDL_KEYDOWN:</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;                                <a class="code" href="class_system.html#ac0dd30a42fffd6e5c288d7f815007732">handleBoundKeyPressEvent</a>(key);</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;                                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;                            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;                                <a class="code" href="class_system.html#a65f2dbd9177785e8dd964481591c0d35">handleBoundKeyReleaseEvent</a>(key);</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;                        }</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;                    }</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                    <span class="keywordflow">else</span> <span class="comment">// &#39;Classic&#39; key event handlers</span></div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                    {</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;                        <span class="keywordflow">switch</span> (event.type)</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;                        {</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;                            <span class="keywordflow">case</span> SDL_KEYDOWN:</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;                                <a class="code" href="class_system.html#a39aa758190c36caecd80ecd88957ba22">handleKeyPressEvent</a>(key, mod);</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;                                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;                            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;                                <a class="code" href="class_system.html#aa656b0e5028db399d683ff7a04b2b0e6">handleKeyReleaseEvent</a>(key, mod);</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;                        }</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;                    }</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;                <span class="keywordflow">case</span> SDL_VIDEORESIZE:</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;                    <a class="code" href="class_system.html#a444b038c3eab08477c7ea13673a9b0d4">resizeGL</a>(event.resize.w, event.resize.h);</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;                    <a class="code" href="class_system.html#a443271510c93d198bb1c53d88c364550">gameFrame</a>();</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;            }</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        }</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;        <span class="comment">// Game frame</span></div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        <a class="code" href="class_system.html#a443271510c93d198bb1c53d88c364550">gameFrame</a>();</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    }</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;}</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;</div>
-<div class="line"><a name="l00467"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">  467</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">SDLSystem::shutdown</a>(<span class="keywordtype">int</span> <a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>)</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;{</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    <span class="comment">//SDL_QuitSubSystem(SDL_OPENGL);</span></div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    <span class="comment">//SDL_Quit(); // Moved to atexit() call</span></div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <span class="comment">//#ifdef DEBUG_MEMORY</span></div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    <span class="comment">//printf(&quot;[Mongoose MEMORY_DEBUG]\nUnfreed memory table:\n&quot;);</span></div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <span class="comment">//dump_memory_report();</span></div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="comment">//#endif</span></div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    exit(i);</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;}</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;</div>
-<div class="line"><a name="l00481"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a07038518a95c95b492ae4c4f3903c3a5">  481</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#a07038518a95c95b492ae4c4f3903c3a5">SDLSystem::toggleFullscreen</a>()</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;{</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">mWindow</a>)</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    {</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;        <a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a> = !<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>;</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;        SDL_ShowCursor(SDL_DISABLE);</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;        <span class="comment">// SDL_WM_ToggleFullScreen does not work on all platforms</span></div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        <span class="comment">// eg. Mac OS X</span></div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;        <span class="comment">// SDL_WM_ToggleFullScreen(mWindow);</span></div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;        <span class="comment">// I added a mFullscreen flag to this class. Then I modified it&#39;s</span></div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;        <span class="comment">// resize() method to use the SDL_FULLSCREEN flag in the</span></div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;        <span class="comment">// SetVideoMode() call based on the mFullscreen flag.</span></div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        <span class="comment">// Then, I modified this method to find out an available</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;        <span class="comment">// resolution for the fullscreen mode.</span></div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;        <span class="comment">// Now you can see something when switching to Fullscreen,</span></div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;        <span class="comment">// but it&#39;s full of graphical glitches...? I don&#39;t know...</span></div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;        <span class="comment">// -- xythobuz 2013-12-31</span></div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a> = <a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a>,</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;            <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a> = <a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a>;</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>) {</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;            <a class="code" href="class_s_d_l_system.html#aa9f31c0efec8ec455b2d69d38fda0147">m_old_width</a> = <a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a>;</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;            <a class="code" href="class_s_d_l_system.html#a1b7f08c23732550ec6f054e8d156894b">m_old_height</a> = <a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a>;</div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;            SDL_Rect **dimensions = SDL_ListModes(NULL, SDL_OPENGL | SDL_FULLSCREEN);</div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;            <span class="keywordflow">if</span> (dimensions == NULL) {</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;                printf(<span class="stringliteral">&quot;Can&#39;t enter fullscreen!\n&quot;</span>);</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;                <a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a> = !<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>;</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;            }</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;            <span class="keywordflow">if</span> (dimensions != (SDL_Rect **)-1) {</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;                width = dimensions[0]-&gt;w;</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;                height = dimensions[0]-&gt;h;</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;            }</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;        }</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>) {</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;            width = <a class="code" href="class_s_d_l_system.html#aa9f31c0efec8ec455b2d69d38fda0147">m_old_width</a>;</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;            height = <a class="code" href="class_s_d_l_system.html#a1b7f08c23732550ec6f054e8d156894b">m_old_height</a>;</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;        }</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;        <a class="code" href="class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9">resize</a>(width, height);</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    }</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;}</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;</div>
-<div class="line"><a name="l00525"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#aad3caf289a517570274380e132928bbf">  525</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#aad3caf289a517570274380e132928bbf">SDLSystem::swapBuffersGL</a>()</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;{</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;    SDL_GL_SwapBuffers();</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;}</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                        <span class="keywordflow">case</span> SDLK_F6:</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                            key = <a class="code" href="_system_8h.html#a633ef922bf465251127a27994275599c">SYS_KEY_F6</a>;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                        <span class="keywordflow">case</span> SDLK_F7:</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                            key = <a class="code" href="_system_8h.html#a85ab9300876bf75fa705b6be79573f7a">SYS_KEY_F7</a>;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                        <span class="keywordflow">case</span> SDLK_F8:</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                            key = <a class="code" href="_system_8h.html#ac68b3a7fbec4c7a78af517c2355d8308">SYS_KEY_F8</a>;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                        <span class="keywordflow">case</span> SDLK_F9:</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                            key = <a class="code" href="_system_8h.html#af3c2f6cac08827cde46d68bf037f9623">SYS_KEY_F9</a>;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                        <span class="keywordflow">case</span> SDLK_F10:</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                            key = <a class="code" href="_system_8h.html#a4976fbb5b689f077c14ad6ec9b8d4d62">SYS_KEY_F10</a>;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                        <span class="keywordflow">case</span> SDLK_F11:</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                            key = <a class="code" href="_system_8h.html#ad9fd88c872d24187f37df0da74efe49a">SYS_KEY_F11</a>;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                        <span class="keywordflow">case</span> SDLK_F12:</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                            key = <a class="code" href="_system_8h.html#a496b522026750fa336beb95f6b6c3919">SYS_KEY_F12</a>;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                        <span class="keywordflow">case</span> SDLK_UP:</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                            key = <a class="code" href="_system_8h.html#a704a6e1821351a065a5752c000ff2411">SYS_KEY_UP</a>;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                        <span class="keywordflow">case</span> SDLK_DOWN:</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                            key = <a class="code" href="_system_8h.html#a001173b091f9a0ea14633350af722ea9">SYS_KEY_DOWN</a>;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                        <span class="keywordflow">case</span> SDLK_RIGHT:</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                            key = <a class="code" href="_system_8h.html#a26bfa04bdb9c35599ccf15831f09479a">SYS_KEY_RIGHT</a>;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                        <span class="keywordflow">case</span> SDLK_LEFT:</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                            key = <a class="code" href="_system_8h.html#ad9713bd1d744b45b009107bfbb4f61ab">SYS_KEY_LEFT</a>;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                        <span class="keywordflow">case</span> SDLK_PAGEDOWN:</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                            key = <a class="code" href="_system_8h.html#a8269b0104aaa16240cc28f10069e76ef">SYS_KEY_PAGEDOWN</a>;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                        <span class="keywordflow">case</span> SDLK_PAGEUP:</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                            key = <a class="code" href="_system_8h.html#a099e6a2fa85150b4daf5b0b3eb2e5f27">SYS_KEY_PAGEUP</a>;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                            specialKey = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                    }</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="preprocessor">#ifdef __APPLE__</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="preprocessor"></span>                    <span class="comment">// Handle CMD+Q to quit in all circumstances</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                    <span class="keywordflow">if</span> (key == <span class="charliteral">&#39;q&#39;</span>) {</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                        <span class="keywordflow">if</span> (mod &amp; <a class="code" href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1aaca0425499b686d8410a45013067e3f0">SYS_MOD_KEY_LMETA</a>) {</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                            <a class="code" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">shutdown</a>(0);</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                        }</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                    }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="preprocessor">#ifdef UNICODE_SUPPORT</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor"></span>                    <span class="comment">// JML: if a std key was pressed get it ascii code</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                    <span class="keywordflow">if</span> (!specialKey &amp;&amp; key != 0) {</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                        <span class="keywordflow">if</span> ((event.key.keysym.unicode &amp; 0xFF80) == 0) {</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                            key = (<span class="keywordtype">unsigned</span> int)(event.key.keysym.unicode &amp; 0x7F);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                            key = 0;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                        }</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                    }</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                    <span class="keywordflow">if</span> (key &gt; 255 &amp;&amp; key &lt; 1000) {</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                        key = 0;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                    }</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                    <span class="keywordflow">if</span> (key == <a class="code" href="class_system.html#a619937c41cce998d5a769066a2227590">mConsoleKey</a>) {</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                        <span class="keywordflow">if</span> (event.type == SDL_KEYDOWN) {</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                            <a class="code" href="class_system.html#a23012d0c7e57c529178c3e325f3e4dc2">mConsoleMode</a> = !<a class="code" href="class_system.html#a23012d0c7e57c529178c3e325f3e4dc2">mConsoleMode</a>;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                            <span class="comment">// Tmp hack</span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                            <a class="code" href="class_system.html#a18bec0fded2e33f5e22b657dbbaa308f">handleConsoleKeyPressEvent</a>(<a class="code" href="class_system.html#a619937c41cce998d5a769066a2227590">mConsoleKey</a>, 0);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                        }</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="class_system.html#a23012d0c7e57c529178c3e325f3e4dc2">mConsoleMode</a>) { <span class="comment">// Console keying (text input)</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                        <span class="keywordflow">switch</span> (event.type) {</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                            <span class="keywordflow">case</span> SDL_KEYDOWN:</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                                <a class="code" href="class_system.html#a18bec0fded2e33f5e22b657dbbaa308f">handleConsoleKeyPressEvent</a>(key, mod);</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                                ;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                        }</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="class_system.html#a6cc331278f4af65f7e34a393bc07f838">mKeyEvents</a>[key] != 0) { <span class="comment">// Bound key</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                        <span class="comment">//if (key &lt; 255 &amp;&amp; mKeyEvents[key] != 0)</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                        key = <a class="code" href="class_system.html#a6cc331278f4af65f7e34a393bc07f838">mKeyEvents</a>[key];</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                        <span class="keywordflow">switch</span> (event.type) {</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                            <span class="keywordflow">case</span> SDL_KEYDOWN:</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                                <a class="code" href="class_system.html#ac0dd30a42fffd6e5c288d7f815007732">handleBoundKeyPressEvent</a>(key);</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                                <a class="code" href="class_system.html#a65f2dbd9177785e8dd964481591c0d35">handleBoundKeyReleaseEvent</a>(key);</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                        }</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                    } <span class="keywordflow">else</span> { <span class="comment">// &#39;Classic&#39; key event handlers</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                        <span class="keywordflow">switch</span> (event.type) {</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                            <span class="keywordflow">case</span> SDL_KEYDOWN:</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                                <a class="code" href="class_system.html#a39aa758190c36caecd80ecd88957ba22">handleKeyPressEvent</a>(key, mod);</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                                <a class="code" href="class_system.html#aa656b0e5028db399d683ff7a04b2b0e6">handleKeyReleaseEvent</a>(key, mod);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                        }</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                    }</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                <span class="keywordflow">case</span> SDL_VIDEORESIZE:</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                    <a class="code" href="class_system.html#a444b038c3eab08477c7ea13673a9b0d4">resizeGL</a>(event.resize.w, event.resize.h);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                    <a class="code" href="class_system.html#a443271510c93d198bb1c53d88c364550">gameFrame</a>();</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            }</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        }</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        <span class="comment">// Game frame</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        <a class="code" href="class_system.html#a443271510c93d198bb1c53d88c364550">gameFrame</a>();</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    }</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;}</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00383"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">  383</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">SDLSystem::shutdown</a>(<span class="keywordtype">int</span> <a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>) {</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="comment">//SDL_QuitSubSystem(SDL_OPENGL);</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="comment">//SDL_Quit(); // Moved to atexit() call</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="comment">//#ifdef DEBUG_MEMORY</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="comment">//printf(&quot;[Mongoose MEMORY_DEBUG]\nUnfreed memory table:\n&quot;);</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="comment">//dump_memory_report();</span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="comment">//#endif</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    exit(i);</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;}</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;</div>
+<div class="line"><a name="l00395"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#a07038518a95c95b492ae4c4f3903c3a5">  395</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#a07038518a95c95b492ae4c4f3903c3a5">SDLSystem::toggleFullscreen</a>() {</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">mWindow</a>) {</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        <a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a> = !<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        SDL_ShowCursor(SDL_DISABLE);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        <span class="comment">// SDL_WM_ToggleFullScreen does not work on all platforms</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;        <span class="comment">// eg. Mac OS X</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;        <span class="comment">// SDL_WM_ToggleFullScreen(mWindow);</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        <span class="comment">// I added a mFullscreen flag to this class. Then I modified it&#39;s</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        <span class="comment">// resize() method to use the SDL_FULLSCREEN flag in the</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        <span class="comment">// SetVideoMode() call based on the mFullscreen flag.</span></div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        <span class="comment">// Then, I modified this method to find out an available</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;        <span class="comment">// resolution for the fullscreen mode.</span></div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        <span class="comment">// Now you can see something when switching to Fullscreen,</span></div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        <span class="comment">// but it&#39;s full of graphical glitches...? I don&#39;t know...</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        <span class="comment">// -- xythobuz 2013-12-31</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a> = <a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a>,</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            <a class="code" href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a> = <a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a>;</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>) {</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            <a class="code" href="class_s_d_l_system.html#aa9f31c0efec8ec455b2d69d38fda0147">m_old_width</a> = <a class="code" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a>;</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;            <a class="code" href="class_s_d_l_system.html#a1b7f08c23732550ec6f054e8d156894b">m_old_height</a> = <a class="code" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a>;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;            SDL_Rect **dimensions = SDL_ListModes(NULL, SDL_OPENGL | SDL_FULLSCREEN);</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;            <span class="keywordflow">if</span> (dimensions == NULL) {</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                printf(<span class="stringliteral">&quot;Can&#39;t enter fullscreen!\n&quot;</span>);</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                <a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a> = !<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;            }</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;            <span class="keywordflow">if</span> (dimensions != (SDL_Rect **)-1) {</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                width = dimensions[0]-&gt;w;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                height = dimensions[0]-&gt;h;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            }</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        }</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a>) {</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;            width = <a class="code" href="class_s_d_l_system.html#aa9f31c0efec8ec455b2d69d38fda0147">m_old_width</a>;</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;            height = <a class="code" href="class_s_d_l_system.html#a1b7f08c23732550ec6f054e8d156894b">m_old_height</a>;</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;        }</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;        <a class="code" href="class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9">resize</a>(width, height);</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    }</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;}</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;</div>
+<div class="line"><a name="l00436"></a><span class="lineno"><a class="line" href="class_s_d_l_system.html#aad3caf289a517570274380e132928bbf">  436</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_s_d_l_system.html#aad3caf289a517570274380e132928bbf">SDLSystem::swapBuffersGL</a>() {</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    SDL_GL_SwapBuffers();</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;}</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;</div>
 <div class="ttc" id="_system_8h_html_ad9fd88c872d24187f37df0da74efe49a"><div class="ttname"><a href="_system_8h.html#ad9fd88c872d24187f37df0da74efe49a">SYS_KEY_F11</a></div><div class="ttdeci">#define SYS_KEY_F11</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00039">System.h:39</a></div></div>
 <div class="ttc" id="test_2memory__test_8cpp_html_a9384343c8d6a756c1d78cdc73d351b8e"><div class="ttname"><a href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a></div><div class="ttdeci">int * i</div><div class="ttdef"><b>Definition:</b> <a href="test_2memory__test_8cpp_source.html#l00018">memory_test.cpp:18</a></div></div>
 <div class="ttc" id="_system_8h_html_ad0708d988a90afbe7193886969c29123"><div class="ttname"><a href="_system_8h.html#ad0708d988a90afbe7193886969c29123">SYS_KEY_F4</a></div><div class="ttdeci">#define SYS_KEY_F4</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00032">System.h:32</a></div></div>
 <div class="ttc" id="_system_8h_html_a633ef922bf465251127a27994275599c"><div class="ttname"><a href="_system_8h.html#a633ef922bf465251127a27994275599c">SYS_KEY_F6</a></div><div class="ttdeci">#define SYS_KEY_F6</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00034">System.h:34</a></div></div>
 <div class="ttc" id="class_system_html_a65f2dbd9177785e8dd964481591c0d35"><div class="ttname"><a href="class_system.html#a65f2dbd9177785e8dd964481591c0d35">System::handleBoundKeyReleaseEvent</a></div><div class="ttdeci">virtual void handleBoundKeyReleaseEvent(unsigned int key)=0</div><div class="ttdoc">Receives the event bound to the command from the key release. </div></div>
-<div class="ttc" id="class_s_d_l_system_html_a5dcb89b53cb187afc5dec1101ba7f0d5"><div class="ttname"><a href="class_s_d_l_system.html#a5dcb89b53cb187afc5dec1101ba7f0d5">SDLSystem::mFirstMouseEvent</a></div><div class="ttdeci">bool mFirstMouseEvent</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00222">SDLSystem.h:222</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a5dcb89b53cb187afc5dec1101ba7f0d5"><div class="ttname"><a href="class_s_d_l_system.html#a5dcb89b53cb187afc5dec1101ba7f0d5">SDLSystem::mFirstMouseEvent</a></div><div class="ttdeci">bool mFirstMouseEvent</div><div class="ttdoc">Filter first mouse event (SDL bug) </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00122">SDLSystem.h:122</a></div></div>
 <div class="ttc" id="_system_8h_html_a8269b0104aaa16240cc28f10069e76ef"><div class="ttname"><a href="_system_8h.html#a8269b0104aaa16240cc28f10069e76ef">SYS_KEY_PAGEDOWN</a></div><div class="ttdeci">#define SYS_KEY_PAGEDOWN</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00027">System.h:27</a></div></div>
 <div class="ttc" id="class_system_html_aa656b0e5028db399d683ff7a04b2b0e6"><div class="ttname"><a href="class_system.html#aa656b0e5028db399d683ff7a04b2b0e6">System::handleKeyReleaseEvent</a></div><div class="ttdeci">virtual void handleKeyReleaseEvent(unsigned int key, unsigned int mod)=0</div></div>
 <div class="ttc" id="class_system_html_ac0dd30a42fffd6e5c288d7f815007732"><div class="ttname"><a href="class_system.html#ac0dd30a42fffd6e5c288d7f815007732">System::handleBoundKeyPressEvent</a></div><div class="ttdeci">virtual void handleBoundKeyPressEvent(unsigned int key)=0</div><div class="ttdoc">Receives the event bound to the command from the key press. </div></div>
-<div class="ttc" id="class_s_d_l_system_html_aad3caf289a517570274380e132928bbf"><div class="ttname"><a href="class_s_d_l_system.html#aad3caf289a517570274380e132928bbf">SDLSystem::swapBuffersGL</a></div><div class="ttdeci">void swapBuffersGL()</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00525">SDLSystem.cpp:525</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_a8277c33828385ffe8c7e68fa08580d52"><div class="ttname"><a href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">SDLSystem::shutdown</a></div><div class="ttdeci">void shutdown(int i)</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00467">SDLSystem.cpp:467</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_aad3caf289a517570274380e132928bbf"><div class="ttname"><a href="class_s_d_l_system.html#aad3caf289a517570274380e132928bbf">SDLSystem::swapBuffersGL</a></div><div class="ttdeci">void swapBuffersGL()</div><div class="ttdoc">Swaps OpenGL buffers. Call at end of frame. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00436">SDLSystem.cpp:436</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a8277c33828385ffe8c7e68fa08580d52"><div class="ttname"><a href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">SDLSystem::shutdown</a></div><div class="ttdeci">void shutdown(int i)</div><div class="ttdoc">Shuts down the game subsystems, exits game loop. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00383">SDLSystem.cpp:383</a></div></div>
 <div class="ttc" id="class_system_html_a619937c41cce998d5a769066a2227590"><div class="ttname"><a href="class_system.html#a619937c41cce998d5a769066a2227590">System::mConsoleKey</a></div><div class="ttdeci">unsigned int mConsoleKey</div><div class="ttdoc">Console toggle event now handled lower. </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00205">System.h:205</a></div></div>
 <div class="ttc" id="_system_8h_html_a6439eb5a948104d45a35466caff95cbe"><div class="ttname"><a href="_system_8h.html#a6439eb5a948104d45a35466caff95cbe">SYS_MOUSE_MIDDLE</a></div><div class="ttdeci">#define SYS_MOUSE_MIDDLE</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00020">System.h:20</a></div></div>
-<div class="ttc" id="_s_d_l_system_8cpp_html_a9ef6c650f4ddf9d9f38923b5a034e1f1"><div class="ttname"><a href="_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1">gHeight</a></div><div class="ttdeci">unsigned int * gHeight</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00045">SDLSystem.cpp:45</a></div></div>
+<div class="ttc" id="_s_d_l_system_8cpp_html_a9ef6c650f4ddf9d9f38923b5a034e1f1"><div class="ttname"><a href="_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1">gHeight</a></div><div class="ttdeci">unsigned int * gHeight</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00022">SDLSystem.cpp:22</a></div></div>
 <div class="ttc" id="_system_8h_html_ad9713bd1d744b45b009107bfbb4f61ab"><div class="ttname"><a href="_system_8h.html#ad9713bd1d744b45b009107bfbb4f61ab">SYS_KEY_LEFT</a></div><div class="ttdeci">#define SYS_KEY_LEFT</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00026">System.h:26</a></div></div>
 <div class="ttc" id="class_system_html_aa69c83209d4b66269bca93fd7177c2d9"><div class="ttname"><a href="class_system.html#aa69c83209d4b66269bca93fd7177c2d9">System::initGL</a></div><div class="ttdeci">virtual void initGL()</div><div class="ttdef"><b>Definition:</b> <a href="_system_8cpp_source.html#l00426">System.cpp:426</a></div></div>
 <div class="ttc" id="class_system_html_a23012d0c7e57c529178c3e325f3e4dc2"><div class="ttname"><a href="class_system.html#a23012d0c7e57c529178c3e325f3e4dc2">System::mConsoleMode</a></div><div class="ttdeci">bool mConsoleMode</div><div class="ttdoc">Using text (console) event handler? </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00202">System.h:202</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_a2234bc651ebcca72b63aec3995cf2221"><div class="ttname"><a href="class_s_d_l_system.html#a2234bc651ebcca72b63aec3995cf2221">SDLSystem::setGrabMouse</a></div><div class="ttdeci">void setGrabMouse(bool on)</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00097">SDLSystem.cpp:97</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_a3bc62709ebb1836e195bcf0b3288cce1"><div class="ttname"><a href="class_s_d_l_system.html#a3bc62709ebb1836e195bcf0b3288cce1">SDLSystem::SDLSystem</a></div><div class="ttdeci">SDLSystem()</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00052">SDLSystem.cpp:52</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a2234bc651ebcca72b63aec3995cf2221"><div class="ttname"><a href="class_s_d_l_system.html#a2234bc651ebcca72b63aec3995cf2221">SDLSystem::setGrabMouse</a></div><div class="ttdeci">void setGrabMouse(bool on)</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00052">SDLSystem.cpp:52</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a3bc62709ebb1836e195bcf0b3288cce1"><div class="ttname"><a href="class_s_d_l_system.html#a3bc62709ebb1836e195bcf0b3288cce1">SDLSystem::SDLSystem</a></div><div class="ttdeci">SDLSystem()</div><div class="ttdoc">Constructs an object of SDLSystem. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00024">SDLSystem.cpp:24</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a1cbb17ede73ea044a04a129bf4d86976"><div class="ttname"><a href="_tomb_raider_8h.html#a1cbb17ede73ea044a04a129bf4d86976">flags</a></div><div class="ttdeci">short flags</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00063">TombRaider.h:63</a></div></div>
 <div class="ttc" id="_system_8h_html_ab81ba8d0a9569745eed58de8da4ee2e1ac97c9f11bc76e1e7111eeb56cabe7cf3"><div class="ttname"><a href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1ac97c9f11bc76e1e7111eeb56cabe7cf3">SYS_MOD_KEY_RCTRL</a></div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00046">System.h:46</a></div></div>
 <div class="ttc" id="_system_8h_html_a26bfa04bdb9c35599ccf15831f09479a"><div class="ttname"><a href="_system_8h.html#a26bfa04bdb9c35599ccf15831f09479a">SYS_KEY_RIGHT</a></div><div class="ttdeci">#define SYS_KEY_RIGHT</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00025">System.h:25</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_a1b7f08c23732550ec6f054e8d156894b"><div class="ttname"><a href="class_s_d_l_system.html#a1b7f08c23732550ec6f054e8d156894b">SDLSystem::m_old_height</a></div><div class="ttdeci">int m_old_height</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00221">SDLSystem.h:221</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a1b7f08c23732550ec6f054e8d156894b"><div class="ttname"><a href="class_s_d_l_system.html#a1b7f08c23732550ec6f054e8d156894b">SDLSystem::m_old_height</a></div><div class="ttdeci">int m_old_height</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00121">SDLSystem.h:121</a></div></div>
 <div class="ttc" id="_system_8h_html_ab81ba8d0a9569745eed58de8da4ee2e1a984b6123ff4e9a9323b28a9e0c060fcc"><div class="ttname"><a href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a984b6123ff4e9a9323b28a9e0c060fcc">SYS_MOD_KEY_RSHIFT</a></div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00044">System.h:44</a></div></div>
 <div class="ttc" id="class_system_html_a8a4e289b8f715e0ee232d0294d91b5f2"><div class="ttname"><a href="class_system.html#a8a4e289b8f715e0ee232d0294d91b5f2">System::m_fovY</a></div><div class="ttdeci">float m_fovY</div><div class="ttdoc">Field of vision. </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00200">System.h:200</a></div></div>
 <div class="ttc" id="class_system_html_aed748f7e5dc73f15c1038cb6edb150d0"><div class="ttname"><a href="class_system.html#aed748f7e5dc73f15c1038cb6edb150d0">System::bindKeyCommand</a></div><div class="ttdeci">virtual void bindKeyCommand(const char *cmd, unsigned int key, int event)</div><div class="ttdoc">Binds a key to a command. </div><div class="ttdef"><b>Definition:</b> <a href="_system_8cpp_source.html#l00259">System.cpp:259</a></div></div>
 <div class="ttc" id="_system_8h_html_ab81ba8d0a9569745eed58de8da4ee2e1a423d7a749ecbd74277a9e0f9fdf563b0"><div class="ttname"><a href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a423d7a749ecbd74277a9e0f9fdf563b0">SYS_MOD_KEY_LSHIFT</a></div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00043">System.h:43</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_a772dbadad5c324b45186d524d8e9e5e8"><div class="ttname"><a href="class_s_d_l_system.html#a772dbadad5c324b45186d524d8e9e5e8">SDLSystem::~SDLSystem</a></div><div class="ttdeci">virtual ~SDLSystem()</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00062">SDLSystem.cpp:62</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a772dbadad5c324b45186d524d8e9e5e8"><div class="ttname"><a href="class_s_d_l_system.html#a772dbadad5c324b45186d524d8e9e5e8">SDLSystem::~SDLSystem</a></div><div class="ttdeci">virtual ~SDLSystem()</div><div class="ttdoc">Deconstructs an object of SDLSystem. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00032">SDLSystem.cpp:32</a></div></div>
 <div class="ttc" id="class_system_html_a444b038c3eab08477c7ea13673a9b0d4"><div class="ttname"><a href="class_system.html#a444b038c3eab08477c7ea13673a9b0d4">System::resizeGL</a></div><div class="ttdeci">virtual void resizeGL(unsigned int width, unsigned int height)</div><div class="ttdef"><b>Definition:</b> <a href="_system_8cpp_source.html#l00550">System.cpp:550</a></div></div>
 <div class="ttc" id="_system_8h_html_ac68b3a7fbec4c7a78af517c2355d8308"><div class="ttname"><a href="_system_8h.html#ac68b3a7fbec4c7a78af517c2355d8308">SYS_KEY_F8</a></div><div class="ttdeci">#define SYS_KEY_F8</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00036">System.h:36</a></div></div>
 <div class="ttc" id="class_system_html_ae14fa2a81634bc28dc65820a1786e041"><div class="ttname"><a href="class_system.html#ae14fa2a81634bc28dc65820a1786e041">System::m_clipFar</a></div><div class="ttdeci">float m_clipFar</div><div class="ttdoc">Clip far distance. </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00199">System.h:199</a></div></div>
@@ -647,40 +557,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="_system_8h_html_a5d86c4b12288003dd3737b65c36fffdb"><div class="ttname"><a href="_system_8h.html#a5d86c4b12288003dd3737b65c36fffdb">SYS_KEY_F3</a></div><div class="ttdeci">#define SYS_KEY_F3</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00031">System.h:31</a></div></div>
 <div class="ttc" id="_system_8h_html_a4976fbb5b689f077c14ad6ec9b8d4d62"><div class="ttname"><a href="_system_8h.html#a4976fbb5b689f077c14ad6ec9b8d4d62">SYS_KEY_F10</a></div><div class="ttdeci">#define SYS_KEY_F10</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00038">System.h:38</a></div></div>
 <div class="ttc" id="_system_8h_html_a974142330faa7c79e73f52cbeb16e139"><div class="ttname"><a href="_system_8h.html#a974142330faa7c79e73f52cbeb16e139">SYS_MOUSE_LEFT</a></div><div class="ttdeci">#define SYS_MOUSE_LEFT</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00018">System.h:18</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_ae440495ed0dcae08937b7461d1bb3dde"><div class="ttname"><a href="class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde">SDLSystem::runGame</a></div><div class="ttdeci">void runGame()</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00210">SDLSystem.cpp:210</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_ae440495ed0dcae08937b7461d1bb3dde"><div class="ttname"><a href="class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde">SDLSystem::runGame</a></div><div class="ttdeci">void runGame()</div><div class="ttdoc">Start game loop. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00153">SDLSystem.cpp:153</a></div></div>
 <div class="ttc" id="class_system_html_a443271510c93d198bb1c53d88c364550"><div class="ttname"><a href="class_system.html#a443271510c93d198bb1c53d88c364550">System::gameFrame</a></div><div class="ttdeci">virtual void gameFrame()=0</div></div>
 <div class="ttc" id="_system_8h_html_af3c2f6cac08827cde46d68bf037f9623"><div class="ttname"><a href="_system_8h.html#af3c2f6cac08827cde46d68bf037f9623">SYS_KEY_F9</a></div><div class="ttdeci">#define SYS_KEY_F9</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00037">System.h:37</a></div></div>
 <div class="ttc" id="_system_8h_html_a099e6a2fa85150b4daf5b0b3eb2e5f27"><div class="ttname"><a href="_system_8h.html#a099e6a2fa85150b4daf5b0b3eb2e5f27">SYS_KEY_PAGEUP</a></div><div class="ttdeci">#define SYS_KEY_PAGEUP</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00028">System.h:28</a></div></div>
 <div class="ttc" id="_system_8h_html_aada9fdc679ac04a3c0e386905bc18d02"><div class="ttname"><a href="_system_8h.html#aada9fdc679ac04a3c0e386905bc18d02">SYS_KEY_F5</a></div><div class="ttdeci">#define SYS_KEY_F5</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00033">System.h:33</a></div></div>
 <div class="ttc" id="_system_8h_html_ab81ba8d0a9569745eed58de8da4ee2e1a01ecd1627e8b371cbe50fcda93c2c178"><div class="ttname"><a href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a01ecd1627e8b371cbe50fcda93c2c178">SYS_MOD_KEY_RMETA</a></div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00050">System.h:50</a></div></div>
 <div class="ttc" id="class_system_html_ae8648dbd93ade6bba590c3b232cd88bf"><div class="ttname"><a href="class_system.html#ae8648dbd93ade6bba590c3b232cd88bf">System::m_driver</a></div><div class="ttdeci">char * m_driver</div><div class="ttdoc">String for dynamic use of GL library. </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00197">System.h:197</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_adc298211342d4acb6251b5461136dca3"><div class="ttname"><a href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">SDLSystem::mFullscreen</a></div><div class="ttdeci">bool mFullscreen</div><div class="ttdoc">Current Fullscreen/Windowed mode. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00223">SDLSystem.h:223</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_adc298211342d4acb6251b5461136dca3"><div class="ttname"><a href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">SDLSystem::mFullscreen</a></div><div class="ttdeci">bool mFullscreen</div><div class="ttdoc">Current Fullscreen/Windowed mode. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00123">SDLSystem.h:123</a></div></div>
 <div class="ttc" id="_system_8h_html_ab81ba8d0a9569745eed58de8da4ee2e1afad4d90fc08dd2d6a40dba5762724ec5"><div class="ttname"><a href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1afad4d90fc08dd2d6a40dba5762724ec5">SYS_MOD_KEY_RALT</a></div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00048">System.h:48</a></div></div>
 <div class="ttc" id="_system_8h_html_a788bac8e3cedc92bda91baf54da5aeda"><div class="ttname"><a href="_system_8h.html#a788bac8e3cedc92bda91baf54da5aeda">SYS_KEY_F1</a></div><div class="ttdeci">#define SYS_KEY_F1</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00029">System.h:29</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_a580b3102d110eadf2d3168201dab91fe"><div class="ttname"><a href="class_s_d_l_system.html#a580b3102d110eadf2d3168201dab91fe">SDLSystem::initVideo</a></div><div class="ttdeci">void initVideo(unsigned int width, unsigned int height, bool fullscreen)</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00103">SDLSystem.cpp:103</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a580b3102d110eadf2d3168201dab91fe"><div class="ttname"><a href="class_s_d_l_system.html#a580b3102d110eadf2d3168201dab91fe">SDLSystem::initVideo</a></div><div class="ttdeci">void initVideo(unsigned int width, unsigned int height, bool fullscreen)</div><div class="ttdoc">Start up video subsystem. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00056">SDLSystem.cpp:56</a></div></div>
 <div class="ttc" id="class_system_html_aaad2905c02f20cbff4f58855e6173b92"><div class="ttname"><a href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">System::m_width</a></div><div class="ttdeci">unsigned int m_width</div><div class="ttdoc">Width of the viewport. </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00194">System.h:194</a></div></div>
 <div class="ttc" id="class_system_html_addc77fd9cc39517d87a61b64c8101f3a"><div class="ttname"><a href="class_system.html#addc77fd9cc39517d87a61b64c8101f3a">System::m_clipNear</a></div><div class="ttdeci">float m_clipNear</div><div class="ttdoc">Clip near distance. </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00198">System.h:198</a></div></div>
-<div class="ttc" id="_s_d_l_system_8h_html"><div class="ttname"><a href="_s_d_l_system_8h.html">SDLSystem.h</a></div></div>
+<div class="ttc" id="_s_d_l_system_8h_html"><div class="ttname"><a href="_s_d_l_system_8h.html">SDLSystem.h</a></div><div class="ttdoc">SDL System interface implementation. </div></div>
 <div class="ttc" id="_system_8h_html_a9aaa9da8b653501e1485e223a1a09659"><div class="ttname"><a href="_system_8h.html#a9aaa9da8b653501e1485e223a1a09659">SYS_KEY_F2</a></div><div class="ttdeci">#define SYS_KEY_F2</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00030">System.h:30</a></div></div>
 <div class="ttc" id="class_system_html"><div class="ttname"><a href="class_system.html">System</a></div><div class="ttdoc">Basic Interface for System implementations (SDLSystem) </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00056">System.h:56</a></div></div>
 <div class="ttc" id="class_system_html_adba09d9d581bbc37d4361c74a2d4823f"><div class="ttname"><a href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">System::m_height</a></div><div class="ttdeci">unsigned int m_height</div><div class="ttdoc">Height of the viewport. </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00195">System.h:195</a></div></div>
 <div class="ttc" id="_system_8h_html_a001173b091f9a0ea14633350af722ea9"><div class="ttname"><a href="_system_8h.html#a001173b091f9a0ea14633350af722ea9">SYS_KEY_DOWN</a></div><div class="ttdeci">#define SYS_KEY_DOWN</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00024">System.h:24</a></div></div>
 <div class="ttc" id="_system_8h_html_ab81ba8d0a9569745eed58de8da4ee2e1aaca0425499b686d8410a45013067e3f0"><div class="ttname"><a href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1aaca0425499b686d8410a45013067e3f0">SYS_MOD_KEY_LMETA</a></div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00049">System.h:49</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_aa9f31c0efec8ec455b2d69d38fda0147"><div class="ttname"><a href="class_s_d_l_system.html#aa9f31c0efec8ec455b2d69d38fda0147">SDLSystem::m_old_width</a></div><div class="ttdeci">int m_old_width</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00220">SDLSystem.h:220</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_a9dc2ce5e46f82bd0921de087285c9d31"><div class="ttname"><a href="class_s_d_l_system.html#a9dc2ce5e46f82bd0921de087285c9d31">SDLSystem::getTicks</a></div><div class="ttdeci">virtual unsigned int getTicks()</div><div class="ttdoc">Gets the game tick. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00071">SDLSystem.cpp:71</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_aa9f31c0efec8ec455b2d69d38fda0147"><div class="ttname"><a href="class_s_d_l_system.html#aa9f31c0efec8ec455b2d69d38fda0147">SDLSystem::m_old_width</a></div><div class="ttdeci">int m_old_width</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00120">SDLSystem.h:120</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a9dc2ce5e46f82bd0921de087285c9d31"><div class="ttname"><a href="class_s_d_l_system.html#a9dc2ce5e46f82bd0921de087285c9d31">SDLSystem::getTicks</a></div><div class="ttdeci">virtual unsigned int getTicks()</div><div class="ttdoc">Get ticks. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00035">SDLSystem.cpp:35</a></div></div>
 <div class="ttc" id="_system_8h_html_a85ab9300876bf75fa705b6be79573f7a"><div class="ttname"><a href="_system_8h.html#a85ab9300876bf75fa705b6be79573f7a">SYS_KEY_F7</a></div><div class="ttdeci">#define SYS_KEY_F7</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00035">System.h:35</a></div></div>
 <div class="ttc" id="class_system_html_a2040ef3b12148143e6c73099f2f7ab60"><div class="ttname"><a href="class_system.html#a2040ef3b12148143e6c73099f2f7ab60">System::handleMouseMotionEvent</a></div><div class="ttdeci">virtual void handleMouseMotionEvent(float x, float y)=0</div></div>
 <div class="ttc" id="memory__test_8h_html"><div class="ttname"><a href="memory__test_8h.html">memory_test.h</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_a07038518a95c95b492ae4c4f3903c3a5"><div class="ttname"><a href="class_s_d_l_system.html#a07038518a95c95b492ae4c4f3903c3a5">SDLSystem::toggleFullscreen</a></div><div class="ttdeci">void toggleFullscreen()</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00481">SDLSystem.cpp:481</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a07038518a95c95b492ae4c4f3903c3a5"><div class="ttname"><a href="class_s_d_l_system.html#a07038518a95c95b492ae4c4f3903c3a5">SDLSystem::toggleFullscreen</a></div><div class="ttdeci">void toggleFullscreen()</div><div class="ttdoc">Toggle fullscreen windowing mode. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00395">SDLSystem.cpp:395</a></div></div>
 <div class="ttc" id="class_system_html_a18bec0fded2e33f5e22b657dbbaa308f"><div class="ttname"><a href="class_system.html#a18bec0fded2e33f5e22b657dbbaa308f">System::handleConsoleKeyPressEvent</a></div><div class="ttdeci">virtual void handleConsoleKeyPressEvent(unsigned int key, unsigned int mod)=0</div><div class="ttdoc">Receives key code from text input in console mode. </div></div>
 <div class="ttc" id="class_system_html_a39aa758190c36caecd80ecd88957ba22"><div class="ttname"><a href="class_system.html#a39aa758190c36caecd80ecd88957ba22">System::handleKeyPressEvent</a></div><div class="ttdeci">virtual void handleKeyPressEvent(unsigned int key, unsigned int mod)=0</div></div>
 <div class="ttc" id="_tomb_raider_8h_html_a8a31e3e5c2765d45488c75c00bacfefd"><div class="ttname"><a href="_tomb_raider_8h.html#a8a31e3e5c2765d45488c75c00bacfefd">width</a></div><div class="ttdeci">unsigned short width</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00047">TombRaider.h:47</a></div></div>
 <div class="ttc" id="_system_8h_html_a704a6e1821351a065a5752c000ff2411"><div class="ttname"><a href="_system_8h.html#a704a6e1821351a065a5752c000ff2411">SYS_KEY_UP</a></div><div class="ttdeci">#define SYS_KEY_UP</div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00023">System.h:23</a></div></div>
 <div class="ttc" id="_system_8h_html_ab81ba8d0a9569745eed58de8da4ee2e1af2447392b07748061da3827c6c4f82dd"><div class="ttname"><a href="_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1af2447392b07748061da3827c6c4f82dd">SYS_MOD_KEY_LCTRL</a></div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00045">System.h:45</a></div></div>
 <div class="ttc" id="class_system_html_a6cc331278f4af65f7e34a393bc07f838"><div class="ttname"><a href="class_system.html#a6cc331278f4af65f7e34a393bc07f838">System::mKeyEvents</a></div><div class="ttdeci">Map&lt; unsigned int, int &gt; mKeyEvents</div><div class="ttdoc">Single key press event mappings. </div><div class="ttdef"><b>Definition:</b> <a href="_system_8h_source.html#l00201">System.h:201</a></div></div>
-<div class="ttc" id="_s_d_l_system_8cpp_html_acbcf0139d223849492548946243d3910"><div class="ttname"><a href="_s_d_l_system_8cpp.html#acbcf0139d223849492548946243d3910">gWidth</a></div><div class="ttdeci">unsigned int * gWidth</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00044">SDLSystem.cpp:44</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_a8b88119c507952dfb5770b42f949458f"><div class="ttname"><a href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">SDLSystem::mWindow</a></div><div class="ttdeci">SDL_Surface * mWindow</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00236">SDLSystem.h:236</a></div></div>
-<div class="ttc" id="class_s_d_l_system_html_ad1570a193291424708e2d326241c82f9"><div class="ttname"><a href="class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9">SDLSystem::resize</a></div><div class="ttdeci">void resize(unsigned int width, unsigned int height)</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00170">SDLSystem.cpp:170</a></div></div>
+<div class="ttc" id="_s_d_l_system_8cpp_html_acbcf0139d223849492548946243d3910"><div class="ttname"><a href="_s_d_l_system_8cpp.html#acbcf0139d223849492548946243d3910">gWidth</a></div><div class="ttdeci">unsigned int * gWidth</div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00021">SDLSystem.cpp:21</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_a8b88119c507952dfb5770b42f949458f"><div class="ttname"><a href="class_s_d_l_system.html#a8b88119c507952dfb5770b42f949458f">SDLSystem::mWindow</a></div><div class="ttdeci">SDL_Surface * mWindow</div><div class="ttdoc">This is the pointer to the SDL surface. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8h_source.html#l00126">SDLSystem.h:126</a></div></div>
+<div class="ttc" id="class_s_d_l_system_html_ad1570a193291424708e2d326241c82f9"><div class="ttname"><a href="class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9">SDLSystem::resize</a></div><div class="ttdeci">void resize(unsigned int width, unsigned int height)</div><div class="ttdoc">Resizes game window. </div><div class="ttdef"><b>Definition:</b> <a href="_s_d_l_system_8cpp_source.html#l00116">SDLSystem.cpp:116</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

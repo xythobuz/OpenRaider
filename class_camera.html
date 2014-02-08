@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -98,6 +98,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="class_camera.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_camera_8h_source.html">Camera.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for Camera:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_camera__coll__graph.png" border="0" usemap="#_camera_coll__map" alt="Collaboration graph"/></div>
+<map name="_camera_coll__map" id="_camera_coll__map">
+<area shape="rect" id="node2" href="class_quaternion.html" title="Quaternion. " alt="" coords="5,5,88,32"/></map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -174,7 +181,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a8a07f315157e3b63fc77058420c1074e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique id.  <a href="#a8a07f315157e3b63fc77058420c1074e">More...</a><br/></td></tr>
 <tr class="separator:a8a07f315157e3b63fc77058420c1074e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af45b05c9717cea3e97d480647f35bb75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#af45b05c9717cea3e97d480647f35bb75">mQ</a></td></tr>
-<tr class="memdesc:af45b05c9717cea3e97d480647f35bb75"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_quaternion.html">Quaternion</a> for rotation.  <a href="#af45b05c9717cea3e97d480647f35bb75">More...</a><br/></td></tr>
+<tr class="memdesc:af45b05c9717cea3e97d480647f35bb75"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_quaternion.html" title="Quaternion. ">Quaternion</a> for rotation.  <a href="#af45b05c9717cea3e97d480647f35bb75">More...</a><br/></td></tr>
 <tr class="separator:af45b05c9717cea3e97d480647f35bb75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4285d8ea73fd3a059124ca7b6e7aa13"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ad4285d8ea73fd3a059124ca7b6e7aa13">mFlags</a></td></tr>
 <tr class="memdesc:ad4285d8ea73fd3a059124ca7b6e7aa13"><td class="mdescLeft">&#160;</td><td class="mdescRight">For testing with flags.  <a href="#ad4285d8ea73fd3a059124ca7b6e7aa13">More...</a><br/></td></tr>
@@ -220,7 +227,7 @@ Static Private Attributes</h2></td></tr>
 <div class="textblock"><p>OpenGL camera class. </p>
 <p>2002.12.16: Mongoose - Removed perspective setting and OpenGL dependency API changes to reflect new direction of this object: Removing outdated algorithms and code And refactoring the class in general</p>
 <p>2001.06.06: Mongoose - Moving GLU code into here to setup break up into <a class="el" href="class_camera.html" title="OpenGL camera class. ">Camera</a> base class, DynamicCamera, and GLUCamera child classes</p>
-<p>2001.06.04: Mongoose - <a class="el" href="class_quaternion.html">Quaternion</a> based compile option</p>
+<p>2001.06.04: Mongoose - <a class="el" href="class_quaternion.html" title="Quaternion. ">Quaternion</a> based compile option</p>
 <p>2001.05.18: Mongoose - Created, based on my old GL camera code that has been used in GooseEgg since alpha and algorithms from Yuri Zhivago's trview </p>
 
 <p>Definition at line <a class="el" href="_camera_8h_source.html#l00061">61</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
@@ -499,7 +506,7 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if (x, z) is behind camera eye</dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000009">FIXME:</a></b></dt><dd>Mostly invalid for QUAT_CAM (can rotate on XYZ) </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000010">FIXME:</a></b></dt><dd>Mostly invalid for QUAT_CAM (can rotate on XYZ) </dd></dl>
 
 <p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00290">290</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
@@ -909,7 +916,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_quaternion.html">Quaternion</a> for rotation. </p>
+<p><a class="el" href="class_quaternion.html" title="Quaternion. ">Quaternion</a> for rotation. </p>
 
 <p>Definition at line <a class="el" href="_camera_8h_source.html#l00209">209</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 

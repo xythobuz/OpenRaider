@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -95,7 +95,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Viewing Volume for culling use.  
+ <a href="class_view_volume.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ViewVolume:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_view_volume__coll__graph.png" border="0" usemap="#_view_volume_coll__map" alt="Collaboration graph"/></div>
+<map name="_view_volume_coll__map" id="_view_volume_coll__map">
+<area shape="rect" id="node2" href="class_matrix.html" title="3D Matrix " alt="" coords="24,5,80,32"/></map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -109,70 +119,95 @@ Public Types</h2></td></tr>
 <a class="el" href="class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa76c161e162121970963890db4e23e6be">nearSide</a> = 5
 <br/>
  }</td></tr>
+<tr class="memdesc:a0a38e3c6a94e6e1137ce46d1e4fd305a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sides of the view volume.  <a href="class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305a">More...</a><br/></td></tr>
 <tr class="separator:a0a38e3c6a94e6e1137ce46d1e4fd305a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44bc871ab36caad03c457e96e98676f1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a44bc871ab36caad03c457e96e98676f1">ViewVolumePlane</a> { <a class="el" href="class_view_volume.html#a44bc871ab36caad03c457e96e98676f1ad490268ef61bb7e4fa87469b2b5801a5">planeA</a> = 0, 
 <a class="el" href="class_view_volume.html#a44bc871ab36caad03c457e96e98676f1ace945ad85f840050479018e6e816eb36">planeB</a> = 1, 
 <a class="el" href="class_view_volume.html#a44bc871ab36caad03c457e96e98676f1a391c78964cdc631a2169891ed054defd">planeC</a> = 2, 
 <a class="el" href="class_view_volume.html#a44bc871ab36caad03c457e96e98676f1af7a1122166561ea960bcc8eef2cf2517">planeD</a> = 3
  }</td></tr>
+<tr class="memdesc:a44bc871ab36caad03c457e96e98676f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Planes of the view volume.  <a href="class_view_volume.html#a44bc871ab36caad03c457e96e98676f1">More...</a><br/></td></tr>
 <tr class="separator:a44bc871ab36caad03c457e96e98676f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ada57c67cf9e093e0d140bdf595695662"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#ada57c67cf9e093e0d140bdf595695662">ViewVolume</a> ()</td></tr>
+<tr class="memdesc:ada57c67cf9e093e0d140bdf595695662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an object of <a class="el" href="class_view_volume.html" title="Viewing Volume for culling use. ">ViewVolume</a>.  <a href="#ada57c67cf9e093e0d140bdf595695662">More...</a><br/></td></tr>
 <tr class="separator:ada57c67cf9e093e0d140bdf595695662"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a485ceb1b12fd851ea35b6d026b4ac4d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a485ceb1b12fd851ea35b6d026b4ac4d6">~ViewVolume</a> ()</td></tr>
+<tr class="memdesc:a485ceb1b12fd851ea35b6d026b4ac4d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_view_volume.html" title="Viewing Volume for culling use. ">ViewVolume</a>.  <a href="#a485ceb1b12fd851ea35b6d026b4ac4d6">More...</a><br/></td></tr>
 <tr class="separator:a485ceb1b12fd851ea35b6d026b4ac4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9933d382392257927cc480b79219efd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#ae9933d382392257927cc480b79219efd">isBoundingVolumeInFrustum</a> (<a class="el" href="_bounding_volume_8h.html#class_bounding_volume">BoundingVolume</a> bvol)</td></tr>
+<tr class="memdesc:ae9933d382392257927cc480b79219efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if bounding volume is in view volume.  <a href="#ae9933d382392257927cc480b79219efd">More...</a><br/></td></tr>
 <tr class="separator:ae9933d382392257927cc480b79219efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f13c87428361fa79d33d8cd0424190b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a0f13c87428361fa79d33d8cd0424190b">isBoundingSphereInFrustum</a> (<a class="el" href="_bounding_volume_8h.html#class_bounding_sphere">BoundingSphere</a> bvol)</td></tr>
+<tr class="memdesc:a0f13c87428361fa79d33d8cd0424190b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if bounding sphere is in view volume.  <a href="#a0f13c87428361fa79d33d8cd0424190b">More...</a><br/></td></tr>
 <tr class="separator:a0f13c87428361fa79d33d8cd0424190b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5c4d58c038830e80715dcfeb00a27c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#ab5c4d58c038830e80715dcfeb00a27c5">isBoundingBoxInFrustum</a> (<a class="el" href="_bounding_volume_8h.html#class_bounding_box">BoundingBox</a> bvol)</td></tr>
+<tr class="memdesc:ab5c4d58c038830e80715dcfeb00a27c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if bounding box is in view volume.  <a href="#ab5c4d58c038830e80715dcfeb00a27c5">More...</a><br/></td></tr>
 <tr class="separator:ab5c4d58c038830e80715dcfeb00a27c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a65bd30a9a1edd85482fb7fcf5a6d5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a5a65bd30a9a1edd85482fb7fcf5a6d5e">isPointInFrustum</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a>, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a14f94e529dff0b8bfba8e16fbe9755d6">z</a>)</td></tr>
+<tr class="memdesc:a5a65bd30a9a1edd85482fb7fcf5a6d5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if point is in view volume.  <a href="#a5a65bd30a9a1edd85482fb7fcf5a6d5e">More...</a><br/></td></tr>
 <tr class="separator:a5a65bd30a9a1edd85482fb7fcf5a6d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98a6261fe607074a66b20ba623a10e74"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a98a6261fe607074a66b20ba623a10e74">isSphereInFrustum</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a>, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a14f94e529dff0b8bfba8e16fbe9755d6">z</a>, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> radius)</td></tr>
+<tr class="memdesc:a98a6261fe607074a66b20ba623a10e74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if bounding sphere is in view volume.  <a href="#a98a6261fe607074a66b20ba623a10e74">More...</a><br/></td></tr>
 <tr class="separator:a98a6261fe607074a66b20ba623a10e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acede344f69bc36f6d071ed9cc8e35c03"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#acede344f69bc36f6d071ed9cc8e35c03">isBboxInFrustum</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> min, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> max)</td></tr>
+<tr class="memdesc:acede344f69bc36f6d071ed9cc8e35c03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if bounding box is in view volume.  <a href="#acede344f69bc36f6d071ed9cc8e35c03">More...</a><br/></td></tr>
 <tr class="separator:acede344f69bc36f6d071ed9cc8e35c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b01e363f1e55b72873d48d37c6fa4dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a9b01e363f1e55b72873d48d37c6fa4dc">getDistToSphereFromNear</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a>, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a14f94e529dff0b8bfba8e16fbe9755d6">z</a>, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> radius)</td></tr>
+<tr class="memdesc:a9b01e363f1e55b72873d48d37c6fa4dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance to Bounding sphere.  <a href="#a9b01e363f1e55b72873d48d37c6fa4dc">More...</a><br/></td></tr>
 <tr class="separator:a9b01e363f1e55b72873d48d37c6fa4dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea20da7235c27255d73bf090b1900842"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#aea20da7235c27255d73bf090b1900842">getDistToBboxFromNear</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> min, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> max)</td></tr>
+<tr class="memdesc:aea20da7235c27255d73bf090b1900842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance to Bounding box.  <a href="#aea20da7235c27255d73bf090b1900842">More...</a><br/></td></tr>
 <tr class="separator:aea20da7235c27255d73bf090b1900842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa60c308385ae89b43024b04747111f9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#aa60c308385ae89b43024b04747111f9e">getFrustum</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> frustum[6][4])</td></tr>
+<tr class="memdesc:aa60c308385ae89b43024b04747111f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a copy of the view volume.  <a href="#aa60c308385ae89b43024b04747111f9e">More...</a><br/></td></tr>
 <tr class="separator:aa60c308385ae89b43024b04747111f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ecaf85bc176fceea42da72d083e37e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a0ecaf85bc176fceea42da72d083e37e6">getPlane</a> (<a class="el" href="class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305a">ViewVolumeSide</a> p, <a class="el" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> plane)</td></tr>
+<tr class="memdesc:a0ecaf85bc176fceea42da72d083e37e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a copy of a given plane in view volume.  <a href="#a0ecaf85bc176fceea42da72d083e37e6">More...</a><br/></td></tr>
 <tr class="separator:a0ecaf85bc176fceea42da72d083e37e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb60a83c073a2f4fb75cbd45fe24e281"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#aeb60a83c073a2f4fb75cbd45fe24e281">updateFrame</a> (<a class="el" href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a> proj, <a class="el" href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a> mdl)</td></tr>
+<tr class="memdesc:aeb60a83c073a2f4fb75cbd45fe24e281"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates view volume for this frame.  <a href="#aeb60a83c073a2f4fb75cbd45fe24e281">More...</a><br/></td></tr>
 <tr class="separator:aeb60a83c073a2f4fb75cbd45fe24e281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ebd3a87b4810d04ac4fbaf3490d30bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a4ebd3a87b4810d04ac4fbaf3490d30bb">updateFrame</a> ()</td></tr>
+<tr class="memdesc:a4ebd3a87b4810d04ac4fbaf3490d30bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates view volume for this frame.  <a href="#a4ebd3a87b4810d04ac4fbaf3490d30bb">More...</a><br/></td></tr>
 <tr class="separator:a4ebd3a87b4810d04ac4fbaf3490d30bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac19934e8870b1d2e05976672287f3f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#aac19934e8870b1d2e05976672287f3f9">setModel</a> (<a class="el" href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a> mdl)</td></tr>
+<tr class="memdesc:aac19934e8870b1d2e05976672287f3f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set this class' model matrix.  <a href="#aac19934e8870b1d2e05976672287f3f9">More...</a><br/></td></tr>
 <tr class="separator:aac19934e8870b1d2e05976672287f3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0e71294ef815e340f15d2cc05ac91c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#ac0e71294ef815e340f15d2cc05ac91c5">setProjection</a> (<a class="el" href="_mat_math_8h.html#a77c204b7581ee7d9cae27cd0b16c8dec">matrix_t</a> proj)</td></tr>
+<tr class="memdesc:ac0e71294ef815e340f15d2cc05ac91c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set this class' projection matrix.  <a href="#ac0e71294ef815e340f15d2cc05ac91c5">More...</a><br/></td></tr>
 <tr class="separator:ac0e71294ef815e340f15d2cc05ac91c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a711a3a873833132e6416c0ef6209b2dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a711a3a873833132e6416c0ef6209b2dc">updateClip</a> ()</td></tr>
+<tr class="memdesc:a711a3a873833132e6416c0ef6209b2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes clipping matrix.  <a href="#a711a3a873833132e6416c0ef6209b2dc">More...</a><br/></td></tr>
 <tr class="separator:a711a3a873833132e6416c0ef6209b2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a243eda64c5e38f2afe6fc4eaa2476a8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a243eda64c5e38f2afe6fc4eaa2476a8f">updateFrustum</a> ()</td></tr>
+<tr class="memdesc:a243eda64c5e38f2afe6fc4eaa2476a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes planes of frustum.  <a href="#a243eda64c5e38f2afe6fc4eaa2476a8f">More...</a><br/></td></tr>
 <tr class="separator:a243eda64c5e38f2afe6fc4eaa2476a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a1de7680f354cdd7c0a2d6a38d9e36e46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a1de7680f354cdd7c0a2d6a38d9e36e46">mProjection</a></td></tr>
+<tr class="memdesc:a1de7680f354cdd7c0a2d6a38d9e36e46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Projection matrix.  <a href="#a1de7680f354cdd7c0a2d6a38d9e36e46">More...</a><br/></td></tr>
 <tr class="separator:a1de7680f354cdd7c0a2d6a38d9e36e46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad206ab3d165839aebd478d10dfc70ff1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#ad206ab3d165839aebd478d10dfc70ff1">mModel</a></td></tr>
+<tr class="memdesc:ad206ab3d165839aebd478d10dfc70ff1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Model matrix.  <a href="#ad206ab3d165839aebd478d10dfc70ff1">More...</a><br/></td></tr>
 <tr class="separator:ad206ab3d165839aebd478d10dfc70ff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30310b6960462bf2ce234d91a7ec5285"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a30310b6960462bf2ce234d91a7ec5285">mClip</a></td></tr>
+<tr class="memdesc:a30310b6960462bf2ce234d91a7ec5285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clipping matrix.  <a href="#a30310b6960462bf2ce234d91a7ec5285">More...</a><br/></td></tr>
 <tr class="separator:a30310b6960462bf2ce234d91a7ec5285"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ac92d7ceb518d5b371d5ed171317641"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_view_volume.html#a4ac92d7ceb518d5b371d5ed171317641">mFrustum</a> [6][4]</td></tr>
+<tr class="memdesc:a4ac92d7ceb518d5b371d5ed171317641"><td class="mdescLeft">&#160;</td><td class="mdescRight">View volume.  <a href="#a4ac92d7ceb518d5b371d5ed171317641">More...</a><br/></td></tr>
 <tr class="separator:a4ac92d7ceb518d5b371d5ed171317641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00033">33</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
+<div class="textblock"><p>Viewing Volume for culling use. </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00017">17</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a44bc871ab36caad03c457e96e98676f1"></a>
 <div class="memitem">
@@ -183,18 +218,24 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Planes of the view volume. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a44bc871ab36caad03c457e96e98676f1ad490268ef61bb7e4fa87469b2b5801a5"></a>planeA</em>&nbsp;</td><td class="fielddoc">
+<p>X value of normal. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a44bc871ab36caad03c457e96e98676f1ace945ad85f840050479018e6e816eb36"></a>planeB</em>&nbsp;</td><td class="fielddoc">
+<p>Y value of normal. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a44bc871ab36caad03c457e96e98676f1a391c78964cdc631a2169891ed054defd"></a>planeC</em>&nbsp;</td><td class="fielddoc">
+<p>Z value of normal. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a44bc871ab36caad03c457e96e98676f1af7a1122166561ea960bcc8eef2cf2517"></a>planeD</em>&nbsp;</td><td class="fielddoc">
+<p>Distance to origin. </p>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00047">47</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
+<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00035">35</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
 
 </div>
 </div>
@@ -207,22 +248,30 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sides of the view volume. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a0a38e3c6a94e6e1137ce46d1e4fd305aa13d7562aae131d95dd43be32c9c3db5a"></a>rightSide</em>&nbsp;</td><td class="fielddoc">
+<p>Right. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a0a38e3c6a94e6e1137ce46d1e4fd305aa498c32201be1b50a962a27b5c6936f15"></a>leftSide</em>&nbsp;</td><td class="fielddoc">
+<p>Left. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a0a38e3c6a94e6e1137ce46d1e4fd305aa652d0bb9e7f48692c8460139f6efde5c"></a>bottomSide</em>&nbsp;</td><td class="fielddoc">
+<p>Bottom. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a0a38e3c6a94e6e1137ce46d1e4fd305aa0fed080efcb4806b65c8bdcb3230e34a"></a>topSide</em>&nbsp;</td><td class="fielddoc">
+<p>Top. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a0a38e3c6a94e6e1137ce46d1e4fd305aa121f0f04a582b598f4cee366415cce97"></a>farSide</em>&nbsp;</td><td class="fielddoc">
+<p>Back. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a0a38e3c6a94e6e1137ce46d1e4fd305aa76c161e162121970963890db4e23e6be"></a>nearSide</em>&nbsp;</td><td class="fielddoc">
+<p>Front. </p>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00037">37</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
+<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00023">23</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
 
 </div>
 </div>
@@ -240,7 +289,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00033">33</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Constructs an object of <a class="el" href="class_view_volume.html" title="Viewing Volume for culling use. ">ViewVolume</a>. </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00014">14</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -257,7 +308,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00044">44</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Deconstructs an object of <a class="el" href="class_view_volume.html" title="Viewing Volume for culling use. ">ViewVolume</a>. </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00023">23</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -286,7 +339,17 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00181">181</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Distance to Bounding box. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>minimum point of a valid abstract bounding box </td></tr>
+    <tr><td class="paramname">max</td><td>maximum point of a valid abstract bounding box </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distance to abstract box bounding volume </dd></dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00119">119</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -326,7 +389,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00164">164</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Distance to Bounding sphere. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X coordinate of a valid abstract sphere </td></tr>
+    <tr><td class="paramname">y</td><td>Y coordinate of a valid abstract sphere </td></tr>
+    <tr><td class="paramname">z</td><td>Z coordinate of a valid abstract sphere </td></tr>
+    <tr><td class="paramname">radius</td><td>radius of a valid abstract sphere </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distance to abstract sphere bounding volume </dd></dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00109">109</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,7 +419,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00204">204</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Get a copy of the view volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frustum</td><td>where frustum will be stored </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00139">139</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,7 +455,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00219">219</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Get a copy of a given plane in view volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>side </td></tr>
+    <tr><td class="paramname">plane</td><td>wher plane will be stored </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00147">147</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -400,7 +492,17 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00110">110</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Check if bounding box is in view volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>minimum point of valid abstract bounding box </td></tr>
+    <tr><td class="paramname">max</td><td>maximum point of valid abstract bounding box </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if abstract bounding box in view volume </dd></dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00062">62</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,7 +520,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00069">69</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Check if bounding box is in view volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bvol</td><td>bounding box to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if frustum contains the given bounding volume </dd></dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00038">38</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -436,7 +547,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00060">60</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Check if bounding sphere is in view volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bvol</td><td>bounding sphere to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if frustum contains the given bounding volume </dd></dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00031">31</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -454,7 +574,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00053">53</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Check if bounding volume is in view volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bvol</td><td>bounding volume to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if frustum contains the given bounding volume </dd></dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00026">26</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,7 +617,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00075">75</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Check if point is in view volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X coordinate of point </td></tr>
+    <tr><td class="paramname">y</td><td>Y coordinate of point </td></tr>
+    <tr><td class="paramname">z</td><td>Z coordinate of point </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if point in view volume </dd></dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00042">42</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -528,7 +668,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00093">93</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Check if bounding sphere is in view volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X coordinate of a valid abstract sphere </td></tr>
+    <tr><td class="paramname">y</td><td>Y coordinate of a valid abstract sphere </td></tr>
+    <tr><td class="paramname">z</td><td>Z coordinate of a valid abstract sphere </td></tr>
+    <tr><td class="paramname">radius</td><td>radius of a valid abstract sphere </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if abstract sphere in view volume </dd></dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00052">52</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -546,7 +698,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00248">248</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Set this class' model matrix. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mdl</td><td>new model matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00165">165</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -564,7 +724,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00254">254</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Set this class' projection matrix. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proj</td><td>new projection matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00169">169</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -589,7 +757,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00283">283</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Computes clipping matrix. </p>
+<p>Model &amp; Projection matrices must be set! </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00173">173</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -617,7 +788,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00232">232</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Updates view volume for this frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proj</td><td>new projection matrix </td></tr>
+    <tr><td class="paramname">mdl</td><td>new model matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00153">153</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -634,7 +814,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00241">241</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Updates view volume for this frame. </p>
+<p>Model &amp; Projection Matrices must be set. </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00160">160</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -659,7 +842,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00290">290</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
+<p>Computes planes of frustum. </p>
+<p>Model, Projection &amp; Clip matrices must be set! </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8cpp_source.html#l00177">177</a> of file <a class="el" href="_view_volume_8cpp_source.html">ViewVolume.cpp</a>.</p>
 
 </div>
 </div>
@@ -682,7 +868,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00289">289</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
+<p>Clipping matrix. </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00175">175</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
 
 </div>
 </div>
@@ -704,7 +892,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00291">291</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
+<p>View volume. </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00176">176</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
 
 </div>
 </div>
@@ -726,7 +916,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00287">287</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
+<p>Model matrix. </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00174">174</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
 
 </div>
 </div>
@@ -748,7 +940,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00285">285</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
+<p>Projection matrix. </p>
+
+<p>Definition at line <a class="el" href="_view_volume_8h_source.html#l00173">173</a> of file <a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>.</p>
 
 </div>
 </div>

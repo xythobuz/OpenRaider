@@ -1,0 +1,8 @@
+<map id="skeletal_model_t" name="skeletal_model_t">
+<area shape="rect" id="node2" href="$class_vector.html" title="Vector\&lt; animation_frame\l_t * \&gt;" alt="" coords="5,515,165,557"/>
+<area shape="rect" id="node3" href="$_skeletal_model_8h.html#structanimation__frame__t" title="animation_frame_t" alt="" coords="23,411,147,437"/>
+<area shape="rect" id="node4" href="$class_vector.html" title="Vector\&lt; bone_frame\l_t * \&gt;" alt="" coords="18,305,152,346"/>
+<area shape="rect" id="node5" href="$_skeletal_model_8h.html#structbone__frame__t" title="bone_frame_t" alt="" coords="36,200,135,227"/>
+<area shape="rect" id="node6" href="$class_vector.html" title="Vector\&lt; bone_tag_t * \&gt;" alt="" coords="9,109,161,136"/>
+<area shape="rect" id="node7" href="$_skeletal_model_8h.html#structbone__tag__t" title="bone_tag_t" alt="" coords="42,5,128,32"/>
+</map>

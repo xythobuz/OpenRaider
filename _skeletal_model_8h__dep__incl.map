@@ -1,0 +1,9 @@
+<map id="include/SkeletalModel.h" name="include/SkeletalModel.h">
+<area shape="rect" id="node2" href="$_render_8h.html" title="include/Render.h" alt="" coords="27,155,141,181"/>
+<area shape="rect" id="node4" href="$_open_raider_8cpp.html" title="src/OpenRaider.cpp" alt="" coords="170,304,307,331"/>
+<area shape="rect" id="node6" href="$_world_8h.html" title="include/World.h" alt="" coords="151,80,257,107"/>
+<area shape="rect" id="node8" href="$_skeletal_model_8cpp.html" title="This is the factored out skeletal model class. " alt="" coords="282,80,427,107"/>
+<area shape="rect" id="node3" href="$_open_raider_8h.html" title="include/OpenRaider.h" alt="" coords="167,229,311,256"/>
+<area shape="rect" id="node5" href="$_render_8cpp.html" title="src/Render.cpp" alt="" coords="30,229,137,256"/>
+<area shape="rect" id="node7" href="$_world_8cpp.html" title="src/World.cpp" alt="" coords="165,155,264,181"/>
+</map>

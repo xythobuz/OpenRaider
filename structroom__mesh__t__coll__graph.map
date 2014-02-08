@@ -1,0 +1,15 @@
+<map id="room_mesh_t" name="room_mesh_t">
+<area shape="rect" id="node2" href="$class_vector.html" title="Vector\&lt; static_model\l_t * \&gt;" alt="" coords="355,14,493,55"/>
+<area shape="rect" id="node3" href="$_world_8h.html#structstatic__model__t" title="static_model_t" alt="" coords="160,21,261,48"/>
+<area shape="rect" id="node4" href="$class_vector.html" title="Vector\&lt; int \&gt;" alt="" coords="379,80,469,107"/>
+<area shape="rect" id="node5" href="$class_vector.html" title="Vector\&lt; box_t * \&gt;" alt="" coords="363,131,485,157"/>
+<area shape="rect" id="node6" href="$_world_8h.html#structbox__t" title="box_t" alt="" coords="183,119,238,145"/>
+<area shape="rect" id="node7" href="$_world_8h.html#structvertex__t" title="vertex_t" alt="" coords="5,139,72,165"/>
+<area shape="rect" id="node11" href="$_world_8h.html#structsprite__t" title="sprite_t" alt="" coords="179,179,242,205"/>
+<area shape="rect" id="node8" href="$class_vector.html" title="Vector\&lt; sector_t * \&gt;" alt="" coords="358,236,490,263"/>
+<area shape="rect" id="node9" href="$_world_8h.html#structsector__t" title="sector_t" alt="" coords="178,239,243,265"/>
+<area shape="rect" id="node10" href="$class_vector.html" title="Vector\&lt; sprite_t * \&gt;" alt="" coords="359,181,489,208"/>
+<area shape="rect" id="node12" href="$_world_8h.html#structtexel__t" title="texel_t" alt="" coords="9,209,68,236"/>
+<area shape="rect" id="node13" href="$class_vector.html" title="Vector\&lt; portal_t * \&gt;" alt="" coords="359,291,489,317"/>
+<area shape="rect" id="node14" href="$_world_8h.html#structportal__t" title="portal_t" alt="" coords="179,299,242,325"/>
+</map>

@@ -525,583 +525,429 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;</div>
 <div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;</div>
-<div class="line"><a name="l00661"></a><span class="lineno"><a class="line" href="class_tree.html#a66c298729076178e6028851948b3caf4">  661</a></span>&#160;    <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *<a class="code" href="class_tree.html#a66c298729076178e6028851948b3caf4">GetSuccessor</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree)</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;    {</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *successor;</div>
+<div class="line"><a name="l00661"></a><span class="lineno"><a class="line" href="class_tree.html#a66c298729076178e6028851948b3caf4">  661</a></span>&#160;    <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *<a class="code" href="class_tree.html#a66c298729076178e6028851948b3caf4">GetSuccessor</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree) {</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *successor;</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;        successor = tree-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
 <div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;        successor = tree-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;        <span class="keywordflow">if</span> (successor)</div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;        {</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;            <span class="keywordflow">while</span> (successor-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;            {</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;                successor = successor-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;            }</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;</div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;            <span class="keywordflow">return</span> successor;</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        }</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;        {</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;            successor = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;            <span class="keywordflow">while</span> (tree == successor-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>())</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;            {</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;                tree = successor;</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;                successor = successor-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;            }</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;        <span class="keywordflow">if</span> (successor) {</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;            <span class="keywordflow">while</span> (successor-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;                successor = successor-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;            successor = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;            <span class="keywordflow">while</span> (tree == successor-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>()) {</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;                tree = successor;</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;                successor = successor-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;            }</div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;            <span class="keywordflow">if</span> (successor == <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;        }</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;        <span class="keywordflow">return</span> successor;</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;    }</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;</div>
+<div class="line"><a name="l00683"></a><span class="lineno"><a class="line" href="class_tree.html#a5c736f48f243d1ef028458bc4769381c">  683</a></span>&#160;    <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *<a class="code" href="class_tree.html#a5c736f48f243d1ef028458bc4769381c">GetPredecessor</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree) {</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *predecessor;</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;        predecessor = tree-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
 <div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;</div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;            <span class="keywordflow">if</span> (successor == <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;            {</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;            }</div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;</div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;            <span class="keywordflow">return</span> successor;</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;        }</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;    }</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;        <span class="keywordflow">if</span> (predecessor) {</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;            <span class="keywordflow">while</span> (predecessor-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>())</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;                predecessor = predecessor-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;            predecessor = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;            <span class="keywordflow">while</span> (tree == predecessor-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>()) {</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;                <span class="keywordflow">if</span> (predecessor == <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;</div>
-<div class="line"><a name="l00697"></a><span class="lineno"><a class="line" href="class_tree.html#a5c736f48f243d1ef028458bc4769381c">  697</a></span>&#160;    <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *<a class="code" href="class_tree.html#a5c736f48f243d1ef028458bc4769381c">GetPredecessor</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree)</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    {</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *predecessor;</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;                tree = predecessor;</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;                predecessor = predecessor-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;            }</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;        }</div>
 <div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;</div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        predecessor = tree-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;        <span class="keywordflow">if</span> (predecessor)</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        {</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;            <span class="keywordflow">while</span> (predecessor-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>())</div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;            {</div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;                predecessor = predecessor-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;            }</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;</div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;            <span class="keywordflow">return</span> predecessor;</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;        }</div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;        {</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;            predecessor = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;            <span class="keywordflow">while</span> (tree == predecessor-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;            {</div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;                <span class="keywordflow">if</span> (predecessor == <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;                {</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;                }</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;                tree = predecessor;</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;                predecessor = predecessor-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;            }</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;            <span class="keywordflow">return</span> predecessor;</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        }</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;    }</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        <span class="keywordflow">return</span> predecessor;</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;    }</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;</div>
+<div class="line"><a name="l00705"></a><span class="lineno"><a class="line" href="class_tree.html#abfc250eeb25098e4701355e038de1558">  705</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_tree.html#abfc250eeb25098e4701355e038de1558">IsValidRedBlackTreeCheck</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *current, <span class="keywordtype">bool</span> valid) {</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *right, *left;</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;        <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4">_tree_h_color_t</a> color_red;</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;        <span class="keywordflow">if</span> (!current)</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;            <span class="keywordflow">return</span> valid;</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;        <span class="comment">// Mongoose 2002.02.19, Check for a red root</span></div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;        <span class="keywordflow">if</span> (!current-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>() &amp;&amp; current-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;        color_red = (current-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;        left = current-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        right = current-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;        <span class="comment">// Mongoose 2002.02.19, Check for adj red nodes</span></div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;        <span class="keywordflow">if</span> (left) {</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;            <span class="keywordflow">if</span> (color_red &amp;&amp; left-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="class_tree.html#abfc250eeb25098e4701355e038de1558">IsValidRedBlackTreeCheck</a>(left, valid))</div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;        }</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        <span class="keywordflow">if</span> (right) {</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;            <span class="keywordflow">if</span> (color_red &amp;&amp; right-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;</div>
-<div class="line"><a name="l00733"></a><span class="lineno"><a class="line" href="class_tree.html#abfc250eeb25098e4701355e038de1558">  733</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_tree.html#abfc250eeb25098e4701355e038de1558">IsValidRedBlackTreeCheck</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *current, <span class="keywordtype">bool</span> valid)</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;    {</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *right, *left;</div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;        <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4">_tree_h_color_t</a> color_red;</div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;        <span class="keywordflow">if</span> (!current)</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;        {</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;            <span class="keywordflow">return</span> valid;</div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        }</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="class_tree.html#abfc250eeb25098e4701355e038de1558">IsValidRedBlackTreeCheck</a>(right, valid))</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        }</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;    }</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;</div>
+<div class="line"><a name="l00740"></a><span class="lineno"><a class="line" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">  740</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree) {</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *right, *right_leftchild, *parent, *uncle;</div>
 <div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        <span class="comment">// Mongoose 2002.02.19, Check for a red root</span></div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;        <span class="keywordflow">if</span> (!current-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>() &amp;&amp; current-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;        {</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;        }</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;        <span class="comment">// Get tree&#39;s right node</span></div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;        right = tree-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
 <div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;        color_red = (current-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;        left = current-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;        right = current-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;        <span class="comment">// Mongoose 2002.02.19, Check for adj red nodes</span></div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;        <span class="keywordflow">if</span> (left)</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;        {</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;            <span class="keywordflow">if</span> (color_red &amp;&amp; left-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;            {</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;            }</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;</div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="class_tree.html#abfc250eeb25098e4701355e038de1558">IsValidRedBlackTreeCheck</a>(left, valid))</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;        }</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;        <span class="keywordflow">if</span> (right)</div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;        {</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;            <span class="keywordflow">if</span> (color_red &amp;&amp; right-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;            {</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;            }</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;        <span class="comment">// Get right node&#39;s left child</span></div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;        right_leftchild = NULL;</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;        <span class="keywordflow">if</span> (right)</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;            right_leftchild = right-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;        <span class="comment">// Set tree&#39;s right node to right&#39;s left child</span></div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;        tree-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(right_leftchild);</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;        <span class="comment">// Child now has a new parent</span></div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;        <span class="keywordflow">if</span> (right_leftchild)</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;            right_leftchild-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(tree);</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;        <span class="comment">// Right also has a new parent</span></div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;        <span class="keywordflow">if</span> (right)</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;            right-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>());</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;        <span class="comment">// Get parent</span></div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;        <span class="keywordflow">if</span> (parent) { <span class="comment">// Not root</span></div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;            uncle = parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
 <div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;</div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="class_tree.html#abfc250eeb25098e4701355e038de1558">IsValidRedBlackTreeCheck</a>(right, valid))</div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;        }</div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;</div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;    }</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;</div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;</div>
-<div class="line"><a name="l00780"></a><span class="lineno"><a class="line" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">  780</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree)</div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;    {</div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *right, *right_leftchild, *parent, *uncle;</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;</div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;            <span class="comment">// Mix up at hosptial, switch parent&#39;s children!</span></div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;            <span class="keywordflow">if</span> (tree == uncle)</div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(right);</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(right);</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;        } <span class="keywordflow">else</span> { <span class="comment">// TreeNode &#39;tree&#39; was root, so now right is root</span></div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;            <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a> = right;</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;        }</div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;</div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;        <span class="keywordflow">if</span> (right) {</div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;            <span class="comment">// TreeNode &#39;tree&#39; is now right&#39;s left child</span></div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;            right-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(tree);</div>
 <div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;</div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;        {</div>
-<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;        }</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;            <span class="keywordflow">if</span> (tree)</div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;                tree-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(right);</div>
+<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;        }</div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;    }</div>
 <div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;</div>
-<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;        <span class="comment">// Get tree&#39;s right node</span></div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;        right = tree-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00790"></a><span class="lineno"><a class="line" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">  790</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree) {</div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *left, *left_rightchild, *parent, *uncle;</div>
 <div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;        <span class="comment">// Get right node&#39;s left child</span></div>
-<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;        right_leftchild = NULL;</div>
+<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
+<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;            <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;</div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;        <span class="keywordflow">if</span> (right)</div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;        {</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;            right_leftchild = right-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;        }</div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;        <span class="comment">// Set tree&#39;s right node to right&#39;s left child</span></div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;        tree-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(right_leftchild);</div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;</div>
-<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;        <span class="comment">// Child now has a new parent</span></div>
-<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;        <span class="keywordflow">if</span> (right_leftchild)</div>
-<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;        {</div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;            right_leftchild-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(tree);</div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;        }</div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;</div>
-<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;        <span class="comment">// Right also has a new parent</span></div>
-<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;        <span class="keywordflow">if</span> (right)</div>
-<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;        {</div>
-<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;        right-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>());</div>
-<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;        }</div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;        left = tree-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;        left_rightchild = NULL;</div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;        <span class="keywordflow">if</span> (left)</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;            left_rightchild = left-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;</div>
+<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;        tree-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(left_rightchild);</div>
+<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;</div>
+<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;        <span class="keywordflow">if</span> (left_rightchild)</div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;            left_rightchild-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(tree);</div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;</div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;        <span class="keywordflow">if</span> (left)</div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;            left-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>());</div>
+<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;</div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;</div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;        <span class="keywordflow">if</span> (parent) { <span class="comment">//if node is not the root</span></div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;            uncle = parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
 <div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;</div>
-<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;        <span class="comment">// Get parent</span></div>
-<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;</div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;        <span class="keywordflow">if</span> (parent)  <span class="comment">// Not root</span></div>
-<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;        {</div>
-<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;            uncle = parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;</div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;            <span class="comment">// Mix up at hosptial, switch parent&#39;s children!</span></div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;            <span class="keywordflow">if</span> (tree == uncle)</div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;            {</div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(right);</div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;            }</div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;            {</div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(right);</div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;            }</div>
-<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;        }</div>
-<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;        <span class="keywordflow">else</span> <span class="comment">// TreeNode &#39;tree&#39; was root, so now right is root</span></div>
-<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;        {</div>
-<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;            <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a> = right;</div>
-<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;        }</div>
-<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;</div>
-<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;        <span class="keywordflow">if</span> (right)</div>
-<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;        {</div>
-<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;            <span class="comment">// TreeNode &#39;tree&#39; is now right&#39;s left child</span></div>
-<div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;            right-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(tree);</div>
-<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;</div>
-<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;            <span class="keywordflow">if</span> (tree)</div>
-<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;            {</div>
-<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;                tree-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(right);</div>
-<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;            }</div>
-<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;        }</div>
-<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;    }</div>
+<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;            <span class="keywordflow">if</span> (tree == uncle)</div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(left);</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(left);</div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;        <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a> = left;</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;        }</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;        left-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(tree);</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;        <span class="keywordflow">if</span> (tree)</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;            tree-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(left);</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;    }</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;</div>
+<div class="line"><a name="l00831"></a><span class="lineno"><a class="line" href="class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6">  831</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6">TreeNodeShallowCopy</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *src,</div>
+<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;                                <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *dest, <span class="keywordtype">bool</span> no_links) {</div>
+<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;        <span class="keywordflow">if</span> (!src || !dest)</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;</div>
+<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;        dest-&gt;<a class="code" href="class_tree_node.html#a79e5d5e85c1e553ec0163d7e743545d8">SetKey</a>(src-&gt;<a class="code" href="class_tree_node.html#a0df5288cef2afec6b637e4eb04d55a6c">GetKey</a>());</div>
+<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;        dest-&gt;<a class="code" href="class_tree_node.html#aff443a6030790a5f37e006feb605b93e">SetData</a>(src-&gt;<a class="code" href="class_tree_node.html#af48bf4ab45029f3ab9a496128e543c51">GetData</a>());</div>
+<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;        dest-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(src-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>());</div>
+<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;</div>
+<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;        <span class="keywordflow">if</span> (!no_links) {</div>
+<div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;            dest-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(src-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>());</div>
+<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;            dest-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(src-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>());</div>
+<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;            dest-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(src-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>());</div>
+<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;        }</div>
+<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;    }</div>
+<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;</div>
+<div class="line"><a name="l00847"></a><span class="lineno"><a class="line" href="class_tree.html#a7d8bd4a9e879cb22bf6365641e981bd8">  847</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a7d8bd4a9e879cb22bf6365641e981bd8">Remove</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree) {</div>
+<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *left, *right, *parent, *prev, *cur;</div>
 <div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;</div>
-<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;</div>
-<div class="line"><a name="l00851"></a><span class="lineno"><a class="line" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">  851</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree)</div>
-<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;    {</div>
-<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *left, *left_rightchild, *parent, *uncle;</div>
-<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;</div>
-<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;</div>
-<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
-<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;        {</div>
-<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;        }</div>
-<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;</div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;        left = tree-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;        <span class="comment">// Mongoose 2002.02.16, Nothing to remove</span></div>
+<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
+<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;</div>
+<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;        left = tree-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;        right = tree-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;</div>
+<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;        <span class="keywordflow">if</span> (!left || !right)</div>
+<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;            prev = tree;</div>
+<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;            prev = <a class="code" href="class_tree.html#a66c298729076178e6028851948b3caf4">GetSuccessor</a>(tree);</div>
 <div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;</div>
-<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;        left_rightchild = NULL;</div>
-<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;</div>
-<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;        <span class="keywordflow">if</span> (left)</div>
-<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;        {</div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;            left_rightchild = left-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;        }</div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;</div>
-<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;        tree-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(left_rightchild);</div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;</div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;        <span class="keywordflow">if</span> (left_rightchild)</div>
-<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;        {</div>
-<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;        left_rightchild-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(tree);</div>
-<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;        }</div>
-<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;</div>
-<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;        <span class="keywordflow">if</span> (left)</div>
-<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;        {</div>
-<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;        left-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>());</div>
-<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;        }</div>
-<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;</div>
-<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;</div>
-<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;        <span class="keywordflow">if</span> (parent)    <span class="comment">//if node is not the root</span></div>
-<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;        {</div>
-<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;            uncle = parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;        <span class="keywordflow">if</span> (!prev)</div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;            <span class="keywordflow">return</span>; <span class="comment">// Probably a good idea, as there&#39;s a check if(prev) later</span></div>
+<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;</div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;        <span class="keywordflow">if</span> (prev-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;            cur = prev-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;            cur = prev-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;        <span class="keywordflow">if</span> (cur)</div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;            cur-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>());</div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;</div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;        <span class="keywordflow">if</span> (!prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>()) {</div>
+<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;            <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a> = cur;</div>
+<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;            parent = prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;</div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;            <span class="keywordflow">if</span> (prev == parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
+<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(cur);</div>
+<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(cur);</div>
+<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;        }</div>
+<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;</div>
+<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;        <span class="keywordflow">if</span> (prev != tree) {</div>
+<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;            <a class="code" href="class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6">TreeNodeShallowCopy</a>(prev, tree, <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;</div>
-<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;            <span class="keywordflow">if</span> (tree == uncle)</div>
-<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;            {</div>
-<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(left);</div>
-<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;            }</div>
-<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;            {</div>
-<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(left);</div>
-<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;            }</div>
-<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;        }</div>
-<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;        {</div>
-<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;        <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a> = left;</div>
-<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;        }</div>
-<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;</div>
-<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;        left-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(tree);</div>
-<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;</div>
-<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;        <span class="keywordflow">if</span> (tree)</div>
-<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;        {</div>
-<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;        tree-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(left);</div>
-<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;        }</div>
+<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;            <span class="keywordflow">if</span> (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>()) {</div>
+<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;                <span class="keywordflow">if</span> (prev == (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())-&gt;GetLeft())</div>
+<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;                    (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())-&gt;SetLeft(tree);</div>
+<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (prev == (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())-&gt;GetRight())</div>
+<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;                    (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())-&gt;SetRight(tree);</div>
+<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;            }</div>
+<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;        }</div>
+<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;</div>
+<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;        --<a class="code" href="class_tree.html#ad058047b8cb0f6ad8a6d7d4e727462e3">_num_elements</a>;</div>
+<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;</div>
+<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;        <span class="keywordflow">if</span> (prev) {</div>
+<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;            prev-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(NULL);</div>
+<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;            prev-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(NULL);</div>
+<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;            prev-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(NULL);</div>
+<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;</div>
+<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;            <span class="keyword">delete</span> prev;</div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;        }</div>
+<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;</div>
+<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;        <span class="keywordflow">if</span> (tree-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>)</div>
+<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;            <a class="code" href="class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107">RestoreRedBlackAfterRemove</a>(cur);</div>
 <div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;    }</div>
 <div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;</div>
-<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;</div>
-<div class="line"><a name="l00911"></a><span class="lineno"><a class="line" href="class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6">  911</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6">TreeNodeShallowCopy</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *src,</div>
-<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;                                     <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *dest, <span class="keywordtype">bool</span> no_links)</div>
-<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;    {</div>
-<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;        <span class="keywordflow">if</span> (!src || !dest)</div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;        {</div>
-<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;        }</div>
-<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;</div>
-<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;        dest-&gt;<a class="code" href="class_tree_node.html#a79e5d5e85c1e553ec0163d7e743545d8">SetKey</a>(src-&gt;<a class="code" href="class_tree_node.html#a0df5288cef2afec6b637e4eb04d55a6c">GetKey</a>());</div>
-<div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;        dest-&gt;<a class="code" href="class_tree_node.html#aff443a6030790a5f37e006feb605b93e">SetData</a>(src-&gt;<a class="code" href="class_tree_node.html#af48bf4ab45029f3ab9a496128e543c51">GetData</a>());</div>
-<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;        dest-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(src-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>());</div>
-<div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;</div>
-<div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;        <span class="keywordflow">if</span> (!no_links)</div>
-<div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;        {</div>
-<div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;            dest-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(src-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>());</div>
-<div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;            dest-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(src-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>());</div>
-<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;            dest-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(src-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>());</div>
-<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;        }</div>
-<div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;    }</div>
-<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;</div>
-<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;</div>
-<div class="line"><a name="l00932"></a><span class="lineno"><a class="line" href="class_tree.html#a7d8bd4a9e879cb22bf6365641e981bd8">  932</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a7d8bd4a9e879cb22bf6365641e981bd8">Remove</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree)</div>
-<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;    {</div>
-<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *left, *right, *parent, *prev, *cur;</div>
+<div class="line"><a name="l00910"></a><span class="lineno"><a class="line" href="class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107">  910</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107">RestoreRedBlackAfterRemove</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree) {</div>
+<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *parent, *sibling, *sleft, *sright;</div>
+<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;</div>
+<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
+<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;</div>
+<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;</div>
+<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;        <span class="keywordflow">while</span> ((tree != <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>) &amp;&amp; (parent-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>)) {</div>
+<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;            <span class="keywordflow">if</span> (tree == parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>()) {</div>
+<div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;                sibling = parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;</div>
+<div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;                <span class="keywordflow">if</span> (sibling &amp;&amp; sibling-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>) {</div>
+<div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;                    <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(parent);</div>
+<div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;                    sibling = parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;                }</div>
+<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;</div>
+<div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;                <span class="keywordflow">if</span> (sibling) {</div>
+<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;                    sleft = sibling-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;                    sright = sibling-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;                    sleft = sright = NULL;</div>
+<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;                }</div>
 <div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;</div>
-<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;</div>
-<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;        <span class="comment">// Mongoose 2002.02.16, Nothing to remove</span></div>
-<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
-<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;        {</div>
-<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;        }</div>
-<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;</div>
-<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;        left = tree-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;        right = tree-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;</div>
+<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;                <span class="keywordflow">if</span> (sright &amp;&amp; sright-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a> &amp;&amp;</div>
+<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;                        sleft &amp;&amp; sleft-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() ==<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>) {</div>
+<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;                    tree = parent;</div>
+<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;                    <span class="keywordflow">if</span> (sright &amp;&amp; sright-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>) {</div>
+<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;                        sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;                        sleft-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;                        <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(sibling);</div>
+<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;                        sibling = parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;                    }</div>
 <div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;</div>
-<div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160;        <span class="keywordflow">if</span> (!left || !right)</div>
-<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;        {</div>
-<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;            prev = tree;</div>
-<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;        }</div>
-<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;        {</div>
-<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;            prev = <a class="code" href="class_tree.html#a66c298729076178e6028851948b3caf4">GetSuccessor</a>(tree);</div>
-<div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;        }</div>
+<div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(parent-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>());</div>
+<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;                    sright-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;                    <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(parent);</div>
+<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;                    tree = <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>;</div>
+<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;                }</div>
+<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;                sibling = parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
 <div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;</div>
-<div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;        <span class="keywordflow">if</span> (!prev)</div>
-<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;            <span class="keywordflow">return</span>; <span class="comment">// Probably a good idea, as there&#39;s a check if(prev) later</span></div>
-<div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;</div>
-<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;        <span class="keywordflow">if</span> (prev-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
-<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;        {</div>
-<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;            cur = prev-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;        }</div>
-<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;        {</div>
-<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;            cur = prev-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;        }</div>
-<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;</div>
-<div class="line"><a name="l00969"></a><span class="lineno">  969</span>&#160;        <span class="keywordflow">if</span> (cur)</div>
-<div class="line"><a name="l00970"></a><span class="lineno">  970</span>&#160;        {</div>
-<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;            cur-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>());</div>
-<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;        }</div>
-<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;</div>
-<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;        <span class="keywordflow">if</span> (!prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())</div>
-<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;        {</div>
-<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;            <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a> = cur;</div>
-<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;        }</div>
-<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;        {</div>
-<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;            parent = prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;</div>
-<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;            <span class="keywordflow">if</span> (prev == parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
-<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;            {</div>
-<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(cur);</div>
-<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;            }</div>
-<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;            {</div>
-<div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160;                parent-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(cur);</div>
+<div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;                <span class="keywordflow">if</span> (sibling &amp;&amp; sibling-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>) {</div>
+<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;                    <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(parent);</div>
+<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;                    sibling = parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;                }</div>
+<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;</div>
+<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;                <span class="keywordflow">if</span> (sibling) {</div>
+<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;                    sleft = sibling-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;                    sright = sibling-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
+<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;                    sleft = sright = NULL;</div>
+<div class="line"><a name="l00969"></a><span class="lineno">  969</span>&#160;                }</div>
+<div class="line"><a name="l00970"></a><span class="lineno">  970</span>&#160;</div>
+<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;                <span class="keywordflow">if</span> (sright &amp;&amp; sright-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a> &amp;&amp;</div>
+<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;                     sleft &amp;&amp; sleft-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() ==<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>) {</div>
+<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;                    tree = parent;</div>
+<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;                    <span class="keywordflow">if</span> (sleft &amp;&amp; sleft-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>) {</div>
+<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;                        sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;                        sright-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;                        <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(sibling);</div>
+<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;                        sibling = parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;                    }</div>
+<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;</div>
+<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(parent-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>());</div>
+<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;                    sleft-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;                    <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(parent);</div>
+<div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;                    tree = <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>;</div>
+<div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160;                }</div>
 <div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;            }</div>
-<div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160;        }</div>
-<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;</div>
-<div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;        <span class="keywordflow">if</span> (prev != tree)</div>
-<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;        {</div>
-<div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;            <a class="code" href="class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6">TreeNodeShallowCopy</a>(prev, tree, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160;</div>
-<div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160;            <span class="keywordflow">if</span> (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())</div>
-<div class="line"><a name="l00997"></a><span class="lineno">  997</span>&#160;            {</div>
-<div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;                <span class="keywordflow">if</span> (prev == (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())-&gt;GetLeft())</div>
-<div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;                    (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())-&gt;SetLeft(tree);</div>
-<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (prev == (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())-&gt;GetRight())</div>
-<div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;                    (prev-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>())-&gt;SetRight(tree);</div>
-<div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;            }</div>
-<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;        }</div>
+<div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160;</div>
+<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;            parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;        }</div>
+<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;</div>
+<div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;        tree-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160;    }</div>
+<div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160;</div>
+<div class="line"><a name="l00997"></a><span class="lineno"><a class="line" href="class_tree.html#a55354d9c0d8f0b9b79bf24d00fb5d6ec">  997</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a55354d9c0d8f0b9b79bf24d00fb5d6ec">RestoreRedBlackAfterInsert</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree) {</div>
+<div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *parent, *grandparent, *uncle;</div>
+<div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;</div>
+<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a> || tree == <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
+<div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;</div>
+<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;        tree-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
 <div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;</div>
-<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;        --<a class="code" href="class_tree.html#ad058047b8cb0f6ad8a6d7d4e727462e3">_num_elements</a>;</div>
+<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
 <div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160;</div>
-<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;        <span class="keywordflow">if</span> (prev)</div>
-<div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160;        {</div>
-<div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;            prev-&gt;<a class="code" href="class_tree_node.html#a616725c3cd33442c83c634e720216473">SetRight</a>(NULL);</div>
-<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;            prev-&gt;<a class="code" href="class_tree_node.html#a880d25c46bf3a183f3dd234b334dfaac">SetParent</a>(NULL);</div>
-<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;            prev-&gt;<a class="code" href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">SetLeft</a>(NULL);</div>
+<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;        <span class="keywordflow">while</span> ((tree != <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>) &amp;&amp; (parent-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)) {</div>
+<div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160;            grandparent = parent-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;</div>
+<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;            <span class="keywordflow">if</span> (parent == grandparent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>()) {</div>
+<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;                uncle = grandparent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
 <div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160;</div>
-<div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;            <span class="keyword">delete</span> prev;</div>
-<div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;        }</div>
-<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;</div>
-<div class="line"><a name="l01016"></a><span class="lineno"> 1016</span>&#160;        <span class="keywordflow">if</span> (tree-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>)</div>
-<div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160;        {</div>
-<div class="line"><a name="l01018"></a><span class="lineno"> 1018</span>&#160;            <a class="code" href="class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107">RestoreRedBlackAfterRemove</a>(cur);</div>
-<div class="line"><a name="l01019"></a><span class="lineno"> 1019</span>&#160;        }</div>
-<div class="line"><a name="l01020"></a><span class="lineno"> 1020</span>&#160;    }</div>
-<div class="line"><a name="l01021"></a><span class="lineno"> 1021</span>&#160;</div>
-<div class="line"><a name="l01022"></a><span class="lineno"> 1022</span>&#160;</div>
-<div class="line"><a name="l01023"></a><span class="lineno"><a class="line" href="class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107"> 1023</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107">RestoreRedBlackAfterRemove</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree)</div>
-<div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;    {</div>
-<div class="line"><a name="l01025"></a><span class="lineno"> 1025</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *parent, *sibling, *sleft, *sright;</div>
-<div class="line"><a name="l01026"></a><span class="lineno"> 1026</span>&#160;</div>
+<div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;                <span class="keywordflow">if</span> (uncle &amp;&amp; uncle-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>) {</div>
+<div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;                    <span class="comment">// Case 1 - Change the colors</span></div>
+<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l01016"></a><span class="lineno"> 1016</span>&#160;                    uncle-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160;                    grandparent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l01018"></a><span class="lineno"> 1018</span>&#160;</div>
+<div class="line"><a name="l01019"></a><span class="lineno"> 1019</span>&#160;                    <span class="comment">// Move up the tree</span></div>
+<div class="line"><a name="l01020"></a><span class="lineno"> 1020</span>&#160;                    tree = grandparent;</div>
+<div class="line"><a name="l01021"></a><span class="lineno"> 1021</span>&#160;                } <span class="keywordflow">else</span> { <span class="comment">// Uncle is a black node</span></div>
+<div class="line"><a name="l01022"></a><span class="lineno"> 1022</span>&#160;                    <span class="keywordflow">if</span> (tree == parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>()) {</div>
+<div class="line"><a name="l01023"></a><span class="lineno"> 1023</span>&#160;                        <span class="comment">// Case 2 - Move up and rotate</span></div>
+<div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;                        tree = parent;</div>
+<div class="line"><a name="l01025"></a><span class="lineno"> 1025</span>&#160;                        <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(tree);</div>
+<div class="line"><a name="l01026"></a><span class="lineno"> 1026</span>&#160;                    }</div>
 <div class="line"><a name="l01027"></a><span class="lineno"> 1027</span>&#160;</div>
-<div class="line"><a name="l01028"></a><span class="lineno"> 1028</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
-<div class="line"><a name="l01029"></a><span class="lineno"> 1029</span>&#160;        {</div>
-<div class="line"><a name="l01030"></a><span class="lineno"> 1030</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l01031"></a><span class="lineno"> 1031</span>&#160;        }</div>
-<div class="line"><a name="l01032"></a><span class="lineno"> 1032</span>&#160;</div>
-<div class="line"><a name="l01033"></a><span class="lineno"> 1033</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l01034"></a><span class="lineno"> 1034</span>&#160;</div>
-<div class="line"><a name="l01035"></a><span class="lineno"> 1035</span>&#160;        <span class="keywordflow">while</span> ((tree != <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>) &amp;&amp; (parent-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>))</div>
-<div class="line"><a name="l01036"></a><span class="lineno"> 1036</span>&#160;        {</div>
-<div class="line"><a name="l01037"></a><span class="lineno"> 1037</span>&#160;            <span class="keywordflow">if</span> (tree == parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
-<div class="line"><a name="l01038"></a><span class="lineno"> 1038</span>&#160;            {</div>
-<div class="line"><a name="l01039"></a><span class="lineno"> 1039</span>&#160;                sibling = parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l01040"></a><span class="lineno"> 1040</span>&#160;</div>
-<div class="line"><a name="l01041"></a><span class="lineno"> 1041</span>&#160;                <span class="keywordflow">if</span> (sibling &amp;&amp; sibling-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
-<div class="line"><a name="l01042"></a><span class="lineno"> 1042</span>&#160;                {</div>
-<div class="line"><a name="l01043"></a><span class="lineno"> 1043</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01044"></a><span class="lineno"> 1044</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01045"></a><span class="lineno"> 1045</span>&#160;                    <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(parent);</div>
-<div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;                    sibling = parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l01047"></a><span class="lineno"> 1047</span>&#160;                }</div>
-<div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;</div>
-<div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;                <span class="keywordflow">if</span> (sibling)</div>
-<div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;                {</div>
-<div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;                    sleft = sibling-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l01052"></a><span class="lineno"> 1052</span>&#160;                    sright = sibling-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l01053"></a><span class="lineno"> 1053</span>&#160;                }</div>
-<div class="line"><a name="l01054"></a><span class="lineno"> 1054</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01055"></a><span class="lineno"> 1055</span>&#160;                {</div>
-<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160;                    sleft = sright = NULL;</div>
-<div class="line"><a name="l01057"></a><span class="lineno"> 1057</span>&#160;                }</div>
-<div class="line"><a name="l01058"></a><span class="lineno"> 1058</span>&#160;</div>
-<div class="line"><a name="l01059"></a><span class="lineno"> 1059</span>&#160;                <span class="keywordflow">if</span> (sright &amp;&amp; sright-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a> &amp;&amp;</div>
-<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;                     sleft &amp;&amp; sleft-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() ==<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>)</div>
-<div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;                {</div>
-<div class="line"><a name="l01062"></a><span class="lineno"> 1062</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;                    tree = parent;</div>
-<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;                }</div>
-<div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;                {</div>
-<div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;                    <span class="keywordflow">if</span> (sright &amp;&amp; sright-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>)</div>
-<div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;                    {</div>
-<div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;                        sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;                        sleft-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;                        <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(sibling);</div>
-<div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;                        sibling = parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;                    }</div>
+<div class="line"><a name="l01028"></a><span class="lineno"> 1028</span>&#160;                    <span class="comment">// Case 3 - Make no changes to _root tree</span></div>
+<div class="line"><a name="l01029"></a><span class="lineno"> 1029</span>&#160;</div>
+<div class="line"><a name="l01030"></a><span class="lineno"> 1030</span>&#160;                    <span class="comment">// Change colors for Case 2 / Case 3</span></div>
+<div class="line"><a name="l01031"></a><span class="lineno"> 1031</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l01032"></a><span class="lineno"> 1032</span>&#160;                    grandparent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l01033"></a><span class="lineno"> 1033</span>&#160;                    <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(grandparent);</div>
+<div class="line"><a name="l01034"></a><span class="lineno"> 1034</span>&#160;                }</div>
+<div class="line"><a name="l01035"></a><span class="lineno"> 1035</span>&#160;            } <span class="keywordflow">else</span> { <span class="comment">// TreeNode &#39;tree&#39; is in right subtree</span></div>
+<div class="line"><a name="l01036"></a><span class="lineno"> 1036</span>&#160;                uncle = grandparent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
+<div class="line"><a name="l01037"></a><span class="lineno"> 1037</span>&#160;</div>
+<div class="line"><a name="l01038"></a><span class="lineno"> 1038</span>&#160;                <span class="keywordflow">if</span> (uncle &amp;&amp; uncle-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>) {</div>
+<div class="line"><a name="l01039"></a><span class="lineno"> 1039</span>&#160;                    <span class="comment">// Case 1 - Change the colors</span></div>
+<div class="line"><a name="l01040"></a><span class="lineno"> 1040</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l01041"></a><span class="lineno"> 1041</span>&#160;                    uncle-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l01042"></a><span class="lineno"> 1042</span>&#160;                    grandparent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l01043"></a><span class="lineno"> 1043</span>&#160;</div>
+<div class="line"><a name="l01044"></a><span class="lineno"> 1044</span>&#160;                    <span class="comment">// Move up the tree</span></div>
+<div class="line"><a name="l01045"></a><span class="lineno"> 1045</span>&#160;                    tree = grandparent;</div>
+<div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;                } <span class="keywordflow">else</span> { <span class="comment">// Uncle is a black node</span></div>
+<div class="line"><a name="l01047"></a><span class="lineno"> 1047</span>&#160;                    <span class="keywordflow">if</span> (tree == parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>()) {</div>
+<div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;                        <span class="comment">// Case 2 - Move up and rotate</span></div>
+<div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;                        tree = parent;</div>
+<div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;                        <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(tree);</div>
+<div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;                    }</div>
+<div class="line"><a name="l01052"></a><span class="lineno"> 1052</span>&#160;</div>
+<div class="line"><a name="l01053"></a><span class="lineno"> 1053</span>&#160;                    <span class="comment">// Case 3 - Make no changes to _root tree</span></div>
+<div class="line"><a name="l01054"></a><span class="lineno"> 1054</span>&#160;</div>
+<div class="line"><a name="l01055"></a><span class="lineno"> 1055</span>&#160;                    <span class="comment">// Change colors for Case 2 / Case 3</span></div>
+<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l01057"></a><span class="lineno"> 1057</span>&#160;                    grandparent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
+<div class="line"><a name="l01058"></a><span class="lineno"> 1058</span>&#160;                    <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(grandparent);</div>
+<div class="line"><a name="l01059"></a><span class="lineno"> 1059</span>&#160;                }</div>
+<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;            }</div>
+<div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;</div>
+<div class="line"><a name="l01062"></a><span class="lineno"> 1062</span>&#160;            <span class="comment">// Have to adjust parent for new tree node</span></div>
+<div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;            parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
+<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;        }</div>
+<div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;</div>
+<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;        <span class="comment">// Mongoose 2002.02.17, Color root black ( heh )</span></div>
+<div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;        <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>-&gt;SetColor(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
+<div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;    }</div>
+<div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;</div>
+<div class="line"><a name="l01070"></a><span class="lineno"><a class="line" href="class_tree.html#a4518f0ccca0be1bf68ffa4d1da35707c"> 1070</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_tree.html#a4518f0ccca0be1bf68ffa4d1da35707c">_error</a>;                </div>
+<div class="line"><a name="l01071"></a><span class="lineno"><a class="line" href="class_tree.html#ad058047b8cb0f6ad8a6d7d4e727462e3"> 1071</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_tree.html#ad058047b8cb0f6ad8a6d7d4e727462e3">_num_elements</a>; </div>
+<div class="line"><a name="l01072"></a><span class="lineno"><a class="line" href="class_tree.html#aaf53db15625ab8c784767822c0424d54"> 1072</a></span>&#160;    <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>; </div>
+<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;};</div>
 <div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;</div>
-<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(parent-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>());</div>
-<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;                    sright-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;                    <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(parent);</div>
-<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;                    tree = <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>;</div>
-<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160;                }</div>
-<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;            }</div>
-<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;            {</div>
-<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;                sibling = parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;</div>
-<div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;                <span class="keywordflow">if</span> (sibling &amp;&amp; sibling-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
-<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;                {</div>
-<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;                    <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(parent);</div>
-<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;                    sibling = parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;                }</div>
-<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;</div>
-<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;                <span class="keywordflow">if</span> (sibling)</div>
-<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;                {</div>
-<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160;                    sleft = sibling-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;                    sright = sibling-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;                }</div>
-<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;                {</div>
-<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;                    sleft = sright = NULL;</div>
-<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;                }</div>
-<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;</div>
-<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;                <span class="keywordflow">if</span> (sright &amp;&amp; sright-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a> &amp;&amp;</div>
-<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;                     sleft &amp;&amp; sleft-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() ==<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>)</div>
-<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;                {</div>
-<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;                    tree = parent;</div>
-<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;                }</div>
-<div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;                {</div>
-<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;                    <span class="keywordflow">if</span> (sleft &amp;&amp; sleft-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>)</div>
-<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;                    {</div>
-<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;                        sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;                        sright-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;                        <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(sibling);</div>
-<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;                        sibling = parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;                    }</div>
-<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;</div>
-<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;                    sibling-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(parent-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>());</div>
-<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;                    sleft-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;                    <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(parent);</div>
-<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;                    tree = <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>;</div>
-<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;                }</div>
-<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;            }</div>
-<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;</div>
-<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;            parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;        }</div>
-<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;</div>
-<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;        tree-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;    }</div>
-<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;</div>
-<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;</div>
-<div class="line"><a name="l01135"></a><span class="lineno"><a class="line" href="class_tree.html#a55354d9c0d8f0b9b79bf24d00fb5d6ec"> 1135</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_tree.html#a55354d9c0d8f0b9b79bf24d00fb5d6ec">RestoreRedBlackAfterInsert</a>(<a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *tree)</div>
-<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;    {</div>
-<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;        <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *parent, *grandparent, *uncle;</div>
-<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;</div>
-<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;</div>
-<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;        <span class="keywordflow">if</span> (!tree || !<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a> || tree == <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>)</div>
-<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;        {</div>
-<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;        }</div>
-<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;</div>
-<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;        tree-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;</div>
-<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;        parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;</div>
-<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;        <span class="keywordflow">while</span> ((tree != <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>) &amp;&amp; (parent-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>))</div>
-<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;        {</div>
-<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;            grandparent = parent-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;</div>
-<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;            <span class="keywordflow">if</span> (parent == grandparent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
-<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;            {</div>
-<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;                uncle = grandparent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>();</div>
-<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;</div>
-<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;                <span class="keywordflow">if</span> (uncle &amp;&amp; uncle-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
-<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;                {</div>
-<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;               <span class="comment">// Case 1 - Change the colors</span></div>
-<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;               parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;                    uncle-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;                    grandparent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;</div>
-<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;               <span class="comment">// Move up the tree</span></div>
-<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;               tree = grandparent;</div>
-<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;                }</div>
-<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;                <span class="keywordflow">else</span> <span class="comment">// Uncle is a black node</span></div>
-<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;                {</div>
-<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;               <span class="keywordflow">if</span> (tree == parent-&gt;<a class="code" href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">GetRight</a>())</div>
-<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;                    {</div>
-<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;                        <span class="comment">// Case 2 - Move up and rotate</span></div>
-<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;                        tree = parent;</div>
-<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;                        <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(tree);</div>
-<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;                    }</div>
-<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;</div>
-<div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;                    <span class="comment">// Case 3 - Make no changes to _root tree</span></div>
-<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;</div>
-<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160;                    <span class="comment">// Change colors for Case 2 / Case 3</span></div>
-<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;                    grandparent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;                    <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(grandparent);</div>
-<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;                }</div>
-<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;            }</div>
-<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;            <span class="keywordflow">else</span> <span class="comment">// TreeNode &#39;tree&#39; is in right subtree</span></div>
-<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;            {</div>
-<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;                uncle = grandparent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>();</div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;</div>
-<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;                <span class="keywordflow">if</span> (uncle &amp;&amp; uncle-&gt;<a class="code" href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">GetColor</a>() == <a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>)</div>
-<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;                {</div>
-<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;               <span class="comment">// Case 1 - Change the colors</span></div>
-<div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160;               parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;                    uncle-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;                    grandparent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;</div>
-<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;               <span class="comment">// Move up the tree</span></div>
-<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;               tree = grandparent;</div>
-<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;                }</div>
-<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;                <span class="keywordflow">else</span> <span class="comment">// Uncle is a black node</span></div>
-<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;                {</div>
-<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;               <span class="keywordflow">if</span> (tree == parent-&gt;<a class="code" href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">GetLeft</a>())</div>
-<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;                    {</div>
-<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;                        <span class="comment">// Case 2 - Move up and rotate</span></div>
-<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;                        tree = parent;</div>
-<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;                        <a class="code" href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">RotateRight</a>(tree);</div>
-<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;                    }</div>
-<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;</div>
-<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;                    <span class="comment">// Case 3 - Make no changes to _root tree</span></div>
-<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;</div>
-<div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;                    <span class="comment">// Change colors for Case 2 / Case 3</span></div>
-<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;                    parent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;                    grandparent-&gt;<a class="code" href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">SetColor</a>(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a">_tree_h_red</a>);</div>
-<div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;                    <a class="code" href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">RotateLeft</a>(grandparent);</div>
-<div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;                }</div>
-<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;            }</div>
-<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;</div>
-<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;            <span class="comment">// Have to adjust parent for new tree node</span></div>
-<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;            parent = tree-&gt;<a class="code" href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">GetParent</a>();</div>
-<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;        }</div>
-<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;</div>
-<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;        <span class="comment">// Mongoose 2002.02.17, Color root black ( heh )</span></div>
-<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;        <a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>-&gt;SetColor(<a class="code" href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a>);</div>
-<div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;    }</div>
-<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;</div>
-<div class="line"><a name="l01224"></a><span class="lineno"><a class="line" href="class_tree.html#a4518f0ccca0be1bf68ffa4d1da35707c"> 1224</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_tree.html#a4518f0ccca0be1bf68ffa4d1da35707c">_error</a>;                </div>
-<div class="line"><a name="l01225"></a><span class="lineno"><a class="line" href="class_tree.html#ad058047b8cb0f6ad8a6d7d4e727462e3"> 1225</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_tree.html#ad058047b8cb0f6ad8a6d7d4e727462e3">_num_elements</a>; </div>
-<div class="line"><a name="l01226"></a><span class="lineno"><a class="line" href="class_tree.html#aaf53db15625ab8c784767822c0424d54"> 1226</a></span>&#160;    <a class="code" href="class_tree_node.html">TreeNode&lt;Key, Data&gt;</a> *<a class="code" href="class_tree.html#aaf53db15625ab8c784767822c0424d54">_root</a>; </div>
-<div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;};</div>
-<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;</div>
-<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="class_tree_html_a5db0346067d0be04aede6e65b4a5714b"><div class="ttname"><a href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">Tree::RotateLeft</a></div><div class="ttdeci">void RotateLeft(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00780">Tree.h:780</a></div></div>
-<div class="ttc" id="class_tree_html_a1cdeb61e7ce2a78bdebdd30d5ffa7107"><div class="ttname"><a href="class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107">Tree::RestoreRedBlackAfterRemove</a></div><div class="ttdeci">void RestoreRedBlackAfterRemove(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l01023">Tree.h:1023</a></div></div>
+<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_tree_html_a5db0346067d0be04aede6e65b4a5714b"><div class="ttname"><a href="class_tree.html#a5db0346067d0be04aede6e65b4a5714b">Tree::RotateLeft</a></div><div class="ttdeci">void RotateLeft(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00740">Tree.h:740</a></div></div>
+<div class="ttc" id="class_tree_html_a1cdeb61e7ce2a78bdebdd30d5ffa7107"><div class="ttname"><a href="class_tree.html#a1cdeb61e7ce2a78bdebdd30d5ffa7107">Tree::RestoreRedBlackAfterRemove</a></div><div class="ttdeci">void RestoreRedBlackAfterRemove(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00910">Tree.h:910</a></div></div>
 <div class="ttc" id="class_tree_node_html_a207c9f14883e9c60ea998a34f8b0cb18"><div class="ttname"><a href="class_tree_node.html#a207c9f14883e9c60ea998a34f8b0cb18">TreeNode::SearchByKey</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * SearchByKey(Key key, bool *error)</div><div class="ttdoc">Search this node and its children for a specific key. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00305">Tree.h:305</a></div></div>
 <div class="ttc" id="class_tree_node_html_a5a634a5e3598f28668df1b75ef4f2265"><div class="ttname"><a href="class_tree_node.html#a5a634a5e3598f28668df1b75ef4f2265">TreeNode::_parent</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * _parent</div><div class="ttdoc">Parent of the tree node. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00350">Tree.h:350</a></div></div>
 <div class="ttc" id="class_tree_node_html_aadfa27681df314395e7c7b7dc7a16c96"><div class="ttname"><a href="class_tree_node.html#aadfa27681df314395e7c7b7dc7a16c96">TreeNode::GetLeft</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * GetLeft()</div><div class="ttdoc">Get the child. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00121">Tree.h:121</a></div></div>
 <div class="ttc" id="class_tree_html_a5f8151ca8cf0651cead608b76397b9fe"><div class="ttname"><a href="class_tree.html#a5f8151ca8cf0651cead608b76397b9fe">Tree::RemoveByKey</a></div><div class="ttdeci">bool RemoveByKey(Key key)</div><div class="ttdoc">Search for a key and remove, if found. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00472">Tree.h:472</a></div></div>
 <div class="ttc" id="class_tree_node_html_a92c9f5348eba96fc934474ed75eb596e"><div class="ttname"><a href="class_tree_node.html#a92c9f5348eba96fc934474ed75eb596e">TreeNode::GetRight</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * GetRight()</div><div class="ttdoc">Get the sibling. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00157">Tree.h:157</a></div></div>
-<div class="ttc" id="class_tree_html_a7d8bd4a9e879cb22bf6365641e981bd8"><div class="ttname"><a href="class_tree.html#a7d8bd4a9e879cb22bf6365641e981bd8">Tree::Remove</a></div><div class="ttdeci">void Remove(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00932">Tree.h:932</a></div></div>
+<div class="ttc" id="class_tree_html_a7d8bd4a9e879cb22bf6365641e981bd8"><div class="ttname"><a href="class_tree.html#a7d8bd4a9e879cb22bf6365641e981bd8">Tree::Remove</a></div><div class="ttdeci">void Remove(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00847">Tree.h:847</a></div></div>
 <div class="ttc" id="class_tree_node_html_a0be0b11e57c96f5b0e4424adc938772f"><div class="ttname"><a href="class_tree_node.html#a0be0b11e57c96f5b0e4424adc938772f">TreeNode::SetLeft</a></div><div class="ttdeci">void SetLeft(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdoc">Set the child. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00129">Tree.h:129</a></div></div>
 <div class="ttc" id="class_tree_node_html_a6309a8e610deaa9387761d41bd0dc15e"><div class="ttname"><a href="class_tree_node.html#a6309a8e610deaa9387761d41bd0dc15e">TreeNode::_left</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * _left</div><div class="ttdoc">Left or child node. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00348">Tree.h:348</a></div></div>
 <div class="ttc" id="_tree_8h_html_ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88"><div class="ttname"><a href="_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88">_tree_h_black</a></div><div class="ttdoc">Black node. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00038">Tree.h:38</a></div></div>
@@ -1112,27 +958,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_tree_html_ad48477724f0f878ddbb2fe15b6348e04"><div class="ttname"><a href="class_tree.html#ad48477724f0f878ddbb2fe15b6348e04">Tree::Error</a></div><div class="ttdeci">bool Error()</div><div class="ttdoc">Get the error flag. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00651">Tree.h:651</a></div></div>
 <div class="ttc" id="class_tree_node_html"><div class="ttname"><a href="class_tree_node.html">TreeNode</a></div><div class="ttdoc">Template class for a single Tree node. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00047">Tree.h:47</a></div></div>
 <div class="ttc" id="class_tree_node_html_ab28d6bc8c6ed058e975e395c598f4820"><div class="ttname"><a href="class_tree_node.html#ab28d6bc8c6ed058e975e395c598f4820">TreeNode::SetChild</a></div><div class="ttdeci">void SetChild(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdoc">Set the child. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00113">Tree.h:113</a></div></div>
-<div class="ttc" id="class_tree_html_abfc250eeb25098e4701355e038de1558"><div class="ttname"><a href="class_tree.html#abfc250eeb25098e4701355e038de1558">Tree::IsValidRedBlackTreeCheck</a></div><div class="ttdeci">bool IsValidRedBlackTreeCheck(TreeNode&lt; Key, Data &gt; *current, bool valid)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00733">Tree.h:733</a></div></div>
+<div class="ttc" id="class_tree_html_abfc250eeb25098e4701355e038de1558"><div class="ttname"><a href="class_tree.html#abfc250eeb25098e4701355e038de1558">Tree::IsValidRedBlackTreeCheck</a></div><div class="ttdeci">bool IsValidRedBlackTreeCheck(TreeNode&lt; Key, Data &gt; *current, bool valid)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00705">Tree.h:705</a></div></div>
 <div class="ttc" id="class_tree_node_html_a5cd893400b8530459e755ba89576bf79"><div class="ttname"><a href="class_tree_node.html#a5cd893400b8530459e755ba89576bf79">TreeNode::SetColor</a></div><div class="ttdeci">void SetColor(_tree_h_color_t color)</div><div class="ttdoc">Set the color. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00089">Tree.h:89</a></div></div>
 <div class="ttc" id="class_tree_node_html_a3529009e382e0261edc1d9d98d28fc0e"><div class="ttname"><a href="class_tree_node.html#a3529009e382e0261edc1d9d98d28fc0e">TreeNode::GetParent</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * GetParent()</div><div class="ttdoc">Get the parent. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00209">Tree.h:209</a></div></div>
 <div class="ttc" id="class_tree_node_html_ae980fa21cc43388e04b39aa5bef23574"><div class="ttname"><a href="class_tree_node.html#ae980fa21cc43388e04b39aa5bef23574">TreeNode::~TreeNode</a></div><div class="ttdeci">~TreeNode()</div><div class="ttdoc">Deconstruct a TreeNode. Also deletes childs. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00067">Tree.h:67</a></div></div>
 <div class="ttc" id="class_tree_html_acd48130b49b635eb4ec4e4abf2cb47e4"><div class="ttname"><a href="class_tree.html#acd48130b49b635eb4ec4e4abf2cb47e4">Tree::IsValidRedBlackTree</a></div><div class="ttdeci">bool IsValidRedBlackTree()</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00655">Tree.h:655</a></div></div>
-<div class="ttc" id="class_tree_html_ad058047b8cb0f6ad8a6d7d4e727462e3"><div class="ttname"><a href="class_tree.html#ad058047b8cb0f6ad8a6d7d4e727462e3">Tree::_num_elements</a></div><div class="ttdeci">unsigned int _num_elements</div><div class="ttdoc">Number of nodes in this tree. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l01225">Tree.h:1225</a></div></div>
+<div class="ttc" id="class_tree_html_ad058047b8cb0f6ad8a6d7d4e727462e3"><div class="ttname"><a href="class_tree.html#ad058047b8cb0f6ad8a6d7d4e727462e3">Tree::_num_elements</a></div><div class="ttdeci">unsigned int _num_elements</div><div class="ttdoc">Number of nodes in this tree. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l01071">Tree.h:1071</a></div></div>
 <div class="ttc" id="class_tree_html_afbc0c88843c3621eef16a5fd86990e95"><div class="ttname"><a href="class_tree.html#afbc0c88843c3621eef16a5fd86990e95">Tree::SearchByData</a></div><div class="ttdeci">Key SearchByData(Data data, bool *error)</div><div class="ttdoc">Search for a key with data. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00415">Tree.h:415</a></div></div>
 <div class="ttc" id="class_tree_node_html_aff443a6030790a5f37e006feb605b93e"><div class="ttname"><a href="class_tree_node.html#aff443a6030790a5f37e006feb605b93e">TreeNode::SetData</a></div><div class="ttdeci">void SetData(Data data)</div><div class="ttdoc">Set the data. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00185">Tree.h:185</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_aa8e4172ede7827e837ac528eae04c497"><div class="ttname"><a href="_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497">height</a></div><div class="ttdeci">unsigned short height</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00048">TombRaider.h:48</a></div></div>
-<div class="ttc" id="class_tree_html_aaf53db15625ab8c784767822c0424d54"><div class="ttname"><a href="class_tree.html#aaf53db15625ab8c784767822c0424d54">Tree::_root</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * _root</div><div class="ttdoc">Root node. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l01226">Tree.h:1226</a></div></div>
+<div class="ttc" id="class_tree_html_aaf53db15625ab8c784767822c0424d54"><div class="ttname"><a href="class_tree.html#aaf53db15625ab8c784767822c0424d54">Tree::_root</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * _root</div><div class="ttdoc">Root node. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l01072">Tree.h:1072</a></div></div>
 <div class="ttc" id="class_tree_html_a81e9e349540ff4589bf68fba3fffc368"><div class="ttname"><a href="class_tree.html#a81e9e349540ff4589bf68fba3fffc368">Tree::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdoc">Clear the list, deleting all TreeNodes. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00498">Tree.h:498</a></div></div>
 <div class="ttc" id="class_tree_html"><div class="ttname"><a href="class_tree.html">Tree</a></div><div class="ttdoc">Template class for a Red-Black Tree. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00358">Tree.h:358</a></div></div>
 <div class="ttc" id="class_tree_html_a79642f360ff85668ecc80138d01dea5d"><div class="ttname"><a href="class_tree.html#a79642f360ff85668ecc80138d01dea5d">Tree::PrintSpecial</a></div><div class="ttdeci">void PrintSpecial(void(*print_func_k)(Key), void(*print_func_d)(Data))</div><div class="ttdoc">Print this tree with it&amp;#39;s keys and data. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00625">Tree.h:625</a></div></div>
-<div class="ttc" id="class_tree_html_a514eb6ed41aaa800c6ad08936d9a7ad6"><div class="ttname"><a href="class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6">Tree::TreeNodeShallowCopy</a></div><div class="ttdeci">void TreeNodeShallowCopy(TreeNode&lt; Key, Data &gt; *src, TreeNode&lt; Key, Data &gt; *dest, bool no_links)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00911">Tree.h:911</a></div></div>
+<div class="ttc" id="class_tree_html_a514eb6ed41aaa800c6ad08936d9a7ad6"><div class="ttname"><a href="class_tree.html#a514eb6ed41aaa800c6ad08936d9a7ad6">Tree::TreeNodeShallowCopy</a></div><div class="ttdeci">void TreeNodeShallowCopy(TreeNode&lt; Key, Data &gt; *src, TreeNode&lt; Key, Data &gt; *dest, bool no_links)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00831">Tree.h:831</a></div></div>
 <div class="ttc" id="class_tree_node_html_aa17edb6fef6b3b3cfbb2304c36964ccf"><div class="ttname"><a href="class_tree_node.html#aa17edb6fef6b3b3cfbb2304c36964ccf">TreeNode::PrintInorderSpecial</a></div><div class="ttdeci">void PrintInorderSpecial(void(*print_func_k)(Key), void(*print_func_d)(Data))</div><div class="ttdoc">Print this node and its children in the correct order, with custom methods to print key and data...</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00267">Tree.h:267</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_abee66f35dacc890ae20fbcee59b5db52"><div class="ttname"><a href="_tomb_raider_8h.html#abee66f35dacc890ae20fbcee59b5db52">color</a></div><div class="ttdeci">tr2_colour_t color</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00047">TombRaider.h:47</a></div></div>
 <div class="ttc" id="class_tree_node_html_a1e842c7e0bfb950d992da726cfc45263"><div class="ttname"><a href="class_tree_node.html#a1e842c7e0bfb950d992da726cfc45263">TreeNode::SearchByData</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * SearchByData(Data data, bool *error)</div><div class="ttdoc">Search this node and its children for specific data. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00285">Tree.h:285</a></div></div>
 <div class="ttc" id="class_tree_html_a66c298729076178e6028851948b3caf4"><div class="ttname"><a href="class_tree.html#a66c298729076178e6028851948b3caf4">Tree::GetSuccessor</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * GetSuccessor(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00661">Tree.h:661</a></div></div>
 <div class="ttc" id="class_tree_node_html_aa795096ca8118eaf77074b882890eec5"><div class="ttname"><a href="class_tree_node.html#aa795096ca8118eaf77074b882890eec5">TreeNode::GetSibling</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * GetSibling()</div><div class="ttdoc">Get the sibling. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00141">Tree.h:141</a></div></div>
 <div class="ttc" id="class_tree_node_html_a79e5d5e85c1e553ec0163d7e743545d8"><div class="ttname"><a href="class_tree_node.html#a79e5d5e85c1e553ec0163d7e743545d8">TreeNode::SetKey</a></div><div class="ttdeci">void SetKey(Key key)</div><div class="ttdoc">Set the key. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00201">Tree.h:201</a></div></div>
-<div class="ttc" id="class_tree_html_a55354d9c0d8f0b9b79bf24d00fb5d6ec"><div class="ttname"><a href="class_tree.html#a55354d9c0d8f0b9b79bf24d00fb5d6ec">Tree::RestoreRedBlackAfterInsert</a></div><div class="ttdeci">void RestoreRedBlackAfterInsert(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l01135">Tree.h:1135</a></div></div>
+<div class="ttc" id="class_tree_html_a55354d9c0d8f0b9b79bf24d00fb5d6ec"><div class="ttname"><a href="class_tree.html#a55354d9c0d8f0b9b79bf24d00fb5d6ec">Tree::RestoreRedBlackAfterInsert</a></div><div class="ttdeci">void RestoreRedBlackAfterInsert(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00997">Tree.h:997</a></div></div>
 <div class="ttc" id="class_tree_html_aa3658d36476982ea896adaabc76711af"><div class="ttname"><a href="class_tree.html#aa3658d36476982ea896adaabc76711af">Tree::RemoveByData</a></div><div class="ttdeci">bool RemoveByData(Data data)</div><div class="ttdoc">Search for data and remove, if found. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00458">Tree.h:458</a></div></div>
 <div class="ttc" id="_tomb_raider_8h_html_ac24cea2bfcc927fd29bc74d1086707d8"><div class="ttname"><a href="_tomb_raider_8h.html#ac24cea2bfcc927fd29bc74d1086707d8">data</a></div><div class="ttdeci">unsigned char * data</div><div class="ttdef"><b>Definition:</b> <a href="_tomb_raider_8h_source.html#l00046">TombRaider.h:46</a></div></div>
 <div class="ttc" id="class_tree_node_html_a0df5288cef2afec6b637e4eb04d55a6c"><div class="ttname"><a href="class_tree_node.html#a0df5288cef2afec6b637e4eb04d55a6c">TreeNode::GetKey</a></div><div class="ttdeci">Key GetKey()</div><div class="ttdoc">Get the key. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00193">Tree.h:193</a></div></div>
@@ -1145,11 +991,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_tree_html_a884b25ab8e7273ae01fd052d828cef8f"><div class="ttname"><a href="class_tree.html#a884b25ab8e7273ae01fd052d828cef8f">Tree::Insert</a></div><div class="ttdeci">void Insert(Key key, Data data)</div><div class="ttdoc">Insert a key-data pair into the tree. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00438">Tree.h:438</a></div></div>
 <div class="ttc" id="class_tree_node_html_aea84b8ea7f8849492dd3b5f160930dc8"><div class="ttname"><a href="class_tree_node.html#aea84b8ea7f8849492dd3b5f160930dc8">TreeNode::_data</a></div><div class="ttdeci">Data _data</div><div class="ttdoc">Data for this tree. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00347">Tree.h:347</a></div></div>
 <div class="ttc" id="class_tree_node_html_af615ccf8c77472c5a2678f10fa925d9b"><div class="ttname"><a href="class_tree_node.html#af615ccf8c77472c5a2678f10fa925d9b">TreeNode::_key</a></div><div class="ttdeci">Key _key</div><div class="ttdoc">Unique identifer? </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00346">Tree.h:346</a></div></div>
-<div class="ttc" id="class_tree_html_a4518f0ccca0be1bf68ffa4d1da35707c"><div class="ttname"><a href="class_tree.html#a4518f0ccca0be1bf68ffa4d1da35707c">Tree::_error</a></div><div class="ttdeci">bool _error</div><div class="ttdoc">Error reporting for operator use. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l01224">Tree.h:1224</a></div></div>
+<div class="ttc" id="class_tree_html_a4518f0ccca0be1bf68ffa4d1da35707c"><div class="ttname"><a href="class_tree.html#a4518f0ccca0be1bf68ffa4d1da35707c">Tree::_error</a></div><div class="ttdeci">bool _error</div><div class="ttdoc">Error reporting for operator use. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l01070">Tree.h:1070</a></div></div>
 <div class="ttc" id="class_tree_node_html_a4086aa3a98c7db3ad337aa972ee27000"><div class="ttname"><a href="class_tree_node.html#a4086aa3a98c7db3ad337aa972ee27000">TreeNode::SetSibling</a></div><div class="ttdeci">void SetSibling(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdoc">Set the sibling. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00149">Tree.h:149</a></div></div>
 <div class="ttc" id="memory__test_8h_html"><div class="ttname"><a href="memory__test_8h.html">memory_test.h</a></div></div>
 <div class="ttc" id="class_tree_node_html_a616725c3cd33442c83c634e720216473"><div class="ttname"><a href="class_tree_node.html#a616725c3cd33442c83c634e720216473">TreeNode::SetRight</a></div><div class="ttdeci">void SetRight(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdoc">Set the sibling. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00165">Tree.h:165</a></div></div>
-<div class="ttc" id="class_tree_html_a5c736f48f243d1ef028458bc4769381c"><div class="ttname"><a href="class_tree.html#a5c736f48f243d1ef028458bc4769381c">Tree::GetPredecessor</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * GetPredecessor(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00697">Tree.h:697</a></div></div>
+<div class="ttc" id="class_tree_html_a5c736f48f243d1ef028458bc4769381c"><div class="ttname"><a href="class_tree.html#a5c736f48f243d1ef028458bc4769381c">Tree::GetPredecessor</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * GetPredecessor(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00683">Tree.h:683</a></div></div>
 <div class="ttc" id="class_tree_node_html_acc8202af3468faeda13eddd705cc3714"><div class="ttname"><a href="class_tree_node.html#acc8202af3468faeda13eddd705cc3714">TreeNode::GetChild</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * GetChild()</div><div class="ttdoc">Get the child. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00105">Tree.h:105</a></div></div>
 <div class="ttc" id="class_tree_node_html_a0ddf24421647d3dcbcf8f1e76e9bde01"><div class="ttname"><a href="class_tree_node.html#a0ddf24421647d3dcbcf8f1e76e9bde01">TreeNode::GetColor</a></div><div class="ttdeci">_tree_h_color_t GetColor()</div><div class="ttdoc">Get the color. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00097">Tree.h:97</a></div></div>
 <div class="ttc" id="class_tree_html_a6fea78168cd79bbd18ab846d2c20f13b"><div class="ttname"><a href="class_tree.html#a6fea78168cd79bbd18ab846d2c20f13b">Tree::Erase</a></div><div class="ttdeci">void Erase()</div><div class="ttdoc">Clear the list, deleting all TreeNodes. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00491">Tree.h:491</a></div></div>
@@ -1157,7 +1003,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_tree_node_html_af48bf4ab45029f3ab9a496128e543c51"><div class="ttname"><a href="class_tree_node.html#af48bf4ab45029f3ab9a496128e543c51">TreeNode::GetData</a></div><div class="ttdeci">Data GetData()</div><div class="ttdoc">Get the data. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00177">Tree.h:177</a></div></div>
 <div class="ttc" id="class_tree_node_html_aa33fd6c2a40d43c39c7e93613dd040cf"><div class="ttname"><a href="class_tree_node.html#aa33fd6c2a40d43c39c7e93613dd040cf">TreeNode::TreeNode</a></div><div class="ttdeci">TreeNode(Key key, Data data)</div><div class="ttdoc">Construct a TreeNode. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00055">Tree.h:55</a></div></div>
 <div class="ttc" id="class_tree_node_html_ac25760cd3591da6ded1e8e9c19dd0914"><div class="ttname"><a href="class_tree_node.html#ac25760cd3591da6ded1e8e9c19dd0914">TreeNode::_color</a></div><div class="ttdeci">_tree_h_color_t _color</div><div class="ttdoc">Color of tree node. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00345">Tree.h:345</a></div></div>
-<div class="ttc" id="class_tree_html_a78435582c4282e4ac6c5ae39345270db"><div class="ttname"><a href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">Tree::RotateRight</a></div><div class="ttdeci">void RotateRight(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00851">Tree.h:851</a></div></div>
+<div class="ttc" id="class_tree_html_a78435582c4282e4ac6c5ae39345270db"><div class="ttname"><a href="class_tree.html#a78435582c4282e4ac6c5ae39345270db">Tree::RotateRight</a></div><div class="ttdeci">void RotateRight(TreeNode&lt; Key, Data &gt; *tree)</div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00790">Tree.h:790</a></div></div>
 <div class="ttc" id="class_tree_node_html_aca52cce8763c3d6f8787e61f900b0778"><div class="ttname"><a href="class_tree_node.html#aca52cce8763c3d6f8787e61f900b0778">TreeNode::_right</a></div><div class="ttdeci">TreeNode&lt; Key, Data &gt; * _right</div><div class="ttdoc">Right or sibling node. </div><div class="ttdef"><b>Definition:</b> <a href="_tree_8h_source.html#l00349">Tree.h:349</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
