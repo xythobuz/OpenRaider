@@ -1,5 +1,5 @@
 /*!
- * \file src/OpenGLMesh.cpp
+ * \file src/Mesh.cpp
  * \brief OpenGL Mesh
  *
  * \author Mongoose
@@ -11,14 +11,14 @@
 #include <GL/gl.h>
 #endif
 
-#include <OpenGLMesh.h>
+#include <Mesh.h>
 
 
 ////////////////////////////////////////////////////////////
 // Constructors
 ////////////////////////////////////////////////////////////
 
-OpenGLMesh::OpenGLMesh()
+Mesh::Mesh()
 {
     mNumVertices = 0;
     mVertices = 0x0;
@@ -46,11 +46,11 @@ OpenGLMesh::OpenGLMesh()
     mTriangleTexCoordArray = 0x0;
 
     mFlags = 0;
-    mMode = OpenGLMeshModeTexture;
+    mMode = MeshModeTexture;
 }
 
 
-OpenGLMesh::~OpenGLMesh()
+Mesh::~Mesh()
 {
     unsigned int i;
 
@@ -151,7 +151,7 @@ OpenGLMesh::~OpenGLMesh()
 // Public Accessors
 ////////////////////////////////////////////////////////////
 
-void OpenGLMesh::drawAlpha()
+void Mesh::drawAlpha()
 {
     unsigned int i, j, k, index;
 
@@ -161,17 +161,17 @@ void OpenGLMesh::drawAlpha()
     {
         switch (mMode)
         {
-            case OpenGLMeshModeWireframe:
+            case MeshModeWireframe:
                 glColor3f(0.0, 0.0, 1.0);
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
-            case OpenGLMeshModeSolid:
+            case MeshModeSolid:
                 // Bind WHITE texture for solid colors
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
             default:
-            case OpenGLMeshModeTexture:
-            case OpenGLMeshModeMultiTexture:
+            case MeshModeTexture:
+            case MeshModeMultiTexture:
                 // Bind texture id for textures
                 glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
         }
@@ -198,17 +198,17 @@ void OpenGLMesh::drawAlpha()
     {
         switch (mMode)
         {
-            case OpenGLMeshModeWireframe:
+            case MeshModeWireframe:
                 glColor3f(0.0, 1.0, 0.0);
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
-            case OpenGLMeshModeSolid:
+            case MeshModeSolid:
                 // Bind WHITE texture for solid colors
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
             default:
-            case OpenGLMeshModeTexture:
-            case OpenGLMeshModeMultiTexture:
+            case MeshModeTexture:
+            case MeshModeMultiTexture:
                 // Bind texture id for textures
                 glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
         }
@@ -232,12 +232,12 @@ void OpenGLMesh::drawAlpha()
 }
 
 
-void OpenGLMesh::drawSolid()
+void Mesh::drawSolid()
 {
     unsigned int i, j, k, index;
 
 
-    if (mFlags & fOpenGLMesh_UseVertexArray)
+    if (mFlags & fMesh_UseVertexArray)
     {
         //glEnableClientState(GL_VERTEX_ARRAY);
         //glVertexPointer(3, GL_FLOAT, 0, mVertexArray);
@@ -278,15 +278,15 @@ void OpenGLMesh::drawSolid()
     {
         switch (mMode)
         {
-            case OpenGLMeshModeSolid:
+            case MeshModeSolid:
                 glColor3f(0.0, 0.0, 0.0);
                 break;
-            case OpenGLMeshModeWireframe:
+            case MeshModeWireframe:
                 // Bind WHITE texture for solid colors
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
 #ifdef MULTITEXTURE
-            case OpenGLMeshModeMultiTexture:
+            case MeshModeMultiTexture:
                 glActiveTextureARB(GL_TEXTURE0_ARB);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
@@ -296,10 +296,10 @@ void OpenGLMesh::drawSolid()
                 glBindTexture(GL_TEXTURE_2D, mQuads[i].bumpmap+1);
                 break;
 #else
-            case OpenGLMeshModeMultiTexture:
+            case MeshModeMultiTexture:
 #endif
             default:
-            case OpenGLMeshModeTexture:
+            case MeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
@@ -316,7 +316,7 @@ void OpenGLMesh::drawSolid()
                 glColor4fv(mColors[index]);
 
 #ifdef MULTITEXTURE
-                if (mMode == OpenGLMeshModeMultiTexture)
+                if (mMode == MeshModeMultiTexture)
                 {
                     glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
                             mQuads[i].texcoors[j*4+k]);
@@ -339,15 +339,15 @@ void OpenGLMesh::drawSolid()
     {
         switch (mMode)
         {
-            case OpenGLMeshModeSolid:
+            case MeshModeSolid:
                 glColor3f(1.0, 0.0, 0.0);
                 break;
-            case OpenGLMeshModeWireframe:
+            case MeshModeWireframe:
                 // Bind WHITE texture for solid colors
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
 #ifdef MULTITEXTURE
-            case OpenGLMeshModeMultiTexture:
+            case MeshModeMultiTexture:
                 glActiveTextureARB(GL_TEXTURE0_ARB);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
@@ -357,10 +357,10 @@ void OpenGLMesh::drawSolid()
                 glBindTexture(GL_TEXTURE_2D, mTris[i].bumpmap+1);
                 break;
 #else
-            case OpenGLMeshModeMultiTexture:
+            case MeshModeMultiTexture:
 #endif
             default:
-            case OpenGLMeshModeTexture:
+            case MeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
@@ -375,7 +375,7 @@ void OpenGLMesh::drawSolid()
                 index = mTris[i].triangles[j*3+k];
 
 #ifdef MULTITEXTURE
-                if (mMode == OpenGLMeshModeMultiTexture)
+                if (mMode == MeshModeMultiTexture)
                 {
                     glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
                             mTris[i].texcoors[j*3+k]);
@@ -395,7 +395,7 @@ void OpenGLMesh::drawSolid()
     }
 
 #ifdef MULTITEXTURE
-    if (mMode == OpenGLMeshModeMultiTexture)
+    if (mMode == MeshModeMultiTexture)
     {
         glDisable(GL_TEXTURE_2D);
         glActiveTextureARB(GL_TEXTURE0_ARB);
@@ -408,7 +408,7 @@ void OpenGLMesh::drawSolid()
 // Public Mutators
 ////////////////////////////////////////////////////////////
 
-void OpenGLMesh::allocateColors(unsigned int n)
+void Mesh::allocateColors(unsigned int n)
 {
     if (mColors)
     {
@@ -426,7 +426,7 @@ void OpenGLMesh::allocateColors(unsigned int n)
 }
 
 
-void OpenGLMesh::allocateNormals(unsigned int n)
+void Mesh::allocateNormals(unsigned int n)
 {
     if (mNormals)
     {
@@ -444,7 +444,7 @@ void OpenGLMesh::allocateNormals(unsigned int n)
 }
 
 
-void OpenGLMesh::allocateRectangles(unsigned int n)
+void Mesh::allocateRectangles(unsigned int n)
 {
     if (mQuads)
     {
@@ -462,7 +462,7 @@ void OpenGLMesh::allocateRectangles(unsigned int n)
 }
 
 
-void OpenGLMesh::allocateTriangles(unsigned int n)
+void Mesh::allocateTriangles(unsigned int n)
 {
     if (mTris)
     {
@@ -480,7 +480,7 @@ void OpenGLMesh::allocateTriangles(unsigned int n)
 }
 
 
-void OpenGLMesh::allocateVertices(unsigned int n)
+void Mesh::allocateVertices(unsigned int n)
 {
     if (mVertices)
     {
@@ -498,7 +498,7 @@ void OpenGLMesh::allocateVertices(unsigned int n)
 }
 
 
-void OpenGLMesh::bufferColorArray(unsigned int colorCount, vec_t *colors)
+void Mesh::bufferColorArray(unsigned int colorCount, vec_t *colors)
 {
     if (mColors)
     {
@@ -516,7 +516,7 @@ void OpenGLMesh::bufferColorArray(unsigned int colorCount, vec_t *colors)
 }
 
 
-void OpenGLMesh::bufferNormalArray(unsigned int normalCount, vec_t *normals)
+void Mesh::bufferNormalArray(unsigned int normalCount, vec_t *normals)
 {
     if (mNormals)
     {
@@ -534,7 +534,7 @@ void OpenGLMesh::bufferNormalArray(unsigned int normalCount, vec_t *normals)
 }
 
 
-void OpenGLMesh::bufferTriangles(unsigned int count,
+void Mesh::bufferTriangles(unsigned int count,
         unsigned int *indices, vec_t *texCoords,
         int *textures, unsigned int *flags)
 {
@@ -549,7 +549,7 @@ void OpenGLMesh::bufferTriangles(unsigned int count,
 }
 
 
-void OpenGLMesh::bufferVertexArray(unsigned int vertexCount, vec_t *vertices)
+void Mesh::bufferVertexArray(unsigned int vertexCount, vec_t *vertices)
 {
     if (mVertices)
     {
@@ -564,11 +564,11 @@ void OpenGLMesh::bufferVertexArray(unsigned int vertexCount, vec_t *vertices)
 
     mNumVertices = vertexCount;
     mVertexArray = vertices;
-    mFlags |= fOpenGLMesh_UseVertexArray;
+    mFlags |= fMesh_UseVertexArray;
 }
 
 
-void OpenGLMesh::setColor(unsigned int index,
+void Mesh::setColor(unsigned int index,
         float r, float g, float b, float a)
 {
     if (index > mNumColors)
@@ -583,7 +583,7 @@ void OpenGLMesh::setColor(unsigned int index,
 }
 
 
-void OpenGLMesh::setColor(unsigned int index, float rgba[4])
+void Mesh::setColor(unsigned int index, float rgba[4])
 {
     if (index > mNumColors)
     {
@@ -597,7 +597,7 @@ void OpenGLMesh::setColor(unsigned int index, float rgba[4])
 }
 
 
-void OpenGLMesh::setNormal(unsigned int index, float i, float j, float k)
+void Mesh::setNormal(unsigned int index, float i, float j, float k)
 {
     if (index > mNumNormals)
     {
@@ -610,7 +610,7 @@ void OpenGLMesh::setNormal(unsigned int index, float i, float j, float k)
 }
 
 
-void OpenGLMesh::setVertex(unsigned int index, float x, float y, float z)
+void Mesh::setVertex(unsigned int index, float x, float y, float z)
 {
     if (index > mNumVertices)
     {

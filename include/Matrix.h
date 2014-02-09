@@ -83,7 +83,7 @@ public:
      * \param b second matrix
      * \returns resultant matrix
      */
-    Matrix multiply(const Matrix &a, const Matrix &b);
+    static Matrix multiply(const Matrix &a, const Matrix &b);
 
     /*!
      * \brief Multiplies v vector and this matrix
@@ -192,7 +192,7 @@ private:
      * \param source source
      * \param dest destination
      */
-    void copy(matrix_t source, matrix_t dest);
+    static void copy(matrix_t source, matrix_t dest);
 
     /*!
      * \brief Multiplies matrices a and b. Neither a or b is also the result.
@@ -200,7 +200,7 @@ private:
      * \param b second matrix
      * \param result wil be set to resultant matrix value
      */
-    void multiply(const matrix_t a, const matrix_t b, matrix_t result);
+    static void multiply(const matrix_t a, const matrix_t b, matrix_t result);
 };
 
 #endif

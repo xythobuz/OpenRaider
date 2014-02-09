@@ -1,23 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/OpenRaider.h
+ * \brief Main Game Singleton
  *
- * Project : OpenRaider
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : OpenRaider
- * License : No use w/o permission (C) 2001 Mongoose
- * Comments: This is the main class for OpenRaider
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2001.05.21:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #include <stdlib.h>
 #include <string.h>
@@ -121,7 +107,6 @@ OpenRaider::OpenRaider() : SDLSystem()
     m_texOffset = 0;
     mLevelTextureOffset = 0;
     m_testSFX = -1;
-    mNoClipping = 0;
 
     mText = NULL;
     m_flags = 0;
@@ -2902,8 +2887,6 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("fly", cmd))
     {
-        mNoClipping = worldMoveType_fly;
-
         if (LARA)
         {
             LARA->moveType = worldMoveType_fly;
@@ -2913,8 +2896,6 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("walk", cmd))
     {
-        mNoClipping = worldMoveType_walk;
-
         if (LARA)
         {
             LARA->moveType = worldMoveType_walk;
@@ -2924,8 +2905,6 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("ghost", cmd))
     {
-        mNoClipping = worldMoveType_noClipping;
-
         if (LARA)
         {
             LARA->moveType = worldMoveType_noClipping;

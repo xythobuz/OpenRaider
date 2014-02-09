@@ -5,6 +5,10 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140209 ]
+	* Renamed OpenGLMesh to Mesh
+	* Removed unused flags, enums, ...
+
 	[ 20140202 ]
 	* Fixed more cppcheck warnings
 	* Removed unnecessary defines (USING_xxx)

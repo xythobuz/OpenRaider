@@ -1802,13 +1802,13 @@ void Render::drawRoom(RenderRoom *rRoom, bool draw_alpha)
     switch (mMode)
     {
         case modeWireframe:
-            rRoom->mesh.mMode = OpenGLMesh::OpenGLMeshModeWireframe;
+            rRoom->mesh.mMode = Mesh::MeshModeWireframe;
             break;
         case modeSolid:
-            rRoom->mesh.mMode = OpenGLMesh::OpenGLMeshModeSolid;
+            rRoom->mesh.mMode = Mesh::MeshModeSolid;
             break;
         default:
-            rRoom->mesh.mMode = OpenGLMesh::OpenGLMeshModeTexture;
+            rRoom->mesh.mMode = Mesh::MeshModeTexture;
             break;
     }
 

@@ -30,7 +30,7 @@
 #include <Light.h>
 #include <World.h>
 #include <SkeletalModel.h>
-#include <OpenGLMesh.h>
+#include <Mesh.h>
 #include <Texture.h>
 #include <Camera.h>
 #include <GLString.h>
@@ -40,40 +40,29 @@
 #endif
 
 
-class RenderRoom
-{
+class RenderRoom {
 public:
-    RenderRoom()
-    {
+    RenderRoom() {
         room = 0x0;
         dist = 0.0f;
         center[0] = center[1] = center[2] = 0.0f;
     }
 
-    ~RenderRoom()
-    {
+    ~RenderRoom() {
         //! \fixme Hangs when erasing - might be shared pointers somewhere
         //lights.erase();
     }
 
-    void computeCenter()
-    {
+    void computeCenter() {
         if (room)
-        {
             helMidpoint3v(room->bbox_min, room->bbox_max, center);
-        }
     }
 
-    vec_t dist;              /* Distance to near plane, move to room?  */
-
-    vec3_t center;           /* Center of bbox, move to room? */
-
-    room_mesh_t *room;       /* Physical room stored in World,
-                                         Very dangerous as allocated and used */
-
-    Vector<Light *> lights;  /* List of lights in this room */
-
-    OpenGLMesh mesh;         /* OpenGL mesh that represents this room */
+    vec_t dist;             //!< Distance to near plane, move to room?
+    vec3_t center;          //!< Center of bbox, move to room?
+    room_mesh_t *room;      //!< Physical room stored in World, very dangerous as allocated and used
+    Vector<Light *> lights; //!< List of lights in this room
+    Mesh mesh;              //!< OpenGL mesh that represents this room
 };
 
 
@@ -81,42 +70,38 @@ class Render
 {
  public:
 
-    typedef enum
-   {
-        modeDisabled    = 0,
-        modeLoadScreen  = 1,
-        modeVertexLight = 2,
-        modeSolid       = 3,
-        modeWireframe   = 4,
-        modeTexture     = 5
+    typedef enum {
+        modeDisabled,
+        modeLoadScreen,
+        modeVertexLight,
+        modeSolid,
+        modeWireframe,
+        modeTexture
     } RenderMode;
 
-    typedef enum
-   {
-        fParticles      = 1,
-        fPortals            = 2,
-        fRoomAlpha      = 4,
-        fViewModel    = 8,
-        fSprites      = 16,
-        fRoomModels   = 32,
-        fEntityModels = 64,
-        fFog          = 128,
-        fUsePortals   = 256,
-        fFastCard     = 1024,
-        fGL_Lights    = 2048,
-        fOneRoom      = 4096,
-        fRenderPonytail = 8192,
-        fMultiTexture = 16384,
-        fUpdateRoomListPerFrame = 32768,
-        fAnimateAllModels = 65536,
-        fAllRooms      =  131072
+    typedef enum {
+        fParticles              = (1 << 0),
+        fPortals                = (1 << 1),
+        fRoomAlpha              = (1 << 2),
+        fViewModel              = (1 << 3),
+        fSprites                = (1 << 4),
+        fRoomModels             = (1 << 5),
+        fEntityModels           = (1 << 6),
+        fFog                    = (1 << 7),
+        fUsePortals             = (1 << 8),
+        fFastCard               = (1 << 9),
+        fGL_Lights              = (1 << 10),
+        fOneRoom                = (1 << 11),
+        fRenderPonytail         = (1 << 12),
+        fMultiTexture           = (1 << 13),
+        fUpdateRoomListPerFrame = (1 << 14),
+        fAnimateAllModels       = (1 << 15),
+        fAllRooms               = (1 << 16)
     } RenderFlags;
 
-    typedef enum
-    {
-        roomMesh = 1,
-        skeletalMesh = 2
-
+    typedef enum {
+        roomMesh,
+        skeletalMesh
     } RenderMeshType;
 
     ////////////////////////////////////////////////////////////

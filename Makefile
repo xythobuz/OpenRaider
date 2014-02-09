@@ -180,8 +180,8 @@ OBJS = \
 	$(BUILDDIR)/GLString.o \
 	$(BUILDDIR)/MatMath.o \
 	$(BUILDDIR)/Matrix.o \
+	$(BUILDDIR)/Mesh.o \
 	$(BUILDDIR)/Network.o \
-	$(BUILDDIR)/OpenGLMesh.o \
 	$(BUILDDIR)/OpenRaider.o \
 	$(BUILDDIR)/Particle.o \
 	$(BUILDDIR)/Quaternion.o \

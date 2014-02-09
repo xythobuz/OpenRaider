@@ -1,5 +1,5 @@
 /*!
- * \file include/OpenGLMesh.h
+ * \file include/Mesh.h
  * \brief OpenGL Mesh
  *
  * \author Mongoose
@@ -15,21 +15,19 @@
 /*!
  * \brief OpenGL Mesh
  */
-class OpenGLMesh {
+class Mesh {
 public:
 
     typedef enum {
-        OpenGLMeshModeSolid          = 0,
-        OpenGLMeshModeWireframe      = 1,
-        OpenGLMeshModeTexture        = 2,
-        OpenGLMeshModeMultiTexture   = 3
-    } OpenGLMeshMode;
+        MeshModeSolid,
+        MeshModeWireframe,
+        MeshModeTexture,
+        MeshModeMultiTexture
+    } MeshMode;
 
     typedef enum {
-        fOpenGLMesh_Transparent      = 1,
-        fOpenGLMesh_BumpMap          = 2,
-        fOpenGLMesh_UseVertexArray   = 4
-    } OpenGLMeshFlags;
+        fMesh_UseVertexArray = (1 << 0)
+    } MeshFlags;
 
     typedef struct tris_s {
         int texture;
@@ -82,14 +80,14 @@ public:
     } rect_t;
 
     /*!
-     * \brief Constructs an object of OpenGLMesh
+     * \brief Constructs an object of Mesh
      */
-    OpenGLMesh();
+    Mesh();
 
     /*!
-     * \brief Deconstructs an object of OpenGLMesh
+     * \brief Deconstructs an object of Mesh
      */
-    ~OpenGLMesh();
+    ~Mesh();
 
     void drawAlpha();
 
@@ -140,7 +138,7 @@ public:
 
     unsigned int mFlags;
 
-    OpenGLMeshMode mMode;
+    MeshMode mMode;
 
     unsigned int mNumVertices;
     vec3_t *mVertices; //!< XYZ
