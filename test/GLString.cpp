@@ -3,10 +3,11 @@
  * \brief Open GL rendering font/string Unit Test
  *
  * \author Mongoose
+ * \author xythobuz
  */
 
 #include <math.h>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 #ifdef __APPLE__
 #include <OpenGL/glu.h>
 #else
@@ -17,7 +18,8 @@
 #include <GLString.h>
 
 GLString *TEXT;
-SDL_Surface *SDL_WINDOW = NULL;
+SDL_Window *sdlWindow;
+SDL_GLContext glContext;
 Texture gTexture;
 
 void swap_buffers();
@@ -39,7 +41,8 @@ void event_resize(int width, int height) {
 }
 
 void event_display(int width, int height) {
-    static float x = 0.0f, y = 0.0f, z = -150.0f, r = 0.0f;
+    static float r = 0.0f;
+    float x = 0.0f, y = 0.0f, z = -150.0f;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -65,7 +68,7 @@ void event_display(int width, int height) {
     glDisable(GL_CULL_FACE);
     glEnable(GL_BLEND);
     glEnable(GL_TEXTURE_2D);
-    glColor3f(0.75, 0.5, 1.0);
+    glColor3f(0.5f, 0.7f, 1.0f);
 
     glEnterMode2d(width, height);
     TEXT->Render();
@@ -76,18 +79,17 @@ void event_display(int width, int height) {
 }
 
 void swap_buffers() {
-    SDL_GL_SwapBuffers();
+    SDL_GL_SwapWindow(sdlWindow);
 }
 
 
 void shutdown_gl() {
+    SDL_GL_DeleteContext(glContext);
+    SDL_DestroyWindow(sdlWindow);
     SDL_Quit();
 }
 
-void init_gl(unsigned int width, unsigned int height) {
-    int i;
-    const char *errorText = "TEXT->glPrintf> ERROR code %i\n";
-
+void init_gl() {
     // Setup GL
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glShadeModel(GL_SMOOTH);
@@ -95,8 +97,11 @@ void init_gl(unsigned int width, unsigned int height) {
     glDepthFunc(GL_LESS);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+}
 
-    event_resize(width, height);
+void init_text() {
+    int i;
+    const char *errorText = "TEXT->glPrintf> ERROR code %i\n";
 
     // Mongoose 2002.01.01, Texture setup
     gTexture.reset();
@@ -106,20 +111,20 @@ void init_gl(unsigned int width, unsigned int height) {
     gTexture.loadFontTTF("data/test.ttf", 32, 126 - 32);  // ASCII
 
     TEXT->Init(4);
-    i = TEXT->glPrintf((width/2)-50, height/2-32, "OpenRaider");
+    i = TEXT->glPrintf(50, 50, "OpenRaider GLString");
     if (i) {
         printf(errorText, i);
     }
-    i = TEXT->glPrintf((width/2)-50, height/2, "GLString");
+    i = TEXT->glPrintf(50, 100, "Unit Test by Mongoose");
     if (i) {
         printf(errorText, i);
     }
     TEXT->Scale(1.2f);
-    i = TEXT->glPrintf((width/2)-100, height/2+32, "Unit Test by Mongoose");
+    i = TEXT->glPrintf(50, 150, "ported to SDL2 & TTF");
     if (i) {
         printf(errorText, i);
     }
-    i = TEXT->glPrintf((width/2)-100, height/2+64, "ported to TTF by xythobuz");
+    i = TEXT->glPrintf(50, 200, "by xythobuz");
     if (i) {
         printf(errorText, i);
     }
@@ -164,10 +169,10 @@ void init_gl(unsigned int width, unsigned int height) {
     }
 #endif
 
-    flags = SDL_OPENGL | SDL_GL_DOUBLEBUFFER;
+    flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
 
     if (fullscreen) {
-        flags |= SDL_FULLSCREEN;
+        flags |= SDL_WINDOW_FULLSCREEN;
         SDL_ShowCursor(SDL_DISABLE);
     }
 
@@ -176,12 +181,14 @@ void init_gl(unsigned int width, unsigned int height) {
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    SDL_WINDOW = SDL_SetVideoMode(width, height, 16, flags);
-    SDL_WM_SetCaption("GLString Test", "GLString Test");
-    SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+
+    sdlWindow = SDL_CreateWindow("GLString Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);
+    glContext = SDL_GL_CreateContext(sdlWindow);
 
     // Init rendering
-    init_gl(width, height);
+    init_gl();
+    event_resize(width, height);
+    init_text();
 
     for (;;) {
         // Pause for 10-20 ms
@@ -220,11 +227,11 @@ void init_gl(unsigned int width, unsigned int height) {
                     if (mkeys & KMOD_RALT)
                         mod |= KMOD_RALT;
 
-                    if (mkeys & KMOD_LMETA)
-                        mod |= KMOD_LMETA;
+                    if (mkeys & KMOD_LGUI)
+                        mod |= KMOD_LGUI;
 
-                    if (mkeys & KMOD_RMETA)
-                        mod |= KMOD_RMETA;
+                    if (mkeys & KMOD_RGUI)
+                        mod |= KMOD_RGUI;
 
                     key = event.key.keysym.sym;
 
@@ -234,21 +241,23 @@ void init_gl(unsigned int width, unsigned int height) {
                             exit(0);
 #ifdef __APPLE__
                         case 113: // q
-                            if ((mod & KMOD_RMETA) || (mod & KMOD_LMETA))
+                            if ((mod & KMOD_RGUI) || (mod & KMOD_LGUI))
                                 exit(0);
                             break;
 #endif
-                        case 114: // r
-                            break;
                     }
                     break;
                 case SDL_KEYUP:
                     break;
-                case SDL_VIDEORESIZE:
-                    width = event.resize.w;
-                    height = event.resize.h;
-                    event_resize(width, height);
-                    event_display(width, height);
+                case SDL_WINDOWEVENT:
+                    switch(event.window.event) {
+                        case SDL_WINDOWEVENT_RESIZED:
+                            width = event.window.data1;
+                            height = event.window.data2;
+                            event_resize(width, height);
+                            event_display(width, height);
+                            break;
+                    }
                     break;
             }
         }

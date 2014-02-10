@@ -29,9 +29,9 @@ UNAME=$(shell uname -s)
 # -DUNICODE_SUPPORT			Add unicode/internation keyboard support
 # -DUSING_EMITTER_IN_GAME	Run particle test in game
 
-BASE_DEFS=$(shell sdl-config --cflags) -Iinclude -DUSING_EMITTER
+BASE_DEFS=$(shell sdl2-config --cflags) -Iinclude -DUSING_EMITTER
 
-BASE_LIBS=$(shell sdl-config --libs) -lz -lstdc++ \
+BASE_LIBS=$(shell sdl2-config --libs) -lz -lstdc++ \
 	-lpthread -lSDL_ttf
 
 # -DDEBUG_GL
@@ -362,9 +362,9 @@ TombRaider.test:
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(FLAGS_ALL) $(WARNINGS) -Iinclude \
-	$(shell sdl-config --cflags) $(shell sdl-config --libs) \
-	$(GL_LIBS) $(GL_DEFS) -lSDL_ttf -lm -lstdc++ \
-	src/Texture.cpp src/GLString.cpp \
+	$(shell sdl2-config --cflags) $(shell sdl2-config --libs) \
+	$(GL_LIBS) $(GL_DEFS) -lSDL2_ttf -lm -lstdc++ \
+	src/Texture.cpp src/tga.cpp src/GLString.cpp \
 	test/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
 
 #################################################################

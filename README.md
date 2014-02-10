@@ -32,14 +32,14 @@ A more or less recent [Doxygen documentation](http://xythobuz.github.io/OpenRaid
 Basically, OpenRaider depends on the following:
 
 * OpenGL
-* SDL & SDL-TTF
+* SDL2 & SDL2-TTF
 * OpenAL & ALUT
 * Posix Threads
 * zlib
 
 On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 
-    sudo port install zlib cmake libsdl libsdl_ttf
+    sudo port install zlib cmake libsdl2 libsdl2_ttf
 
 A similar command for the package manager of your favorite Linux Distribution should do the trick.
 

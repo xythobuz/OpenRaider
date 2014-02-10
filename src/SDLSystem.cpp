@@ -14,7 +14,7 @@
 #include <memory_test.h>
 #endif
 
-#include <SDL/SDL_opengl.h>
+#include <SDL2/SDL_opengl.h>
 
 #include <MatMath.h>
 #include <SDLSystem.h>
@@ -51,7 +51,7 @@ void SDLSystem::bindKeyCommand(const char *cmd, int key, int event) {
 #endif
 
 void SDLSystem::setGrabMouse(bool on) {
-    SDL_WM_GrabInput(on ? SDL_GRAB_ON : SDL_GRAB_OFF);
+    SDL_SetRelativeMouseMode(on ? SDL_TRUE : SDL_FALSE);
 }
 
 void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscreen) {
@@ -83,13 +83,12 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscre
     }
 #endif
 
-    flags |= SDL_OPENGL;
+    flags |= SDL_WINDOW_OPENGL;
 
     mFullscreen = fullscreen;
     if (mFullscreen)
-        flags |= SDL_FULLSCREEN;
+        flags |= SDL_WINDOW_FULLSCREEN;
 
-    SDL_ShowCursor(SDL_DISABLE);
     setGrabMouse(true); // Always grab mouse!
 
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
@@ -97,10 +96,13 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscre
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    mWindow = SDL_SetVideoMode(width, height, 16, flags);
-    SDL_WM_SetCaption(VERSION, VERSION);
+
+    mWindow = SDL_CreateWindow(VERSION, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+            width, height, flags);
+    mGLContext = SDL_GL_CreateContext(mWindow);
+
     //SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-    SDL_EnableKeyRepeat(100, SDL_DEFAULT_REPEAT_INTERVAL);
+    //SDL_EnableKeyRepeat(100, SDL_DEFAULT_REPEAT_INTERVAL);
 
 #ifdef UNICODE_SUPPORT
     //@JML get Unicode value of key for international keyboard
@@ -115,8 +117,6 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscre
 }
 
 void SDLSystem::resize(unsigned int width, unsigned int height) {
-    int flags = 0;
-
     GLfloat aspect;
 
     m_width = width;
@@ -138,14 +138,6 @@ void SDLSystem::resize(unsigned int width, unsigned int height) {
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-
-    // Resize window
-    flags |= SDL_OPENGL;
-
-    if (mFullscreen)
-        flags |= SDL_FULLSCREEN;
-
-    mWindow = SDL_SetVideoMode(width, height, 16, flags);
 
     // Resize context
     resizeGL(width, height);
@@ -222,10 +214,10 @@ void SDLSystem::runGame() {
                     if (mkeys & KMOD_RALT)
                         mod |= SYS_MOD_KEY_RALT;
 
-                    if (mkeys & KMOD_LMETA)
+                    if (mkeys & KMOD_LGUI)
                         mod |= SYS_MOD_KEY_LMETA;
 
-                    if (mkeys & KMOD_RMETA)
+                    if (mkeys & KMOD_RGUI)
                         mod |= SYS_MOD_KEY_RMETA;
 
                     key = event.key.keysym.sym;
@@ -369,9 +361,13 @@ void SDLSystem::runGame() {
                         }
                     }
                     break;
-                case SDL_VIDEORESIZE:
-                    resizeGL(event.resize.w, event.resize.h);
-                    gameFrame();
+                case SDL_WINDOWEVENT:
+                    switch(event.window.event) {
+                        case SDL_WINDOWEVENT_RESIZED:
+                            resizeGL(event.window.data1, event.window.data2);
+                            gameFrame();
+                            break;
+                    }
                     break;
             }
         }
@@ -394,41 +390,19 @@ void SDLSystem::shutdown(int i) {
 }
 
 void SDLSystem::toggleFullscreen() {
-    int width = m_width;
-    int height = m_height;
     if (mWindow) {
         mFullscreen = !mFullscreen;
 
-        // SDL_WM_ToggleFullScreen does not work on all platforms
-        // eg. Mac OS X
-        // SDL_WM_ToggleFullScreen(mWindow);
+        if (mFullscreen)
+            SDL_SetWindowFullscreen(mWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+        else
+            SDL_SetWindowFullscreen(mWindow, 0);
 
-        // I added a mFullscreen flag to this class. Then I modified it's
-        // resize() method to use the SDL_FULLSCREEN flag in the
-        // SetVideoMode() call based on the mFullscreen flag.
-        // Then, I modified this method to find out an available
-        // resolution for the fullscreen mode.
-        // Now you can see something when switching to Fullscreen,
-        // but it's full of graphical glitches...? I don't know...
-        // -- xythobuz 2013-12-31
-
-        if (mFullscreen) {
-            SDL_Rect **dimensions = SDL_ListModes(NULL, SDL_OPENGL | SDL_FULLSCREEN);
-            if (dimensions == NULL) {
-                printf("Can't enter fullscreen!\n");
-                mFullscreen = false;
-            } else if (dimensions != (SDL_Rect **)-1) {
-                //! \fixme Don't just use first available resolution...
-                width = dimensions[0]->w;
-                height = dimensions[0]->h;
-            }
-        }
-
-        resize(width, height);
+        // resize(width, height); // not needed with desktop fullscreen
     }
 }
 
 void SDLSystem::swapBuffersGL() {
-    SDL_GL_SwapBuffers();
+    SDL_GL_SwapWindow(mWindow);
 }
 

@@ -7,6 +7,8 @@
 
 	[ 20140210 ]
 	* Finished the Tomb Raider 1 Item/State definitions
+	* Ported to SDL2 and SDL2-TTF using the Migration Guide:
+	  https://wiki.libsdl.org/MigrationGuide
 
 	[ 20140209 ]
 	* Renamed OpenGLMesh to Mesh

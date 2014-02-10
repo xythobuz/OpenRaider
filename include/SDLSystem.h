@@ -8,7 +8,7 @@
 #ifndef _SDLSYSTEM_H_
 #define _SDLSYSTEM_H_
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 #include <System.h>
 
 /*!
@@ -121,7 +121,8 @@ protected:
     bool mFullscreen;      //!< Current Fullscreen/Windowed mode
 
 private:
-    SDL_Surface *mWindow;  //!< This is the pointer to the SDL surface
+    SDL_Window *mWindow;      //!< This is the pointer to the SDL surface
+    SDL_GLContext mGLContext; //!< The OpenGL Context
 };
 
 #endif
