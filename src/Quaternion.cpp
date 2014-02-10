@@ -171,7 +171,7 @@ Quaternion Quaternion::slerp(Quaternion a, Quaternion b, vec_t time) {
      *
      *******************************************************************/
 
-    vec_t result, scaleA, scaleB, theta, sinTheta;
+    vec_t result, scaleA, scaleB;
     Quaternion i;
 
 
@@ -207,8 +207,8 @@ Quaternion Quaternion::slerp(Quaternion a, Quaternion b, vec_t time) {
     if (1 - result > 0.1f) {
         // Get the angle between the 2 quaternions, and then
         // store the sin() of that angle
-        theta = (float)acos(result);
-        sinTheta = (float)sin(theta);
+        vec_t theta = (float)acos(result);
+        vec_t sinTheta = (float)sin(theta);
 
         // Calculate the scale for qA and qB, according to
         // the angle and it's sine value

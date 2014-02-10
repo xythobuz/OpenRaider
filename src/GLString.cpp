@@ -85,15 +85,11 @@ void GLString::setActive(unsigned int string, bool active) {
 void GLString::SetString(unsigned int string, const char *s, ...) {
     va_list args;
     gl_string_t *str;
-    unsigned int len;
 
     str = GetString(string);
 
     if (s && s[0] && str) {
         str->active = true;
-        len = strlen(s);
-        if (len > str->len)
-            len = str->len - 1;
 
         va_start(args, s);
         vsnprintf(str->text, str->len-2, s, args);

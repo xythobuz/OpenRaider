@@ -916,20 +916,17 @@ void OpenRaider::start()
 
 void OpenRaider::initSound()
 {
-    //char filename[128];
-    //unsigned int len;
-    //int id;
-
-
     if (!(m_flags & OpenRaider_EnableSound) || mSound.init() < 0)
     {
         print(true, "Disabling sound...\n");
-        m_flags |= OpenRaider_EnableSound;
-        m_flags ^= OpenRaider_EnableSound;
+        m_flags &= ~OpenRaider_EnableSound;
         return;
     }
 
 #ifdef OBSOLETE
+    char filename[128];
+    int id;
+
     printf("Processing external sound files: ");
 
     // Mongoose 2001.12.31, Use music list from init script
@@ -1828,7 +1825,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
                     a, animation[a].frame_rate);
             printf("animation[%i].next_animation = %i\n",
                     a, animation[a].next_animation);
-            printf("animation[%i].frame_offset = %i\n",
+            printf("animation[%i].frame_offset = %u\n",
                     a, animation[a].frame_offset);
             printf("animation[%i].anim_command = %i\n",
                     a, animation[a].anim_command);
@@ -1836,7 +1833,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
                     a, animation[a].num_anim_commands);
             printf("animation[%i].state_change_offset = %i\n",
                     a, animation[a].state_change_offset);
-            printf("              frame_offset = %i\n",
+            printf("              frame_offset = %u\n",
                     frame_offset);
         }
 #endif
@@ -1884,7 +1881,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 #ifdef DEBUG
             if (m_flags & OpenRaider_DebugModel)
             {
-                printf("animation[%i].boneframe[%i] = offset %i, step %i\n",
+                printf("animation[%i].boneframe[%u] = offset %u, step %i\n",
                         a, f, frame_offset, frame_step);
             }
 #endif
@@ -2017,7 +2014,7 @@ void setupTextureColor(texture_tri_t *r_tri, Render *render, float *colorf)
                 r_tri->texture);
 
 #ifdef DEBUG_COLOR_TEXTURE_GEN
-        printf("Color 0x%02x%02x%02x%02x | 0x%08xto texture[%i]?\n",
+        printf("Color 0x%02x%02x%02x%02x | 0x%08xto texture[%u]?\n",
                 color[0], color[1], color[2], color[3], colorI,
                 gColorTextureHACK.size());
 #endif
@@ -2037,7 +2034,7 @@ void setupTextureColor(texture_tri_t *r_tri, Render *render, float *colorf)
 
 void OpenRaider::processModel(int index)
 {
-    int i, j, count, texture, white;
+    int i, j, count, texture;
     int vertexIndices[6];
     float st[12];
     float color[4];
@@ -2055,8 +2052,10 @@ void OpenRaider::processModel(int index)
         return;
     }
 
+#ifndef EXPERIMENTAL
     // WHITE texture id
-    white = 0;
+    int white = 0;
+#endif
 
     model_mesh_t *mesh = new model_mesh_t;
 

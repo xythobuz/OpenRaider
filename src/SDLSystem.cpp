@@ -16,6 +16,7 @@
 
 #include <SDL/SDL_opengl.h>
 
+#include <MatMath.h>
 #include <SDLSystem.h>
 
 unsigned int *gWidth = 0x0;
@@ -131,7 +132,7 @@ void SDLSystem::resize(unsigned int width, unsigned int height) {
     // gluPerspective is deprecated!
     // gluPerspective(m_fovY, aspect, m_clipNear, m_clipFar);
     // fix: http://stackoverflow.com/a/2417756
-    GLfloat fH = tanf(m_fovY / 360.0f * 3.14159f) * m_clipNear;
+    GLfloat fH = tanf(m_fovY * HEL_PI / 360.0f) * m_clipNear;
     GLfloat fW = fH * aspect;
     glFrustum(-fW, fW, -fH, fH, m_clipNear, m_clipFar);
 
@@ -393,9 +394,10 @@ void SDLSystem::shutdown(int i) {
 }
 
 void SDLSystem::toggleFullscreen() {
+    int width = m_width;
+    int height = m_height;
     if (mWindow) {
         mFullscreen = !mFullscreen;
-        SDL_ShowCursor(SDL_DISABLE);
 
         // SDL_WM_ToggleFullScreen does not work on all platforms
         // eg. Mac OS X
@@ -409,26 +411,19 @@ void SDLSystem::toggleFullscreen() {
         // Now you can see something when switching to Fullscreen,
         // but it's full of graphical glitches...? I don't know...
         // -- xythobuz 2013-12-31
-        int width = m_width,
-            height = m_height;
+
         if (mFullscreen) {
-            m_old_width = m_width;
-            m_old_height = m_height;
             SDL_Rect **dimensions = SDL_ListModes(NULL, SDL_OPENGL | SDL_FULLSCREEN);
             if (dimensions == NULL) {
                 printf("Can't enter fullscreen!\n");
-                mFullscreen = !mFullscreen;
-            }
-            if (dimensions != (SDL_Rect **)-1) {
+                mFullscreen = false;
+            } else if (dimensions != (SDL_Rect **)-1) {
                 //! \fixme Don't just use first available resolution...
                 width = dimensions[0]->w;
                 height = dimensions[0]->h;
             }
         }
-        if (!mFullscreen) {
-            width = m_old_width;
-            height = m_old_height;
-        }
+
         resize(width, height);
     }
 }

@@ -203,6 +203,10 @@ $(BUILDDIR)/$(NAME) : $(OBJS)
 
 #################################################################
 
+CHECK_BIN=cppcheck
+CHECK_DIR=.
+CHECK_STD=--std=c++11 --std=posix
+CHECK_FLAGS=--quiet --force
 CHECK_INC=-Iinclude
 #CHECK_INC+=$(GL_DEFS) $(AUDIO_DEFS)
 #ifeq ($(UNAME),Darwin)
@@ -214,14 +218,20 @@ CHECK_INC=-Iinclude
 #CHECK_INC+=-I$(SDK_ROOT)/usr/include/c++/4.2.1/tr1
 #CHECK_INC+=-I$(SDK_ROOT)/usr/include/c++/4.2.1/backward
 #endif
+CHECK_NORMAL=--enable=information,warning,performance,portability
+CHECK_FULL=--enable=all
+CHECK_CONFIG=--check-config
 
 check:
-	cppcheck --quiet $(CHECK_INC) --force \
-		--enable=information,warning,performance,portability .
+	$(CHECK_BIN) $(CHECK_FLAGS) $(CHECK_INC) $(CHECK_STD) \
+		$(CHECK_NORMAL) $(CHECK_DIR)
 
 checkFull:
-	cppcheck --quiet $(CHECK_INC) --enable=all --force \
-		--std=c++11 --std=posix .
+	$(CHECK_BIN) $(CHECK_FLAGS) $(CHECK_INC) $(CHECK_STD) \
+		$(CHECK_FULL) $(CHECK_DIR)
+
+checkConfig:
+	$(CHECK_BIN) $(CHECK_FLAGS) $(CHECK_INC) $(CHECK_CONFIG) $(CHECK_DIR)
 
 #################################################################
 
