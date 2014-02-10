@@ -1701,7 +1701,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
 
     if (a < 0)
     {
-        //      continue;
+        //continue;
         return;
     }
 
@@ -1783,7 +1783,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
         printf("c"); // it's already cached
         fflush(stdout);
 
-        //      continue;
+        //continue;
         return;
     }
 
@@ -1893,7 +1893,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
                 print(true, "WARNING: Bad animation frame %i > %i\n",
                         frame_offset, m_tombraider.NumFrames());
 
-                // Mongoose 2002.08.15, Atempt to skip more likely bad animation data
+                // Mongoose 2002.08.15, Attempt to skip more likely bad animation data
                 print(true, "WARNING: Handling bad animation data...");
                 return; //continue;
             }

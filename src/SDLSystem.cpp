@@ -83,13 +83,13 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscre
     }
 #endif
 
-    flags |= SDL_WINDOW_OPENGL;
+    flags |= SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
 
     mFullscreen = fullscreen;
     if (mFullscreen)
         flags |= SDL_WINDOW_FULLSCREEN;
 
-    setGrabMouse(true); // Always grab mouse!
+    //setGrabMouse(true); // Always grab mouse!
 
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
@@ -100,9 +100,6 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscre
     mWindow = SDL_CreateWindow(VERSION, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
             width, height, flags);
     mGLContext = SDL_GL_CreateContext(mWindow);
-
-    //SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-    //SDL_EnableKeyRepeat(100, SDL_DEFAULT_REPEAT_INTERVAL);
 
 #ifdef UNICODE_SUPPORT
     //@JML get Unicode value of key for international keyboard
@@ -117,15 +114,13 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscre
 }
 
 void SDLSystem::resize(unsigned int width, unsigned int height) {
-    GLfloat aspect;
-
     m_width = width;
     m_height = height;
 
-    aspect = (GLfloat)width/(GLfloat)height;
-
     glViewport(0, 0, width, height);
 
+    /* All this is already done in System::resizeGL() !?
+    GLfloat aspect = (GLfloat)width/(GLfloat)height;
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
@@ -138,6 +133,7 @@ void SDLSystem::resize(unsigned int width, unsigned int height) {
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    */
 
     // Resize context
     resizeGL(width, height);
@@ -365,7 +361,6 @@ void SDLSystem::runGame() {
                     switch(event.window.event) {
                         case SDL_WINDOWEVENT_RESIZED:
                             resizeGL(event.window.data1, event.window.data2);
-                            gameFrame();
                             break;
                     }
                     break;
@@ -397,8 +392,6 @@ void SDLSystem::toggleFullscreen() {
             SDL_SetWindowFullscreen(mWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
         else
             SDL_SetWindowFullscreen(mWindow, 0);
-
-        // resize(width, height); // not needed with desktop fullscreen
     }
 }
 

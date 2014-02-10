@@ -81,7 +81,7 @@ typedef struct color_s
 
 typedef struct sprite_s
 {
-    int num_verts; // 4 == Quad, 3 == Triangle, renderered as triangles
+    int num_verts; // 4 == Quad, 3 == Triangle, rendered as triangles
     vertex_t vertex[4];
     texel_t texel[4];
     float pos[3];
@@ -143,7 +143,7 @@ typedef struct entity_s
 {
     int id;                    // Unique identifier
     float pos[3];              // World position
-    float angles[3];           // Eular angles (pitch, yaw, roll)
+    float angles[3];           // Euler angles (pitch, yaw, roll)
     int type;                  // {(0x00, item), (0x01, ai), (0x02, player)}
     int room;                  // Current room entity is in
     worldMoveType moveType;    // Type of motion/clipping
