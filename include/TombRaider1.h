@@ -1,548 +1,590 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/TombRaider1.h
+ * \brief Tomb Raider 1 items and states.
  *
- * Project : OpenRaider
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : OpenRaider
- * License : GPL, See file COPYING for details
- * Comments: Loads TR 1 states and etc
+ * Based on TR Rosetta Stone
  *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * Mongoose - Created, based on:
- *                TR Rosetta Stone ( TombRaider pak format specs )
- ================================================================*/
-
+ * \author Mongoose
+ * \author xythobuz
+ */
 #ifndef _TOMBRAIDER1_H_
 #define _TOMBRAIDER1_H_
 
-
-class TombRaider1
-{
+/*!
+ * \brief Tomb Raider 1 items and states
+ */
+class TombRaider1 {
 public:
 
-    TombRaider1();
+    // Associated with Item 7
+    enum WolfStates {
+        WolfState_Walking       = 1,
+        WolfState_Running       = 2,
+        WolfState_Jumping       = 3,
+        WolfState_Stalking      = 5,
+        WolfState_JumpingAttack = 6,
+        WolfState_Attacking     = 7,
+        WolfState_Lying         = 8,  //!< Lying down
+        WolfState_Getting       = 9,  //!< Getting ready to strike
+        WolfState_RunningJump   = 10,
+        WolfState_Dying         = 11,
+        WolfState_Biting        = 12
+    };
 
-    ~TombRaider1();
+    // Associated with Item 8
+    enum BearStates {
+        BearState_Walking       = 0, //!< Walking on all fours
+        BearState_Getting       = 1, //!< Getting back to all fours
+        BearState_WalkingHind   = 2, //!< Walking on hind legs
+        BearState_Running       = 3, //!< Running on all fours
+        BearState_Rearing       = 4, //!< Rearing up on hind legs
+        BearState_Growling      = 5, //!< ?
+        BearState_RunningAttack = 6, //!< Running and attacking
+        BearState_Standing      = 7, //!< Standing on hind legs
+        BearState_Biting        = 8,
+        BearState_Dying         = 9
+    };
 
-    enum Items
-   {
-        Lara = 0,
+    // Associated with Item 9
+    enum BatStates {
+        BatState_Starting = 1, //!< Starting to fly
+        BatState_Flying   = 2, //!< Flying straight
+        BatState_Biting   = 3,
+        BatState_Circling = 4,
+        BatState_Dying    = 5
+    };
+
+    // Associated with Item 10
+    enum CrocodileLandStates {
+        CrocodileLandState_Stationary = 1,
+        CrocodileLandState_Walking1   = 2,
+        CrocodileLandState_Walking2   = 3,
+        CrocodileLandState_Turning    = 4,
+        CrocodileLandState_Biting     = 5,
+        CrocodileLandState_Dying      = 7
+    };
+
+    // Associated with Item 11
+    enum CrocodileWaterStates {
+        CrocodileWaterState_Swimming = 1,
+        CrocodileWaterState_Biting   = 2,
+        CrocodileWaterState_Dying    = 3
+    };
+
+    // Associated with Items 12, 13 and 14
+    enum LionStates {
+        LionState_Standing = 1,
+        LionState_Walking  = 2,
+        LionState_Leaping  = 3,
+        LionState_LeapBite = 4,
+        LionState_Dying    = 5,
+        LionState_Biting1  = 6,
+        LionState_Biting2  = 7
+    };
+
+    // Associated with Item 15
+    enum GorillaStates {
+        GorillaState_Standing = 1,  //!< Standing on all fours
+        GorillaState_Running  = 3,  //!< Running on all fours
+        GorillaState_Walking  = 4,  //!< Walking on legs (attacking?)
+        GorillaState_Dying    = 5,
+        GorillaState_Thumping = 6,  //!< Thumping on chest
+        GorillaState_Waving   = 7,  //!< Waving arms
+        GorillaState_TurningL = 8,  //!< Turning leftward?
+        GorillaState_TurningR = 9,  //!< Turning rightward?
+        GorillaState_Jumping  = 10, //!< Jumping up and waving arms
+        GorillaState_Climbing = 11
+    };
+
+    // Associated with Item 16
+    enum GiantRatLandStates {
+        GiantRatLandState_Standing  = 1,
+        GiantRatLandState_JumpBite  = 2,
+        GiantRatLandState_Running   = 3,
+        GiantRatLandState_Biting    = 4,
+        GiantRatLandState_Dying     = 5,
+        GiantRatLandState_RearingUp = 6
+    };
+
+    // Associated with Item 17
+    enum GiantRatWaterStates {
+        GiantRatWaterState_Swimming = 1,
+        GiantRatWaterState_Biting   = 2,
+        GiantRatWaterState_Dying    = 3
+    };
+
+    // Associated with Item 18
+    enum TyrannosaurStates {
+        TyrannosaurState_Standing  = 1,
+        TyrannosaurState_Walking   = 2,
+        TyrannosaurState_Running   = 3,
+        TyrannosaurState_Dying     = 5,
+        TyrannosaurState_Bellowing = 6,
+        TyrannosaurState_Biting    = 7,
+        TyrannosaurState_Shaking   = 8  //!< Shaking Head and Spitting Out
+    };
+
+    // Associated with Item 19
+    enum RaptorStates {
+        RaptorState_Dying     = 0,
+        RaptorState_Standing  = 1,
+        RaptorState_Walking   = 2,
+        RaptorState_Running   = 3,
+        RaptorState_JumpBite  = 4,
+        RaptorState_Bellowing = 6,
+        RaptorState_RunBellow = 7,
+        RaptorState_Biting    = 8,
+    };
+
+    // Associated with Item 20
+    enum WingedMutantStates {
+        WingedMutantState_Crouching = 1,
+        WingedMutantState_Walking   = 2,
+        WingedMutantState_Running   = 3,
+        WingedMutantState_Biting    = 4,
+        WingedMutantState_Looking   = 6,
+        WingedMutantState_Jumping   = 7,
+        WingedMutantState_Clawing   = 8,
+        WingedMutantState_Aiming    = 9, //!< Aiming Right-Hand Gun
+        WingedMutantState_AimFire   = 10, //!< Aiming and Firing Left-Hand Gun
+        WingedMutantState_Firing    = 11, //!< Firing Right-Hand Gun
+        WingedMutantState_Standing  = 12,
+        WingedMutantState_Flying    = 13
+    };
+
+    // Associated with Item 23
+    enum CentaurMutantStates {
+        CentaurMutantState_Standing  = 1,
+        CentaurMutantState_Firing    = 2,
+        CentaurMutantState_Galloping = 3,
+        CentaurMutantState_Aiming    = 4,
+        CentaurMutantState_Dying     = 5,
+        CentaurMutantState_Rearing   = 6  //!<  Rearing up
+    };
+
+    // Associated with Item 24
+    enum MummyStates {
+        MummyState_Standing = 1,
+        MummyState_Falling  = 2  //!< Falling forward
+    };
+
+    // Associated with Item 27
+    enum LarsonStates {
+        LarsonState_Walking1    = 0,
+        LarsonState_StandingGun = 1,
+        LarsonState_Walking2    = 2,
+        LarsonState_Running     = 3,
+        LarsonState_Aiming      = 4,
+        LarsonState_Injured     = 5, //!< Injured by gunshot / Dying
+        LarsonState_Standing    = 6,
+        LarsonState_Firing      = 7
+    };
+
+    // Associated with Item 28
+    enum PierreStates {
+        PierreState_Standing   = 1,
+        PierreState_Walking    = 2,
+        PierreState_Running    = 3,
+        PierreState_Aiming     = 4,
+        PierreState_Dying      = 5,
+        PierreState_Holstering = 6,
+        PierreState_Firing     = 7
+    };
+
+    // Associated with Item 29
+    enum SkateboardStates {
+        SkateboardState_BeingTurned = 0,
+        SkateboardState_Stationary1 = 1,
+        SkateboardState_Stationary2 = 2,
+        SkateboardState_Stationary3 = 3,
+        SkateboardState_Stationary4 = 4
+    };
+
+    // Associated with Item 30
+    enum SkateboardKidStates {
+        SkateboardKidState_Turning = 0, //!< Turning and Aiming?
+        SkateboardKidState_Firing1 = 1,
+        SkateboardKidState_Skating = 2,
+        SkateboardKidState_Aiming  = 3,
+        SkateboardKidState_Firing2 = 4,
+        SkateboardKidState_Dying   = 5
+    };
+
+    // Associated with Item 31
+    enum CowboyStates {
+        CowboyState_Aiming1 = 1,
+        CowboyState_Walking = 2,
+        CowboyState_Running = 3,
+        CowboyState_Aiming2 = 4,
+        CowboyState_Dying   = 5,
+        CowboyState_Firing  = 6
+    };
+
+    // Associated with Item 32
+    enum MrTStates {
+        MrTState_Dying    = 0,
+        MrTState_Standing = 1,
+        MrTState_Walking  = 2,
+        MrTState_Running  = 3,
+        MrTState_Aiming   = 4,
+        MrTState_Firing   = 6
+    };
+
+    // Associated with Item 33
+    enum WingedNatlaStates {
+        WingedNatlaState_Standing1 = 1,
+        WingedNatlaState_Flying    = 2,
+        WingedNatlaState_Running   = 3,
+        WingedNatlaState_Aiming    = 4, //!< Aiming and Firing
+        WingedNatlaState_Dying1    = 5, //!< "Dying" the first time
+        WingedNatlaState_Spinning  = 7, //!< Spinning around in air
+        WingedNatlaState_Standing2 = 8,
+        WingedNatlaState_Dying2    = 9, //!< Dying for real
+    };
+
+    // Associated with Item 34
+    enum GiantMutantStates {
+        GiantMutantState_Dying         = 0,
+        GiantMutantState_Sitting       = 1, //!< Sitting on floor
+        GiantMutantState_Pulling       = 2, //!< Pulling self forward
+        GiantMutantState_SlappingRight = 4, //!< Slapping with right hand
+        GiantMutantState_SlappingBoth  = 5, //!< Slapping with both hands
+        GiantMutantState_MakingWave    = 6, //!< Making big wave with right hand
+        GiantMutantState_Dropping      = 8, //!< Dropping to floor after hatching
+        GiantMutantState_RaisingArms   = 9,
+        GiantMutantState_Shaking       = 11 //!< Shaking victim with right hand
+    };
+
+    // Associated with Item 35
+    enum CollapsibleFloorStates {
+        CollapsibleFloorState_Stationary = 0,
+        CollapsibleFloorState_Shaking    = 1,
+        CollapsibleFloorState_Falling    = 2,
+        CollapsibleFloorState_Settling   = 3  //!< Settling down
+    };
+
+    // Associated with Item 36
+    enum SwingingBladeStates {
+        SwingingBladeState_Stationary = 0,
+        SwingingBladeState_Swinging   = 2
+    };
+
+    // Associated with Item 38
+    enum BoulderStates {
+        BoulderState_Stationary = 0,
+        BoulderState_Rolling    = 1
+    };
+
+    // Associated with Item 40
+    enum DartGunStates {
+        DartGunState_Idle   = 0, //!< ?
+        DartGunState_Firing = 1  //!< ?
+    };
+
+    // Associated with Item 41
+    enum DoorUpwardStates {
+        DoorUpwardState_Upward = 0,
+        DoorUpwardState_OnSide = 1
+    };
+
+    // Associated with Item 42
+    enum SlammingDoorStates {
+        SlammingDoorState_Open   = 0,
+        SlammingDoorState_Closed = 1
+    };
+
+    // Associated with Item 44
+    enum ThorHammerHandleStates {
+        ThorHammerHandleState_Stationary = 0, //!< Stationary in up position
+        ThorHammerHandleState_Moving1    = 1, //!< Moving down a little and returning
+        ThorHammerHandleState_Moving2    = 2, //!< Moving down all the way
+        ThorHammerHandleState_Stopped    = 3  //!< Stopped at down position
+    };
+
+    // Associated with Item 45
+    enum ThorHammerBlockStates {
+        ThorHammerBlockState_Stationary = 0,
+        ThorHammerBlockState_Moving1    = 1, //!< Moving down a little and returning
+        ThorHammerBlockState_Moving2    = 2  //!< Moving down all the way
+    };
+
+    // Associated with Item 47
+    enum MetalRodStates {
+        MetalRodState_Stationary = 0,
+        MetalRodState_Moving     = 1
+    };
+
+    // Associated with Items 48 - 51
+    enum PushableStates {
+        PushableState_Stationary = 0,
+        PushableState_Pulled     = 1, //!< ?
+        PushableState_Pushed     = 2  //!< ?
+    };
+
+    // Associated with Item 52
+    enum MovableTallBlockStates {
+        MovableTallBlockState_Stationary     = 0,
+        MovableTallBlockState_MovingForward  = 1, //!< ?
+        MovableTallBlockState_MovingBackward = 2  //!< ?
+    };
+
+    // Associated with Item 53
+    enum FallingPiecesStates {
+        FallingPiecesState_Stationary = 0,
+        FallingPiecesState_Falling    = 1,
+        FallingPiecesState_Settling   = 2  //!< Settling down
+    };
+
+    // Associated with Items 55, 56
+    enum SwitchStates {
+        SwitchState_Off = 0,
+        SwitchState_On  = 1  //!< States may be reversed
+    };
+
+    // Associated with Items 57 - 66
+    enum DoorStates {
+        DoorState_Closed = 0,
+        DoorState_Open   = 1
+    };
+
+    // Associated with Items 74 - 76
+    enum CogStates {
+        CogState_Stationary = 0,
+        CogState_Turning    = 1
+    };
+
+    // Associated with Item 162
+    enum ShackStates {
+        ShackState_StartingPosition = 0,
+        ShackState_DroppingFirst    = 1, //!< Dropping after first fuse
+        ShackState_DroppingSecond   = 2, //!< Dropping after second fuse
+        ShackState_DroppingThird    = 3, //!< Dropping to ground after third fuse
+        ShackState_OnGround         = 4
+    };
+
+    // Associated with Items 163 and 181
+    enum MutantEggStates {
+        MutantEggState_Starting = 0,
+        MutantEggState_Hatching = 1  //!< Is the fragmenting hardcoded?
+    };
+
+    // Associated with Item 182
+    enum MotorboatStates {
+        MotorboatState_StationaryInitial = 1,
+        MotorboatState_Moving            = 2,
+        MotorboatState_StationaryFinal   = 3,
+    };
+
+    enum Items {
+        Lara             = 0,
         PistolAnimation  = 1,
         ShotgunAnimation = 2,
-        MagnumAnimation = 3,
-        LaraAlternate = 4, // Lara's home appearance, wounded, or turned to gold
-        UziAnimation = 5,
-        LaraMutant = 6,
-        Wolf = 7,
-        Bear = 8,
-        Bat = 9
-    };
+        MagnumAnimation  = 3,
+        LaraAlternate    = 4,  //!< Lara's home appearance, wounded, or turned to gold
+        UziAnimation     = 5,
+        LaraMutant       = 6,
+        Wolf             = 7,
+        Bear             = 8,
+        Bat              = 9,
+        CrocodileLand    = 10,
+        CrocodileWater   = 11,
+        LionMale         = 12,
+        LionFemale       = 13, //!< Same states as Male Lion
+        Panther          = 14, //!< Same states as Male and Female Lion
+        Gorilla          = 15,
+        GiantRatLand     = 16,
+        GiantRatWater    = 17,
+        Tyrannosaur      = 18,
+        Raptor           = 19,
+        WingedMutant     = 20, //!< Also winged mummy (unused)
+        LaraHips1        = 21,
+        LaraHips2        = 22,
+        CentaurMutant    = 23,
+        Mummy            = 24,
 
-    enum WolfStates
-    {
-        WolfState_Walking   = 1,
-        WolfState_Running   = 2,
-        WolfState_Jumping   = 3,
-        WolfState_Stalking  = 5,
-        WolfState_JumpingAttack   = 6,
-        WolfState_Attacking = 7,
-        WolfState_Lying     = 8,  // down
-        WolfState_Getting   = 9,  // ready to strike
-        WolfState_RunningJump   = 10,
-        WolfState_Dying     = 11,
-        WolfState_Biting    = 12
+        Larson           = 27,
+        Pierre           = 28,
+        Skateboard       = 29,
+        SkateboardKid    = 30,
+        Cowboy           = 31,
+        MrT              = 32,
+        WingedNatla      = 33, //!< Actually Natla with a winged mutant
+        GiantMutant      = 34,
+        CollapsibleFloor = 35,
+        SwingingBlade    = 36,
+        Spikes           = 37,
+        Boulder          = 38,
+        Dart             = 39,
+        DartGun          = 40,
+        DoorUpward       = 41,
+        SlammingDoor     = 42,
+        SwordOfDamocles1 = 43,
+        ThorHammerHandle = 44,
+        ThorHammerBlock  = 45,
+        HangingBall      = 46, //!< Hanging ball? Some kind of box?
+        MetalRod         = 47, //!< Metal rod? / Powered mining cart
+        PushableCubical1 = 48,
+        PushableCubical2 = 49,
+        PushableCubical3 = 50,
+        PushableCubical4 = 51,
+        MovableTallBlock = 52,
+        FallingPieces    = 53,
+        SwordOfDamocles2 = 54,
+        AboveWaterSwitch = 55,
+        UnderWaterSwitch = 56,
+        Door1            = 57,
+        Door2            = 58,
+        Door3            = 59,
+        Door4            = 60,
+        Door5            = 61,
+        Door6            = 62,
+        Door7            = 63,
+        Door8            = 64,
+        Trapdoor1        = 65, //!< Uses DoorStates
+        Trapdoor2        = 66, //!< Uses DoorStates
+
+        BridgeFlat       = 68,
+        BridgeSlope1     = 69,
+        BridgeSlope2     = 70,
+        PassportOpen     = 71, //!< Passport opening up
+        Compass          = 72,
+
+        Cogs1            = 74, //!< animated
+        Cogs2            = 75, //!< animated
+        Cogs3            = 76, //!< animated
+        CS_Lara          = 77, //!< Lara / Scion holder in Cut Scene
+        CS_Larson        = 78, //!< Larson / Natla / Scion holder in Cut Scene
+        CS_LarsonGun     = 79, //!< Larsons gun / Scion / Natla in Cut Scene
+        CS_Scion         = 80, //!< Scion in Cut Scene
+        PassportClosed   = 81, //!< Passport closed
+        N                = 82, //!< N-thingy, Playstation memory card?
+        SaveCrystal      = 83,
+        _Pistols         = 84,
+        _Shotgun         = 85,
+        _Magnums         = 86,
+        _Uzis            = 87,
+        _PistolAmmo      = 88, //!< ?
+        _ShotgunAmmo     = 89,
+        _MagnumAmmo      = 90,
+        _UziAmmo         = 91,
+
+        _SmallMedipack   = 93,
+        _LargeMedipack   = 94,
+        Sunglasses       = 95,
+        Cassette         = 96, // Cassette player and headphones
+        DirectionKeys    = 97,
+
+        Pistol           = 99,
+        Shotgun          = 100,
+        Magnum           = 101,
+        Uzi              = 102,
+        PistolAmmo       = 103, //!< ?
+        ShotgunAmmo      = 104,
+        MagnumAmmo       = 105,
+        UziAmmo          = 106,
+
+        SmallMedipack    = 108,
+        LargeMedipack    = 109,
+        _Puzzle1         = 110,
+        _Puzzle2         = 111,
+        _Puzzle3         = 112,
+        _Puzzle4         = 113,
+        Puzzle1          = 114,
+        Puzzle2          = 115,
+        Puzzle3          = 116,
+        Puzzle4          = 117,
+        Slot1Empty       = 118,
+        Slot2Empty       = 119,
+        Slot3Empty       = 120,
+        Slot4Empty       = 121,
+        Slot1Full        = 122,
+        Slot2Full        = 123,
+        Slot3Full        = 124,
+        Slot4Full        = 125,
+        _Pickup1         = 126,
+        Pickup1          = 127,
+        LaraHips3        = 128,
+        _Key1            = 129,
+        _Key2            = 130,
+        _Key3            = 131,
+        _Key4            = 132,
+        Key1             = 133,
+        Key2             = 134,
+        Key3             = 135,
+        Key4             = 136,
+        Lock1            = 137,
+        Lock2            = 138,
+        Lock3            = 139,
+        Lock4            = 140,
+
+        _ScionPiece      = 143,
+
+        CompleteScion    = 146,
+        ScionHolder      = 147,
+
+        ScionPiece       = 150,
+        _Flare           = 151, //!< Flare(?) / Explosion
+
+        _Splash          = 153,
+
+        _Bubbles1        = 155,
+        _Bubbles2        = 156,
+
+        _BloodSplatter   = 158,
+
+        _FlyingDisk      = 160,
+        CentaurStatue    = 161,
+        Shack            = 162, //!< Suspended from wire rope
+        MutantEggNormal  = 163, //!< Mutant Egg and Holder (Normal)
+        _BulletHit       = 164,
+        _Sparkle         = 165,
+        Gunflare1        = 166,
+
+        LaraHips4        = 169,
+        LaraHips5        = 170,
+
+        MutantBullet     = 172,
+        MutantGrenade    = 173,
+
+        _Splatter        = 176,
+        LaraHips6        = 177,
+        _Fire            = 178,
+        LaraHips7        = 179,
+        FlowingLava      = 180, //!< Flowing Atlantean Lava
+        MutantEggBig     = 181, //!< Mutant Egg and Holder (Big)
+        Motorboat        = 182,
+        LaraHips8        = 183,
+
+        ShrinkingWedge   = 189, //!< ?
+        _StandardSymbols = 190,
+        _Plant1          = 191,
+        _Plant2          = 192,
+        _Plant3          = 193,
+        _Plant4          = 194,
+        _Plant5          = 195,
+
+        _Bag1            = 200,
+
+        _Bag2            = 204,
+
+        Gunflare2        = 207,
+
+        _Rock1           = 212,
+        _Rock2           = 213,
+        _Rock3           = 214,
+        _Bag3            = 215,
+        _Pottery1        = 216,
+        _Pottery2        = 217,
+
+        _PaintedPot      = 231,
+
+        _IncaMummy       = 233,
+
+        _Pottery3        = 236,
+        _Pottery4        = 237,
+        _Pottery5        = 238,
+        _Pottery6        = 239
     };
 };
-
-#ifdef FIXME_DONT_COMPILE
-//  Bear = 8,
-//         Walking = 0, on all fours
-//         Getting = 1, back to all fours
-//         Walking = 2, on hind legs
-//         Running = 3, on all fours
-//         Rearing = 4, up on hind legs
-//         Growling = 5,?
-//         Running = 6, and attacking
-//         Standing = 7, on hind legs
-//         Biting = 8,
-//         Dying = 9,
-//  Bat = 9,
-//         Starting = 1, to fly
-//         Flying = 2, straight
-//         Biting = 3,
-//         Circling = 4,
-//         Dying = 5,
-// Crocodile = 10, (on land)
-//         Stationary = 1,
-//         Walking = 2,
-//         Walking = 3,
-//         Turning = 4,
-//         Biting = 5,
-//         Dying = 7,
-// Crocodile = 11, (in water)
-//         Swimming = 1,
-//         Biting = 2,
-//         Dying = 3,
-// Lion = 12, (male)
-//         Standing = 1,
-//         Walking = 2,
-//         Leaping = 3,
-//         Leaping = 4, and biting
-//         Dying = 5,
-//         Biting = 6,
-//         Biting = 7,
-// Lion = 13, (female)
-//         Standing = 1,
-//         Walking = 2,
-//         Leaping = 3,
-//         Leaping = 4, and biting
-//         Dying = 5,
-//         Biting = 6,
-//         Biting = 7,
-// Panther = 14,
-//         Standing = 1,
-//         Walking = 2,
-//         Leaping = 3,
-//         Leaping = 4, and biting
-//         Dying = 5,
-//         Biting = 6,
-//         Biting = 7,
-// Gorilla = 15,
-//         Standing = 1, on all fours
-//         Running = 3, on all fours
-//        Walking = 4, on legs (attacking?)
-//         Dying = 5,
-//         Thumping = 6, chest
-//         Waving = 7, arms
-//         Turning = 8, leftward?
-//         Turning = 9, rightward?
-//        Jumping = 10, up and waving arms
-//        Climbing = 11,
-// Giant = 16, Rat (on land)
-//         Standing = 1,
-//         Jumping = 2, and Biting
-//         Running = 3,
-//         Biting = 4,
-//         Dying = 5,
-//         Rearing = 6, up
-// Giant = 17, Rat (in water)
-//         Swimming = 1,
-//         Biting = 2,
-//         Dying = 3,
-// Tyrannosaur = 18,
-//        Standing = 1,
-//         Walking = 2,
-//         Running = 3,
-//         Dying = 5,
-//         Bellowing = 6,
-//         Biting = 7,
-//         Shaking = 8, Head and Spitting Out
-// Raptor = 19,
-//         Dying = 0,
-//         Standing = 1,
-//         Walking = 2,
-//         Running = 3,
-//         Jumping = 4, and Biting?
-//         Bellowing = 6,
-//         Running = 7, and bellowing
-//         Biting = 8,
-// Winged = 20, mummy (unused) / Winged mutant
-//         Crouching = 1,
-//         Walking = 2,
-//         Running = 3,
-//         Biting = 4,?
-//         Looking = 6,
-//         Jumping = 7,?
-//         Clawing = 8,?
-//         Aiming = 9, right-hand gun
-//        Aiming = 10, and firing left-hand gun
-//        Firing = 11, right-hand gun
-//        Standing = 12,
-//        Flying = 13,
-// Lara = 21,'s hips
-//         [Only one state]
-// Lara = 22,'s hips
-//         [Only one state]
-// Centaur = 23, mutant
-//         Standing = 1,
-//         Firing = 2,
-//         Galloping = 3,
-//         Aiming = 4,
-//         Dying = 5,
-//         Rearing = 6, up
-// Mummy = 24,
-//         Standing = 1,
-//         Falling = 2, forward
-// Larson = 27,
-//         Walking = 0,
-//         Standing = 1, holding gun
-//         Walking = 2,
-//         Running = 3,
-//         Aiming = 4, gun
-//         Injured = 5, by gunshot / Dying
-//         Standing = 6,
-//         Firing = 7, gun
-// Pierre = 28,
-//         Standing = 1,
-//         Walking = 2,
-//         Running = 3,
-//         Aiming = 4, guns
-//         Dying = 5,
-//         Putting = 6, guns away
-//         Firing = 7, guns
-// Skateboard = 29,
-//         Being = 0, turned around
-//         Stationary = 1,
-//         Stationary = 2,
-//         Stationary = 3,
-//         Stationary = 4,
-// Skateboard = 30, kid
-//         Turning = 0, and Aiming?
-//         Firing = 1,
-//         Skating = 2,
-//         Aiming = 3,
-//         Firing = 4,
-//         Dying = 5,
-// Cowboy = 31,
-//         Aiming = 1,
-//         Walking = 2,
-//         Running = 3,
-//         Aiming = 4,
-//         Dying = 5,
-//         Firing = 6,
-//  32: "Mr. T"
-//         Dying = 0,
-//         Standing = 1,
-//         Walking = 2,
-//         Running = 3,
-//         Aiming = 4,
-//         Firing = 6,
-// Winged = 33, Natla (actually, Natla with a winged mutant)
-//         Standing = 1,
-//         Flying = 2,
-//         Running = 3,
-//         Aiming = 4, and firing
-//          5: "Dying" the first time
-//         Spinning = 7, around in air
-//         Standing = 8,
-//         Dying = 9, for real
-// Giant = 34, mutant
-//         Dying = 0,
-//         Sitting = 1, on floor
-//         Pulling = 2, self forward
-//         Slapping = 4, with right hand
-//         Slapping = 5, with both hands
-//         Making = 6, big wave with right hand
-//         Dropping = 8, to floor after hatching
-//         Raising = 9, arms
-//         Shaking = 11, victim with right hand
-// Collapsible = 35, floor
-//         Stationary = 0,
-//         Shaking = 1,
-//         Falling = 2,
-//         Settling = 3, down
-// Swinging = 36, blade
-//         Stationary = 0,
-//         Swinging = 2,
-// Spikes = 37,
-//         [Only one state]
-// Boulder = 38,
-//         Stationary = 0,
-//         Rolling = 1,
-// Dart = 39,
-//         [Only one state]
-// Wall = 40,-mounted dartgun
-//         Idle = 0,?
-//         Firing = 1,?
-// Door = 41, (opens upward)
-//         Upward = 0,
-//         On = 1, side
-// Slamming = 42, doors
-//         Open = 0,
-//         Closed = 1,
-// Sword = 43, of Damocles
-//         [Only one state]
-// Thor = 44,'s hammer's handle
-//         Stationary = 0, in "up" position
-//         Moving = 1, down a little and returning
-//         Moving = 2, down all the way
-//         Stopped = 3, at "down" position
-// Thor = 45,'s hammer's block
-//         Stationary = 0,
-//         Moving = 1, down a little and returning
-//         Moving = 2, down all the way
-// Hanging = 46, ball? / Some kind of box?
-//         [Only one state]
-// Metal = 47, rod? / Powered mining cart
-//         Stationary = 0,
-//         Moving = 1,
-// Movable = 48, cubical block (pushable)
-//         Stationary = 0,
-//         Being = 1, pulled?
-//         Being = 2, pushed?
-// Movable = 49, cubical block (pushable)
-//         Stationary = 0,
-//         Being = 1, pulled?
-//         Being = 2, pushed?
-// Movable = 50, cubical block (pushable)
-//         Stationary = 0,
-//         Being = 1, pulled?
-//         Being = 2, pushed?
-// Movable = 51, cubical block (pushable)
-//         Stationary = 0,
-//         Being = 1, pulled?
-//         Being = 2, pushed?
-// Movable = 52, tall block
-//         Stationary = 0,
-//         Moving = 1, forward?
-//         Moving = 2, backward?
-// Pieces = 53, of something?
-//         Stationary = 0,
-//         Falling = 1,
-//         Settling = 2, down
-// Sword = 54, of Damocles
-//         [Only one state]
-// Above = 55,-water switch
-//         Off = 0,
-//         On = 1,
-//          [states may be reversed]
-// Underwater = 56, switch
-//         Off = 0,
-//         On = 1,
-//          [states may be reversed]
-// Door = 57,
-//         Closed = 0,
-//         Open = 1,
-// Door = 58,
-//         Closed = 0,
-//         Open = 1,
-// Door = 59,
-//         Closed = 0,
-//         Open = 1,
-// Door = 60,
-//         Closed = 0,
-//         Open = 1,
-// Door = 61,
-//         Closed = 0,
-//         Open = 1,
-// Door = 62,
-//         Closed = 0,
-//         Open = 1,
-// Door = 63,
-//         Closed = 0,
-//         Open = 1,
-// Door = 64,
-//         Closed = 0,
-//         Open = 1,
-// Trapdoor = 65, (opens downward)
-//         Closed = 0,
-//         Open = 1,
-// Trapdoor = 66, (opens downward)
-//         Closed = 0,
-//         Open = 1,
-// Bridge = 68, (flat)
-//         [Only one state]
-// Bridge = 69, (slope = 1)
-//         [Only one state]
-// Bridge = 70, (slope = 2)
-//         [Only one state]
-// Passport = 71, (opening up)
-//         [Only one state]
-// Compass = 72,
-//         [Only one state]
-// Cogs = 74, (animated)
-//         Stationary = 0,
-//         Turning = 1,
-// Cogs = 75, (animated)
-//         Stationary = 0,
-//         Turning = 1,
-// Cogs = 76, (animated)
-//         Stationary = 0,
-//         Turning = 1,
-// Lara = 77, in CS / Scion holder in CS
-// Larson = 78, in CS / Natla in CS / Scion holder in CS
-// Larson = 79,'s gun in CS / Scion in CS / Natla in CS
-// Scion = 80, in CS
-// Passport = 81, (closed)
-//         [Only one state]
-// N = 82,-thingy (Playstation memory card?)
-//         [Only one state]
-// Save = 83, crystal
-//         [Only one state]
-//  84: * Pistols
-//  85: * Shotgun
-//  86: * Magnums
-//  87: * Uzis
-//  88: * Pistol ammo(?)
-//  89: * Shotgun ammo
-//  90: * Magnum ammo
-//  91: * Uzi ammo
-//  93: * Small medipack
-//  94: * Large medipack
-// Sunglasses = 95,
-//         [Only one state]
-// Cassette = 96, player and headphones
-//         [Only one state]
-// Direction = 97, keys
-//         [Only one state]
-// Pistol = 99,
-//         [Only one state]
-// 100: Shotgun
-//         [Only one state]
-// 101: Magnum
-//         [Only one state]
-// 102: Uzi
-//         [Only one state]
-// 103: Pistol ammo(?)
-//         [Only one state]
-// 104: Shotgun ammo
-//         [Only one state]
-// 105: Magnum ammo
-//         [Only one state]
-// 106: Uzi ammo
-//         [Only one state]
-// 108: Small medipack
-//         [Only one state]
-// 109: Large medipack
-//         [Only one state]
-// 110: * Puzzle 1
-// 111: * Puzzle 2
-// 112: * Puzzle 3
-// 113: * Puzzle 4
-// 114: Puzzle 1
-//         [Only one state]
-// 115: Puzzle 2
-//         [Only one state]
-// 116: Puzzle 3
-//         [Only one state]
-// 117: Puzzle 4
-//         [Only one state]
-// 118: Slot 1 empty
-//         [Only one state]
-// 119: Slot 2 empty
-//         [Only one state]
-// 120: Slot 3 empty
-//         [Only one state]
-// 121: Slot 4 empty
-//         [Only one state]
-// 122: Slot 1 full
-//         [Only one state]
-// 123: Slot 2 full
-//         [Only one state]
-// 124: Slot 3 full
-//         [Only one state]
-// 125: Slot 4 full
-//         [Only one state]
-// 126: * Pickup 1
-// 127: Pickup 1
-//         [Only one state]
-// 128: Lara's hips
-//         [Only one state]
-// 129: * Key 1
-// 130: * Key 2
-// 131: * Key 3
-// 132: * Key 4
-// 133: Key 1
-//         [Only one state]
-// 134: Key 2
-//         [Only one state]
-// 135: Key 3
-//         [Only one state]
-// 136: Key 4
-//         [Only one state]
-// 137: Lock 1
-//         [Only one state]
-// 138: Lock 2
-//         [Only one state]
-// 139: Lock 3
-//         [Only one state]
-// 140: Lock 4
-//         [Only one state]
-// 143: * Scion Piece
-// 146: Complete Scion
-//         [Only one state]
-// 147: Scion Holder
-//         [Only one state]
-// 150: Scion Piece
-//         [Only one state]
-// 151: * Flare(?) / Explosion
-// 153: * Splash
-// 155: * Bubbles
-// 156: * Bubbles
-// 158: * Blood splatter
-// 160: * Flying disk
-// 161: Centaur statue
-//         [Only one state]
-// 162: Shack suspended from wire rope
-//         Starting = 0, position
-//         Dropping = 1, after first fuse
-//         Dropping = 2, after second fuse
-//         Dropping = 3, after third fuse (to ground)
-//         On = 4, the ground
-// 163: Mutant egg and holder (normal size)
-//         Starting = 0, to hatch
-//         Hatching = 1, (is the fragmenting hardcoded?)
-// 164: * Bullet hit
-// 165: * Sparkle
-// 166: Gunflare
-//         [Only one state]
-// 169: Lara's hips
-//         [Only one state]
-// 170: Lara's hips
-//         [Only one state]
-// 172: Mutant bullet
-//         [Only one state]
-// 173: Mutant grenade
-//         [Only one state]
-// 176: * Splatter
-// 177: Lara's hips
-//         [Only one state]
-// 178: * Fire
-// 179: Lara's hips
-//         [Only one state]
-// 180: Flowing Atlantean lava
-//         [Only one state]
-// 181: Mutant egg and holder (big)
-//         Starting = 0, to hatch
-//         Hatching = 1, (is the fragmenting hardcoded?)
-// 182: Motorboat
-//         Stationary = 1, (initial)
-//         Moving = 2,
-//         Stationary = 3, (final)
-// 183: Lara's hips
-//         [Only one state]
-// 189: Shrinking wedge?
-//         [Only one state]
-// 190: * Standard symbols
-// 191: * Plant 1
-// 192: * Plant 2
-// 193: * Plant 3
-// 194: * Plant 4
-// 195: * Plant 5
-// 200: * Bag 1
-// 204: * Bag 2
-// 207: Gunflare
-//         [Only one state]
-// 212: * Rock 1
-// 213: * Rock 2
-// 214: * Rock 3
-// 215: * Bag 3
-// 216: * Pottery 1
-// 217: * Pottery 2
-// 231: * Painted pot
-// 233: * Inca mummy
-// 236: * Pottery 3
-// 237: * Pottery 4
-// 238: * Pottery 5
-// 239: * Pottery 6
-
-#endif
-
 
 #endif

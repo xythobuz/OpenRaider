@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140210 ]
+	* Finished the Tomb Raider 1 Item/State definitions
+
 	[ 20140209 ]
 	* Renamed OpenGLMesh to Mesh
 	* Removed unused flags, enums, ...
