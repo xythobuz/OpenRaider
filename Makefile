@@ -29,7 +29,7 @@ UNAME=$(shell uname -s)
 # -DUNICODE_SUPPORT			Add unicode/internation keyboard support
 # -DUSING_EMITTER_IN_GAME	Run particle test in game
 
-BASE_DEFS=$(shell sdl2-config --cflags) -Iinclude -DUSING_EMITTER
+BASE_DEFS=-Iinclude -DUSING_EMITTER
 
 BASE_LIBS=$(shell sdl2-config --libs) -lz -lstdc++ \
 	-lpthread -lSDL_ttf
@@ -42,15 +42,15 @@ ifeq ($(UNAME),Darwin)
 AUDIO_LIBS += -lalut
 AUDIO_LIBS += -framework OpenAL
 AUDIO_LIBS += -L/usr/local/lib
-AUDIO_DEFS += -I/usr/local/include
+AUDIO_DEFS += -isystem /usr/local/include
 GL_LIBS += -framework OpenGL
 GL_LIBS += -L/opt/local/lib
-GL_DEFS += -I/opt/local/include
+GL_DEFS += -isystem /opt/local/include
 else
 AUDIO_LIBS += -lopenal -lalut
 GL_LIBS += -lGL -lGLU
 GL_LIBS += -L/usr/local/lib
-GL_DEFS += -I/usr/local/include
+GL_DEFS += -isystem /usr/local/include
 endif
 
 BASE_LIBS += $(AUDIO_LIBS)
@@ -208,16 +208,6 @@ CHECK_DIR=.
 CHECK_STD=--std=c++11 --std=posix
 CHECK_FLAGS=--quiet --force
 CHECK_INC=-Iinclude
-#CHECK_INC+=$(GL_DEFS) $(AUDIO_DEFS)
-#ifeq ($(UNAME),Darwin)
-#SDK_ROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
-#CHECK_INC+=-I$(SDK_ROOT)/usr/include
-#CHECK_INC+=-I$(SDK_ROOT)/usr/include/malloc
-#CHECK_INC+=-I$(SDK_ROOT)/usr/include/machine
-#CHECK_INC+=-I$(SDK_ROOT)/usr/include/c++/4.2.1
-#CHECK_INC+=-I$(SDK_ROOT)/usr/include/c++/4.2.1/tr1
-#CHECK_INC+=-I$(SDK_ROOT)/usr/include/c++/4.2.1/backward
-#endif
 CHECK_NORMAL=--enable=information,warning,performance,portability
 CHECK_FULL=--enable=all
 CHECK_CONFIG=--check-config
@@ -362,7 +352,7 @@ TombRaider.test:
 GLString.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(FLAGS_ALL) $(WARNINGS) -Iinclude \
-	$(shell sdl2-config --cflags) $(shell sdl2-config --libs) \
+	$(shell sdl2-config --libs) \
 	$(GL_LIBS) $(GL_DEFS) -lSDL2_ttf -lm -lstdc++ \
 	src/Texture.cpp src/tga.cpp src/GLString.cpp \
 	test/GLString.cpp -o $(BUILD_TEST_DIR)/GLString.test
