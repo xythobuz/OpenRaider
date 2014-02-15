@@ -32,6 +32,7 @@
 #include <memory_test.h>
 #endif
 
+#include <MatMath.h>
 #include <System.h>
 
 ////////////////////////////////////////////////////////////
@@ -507,14 +508,15 @@ void System::initGL()
     {
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         glHint(GL_FOG_HINT, GL_NICEST);
-        glDisable(GL_COLOR_MATERIAL);
+        glEnable(GL_COLOR_MATERIAL);
         glEnable(GL_DITHER);
 
         // AA polygon edges
-        //glEnable(GL_POLYGON_SMOOTH);
-        //glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
+        glEnable(GL_POLYGON_SMOOTH);
+        glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 
         glEnable(GL_POINT_SMOOTH);
+        glEnable(GL_FOG);
     }
     else
     {
@@ -563,7 +565,7 @@ void System::resizeGL(unsigned int w, unsigned int h)
     // gluPerspective is deprecated!
     // gluPerspective(m_fovY, ((GLdouble)w)/((GLdouble)h), m_clipNear, m_clipFar);
     // Fix: http://stackoverflow.com/a/2417756
-    GLfloat fH = tanf(m_fovY / 360.0f * 3.14159f) * m_clipNear;
+    GLfloat fH = tanf(m_fovY * HEL_PI / 360.0f) * m_clipNear;
     GLfloat fW = fH * ((GLfloat)w)/((GLfloat)h);
     glFrustum(-fW, fW, -fH, fH, m_clipNear, m_clipFar);
 
@@ -624,9 +626,9 @@ int rc_get_bool(char *buffer, bool *val)
         return -1;
     }
 
-    if (strncmp(buffer, "true", 4) == 0)
+    if ((strncmp(buffer, "true", 4) == 0) || (buffer[0] == '1'))
         *val = true;
-    else if (strncmp(buffer, "false", 5) == 0)
+    else if ((strncmp(buffer, "false", 5) == 0) || (buffer[0] == '0'))
         *val = false;
     else
         return -2;
@@ -639,7 +641,6 @@ unsigned int system_timer(int state)
 {
     static struct timeval start;
     static struct timeval stop;
-    static struct timeval total;
     static struct timezone tz;
 
 
@@ -647,39 +648,20 @@ unsigned int system_timer(int state)
     {
         case 0:
             gettimeofday(&start, &tz);
-            total.tv_sec = 0;
-            total.tv_usec = 0;
             break;
         case 1:
             gettimeofday(&stop, &tz);
 
             if (start.tv_usec > stop.tv_usec)
             {
-#ifdef OBSOLETE
-                stop.tv_usec = (1000000 + stop.tv_usec);
-#else
-                stop.tv_usec = (1000 + stop.tv_usec);
-#endif
+                stop.tv_usec += 1000000;
                 stop.tv_sec--;
             }
 
             stop.tv_usec -= start.tv_usec;
             stop.tv_sec -= start.tv_sec;
 
-#ifdef OBSOLETE
-            total.tv_sec += stop.tv_sec;
-            total.tv_usec += stop.tv_usec;
-
-            while (total.tv_usec > 1000000)
-            {
-                total.tv_usec -= 1000000;
-                total.tv_sec++;
-            }
-
-            return total.tv_sec * 1000000 + total.tv_usec;
-#else
-            return (stop.tv_sec-start.tv_sec)*1000+(stop.tv_usec-start.tv_usec)/1000;
-#endif
+            return ((stop.tv_sec - start.tv_sec) * 1000) + ((stop.tv_usec - start.tv_usec) / 1000);
     }
 
     return 0;

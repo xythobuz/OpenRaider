@@ -5,6 +5,12 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140215 ]
+	* Enabled previously disabled polygon smoothing & color material
+	  when setting fastcard to true
+	* Fixed bug in system timer millisecond conversion
+	* Extended rc_get_bool to also accept 0 or 1 besides true and false
+
 	[ 20140210 ]
 	* Finished the Tomb Raider 1 Item/State definitions
 	* Ported to SDL2 and SDL2-TTF using the Migration Guide:
