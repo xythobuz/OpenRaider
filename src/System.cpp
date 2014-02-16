@@ -43,7 +43,6 @@ System::System()
 {
     m_width = 800;
     m_height = 600;
-    m_fastCard = true;
 
     m_driver = 0x0;
 
@@ -412,12 +411,6 @@ void System::setDriverGL(const char *driver)
 }
 
 
-void System::setFastCardPerformance(bool is_fast)
-{
-    m_fastCard = is_fast;
-}
-
-
 void System::resetTicks()
 {
     system_timer(0);
@@ -485,49 +478,28 @@ void System::initGL()
     glDisable(GL_LIGHTING);
 
     // Set up alpha blending
-    if (m_fastCard)
-    {
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-        //glEnable(GL_ALPHA_TEST); // Disable per pixel alpha blending
-        glAlphaFunc(GL_GREATER, 0);
-    }
-    else
-    {
-        glDisable(GL_BLEND);
-        glDisable(GL_ALPHA_TEST);
-    }
+    //glEnable(GL_ALPHA_TEST); // Disable per pixel alpha blending
+    glAlphaFunc(GL_GREATER, 0);
 
     glPointSize(5.0);
 
     // Setup shading
     glShadeModel(GL_SMOOTH);
 
-    if (m_fastCard)
-    {
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-        glHint(GL_FOG_HINT, GL_NICEST);
-        glEnable(GL_COLOR_MATERIAL);
-        glEnable(GL_DITHER);
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    glHint(GL_FOG_HINT, GL_NICEST);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_DITHER);
 
-        // AA polygon edges
-        glEnable(GL_POLYGON_SMOOTH);
-        glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
+    // AA polygon edges
+    glEnable(GL_POLYGON_SMOOTH);
+    glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 
-        glEnable(GL_POINT_SMOOTH);
-        glEnable(GL_FOG);
-    }
-    else
-    {
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-        glHint(GL_FOG_HINT, GL_FASTEST);
-        glDisable(GL_COLOR_MATERIAL);
-        glDisable(GL_DITHER);
-        glDisable(GL_POLYGON_SMOOTH);
-        glDisable(GL_POINT_SMOOTH);
-        glDisable(GL_FOG);
-    }
+    glEnable(GL_POINT_SMOOTH);
+    glEnable(GL_FOG);
 
     glDisable(GL_LINE_SMOOTH);
     glDisable(GL_AUTO_NORMAL);

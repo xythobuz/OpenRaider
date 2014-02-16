@@ -182,8 +182,6 @@ public:
 
     void setDriverGL(const char *driver);
 
-    void setFastCardPerformance(bool isFast);
-
     virtual void shutdown(int code) = 0;
 
     virtual void swapBuffersGL() = 0;
@@ -193,7 +191,6 @@ public:
 protected:
     unsigned int m_width;              //!< Width of the viewport
     unsigned int m_height;             //!< Height of the viewport
-    bool m_fastCard;                   //!< Assume expensive calls are fine if true
     char *m_driver;                    //!< String for dynamic use of GL library
     float m_clipNear;                  //!< Clip near distance
     float m_clipFar;                   //!< Clip far distance

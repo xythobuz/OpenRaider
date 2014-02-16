@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140216 ]
+	* Removed the FastCard option. Not necessary on todays hardware?!
+
 	[ 20140215 ]
 	* Enabled previously disabled polygon smoothing & color material
 	  when setting fastcard to true

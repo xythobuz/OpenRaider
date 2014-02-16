@@ -886,12 +886,11 @@ void OpenRaider::start()
 
     // Mongoose 2002.08.13, This starts GL context
     printf("\n[Starting video subsystem...]\n");
-    setFastCardPerformance(true);
     initVideo(m_width, m_height, false);
 
     // Mongoose 2002.01.02, Disable rendering to avoid GL call conflicts
     m_render.setMode(Render::modeDisabled);
-    m_render.Init(m_width, m_height, m_fastCard);
+    m_render.Init(m_width, m_height);
     m_render.initTextures(m_homeDir, &m_texOffset, &mLevelTextureOffset);
 
     m_render.RegisterCamera(&m_camera);
@@ -3352,10 +3351,6 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
             else if (rc_command("Height", cmd))
             {
                 m_height = atoi(cmd);
-            }
-            else if (rc_command("FastCard", cmd))
-            {
-                rc_get_bool(cmd, &m_fastCard);
             }
             else if (rc_command("FullScreen", cmd))
             {

@@ -89,14 +89,13 @@ class Render
         fEntityModels           = (1 << 6),
         fFog                    = (1 << 7),
         fUsePortals             = (1 << 8),
-        fFastCard               = (1 << 9),
-        fGL_Lights              = (1 << 10),
-        fOneRoom                = (1 << 11),
-        fRenderPonytail         = (1 << 12),
-        fMultiTexture           = (1 << 13),
-        fUpdateRoomListPerFrame = (1 << 14),
-        fAnimateAllModels       = (1 << 15),
-        fAllRooms               = (1 << 16)
+        fGL_Lights              = (1 << 9),
+        fOneRoom                = (1 << 10),
+        fRenderPonytail         = (1 << 11),
+        fMultiTexture           = (1 << 12),
+        fUpdateRoomListPerFrame = (1 << 13),
+        fAnimateAllModels       = (1 << 14),
+        fAllRooms               = (1 << 15)
     } RenderFlags;
 
     typedef enum {
@@ -173,7 +172,7 @@ class Render
      * Mongoose - Created, factored out of World
      ------------------------------------------------------*/
 
-    void Init(int width, int height, bool fastCard);
+    void Init(int width, int height);
     /*------------------------------------------------------
      * Pre  :
      * Post : Starts and sets up OpenGL target

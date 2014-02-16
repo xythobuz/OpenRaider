@@ -197,7 +197,6 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
         unsigned int *nextId)
 {
     char filename[128];
-    bool fastCard = mFlags & Render::fFastCard;
     const char *console = "Toggle the Console with [`] key";
     const char *menu = "Press <esc> for menu";
     int font_id;
@@ -217,10 +216,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     mTexture.setMaxTextureCount(128);  /* TR never needs more than 32 iirc
                                           However, color texturegen is a lot */
 
-    if (fastCard)
-    {
-        mTexture.setFlag(Texture::fUseMipmaps);
-    }
+    mTexture.setFlag(Texture::fUseMipmaps);
 
     printf("Processing Textures:\n");
 
@@ -425,19 +421,12 @@ void renderTrace(int color, vec3_t start, vec3_t end)
 }
 
 
-void Render::Init(int width, int height, bool fast_card)
+void Render::Init(int width, int height)
 {
     char *s;
 
-
     mWidth = width;
     mHeight = height;
-    mFlags |= Render::fFastCard;
-
-    if (!fast_card)
-    {
-        mFlags ^= Render::fFastCard;
-    }
 
     // Print driver support information
     printf("\n## GL Driver Info ##\n");
@@ -493,44 +482,25 @@ void Render::Init(int width, int height, bool fast_card)
     glDisable(GL_LIGHTING);
 
     // Set up alpha blending
-    if (fast_card)
-    {
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-        //glEnable(GL_ALPHA_TEST); // Disable per pixel alpha blending
-        glAlphaFunc(GL_GREATER, 0);
-    }
-    else
-    {
-        glDisable(GL_BLEND);
-        glDisable(GL_ALPHA_TEST);
-    }
+    //glEnable(GL_ALPHA_TEST); // Disable per pixel alpha blending
+    glAlphaFunc(GL_GREATER, 0);
 
     glPointSize(5.0);
 
     // Setup shading
     glShadeModel(GL_SMOOTH);
 
-    if (fast_card)
-    {
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-        glHint(GL_FOG_HINT, GL_NICEST);
-        glEnable(GL_COLOR_MATERIAL);
-        glEnable(GL_DITHER);
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    glHint(GL_FOG_HINT, GL_NICEST);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_DITHER);
 
-        // AA polygon edges
-        //glEnable(GL_POLYGON_SMOOTH);
-        //glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-    }
-    else
-    {
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-        glHint(GL_FOG_HINT, GL_FASTEST);
-        glDisable(GL_COLOR_MATERIAL);
-        glDisable(GL_DITHER);
-        glDisable(GL_POLYGON_SMOOTH);
-    }
+    // AA polygon edges
+    glEnable(GL_POLYGON_SMOOTH);
+    glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 
     glDisable(GL_LINE_SMOOTH);
     glDisable(GL_POINT_SMOOTH);
@@ -687,16 +657,13 @@ void Render::setMode(int n)
             glDisable(GL_TEXTURE_2D);
             break;
         default:
-            if (mFlags & Render::fFastCard)
+            if (mMode == Render::modeLoadScreen)
             {
-                if (mMode == Render::modeLoadScreen)
-                {
-                    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-                }
-                else
-                {
-                    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-                }
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+            }
+            else
+            {
+                glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
             }
 
             glClearColor(BLACK[0], BLACK[1], BLACK[2], BLACK[3]);

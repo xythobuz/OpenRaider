@@ -119,7 +119,7 @@ If you want to change this behaviour, this happens around line 1075 of `src/Open
 | /                        | Drop a waypoint test (formally undocumented) |
 | [ ]                      | Adjust idle animation for testing            |
 
-### Console Commands
+### Console/Config Commands
 
 Console commands (BOOL is now '0' or '1' for less typing).
 Pressing &lt;UP&gt; will go back to last command entered (saves typing).
