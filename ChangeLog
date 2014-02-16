@@ -7,6 +7,7 @@
 
 	[ 20140216 ]
 	* Removed the FastCard option. Not necessary on todays hardware?!
+	* Removed UNICODE_SUPPORT, not working this way with SDL2
 
 	[ 20140215 ]
 	* Enabled previously disabled polygon smoothing & color material

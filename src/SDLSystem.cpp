@@ -101,11 +101,6 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscre
             width, height, flags);
     mGLContext = SDL_GL_CreateContext(mWindow);
 
-#ifdef UNICODE_SUPPORT
-    //@JML get Unicode value of key for international keyboard
-    SDL_EnableUNICODE(1);
-#endif
-
     // Start game renderer
     initGL();
 
@@ -303,16 +298,6 @@ void SDLSystem::runGame() {
                     }
 #endif
 
-#ifdef UNICODE_SUPPORT
-                    // JML: if a std key was pressed get it ascii code
-                    if (!specialKey && key != 0) {
-                        if ((event.key.keysym.unicode & 0xFF80) == 0) {
-                            key = (unsigned int)(event.key.keysym.unicode & 0x7F);
-                        } else {
-                            key = 0;
-                        }
-                    }
-#else
                     /*! \fixme Avoid passing modifers as a key, since the
                      * consoles using this expect text characters, add unicode
                      * support later when they're able to handle it
@@ -320,7 +305,6 @@ void SDLSystem::runGame() {
                     if (key > 255 && key < 1000) {
                         key = 0;
                     }
-#endif
 
                     if (key == mConsoleKey) {
                         if (event.type == SDL_KEYDOWN) {

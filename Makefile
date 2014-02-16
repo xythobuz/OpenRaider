@@ -26,7 +26,6 @@ UNAME=$(shell uname -s)
 ###############################################################
 
 # -DMULTITEXTURE			Add OpenGL multitexturing
-# -DUNICODE_SUPPORT			Add unicode/internation keyboard support
 # -DUSING_EMITTER_IN_GAME	Run particle test in game
 
 BASE_DEFS=-Iinclude -DUSING_EMITTER
