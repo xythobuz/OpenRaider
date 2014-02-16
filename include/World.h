@@ -1,29 +1,14 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/World.h
+ * \brief The game world (model)
  *
- * Project : OpenRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : World
- * License : No use w/o permission (C) 2002 Mongoose
- * Comments: The game world ( model )
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2002.12.16:
- * Mongoose - Created
- ================================================================*/
-
+ * \author Mongoose
+ */
 
 #ifndef _WORLD_H_
 #define _WORLD_H_
 
-#define BAD_BLOOD  // For temp rendering use
+#define BAD_BLOOD  //!< \todo For temp rendering use
 
 #ifdef BAD_BLOOD
 #include <SkeletalModel.h>
@@ -33,89 +18,63 @@
 #include <Vector.h>
 #include <MatMath.h>
 
-
 // Mirrors TombRaider class' room flags really
-typedef enum
-{
+typedef enum {
     roomFlag_underWater    = 0x0001
-
 } room_flags_t;
 
-typedef enum
-{
+typedef enum {
     worldMoveType_walkNoSwim   = -1,
     worldMoveType_walk         = 0,
     worldMoveType_noClipping   = 1,
     worldMoveType_fly          = 2,
     worldMoveType_swim         = 3
-
 } worldMoveType;
 
-
-typedef struct vertex_s
-{
+typedef struct {
     vec3_t pos;
-
 } vertex_t;
 
-
-typedef struct uv_s
-{
+/*
+typedef struct {
     vec2_t uv;
-
 } uv_t;
 
-typedef struct texel_s
-{
-    vec2_t st;
+typedef struct {
+    vec4_t rgba;
+} color_t;
+*/
 
+typedef struct {
+    vec2_t st;
 } texel_t;
 
-
-typedef struct color_s
-{
-    vec4_t rgba;
-
-} color_t;
-
-
-typedef struct sprite_s
-{
-    int num_verts; // 4 == Quad, 3 == Triangle, rendered as triangles
+typedef struct {
+    int num_verts;      //!< 4 == Quad, 3 == Triangle, rendered as triangles
     vertex_t vertex[4];
     texel_t texel[4];
     float pos[3];
-    float radius; // yeah, I know
+    float radius;       //!< \fixme yeah, I know
     int texture;
-
 } sprite_t;
 
-
-typedef struct sprite_seq_s
-{
+typedef struct {
     int num_sprites;
     sprite_t *sprite;
-
 } sprite_seq_t;
-
 
 /*! \fixme For now shaders are textures on tex objects
  * and materials on color objects. If -1
  * then it doesn't have that information yet.
  */
-
-typedef struct texture_tri_s
-{
+typedef struct {
     int index[3];
     vec_t st[6];
     int texture;
     unsigned short transparency;
-
 } texture_tri_t;
 
-
-typedef struct model_mesh_s
-{
+typedef struct {
     Vector<texture_tri_t *> texturedTriangles;
     Vector<texture_tri_t *> coloredTriangles;
     Vector<texture_tri_t *> texturedRectangles;
@@ -132,84 +91,64 @@ typedef struct model_mesh_s
 
     unsigned int normalCount;
     vec_t *normals;
-
 } model_mesh_t;
 
+typedef struct entity_s {
+    int id;                  //!< Unique identifier
+    float pos[3];            //!< World position
+    float angles[3];         //!< Euler angles (pitch, yaw, roll)
+    int type;                //!< {(0x00, item), (0x01, ai), (0x02, player)}
+    int room;                //!< Current room entity is in
+    worldMoveType moveType;  //!< Type of motion/clipping
+    bool moving;             //!< In motion?
+    struct entity_s *master; //!< Part of entity chain?
 
-////////////////////////////////////////////////////////////////
+    int state;               //!< State of the Player, AI, or object
+    int objectId;            //!< What kind of entity?
 
-
-typedef struct entity_s
-{
-    int id;                    // Unique identifier
-    float pos[3];              // World position
-    float angles[3];           // Euler angles (pitch, yaw, roll)
-    int type;                  // {(0x00, item), (0x01, ai), (0x02, player)}
-    int room;                  // Current room entity is in
-    worldMoveType moveType;    // Type of motion/clipping
-    bool moving;               // In motion?
-    struct entity_s *master;   // Part of entity chain?
-
-    int state;      // State of the Player, AI, or object
-    int objectId;              // What kind of entity?
-
-    int modelId;               // Animation model
+    int modelId;             //!< Animation model
     void *tmpHook;
     bool animate;
 
     /*
-      float time, lastTime;
-      int state, lastState;
-      int event, lastEvent;
-      int goal;
-     */
-
+    float time, lastTime;
+    int state, lastState;
+    int event, lastEvent;
+    int goal;
+    */
 } entity_t;
 
-
-typedef struct static_model_s
-{
-    int index;     // model_mesh index
-    float yaw;     // angle of rotation on Y
-    float pos[3];  // position
+typedef struct {
+    int index;    //!< model_mesh index
+    float yaw;    //!< angle of rotation on Y
+    float pos[3]; //!< position
 
     //vec3_t bboxMax;
     //vec3_t bboxMin;
-
 } static_model_t;
 
-
-
-typedef struct portal_s
-{
+typedef struct {
     float vertices[4][3];
     float normal[3];
     int adjoining_room;
-
 } portal_t;
 
-
-typedef struct box_s
-{
+typedef struct {
     vertex_t a;
     vertex_t b;
     vertex_t c;
     vertex_t d;
-
 } box_t;
 
-typedef struct sector_s
-{
+typedef struct {
     vec_t floor;
     vec_t ceiling;
 
     bool wall;
-
 } sector_t;
 
 //! \fixme No room mesh list or sprites and etc
-typedef struct room_mesh_s
-{
+typedef struct {
     Vector<int> adjacentRooms;
     Vector<portal_t *> portals;
     Vector<static_model_t *> models;
@@ -224,13 +163,10 @@ typedef struct room_mesh_s
     float pos[3];
     vec3_t bbox_min;
     vec3_t bbox_max;
-
 } room_mesh_t;
 
-
 // Workout generic entity and a client class from these entities
-typedef struct world_entity_s
-{
+typedef struct world_entity_s {
     vec3_t pos;
     vec3_t lastPos;
     vec3_t angle;
@@ -243,9 +179,7 @@ typedef struct world_entity_s
 
 } world_entity_t;
 
-
-typedef struct actor_entity_s
-{
+typedef struct {
     vec3_t pos;
     vec3_t lastPos;
     vec3_t angle;
@@ -266,9 +200,8 @@ typedef struct actor_entity_s
 
 } actor_entity_t;
 
-enum OpenRaiderEvent
-{
-    eNone            = 0,
+enum OpenRaiderEvent {
+    eNone = 0,
     eWeaponDischarge,
     eDying,
     eDead,
@@ -284,138 +217,97 @@ enum OpenRaiderEvent
     eLand
 };
 
+/*!
+ * \brief The game world (model)
+ */
+class World {
+public:
 
-class World
-{
- public:
-
-    enum WorldFlag
-    {
+    enum WorldFlag {
         fEnableHopping = 1
     };
 
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Constructs an object of World
+     */
     World();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of World
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Deconstructs an object of World
+     */
     ~World();
-    /*------------------------------------------------------
-     * Pre  : World object is allocated
-     * Post : Deconstructs an object of World
+
+    /*!
+     * \brief Find room a location is in.
      *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
-
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
-
+     * If it fails to be in a room it gives closest overlapping room.
+     * \param index Guessed room index
+     * \param x X coordinate
+     * \param y Y coordinate
+     * \param z Z coordinate
+     * \returns correct room index or -1 for unknown
+     */
     int getRoomByLocation(int index, float x, float y, float z);
-    /*------------------------------------------------------
-     * Pre  : index - Guessed room index
-     * Post : Returns correct room index or -1 for unknown
-     *
-     *        NOTE: If it fails to be in a room it gives
-     *        closest overlapping room
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Find room a location is in.
+     *
+     * If it fails to be in a room it gives closest overlapping room.
+     * \param x X coordinate
+     * \param y Y coordinate
+     * \param z Z coordinate
+     * \returns correct room index or -1 for unknown
+     */
     int getRoomByLocation(float x, float y, float z);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns correct room index or -1 for unknown
-     *
-     *        NOTE: If it fails to be in a room it gives
-     *        closest overlapping room
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Looks for portal crossings from xyz to xyz2 segment
+     * from room[index]
+     * \param index valid room index
+     * \param x X coordinate of first point
+     * \param y Y coordinate of first point
+     * \param z Z coordinate of first point
+     * \param x2 X coordinate of second point
+     * \param y2 Y coordinate of second point
+     * \param z2 Z coordinate of second point
+     * \returns index of adjoined room or -1
+     */
     int getAdjoiningRoom(int index,
-                                float x, float y, float z,
-                                float x2, float y2, float z2);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Looks for portal crossings from xyz to xyz2 segment
-     *        from room[index] returns index of adjoined room or -1
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.29:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+                            float x, float y, float z,
+                            float x2, float y2, float z2);
 
+    /*!
+     * \brief Gets the sector index of the position in room
+     * \param room valid room index
+     * \param x X coordinate in room
+     * \param z Z coordinate in room
+     * \returns sector index of position in room
+     */
     int getSector(int room, float x, float z);
     int getSector(int room, float x, float z, float *floor, float *ceiling);
-    /*------------------------------------------------------
-     * Pre  : room - valid room index
-     * Post : Gets the sector index of the position in room
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
     unsigned int getRoomInfo(int room);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.28:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Check if sector is a wall
+     * \param room valid room index
+     * \param sector valid sector index
+     * \returns true if this sector is a wall
+     */
     bool isWall(int room, int sector);
-    /*------------------------------------------------------
-     * Pre  : room - valid room index
-     *        sector - valid sector index
-     * Post : Returns true if this sector is a wall
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get the world height at a position
+     * \param index valid room index
+     * \param x X coordinate
+     * \param y will be set to world height in that room
+     * \param z Z coordinate
+     * \returns true if position is in a room
+     */
     bool getHeightAtPosition(int index, float x, float *y, float z);
-    /*------------------------------------------------------
-     * Pre  : index - valid room index
-     * Post : Returns true if position is in a room
-     *        and sets y to the world height in that room
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
-    // Temp methods for rendering use until more refactoring is done
 #ifdef BAD_BLOOD
+    //! \todo Temp methods for rendering use until more refactoring is done
     model_mesh_t *getMesh(int index);
     skeletal_model_t *getModel(int index);
     room_mesh_t *getRoom(int index);
@@ -424,155 +316,76 @@ class World
     Vector<room_mesh_t *> *getRooms();
 #endif
 
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Set an option flag
+     * \param flag flag to set
+     */
     void setFlag(WorldFlag flag);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets option flag
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Clear an option flag
+     * \param flag flag to clear
+     */
     void clearFlag(WorldFlag flag);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Clears option flag
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Clears all data in world
+     * \todo in future will check if data is in use before clearing
+     */
     void destroy();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Clears all data in world, in future will check
-     *        if data is in use before clearing
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Adds room to world
+     * \param room room to add
+     */
     void addRoom(room_mesh_t *room);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Adds object to world
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief ADds mesh to world
+     * \param model mesh to add
+     */
     void addMesh(model_mesh_t *model);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Adds object to world
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Adds entity to world
+     * \param e entity to add
+     */
     void addEntity(entity_t *e);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Adds object to world
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Adds model to world.
+     * \param model model to add
+     * \returns next model ID or -1 on error
+     */
     int addModel(skeletal_model_t *model);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Adds object to world, returns next model Id
-     *        or -1 if failed to add model to world
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Adds sprite to world
+     * \param sprite sprite to add
+     */
     void addSprite(sprite_seq_t *sprite);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Adds object to world
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created, factored out of Render class
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Move entity in given direction unless collision occurs
+     * \param e entity to move
+     * \param movement direction of movement ('f', 'b', 'l' or 'r')
+     */
     void moveEntity(entity_t *e, char movement);
-    /*------------------------------------------------------
-     * Pre  : movement - 'f' orward
-     *                   'b' ackward
-     *                   'l' eft
-     *                   'r' ight
-     *
-     * Post : Move entity e in a given direction, unless
-     *        a collision ocurrs
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Moved to WOrld class
-     *
-     * 2002.09.02:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+private:
 
- private:
-
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Clears all data in world
+     */
     void clear();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Clears all data in world
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.20:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     bool mClearLock;
-
-    unsigned int mFlags;                   /* World flags */
-
-    Vector<entity_t *> mEntities;            /* World entities */
-
-    Vector<room_mesh_t *> mRooms;            /* Map data and meshes */
-
-    Vector<model_mesh_t *> mMeshes;       /* Unanimated meshes */
-
-    Vector<sprite_seq_t *> mSprites;          /* Sprites */
-
-    Vector<skeletal_model_t *> mModels;     /* Skeletal animation models */
+    unsigned int mFlags;                //!< World flags
+    Vector<entity_t *> mEntities;       //!< World entities
+    Vector<room_mesh_t *> mRooms;       //!< Map data and meshes
+    Vector<model_mesh_t *> mMeshes;     //!< Unanimated meshes
+    Vector<sprite_seq_t *> mSprites;    //!< Sprites
+    Vector<skeletal_model_t *> mModels; //!< Skeletal animation models
 };
 
 #endif

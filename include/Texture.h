@@ -100,8 +100,8 @@ public:
      * \param textureWidth width of texture, height will match it
      * \param color RGB 24bit color
      * \param utf8Offset Offset into fonts encoding chart
-     * \param cound number of glyphs to read from offset start
-     * \param verboxe dumps debug info to stdout
+     * \param count number of glyphs to read from offset start
+     * \param verbose dumps debug info to stdout
      * \returns font texture. Load it with loadFont()!
      */
     ttf_texture_t *generateFontTexture(const char *filename, int pointSize,
@@ -195,7 +195,7 @@ public:
      * \brief Loads a TTF, generates texture image, glyph list and drawlist
      * \param filename Filename of TTF font
      * \param utf8Offset Offset into Unicode table
-     * \param cound number of glyphs to load
+     * \param count number of glyphs to load
      * \returns font id if successful, or < 0 on error
      */
     int loadFontTTF(const char *filename,
