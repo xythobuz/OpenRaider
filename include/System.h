@@ -66,7 +66,7 @@ public:
     virtual ~System();
 
     /*!
-     * \brief Generates a buufered string for the printf call
+     * \brief Generates a buffered string for the printf call
      * \param string Format string like for printf
      * \returns string in a buffer
      */

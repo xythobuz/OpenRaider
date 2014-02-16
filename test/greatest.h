@@ -3,6 +3,8 @@
  *
  * Modified 2014 by Thomas Buck <xythobuz@xythobuz.de>
  * --> C++ support
+ * --> Included janoskk color output patch
+ * --> Modified it so a tty output is detected at runtime (now unix only)
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -21,7 +23,6 @@
 #define GREATEST_H
 
 #ifdef __cplusplus
-#define __STDC_VERSION__ 19901L // C++11 compilers support var args
 extern "C"
 {
 #endif
@@ -81,6 +82,7 @@ int main(int argc, char **argv) {
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 
 /***********
@@ -101,6 +103,15 @@ int main(int argc, char **argv) {
 #ifndef GREATEST_USE_ABBREVS
 #define GREATEST_USE_ABBREVS 1
 #endif
+
+/* Colorize the passed/failed results */
+#ifndef COLOR_FAIL
+#define COLOR_FAIL  "\033[22;31;1m"
+#endif
+#ifndef COLOR_PASS
+#define COLOR_PASS  "\033[22;32m"
+#endif
+#define COLOR_RESET "\033[22;0m"
 
 
 /*********
@@ -229,7 +240,7 @@ void GREATEST_SET_TEARDOWN_CB(greatest_teardown_cb *cb, void *udata);
 
 /* If __VA_ARGS__ (C99) is supported, allow parametric testing
  * without needing to manually manage the argument struct. */
-#if __STDC_VERSION__ >= 19901L
+#if defined __cplusplus || (__STDC_VERSION__ >= 19901L)
 #define GREATEST_RUN_TESTp(TEST, ...)                                   \
     do {                                                                \
         if (greatest_pre_test(#TEST) == 1) {                            \
@@ -421,10 +432,18 @@ static void greatest_run_suite(greatest_suite_cb *suite_cb,             \
     GREATEST_SET_TIME(greatest_info.suite.post_suite);                  \
     if (greatest_info.suite.tests_run > 0) {                            \
         fprintf(GREATEST_STDOUT,                                        \
-            "\n%u tests - %u pass, %u fail, %u skipped",                \
+            "\n%u tests - %u %spass%s, %u %sfail%s, %u skipped",        \
             greatest_info.suite.tests_run,                              \
             greatest_info.suite.passed,                                 \
+            (isatty(fileno(GREATEST_STDOUT))) ? (                       \
+            (!greatest_info.suite.failed) ? COLOR_PASS : COLOR_RESET    \
+            ) : "",                                                     \
+            (isatty(fileno(GREATEST_STDOUT))) ? COLOR_RESET : "",       \
             greatest_info.suite.failed,                                 \
+            (isatty(fileno(GREATEST_STDOUT))) ? (                       \
+            (greatest_info.suite.failed) ? COLOR_FAIL : COLOR_RESET     \
+            ) : "",                                                     \
+            (isatty(fileno(GREATEST_STDOUT))) ? COLOR_RESET : "",       \
             greatest_info.suite.skipped);                               \
         GREATEST_CLOCK_DIFF(greatest_info.suite.pre_suite,              \
             greatest_info.suite.post_suite);                            \
@@ -442,8 +461,11 @@ static void greatest_run_suite(greatest_suite_cb *suite_cb,             \
                                                                         \
 void greatest_do_pass(const char *name) {                               \
     if (GREATEST_IS_VERBOSE()) {                                        \
-        fprintf(GREATEST_STDOUT, "PASS %s: %s",                         \
-            name, greatest_info.msg ? greatest_info.msg : "");          \
+        fprintf(GREATEST_STDOUT,                                        \
+                (isatty(fileno(GREATEST_STDOUT))) ?                     \
+                COLOR_PASS "PASS" COLOR_RESET " %s: %s" :               \
+                "PASS %s: %s",                                          \
+                name, greatest_info.msg ? greatest_info.msg : "");      \
     } else {                                                            \
         fprintf(GREATEST_STDOUT, ".");                                  \
     }                                                                   \
@@ -453,6 +475,8 @@ void greatest_do_pass(const char *name) {                               \
 void greatest_do_fail(const char *name) {                               \
     if (GREATEST_IS_VERBOSE()) {                                        \
         fprintf(GREATEST_STDOUT,                                        \
+            (isatty(fileno(GREATEST_STDOUT))) ?                         \
+            COLOR_FAIL "FAIL" COLOR_RESET " %s: %s (%s:%u)" :           \
             "FAIL %s: %s (%s:%u)",                                      \
             name, greatest_info.msg ? greatest_info.msg : "",           \
             greatest_info.fail_file, greatest_info.fail_line);          \
@@ -462,7 +486,10 @@ void greatest_do_fail(const char *name) {                               \
         if (greatest_info.col % greatest_info.width != 0)               \
             fprintf(GREATEST_STDOUT, "\n");                             \
         greatest_info.col = 0;                                          \
-        fprintf(GREATEST_STDOUT, "FAIL %s: %s (%s:%u)\n",               \
+        fprintf(GREATEST_STDOUT,                                        \
+            (isatty(fileno(GREATEST_STDOUT))) ?                         \
+            COLOR_FAIL "FAIL" COLOR_RESET " %s: %s (%s:%u)\n" :         \
+            "FAIL %s: %s (%s:%u)\n",                                    \
             name,                                                       \
             greatest_info.msg ? greatest_info.msg : "",                 \
             greatest_info.fail_file, greatest_info.fail_line);          \
@@ -510,38 +537,38 @@ greatest_run_info greatest_info
 /* Handle command-line arguments, etc. */
 #define GREATEST_MAIN_BEGIN()                                           \
     do {                                                                \
-        int _i = 0;                                                      \
+        int _i = 0;                                                     \
         memset(&greatest_info, 0, sizeof(greatest_info));               \
         if (greatest_info.width == 0) {                                 \
             greatest_info.width = GREATEST_DEFAULT_WIDTH;               \
         }                                                               \
-        for (_i = 1; _i < argc; _i++) {                                    \
-            if (0 == strcmp("-t", argv[_i])) {                           \
-                if (argc <= _i + 1) {                                    \
+        for (_i = 1; _i < argc; _i++) {                                 \
+            if (0 == strcmp("-t", argv[_i])) {                          \
+                if (argc <= _i + 1) {                                   \
                     greatest_usage(argv[0]);                            \
                     exit(EXIT_FAILURE);                                 \
                 }                                                       \
-                greatest_info.test_filter = argv[_i+1];                  \
-                _i++;                                                    \
-            } else if (0 == strcmp("-s", argv[_i])) {                    \
-                if (argc <= _i + 1) {                                    \
+                greatest_info.test_filter = argv[_i+1];                 \
+                _i++;                                                   \
+            } else if (0 == strcmp("-s", argv[_i])) {                   \
+                if (argc <= _i + 1) {                                   \
                     greatest_usage(argv[0]);                            \
                     exit(EXIT_FAILURE);                                 \
                 }                                                       \
-                greatest_info.suite_filter = argv[_i+1];                 \
-                _i++;                                                    \
-            } else if (0 == strcmp("-f", argv[_i])) {                    \
+                greatest_info.suite_filter = argv[_i+1];                \
+                _i++;                                                   \
+            } else if (0 == strcmp("-f", argv[_i])) {                   \
                 greatest_info.flags |= GREATEST_FLAG_FIRST_FAIL;        \
-            } else if (0 == strcmp("-v", argv[_i])) {                    \
+            } else if (0 == strcmp("-v", argv[_i])) {                   \
                 greatest_info.flags |= GREATEST_FLAG_VERBOSE;           \
-            } else if (0 == strcmp("-l", argv[_i])) {                    \
+            } else if (0 == strcmp("-l", argv[_i])) {                   \
                 greatest_info.flags |= GREATEST_FLAG_LIST_ONLY;         \
-            } else if (0 == strcmp("-h", argv[_i])) {                    \
+            } else if (0 == strcmp("-h", argv[_i])) {                   \
                 greatest_usage(argv[0]);                                \
                 exit(EXIT_SUCCESS);                                     \
             } else {                                                    \
                 fprintf(GREATEST_STDOUT,                                \
-                    "Unknown argument '%s'\n", argv[_i]);                \
+                    "Unknown argument '%s'\n", argv[_i]);               \
                 greatest_usage(argv[0]);                                \
                 exit(EXIT_FAILURE);                                     \
             }                                                           \
@@ -559,9 +586,14 @@ greatest_run_info greatest_info
                 greatest_info.end);                                     \
             fprintf(GREATEST_STDOUT, "\n");                             \
             fprintf(GREATEST_STDOUT,                                    \
-                "Pass: %u, fail: %u, skip: %u.\n",                      \
-                greatest_info.passed,                                   \
-                greatest_info.failed, greatest_info.skipped);           \
+                "%sPass: %u, fail: %u, "                                \
+                "skip: %u.%s\n",                                        \
+                (isatty(fileno(GREATEST_STDOUT))) ?                     \
+                ((greatest_info.failed) ? COLOR_FAIL : COLOR_PASS) :    \
+                "", greatest_info.passed,                               \
+                greatest_info.failed,                                   \
+                greatest_info.skipped,                                  \
+                (isatty(fileno(GREATEST_STDOUT))) ? COLOR_RESET : "");  \
         }                                                               \
         return (greatest_info.failed > 0                                \
             ? EXIT_FAILURE : EXIT_SUCCESS);                             \
@@ -592,9 +624,9 @@ greatest_run_info greatest_info
 #define SET_SETUP      GREATEST_SET_SETUP_CB
 #define SET_TEARDOWN   GREATEST_SET_TEARDOWN_CB
 
-#if __STDC_VERSION__ >= 19901L
-#endif /* C99 */
+#if defined __cplusplus || (__STDC_VERSION__ >= 19901L)
 #define RUN_TESTp      GREATEST_RUN_TESTp
+#endif
 #endif /* USE_ABBREVS */
 
 #ifdef __cplusplus

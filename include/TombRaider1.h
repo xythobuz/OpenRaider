@@ -16,7 +16,9 @@
 class TombRaider1 {
 public:
 
-    // Associated with Item 7
+    /*!
+     * \brief States of a Wolf (Item 7)
+     */
     enum WolfStates {
         WolfState_Walking       = 1,
         WolfState_Running       = 2,
@@ -31,7 +33,9 @@ public:
         WolfState_Biting        = 12
     };
 
-    // Associated with Item 8
+    /*!
+     * \brief States of a Bear (Item 8)
+     */
     enum BearStates {
         BearState_Walking       = 0, //!< Walking on all fours
         BearState_Getting       = 1, //!< Getting back to all fours
@@ -45,7 +49,9 @@ public:
         BearState_Dying         = 9
     };
 
-    // Associated with Item 9
+    /*!
+     * \brief States of a Bat (Item 9)
+     */
     enum BatStates {
         BatState_Starting = 1, //!< Starting to fly
         BatState_Flying   = 2, //!< Flying straight
@@ -54,7 +60,9 @@ public:
         BatState_Dying    = 5
     };
 
-    // Associated with Item 10
+    /*!
+     * \brief States of a Crocodile on land (Item 10)
+     */
     enum CrocodileLandStates {
         CrocodileLandState_Stationary = 1,
         CrocodileLandState_Walking1   = 2,
@@ -64,14 +72,18 @@ public:
         CrocodileLandState_Dying      = 7
     };
 
-    // Associated with Item 11
+    /*!
+     * \brief States of a Crocodile in water (Item 11)
+     */
     enum CrocodileWaterStates {
         CrocodileWaterState_Swimming = 1,
         CrocodileWaterState_Biting   = 2,
         CrocodileWaterState_Dying    = 3
     };
 
-    // Associated with Items 12, 13 and 14
+    /*!
+     * \brief States of a Lion (Male & Female) and a Panther (Items 12, 13, 14)
+     */
     enum LionStates {
         LionState_Standing = 1,
         LionState_Walking  = 2,
@@ -82,7 +94,9 @@ public:
         LionState_Biting2  = 7
     };
 
-    // Associated with Item 15
+    /*!
+     * \brief States of a Gorilla (Item 15)
+     */
     enum GorillaStates {
         GorillaState_Standing = 1,  //!< Standing on all fours
         GorillaState_Running  = 3,  //!< Running on all fours
@@ -96,7 +110,9 @@ public:
         GorillaState_Climbing = 11
     };
 
-    // Associated with Item 16
+    /*!
+     * \brief States of a Giant Rat on land (Item 16)
+     */
     enum GiantRatLandStates {
         GiantRatLandState_Standing  = 1,
         GiantRatLandState_JumpBite  = 2,
@@ -106,14 +122,18 @@ public:
         GiantRatLandState_RearingUp = 6
     };
 
-    // Associated with Item 17
+    /*!
+     * \brief States of a Giant Rat in the water (Item 17)
+     */
     enum GiantRatWaterStates {
         GiantRatWaterState_Swimming = 1,
         GiantRatWaterState_Biting   = 2,
         GiantRatWaterState_Dying    = 3
     };
 
-    // Associated with Item 18
+    /*!
+     * \brief States of a Tyrannosaur (Item 18)
+     */
     enum TyrannosaurStates {
         TyrannosaurState_Standing  = 1,
         TyrannosaurState_Walking   = 2,
@@ -124,7 +144,9 @@ public:
         TyrannosaurState_Shaking   = 8  //!< Shaking Head and Spitting Out
     };
 
-    // Associated with Item 19
+    /*!
+     * \brief States of a Raptor (Item 19)
+     */
     enum RaptorStates {
         RaptorState_Dying     = 0,
         RaptorState_Standing  = 1,
@@ -136,7 +158,9 @@ public:
         RaptorState_Biting    = 8,
     };
 
-    // Associated with Item 20
+    /*!
+     * \brief States of a Winged Mutant (Item 20)
+     */
     enum WingedMutantStates {
         WingedMutantState_Crouching = 1,
         WingedMutantState_Walking   = 2,
@@ -145,14 +169,16 @@ public:
         WingedMutantState_Looking   = 6,
         WingedMutantState_Jumping   = 7,
         WingedMutantState_Clawing   = 8,
-        WingedMutantState_Aiming    = 9, //!< Aiming Right-Hand Gun
+        WingedMutantState_Aiming    = 9,  //!< Aiming Right-Hand Gun
         WingedMutantState_AimFire   = 10, //!< Aiming and Firing Left-Hand Gun
         WingedMutantState_Firing    = 11, //!< Firing Right-Hand Gun
         WingedMutantState_Standing  = 12,
         WingedMutantState_Flying    = 13
     };
 
-    // Associated with Item 23
+    /*!
+     * \brief States of a Centaur Mutant (Item 23)
+     */
     enum CentaurMutantStates {
         CentaurMutantState_Standing  = 1,
         CentaurMutantState_Firing    = 2,
@@ -162,13 +188,17 @@ public:
         CentaurMutantState_Rearing   = 6  //!<  Rearing up
     };
 
-    // Associated with Item 24
+    /*!
+     * \brief States of a Mummy (Item 24)
+     */
     enum MummyStates {
         MummyState_Standing = 1,
         MummyState_Falling  = 2  //!< Falling forward
     };
 
-    // Associated with Item 27
+    /*!
+     * \brief States of Larson (Item 27)
+     */
     enum LarsonStates {
         LarsonState_Walking1    = 0,
         LarsonState_StandingGun = 1,
@@ -180,7 +210,9 @@ public:
         LarsonState_Firing      = 7
     };
 
-    // Associated with Item 28
+    /*!
+     * \brief States of Pierre (Item 28)
+     */
     enum PierreStates {
         PierreState_Standing   = 1,
         PierreState_Walking    = 2,
@@ -191,7 +223,9 @@ public:
         PierreState_Firing     = 7
     };
 
-    // Associated with Item 29
+    /*!
+     * \brief States of the Skateboard (Item 29)
+     */
     enum SkateboardStates {
         SkateboardState_BeingTurned = 0,
         SkateboardState_Stationary1 = 1,
@@ -200,7 +234,9 @@ public:
         SkateboardState_Stationary4 = 4
     };
 
-    // Associated with Item 30
+    /*!
+     * \brief States of the Skateboard Kid (Item 30)
+     */
     enum SkateboardKidStates {
         SkateboardKidState_Turning = 0, //!< Turning and Aiming?
         SkateboardKidState_Firing1 = 1,
@@ -210,7 +246,9 @@ public:
         SkateboardKidState_Dying   = 5
     };
 
-    // Associated with Item 31
+    /*!
+     * \brief States of the Cowboy (Item 31)
+     */
     enum CowboyStates {
         CowboyState_Aiming1 = 1,
         CowboyState_Walking = 2,
@@ -220,7 +258,9 @@ public:
         CowboyState_Firing  = 6
     };
 
-    // Associated with Item 32
+    /*!
+     * \brief States of Mr. T (Item 32)
+     */
     enum MrTStates {
         MrTState_Dying    = 0,
         MrTState_Standing = 1,
@@ -230,7 +270,9 @@ public:
         MrTState_Firing   = 6
     };
 
-    // Associated with Item 33
+    /*!
+     * \brief States of Winged Natla (Item 33)
+     */
     enum WingedNatlaStates {
         WingedNatlaState_Standing1 = 1,
         WingedNatlaState_Flying    = 2,
@@ -242,7 +284,9 @@ public:
         WingedNatlaState_Dying2    = 9, //!< Dying for real
     };
 
-    // Associated with Item 34
+    /*!
+     * \brief States of the Giant Mutant (Item 34)
+     */
     enum GiantMutantStates {
         GiantMutantState_Dying         = 0,
         GiantMutantState_Sitting       = 1, //!< Sitting on floor
@@ -255,7 +299,9 @@ public:
         GiantMutantState_Shaking       = 11 //!< Shaking victim with right hand
     };
 
-    // Associated with Item 35
+    /*!
+     * \brief States of a piece of Collapsible Floor (Item 35)
+     */
     enum CollapsibleFloorStates {
         CollapsibleFloorState_Stationary = 0,
         CollapsibleFloorState_Shaking    = 1,
@@ -263,37 +309,49 @@ public:
         CollapsibleFloorState_Settling   = 3  //!< Settling down
     };
 
-    // Associated with Item 36
+    /*!
+     * \brief States of a Swinging Blade (Item 36)
+     */
     enum SwingingBladeStates {
         SwingingBladeState_Stationary = 0,
         SwingingBladeState_Swinging   = 2
     };
 
-    // Associated with Item 38
+    /*!
+     * \brief States of a Boulder (Item 38)
+     */
     enum BoulderStates {
         BoulderState_Stationary = 0,
         BoulderState_Rolling    = 1
     };
 
-    // Associated with Item 40
+    /*!
+     * \brief States of a Dart Gun (Item 40)
+     */
     enum DartGunStates {
         DartGunState_Idle   = 0, //!< ?
         DartGunState_Firing = 1  //!< ?
     };
 
-    // Associated with Item 41
+    /*!
+     * \brief States of a Door opening upwards (Item 41)
+     */
     enum DoorUpwardStates {
         DoorUpwardState_Upward = 0,
         DoorUpwardState_OnSide = 1
     };
 
-    // Associated with Item 42
+    /*!
+     * \brief States of a Slamming Door (Item 42)
+     */
     enum SlammingDoorStates {
         SlammingDoorState_Open   = 0,
         SlammingDoorState_Closed = 1
     };
 
-    // Associated with Item 44
+    /*!
+     * \brief States of the Handle of Thors Hammer (Item 44)
+     */
     enum ThorHammerHandleStates {
         ThorHammerHandleState_Stationary = 0, //!< Stationary in up position
         ThorHammerHandleState_Moving1    = 1, //!< Moving down a little and returning
@@ -301,59 +359,77 @@ public:
         ThorHammerHandleState_Stopped    = 3  //!< Stopped at down position
     };
 
-    // Associated with Item 45
+    /*!
+     * \brief States of the Block of Thors Hammer (Item 45)
+     */
     enum ThorHammerBlockStates {
         ThorHammerBlockState_Stationary = 0,
         ThorHammerBlockState_Moving1    = 1, //!< Moving down a little and returning
         ThorHammerBlockState_Moving2    = 2  //!< Moving down all the way
     };
 
-    // Associated with Item 47
+    /*!
+     * \brief States of a Metal Rod (Item 47)
+     */
     enum MetalRodStates {
         MetalRodState_Stationary = 0,
         MetalRodState_Moving     = 1
     };
 
-    // Associated with Items 48 - 51
+    /*!
+     * \brief States of a Pushable Cubical (Item 48 - 51)
+     */
     enum PushableStates {
         PushableState_Stationary = 0,
         PushableState_Pulled     = 1, //!< ?
         PushableState_Pushed     = 2  //!< ?
     };
 
-    // Associated with Item 52
+    /*!
+     * \brief States of a Movable Tall Block (Item 52)
+     */
     enum MovableTallBlockStates {
         MovableTallBlockState_Stationary     = 0,
         MovableTallBlockState_MovingForward  = 1, //!< ?
         MovableTallBlockState_MovingBackward = 2  //!< ?
     };
 
-    // Associated with Item 53
+    /*!
+     * \brief States of Falling Pieces (Item 53)
+     */
     enum FallingPiecesStates {
         FallingPiecesState_Stationary = 0,
         FallingPiecesState_Falling    = 1,
         FallingPiecesState_Settling   = 2  //!< Settling down
     };
 
-    // Associated with Items 55, 56
+    /*!
+     * \brief States of a Switch (Item 55, 56)
+     */
     enum SwitchStates {
         SwitchState_Off = 0,
         SwitchState_On  = 1  //!< States may be reversed
     };
 
-    // Associated with Items 57 - 66
+    /*!
+     * \brief States of a Door (Item 57 - 66)
+     */
     enum DoorStates {
         DoorState_Closed = 0,
         DoorState_Open   = 1
     };
 
-    // Associated with Items 74 - 76
+    /*!
+     * \brief States of a Cog (Item 74 - 76)
+     */
     enum CogStates {
         CogState_Stationary = 0,
         CogState_Turning    = 1
     };
 
-    // Associated with Item 162
+    /*!
+     * \brief States of a Shack (Item 162)
+     */
     enum ShackStates {
         ShackState_StartingPosition = 0,
         ShackState_DroppingFirst    = 1, //!< Dropping after first fuse
@@ -362,19 +438,26 @@ public:
         ShackState_OnGround         = 4
     };
 
-    // Associated with Items 163 and 181
+    /*!
+     * \brief States of a Mutant Egg & Holder (Item 163 & 181)
+     */
     enum MutantEggStates {
         MutantEggState_Starting = 0,
         MutantEggState_Hatching = 1  //!< Is the fragmenting hardcoded?
     };
 
-    // Associated with Item 182
+    /*!
+     * \brief States of a Motorboat (Item 182)
+     */
     enum MotorboatStates {
         MotorboatState_StationaryInitial = 1,
         MotorboatState_Moving            = 2,
         MotorboatState_StationaryFinal   = 3,
     };
 
+    /*!
+     * \brief Items & IDs in Tomb Raider 1
+     */
     enum Items {
         Lara             = 0,
         PistolAnimation  = 1,
