@@ -257,7 +257,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">     *</span></div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">     *******************************************************************/</span></div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <a class="code" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> result, scaleA, scaleB, theta, sinTheta;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <a class="code" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> result, scaleA, scaleB;</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <a class="code" href="class_quaternion.html">Quaternion</a> <a class="code" href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a>;</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
@@ -293,8 +293,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">if</span> (1 - result &gt; 0.1f) {</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="comment">// Get the angle between the 2 quaternions, and then</span></div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="comment">// store the sin() of that angle</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        theta = (float)acos(result);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        sinTheta = (float)sin(theta);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <a class="code" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> theta = (float)acos(result);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <a class="code" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> sinTheta = (float)sin(theta);</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        <span class="comment">// Calculate the scale for qA and qB, according to</span></div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <span class="comment">// the angle and it&#39;s sine value</span></div>

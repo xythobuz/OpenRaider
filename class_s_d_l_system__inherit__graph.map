@@ -1,4 +1,4 @@
 <map id="SDLSystem" name="SDLSystem">
-<area shape="rect" id="node3" href="$class_open_raider.html" title="OpenRaider" alt="" coords="5,155,96,181"/>
+<area shape="rect" id="node3" href="$class_open_raider.html" title="Main Game Singleton. " alt="" coords="5,155,96,181"/>
 <area shape="rect" id="node2" href="$class_system.html" title="Basic Interface for System implementations (SDLSystem) " alt="" coords="18,5,83,32"/>
 </map>

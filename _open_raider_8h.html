@@ -93,6 +93,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">OpenRaider.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Main Game Singleton.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="_list_8h_source.html">List.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_map_8h_source.html">Map.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_vector_8h_source.html">Vector.h</a>&gt;</code><br/>
@@ -108,7 +111,7 @@ Include dependency graph for OpenRaider.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_open_raider_8h__incl.png" border="0" usemap="#include_2_open_raider_8h" alt=""/></div>
 <map name="include_2_open_raider_8h" id="include_2_open_raider_8h">
-<area shape="rect" id="node2" href="_list_8h.html" title="Template list. " alt="" coords="366,229,417,256"/><area shape="rect" id="node6" href="_map_8h.html" title="Template Map. " alt="" coords="29,229,88,256"/><area shape="rect" id="node8" href="_vector_8h.html" title="Template Vector. " alt="" coords="194,304,261,331"/><area shape="rect" id="node9" href="_tomb_raider_8h.html" title="TombRaider.h" alt="" coords="686,80,788,107"/><area shape="rect" id="node10" href="_camera_8h.html" title="OpenGL camera class. " alt="" coords="1102,155,1180,181"/><area shape="rect" id="node16" href="_render_8h.html" title="Render.h" alt="" coords="538,80,610,107"/><area shape="rect" id="node20" href="_world_8h.html" title="World.h" alt="" coords="422,155,486,181"/><area shape="rect" id="node25" href="_sound_8h.html" title="This is the audio manager Header. " alt="" coords="812,80,881,107"/><area shape="rect" id="node26" href="_s_d_l_system_8h.html" title="SDL System interface implementation. " alt="" coords="106,80,208,107"/><area shape="rect" id="node29" href="_network_8h.html" title="Networking Singleton class. " alt="" coords="906,80,984,107"/><area shape="rect" id="node7" href="_tree_8h.html" title="Template Red&#45;Black Tree. " alt="" coords="64,304,120,331"/><area shape="rect" id="node11" href="_mat_math_8h.html" title="Vector and Matrix math. " alt="" coords="872,379,954,405"/><area shape="rect" id="node13" href="_matrix_8h.html" title="3D Matrix " alt="" coords="1025,229,1092,256"/><area shape="rect" id="node14" href="_quaternion_8h.html" title="Quaternion. " alt="" coords="1107,304,1201,331"/><area shape="rect" id="node15" href="_vector3d_8h.html" title="3D Math vector " alt="" coords="1002,304,1082,331"/><area shape="rect" id="node17" href="_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="818,155,920,181"/><area shape="rect" id="node19" href="_light_8h.html" title="The GL light class. " alt="" coords="725,229,784,256"/><area shape="rect" id="node21" href="_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="492,229,602,256"/><area shape="rect" id="node22" href="_open_g_l_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="761,304,876,331"/><area shape="rect" id="node23" href="_texture_8h.html" title="Texture.h" alt="" coords="627,229,700,256"/><area shape="rect" id="node24" href="_g_l_string_8h.html" title="Open GL rendering font/string class. " alt="" coords="944,155,1025,181"/><area shape="rect" id="node18" href="_bounding_volume_8h.html" title="Bounding volume class for world/vis/culling/clipping/collision stuff. " alt="" coords="859,229,985,256"/><area shape="rect" id="node28" href="_system_8h.html" title="Mostly defines the interface of System implementations. " alt="" coords="21,155,96,181"/></map>
+<area shape="rect" id="node2" href="_list_8h.html" title="Template list. " alt="" coords="373,229,424,256"/><area shape="rect" id="node6" href="_map_8h.html" title="Template Map. " alt="" coords="29,229,88,256"/><area shape="rect" id="node8" href="_vector_8h.html" title="Template Vector. " alt="" coords="201,304,268,331"/><area shape="rect" id="node9" href="_tomb_raider_8h.html" title="TombRaider.h" alt="" coords="693,80,794,107"/><area shape="rect" id="node10" href="_camera_8h.html" title="OpenGL camera class. " alt="" coords="1095,155,1173,181"/><area shape="rect" id="node16" href="_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="544,80,617,107"/><area shape="rect" id="node20" href="_world_8h.html" title="World.h" alt="" coords="429,155,493,181"/><area shape="rect" id="node25" href="_sound_8h.html" title="This is the audio manager Header. " alt="" coords="818,80,888,107"/><area shape="rect" id="node26" href="_s_d_l_system_8h.html" title="SDL System interface implementation. " alt="" coords="114,80,216,107"/><area shape="rect" id="node29" href="_network_8h.html" title="Networking Singleton class. " alt="" coords="912,80,990,107"/><area shape="rect" id="node7" href="_tree_8h.html" title="Template Red&#45;Black Tree. " alt="" coords="70,304,126,331"/><area shape="rect" id="node11" href="_mat_math_8h.html" title="Vector and Matrix math. " alt="" coords="854,379,937,405"/><area shape="rect" id="node13" href="_matrix_8h.html" title="3D Matrix " alt="" coords="1022,229,1089,256"/><area shape="rect" id="node14" href="_quaternion_8h.html" title="Quaternion. " alt="" coords="1090,304,1184,331"/><area shape="rect" id="node15" href="_vector3d_8h.html" title="3D Math vector " alt="" coords="984,304,1065,331"/><area shape="rect" id="node17" href="_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="811,155,913,181"/><area shape="rect" id="node19" href="_light_8h.html" title="The GL light class. " alt="" coords="732,229,790,256"/><area shape="rect" id="node21" href="_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="499,229,609,256"/><area shape="rect" id="node22" href="_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="794,304,858,331"/><area shape="rect" id="node23" href="_texture_8h.html" title="Texture.h" alt="" coords="634,229,706,256"/><area shape="rect" id="node24" href="_g_l_string_8h.html" title="Open GL rendering font/string class. " alt="" coords="938,155,1018,181"/><area shape="rect" id="node18" href="_bounding_volume_8h.html" title="Bounding volume class for world/vis/culling/clipping/collision stuff. " alt="" coords="866,229,992,256"/><area shape="rect" id="node28" href="_system_8h.html" title="Mostly defines the interface of System implementations. " alt="" coords="21,155,96,181"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -123,6 +126,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html">OpenRaider</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main Game Singleton.  <a href="class_open_raider.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -144,25 +148,57 @@ Enumerations</h2></td></tr>
 <a class="el" href="_open_raider_8h.html#a7bb69b93e4ffb1e49bc4f6f006c599fea2880604f419b385d0ba762400b993566">OpenRaiderKey_crouch</a>
 <br/>
  }</td></tr>
+<tr class="memdesc:a7bb69b93e4ffb1e49bc4f6f006c599fe"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> key events.  <a href="_open_raider_8h.html#a7bb69b93e4ffb1e49bc4f6f006c599fe">More...</a><br/></td></tr>
 <tr class="separator:a7bb69b93e4ffb1e49bc4f6f006c599fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cc1bf4ff01089a700f3a6492746680f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680f">OpenRaiderFlags</a> { <br/>
-&#160;&#160;<a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680fa23eb0f8ee5801ec05a5a92ca7f1eeae6">OpenRaider_ShowFPS</a> = 1, 
-<a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680faade5f872e10e497a2ace804a7e5f6c20">OpenRaider_DebugMap</a> = 2, 
-<a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680fa2843dac6e725680c1bccfbab7383ed86">OpenRaider_DebugModel</a> = 4, 
-<a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680fa6308f0d2f5582b11603f54a3e72eb160">OpenRaider_EnableSound</a> = 8, 
+<tr class="memitem:abf36c6568a8a4fc8fd5c5deb2473d7b2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8h.html#abf36c6568a8a4fc8fd5c5deb2473d7b2">OpenRaider_Flags</a> { <br/>
+&#160;&#160;<a class="el" href="_open_raider_8h.html#abf36c6568a8a4fc8fd5c5deb2473d7b2a23eb0f8ee5801ec05a5a92ca7f1eeae6">OpenRaider_ShowFPS</a> = (1 &lt;&lt; 0), 
+<a class="el" href="_open_raider_8h.html#abf36c6568a8a4fc8fd5c5deb2473d7b2aade5f872e10e497a2ace804a7e5f6c20">OpenRaider_DebugMap</a> = (1 &lt;&lt; 1), 
+<a class="el" href="_open_raider_8h.html#abf36c6568a8a4fc8fd5c5deb2473d7b2a2843dac6e725680c1bccfbab7383ed86">OpenRaider_DebugModel</a> = (1 &lt;&lt; 2), 
+<a class="el" href="_open_raider_8h.html#abf36c6568a8a4fc8fd5c5deb2473d7b2a6308f0d2f5582b11603f54a3e72eb160">OpenRaider_EnableSound</a> = (1 &lt;&lt; 3), 
 <br/>
-&#160;&#160;<a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680fa050c288bab2cd182c32a1caa76cc447b">OpenRaider_DumpTexture</a> = 16, 
-<a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680fa3ff28659fe7b567228534421a327ca96">OpenRaider_FullScreen</a> = 32, 
-<a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680fa2673c39ce6acf9c9b2ef58215107ea7c">OpenRaider_Loading</a> = 64, 
-<a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680faa6fddc6095ed11395c0b02cdc3cae6f0">OpenRaider_GameRunning</a> = 128
+&#160;&#160;<a class="el" href="_open_raider_8h.html#abf36c6568a8a4fc8fd5c5deb2473d7b2a050c288bab2cd182c32a1caa76cc447b">OpenRaider_DumpTexture</a> = (1 &lt;&lt; 4), 
+<a class="el" href="_open_raider_8h.html#abf36c6568a8a4fc8fd5c5deb2473d7b2a3ff28659fe7b567228534421a327ca96">OpenRaider_FullScreen</a> = (1 &lt;&lt; 5), 
+<a class="el" href="_open_raider_8h.html#abf36c6568a8a4fc8fd5c5deb2473d7b2a2673c39ce6acf9c9b2ef58215107ea7c">OpenRaider_Loading</a> = (1 &lt;&lt; 6)
 <br/>
  }</td></tr>
-<tr class="separator:a3cc1bf4ff01089a700f3a6492746680f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f6a64876ccb238bcc41d87c66efbfe5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8h.html#a1f6a64876ccb238bcc41d87c66efbfe5">OpenRaider_SoundEventType</a> { <a class="el" href="_open_raider_8h.html#a1f6a64876ccb238bcc41d87c66efbfe5a288c5129fafdc2cf7656820b365c1b00">OpenRaiderSound_Ambient</a> = 1
- }</td></tr>
-<tr class="separator:a1f6a64876ccb238bcc41d87c66efbfe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:abf36c6568a8a4fc8fd5c5deb2473d7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main Game Singleton. </p>
+<dl class="section author"><dt>Author</dt><dd>Mongoose </dd></dl>
+
+<p>Definition in file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="abf36c6568a8a4fc8fd5c5deb2473d7b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_open_raider_8h.html#abf36c6568a8a4fc8fd5c5deb2473d7b2">OpenRaider_Flags</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="abf36c6568a8a4fc8fd5c5deb2473d7b2a23eb0f8ee5801ec05a5a92ca7f1eeae6"></a>OpenRaider_ShowFPS</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="abf36c6568a8a4fc8fd5c5deb2473d7b2aade5f872e10e497a2ace804a7e5f6c20"></a>OpenRaider_DebugMap</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="abf36c6568a8a4fc8fd5c5deb2473d7b2a2843dac6e725680c1bccfbab7383ed86"></a>OpenRaider_DebugModel</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="abf36c6568a8a4fc8fd5c5deb2473d7b2a6308f0d2f5582b11603f54a3e72eb160"></a>OpenRaider_EnableSound</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="abf36c6568a8a4fc8fd5c5deb2473d7b2a050c288bab2cd182c32a1caa76cc447b"></a>OpenRaider_DumpTexture</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="abf36c6568a8a4fc8fd5c5deb2473d7b2a3ff28659fe7b567228534421a327ca96"></a>OpenRaider_FullScreen</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="abf36c6568a8a4fc8fd5c5deb2473d7b2a2673c39ce6acf9c9b2ef58215107ea7c"></a>OpenRaider_Loading</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00042">42</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599fe"></a>
 <div class="memitem">
 <div class="memproto">
@@ -172,84 +208,49 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> key events. </p>
+<p>0 event reserved for console in <a class="el" href="class_system.html" title="Basic Interface for System implementations (SDLSystem) ">System</a>. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599fea3ad4312e62a64ac45a3de0c1ed5f29de"></a>OpenRaiderKey_console</em>&nbsp;</td><td class="fielddoc">
+<p>Toggle console. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599feac332adf53ede57888fbb0d6258a07b86"></a>OpenRaiderKey_attack</em>&nbsp;</td><td class="fielddoc">
+<p>Attack. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599feaf9ea87f387302b45ac8f8dda6064206e"></a>OpenRaiderKey_forward</em>&nbsp;</td><td class="fielddoc">
+<p>Move forward. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599feaa9cc02637e5e3dc78ecc8c4f24346dbc"></a>OpenRaiderKey_left</em>&nbsp;</td><td class="fielddoc">
+<p>Move left. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599fea9cfff818c7341b73c4cc97f94167cc64"></a>OpenRaiderKey_right</em>&nbsp;</td><td class="fielddoc">
+<p>Move right. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599feac898419c14f50bc6d9e049bdf5bf27e7"></a>OpenRaiderKey_backward</em>&nbsp;</td><td class="fielddoc">
+<p>Move backward. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599fea3e433c82c6b3451a609f1c96f66752c8"></a>OpenRaiderKey_jump</em>&nbsp;</td><td class="fielddoc">
+<p>Jump. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599fea63e2912615b829be210dc408c28908ca"></a>OpenRaiderKey_tiltUp</em>&nbsp;</td><td class="fielddoc">
+<p>Tilt camera up. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599feacb90c0323874982c6c752d57c17979da"></a>OpenRaiderKey_tiltDown</em>&nbsp;</td><td class="fielddoc">
+<p>Tilt camera down. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599fea558db37981cd4f9f37afa6f4f93a17fb"></a>OpenRaiderKey_panLeft</em>&nbsp;</td><td class="fielddoc">
+<p>Pan camera left. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599fea9eb714886f213367bc1bda3c4999c60c"></a>OpenRaiderKey_panRight</em>&nbsp;</td><td class="fielddoc">
+<p>Pan camera right. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a7bb69b93e4ffb1e49bc4f6f006c599fea2880604f419b385d0ba762400b993566"></a>OpenRaiderKey_crouch</em>&nbsp;</td><td class="fielddoc">
+<p>Crouch. </p>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00042">42</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1f6a64876ccb238bcc41d87c66efbfe5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="_open_raider_8h.html#a1f6a64876ccb238bcc41d87c66efbfe5">OpenRaider_SoundEventType</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a1f6a64876ccb238bcc41d87c66efbfe5a288c5129fafdc2cf7656820b365c1b00"></a>OpenRaiderSound_Ambient</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00073">73</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3cc1bf4ff01089a700f3a6492746680f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="_open_raider_8h.html#a3cc1bf4ff01089a700f3a6492746680f">OpenRaiderFlags</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a3cc1bf4ff01089a700f3a6492746680fa23eb0f8ee5801ec05a5a92ca7f1eeae6"></a>OpenRaider_ShowFPS</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a3cc1bf4ff01089a700f3a6492746680faade5f872e10e497a2ace804a7e5f6c20"></a>OpenRaider_DebugMap</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a3cc1bf4ff01089a700f3a6492746680fa2843dac6e725680c1bccfbab7383ed86"></a>OpenRaider_DebugModel</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a3cc1bf4ff01089a700f3a6492746680fa6308f0d2f5582b11603f54a3e72eb160"></a>OpenRaider_EnableSound</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a3cc1bf4ff01089a700f3a6492746680fa050c288bab2cd182c32a1caa76cc447b"></a>OpenRaider_DumpTexture</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a3cc1bf4ff01089a700f3a6492746680fa3ff28659fe7b567228534421a327ca96"></a>OpenRaider_FullScreen</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a3cc1bf4ff01089a700f3a6492746680fa2673c39ce6acf9c9b2ef58215107ea7c"></a>OpenRaider_Loading</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a3cc1bf4ff01089a700f3a6492746680faa6fddc6095ed11395c0b02cdc3cae6f0"></a>OpenRaider_GameRunning</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00060">60</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00027">27</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
 
 </div>
 </div>

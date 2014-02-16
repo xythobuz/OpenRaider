@@ -10,7 +10,7 @@ var searchData=
   ['emitter_2ecpp',['Emitter.cpp',['../_emitter_8cpp.html',1,'']]],
   ['emitter_2eh',['Emitter.h',['../_emitter_8h.html',1,'']]],
   ['emitterflags',['EmitterFlags',['../class_emitter.html#a5e64a6fdb28e2021c44601bce14d1f5b',1,'Emitter']]],
-  ['empty',['empty',['../class_vector.html#a82e899c6fb4771fee489f30a07a5c5a2',1,'Vector::empty()'],['../class_list.html#af4e5c9ead70957ebab8d2d4d2ac6f83f',1,'List::Empty()'],['../class_map.html#a4f05c8b23a06466099614b6203a29bba',1,'Map::Empty()']]],
+  ['empty',['Empty',['../class_list.html#af4e5c9ead70957ebab8d2d4d2ac6f83f',1,'List::Empty()'],['../class_map.html#a4f05c8b23a06466099614b6203a29bba',1,'Map::Empty()'],['../class_vector.html#a82e899c6fb4771fee489f30a07a5c5a2',1,'Vector::empty()']]],
   ['end',['end',['../class_vector.html#a2e5cbbdc05f0f8b71dd91b46c7aad0ac',1,'Vector']]],
   ['endportaloffset',['endPortalOffset',['../_tomb_raider_8h.html#a97625a96c6d15b14f4b184e311ef31bd',1,'tr5_room_t']]],
   ['endsdoffset',['endSDOffset',['../_tomb_raider_8h.html#a0968c07c233d78e050c1fe70b91ba39d',1,'tr5_room_t']]],

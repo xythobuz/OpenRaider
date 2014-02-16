@@ -1,5 +1,5 @@
 <map id="include/Network.h" name="include/Network.h">
-<area shape="rect" id="node2" href="$_open_raider_8h.html" title="include/OpenRaider.h" alt="" coords="5,80,149,107"/>
+<area shape="rect" id="node2" href="$_open_raider_8h.html" title="Main Game Singleton. " alt="" coords="5,80,149,107"/>
 <area shape="rect" id="node4" href="$src_2_network_8cpp.html" title="Networking Singleton class. " alt="" coords="174,80,287,107"/>
 <area shape="rect" id="node5" href="$test_2_network_8cpp.html" title="Networking Singleton Unit test. " alt="" coords="312,80,429,107"/>
 <area shape="rect" id="node3" href="$_open_raider_8cpp.html" title="src/OpenRaider.cpp" alt="" coords="9,155,145,181"/>

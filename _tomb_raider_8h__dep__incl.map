@@ -1,5 +1,5 @@
 <map id="include/TombRaider.h" name="include/TombRaider.h">
-<area shape="rect" id="node2" href="$_open_raider_8h.html" title="include/OpenRaider.h" alt="" coords="5,80,149,107"/>
+<area shape="rect" id="node2" href="$_open_raider_8h.html" title="Main Game Singleton. " alt="" coords="5,80,149,107"/>
 <area shape="rect" id="node4" href="$src_2_tomb_raider_8cpp.html" title="src/TombRaider.cpp" alt="" coords="173,80,309,107"/>
 <area shape="rect" id="node5" href="$test_2_tomb_raider_8cpp.html" title="test/TombRaider.cpp" alt="" coords="334,80,473,107"/>
 <area shape="rect" id="node3" href="$_open_raider_8cpp.html" title="src/OpenRaider.cpp" alt="" coords="9,155,145,181"/>

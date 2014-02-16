@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$class_system.html" title="Basic Interface for System implementations (SDLSystem) " alt="" coords="6,5,71,32"/>
 <area shape="rect" id="node2" href="$class_s_d_l_system.html" title="SDL System interface implementation. " alt="" coords="120,5,211,32"/>
-<area shape="rect" id="node3" href="$class_open_raider.html" title="OpenRaider" alt="" coords="259,5,351,32"/>
+<area shape="rect" id="node3" href="$class_open_raider.html" title="Main Game Singleton. " alt="" coords="259,5,351,32"/>
 </map>

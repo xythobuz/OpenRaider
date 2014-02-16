@@ -5,7 +5,7 @@ var searchData=
   ['texture_5ftri_5ft',['texture_tri_t',['../_world_8h.html#structtexture__tri__t',1,'']]],
   ['tga_5ft',['tga_t',['../tga_8h.html#structtga__t',1,'']]],
   ['tombraider',['TombRaider',['../class_tomb_raider.html',1,'']]],
-  ['tombraider1',['TombRaider1',['../class_tomb_raider1.html',1,'']]],
+  ['tombraider1',['TombRaider1',['../_tomb_raider1_8h.html#class_tomb_raider1',1,'']]],
   ['tr2_5fanim_5fcommand_5fs',['tr2_anim_command_s',['../_tomb_raider_8h.html#structtr2__anim__command__s',1,'']]],
   ['tr2_5fanim_5fdispatch_5fs',['tr2_anim_dispatch_s',['../_tomb_raider_8h.html#structtr2__anim__dispatch__s',1,'']]],
   ['tr2_5fanimated_5ftexture_5fs',['tr2_animated_texture_s',['../_tomb_raider_8h.html#structtr2__animated__texture__s',1,'']]],
@@ -69,7 +69,7 @@ var searchData=
   ['treenode',['TreeNode',['../class_tree_node.html',1,'']]],
   ['treenode_3c_20k_2c_20mapnode_3c_20k_2c_20d_20_3e_20_2a_20_3e',['TreeNode&lt; K, MapNode&lt; K, D &gt; * &gt;',['../class_tree_node.html',1,'']]],
   ['treenode_3c_20unsigned_20int_2c_20mapnode_3c_20unsigned_20int_2c_20int_20_3e_20_2a_20_3e',['TreeNode&lt; unsigned int, MapNode&lt; unsigned int, int &gt; * &gt;',['../class_tree_node.html',1,'']]],
-  ['tris_5ft',['tris_t',['../_open_g_l_mesh_8h.html#structtris__t',1,'']]],
+  ['tris_5ft',['tris_t',['../_mesh_8h.html#structtris__t',1,'']]],
   ['ttf_5fglyph_5ft',['ttf_glyph_t',['../_texture_8h.html#structttf__glyph__t',1,'']]],
   ['ttf_5ftexture_5ft',['ttf_texture_t',['../_texture_8h.html#structttf__texture__t',1,'']]]
 ];

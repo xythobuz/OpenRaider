@@ -8,6 +8,7 @@ var searchData=
   ['handlekeypressevent',['handleKeyPressEvent',['../class_open_raider.html#a70c655bfd1aae0d4f10e490840fec09a',1,'OpenRaider::handleKeyPressEvent()'],['../class_system.html#a39aa758190c36caecd80ecd88957ba22',1,'System::handleKeyPressEvent()']]],
   ['handlekeyreleaseevent',['handleKeyReleaseEvent',['../class_open_raider.html#adf1c3505742b8c5e53946ed4d87c3609',1,'OpenRaider::handleKeyReleaseEvent()'],['../class_system.html#aa656b0e5028db399d683ff7a04b2b0e6',1,'System::handleKeyReleaseEvent()']]],
   ['handlemousemotionevent',['handleMouseMotionEvent',['../class_open_raider.html#a8d6a1893b6df72cb86be3a4102e1bebf',1,'OpenRaider::handleMouseMotionEvent()'],['../class_system.html#a2040ef3b12148143e6c73099f2f7ab60',1,'System::handleMouseMotionEvent()']]],
+  ['hangingball',['HangingBall',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eadbe9b0c31fc2a9c0e3795492793367a1',1,'TombRaider1']]],
   ['header',['header',['../_network_8h.html#ad97a72bff4a3264b4aee2be24624475e',1,'network_frame_t']]],
   ['health',['health',['../_world_8h.html#a057d405056a119471451f2098ffe8c7f',1,'actor_entity_t']]],
   ['height',['height',['../tga_8h.html#a6598f348ffe7b2c5c0c59fff865b9e69',1,'tga_t::height()'],['../_tomb_raider_8h.html#aea3150ac32ff6b47ea03f42db93ade07',1,'tr2_sprite_texture_s::height()'],['../_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497',1,'height():&#160;TombRaider.h']]],

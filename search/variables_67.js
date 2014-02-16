@@ -8,6 +8,7 @@ var searchData=
   ['gfonttest',['gFontTest',['../_texture_8cpp.html#a7de671118f1216f2dc7ead9579b9d209',1,'Texture.cpp']]],
   ['gheight',['gHeight',['../_s_d_l_system_8cpp.html#a9ef6c650f4ddf9d9f38923b5a034e1f1',1,'SDLSystem.cpp']]],
   ['glaramodel',['gLaraModel',['../_open_raider_8cpp.html#a3da3ebca8bec57d7693a63fe558df3b2',1,'OpenRaider.cpp']]],
+  ['glcontext',['glContext',['../test_2_g_l_string_8cpp.html#af83374df2d32fdb460858b0590199464',1,'GLString.cpp']]],
   ['glyphs',['glyphs',['../_texture_8h.html#a533073f1cc32065d50d060a2cd310947',1,'ttf_texture_t']]],
   ['gmaptex2bump',['gMapTex2Bump',['../_open_raider_8cpp.html#a0004505fae39f18ea3a166ff0afd3ce6',1,'OpenRaider.cpp']]],
   ['gnetlastticks',['gNetLastTicks',['../_open_raider_8cpp.html#a72ff4c6e17f169a1d85d0f28c3b6e397',1,'OpenRaider.cpp']]],

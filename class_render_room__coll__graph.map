@@ -13,9 +13,9 @@
 <area shape="rect" id="node13" href="$_world_8h.html#structtexel__t" title="texel_t" alt="" coords="9,207,68,233"/>
 <area shape="rect" id="node14" href="$class_vector.html" title="Vector\&lt; portal_t * \&gt;" alt="" coords="359,283,489,309"/>
 <area shape="rect" id="node15" href="$_world_8h.html#structportal__t" title="portal_t" alt="" coords="179,296,242,323"/>
-<area shape="rect" id="node16" href="$class_open_g_l_mesh.html" title="OpenGL Mesh. " alt="" coords="642,357,747,384"/>
-<area shape="rect" id="node17" href="$_open_g_l_mesh_8h.html#structrect__t" title="rect_t" alt="" coords="399,333,449,360"/>
-<area shape="rect" id="node18" href="$_open_g_l_mesh_8h.html#structtris__t" title="tris_t" alt="" coords="401,384,447,411"/>
-<area shape="rect" id="node19" href="$class_vector.html" title="Vector\&lt; Light * \&gt;" alt="" coords="637,412,752,439"/>
-<area shape="rect" id="node20" href="$_light_8h.html#class_light" title="The GL light class. " alt="" coords="400,441,448,468"/>
+<area shape="rect" id="node16" href="$class_vector.html" title="Vector\&lt; Light * \&gt;" alt="" coords="637,333,752,360"/>
+<area shape="rect" id="node17" href="$_light_8h.html#class_light" title="The GL light class. " alt="" coords="400,333,448,360"/>
+<area shape="rect" id="node18" href="$class_mesh.html" title="OpenGL Mesh. " alt="" coords="667,384,722,411"/>
+<area shape="rect" id="node19" href="$_mesh_8h.html#structrect__t" title="rect_t" alt="" coords="399,384,449,411"/>
+<area shape="rect" id="node20" href="$_mesh_8h.html#structtris__t" title="tris_t" alt="" coords="401,435,447,461"/>
 </map>
