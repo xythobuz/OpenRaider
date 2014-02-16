@@ -1,32 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*==========================================================================
+/*!
+ * \file src/Texture.cpp
+ * \brief Texture registry
  *
- * Project : Freyja, OpenRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440
- * Email   : stu7440@westga.edu
- * Object  : Texture
- * Comments: This is the Texture class.
- *
- *           See file COPYING for license details.
- *
- *
- *-- History ----------------------------------------------------------
- *
- * 2003.06.30,
- * Mongoose - API update, SDL_TTF support moved here, misc features
- *            SDL_TTF support based on Sam Lantinga's public domain
- *            SDL_TTF demo functions and algorithms
- *
- * 2001.05.29:
- * Mongoose - Removed legacy code and done clean up
- *
- * 2001.02.19:
- * Mongoose - Moved from GooseEgg to mtk
- *
- * 2000.04.29:
- * Mongoose - Created from old PPM/PCX codebases I have done before
- ==========================================================================*/
+ * \author Mongoose
+ */
 
 #include <string.h>
 #include <stdlib.h>

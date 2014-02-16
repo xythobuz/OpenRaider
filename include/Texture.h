@@ -1,48 +1,28 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*==========================================================================
+/*!
+ * \file include/Texture.h
+ * \brief Texture registry
  *
- * Project : MTK, Freyja, OpenRaider
- * Author  : Terry 'Mongoose' Hendrix II
- * Website : http://www.westga.edu/~stu7440
- * Email   : stu7440@westga.edu
- * Object  : MtkTexture
- * Comments: This is the Texture registery
- *
- *           See file COPYING for license details.
- *
- *
- *-- History ----------------------------------------------------------
- *
- * 2003.06.30,
- * Mongoose - API update, SDL_TTF support moved here, misc features
- *            SDL_TTF support based on Sam Lantinga's public domain
- *            SDL_TTF demo functions and algorithms
- *
- * 2001.05.29:
- * Mongoose - Removed legacy code and done clean up
- *
- * 2001.02.19:
- * Mongoose - Moved from GooseEgg to mtk
- *
- * 2000.04.29:
- * Mongoose - Created from old PPM/PCX codebases I have done before
- ==========================================================================*/
-
+ * \author Mongoose
+ */
 
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
 
 #include <stdio.h>
 
-typedef struct
-{
-    int x, y, w, h;
-    int minx; int maxx; int miny; int maxy; int advance;
-
+typedef struct {
+    int x;
+    int y;
+    int w;
+    int h;
+    int minx;
+    int maxx;
+    int miny;
+    int maxy;
+    int advance;
 } ttf_glyph_t;
 
-typedef struct
-{
+typedef struct {
     unsigned int utf8Offset;
     unsigned int count;
 
@@ -53,458 +33,244 @@ typedef struct
     0x303f -> 0x3093  Japanese hiragana kana,
     0x301a -> 0x30f6  Japanese katakana kana */
 
-    unsigned int width;     /* Width and height of RGBA texture */
-    unsigned char *texture; /* RGBA texture data */
-
-    ttf_glyph_t *glyphs;    /* For typesetting and rendering use */
+    unsigned int width;      //!< Width and height of RGBA texture
+    unsigned char *texture;  //!< RGBA texture data
+    ttf_glyph_t *glyphs;     //!< For typesetting and rendering use
     int fontHeight;
     int fontAscent;
     int fontDescent;
     int fontSpacing;
-
 } ttf_texture_t;
 
-
-typedef struct
-{
+typedef struct {
     unsigned int utf8Offset;
     unsigned int count;
     int textureId;
     int drawListBase;
-
 } gl_font_t;
 
+/*!
+ * \brief Texture registry
+ */
+class Texture {
+public:
 
-
-class Texture
-{
- public:
-
-    enum ColorMode
-    {
+    enum ColorMode {
         GREYSCALE = 1,
         RGB,
         RGBA,
         ARGB
     };
 
-    enum TextureFlag
-    {
-        fUseMipmaps         = (1 << 0),
-        fUseMultiTexture    = (1 << 1),
-        fUseSDL_TTF         = (1 << 2)
+    enum TextureFlag {
+        fUseMipmaps      = (1 << 0),
+        fUseMultiTexture = (1 << 1),
+        fUseSDL_TTF      = (1 << 2)
     };
 
+    /*!
+    * \brief Constructs an object of Texture
+    */
+    Texture();
 
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
+   /*!
+    * \brief Deconstructs an object of Texture
+    */
+    ~Texture();
 
-   Texture();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of Texture
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.29:
-     * Mongoose - Big code clean up, documentation
-     *
-     * 2000.10.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
-   ~Texture();
-    /*------------------------------------------------------
-     * Pre  : This object exists
-     * Post : Deconstructs an object of Texture
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.29:
-     * Mongoose - Big code clean up, documentation
-     *
-     * 2000.10.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
-
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Generates a texture buffer with (width * height * 4) bytes.
+     * \param rgba 32bpp RGBA color to fill into buffer
+     * \param width width of newly allocated buffer, power of 2, pref same as height
+     * \param height height of newly allocated buffer, power of 2, pref same as width
+     * \returns newly allocated texture buffer filled with specified color
+     */
     static unsigned char *generateColorTexture(unsigned char rgba[4],
-                                                             unsigned int width,
-                                                             unsigned int height);
-    /*------------------------------------------------------
-     * Pre  : <Rgba> is 32bpp RGBA color
-     *        <Width> and <Height> are powers of two, pref
-     *        the same number
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.06.30:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+                                                unsigned int width,
+                                                unsigned int height);
 
     gl_font_t *generateFont(ttf_texture_t *texture);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.06.30:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Generates a font texture with typeset info from TTF.
+     *
+     * Does not load the texture itself! Call loadFont() on returned ttf_texture_t
+     * \param filename filename of TTF font
+     * \param pointSize Point Size to generate
+     * \param textureWidth width of texture, height will match it
+     * \param color RGB 24bit color
+     * \param utf8Offset Offset into fonts encoding chart
+     * \param cound number of glyphs to read from offset start
+     * \param verboxe dumps debug info to stdout
+     * \returns font texture. Load it with loadFont()!
+     */
     ttf_texture_t *generateFontTexture(const char *filename, int pointSize,
-                                                  unsigned int textureWidth,
-                                                  unsigned char color[3],
-                                                  unsigned int utf8Offset,
-                                                  unsigned int count,
-                                                  char verbose);
-    /*------------------------------------------------------
-     * Pre  : <Filename> of TTF font
-     *        <PointSize> to generate
-     *        <TextureWidth> is width of texture, height will match it
-     *        <Color> is RGB 24bit color
-     *        <Utf8Offset> is offset into font's encoding chart
-     *        <Count> is number of glyphs to read from offset start
-     *        <Verbose> dumps debug info to stdout
-     *
-     * Post : Generates a font texture with typeset info from TTF
-     *
-     *        DOES NOT load the texture itself, call loadFont()
-     *        on returned ttf_texture_t
-     *
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.06.03:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+                                        unsigned int textureWidth,
+                                        unsigned char color[3],
+                                        unsigned int utf8Offset,
+                                        unsigned int count,
+                                        char verbose);
 
-   int getTextureCount();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of textures in use, or -1 for
-     *        error ( Not initalized )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.29:
-     * Mongoose - Big code clean up, documentation
-     *
-     * 2000.10.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+    /*!
+     * \brief Get number of textures in use
+     * \returns used texture count, or -1 on error (uninitialized)
+     */
+    int getTextureCount();
 
+    /*!
+     * \brief Dumps a screenshot to disk.
+     *
+     * Avoids overwriting files with same base name.
+     * \param base base filename
+     * \param width viewport width
+     * \param height viewport height
+     */
     void glScreenShot(char *base, unsigned int width, unsigned int height);
-    /*------------------------------------------------------
-     * Pre  : <Base> is base filename,
-     *        <Width> and <Height> are viewport dim
-     *
-     * Post : Dumps a screenshot to disk,
-     *        avoids overwriting files with same base name
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Sets up multitexture rendering with passed ids
+     * \param texture0 first texture for multitexture
+     * \param texture1 second texture for multitexture
+     */
     void bindMultiTexture(int texture0, int texture1);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets up multitexture rendering with passed texture ids
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-   void bindTextureId(unsigned int n);
-    /*------------------------------------------------------
-     * Pre  : n is valid texture index
-     * Post : Binds the texture for use in GL
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.29:
-     * Mongoose - Big code clean up, documentation
-     *
-     * 2000.10.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+    /*!
+     * \brief Binds the texture for use in GL
+     * \param n valid texture index
+     */
+    void bindTextureId(unsigned int n);
 
+    /*!
+     * \brief Clears an option flag
+     * \param flag flag to clear
+     */
     void clearFlag(TextureFlag flag);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : CLears a option flag
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.01.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void disableMultiTexture();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Loads SDL_TTF
+     */
     void initSDL_TTF();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Loads SDL_TTF if avalible
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.06.03:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-   int loadBuffer(unsigned char *image,
+    /*!
+     * \brief Loads Buffer as texture
+     * \param image pixmap matching other params
+     * \param width width of image
+     * \param height height of image
+     * \param mode mode of image
+     * \param bpp bits per pixel of image
+     * \returns texture ID or < 0 on error
+     */
+    int loadBuffer(unsigned char *image,
+                    unsigned int width, unsigned int height,
+                    ColorMode mode, unsigned int bpp);
+
+    /*!
+     * \brief Loads Buffer as texture
+     * \param image pixmap matching other params
+     * \param width width of image
+     * \param height height of image
+     * \param mode mode of image
+     * \param bpp bits per pixel of image
+     * \param slot slot (ID) of image
+     * \returns texture ID or < 0 on error
+     */
+    int loadBufferSlot(unsigned char *image,
                         unsigned int width, unsigned int height,
-                        ColorMode mode, unsigned int bpp);
-    /*------------------------------------------------------
-     * Pre  : image must be a valid pixmap that agrees
-     *        with mode, width, and height
-     *
-     * Post : Returns texture id or < 0 error flag
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.29:
-     * Mongoose - Big code clean up, documentation
-     *
-     * 2000.10.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+                        ColorMode mode, unsigned int bpp,
+                        unsigned int slot);
 
-   int loadBufferSlot(unsigned char *image,
-                             unsigned int width, unsigned int height,
-                             ColorMode mode, unsigned int bpp,
-                             unsigned int slot);
-    /*------------------------------------------------------
-     * Pre  : image must be a valid pixmap that agrees
-     *        with mode, width, and height, slot ( ID )
-     *
-     * Post : Returns texture id or < 0 error flag
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.09.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
+    /*!
+     * \brief Generates and loads a solid color texture.
+     * \param rgba color for new texture
+     * \param width width of new texture
+     * \param height height of new texture
+     * \returns texture ID or -1 on error
+     */
     int loadColorTexture(unsigned char rgba[4],
-                                unsigned int width, unsigned int height);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Generates and loads a solid color texture,
-     *        returns texture Id or -1 if failed
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.06.30:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+                            unsigned int width, unsigned int height);
 
+    /*!
+     * \brief Loads a TTF, generates texture image, glyph list and drawlist
+     * \param filename Filename of TTF font
+     * \param utf8Offset Offset into Unicode table
+     * \param cound number of glyphs to load
+     * \returns font id if successful, or < 0 on error
+     */
     int loadFontTTF(const char *filename,
-                         unsigned int utf8Offset, unsigned int count);
-    /*------------------------------------------------------
-     * Pre  : <Filename> of TTF font
-     *        <Utf8Offset> is offset into UNICODE table
-     *        <Count> is number of glyphs to load
-     *
-     * Post : Loads a TTF,
-     *        Generates: texture image, glyph list, and drawlist
-     *
-     *        Returns font id if sucessful, or < 0 if error
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.07.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+                        unsigned int utf8Offset, unsigned int count);
 
-    int loadPNG(const char *filename);
-    /*------------------------------------------------------
-     * Pre  : Texture is init and filename/file is valid
-     * Post : Loads PNG as texture and returns ID or -1 error
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.16:
-     * Mongoose - Created, from Freyja
-     ------------------------------------------------------*/
-
+    /*!
+     * \brief Loads TGA file as texture
+     * \param filename Existing TGA file
+     * \returns ID of new texture or -1 on error
+     */
     int loadTGA(const char *filename);
-    /*------------------------------------------------------
-     * Pre  : Texture is init and filename/file is valid
-     * Post : Loads TGA as texture and returns ID or -1 error
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-   void reset();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Resets all texture data
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.29:
-     * Mongoose - Big code clean up, documentation
-     *
-     * 2000.10.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+    /*!
+     * \brief Resets all texture data
+     */
+    void reset();
 
+    /*!
+     * \brief Sets an option flag
+     * \param flag flag to set
+     */
     void setFlag(TextureFlag flag);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets a option flag
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.01.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Sets up GL texturing.
+     *
+     * Must be called as first setup step!
+     * \param n maximum number of textures you wish to allow
+     */
     void setMaxTextureCount(unsigned int n);
-    /*------------------------------------------------------
-     * Pre  : n is max number of textures you wish to allow
-     * Post : Sets up GL texturing, and must be called
-     *        as the first setup step
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.29:
-     * Mongoose - Big code clean up, documentation
-     *
-     * 2000.10.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void useMultiTexture(float u, float v);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void useMultiTexture(float aU, float aV, float bU, float bV);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
- private:
-
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
+private:
 
     int nextPower(int seed);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     unsigned char *scaleBuffer(unsigned char *image, int width, int height,
-                                        int components);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.06.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+                                int components);
 
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
-
-   unsigned int *mTextureIds;       /* GL texture list */
-
-   unsigned int mTextureCount;  /* Texture counter */
-
-   unsigned int mTextureLimit;  /* The texture limit */
-
-    unsigned int mFlags;                /* Class options */
-
-   int mTextureId;                  /* Currently bound texture id */
-
-    int mTextureId2;                    /* Multitexture Texture Id */
+    unsigned int *mTextureIds;  //!< GL texture list
+    unsigned int mTextureCount; //!< Texture counter
+    unsigned int mTextureLimit; //!< The texture limit
+    unsigned int mFlags;        //!< Class options
+    int mTextureId;             //!< Currently bound texture id
+    int mTextureId2;            //!< Multitexture Texture Id
 };
 
 
-/* Experimental testing */
+// Experimental testing
+
 void bufferedPrintf(char *string, unsigned int len, char *s, ...);
 
 void glPrint3d(float x, float y, float z,
-                    float pitch, float yaw, float roll,
-                    float scale,
-                    char *string);
+                float pitch, float yaw, float roll,
+                float scale, char *string);
 
 void glPrint2d(float x, float y, float scale, char *string);
 
-    void glEnterMode2d(unsigned int width, unsigned int height);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : OpenGL ortho projection
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.06.03:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+/*!
+ * \brief OpenGL ortho projection.
+ *
+ * Call before using glPrint2d()
+ * \param width window width
+ * \param height window height
+ */
+void glEnterMode2d(unsigned int width, unsigned int height);
 
-    void glExitMode2d();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : OpenGL model matrix projection
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.06.03:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+/*!
+ * \brief OpenGL model matrix projection.
+ *
+ * Call after using glPrint2d()
+ */
+void glExitMode2d();
+
 #endif
