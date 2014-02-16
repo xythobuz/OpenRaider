@@ -1,23 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file src/Render.cpp
+ * \brief OpenRaider Renderer class
  *
- * Project : Render
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : Render
- * License : No use w/o permission (C) 2001 Mongoose
- * Comments: This is the renderer class for OpenRaider
- *
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History -------------------------------------------------
- *
- * 2001.05.21:
- * Mongoose - Created
- =================================================================*/
+ * \author Mongoose
+ */
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -576,15 +562,6 @@ void lightRoom(RenderRoom *room)
                 break;
         }
     }
-}
-
-
-void Render::toggleFlag(unsigned int flag)
-{
-    if (mFlags & flag)
-        clearFlags(flag);
-    else
-        setFlags(flag);
 }
 
 
