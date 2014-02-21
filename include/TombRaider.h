@@ -18,12 +18,6 @@
  *
  *-- History ------------------------------------------------
  *
- * 2003.05.13:
- * Mongoose - New API, maintance cost was becoming so high
- *            it was needed to sort out methods in groups
- *            like my newer source code -- of course some
- *            methods were altered or removed ( clean up )
- *
  * 2003.05.19:
  * Mongoose - I'm now using Roy's documented TR5 structures, so
  *            I can fill in my blanks and share common structures
@@ -1388,7 +1382,7 @@ typedef struct tr5_cinematic_frame_s
 
 class TombRaider
 {
- public:
+public:
 
     ////////////////////////////////////////////////////////////
     // Constructors
@@ -1421,37 +1415,10 @@ class TombRaider
     ////////////////////////////////////////////////////////////
 
     int NumRooms();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int NumMoveables();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int NumTextures();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int NumSpecialTextures();
     /*------------------------------------------------------
@@ -1465,125 +1432,26 @@ class TombRaider
      ------------------------------------------------------*/
 
     int NumAnimations();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     unsigned int NumFrames();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int NumStaticMeshes();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int NumSprites();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int NumSpriteSequences();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int NumItems();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_version_type Engine();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     unsigned short *Frame();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_animation_t *Animation();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_item_t *Item();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_object_texture_t *ObjectTextures();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-   ------------------------------------------------------*/
 
     unsigned int getNumBoxes();
     /*------------------------------------------------------
@@ -1597,26 +1465,8 @@ class TombRaider
      ------------------------------------------------------*/
 
     tr2_box_t *Box();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_mesh_t *Mesh();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int getNumAnimsForMoveable(int moveable_index);
     /*------------------------------------------------------
@@ -1633,37 +1483,10 @@ class TombRaider
      ------------------------------------------------------*/
 
     tr2_staticmesh_t *StaticMesh();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_moveable_t *Moveable();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_meshtree_t *MeshTree();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_sprite_texture_t *Sprite();
     /*------------------------------------------------------
@@ -1677,15 +1500,6 @@ class TombRaider
      ------------------------------------------------------*/
 
     tr2_sprite_sequence_t *SpriteSequence();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.06:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     unsigned char *SpecialTexTile(int texture);
     /*------------------------------------------------------
@@ -1713,37 +1527,10 @@ class TombRaider
      ------------------------------------------------------*/
 
     unsigned int *Palette16();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     unsigned char *Palette8();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_room_t *Room();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int checkMime(char *filename);
     /*------------------------------------------------------
@@ -1836,29 +1623,8 @@ class TombRaider
      ------------------------------------------------------*/
 
     void getColor(int index, float color[4]);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.30:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_version_type getEngine();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Obsoloetes Engine() method, name change
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getMeshCollisionInfo(unsigned int meshIndex,
                                       float center[3], float *radius);
@@ -2027,15 +1793,6 @@ class TombRaider
     void getRoomInfo(unsigned int index,
                           unsigned int *flags, float pos[3],
                           float bboxMin[3], float bboxMax[3]);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int getRoomLight(unsigned int roomIndex, unsigned int index,
                           float pos[4], float color[4], float dir[3],
@@ -2165,15 +1922,6 @@ class TombRaider
     void getRoomSprite(unsigned int roomIndex, unsigned int index,
                              float scale, int *texture,
                              float *pos, float *vertices, float *texcoords);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.19:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     unsigned int getRoomSpriteCount(unsigned int roomIndex);
     /*------------------------------------------------------
@@ -2372,29 +2120,8 @@ class TombRaider
      ------------------------------------------------------*/
 
     void reset();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.13:
-     * Mongoose - New API, was Clear()
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void setDebug(bool toggle);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void setRoomVertexLightingFactor(float f);
     /*------------------------------------------------------
@@ -2420,7 +2147,7 @@ class TombRaider
      ------------------------------------------------------*/
 
 
- private:
+private:
 
     ////////////////////////////////////////////////////////////
     // Private Accessors
@@ -2429,26 +2156,8 @@ class TombRaider
     void extractMeshes(unsigned char *mesh_data,
                              unsigned int num_mesh_pointers,
                              unsigned int *mesh_pointers);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int Fread(void *buffer, size_t size, size_t count, FILE *f);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getRiffData(unsigned int *bytes, unsigned char **data);
     /*------------------------------------------------------
@@ -2530,32 +2239,8 @@ class TombRaider
      ------------------------------------------------------*/
 
     void print(const char *methodName, const char *s, ...);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.13:
-     * Mongoose - New API clean up
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void printDebug(const char *methodName, const char *s, ...);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post :
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.13:
-     * Mongoose - New API clean up
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
 
     ////////////////////////////////////////////////////////////
@@ -2564,80 +2249,44 @@ class TombRaider
 
 
     bool mReset;                        /* Guard multiple calls to reset() */
-
     bool mDebug;                        /* Debug output toggle */
-
     unsigned int mPakVersion;           /* TombRaider pak file header version */
-
     tr2_version_type mEngineVersion;    /* TombRaider engine version  */
-
     tr2_colour_t _palette8[256];        /* 8-bit palette */
-
     unsigned int _palette16[256];       /* 16-bit palette */
-
     unsigned int _num_textiles;         /* Total number of texture tiles */
-
     unsigned short  _num_room_textures;     /* Num textures only for room use? */
-
     unsigned short _num_misc_textures;     /* Num of textures for misc use? */
-
     unsigned short _num_bump_map_textures; /* Num of textures that are
                                                            bump map, texture pairs */
-
     tr2_textile8_t *_textile8;          /* 8-bit (palettised) textiles */
-
     tr2_textile16_t *_textile16;        /* 16-bit (ARGB) textiles */
-
     tr2_textile32_t *_textile32;        /* 32-bit (BGRA) textiles */
-
     unsigned int _num_tex_special;     /* Special textures and bump maps count */
-
     unsigned char *_tex_special;       /* Special textures and bump maps */
-
     unsigned int _unknown_t;            /* 32-bit unknown
                                                         (always 0 in real TR2 levels) */
-
     unsigned short _num_rooms;          /* Number of rooms in this level */
-
     tr2_room_t *_rooms;                 /* List of rooms (TR1,TR2,TR3,TR4) */
-
     tr5_room_t *mRoomsTR5;              /* Rooms ( TR5 / TRC ) Only */
-
     unsigned int _num_floor_data;       /* Num of words of floor data
                                                         this level */
-
     unsigned short *_floor_data;        /* Floor data */
-
     int mMeshCount;                     /* Number of meshes this level */
-
     tr2_mesh_t *mMeshes;                /* list of meshes */
-
     unsigned int _num_animations;       /* number of animations this level */
-
     tr2_animation_t *_animations;       /* list of animations */
-
     unsigned int _num_state_changes;    /* number of structures(?) this level */
-
     tr2_state_change_t *_state_changes; /* list of structures */
-
     unsigned int _num_anim_dispatches;  /* number of ranges(?) this level */
-
-  tr2_anim_dispatch_t *_anim_dispatches; /* list of ranges */
-
+    tr2_anim_dispatch_t *_anim_dispatches; /* list of ranges */
     unsigned int _num_anim_commands;       /* number of Bone1s this level */
-
     tr2_anim_command_t *_anim_commands;    /* list of Bone1s */
-
     unsigned int _num_mesh_trees;          /* number of Bone2s this level */
-
     tr2_meshtree_t *_mesh_trees;      /* list of Bone2s */
-
     unsigned int _num_frames;         /* num of words of frame data this level */
-
     unsigned short *_frames;          /* frame data */
-
     unsigned int _num_moveables;      /* number of moveables this level */
-
     tr2_moveable_t *_moveables;       /* list of moveables */
 
     u_int32_t numMoveablesTR5;
@@ -2656,112 +2305,70 @@ class TombRaider
     tr5_flyby_camera_t *flyByCamerasTR5;
 
     unsigned int _num_static_meshes;  /* number of static meshes this level */
-
     tr2_staticmesh_t *_static_meshes; /* static meshes */
-
     unsigned int _num_object_textures;   /* number of object textures this level */
-
     tr2_object_texture_t *_object_textures; /* list of object textures */
 
 
     unsigned int _num_sprite_textures;      /* num of sprite textures this level */
-
     tr2_sprite_texture_t *_sprite_textures; /* list of sprite textures */
-
     unsigned int _num_sprite_sequences;     /* num of sprite sequences this level */
-
     tr2_sprite_sequence_t *_sprite_sequences;  /* sprite sequence data */
-
     int  _num_cameras;                         /* Number of Cameras */
-
     tr2_camera_t  *_cameras;                   /* cameras */
-
     int  _num_sound_sources;                   /* Number of Sounds */
-
     tr2_sound_source_t *_sound_sources;          /* sounds */
-
     int  _num_boxes;                           /* Number of Boxes */
 
 
-    tr2_box_t *_boxes;                    /* boxes - looks like
-                                                          struct { unsigned short value[4]; }
-                                                          - value[0..2] might be a vector;
-                                                          value[3] seems to be index into
-                                                          Overlaps[] */
-
+    tr2_box_t *_boxes;                        /* boxes - looks like
+                                                 struct { unsigned short value[4]; }
+                                                 - value[0..2] might be a vector;
+                                                 value[3] seems to be index into
+                                                 Overlaps[] */
     int  _num_overlaps;                       /* Number of Overlaps */
-
     short  *_overlaps;                        /* Overlaps -
-                                                                looks like ushort; 0x8000 is flag
-                                                                of some sort appears to be an
-                                                                offset into Boxes[] and/or
-                                                                Boxes2[] */
-
+                                                 looks like ushort; 0x8000 is flag
+                                                 of some sort appears to be an
+                                                 offset into Boxes[] and/or
+                                                 Boxes2[] */
     short  *_zones;                           /* Boxes2 */
-
     int  _num_animated_textures;              /* Number of AnimTextures */
-
     short  *_animated_textures;               /* Animtextures */
-
     int  _num_items;                          /* Number of Items */
-
     tr2_item_t *_items;                       /* Items */
-
     unsigned char  *_light_map;               /* Colour-light maps */
-
     unsigned int _num_cinematic_frames;       /* Number of cut-scene frames */
-
     tr2_cinematic_frame_t *_cinematic_frames; /* Cut-scene frames */
-
     short  _num_demo_data;                    /* Number of Demo Data */
-
     unsigned char  *_demo_data;               /* Demo data */
-
     float mRoomVertexLightingFactor;
-
     float mTexelScale;
 
 
     // Sound data
-
     short  *mSoundMap;                       /* Sound map */
-
     int  mNumSoundDetails;                   /* Number of SampleModifiers */
-
     tr2_sound_details_t *mSoundDetails;      /* Sample modifiers */
-
     int  mNumSampleIndices;                  /* Number of Sample Indices */
-
     int  *mSampleIndices;                    /* Sample indices */
-
     unsigned int *mSampleIndicesTR5;
-
     bool mRiffAlternateLoaded;               /* Is a TR2,TR3 SFX loaded? */
-
     unsigned int *mRiffAlternateOffsets;     /* After parsing this will
-                                                              hold byte offsets for TR2,TR3
-                                                             RIFFs in the buffered SFX */
-
+                                                hold byte offsets for TR2,TR3
+                                                RIFFs in the buffered SFX */
     int mRiffDataSz;                         /* Byte size of a loaded SFX */
-
     unsigned char *mRiffData;                /* SFX RIFF data in chunks */
-
     unsigned int mNumTR4Samples;
-
     unsigned char **mTR4Samples;
-
     unsigned int *mTR4SamplesSz;
 
 
     // For packed Fread emu/wrapper
-
     unsigned char *mCompressedLevelData;     /* Buffer used to emulate fread
-                                                              with uncompressed libz data */
-
+                                                with uncompressed libz data */
     unsigned int mCompressedLevelDataOffset; /* Offset into buffer */
-
     unsigned int mCompressedLevelSize;       /* Size of buffer */
-
     tr_fread_mode_t mFreadMode;              /* Fread mode file|buffer */
 };
 
