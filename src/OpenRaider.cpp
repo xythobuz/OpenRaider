@@ -610,7 +610,7 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
                 i = lastCmd[0];
 
                 lastCmd[0] = '>';
-                mText->SetString(textConsole, lastCmd);
+                mText->SetString(textConsole, "%s", lastCmd);
                 break;
             case 0:
                 break;
@@ -849,7 +849,7 @@ void OpenRaider::print(bool dump_stdout, const char *format, ...)
     // Print to game 'console'
     if (mText)
     {
-        mText->SetString(textOutput, buffer);
+        mText->SetString(textOutput, "%s", buffer);
     }
 
     // Print to stdout

@@ -78,8 +78,8 @@ INSTALL_INCLUDE=$(DESTDIR)/usr/include
 
 ###############################################################
 CC=gcc
-WARNINGS=-Weverything -Wno-padded -Wno-packed -Wno-documentation
-WARNINGS+=-Wno-documentation-unknown-command -Wno-format-nonliteral
+WARNINGS=-Weverything -Wno-padded -Wno-packed
+WARNINGS+=-Wno-documentation-unknown-command
 WARNINGS+=-Wno-covered-switch-default -Wno-global-constructors
 WARNINGS+=-Wno-exit-time-destructors -Wno-c++98-compat-pedantic
 WARNINGS+=-Wno-disabled-macro-expansion -Wno-missing-variable-declarations

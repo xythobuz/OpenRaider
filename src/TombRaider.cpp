@@ -544,7 +544,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
         _num_textiles = usz / sizeof(tr2_textile32_t);
 
-        printDebug("LoadTR4", "_num_textiles = %i/%i = %i",
+        printDebug("LoadTR4", "_num_textiles = %i/%lu = %i",
                 usz, sizeof(tr2_textile32_t), _num_textiles);
 
         _textile32 = new tr2_textile32_t[_num_textiles];
@@ -594,7 +594,7 @@ int TombRaider::Load(char *filename, void (*percent)(int))
 
         _num_textiles = usz / sizeof(tr2_textile16_t);
 
-        printDebug("Load", "TR4 _num_textiles = %i/%i = %i",
+        printDebug("Load", "TR4 _num_textiles = %i/%lu = %i",
                 usz, sizeof(tr2_textile16_t), _num_textiles);
 
         _textile16 = new tr2_textile16_t[_num_textiles];
@@ -4769,7 +4769,7 @@ int TombRaider::Fread(void *buffer, size_t size, size_t count, FILE *f)
         }
         else
         {
-            print("Fread(%p, %d, %d, %p)", "ERROR: Returned %d bytes too far",
+            print("Fread", "(%p, %lu, %lu, %p) ERROR: Returned %d bytes too far",
                     buffer, size, count, f, num_read);
             reset();
             exit(2);
@@ -5122,7 +5122,7 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
 
     _num_textiles = usz / sizeof(tr2_textile32_t);
 
-    printDebug("LoadTR5", "_num_textiles = %i/%i = %i",
+    printDebug("LoadTR5", "_num_textiles = %i/%lu = %i",
             usz, sizeof(tr2_textile32_t), _num_textiles);
 
     _textile32 = new tr2_textile32_t[_num_textiles];
@@ -5169,7 +5169,7 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
 
     _num_textiles = usz / sizeof(tr2_textile16_t);
 
-    printDebug("LoadTR5", "_num_textiles = %i/%i = %i",
+    printDebug("LoadTR5", "_num_textiles = %i/%lu = %i",
             usz, sizeof(tr2_textile16_t), _num_textiles);
 
     _textile16 = new tr2_textile16_t[_num_textiles];
@@ -5435,7 +5435,7 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
         // Start 20byte structure ///////////////
         printDebug("LoadTR5", "20byte struct {");
         Fread(mRoomsTR5[i].seperator6, 6, 1, f);
-        printDebug("LoadTR5", "6 bytes 0xFF = 0x%x%x%x%x%x",
+        printDebug("LoadTR5", "6 bytes 0xFF = 0x%x%x%x%x%x%x",
                 mRoomsTR5[i].seperator6[0], mRoomsTR5[i].seperator6[1],
                 mRoomsTR5[i].seperator6[2], mRoomsTR5[i].seperator6[3],
                 mRoomsTR5[i].seperator6[4], mRoomsTR5[i].seperator6[5]);
@@ -5468,7 +5468,7 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
         Fread(&mRoomsTR5[i].unknownR6, 4, 1, f);
         printDebug("LoadTR5", "unknownR6 = %i", mRoomsTR5[i].unknownR6);
         Fread(&mRoomsTR5[i].roomX, 4, 1, f);
-        printDebug("LoadTR5", "roomX = %i", mRoomsTR5[i].roomX);
+        printDebug("LoadTR5", "roomX = %f", mRoomsTR5[i].roomX);
 
         Fread(&mRoomsTR5[i].seperator9, 4, 1, f);
         printDebug("LoadTR5", "seperator9 CDCDCDCD | 0x0 = 0x%x",
@@ -5483,7 +5483,7 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
         }
 
         Fread(&mRoomsTR5[i].roomZ, 4, 1, f);
-        printDebug("LoadTR5", "roomZ = %i", mRoomsTR5[i].roomZ);
+        printDebug("LoadTR5", "roomZ = %f", mRoomsTR5[i].roomZ);
         printDebug("LoadTR5", "}");
 
 
@@ -6218,7 +6218,7 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
 
     if (u != 0xcdcdcdcd)
     {
-        print("LoadTR5", "Check 0xCDCDCDCD != 0x%X @ %u", u, ftell(f));
+        print("LoadTR5", "Check 0xCDCDCDCD != 0x%X @ %ld", u, ftell(f));
         return -5;
     }
 
@@ -6317,7 +6317,6 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int))
 
     return 0;
 }
-
 
 void TombRaider::print(const char *methodName, const char *s, ...)
 {

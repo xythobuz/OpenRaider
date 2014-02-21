@@ -130,6 +130,7 @@ public:
      * \param dump_stdout if true, also print to stdout
      * \param format printf() style format string
      */
+    __attribute__((format(printf, 3, 4)))
     void print(bool dump_stdout, const char *format, ...);
 
 protected:

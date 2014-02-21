@@ -108,7 +108,7 @@ public:
 
     /*!
      * \brief Inverse this quaternion
-     * \brief Returns inverse of this quaternion
+     * \returns inverse of this quaternion
      */
     Quaternion inverse();
 

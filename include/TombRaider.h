@@ -2238,8 +2238,10 @@ private:
      * Mongoose - Created
      ------------------------------------------------------*/
 
-    void print(const char *methodName, const char *s, ...);
+__attribute__((format(printf, 3, 4)))
+    void print(const char *methodName, const char *s, ...) ;
 
+__attribute__((format(printf, 3, 4)))
     void printDebug(const char *methodName, const char *s, ...);
 
 
