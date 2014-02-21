@@ -9,6 +9,8 @@
 	* Removed the `Map` command. Now the PakDir command causes
 	  a recursive search of the specified directory. Every file found
 	  is added to the map list if it validates.
+	* The menu map list can now be stepped per folder with the
+	  right and left arrows.
 
 	[ 20140216 ]
 	* Removed the FastCard option. Not necessary on todays hardware?!

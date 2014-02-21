@@ -83,7 +83,6 @@ void killOpenRaiderSingleton()
 #endif
 
     printf("\nThanks for testing %s\n", VERSION);
-    printf("Please file bug reports\n\n");
     printf("Build date: %s @ %s\n", __DATE__, __TIME__);
     printf("Build host: %s\n", BUILD_HOST);
     printf("Web site  : http://github.com/xythobuz/OpenRaider\n");
@@ -657,6 +656,62 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
 }
 
 
+void OpenRaider::menuMapListMove(char dir, bool show) {
+    if (dir == 'f') {
+        mMapList.next();
+        if (!mMapList.forward())
+            mMapList.start();
+    } else if (dir == 'b') {
+        mMapList.prev();
+        if (!mMapList.backward())
+            mMapList.finish();
+    } else if (dir == 'n') {
+        size_t slashPos = strcspn(mMapList.current(), "/");
+        if (slashPos < strlen(mMapList.current())) {
+            char *dirName = new char[slashPos + 1];
+            dirName[slashPos] = '\0';
+            strncpy(dirName, mMapList.current(), slashPos);
+            do {
+                menuMapListMove('f', false);
+            } while (strstr(mMapList.current(), dirName) != NULL);
+            delete dirName;
+        } else {
+            do {
+                menuMapListMove('f', false);
+            } while (strstr(mMapList.current(), "/") == NULL);
+        }
+    } else if (dir == 'p') {
+        size_t slashPos = strcspn(mMapList.current(), "/");
+        if (slashPos < strlen(mMapList.current())) {
+            char *dirName = new char[slashPos + 1];
+            dirName[slashPos] = '\0';
+            strncpy(dirName, mMapList.current(), slashPos);
+            do {
+                menuMapListMove('b', false);
+            } while (strstr(mMapList.current(), dirName) != NULL);
+            // Yeah, cheap...
+            strncpy(dirName, mMapList.current(), slashPos);
+            do {
+                menuMapListMove('b', false);
+            } while (strstr(mMapList.current(), dirName) != NULL);
+            menuMapListMove('f', false);
+            delete dirName;
+        } else {
+            do {
+                menuMapListMove('b', false);
+            } while (strstr(mMapList.current(), "/") == NULL);
+        }
+    }
+
+    if (show) {
+        if (mMapList.current())
+            mText->SetString(textMenu, "Load %s?", mMapList.current());
+        else
+            mText->SetString(textMenu, "See README for map install");
+    }
+}
+
+
 void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
 {
     static bool menu = false;
@@ -679,38 +734,17 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
                 menu = false;
                 break;
             case SYS_KEY_DOWN:
-                mMapList.prev();
-
-                if (!mMapList.backward())
-                {
-                    mMapList.finish();
-                }
-
-                if (mMapList.current())
-                {
-                    mText->SetString(textMenu, "Load %s?", mMapList.current());
-                }
-                else
-                {
-                    mText->SetString(textMenu, "See README for map install");
-                }
+                menuMapListMove('b', true);
                 break;
             case SYS_KEY_UP:
-                mMapList.next();
-
-                if (!mMapList.forward())
-                {
-                    mMapList.start();
-                }
-
-                if (mMapList.current())
-                {
-                    mText->SetString(textMenu, "Load %s?", mMapList.current());
-                }
-                else
-                {
-                    mText->SetString(textMenu, "See README for map install");
-                }
+                menuMapListMove('f', true);
+                break;
+            case SYS_KEY_LEFT:
+                menuMapListMove('p', true);
+                break;
+            case SYS_KEY_RIGHT:
+                menuMapListMove('n', true);
+                break;
         }
 
         return;

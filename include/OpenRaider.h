@@ -199,6 +199,8 @@ private:
 
     void loadPakFolderRecursive(const char *dir);
 
+    void menuMapListMove(char dir, bool show);
+
     static OpenRaider *mInstance; //!< Singleton use
     TombRaider m_tombraider;      //!< Tombraider data support
     Sound mSound;                 //!< 3d Audio support
