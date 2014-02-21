@@ -674,7 +674,7 @@ void OpenRaider::menuMapListMove(char dir, bool show) {
             do {
                 menuMapListMove('f', false);
             } while (strstr(mMapList.current(), dirName) != NULL);
-            delete dirName;
+            delete []dirName;
         } else {
             do {
                 menuMapListMove('f', false);
@@ -695,7 +695,7 @@ void OpenRaider::menuMapListMove(char dir, bool show) {
                 menuMapListMove('b', false);
             } while (strstr(mMapList.current(), dirName) != NULL);
             menuMapListMove('f', false);
-            delete dirName;
+            delete []dirName;
         } else {
             do {
                 menuMapListMove('b', false);
