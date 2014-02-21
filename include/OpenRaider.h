@@ -197,6 +197,8 @@ private:
      */
     void loadLevel(char *filename);
 
+    void loadPakFolderRecursive(const char *dir);
+
     static OpenRaider *mInstance; //!< Singleton use
     TombRaider m_tombraider;      //!< Tombraider data support
     Sound mSound;                 //!< 3d Audio support

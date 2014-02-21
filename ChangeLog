@@ -5,6 +5,11 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140221 ]
+	* Removed the `Map` command. Now the PakDir command causes
+	  a recursive search of the specified directory. Every file found
+	  is added to the map list if it validates.
+
 	[ 20140216 ]
 	* Removed the FastCard option. Not necessary on todays hardware?!
 	* Removed UNICODE_SUPPORT, not working this way with SDL2

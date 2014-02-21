@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <math.h>
 #include <sys/types.h>
+#include <dirent.h>
 
 #ifdef DEBUG_MEMORY
 #include <memory_test.h>
@@ -3332,6 +3333,51 @@ void OpenRaider::consoleCommand(char *cmd)
 }
 
 
+void OpenRaider::loadPakFolderRecursive(const char *dir) {
+    struct dirent *ep;
+    DIR *pakDir;
+
+    pakDir = opendir(dir);
+    if (pakDir != NULL) {
+        while ((ep = readdir(pakDir)) != NULL) {
+            if (ep->d_type == DT_DIR) {
+                if ((strcmp(".", ep->d_name) != 0)
+                 && (strcmp("..", ep->d_name) != 0)) {
+                    char *tmp = bufferString("%s%s", dir, ep->d_name);
+                    char *next = fullPath(tmp, '/');
+                    loadPakFolderRecursive(next);
+                    delete next;
+                    delete tmp;
+                }
+            } else {
+                /*!
+                 * \fixme Currently just tries to validate every file
+                 * in the pak folders. Should check the exstension to
+                 * see if it could be a level pak...
+                 */
+
+                char *fullPathMap = bufferString("%s%s", dir, ep->d_name);
+
+                if (m_tombraider.checkMime(fullPathMap) == 0) {
+                    printf("Validated pak: '%s'\n", fullPathMap);
+                    delete [] fullPathMap;
+
+                    // Just load relative filename
+                    mMapList.pushBack(bufferString("%s", (fullPathMap + strlen(m_pakDir))));
+                } else {
+                    printf("ERROR: pak file '%s' not found or invalid\n", fullPathMap);
+
+                    delete [] fullPathMap;
+                }
+            }
+        }
+        closedir(pakDir);
+    } else {
+        printf("Could not open PAK dir %s!\n", dir);
+    }
+}
+
+
 void OpenRaider::handleCommand(char *cmd, unsigned int mode)
 {
     bool b;
@@ -3405,6 +3451,11 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
                 }
 
                 m_pakDir = fullPath(cmd, '/');
+
+                // Recursively search for level paks instead of
+                // naming individual levels 2014-02-21 xythobuz
+
+                loadPakFolderRecursive(m_pakDir);
             }
             else if (rc_command("HomeDir", cmd))
             {
@@ -3435,33 +3486,6 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
                 if (!b)
                 {
                     m_flags ^= OpenRaider_DebugMap;
-                }
-            }
-            else if (rc_command("Map", cmd))
-            {
-                if (cmd[0])
-                {
-                    char *fullPathMap;
-
-
-                    fullPathMap = bufferString("%s%s", m_pakDir, cmd);
-
-                    if (m_tombraider.checkMime(fullPathMap) == 0)
-                    {
-                        printf("Validated pak: '%s'\n",
-                                fullPathMap);
-                        delete [] fullPathMap;
-
-                        /* Just load relative filename */
-                        mMapList.pushBack(bufferString("%s", cmd));
-                    }
-                    else
-                    {
-                        printf("ERROR: pak file '%s' not found or invalid\n",
-                                fullPathMap);
-
-                        delete [] fullPathMap;
-                    }
                 }
             }
             // Mongoose 2001.12.31, Added music list back

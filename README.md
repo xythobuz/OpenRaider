@@ -82,9 +82,6 @@ The configuration file format is very simple:
 You can use paks from any Tomb Raider version supported and most user made paks for Tomb Raider.
 Only PHD, TR1, TR2, TR3, and TR4 paks are supported as of this writing.
 
-Edit 'Map' lines in your OpenRaider.init as needed.
-I suggest removing all your Map=... lines to begin with, since no maps are bundled with this release.
-
 ### Sound FXs
 
 Setting up external sound SFX, for TR2 and TR3 paks only.
