@@ -421,7 +421,6 @@ void World::moveEntity(entity_t *e, char movement)
         case worldMoveType_noClipping:
         case worldMoveType_fly:
         case worldMoveType_swim:
-        default:
             pitch = e->angles[2];
             break;
     }

@@ -280,8 +280,6 @@ void Camera::command(enum camera_command cmd)
             if (--mTranslateDelta < 0.0f)
                 mTranslateDelta = 1.0f;
             break;
-        default:
-            ;
     }
 }
 

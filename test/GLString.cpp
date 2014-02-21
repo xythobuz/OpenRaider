@@ -101,7 +101,6 @@ void init_gl() {
 
 void init_text() {
     int i;
-    const char *errorText = "TEXT->glPrintf> ERROR code %i\n";
 
     // Mongoose 2002.01.01, Texture setup
     gTexture.reset();
@@ -113,20 +112,20 @@ void init_text() {
     TEXT->Init(4);
     i = TEXT->glPrintf(50, 50, "OpenRaider GLString");
     if (i) {
-        printf(errorText, i);
+        printf("TEXT->glPrintf> ERROR code %i\n", i);
     }
     i = TEXT->glPrintf(50, 100, "Unit Test by Mongoose");
     if (i) {
-        printf(errorText, i);
+        printf("TEXT->glPrintf> ERROR code %i\n", i);
     }
     TEXT->Scale(1.2f);
     i = TEXT->glPrintf(50, 150, "ported to SDL2 & TTF");
     if (i) {
-        printf(errorText, i);
+        printf("TEXT->glPrintf> ERROR code %i\n", i);
     }
     i = TEXT->glPrintf(50, 200, "by xythobuz");
     if (i) {
-        printf(errorText, i);
+        printf("TEXT->glPrintf> ERROR code %i\n", i);
     }
     TEXT->setActive(0, true);
     TEXT->setActive(1, true);

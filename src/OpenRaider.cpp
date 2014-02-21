@@ -345,10 +345,10 @@ void OpenRaider::handleMouseMotionEvent(float x, float y)
                 case worldMoveType_noClipping:
                     eventAnimTest(TR_ANIAMTION_SWIM_R);
                     break;
-                default:
                 case worldMoveType_walk:
                 case worldMoveType_walkNoSwim:
                     eventAnimTest(TR_ANIAMTION_TURN_L); // TURN left always for now
+                    break;
             }
 
             LARA->moving = true;
@@ -368,10 +368,10 @@ void OpenRaider::handleMouseMotionEvent(float x, float y)
                 case worldMoveType_noClipping:
                     eventAnimTest(TR_ANIAMTION_SWIM_L);
                     break;
-                default:
                 case worldMoveType_walk:
                 case worldMoveType_walkNoSwim:
                     eventAnimTest(TR_ANIAMTION_TURN_L);
+                    break;
             }
 
             LARA->moving = true;
@@ -430,10 +430,10 @@ void OpenRaider::handleBoundKeyPressEvent(unsigned int key)
                     case worldMoveType_noClipping:
                         eventAnimTest(TR_ANIAMTION_SWIM);
                         break;
-                    default:
                     case worldMoveType_walk:
                     case worldMoveType_walkNoSwim:
                         eventAnimTest(TR_ANIAMTION_RUN);
+                        break;
                 }
             }
             else if (LARA)
@@ -445,10 +445,10 @@ void OpenRaider::handleBoundKeyPressEvent(unsigned int key)
                     case worldMoveType_noClipping:
                         eventAnimTest(TR_ANIAMTION_SWIM_IDLE);
                         break;
-                    default:
                     case worldMoveType_walk:
                     case worldMoveType_walkNoSwim:
                         eventAnimTest(TR_ANIAMTION_HIT_WALL_FRONT);
+                        break;
                 }
             }
             else
@@ -468,10 +468,10 @@ void OpenRaider::handleBoundKeyPressEvent(unsigned int key)
                     case worldMoveType_noClipping:
                         eventAnimTest(TR_ANIAMTION_SWIM);
                         break;
-                    default:
                     case worldMoveType_walk:
                     case worldMoveType_walkNoSwim:
                         eventAnimTest(TR_ANIAMTION_RUN);
+                        break;
                 }
             }
             break;
@@ -487,10 +487,10 @@ void OpenRaider::handleBoundKeyPressEvent(unsigned int key)
                     case worldMoveType_noClipping:
                         eventAnimTest(TR_ANIAMTION_SWIM);
                         break;
-                    default:
                     case worldMoveType_walk:
                     case worldMoveType_walkNoSwim:
                         eventAnimTest(TR_ANIAMTION_RUN);
+                        break;
                 }
             }
             else if (!LARA)
@@ -510,10 +510,10 @@ void OpenRaider::handleBoundKeyPressEvent(unsigned int key)
                     case worldMoveType_noClipping:
                         eventAnimTest(TR_ANIAMTION_SWIM);
                         break;
-                    default:
                     case worldMoveType_walk:
                     case worldMoveType_walkNoSwim:
                         eventAnimTest(TR_ANIAMTION_RUN);
+                        break;
                 }
             }
             else if (!LARA)
@@ -1114,12 +1114,11 @@ void OpenRaider::loadLevel(char *mapname)
 
                 m_tombraider.loadSFX(altSfx);
                 break;
-            default:
             case TR_VERSION_1:
             case TR_VERSION_4:
             case TR_VERSION_5:
             case TR_VERSION_UNKNOWN:
-                ;
+                break;
         }
     }
 
@@ -1263,10 +1262,10 @@ void OpenRaider::gameFrame()
                     case worldMoveType_noClipping:
                         eventAnimTest(TR_ANIAMTION_SWIM_IDLE);
                         break;
-                    default:
                     case worldMoveType_walk:
                     case worldMoveType_walkNoSwim:
                         eventAnimTest(TR_ANIAMTION_STAND);
+                        break;
                 }
 
                 LARA->moving = false;
@@ -1572,12 +1571,11 @@ void OpenRaider::processMoveables()
                                 break;
                         }
                         break;
-                    default:
                     case TR_VERSION_2:
                     case TR_VERSION_3:
                     case TR_VERSION_5:
                     case TR_VERSION_UNKNOWN:
-                        ;
+                        break;
                 }
         }
     }
@@ -1691,7 +1689,6 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
                 // Only TR4 lara has 2 layer bone tags/meshes per bone frame
                 r_model->tr4Overlay = true;
                 break;
-            default:
             case TR_VERSION_1:
             case TR_VERSION_2:
             case TR_VERSION_5:
@@ -1700,6 +1697,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
                 sModel->setAnimation(TR_ANIAMTION_RUN);
                 sModel->setIdleAnimation(TR_ANIAMTION_STAND);
                 r_model->tr4Overlay = false;
+                break;
         }
 
         r_model->ponytailId = 0;
@@ -1782,7 +1780,6 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
                     print(true, "Found known ponytail\n");
                 }
                 break; // ?
-            default:
             case TR_VERSION_1:
             case TR_VERSION_2:
             case TR_VERSION_3:
@@ -1804,6 +1801,7 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
                     m_render.setFlags(Render::fRenderPonytail);
                     print(true, "Found ponytail?\n");
                 }
+                break;
         }
     }
     else

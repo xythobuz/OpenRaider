@@ -12,6 +12,7 @@
 	* The menu map list can now be stepped per folder with the
 	  right and left arrows.
 	* Methods wrapping printf-style functions now get compiler warnings
+	* Reenabled some warnings and fixed them
 
 	[ 20140216 ]
 	* Removed the FastCard option. Not necessary on todays hardware?!

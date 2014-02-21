@@ -351,7 +351,6 @@ void dump_mesh(TombRaider *tr, char *mapname, int index)
                 tr->getColor(meshes[index].coloured_triangles[i].texture
                         & 0xff, rgba);
                 break;
-            default:
             case TR_VERSION_UNKNOWN:
             case TR_VERSION_2:
             case TR_VERSION_3:
@@ -359,6 +358,7 @@ void dump_mesh(TombRaider *tr, char *mapname, int index)
             case TR_VERSION_5:
                 tr->getColor((meshes[index].coloured_triangles[i].texture>>8)
                         & 0xff, rgba);
+                break;
         }
 
         s = rgba[0];
@@ -408,7 +408,6 @@ void dump_mesh(TombRaider *tr, char *mapname, int index)
                 tr->getColor(meshes[index].coloured_rectangles[i].texture
                         & 0xff, rgba);
                 break;
-            default:
             case TR_VERSION_UNKNOWN:
             case TR_VERSION_2:
             case TR_VERSION_3:
@@ -416,6 +415,7 @@ void dump_mesh(TombRaider *tr, char *mapname, int index)
             case TR_VERSION_5:
                 tr->getColor((meshes[index].coloured_rectangles[i].texture>>8)
                         & 0xff, rgba);
+                break;
         }
 
         s = rgba[0];

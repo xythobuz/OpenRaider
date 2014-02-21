@@ -743,10 +743,10 @@ void Render::Display()
             case worldMoveType_swim:
                 camOffsetH = 64.0f;
                 break;
-            default:
             case worldMoveType_walk:
             case worldMoveType_walkNoSwim:
                 camOffsetH = 512.0f;
+                break;
         }
 
         curPos[0] = LARA->pos[0];

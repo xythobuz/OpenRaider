@@ -169,11 +169,11 @@ void Mesh::drawAlpha()
                 // Bind WHITE texture for solid colors
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
-            default:
             case MeshModeTexture:
             case MeshModeMultiTexture:
                 // Bind texture id for textures
                 glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
+                break;
         }
 
         glBegin(GL_QUADS);
@@ -206,11 +206,11 @@ void Mesh::drawAlpha()
                 // Bind WHITE texture for solid colors
                 glBindTexture(GL_TEXTURE_2D, 0);
                 break;
-            default:
             case MeshModeTexture:
             case MeshModeMultiTexture:
                 // Bind texture id for textures
                 glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
+                break;
         }
 
         glBegin(GL_TRIANGLES);
@@ -298,11 +298,11 @@ void Mesh::drawSolid()
 #else
             case MeshModeMultiTexture:
 #endif
-            default:
             case MeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
+                break;
         }
 
         glBegin(GL_QUADS);
@@ -359,11 +359,11 @@ void Mesh::drawSolid()
 #else
             case MeshModeMultiTexture:
 #endif
-            default:
             case MeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
+                break;
         }
 
         glBegin(GL_TRIANGLES);

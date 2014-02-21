@@ -155,7 +155,7 @@ public:
         RaptorState_JumpBite  = 4,
         RaptorState_Bellowing = 6,
         RaptorState_RunBellow = 7,
-        RaptorState_Biting    = 8,
+        RaptorState_Biting    = 8
     };
 
     /*!
@@ -281,7 +281,7 @@ public:
         WingedNatlaState_Dying1    = 5, //!< "Dying" the first time
         WingedNatlaState_Spinning  = 7, //!< Spinning around in air
         WingedNatlaState_Standing2 = 8,
-        WingedNatlaState_Dying2    = 9, //!< Dying for real
+        WingedNatlaState_Dying2    = 9  //!< Dying for real
     };
 
     /*!
@@ -452,7 +452,7 @@ public:
     enum MotorboatStates {
         MotorboatState_StationaryInitial = 1,
         MotorboatState_Moving            = 2,
-        MotorboatState_StationaryFinal   = 3,
+        MotorboatState_StationaryFinal   = 3
     };
 
     /*!

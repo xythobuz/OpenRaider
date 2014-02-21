@@ -591,7 +591,9 @@ void Network::runClient()
 
             if (!f.data.send)
             {
-                const struct timespec tmp = {.tv_sec = 0, .tv_nsec = 20000};
+                struct timespec tmp;
+                tmp.tv_sec = 0;
+                tmp.tv_nsec = 20000;
                 nanosleep(&tmp, NULL);
                 continue;
             }
