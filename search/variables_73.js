@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['s',['s',['../class_g_l_string.html#aadfad4b31ed1554441684cac69cf281c',1,'GLString::s()'],['../class_tomb_raider.html#a254ca256fe4f9ab50c268f925992626c',1,'TombRaider::s()'],['../class_tomb_raider.html#a1efc12772e2180176aa16f99592f81a7',1,'TombRaider::s()'],['../_texture_8h.html#a54dd25915da2224dca3a4f01351a5312',1,'s():&#160;Texture.h'],['../tga_8h.html#a16fe99be7819e3296dce09f2b769ffa6',1,'s():&#160;tga.h']]],
   ['sample',['sample',['../_tomb_raider_8h.html#a3596af95ae0e87460e0b57d7da1a4c68',1,'tr2_sound_details_s::sample()'],['../_tomb_raider_8h.html#a11a55600ef7a76600b1cf52b07999ad0',1,'sample():&#160;TombRaider.h']]],
   ['scale',['scale',['../_g_l_string_8h.html#abea5ae1d01594365d739c8b1b90f577b',1,'gl_string_t']]],
   ['sdlwindow',['sdlWindow',['../test_2_g_l_string_8cpp.html#a7d570c1c3b1ac98019869517e6062462',1,'GLString.cpp']]],
@@ -45,5 +46,6 @@ var searchData=
   ['state_5fid',['state_id',['../_tomb_raider_8h.html#a57c5c20ba45fcf197541fa06a92e6a17',1,'tr2_animation_s::state_id()'],['../_tomb_raider_8h.html#a695f5638c35ce3f0393fd5091f7de678',1,'tr4_animation_s::state_id()'],['../_tomb_raider_8h.html#a69639749f2096450ee0731d7f445def5',1,'tr2_state_change_s::state_id()'],['../_tomb_raider_8h.html#a76d133f1e2d6d2106aad42abe86f6691',1,'state_id():&#160;TombRaider.h']]],
   ['statechangeoffset',['StateChangeOffset',['../_tomb_raider_8h.html#a20f3356e75aaddc96c31d23860dbaa3e',1,'tr5_animation_t']]],
   ['stateid',['StateId',['../_tomb_raider_8h.html#a50b3deef171ec926c825d4d073bdf483',1,'tr5_animation_t']]],
-  ['static_5fmeshes',['static_meshes',['../_tomb_raider_8h.html#a1338559917eda9936053197cd9910174',1,'tr2_room_s::static_meshes()'],['../_tomb_raider_8h.html#abdcd8a94526b638ab25223f980c60dde',1,'static_meshes():&#160;TombRaider.h']]]
+  ['static_5fmeshes',['static_meshes',['../_tomb_raider_8h.html#a1338559917eda9936053197cd9910174',1,'tr2_room_s::static_meshes()'],['../_tomb_raider_8h.html#abdcd8a94526b638ab25223f980c60dde',1,'static_meshes():&#160;TombRaider.h']]],
+  ['string',['string',['../class_g_l_string.html#a9e47740c8023a5c7b677a19782dc7dc4',1,'GLString']]]
 ];

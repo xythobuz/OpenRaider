@@ -1,0 +1,19 @@
+digraph "skeletal_model_t"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="skeletal_model_t",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" animation" ,fontname="Helvetica"];
+  Node2 [label="Vector\< animation_frame\l_t * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node3 [label="animation_frame_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_skeletal_model_8h.html#structanimation__frame__t"];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" frame" ,fontname="Helvetica"];
+  Node4 [label="Vector\< bone_frame\l_t * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node5 [label="bone_frame_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_skeletal_model_8h.html#structbone__frame__t"];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" tag" ,fontname="Helvetica"];
+  Node6 [label="Vector\< bone_tag_t * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node7 [label="bone_tag_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_skeletal_model_8h.html#structbone__tag__t"];
+}

@@ -19,7 +19,7 @@ var searchData=
   ['enone',['eNone',['../_world_8h.html#afc445ca2a21bdc9b879736295a33084aa6505acf15690a324459e652a94fc339a',1,'World.h']]],
   ['entity_5ft',['entity_t',['../_world_8h.html#structentity__t',1,'']]],
   ['equalepsilon',['equalEpsilon',['../_mat_math_8h.html#abf30bf910851d5d113d324c2d3fa7c1a',1,'equalEpsilon(vec_t a, vec_t b):&#160;MatMath.cpp'],['../src_2_mat_math_8cpp.html#abf30bf910851d5d113d324c2d3fa7c1a',1,'equalEpsilon(vec_t a, vec_t b):&#160;MatMath.cpp']]],
-  ['erase',['Erase',['../class_tree.html#a6fea78168cd79bbd18ab846d2c20f13b',1,'Tree::Erase()'],['../class_vector.html#a784061ba0f2123e75054838484d96cbe',1,'Vector::erase()']]],
+  ['erase',['erase',['../class_vector.html#a784061ba0f2123e75054838484d96cbe',1,'Vector::erase()'],['../class_tree.html#a6fea78168cd79bbd18ab846d2c20f13b',1,'Tree::Erase()']]],
   ['erespawn',['eRespawn',['../_world_8h.html#afc445ca2a21bdc9b879736295a33084aaa701d13000910a3262a6d68fbb95aa5b',1,'World.h']]],
   ['error',['Error',['../class_tree.html#ad48477724f0f878ddbb2fe15b6348e04',1,'Tree']]],
   ['erunbackward',['eRunBackward',['../_world_8h.html#afc445ca2a21bdc9b879736295a33084aa31a92fe875476168b4e9f9ee622c79ee',1,'World.h']]],

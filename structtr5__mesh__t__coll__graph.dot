@@ -1,0 +1,11 @@
+digraph "tr5_mesh_t"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="tr5_mesh_t",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" texturedRectangles" ,fontname="Helvetica"];
+  Node2 [label="tr5_face4_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_tomb_raider_8h.html#structtr5__face4__t"];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" texturedTriangles" ,fontname="Helvetica"];
+  Node3 [label="tr5_face3_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_tomb_raider_8h.html#structtr5__face3__t"];
+}

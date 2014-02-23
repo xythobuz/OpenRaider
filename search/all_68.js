@@ -11,7 +11,7 @@ var searchData=
   ['hangingball',['HangingBall',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eadbe9b0c31fc2a9c0e3795492793367a1',1,'TombRaider1']]],
   ['header',['header',['../_network_8h.html#ad97a72bff4a3264b4aee2be24624475e',1,'network_frame_t']]],
   ['health',['health',['../_world_8h.html#a057d405056a119471451f2098ffe8c7f',1,'actor_entity_t']]],
-  ['height',['height',['../tga_8h.html#a6598f348ffe7b2c5c0c59fff865b9e69',1,'tga_t::height()'],['../_tomb_raider_8h.html#aea3150ac32ff6b47ea03f42db93ade07',1,'tr2_sprite_texture_s::height()'],['../_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497',1,'height():&#160;TombRaider.h']]],
+  ['height',['height',['../tga_8h.html#a6598f348ffe7b2c5c0c59fff865b9e69',1,'tga_t::height()'],['../_tomb_raider_8h.html#aea3150ac32ff6b47ea03f42db93ade07',1,'tr2_sprite_texture_s::height()'],['../tga_8h.html#af18f8bb6992dfc1916f305c228eccfc7',1,'height():&#160;tga.h'],['../_tomb_raider_8h.html#aa8e4172ede7827e837ac528eae04c497',1,'height():&#160;TombRaider.h']]],
   ['hel_5f180_5fover_5fpi',['HEL_180_OVER_PI',['../_mat_math_8h.html#aa19f6cd359bca0292ab22515c68900f6',1,'MatMath.h']]],
   ['hel_5f2_5fpi',['HEL_2_PI',['../_mat_math_8h.html#ad1c1597bf7cd4e529280c3b6f944d0d1',1,'MatMath.h']]],
   ['hel_5fdeg_5fto_5frad',['HEL_DEG_TO_RAD',['../_mat_math_8h.html#ac5580680f5eab508c9dd997836b36e88',1,'MatMath.h']]],

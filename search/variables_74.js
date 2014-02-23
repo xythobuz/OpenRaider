@@ -34,5 +34,5 @@ var searchData=
   ['tris',['tris',['../_tomb_raider_8h.html#a4b1fed97d6ab5a4b4267bdc6711947cb',1,'tr5_room_geometry_t']]],
   ['true_5ffloor',['true_floor',['../_tomb_raider_8h.html#a8a079588775b39ec3c66df936f07d9fd',1,'tr2_boxes_s::true_floor()'],['../_tomb_raider_8h.html#af8a7bf85966f4d8a5c5f4a5076bd05b7',1,'true_floor():&#160;TombRaider.h']]],
   ['ttl',['ttl',['../_world_8h.html#a24b811c49f5a1549d7a0697289740c30',1,'world_entity_t']]],
-  ['type',['type',['../_world_8h.html#a85e1d1d5856182bd9bf05d4f1d7b9cf1',1,'entity_t::type()'],['../_world_8h.html#aa87315aefa7cb29b9631411dc7574742',1,'world_entity_t::type()']]]
+  ['type',['type',['../_world_8h.html#a85e1d1d5856182bd9bf05d4f1d7b9cf1',1,'entity_t::type()'],['../_world_8h.html#aa87315aefa7cb29b9631411dc7574742',1,'world_entity_t::type()'],['../tga_8h.html#abcbc138c5954915a83bcd8b0295e4e65',1,'type():&#160;tga.h']]]
 ];

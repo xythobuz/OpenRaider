@@ -1,0 +1,11 @@
+digraph "model_mesh_t"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="model_mesh_t",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" texturedRectangles\ntexturedTriangles\ncoloredRectangles\ncoloredTriangles" ,fontname="Helvetica"];
+  Node2 [label="Vector\< texture_tri\l_t * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node3 [label="texture_tri_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_world_8h.html#structtexture__tri__t"];
+}

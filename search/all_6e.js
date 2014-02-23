@@ -1,7 +1,7 @@
 var searchData=
 [
   ['n',['N',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea0c112d7cb6c4926fc74734ab7596c851',1,'TombRaider1::N()'],['../test_2memory__test_8cpp.html#ad7e837aa7bd2205fa1b8138a9f44a355',1,'n():&#160;memory_test.cpp']]],
-  ['name',['name',['../_world_8h.html#ae7fc2798845419be2f2a7f6b2e8388b3',1,'actor_entity_t::name()'],['../class_emitter.html#a39612464ef82815d77b8bde93dff0e49',1,'Emitter::Name()']]],
+  ['name',['Name',['../class_emitter.html#a39612464ef82815d77b8bde93dff0e49',1,'Emitter::Name()'],['../_world_8h.html#ae7fc2798845419be2f2a7f6b2e8388b3',1,'actor_entity_t::name()']]],
   ['nearside',['nearSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa76c161e162121970963890db4e23e6be',1,'ViewVolume']]],
   ['negative_5flength',['negative_length',['../_tomb_raider_8h.html#a01b878e42cb2dfbe5fffaa6a7d325d65',1,'tr2_sprite_sequence_s::negative_length()'],['../_tomb_raider_8h.html#a990974d37f65ae93636f440535074148',1,'negative_length():&#160;TombRaider.h']]],
   ['network',['Network',['../class_network.html',1,'Network'],['../class_network.html#a3cc2fb4f8fa4d507077e8da85ce5a1c8',1,'Network::Network()']]],
@@ -12,7 +12,7 @@ var searchData=
   ['network_5fpacket_5ft',['network_packet_t',['../_network_8h.html#structnetwork__packet__t',1,'']]],
   ['new',['new',['../memory__test_8h.html#a1ac41480eb2e4aadd52252ee550b630a',1,'memory_test.h']]],
   ['newroomrenderlist',['newRoomRenderList',['../class_render.html#a6e22a8cff8ef993db48cc79ed602ac5e',1,'Render']]],
-  ['next',['Next',['../class_list_node.html#a71ad29bcc3e33a8e4c70599312f078bd',1,'ListNode::Next()'],['../class_list_node.html#a09cffe3c0b61b8b8696afe69fa8d97c1',1,'ListNode::Next(ListNode&lt; T &gt; *next)'],['../class_list.html#a066be32a62bdff2e3b0801c8bbd6123e',1,'List::Next()'],['../class_map_node.html#a5cca705450a812a60500602e608403b6',1,'MapNode::Next()'],['../class_map_node.html#a50b35dc0f907458a7b8361ffee34a519',1,'MapNode::Next(MapNode&lt; K, D &gt; *next)'],['../class_map.html#a4c189d03275f4131bab98e3528dd7b7c',1,'Map::Next()'],['../class_vector.html#a292a9e84540e6faac5152416be31dbfb',1,'Vector::next()']]],
+  ['next',['next',['../class_vector.html#a292a9e84540e6faac5152416be31dbfb',1,'Vector::next()'],['../class_list_node.html#a71ad29bcc3e33a8e4c70599312f078bd',1,'ListNode::Next()'],['../class_list_node.html#a09cffe3c0b61b8b8696afe69fa8d97c1',1,'ListNode::Next(ListNode&lt; T &gt; *next)'],['../class_list.html#a066be32a62bdff2e3b0801c8bbd6123e',1,'List::Next()'],['../class_map_node.html#a5cca705450a812a60500602e608403b6',1,'MapNode::Next()'],['../class_map_node.html#a50b35dc0f907458a7b8361ffee34a519',1,'MapNode::Next(MapNode&lt; K, D &gt; *next)'],['../class_map.html#a4c189d03275f4131bab98e3528dd7b7c',1,'Map::Next()']]],
   ['next_5fanimation',['next_animation',['../_tomb_raider_8h.html#a185592ea3aa225544e25bbb1c54a156d',1,'tr2_animation_s::next_animation()'],['../_tomb_raider_8h.html#aa531845a6a6ef30a93436730f4f92565',1,'tr4_animation_s::next_animation()'],['../_tomb_raider_8h.html#aa7f62e1da7a2eb80c6a80b5a3edc2ce2',1,'tr2_anim_dispatch_s::next_animation()'],['../_tomb_raider_8h.html#a4e5d00cbcede5986eed50ace67d98ddc',1,'next_animation():&#160;TombRaider.h']]],
   ['next_5fframe',['next_frame',['../_tomb_raider_8h.html#ad332489e5dcaab76428d2173fbfd1162',1,'tr2_animation_s::next_frame()'],['../_tomb_raider_8h.html#a4f284ca448a51bdd8dd6d4439cb1bbb2',1,'tr4_animation_s::next_frame()'],['../_tomb_raider_8h.html#ac636f206c1812e5848f98445f4561791',1,'tr2_anim_dispatch_s::next_frame()'],['../_tomb_raider_8h.html#a3954529f84abfa4d581fe5f4c82cd9f5',1,'next_frame():&#160;TombRaider.h']]],
   ['next_5fpurple',['NEXT_PURPLE',['../_render_8cpp.html#a0986bed04aff1dced11ed5bcbbd95777',1,'Render.cpp']]],
@@ -77,7 +77,7 @@ var searchData=
   ['numsprites',['NumSprites',['../class_tomb_raider.html#a0403b91e697e5c72b78fc672beb503e9',1,'TombRaider']]],
   ['numspritesequences',['NumSpriteSequences',['../class_tomb_raider.html#a6ea5c5a13f452cfbeb12c1d7a3dd6684',1,'TombRaider']]],
   ['numstatechanges',['NumStateChanges',['../_tomb_raider_8h.html#a5ec604567368c8f9e37e339ec9fd7e5c',1,'tr5_animation_t']]],
-  ['numstaticmeshes',['NumStaticMeshes',['../class_tomb_raider.html#aada96db1b6eab04e2bbc29aae0791ae3',1,'TombRaider::NumStaticMeshes()'],['../_tomb_raider_8h.html#ae9bea97d24b5789a1e2347d587a487ed',1,'tr5_room_t::numStaticMeshes()']]],
+  ['numstaticmeshes',['numStaticMeshes',['../_tomb_raider_8h.html#ae9bea97d24b5789a1e2347d587a487ed',1,'tr5_room_t::numStaticMeshes()'],['../class_tomb_raider.html#aada96db1b6eab04e2bbc29aae0791ae3',1,'TombRaider::NumStaticMeshes()']]],
   ['numtexturedrectangles',['numTexturedRectangles',['../_tomb_raider_8h.html#a366560c6b3ee51a51a0b57b0c31e930e',1,'tr5_mesh_t']]],
   ['numtexturedtriangles',['numTexturedTriangles',['../_tomb_raider_8h.html#a7862a4a3ede3966885cdd7fb3a3a34ab',1,'tr5_mesh_t']]],
   ['numtextures',['NumTextures',['../class_tomb_raider.html#a87812c99ac732a78c0584c2e08c11585',1,'TombRaider']]],

@@ -242,7 +242,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;}</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="class_network.html#a2165c89fcc1116772ba2409a1437d059">  165</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_network.html#a2165c89fcc1116772ba2409a1437d059">Network::setBindHost</a>(<span class="keywordtype">char</span> *s)</div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="class_network.html#a2165c89fcc1116772ba2409a1437d059">  165</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_network.html#a2165c89fcc1116772ba2409a1437d059">Network::setBindHost</a>(<span class="keywordtype">char</span> *<a class="code" href="_texture_8h.html#a54dd25915da2224dca3a4f01351a5312">s</a>)</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;{</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">if</span> (!s || !s[0])</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">return</span>;</div>
@@ -251,7 +251,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;}</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="class_network.html#a727c70cd86539b7d7cfbce503a9a1c91">  174</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_network.html#a727c70cd86539b7d7cfbce503a9a1c91">Network::setRemoteHost</a>(<span class="keywordtype">char</span> *s)</div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="class_network.html#a727c70cd86539b7d7cfbce503a9a1c91">  174</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_network.html#a727c70cd86539b7d7cfbce503a9a1c91">Network::setRemoteHost</a>(<span class="keywordtype">char</span> *<a class="code" href="_texture_8h.html#a54dd25915da2224dca3a4f01351a5312">s</a>)</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;{</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">if</span> (!s || !s[0])</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">return</span>;</div>
@@ -668,110 +668,112 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;</div>
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;            <span class="keywordflow">if</span> (!f.<a class="code" href="_network_8h.html#ad924e71a6d563b477d8f33d01189ecea">data</a>.<a class="code" href="_network_8h.html#aa1425faaaeaaa01b4feb4b86ba8cc4ee">send</a>)</div>
 <div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;            {</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;                <span class="keyword">const</span> <span class="keyword">struct </span>timespec tmp = {.tv_sec = 0, .tv_nsec = 20000};</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;                nanosleep(&amp;tmp, NULL);</div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;            }</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;        }</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;        <span class="comment">// 2. Copy to frame</span></div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;        f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a> = 0;<span class="comment">//seq;  // 0 forces all packets to check out</span></div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;        f.<a class="code" href="_network_8h.html#a654ae2deebd697e855dd7a711d7a1343">uid</a> = <a class="code" href="src_2_network_8cpp.html#af6a119f66c12ea343ad9cf6684665a3d">gUID</a>;</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;        <span class="comment">// 3. Send over the wire</span></div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;        done = 0;</div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;        timedOut = 0;</div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;</div>
-<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;        <span class="keywordflow">while</span> (!done)</div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;        {</div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_network.html#a1dd4367b0fe518aec9f46aec96c85a63">mDebug</a>)</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;            {</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                printf(<span class="stringliteral">&quot;Client: Sending packet %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>);</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;            }</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;            cc = sendto(socket_fd, &amp;f, <span class="keyword">sizeof</span>(f), 0,</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                    (<span class="keyword">struct</span> sockaddr *)&amp;dest, <span class="keyword">sizeof</span>(dest));</div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;            <span class="keywordflow">if</span> (cc &lt; 0)</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;            {</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;                perror(<span class="stringliteral">&quot;Client: send_udp:sendto&quot;</span>);</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                <span class="keywordflow">if</span> (errno == EMSGSIZE)</div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                {</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                    printf(<span class="stringliteral">&quot;Client: packet was too large\n&quot;</span>);</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                }</div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;            }</div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;            {</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;                f.<a class="code" href="_network_8h.html#ad924e71a6d563b477d8f33d01189ecea">data</a>.<a class="code" href="_network_8h.html#aa1425faaaeaaa01b4feb4b86ba8cc4ee">send</a> = 0;</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;            }</div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;</div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;            <span class="comment">// Comment out this to enable more reliable service</span></div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;            done = 1;</div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;        }</div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;        <span class="comment">// 4. Wait for +ack or resend</span></div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;        FD_ZERO(&amp;readfds);</div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;        <span class="comment">// Setup socket to listen on here</span></div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;        FD_SET(socket_fd, &amp;readfds);</div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;</div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;        <span class="comment">// Set timeout in milliseconds</span></div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;        timeout.tv_usec = 850;</div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;</div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;        cc = select(socket_fd + 1, &amp;readfds, NULL, NULL, &amp;timeout);</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;                <span class="keyword">struct </span>timespec tmp;</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;                tmp.tv_sec = 0;</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;                tmp.tv_nsec = 20000;</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;                nanosleep(&amp;tmp, NULL);</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;            }</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;        }</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;        <span class="comment">// 2. Copy to frame</span></div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;        f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a> = 0;<span class="comment">//seq;  // 0 forces all packets to check out</span></div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;        f.<a class="code" href="_network_8h.html#a654ae2deebd697e855dd7a711d7a1343">uid</a> = <a class="code" href="src_2_network_8cpp.html#af6a119f66c12ea343ad9cf6684665a3d">gUID</a>;</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;        <span class="comment">// 3. Send over the wire</span></div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;        done = 0;</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;        timedOut = 0;</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;        <span class="keywordflow">while</span> (!done)</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;        {</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_network.html#a1dd4367b0fe518aec9f46aec96c85a63">mDebug</a>)</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;            {</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;                printf(<span class="stringliteral">&quot;Client: Sending packet %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>);</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;            }</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;            cc = sendto(socket_fd, &amp;f, <span class="keyword">sizeof</span>(f), 0,</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;                    (<span class="keyword">struct</span> sockaddr *)&amp;dest, <span class="keyword">sizeof</span>(dest));</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;            <span class="keywordflow">if</span> (cc &lt; 0)</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;            {</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                perror(<span class="stringliteral">&quot;Client: send_udp:sendto&quot;</span>);</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                <span class="keywordflow">if</span> (errno == EMSGSIZE)</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                {</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;                    printf(<span class="stringliteral">&quot;Client: packet was too large\n&quot;</span>);</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;                }</div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;            }</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;            {</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                f.<a class="code" href="_network_8h.html#ad924e71a6d563b477d8f33d01189ecea">data</a>.<a class="code" href="_network_8h.html#aa1425faaaeaaa01b4feb4b86ba8cc4ee">send</a> = 0;</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;            }</div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;            <span class="comment">// Comment out this to enable more reliable service</span></div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;            done = 1;</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;        }</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;        <span class="comment">// 4. Wait for +ack or resend</span></div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;        FD_ZERO(&amp;readfds);</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;</div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;        <span class="comment">// Setup socket to listen on here</span></div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;        FD_SET(socket_fd, &amp;readfds);</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;        <span class="comment">// Set timeout in milliseconds</span></div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;        timeout.tv_usec = 850;</div>
 <div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;</div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;        <span class="keywordflow">if</span> ((cc &lt; 0) &amp;&amp; (errno != EINTR))</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;        {</div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;            <span class="comment">// there was an local error with select</span></div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;        }</div>
-<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;</div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;        <span class="keywordflow">if</span> (cc == 0)</div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;        {</div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_network.html#a1dd4367b0fe518aec9f46aec96c85a63">mDebug</a>)</div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;            {</div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;                printf(<span class="stringliteral">&quot;Client: Timeout detected on packet %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>);</div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;            }</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;            timedOut = 1;</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;        }</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;        <span class="comment">// Clear header for recv use</span></div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;        f.<a class="code" href="_network_8h.html#ad97a72bff4a3264b4aee2be24624475e">header</a> = 0;</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;        fsize = <span class="keyword">sizeof</span>(dest);</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;        cc = recvfrom(socket_fd, &amp;f, <span class="keyword">sizeof</span>(f), 0,</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;                (<span class="keyword">struct</span> sockaddr *)&amp;dest, &amp;fsize);</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;</div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;        <span class="keywordflow">if</span> (cc &lt; 0)</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;        {</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;            perror(<span class="stringliteral">&quot;Client: recv_udp:recvfrom&quot;</span>);</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;        }</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;        {</div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_network.html#a1dd4367b0fe518aec9f46aec96c85a63">mDebug</a>)</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;            {</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;                printf(<span class="stringliteral">&quot;Client: Datalink layer recieved: packet seq %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>);</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;                printf(<span class="stringliteral">&quot;CLIENT&gt; Msg from %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a654ae2deebd697e855dd7a711d7a1343">uid</a>);</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;            }</div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;            <a class="code" href="_network_8h.html#a3345bcb791358be30bd2daee0818faab">to_network_layer</a>(f.<a class="code" href="_network_8h.html#ad924e71a6d563b477d8f33d01189ecea">data</a>);</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;        }</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        <span class="keywordflow">if</span> (seq == f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>)</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;        {</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_network.html#a1dd4367b0fe518aec9f46aec96c85a63">mDebug</a>)</div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;            {</div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;                printf(<span class="stringliteral">&quot;Client: Recieved ack %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>);</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;            }</div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;</div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;            ++seq;</div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;        }</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;    }</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;    <a class="code" href="class_network.html#ad0dc5fe5f90aee9fb94762818165f2a8">mKillServer</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;}</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;        cc = select(socket_fd + 1, &amp;readfds, NULL, NULL, &amp;timeout);</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;        <span class="keywordflow">if</span> ((cc &lt; 0) &amp;&amp; (errno != EINTR))</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;        {</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;            <span class="comment">// there was an local error with select</span></div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;        }</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;        <span class="keywordflow">if</span> (cc == 0)</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;        {</div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_network.html#a1dd4367b0fe518aec9f46aec96c85a63">mDebug</a>)</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;            {</div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;                printf(<span class="stringliteral">&quot;Client: Timeout detected on packet %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>);</div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;            }</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;            timedOut = 1;</div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;        }</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;        <span class="comment">// Clear header for recv use</span></div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;        f.<a class="code" href="_network_8h.html#ad97a72bff4a3264b4aee2be24624475e">header</a> = 0;</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;        fsize = <span class="keyword">sizeof</span>(dest);</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;        cc = recvfrom(socket_fd, &amp;f, <span class="keyword">sizeof</span>(f), 0,</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;                (<span class="keyword">struct</span> sockaddr *)&amp;dest, &amp;fsize);</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;        <span class="keywordflow">if</span> (cc &lt; 0)</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;        {</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;            perror(<span class="stringliteral">&quot;Client: recv_udp:recvfrom&quot;</span>);</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;        }</div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        {</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_network.html#a1dd4367b0fe518aec9f46aec96c85a63">mDebug</a>)</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;            {</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;                printf(<span class="stringliteral">&quot;Client: Datalink layer recieved: packet seq %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>);</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;                printf(<span class="stringliteral">&quot;CLIENT&gt; Msg from %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a654ae2deebd697e855dd7a711d7a1343">uid</a>);</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;            }</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;            <a class="code" href="_network_8h.html#a3345bcb791358be30bd2daee0818faab">to_network_layer</a>(f.<a class="code" href="_network_8h.html#ad924e71a6d563b477d8f33d01189ecea">data</a>);</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        }</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;        <span class="keywordflow">if</span> (seq == f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>)</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;        {</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_network.html#a1dd4367b0fe518aec9f46aec96c85a63">mDebug</a>)</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;            {</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;                printf(<span class="stringliteral">&quot;Client: Recieved ack %u\n&quot;</span>, f.<a class="code" href="_network_8h.html#a63ab1c2412a79b84befd7616e6f85729">seq</a>);</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;            }</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;            ++seq;</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;        }</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;    }</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;    <a class="code" href="class_network.html#ad0dc5fe5f90aee9fb94762818165f2a8">mKillServer</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;}</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;</div>
 <div class="ttc" id="test_2memory__test_8cpp_html_a9384343c8d6a756c1d78cdc73d351b8e"><div class="ttname"><a href="test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e">i</a></div><div class="ttdeci">int * i</div><div class="ttdef"><b>Definition:</b> <a href="test_2memory__test_8cpp_source.html#l00018">memory_test.cpp:18</a></div></div>
 <div class="ttc" id="_network_8h_html_aa1425faaaeaaa01b4feb4b86ba8cc4ee"><div class="ttname"><a href="_network_8h.html#aa1425faaaeaaa01b4feb4b86ba8cc4ee">network_packet_t::send</a></div><div class="ttdeci">char send</div><div class="ttdef"><b>Definition:</b> <a href="_network_8h_source.html#l00017">Network.h:17</a></div></div>
 <div class="ttc" id="src_2_network_8cpp_html_a9c20dfcf79334fdcb5ddb58553a916ca"><div class="ttname"><a href="src_2_network_8cpp.html#a9c20dfcf79334fdcb5ddb58553a916ca">gNumClients</a></div><div class="ttdeci">unsigned int gNumClients</div><div class="ttdef"><b>Definition:</b> <a href="src_2_network_8cpp_source.html#l00042">Network.cpp:42</a></div></div>
@@ -814,6 +816,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="_network_8h_html_structnetwork__frame__t"><div class="ttname"><a href="_network_8h.html#structnetwork__frame__t">network_frame_t</a></div><div class="ttdoc">The frame holds the data for the datalink layer. </div><div class="ttdef"><b>Definition:</b> <a href="_network_8h_source.html#l00035">Network.h:35</a></div></div>
 <div class="ttc" id="_network_8h_html_ad924e71a6d563b477d8f33d01189ecea"><div class="ttname"><a href="_network_8h.html#ad924e71a6d563b477d8f33d01189ecea">network_frame_t::data</a></div><div class="ttdeci">network_packet_t data</div><div class="ttdoc">The packet for the NL. </div><div class="ttdef"><b>Definition:</b> <a href="_network_8h_source.html#l00039">Network.h:39</a></div></div>
 <div class="ttc" id="class_network_html_af5bf407932ea1cd43dea4bc36b9e07c5"><div class="ttname"><a href="class_network.html#af5bf407932ea1cd43dea4bc36b9e07c5">Network::Instance</a></div><div class="ttdeci">static Network * Instance()</div><div class="ttdoc">Get the Singleton or create it on first use. </div><div class="ttdef"><b>Definition:</b> <a href="src_2_network_8cpp_source.html#l00053">Network.cpp:53</a></div></div>
+<div class="ttc" id="_texture_8h_html_a54dd25915da2224dca3a4f01351a5312"><div class="ttname"><a href="_texture_8h.html#a54dd25915da2224dca3a4f01351a5312">s</a></div><div class="ttdeci">unsigned int char * s</div><div class="ttdef"><b>Definition:</b> <a href="_texture_8h_source.html#l00253">Texture.h:253</a></div></div>
 <div class="ttc" id="_network_8h_html_a02139074922e8e0983ac1b63a9bdc6da"><div class="ttname"><a href="_network_8h.html#a02139074922e8e0983ac1b63a9bdc6da">network_packet_t::cid</a></div><div class="ttdeci">unsigned int cid</div><div class="ttdef"><b>Definition:</b> <a href="_network_8h_source.html#l00019">Network.h:19</a></div></div>
 <div class="ttc" id="class_network_html_a2ec5b9fb8c3366cbbfda65065c06c4df"><div class="ttname"><a href="class_network.html#a2ec5b9fb8c3366cbbfda65065c06c4df">Network::mNetworkReliable</a></div><div class="ttdeci">bool mNetworkReliable</div><div class="ttdef"><b>Definition:</b> <a href="_network_8h_source.html#l00106">Network.h:106</a></div></div>
 <div class="ttc" id="class_network_html_a67df6b20eb42565a1ef4bcb020baa83f"><div class="ttname"><a href="class_network.html#a67df6b20eb42565a1ef4bcb020baa83f">Network::mRemoteHost</a></div><div class="ttdeci">char mRemoteHost[REMOTE_HOST_STR_SZ]</div><div class="ttdef"><b>Definition:</b> <a href="_network_8h_source.html#l00103">Network.h:103</a></div></div>

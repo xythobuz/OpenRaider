@@ -1,0 +1,20 @@
+digraph "tr5_room_t"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="tr5_room_t",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" vertices" ,fontname="Helvetica"];
+  Node2 [label="tr5_vertex_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_tomb_raider_8h.html#structtr5__vertex__t"];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" layers" ,fontname="Helvetica"];
+  Node3 [label="tr5_room_layer_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_tomb_raider_8h.html#structtr5__room__layer__t"];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" faces" ,fontname="Helvetica"];
+  Node4 [label="tr5_room_geometry_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_tomb_raider_8h.html#structtr5__room__geometry__t"];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" quads" ,fontname="Helvetica"];
+  Node5 [label="tr5_face4_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_tomb_raider_8h.html#structtr5__face4__t"];
+  Node2 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" verts" ,fontname="Helvetica"];
+  Node6 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" tris" ,fontname="Helvetica"];
+  Node6 [label="tr5_face3_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_tomb_raider_8h.html#structtr5__face3__t"];
+  Node7 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" lights" ,fontname="Helvetica"];
+  Node7 [label="tr5_light_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_tomb_raider_8h.html#structtr5__light__t"];
+}

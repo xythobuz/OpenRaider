@@ -1,0 +1,47 @@
+digraph "RenderRoom"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="RenderRoom",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" room" ,fontname="Helvetica"];
+  Node2 [label="room_mesh_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_world_8h.html#structroom__mesh__t"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" models" ,fontname="Helvetica"];
+  Node3 [label="Vector\< static_model\l_t * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node4 [label="static_model_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_world_8h.html#structstatic__model__t"];
+  Node5 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" adjacentRooms" ,fontname="Helvetica"];
+  Node5 [label="Vector\< int \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" boxes" ,fontname="Helvetica"];
+  Node6 [label="Vector\< box_t * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node7 [label="box_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_world_8h.html#structbox__t"];
+  Node8 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" a\nb\nc\nd" ,fontname="Helvetica"];
+  Node8 [label="vertex_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_world_8h.html#structvertex__t"];
+  Node9 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" sectors" ,fontname="Helvetica"];
+  Node9 [label="Vector\< sector_t * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node10 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node10 [label="sector_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_world_8h.html#structsector__t"];
+  Node11 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" sprites" ,fontname="Helvetica"];
+  Node11 [label="Vector\< sprite_t * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node12 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node12 [label="sprite_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_world_8h.html#structsprite__t"];
+  Node13 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" texel" ,fontname="Helvetica"];
+  Node13 [label="texel_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_world_8h.html#structtexel__t"];
+  Node8 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" vertex" ,fontname="Helvetica"];
+  Node14 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" portals" ,fontname="Helvetica"];
+  Node14 [label="Vector\< portal_t * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node15 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node15 [label="portal_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_world_8h.html#structportal__t"];
+  Node16 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" lights" ,fontname="Helvetica"];
+  Node16 [label="Vector\< Light * \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html"];
+  Node17 -> Node16 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mData\nmError" ,fontname="Helvetica"];
+  Node17 [label="Light",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_light_8h.html#class_light",tooltip="The GL light class. "];
+  Node18 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mesh" ,fontname="Helvetica"];
+  Node18 [label="Mesh",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh.html",tooltip="OpenGL Mesh. "];
+  Node19 -> Node18 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mQuads" ,fontname="Helvetica"];
+  Node19 [label="rect_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_mesh_8h.html#structrect__t"];
+  Node20 -> Node18 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mTris" ,fontname="Helvetica"];
+  Node20 [label="tris_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_mesh_8h.html#structtris__t"];
+}

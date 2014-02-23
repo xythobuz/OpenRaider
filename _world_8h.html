@@ -94,6 +94,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">World.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The game world (model)  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="_skeletal_model_8h_source.html">SkeletalModel.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_list_8h_source.html">List.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_vector_8h_source.html">Vector.h</a>&gt;</code><br/>
@@ -101,16 +104,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for World.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="_world_8h__incl.png" border="0" usemap="#include_2_world_8h" alt=""/></div>
-<map name="include_2_world_8h" id="include_2_world_8h">
-<area shape="rect" id="node2" href="_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="57,80,167,107"/><area shape="rect" id="node3" href="_vector_8h.html" title="Template Vector. " alt="" coords="140,155,207,181"/><area shape="rect" id="node6" href="_mat_math_8h.html" title="Vector and Matrix math. " alt="" coords="5,155,88,181"/><area shape="rect" id="node8" href="_list_8h.html" title="Template list. " alt="" coords="231,155,281,181"/></map>
+<div class="center"><!-- SVG 0 -->
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="_world_8h__dep__incl.png" border="0" usemap="#include_2_world_8hdep" alt=""/></div>
-<map name="include_2_world_8hdep" id="include_2_world_8hdep">
-<area shape="rect" id="node2" href="_open_raider_8h.html" title="Main Game Singleton. " alt="" coords="56,155,200,181"/><area shape="rect" id="node3" href="_open_raider_8cpp.html" title="src/OpenRaider.cpp" alt="" coords="5,229,141,256"/><area shape="rect" id="node4" href="_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="136,80,251,107"/><area shape="rect" id="node6" href="_world_8cpp.html" title="src/World.cpp" alt="" coords="275,80,373,107"/><area shape="rect" id="node5" href="_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="225,155,332,181"/></map>
+<div class="center"><!-- SVG 1 -->
+</div>
 </div>
 </div>
 <p><a href="_world_8h_source.html">Go to the source code of this file.</a></p>
@@ -119,12 +120,8 @@ This graph shows which files directly or indirectly include this file:</div>
 Classes</h2></td></tr>
 <tr class="memitem:structvertex__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_8h.html#structvertex__t">vertex_t</a></td></tr>
 <tr class="separator:structvertex__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structuv__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_8h.html#structuv__t">uv_t</a></td></tr>
-<tr class="separator:structuv__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structtexel__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_8h.html#structtexel__t">texel_t</a></td></tr>
 <tr class="separator:structtexel__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structcolor__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_8h.html#structcolor__t">color_t</a></td></tr>
-<tr class="separator:structcolor__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structsprite__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_8h.html#structsprite__t">sprite_t</a></td></tr>
 <tr class="separator:structsprite__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structsprite__seq__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_8h.html#structsprite__seq__t">sprite_seq_t</a></td></tr>
@@ -150,6 +147,7 @@ Classes</h2></td></tr>
 <tr class="memitem:structactor__entity__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_8h.html#structactor__entity__t">actor_entity_t</a></td></tr>
 <tr class="separator:structactor__entity__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html">World</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The game world (model)  <a href="class_world.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -194,7 +192,12 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="separator:afc445ca2a21bdc9b879736295a33084a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The game world (model) </p>
+<dl class="section author"><dt>Author</dt><dd>Mongoose </dd></dl>
+
+<p>Definition in file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+</div><hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="structvertex__t" id="structvertex__t"></a>
 <div class="memitem">
 <div class="memproto">
@@ -205,36 +208,13 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00055">55</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00034">34</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="aec9d4bce03c45fc6695d07ca22cfdf91"></a><a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
 <td class="fieldname">
 pos</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="structuv__t" id="structuv__t"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct uv_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00062">62</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a5ea488779b0cb30ff025143e31044a13"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a></td>
-<td class="fieldname">
-uv</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -251,36 +231,13 @@ uv</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00068">68</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00048">48</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="acdeb82a4ee04bd2a00b6e568918319bc"></a><a class="el" href="_mat_math_8h.html#ab45ab1cfd75b1a54950ce5c31fcb3cbb">vec2_t</a></td>
 <td class="fieldname">
 st</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="structcolor__t" id="structcolor__t"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct color_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00075">75</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="af12bddac694fcd5fa715201bd426e84d"></a><a class="el" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a></td>
-<td class="fieldname">
-rgba</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -297,13 +254,12 @@ rgba</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00082">82</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00052">52</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><div class="dynheader">
 Collaboration diagram for sprite_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structsprite__t__coll__graph.png" border="0" usemap="#sprite__t_coll__map" alt="Collaboration graph"/></div>
-<map name="sprite__t_coll__map" id="sprite__t_coll__map">
-<area shape="rect" id="node2" href="_world_8h.html#structtexel__t" title="texel_t" alt="" coords="5,5,64,32"/><area shape="rect" id="node3" href="_world_8h.html#structvertex__t" title="vertex_t" alt="" coords="88,5,155,32"/></map>
+<div class="center"><!-- SVG 2 -->
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
@@ -312,7 +268,7 @@ Collaboration diagram for sprite_t:</div>
 <td class="fieldname">
 num_verts</td>
 <td class="fielddoc">
-</td></tr>
+4 == Quad, 3 == Triangle, rendered as triangles </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="a905946312063dbd0d801df021d971bd5"></a>float</td>
 <td class="fieldname">
@@ -324,6 +280,7 @@ pos[3]</td>
 <td class="fieldname">
 radius</td>
 <td class="fielddoc">
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000015">FIXME:</a></b></dt><dd>yeah, I know </dd></dl>
 </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="ad9bb99e855d94a71cb90955393110bd1"></a><a class="el" href="_world_8h.html#structtexel__t">texel_t</a></td>
@@ -357,13 +314,12 @@ vertex[4]</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00094">94</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00061">61</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><div class="dynheader">
 Collaboration diagram for sprite_seq_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structsprite__seq__t__coll__graph.png" border="0" usemap="#sprite__seq__t_coll__map" alt="Collaboration graph"/></div>
-<map name="sprite__seq__t_coll__map" id="sprite__seq__t_coll__map">
-<area shape="rect" id="node2" href="_world_8h.html#structsprite__t" title="sprite_t" alt="" coords="46,96,108,123"/><area shape="rect" id="node3" href="_world_8h.html#structtexel__t" title="texel_t" alt="" coords="5,5,64,32"/><area shape="rect" id="node4" href="_world_8h.html#structvertex__t" title="vertex_t" alt="" coords="88,5,155,32"/></map>
+<div class="center"><!-- SVG 3 -->
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
@@ -394,7 +350,7 @@ sprite</td>
 </div><div class="memdoc">
 <div class="textblock"><dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000013">FIXME:</a></b></dt><dd>For now shaders are textures on tex objects and materials on color objects. If -1 then it doesn't have that information yet. </dd></dl>
 
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00107">107</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00070">70</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -435,13 +391,12 @@ transparency</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00117">117</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00077">77</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><div class="dynheader">
 Collaboration diagram for model_mesh_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structmodel__mesh__t__coll__graph.png" border="0" usemap="#model__mesh__t_coll__map" alt="Collaboration graph"/></div>
-<map name="model__mesh__t_coll__map" id="model__mesh__t_coll__map">
-<area shape="rect" id="node2" href="class_vector.html" title="Vector\&lt; texture_tri\l_t * \&gt;" alt="" coords="5,110,125,151"/><area shape="rect" id="node3" href="_world_8h.html#structtexture__tri__t" title="texture_tri_t" alt="" coords="23,5,107,32"/></map>
+<div class="center"><!-- SVG 4 -->
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
@@ -531,7 +486,7 @@ vertices</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00142">142</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00096">96</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -539,7 +494,7 @@ vertices</td>
 <td class="fieldname">
 angles[3]</td>
 <td class="fielddoc">
-</td></tr>
+Euler angles (pitch, yaw, roll) </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="af92643bc07b9491adf51fe9049480254"></a>bool</td>
 <td class="fieldname">
@@ -551,55 +506,55 @@ animate</td>
 <td class="fieldname">
 id</td>
 <td class="fielddoc">
-</td></tr>
+Unique identifier. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="aaff868f1ef8ed4e12228d9c5102c74f0"></a>struct entity_s *</td>
 <td class="fieldname">
 master</td>
 <td class="fielddoc">
-</td></tr>
+Part of entity chain? </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="ac8edfb050de8744b9e4d3f6e2ba73fbf"></a>int</td>
 <td class="fieldname">
 modelId</td>
 <td class="fielddoc">
-</td></tr>
+Animation model. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="a644307bc8149b00cb518ade003a867ec"></a><a class="el" href="_world_8h.html#a921ef2c68818962e43d6702b708da306">worldMoveType</a></td>
 <td class="fieldname">
 moveType</td>
 <td class="fielddoc">
-</td></tr>
+Type of motion/clipping. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="a7199a2663388d76b7e1a27239229209d"></a>bool</td>
 <td class="fieldname">
 moving</td>
 <td class="fielddoc">
-</td></tr>
+In motion? </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="ae2086b7387f172be8bec738f2826428f"></a>int</td>
 <td class="fieldname">
 objectId</td>
 <td class="fielddoc">
-</td></tr>
+What kind of entity? </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="a05036f7dfb282af2e734baa1a1a52a83"></a>float</td>
 <td class="fieldname">
 pos[3]</td>
 <td class="fielddoc">
-</td></tr>
+<a class="el" href="class_world.html" title="The game world (model) ">World</a> position. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="abb58018769ebd92f72a1d7d8946715bf"></a>int</td>
 <td class="fieldname">
 room</td>
 <td class="fielddoc">
-</td></tr>
+Current room entity is in. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="af85703cf006da4969f28c05f5e1b37bc"></a>int</td>
 <td class="fieldname">
 state</td>
 <td class="fielddoc">
-</td></tr>
+State of the Player, AI, or object. </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="a9ba968793fd35fd81501e3b99dd18dce"></a>void *</td>
 <td class="fieldname">
@@ -611,7 +566,7 @@ tmpHook</td>
 <td class="fieldname">
 type</td>
 <td class="fielddoc">
-</td></tr>
+{(0x00, item), (0x01, ai), (0x02, player)} </td></tr>
 </table>
 
 </div>
@@ -626,7 +581,7 @@ type</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00170">170</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00121">121</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -634,19 +589,19 @@ type</td>
 <td class="fieldname">
 index</td>
 <td class="fielddoc">
-</td></tr>
+model_mesh index </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="aa79540d16b72719638270e0700cd353f"></a>float</td>
 <td class="fieldname">
 pos[3]</td>
 <td class="fielddoc">
-</td></tr>
+position </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="ade89ea57b708e1f68fdb6871513b0e5f"></a>float</td>
 <td class="fieldname">
 yaw</td>
 <td class="fielddoc">
-</td></tr>
+angle of rotation on Y </td></tr>
 </table>
 
 </div>
@@ -661,7 +616,7 @@ yaw</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00183">183</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00130">130</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -696,13 +651,12 @@ vertices[4][3]</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00192">192</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00136">136</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><div class="dynheader">
 Collaboration diagram for box_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structbox__t__coll__graph.png" border="0" usemap="#box__t_coll__map" alt="Collaboration graph"/></div>
-<map name="box__t_coll__map" id="box__t_coll__map">
-<area shape="rect" id="node2" href="_world_8h.html#structvertex__t" title="vertex_t" alt="" coords="5,5,72,32"/></map>
+<div class="center"><!-- SVG 5 -->
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
@@ -744,7 +698,7 @@ d</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00201">201</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00143">143</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -780,13 +734,12 @@ wall</td>
 </div><div class="memdoc">
 <div class="textblock"><dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000014">FIXME:</a></b></dt><dd>No room mesh list or sprites and etc </dd></dl>
 
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00211">211</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00151">151</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><div class="dynheader">
 Collaboration diagram for room_mesh_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structroom__mesh__t__coll__graph.png" border="0" usemap="#room__mesh__t_coll__map" alt="Collaboration graph"/></div>
-<map name="room__mesh__t_coll__map" id="room__mesh__t_coll__map">
-<area shape="rect" id="node2" href="class_vector.html" title="Vector\&lt; static_model\l_t * \&gt;" alt="" coords="355,14,493,55"/><area shape="rect" id="node3" href="_world_8h.html#structstatic__model__t" title="static_model_t" alt="" coords="160,21,261,48"/><area shape="rect" id="node4" href="class_vector.html" title="Vector\&lt; int \&gt;" alt="" coords="379,80,469,107"/><area shape="rect" id="node5" href="class_vector.html" title="Vector\&lt; box_t * \&gt;" alt="" coords="363,131,485,157"/><area shape="rect" id="node6" href="_world_8h.html#structbox__t" title="box_t" alt="" coords="183,119,238,145"/><area shape="rect" id="node7" href="_world_8h.html#structvertex__t" title="vertex_t" alt="" coords="5,139,72,165"/><area shape="rect" id="node11" href="_world_8h.html#structsprite__t" title="sprite_t" alt="" coords="179,179,242,205"/><area shape="rect" id="node8" href="class_vector.html" title="Vector\&lt; sector_t * \&gt;" alt="" coords="358,236,490,263"/><area shape="rect" id="node9" href="_world_8h.html#structsector__t" title="sector_t" alt="" coords="178,239,243,265"/><area shape="rect" id="node10" href="class_vector.html" title="Vector\&lt; sprite_t * \&gt;" alt="" coords="359,181,489,208"/><area shape="rect" id="node12" href="_world_8h.html#structtexel__t" title="texel_t" alt="" coords="9,209,68,236"/><area shape="rect" id="node13" href="class_vector.html" title="Vector\&lt; portal_t * \&gt;" alt="" coords="359,291,489,317"/><area shape="rect" id="node14" href="_world_8h.html#structportal__t" title="portal_t" alt="" coords="179,299,242,325"/></map>
+<div class="center"><!-- SVG 6 -->
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
@@ -882,7 +835,7 @@ sprites</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00232">232</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00169">169</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -935,7 +888,7 @@ type</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00247">247</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00182">182</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -1054,8 +1007,9 @@ uid</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>For temp rendering use </dd></dl>
 
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00026">26</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00011">11</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 
 </div>
 </div>
@@ -1100,7 +1054,7 @@ uid</td>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00269">269</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00203">203</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 
 </div>
 </div>
@@ -1118,7 +1072,7 @@ uid</td>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00038">38</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00022">22</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 
 </div>
 </div>
@@ -1144,7 +1098,7 @@ uid</td>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_world_8h_source.html#l00044">44</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_8h_source.html#l00026">26</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 
 </div>
 </div>

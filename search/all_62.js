@@ -54,9 +54,8 @@ var searchData=
   ['bridgeslope1',['BridgeSlope1',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ead8007b505a0552d0aa11949252ef4d62',1,'TombRaider1']]],
   ['bridgeslope2',['BridgeSlope2',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ead6c285a0ca122147b8a113a2540140b0',1,'TombRaider1']]],
   ['buffercolorarray',['bufferColorArray',['../class_mesh.html#a3b846af6555ca36d4a5532861ae484f1',1,'Mesh']]],
-  ['bufferedprintf',['bufferedPrintf',['../_texture_8h.html#a4336d89f7962686c8e07942ca829d4b8',1,'bufferedPrintf(char *string, unsigned int len, char *s,...):&#160;Texture.cpp'],['../_texture_8cpp.html#a4336d89f7962686c8e07942ca829d4b8',1,'bufferedPrintf(char *string, unsigned int len, char *s,...):&#160;Texture.cpp']]],
+  ['bufferedprintf',['bufferedPrintf',['../_texture_8cpp.html#a4336d89f7962686c8e07942ca829d4b8',1,'Texture.cpp']]],
   ['buffernormalarray',['bufferNormalArray',['../class_mesh.html#a16d55d44a5b6e6e98e1eb9014782a20c',1,'Mesh']]],
-  ['bufferstring',['bufferString',['../class_system.html#ab9515b37758b42a84f4eac3dc5686aa7',1,'System']]],
   ['buffertriangles',['bufferTriangles',['../class_mesh.html#a496c27dc117b724b55984167e169e855',1,'Mesh']]],
   ['buffervertexarray',['bufferVertexArray',['../class_mesh.html#a616776a795ddbc68f6edba779d8923c4',1,'Mesh']]],
   ['buildroomrenderlist',['buildRoomRenderList',['../class_render.html#adc11fd1ff3cad147e59499a1a4cf15b2',1,'Render']]]

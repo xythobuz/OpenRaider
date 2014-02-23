@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['scale',['scale',['../class_matrix.html#a9626b2d019c0a728e1b828daeae4198e',1,'Matrix::scale(vec_t x, vec_t y, vec_t z)'],['../class_matrix.html#aedc9d5fa8e2c6f7b0f24267ca84262ff',1,'Matrix::scale(const vec_t *xyz)'],['../class_quaternion.html#a474442a8741e536d30a76da376b78a75',1,'Quaternion::scale()'],['../class_g_l_string.html#a8b827de6f864f2e78042329092f364c9',1,'GLString::Scale()']]],
+  ['scale',['Scale',['../class_g_l_string.html#a8b827de6f864f2e78042329092f364c9',1,'GLString::Scale()'],['../class_matrix.html#a9626b2d019c0a728e1b828daeae4198e',1,'Matrix::scale(vec_t x, vec_t y, vec_t z)'],['../class_matrix.html#aedc9d5fa8e2c6f7b0f24267ca84262ff',1,'Matrix::scale(const vec_t *xyz)'],['../class_quaternion.html#a474442a8741e536d30a76da376b78a75',1,'Quaternion::scale()']]],
   ['scalebuffer',['scaleBuffer',['../class_texture.html#afe79ddb351c7d9ddcd3ab7f9e7528f8c',1,'Texture']]],
   ['screenshot',['screenShot',['../class_render.html#a26e8b0e6b0f7a07f19213acd43f0bec6',1,'Render']]],
   ['sdlsystem',['SDLSystem',['../class_s_d_l_system.html#a3bc62709ebb1836e195bcf0b3288cce1',1,'SDLSystem']]],
@@ -22,7 +22,7 @@ var searchData=
   ['setdata',['SetData',['../class_tree_node.html#aff443a6030790a5f37e006feb605b93e',1,'TreeNode']]],
   ['setdebug',['setDebug',['../class_network.html#a78aff9c89b833b74b92829e7d6250a66',1,'Network::setDebug()'],['../class_tomb_raider.html#a104b6b4f075e4ed897055a6a500334d7',1,'TombRaider::setDebug()']]],
   ['setdrivergl',['setDriverGL',['../class_system.html#ac9e1cbe8dabee382c71db905182626d4',1,'System']]],
-  ['seterror',['setError',['../class_vector.html#af9476ae271b9b7260f648801abeeae0f',1,'Vector::setError()'],['../class_map.html#a8dec1252811ac8fb56345b95872124b0',1,'Map::SetError()']]],
+  ['seterror',['SetError',['../class_map.html#a8dec1252811ac8fb56345b95872124b0',1,'Map::SetError()'],['../class_vector.html#af9476ae271b9b7260f648801abeeae0f',1,'Vector::setError()']]],
   ['setflag',['setFlag',['../class_texture.html#a305ac8ed2401d8282f132a11c332a2a1',1,'Texture::setFlag()'],['../class_world.html#a6fa83a895e170f78e2f3a677a748bf42',1,'World::setFlag()']]],
   ['setflags',['setFlags',['../class_render.html#afd402df2d4eb19b0abdb66690f1b3f68',1,'Render']]],
   ['setframe',['setFrame',['../class_skeletal_model.html#afdc6661e45821d50b7938029d80e8b7e',1,'SkeletalModel']]],
@@ -49,7 +49,6 @@ var searchData=
   ['setsibling',['SetSibling',['../class_tree_node.html#a4086aa3a98c7db3ad337aa972ee27000',1,'TreeNode']]],
   ['setskymesh',['setSkyMesh',['../class_render.html#a3ff512211ab624ddfe256e2019c18427',1,'Render']]],
   ['setspeed',['setSpeed',['../class_camera.html#aeee0a6ec1d6acf26abd0868cef2dd97a',1,'Camera']]],
-  ['setstring',['SetString',['../class_g_l_string.html#a943a50d0943e32c3a46cb61ff0239563',1,'GLString']]],
   ['settarget',['setTarget',['../class_camera.html#a768e09316ae28ef952c406788b1decdc',1,'Camera']]],
   ['settexelscalingfactor',['setTexelScalingFactor',['../class_tomb_raider.html#af77dc1073abd181911534586ea24c7d1',1,'TombRaider']]],
   ['settextureid',['SetTextureId',['../class_emitter.html#a000ea95f7cc71a90e456b53a0a5617e7',1,'Emitter']]],

@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="BoundingSphere",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_bounding_volume_8h.html#class_bounding_sphere",tooltip="Defines a 3D sphere. "];
+}
