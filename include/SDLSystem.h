@@ -117,7 +117,6 @@ public:
     void toggleFullscreen();
 
 protected:
-    bool mFirstMouseEvent; //!< Filter first mouse event (SDL bug)
     bool mFullscreen;      //!< Current Fullscreen/Windowed mode
 
 private:
