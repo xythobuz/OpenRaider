@@ -259,10 +259,9 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     mString.Init(5);
 
     // String 0: OpenRaider version in lower right corner
-    mString.Scale(1.00);
+    mString.Scale(0.75f);
     err = mString.glPrintf(mWidth - 15 * strlen(VERSION),
             mHeight-35, "%s", VERSION);
-    mString.SetString(0, "%s", VERSION);
 
     if (err)
     {
@@ -270,9 +269,8 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     }
 
     // String 1: Used for FPS in game text output
-    mString.Scale(0.75);
+    mString.Scale(0.60f);
     err = mString.glPrintf(8, mHeight - 25, "%s", "                ");
-    mString.SetString(1, "%s", "                ");
 
     if (err)
     {
@@ -280,9 +278,8 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     }
 
     // String 2: Used for game console
-    mString.Scale(1.0);
+    mString.Scale(0.75f);
     err = mString.glPrintf(8, 25, "%s", console);
-    mString.SetString(2, "%s", console);
 
     if (err)
     {
@@ -290,9 +287,8 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     }
 
     // String 3: Used for one line map select menu
-    mString.Scale(1.75);
+    mString.Scale(1.25f);
     err = mString.glPrintf(mWidth/2-235, mHeight/2-24, "%s", menu);
-    mString.SetString(3, "%s", menu);
 
     if (err)
     {
@@ -300,9 +296,8 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     }
 
     // String 4: Used for one line in game text output
-    mString.Scale(1.0);
+    mString.Scale(0.75f);
     err = mString.glPrintf(8, 55, "%s", "                    ");
-    mString.SetString(4, "%s", "                    ");
 
     if (err)
     {

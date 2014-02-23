@@ -118,6 +118,10 @@ int GLString::glPrintf(int x, int y, const char *string, ...) {
     if (_num_string > _num_string_max)
         return -2;
 
+    // xythobuz 2014.02.23, Activate, so we don't have to call SetString
+    // directly after glPrintf, with the same text...
+    _string[_num_string].active = true;
+
     // Mongoose 2002.01.01, Assume no longer than 'sz' wide lines
     //   on first try
     _string[_num_string].text = new char[sz];

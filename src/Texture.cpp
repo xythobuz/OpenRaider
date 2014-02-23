@@ -320,7 +320,11 @@ gl_font_t *Texture::generateFont(ttf_texture_t *texture)
             h = 0;
         }
 
-        h += -texture->fontHeight/2-(texture->fontDescent + texture->glyphs[i].miny);
+        // After migrating to SDL2_TTF, some characters where rendered slightly
+        // vertically offset. However, dumping the font texture as TGA did not show
+        // this offset. It turns out, this fixes the issue...? O.o --xythobuz
+        // h += -texture->fontHeight/2-(texture->fontDescent + texture->glyphs[i].miny);
+        h -= texture->fontHeight/2 + texture->fontDescent;
 
         /* Make a list for this TTF glyph, one nonuniform Quad per glyph */
         glNewList(font->drawListBase + i, GL_COMPILE);
@@ -404,6 +408,8 @@ ttf_texture_t *Texture::generateFontTexture(const char *filename, int pointSize,
     // TTF_STYLE_NORMAL, TTF_STYLE_BOLD, TTF_STYLE_ITALIC, TTF_STYLE_UNDERLINE
     int renderStyle = TTF_STYLE_NORMAL;
     TTF_SetFontStyle(font, renderStyle);
+
+    TTF_SetFontHinting(font, TTF_HINTING_LIGHT);
 
     /* Allocate a new TTF font texture */
     printf("Creating font texture from '%s'...\n", filename);
