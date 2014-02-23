@@ -31,7 +31,7 @@ UNAME=$(shell uname -s)
 BASE_DEFS=-Iinclude -DUSING_EMITTER
 
 BASE_LIBS=$(shell sdl2-config --libs) -lz -lstdc++ \
-	-lpthread -lSDL_ttf
+	-lpthread -lSDL2_ttf
 
 # -DDEBUG_GL
 DEBUG_DEFS=-DDEBUG -DEXPERIMENTAL
@@ -50,6 +50,7 @@ AUDIO_LIBS += -lopenal -lalut
 GL_LIBS += -lGL -lGLU
 GL_LIBS += -L/usr/local/lib
 GL_DEFS += -isystem /usr/local/include
+BASE_LIBS += -L/usr/X11/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi
 endif
 
 BASE_LIBS += $(AUDIO_LIBS)
@@ -92,8 +93,7 @@ BASE_CFLAGS=$(FLAGS_ALL) $(BASE_DEFS) \
 	-DVERSION=\"\\\"$(NAME)-$(VERSION)-$(BUILD_ID)\\\"\" \
 	-DBUILD_HOST=\"\\\"$(BUILD_HOST)\\\"\"
 
-LD_FLAGS=-L/usr/X11/lib -lXmu -lXt -lSM -lICE -lXext -lX11 -lXi \
-	 -lm $(BASE_LIBS)
+LD_FLAGS=-lm $(BASE_LIBS)
 
 RELEASE_CFLAGS=$(BASE_CFLAGS) -ffast-math -funroll-loops \
 	-fomit-frame-pointer -O2 -Wall
