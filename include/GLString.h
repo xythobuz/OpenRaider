@@ -74,8 +74,7 @@ public:
      * \param string valid string id
      * \param s format string and args like for printf
      */
-    __attribute__((format(printf, 3, 4)))
-    void SetString(unsigned int string, const char *s, ...);
+    void SetString(unsigned int string, const char *s, ...) __attribute__((format(printf, 3, 4)));
 
     /*!
      * \brief Sets default text scaling
@@ -90,8 +89,7 @@ public:
      * \param string valid format string with args like for printf
      * \returns 0 on success, -1 on invalid string, -2 on full string list
      */
-    __attribute__((format(printf, 4, 5)))
-    int glPrintf(int x, int y, const char *string, ...);
+    int glPrintf(int x, int y, const char *string, ...) __attribute__((format(printf, 4, 5)));
 
     /*!
      * \brief Renders strings over GL scene.

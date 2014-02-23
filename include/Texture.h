@@ -249,8 +249,7 @@ private:
 
 // Experimental testing
 
-__attribute__((format(printf, 3, 4)))
-void bufferedPrintf(char *string, unsigned int len, char *s, ...);
+void bufferedPrintf(char *string, unsigned int len, char *s, ...) __attribute__((format(printf, 3, 4)));
 
 void glPrint3d(float x, float y, float z,
                 float pitch, float yaw, float roll,

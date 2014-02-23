@@ -70,8 +70,7 @@ public:
      * \param string Format string like for printf
      * \returns string in a buffer
      */
-    __attribute__((format(printf, 1, 2)))
-    static char *bufferString(const char *string, ...);
+    static char *bufferString(const char *string, ...) __attribute__((format(printf, 1, 2)));
 
     /*!
      * \brief Expansion of unix home enviroment char.

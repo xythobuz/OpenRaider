@@ -83,10 +83,8 @@ int tga_save(FILE *f, unsigned char *image,
  * \param s format string for file path/name
  * \returns 0 on success, else error condition
  */
-__attribute__((format(printf, 5, 6)))
 int tga_save_filename(unsigned char *image,
         unsigned int width, unsigned int height,
-        char type,
-        char *s, ...);
+        char type, char *s, ...) __attribute__((format(printf, 5, 6)));
 
 #endif
