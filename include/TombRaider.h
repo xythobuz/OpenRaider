@@ -74,65 +74,52 @@
 
 //#include "TombRaider1.h"
 
-typedef enum
-{
+typedef enum {
   TR_VERSION_UNKNOWN,
   TR_VERSION_1,
   TR_VERSION_2,
   TR_VERSION_3,
   TR_VERSION_4,
   TR_VERSION_5
-
 } tr2_version_type;
 
 
-typedef enum
-{
+typedef enum {
     TR_FREAD_NORMAL = 0,
     TR_FREAD_COMPRESSED
-
 } tr_fread_mode_t;
 
 
-typedef enum
-{
+typedef enum {
     tombraiderLight_typeDirectional   = 1,
     tombraiderLight_typeSpot          = 2,
     tombraiderLight_typePoint         = 3
-
 } tombraiderLightType;
 
-typedef enum
-{
+typedef enum {
     tombraiderLight_useCutoff         = 1,
     tombraiderLight_useAttenuation    = 2
-
 } tombraiderLightFlags;
 
-typedef enum
-{
+typedef enum {
     tombraiderRoom_underWater         = 1
 } tombraiderRoomFlags;
 
-typedef enum
-{
+typedef enum {
     tombraiderSector_wall = 1
 } tombraiderSectorFlags;
 
-typedef enum
-{
+typedef enum {
     tombraiderFace_Alpha          = 1,
     tombraiderFace_Colored        = 2,
     tombraiderFace_PartialAlpha   = 4
-
 } tombraiderFace_Flags;
 
 
 #define TR_SOUND_FOOTSTEP0    1
 #define TR_SOUND_F_PISTOL    12
 
-enum TR4_Objects
-{
+enum TR4_Objects {
     TR4_LARA = 0,
     TR4_PISTOLS_ANIM = 1,
     TR4_UZI_ANIM = 2,
@@ -168,35 +155,35 @@ enum TR4_Objects
 #define TR_ANIAMTION_GRAB_LEDGE       96
 #define TR_ANIAMTION_PULLING_UP       97
 
-/*---------------------------------------------------------------
- * Basic 24-bit colour structure
- * (although it appears that only 6 bits
- * per colour are actually used, making it 18-bit colour)
- ---------------------------------------------------------------*/
-typedef struct tr2_colour_s
-{
-  unsigned char r;
-  unsigned char g;
-  unsigned char b;
-}  __attribute__ ((packed)) tr2_colour_t;
+/*!
+ * \brief Basic 24-bit colour structure.
+ *
+ * It appears that only 6 bits per colour are actually
+ * used, making it 18-bit colour.
+ */
+typedef struct {
+    unsigned char r; //!< Red part
+    unsigned char g; //!< Green part
+    unsigned char b; //!< Blue part
+} __attribute__ ((packed)) tr2_colour_t;
 
 
-/*--------------------------------------------------------------
- * Basic vertex structure.
+/*!
+ * \brief Basic vertex structure.
+ *
  * Note that all vertices are relative coordinates;
  * each mesh (room, object, etc.) has its own offset by
  * which the vertex coordinates are translated.
- --------------------------------------------------------------*/
-typedef struct tr2_vertex_s
-{
-  short x;
-  short y;
-  short z;
-}  __attribute__ ((packed))   tr2_vertex_t;
+ */
+typedef struct {
+    short x;
+    short y;
+    short z;
+} __attribute__ ((packed)) tr2_vertex_t;
 
-
-/*--------------------------------------------------------------
- * A rectangular (quad) face definition.
+/*!
+ * \brief A rectangular (quad) face definition.
+ *
  * Four vertices (the values are indices into the
  * appropriate vertex list) and a texture (an index
  * into the texture list) or colour (index into 8-bit palette).
@@ -204,22 +191,26 @@ typedef struct tr2_vertex_s
  * I've seen a few coloured polygons where Texture is
  * greater than 255, but ANDing the value with 0xFF
  * seems to produce acceptable results.
- --------------------------------------------------------------*/
-typedef struct tr2_quad_s /* was tr2_face4  */
-{
-  unsigned short vertices[4];
-  unsigned short texture;
-}  __attribute__ ((packed))   tr2_quad_t;
+ */
+typedef struct {
+    unsigned short vertices[4];
+    unsigned short texture;
+} __attribute__ ((packed)) tr2_quad_t; // was tr2_face4
 
-typedef struct tr4_quad_s
-{
-    unsigned short vertices[4];  // The 4 vertices of a quad
-    unsigned short texture;      // Object-texture index
-    unsigned short lighting;     // transparency flag & strength of
-                                 // the hilight
-    // Bit 0: if set, alpha channel = intensity (same meaning that when the Attribute field of tr2_object_texture is 2. Cf TRosetta stone document)
-    // Bit 1-7: strength of the hilight. In TR4, objects can exhibit some kind of light reflection when seen from some particular angles. These bits give the strength of this effect: the more bigger the value is, the more visible is the effect.
-}  __attribute__ ((packed))   tr4_quad_t;
+typedef struct {
+    unsigned short vertices[4]; //!< The 4 vertices of a quad
+    unsigned short texture;     //!< Object-texture index
+    unsigned short lighting;    //!< Transparency flag & strength of the highlight
+    /*!<
+     * Bit 0: if set, alpha channel = intensity (same meaning that when the
+     * Attribute field of tr2_object_texture is 2. Cf TRosetta stone document)
+     *
+     * Bit 1-7: strength of the highlight. In TR4, objects can exhibit some kind
+     * of light reflection when seen from some particular angles. These bits give
+     * the strength of this effect:
+     * the more bigger the value is, the more visible is the effect.
+     */
+} __attribute__ ((packed)) tr4_quad_t;
 
 /*--------------------------------------------------------------
  * A triangular face definition.
@@ -1371,8 +1362,7 @@ typedef struct tr5_animation_s // ( 40 bytes ) ( same as old structure but has 8
 
 } tr5_animation_t;
 
-typedef struct tr5_cinematic_frame_s
-{
+typedef struct {
     unsigned int unknown[24];
 } tr5_cinematic_frame_t;
 
@@ -1380,35 +1370,18 @@ typedef struct tr5_cinematic_frame_s
 #pragma pack(pop, tr2_h, 1)
 #endif
 
-class TombRaider
-{
+class TombRaider {
 public:
 
-    ////////////////////////////////////////////////////////////
-    // Constructors
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Constructs an object of TombRaider
+     */
     TombRaider();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Constructs an object of TombRaider
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Deconstructs an object of TombRaider
+     */
     ~TombRaider();
-    /*------------------------------------------------------
-     * Pre  : TombRaider object is allocated
-     * Post : Deconstructs an object of TombRaider
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     ////////////////////////////////////////////////////////////
     // Wash me -- not part of cleaned API
@@ -1420,16 +1393,11 @@ public:
 
     int NumTextures();
 
+    /*!
+     * \brief Get number of _special_ textures/images
+     * \returns number of special textures/images
+     */
     int NumSpecialTextures();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of "special" textures/images
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.19:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int NumAnimations();
 
@@ -1453,16 +1421,11 @@ public:
 
     tr2_object_texture_t *ObjectTextures();
 
+    /*!
+     * \brief Get number of boxes
+     * \returns number of boxes
+     */
     unsigned int getNumBoxes();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : returns number of boxes
-     *
-     *-- History ------------------------------------------
-     *
-     * 200?.??.??:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_box_t *Box();
 
@@ -1611,16 +1574,11 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of bump maps in loaded pak
+     * \returns number of bump maps
+     */
     int getBumpMapCount();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of bump maps in loaded pak
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.12.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getColor(int index, float color[4]);
 
@@ -1640,16 +1598,11 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get SIGNED mesh count (TR encoded < 0 errors)
+     * \returns signed mesh count
+     */
     int getMeshCount();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns SIGNED mesh count ( TR encoded < 0 errs )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getMeshColoredRectangle(unsigned int meshIndex,
                                           unsigned int faceIndex,
@@ -1779,25 +1732,21 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of collision boxes in room (unified)
+     * \param roomIndex room index
+     * \returns number of collision boxes in room
+     */
     unsigned int getRoomBoxCount(unsigned int roomIndex);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of collision boxes in room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getRoomInfo(unsigned int index,
-                          unsigned int *flags, float pos[3],
-                          float bboxMin[3], float bboxMax[3]);
+                        unsigned int *flags, float pos[3],
+                        float bboxMin[3], float bboxMax[3]);
 
     int getRoomLight(unsigned int roomIndex, unsigned int index,
-                          float pos[4], float color[4], float dir[3],
-                          float *attenuation, float *cutoffAngle,
-                          unsigned int *type, unsigned int *flags);
+                        float pos[4], float color[4], float dir[3],
+                        float *attenuation, float *cutoffAngle,
+                        unsigned int *type, unsigned int *flags);
     /*------------------------------------------------------
      * Pre  : All parms are allocated
      * Post : Returns a single light from a room ( unified )
@@ -1808,19 +1757,15 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of lights in room (unified)
+     * \param roomIndex room index
+     * \returns number of lights in room
+     */
     unsigned int getRoomLightCount(unsigned int roomIndex);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of lights in room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int getRoomModel(unsigned int roomIndex, unsigned int index,
-                          int *modelIndex, float pos[3], float *yaw);
+                        int *modelIndex, float pos[3], float *yaw);
     /*------------------------------------------------------
      * Pre  : All parms are allocated
      * Post : Returns a single model info from a room ( unified )
@@ -1831,19 +1776,15 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of room models in room (unified)
+     * \param roomIndex room index
+     * \returns number of room models in room
+     */
     unsigned int getRoomModelCount(unsigned int roomIndex);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of room models in room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int getRoomPortal(unsigned int roomIndex, unsigned int index,
-                            int *adjoiningRoom, float normal[3], float vertices[12]);
+                        int *adjoiningRoom, float normal[3], float vertices[12]);
     /*------------------------------------------------------
      * Pre  :
      * Post : Returns a single portal from room ( unified )
@@ -1854,20 +1795,16 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of portals from room (unified)
+     * \param roomIndex room index
+     * \returns number of portals from room
+     */
     unsigned int getRoomPortalCount(unsigned int roomIndex);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of portals from room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getRoomRectangle(unsigned int roomIndex, unsigned int rectangleIndex,
-                                 unsigned int *indices, float *texCoords, int *texture,
-                                 unsigned int *flags);
+                            unsigned int *indices, float *texCoords, int *texture,
+                            unsigned int *flags);
     /*------------------------------------------------------
      * Pre  :
      * Post : Gets rectangle data with texCoords for non-matching
@@ -1879,21 +1816,17 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of rectangles from room (unified)
+     * \param roomIndex room index
+     * \returns number of rectangles from room
+     */
     unsigned int getRoomRectangleCount(unsigned int roomIndex);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of rectangles from room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int getRoomSector(unsigned int roomIndex, unsigned int index,
-                            unsigned int *flags, float *ceiling, float *floor,
-                            int *floorDataIndex, int *boxIndex,
-                            int *roomBelow, int *roomAbove);
+                        unsigned int *flags, float *ceiling, float *floor,
+                        int *floorDataIndex, int *boxIndex,
+                        int *roomBelow, int *roomAbove);
     /*------------------------------------------------------
      * Pre  :
      * Post : Returns a single sector from room ( unified )
@@ -1905,8 +1838,8 @@ public:
      ------------------------------------------------------*/
 
     unsigned int getRoomSectorCount(unsigned int roomIndex,
-                                              unsigned int *zSectorsCount,
-                                              unsigned int *xSectorsCount);
+                                    unsigned int *zSectorsCount,
+                                    unsigned int *xSectorsCount);
     /*------------------------------------------------------
      * Pre  :
      * Post : Returns number of sectors in room ( unified )
@@ -1920,23 +1853,19 @@ public:
      ------------------------------------------------------*/
 
     void getRoomSprite(unsigned int roomIndex, unsigned int index,
-                             float scale, int *texture,
-                             float *pos, float *vertices, float *texcoords);
+                        float scale, int *texture,
+                        float *pos, float *vertices, float *texcoords);
 
+    /*!
+     * \brief Get number of sprites in room (unified)
+     * \param roomIndex room index
+     * \returns number of sprites in room
+     */
     unsigned int getRoomSpriteCount(unsigned int roomIndex);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of sprites in room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getRoomTriangle(unsigned int roomIndex, unsigned int triangleIndex,
-                                unsigned int *indices, float *texCoords, int *texture,
-                                unsigned int *flags);
+                            unsigned int *indices, float *texCoords, int *texture,
+                            unsigned int *flags);
     /*------------------------------------------------------
      * Pre  :
      * Post : Gets triangle data with texCoords for non-matching
@@ -1949,9 +1878,9 @@ public:
      ------------------------------------------------------*/
 
     void getRoomTriangles(unsigned int index, int textureOffset,
-                                 unsigned int *count, unsigned int **indices,
-                                 float **texCoords, int **textures,
-                                 unsigned int **flags);
+                            unsigned int *count, unsigned int **indices,
+                            float **texCoords, int **textures,
+                            unsigned int **flags);
     /*------------------------------------------------------
      * Pre  :
      * Post : Gets triangle data with texCoords for non-matching
@@ -1968,10 +1897,10 @@ public:
      ------------------------------------------------------*/
 
     void getRoomTriangles(unsigned int roomIndex, int textureOffset,
-                                 unsigned int *count,
-                                 unsigned int **indices, float **vertices,
-                                 float **texCoords, float **colors,
-                                 int **textures, unsigned int **flags);
+                            unsigned int *count,
+                            unsigned int **indices, float **vertices,
+                            float **texCoords, float **colors,
+                            int **textures, unsigned int **flags);
     /*------------------------------------------------------
      * Pre  :
      * Post : Gets triangle data with duplicated
@@ -1987,19 +1916,15 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of triangles from room (unified)
+     * \param roomIndex room index
+     * \returns number of triangles from room
+     */
     unsigned int getRoomTriangleCount(unsigned int roomIndex);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of triangles from room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getRoomVertex(unsigned int roomIndex, unsigned int vertexIndex,
-                             float *xyz, float *rgba);
+                        float *xyz, float *rgba);
     /*------------------------------------------------------
      * Pre  : Given room index and vertex index and
      *         xyz is allocated float[3]
@@ -2014,9 +1939,9 @@ public:
      ------------------------------------------------------*/
 
     void getRoomVertexArrays(unsigned int roomIndex,
-                                     unsigned int *vertexCount, float **vertices,
-                                     unsigned int *normalCount, float **normals,
-                                     unsigned int *colorCount, float **colors);
+                                unsigned int *vertexCount, float **vertices,
+                                unsigned int *normalCount, float **normals,
+                                unsigned int *colorCount, float **colors);
     /*------------------------------------------------------
      * Pre  : Given room index
      *
@@ -2043,21 +1968,16 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get sky mesh ID
+     * \returns moveable id of sky mesh or -1 if none
+     */
     int getSkyModelId();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns moveable id of sky mesh or -1 if none
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.28:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getSprites();
 
     void getSoundSample(unsigned int index,
-                              unsigned int *bytes, unsigned char **data);
+                        unsigned int *bytes, unsigned char **data);
     /*------------------------------------------------------
      * Pre  :
      * Post : Returns a copy of a sound sample and
@@ -2069,16 +1989,11 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of loaded sound samples
+     * \returns number of sound samples loaded
+     */
     unsigned int getSoundSamplesCount();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of sound samples loaded
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.10:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     bool isMeshValid(int index);
     /*------------------------------------------------------
@@ -2091,71 +2006,41 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Check if a room is valid (TRC support)
+     * \param index room index
+     * \returns true if room is valid
+     */
     bool isRoomValid(int index);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns true if room is valid ( TRC support )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
-
-    ////////////////////////////////////////////////////////////
-    // Public Mutators
-    ////////////////////////////////////////////////////////////
-
+    /*!
+     * \brief Load an external sound pak for TR2 and TR3
+     * \param filename pak to load
+     * \returns < 0 on error
+     */
     int loadSFX(char *filename);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Loads an external sound pak for TR2 and TR3
-     *        games.  Returns < 0 if error.
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.12:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void reset();
 
     void setDebug(bool toggle);
 
+    /*!
+     * \brief Sets lighting factor for each vertex color per room in TR3 paks
+     * \param f new lighting factor
+     */
     void setRoomVertexLightingFactor(float f);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets lighting factor for each vertex color per
-     *        room in TR3 paks
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Set scaling for sprite texel alignment, etc.
+     * \param f new scaling factor
+     */
     void setTexelScalingFactor(float f);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Sets scaling for sprite texel alignment, etc
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.22:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
 
 private:
 
-    ////////////////////////////////////////////////////////////
-    // Private Accessors
-    ////////////////////////////////////////////////////////////
-
     void extractMeshes(unsigned char *mesh_data,
-                             unsigned int num_mesh_pointers,
-                             unsigned int *mesh_pointers);
+                        unsigned int num_mesh_pointers,
+                        unsigned int *mesh_pointers);
 
     int Fread(void *buffer, size_t size, size_t count, FILE *f);
 
@@ -2172,7 +2057,7 @@ private:
      ------------------------------------------------------*/
 
     void getRiffDataTR4(unsigned int index,
-                              unsigned int *bytes, unsigned char **data);
+                        unsigned int *bytes, unsigned char **data);
     /*------------------------------------------------------
      * Pre  :
      * Post : Returns a copy of a TR4 sound sample
@@ -2185,7 +2070,7 @@ private:
      ------------------------------------------------------*/
 
     int getRiffOffsets(unsigned char *riffData, unsigned int riffDataBytes,
-                             unsigned int **offsets, unsigned int numOffsets);
+                        unsigned int **offsets, unsigned int numOffsets);
     /*------------------------------------------------------
      * Pre  :
      * Post : Returns an array of offsets for a contigous
