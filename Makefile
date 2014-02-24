@@ -223,6 +223,15 @@ checkConfig:
 
 #################################################################
 
+docLocal:
+	sed -i '' 's/HAVE_DOT               = YES/HAVE_DOT               = NO/g' Doxyfile
+	doxygen
+	cp -R doc/html/* ../apache/
+	rm -rf doc
+	sed -i '' 's/HAVE_DOT               = NO/HAVE_DOT               = YES/g' Doxyfile
+
+#################################################################
+
 clean: clean-small clean-dep clean-doc
 
 clean-small: clean-build clean-test clean-obj

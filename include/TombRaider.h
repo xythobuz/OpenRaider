@@ -83,26 +83,24 @@ typedef enum {
   TR_VERSION_5
 } tr2_version_type;
 
-
 typedef enum {
     TR_FREAD_NORMAL = 0,
     TR_FREAD_COMPRESSED
 } tr_fread_mode_t;
 
-
 typedef enum {
-    tombraiderLight_typeDirectional   = 1,
-    tombraiderLight_typeSpot          = 2,
-    tombraiderLight_typePoint         = 3
+    tombraiderLight_typeDirectional = 1,
+    tombraiderLight_typeSpot        = 2,
+    tombraiderLight_typePoint       = 3
 } tombraiderLightType;
 
 typedef enum {
-    tombraiderLight_useCutoff         = 1,
-    tombraiderLight_useAttenuation    = 2
+    tombraiderLight_useCutoff      = 1,
+    tombraiderLight_useAttenuation = 2
 } tombraiderLightFlags;
 
 typedef enum {
-    tombraiderRoom_underWater         = 1
+    tombraiderRoom_underWater = 1
 } tombraiderRoomFlags;
 
 typedef enum {
@@ -110,11 +108,10 @@ typedef enum {
 } tombraiderSectorFlags;
 
 typedef enum {
-    tombraiderFace_Alpha          = 1,
-    tombraiderFace_Colored        = 2,
-    tombraiderFace_PartialAlpha   = 4
+    tombraiderFace_Alpha        = (1 << 0),
+    tombraiderFace_Colored      = (1 << 1),
+    tombraiderFace_PartialAlpha = (1 << 2)
 } tombraiderFace_Flags;
-
 
 #define TR_SOUND_FOOTSTEP0    1
 #define TR_SOUND_F_PISTOL    12
@@ -167,7 +164,6 @@ typedef struct {
     unsigned char b; //!< Blue part
 } __attribute__ ((packed)) tr2_colour_t;
 
-
 /*!
  * \brief Basic vertex structure.
  *
@@ -212,8 +208,9 @@ typedef struct {
      */
 } __attribute__ ((packed)) tr4_quad_t;
 
-/*--------------------------------------------------------------
- * A triangular face definition.
+/*!
+ * \brief A triangular face definition.
+ *
  * Three vertices (the values are indices into the
  * appropriate vertex list) and a texture (an index into the
  * texture list) or colour (index into palette).
@@ -221,111 +218,97 @@ typedef struct {
  * In the case of a colour, (Texture & 0xff) is the index
  * into the 8-bit palette, while (Texture >> 8) is
  * the index into the 16-bit palette.
- --------------------------------------------------------------*/
-typedef struct tr2_tri_s /* was tr2_face3  */
-{
-  unsigned short vertices[3];
-  unsigned short texture;
-}  __attribute__ ((packed))   tr2_tri_t;
+ */
+typedef struct {
+    unsigned short vertices[3];
+    unsigned short texture;
+} __attribute__ ((packed)) tr2_tri_t; // was tr2_face3
 
-typedef struct tr4_tri_s
-{
-    unsigned short vertices[3];  // The 3 vertices of a tri
-    unsigned short texture;      // Object-texture index
-    unsigned short lighting;     // transparency flag & strength of
-                                 // the hilight
-}  __attribute__ ((packed))   tr4_tri_t;
+typedef struct {
+    unsigned short vertices[3]; //!< The 3 vertices of a tri
+    unsigned short texture;     //!< Object-texture index
+    unsigned short lighting;    //!< Transparency flag & strength of the highlight
+} __attribute__ ((packed)) tr4_tri_t;
 
-/*--------------------------------------------------------------
- * An 8-bit texture tile (65536 bytes).
+/*!
+ * \brief An 8-bit texture tile (65536 bytes).
  *
  * Each byte represents a pixel whose colour
  * is in the 8-bit palette.
- --------------------------------------------------------------*/
-typedef struct tr2_textile8_s
-{
-  unsigned char tile[256 * 256];
-}  __attribute__ ((packed))   tr2_textile8_t;
+ */
+typedef struct {
+    unsigned char tile[256 * 256];
+} __attribute__ ((packed)) tr2_textile8_t;
 
-
-/*--------------------------------------------------------------
- * A 16-bit texture tile (131072 bytes).
+/*!
+ * \brief A 16-bit texture tile (131072 bytes).
  *
  * Each word represents a pixel
  * whose colour is of the form ARGB, MSB-to-LSB:
  *
- *    1-bit transparency (0: transparent, 1: opaque)
- *    5-bit red channel
- *    5-bit green channel
- *    5-bit blue channel
- --------------------------------------------------------------*/
-typedef struct tr2_textile16_s
-{
-   unsigned short tile[256 * 256];
-}   __attribute__ ((packed))  tr2_textile16_t;
+ *  * 1-bit transparency (0: transparent, 1: opaque)
+ *  * 5-bit red channel
+ *  * 5-bit green channel
+ *  * 5-bit blue channel
+ */
+typedef struct {
+    unsigned short tile[256 * 256];
+} __attribute__ ((packed)) tr2_textile16_t;
 
+/*!
+ * \brief A 32-bit texture tile (262144 bytes).
+ *
+ * BGRA with 4bytes each channel.
+ */
+typedef struct {
+    unsigned int tile[256 * 256];
+} __attribute__ ((packed)) tr2_textile32_t;
 
-/* --------------------------------------------------------------
- * 32bit textiles
- * BGRA with 4bytes each channel
- --------------------------------------------------------------*/
-typedef struct tr2_textile32_s
-{
-   unsigned int tile[256 * 256];
-}   __attribute__ ((packed))  tr2_textile32_t;
-
-
-/*--------------------------------------------------------------
- * The "header" of a room.
- * + X/Z indicate the base position of the room
- *   mesh in world coordinates.
- * + YLowest and yHighest indicate the lowest and
- * + Highest points in this room
- *    (even though their actual values appear to
- *     be reversed, since a "high" point will have a
- *     smaller value than a "low" point).
+/*!
+ * \brief The "header" of a room.
+ *
+ * X/Z indicate the base position of the room mesh in world coordinates.
+ *
+ * yLowest and yHighest indicate the lowest and highest points in this room
+ * (even though their actual values appear to be reversed, since a "high"
+ * point will have a smaller value than a "low" point).
  *
  * When positioning objects/items, as well as the room meshes
  * themselves, y is always 0-relative (not room-relative).
- --------------------------------------------------------------*/
-typedef struct tr2_room_info_s
-{
-  int x;             // X-offset of room (world coordinates)
-  int z;             // Z-offset of room (world coordinates)
-  int y_bottom;      // Y-offset of lowest point in room (world coordinates)
-                     //   (actually highest value)
-  int y_top;         // Y-offset of highest point in room (world coordinates)
-                     //   (actually lowest value)
-}  __attribute__ ((packed))   tr2_room_info_t;
+ */
+typedef struct {
+    int x;        //!< X-offset of room (world coordinates)
+    int z;        //!< Z-offset of room (world coordinates)
+    int y_bottom; //!< Y-offset of lowest point in room (world coordinates, actually highest value)
+    int y_top;    //!< Y-offset of highest point in room (world coordinates, actually lowest value)
+} __attribute__ ((packed)) tr2_room_info_t;
 
-
-/*--------------------------------------------------------------
- * Portal structure.
+/*!
+ * \brief Portal structure.
+ *
  * This defines every viable exit from a given "room".
  *
  * Note that "rooms" are really just areas.  They aren't
  * necessarily enclosed.  The door structure below defines
  * areas of egress, not the actual moveable mesh,
  * texture, and action (if any).
- --------------------------------------------------------------*/
-typedef struct tr2_room_portal_s
-{
-   unsigned short adjoining_room;     // Which room this "door" leads to
-   tr2_vertex_t normal;               // Which way the "door" faces
-   tr2_vertex_t vertices[4];          // The corners of the "door"
-}  __attribute__ ((packed))   tr2_room_portal_t;
+ */
+typedef struct {
+    unsigned short adjoining_room; //!< Which room this "door" leads to
+    tr2_vertex_t normal;           //!< Which way the "door" faces
+    tr2_vertex_t vertices[4];      //!< The corners of the "door"
+} __attribute__ ((packed)) tr2_room_portal_t;
 
-
-/*--------------------------------------------------------------
- * Room sector structure.
+/*!
+ * \brief Room sector structure.
  *
- * Sectors are 1024 * 1024 (world coordinates).  Floor and
+ * Sectors are 1024 * 1024 (world coordinates). Floor and
  * Ceiling are signed number of 256 units of height
  * (relative to 0), e.g. Floor 0x04 corresponds to
  * Y = 1024 in world coordinates.
  *
  * Note: this implies that, while X and Z can be quite large,
- * Y is constrained to -32768..32512.  Floor/Ceiling value of
+ * Y is constrained to -32768..32512. Floor/Ceiling value of
  * 0x81 indicates impenetrable wall.
  *
  * Floor values are used by the game engine to determine what
@@ -346,79 +329,70 @@ typedef struct tr2_room_portal_s
  * ceiling is a collisional portal to that room, while if
  * RoomBelow is not "none", then the floor is a collisional
  * portal to that room.
- --------------------------------------------------------------*/
-typedef struct tr2_room_sector_s
-{
-    unsigned short fd_index;    // Index into FloorData[]
-    unsigned short box_index;   // Index into Boxes[]/Zones[] ( -1 if none )
-    unsigned char room_below;   // The number of the room below this one
-                                // ( -1 or 255 if none )
-    char floor;                 // Absolute height of floor
-                                // ( Multiply by 256 for world coordinates )
-    unsigned char  room_above;  // The number of the room above this one
-                                // ( -1 or 255 if none )
-    char ceiling;               // Absolute height of ceiling
-                                // ( Multiply by 256 for world coordinates )
-}  __attribute__ ((packed))   tr2_room_sector_t;
+ */
+typedef struct {
+    unsigned short fd_index;   //!< Index into FloorData[]
+    unsigned short box_index;  //!< Index into Boxes[]/Zones[] (-1 if none)
+    unsigned char room_below;  //!< The number of the room below this one (-1 or 255 if none)
+    char floor;                //!< Absolute height of floor (Multiply by 256 for world coordinates)
+    unsigned char  room_above; //!< The number of the room above this one (-1 or 255 if none)
+    char ceiling;              //!< Absolute height of ceiling (multiply by 256 for world coordinates)
+} __attribute__ ((packed)) tr2_room_sector_t;
 
-
-/*--------------------------------------------------------------
- * Room lighting structure.
+/*!
+ * \brief Room lighting structure.
+ *
  * X/Y/Z are in world coordinates.
+ *
  * Lighting values seem to range from 0..8192.
- --------------------------------------------------------------*/
-typedef struct tr2_room_light_s
-{
-  int  x;
-  int  y;
-  int  z;
-  unsigned short intensity1;
-  unsigned short intensity2;
-  unsigned int fade1;
-  unsigned int fade2;
-}   __attribute__ ((packed))  tr2_room_light_t;
+ */
+typedef struct {
+    int x;
+    int y;
+    int z;
+    unsigned short intensity1;
+    unsigned short intensity2;
+    unsigned int fade1;
+    unsigned int fade2;
+} __attribute__ ((packed)) tr2_room_light_t;
 
-typedef struct tr4_room_light_s
-{
-    int xPosition;  // world coords
-    int yPosition;  // world coords
-    int zPosition;  // world coords
-   tr2_colour_t color; // three bytes rgb values
-   unsigned char lightType;  // same as D3D (i.e. 2 is for spotlight)
-   unsigned char unknown;    // always 0xff?
-   unsigned char intensity;
-   float in;
+typedef struct {
+    int xPosition;           //!< World coords
+    int yPosition;           //!< World coords
+    int zPosition;           //!< World coords
+    tr2_colour_t color;      //!< Three bytes rgb values
+    unsigned char lightType; //!< Same as D3D (i.e. 2 is for spotlight)
+    unsigned char unknown;   //!< Always 0xff?
+    unsigned char intensity;
+    float in;
     float out;
     float length;
     float cutoff;
-    float xDir, yDir, zDir;    // direction?
+    float xDir, yDir, zDir;  //!< Direction?
+} __attribute__ ((packed)) tr4_room_light_t;
 
-}   __attribute__ ((packed))  tr4_room_light_t;
-
-
-/*--------------------------------------------------------------
- * Room vertex structure.
+/*!
+ * \brief Room vertex structure.
+ *
  * This defines the vertices within a room.
- --------------------------------------------------------------*/
-typedef struct tr2_vertex_room_s
-{
-   tr2_vertex_t vertex;
-                               // Following 3 entries
-   short lighting1;            // Values range from 0 to 32767,
-                               //   0 = total darkness. (TR3)
-                               //   I think the values ranged from
-                               //   0 to 8192 in TR1/2, 0=total brightness
+ */
+typedef struct {
+    tr2_vertex_t vertex;
+    short lighting1;           //!< Values range from 0 to 32767 in TR3, 0=dark.
+                               /*!< I think the values ranged from 0 to 8192
+                                * in TR1/2, 0=bright.  */
+    unsigned short attributes; /*!<
+                                * * 0x8000 Something to do with water surface
+                                * * 0x4000 Under water lighting modulation
+                                *          and movement if viewed from
+                                *          above water surface
+                                * * 0x2000 Water/quicksand surface movement
+                                * * 0x1fef Nothing?
+                                * * 0x0010 Everything?
+                                */
 
-   unsigned short attributes;  // 0x8000 Something to do with water surface
-                               // 0x4000 Under water lighting modulation
-                               //        and movement if viewed from
-                               //        above water surface
-                               // 0x2000 Water/quicksand surface movement
-                               // 0x1fef Nothing?
-                               // 0x0010 Everything?
-
-   short lighting2;            // Seems to be the same as lighting1
-}  __attribute__ ((packed))  tr2_vertex_room_t;
+    short lighting2;           //!< Seems to be the same as lighting1
+} __attribute__ ((packed)) tr2_vertex_room_t;
 
 
 /*--------------------------------------------------------------
