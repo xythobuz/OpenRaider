@@ -1,64 +1,12 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file include/TombRaider.h
+ * \brief Loads maps, meshes, textures...
  *
- * Project : OpenRaider
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : OpenRaider
- * License : GPL, See file COPYING for details
- * Comments: Loads TR 1, 2, 3, and 4 maps, meshes, and textures
+ * Define ZLIB_SUPPORT to build TR4 support.
  *
- *           WARNING: No endian routines as of yet
- *
- *           Define ZLIB_SUPPORT to build TR4 support
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2003.05.19:
- * Mongoose - I'm now using Roy's documented TR5 structures, so
- *            I can fill in my blanks and share common structures
- *            with other TR5 pak loaders using it - I've removed
- *            most of my old TR5 test code - it may have been more
- *            correct for DX lights ( not sure ) it's still in CVS
- *
- * 2003.05.13:
- * Mongoose - New API, maintance cost was becoming so high
- *            it was needed to sort out methods in groups
- *            like my newer source code -- of course some
- *            methods were altered or removed ( clean up )
- *
- * 2001.06.19:
- * Mongoose - New texture API for the new TR4/TR5 bump map
- *            support, also purged textile exposure
- *
- *
- * 2001.05.21:
- * Mongoose - Added to project OpenRaider, more documentation
- *            than Freyja version I wrote ( 3d modeler )
- *
- *            TR4 texel and texture fixes
- *
- *            Runtime debug output toggle
- *
- *
- * 2000.05.13:
- * Mongoose - Added gcc and VC++ pragmas for packing
- *
- *            id style typedefs for structs
- *
- *            Heavy clean up and ported to C++
- *
- *            I saved yuri's notes as best I could and
- *            reformatted and corrected as needed.
- *
- * Mongoose - Created, based on:
- *                tr_view's tr2io.c by Yuri Zhivago, PhD,
- *                TR Rosetta Stone ( TombRaider pak format specs )
- ================================================================*/
+ * \todo WARNING: No endian routines as of yet
+ * \author Mongoose
+ */
 
 #ifndef _TOMBRAIDER_H_
 #define _TOMBRAIDER_H_
@@ -75,12 +23,12 @@
 //#include "TombRaider1.h"
 
 typedef enum {
-  TR_VERSION_UNKNOWN,
-  TR_VERSION_1,
-  TR_VERSION_2,
-  TR_VERSION_3,
-  TR_VERSION_4,
-  TR_VERSION_5
+    TR_VERSION_UNKNOWN,
+    TR_VERSION_1,
+    TR_VERSION_2,
+    TR_VERSION_3,
+    TR_VERSION_4,
+    TR_VERSION_5
 } tr2_version_type;
 
 typedef enum {
@@ -394,287 +342,251 @@ typedef struct {
     short lighting2;           //!< Seems to be the same as lighting1
 } __attribute__ ((packed)) tr2_vertex_room_t;
 
+/*!
+ * \brief Sprite structure
+ */
+typedef struct {
+    short vertex;  //!< Offset into vertex list
+    short texture; //!< Offset into texture list
+} __attribute__ ((packed)) tr2_room_sprite_t;
 
-/*--------------------------------------------------------------
- * Sprite structure
- --------------------------------------------------------------*/
-typedef struct tr2_room_sprite_s
-{
-   short vertex;     // offset into vertex list
-   short texture;    // offset into texture list
-}  __attribute__ ((packed))   tr2_room_sprite_t;
-
-
-/*--------------------------------------------------------------
- * Room mesh structure.
+/*!
+ * \brief Room mesh structure.
+ *
  * This is the geometry of the "room," including
- * walls, floors, rocks, water, etc.  It does _not_ include
+ * walls, floors, rocks, water, etc. It does _not_ include
  * objects that Lara can interact with (keyboxes,
  * moveable blocks, moveable doors, etc.)
- --------------------------------------------------------------*/
-typedef struct tr2_room_data_s
-{
-  short           num_vertices;    // number of vertices in the following list
-  tr2_vertex_room_t *vertices;     // list of vertices (relative coordinates)
-  short           num_rectangles;  // number of textured rectangles
-  tr2_quad_t       *rectangles;    // list of textured rectangles
-  short           num_triangles;   // number of textured triangles
-  tr2_tri_t      *triangles;       // list of textured triangles
-  short           num_sprites;     // number of sprites
-  tr2_room_sprite_t *sprites;      // list of sprites
-}  __attribute__ ((packed)) tr2_room_data_t;
+ */
+typedef struct tr2_room_data_s {
+    short num_vertices;          //!< Number of vertices in the following list
+    tr2_vertex_room_t *vertices; //!< List of vertices (relative coordinates)
+    short num_rectangles;        //!< Number of textured rectangles
+    tr2_quad_t *rectangles;      //!< List of textured rectangles
+    short num_triangles;         //!< Number of textured triangles
+    tr2_tri_t *triangles;        //!< List of textured triangles
+    short num_sprites;           //!< Number of sprites
+    tr2_room_sprite_t *sprites;  //!< List of sprites
+} __attribute__ ((packed)) tr2_room_data_t;
 
-
-/*--------------------------------------------------------------
- * Room static mesh data.
+/*!
+ * \brief Room static mesh data.
+ *
  * Positions and IDs of static meshes
  * (e.g. skeletons, spiderwebs, furniture)
- --------------------------------------------------------------*/
-typedef struct tr2_room_staticmesh_s
-{
-   int  x;                   // absolute position in world coordinates
-   int  y;
-   int  z;
-   unsigned short rotation;  // high two bits (0xc000)
-                             //  indicate steps of 90 degrees
-   unsigned short intensity1;
-   unsigned short intensity2;
-   unsigned short object_id; // which StaticMesh item to draw
-}  __attribute__ ((packed)) tr2_room_staticmesh_t;
+ */
+typedef struct {
+    int  x;                    //!< Absolute position in world coordinates
+    int  y;
+    int  z;
+    unsigned short rotation;   //!< High two bits (0xc000) indicate steps of 90 degrees
+    unsigned short intensity1;
+    unsigned short intensity2;
+    unsigned short object_id;  //!< Which StaticMesh item to draw
+} __attribute__ ((packed)) tr2_room_staticmesh_t;
 
 
-/*--------------------------------------------------------------
- * Room structure.
- * Here's where all the room data come together.
- --------------------------------------------------------------*/
-typedef struct tr2_room_s
-{
-  tr2_room_info_t info;          // where the room exists, in world coordinates
-  unsigned int num_data_words;   // number of data words (bitu16)
-  unsigned char *data;           // the raw data from which the rest
-                                 //  of this is derived
-  tr2_room_data_t room_data;     // the room mesh
-  unsigned short num_portals;    // number of visibility portals
-                                 //  that leave this room
-  tr2_room_portal_t *portals;    // list of visibility portals
-  unsigned short num_zsectors;   // width of sector list
-  unsigned short num_xsectors;   // height of sector list
-  tr2_room_sector_t *sector_list;// list of sectors in this room
-  short intensity1;
-  short intensity2;
-  short light_mode;
-  unsigned short num_lights;            // number of lights in this room
-  tr2_room_light_t *lights;             // list of lights
-  unsigned short num_static_meshes;     // number of static meshes
-  tr2_room_staticmesh_t *static_meshes; // static meshes
-  short  alternate_room;
-  short  flags;                         // 0x0001 - room is filled with water
-                                        // 0x0020 - Lara's ponytail
-                                        // gets blown by the wind
+/*!
+ * \brief Room structure.
+ *
+ * Here's where all the room data comes together.
+ */
+typedef struct {
+    tr2_room_info_t info;                 //!< where the room exists, in world coordinates
+    unsigned int num_data_words;          //!< number of data words (bitu16)
+    unsigned char *data;                  //!< the raw data from which the rest of this is derived
+    tr2_room_data_t room_data;            //!< the room mesh
+    unsigned short num_portals;           //!< number of visibility portals that leave this room
+    tr2_room_portal_t *portals;           //!< list of visibility portals
+    unsigned short num_zsectors;          //!< width of sector list
+    unsigned short num_xsectors;          //!< height of sector list
+    tr2_room_sector_t *sector_list;       //!< list of sectors in this room
+    short intensity1;
+    short intensity2;
+    short light_mode;
+    unsigned short num_lights;            //!< number of lights in this room
+    tr2_room_light_t *lights;             //!< list of lights
+    unsigned short num_static_meshes;     //!< number of static meshes
+    tr2_room_staticmesh_t *static_meshes; //!< static meshes
+    short  alternate_room;
+    short  flags;                         /*!< * 0x0001 - room is filled with water
+                                           *   * 0x0020 - Lara's ponytail gets blown by the wind */
+    tr2_colour_t room_light_colour;       //!< TR3 ONLY!
+    tr4_room_light_t *tr4Lights;          //!< TR4 ONLY!
+} __attribute__ ((packed)) tr2_room_t;
 
-    tr2_colour_t room_light_colour;      // TR3 ONLY!
-    tr4_room_light_t *tr4Lights;         // TR4 ONLY!
+/*!
+ * \brief Animation structure up to TR3.
+ */
+typedef struct {
+    unsigned int frame_offset;          //!< byte offset into Frames[] (divide by 2 for Frames[i])
+    unsigned char frame_rate;           //!< "ticks" per frame
+    unsigned char frame_size;           //!< number of words in Frames[] used by this animation
+    short state_id;
+    short unknown1;
+    short unknown2;
+    short unknown3;
+    short unknown4;
+    unsigned short frame_start;         //!< first frame in this animation
+    unsigned short frame_end;           //!< last frame in this animation (numframes = (End - Start) + 1)
+    unsigned short next_animation;
+    unsigned short next_frame;
+    unsigned short num_state_changes;
+    unsigned short state_change_offset; //!< offset into StateChanges[]
+    unsigned short num_anim_commands;
+    unsigned short anim_command;        //!< offset into AnimCommands[]
+} __attribute__ ((packed)) tr2_animation_t;
 
-}  __attribute__ ((packed))  tr2_room_t;
+/*!
+ * \brief Data for an animation structure (40 bytes in TR4 vice 32 in TR1/2/3)
+ */
+typedef struct {
+    unsigned int frame_offset;          //!< same meaning as in TR3
+    unsigned char frame_rate;           //!< same meaning as in TR3
+    unsigned char frame_size;           //!< same meaning as in TR3
+    unsigned short state_id;            //!< same meaning as in TR3
+    short unknown;                      //!< same meaning as in TR3
+    short speed;                        //!< same meaning as in TR3
+    unsigned short accel_lo;            //!< same meaning as in TR3
+    short accel_hi;                     //!< same meaning as in TR3
+    unsigned char unknown2[8];          //!< new in TR4
+    unsigned short frame_start;         //!< same meaning as in TR3
+    unsigned short frame_end;           //!< same meaning as in TR3
+    unsigned short next_animation;      //!< same meaning as in TR3
+    unsigned short next_frame;          //!< same meaning as in TR3
+    unsigned short num_state_changes;   //!< same meaning as in TR3
+    unsigned short state_change_offset; //!< same meaning as in TR3
+    unsigned short num_anim_commands;   //!< same meaning as in TR3
+    unsigned short anim_command;        //!< same meaning as in TR3
+} __attribute__ ((packed)) tr4_animation_t;
 
-/*--------------------------------------------------------------
- * Animation structure.
- --------------------------------------------------------------*/
-typedef struct tr2_animation_s
-{
-  unsigned int frame_offset;    // byte offset into Frames[]
-                                //   (divide by 2 for Frames[i])
-  unsigned char frame_rate;     // "ticks" per frame
-  unsigned char frame_size;     // number of words in Frames[]
-                                //   used by this animation
-  short state_id;
-  short unknown1;
-  short unknown2;
-  short unknown3;
-  short unknown4;
+/*!
+ * \brief State Change structure
+ */
+typedef struct {
+    unsigned short state_id;
+    unsigned short num_anim_dispatches; //!< Number of dispatches (seems to always be 1..5)
+    unsigned short anim_dispatch;       //!< Offset into AnimDispatches[]
+} __attribute__ ((packed)) tr2_state_change_t;
 
-  unsigned short frame_start;   // first frame in this animation
-  unsigned short frame_end;     // last frame in this animation
-                                //  (numframes = (End - Start) + 1)
-  unsigned short next_animation;
-  unsigned short next_frame;
-  unsigned short num_state_changes;
+/*!
+ * \brief Animation Dispatch structure
+ */
+typedef struct {
+    short low;
+    short high;
+    short next_animation;
+    short next_frame;
+} __attribute__ ((packed)) tr2_anim_dispatch_t;
 
-  unsigned short state_change_offset;  // offset into StateChanges[]
-  unsigned short num_anim_commands;
-  unsigned short anim_command;         // offset into AnimCommands[]
-}  __attribute__ ((packed))   tr2_animation_t;
+/*!
+ * \brief AnimCommand structure
+ */
+typedef struct {
+    short value;
+} __attribute__ ((packed)) tr2_anim_command_t;
 
-// Data for an animation structure (40 bytes vice 32 in TR1/2/3)
-typedef struct tr4_animation_s
-{
-    unsigned int frame_offset;// same meaning than in TR3
-    unsigned char frame_rate;// same meaning than in TR3
-    unsigned char frame_size;// same meaning than in TR3
-    unsigned short state_id;// same meaning than in TR3
-    short unknown;// same meaning than in TR3
-    short speed;// same meaning than in TR3
-    unsigned short accel_lo;// same meaning than in TR3
-    short accel_hi;// same meaning than in TR3
-    unsigned char unknown2[8];// new in TR4
-
-    unsigned short frame_start;// same meaning than in TR3
-    unsigned short frame_end;// same meaning than in TR3
-    unsigned short next_animation;// same meaning than in TR3
-    unsigned short next_frame;// same meaning than in TR3
-
-    unsigned short num_state_changes;// same meaning than in TR3
-    unsigned short state_change_offset;// same meaning than in TR3
-    unsigned short num_anim_commands;// same meaning than in TR3
-    unsigned short anim_command;// same meaning than in TR3
-}  __attribute__ ((packed))   tr4_animation_t;
-
-/*--------------------------------------------------------------
- * State Change structure
- --------------------------------------------------------------*/
-typedef struct tr2_state_change_s
-{
-  unsigned short state_id;
-  unsigned short num_anim_dispatches;  // number of dispatches
-                                       //  (seems to always be 1..5)
-  unsigned short anim_dispatch;        // Offset into AnimDispatches[]
-}  __attribute__ ((packed))   tr2_state_change_t;
-
-
-/*--------------------------------------------------------------
- * Animation Dispatch structure
- --------------------------------------------------------------*/
-typedef struct tr2_anim_dispatch_s
-{
-  short low;
-  short high;
-  short next_animation;
-  short next_frame;
-}   __attribute__ ((packed))  tr2_anim_dispatch_t;
-
-
-/*--------------------------------------------------------------
- * AnimCommand structure
- --------------------------------------------------------------*/
-typedef struct tr2_anim_command_s
-{
-   short value;
-}  __attribute__ ((packed))   tr2_anim_command_t;
-
-
-/*--------------------------------------------------------------
- * MeshTree structure
+/*!
+ * \brief MeshTree structure.
  *
  * MeshTree[] is actually groups of four ints.  The first one is a
  * "flags" word;  bit 1 (0x0002) indicates "make previous mesh an
  * anchor (e.g. PUSH)";  bit 0 (0x0001) indicates "return to previous
  * anchor (e.g. POP)".
  * The next three ints are X, Y, Z offsets from the last mesh position.
- --------------------------------------------------------------*/
-typedef struct tr2_meshtree_s
-{
-  int flags;   // 0x0001 = POP, 0x0002 = PUSH
-  int x;
-  int y;
-  int z;
-}  __attribute__ ((packed))  tr2_meshtree_t;
+ */
+typedef struct {
+    int flags; //!< 0x0001 = POP, 0x0002 = PUSH
+    int x;
+    int y;
+    int z;
+} __attribute__ ((packed)) tr2_meshtree_t;
 
-
-/*--------------------------------------------------------------
- * Moveable structure.  This defines a list of contiguous meshes that
+/*!
+ * \brief Moveable structure.
+ *
+ * This defines a list of contiguous meshes that
  * comprise one object, e.g. in WALL.TR2,
- *    moveable[0]  = Lara (StartingMesh 0, NumMeshes 15),
- *    moveable[13] = Tiger (StartingMesh 215, NumMeshes 27)
- *    moveable[15] = Spikes (StartingMesh 249, NumMeshes 1)
- *    moveable[16] = Boulder (StartingMesh 250, NumMeshes 1)
- *    moveable[20] = Rolling Blade (StartingMesh 254, NumMeshes 1)
- --------------------------------------------------------------*/
-typedef struct tr2_moveable_s
-{
-  unsigned int object_id;        // Item Identifier
-  unsigned short num_meshes;     // number of meshes in this object
-  unsigned short starting_mesh;  // first mesh
-  unsigned int mesh_tree;        // offset into MeshTree[]
-  unsigned int frame_offset;     // byte offset into Frames[]
-                                 //  (divide by 2 for Frames[i])
-  unsigned short animation;      // offset into Animations[]
-}  __attribute__ ((packed))  tr2_moveable_t;
+ *
+ *     moveable[0]  = Lara (StartingMesh 0, NumMeshes 15),
+ *     moveable[13] = Tiger (StartingMesh 215, NumMeshes 27)
+ *     moveable[15] = Spikes (StartingMesh 249, NumMeshes 1)
+ *     moveable[16] = Boulder (StartingMesh 250, NumMeshes 1)
+ *     moveable[20] = Rolling Blade (StartingMesh 254, NumMeshes 1)
+ */
+typedef struct {
+    unsigned int object_id;       //!< Item Identifier
+    unsigned short num_meshes;    //!< number of meshes in this object
+    unsigned short starting_mesh; //!< first mesh
+    unsigned int mesh_tree;       //!< offset into MeshTree[]
+    unsigned int frame_offset;    //!< byte offset into Frames[] (divide by 2 for Frames[i])
+    unsigned short animation;     //!< offset into Animations[]
+} __attribute__ ((packed)) tr2_moveable_t;
 
-
-/*--------------------------------------------------------------
- * StaticMesh structure.
+/*!
+ * \brief StaticMesh structure.
  *
  * This defines meshes that don't move (e.g. skeletons
  * lying on the floor, spiderwebs, etc.)
- --------------------------------------------------------------*/
-typedef struct tr2_staticmesh_s
-{
-  unsigned int object_id;             // Item Identifier
-  unsigned short starting_mesh;       // first mesh
-  tr2_vertex_t bounding_box[2][2];
-  unsigned short flags;
-}  __attribute__ ((packed))  tr2_staticmesh_t;
+ */
+typedef struct {
+    unsigned int object_id;          //!< Item Identifier
+    unsigned short starting_mesh;    //!< first mesh
+    tr2_vertex_t bounding_box[2][2];
+    unsigned short flags;
+} __attribute__ ((packed)) tr2_staticmesh_t;
 
-
-/*--------------------------------------------------------------
- * Object texture vertex structure.
+/*!
+ * \brief Object texture vertex structure.
  *
  * Maps coordinates into texture tiles.
- --------------------------------------------------------------*/
-typedef struct tr2_object_texture_vert_s
-{
-  unsigned char xcoordinate;
-  unsigned char xpixel;
-  unsigned char ycoordinate;
-  unsigned char ypixel;
-}  __attribute__ ((packed))  tr2_object_texture_vert_t;
+ */
+typedef struct {
+    unsigned char xcoordinate;
+    unsigned char xpixel;
+    unsigned char ycoordinate;
+    unsigned char ypixel;
+} __attribute__ ((packed)) tr2_object_texture_vert_t;
 
+/*!
+ * \brief Object texture structure.
+ */
+typedef struct {
+    unsigned short transparency_flags;     /*!< * 0: Opaque
+                                            *   * 1: Use transparency
+                                            *   * 2: Use partial transparency
+                                            *        [grayscale intensity :: transparency]
+                                            */
+    unsigned short tile;                   //!< index into textile list
+    tr2_object_texture_vert_t vertices[4]; //!< the four corners of the texture
+} __attribute__ ((packed)) tr2_object_texture_t;
 
-/*--------------------------------------------------------------
- * Object texture structure.
- --------------------------------------------------------------*/
-typedef struct tr2_object_texture_s
-{
-  unsigned short transparency_flags;  // 0: Opaque
-                                      // 1: Use transparency
-                                      // 2: Use partial transparency
-                                      //    [grayscale intensity :: transparency]
+/*!
+ * \brief Sprite texture structure.
+ */
+typedef struct {
+    unsigned short tile;
+    unsigned char x;
+    unsigned char y;
+    unsigned short width;  //!< Actually, (width * 256) + 255
+    unsigned short height; //!< Actually, (height * 256) + 255
+    short left_side;
+    short top_side;
+    short right_side;
+    short bottom_side;
+} __attribute__ ((packed)) tr2_sprite_texture_t;
 
-  unsigned short tile;                     // index into textile list
-  tr2_object_texture_vert_t vertices[4];   // the four corners of the texture
-}  __attribute__ ((packed))   tr2_object_texture_t;
+/*!
+ * \brief Sprite Sequence structure
+ */
+typedef struct {
+    int object_id;         //!< Item identifier (same numbering as in tr2_moveable)
+    short negative_length; //!< Negative of "how many sprites are in this sequence"
+    short offset;          //!< Where (in sprite texture list) this sequence starts
+} __attribute__ ((packed)) tr2_sprite_sequence_t;
 
-
-/*--------------------------------------------------------------
- * Sprite texture structure.
- --------------------------------------------------------------*/
-typedef struct tr2_sprite_texture_s
-{
-  unsigned short tile;
-  unsigned char  x;
-  unsigned char  y;
-  unsigned short width;     // actually, (width * 256) + 255
-  unsigned short height;    // actually, (height * 256) + 255
-  short  left_side;
-  short  top_side;
-  short  right_side;
-  short  bottom_side;
-}  __attribute__ ((packed))   tr2_sprite_texture_t;
-
-
-/*--------------------------------------------------------------
- * Sprite Sequence structure
- --------------------------------------------------------------*/
-typedef struct tr2_sprite_sequence_s
-{
-  int object_id;         // Item identifier (same numbering as in tr2_moveable)
-  short negative_length; // negative of "how many sprites are in this sequence"
-  short offset;          // where (in sprite texture list) this sequence starts
-}  __attribute__ ((packed))   tr2_sprite_sequence_t;
-
-
-/*--------------------------------------------------------------
- * Mesh structure.
+/*!
+ * \brief Mesh structure.
  *
  * The mesh list contains the mesh info for Lara (in all her
  * various incarnations), blocks, enemies (tigers, birds, bad guys),
@@ -683,57 +595,54 @@ typedef struct tr2_sprite_sequence_s
  *
  * If NumNormals is negative, Normals[] represent vertex
  * lighting values (one per vertex).
- --------------------------------------------------------------*/
-typedef struct tr2_mesh_s
-{
-  tr2_vertex_t centre;       // this seems to describe the
-                             //  approximate geometric centre
-                             //  of the mesh (possibly the centre of gravity?)
-                             // (relative coordinates, just like the vertices)
-  int      collision_size;   // radius of collisional sphere
-  short     num_vertices;    // number of vertices in this mesh
-  tr2_vertex_t *vertices;    // list of vertices (relative coordinates)
-  short     num_normals;     // number of normals in this mesh
-                             //  (should always equal NumVertices)
-  tr2_vertex_t *normals;     // list of normals (NULL if NumNormals < 0)
-  short      *mesh_lights;   // if NumNormals < 0
+ */
+typedef struct {
+    tr2_vertex_t centre;             /*!< \brief This seems to describe the
+                                      * approximate geometric centre
+                                      * of the mesh (possibly the centre of gravity?)
+                                      * (relative coordinates, just like the vertices) */
+    int collision_size;              //!< radius of collisional sphere
+    short num_vertices;              //!< number of vertices in this mesh
+    tr2_vertex_t *vertices;          //!< list of vertices (relative coordinates)
+    short num_normals;               //!< number of normals in this mesh (should always equal NumVertices)
+    tr2_vertex_t *normals;           //!< list of normals (NULL if NumNormals < 0)
+    short *mesh_lights;              //!< if NumNormals < 0
+    short num_textured_rectangles;   //!< number of textured rectangles
+    tr2_quad_t *textured_rectangles; //!< list of textured rectangles
+    short num_textured_triangles;    //!< number of textured triangles in this mesh
+    tr2_tri_t *textured_triangles;   //!< list of textured triangles
+    short num_coloured_rectangles;   //!< number of coloured rectangles
+    tr2_quad_t *coloured_rectangles; //!< list of coloured rectangles
+    short num_coloured_triangles;    //!< number of coloured triangles in this mesh
+    tr2_tri_t *coloured_triangles;   //!< list of coloured triangles
+} __attribute__ ((packed)) tr2_mesh_t;
 
-  short num_textured_rectangles;   // number of textured rectangles
-  tr2_quad_t *textured_rectangles; // list of textured rectangles
-
-  short num_textured_triangles;    // number of textured triangles in this mesh
-  tr2_tri_t  *textured_triangles;  // list of textured triangles
-
-  short  num_coloured_rectangles;  // number of coloured rectangles
-  tr2_quad_t *coloured_rectangles; // list of coloured rectangles
-
-  short    num_coloured_triangles; // number of coloured triangles in this mesh
-  tr2_tri_t  *coloured_triangles;  // list of coloured triangles
-}  __attribute__ ((packed))   tr2_mesh_t;
-
-
-/*--------------------------------------------------------------
- * Frame structure.
+/*!
+ * \brief Frame structure.
  *
  * Frames indicates how composite meshes are positioned and rotated.
  * They work in conjunction with Animations[] and Bone2[].
  *
  * A given frame has the following format:
- *    short BB1x, BB1y, BB1z           // bounding box (low)
- *    short BB2x, BB2y, BB2z           // bounding box (high)
- *    short OffsetX, OffsetY, OffsetZ  // starting offset for this moveable
- *    (TR1 ONLY: short NumValues       // number of angle sets to follow)
- *    (TR2/3: NumValues is implicitly NumMeshes (from moveable))
+ *
+ *     short BB1x, BB1y, BB1z           // bounding box (low)
+ *     short BB2x, BB2y, BB2z           // bounding box (high)
+ *     short OffsetX, OffsetY, OffsetZ  // starting offset for this moveable
+ *     (TR1 ONLY: short NumValues       // number of angle sets to follow)
+ *     (TR2/3: NumValues is implicitly NumMeshes (from moveable))
  *
  * What follows next is a list of angle sets.  In TR2/3, an angle set can
  * specify either one or three axes of rotation.  If either of the high two
  * bits (0xc000) of the first angle unsigned short are set, it's one axis:
- *  only one  unsigned short,
- *  low 10 bits (0x03ff),
- *  scale is 0x100 == 90 degrees;
+ *
+ *     only one  unsigned short,
+ *     low 10 bits (0x03ff),
+ *     scale is 0x100 == 90 degrees;
+ *
  * the high two  bits are interpreted as follows:
- *  0x4000 == X only, 0x8000 == Y only,
- *  0xC000 == Z only.
+ *
+ *     0x4000 == X only, 0x8000 == Y only,
+ *     0xC000 == Z only.
  *
  * If neither of the high bits are set, it's a three-axis rotation.  The next
  * 10 bits (0x3ff0) are the X rotation, the next 10 (including the following
@@ -744,596 +653,485 @@ typedef struct tr2_mesh_s
  * Rotations are performed in Y, X, Z order.
  * TR1 ONLY: All angle sets are two words and interpreted like the two-word
  * sets in TR2/3, EXCEPT that the word order is reversed.
- --------------------------------------------------------------*/
-typedef struct tr2_frame_s
-{
-  tr2_vertex_t vector[3];
-  int        num_words;
-  unsigned short     *words;
-}  __attribute__ ((packed))   tr2_frame_t;
+ */
+typedef struct {
+    tr2_vertex_t vector[3];
+    int num_words;
+    unsigned short *words;
+} __attribute__ ((packed)) tr2_frame_t;
 
+/*!
+ * \brief Item structure
+ */
+typedef struct {
+    short object_id;
+    short room;
+    int x;
+    int y;
+    int z;
+    short angle;
+    short intensity1;
+    short intensity2;
+    short flags;      //!< 0x0100 indicates "inactive" or "invisible"
+} __attribute__ ((packed)) tr2_item_t;
 
-/*--------------------------------------------------------------
- * Item structure
- --------------------------------------------------------------*/
-typedef struct tr2_item_s
-{
-  short object_id;
-  short room;
-  int x;
-  int y;
-  int z;
-  short angle;
-  short intensity1;
-  short intensity2;
-  short flags;   // 0x0100 indicates "inactive" or "invisible"
-}  __attribute__ ((packed))   tr2_item_t;
+/*!
+ * \brief SoundSource structure
+ */
+typedef struct {
+    int x;                   //!< position of sound source
+    int y;
+    int z;
+    unsigned short sound_id; //!< internal sound index
+    unsigned short flags;    //!< 0x40, 0x80, or 0xc0
+} __attribute__ ((packed)) tr2_sound_source_t;
 
+/*!
+ * \brief Boxes structure
+ */
+typedef struct {
+    unsigned char zmin;  //!< sectors (* 1024 units)
+    unsigned char zmax;
+    unsigned char xmin;
+    unsigned char xmax;
+    short true_floor;    //!< Y value (no scaling)
+    short overlap_index; //!< index into Overlaps[]
+} __attribute__ ((packed)) tr2_box_t;
 
-/*--------------------------------------------------------------
- * SoundSource structure
- --------------------------------------------------------------*/
-typedef struct tr2_sound_source_s
-{
-  int x;                           // position of sound source
-  int y;
-  int z;
-  unsigned short sound_id;         // internal sound index
-  unsigned short flags;            // 0x40, 0x80, or 0xc0
-}  __attribute__ ((packed))   tr2_sound_source_t;
-
-
-/*--------------------------------------------------------------
- * Boxes structure
- --------------------------------------------------------------*/
-typedef struct tr2_boxes_s
-{
-  unsigned char zmin;             // sectors (* 1024 units)
-  unsigned char zmax;
-  unsigned char xmin;
-  unsigned char xmax;
-  short true_floor;        // Y value (no scaling)
-  short overlap_index;     // index into Overlaps[]
-}  __attribute__ ((packed))   tr2_box_t;
-
-
-/*--------------------------------------------------------------
- * AnimatedTexture structure
+/*!
+ * \brief AnimatedTexture structure.
+ *
  * - really should be simple short[], since it's variable length
- --------------------------------------------------------------*/
-typedef struct tr2_animated_texture_s
-{
-  short num_texture_ids;    // Number of Texture IDs - 1
-  short *texture_list;      // list of textures to cycle through
-}  __attribute__ ((packed))   tr2_animated_texture_t;
+ */
+typedef struct {
+    short num_texture_ids; //!< Number of Texture IDs - 1
+    short *texture_list;   //!< list of textures to cycle through
+} __attribute__ ((packed)) tr2_animated_texture_t;
 
+/*!
+ * \brief Camera structure
+ */
+typedef struct {
+    int x;
+    int y;
+    int z;
+    short room;
+    unsigned short unknown1; //!< correlates to Boxes[]?
+} __attribute__ ((packed)) tr2_camera_t;
 
-/*--------------------------------------------------------------
- * Camera structure
- --------------------------------------------------------------*/
-typedef struct tr2_camera_s
-{
-  int x;
-  int y;
-  int z;
-  short room;
-  unsigned short unknown1;  // correlates to Boxes[]?
-} __attribute__ ((packed))    tr2_camera_t;
+/*
+ * \brief Data for a flyby camera (40 bytes)
+ */
+typedef struct {
+    int pos[6];                //!< Positions ? (x1,y1,z1,x2,y2,z2) roatations?
+    unsigned char index[2];    //!< A pair of indices
+    unsigned short unknown[5]; //!< ??
+    int id;                    //!< Index of something
+} __attribute__ ((packed)) tr4_extra_camera_t;
 
-// Data for a flyby camera (40 bytes)
-typedef struct tr4_extra_camera_s
-{
-    int pos[6];  // Positions ? (x1,y1,z1,x2,y2,z2) roatations?
-    unsigned char index[2]; // A pair of indices
-    unsigned short unknown[5];// ??
-    int id ;// Index of something
-} __attribute__ ((packed))    tr4_extra_camera_t;
-
-
-/*--------------------------------------------------------------
- * Sound sample structure
- --------------------------------------------------------------*/
-typedef struct tr2_sound_details_s
-{
-  short sample;
-  short volume;
-  short sound_range;
-  short flags;         // bits 8-15: priority?, 2-7: number of sound samples
-                       // in this group, bits 0-1: channel number
+/*!
+ * \brief Sound sample structure
+ */
+typedef struct {
+    short sample;
+    short volume;
+    short sound_range;
+    short flags;       /*!< \ brief bits 8-15: priority?, 2-7: number of sound samples
+                        * in this group, bits 0-1: channel number */
 } __attribute__ ((packed)) tr2_sound_details_t;
 
-
-/*--------------------------------------------------------------
- * Cutscene Camera structure
- --------------------------------------------------------------*/
-typedef struct tr2_cinematic_frame_s
-{
-  short roty;      // Rotation about Y axis, +/-32767 ::= +/- 180 degrees
-  short rotz;      // Rotation about Z axis, +/-32767 ::= +/- 180 degrees
-  short rotz2;     // Rotation about Z axis (why two?),
-                   //    +/-32767 ::= +/- 180 degrees
-  short posz;      // Z position of camera, relative to something
-  short posy;      // Y position of camera, relative to something
-  short posx;      // X position of camera, relative to something
-  short unknown1;
-  short rotx;      // Rotation about X axis, +/-32767 ::= +/- 180 degrees
+/*!
+ * \brief Cutscene Camera structure
+ */
+typedef struct {
+    short roty;     //!< Rotation about Y axis, +/-32767 ::= +/- 180 degrees
+    short rotz;     //!< Rotation about Z axis, +/-32767 ::= +/- 180 degrees
+    short rotz2;    //!< Rotation about Z axis (why two?), +/-32767 ::= +/- 180 degrees
+    short posz;     //!< Z position of camera, relative to something
+    short posy;     //!< Y position of camera, relative to something
+    short posx;     //!< X position of camera, relative to something
+    short unknown1;
+    short rotx;     //!< Rotation about X axis, +/-32767 ::= +/- 180 degrees
 } __attribute__ ((packed)) tr2_cinematic_frame_t;
 
-
-/*--------------------------------------------------------------
+/*!
+ * \brief Data for a AI object (24 bytes).
+ *
+ * this field replaces the bitu16 NumCinematicFrames of TR1/2/3 levels
+ *
  * Used to read TR4 AI data
- *  this field replaces the bitu16 NumCinematicFrames of TR1/2/3 levels
- *  Data for a AI object (24 bytes)
- --------------------------------------------------------------*/
-typedef struct tr4_ai_object_s
-{
-    unsigned short int object_id; // the objectID from the AI object
-                                  // (AI_FOLLOW is 402)
+ */
+typedef struct {
+    unsigned short int object_id; //!< the objectID from the AI object
+                                  //!< (AI_FOLLOW is 402)
     unsigned short int room;
     int x, y, a;
     unsigned short int ocb;
-    unsigned short int flags; // The trigger flags
-                              // (button 1-5, first button has value 2)
-    int angle;  // rotation
+    unsigned short int flags;     //!< The trigger flags
+                                  //!< (button 1-5, first button has value 2)
+    int angle;                    //!< rotation
 } __attribute__ ((packed)) tr4_ai_object_t;
 
+/*!
+ * \brief Used to read packed TR4 texels
+ */
+typedef struct {
+    unsigned short attribute;              //!< same meaning as in TR3
+    unsigned short tile;                   //!< same meaning as in TR3
+    unsigned short flags;                  //!< new in TR4
+    tr2_object_texture_vert_t vertices[4]; //!< same meaning as in TR3
+    unsigned int unknown1, unknown2;       //!< new in TR4: x & y offset in something
+    unsigned int xsize, ysize;             //!< new in TR4: width-1 & height-1 of the object texture
+} __attribute__ ((packed)) tr4_object_texture_t;
 
-/*--------------------------------------------------------------
- * Used to read packed TR4 texels
- --------------------------------------------------------------*/
-typedef struct tr4_object_texture_s
-{
-    unsigned short  attribute; // same meaning than in TR3
-    unsigned short tile;      // same meaning than in TR3
-    unsigned short flags;// new in TR4
-    tr2_object_texture_vert_t vertices[4];// same meaning than in TR3
-    unsigned int unknown1, unknown2;  // new in TR4: x & y offset in something
-    unsigned int xsize,ysize;// new in TR4: width-1 & height-1 of the object texture
+/*!
+ * \brief TR5 Room Layer (56 bytes)
+ */
+typedef struct {
+    u_int32_t numLayerVertices;   //!< number of vertices in this layer (4 bytes)
+    u_int16_t unknownL1;          //!< unknown (2 bytes)
+    u_int16_t numLayerRectangles; //!< number of rectangles in this layer (2 bytes)
+    u_int16_t numLayerTriangles;  //!< number of triangles in this layer (2 bytes)
+    u_int16_t unknownL2;          //!< appears to be the number of 2 sided textures
+                                  //!< in this layer, however is sometimes 1 off (2 bytes)
+    u_int16_t filler;             //!< always 0 (2 bytes)
+    u_int16_t filler2;            //!< always 0 (2 bytes)
 
-}  __attribute__ ((packed)) tr4_object_texture_t;
-
-
-typedef struct tr5_room_layer_s // (56 bytes)
-{
-   u_int32_t numLayerVertices; // number of vertices in this layer (4 bytes)
-
-   u_int16_t unknownL1; // unknown (2 bytes)
-
-   u_int16_t numLayerRectangles; // number of rectangles in this layer (2 bytes)
-
-   u_int16_t numLayerTriangles; // number of triangles in this layer (2 bytes)
-
-    u_int16_t unknownL2; // appears to be the number of 2 sided textures in this layer, however is sometimes 1 off (2 bytes)
-
-    u_int16_t filler; // always 0 (2 bytes)
-
-    u_int16_t filler2; // always 0 (2 bytes)
-
-    // The following 6 floats (4 bytes each)
-    //  define the bounding box for the layer
-    float layerBoundingBoxX1;
+    float layerBoundingBoxX1;     //!< These 6 floats (4 bytes each) define the bounding box for the layer
     float layerBoundingBoxY1;
     float layerBoundingBoxZ1;
     float layerBoundingBoxX2;
     float layerBoundingBoxY2;
     float layerBoundingBoxZ2;
-
-    u_int32_t filler3; // always 0 (4 bytes)
-
-    u_int32_t unknownL6; // unknown (4 bytes)
-
-    u_int32_t unknownL7; // unknown (4 bytes)
-
-    u_int32_t unknownL8; // unknown. Always the same throughout the level. (4 bytes)
-
+    u_int32_t filler3;            //!< always 0 (4 bytes)
+    u_int32_t unknownL6;          //!< unknown (4 bytes)
+    u_int32_t unknownL7;          //!< unknown (4 bytes)
+    u_int32_t unknownL8;          //!< unknown. Always the same throughout the level. (4 bytes)
 } tr5_room_layer_t;
 
-
-typedef struct tr5_face4_s // (12 bytes)
-{
-    u_int16_t vertices[4]; // the values are the indices into the appropriate layer vertice list. (2 bytes each)
-
-    u_int16_t texture; // the texture number for this face. Needs to be masked with 0xFFF as the high 4 bits are flags.(2 bytes)
-
-    u_int16_t unknownF4; // unknown (2 bytes)
-
+/*!
+ * \brief TR5 Quad (12 bytes)
+ */
+typedef struct {
+    u_int16_t vertices[4]; //!< the values are the indices into the
+                           //!< appropriate layer vertice list. (2 bytes each)
+    u_int16_t texture;     //!< the texture number for this face. Needs to be masked
+                           //!< with 0xFFF as the high 4 bits are flags (2 bytes)
+    u_int16_t unknownF4;   //!< unknown (2 bytes)
 } tr5_face4_t;
 
-
-typedef struct tr5_face3_s // (10 bytes)
-{
-    u_int16_t vertices[3]; // the values are the indices into the appropriate layer vertice list (2 bytes each)
-
-    u_int16_t texture; // the texture number for this face. Needs to be masked with 0xFFF as the high 4 bits are flags (2 bytes)
-
-    u_int16_t unknownF3; // unknown (2 bytes)
-
+/*!
+ * \brief TR5 triangular face (10 bytes)
+ */
+typedef struct {
+    u_int16_t vertices[3]; //!< the values are the indices into the
+                           //!< appropriate layer vertice list (2 bytes each)
+    u_int16_t texture;     //!< the texture number for this face. Needs to be masked
+                           //!< with 0xFFF as the high 4 bits are flags (2 bytes)
+    u_int16_t unknownF3;   //!< unknown (2 bytes)
 } tr5_face3_t;
 
-typedef struct tr5_vertex_s  //  (28 bytes)
-{
-    float x; // x of vertex (4 bytes)
-    float y; // y of vertex (4 bytes)
-    float z; // z of vertex (4 bytes)
-
-    float nx; // x of vertex normal (4 bytes)
-    float ny; // y of vertex normal (4 bytes)
-    float nz; // z of vertex normal (4 bytes)
-
-    u_int32_t vColor; // vertex color ARGB format (4 bytes)
-
+/*!
+ * \brief TR5 Vertex (28 bytes)
+ */
+typedef struct {
+    float x;          //!< x of vertex (4 bytes)
+    float y;          //!< y of vertex (4 bytes)
+    float z;          //!< z of vertex (4 bytes)
+    float nx;         //!< x of vertex normal (4 bytes)
+    float ny;         //!< y of vertex normal (4 bytes)
+    float nz;         //!< z of vertex normal (4 bytes)
+    u_int32_t vColor; //!< vertex color ARGB format (4 bytes)
 } tr5_vertex_t;
 
-typedef struct tr5_room_geometry_s
-{
-    // This is to help store and manage TR5 layer based polgons for rooms
+/*!
+ * \brief This is to help store and manage TR5 layer based polgons for rooms
+ */
+typedef struct {
     tr5_face4_t *quads;
     tr5_face3_t *tris;
     tr5_vertex_t *verts;
-
 } tr5_room_geometry_t;
 
+/*!
+ * \brief TR5 light (88 bytes)
+ */
+typedef struct {
+    float x; //!< x position of light (4 bytes)
+    float y; //!< y position of light (4 bytes)
+    float z; //!< z position of light (4 bytes)
+    /*!< Maybe wrong: The (x, y, z) floats specify the position of the light
+     * in world coordinates.
+     *
+     * The sun type light should not use these but seems to have a
+     * large x value (9 million, give or take)
+     * a zero y value, and a small z value (4 - 20) in the original TR5 levels
+     */
 
-typedef struct tr5_light_s //  (88 bytes)
-{
-    /* Maybe wrong: The first three floats specify the position of the light
-        in world coordinates
+    float red;   //!< color of red spectrum (4 bytes)
+    float green; //!< color of green spectrum (4 bytes)
+    float blue;  //!< color of blue spectrum (4 bytes)
 
-        The sun type light should not use these but seems to have a
-        large x value (9 million, give or take)
-        a zero y value, and a small z value (4 - 20) in the original TR5 levels
-    */
+    u_int32_t seperator; //!< not used 0xCDCDCDCD (4 bytes)
 
-    float x; // x position of light (4 bytes)
-    float y; // y position of light (4 bytes)
-    float z; // z position of light (4 bytes)
+    float input;  //!< cosine of the IN value for light / size of IN value (4 bytes)
+    float output; //!< cosine of the OUT value for light / size of OUT value (4 bytes)
+    /*!< At this point the info diverges dependant
+     * on which type of light being used:
+     *
+     *     0 = sun, 1 = light, 2 = spot, 3 = shadow
+     *
+     * The sun type doesn't use input and output.
+     *
+     * For the spot type these are the hotspot and falloff angle cosines.
+     *
+     * For the light and shadow types these are the TR units
+     * for the hotspot/falloff (1024=1sector).
+     */
 
-    // The next three specify the color of the light
-    float red; // color of red spectrum (4 bytes)
-    float green; // color of green spectrum (4 bytes)
-    float blue; // color of blue spectrum (4 bytes)
+    float radInput;  //!< (IN radians) * 2 (4 bytes)
+    float radOutput; //!< (OUT radians) * 2 (4 bytes)
+    //!< radInput and radOutput are only used by the spot type light
 
-    u_int32_t seperator; // not used 0xCDCDCDCD (4 bytes)
+    float range; //!< Range of light (4 bytes), only used by the spot type light
 
-    /* At this point the following info diverges dependant
-        on which type of light being used:
+    float directionVectorX; //!< light direction (4 bytes)
+    float directionVectorY; //!< light direction (4 bytes)
+    float directionVectorZ; //!< light direction (4 bytes)
+    /*!< The 3 directionVector floats are used only by the 'sun' and 'spot' type lights.
+     * They describe the directional vector of the light.
+     * This can be obtained by:
+     *
+     *     if both x and y LightDirectionVectorX = cosX * sinY
+     *
+     *     LightDirectionVectorY = sinX
+     *     LightDirectionVectorZ = cosX * cosY
+     */
 
-        0 = sun,  1 = light,  2 = spot,  3 = shadow
+    int32_t x2; //!< x position of light (4 bytes)
+    int32_t y2; //!< y position of light (4 bytes)
+    int32_t z2; //!< z position of light (4 bytes)
+    /*!<
+     * x2, y2, z2 and the directionVectors-2 repeat some of the
+     * previous information in long data types vice floats
+     */
+    int32_t directionVectorX2; //!< light direction (4 bytes)
+    int32_t directionVectorY2; //!< light direction (4 bytes)
+    int32_t directionVectorZ2; //!< light direction (4 bytes)
+    //!< 16384 = 1.0 for the rotations (1/16384)
 
-        The sun type doesn't use the next two.
+    u_int8_t lightType; //!< type of light as specified above (1 byte)
 
-        For the spot type these are the hotspot and falloff angle cosines
-
-        For the light and shadow types these are the TR units
-        for the hotspot/falloff (1024=1sector)
-    */
-
-    float input; // cosine of the IN value for light / size of IN value (4 bytes)
-    float output; // cosine of the OUT value for light / size of OUT value (4 bytes)
-
-    //  The next two are only used by the spot type light
-    float radInput; // (IN radians) * 2 (4 bytes)
-    float radOutput; // (OUT radians) * 2 (4 bytes)
-
-    //  The next is also only used by the spot type light
-    float range; // Range of light (4 bytes)
-
-    /* The final 3 floats are used only by the 'sun' and 'spot' type lights.
-        They describe the directional vector of the light.
-        This can be obtained by :
-
-        if both x and y LightDirectionVectorX = cosX * sinY
-
-        LightDirectionVectorY = sinX
-        LightDirectionVectorZ = cosX * cosY
-    */
-
-    float directionVectorX; // light direction (4 bytes)
-    float directionVectorY; // light direction (4 bytes)
-    float directionVectorZ; // light direction (4 bytes)
-
-    //  The next six values repeat some of the previous information in long data types vice floats
-
-    int32_t x2; // x position of light (4 bytes)
-    int32_t y2; // y position of light (4 bytes)
-    int32_t z2; // z position of light (4 bytes)
-
-    //  16384 = 1.0 for the rotations ( 1/16384 )
-    int32_t directionVectorX2;  // light direction (4 bytes)
-    int32_t directionVectorY2; // light direction (4 bytes)
-    int32_t directionVectorZ2; // light direction (4 bytes)
-
-    //  The next char specifies the type of light as specified above
-    u_int8_t lightType; // type of light. (1 byte)
-
-    u_int8_t seperator2[3]; // 0xCDCDCD (3 bytes)
-
+    u_int8_t seperator2[3]; //!< 0xCDCDCD (3 bytes)
 } tr5_light_t;
 
-// [ FIRST NUMBER IS OFFSET IN BYTES FROM START OF ROOM STRUCTURE]
-typedef struct tr5_room_s
-{
-    u_int32_t checkXELA; // "XELA" (4 bytes)
-
-    u_int32_t roomDataSize; /* size of the following data ( use this vice
-                                        'walking thru' to get next room) (4 bytes) */
-
-    u_int32_t seperator; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t endSDOffset; /* usually this number +  216 will give you the
-                                      offset from the start of the room data to the end
-                                      of the Sector Data. HOWEVER have seen where this
-                                      bitu32 is equal to -1 so it is better to use the
-                                      following bitu32 and + 216 +
-                                      ((NumXSectors * NumZSectors)*8) if you need
-                                      to obtain this information. (4 bytes) */
-
-    u_int32_t startSDOffset; /* this number + 216 will give you the offset from
-                                         the start of the room to the start of the
-                                         sector data. (4 bytes) */
-
-    u_int32_t seperator2; // will either be 0x00000000 or 0xCDCDCDCD (4 bytes)
-
-    u_int32_t endPortalOffset; /* this number + 216 will give you the offset
-                                            from the start of the room to the end of the
-                                            portal data. (4 bytes) */
-
-    int32_t x; // X position of room ( world coordinates) (4 bytes)
-
-    int32_t seperator3; // 0x00000000 (4 bytes)
-
-    int32_t z; // Z position of room (world coordinates) (4 bytes)
-
-    int32_t yBottom; // lowest point in room (4 bytes)
-
-    int32_t yTop; // highest point in room (4 bytes)
-
-    u_int16_t numZSectors; // sector table width (2 bytes)
-
-    u_int16_t numXSectors; // sector table height (2 bytes)
-
-    u_int32_t roomAmbientColor; // ARGB format (blue is least significant byte) (4 bytes)
-
-    u_int16_t numRoomLights; // number of lights in this room (2 bytes)
-
-    u_int16_t numStaticMeshes; // number of static meshes in this room (2 bytes)
-
-    u_int16_t unknownR1; // usually 0x0001 however high byte is sometimes non zero (2 bytes)
-
-    u_int16_t unknownR2; // usually 0x0000 however low byte is sometimes non zero (2 bytes)
-
-    u_int32_t filler; // always 0x00007FFF (4 bytes)
-
-    u_int32_t filler2; // always 0x00007FFF (4 bytes)
-
-    u_int32_t seperator4; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t seperator5; // 0xCDCDCDCD (4 bytes)
-
-    unsigned char seperator6[6]; // 6 bytes 0xFF
-
-    u_int16_t roomFlag; // 0x01 = water, 0x20 = wind, others unknown (2 bytes)
-
-    u_int16_t unknownR5; // unknown (2 bytes)
-
-    unsigned char seperator7[10]; // 10 bytes 0x00
-
-    u_int32_t seperator8; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t unknownR6; // unknown (4 bytes)
-
-    float roomX; // X position of room in world coordinates * If  null room then this data will be 0xCDCDCDCD (4                                bytes)
-
-    u_int32_t seperator9; // 0x00000000 or 0xCDCDCDCD if null room. (4 bytes)
-
-    float roomZ; // Z position of room in world coordinates * If null room then will be bitu32 0xCDCDCDCD (4                                bytes)
-
-    u_int32_t seperator10; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t seperator11; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t seperator12; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t seperator13; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t seperator14; // 0x00000000 unless null room then 0xCDCDCDCD (4 bytes)
-
-    u_int32_t seperator15; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t numRoomTriangles; // total number of triangles this room (4 bytes)
-
-    u_int32_t numRoomRectangles; // total number of rectangles this room (4 bytes)
-
-    u_int32_t seperator16; // 0x00000000 (4 bytes)
-
-    u_int32_t lightSize; //  size of light data (number of lights * 88) (4 bytes)
-
-    u_int32_t numTotalRoomLights; // total number of lights this room (4 bytes)
-
-    u_int32_t unknownR7; // unknown, usually equals 0, 1, 2, or 3 (4 bytes)
-
-    int32_t unknownR8; // usually equals room yTop. Sometimes a few blocks off. If null room then 0xCDCDCDCD
-
-    int32_t lyBottom; // equals room yBottom. If null room then 0xCDCDCDCD (4 bytes)
-
-    u_int32_t numLayers; // number of layers (pieces) this room (4 bytes)
-
-    u_int32_t layerOffset; // this number + 216 will give you an offset from the start of the room data to the start of the                                         layer data (4 bytes)
-
-    u_int32_t verticesOffset; // this number + 216 will give you an offset from the start of the room data to the start of the verex data (4 bytes)
-
-    u_int32_t polyOffset; // this number + 216 will give you an offset from the start of the room data to the start of the rectangle/triangle data (4 bytes)
-
-    u_int32_t polyOffset2; // same as above ? (4 bytes)
-
-    u_int32_t verticesSize; // size of vertices data block (4 bytes)
-
-    u_int32_t seperator17; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t seperator18; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t seperator19; // 0xCDCDCDCD (4 bytes)
-
-    u_int32_t seperator20; // 0xCDCDCDCD (4 bytes)
-
-    tr5_light_t *lights; //[LightSize]; // data for the lights (88 bytes * NumRoomLights)
-
-    tr2_room_sector_t *sectors; //Data[(NumXSectors * NumZSectors) * 8]; // normal sector data structure
-
-    u_int16_t numDoors; // number of portals (2 bytes)
-
-    tr2_room_portal_t *doors;//[NumDoors]; // normal portal structure (32 bytes * NumDoors)
-
-    u_int16_t seperator21; // 0xCDCD (2 bytes)
-
-    tr2_room_staticmesh_t *meshes; //[NumStaticMeshes]; // normal room static mesh structure (20 bytes * NumRoomStaticMeshes)
-
-    tr5_room_layer_t *layers; // [NumLayers]; // data for the room layers (pieces) (56 bytes * NumLayers)
-
-    tr5_room_geometry_t *faces; //[NumRoomRectangles + NumRoomTriangles];
-    /* Data for the room polys (face4 and face3).
-        Structured as first layers rectangles then triangles, followed by the
-        next layers rectangles and triangles, etc., until all layers are done.
-        (12 bytes each rectangle. 10 bytes each triangle) */
-
-    tr5_vertex_t *vertices; //[VerticesSize];
-    /* data for the room vertices. Structured as vertices for the first layer,
-        then vertices for the second layer, etc., until all layers are done.
-        (28 bytes each vertex. */
-
+/*!
+ * \brief TR5 Room.
+ *
+ * First number is offset in bytes from start of room structure.
+ */
+typedef struct {
+    u_int32_t checkXELA;           //!< "XELA" (4 bytes)
+    u_int32_t roomDataSize;        /*!< size of the following data ( use this vice
+                                    * 'walking thru' to get next room) (4 bytes) */
+    u_int32_t seperator;           //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t endSDOffset;         /*!< usually this number +  216 will give you the
+                                    * offset from the start of the room data to the end
+                                    * of the Sector Data. HOWEVER have seen where this
+                                    * bitu32 is equal to -1 so it is better to use the
+                                    * following bitu32 and + 216 +
+                                    * ((NumXSectors * NumZSectors)*8) if you need
+                                    * to obtain this information. (4 bytes) */
+    u_int32_t startSDOffset;       /*!< this number + 216 will give you the offset from
+                                    * the start of the room to the start of the
+                                    * sector data. (4 bytes) */
+    u_int32_t seperator2;          //!< will either be 0x00000000 or 0xCDCDCDCD (4 bytes)
+    u_int32_t endPortalOffset;     /*!< this number + 216 will give you the offset
+                                    * from the start of the room to the end of the
+                                    * portal data. (4 bytes) */
+    int32_t x;                     //!< X position of room ( world coordinates) (4 bytes)
+    int32_t seperator3;            //!< 0x00000000 (4 bytes)
+    int32_t z;                     //!< Z position of room (world coordinates) (4 bytes)
+    int32_t yBottom;               //!< lowest point in room (4 bytes)
+    int32_t yTop;                  //!< highest point in room (4 bytes)
+    u_int16_t numZSectors;         //!< sector table width (2 bytes)
+    u_int16_t numXSectors;         //!< sector table height (2 bytes)
+    u_int32_t roomAmbientColor;    //!< ARGB format (blue is least significant byte) (4 bytes)
+    u_int16_t numRoomLights;       //!< number of lights in this room (2 bytes)
+    u_int16_t numStaticMeshes;     //!< number of static meshes in this room (2 bytes)
+    u_int16_t unknownR1;           //!< usually 0x0001 however high byte is sometimes non zero (2 bytes)
+    u_int16_t unknownR2;           //!< usually 0x0000 however low byte is sometimes non zero (2 bytes)
+    u_int32_t filler;              //!< always 0x00007FFF (4 bytes)
+    u_int32_t filler2;             //!< always 0x00007FFF (4 bytes)
+    u_int32_t seperator4;          //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator5;          //!< 0xCDCDCDCD (4 bytes)
+    unsigned char seperator6[6];   //!< 6 bytes 0xFF
+    u_int16_t roomFlag;            //!< 0x01 = water, 0x20 = wind, others unknown (2 bytes)
+    u_int16_t unknownR5;           //!< unknown (2 bytes)
+    unsigned char seperator7[10];  //!< 10 bytes 0x00
+    u_int32_t seperator8;          //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t unknownR6;           //!< unknown (4 bytes)
+    float roomX;                   //!< X position of room in world coordinates
+                                   //!< If  null room then this data will be 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator9;          //!< 0x00000000 or 0xCDCDCDCD if null room. (4 bytes)
+    float roomZ;                   //!< Z position of room in world coordinates
+                                   //!< If null room then will be bitu32 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator10;         //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator11;         //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator12;         //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator13;         //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator14;         //!< 0x00000000 unless null room then 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator15;         //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t numRoomTriangles;    //!< total number of triangles this room (4 bytes)
+    u_int32_t numRoomRectangles;   //!< total number of rectangles this room (4 bytes)
+    u_int32_t seperator16;         //!< 0x00000000 (4 bytes)
+    u_int32_t lightSize;           //!< size of light data (number of lights * 88) (4 bytes)
+    u_int32_t numTotalRoomLights;  //!< total number of lights this room (4 bytes)
+    u_int32_t unknownR7;           //!< unknown, usually equals 0, 1, 2, or 3 (4 bytes)
+    int32_t unknownR8;             //!< usually equals room yTop. Sometimes a few blocks off.
+                                   //!< If null room then 0xCDCDCDCD
+    int32_t lyBottom;              //!< equals room yBottom. If null room then 0xCDCDCDCD (4 bytes)
+    u_int32_t numLayers;           //!< number of layers (pieces) this room (4 bytes)
+    u_int32_t layerOffset;         //!< this number + 216 will give you an offset from the start
+                                   //!< of the room data to the start of the layer data (4 bytes)
+    u_int32_t verticesOffset;      //!< this number + 216 will give you an offset from the start
+                                   //!< of the room data to the start of the verex data (4 bytes)
+    u_int32_t polyOffset;          //!< this number + 216 will give you an offset from the start
+                                   //!< of the room data to the start of the rectangle/triangle data (4 bytes)
+    u_int32_t polyOffset2;         //!< same as above ? (4 bytes)
+    u_int32_t verticesSize;        //!< size of vertices data block (4 bytes)
+    u_int32_t seperator17;         //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator18;         //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator19;         //!< 0xCDCDCDCD (4 bytes)
+    u_int32_t seperator20;         //!< 0xCDCDCDCD (4 bytes)
+    tr5_light_t *lights;           //!< [LightSize];
+                                   //!< data for the lights (88 bytes * NumRoomLights)
+    tr2_room_sector_t *sectors;    //!< Data[(NumXSectors * NumZSectors) * 8];
+                                   //!< normal sector data structure
+    u_int16_t numDoors;            //!< number of portals (2 bytes)
+    tr2_room_portal_t *doors;      //!< [NumDoors];
+                                   //!< normal portal structure (32 bytes * NumDoors)
+    u_int16_t seperator21;         //!< 0xCDCD (2 bytes)
+    tr2_room_staticmesh_t *meshes; //!< [NumStaticMeshes];
+                                   //!< normal room static mesh structure (20 bytes * NumRoomStaticMeshes)
+    tr5_room_layer_t *layers;      //!< [NumLayers];
+                                   //!< data for the room layers (pieces) (56 bytes * NumLayers)
+    tr5_room_geometry_t *faces;    //!< [NumRoomRectangles + NumRoomTriangles];
+                                   /* Data for the room polys (face4 and face3).
+                                    * Structured as first layers rectangles
+                                    * then triangles, followed by the
+                                    * next layers rectangles and triangles, etc.,
+                                    * until all layers are done.
+                                    * (12 bytes each rectangle. 10 bytes each triangle)
+                                    */
+    tr5_vertex_t *vertices;        //!< [VerticesSize];
+                                   /*!< Data for the room vertices.
+                                    * Structured as vertices for the first layer,
+                                    * then vertices for the second layer, etc.,
+                                    * until all layers are done.
+                                    * (28 bytes each vertex.
+                                    */
 } tr5_room_t;
 
-typedef struct tr5_object_texture_vertex_s // (4 bytes)
-{
-    u_int8_t xCoordinate; // 0 if Xpixel is the low value, 255 if Xpixel is the high value in the object texture (1 byte)
-
-    u_int8_t xPixel; // (1 byte)
-
-    u_int8_t yCoordinate; // 0 if Ypixel is the low value, 255 if Ypixel is the high value in the object texture (1 byte)
-
-    u_int8_t yPixel; // (1 byte)
-
+/*!
+ * \brief TR5 Object Texture Vertex (4 bytes)
+ */
+typedef struct {
+    u_int8_t xCoordinate; //!< 0 if Xpixel is the low value,
+                          //!< 255 if Xpixel is the high value in the object texture (1 byte)
+    u_int8_t xPixel;      //!< (1 byte)
+    u_int8_t yCoordinate; //!< 0 if Ypixel is the low value,
+                          //!< 255 if Ypixel is the high value in the object texture (1 byte)
+    u_int8_t yPixel;      //!< (1 byte)
 } tr5_object_texture_vertex_t;
 
-typedef struct tr5_object_texture_s //  (40 bytes)
-{
-    u_int16_t attribute; //0, 1, or 2 (2 means 2 sided) (2 bytes)
-
-    u_int32_t tile; // need to mask with 0xFF as other bits are flags. ie int15_t seems to indicate triangle (4 bytes)
-
-    tr5_object_texture_vertex_t vertices[4]; // Vertices[4] (16 bytes)
-
-    u_int32_t uv1; // unknown how used (4 bytes)
-
-    u_int32_t uv2; // unknown how used (4 bytes)
-
-    u_int32_t xSize; // unknown how used, x size (4 bytes)
-
-    u_int32_t ySize; // unknown how used, y size (4 bytes)
-
-    u_int16_t seperator; // always 0x0000 (2 bytes)
-
+/*!
+ * \brief TR5 Object Texture (40 bytes)
+ */
+typedef struct {
+    u_int16_t attribute;                     //!< 0, 1, or 2 (2 means 2 sided) (2 bytes)
+    u_int32_t tile;                          //!< need to mask with 0xFF as other bits are flags.
+                                             //!< ie int15_t seems to indicate triangle (4 bytes)
+    tr5_object_texture_vertex_t vertices[4]; //!< Vertices[4] (16 bytes)
+    u_int32_t uv1;                           //!< unknown how used (4 bytes)
+    u_int32_t uv2;                           //!< unknown how used (4 bytes)
+    u_int32_t xSize;                         //!< unknown how used, x size (4 bytes)
+    u_int32_t ySize;                         //!< unknown how used, y size (4 bytes)
+    u_int16_t seperator;                     //!< always 0x0000 (2 bytes)
 } tr5_object_texture_t;
 
-typedef struct tr5_flyby_camera_s //  (40 bytes)
-{
-    int32_t cameraX; // x position of camera in world coordinates (4 bytes)
-    int32_t cameraY; // y position of camera in world coordinates (4 bytes)
-    int32_t cameraZ; // z  position of camera in world coordinates (4 bytes)
-
-    int32_t targetX; // x position of aiming point in world coords (4 bytes)
-    int32_t targetY; // y position of aiming point in world coords (4 bytes)
-    int32_t targetZ; // z  position of aiming point in world coords (4 bytes)
-
-    int8_t  sequence; // sequence # of camera (1 byte)
-
-    int8_t  cameraNumber; // camera # (1 byte)
-
-    u_int16_t fov; // fov of camera ( .0054945 for each degree ) (2 bytes)
-
-    u_int16_t roll; // roll of camera ( .0054945 for each degree ) (2 bytes)
-
-    u_int16_t timer; // timer number (2 bytes)
-
-    u_int16_t speed; // ( .000015259 each ) (2 bytes)
-
-    u_int16_t flags; // ( see your handy TRLE manual for the specs ) (2 bytes)
-
-    u_int32_t room; // room number (4 bytes)
-
+/*!
+ * \brief TR5 Flyby camera (40 bytes)
+ */
+typedef struct {
+    int32_t cameraX;      //!< x position of camera in world coordinates (4 bytes)
+    int32_t cameraY;      //!< y position of camera in world coordinates (4 bytes)
+    int32_t cameraZ;      //!< z  position of camera in world coordinates (4 bytes)
+    int32_t targetX;      //!< x position of aiming point in world coords (4 bytes)
+    int32_t targetY;      //!< y position of aiming point in world coords (4 bytes)
+    int32_t targetZ;      //!< z  position of aiming point in world coords (4 bytes)
+    int8_t sequence;      //!< sequence # of camera (1 byte)
+    int8_t cameraNumber;  //!< camera # (1 byte)
+    u_int16_t fov;        //!< fov of camera ( .0054945 for each degree ) (2 bytes)
+    u_int16_t roll;       //!< roll of camera ( .0054945 for each degree ) (2 bytes)
+    u_int16_t timer;      //!< timer number (2 bytes)
+    u_int16_t speed;      //!< ( .000015259 each ) (2 bytes)
+    u_int16_t flags;      //!< ( see your handy TRLE manual for the specs ) (2 bytes)
+    u_int32_t room;       //!< room number (4 bytes)
 } tr5_flyby_camera_t;
 
-typedef struct tr5_moveable_s // ( 20 bytes ) ( same as old structure but has u_int16_t filler at the end )
-{
-    u_int32_t objectId; // object identifier ( matched in Items[] )
-
-    u_int16_t numMeshes; // number of meshes in this object
-
-    u_int16_t startingMesh; // starting mesh ( offset into MeshPointers[] )
-
-    u_int32_t meshTree; // offset into MeshTree[] )
-
-    u_int32_t frameOffset; // byte offset into Frames[] ( divide by 2 for Frames[i] )
-
-    u_int16_t animation; // offset into Animations[]
-
-    u_int16_t filler; // always equal to 65519 ( 0xFFEF )
-
+/*!
+ * \brief TR5 Moveable (20 bytes).
+ *
+ * Same as old structure but has u_int16_t filler at the end
+ */
+typedef struct {
+    u_int32_t objectId;     //!< object identifier ( matched in Items[] )
+    u_int16_t numMeshes;    //!< number of meshes in this object
+    u_int16_t startingMesh; //!< starting mesh ( offset into MeshPointers[] )
+    u_int32_t meshTree;     //!< offset into MeshTree[] )
+    u_int32_t frameOffset;  //!< byte offset into Frames[] ( divide by 2 for Frames[i] )
+    u_int16_t animation;    //!< offset into Animations[]
+    u_int16_t filler;       //!< always equal to 65519 ( 0xFFEF )
 } tr5_moveable_t;
 
-
-typedef struct tr5_mesh_s
-{
-    tr2_vertex_t center; // relative coordinates of mesh centre (6 bytes)
-    u_int8_t unknown1[4]; // unknown (4 bytes)
-    int16_t numVertices; // number of vertices to follow (2 bytes)
-    tr2_vertex_t *vertices; //[NumVertices]; // list of vertices (NumVertices * 6 bytes)
-    int16_t numNormals; // number of normals to follow (2 bytes)
-    tr2_vertex_t *normals; //[NumNormals]; // list of normals (NumNormals * 6 bytes) (becomes Lights if NumNormals < 0; 2 bytes)
-    int16_t numTexturedRectangles; // number of textured rectangles to follow (2 bytes)
-    tr5_face4_t *texturedRectangles; //[NumTexturedRectangles]; // list of textured rectangles (NumTexturedRectangles * 12 bytes)
-    int16_t numTexturedTriangles; // number of textured triangles to follow (2 bytes)
-    tr5_face3_t *texturedTriangles; //[NumTexturedTriangles]; // list of textured triangles (NumTexturedTriangles * 10 bytes)
-
+typedef struct {
+    tr2_vertex_t center;             //!< relative coordinates of mesh centre (6 bytes)
+    u_int8_t unknown1[4];            //!< unknown (4 bytes)
+    int16_t numVertices;             //!< number of vertices to follow (2 bytes)
+    tr2_vertex_t *vertices;          //!< list of vertices (NumVertices * 6 bytes)
+    int16_t numNormals;              //!< number of normals to follow (2 bytes)
+    tr2_vertex_t *normals;           //!< list of normals (NumNormals * 6 bytes)
+                                     //!< (becomes Lights if NumNormals < 0; 2 bytes)
+    int16_t numTexturedRectangles;   //!< number of textured rectangles to follow (2 bytes)
+    tr5_face4_t *texturedRectangles; //!< list of textured rectangles (NumTexturedRectangles * 12 bytes)
+    int16_t numTexturedTriangles;    //!< number of textured triangles to follow (2 bytes)
+    tr5_face3_t *texturedTriangles;  //!< list of textured triangles (NumTexturedTriangles * 10 bytes)
 } tr5_mesh_t;
 
-
-typedef struct tr5_animation_s // ( 40 bytes ) ( same as old structure but has 8 bytes before FrameStart )
-{
-    u_int32_t  FrameOffset; // byte offset into Frames[] ( divide by 2 for Frames[i] )
-
-    u_int8_t    FrameRate; // Engine ticks per frame
-
-    u_int8_t    FrameSize; // number of int16_t's in Frames[] used by this animation
-
-    u_int16_t  StateId; //
-
-    int16_t    Unknown;
-
-    int16_t    Speed; // Evengi Popov found this but I never seen what he said it was for
-
-    u_int16_t  AccelLo; // same as above
-
-    int16_t    AccelHi; // same as above
-
-    u_int8_t    AUnknown[8]; // Unknown
-
-    u_int16_t  FrameStart; // first frame in this animation
-
-    u_int16_t  FrameEnd; // last frame in this animation ( numframes = ( End - Start) + 1 )
-
-    u_int16_t  NextAnimation;
-
-    u_int16_t  NextFrame;
-
-    u_int16_t  NumStateChanges;
-
-    u_int16_t  StateChangeOffset; // offset into StateChanges[]
-
-    u_int16_t  NumAnimCommands; // how many of them to use
-
-    u_int16_t  AnimCommand; // offset into AnimCommand[]
-
+/*!
+ * \brief TR5 Animation (40 bytes).
+ *
+ * Same as old structure but has 8 bytes before FrameStart.
+ */
+typedef struct {
+    u_int32_t FrameOffset;       //!< byte offset into Frames[] ( divide by 2 for Frames[i] )
+    u_int8_t FrameRate;          //!< Engine ticks per frame
+    u_int8_t FrameSize;          //!< number of int16_t's in Frames[] used by this animation
+    u_int16_t StateId;
+    int16_t Unknown;
+    int16_t Speed;               //!< Evengi Popov found this but I never seen what he said it was for
+    u_int16_t AccelLo;           //!< same as above
+    int16_t AccelHi;             //!< same as above
+    u_int8_t AUnknown[8];        //!< Unknown
+    u_int16_t FrameStart;        //!< first frame in this animation
+    u_int16_t FrameEnd;          //!< last frame in this animation ( numframes = ( End - Start) + 1 )
+    u_int16_t NextAnimation;
+    u_int16_t NextFrame;
+    u_int16_t NumStateChanges;
+    u_int16_t StateChangeOffset; //!< offset into StateChanges[]
+    u_int16_t NumAnimCommands;   //!< how many of them to use
+    u_int16_t AnimCommand;       //!< offset into AnimCommand[]
 } tr5_animation_t;
 
 typedef struct {
@@ -1344,6 +1142,9 @@ typedef struct {
 #pragma pack(pop, tr2_h, 1)
 #endif
 
+/*!
+ * \brief Loads maps, meshes, textures...
+ */
 class TombRaider {
 public:
 
@@ -1357,9 +1158,9 @@ public:
      */
     ~TombRaider();
 
-    ////////////////////////////////////////////////////////////
-    // Wash me -- not part of cleaned API
-    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////
+    // Wash me -- not part of cleaned API //
+    ////////////////////////////////////////
 
     int NumRooms();
 
@@ -1405,19 +1206,12 @@ public:
 
     tr2_mesh_t *Mesh();
 
+    /*!
+     * \brief Get number of animations for a moveable
+     * \param moveable_index valid moveable id
+     * \returns number of animations for specified moveable
+     */
     int getNumAnimsForMoveable(int moveable_index);
-    /*------------------------------------------------------
-     * Pre  : moveable_id is valid
-     * Post : Returns number of animations for a moveable
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.08.15:
-     * Mongoose - Using signed values now ( like it should have )
-     *
-     * 2002.04.04:
-     * Mongoose - Created, based on TRViewer algorithm
-     ------------------------------------------------------*/
 
     tr2_staticmesh_t *StaticMesh();
 
@@ -1425,43 +1219,28 @@ public:
 
     tr2_meshtree_t *MeshTree();
 
+    /*!
+     * \brief Get the sprites
+     * \returns the sprite array
+     */
     tr2_sprite_texture_t *Sprite();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns the sprite array
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.02:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     tr2_sprite_sequence_t *SpriteSequence();
 
+    /*!
+     * \brief Makes a 32bit RGBA image from a stexture/bmap
+     * \param texture valid index into tex_special list
+     * \returns 32bit RGBA image or NULL on error
+     */
     unsigned char *SpecialTexTile(int texture);
-    /*------------------------------------------------------
-     * Pre  : texture is valid index into tex_special list
-     *
-     * Post : Makes a 32bit RGBA image from a stexture/bmap
-     *        and returns it.  Returns NULL on error.
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.19:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get copies of texture and it's bumpmap
+     * \param texture valid textile index
+     * \param image will be set to texture if found, or NULL
+     * \param bumpmap will be set to bumpmap if found, or NULL
+     */
     void Texture(int texture, unsigned char **image, unsigned char **bumpmap);
-    /*------------------------------------------------------
-     * Pre  : texture is valid textile index
-     * Post : Returns copies of texture and it's bumpmap
-     *        if found, otherwise returns NULL
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.19:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     unsigned int *Palette16();
 
@@ -1469,46 +1248,26 @@ public:
 
     tr2_room_t *Room();
 
+    /*!
+     * \brief Check if a file is a TombRaider pak
+     * \param filename file to check
+     * \returns 0 if it is a TombRaider pak
+     */
     int checkMime(char *filename);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns 0 if TombRaider pak file
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.07.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Loads TombRaider 1-5 pak into memory
+     * and does some processing.
+     *
+     * At 10% all textures are loaded. The exact figure
+     * '10' will always be passed to allow for texture
+     * caching while meshes load for TR4.
+     * \param filename points to valid TombRaider pak
+     * \param percent load progress callback
+     * \returns 0 on success, < 0 on error
+     * \sa TombRaider::loadTR5()
+     */
     int Load(char *filename, void (*percent)(int));
-    /*------------------------------------------------------
-     * Pre  : filename is valid string and points
-     *        to vaild TombRaider 1-5 pak
-     *
-     * Post : Loads TombRaider 1-5 pak into memory
-     *        and does some processing
-     *
-     *        Returns 0 on sucess, and less than 0 on error
-     *
-     *        At 10% all textures are loaded
-     *        the exact figure '10' will always be passed to
-     *        allow for texture caching while meshes load
-     *        for TR4
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.01.02:
-     * Mongoose - New callback for percent loaded feedback
-     *
-     * 2000.05.13:
-     * Mongoose - Created
-     ------------------------------------------------------*/
-
-
-
-    ////////////////////////////////////////////////////////////
-    // Public Accessors
-    ////////////////////////////////////////////////////////////
 
     float adjustTexel(unsigned char texel, char offset);
     /*------------------------------------------------------
@@ -1523,19 +1282,19 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Compute rotation angles from moveable animation data
+     * \param frame moveable animation data
+     * \param frame_offset moveable animation data
+     * \param angle_offset moveable animation data
+     * \param x will be set to computed angle
+     * \param y will be set to computed angle
+     * \param z will be set to computed angle
+     */
     void computeRotationAngles(unsigned short **frame,
-                                        unsigned int *frame_offset,
-                                        unsigned int *angle_offset,
-                                        float *x, float *y, float *z);
-    /*------------------------------------------------------
-     * Pre  : Given moveable animation data
-     * Post : Returns computed angles in x,y,z pointers
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.04.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+                                unsigned int *frame_offset,
+                                unsigned int *angle_offset,
+                                float *x, float *y, float *z);
 
     void computeUV(tr2_object_texture_vert_t *st, float *u, float *v);
     /*------------------------------------------------------
@@ -1558,19 +1317,14 @@ public:
 
     tr2_version_type getEngine();
 
+    /*!
+     * \brief Get the collision sphere for a mesh
+     * \param meshIndex mesh index
+     * \param center will be filled with center coordinates, not NULL
+     * \param radius will be filled with radius, not NULL
+     */
     void getMeshCollisionInfo(unsigned int meshIndex,
-                                      float center[3], float *radius);
-    /*------------------------------------------------------
-     * Pre  : float Center[3], float radius allocated
-     *
-     * Post : Returns Center and radius of collision sphere
-     *        for mesh[index]
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
+                                float center[3], float *radius);
 
     /*!
      * \brief Get SIGNED mesh count (TR encoded < 0 errors)
@@ -1579,8 +1333,8 @@ public:
     int getMeshCount();
 
     void getMeshColoredRectangle(unsigned int meshIndex,
-                                          unsigned int faceIndex,
-                                          int index[6], float color[4]);
+                                    unsigned int faceIndex,
+                                    int index[6], float color[4]);
     /*------------------------------------------------------
      * Pre  : This method interface may change later
      *
@@ -1600,8 +1354,8 @@ public:
      ------------------------------------------------------*/
 
     void getMeshColoredTriangle(unsigned int meshIndex,
-                                         unsigned int faceIndex,
-                                         int index[3], float color[4]);
+                                unsigned int faceIndex,
+                                int index[3], float color[4]);
     /*------------------------------------------------------
      * Pre  : This method interface may change later
      *
@@ -1618,9 +1372,9 @@ public:
      ------------------------------------------------------*/
 
     void getMeshTexturedRectangle(unsigned int meshIndex,
-                                            unsigned int faceIndex,
-                                            int index[6], float st[12], int *texture,
-                                            unsigned short *transparency);
+                                    unsigned int faceIndex,
+                                    int index[6], float st[12], int *texture,
+                                    unsigned short *transparency);
     /*------------------------------------------------------
      * Pre  : This method interface may change later
      *
@@ -1641,9 +1395,9 @@ public:
      ------------------------------------------------------*/
 
     void getMeshTexturedTriangle(unsigned int meshIndex,
-                                          unsigned int faceIndex,
-                                          int index[3], float st[6], int *texture,
-                                          unsigned short *transparency);
+                                    unsigned int faceIndex,
+                                    int index[3], float st[6], int *texture,
+                                    unsigned short *transparency);
     /*------------------------------------------------------
      * Pre  : This method interface may change later
      *
@@ -1660,42 +1414,52 @@ public:
      * Mongoose - Created, based on method from OpenRaider
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get face counts for a given mesh.
+     *
+     * \todo This method interface may change later...
+     * \param meshIndex mesh index
+     * \returns number of textured triangles in mesh
+     */
     int getMeshTexturedTriangleCount(unsigned int meshIndex);
-    int getMeshColoredTriangleCount(unsigned int meshIndex);
-    int getMeshTexturedRectangleCount(unsigned int meshIndex);
-    int getMeshColoredRectangleCount(unsigned int meshIndex);
-    /*------------------------------------------------------
-     * Pre  : This method interface may change later
-     * Post : Get face counts for a given mesh
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get face counts for a given mesh.
+     * \param meshIndex mesh index
+     * \returns number of colored triangles in mesh
+     */
+    int getMeshColoredTriangleCount(unsigned int meshIndex);
+
+    /*!
+     * \brief Get face counts for a given mesh.
+     * \param meshIndex mesh index
+     * \returns number of textured rectangles in mesh
+     */
+    int getMeshTexturedRectangleCount(unsigned int meshIndex);
+
+    /*!
+     * \brief Get face counts for a given mesh.
+     * \returns number if colored rectangles in mesh
+     */
+    int getMeshColoredRectangleCount(unsigned int meshIndex);
+
+    /*!
+     * \brief Get vertex, normal and color arrays for a mesh
+     * \param meshIndex mesh index
+     * \param vertexCount will be set to length of vertex array
+     * \param verts will be set to allocated vertex array (XYX)
+     * \param normalCount will be set to length of normal array
+     * \param norms will be set to allocated normal array (IJK)
+     * \param colorCount will be set to length of color array
+     * \param colors will be set to allocated color array (I)
+     */
     void getMeshVertexArrays(unsigned int meshIndex,
-                                     unsigned int *vertexCount, float **verts,
-                                     unsigned int *normalCount, float **norms,
-                                     unsigned int *colorCount, float **colors);
-    /*------------------------------------------------------
-     * Pre  : Given mesh index
-     *
-     * Post : Returns allocated vertex, normal, and color arrays,
-     *        and their element counts,
-     *
-     *        Colors has been changed to be an intesity for now
-     *
-     *        verts - XYX, norms - IJK, colors - I
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.13:
-     * Mongoose - Created, based on method from OpenRaider
-     ------------------------------------------------------*/
+                                unsigned int *vertexCount, float **verts,
+                                unsigned int *normalCount, float **norms,
+                                unsigned int *colorCount, float **colors);
 
     int getRoomBox(unsigned int roomIndex, unsigned int index,
-                        float *xyzA, float *xyzB, float *xyzC, float *xyzD);
+                    float *xyzA, float *xyzB, float *xyzC, float *xyzD);
     /*------------------------------------------------------
      * Pre  :
      * Post : Returns a single collision box from room ( unified )
@@ -1811,20 +1575,16 @@ public:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of sectors in room (unified)
+     * \param roomIndex room index
+     * \param zSectorsCount will contain width of sector list
+     * \param xSectorsCount will contain height of sector list
+     * \returns number of sectors in room
+     */
     unsigned int getRoomSectorCount(unsigned int roomIndex,
                                     unsigned int *zSectorsCount,
                                     unsigned int *xSectorsCount);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of sectors in room ( unified )
-     *        zSectorsCount - width of sector list
-     *        xSectorsCount - height of sector list
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void getRoomSprite(unsigned int roomIndex, unsigned int index,
                         float scale, int *texture,
@@ -1931,16 +1691,12 @@ public:
      * Mongoose - Created, based on method from OpenRaider
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Get number of lights in room (unified)
+     * \param roomIndex room index
+     * \returns number of lights in room
+     */
     unsigned int getRoomVertexCount(unsigned int roomIndex);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns number of lights in room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get sky mesh ID
@@ -1950,18 +1706,14 @@ public:
 
     void getSprites();
 
+    /*!
+     * \brief Get a copy of a sound sample and its byte size
+     * \param index sound sample index
+     * \param bytes will contain byte size of sound sample
+     * \param data will contain sound sample
+     */
     void getSoundSample(unsigned int index,
                         unsigned int *bytes, unsigned char **data);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns a copy of a sound sample and
-     *        its byte size by it's  sound sample index
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.10:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of loaded sound samples
@@ -1969,16 +1721,12 @@ public:
      */
     unsigned int getSoundSamplesCount();
 
+    /*!
+     * \brief Check if a mesh is valid
+     * \param index mesh index (?)
+     * \returns true if mesh is valid
+     */
     bool isMeshValid(int index);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns true if mesh is valid
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.16:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Check if a room is valid (TRC support)
@@ -2018,30 +1766,21 @@ private:
 
     int Fread(void *buffer, size_t size, size_t count, FILE *f);
 
+    /*!
+     * \brief Get a copy of the sound samples
+     * \param bytes will contain size of sound samples
+     * \param data will contain sound samples themselves
+     */
     void getRiffData(unsigned int *bytes, unsigned char **data);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns a copy of the sound samples and
-     *        their size
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.10:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get a copy of a TR4 sound sample
+     * \param index sound sample index
+     * \param bytes will contain length of sound sample
+     * \param data will contain sound sample itself
+     */
     void getRiffDataTR4(unsigned int index,
                         unsigned int *bytes, unsigned char **data);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns a copy of a TR4 sound sample
-     *        and its size by it's sound sample index
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.10:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     int getRiffOffsets(unsigned char *riffData, unsigned int riffDataBytes,
                         unsigned int **offsets, unsigned int numOffsets);
@@ -2063,90 +1802,69 @@ private:
      * Mongoose - Created
      ------------------------------------------------------*/
 
+    /*!
+     * \brief Makes a 32bit RGBA image from a textile.
+     *
+     * This handles all selection and conversion, including
+     * alpha layering flags, now.
+     * \param texture valid index into textile list
+     * \returns 32bit RGBA image or NULL on error
+     */
     unsigned char *getTexTile(int texture);
-    /*------------------------------------------------------
-     * Pre  : texture is valid index into textile list
-     *
-     * Post : Makes a 32bit RGBA image from a textile
-     *        and returns it.  Returns NULL on error.
-     *
-     *        This handles all selection and conversion
-     *        including alpha layering flags now.
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.28:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Loads a TR5 pak into memory.
+     *
+     * At 10% all textures are loaded
+     * the exact figure '10' will always be passed to
+     * allow for texture caching while meshes load.
+     * \param f valid FILE
+     * \param percent callback for loading progress
+     * \returns 0 on success, < 0 on error
+     */
     int loadTR5(FILE *f, void (*percent)(int));
-    /*------------------------------------------------------
-     * Pre  : f is a valid FILE and percent is allocated
-     * Post : Loads a TR5 pak into memory
-     *
-     *        At 10% all textures are loaded
-     *        the exact figure '10' will always be passed to
-     *        allow for texture caching while meshes load
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.01.02:
-     * Mongoose - New callback for percent loaded feedback
-     *
-     * 2001.06.18:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     void print(const char *methodName, const char *s, ...) __attribute__((format(printf, 3, 4)));
 
     void printDebug(const char *methodName, const char *s, ...) __attribute__((format(printf, 3, 4)));
 
-
-    ////////////////////////////////////////////////////////////
-    // Private Mutators
-    ////////////////////////////////////////////////////////////
-
-
-    bool mReset;                        /* Guard multiple calls to reset() */
-    bool mDebug;                        /* Debug output toggle */
-    unsigned int mPakVersion;           /* TombRaider pak file header version */
-    tr2_version_type mEngineVersion;    /* TombRaider engine version  */
-    tr2_colour_t _palette8[256];        /* 8-bit palette */
-    unsigned int _palette16[256];       /* 16-bit palette */
-    unsigned int _num_textiles;         /* Total number of texture tiles */
-    unsigned short  _num_room_textures;     /* Num textures only for room use? */
-    unsigned short _num_misc_textures;     /* Num of textures for misc use? */
-    unsigned short _num_bump_map_textures; /* Num of textures that are
-                                                           bump map, texture pairs */
-    tr2_textile8_t *_textile8;          /* 8-bit (palettised) textiles */
-    tr2_textile16_t *_textile16;        /* 16-bit (ARGB) textiles */
-    tr2_textile32_t *_textile32;        /* 32-bit (BGRA) textiles */
-    unsigned int _num_tex_special;     /* Special textures and bump maps count */
-    unsigned char *_tex_special;       /* Special textures and bump maps */
-    unsigned int _unknown_t;            /* 32-bit unknown
-                                                        (always 0 in real TR2 levels) */
-    unsigned short _num_rooms;          /* Number of rooms in this level */
-    tr2_room_t *_rooms;                 /* List of rooms (TR1,TR2,TR3,TR4) */
-    tr5_room_t *mRoomsTR5;              /* Rooms ( TR5 / TRC ) Only */
-    unsigned int _num_floor_data;       /* Num of words of floor data
-                                                        this level */
-    unsigned short *_floor_data;        /* Floor data */
-    int mMeshCount;                     /* Number of meshes this level */
-    tr2_mesh_t *mMeshes;                /* list of meshes */
-    unsigned int _num_animations;       /* number of animations this level */
-    tr2_animation_t *_animations;       /* list of animations */
-    unsigned int _num_state_changes;    /* number of structures(?) this level */
-    tr2_state_change_t *_state_changes; /* list of structures */
-    unsigned int _num_anim_dispatches;  /* number of ranges(?) this level */
-    tr2_anim_dispatch_t *_anim_dispatches; /* list of ranges */
-    unsigned int _num_anim_commands;       /* number of Bone1s this level */
-    tr2_anim_command_t *_anim_commands;    /* list of Bone1s */
-    unsigned int _num_mesh_trees;          /* number of Bone2s this level */
-    tr2_meshtree_t *_mesh_trees;      /* list of Bone2s */
-    unsigned int _num_frames;         /* num of words of frame data this level */
-    unsigned short *_frames;          /* frame data */
-    unsigned int _num_moveables;      /* number of moveables this level */
-    tr2_moveable_t *_moveables;       /* list of moveables */
+    bool mReset;                           //!< Guard multiple calls to reset()
+    bool mDebug;                           //!< Debug output toggle
+    unsigned int mPakVersion;              //!< TombRaider pak file header version
+    tr2_version_type mEngineVersion;       //!< TombRaider engine version
+    tr2_colour_t _palette8[256];           //!< 8-bit palette
+    unsigned int _palette16[256];          //!< 16-bit palette
+    unsigned int _num_textiles;            //!< Total number of texture tiles
+    unsigned short  _num_room_textures;    //!< Num textures only for room use?
+    unsigned short _num_misc_textures;     //!< Num of textures for misc use?
+    unsigned short _num_bump_map_textures; //!< Num of textures that are bump map, texture pairs
+    tr2_textile8_t *_textile8;             //!< 8-bit (palettised) textiles
+    tr2_textile16_t *_textile16;           //!< 16-bit (ARGB) textiles
+    tr2_textile32_t *_textile32;           //!< 32-bit (BGRA) textiles
+    unsigned int _num_tex_special;         //!< Special textures and bump maps count
+    unsigned char *_tex_special;           //!< Special textures and bump maps
+    unsigned int _unknown_t;               //!< 32-bit unknown (always 0 in real TR2 levels)
+    unsigned short _num_rooms;             //!< Number of rooms in this level
+    tr2_room_t *_rooms;                    //!< List of rooms (TR1,TR2,TR3,TR4)
+    tr5_room_t *mRoomsTR5;                 //!< Rooms ( TR5 / TRC ) Only
+    unsigned int _num_floor_data;          //!< Num of words of floor data this level
+    unsigned short *_floor_data;           //!< Floor data
+    int mMeshCount;                        //!< Number of meshes this level
+    tr2_mesh_t *mMeshes;                   //!< list of meshes
+    unsigned int _num_animations;          //!< number of animations this level
+    tr2_animation_t *_animations;          //!< list of animations
+    unsigned int _num_state_changes;       //!< number of structures(?) this level
+    tr2_state_change_t *_state_changes;    //!< list of structures
+    unsigned int _num_anim_dispatches;     //!< number of ranges(?) this level
+    tr2_anim_dispatch_t *_anim_dispatches; //!< list of ranges
+    unsigned int _num_anim_commands;       //!< number of Bone1s this level
+    tr2_anim_command_t *_anim_commands;    //!< list of Bone1s
+    unsigned int _num_mesh_trees;          //!< number of Bone2s this level
+    tr2_meshtree_t *_mesh_trees;           //!< list of Bone2s
+    unsigned int _num_frames;              //!< num of words of frame data this level
+    unsigned short *_frames;               //!< frame data
+    unsigned int _num_moveables;           //!< number of moveables this level
+    tr2_moveable_t *_moveables;            //!< list of moveables
 
     u_int32_t numMoveablesTR5;
     tr5_moveable_t *moveablesTR5;
@@ -2163,72 +1881,66 @@ private:
     u_int32_t numFlyByCamerasTR5;
     tr5_flyby_camera_t *flyByCamerasTR5;
 
-    unsigned int _num_static_meshes;  /* number of static meshes this level */
-    tr2_staticmesh_t *_static_meshes; /* static meshes */
-    unsigned int _num_object_textures;   /* number of object textures this level */
-    tr2_object_texture_t *_object_textures; /* list of object textures */
+    unsigned int _num_static_meshes;        //!< number of static meshes this level
+    tr2_staticmesh_t *_static_meshes;       //!< static meshes
+    unsigned int _num_object_textures;      //!< number of object textures this level
+    tr2_object_texture_t *_object_textures; //!< list of object textures
 
-
-    unsigned int _num_sprite_textures;      /* num of sprite textures this level */
-    tr2_sprite_texture_t *_sprite_textures; /* list of sprite textures */
-    unsigned int _num_sprite_sequences;     /* num of sprite sequences this level */
-    tr2_sprite_sequence_t *_sprite_sequences;  /* sprite sequence data */
-    int  _num_cameras;                         /* Number of Cameras */
-    tr2_camera_t  *_cameras;                   /* cameras */
-    int  _num_sound_sources;                   /* Number of Sounds */
-    tr2_sound_source_t *_sound_sources;          /* sounds */
-    int  _num_boxes;                           /* Number of Boxes */
-
-
-    tr2_box_t *_boxes;                        /* boxes - looks like
-                                                 struct { unsigned short value[4]; }
-                                                 - value[0..2] might be a vector;
-                                                 value[3] seems to be index into
-                                                 Overlaps[] */
-    int  _num_overlaps;                       /* Number of Overlaps */
-    short  *_overlaps;                        /* Overlaps -
-                                                 looks like ushort; 0x8000 is flag
-                                                 of some sort appears to be an
-                                                 offset into Boxes[] and/or
-                                                 Boxes2[] */
-    short  *_zones;                           /* Boxes2 */
-    int  _num_animated_textures;              /* Number of AnimTextures */
-    short  *_animated_textures;               /* Animtextures */
-    int  _num_items;                          /* Number of Items */
-    tr2_item_t *_items;                       /* Items */
-    unsigned char  *_light_map;               /* Colour-light maps */
-    unsigned int _num_cinematic_frames;       /* Number of cut-scene frames */
-    tr2_cinematic_frame_t *_cinematic_frames; /* Cut-scene frames */
-    short  _num_demo_data;                    /* Number of Demo Data */
-    unsigned char  *_demo_data;               /* Demo data */
+    unsigned int _num_sprite_textures;        //!< num of sprite textures this level
+    tr2_sprite_texture_t *_sprite_textures;   //!< list of sprite textures
+    unsigned int _num_sprite_sequences;       //!< num of sprite sequences this level
+    tr2_sprite_sequence_t *_sprite_sequences; //!< sprite sequence data
+    int  _num_cameras;                        //!< Number of Cameras
+    tr2_camera_t  *_cameras;                  //!< cameras
+    int  _num_sound_sources;                  //!< Number of Sounds
+    tr2_sound_source_t *_sound_sources;       //!< sounds
+    int  _num_boxes;                          //!< Number of Boxes
+    tr2_box_t *_boxes;                        /*!< boxes - looks like
+                                               * struct { unsigned short value[4]; }
+                                               * - value[0..2] might be a vector;
+                                               * value[3] seems to be index into
+                                               * Overlaps[] */
+    int  _num_overlaps;                       //!< Number of Overlaps
+    short  *_overlaps;                        /*!< Overlaps -
+                                               * looks like ushort; 0x8000 is flag
+                                               * of some sort appears to be an
+                                               * offset into Boxes[] and/or
+                                               * Boxes2[] */
+    short  *_zones;                           //!< Boxes2
+    int  _num_animated_textures;              //!< Number of AnimTextures
+    short  *_animated_textures;               //!< Animtextures
+    int  _num_items;                          //!< Number of Items
+    tr2_item_t *_items;                       //!< Items
+    unsigned char  *_light_map;               //!< Colour-light maps
+    unsigned int _num_cinematic_frames;       //!< Number of cut-scene frames
+    tr2_cinematic_frame_t *_cinematic_frames; //!< Cut-scene frames
+    short  _num_demo_data;                    //!< Number of Demo Data
+    unsigned char  *_demo_data;               //!< Demo data
     float mRoomVertexLightingFactor;
     float mTexelScale;
 
-
     // Sound data
-    short  *mSoundMap;                       /* Sound map */
-    int  mNumSoundDetails;                   /* Number of SampleModifiers */
-    tr2_sound_details_t *mSoundDetails;      /* Sample modifiers */
-    int  mNumSampleIndices;                  /* Number of Sample Indices */
-    int  *mSampleIndices;                    /* Sample indices */
+    short  *mSoundMap;                   //!< Sound map
+    int  mNumSoundDetails;               //!< Number of SampleModifiers
+    tr2_sound_details_t *mSoundDetails;  //!< Sample modifiers
+    int  mNumSampleIndices;              //!< Number of Sample Indices
+    int  *mSampleIndices;                //!< Sample indices
     unsigned int *mSampleIndicesTR5;
-    bool mRiffAlternateLoaded;               /* Is a TR2,TR3 SFX loaded? */
-    unsigned int *mRiffAlternateOffsets;     /* After parsing this will
-                                                hold byte offsets for TR2,TR3
-                                                RIFFs in the buffered SFX */
-    int mRiffDataSz;                         /* Byte size of a loaded SFX */
-    unsigned char *mRiffData;                /* SFX RIFF data in chunks */
+    bool mRiffAlternateLoaded;           //!< Is a TR2,TR3 SFX loaded?
+    unsigned int *mRiffAlternateOffsets; //!< After parsing this will
+                                         //!< hold byte offsets for TR2,TR3
+                                         //!< RIFFs in the buffered SFX
+    int mRiffDataSz;                     //!< Byte size of a loaded SFX
+    unsigned char *mRiffData;            //!< SFX RIFF data in chunks
     unsigned int mNumTR4Samples;
     unsigned char **mTR4Samples;
     unsigned int *mTR4SamplesSz;
 
-
     // For packed Fread emu/wrapper
-    unsigned char *mCompressedLevelData;     /* Buffer used to emulate fread
-                                                with uncompressed libz data */
-    unsigned int mCompressedLevelDataOffset; /* Offset into buffer */
-    unsigned int mCompressedLevelSize;       /* Size of buffer */
-    tr_fread_mode_t mFreadMode;              /* Fread mode file|buffer */
+    unsigned char *mCompressedLevelData;     //!< Buffer used to emulate fread with uncompressed libz data
+    unsigned int mCompressedLevelDataOffset; //!< Offset into buffer
+    unsigned int mCompressedLevelSize;       //!< Size of buffer
+    tr_fread_mode_t mFreadMode;              //!< Fread mode file|buffer
 };
 
 #endif
