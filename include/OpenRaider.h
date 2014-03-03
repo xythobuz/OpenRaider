@@ -9,7 +9,7 @@
 #define _OPENRAIDER_H_
 
 #include <List.h>
-#include <Map.h>
+#include <map>
 #include <Vector.h>
 #include <TombRaider.h>
 #include <Camera.h>

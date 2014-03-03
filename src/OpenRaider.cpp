@@ -29,7 +29,7 @@ const unsigned int TextureLimit       = 24;
 const float TexelScale                = 256.0f;
 
 World gWorld;
-Map<int, int> gMapTex2Bump;
+std::map<int, int> gMapTex2Bump;
 Vector <unsigned int> gColorTextureHACK;
 int gTextureOffset;
 entity_t *LARA = 0x0;
@@ -1316,12 +1316,12 @@ void OpenRaider::processTextures()
         // Overwrite any previous level textures on load
         m_render.loadTexture(image, 256, 256, mLevelTextureOffset + i);
 
-        gMapTex2Bump.Add(mLevelTextureOffset + i, -1);
+        gMapTex2Bump[mLevelTextureOffset + i] = -1;
 
         if (bumpmap)
         {
-            gMapTex2Bump.Add(mLevelTextureOffset + i, mLevelTextureOffset + i +
-                    m_tombraider.NumTextures());
+            gMapTex2Bump[mLevelTextureOffset + i] = mLevelTextureOffset + i +
+                    m_tombraider.NumTextures();
             m_render.loadTexture(bumpmap, 256, 256, mLevelTextureOffset + i +
                     m_tombraider.NumTextures());
         }

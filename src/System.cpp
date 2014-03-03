@@ -259,7 +259,7 @@ unsigned int System::addCommandMode(const char *command)
 void System::bindKeyCommand(const char *cmd, unsigned int key, int event)
 {
     printf("Bound command '%s' -> event %i (0x%x key)\n", cmd, event, key);
-    mKeyEvents.Add(key, event);
+    mKeyEvents[key] = event;
 }
 
 

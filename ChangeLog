@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140303 ]
+	* Removed Map.h & Tree.h, using std::map instead...
+
 	[ 20140221 ]
 	* Removed the `Map` command. Now the PakDir command causes
 	  a recursive search of the specified directory. Every file found

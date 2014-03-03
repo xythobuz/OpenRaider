@@ -11,7 +11,7 @@
 #ifndef _SYSTEM_H_
 #define _SYSTEM_H_
 
-#include <Map.h>
+#include <map>
 #include <Vector.h>
 
 //! \todo Replace with unicode compatible key codes
@@ -195,7 +195,7 @@ protected:
     float m_clipNear;                  //!< Clip near distance
     float m_clipFar;                   //!< Clip far distance
     float m_fovY;                      //!< Field of vision
-    Map<unsigned int, int> mKeyEvents; //!< Single key press event mappings
+    std::map<unsigned int, int> mKeyEvents; //!< Single key press event mappings
     bool mConsoleMode;                 //!< Using text (console) event handler?
     Vector<const char *> mCmdModes;    //!< Dynamic resource command collection
     unsigned int mCommandMode;         //!< Current resource command mode
