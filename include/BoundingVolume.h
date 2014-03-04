@@ -8,7 +8,7 @@
 #ifndef _BOUNDINGVOLUME_H_
 #define _BOUNDINGVOLUME_H_
 
-#include <MatMath.h>
+#include "MatMath.h"
 
 /*!
  * \brief Defines a 3D sphere.

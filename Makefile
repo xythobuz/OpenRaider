@@ -28,7 +28,7 @@ UNAME=$(shell uname -s)
 # -DMULTITEXTURE			Add OpenGL multitexturing
 # -DUSING_EMITTER_IN_GAME	Run particle test in game
 
-BASE_DEFS=-Iinclude -DUSING_EMITTER
+BASE_DEFS=-Iinclude $(shell sdl2-config --cflags | sed "s/-I/-isystem /g") -DUSING_EMITTER
 
 BASE_LIBS=$(shell sdl2-config --libs) -lz -lstdc++ \
 	-lpthread -lSDL2_ttf
@@ -43,8 +43,6 @@ AUDIO_LIBS += -framework OpenAL
 AUDIO_LIBS += -L/usr/local/lib
 AUDIO_DEFS += -isystem /usr/local/include
 GL_LIBS += -framework OpenGL
-GL_LIBS += -L/opt/local/lib
-GL_DEFS += -isystem /opt/local/include
 else
 AUDIO_LIBS += -lopenal -lalut
 GL_LIBS += -lGL -lGLU

@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
@@ -16,7 +17,7 @@
 #include <GL/glu.h>
 #endif
 
-#include <Emitter.h>
+#include "Emitter.h"
 
 vec_t Emitter::mFrustum[6][4];
 

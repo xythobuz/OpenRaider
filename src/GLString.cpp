@@ -10,14 +10,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #else
 #include <GL/gl.h>
 #endif
 
-#include <Texture.h>
-#include <GLString.h>
+#include "Texture.h"
+#include "GLString.h"
 
 GLString::GLString() {
     _num_string_max = 0;

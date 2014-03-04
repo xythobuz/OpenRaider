@@ -28,8 +28,8 @@
 #include <sys/time.h>
 #endif
 
-#include <MatMath.h>
-#include <System.h>
+#include "MatMath.h"
+#include "System.h"
 
 ////////////////////////////////////////////////////////////
 // Constructors

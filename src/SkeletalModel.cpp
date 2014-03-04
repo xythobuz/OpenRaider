@@ -5,7 +5,7 @@
  * \author Mongoose
  */
 
-#include <SkeletalModel.h>
+#include "SkeletalModel.h"
 
 ////////////////////////////////////////////////////////////
 // Constructors

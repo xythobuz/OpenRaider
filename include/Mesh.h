@@ -10,7 +10,7 @@
 #ifndef _OPENGLMESH_H_
 #define _OPENGLMESH_H_
 
-#include <MatMath.h>
+#include "MatMath.h"
 
 /*!
  * \brief OpenGL Mesh

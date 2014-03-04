@@ -11,7 +11,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include <TGA.h>
+#include "TGA.h"
 
 int tga_check(FILE *f) {
     char buffer[10];

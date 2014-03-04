@@ -12,8 +12,8 @@
 #ifndef _SKELETALMODEL_H_
 #define _SKELETALMODEL_H_
 
-#include <Vector.h>
-#include <MatMath.h>
+#include "Vector.h"
+#include "MatMath.h"
 
 typedef struct {
     int mesh;

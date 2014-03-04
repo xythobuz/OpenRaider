@@ -8,20 +8,20 @@
 #ifndef _RENDER_H_
 #define _RENDER_H_
 
-#include <List.h>
-#include <Vector.h>
-#include <Matrix.h>
-#include <ViewVolume.h>
-#include <Light.h>
-#include <World.h>
-#include <SkeletalModel.h>
-#include <Mesh.h>
-#include <Texture.h>
-#include <Camera.h>
-#include <GLString.h>
+#include "List.h"
+#include "Vector.h"
+#include "Matrix.h"
+#include "ViewVolume.h"
+#include "Light.h"
+#include "World.h"
+#include "SkeletalModel.h"
+#include "Mesh.h"
+#include "Texture.h"
+#include "Camera.h"
+#include "GLString.h"
 
 #ifdef USING_EMITTER
-#include <Emitter.h>
+#include "Emitter.h"
 #endif
 
 /*!

@@ -8,16 +8,17 @@
 #ifndef _OPENRAIDER_H_
 #define _OPENRAIDER_H_
 
-#include <List.h>
 #include <map>
-#include <Vector.h>
-#include <TombRaider.h>
-#include <Camera.h>
-#include <Render.h>
-#include <Sound.h>
-#include <SDLSystem.h>
-#include <Network.h>
-#include <World.h>
+
+#include "List.h"
+#include "Vector.h"
+#include "TombRaider.h"
+#include "Camera.h"
+#include "Render.h"
+#include "Sound.h"
+#include "SDLSystem.h"
+#include "Network.h"
+#include "World.h"
 
 /*!
  * \brief OpenRaider key events.

@@ -12,7 +12,8 @@
 #define _SYSTEM_H_
 
 #include <map>
-#include <Vector.h>
+
+#include "Vector.h"
 
 //! \todo Replace with unicode compatible key codes
 #define SYS_MOUSE_LEFT    6000

@@ -9,12 +9,12 @@
 #ifdef __APPLE__
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
-#include <AL/alut.h>
 #else
 #include <AL/al.h>
 #include <AL/alc.h>
-#include <AL/alut.h>
 #endif
+
+#include <AL/alut.h>
 
 #include <time.h>
 #include <stdio.h>
@@ -25,7 +25,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include <Sound.h>
+#include "Sound.h"
 
 Sound::Sound()
 {

@@ -12,15 +12,16 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #endif
+
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
 
 #ifdef USING_EMITTER
-#include <Emitter.h>
+#include "Emitter.h"
 #endif
 
-#include <Render.h>
+#include "Render.h"
 
 extern entity_t *LARA;
 extern World gWorld;

@@ -14,10 +14,10 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-#include <World.h>
-#include <SkeletalModel.h>
-#include <TombRaider1.h> // tmp stop-gap
-#include <OpenRaider.h>
+#include "World.h"
+#include "SkeletalModel.h"
+#include "TombRaider1.h" // tmp stop-gap
+#include "OpenRaider.h"
 
 enum OpenRaiderText { textConsole = 2, textMenu = 3, textOutput = 4 };
 

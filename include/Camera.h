@@ -7,9 +7,9 @@
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 
-#include <MatMath.h>
-#include <Matrix.h>
-#include <Quaternion.h>
+#include "MatMath.h"
+#include "Matrix.h"
+#include "Quaternion.h"
 
 /*!
  * \brief Commands for interactive camera control

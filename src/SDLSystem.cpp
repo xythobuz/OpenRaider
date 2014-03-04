@@ -10,10 +10,10 @@
 #include <string.h>
 #include <cmath>
 
-#include <SDL2/SDL_opengl.h>
+#include "SDL_opengl.h"
 
-#include <MatMath.h>
-#include <SDLSystem.h>
+#include "MatMath.h"
+#include "SDLSystem.h"
 
 unsigned int *gWidth = 0x0;
 unsigned int *gHeight = 0x0;

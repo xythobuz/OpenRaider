@@ -8,7 +8,7 @@
 #ifndef _EMITTER_H_
 #define _EMITTER_H_
 
-#include <Particle.h>
+#include "Particle.h"
 
 /*!
  * \brief Particle emitter class.

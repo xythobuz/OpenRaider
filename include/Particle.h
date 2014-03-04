@@ -8,7 +8,7 @@
 #ifndef _PARTICLE_H_
 #define _PARTICLE_H_
 
-#include <MatMath.h>
+#include "MatMath.h"
 
 /*!
  * \brief Partcle systems atomic base

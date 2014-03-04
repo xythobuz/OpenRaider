@@ -11,12 +11,12 @@
 #define BAD_BLOOD  //!< \todo For temp rendering use
 
 #ifdef BAD_BLOOD
-#include <SkeletalModel.h>
+#include "SkeletalModel.h"
 #endif
 
-#include <List.h>
-#include <Vector.h>
-#include <MatMath.h>
+#include "List.h"
+#include "Vector.h"
+#include "MatMath.h"
 
 // Mirrors TombRaider class' room flags really
 typedef enum {

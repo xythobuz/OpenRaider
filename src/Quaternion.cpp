@@ -7,7 +7,7 @@
 
 #include <math.h>
 
-#include <Quaternion.h>
+#include "Quaternion.h"
 
 Quaternion::Quaternion() {
     mW = 0;

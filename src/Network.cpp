@@ -5,8 +5,6 @@
  * \author Mongoose
  */
 
-#include <Network.h>
-
 #include <unistd.h>
 #include <signal.h>
 #include <string.h>
@@ -22,7 +20,8 @@
 #include <arpa/inet.h>
 #include <stdlib.h>
 
-#include <MatMath.h> // Random Number
+#include "MatMath.h" // Random Number
+#include "Network.h"
 
 //#define LOCAL_BCAST
 #define MAX_CLIENTS 32

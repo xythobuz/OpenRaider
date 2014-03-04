@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#include <MatMath.h>
-#include <Camera.h>
+#include "MatMath.h"
+#include "Camera.h"
 
 unsigned int Camera::mCounter = 0;
 

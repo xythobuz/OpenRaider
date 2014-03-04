@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <Particle.h>
+#include "Particle.h"
 
 Particle::Particle()
 {

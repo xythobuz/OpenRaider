@@ -8,8 +8,9 @@
 #ifndef _SDLSYSTEM_H_
 #define _SDLSYSTEM_H_
 
-#include <SDL2/SDL.h>
-#include <System.h>
+#include "SDL.h"
+
+#include "System.h"
 
 /*!
  * \brief SDL System interface implementation

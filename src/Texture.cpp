@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#include <SDL2/SDL_ttf.h>
+#include "SDL_ttf.h"
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -20,8 +20,8 @@
 #include <GL/glu.h>
 #endif
 
-#include <TGA.h>
-#include <Texture.h>
+#include "TGA.h"
+#include "Texture.h"
 
 //Texture *gTextureManager = 0x0;
 gl_font_t *gFontTest = 0x0;

@@ -50,12 +50,12 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include <TombRaider.h>
-
 #include <zlib.h>
 
+#include "TombRaider.h"
+
 #ifdef __TEST_TR5_DUMP_TGA
-#include <TGA.h>
+#include "TGA.h"
 #endif
 
 TombRaider::TombRaider()

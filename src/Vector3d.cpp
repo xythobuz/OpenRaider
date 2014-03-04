@@ -7,7 +7,7 @@
 
 #include <math.h>
 
-#include <Vector3d.h>
+#include "Vector3d.h"
 
 Vector3d::Vector3d() {
     mVec[0] = mVec[1] = mVec[2] = 0.0f;

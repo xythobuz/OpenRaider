@@ -7,7 +7,7 @@
 #ifndef _LIGHT_H_
 #define _LIGHT_H_
 
-#include <MatMath.h>
+#include "MatMath.h"
 
 /*!
  * \brief The GL light class

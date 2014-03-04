@@ -10,9 +10,9 @@
 #include <math.h>
 #include <float.h>
 
-#include <MatMath.h>
-#include <Vector3d.h>
-#include <Matrix.h>
+#include "MatMath.h"
+#include "Vector3d.h"
+#include "Matrix.h"
 
 bool equalEpsilon(vec_t a, vec_t b) {
     vec_t epsilon = FLT_EPSILON;
