@@ -1,0 +1,13 @@
+#define OpenRaider_VERSION_MAJOR @OpenRaider_VERSION_MAJOR@
+#define OpenRaider_VERSION_MINOR @OpenRaider_VERSION_MINOR@
+#define OpenRaider_VERSION_MICRO @OpenRaider_VERSION_MICRO@
+#define OpenRaider_BUILD_HOST @OpenRaider_BUILD_HOST@
+
+// Stringification Helper
+#define _xstringify(s) _stringify(s)
+#define _stringify(s) #s
+
+#define VERSION_NUMBER OpenRaider_VERSION_MAJOR.OpenRaider_VERSION_MINOR.OpenRaider_VERSION_MICRO
+
+#define VERSION _xstringify(OpenRaider-VERSION_NUMBER)
+#define BUILD_HOST _xstringify(OpenRaider_BUILD_HOST)

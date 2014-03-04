@@ -10,6 +10,7 @@
 
 #include "SDL.h"
 
+#include "Config.h"
 #include "System.h"
 
 /*!

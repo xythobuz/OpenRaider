@@ -10,6 +10,7 @@
 
 #include <map>
 
+#include "Config.h"
 #include "List.h"
 #include "Vector.h"
 #include "TombRaider.h"
