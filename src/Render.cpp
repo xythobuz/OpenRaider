@@ -20,10 +20,6 @@
 #include <Emitter.h>
 #endif
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
 #include <Render.h>
 
 extern entity_t *LARA;

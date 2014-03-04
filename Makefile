@@ -65,7 +65,6 @@ BUILD_DEBUG_DIR=bin/debug
 BUILD_RELEASE_DIR=bin/release
 BUILD_PROF_DIR=bin/prof
 BUILD_TEST_DIR=bin/test
-BUILD_MEM_DIR=bin/mem
 BUILD_INSTALL_DIR=bin/$(BUILD_SELECT)
 DEB_DIR=/tmp/$(NAME).deb
 
@@ -152,15 +151,6 @@ ded:
 	@-mkdir -p $(BUILD_DEBUG_DIR)/ded
 	$(MAKE) targets BUILDDIR=$(BUILD_DEBUG_DIR)/ded \
 	CFLAGS="$(DEBUG_CFLAGS) -DDEDICATED_SERVER" \
-	LD_FLAGS="$(LD_FLAGS)"
-
-# -DDEBUG_MEMORY_VERBOSE
-# -DDEBUG_MEMORY
-memory:
-	@-mkdir -p $(BUILD_MEM_DIR)
-	$(MAKE) targets BUILDDIR=$(BUILD_MEM_DIR) \
-	DEBUG_OBJ="$(BUILD_MEM_DIR)/memory_test.o" \
-	CFLAGS="$(DEBUG_CFLAGS) -DDEBUG_MEMORY" \
 	LD_FLAGS="$(LD_FLAGS)"
 
 depend:
@@ -258,7 +248,6 @@ clean-obj:
 	@-rm -f $(BUILD_DEBUG_DIR)/*.o
 	@-rm -f $(BUILD_RELEASE_DIR)/*.o
 	@-rm -f $(BUILD_TEST_DIR)/*.o
-	@-rm -f $(BUILD_MEM_DIR)/*.o
 	@-echo "[DONE]"
 
 clean-build:
@@ -266,7 +255,6 @@ clean-build:
 	@-rm -f $(BUILD_PROF_DIR)/$(NAME)
 	@-rm -f $(BUILD_DEBUG_DIR)/$(NAME)
 	@-rm -f $(BUILD_RELEASE_DIR)/$(NAME)
-	@-rm -f $(BUILD_MEM_DIR)/$(NAME)
 	@-echo "[DONE]"
 
 clean-doc:
@@ -311,12 +299,9 @@ TEST_MAP_TR3=~/.OpenRaider/paks/tr3/scotland.tr2
 TEST_MAP_TR2=~/.OpenRaider/paks/tr2/unwater.tr2
 TEST_MAP_TR1=~/.OpenRaider/paks/tr1/level1.phd
 
-test.build: Matrix.test Math.test Memory.test Network.test Sound.test tga.test GLString.test TombRaider.test
+test.build: Matrix.test Math.test Network.test Sound.test tga.test GLString.test TombRaider.test
 
 test: test.build
-	@-echo "================================================="
-	@-echo "Running Memory unit test"
-	$(BUILD_TEST_DIR)/memory_test.test
 	@-echo "================================================="
 	@-echo "Running Matrix unit test"
 	$(BUILD_TEST_DIR)/Matrix.test
@@ -344,13 +329,13 @@ TombRaider.reg_test:
 	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR4) > /tmp/log.tr4
 	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR5) > /tmp/log.tr5
 
-TR_FLAGS = -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES -DDEBUG_MEMORY
+TR_FLAGS = -D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES
 
 TombRaider.test:
 	@-mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(FLAGS_ALL) $(WARNINGS) -Iinclude $(TR_FLAGS) -o $(BUILD_TEST_DIR)/TombRaiderTest.o -c test/TombRaider.cpp
 	$(MAKE) targets NAME=TombRaider.test BUILDDIR=$(BUILD_TEST_DIR) \
-	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/tga.o $(BUILD_TEST_DIR)/memory_test.o" \
+	OBJS="$(BUILD_TEST_DIR)/TombRaiderTest.o $(BUILD_TEST_DIR)/TombRaider.o $(BUILD_TEST_DIR)/tga.o" \
 	CFLAGS="$(BASE_CFLAGS) -g $(TR_FLAGS)" \
 	LD_FLAGS="-lz -lstdc++"
 
@@ -378,14 +363,6 @@ Math.test:
 	mkdir -p $(BUILD_TEST_DIR)
 	$(CC) $(FLAGS_ALL) $(WARNINGS) -g -lm -lstdc++ -Iinclude \
 	src/MatMath.cpp src/Vector3d.cpp test/MatMath.cpp -o $(BUILD_TEST_DIR)/Math.test
-
-#################################################################
-
-Memory.test:
-	mkdir -p $(BUILD_TEST_DIR)
-	$(CC) $(FLAGS_ALL) $(WARNINGS) -g -lstdc++ -Iinclude \
-	-DDEBUG_MEMORY -DDEBUG_MEMORY_ERROR \
-	src/memory_test.cpp test/memory_test.cpp -o $(BUILD_TEST_DIR)/memory_test.test
 
 #################################################################
 

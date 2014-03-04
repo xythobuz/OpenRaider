@@ -18,10 +18,6 @@
 
 #include <Emitter.h>
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
 vec_t Emitter::mFrustum[6][4];
 
 int Emitter::compareParticleDist(const void *voidA, const void *voidB) {

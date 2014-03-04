@@ -15,10 +15,6 @@
 #include <limits.h>
 #include <stdio.h>
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
 /*!
  * \brief Template class encapsulating a single list node
  * \tparam T encapsulated data type

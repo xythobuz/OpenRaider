@@ -28,10 +28,6 @@
 #include <sys/time.h>
 #endif
 
-#ifdef MEMORY_TEST
-#include <memory_test.h>
-#endif
-
 #include <MatMath.h>
 #include <System.h>
 

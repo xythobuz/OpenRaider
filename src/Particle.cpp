@@ -10,11 +10,6 @@
 
 #include <Particle.h>
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
-
 Particle::Particle()
 {
     setActive(true);

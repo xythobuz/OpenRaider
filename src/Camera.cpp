@@ -11,11 +11,6 @@
 #include <MatMath.h>
 #include <Camera.h>
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
-
 unsigned int Camera::mCounter = 0;
 
 ////////////////////////////////////////////////////////////

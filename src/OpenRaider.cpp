@@ -14,10 +14,6 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
 #include <World.h>
 #include <SkeletalModel.h>
 #include <TombRaider1.h> // tmp stop-gap
@@ -76,11 +72,6 @@ void killOpenRaiderSingleton()
     // Causes pointer-being-freed-not-allocated error!
     //delete OpenRaider::Instance();
 #warning "Can't delete OpenRaider::Instance() without a not-allocated-free error. Something is fishy here..."
-
-#ifdef DEBUG_MEMORY
-    printf("\n[Mongoose MEMORY_DEBUG]\nMemory leak table:\n");
-    dump_memory_report();
-#endif
 
     printf("\nThanks for testing %s\n", VERSION);
     printf("Build date: %s @ %s\n", __DATE__, __TIME__);
@@ -1166,19 +1157,10 @@ void OpenRaider::loadLevel(char *mapname)
     // Cache/process sound fx
     processPakSounds();
 
-#ifdef DEBUG_MEMORY
-    // Right before pak is cleared will be highest use or memory
-    display_memory_usage();
-#endif
-
     // Mongoose 2002.01.02, Go ahead and free the TR pak
     m_tombraider.reset();
 
     print(true, "Level pak freed from memory, Starting game...");
-
-#ifdef DEBUG_MEMORY
-    display_memory_usage();
-#endif
 
     /*! \fixme GL call to critical section,
      * needs mutex really -- Mongoose 2002.01.02
@@ -2942,21 +2924,6 @@ void OpenRaider::consoleCommand(char *cmd)
         }
 
         print(false, "World clipping is [OFF]");
-    }
-    else if (rc_command("mem", cmd))
-    {
-#ifdef DEBUG_MEMORY
-        if (rc_command("usage", cmd))
-        {
-            display_memory_usage();
-        }
-        else if (rc_command("report", cmd))
-        {
-            dump_memory_report();
-        }
-#else
-        printf("This build isn't DEBUG_MEMORY enabled\n");
-#endif
     }
     else if (rc_command("loadlevel", cmd))
     {

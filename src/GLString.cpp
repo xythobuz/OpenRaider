@@ -19,11 +19,6 @@
 #include <Texture.h>
 #include <GLString.h>
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
-
 GLString::GLString() {
     _num_string_max = 0;
     _num_string = 0;

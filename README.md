@@ -148,7 +148,6 @@ Pressing &lt;UP&gt; will go back to last command entered (saves typing).
 | noclip              | Toggle world clipping in cycle                         |
 | hop                 | Toggle room hopping hack                               |
 | showfps BOOL        | Show FPS                                               |
-| mem ARG             | Prints memory report, where ARG is `usage` or `report` |
 | resize STRING       | Change resolution to `xga`, `svga` or `vga`            |
 
 #### Render

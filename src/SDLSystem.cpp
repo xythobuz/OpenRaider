@@ -10,10 +10,6 @@
 #include <string.h>
 #include <cmath>
 
-#ifdef MEMORY_TEST
-#include <memory_test.h>
-#endif
-
 #include <SDL2/SDL_opengl.h>
 
 #include <MatMath.h>
@@ -354,11 +350,6 @@ void SDLSystem::runGame() {
 void SDLSystem::shutdown(int i) {
     //SDL_QuitSubSystem(SDL_OPENGL);
     //SDL_Quit(); // Moved to atexit() call
-
-    //#ifdef DEBUG_MEMORY
-    //printf("[Mongoose MEMORY_DEBUG]\nUnfreed memory table:\n");
-    //dump_memory_report();
-    //#endif
 
     exit(i);
 }

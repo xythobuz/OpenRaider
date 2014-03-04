@@ -5,10 +5,6 @@
  * \author Mongoose
  */
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
 #include <math.h>
 
 #include <World.h>

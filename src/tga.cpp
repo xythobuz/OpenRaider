@@ -13,10 +13,6 @@
 
 #include <TGA.h>
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
 int tga_check(FILE *f) {
     char buffer[10];
 

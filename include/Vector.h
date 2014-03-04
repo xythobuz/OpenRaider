@@ -11,10 +11,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
 /*!
  * \brief Template class for a (pretty strange) Vector
  * \tparam Object datatype the Vector can store

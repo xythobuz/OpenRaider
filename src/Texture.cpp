@@ -10,10 +10,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
 #include <SDL2/SDL_ttf.h>
 
 #ifdef __APPLE__

@@ -58,12 +58,6 @@
 #include <TGA.h>
 #endif
 
-#ifdef DEBUG_MEMORY
-#include <memory_test.h>
-#endif
-
-
-
 TombRaider::TombRaider()
 {
     _textile8 = NULL;
