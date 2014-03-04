@@ -60,7 +60,14 @@ int Sound::init()
     close(fd);
 #endif
 
-    alutInit(NULL, 0);
+    ALCdevice *Device = alcOpenDevice("OSS");
+    ALCcontext *Context = alcCreateContext(Device, NULL);
+    alcMakeContextCurrent(Context);
+
+    if (alutInitWithoutContext(NULL, NULL) == AL_FALSE) {
+        printf("Sound::Init> Could not initialize alut (%s)\n", alutGetErrorString(alutGetError()));
+        return -2;
+    }
 
     mInit = true;
     printf("Created OpenAL Context\n");
@@ -129,7 +136,7 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags)
     // is deprecated!
     data = alutLoadMemoryFromFile(filename, &format, &size, &freq);
 
-    if (alGetError() != AL_NO_ERROR)
+    if (alutGetError() != ALUT_ERROR_NO_ERROR)
     {
         fprintf(stderr, "Could not load %s\n", filename);
         return -3;
@@ -158,6 +165,7 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     ALfloat freq;
     ALenum format;
     ALvoid *data;
+    int error = 0;
 
     if (!mInit || !wav || !source)
     {
@@ -197,8 +205,8 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
     data = alutLoadMemoryFromFileImage(wav, length, &format, &size, &freq);
 
-    if ((alGetError() != AL_NO_ERROR) || (data == NULL)) {
-        fprintf(stderr, "Could not load wav buffer\n");
+    if (((error = alutGetError()) != ALUT_ERROR_NO_ERROR) || (data == NULL)) {
+        fprintf(stderr, "Could not load wav buffer (%s)\n", alutGetErrorString(error));
         return -3;
     }
 
@@ -216,6 +224,8 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     ++mNextSource;
 
     *source = mNextBuffer;
+
+    //! \fixme Should free alut buffer?
 
     return 0;
 }
