@@ -43,7 +43,7 @@ On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts]
 
 A similar command for the package manager of your favorite Linux Distribution should do the trick.
 
-cmake is only needed to build [freealut](https://github.com/vancegroup/freealut), which you'll need to enable sound output on Mac OS X.
+cmake is also needed to build [freealut](https://github.com/vancegroup/freealut), which you'll need to enable sound output on Mac OS X.
 Get, compile and install freealut like this:
 
     git clone git@github.com:vancegroup/freealut.git
@@ -60,9 +60,13 @@ Linux Distributions will probably provide an ALUT library ready to install with 
 If you installed the dependencies using MacPorts, you'll need to have `/opt/local/bin` in your `$PATH` before you can execute make.
 If you're using Bash, the MacPorts installer should have automatically edited your configuration.
 
-Just run `make debug` and run `bin/debug/OpenRaider` for a debug build.
-`make release` builds a release binary.
-`make bundle` creates a Mac App Bundle that also runs the setup script, if necessary.
+Just do a cmake out-of-tree build and specify if you want the Debug or Release configuration, then run the resulting executable:
+
+    mkdir build
+    cd build
+    cmake -DCMAKE_BUILD_TYPE=Debug ..
+    make
+    ./OpenRaider
 
 ## Usage
 
@@ -214,6 +218,8 @@ The included example Font, [Droid Sans Mono](http://www.droidfonts.com/licensing
 The included sample WAV file is made from the [Falling Mate ringtone](http://brechler-web.de/fallingmate/) by [Plaetzchen](http://plaetzchen.cc).
 
 The included Unit Test Framework [greatest](https://github.com/silentbicycle/greatest/) by Scott Vokes is licensed under the [ISC License](http://www.isc.org/downloads/software-support-policy/isc-license/).
+
+The included cmake scripts [FindALUT](https://github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake), [FindSDL2](https://github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake) and [FindSDL2TTF](https://github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake) are released under the Boost Software License (for FindALUT) and under the BSD License for the other two. Authors: Ryan Pavlik, Iowa State University, Eric Wing and Kitware Inc.
 
 OpenRaider is based on code, specs, and alogrithms from:
 
