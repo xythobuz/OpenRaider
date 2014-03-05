@@ -20,8 +20,12 @@ include_directories ("${PROJECT_BINARY_DIR}")
 set (CMAKE_BUILD_TYPE "Debug")
 
 # Add subdirectories
-add_subdirectory ("src")
-add_subdirectory ("test")
+add_subdirectory (src)
+add_subdirectory (test)
+
+# Add test target
+add_custom_target (tests)
+add_dependencies (tests GLStringTest MathTest MatrixTest NetworkTest SoundTest TGATest TombRaiderTest)
 
 # Preparing the bundle on install
 # http://www.cmake.org/Wiki/BundleUtilitiesExample

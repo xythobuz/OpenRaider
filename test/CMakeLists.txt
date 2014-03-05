@@ -23,7 +23,7 @@ set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUNIT_TEST")
 
 # TGA Test
 set (TGASRCS "${PROJECT_SOURCE_DIR}/test/tga.cpp" "${PROJECT_SOURCE_DIR}/src/tga.cpp")
-add_executable (TGATest ${TGASRCS})
+add_executable (TGATest EXCLUDE_FROM_ALL ${TGASRCS})
 set_target_properties (TGATest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 
 #################################################################
@@ -40,7 +40,7 @@ set (SOUNDLIBS ${SOUNDLIBS} ${ALUT_LIBRARIES})
 
 # Sound Test
 set (SOUNDSRCS "${PROJECT_SOURCE_DIR}/test/Sound.cpp" "${PROJECT_SOURCE_DIR}/src/Sound.cpp")
-add_executable (SoundTest ${SOUNDSRCS})
+add_executable (SoundTest EXCLUDE_FROM_ALL ${SOUNDSRCS})
 set_target_properties (SoundTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 target_link_libraries (SoundTest ${SOUNDLIBS})
 
@@ -53,7 +53,7 @@ set (THREADLIBS ${THREADLIBS} ${CMAKE_THREAD_LIBS_INIT})
 # Network Test
 set (NETWORKSRCS "${PROJECT_SOURCE_DIR}/test/Network.cpp" "${PROJECT_SOURCE_DIR}/src/Network.cpp")
 set (NETWORKSRCS ${NETWORKSRCS} "${PROJECT_SOURCE_DIR}/src/MatMath.cpp" "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp")
-add_executable (NetworkTest ${NETWORKSRCS})
+add_executable (NetworkTest EXCLUDE_FROM_ALL ${NETWORKSRCS})
 set_target_properties (NetworkTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 target_link_libraries (NetworkTest m ${THREADLIBS})
 
@@ -61,7 +61,7 @@ target_link_libraries (NetworkTest m ${THREADLIBS})
 
 # Math Test
 set (MATHSRCS "${PROJECT_SOURCE_DIR}/test/MatMath.cpp" "${PROJECT_SOURCE_DIR}/src/MatMath.cpp" "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp")
-add_executable (MathTest ${MATHSRCS})
+add_executable (MathTest EXCLUDE_FROM_ALL ${MATHSRCS})
 set_target_properties (MathTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 
 #################################################################
@@ -70,7 +70,7 @@ set_target_properties (MathTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS}
 set (MATRIXSRCS "${PROJECT_SOURCE_DIR}/test/Matrix.cpp" "${PROJECT_SOURCE_DIR}/src/Matrix.cpp")
 set (MATRIXSRCS ${MATRIXSRCS} "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp" "${PROJECT_SOURCE_DIR}/src/MatMath.cpp")
 set (MATRIXSRCS ${MATRIXSRCS} "${PROJECT_SOURCE_DIR}/src/Quaternion.cpp")
-add_executable (MatrixTest ${MATRIXSRCS})
+add_executable (MatrixTest EXCLUDE_FROM_ALL ${MATRIXSRCS})
 set_target_properties (MatrixTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 target_link_libraries (MatrixTest m)
 
@@ -94,7 +94,7 @@ set (GLLIBS ${GLLIBS} ${OPENGL_LIBRARIES})
 # GLString Test
 set (GLSTRINGSRCS "${PROJECT_SOURCE_DIR}/test/GLString.cpp" "${PROJECT_SOURCE_DIR}/src/GLString.cpp")
 set (GLSTRINGSRCS ${GLSTRINGSRCS} "${PROJECT_SOURCE_DIR}/src/tga.cpp" "${PROJECT_SOURCE_DIR}/src/Texture.cpp")
-add_executable (GLStringTest ${GLSTRINGSRCS})
+add_executable (GLStringTest EXCLUDE_FROM_ALL ${GLSTRINGSRCS})
 set_target_properties (GLStringTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 target_link_libraries (GLStringTest m ${GLLIBS})
 
@@ -109,7 +109,7 @@ set (ZLIBS ${ZLIBS} ${ZLIB_LIBRARIES})
 set (TOMB_FLAGS "-D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES")
 set (TOMBSRCS "${PROJECT_SOURCE_DIR}/test/TombRaider.cpp" "${PROJECT_SOURCE_DIR}/src/TombRaider.cpp")
 set (TOMBSRCS ${TOMBSRCS} "${PROJECT_SOURCE_DIR}/src/tga.cpp")
-add_executable (TombRaiderTest ${TOMBSRCS})
+add_executable (TombRaiderTest EXCLUDE_FROM_ALL ${TOMBSRCS})
 set_target_properties (TombRaiderTest PROPERTIES COMPILE_FLAGS "${OpenRaider_CXX_FLAGS} ${TOMB_FLAGS}")
 target_link_libraries (TombRaiderTest ${ZLIBS})
 

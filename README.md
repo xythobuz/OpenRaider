@@ -65,7 +65,9 @@ Do a standard cmake build and then run the resulting executable:
     make
     ./src/OpenRaider
 
-On Mac OS X, running make install will produce a distributable OpenRaider.app bundle.
+On Mac OS X, running `make install` will produce a distributable OpenRaider.app bundle.
+
+To build all Unit Tests, run `make tests`.
 
 ## Usage
 
