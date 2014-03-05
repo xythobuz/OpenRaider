@@ -110,5 +110,17 @@ set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
 # Link to all found libs
 target_link_libraries (OpenRaider ${LIBS})
 
-# Add the install targets
-install (TARGETS OpenRaider DESTINATION bin)
+# Preparing the bundle on install
+# http://www.cmake.org/Wiki/BundleUtilitiesExample
+if (APPLE)
+    set (plugin_dest_dir OpenRaider.app/Contents/MacOS)
+    set (APPS "${PROJECT_BINARY_DIR}/OpenRaider.app")
+    set (DIRS ${QT_LIBRARY_DIRS})
+    install (CODE "
+        file(GLOB_RECURSE PLUGINS
+            \"\${CMAKE_INSTALL_PREFIX}/${plugin_dest_dir}/plugins/*${CMAKE_SHARED_LIBRARY_SUFFIX}\")
+        include(BundleUtilities)
+        fixup_bundle(\"${APPS}\" \"\${PLUGINS}\" \"${DIRS}\")
+        " COMPONENT Runtime
+    )
+endif (APPLE)
