@@ -1,11 +1,10 @@
-# This is the Open Raider RC file
+# This is the OpenRaider RC file
 #####################################
 
 [Video.OpenGL]
 Driver=/usr/lib/libGL.so.1
 Width=1280
 Height=720
-FastCard=true
 FullScreen=false
 Font=~/.OpenRaider/data/test.ttf
 

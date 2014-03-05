@@ -25,20 +25,32 @@ add_subdirectory (test)
 
 #################################################################
 
-# Preparing the bundle on install
-# http://www.cmake.org/Wiki/BundleUtilitiesExample
-# Why does it even work? O.o
 if (APPLE)
+    # Preparing the bundle on install
+    # http://www.cmake.org/Wiki/BundleUtilitiesExample
     set (plugin_dest_dir OpenRaider.app/Contents/MacOS)
     set (APPS "${PROJECT_BINARY_DIR}/src/OpenRaider.app")
-    set (DIRS ${QT_LIBRARY_DIRS})
     install (CODE "
         file(GLOB_RECURSE PLUGINS
             \"\${CMAKE_INSTALL_PREFIX}/${plugin_dest_dir}/plugins/*${CMAKE_SHARED_LIBRARY_SUFFIX}\")
         include(BundleUtilities)
-        fixup_bundle(\"${APPS}\" \"\${PLUGINS}\" \"${DIRS}\")
+        fixup_bundle(\"${APPS}\" \"\${PLUGINS}\" \"\")
         " COMPONENT Runtime
     )
+
+    # Copy setup script
+    install (PROGRAMS ${PROJECT_SOURCE_DIR}/cmake/setup_mac.sh
+        DESTINATION ${PROJECT_BINARY_DIR}/src/OpenRaider.app/Contents/MacOS
+        RENAME OpenRaider.sh
+    )
+
+    # Fix executable name, so setup script will be called
+    install (CODE "
+        execute_process (
+            COMMAND /usr/libexec/PlistBuddy -c \"Set :CFBundleExecutable OpenRaider.sh\" Info.plist
+            WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/src/OpenRaider.app/Contents
+        )
+    " COMPONENT Runtime)
 endif (APPLE)
 
 #################################################################

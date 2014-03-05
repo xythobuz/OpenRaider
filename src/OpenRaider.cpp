@@ -3358,7 +3358,7 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
                 char *fullPathMap = bufferString("%s%s", dir, ep->d_name);
 
                 if (m_tombraider.checkMime(fullPathMap) == 0) {
-                    printf("Validated pak: '%s'\n", fullPathMap);
+                    // printf("Validated pak: '%s'\n", fullPathMap);
                     delete [] fullPathMap;
 
                     // Just load relative filename

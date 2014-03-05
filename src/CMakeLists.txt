@@ -34,9 +34,16 @@ if (APPLE)
     set (MACOSX_BUNDLE_COPYRIGHT "2001 - 2014")
 
     # Copy Icon
-    set (MAC_ICON "../data/AppIcon.icns")
-    set_source_files_properties(${MAC_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    set (MAC_ICON "../cmake/AppIcon.icns")
+    set_source_files_properties (${MAC_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
     set (SRCS ${SRCS} ${MAC_ICON})
+
+    # Copy Data
+    set (MAC_DATA "../data/custom.cfg" "../data/OpenRaider.init" "../data/particle.tga" "../data/sample.wav")
+    set (MAC_DATA ${MAC_DATA} "../data/snow.tga" "../data/snow2.tga" "../data/splash.tga" "../data/test.ttf")
+    set (MAC_DATA ${MAC_DATA} "../data/white.tga")
+    set_source_files_properties (${MAC_DATA} PROPERTIES MACOSX_PACKAGE_LOCATION Resources/defaults)
+    set (SRCS ${SRCS} ${MAC_DATA})
 endif (APPLE)
 
 # Add Executable
