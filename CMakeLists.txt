@@ -9,7 +9,7 @@ set (OpenRaider_VERSION_MICRO 2)
 # Build Host
 set (OpenRaider_BUILD_HOST ${CMAKE_HOST_SYSTEM})
 
-# Apple specific
+# Apple specific bundling
 if (APPLE)
 
     # Mac Bundle Data
@@ -36,10 +36,7 @@ configure_file (
 )
 include_directories ("${PROJECT_BINARY_DIR}")
 
-# Preprocessor Flags
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
-# Source Files, Executable
+# Executable, Source files
 add_executable (OpenRaider MACOSX_BUNDLE
     src/Camera.cpp
     src/Emitter.cpp
@@ -65,13 +62,26 @@ add_executable (OpenRaider MACOSX_BUNDLE
     ${SRCS}
 )
 
-# Definitions for Debug build
-set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG -DEXPERIMENTAL")
+# Default to Debug build
+set (CMAKE_BUILD_TYPE "Debug")
 
-# Definitions for all builds
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DUSING_EMITTER")
+# Flags for all builds
+set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11")
+set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_EMITTER")
 
-# Include Directory
+# Flags for Debug build
+set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DDEBUG")
+set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DEXPERIMENTAL")
+
+# Flags for Releasae builds
+set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE}")
+
+# Apply Flags
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenRaider_CXX_FLAGS}")
+set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${OpenRaider_CXX_FLAGS} ${OpenRaider_CXX_FLAGS_DEBUG}")
+set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS} ${OpenRaider_CXX_FLAGS_RELEASE}")
+
+# Include directory
 include_directories ("${PROJECT_SOURCE_DIR}/include")
 
 # Include External Modules
@@ -112,6 +122,7 @@ target_link_libraries (OpenRaider ${LIBS})
 
 # Preparing the bundle on install
 # http://www.cmake.org/Wiki/BundleUtilitiesExample
+# Why does it even work?
 if (APPLE)
     set (plugin_dest_dir OpenRaider.app/Contents/MacOS)
     set (APPS "${PROJECT_BINARY_DIR}/OpenRaider.app")
