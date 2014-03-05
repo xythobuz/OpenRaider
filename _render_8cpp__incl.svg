@@ -125,11 +125,8 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a xlink:href="_config_8h.html" target="_top" xlink:title="Config.h">
-<polygon fill="white" stroke="black" points="347.5,-224.5 347.5,-243.5 398.5,-243.5 398.5,-224.5 347.5,-224.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="347.5,-224.5 347.5,-243.5 398.5,-243.5 398.5,-224.5 347.5,-224.5"/>
 <text text-anchor="middle" x="373" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">Config.h</text>
-</a>
-</g>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
 <g id="edge7" class="edge"><title>Node7&#45;&gt;Node8</title>

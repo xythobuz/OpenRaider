@@ -16,7 +16,6 @@ var searchData=
   ['cnum_5falpha_5ftriangles',['cnum_alpha_triangles',['../_mesh_8h.html#a0186788e2a5b3593520b70e71390e117',1,'tris_t']]],
   ['cnum_5fquads',['cnum_quads',['../_mesh_8h.html#a2e62d023b635964c0823a79a7eddea8b',1,'rect_t']]],
   ['cnum_5ftriangles',['cnum_triangles',['../_mesh_8h.html#a8a8dfbf18a41cd6e4c14d2ce936b9901',1,'tris_t']]],
-  ['col',['col',['../greatest_8h.html#ac8c3cae671aa474815f36a74ec596fc3',1,'greatest_run_info']]],
   ['collision_5fsize',['collision_size',['../_tomb_raider_8h.html#af4452ea5c41ee50ab8c622cc0371225e',1,'tr2_mesh_t']]],
   ['color',['color',['../_tomb_raider_8h.html#a2003a4518040eedf816b7941e220751f',1,'tr4_room_light_t']]],
   ['colorcount',['colorCount',['../_world_8h.html#a4b35cacebdcb3fcaf7742628f5b0f24b',1,'model_mesh_t']]],

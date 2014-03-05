@@ -6,7 +6,7 @@ var searchData=
   ['xdir',['xDir',['../_tomb_raider_8h.html#a25f750f6174fa97d1884986c6f5ee9f8',1,'tr4_room_light_t']]],
   ['xmax',['xmax',['../_tomb_raider_8h.html#aec2b87274efa10f3856d26fb26e5c08e',1,'tr2_box_t']]],
   ['xmin',['xmin',['../_tomb_raider_8h.html#aae8522e5afb88c9264e9424899fca043',1,'tr2_box_t']]],
-  ['xpixel',['xpixel',['../_tomb_raider_8h.html#a8ea3a43076cafcf5cef33c06d96dfa32',1,'tr2_object_texture_vert_t::xpixel()'],['../_tomb_raider_8h.html#ac6064cfdaa10f9f9935765dacd779461',1,'tr5_object_texture_vertex_t::xPixel()']]],
+  ['xpixel',['xPixel',['../_tomb_raider_8h.html#ac6064cfdaa10f9f9935765dacd779461',1,'tr5_object_texture_vertex_t::xPixel()'],['../_tomb_raider_8h.html#a8ea3a43076cafcf5cef33c06d96dfa32',1,'tr2_object_texture_vert_t::xpixel()']]],
   ['xposition',['xPosition',['../_tomb_raider_8h.html#ad3e87f6af37f280ae202d11999b3148a',1,'tr4_room_light_t']]],
-  ['xsize',['xsize',['../_tomb_raider_8h.html#a6647c9e4afb489ec73efe7a75d80be6e',1,'tr4_object_texture_t::xsize()'],['../_tomb_raider_8h.html#aa37b0220716861c6e132b94e80ad3c26',1,'tr5_object_texture_t::xSize()']]]
+  ['xsize',['xSize',['../_tomb_raider_8h.html#aa37b0220716861c6e132b94e80ad3c26',1,'tr5_object_texture_t::xSize()'],['../_tomb_raider_8h.html#a6647c9e4afb489ec73efe7a75d80be6e',1,'tr4_object_texture_t::xsize()']]]
 ];

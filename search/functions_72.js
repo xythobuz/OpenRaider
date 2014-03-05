@@ -10,7 +10,7 @@ var searchData=
   ['renderroom',['RenderRoom',['../class_render_room.html#a77185c928d0b67b9b3556d716c64a067',1,'RenderRoom']]],
   ['rendertrace',['renderTrace',['../_render_8cpp.html#a807dd35eb943f32b4f80e4095f4be673',1,'Render.cpp']]],
   ['reserve',['reserve',['../class_vector.html#a38b049edec0e1c40aa64698aa555b5ef',1,'Vector']]],
-  ['reset',['Reset',['../class_list.html#a09eca7a24adbfa66974d54074991a020',1,'List::Reset()'],['../class_particle.html#a77d1dccca2dc8b6c2f28025256f681b8',1,'Particle::Reset()'],['../class_camera.html#a02be8aa0dbef77e02dddc715a726fb67',1,'Camera::reset()'],['../class_texture.html#abcae23b29a9db32ee72f8a546dbe7dca',1,'Texture::reset()'],['../class_tomb_raider.html#a2aa2d3c97b5f39f058241f8ae78177b2',1,'TombRaider::reset()']]],
+  ['reset',['reset',['../class_camera.html#a02be8aa0dbef77e02dddc715a726fb67',1,'Camera::reset()'],['../class_texture.html#abcae23b29a9db32ee72f8a546dbe7dca',1,'Texture::reset()'],['../class_tomb_raider.html#a2aa2d3c97b5f39f058241f8ae78177b2',1,'TombRaider::reset()'],['../class_list.html#a09eca7a24adbfa66974d54074991a020',1,'List::Reset()'],['../class_particle.html#a77d1dccca2dc8b6c2f28025256f681b8',1,'Particle::Reset()']]],
   ['resetticks',['resetTicks',['../class_system.html#a649af22b8f62d683e09db753e610f465',1,'System']]],
   ['resize',['resize',['../class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9',1,'SDLSystem::resize()'],['../class_vector.html#a61526839fbac7551fd1fb28f02c37906',1,'Vector::resize(unsigned int count)'],['../class_vector.html#a40fd023ae318b81f42b9b6ba995f289b',1,'Vector::resize(unsigned int count, Object object)']]],
   ['resizegl',['resizeGL',['../class_system.html#a444b038c3eab08477c7ea13673a9b0d4',1,'System']]],

@@ -3,7 +3,7 @@ var searchData=
   ['w',['w',['../_texture_8h.html#a38b4d7d2a3766fbee3eb449a1b0ded86',1,'ttf_glyph_t']]],
   ['wall',['wall',['../_world_8h.html#abe1983dcc069c9262387decf573b4bef',1,'sector_t']]],
   ['white',['WHITE',['../_render_8cpp.html#a2ba2d79adbf7bc110253f034d7b72ea8',1,'Render.cpp']]],
-  ['width',['width',['../_texture_8h.html#a874c0bd3b1692af90e6056b3687af66c',1,'ttf_texture_t::width()'],['../tga_8h.html#a0729364da9ce763f51554511eda6fc1a',1,'tga_t::width()'],['../_tomb_raider_8h.html#a6ed2879a3fb337aefe0aa7e91ab68d41',1,'tr2_sprite_texture_t::width()'],['../greatest_8h.html#a1cf7b8325569d74e6e8e07dcc7a58e36',1,'greatest_run_info::width()']]],
+  ['width',['width',['../_texture_8h.html#a874c0bd3b1692af90e6056b3687af66c',1,'ttf_texture_t::width()'],['../tga_8h.html#a0729364da9ce763f51554511eda6fc1a',1,'tga_t::width()'],['../_tomb_raider_8h.html#a6ed2879a3fb337aefe0aa7e91ab68d41',1,'tr2_sprite_texture_t::width()']]],
   ['wingedmutant',['WingedMutant',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaaf136c8701e93a1c5be81034fb59587a',1,'TombRaider1']]],
   ['wingedmutantstate_5faimfire',['WingedMutantState_AimFire',['../_tomb_raider1_8h.html#a87e8a0ba3b0af732e7ee62e199c0cba7a0b46576c6561737f5e29597cd3a5bef8',1,'TombRaider1']]],
   ['wingedmutantstate_5faiming',['WingedMutantState_Aiming',['../_tomb_raider1_8h.html#a87e8a0ba3b0af732e7ee62e199c0cba7a8e68045fd0ff8df0704d249e3955e7fe',1,'TombRaider1']]],

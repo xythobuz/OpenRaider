@@ -31,8 +31,6 @@ var searchData=
   ['vector_3c_20sprite_5ft_20_2a_20_3e',['Vector&lt; sprite_t * &gt;',['../class_vector.html',1,'']]],
   ['vector_3c_20static_5fmodel_5ft_20_2a_20_3e',['Vector&lt; static_model_t * &gt;',['../class_vector.html',1,'']]],
   ['vector_3c_20texture_5ftri_5ft_20_2a_20_3e',['Vector&lt; texture_tri_t * &gt;',['../class_vector.html',1,'']]],
-  ['version',['VERSION',['../_config_8h.html#a1c6d5de492ac61ad29aec7aa9a436bbf',1,'Config.h']]],
-  ['version_5fnumber',['VERSION_NUMBER',['../_config_8h.html#affb1ffbd24de6be88bd8ac877aae1688',1,'Config.h']]],
   ['vertex',['vertex',['../_tomb_raider_8h.html#ab2be4fbd62389022e83da08dc39ad424',1,'tr2_vertex_room_t::vertex()'],['../_tomb_raider_8h.html#a65d35df7ab463b1bdb56686f7e8483d8',1,'tr2_room_sprite_t::vertex()'],['../_world_8h.html#acd51e5109cbe800719341dfbdb112ce1',1,'sprite_t::vertex()']]],
   ['vertex_5ft',['vertex_t',['../_world_8h.html#structvertex__t',1,'']]],
   ['vertexcount',['vertexCount',['../_world_8h.html#a9eb82b184a57a64138ecbd8cc9afc241',1,'model_mesh_t']]],

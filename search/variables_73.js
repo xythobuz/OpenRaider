@@ -29,10 +29,7 @@ var searchData=
   ['seperator9',['seperator9',['../_tomb_raider_8h.html#ab118acedbecec64de855015eec61dfe3',1,'tr5_room_t']]],
   ['seq',['seq',['../_network_8h.html#a63ab1c2412a79b84befd7616e6f85729',1,'network_frame_t::seq()'],['../src_2_network_8cpp.html#a4041b7526b08c17edb8a9a58fe4e5b0e',1,'client_t::seq()']]],
   ['sequence',['sequence',['../_tomb_raider_8h.html#a787208af57812161bd76170b64ad9eac',1,'tr5_flyby_camera_t']]],
-  ['setup',['setup',['../greatest_8h.html#a2f20d79a46a0d34c6ca9b8df08e3c0a4',1,'greatest_run_info']]],
-  ['setup_5fudata',['setup_udata',['../greatest_8h.html#a711d2b0077eb232074f64e8039d9a128',1,'greatest_run_info']]],
   ['skin',['skin',['../_world_8h.html#ad2597bea411ee961227bd28112c6b94b',1,'actor_entity_t']]],
-  ['skipped',['skipped',['../greatest_8h.html#aff2cb54558482b2ae00fa59894804f5a',1,'greatest_suite_info::skipped()'],['../greatest_8h.html#ace42a34e8d8bbc85824a254f36fb5668',1,'greatest_run_info::skipped()']]],
   ['sound',['sound',['../test_2_sound_8cpp.html#ae0121e07e67c6acf208267a12029f0fe',1,'Sound.cpp']]],
   ['sound_5fid',['sound_id',['../_tomb_raider_8h.html#a81a04053a6665ee2edd648cc4e2376c9',1,'tr2_sound_source_t']]],
   ['sound_5frange',['sound_range',['../_tomb_raider_8h.html#acba578f3a2e0b5d646be54e9148eaa1a',1,'tr2_sound_details_t']]],
@@ -48,7 +45,5 @@ var searchData=
   ['state_5fid',['state_id',['../_tomb_raider_8h.html#a540820a36d27dd4251d72253c75fc6e9',1,'tr2_animation_t::state_id()'],['../_tomb_raider_8h.html#a7301d8249af10cdb94d9be6e01b7311a',1,'tr4_animation_t::state_id()'],['../_tomb_raider_8h.html#a8286948b01b809655cb40a7ad2f90779',1,'tr2_state_change_t::state_id()']]],
   ['statechangeoffset',['StateChangeOffset',['../_tomb_raider_8h.html#a20f3356e75aaddc96c31d23860dbaa3e',1,'tr5_animation_t']]],
   ['stateid',['StateId',['../_tomb_raider_8h.html#a50b3deef171ec926c825d4d073bdf483',1,'tr5_animation_t']]],
-  ['static_5fmeshes',['static_meshes',['../_tomb_raider_8h.html#aee53f16564e88fd3db82c2cdf838a23a',1,'tr2_room_t']]],
-  ['suite',['suite',['../greatest_8h.html#a4e2f63a565cb7cfac717b996614b9a85',1,'greatest_run_info']]],
-  ['suite_5ffilter',['suite_filter',['../greatest_8h.html#a10a85f1cd550cb73eb02572b566715bc',1,'greatest_run_info']]]
+  ['static_5fmeshes',['static_meshes',['../_tomb_raider_8h.html#aee53f16564e88fd3db82c2cdf838a23a',1,'tr2_room_t']]]
 ];

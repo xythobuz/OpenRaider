@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['set_5fsetup',['SET_SETUP',['../greatest_8h.html#ace8a4de708c4a963e7bdea30ce774477',1,'greatest.h']]],
-  ['set_5fteardown',['SET_TEARDOWN',['../greatest_8h.html#a628f4d2c70f7cf9417a771dd6da71c7b',1,'greatest.h']]],
-  ['skip',['SKIP',['../greatest_8h.html#a688a4adbb87520a2b68681bd6bfb199e',1,'greatest.h']]],
-  ['skipm',['SKIPm',['../greatest_8h.html#a1f4ab40ccea8bd64bc25a60ee66d9688',1,'greatest.h']]],
-  ['suite',['SUITE',['../greatest_8h.html#ac259c3f55c7c90396ea276c14641bc01',1,'greatest.h']]],
   ['swap_5frows',['SWAP_ROWS',['../src_2_matrix_8cpp.html#ab05eff8e781b00b86776d167de0be400',1,'Matrix.cpp']]],
   ['sys_5fkey_5fdown',['SYS_KEY_DOWN',['../_system_8h.html#a001173b091f9a0ea14633350af722ea9',1,'System.h']]],
   ['sys_5fkey_5fenter',['SYS_KEY_ENTER',['../_system_8h.html#ad3164474d93eca0275976a532de5bdbf',1,'System.h']]],

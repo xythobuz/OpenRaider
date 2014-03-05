@@ -11,6 +11,6 @@ var searchData=
   ['yellow',['YELLOW',['../_render_8cpp.html#aac9553d8768ad8edfbde6320835fb0fa',1,'Render.cpp']]],
   ['ypixel',['yPixel',['../_tomb_raider_8h.html#a4bbfc6c666a28e0730e8673ead11a9ed',1,'tr5_object_texture_vertex_t::yPixel()'],['../_tomb_raider_8h.html#ada3873bf35a7ced1b174e1c11528ab5e',1,'tr2_object_texture_vert_t::ypixel()']]],
   ['yposition',['yPosition',['../_tomb_raider_8h.html#a33a06004ad20ae970955f4f07a08b967',1,'tr4_room_light_t']]],
-  ['ysize',['ySize',['../_tomb_raider_8h.html#ab1f787f0d6fa7c56d13d9d8fbf203b00',1,'tr5_object_texture_t::ySize()'],['../_tomb_raider_8h.html#a68a6da3950a0df0fef1d795cfc2563c4',1,'tr4_object_texture_t::ysize()']]],
+  ['ysize',['ysize',['../_tomb_raider_8h.html#a68a6da3950a0df0fef1d795cfc2563c4',1,'tr4_object_texture_t::ysize()'],['../_tomb_raider_8h.html#ab1f787f0d6fa7c56d13d9d8fbf203b00',1,'tr5_object_texture_t::ySize()']]],
   ['ytop',['yTop',['../_tomb_raider_8h.html#ad0292e5e1c6bbfdfff78d4af48696faa',1,'tr5_room_t']]]
 ];
