@@ -114,3 +114,6 @@ set (LIBS ${LIBS} ${CMAKE_THREAD_LIBS_INIT})
 
 # Link to all found libs
 target_link_libraries (OpenRaider ${LIBS})
+
+# Add target to run executable
+add_custom_target(run COMMAND OpenRaider DEPENDS OpenRaider WORKING_DIRECTORY ${CMAKE_PROJECT_DIR})

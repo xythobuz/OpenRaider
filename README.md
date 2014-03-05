@@ -4,18 +4,14 @@
 
 This project aims to get OpenRaider in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...
 
-Currently, my focus is on building and running under Mac OS X.
-However, my changes should not break the Linux "buildability" :)
-
-If you just want to see OpenRaider doing something on your Mac, without installing any of the dependencies needed to build OpenRaider, install [XQuartz](http://xquartz.macosforge.org/trac) (if you don't have it already) and grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
-If you don't install XQuartz, Mac OS X should prompt you to do so on the first launch of OpenRaider.
+If you just want to see OpenRaider doing something on your Mac, without installing any of the dependencies needed to build OpenRaider, grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
 
 It seems as if OpenRaider will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!
 
 ## Configuration
 
 OpenRaider needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.
-These are stored in `~/.OpenRaider`. Running the included `setup.sh` will create/copy the necessary files and directories. The Mac App Bundle will do this for you automatically.
+These are stored in `~/.OpenRaider`. Running the included `setup.sh` will create/copy the necessary files and directories.
 
 You still need to add level files in `~/.OpenRaider/paks/` and add them to `~/.OpenRaider/OpenRaider.init`.
 Dust off your old Tomb Raider CDs or grab some [custom levels](http://www.aspidetr.com/levels/yvel-woods-v1-5/) from the interwebs.
@@ -36,10 +32,11 @@ Basically, OpenRaider depends on the following:
 * OpenAL & ALUT
 * Posix Threads
 * zlib
+* cmake as build system
 
 On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 
-    sudo port install zlib libsdl2 libsdl2_ttf cmake
+    sudo port install cmake zlib libsdl2 libsdl2_ttf
 
 A similar command for the package manager of your favorite Linux Distribution should do the trick.
 
@@ -57,7 +54,7 @@ Linux Distributions will probably provide an ALUT library ready to install with 
 
 ## Building
 
-Do a standard cmake build and then run the resulting executable:
+Do a standard cmake out-of-source build and then run the resulting executable:
 
     mkdir build
     cd build
@@ -65,12 +62,16 @@ Do a standard cmake build and then run the resulting executable:
     make
     ./src/OpenRaider
 
-On Mac OS X, running `make install` will produce a distributable OpenRaider.app bundle.
+On Mac OS X, running `make install` will produce a (more or less) distributable OpenRaider.app bundle.
 
-To build all Unit Tests, run `make tests`, to run most of them use `make testRun`.
-To run a TombRaider level loader regression test, use `make testReg`. The results will be put into log files in your build folder.
+To build all Unit Tests run `make tests`, to build and run most of them use `make testRun`.
+
+To run a TombRaider level loader regression test use `make testReg`. The results will be put into log files in your build folder.
+
 You can run a static analysis with cppcheck using `make check`, `make checkFull` or `make checkConfig`.
-A Doxygen API documentation can be created with `make doc`. `make docLocal` will not create additional graphs for the documentation and tries to copy the result into a directory called apache on the parent level of the OpenRaider project directory.
+
+A Doxygen API documentation can be created with `make doc`.
+
 `make clean` should remove all intermediary files.
 
 ## Usage
