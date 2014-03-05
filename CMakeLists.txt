@@ -19,8 +19,9 @@ include_directories ("${PROJECT_BINARY_DIR}")
 # Default to Debug build
 set (CMAKE_BUILD_TYPE "Debug")
 
-# Add src Folder
+# Add subdirectories
 add_subdirectory ("src")
+add_subdirectory ("test")
 
 # Preparing the bundle on install
 # http://www.cmake.org/Wiki/BundleUtilitiesExample

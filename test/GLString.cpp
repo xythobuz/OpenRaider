@@ -107,7 +107,7 @@ void init_text() {
     gTexture.setFlag(Texture::fUseMipmaps);
     gTexture.setMaxTextureCount(32);
 
-    gTexture.loadFontTTF("data/test.ttf", 32, 126 - 32);  // ASCII
+    gTexture.loadFontTTF("../data/test.ttf", 32, 126 - 32);  // ASCII
 
     TEXT->Init(4);
     i = TEXT->glPrintf(50, 50, "OpenRaider GLString");
