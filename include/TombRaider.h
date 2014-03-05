@@ -1269,18 +1269,13 @@ public:
      */
     int Load(char *filename, void (*percent)(int));
 
+    /*!
+     * \brief Makes a clamped 0.0 to 1.0 texel from coord pair
+     * \param texel texel value, is modified, divided by 255.0 and returned
+     * \param offset if offset is negative, texel is decreased by one, else increased
+     * \returns modified texel divided by 255.0
+     */
     float adjustTexel(unsigned char texel, char offset);
-    /*------------------------------------------------------
-     * Pre  : Passed the correct coor/pixel pair from
-     *        object texture
-     *
-     * Post : Makes a clamped 0.0 to 1.0 texel from coord pair
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.06.21:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Compute rotation angles from moveable animation data
@@ -1296,16 +1291,13 @@ public:
                                 unsigned int *angle_offset,
                                 float *x, float *y, float *z);
 
+    /*!
+     * \brief Returns computed UV in u and v
+     * \param st object texture vert, its coordinates are added to the pixels and divided by 255.0
+     * \param u will contain calculated x value
+     * \param v will contain calculated y value
+     */
     void computeUV(tr2_object_texture_vert_t *st, float *u, float *v);
-    /*------------------------------------------------------
-     * Pre  : Args are valid pointers
-     * Post : Returns computed UV in u and v
-     *
-     *-- History ------------------------------------------
-     *
-     * 2002.04.05:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of bump maps in loaded pak
@@ -1332,87 +1324,71 @@ public:
      */
     int getMeshCount();
 
+    /*!
+     * \brief This method is made to let you fill arrays or
+     * create single faces. There may be an allocatin version that
+     * passes back arrays later.
+     * Returns Quads/Rects as 2 triangles,
+     * because returning quads would be too trivial :)
+     * \param meshIndex mesh index
+     * \param faceIndex face index
+     * \param index allocated RGBA
+     * \param color allocated RGBA
+     * \fixme This method interface may change later
+     */
     void getMeshColoredRectangle(unsigned int meshIndex,
                                     unsigned int faceIndex,
                                     int index[6], float color[4]);
-    /*------------------------------------------------------
-     * Pre  : This method interface may change later
-     *
-     *        Pass allocated index[6], color[4] ( RGBA )
-     *
-     * Post : This method is made to let you fill arrays or
-     *        create single faces, their may be an allocating
-     *        version that passes back arrays later
-     *
-     *        Returns Quads/Rects as 2 triangles, because
-     *        returning quads would be too trival  =)
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.16:
-     * Mongoose - Created, based on method from OpenRaider
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief This method is made to let you fill arrays or
+     * create single faces. There may be an allocating version that
+     * passes back arrays later.
+     * \param meshIndex mesh index
+     * \param faceIndex face index
+     * \param index allocated RGBA
+     * \param color allocated RGBA
+     * \fixme This method interface may change later
+     */
     void getMeshColoredTriangle(unsigned int meshIndex,
                                 unsigned int faceIndex,
                                 int index[3], float color[4]);
-    /*------------------------------------------------------
-     * Pre  : This method interface may change later
-     *
-     *        Pass allocated index[3], color[4] ( RGBA )
-     *
-     * Post : This method is made to let you fill arrays or
-     *        create single faces, their may be an allocating
-     *        version that passes back arrays later
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.16:
-     * Mongoose - Created, based on method from OpenRaider
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief This method is made to let you fill arrays or
+     * create single faces. There may be an allocatin version that
+     * passes back arrays later.
+     * Returns Quads/Rects as 2 triangles,
+     * because returning quads would be too trivial :)
+     * \param meshIndex mesh index
+     * \param faceIndex face index
+     * \param index allocated
+     * \param st allocated
+     * \param texture allocated
+     * \param transparency allocated
+     * \fixme This method interface may change later
+     */
     void getMeshTexturedRectangle(unsigned int meshIndex,
                                     unsigned int faceIndex,
                                     int index[6], float st[12], int *texture,
                                     unsigned short *transparency);
-    /*------------------------------------------------------
-     * Pre  : This method interface may change later
-     *
-     *        Pass allocated index[6], st[12], texture,
-     *        and transparency
-     *
-     * Post : This method is made to let you fill arrays or
-     *        create single faces, their may be an allocating
-     *        version that passes back arrays later
-     *
-     *        Returns Quads/Rects as 2 triangles, because
-     *        returning quads would be too trival  =)
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.16:
-     * Mongoose - Created, based on method from OpenRaider
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief This method is made to let you fill arrays or
+     * create single faces. There may be an allocatin version that
+     * passes back arrays later.
+     * \param meshIndex mesh index
+     * \param faceIndex face index
+     * \param index allocated
+     * \param st allocated
+     * \param texture allocated
+     * \param transparency allocated
+     * \fixme This method interface may change later
+     */
     void getMeshTexturedTriangle(unsigned int meshIndex,
                                     unsigned int faceIndex,
                                     int index[3], float st[6], int *texture,
                                     unsigned short *transparency);
-    /*------------------------------------------------------
-     * Pre  : This method interface may change later
-     *
-     *        Pass allocated index[3], st[6], texture,
-     *        and transparency
-     *
-     * Post : This method is made to let you fill arrays or
-     *        create single faces, their may be an allocating
-     *        version that passes back arrays later
-     *
-     *-- History ------------------------------------------
-     *
-     * 2000.05.16:
-     * Mongoose - Created, based on method from OpenRaider
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get face counts for a given mesh.
@@ -1458,17 +1434,18 @@ public:
                                 unsigned int *normalCount, float **norms,
                                 unsigned int *colorCount, float **colors);
 
+    /*!
+     * \brief Get a single collision box from room (unified)
+     * \param roomIndex room index
+     * \param index index of box in room
+     * \param xyzA will contain first corner of box
+     * \param xyzB will contain second corner of box
+     * \param xyzC will contain third corner of box
+     * \param xyzD will contain fourth corner of box
+     * \returns 0 on success, < 0 on error
+     */
     int getRoomBox(unsigned int roomIndex, unsigned int index,
                     float *xyzA, float *xyzB, float *xyzC, float *xyzD);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns a single collision box from room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of collision boxes in room (unified)
@@ -1481,19 +1458,23 @@ public:
                         unsigned int *flags, float pos[3],
                         float bboxMin[3], float bboxMax[3]);
 
+    /*!
+     * \brief Get a single light from a room (unified)
+     * \param roomIndex valid room index
+     * \param index valid light index in room
+     * \param pos allocated, will contain position
+     * \param color allocated, will contain color
+     * \param dir allocated, will contain direction
+     * \param attenuation will contain attenuation
+     * \param cutoffAngle will contain cutoff angle
+     * \param type will contain type
+     * \param flags will contain flags
+     * \returns 0 on success, < 0 on error
+     */
     int getRoomLight(unsigned int roomIndex, unsigned int index,
                         float pos[4], float color[4], float dir[3],
                         float *attenuation, float *cutoffAngle,
                         unsigned int *type, unsigned int *flags);
-    /*------------------------------------------------------
-     * Pre  : All parms are allocated
-     * Post : Returns a single light from a room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.19:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of lights in room (unified)
@@ -1502,17 +1483,17 @@ public:
      */
     unsigned int getRoomLightCount(unsigned int roomIndex);
 
+    /*!
+     * \brief Get a single model info from a room
+     * \param roomIndex valid room index
+     * \param index valid model index in room
+     * \param modelIndex will contain starting mesh
+     * \param pos will contain pos
+     * \param yaw will contain yaw angle
+     * \returns 0 on success, < 0 on error
+     */
     int getRoomModel(unsigned int roomIndex, unsigned int index,
                         int *modelIndex, float pos[3], float *yaw);
-    /*------------------------------------------------------
-     * Pre  : All parms are allocated
-     * Post : Returns a single model info from a room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.19:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of room models in room (unified)
@@ -1521,17 +1502,17 @@ public:
      */
     unsigned int getRoomModelCount(unsigned int roomIndex);
 
+    /*!
+     * \brief Get a single portal from room (unified)
+     * \param roomIndex valid room index
+     * \param index valid portal index in room
+     * \param adjoiningRoom will contain adjoining room index
+     * \param normal allocated, will contain normal vector
+     * \param vertices allocated, will contain vertices
+     * \returns 0 on success, < 0 on error
+     */
     int getRoomPortal(unsigned int roomIndex, unsigned int index,
                         int *adjoiningRoom, float normal[3], float vertices[12]);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns a single portal from room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of portals from room (unified)
@@ -1540,19 +1521,19 @@ public:
      */
     unsigned int getRoomPortalCount(unsigned int roomIndex);
 
+    /*!
+     * \brief Get rectangle data with texCoords for non-matching
+     * vertex/uv for each vertex in TombRaider room (unified)
+     * \param roomIndex valid room index
+     * \param rectangleIndex rectangle index in room
+     * \param indices will contain indices
+     * \param texCoords will contain texCoords
+     * \param texture will contain texture
+     * \param flags will contain flags
+     */
     void getRoomRectangle(unsigned int roomIndex, unsigned int rectangleIndex,
                             unsigned int *indices, float *texCoords, int *texture,
                             unsigned int *flags);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Gets rectangle data with texCoords for non-matching
-     *        vertex/uv for each vertex in TombRaider room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of rectangles from room (unified)
@@ -1561,19 +1542,23 @@ public:
      */
     unsigned int getRoomRectangleCount(unsigned int roomIndex);
 
+    /*!
+     * \brief Get a single sector from room (unified)
+     * \param roomIndex room index
+     * \param index sector index
+     * \param flags will contain flags
+     * \param ceiling will contain ceiling
+     * \param floor will contain floor
+     * \param floorDataIndex will contain floor data index
+     * \param boxIndex will contain boxIndex
+     * \param roomBelow will contain roomBelow
+     * \param roomAbove will contain roomAbove
+     * \return 0 on success, < 0 on error
+     */
     int getRoomSector(unsigned int roomIndex, unsigned int index,
                         unsigned int *flags, float *ceiling, float *floor,
                         int *floorDataIndex, int *boxIndex,
                         int *roomBelow, int *roomAbove);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns a single sector from room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of sectors in room (unified)
@@ -1597,58 +1582,61 @@ public:
      */
     unsigned int getRoomSpriteCount(unsigned int roomIndex);
 
+    /*!
+     * \brief Gets triangle data with texCoords for non-matching
+     * vertex/uv for each vertex in TombRaider room (unified)
+     * \param roomIndex room index
+     * \param triangleIndex triangle index
+     * \param indices will contain indices
+     * \param texCoords will contain texCoords
+     * \param texture will contain texture
+     * \param flags will contain flags
+     */
     void getRoomTriangle(unsigned int roomIndex, unsigned int triangleIndex,
                             unsigned int *indices, float *texCoords, int *texture,
                             unsigned int *flags);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Gets triangle data with texCoords for non-matching
-     *        vertex/uv for each vertex in TombRaider room ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Gets triangle data with texCoords for non-matching
+     * vertex/uv for each vertex in TombRaider room.
+     *
+     * This is used with vertices, colors, etc. to do partial array
+     * rendering, since the texcoords will never match vertives
+     * (Tomb Raider is textile based).
+     * \param index room index
+     * \param textureOffset texture offset
+     * \param count will contain count
+     * \param indices will contain indices
+     * \param texCoords will contain texCoords
+     * \param textures will contain textures
+     * \param flags will contain flags
+     */
     void getRoomTriangles(unsigned int index, int textureOffset,
                             unsigned int *count, unsigned int **indices,
                             float **texCoords, int **textures,
                             unsigned int **flags);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Gets triangle data with texCoords for non-matching
-     *        vertex/uv for each vertex in TombRaider room
-     *
-     *        This is used with room vertices, colors, etc
-     *        to do partial array rendering, since the texcoords
-     *        will never match vertices ( Tomb Raider is textile based )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Gets triangle data with duplicated vertex/color/normal
+     * data for each face vertex to match the textile based texcoords.
+     *
+     * This uses more memory, but lets you do direct array rendering
+     * with OpenGL, D3D, etc.
+     * \param roomIndex room index
+     * \param textureOffset texture offset
+     * \param count will contain count
+     * \param indices will contain indices
+     * \param vertices will contain vertices
+     * \param texCoords will contain texCoords
+     * \param colors will contain colors
+     * \param textures will contain textures
+     * \param flags will contain flags
+     */
     void getRoomTriangles(unsigned int roomIndex, int textureOffset,
                             unsigned int *count,
                             unsigned int **indices, float **vertices,
                             float **texCoords, float **colors,
                             int **textures, unsigned int **flags);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Gets triangle data with duplicated
-     *        vertex/color/normal data for each face vertex
-     *        to match the textile based texcoords
-     *
-     *        This uses more memory, but lets you do direct
-     *        array rendering with OpenGL, D3D, etc
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of triangles from room (unified)
@@ -1657,39 +1645,30 @@ public:
      */
     unsigned int getRoomTriangleCount(unsigned int roomIndex);
 
+    /*!
+     * \brief Gets vertex position and color
+     * \param roomIndex room index
+     * \param verteIndex vertex index
+     * \param xyz will contain vertex position, has to be allocated
+     * \param rgba will contain vertex color, has to be allocated
+     */
     void getRoomVertex(unsigned int roomIndex, unsigned int vertexIndex,
                         float *xyz, float *rgba);
-    /*------------------------------------------------------
-     * Pre  : Given room index and vertex index and
-     *         xyz is allocated float[3]
-     *         rbga is allocated float[4]
-     *
-     * Post : Returns vertex position xyz and color rbga
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.13:
-     * Mongoose - Created, based on method from OpenRaider
-     ------------------------------------------------------*/
 
+    /*!
+     * \brief Get allocated vertex and color arrays and their element counts (unified)
+     * \param roomIndex valid room index
+     * \param vertexCount will contain vertex array length
+     * \param vertices will contain vertex array
+     * \param normalCount will contain normal array length
+     * \param normals will contain normal array
+     * \param colorCount will contain color array length
+     * \param colors will contain color array
+     */
     void getRoomVertexArrays(unsigned int roomIndex,
                                 unsigned int *vertexCount, float **vertices,
                                 unsigned int *normalCount, float **normals,
                                 unsigned int *colorCount, float **colors);
-    /*------------------------------------------------------
-     * Pre  : Given room index
-     *
-     * Post : Returns allocated vertex and color arrays,
-     *        and their element counts  ( unified )
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.24:
-     * Mongoose - Unified API
-     *
-     * 2003.05.13:
-     * Mongoose - Created, based on method from OpenRaider
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get number of lights in room (unified)
@@ -1782,25 +1761,20 @@ private:
     void getRiffDataTR4(unsigned int index,
                         unsigned int *bytes, unsigned char **data);
 
+    /*!
+     * \brief Get an array of offsets for a contiguous RIFF data stream in chunks.
+     *
+     * Offsets will be allocated with enough space to hold expected
+     * number of offsets. (Should be known number, otherwise not all RIFFs
+     * will be parsed.)
+     * \param riffData riff data
+     * \param riffDataBytes length of riff data
+     * \param offsets will contain offsets
+     * \param numOffsets known number
+     * \returns number of RIFFs found
+     */
     int getRiffOffsets(unsigned char *riffData, unsigned int riffDataBytes,
                         unsigned int **offsets, unsigned int numOffsets);
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns an array of offsets for a contigous
-     *        RIFF data stream in chunks.
-     *
-     *        Offsets will be allocated with enough space
-     *        to hold expected number of offsets.
-     *        ( Should be known number, otherwise not
-     *          all RIFFs will be parsed. )
-     *
-     *        Returns number of RIFFs found
-     *
-     *-- History ------------------------------------------
-     *
-     * 2003.05.12:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Makes a 32bit RGBA image from a textile.

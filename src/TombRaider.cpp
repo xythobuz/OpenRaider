@@ -1,48 +1,9 @@
-/* -*- Mode: C++; tab-width: 3; indent-tabs-mode: t; c-basic-offset: 3 -*- */
-/*================================================================
+/*!
+ * \file src/TombRaider.cpp
+ * \brief Loads maps, meshes, textures...
  *
- * Project : OpenRaider
- * Author  : Mongoose
- * Website : http://www.westga.edu/~stu7440/
- * Email   : stu7440@westga.edu
- * Object  : OpenRaider
- * License : No use w/o permission (C) 2001 Mongoose
- * Comments: Loads TR 1, 2, 3, and 4 maps, meshes, and textures
- *
- *           This file was generated using Mongoose's C++
- *           template generator script.  <stu7440@westga.edu>
- *
- *-- History ------------------------------------------------
- *
- * 2003.05.13:
- * Mongoose - New API, maintance cost was becoming so high
- *            it was needed to sort out methods in groups
- *            like my newer source code -- of course some
- *            methods were altered or removed ( clean up )
- *
- * 2001.06.19:
- * Mongoose - New texture API for the new TR4/TR5 bump map
- *            support, also purged textile exposure
- *
- * 2001.05.21:
- * Mongoose - Added to project OpenRaider, more documentation
- *            than Freyja version I wrote ( 3d modeler )
- *
- *
- * 2000-05-13:
- * Mongoose - Added gcc and VC++ pragmas for packing
- *
- *            id style typedefs for structs
- *
- *            Heavy clean up and ported to C++
- *
- *            I saved yuri's notes as best I could and
- *            reformatted and corected as needed
- *
- * Mongoose - Created, based on:
- *                tr_view's tr2io.c by Yuri Zhivago, PhD,
- *                TR Rosetta Stone ( TombRaider pak format specs )
- ================================================================*/
+ * \author Mongoose
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -2156,10 +2117,11 @@ int TombRaider::getMeshCount()
 }
 
 
-//! \fixme Needs refinement once the ideal format it's feeding is refined
-// I should stick a HACK postfix on the method name - it's temporary
-// until an array format can be crafted from a pinned down design and
-// RE notes review session ( eg what about TR5? )
+/*! \fixme Needs refinement once the ideal format it's feeding is refined
+ * I should stick a HACK postfix on the method name - it's temporary
+ * until an array format can be crafted from a pinned down design and
+ * RE notes review session ( eg what about TR5? )
+ */
 void TombRaider::getMeshColoredRectangle(unsigned int meshIndex,
         unsigned int faceIndex,
         int *index, float *color)
