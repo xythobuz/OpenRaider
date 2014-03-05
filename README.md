@@ -67,7 +67,7 @@ Do a standard cmake build and then run the resulting executable:
 
 On Mac OS X, running `make install` will produce a distributable OpenRaider.app bundle.
 
-To build all Unit Tests, run `make tests`, to run most of them use `make testRun`.
+To build all Unit Tests, run `make tests`, to run most of them use `make testRun`. To run a TombRaider level loader regression test, use `make testReg`. The results will be put into log files in your build folder. `make clean` will remove them.
 
 ## Usage
 

@@ -129,17 +129,27 @@ add_custom_target (testRun echo "Running Unit Tests..."
 )
 add_dependencies (testRun tests)
 
+# Add TombRaider regression test target
+set (REGTEST_TR1 "~/.OpenRaider/paks/tr1/level1.phd")
+set (REGTEST_TR2 "~/.OpenRaider/paks/tr2/unwater.tr2")
+#set (REGTEST_TR3 "~/.OpenRaider/paks/tr3/scotland.tr2")
+set (REGTEST_TR3 "~/.OpenRaider/paks/tr3/HOUSE.TR2")
+set (REGTEST_TR4 "~/.OpenRaider/paks/tr4/angkor1.tr4")
+#set (REGTEST_TR5 "~/.OpenRaider/paks/tr5/demo.trc")
+set (REGTEST_TR5 "~/.OpenRaider/paks/tr5/andy1.trc")
+add_custom_target (testReg echo "Running TombRaider 1 Regression Test..."
+    COMMAND TombRaiderTest load ${REGTEST_TR1} > ../log.tr1
+    COMMAND echo "Running TombRaider 2 Regression Test..."
+    COMMAND TombRaiderTest load ${REGTEST_TR2} > ../log.tr2
+    COMMAND echo "Running TombRaider 3 Regression Test..."
+    COMMAND TombRaiderTest load ${REGTEST_TR3} > ../log.tr3
+    COMMAND echo "Running TombRaider 4 Regression Test..."
+    COMMAND TombRaiderTest load ${REGTEST_TR4} > ../log.tr4
+    COMMAND echo "Running TombRaider 5 Regression Test..."
+    COMMAND TombRaiderTest load ${REGTEST_TR5} > ../log.tr5
+)
+add_dependencies (testReg TombRaiderTest)
 
-#TEST_MAP_TR5=~/.OpenRaider/paks/tr5/demo.trc
-#TEST_MAP_TR4=~/.OpenRaider/paks/tr4/angkor1.tr4
-#TEST_MAP_TR3=~/.OpenRaider/paks/tr3/scotland.tr2
-#TEST_MAP_TR2=~/.OpenRaider/paks/tr2/unwater.tr2
-#TEST_MAP_TR1=~/.OpenRaider/paks/tr1/level1.phd
-
-#TombRaider.reg_test:
-#	$(MAKE) TombRaider.test
-#	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR1) > /tmp/log.tr1
-#	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR2) > /tmp/log.tr2
-#	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR3) > /tmp/log.tr3
-#	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR4) > /tmp/log.tr4
-#	$(BUILD_TEST_DIR)/TombRaider.test load $(TEST_MAP_TR5) > /tmp/log.tr5
+# Clean regression test logs
+set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES
+    "../log.tr1;../log.tr2;../log.tr3;../log.tr4;../log.tr5")
