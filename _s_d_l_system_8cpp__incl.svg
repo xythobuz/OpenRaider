@@ -112,8 +112,11 @@
 </g>
 <!-- Node11 -->
 <g id="node11" class="node"><title>Node11</title>
-<polygon fill="white" stroke="#bfbfbf" points="346.54,-112.5 346.54,-131.5 397.54,-131.5 397.54,-112.5 346.54,-112.5"/>
+<g id="a_node11"><a xlink:href="_config_8h.html" target="_top" xlink:title="Config.h">
+<polygon fill="white" stroke="black" points="346.54,-112.5 346.54,-131.5 397.54,-131.5 397.54,-112.5 346.54,-112.5"/>
 <text text-anchor="middle" x="372.04" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">Config.h</text>
+</a>
+</g>
 </g>
 <!-- Node9&#45;&gt;Node11 -->
 <g id="edge10" class="edge"><title>Node9&#45;&gt;Node11</title>

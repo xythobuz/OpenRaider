@@ -122,6 +122,7 @@ var searchData=
   ['_5fstate_5fchanges',['_state_changes',['../class_tomb_raider.html#a7188ee8b87cf9cec701639b94d87fb2a',1,'TombRaider']]],
   ['_5fstatic_5fmeshes',['_static_meshes',['../class_tomb_raider.html#ad28d431d3b06ce75d5048212d96b1142',1,'TombRaider']]],
   ['_5fstring',['_string',['../class_g_l_string.html#a23a327bff8acb637c86ee820cdad0cb9',1,'GLString']]],
+  ['_5fstringify',['_stringify',['../_config_8h.html#ac5abaac3fdc93fdfc0ea29b4f4b99c88',1,'Config.h']]],
   ['_5ftex_5fspecial',['_tex_special',['../class_tomb_raider.html#aa0aa7d7e06d7579d2f77091aa35b5354',1,'TombRaider']]],
   ['_5ftextile16',['_textile16',['../class_tomb_raider.html#a420a59b9ef03932403d816512bb6de92',1,'TombRaider']]],
   ['_5ftextile32',['_textile32',['../class_tomb_raider.html#adb35e2896d33cb4f3b07be863ed9038d',1,'TombRaider']]],
@@ -130,5 +131,6 @@ var searchData=
   ['_5funknown_5ft',['_unknown_t',['../class_tomb_raider.html#a73457dc4a65baa285887a4240af06da9',1,'TombRaider']]],
   ['_5fuziammo',['_UziAmmo',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaafe8da047c23c357a1185842ab445b6b',1,'TombRaider1']]],
   ['_5fuzis',['_Uzis',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaeb7d2911c186b0d6926d91f7826f1f56',1,'TombRaider1']]],
+  ['_5fxstringify',['_xstringify',['../_config_8h.html#abf9eb11e87c6a2fc7e9bf64702ce2e8a',1,'Config.h']]],
   ['_5fzones',['_zones',['../class_tomb_raider.html#a79707dd3fcef04b9c16b44920ef2916b',1,'TombRaider']]]
 ];

@@ -19,6 +19,7 @@ var searchData=
   ['rate',['rate',['../_skeletal_model_8h.html#a7af1a1cd18ff3a93f6cc1f231bfac6d0',1,'animation_frame_t::rate()'],['../class_skeletal_model.html#a72969ebee514d17acc00ae65e85df9a5',1,'SkeletalModel::rate()']]],
   ['rc_5fcommand',['rc_command',['../_system_8h.html#a23a20ce358ec01f9110793d0a5071d5b',1,'rc_command(const char *symbol, char *command):&#160;System.cpp'],['../_system_8cpp.html#a23a20ce358ec01f9110793d0a5071d5b',1,'rc_command(const char *symbol, char *command):&#160;System.cpp']]],
   ['rc_5fget_5fbool',['rc_get_bool',['../_system_8h.html#ad14f12862bc728c06dbe0b1765717196',1,'rc_get_bool(char *buffer, bool *val):&#160;System.cpp'],['../_system_8cpp.html#ad14f12862bc728c06dbe0b1765717196',1,'rc_get_bool(char *buffer, bool *val):&#160;System.cpp']]],
+  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
   ['rect_5ft',['rect_t',['../_mesh_8h.html#structrect__t',1,'']]],
   ['rectangles',['rectangles',['../_tomb_raider_8h.html#a163e4bb816bd5410520f17d5a4d94e8b',1,'tr2_room_data_t']]],
   ['red',['red',['../_tomb_raider_8h.html#a9d49e3541002e6e58b2479d8cfbb1c80',1,'tr5_light_t::red()'],['../_render_8cpp.html#a8d5188c8f475a875ef14f68c89738be9',1,'RED():&#160;Render.cpp']]],

@@ -43,6 +43,7 @@ var searchData=
   ['animationstr5',['animationsTR5',['../class_tomb_raider.html#aea45cc09974b7e1ad64cb6c9d9fe1502',1,'TombRaider']]],
   ['animcommand',['AnimCommand',['../_tomb_raider_8h.html#a4a8ccc16fd8c889dd93c206e78662edb',1,'tr5_animation_t']]],
   ['animframe',['animFrame',['../_world_8h.html#a4ce9a51ce601b9b883de8015668397ab',1,'actor_entity_t']]],
+  ['architecture_5fid',['ARCHITECTURE_ID',['../_c_make_c_compiler_id_8c.html#aba35d0d200deaeb06aee95ca297acb28',1,'ARCHITECTURE_ID():&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#aba35d0d200deaeb06aee95ca297acb28',1,'ARCHITECTURE_ID():&#160;CMakeCXXCompilerId.cpp']]],
   ['argb',['ARGB',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496afe7e1260a718928d97ecc208055c042b',1,'Texture']]],
   ['assert',['ASSERT',['../greatest_8h.html#af343b20373ba49a92fce523e948f2ab3',1,'greatest.h']]],
   ['assert_5feq',['ASSERT_EQ',['../greatest_8h.html#ab601785d192462f8e12893f57052b29a',1,'greatest.h']]],
