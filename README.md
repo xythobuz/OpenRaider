@@ -67,7 +67,11 @@ Do a standard cmake build and then run the resulting executable:
 
 On Mac OS X, running `make install` will produce a distributable OpenRaider.app bundle.
 
-To build all Unit Tests, run `make tests`, to run most of them use `make testRun`. To run a TombRaider level loader regression test, use `make testReg`. The results will be put into log files in your build folder. `make clean` will remove them.
+To build all Unit Tests, run `make tests`, to run most of them use `make testRun`.
+To run a TombRaider level loader regression test, use `make testReg`. The results will be put into log files in your build folder.
+You can run a static analysis with cppcheck using `make check`, `make checkFull` or `make checkConfig`.
+A Doxygen API documentation can be created with `make doc`. `make docLocal` will not create additional graphs for the documentation and tries to copy the result into a directory called apache on the parent level of the OpenRaider project directory.
+`make clean` should remove all intermediary files.
 
 ## Usage
 
