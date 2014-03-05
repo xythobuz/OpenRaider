@@ -21,6 +21,8 @@ set (SRCS ${SRCS} ViewVolume.cpp)
 set (SRCS ${SRCS} World.cpp)
 set (SRCS ${SRCS} tga.cpp)
 
+#################################################################
+
 # Apple specific bundling
 if (APPLE)
     # Mac Bundle Data
@@ -46,8 +48,41 @@ if (APPLE)
     set (SRCS ${SRCS} ${MAC_DATA})
 endif (APPLE)
 
+#################################################################
+
 # Add Executable
 add_executable (OpenRaider MACOSX_BUNDLE ${SRCS})
+
+#################################################################
+
+if (APPLE)
+    # Copy setup script
+    add_custom_command (TARGET OpenRaider POST_BUILD
+        COMMAND echo "Injecting setup script..."
+        COMMAND cp "${PROJECT_SOURCE_DIR}/cmake/setup_mac.sh" "${PROJECT_BINARY_DIR}/src/OpenRaider.app/Contents/MacOS/OpenRaider.sh"
+    )
+
+    # Fix executable name, so setup script will be called
+    add_custom_command (TARGET OpenRaider POST_BUILD
+        COMMAND echo "Changing executable name..."
+        COMMAND /usr/libexec/PlistBuddy -c "Set :CFBundleExecutable OpenRaider.sh" Info.plist
+        WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/src/OpenRaider.app/Contents
+    )
+
+    # Preparing the bundle on install
+    # http://www.cmake.org/Wiki/BundleUtilitiesExample
+    set (plugin_dest_dir OpenRaider.app/Contents/MacOS)
+    set (APPS "${PROJECT_BINARY_DIR}/src/OpenRaider.app")
+    install (CODE "
+        file(GLOB_RECURSE PLUGINS
+            \"\${CMAKE_INSTALL_PREFIX}/${plugin_dest_dir}/plugins/*${CMAKE_SHARED_LIBRARY_SUFFIX}\")
+        include(BundleUtilities)
+        fixup_bundle(\"${APPS}\" \"\${PLUGINS}\" \"\")
+        " COMPONENT Runtime
+    )
+endif (APPLE)
+
+#################################################################
 
 # Debug build warnings
 set (WARNINGS "${WARNINGS} -Weverything -Wno-padded -Wno-packed")
@@ -81,6 +116,8 @@ include_directories ("${PROJECT_SOURCE_DIR}/include")
 
 # Include External Modules
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+
+#################################################################
 
 # Add Math Library
 set (LIBS ${LIBS} m)
@@ -121,6 +158,8 @@ set (LIBS ${LIBS} ${CMAKE_THREAD_LIBS_INIT})
 
 # Link to all found libs
 target_link_libraries (OpenRaider ${LIBS})
+
+#################################################################
 
 # Add target to run executable
 add_custom_target(run COMMAND OpenRaider DEPENDS OpenRaider WORKING_DIRECTORY ${CMAKE_PROJECT_DIR})
