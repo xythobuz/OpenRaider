@@ -51,12 +51,14 @@ add_custom_target (checkConfig echo "Checking cppcheck config..."
 find_package (Doxygen)
 if (DOXYGEN_FOUND)
     # Configure the Template Doxyfile for our specific project
-    configure_file(Doxyfile.in 
+    configure_file (cmake/Doxyfile.in 
         ${PROJECT_BINARY_DIR}/Doxyfile  @ONLY IMMEDIATE)
+
     # Add a custom target to run Doxygen when ever the project is built
     add_custom_target (doc
   	    COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
   		SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
+
     # Add custom target to create local documentation without graphs
     add_custom_target (docLocal
         COMMAND sed -i '' "s/HAVE_DOT               = YES/HAVE_DOT               = NO/g" Doxyfile
@@ -64,7 +66,7 @@ if (DOXYGEN_FOUND)
         COMMAND cp -R doc/html/* ${PROJECT_SOURCE_DIR}/../apache/
         COMMAND sed -i '' "s/HAVE_DOT               = NO/HAVE_DOT               = YES/g" Doxyfile
         SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
-endif(DOXYGEN_FOUND)
+endif (DOXYGEN_FOUND)
 
 # Clean doc files
-set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "doc")
+set_directory_properties (PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "doc")
