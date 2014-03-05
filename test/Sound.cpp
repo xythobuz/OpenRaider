@@ -12,7 +12,7 @@
 
 #include "greatest.h"
 
-#define TESTFILE "../data/sample.wav"
+#define TESTFILE "../../data/sample.wav"
 
 Sound sound;
 bool inited = false;

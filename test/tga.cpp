@@ -11,11 +11,11 @@
 
 //! \todo generate list?
 const char *testFiles[] = {
-    "../data/particle.tga",
-    "../data/snow.tga",
-    "../data/snow2.tga",
-    "../data/splash.tga",
-    "../data/white.tga"
+    "../../data/particle.tga",
+    "../../data/snow.tga",
+    "../../data/snow2.tga",
+    "../../data/splash.tga",
+    "../../data/white.tga"
 };
 
 TEST checkFile(FILE *f) {

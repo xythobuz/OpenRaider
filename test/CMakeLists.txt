@@ -115,6 +115,21 @@ target_link_libraries (TombRaiderTest ${ZLIBS})
 
 #################################################################
 
+# Add test build target
+add_custom_target (tests)
+add_dependencies (tests GLStringTest MathTest MatrixTest NetworkTest SoundTest TGATest TombRaiderTest)
+
+# Add test run target
+add_custom_target (testRun echo "Running Unit Tests..."
+    COMMAND TGATest
+    COMMAND SoundTest
+    COMMAND MatrixTest
+    COMMAND MathTest
+    COMMAND GLStringTest
+)
+add_dependencies (testRun tests)
+
+
 #TEST_MAP_TR5=~/.OpenRaider/paks/tr5/demo.trc
 #TEST_MAP_TR4=~/.OpenRaider/paks/tr4/angkor1.tr4
 #TEST_MAP_TR3=~/.OpenRaider/paks/tr3/scotland.tr2
