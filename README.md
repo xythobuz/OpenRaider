@@ -72,7 +72,7 @@ You can run a static analysis with cppcheck using `make check`, `make checkFull`
 
 A Doxygen API documentation can be created with `make doc`.
 
-`make clean` should remove all intermediary files.
+`make clean` should remove all intermediary files. `make run` will run the binary.
 
 ## Usage
 

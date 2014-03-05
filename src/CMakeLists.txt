@@ -84,6 +84,15 @@ endif (APPLE)
 
 #################################################################
 
+if (NOT APPLE)
+    # Install binary
+    install (TARGET OpenRaider
+        RUNTIME DESTINATION bin
+    )
+endif (NOT APPLE)
+
+#################################################################
+
 # Debug build warnings
 set (WARNINGS "${WARNINGS} -Weverything -Wno-padded -Wno-packed")
 set (WARNINGS "${WARNINGS} -Wno-global-constructors -Wno-exit-time-destructors")
