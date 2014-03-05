@@ -9,6 +9,26 @@ set (OpenRaider_VERSION_MICRO 2)
 # Build Host
 set (OpenRaider_BUILD_HOST ${CMAKE_HOST_SYSTEM})
 
+# Apple specific
+if (APPLE)
+
+    # Mac Bundle Data
+    set (MACOSX_BUNDLE_INFO_STRING "Open Tomb Raider Engine")
+    set (MACOSX_BUNDLE_ICON_FILE "AppIcon")
+    set (MACOSX_BUNDLE_GUI_IDENTIFIER "de.xythobuz.OpenRaider")
+    set (MACOSX_BUNDLE_LONG_VERSION_STRING "${OpenRaider_VERSION_MAJOR}.${OpenRaider_VERSION_MINOR}.${OpenRaider_VERSION_MICRO}")
+    set (MACOSX_BUNDLE_BUNDLE_NAME "OpenRaider")
+    set (MACOSX_BUNDLE_SHORT_VERSION_STRING "${OpenRaider_VERSION_MAJOR}.${OpenRaider_VERSION_MINOR}.${OpenRaider_VERSION_MICRO}")
+    set (MACOSX_BUNDLE_BUNDLE_VERSION "${OpenRaider_VERSION_MAJOR}.${OpenRaider_VERSION_MINOR}.${OpenRaider_VERSION_MICRO}")
+    set (MACOSX_BUNDLE_COPYRIGHT "2001 - 2014")
+
+    # Copy Icon
+    set (MAC_ICON "${PROJECT_SOURCE_DIR}/data/AppIcon.icns")
+    set_source_files_properties(${MAC_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    set (SRCS ${SRCS} ${MAC_ICON})
+
+endif (APPLE)
+
 # Configuration Header file
 configure_file (
     "${PROJECT_SOURCE_DIR}/include/Config.h.in"
@@ -20,7 +40,7 @@ include_directories ("${PROJECT_BINARY_DIR}")
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Source Files, Executable
-add_executable (OpenRaider
+add_executable (OpenRaider MACOSX_BUNDLE
     src/Camera.cpp
     src/Emitter.cpp
     src/GLString.cpp
@@ -42,6 +62,7 @@ add_executable (OpenRaider
     src/ViewVolume.cpp
     src/World.cpp
     src/tga.cpp
+    ${SRCS}
 )
 
 # Definitions for Debug build
