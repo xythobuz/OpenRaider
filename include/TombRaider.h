@@ -2,8 +2,6 @@
  * \file include/TombRaider.h
  * \brief Loads maps, meshes, textures...
  *
- * Define ZLIB_SUPPORT to build TR4 support.
- *
  * \todo WARNING: No endian routines as of yet
  * \author Mongoose
  */
@@ -1648,7 +1646,7 @@ public:
     /*!
      * \brief Gets vertex position and color
      * \param roomIndex room index
-     * \param verteIndex vertex index
+     * \param vertexIndex vertex index
      * \param xyz will contain vertex position, has to be allocated
      * \param rgba will contain vertex color, has to be allocated
      */
