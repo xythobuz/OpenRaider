@@ -22,6 +22,13 @@ add_subdirectory (test)
 
 #################################################################
 
+# Target for running the setup
+add_custom_target (setup "${PROJECT_SOURCE_DIR}/cmake/setup.sh"
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
+
+#################################################################
+
 # Target for running cppcheck
 set (CHECK_STD "--std=c++11" "--std=posix")
 set (CHECK_FLAGS "--quiet" "--force")

@@ -79,7 +79,7 @@ A Doxygen API documentation can be created with `make doc`.
 ### Configuration file
 
 OpenRaider will try to load `~/.OpenRaider/OpenRaider.init` or, if it doesn't exist, `OpenRaider.init` from the current directory.
-Running `setup.sh` will create a minimal configuration in your home directory.
+Running `make setup` or the `cmake/setup.sh` script will create a minimal configuration in your home directory.
 
 The configuration file format is very simple:
 * Anything following a `#` up to the next `\n` will be ignored.
