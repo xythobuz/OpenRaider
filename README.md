@@ -57,16 +57,15 @@ Linux Distributions will probably provide an ALUT library ready to install with 
 
 ## Building
 
-If you installed the dependencies using MacPorts, you'll need to have `/opt/local/bin` in your `$PATH` before you can execute make.
-If you're using Bash, the MacPorts installer should have automatically edited your configuration.
-
-Just do a cmake out-of-tree build and specify if you want the Debug or Release configuration, then run the resulting executable:
+Do a standard cmake build and then run the resulting executable:
 
     mkdir build
     cd build
     cmake -DCMAKE_BUILD_TYPE=Debug ..
     make
-    ./OpenRaider
+    ./src/OpenRaider
+
+On Mac OS X, running make install will produce a distributable OpenRaider.app bundle.
 
 ## Usage
 
