@@ -90,6 +90,14 @@ public:
     static char *getFileFromFullPath(char *filename);
 
     /*!
+     * \brief Check if a string ends with another string.
+     * \param str string to check
+     * \param suffix suffix for which to check
+     * \returns true if str ends with suffix
+     */
+    static bool stringEndsWith(const char *str, const char *suffix);
+
+    /*!
      * \brief Gets the game tick
      * \returns number of milliseconds since start of program
      */

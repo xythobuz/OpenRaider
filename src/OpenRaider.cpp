@@ -3349,25 +3349,29 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
                     delete tmp;
                 }
             } else {
-                /*!
-                 * \fixme Currently just tries to validate every file
-                 * in the pak folders. Should check the exstension to
-                 * see if it could be a level pak...
-                 */
-
                 char *fullPathMap = bufferString("%s%s", dir, ep->d_name);
 
-                if (m_tombraider.checkMime(fullPathMap) == 0) {
-                    // printf("Validated pak: '%s'\n", fullPathMap);
-                    delete [] fullPathMap;
+                char *lowerPath = bufferString("%s", fullPathMap);
+                for (char *p = lowerPath; *p; ++p) *p = (char)tolower(*p);
 
-                    // Just load relative filename
-                    mMapList.pushBack(bufferString("%s", (fullPathMap + strlen(m_pakDir))));
-                } else {
-                    printf("ERROR: pak file '%s' not found or invalid\n", fullPathMap);
+                // Check for valid extension
+                if (stringEndsWith(lowerPath, ".phd")
+                     || stringEndsWith(lowerPath, ".tr2")
+                     || stringEndsWith(lowerPath, ".tr4")
+                     || stringEndsWith(lowerPath, ".trc")) {
+                    if (m_tombraider.checkMime(fullPathMap) == 0) {
+                        // printf("Validated pak: '%s'\n", fullPathMap);
 
-                    delete [] fullPathMap;
+                        // Just load relative filename
+                        mMapList.pushBack(bufferString("%s", (fullPathMap + strlen(m_pakDir))));
+                    } else {
+                        printf("ERROR: pak file '%s' not found or invalid\n", fullPathMap);
+
+                        delete [] fullPathMap;
+                    }
                 }
+
+                delete [] lowerPath;
             }
         }
         closedir(pakDir);
