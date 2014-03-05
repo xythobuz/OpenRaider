@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="$_mat_math_8h.html" xlink:title="Vector and Matrix math. ">
+<g id="a_node2"><a xlink:href="_mat_math_8h.html" target="_top" xlink:title="Vector and Matrix math. ">
 <polygon fill="white" stroke="black" points="32,-56.5 32,-75.5 94,-75.5 94,-56.5 32,-56.5"/>
 <text text-anchor="middle" x="63" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">MatMath.h</text>
 </a>

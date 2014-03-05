@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['l',['l',['../test_2memory__test_8cpp.html#a0e2690770b60d4d8232bdadfcad10e3f',1,'memory_test.cpp']]],
   ['lara',['LARA',['../_open_raider_8cpp.html#a3cc4add46562cc3af15837cacda34e53',1,'LARA():&#160;OpenRaider.cpp'],['../_render_8cpp.html#a3cc4add46562cc3af15837cacda34e53',1,'LARA():&#160;OpenRaider.cpp']]],
   ['lastpos',['lastPos',['../_world_8h.html#a896de154b7bacbaab25179cedbd00e77',1,'world_entity_t::lastPos()'],['../_world_8h.html#a6a9cbc16700340b6b782be8e311818aa',1,'actor_entity_t::lastPos()']]],
   ['lasttime',['lastTime',['../class_skeletal_model.html#a83af814667570bc4ad3b81c0c087eea3',1,'SkeletalModel']]],
@@ -12,16 +11,16 @@ var searchData=
   ['layerboundingboxz2',['layerBoundingBoxZ2',['../_tomb_raider_8h.html#a95f549ac03adec5ada8ac6bb65d051a1',1,'tr5_room_layer_t']]],
   ['layeroffset',['layerOffset',['../_tomb_raider_8h.html#a2402e754964cee2a3054cdb55f5fb321',1,'tr5_room_t']]],
   ['layers',['layers',['../_tomb_raider_8h.html#a596b118d44520abab86a24893e993be9',1,'tr5_room_t']]],
-  ['left_5fside',['left_side',['../_tomb_raider_8h.html#af3aa5cd07eb3cf70a1b87da32e269f13',1,'tr2_sprite_texture_s::left_side()'],['../_tomb_raider_8h.html#a779e6aecc1783e1a699a9775d764eeda',1,'left_side():&#160;TombRaider.h']]],
-  ['len',['len',['../_g_l_string_8h.html#a1bc8af4adcfffbf311f9419b3c4d499c',1,'gl_string_t::len()'],['../_texture_8h.html#a77124bd5f7e31e6fffc19f335da0c23f',1,'len():&#160;Texture.h']]],
-  ['length',['length',['../_tomb_raider_8h.html#a06f4d56e2d6c240056c70e451c4c1a54',1,'tr4_room_light_s::length()'],['../_tomb_raider_8h.html#a6150639f5295064e97e299a9206d16b1',1,'length():&#160;TombRaider.h']]],
-  ['light_5fmode',['light_mode',['../_tomb_raider_8h.html#a5fd6ff650395db9407346f05418f3442',1,'tr2_room_s::light_mode()'],['../_tomb_raider_8h.html#a023d3045d2d11e1935ccfc9ed68f9bb1',1,'light_mode():&#160;TombRaider.h']]],
-  ['lighting',['lighting',['../_tomb_raider_8h.html#a6787db5fa5a6f7dcf947474fe515981f',1,'tr4_quad_s::lighting()'],['../_tomb_raider_8h.html#ae445c86e6e82451ebe7e8847da0d24dc',1,'tr4_tri_s::lighting()'],['../_tomb_raider_8h.html#a4e427c7fdc3266894bb5282f34bfd797',1,'lighting():&#160;TombRaider.h']]],
-  ['lighting1',['lighting1',['../_tomb_raider_8h.html#abd9e65955414277b1246c3934fc9faba',1,'tr2_vertex_room_s::lighting1()'],['../_tomb_raider_8h.html#a2d58e050c1dd753fa5d540c348921605',1,'lighting1():&#160;TombRaider.h']]],
-  ['lighting2',['lighting2',['../_tomb_raider_8h.html#a521200e630bbd50f3e20b2de4c814cb9',1,'tr2_vertex_room_s::lighting2()'],['../_tomb_raider_8h.html#af4676d4d0fe74c88ce8b53dfcf4d85d3',1,'lighting2():&#160;TombRaider.h']]],
-  ['lights',['lights',['../class_render_room.html#a3621c4fabd582fc78476dff3711c7c94',1,'RenderRoom::lights()'],['../_tomb_raider_8h.html#a0469bac9825ab43ef095ebcf3794609d',1,'tr2_room_s::lights()'],['../_tomb_raider_8h.html#add9093a3d152d4a34bc5344e8d0b444f',1,'tr5_room_t::lights()'],['../_tomb_raider_8h.html#ae76f82ae9049c83b22fb2a7c94bd7f3e',1,'lights():&#160;TombRaider.h']]],
+  ['left_5fside',['left_side',['../_tomb_raider_8h.html#adc3c5d842d13505ae3a6cc27f0135ad9',1,'tr2_sprite_texture_t']]],
+  ['len',['len',['../_g_l_string_8h.html#a1bc8af4adcfffbf311f9419b3c4d499c',1,'gl_string_t']]],
+  ['length',['length',['../_tomb_raider_8h.html#a9e03e81caadac2cbf251ab4f90b3f3fc',1,'tr4_room_light_t']]],
+  ['light_5fmode',['light_mode',['../_tomb_raider_8h.html#a6802b0a4b95b257b8abfc4c320ba14bb',1,'tr2_room_t']]],
+  ['lighting',['lighting',['../_tomb_raider_8h.html#af3155b79616ddef2dbbecc4e76d9c8ba',1,'tr4_quad_t::lighting()'],['../_tomb_raider_8h.html#a1b1e50c95740513e1d26d8f1797c6660',1,'tr4_tri_t::lighting()']]],
+  ['lighting1',['lighting1',['../_tomb_raider_8h.html#a695ce2566f7fbf93339fb5e4ab05132d',1,'tr2_vertex_room_t']]],
+  ['lighting2',['lighting2',['../_tomb_raider_8h.html#aa6f9cbf78b32e3bea478a2514222c4e4',1,'tr2_vertex_room_t']]],
+  ['lights',['lights',['../class_render_room.html#a3621c4fabd582fc78476dff3711c7c94',1,'RenderRoom::lights()'],['../_tomb_raider_8h.html#a2e55f229831c32e781f0c718c3163de7',1,'tr2_room_t::lights()'],['../_tomb_raider_8h.html#add9093a3d152d4a34bc5344e8d0b444f',1,'tr5_room_t::lights()']]],
   ['lightsize',['lightSize',['../_tomb_raider_8h.html#a0ec9a6724d83ca6c6f6b85555d7546f9',1,'tr5_room_t']]],
-  ['lighttype',['lightType',['../_tomb_raider_8h.html#a7e092d21b2a54c507bfa641f11a8ad3f',1,'tr4_room_light_s::lightType()'],['../_tomb_raider_8h.html#aea1e3c252ea83e5e87c7bc95bb30845d',1,'tr5_light_t::lightType()'],['../_tomb_raider_8h.html#a7f52ba1f7a2a4f0c8e9a22d0b45e8e76',1,'lightType():&#160;TombRaider.h']]],
-  ['low',['low',['../_tomb_raider_8h.html#a63fc09241782151460d89eea3e9fb0cd',1,'tr2_anim_dispatch_s::low()'],['../_tomb_raider_8h.html#ab96e590e5abf231262c52048edcdbdae',1,'low():&#160;TombRaider.h']]],
+  ['lighttype',['lightType',['../_tomb_raider_8h.html#a0526760fda4fdf41209a604fa8189d9b',1,'tr4_room_light_t::lightType()'],['../_tomb_raider_8h.html#aea1e3c252ea83e5e87c7bc95bb30845d',1,'tr5_light_t::lightType()']]],
+  ['low',['low',['../_tomb_raider_8h.html#ab091003e60f6a105ca8ec6bbd4e996d4',1,'tr2_anim_dispatch_t']]],
   ['lybottom',['lyBottom',['../_tomb_raider_8h.html#aa87ea93768a00326e9abb3d1b4979652',1,'tr5_room_t']]]
 ];

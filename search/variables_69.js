@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['i',['i',['../test_2memory__test_8cpp.html#a9384343c8d6a756c1d78cdc73d351b8e',1,'memory_test.cpp']]],
   ['i0',['i0',['../test_2_matrix_8cpp.html#a0bc0ab8bd02860cd75a37c1b2be08a6a',1,'Matrix.cpp']]],
   ['i1',['i1',['../test_2_matrix_8cpp.html#a8587c17bdec83db235e4c4ce7e44313b',1,'Matrix.cpp']]],
   ['i10',['i10',['../test_2_matrix_8cpp.html#aaa802635cf31d070a982858a2e4166b8',1,'Matrix.cpp']]],
@@ -13,15 +12,15 @@ var searchData=
   ['i6',['i6',['../test_2_matrix_8cpp.html#a5b878b96fc14f4d1e51d20a7039d94bd',1,'Matrix.cpp']]],
   ['i8',['i8',['../test_2_matrix_8cpp.html#ac2b579ee3ffa4e2383ee35216b89e0a9',1,'Matrix.cpp']]],
   ['i9',['i9',['../test_2_matrix_8cpp.html#a955d73f6b685340aadc4e84fd34f5546',1,'Matrix.cpp']]],
-  ['id',['id',['../_skeletal_model_8h.html#afd869083b0defca3959663fe3c385e63',1,'animation_frame_t::id()'],['../_skeletal_model_8h.html#a1b5cd0ae13842fcb8e080af5176bb65c',1,'skeletal_model_t::id()'],['../_tomb_raider_8h.html#a067f6c7946df80632f5e9516e42f5929',1,'tr4_extra_camera_s::id()'],['../_world_8h.html#ac10bde9375eb00797391c81374c061c3',1,'entity_t::id()'],['../_world_8h.html#a01950238b43a3de48c1ee7d640bc22fe',1,'room_mesh_t::id()'],['../_tomb_raider_8h.html#a7441ef0865bcb3db9b8064dd7375c1ea',1,'id():&#160;TombRaider.h']]],
+  ['id',['id',['../_skeletal_model_8h.html#afd869083b0defca3959663fe3c385e63',1,'animation_frame_t::id()'],['../_skeletal_model_8h.html#a1b5cd0ae13842fcb8e080af5176bb65c',1,'skeletal_model_t::id()'],['../_tomb_raider_8h.html#a4a52e8f2aac59270f730929ad1e148a1',1,'tr4_extra_camera_t::id()'],['../_world_8h.html#ac10bde9375eb00797391c81374c061c3',1,'entity_t::id()'],['../_world_8h.html#a01950238b43a3de48c1ee7d640bc22fe',1,'room_mesh_t::id()']]],
   ['image_5ftype',['image_type',['../tga_8h.html#a8381d5d7439e8a014c59bc844fe9d1d9',1,'tga_t']]],
-  ['in',['in',['../_tomb_raider_8h.html#afb8f262084886cd846648db6b7f82f7b',1,'tr4_room_light_s::in()'],['../_tomb_raider_8h.html#ae7d18e86426895053287f7804575536b',1,'in():&#160;TombRaider.h']]],
-  ['index',['index',['../_tomb_raider_8h.html#ac8a669bcab90c8b14a0611290beaa41a',1,'tr4_extra_camera_s::index()'],['../_world_8h.html#a6ea08b0faf055efb355947755967b6fc',1,'texture_tri_t::index()'],['../_world_8h.html#a97439156defe63d38ab086d689ab2301',1,'static_model_t::index()'],['../_tomb_raider_8h.html#af7de93063def61152c245b6b2919ae71',1,'index():&#160;TombRaider.h']]],
-  ['info',['info',['../_tomb_raider_8h.html#afbb5906d2094f48ed32829422c28291e',1,'tr2_room_s::info()'],['../_tomb_raider_8h.html#ae5453fc442bd29bb490e34c1f17ce79f',1,'info():&#160;TombRaider.h']]],
+  ['in',['in',['../_tomb_raider_8h.html#a0b6f728b16c6c32e5d80b45e7233db65',1,'tr4_room_light_t']]],
+  ['index',['index',['../_tomb_raider_8h.html#acef0473420e2269cf77a5a9daf4cfb1a',1,'tr4_extra_camera_t::index()'],['../_world_8h.html#a6ea08b0faf055efb355947755967b6fc',1,'texture_tri_t::index()'],['../_world_8h.html#a97439156defe63d38ab086d689ab2301',1,'static_model_t::index()']]],
+  ['info',['info',['../_tomb_raider_8h.html#a70139e9c57c2710649da253eba13c64d',1,'tr2_room_t']]],
   ['inited',['inited',['../test_2_sound_8cpp.html#aa69d891b714c986144d7f6e72ad73578',1,'Sound.cpp']]],
   ['initialvalues',['initialValues',['../test_2_matrix_8cpp.html#a417549cf1f39d98998e0300900cfcf90',1,'Matrix.cpp']]],
   ['input',['input',['../_tomb_raider_8h.html#a854abcb4e6fbc8ce936760e7886b0519',1,'tr5_light_t']]],
-  ['intensity',['intensity',['../_tomb_raider_8h.html#ae0a16ddfcfa40cfe54921c33b82103b7',1,'tr4_room_light_s::intensity()'],['../_tomb_raider_8h.html#a4bca657a59d63aa49b9ad6422071c350',1,'intensity():&#160;TombRaider.h']]],
-  ['intensity1',['intensity1',['../_tomb_raider_8h.html#ab21bd02ca336866538b7b708e830a48f',1,'tr2_room_light_s::intensity1()'],['../_tomb_raider_8h.html#af824ab266bcb15af8d2f8e5cff5821f3',1,'tr2_room_staticmesh_s::intensity1()'],['../_tomb_raider_8h.html#a56cd5ddec9141c8836f2748ff67031de',1,'tr2_room_s::intensity1()'],['../_tomb_raider_8h.html#a892cbc734a237617adb2c9c40ee6be14',1,'tr2_item_s::intensity1()'],['../_tomb_raider_8h.html#af484b6b9e2627c1cee052840a9328c6a',1,'intensity1():&#160;TombRaider.h']]],
-  ['intensity2',['intensity2',['../_tomb_raider_8h.html#a8e358537779e000fb593425aebe416e9',1,'tr2_room_light_s::intensity2()'],['../_tomb_raider_8h.html#a43afde6cae0cd0dae67660785ee5f4a4',1,'tr2_room_staticmesh_s::intensity2()'],['../_tomb_raider_8h.html#ab37eed9d028e7a835abb8d580c9c633f',1,'tr2_room_s::intensity2()'],['../_tomb_raider_8h.html#a0f5b2ec00b1d58a6477bc0bc8e39a117',1,'tr2_item_s::intensity2()'],['../_tomb_raider_8h.html#a50f59256dc46593b5e77c432fb1ab2ca',1,'intensity2():&#160;TombRaider.h']]]
+  ['intensity',['intensity',['../_tomb_raider_8h.html#a647217304305c16987640d5ca833fbc4',1,'tr4_room_light_t']]],
+  ['intensity1',['intensity1',['../_tomb_raider_8h.html#afcbe744742f7a609e14708162322c250',1,'tr2_room_light_t::intensity1()'],['../_tomb_raider_8h.html#a4662b1f6c7350a5f6ce686f6b3ddd67b',1,'tr2_room_staticmesh_t::intensity1()'],['../_tomb_raider_8h.html#ac4cabd31f95f985492ff8d222829c964',1,'tr2_room_t::intensity1()'],['../_tomb_raider_8h.html#af77480df4dfb9547d0dc3f3cd1740191',1,'tr2_item_t::intensity1()']]],
+  ['intensity2',['intensity2',['../_tomb_raider_8h.html#a889c9f62cff0dbf6203d72a7e296b514',1,'tr2_room_light_t::intensity2()'],['../_tomb_raider_8h.html#a06c29cc8768c1249afe19b3e3ae7b635',1,'tr2_room_staticmesh_t::intensity2()'],['../_tomb_raider_8h.html#aa89a25a15d9b0a6daa6554ec823ee8ee',1,'tr2_room_t::intensity2()'],['../_tomb_raider_8h.html#a8d7a3de475ed33a1a31d7edbb187eab9',1,'tr2_item_t::intensity2()']]]
 ];

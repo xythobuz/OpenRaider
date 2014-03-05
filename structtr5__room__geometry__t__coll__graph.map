@@ -1,0 +1,5 @@
+<map id="tr5_room_geometry_t" name="tr5_room_geometry_t">
+<area shape="rect" id="node2" href="$_tomb_raider_8h.html#structtr5__face4__t" title="TR5 Quad (12 bytes) " alt="" coords="5,5,88,32"/>
+<area shape="rect" id="node3" href="$_tomb_raider_8h.html#structtr5__vertex__t" title="TR5 Vertex (28 bytes) " alt="" coords="113,5,199,32"/>
+<area shape="rect" id="node4" href="$_tomb_raider_8h.html#structtr5__face3__t" title="TR5 triangular face (10 bytes) " alt="" coords="224,5,307,32"/>
+</map>

@@ -101,13 +101,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for MatMath.h:</div>
 <div class="dyncontent">
-<div class="center"><!-- SVG 0 -->
+<div class="center"><iframe scrolling="no" frameborder="0" src="_mat_math_8h__incl.svg" width="136" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><!-- SVG 1 -->
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="_mat_math_8h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div>
@@ -130,10 +130,10 @@ Macros</h2></td></tr>
 <tr class="memitem:aa19f6cd359bca0292ab22515c68900f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#aa19f6cd359bca0292ab22515c68900f6">HEL_180_OVER_PI</a>&#160;&#160;&#160;(180.0f / HEL_PI)</td></tr>
 <tr class="memdesc:aa19f6cd359bca0292ab22515c68900f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">180/pi  <a href="#aa19f6cd359bca0292ab22515c68900f6">More...</a><br/></td></tr>
 <tr class="separator:aa19f6cd359bca0292ab22515c68900f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56921ad9ad32c40390417e797e5aca1b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#a56921ad9ad32c40390417e797e5aca1b">HEL_RAD_TO_DEG</a>(<a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>)&#160;&#160;&#160;((<a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>) * <a class="el" href="_mat_math_8h.html#aa19f6cd359bca0292ab22515c68900f6">HEL_180_OVER_PI</a>)</td></tr>
+<tr class="memitem:a56921ad9ad32c40390417e797e5aca1b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#a56921ad9ad32c40390417e797e5aca1b">HEL_RAD_TO_DEG</a>(x)&#160;&#160;&#160;((x) * <a class="el" href="_mat_math_8h.html#aa19f6cd359bca0292ab22515c68900f6">HEL_180_OVER_PI</a>)</td></tr>
 <tr class="memdesc:a56921ad9ad32c40390417e797e5aca1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert radians to degrees.  <a href="#a56921ad9ad32c40390417e797e5aca1b">More...</a><br/></td></tr>
 <tr class="separator:a56921ad9ad32c40390417e797e5aca1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5580680f5eab508c9dd997836b36e88"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#ac5580680f5eab508c9dd997836b36e88">HEL_DEG_TO_RAD</a>(<a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>)&#160;&#160;&#160;((<a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>) * <a class="el" href="_mat_math_8h.html#a1d647a57d1d2696ccfde1891744d5620">HEL_PI_OVER_180</a>)</td></tr>
+<tr class="memitem:ac5580680f5eab508c9dd997836b36e88"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#ac5580680f5eab508c9dd997836b36e88">HEL_DEG_TO_RAD</a>(x)&#160;&#160;&#160;((x) * <a class="el" href="_mat_math_8h.html#a1d647a57d1d2696ccfde1891744d5620">HEL_PI_OVER_180</a>)</td></tr>
 <tr class="memdesc:ac5580680f5eab508c9dd997836b36e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert degrees to radians.  <a href="#ac5580680f5eab508c9dd997836b36e88">More...</a><br/></td></tr>
 <tr class="separator:ac5580680f5eab508c9dd997836b36e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -161,7 +161,7 @@ Functions</h2></td></tr>
 <tr class="separator:ac86519e2486796873c4130fe337770dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2181826a3071cc2ce84764c84f047887"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#a2181826a3071cc2ce84764c84f047887">helIntersectionOfAbstractSphereAndLine</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> center, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> radius, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> posA, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> posB, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> intersectionA, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> intersectionB)</td></tr>
 <tr class="separator:a2181826a3071cc2ce84764c84f047887"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf30bf910851d5d113d324c2d3fa7c1a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#abf30bf910851d5d113d324c2d3fa7c1a">equalEpsilon</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> <a class="el" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>)</td></tr>
+<tr class="memitem:abf30bf910851d5d113d324c2d3fa7c1a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#abf30bf910851d5d113d324c2d3fa7c1a">equalEpsilon</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> a, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> b)</td></tr>
 <tr class="memdesc:abf30bf910851d5d113d324c2d3fa7c1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two floats with an Epsilon.  <a href="#abf30bf910851d5d113d324c2d3fa7c1a">More...</a><br/></td></tr>
 <tr class="separator:abf30bf910851d5d113d324c2d3fa7c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad80b09c0a4be64f5dda515eb21836cfd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#ad80b09c0a4be64f5dda515eb21836cfd">helIntersectionLineAndPolygon</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> intersect, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> p1, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> p2, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> *polygon)</td></tr>
@@ -173,10 +173,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a95d4941d9290b0979f22f9ab691d8dec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#a95d4941d9290b0979f22f9ab691d8dec">helDistToBboxFromPlane3v</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> min, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> max, <a class="el" href="_mat_math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> plane)</td></tr>
 <tr class="memdesc:a95d4941d9290b0979f22f9ab691d8dec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the distance from a box to a plane.  <a href="#a95d4941d9290b0979f22f9ab691d8dec">More...</a><br/></td></tr>
 <tr class="separator:a95d4941d9290b0979f22f9ab691d8dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a814a21f6b834626cd5f09e492d35b6c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#a814a21f6b834626cd5f09e492d35b6c8">helDist3v</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="el" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="el" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>)</td></tr>
+<tr class="memitem:a814a21f6b834626cd5f09e492d35b6c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#a814a21f6b834626cd5f09e492d35b6c8">helDist3v</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> a, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> b)</td></tr>
 <tr class="memdesc:a814a21f6b834626cd5f09e492d35b6c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the length of a line segment / the distance between two points.  <a href="#a814a21f6b834626cd5f09e492d35b6c8">More...</a><br/></td></tr>
 <tr class="separator:a814a21f6b834626cd5f09e492d35b6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a959db38358c72fbfb3b4d26305532b56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#a959db38358c72fbfb3b4d26305532b56">helMidpoint3v</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="el" href="_tomb_raider_8h.html#aa4c2a5552e9bc49b1816ff532f558c74">a</a>, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="el" href="_tomb_raider_8h.html#a41cede1b4c0d05cff170ad5761f70964">b</a>, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> mid)</td></tr>
+<tr class="memitem:a959db38358c72fbfb3b4d26305532b56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#a959db38358c72fbfb3b4d26305532b56">helMidpoint3v</a> (<a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> a, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> b, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> mid)</td></tr>
 <tr class="memdesc:a959db38358c72fbfb3b4d26305532b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the midpoint between two points / of a line segment.  <a href="#a959db38358c72fbfb3b4d26305532b56">More...</a><br/></td></tr>
 <tr class="separator:a959db38358c72fbfb3b4d26305532b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48d59a44c2fc4b6fb5b5b3e36924667d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mat_math_8h.html#a48d59a44c2fc4b6fb5b5b3e36924667d">helRandomNum</a> (<a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> from, <a class="el" href="_mat_math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> to)</td></tr>
@@ -229,8 +229,8 @@ Functions</h2></td></tr>
           <td class="memname">#define HEL_DEG_TO_RAD</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a></td><td>)</td>
-          <td>&#160;&#160;&#160;((<a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>) * <a class="el" href="_mat_math_8h.html#a1d647a57d1d2696ccfde1891744d5620">HEL_PI_OVER_180</a>)</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;((x) * <a class="el" href="_mat_math_8h.html#a1d647a57d1d2696ccfde1891744d5620">HEL_PI_OVER_180</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -297,8 +297,8 @@ Functions</h2></td></tr>
           <td class="memname">#define HEL_RAD_TO_DEG</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a></td><td>)</td>
-          <td>&#160;&#160;&#160;((<a class="el" href="_tomb_raider_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>) * <a class="el" href="_mat_math_8h.html#aa19f6cd359bca0292ab22515c68900f6">HEL_180_OVER_PI</a>)</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;((x) * <a class="el" href="_mat_math_8h.html#aa19f6cd359bca0292ab22515c68900f6">HEL_180_OVER_PI</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">

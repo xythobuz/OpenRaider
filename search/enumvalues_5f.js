@@ -48,8 +48,6 @@ var searchData=
   ['_5fsplash',['_Splash',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eac27ae4cb69904f8f44b2399b20465344',1,'TombRaider1']]],
   ['_5fsplatter',['_Splatter',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eac2d3640b4f3e76e2432ed5c36430d191',1,'TombRaider1']]],
   ['_5fstandardsymbols',['_StandardSymbols',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaefab4dc0f15834ed37b54dc3e5d22151',1,'TombRaider1']]],
-  ['_5ftree_5fh_5fblack',['_tree_h_black',['../_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4ab6050a947a07211a11df0817750e7a88',1,'Tree.h']]],
-  ['_5ftree_5fh_5fred',['_tree_h_red',['../_tree_8h.html#ab842721dea507a53a705f516ae5a5ab4aa6a549bbab89a71fedd31d195e5b534a',1,'Tree.h']]],
   ['_5fuziammo',['_UziAmmo',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaafe8da047c23c357a1185842ab445b6b',1,'TombRaider1']]],
   ['_5fuzis',['_Uzis',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaeb7d2911c186b0d6926d91f7826f1f56',1,'TombRaider1']]]
 ];

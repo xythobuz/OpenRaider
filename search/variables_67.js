@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['g',['g',['../_tomb_raider_8h.html#a25bb900abe2cb858cf67f5193d9e2eda',1,'tr2_colour_s::g()'],['../_tomb_raider_8h.html#a83576af39a9f289a28c1263d61073508',1,'g():&#160;TombRaider.h']]],
+  ['g',['g',['../_tomb_raider_8h.html#a389525b4a233456542fb0070bf2ad765',1,'tr2_colour_t']]],
   ['gclientplayer',['gClientPlayer',['../_open_raider_8cpp.html#a19923898184a70bb4ca1f624d833d14f',1,'OpenRaider.cpp']]],
   ['gclients',['gClients',['../src_2_network_8cpp.html#a7bb750d94fa224759d16d8d214e5efff',1,'Network.cpp']]],
   ['gcolortexturehack',['gColorTextureHACK',['../_open_raider_8cpp.html#a6a8dd5943e3f3d8d0a9b95d155067c1c',1,'OpenRaider.cpp']]],
@@ -10,12 +10,13 @@ var searchData=
   ['glaramodel',['gLaraModel',['../_open_raider_8cpp.html#a3da3ebca8bec57d7693a63fe558df3b2',1,'OpenRaider.cpp']]],
   ['glcontext',['glContext',['../test_2_g_l_string_8cpp.html#af83374df2d32fdb460858b0590199464',1,'GLString.cpp']]],
   ['glyphs',['glyphs',['../_texture_8h.html#a533073f1cc32065d50d060a2cd310947',1,'ttf_texture_t']]],
-  ['gmaptex2bump',['gMapTex2Bump',['../_open_raider_8cpp.html#a0004505fae39f18ea3a166ff0afd3ce6',1,'OpenRaider.cpp']]],
+  ['gmaptex2bump',['gMapTex2Bump',['../_open_raider_8cpp.html#a36ccfdfe50f901b0ff3fb72b47de674f',1,'OpenRaider.cpp']]],
   ['gnetlastticks',['gNetLastTicks',['../_open_raider_8cpp.html#a72ff4c6e17f169a1d85d0f28c3b6e397',1,'OpenRaider.cpp']]],
   ['gnetticks',['gNetTicks',['../_open_raider_8cpp.html#a64d9d6fd033308c3dd84561e36c977af',1,'OpenRaider.cpp']]],
   ['gnumclients',['gNumClients',['../src_2_network_8cpp.html#a9c20dfcf79334fdcb5ddb58553a916ca',1,'Network.cpp']]],
   ['gpiggyback',['gPiggyBack',['../src_2_network_8cpp.html#ab866c8c47cb12751425fa7b02cc177a1',1,'gPiggyBack():&#160;Network.cpp'],['../test_2_network_8cpp.html#ab866c8c47cb12751425fa7b02cc177a1',1,'gPiggyBack():&#160;Network.cpp']]],
   ['gpthreadid',['gPThreadId',['../src_2_network_8cpp.html#a279a385ae0651e0d6b46805bcb23bc33',1,'Network.cpp']]],
+  ['greatest_5finfo',['greatest_info',['../greatest_8h.html#ad018f113893f815b9b3bdea4d91f2cac',1,'greatest.h']]],
   ['green',['green',['../_tomb_raider_8h.html#a9147049f74c370df6d1984c9dcfe4758',1,'tr5_light_t::green()'],['../_render_8cpp.html#a0fe579c4ef37244b6176c84cf8f44459',1,'GREEN():&#160;Render.cpp']]],
   ['gstartserver',['gStartServer',['../_open_raider_8cpp.html#a392fc942a97a830e918969e6482f8f76',1,'OpenRaider.cpp']]],
   ['gtexture',['gTexture',['../test_2_g_l_string_8cpp.html#a037054414baa3cdb2a84bf6885fa895b',1,'GLString.cpp']]],

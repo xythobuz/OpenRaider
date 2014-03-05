@@ -1,9 +1,0 @@
-<map id="include/Tree.h" name="include/Tree.h">
-<area shape="rect" id="node2" href="$_map_8h.html" title="Template Map. " alt="" coords="81,80,183,107"/>
-<area shape="rect" id="node3" href="$_open_raider_8h.html" title="Main Game Singleton. " alt="" coords="5,304,149,331"/>
-<area shape="rect" id="node5" href="$_system_8h.html" title="Mostly defines the interface of System implementations. " alt="" coords="128,155,245,181"/>
-<area shape="rect" id="node4" href="$_open_raider_8cpp.html" title="src/OpenRaider.cpp" alt="" coords="9,379,145,405"/>
-<area shape="rect" id="node6" href="$_s_d_l_system_8h.html" title="SDL System interface implementation. " alt="" coords="115,229,257,256"/>
-<area shape="rect" id="node8" href="$_system_8cpp.html" title="Mostly defines the interface of System implementations. " alt="" coords="282,229,392,256"/>
-<area shape="rect" id="node7" href="$_s_d_l_system_8cpp.html" title="SDL System interface implementation. " alt="" coords="173,304,309,331"/>
-</map>

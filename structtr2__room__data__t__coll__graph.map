@@ -1,0 +1,7 @@
+<map id="tr2_room_data_t" name="tr2_room_data_t">
+<area shape="rect" id="node2" href="$_tomb_raider_8h.html#structtr2__quad__t" title="A rectangular (quad) face definition. " alt="" coords="5,96,85,123"/>
+<area shape="rect" id="node3" href="$_tomb_raider_8h.html#structtr2__vertex__room__t" title="Room vertex structure. " alt="" coords="111,96,231,123"/>
+<area shape="rect" id="node4" href="$_tomb_raider_8h.html#structtr2__vertex__t" title="Basic vertex structure. " alt="" coords="127,5,213,32"/>
+<area shape="rect" id="node5" href="$_tomb_raider_8h.html#structtr2__tri__t" title="A triangular face definition. " alt="" coords="255,96,315,123"/>
+<area shape="rect" id="node6" href="$_tomb_raider_8h.html#structtr2__room__sprite__t" title="Sprite structure. " alt="" coords="339,96,455,123"/>
+</map>

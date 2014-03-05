@@ -2,10 +2,9 @@ var searchData=
 [
   ['camera',['Camera',['../class_camera.html#a01f94c3543f56ede7af49dc778f19331',1,'Camera']]],
   ['capacity',['capacity',['../class_vector.html#acac5178d51d4eb1665e95d577e3ac40c',1,'Vector']]],
-  ['check_5fred_5fblack_5ftree',['check_red_black_tree',['../src_2memory__test_8cpp.html#ad44c14140fedc94adb33b7081dbc10b5',1,'check_red_black_tree(rbtree_t *current, bool valid, bool strict):&#160;memory_test.cpp'],['../test_2memory__test_8cpp.html#ad44c14140fedc94adb33b7081dbc10b5',1,'check_red_black_tree(rbtree_t *current, bool valid, bool strict):&#160;memory_test.cpp']]],
   ['checkfile',['checkFile',['../test_2tga_8cpp.html#a794a3d4b0cb2ade30c4c175f36b5e5cd',1,'tga.cpp']]],
   ['checkmime',['checkMime',['../class_tomb_raider.html#ad9bb8953123f5aee9f7b4e378e51cfff',1,'TombRaider']]],
-  ['clear',['Clear',['../class_list.html#ad9b354ea8484f3f539b54a48034969e3',1,'List::Clear()'],['../class_map.html#aecce2b567cfba2ab7b62983b57b08cdd',1,'Map::Clear()'],['../class_tree.html#a81e9e349540ff4589bf68fba3fffc368',1,'Tree::Clear()'],['../class_vector.html#a962d670e50a84c725e8f2e94edcb8de6',1,'Vector::clear()'],['../class_world.html#a24f6906f2e4f0c761653a8f9e42588a6',1,'World::clear()']]],
+  ['clear',['Clear',['../class_list.html#ad9b354ea8484f3f539b54a48034969e3',1,'List::Clear()'],['../class_vector.html#a962d670e50a84c725e8f2e94edcb8de6',1,'Vector::clear()'],['../class_world.html#a24f6906f2e4f0c761653a8f9e42588a6',1,'World::clear()']]],
   ['clearflag',['clearFlag',['../class_texture.html#a6ca51aaf5e1c6af0683b801b1c70e562',1,'Texture::clearFlag()'],['../class_world.html#a630472653c82fff2905a6cf679e573cf',1,'World::clearFlag()']]],
   ['clearflags',['clearFlags',['../class_render.html#a29bd3ff2418b30974ee389481ada6bbc',1,'Render']]],
   ['clearworld',['ClearWorld',['../class_render.html#a6b4ecc3f447a33adbd20dd3e4b339130',1,'Render']]],
@@ -31,8 +30,7 @@ var searchData=
   ['createdir',['createDir',['../class_system.html#ab057919d9d5838e6382987e7439a4de3',1,'System']]],
   ['cross',['cross',['../class_vector3d.html#aebae00da2def3b4d107a195aff5cc1f9',1,'Vector3d']]],
   ['crossprod',['CrossProd',['../_render_8cpp.html#a2fef287cf7c955e94ebe99a8ea383c3d',1,'Render.cpp']]],
-  ['current',['Current',['../class_list.html#aff80662b1b604e9a840cb0f7970973f9',1,'List::Current()'],['../class_map.html#adece3694e6821f5b35a695be3587babb',1,'Map::Current()'],['../class_vector.html#a1d91af8d4794eecb1ca69ceb486226ac',1,'Vector::current()']]],
-  ['currentexists',['CurrentExists',['../class_list.html#a56c99260e905357cf1f4e97b0327f61e',1,'List::CurrentExists()'],['../class_map.html#a949415003edcc2a98b581671dcb99d1b',1,'Map::CurrentExists()']]],
-  ['currentid',['CurrentId',['../class_list.html#acbe1ee6fa0c8bf49a693669c4a57b85b',1,'List']]],
-  ['currentkey',['CurrentKey',['../class_map.html#a09c719176c17c36c6bf505b9f21fdd10',1,'Map']]]
+  ['current',['Current',['../class_list.html#aff80662b1b604e9a840cb0f7970973f9',1,'List::Current()'],['../class_vector.html#a1d91af8d4794eecb1ca69ceb486226ac',1,'Vector::current()']]],
+  ['currentexists',['CurrentExists',['../class_list.html#a56c99260e905357cf1f4e97b0327f61e',1,'List']]],
+  ['currentid',['CurrentId',['../class_list.html#acbe1ee6fa0c8bf49a693669c4a57b85b',1,'List']]]
 ];

@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="$_mat_math_8h.html" xlink:title="Vector and Matrix math. ">
+<g id="a_node2"><a xlink:href="_mat_math_8h.html" target="_top" xlink:title="Vector and Matrix math. ">
 <polygon fill="white" stroke="black" points="0,-56.5 0,-75.5 62,-75.5 62,-56.5 0,-56.5"/>
 <text text-anchor="middle" x="31" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">MatMath.h</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="$_matrix_8h.html" xlink:title="3D Matrix ">
+<g id="a_node4"><a xlink:href="_matrix_8h.html" target="_top" xlink:title="3D Matrix ">
 <polygon fill="white" stroke="black" points="36,-168.5 36,-187.5 86,-187.5 86,-168.5 36,-168.5"/>
 <text text-anchor="middle" x="61" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">Matrix.h</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="$_quaternion_8h.html" xlink:title="Quaternion. ">
+<g id="a_node5"><a xlink:href="_quaternion_8h.html" target="_top" xlink:title="Quaternion. ">
 <polygon fill="white" stroke="black" points="109.5,-112.5 109.5,-131.5 180.5,-131.5 180.5,-112.5 109.5,-112.5"/>
 <text text-anchor="middle" x="145" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">Quaternion.h</text>
 </a>
@@ -75,7 +75,7 @@
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="$_vector3d_8h.html" xlink:title="3D Math vector ">
+<g id="a_node6"><a xlink:href="_vector3d_8h.html" target="_top" xlink:title="3D Math vector ">
 <polygon fill="white" stroke="black" points="30.5,-112.5 30.5,-131.5 91.5,-131.5 91.5,-112.5 30.5,-112.5"/>
 <text text-anchor="middle" x="61" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">Vector3d.h</text>
 </a>

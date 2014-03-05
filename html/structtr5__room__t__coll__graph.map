@@ -1,8 +1,0 @@
-<map id="tr5_room_t" name="tr5_room_t">
-<area shape="rect" id="node2" href="$_tomb_raider_8h.html#structtr5__vertex__t" title="tr5_vertex_t" alt="" coords="5,5,91,32"/>
-<area shape="rect" id="node4" href="$_tomb_raider_8h.html#structtr5__room__geometry__t" title="tr5_room_geometry_t" alt="" coords="105,96,241,123"/>
-<area shape="rect" id="node3" href="$_tomb_raider_8h.html#structtr5__room__layer__t" title="tr5_room_layer_t" alt="" coords="266,96,379,123"/>
-<area shape="rect" id="node5" href="$_tomb_raider_8h.html#structtr5__face4__t" title="tr5_face4_t" alt="" coords="124,5,207,32"/>
-<area shape="rect" id="node6" href="$_tomb_raider_8h.html#structtr5__face3__t" title="tr5_face3_t" alt="" coords="231,5,313,32"/>
-<area shape="rect" id="node7" href="$_tomb_raider_8h.html#structtr5__light__t" title="tr5_light_t" alt="" coords="403,96,476,123"/>
-</map>
