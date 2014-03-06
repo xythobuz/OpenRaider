@@ -20,6 +20,7 @@
 #include "SDLSystem.h"
 #include "Network.h"
 #include "World.h"
+#include "utils/strings.h"
 
 /*!
  * \brief OpenRaider key events.

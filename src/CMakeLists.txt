@@ -50,6 +50,9 @@ endif (APPLE)
 
 #################################################################
 
+# Add utils directory
+add_subdirectory (utils)
+
 # Add Executable
 add_executable (OpenRaider MACOSX_BUNDLE ${SRCS})
 
@@ -164,6 +167,9 @@ set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
 # Add Thread Library
 find_package (Threads REQUIRED)
 set (LIBS ${LIBS} ${CMAKE_THREAD_LIBS_INIT})
+
+# Add utils Library
+set (LIBS ${LIBS} utilities)
 
 # Link to all found libs
 target_link_libraries (OpenRaider ${LIBS})
