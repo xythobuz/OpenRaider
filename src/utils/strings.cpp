@@ -10,6 +10,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#if defined(unix) || defined(__APPLE__)
+#include <wordexp.h>
+#endif
+
 #include "utils/strings.h"
 
 bool stringEndsWith(const char *str, const char *suffix) {
@@ -56,63 +60,55 @@ char *bufferString(const char *string, ...) {
 }
 
 
-char *fullPath(const char *path, char end)
-{
-    unsigned int i, lenPath, lenEnv, len;
-    char *env, *dir;
-
+char *fullPath(const char *path, char end) {
+    unsigned int lenPath, offset;
+    wordexp_t word;
+    char *dir;
 
     if (!path || !path[0])
-        return 0;
+        return NULL;
 
-    if (path[0] == '~')
-    {
+    if (path[0] == '~') {
 #if defined(unix) || defined(__APPLE__)
-        env = getenv("HOME");
-
-        if (!env || !env[0])
-        {
-            return 0;
+        // Expand string into segments
+        if (wordexp(path, &word, 0) != 0) {
+            return NULL;
         }
 
-        lenEnv = strlen(env);
-        lenPath = strlen(path);
-        len = lenEnv + lenPath;
-
-        dir = new char[len+1];
-
-        // Mongoose 2002.08.17, Copy ENV,  strip '~', append rest of path
-        for (i = 0; i < len; ++i)
-        {
-            if (i < lenEnv)
-            {
-                dir[i] = env[i];
-            }
-            else
-            {
-                dir[i] = path[1+(i-lenEnv)];
-            }
+        // Get length of complete string
+        lenPath = 0;
+        for (unsigned int i = 0; i < word.we_wordc; i++) {
+            lenPath += strlen(word.we_wordv[i]);
         }
+
+        // Allocate new string
+        dir = new char[lenPath + 2]; // space for end char
+
+        // Copy segments into new string
+        offset = 0;
+        for (unsigned int i = 0; i < word.we_wordc; i++) {
+            unsigned int len = strlen(word.we_wordv[i]);
+            strncpy(dir + offset, word.we_wordv[i], len);
+            offset += len;
+        }
+
+        wordfree(&word);
 #else
 #error Platform not supported!
 #endif
-    }
-    else
-    {
+    } else {
         lenPath = strlen(path);
-        dir = new char[lenPath+1];
+        dir = new char[lenPath + 2]; // space for end char
         strncpy(dir, path, lenPath);
-
-        i = lenPath;
     }
 
     // Make sure ends in "end" char
-    if (end && dir[i-1] != end)
-    {
-        dir[i++] = end;
+    if (end && (dir[lenPath - 1] != end)) {
+        dir[lenPath] = end;
+        dir[lenPath + 1] = 0;
+    } else {
+        dir[lenPath] = 0;
     }
-
-    dir[i] = 0;
 
     return dir;
 }

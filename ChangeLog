@@ -7,7 +7,8 @@
 
 	[ 20140306 ]
 	* Created utility library
-	* rewrote bufferString()
+	* Rewrote bufferString()
+	* Rewrote and fixed fullPath(), it worked more or less by accident
 
 	[ 20140305 ]
 	* Now using cmake build system

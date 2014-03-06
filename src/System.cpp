@@ -221,7 +221,7 @@ int System::loadResourceFile(const char *filename)
 
                         printf("Importing '%s'\n", buffer);
 
-                        loadResourceFile(fullPath(buffer, '/'));
+                        loadResourceFile(fullPath(buffer, 0));
                     }
                 }
                 else

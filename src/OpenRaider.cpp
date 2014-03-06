@@ -3415,7 +3415,7 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
             }
             else if (rc_command("Font", cmd))
             {
-                gFontFilename = fullPath(cmd, '/');
+                gFontFilename = fullPath(cmd, 0);
             }
             else if (rc_command("Driver", cmd))
             {
