@@ -1,5 +1,6 @@
 # Source files
 set (UTIL_SRCS ${UTIL_SRCS} "strings.cpp")
+set (UTIL_SRCS ${UTIL_SRCS} "tga.cpp")
 
 # Include directory
 include_directories ("${PROJECT_SOURCE_DIR}/include")

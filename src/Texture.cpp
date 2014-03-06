@@ -20,7 +20,7 @@
 #include <GL/glu.h>
 #endif
 
-#include "TGA.h"
+#include "utils/tga.h"
 #include "Texture.h"
 
 //Texture *gTextureManager = 0x0;

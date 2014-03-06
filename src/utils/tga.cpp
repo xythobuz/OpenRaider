@@ -1,5 +1,5 @@
 /*!
- * \file src/tga.cpp
+ * \file src/utils/tga.cpp
  * \brief TGA image reader/writer
  *
  * \todo type should pass more info (2 bits for RGBA|RGB|GREY; val for depth)
@@ -11,7 +11,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include "TGA.h"
+#include "utils/tga.h"
 
 int tga_check(FILE *f) {
     char buffer[10];

@@ -22,7 +22,7 @@ set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUNIT_TEST")
 #################################################################
 
 # TGA Test
-set (TGASRCS "${PROJECT_SOURCE_DIR}/test/tga.cpp" "${PROJECT_SOURCE_DIR}/src/tga.cpp")
+set (TGASRCS "${PROJECT_SOURCE_DIR}/test/tga.cpp" "${PROJECT_SOURCE_DIR}/src/utils/tga.cpp")
 add_executable (TGATest EXCLUDE_FROM_ALL ${TGASRCS})
 set_target_properties (TGATest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 
@@ -93,7 +93,7 @@ set (GLLIBS ${GLLIBS} ${OPENGL_LIBRARIES})
 
 # GLString Test
 set (GLSTRINGSRCS "${PROJECT_SOURCE_DIR}/test/GLString.cpp" "${PROJECT_SOURCE_DIR}/src/GLString.cpp")
-set (GLSTRINGSRCS ${GLSTRINGSRCS} "${PROJECT_SOURCE_DIR}/src/tga.cpp" "${PROJECT_SOURCE_DIR}/src/Texture.cpp")
+set (GLSTRINGSRCS ${GLSTRINGSRCS} "${PROJECT_SOURCE_DIR}/src/utils/tga.cpp" "${PROJECT_SOURCE_DIR}/src/Texture.cpp")
 add_executable (GLStringTest EXCLUDE_FROM_ALL ${GLSTRINGSRCS})
 set_target_properties (GLStringTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 target_link_libraries (GLStringTest m ${GLLIBS})
@@ -108,7 +108,7 @@ set (ZLIBS ${ZLIBS} ${ZLIB_LIBRARIES})
 # TombRaider Test
 set (TOMB_FLAGS "-D__TEST_TR5_DUMP_TGA -D__TEST_32BIT_TEXTILES")
 set (TOMBSRCS "${PROJECT_SOURCE_DIR}/test/TombRaider.cpp" "${PROJECT_SOURCE_DIR}/src/TombRaider.cpp")
-set (TOMBSRCS ${TOMBSRCS} "${PROJECT_SOURCE_DIR}/src/tga.cpp")
+set (TOMBSRCS ${TOMBSRCS} "${PROJECT_SOURCE_DIR}/src/utils/tga.cpp")
 add_executable (TombRaiderTest EXCLUDE_FROM_ALL ${TOMBSRCS})
 set_target_properties (TombRaiderTest PROPERTIES COMPILE_FLAGS "${OpenRaider_CXX_FLAGS} ${TOMB_FLAGS}")
 target_link_libraries (TombRaiderTest ${ZLIBS})

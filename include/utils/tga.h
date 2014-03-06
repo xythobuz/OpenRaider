@@ -1,5 +1,5 @@
 /*!
- * \file include/tga.h
+ * \file include/utils/tga.h
  * \brief TGA image reader/writer
  *
  * \author Mongoose

@@ -6,7 +6,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <TGA.h>
+#include <utils/tga.h>
 #include "greatest.h"
 
 //! \todo generate list?

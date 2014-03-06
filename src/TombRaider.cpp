@@ -16,7 +16,7 @@
 #include "TombRaider.h"
 
 #ifdef __TEST_TR5_DUMP_TGA
-#include "TGA.h"
+#include "utils/tga.h"
 #endif
 
 TombRaider::TombRaider()
