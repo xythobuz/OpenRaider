@@ -13,7 +13,7 @@
 
 #include <map>
 
-#include "Vector.h"
+#include "templates/Vector.h"
 #include "utils/strings.h"
 
 //! \todo Replace with unicode compatible key codes

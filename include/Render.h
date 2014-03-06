@@ -9,8 +9,6 @@
 #define _RENDER_H_
 
 #include "Config.h"
-#include "List.h"
-#include "Vector.h"
 #include "Matrix.h"
 #include "ViewVolume.h"
 #include "World.h"
@@ -19,6 +17,8 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "GLString.h"
+#include "templates/List.h"
+#include "templates/Vector.h"
 
 #ifdef USING_EMITTER
 #include "Emitter.h"

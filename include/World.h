@@ -14,9 +14,9 @@
 #include "SkeletalModel.h"
 #endif
 
-#include "List.h"
-#include "Vector.h"
 #include "MatMath.h"
+#include "templates/List.h"
+#include "templates/Vector.h"
 
 // Mirrors TombRaider class' room flags really
 typedef enum {

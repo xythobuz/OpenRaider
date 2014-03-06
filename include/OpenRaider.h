@@ -11,8 +11,6 @@
 #include <map>
 
 #include "Config.h"
-#include "List.h"
-#include "Vector.h"
 #include "TombRaider.h"
 #include "Camera.h"
 #include "Render.h"
@@ -20,6 +18,8 @@
 #include "SDLSystem.h"
 #include "Network.h"
 #include "World.h"
+#include "templates/List.h"
+#include "templates/Vector.h"
 #include "utils/strings.h"
 
 /*!

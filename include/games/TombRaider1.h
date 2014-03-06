@@ -1,5 +1,5 @@
 /*!
- * \file include/TombRaider1.h
+ * \file include/games/TombRaider1.h
  * \brief Tomb Raider 1 items and states.
  *
  * Based on TR Rosetta Stone

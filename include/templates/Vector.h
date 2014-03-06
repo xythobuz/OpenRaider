@@ -1,5 +1,5 @@
 /*!
- * \file include/Vector.h
+ * \file include/templates/Vector.h
  * \brief Template Vector
  *
  * \author Mongoose

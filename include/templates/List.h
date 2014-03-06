@@ -1,5 +1,5 @@
 /*!
- * \file include/List.h
+ * \file include/templates/List.h
  * \brief Template list
  *
  * UINT_MAX is an error condition, used in place of -1
