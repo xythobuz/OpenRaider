@@ -5,10 +5,8 @@
  * \author Mongoose
  * \author xythobuz
  */
-#ifndef _TGA_H
-#define _TGA_H
-
-#include <stdio.h>
+#ifndef _UTILS_TGA_H
+#define _UTILS_TGA_H
 
 /*!
  * \brief Possible TGA image types

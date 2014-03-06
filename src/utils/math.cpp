@@ -16,7 +16,7 @@
 
 bool equalEpsilon(vec_t a, vec_t b) {
     vec_t epsilon = FLT_EPSILON;
-    if (fabs(a - b) <= (((fabs(b) > fabs(a)) ? fabs(b) : fabs(a)) * epsilon))
+    if (fabs(a - b) <= (fmax(fabs(a), fabs(b)) * epsilon))
         return true;
     return false;
 }
@@ -41,14 +41,10 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
     pB = Vector3d(p2);
 
     // Find normal
-    //mtkVectorSubtract(polygon[1], polygon[0], a);
     a = Vector3d(polygon[1]) - Vector3d(polygon[0]);
-    //mtkVectorSubtract(polygon[2], polygon[0], b);
     b = Vector3d(polygon[2]) - Vector3d(polygon[0]);
     normal = Vector3d::cross(a, b);
-    //mtkVectorCrossProduct(a, b, normal);
     normal.normalize();
-    //mtkVectorNormalize(normal, normal);
 
     // find D
     //d = (normal[0] * polygon[0][0] -
@@ -59,7 +55,6 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
             normal.mVec[2] * polygon[0][2]);
 
     // line segment parallel to plane?
-    //mtkVectorSubtract(p2, p1, a); // cache p2 - p1 => a
     a = pB - pA;
 
     //denominator = (normal[0] * a[0] +
@@ -88,30 +83,11 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
 
 
     // See if the intercept is bound by polygon by winding number
-#ifdef WINDING_NUMBERS_TRIANGLE
-    mtkVectorSubtract(polygon[0], intersect, a);
-    mtkVectorNormalize(a, a);
-    mtkVectorSubtract(polygon[1], intersect, b);
-    mtkVectorNormalize(b, b);
-    mtkVectorSubtract(polygon[2], intersect, c);
-    mtkVectorNormalize(c, c);
-
-    t0 = mtkVectorDotProduct(a, b);
-    t1 = mtkVectorDotProduct(b, c);
-    t2 = mtkVectorDotProduct(c, a);
-
-    total = HEL_RAD_TO_DEG(acos(t0) + acos(t1) + acos(t2));
-
-    if (total - 360 < 0.0)
-        return 0;
-#else // assume convex polygons here for sure
-    //mtkVectorSubtract(intersect, polygon[0], a);
-    //theta = mtkVectorDotProduct(a, normal);
+    // assume convex polygons here for sure
     double theta = Vector3d::dot(b - Vector3d(polygon[0]), normal); // b = intersect
 
     if (theta >= 90.0) // Yeah I know
         return 0;
-#endif
 
     return 1;
 }

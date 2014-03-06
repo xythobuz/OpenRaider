@@ -807,10 +807,6 @@ void Render::Display()
             v[1] = u[1] + (9000.0f * sinf(LARA->angles[2]));
             v[2] = u[2] + (9000.0f * cosf(LARA->angles[1]));
 
-            //mtkVectorSubtract(u, v, t);
-            //mtkVectorSubtract(u, curPos, s);
-            //printf("* %f rad\n", LARA->angles[1]);
-
             // Test tracing of aim
             renderTrace(0, u, v); // v = target
         }

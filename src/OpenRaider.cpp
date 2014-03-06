@@ -2259,7 +2259,6 @@ void OpenRaider::processRoom(int index)
     room_mesh_t *r_mesh = NULL;
     RenderRoom *rRoom = NULL;
 #ifdef MATRIX_TRANSFORMS
-    //matrix_t transform;
     Matrix transform;
 #endif
 
@@ -2293,12 +2292,8 @@ void OpenRaider::processRoom(int index)
 
     // Mongoose 2002.04.03, Setup 3d transform
 #ifdef MATRIX_TRANSFORMS
-    //mtkMatrixIdentity(transform);
-    //mtkMatrixTranslate(transform,
-    //                       r_mesh->pos[0], r_mesh->pos[1], r_mesh->pos[2]);
     transform.setIdentity();
     transform.translate(r_mesh->pos);
-#else
 #endif
 
     // Setup portals
@@ -2328,7 +2323,6 @@ void OpenRaider::processRoom(int index)
 
             // Relative coors in vis portals
 #ifdef MATRIX_TRANSFORMS
-            //mtkMatrixTransform(transform, portal->vertices[j]);
             transform.multiply3v(portal->vertices[j], portal->vertices[j]);
 #else
             portal->vertices[j][0] += r_mesh->pos[0];

@@ -8,8 +8,8 @@
 
 #include <math.h>
 
-#ifndef _MATMATH_H
-#define _MATMATH_H
+#ifndef _UTILS_MATH_H
+#define _UTILS_MATH_H
 
 #define HEL_PI           ((float)M_PI) //!< pi
 #define HEL_2_PI         (HEL_PI * 2.0f) //!< pi*2

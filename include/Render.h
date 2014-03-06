@@ -37,11 +37,6 @@ public:
         typeDirectional = 3  //!< Directional light
     } LightType;
 
-    // These aren't used anywhere? -- xythobuz
-    //float mAmbient[4]; //! Ambient color
-    //float mDiffuse[4]; //! Diffuse color
-    //float mSpecular[4]; //! Specular color
-
     vec4_t mPos; //! Light position in 3 space
     vec3_t mDir; //! Light direction
     float mAtt;
@@ -62,7 +57,6 @@ public:
     RenderRoom() {
         room = 0x0;
         dist = 0.0f;
-        center[0] = center[1] = center[2] = 0.0f;
     }
 
     /*!
@@ -73,17 +67,7 @@ public:
         //lights.erase();
     }
 
-    /*!
-     * \brief Computes central point of room.
-     * Result is stored in center member variable.
-     */
-    void computeCenter() {
-        if (room)
-            helMidpoint3v(room->bbox_min, room->bbox_max, center);
-    }
-
     vec_t dist;             //!< Distance to near plane, move to room?
-    vec3_t center;          //!< Center of bbox, move to room?
     Vector<Light *> lights; //!< List of lights in this room
     Mesh mesh;              //!< OpenGL mesh that represents this room
 
