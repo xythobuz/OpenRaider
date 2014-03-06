@@ -96,9 +96,6 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscre
             width, height, flags);
     mGLContext = SDL_GL_CreateContext(mWindow);
 
-    // Start game renderer
-    initGL();
-
     // Resize context
     resizeGL(width, height);
 }

@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140307 ]
+	* Removed duplicated GL initialization code
+
 	[ 20140306 ]
 	* Created utility library
 	* Rewrote bufferString()

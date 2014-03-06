@@ -861,12 +861,6 @@ void OpenRaider::print(bool dump_stdout, const char *format, ...)
 }
 
 
-void OpenRaider::initGL()
-{
-    // Mongoose 2002.08.13, Handled in start() actually
-}
-
-
 void OpenRaider::start()
 {
     vec3_t up;

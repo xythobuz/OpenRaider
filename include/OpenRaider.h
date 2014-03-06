@@ -121,8 +121,6 @@ public:
      */
     void handleKeyReleaseEvent(unsigned int key, unsigned int mod);
 
-    void initGL();
-
     /*!
      * \brief Pass a time frame and render a new frame
      */

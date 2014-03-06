@@ -135,8 +135,6 @@ public:
 
     virtual void handleKeyReleaseEvent(unsigned int key, unsigned int mod) = 0;
 
-    virtual void initGL();
-
     virtual void initVideo(unsigned int width, unsigned int height, bool fullscreen) = 0;
 
     /*!
