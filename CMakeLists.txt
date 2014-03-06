@@ -11,7 +11,7 @@ set (OpenRaider_BUILD_HOST ${CMAKE_HOST_SYSTEM})
 
 # Configuration Header file
 configure_file (
-    "${PROJECT_SOURCE_DIR}/include/Config.h.in"
+    "${PROJECT_SOURCE_DIR}/cmake/Config.h.in"
     "${PROJECT_BINARY_DIR}/Config.h"
 )
 include_directories ("${PROJECT_BINARY_DIR}")
