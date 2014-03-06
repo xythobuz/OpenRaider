@@ -3,6 +3,7 @@
  * \brief String handling utilities
  *
  * \author xythobuz
+ * \author Mongoose
  */
 
 #include <cstdarg>
@@ -59,7 +60,6 @@ char *bufferString(const char *string, ...) {
     return text;
 }
 
-
 char *fullPath(const char *path, char end) {
     unsigned int lenPath, offset;
     wordexp_t word;
@@ -94,7 +94,10 @@ char *fullPath(const char *path, char end) {
 
         wordfree(&word);
 #else
-#error Platform not supported!
+        printf("WARNING: Tilde expansion not supported on this platform!\n");
+        lenPath = strlen(path);
+        dir = new char[lenPath + 2]; // space for end char
+        strncpy(dir, path, lenPath);
 #endif
     } else {
         lenPath = strlen(path);
@@ -113,56 +116,18 @@ char *fullPath(const char *path, char end) {
     return dir;
 }
 
-
-char *getFileFromFullPath(char *filename)
-{
-    int i, j, len;
-    char *str;
-
-
-    len = strlen(filename);
-
-    for (i = len, j = 0; i > 0; --i, ++j)
-    {
-        if (filename[i] == '/' || filename[i] == '\\')
-            break;
-    }
-
-    j--;
-
-    str = new char[len - j + 1];
-
-    for (i = 0; i < len - j; ++i)
-    {
-        str[i] = filename[i + len - j];
-    }
-
-    str[i] = 0;
-
-    return str;
-}
-
-// Mongoose 2002.03.23, Checks command to see if it's same
-//   as symbol, then returns the arg list in command buffer
-bool rc_command(const char *symbol, char *command)
-{
-    int i, j, lens, lenc;
-
-
+bool rc_command(const char *symbol, char *command) {
     if (!symbol || !symbol[0] || !command || !command[0])
-    {
         return false;
-    }
 
-    lens = strlen(symbol);
+    int lens = strlen(symbol);
 
-    if (strncmp(command, symbol, lens) == 0)
-    {
-        lenc = strlen(command);
+    if (strncmp(command, symbol, lens) == 0) {
+        int lenc = strlen(command);
 
+        //! \fixme Should ignore whitespace, but only if it is really there...?
         // lens+1 skips '=' or ' '
-        for (i = 0, j = lens+1; j < lenc; ++i, ++j)
-        {
+        for (int i = 0, j = lens+1; j < lenc; ++i, ++j) {
             command[i] = command[j];
             command[i+1] = 0;
         }
@@ -173,17 +138,13 @@ bool rc_command(const char *symbol, char *command)
     return false;
 }
 
-
-int rc_get_bool(char *buffer, bool *val)
-{
+int rc_get_bool(char *buffer, bool *val) {
     if (!buffer || !buffer[0])
-    {
         return -1;
-    }
 
-    if ((strncmp(buffer, "true", 4) == 0) || (buffer[0] == '1'))
+    if ((buffer[0] == '1') || (strncmp(buffer, "true", 4) == 0))
         *val = true;
-    else if ((strncmp(buffer, "false", 5) == 0) || (buffer[0] == '0'))
+    else if ((buffer[0] == '0') || (strncmp(buffer, "false", 5) == 0))
         *val = false;
     else
         return -2;

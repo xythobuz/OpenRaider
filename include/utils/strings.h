@@ -3,11 +3,19 @@
  * \brief String handling utilities
  *
  * \author xythobuz
+ * \author Mongoose
  */
 
 #ifndef _UTILS_STRINGS_H_
 #define _UTILS_STRINGS_H_
 
+/*!
+ * \brief Check if a string ends with another string.
+ * \param str string to check
+ * \param suffix suffix for which to check
+ * \returns true if str ends with suffix
+ */
+bool stringEndsWith(const char *str, const char *suffix);
 
 /*!
  * \brief Generates a buffered string for the printf call
@@ -24,21 +32,6 @@ char *bufferString(const char *string, ...) __attribute__((format(printf, 1, 2))
  * \returns allocated string of path with expansions
  */
 char *fullPath(const char *path, char end);
-
-/*!
- * \brief Only returns last part of a path string.
- * \param filename Path to a file
- * \returns Name of the file in filename, without path in front
- */
-char *getFileFromFullPath(char *filename);
-
-/*!
- * \brief Check if a string ends with another string.
- * \param str string to check
- * \param suffix suffix for which to check
- * \returns true if str ends with suffix
- */
-bool stringEndsWith(const char *str, const char *suffix);
 
 /*!
  * \brief Checks if Command matches Symbol.
