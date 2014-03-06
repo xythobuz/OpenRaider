@@ -5,6 +5,7 @@ project (OpenRaider)
 set (OpenRaider_VERSION_MAJOR 0)
 set (OpenRaider_VERSION_MINOR 1)
 set (OpenRaider_VERSION_MICRO 2)
+set (OpenRaider_VERSION_RELEASE -git)
 
 # Build Host
 set (OpenRaider_BUILD_HOST ${CMAKE_HOST_SYSTEM})
