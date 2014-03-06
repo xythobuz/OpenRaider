@@ -14,7 +14,7 @@
 #include "SkeletalModel.h"
 #endif
 
-#include "MatMath.h"
+#include "utils/math.h"
 #include "templates/List.h"
 #include "templates/Vector.h"
 

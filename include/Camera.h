@@ -7,7 +7,7 @@
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 
-#include "MatMath.h"
+#include "utils/math.h"
 #include "Matrix.h"
 #include "Quaternion.h"
 

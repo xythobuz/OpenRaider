@@ -52,7 +52,7 @@ set (THREADLIBS ${THREADLIBS} ${CMAKE_THREAD_LIBS_INIT})
 
 # Network Test
 set (NETWORKSRCS "${PROJECT_SOURCE_DIR}/test/Network.cpp" "${PROJECT_SOURCE_DIR}/src/Network.cpp")
-set (NETWORKSRCS ${NETWORKSRCS} "${PROJECT_SOURCE_DIR}/src/MatMath.cpp" "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp")
+set (NETWORKSRCS ${NETWORKSRCS} "${PROJECT_SOURCE_DIR}/src/utils/math.cpp" "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp")
 add_executable (NetworkTest EXCLUDE_FROM_ALL ${NETWORKSRCS})
 set_target_properties (NetworkTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 target_link_libraries (NetworkTest m ${THREADLIBS})
@@ -60,7 +60,7 @@ target_link_libraries (NetworkTest m ${THREADLIBS})
 #################################################################
 
 # Math Test
-set (MATHSRCS "${PROJECT_SOURCE_DIR}/test/MatMath.cpp" "${PROJECT_SOURCE_DIR}/src/MatMath.cpp" "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp")
+set (MATHSRCS "${PROJECT_SOURCE_DIR}/test/math.cpp" "${PROJECT_SOURCE_DIR}/src/utils/math.cpp" "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp")
 add_executable (MathTest EXCLUDE_FROM_ALL ${MATHSRCS})
 set_target_properties (MathTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
 
@@ -68,7 +68,7 @@ set_target_properties (MathTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS}
 
 # Matrix Test
 set (MATRIXSRCS "${PROJECT_SOURCE_DIR}/test/Matrix.cpp" "${PROJECT_SOURCE_DIR}/src/Matrix.cpp")
-set (MATRIXSRCS ${MATRIXSRCS} "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp" "${PROJECT_SOURCE_DIR}/src/MatMath.cpp")
+set (MATRIXSRCS ${MATRIXSRCS} "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp" "${PROJECT_SOURCE_DIR}/src/utils/math.cpp")
 set (MATRIXSRCS ${MATRIXSRCS} "${PROJECT_SOURCE_DIR}/src/Quaternion.cpp")
 add_executable (MatrixTest EXCLUDE_FROM_ALL ${MATRIXSRCS})
 set_target_properties (MatrixTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})

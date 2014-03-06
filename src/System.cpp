@@ -28,7 +28,7 @@
 #include <sys/time.h>
 #endif
 
-#include "MatMath.h"
+#include "utils/math.h"
 #include "System.h"
 
 ////////////////////////////////////////////////////////////

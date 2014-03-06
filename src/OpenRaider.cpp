@@ -1451,8 +1451,8 @@ void OpenRaider::processSprites()
 
 void OpenRaider::processMoveables()
 {
-    List <unsigned int> cache;
-    List <skeletal_model_t *> cache2;
+    List<unsigned int> cache;
+    List<skeletal_model_t *> cache2;
     tr2_mesh_t *mesh = NULL;
     tr2_moveable_t *moveable = NULL;
     tr2_meshtree_t *meshtree = NULL;
@@ -1568,8 +1568,8 @@ void OpenRaider::processMoveables()
 
 
 void OpenRaider::processMoveable(int index, int i, int *ent,
-        List <skeletal_model_t *> &cache2,
-        List <unsigned int> &cache, int object_id)
+        List<skeletal_model_t *> &cache2,
+        List<unsigned int> &cache, int object_id)
 {
     skeletal_model_t *r_model = NULL;
     skeletal_model_t *c_model = NULL;

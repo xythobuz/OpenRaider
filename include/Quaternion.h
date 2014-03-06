@@ -8,7 +8,7 @@
 #ifndef _QUATERNION_H_
 #define _QUATERNION_H_
 
-#include "MatMath.h"
+#include "utils/math.h"
 
 /*!
  * \brief Quaternion

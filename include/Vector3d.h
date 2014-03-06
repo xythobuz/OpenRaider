@@ -8,7 +8,7 @@
 #ifndef _VECTOR3D_H_
 #define _VECTOR3D_H_
 
-#include "MatMath.h"
+#include "utils/math.h"
 
 /*!
  * \brief 3D Math Vector

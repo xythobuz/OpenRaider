@@ -1,6 +1,6 @@
 /*!
  *
- * \file src/MatMath.cpp
+ * \file src/utils/math.cpp
  * \brief Vector and Matrix math
  *
  * \author Mongoose
@@ -10,9 +10,9 @@
 #include <math.h>
 #include <float.h>
 
-#include "MatMath.h"
 #include "Vector3d.h"
 #include "Matrix.h"
+#include "utils/math.h"
 
 bool equalEpsilon(vec_t a, vec_t b) {
     vec_t epsilon = FLT_EPSILON;
@@ -21,86 +21,10 @@ bool equalEpsilon(vec_t a, vec_t b) {
     return false;
 }
 
-vec_t helIntersectionOfAbstractSpheres(vec3_t centerA, vec_t radiusA,
-        vec3_t centerB, vec_t radiusB)
-{
-    Vector3d a = Vector3d(centerA);
-    Vector3d b = Vector3d(centerB);
-    Vector3d d = a - b;
-    vec_t dist, minDist;
-
-    dist = Vector3d::dot(d, d);
-    minDist = radiusA + radiusB;
-
-    return (dist <= minDist * minDist);
-}
-
 
 inline vec_t square(vec_t a)
 {
     return a * a;
-}
-
-
-// Returns number of intersections and intersection position(s)
-// Got algorithm from http://astronomy.swin.edu.au/~pbourke/geometry/
-int helIntersectionOfAbstractSphereAndLine(vec3_t center, vec_t radius,
-        vec3_t posA, vec3_t posB,
-        vec3_t intersectionA,
-        vec3_t intersectionB)
-{
-    // float x , y , z;
-    vec_t a, b, c, mu, i ;
-
-
-    a = (square(posB[0] - posA[0]) +
-            square(posB[1] - posA[1]) +
-            square(posB[2] - posA[2]));
-    b = (2 * ((posB[0] - posA[0]) * (posA[0] - center[0]) +
-                (posB[1] - posA[1]) * (posA[1] - center[1]) +
-                (posB[2] - posA[2]) * (posA[2] - center[2])));
-    c = (square(center[0]) + square(center[1]) +
-            square(center[2]) + square(posA[0]) +
-            square(posA[1]) + square(posA[2]) -
-            2 * (center[0]*posA[0] + center[1]*posA[1] + center[2]*posA[2]) -
-            square(radius));
-
-    i = b * b - 4 * a * c;
-
-
-    if (i < 0.0)
-    {
-        // No intersection
-        return 0;
-    }
-    else if (i == 0.0)
-    {
-        // One intersection
-        mu = -b/(2*a) ;
-        intersectionA[0] = posA[0] + mu*(posB[0]-posA[0]);
-        intersectionA[1] = posA[1] + mu*(posB[1]-posA[1]);
-        intersectionA[2] = posA[2] + mu*(posB[2]-posA[2]);
-
-        return 1;
-    }
-    else
-    {
-        // Two intersections
-
-        // First intersection
-        mu = (-b + sqrtf( square(b) - 4.0f*a*c)) / (2.0f*a);
-        intersectionA[0] = posA[0] + mu*(posB[0]-posA[0]);
-        intersectionA[1] = posA[1] + mu*(posB[1]-posA[1]);
-        intersectionA[2] = posA[2] + mu*(posB[2]-posA[2]);
-
-        // Second intersection
-        mu = (-b - sqrtf(square(b) - 4.0f*a*c)) / (2.0f*a);
-        intersectionB[0] = posA[0] + mu*(posB[0]-posA[0]);
-        intersectionB[1] = posA[1] + mu*(posB[1]-posA[1]);
-        intersectionB[2] = posA[2] + mu*(posB[2]-posA[2]);
-
-        return 2;
-    }
 }
 
 

@@ -48,6 +48,6 @@ bool rc_command(const char *symbol, char *command);
  * \param val is set to boolean interpretation of buffer
  * \returns -1 for null string, -2 if string is not "true" or "false"
  */
-int rc_get_bool(char *buffer, bool *val);
+int rc_get_bool(const char *buffer, bool *val);
 
 #endif

@@ -10,7 +10,7 @@
 #ifndef _OPENGLMESH_H_
 #define _OPENGLMESH_H_
 
-#include "MatMath.h"
+#include "utils/math.h"
 
 /*!
  * \brief OpenGL Mesh
@@ -29,7 +29,7 @@ public:
         fMesh_UseVertexArray = (1 << 0)
     } MeshFlags;
 
-    typedef struct tris_s {
+    typedef struct {
         int texture;
 #ifdef MULTITEXTURE
         int bumpmap;
@@ -53,7 +53,7 @@ public:
         unsigned int *alpha_triangles; //!< ABCABCABC...
     } tris_t;
 
-    typedef struct rect_s {
+    typedef struct {
 
         int texture;
 #ifdef MULTITEXTURE
@@ -108,8 +108,8 @@ public:
     void bufferNormalArray(unsigned int normalCount, vec_t *normals);
 
     void bufferTriangles(unsigned int count,
-                                unsigned int *indices, vec_t *texCoords,
-                                int *textures, unsigned int *flags);
+                            unsigned int *indices, vec_t *texCoords,
+                            int *textures, unsigned int *flags);
 
     void bufferVertexArray(unsigned int vertexCount, vec_t *vertices);
 
@@ -125,11 +125,11 @@ public:
     void sortFacesByTexture();
 
     void addFace(int textureIndex, int textureIndexB, unsigned int flags,
-                     unsigned int vertexIndexCount, vec_t *vertexIndices);
+                    unsigned int vertexIndexCount, vec_t *vertexIndices);
 
     void addTexTiledFace(int textureIndex, int textureIndexB,
-                                unsigned int flags, unsigned int indexCount,
-                                vec_t *vertexIndices, vec_t *texcoords);
+                            unsigned int flags, unsigned int indexCount,
+                            vec_t *vertexIndices, vec_t *texcoords);
 
     void bufferTexcoords(unsigned int texcoordCount, vec_t *texcoords);
 

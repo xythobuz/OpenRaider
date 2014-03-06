@@ -17,7 +17,6 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "GLString.h"
-#include "templates/List.h"
 #include "templates/Vector.h"
 
 #ifdef USING_EMITTER

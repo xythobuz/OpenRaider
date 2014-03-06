@@ -20,7 +20,7 @@
 #include <arpa/inet.h>
 #include <stdlib.h>
 
-#include "MatMath.h" // Random Number
+#include "utils/math.h" // Random Number
 #include "Network.h"
 
 //#define LOCAL_BCAST

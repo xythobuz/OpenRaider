@@ -12,7 +12,7 @@
 
 #include "SDL_opengl.h"
 
-#include "MatMath.h"
+#include "utils/math.h"
 #include "SDLSystem.h"
 
 unsigned int *gWidth = 0x0;

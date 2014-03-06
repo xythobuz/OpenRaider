@@ -2,7 +2,6 @@
 set (SRCS ${SRCS} "Camera.cpp")
 set (SRCS ${SRCS} "Emitter.cpp")
 set (SRCS ${SRCS} "GLString.cpp")
-set (SRCS ${SRCS} "MatMath.cpp")
 set (SRCS ${SRCS} "Matrix.cpp")
 set (SRCS ${SRCS} "Mesh.cpp")
 set (SRCS ${SRCS} "Network.cpp")

@@ -60,7 +60,7 @@ int tga_check(FILE *f);
  * \returns 0 on success, else error condition
  */
 int tga_load(FILE *f, unsigned char **image,
-        unsigned int *width, unsigned int *height, char *type);
+                unsigned int *width, unsigned int *height, char *type);
 
 /*!
  * \brief Save a pixel buffer into a file on disk
@@ -72,7 +72,7 @@ int tga_load(FILE *f, unsigned char **image,
  * \returns 0 on success, else error condition
  */
 int tga_save(FILE *f, unsigned char *image,
-        unsigned int width, unsigned int height, char type);
+                unsigned int width, unsigned int height, char type);
 
 /*!
  * \brief Save a pixel buffer into a file on disk
@@ -84,7 +84,8 @@ int tga_save(FILE *f, unsigned char *image,
  * \returns 0 on success, else error condition
  */
 int tga_save_filename(unsigned char *image,
-        unsigned int width, unsigned int height,
-        char type, char *s, ...) __attribute__((format(printf, 5, 6)));
+                        unsigned int width, unsigned int height,
+                        char type, char *s, ...)
+    __attribute__((format(printf, 5, 6)));
 
 #endif

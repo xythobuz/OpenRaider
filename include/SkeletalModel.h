@@ -12,7 +12,7 @@
 #ifndef _SKELETALMODEL_H_
 #define _SKELETALMODEL_H_
 
-#include "MatMath.h"
+#include "utils/math.h"
 #include "templates/Vector.h"
 
 typedef struct {

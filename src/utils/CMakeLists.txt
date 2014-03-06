@@ -1,4 +1,5 @@
 # Source files
+set (UTIL_SRCS ${UTIL_SRCS} "math.cpp")
 set (UTIL_SRCS ${UTIL_SRCS} "strings.cpp")
 set (UTIL_SRCS ${UTIL_SRCS} "tga.cpp")
 

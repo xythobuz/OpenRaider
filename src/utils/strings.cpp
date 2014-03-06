@@ -138,7 +138,7 @@ bool rc_command(const char *symbol, char *command) {
     return false;
 }
 
-int rc_get_bool(char *buffer, bool *val) {
+int rc_get_bool(const char *buffer, bool *val) {
     if (!buffer || !buffer[0])
         return -1;
 
