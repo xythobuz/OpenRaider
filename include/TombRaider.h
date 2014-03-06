@@ -18,7 +18,7 @@
 #pragma pack(push, tr2_h, 1)
 #endif
 
-//#include "TombRaider1.h"
+//#include "games/TombRaider1.h"
 
 typedef enum {
     TR_VERSION_UNKNOWN,
