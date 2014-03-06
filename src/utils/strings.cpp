@@ -25,52 +25,29 @@ bool stringEndsWith(const char *str, const char *suffix) {
     return strncmp(str + lenstr - lensuffix, suffix, lensuffix) == 0;
 }
 
-char *bufferString(const char *string, ...)
-{
+char *bufferString(const char *string, ...) {
     int sz = 60;
     int n;
     char *text;
     va_list args;
 
-
-    // Mongoose 2002.01.01, Only allow valid strings
-    //   we must assume it's NULL terminated also if it passes...
     if (!string || !string[0])
-    {
         return NULL;
-    }
 
     text = new char[sz];
 
     va_start(args, string);
 
-    // Mongoose 2002.01.01, Get exact size needed if the first try fails
     n = vsnprintf(text, sz, string, args);
 
-    // Mongoose 2002.01.01, Realloc correct amount if truncated
-    while (1)
-    {
-        if (n > -1 && n < sz)
-        {
-            break;
-        }
-
-        // Mongoose 2002.01.01, For glibc 2.1
-        if (n > -1)
-        {
-            sz = n + 1;
-            delete [] text;
-            text = new char[sz];
-            n = vsnprintf(text, sz, string, args);
-            break;
-        }
-        else // glibc 2.0
-        {
-            sz *= 2;
-            delete [] text;
-            text = new char[sz];
-            n = vsnprintf(text, sz, string, args);
-        }
+    if (n < 0) {
+        delete [] text;
+        return NULL; // encoding error
+    } else if (n >= sz) {
+        sz = n + 1; // buffer too small
+        delete [] text;
+        text = new char[sz];
+        n = vsnprintf(text, sz, string, args);
     }
 
     va_end(args);

@@ -5,6 +5,10 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140306 ]
+	* Created utility library
+	* rewrote bufferString()
+
 	[ 20140305 ]
 	* Now using cmake build system
 	* Pak file extensions are checked to see if they could be valid
