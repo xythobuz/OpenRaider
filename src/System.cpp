@@ -57,14 +57,6 @@ System::System() {
 System::~System() {
 }
 
-unsigned int System::getTicks() {
-    return system_timer();
-}
-
-void System::resetTicks() {
-    system_timer_reset();
-}
-
 int System::createDir(char *path) {
 #ifdef WIN32
     return _mkdir(path);

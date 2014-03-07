@@ -16,6 +16,7 @@
 
 #include "World.h"
 #include "SkeletalModel.h"
+#include "utils/time.h"
 #include "OpenRaider.h"
 
 #include "games/TombRaider1.h" // tmp stop-gap
@@ -36,13 +37,6 @@ unsigned int gNetLastTicks = 0;
 bool gStartServer = false;
 skeletal_model_t *gLaraModel = 0x0;
 char *gFontFilename = 0x0;
-
-unsigned int getTicks()
-{
-    OpenRaider *game = OpenRaider::Instance();
-
-    return game->getTicks();
-}
 
 
 ////////////////////////////////////////////////////////////
@@ -69,8 +63,7 @@ void killOpenRaiderSingleton() {
     printf("Shutting down Game...\n");
 
     // Requires public deconstructor
-    //! \fixme Causes pointer-being-freed-not-allocated error!
-    //delete OpenRaider::Instance();
+    delete OpenRaider::Instance();
 
     printf("\nThanks for testing %s\n", VERSION);
     printf("Build date: %s @ %s\n", __DATE__, __TIME__);
@@ -616,8 +609,12 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
                 buffer[2] = 0;
                 break;
             default:
+                // Workaround until proper SDL2 text input is used
+                if ((key >= 1073742049) && (key <= 1073742051))
+                    break;
+
                 if (mod & (SYS_MOD_KEY_RSHIFT | SYS_MOD_KEY_LSHIFT) &&
-                        key > 96 && key < 122)
+                        key > 96 && key < 123)
                 {
                     buffer[i++] = (char)(key - 32);
                 }
@@ -918,7 +915,7 @@ void OpenRaider::start()
     gWorld.setFlag(World::fEnableHopping);
     // reenabled, what should be the new room movement? --xythobuz
 
-    resetTicks();
+    systemTimerReset();
 
     runGame();
 }
@@ -1168,7 +1165,7 @@ void OpenRaider::gameFrame()
 
 
     // Remember: ticks in milliseconds, time in hundredths
-    gNetTicks = ticks = getTicks();
+    gNetTicks = ticks = systemTimerGet();
     time = gNetTicks * 0.1f;
 
     switch (m_render.getMode())

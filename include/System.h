@@ -68,12 +68,6 @@ public:
     virtual ~System();
 
     /*!
-     * \brief Gets the game tick
-     * \returns number of milliseconds since start of program
-     */
-    virtual unsigned int getTicks();
-
-    /*!
      * \brief Created a directory
      * \param path Directory to create
      * \returns -1 on error
@@ -143,8 +137,6 @@ public:
      * \returns < 0 on error
      */
     virtual int loadResourceFile(const char *filename);
-
-    static void resetTicks();
 
     virtual void resizeGL(unsigned int width, unsigned int height);
 

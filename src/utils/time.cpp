@@ -12,7 +12,7 @@ struct timeval system_timer_start;
 struct timeval system_timer_stop;
 struct timezone system_timer_tz;
 
-unsigned int system_timer() {
+unsigned int systemTimerGet() {
     gettimeofday(&system_timer_stop, &system_timer_tz);
 
     if (system_timer_start.tv_usec > system_timer_stop.tv_usec) {
@@ -27,7 +27,7 @@ unsigned int system_timer() {
         + ((system_timer_stop.tv_usec - system_timer_start.tv_usec) / 1000);
 }
 
-void system_timer_reset() {
+void systemTimerReset() {
     gettimeofday(&system_timer_start, &system_timer_tz);
 }
 

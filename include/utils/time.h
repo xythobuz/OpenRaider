@@ -22,11 +22,11 @@ extern struct timezone system_timer_tz; //!< System timer timezone info
  * \brief Read the system timer
  * \returns number of ticks
  */
-unsigned int system_timer();
+unsigned int systemTimerGet();
 
 /*!
  * \brief Reset the system timer
  */
-void system_timer_reset();
+void systemTimerReset();
 
 #endif

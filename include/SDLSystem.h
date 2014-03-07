@@ -29,12 +29,6 @@ public:
      */
     virtual ~SDLSystem();
 
-    /*!
-     * \brief Get ticks
-     * \returns number of milliseconds since start of program
-     */
-    virtual unsigned int getTicks();
-
     /*
      * \brief Sets Event binding Cmd to Key press
      * \param cmd valid command string

@@ -28,9 +28,11 @@ SDLSystem::SDLSystem() : System() {
 SDLSystem::~SDLSystem() {
 }
 
+/*
 unsigned int SDLSystem::getTicks() {
     return SDL_GetTicks();
 }
+*/
 
 #ifdef FIXME
 void SDLSystem::bindKeyCommand(const char *cmd, int key, int event) {

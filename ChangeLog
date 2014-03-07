@@ -9,6 +9,8 @@
 	* Removed duplicated GL initialization code
 	* Removed duplicated TGA writing code from Texture
 	* Moved system_timer into time utilities, changed its API
+	* Fixed a bug that prevented input of console commands using
+	  the shift key for eg. uppercase letters or symbols
 
 	[ 20140306 ]
 	* Created utility library
