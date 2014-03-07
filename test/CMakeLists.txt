@@ -4,15 +4,6 @@ include_directories ("${PROJECT_SOURCE_DIR}/include")
 # Include External Modules
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
-# Warnings
-set (WARNINGS "${WARNINGS} -Weverything -Wno-padded -Wno-packed")
-set (WARNINGS "${WARNINGS} -Wno-global-constructors -Wno-exit-time-destructors")
-set (WARNINGS "${WARNINGS} -Wno-documentation-unknown-command -Wno-c++98-compat-pedantic")
-set (WARNINGS "${WARNINGS} -Wno-missing-prototypes -Wno-missing-variable-declarations")
-set (WARNINGS "${WARNINGS} -Wno-disabled-macro-expansion")
-
-set (WARNINGS "${WARNINGS} -Wno-shorten-64-to-32 -Wno-sign-conversion")
-
 # Flags for all builds
 set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11")
 set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -g -O0 ${WARNINGS}")
