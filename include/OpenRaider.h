@@ -16,7 +16,6 @@
 #include "Render.h"
 #include "Sound.h"
 #include "SDLSystem.h"
-#include "Network.h"
 #include "World.h"
 #include "templates/List.h"
 #include "templates/Vector.h"
@@ -226,7 +225,6 @@ private:
     char *m_pakDir;              //!< Current pak directory
     char *m_audioDir;            //!< Current audio directory
     char *m_homeDir;             //!< Current home directory
-    Vector<entity_t *> mClients; //!< Player entity/clients
 };
 
 #endif

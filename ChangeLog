@@ -11,6 +11,7 @@
 	* Moved system_timer into time utilities, changed its API
 	* Fixed a bug that prevented input of console commands using
 	  the shift key for eg. uppercase letters or symbols
+	* Removed (totally unfinished) networking support
 
 	[ 20140306 ]
 	* Created utility library

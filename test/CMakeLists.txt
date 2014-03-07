@@ -37,19 +37,6 @@ target_link_libraries (SoundTest ${SOUNDLIBS})
 
 #################################################################
 
-# Add Thread Library
-find_package (Threads REQUIRED)
-set (THREADLIBS ${THREADLIBS} ${CMAKE_THREAD_LIBS_INIT})
-
-# Network Test
-set (NETWORKSRCS "${PROJECT_SOURCE_DIR}/test/Network.cpp" "${PROJECT_SOURCE_DIR}/src/Network.cpp")
-set (NETWORKSRCS ${NETWORKSRCS} "${PROJECT_SOURCE_DIR}/src/utils/math.cpp" "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp")
-add_executable (NetworkTest EXCLUDE_FROM_ALL ${NETWORKSRCS})
-set_target_properties (NetworkTest PROPERTIES COMPILE_FLAGS ${OpenRaider_CXX_FLAGS})
-target_link_libraries (NetworkTest m ${THREADLIBS})
-
-#################################################################
-
 # Math Test
 set (MATHSRCS "${PROJECT_SOURCE_DIR}/test/math.cpp" "${PROJECT_SOURCE_DIR}/src/utils/math.cpp" "${PROJECT_SOURCE_DIR}/src/Vector3d.cpp")
 add_executable (MathTest EXCLUDE_FROM_ALL ${MATHSRCS})
@@ -108,7 +95,7 @@ target_link_libraries (TombRaiderTest ${ZLIBS})
 
 # Add test build target
 add_custom_target (tests)
-add_dependencies (tests GLStringTest MathTest MatrixTest NetworkTest SoundTest TGATest TombRaiderTest)
+add_dependencies (tests GLStringTest MathTest MatrixTest SoundTest TGATest TombRaiderTest)
 
 # Add test run target
 add_custom_target (testRun echo "Running Unit Tests..."

@@ -31,10 +31,6 @@ std::map<int, int> gMapTex2Bump;
 Vector <unsigned int> gColorTextureHACK;
 int gTextureOffset;
 entity_t *LARA = 0x0;
-entity_t *gClientPlayer[32];
-unsigned int gNetTicks = 0;
-unsigned int gNetLastTicks = 0;
-bool gStartServer = false;
 skeletal_model_t *gLaraModel = 0x0;
 char *gFontFilename = 0x0;
 
@@ -58,8 +54,6 @@ OpenRaider *OpenRaider::Instance()
 
 
 void killOpenRaiderSingleton() {
-    killNetworkSingleton();
-
     printf("Shutting down Game...\n");
 
     // Requires public deconstructor
@@ -75,13 +69,6 @@ void killOpenRaiderSingleton() {
 
 OpenRaider::OpenRaider() : SDLSystem()
 {
-    Network::Instance();
-
-    for (unsigned int i = 0; i < 32; ++i)
-    {
-        gClientPlayer[i] = 0x0;
-    }
-
     m_pakDir = 0x0;
     m_audioDir = 0x0;
     m_homeDir = 0x0;
@@ -100,7 +87,6 @@ OpenRaider::OpenRaider() : SDLSystem()
      * Only do this when you know the amount of commands + 1 (0 reserved)
      */
     mMode[addCommandMode("[OpenRaider.Engine]")] = 2;
-    mMode[addCommandMode("[Network.Server]")] = 5;
     mMode[addCommandMode("[Video.OpenGL]")] = 0;
     mMode[addCommandMode("[Audio.OpenAL]")] = 1;
     mMode[addCommandMode("[OpenRaider.Console]")] = 4;
@@ -191,116 +177,6 @@ void openraider_error(const char *func_name, const char *error,
         const char *filename, int line)
 {
     printf("%s> ERROR %s %s:%i\n", func_name, error, filename, line);
-}
-
-
-void from_network_layer(network_packet_t *p, unsigned int *last_id)
-{
-    static unsigned int i = 0;
-
-
-    *last_id = i++;
-
-    if (gNetTicks > gNetLastTicks + 200) // 200ms
-    {
-        gNetLastTicks = gNetTicks;
-        p->send = 1;
-    }
-
-    if (LARA)
-    {
-        p->pos[0] = LARA->pos[0];
-        p->pos[1] = LARA->pos[1];
-        p->pos[2] = LARA->pos[2];
-        p->yaw = LARA->angles[1];
-        p->pitch = LARA->angles[1];
-        p->view_model = LARA->modelId;
-
-        SkeletalModel *mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
-
-        if (mdl)
-        {
-            p->aframe = mdl->getAnimation();
-            p->bframe = mdl->getFrame();
-        }
-    }
-
-#ifdef DEBUG_NETWORK
-    printf("<> Sending data\n");
-#endif
-}
-
-
-void to_network_layer(network_packet_t p)
-{
-    OpenRaider &game = *OpenRaider::Instance();
-
-
-#ifdef DEBUG_NETWORK
-    printf("<> Recieved data\n");
-#endif
-
-    if (gClientPlayer[p.cid])
-    {
-        gClientPlayer[p.cid]->pos[0] = p.pos[0];
-        gClientPlayer[p.cid]->pos[1] = p.pos[1];
-        gClientPlayer[p.cid]->pos[2] = p.pos[2];
-        gClientPlayer[p.cid]->angles[1] = p.yaw;
-        gClientPlayer[p.cid]->angles[2] = p.pitch;
-    }
-    else if (LARA)
-    {
-        gClientPlayer[p.cid] = new entity_t;
-
-        gClientPlayer[p.cid]->pos[0] = p.pos[0];
-        gClientPlayer[p.cid]->pos[1] = p.pos[1];
-        gClientPlayer[p.cid]->pos[2] = p.pos[2];
-        gClientPlayer[p.cid]->angles[1] = p.yaw;
-        gClientPlayer[p.cid]->angles[2] = p.pitch;
-        gClientPlayer[p.cid]->moving = true;
-        gClientPlayer[p.cid]->objectId = 0;
-        gClientPlayer[p.cid]->id = LARA->id+1000+p.cid;
-        gClientPlayer[p.cid]->type = 0x02;
-
-        SkeletalModel *mdl = new SkeletalModel();
-        gClientPlayer[p.cid]->tmpHook = mdl;
-        mdl->setAnimation(p.aframe);
-        mdl->setFrame(p.bframe);
-        mdl->setIdleAnimation(TR_ANIAMTION_STAND);
-        gClientPlayer[p.cid]->modelId = LARA->modelId; //p.view_model;
-        gClientPlayer[p.cid]->animate = true;
-
-        gWorld.addEntity(gClientPlayer[p.cid]);
-        game.print(true, "A new player (%u) connected", p.cid);
-    }
-
-    if (LARA)
-    {
-        Network &network = *Network::Instance();
-        network_frame_t &gPiggyBack = network.getPiggyBack();
-
-
-        if (gNetTicks > gNetLastTicks + 200)
-        {
-            gNetLastTicks = gNetTicks;
-            gPiggyBack.data.send = 1;
-        }
-
-        gPiggyBack.data.pos[0] = LARA->pos[0];
-        gPiggyBack.data.pos[1] = LARA->pos[1];
-        gPiggyBack.data.pos[2] = LARA->pos[2];
-        gPiggyBack.data.yaw = LARA->angles[1];
-        gPiggyBack.data.pitch = LARA->angles[2];
-        gPiggyBack.data.view_model = LARA->modelId;
-
-        SkeletalModel *mdl = static_cast<SkeletalModel *>(LARA->tmpHook);
-
-        if (mdl)
-        {
-            gPiggyBack.data.aframe = mdl->getAnimation();
-            gPiggyBack.data.bframe = mdl->getFrame();
-        }
-    }
 }
 
 
@@ -1165,8 +1041,8 @@ void OpenRaider::gameFrame()
 
 
     // Remember: ticks in milliseconds, time in hundredths
-    gNetTicks = ticks = systemTimerGet();
-    time = gNetTicks * 0.1f;
+    ticks = systemTimerGet();
+    time = ticks * 0.1f;
 
     switch (m_render.getMode())
     {
@@ -2835,45 +2711,6 @@ void OpenRaider::consoleCommand(char *cmd)
     {
         shutdown(0);
     }
-    else if (rc_command("port", cmd))
-    {
-        Network &net = *Network::Instance();
-        net.setPort(atoi(cmd));
-    }
-    else if (rc_command("killserver", cmd))
-    {
-        Network &net = *Network::Instance();
-
-
-        print(true, "Stopping network server...");
-        net.killServerThread();
-    }
-    else if (rc_command("server", cmd))
-    {
-        Network &net = *Network::Instance();
-
-
-        print(true, "Starting network server...");
-        net.spawnServerThread();
-    }
-    else if (rc_command("disconnect", cmd))
-    {
-        Network &net = *Network::Instance();
-
-
-        print(true, "Diconnecting...");
-        net.killClientThread();
-    }
-    else if (rc_command("connect", cmd))
-    {
-        Network &net = *Network::Instance();
-
-
-        print(true, "Connecting to %s...", cmd);
-
-        net.setRemoteHost(cmd);
-        net.spawnClientThread();
-    }
     else if (rc_command("fly", cmd))
     {
         if (LARA)
@@ -3548,28 +3385,6 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
             }
 
             consoleCommand(cmd);
-            break;
-        case 5:
-            if (rc_command("Enable", cmd))
-            {
-                rc_get_bool(cmd, &gStartServer);
-            }
-            else if (rc_command("Port", cmd))
-            {
-                if (gStartServer)
-                {
-                    Network &net = *Network::Instance();
-                    int port = atoi(cmd);
-
-                    net.setPort(port);
-                    print(true, "Starting network server on port %i...", port);
-                    net.spawnServerThread();
-                }
-            }
-            else
-            {
-                printf("Command> [Network.Server] '%s' not implemented\n", cmd);
-            }
             break;
     }
 }

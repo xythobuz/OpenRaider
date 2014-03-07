@@ -131,16 +131,6 @@ If you want to change this behaviour, this happens around line 1075 of `src/Open
 Console commands (BOOL is now '0' or '1' for less typing).
 Pressing &lt;UP&gt; will go back to last command entered (saves typing).
 
-#### Network
-
-| Command          | Action                                |
-| ----------------:|:------------------------------------- |
-| server           | Start network listen server           |
-| killserver       | Stop network listen server            |
-| port INT         | Set network port number               |
-| connect HOSTNAME | Connect to network server at HOSTNAME |
-| disconnect       | Disconnect from network server        |
-
 #### Game
 
 | Command             | Action                                                 |

@@ -11,12 +11,6 @@ Font=~/.OpenRaider/data/test.ttf
 [Audio.OpenAL]
 Enable=true
 
-[Network.Server]
-Enable=false
-#Name=OpenRaider Server Beta 1
-#Dedicated=true
-Port=27910
-
 [Input.Mouse]
 SensitivityX=1.0
 SensitivityY=1.0
