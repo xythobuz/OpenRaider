@@ -1,5 +1,5 @@
 /*!
- * \file test/MatMath.cpp
+ * \file test/math.cpp
  * \brief Mat Math Unit Test
  *
  * \todo Also test the geometric methods (intersection, distance, midpoint)

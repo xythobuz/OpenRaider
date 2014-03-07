@@ -104,24 +104,6 @@ void SDLSystem::resize(unsigned int width, unsigned int height) {
     m_width = width;
     m_height = height;
 
-    glViewport(0, 0, width, height);
-
-    /* All this is already done in System::resizeGL() !?
-    GLfloat aspect = (GLfloat)width/(GLfloat)height;
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-    // gluPerspective is deprecated!
-    // gluPerspective(m_fovY, aspect, m_clipNear, m_clipFar);
-    // fix: http://stackoverflow.com/a/2417756
-    GLfloat fH = tanf(m_fovY * HEL_PI / 360.0f) * m_clipNear;
-    GLfloat fW = fH * aspect;
-    glFrustum(-fW, fW, -fH, fH, m_clipNear, m_clipFar);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    */
-
     // Resize context
     resizeGL(width, height);
 }

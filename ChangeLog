@@ -8,6 +8,7 @@
 	[ 20140307 ]
 	* Removed duplicated GL initialization code
 	* Removed duplicated TGA writing code from Texture
+	* Moved system_timer into time utilities, changed its API
 
 	[ 20140306 ]
 	* Created utility library

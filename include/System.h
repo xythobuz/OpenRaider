@@ -179,13 +179,4 @@ protected:
     unsigned int mConsoleKey;          //!< Console toggle event now handled lower
 };
 
-//! \todo Could make these static methods later, depends on API evolution
-
-/*!
- * \brief Sets timer state and returns number of ticks
- * \param state 0 - reset, 1 - get number of ticks
- * \returns number of ticks
- */
-unsigned int system_timer(int state);
-
 #endif

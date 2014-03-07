@@ -67,6 +67,16 @@ if (DOXYGEN_FOUND)
         COMMAND cp -R doc/html/* ${PROJECT_SOURCE_DIR}/../apache/
         COMMAND sed -i '' "s/HAVE_DOT               = NO/HAVE_DOT               = YES/g" Doxyfile
         SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
+
+    # Add custom target to create local documentation with call and caller graphs
+    add_custom_target (docLocalFull
+        COMMAND sed -i '' "s/CALL_GRAPH             = NO/CALL_GRAPH             = YES/g" Doxyfile
+        COMMAND sed -i '' "s/CALLER_GRAPH           = NO/CALLER_GRAPH           = YES/g" Doxyfile
+        COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
+        COMMAND cp -R doc/html/* ${PROJECT_SOURCE_DIR}/../apache/
+        COMMAND sed -i '' "s/CALL_GRAPH             = YES/CALL_GRAPH             = NO/g" Doxyfile
+        COMMAND sed -i '' "s/CALLER_GRAPH           = YES/CALLER_GRAPH           = NO/g" Doxyfile
+        SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
 endif (DOXYGEN_FOUND)
 
 # Clean doc files
