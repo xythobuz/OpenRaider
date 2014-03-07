@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <string.h>
+#include <assert.h>
 
 #if defined(unix) || defined(__APPLE__)
 #include <wordexp.h>
@@ -18,8 +19,8 @@
 #include "utils/strings.h"
 
 bool stringEndsWith(const char *str, const char *suffix) {
-    if (!str || !suffix)
-        return false;
+    assert(str != NULL);
+    assert(suffix != NULL);
 
     size_t lenstr = strlen(str);
     size_t lensuffix = strlen(suffix);
@@ -36,8 +37,8 @@ char *bufferString(const char *string, ...) {
     char *text;
     va_list args;
 
-    if (!string || !string[0])
-        return NULL;
+    assert(string != NULL);
+    assert(string[0] != '\0');
 
     text = new char[sz];
 
@@ -65,8 +66,8 @@ char *fullPath(const char *path, char end) {
     wordexp_t word;
     char *dir;
 
-    if (!path || !path[0])
-        return NULL;
+    assert(path != NULL);
+    assert(path[0] != '\0');
 
     if (path[0] == '~') {
 #if defined(unix) || defined(__APPLE__)
@@ -127,8 +128,10 @@ char *fullPath(const char *path, char end) {
 }
 
 bool rc_command(const char *symbol, char *command) {
-    if (!symbol || !symbol[0] || !command || !command[0])
-        return false;
+    assert(symbol != NULL);
+    assert(symbol[0] != '\0');
+    assert(command != NULL);
+    assert(command[0] != '\0');
 
     int lens = strlen(symbol);
 
@@ -149,8 +152,9 @@ bool rc_command(const char *symbol, char *command) {
 }
 
 int rc_get_bool(const char *buffer, bool *val) {
-    if (!buffer || !buffer[0])
-        return -1;
+    assert(buffer != NULL);
+    assert(buffer[0] != '\0');
+    assert(val != NULL);
 
     if ((buffer[0] == '1') || (strncmp(buffer, "true", 4) == 0))
         *val = true;

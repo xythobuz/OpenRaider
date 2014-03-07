@@ -365,6 +365,7 @@ int tgaSaveFilename(unsigned char *image, unsigned int width, unsigned int heigh
     assert(width > 0);
     assert(height > 0);
     assert(s != NULL);
+    assert(s[0] != '\0');
 
     va_start(args, s);
     vsnprintf(buffer, 1023, s, args);

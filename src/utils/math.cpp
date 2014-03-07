@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <float.h>
+#include <assert.h>
 
 #include "Vector3d.h"
 #include "Matrix.h"
@@ -32,6 +33,8 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
         vec3_t p1, vec3_t p2,
         vec3_t *polygon)
 {
+    assert(polygon != NULL);
+
     //  vec3_t normal, a, b;
     Vector3d a, b, normal, pA, pB;
     vec_t d, denominator, mu;
