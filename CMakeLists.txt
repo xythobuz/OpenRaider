@@ -10,6 +10,16 @@ set (OpenRaider_VERSION_RELEASE -git)
 # Build Host
 set (OpenRaider_BUILD_HOST ${CMAKE_HOST_SYSTEM})
 
+#################################################################
+
+# Set a default build type if none was specified
+if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    message(STATUS "Setting build type to 'Debug' as none was specified.")
+    set(CMAKE_BUILD_TYPE Debug)
+endif()
+
+#################################################################
+
 # Configuration Header file
 configure_file (
     "${PROJECT_SOURCE_DIR}/cmake/Config.h.in"
@@ -22,6 +32,8 @@ include_directories ("${PROJECT_BINARY_DIR}")
 
 # Include External Modules
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+
+#################################################################
 
 # Build warnings
 set (WARNINGS "${WARNINGS} -Weverything -Wno-padded -Wno-packed")
@@ -45,6 +57,8 @@ set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DEXPERIMENTAL")
 set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -DNDEBUG -O2")
 set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -ffast-math -funroll-loops")
 set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -fomit-frame-pointer")
+
+#################################################################
 
 # Add subdirectories
 add_subdirectory (src)

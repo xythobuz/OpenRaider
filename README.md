@@ -54,13 +54,11 @@ Linux Distributions will probably provide an ALUT library ready to install with 
 
 ## Building
 
-Do a standard cmake out-of-source build and then run the resulting executable:
+Do a standard cmake out-of-source build to get a debug configuration and then run the resulting executable:
 
-    mkdir build
-    cd build
-    cmake -DCMAKE_BUILD_TYPE=Debug ..
-    make
-    ./src/OpenRaider
+    mkdir build && cd build
+    cmake ..
+    make run
 
 On Mac OS X, running `make install` will produce a (more or less) distributable OpenRaider.app bundle.
 
