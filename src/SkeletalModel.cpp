@@ -62,7 +62,8 @@ SkeletalModel::~SkeletalModel()
 
         model->animation.clear();
 
-        delete model;
+        //! \fixme Causes "freeing already freed pointer" exception
+        //delete model;
     }
 }
 
