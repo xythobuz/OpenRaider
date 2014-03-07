@@ -232,16 +232,7 @@ int Texture::loadFontTTF(const char *filename,
     if (texture)
     {
 #ifdef DUMP_TTF_TGA
-        FILE *f = fopen("ttf_font.tga", "wb");
-        if (f)
-        {
-            tga_save(f, texture->texture, 256, 256, 4);
-            fclose(f);
-        }
-        else
-        {
-            perror("ttf_font.tga");
-        }
+        tgaSaveFilename(texture->texture, 256, 256, 4, "ttf_font.tga");
 #endif
 
         gFontTest = generateFont(texture);
@@ -792,37 +783,17 @@ void Texture::bindTextureId(unsigned int n)
 }
 
 
-void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
-{
+void Texture::glScreenShot(char *base, unsigned int width, unsigned int height) {
     FILE *f;
-    int sz = width*height;
-    unsigned char *image = new unsigned char[sz*3];
-    unsigned char *swap_row = new unsigned char[width*3];
+    int sz = width * height;
+    unsigned char *image = new unsigned char[sz * 3];
     char filename[1024];
     static int count = 0;
     bool done = false;
-    int i, j, size;
-    unsigned char comment_lenght;
-    unsigned char colormap_type;
-    unsigned char image_type;
-    unsigned short colormap_index;
-    unsigned short colormap_lenght;
-    unsigned char colormap_bbp;
-    unsigned short origin_x;
-    unsigned short origin_y;
-    unsigned short swidth;
-    unsigned short sheight;
-    char comment[32] = "Mongoose TGA 0.0.1\0";
-    unsigned char tmp, bpp, desc_flags;
 
-
-    if (!image || !width || !height)
-    {
+    if (!image || !width || !height) {
         if (image)
-        {
             delete [] image;
-        }
-        delete [] swap_row;
 
         printf("glScreenShot> ERROR: Couldn't allocate image!\n");
         return;
@@ -841,82 +812,13 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height)
             done = true;
     }
 
-    f = fopen(filename, "wb");
-
-    if (!f)
-    {
-        printf("glScreenShot> ERROR: Couldn't write screenshot.\n");
-        perror("glScreenShot> ERROR: ");
-        delete [] image;
-        delete [] swap_row;
-        return;
-    }
-
     // Capture frame buffer
-    glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, image);
+    glReadPixels(0, 0, width, height, GL_BGR, GL_UNSIGNED_BYTE, image);
 
-    // Flip vertical
-    for (i = 0, j = (int)height-1; i < (int)height/2; ++i, --j)
-    {
-        memcpy(swap_row, &image[i*width*3], width*3);
-        memcpy(&image[i*width*3], &image[j*width*3], width*3);
-        memcpy(&image[j*width*3], swap_row, width*3);
-    }
-
-    delete [] swap_row;
-
-    comment_lenght = (unsigned char)strlen(comment);
-    colormap_type = 0;
-    image_type = 2;
-    colormap_index = 0;
-    colormap_lenght = 0;
-    colormap_bbp = 0;
-    origin_x = origin_y = 0;
-    swidth = (unsigned short)width;
-    sheight = (unsigned short)height;
-    bpp = 24;
-    desc_flags = 32;
-
-    // Write TGA header
-    fwrite(&comment_lenght, 1, 1, f);
-    fwrite(&colormap_type, 1, 1, f);
-    fwrite(&image_type, 1, 1, f);
-    fwrite(&colormap_index, 2, 1, f);
-    fwrite(&colormap_lenght, 2, 1, f);
-    fwrite(&colormap_bbp, 1, 1, f);
-    fwrite(&origin_x, 2, 1, f);
-    fwrite(&origin_y, 2, 1, f);
-    fwrite(&swidth, 2, 1, f);
-    fwrite(&sheight, 2, 1, f);
-    fwrite(&bpp, 1, 1, f);
-    fwrite(&desc_flags, 1, 1, f);
-
-    // Write comment
-    fwrite(&comment, 1, comment_lenght, f);
-
-    size = width * height * 3;
-
-    for (i = 0; i < size; i += 3)
-    {
-        tmp = image[i];
-        image[i] = image[i + 2];
-        image[i + 2] = tmp;
-    }
-
-    // Write image data
-    if (fwrite(image, size, 1, f) < 1)
-    {
-        perror("glScreenShot> Disk write failed.\n");
-        fclose(f);
-        delete [] image;
-        return;
-    }
-
-    fclose(f);
+    tgaSaveFilename(image, width, height, 0, "%s", filename);
+    printf("Took screenshot '%s'.\n", filename);
 
     delete [] image;
-
-    printf("Took screenshot '%s'.\n", filename);
 }
 
 
@@ -936,9 +838,9 @@ int Texture::loadTGA(const char *filename)
     {
         perror("Couldn't load file");
     }
-    else if (!tga_check(f))
+    else if (!tgaCheck(f))
     {
-        tga_load(f, &image, &w, &h, &type);
+        tgaLoad(f, &image, &w, &h, &type);
 
         type += 2;
 

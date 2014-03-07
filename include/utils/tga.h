@@ -46,7 +46,7 @@ typedef struct {
  * \param f file to be checked
  * \returns 0 if valid, else error condition
  */
-int tga_check(FILE *f);
+int tgaCheck(FILE *f);
 
 /*!
  * \brief Load a TGA image from file
@@ -57,7 +57,7 @@ int tga_check(FILE *f);
  * \param type where the type will be stored (tga_type_t)
  * \returns 0 on success, else error condition
  */
-int tga_load(FILE *f, unsigned char **image,
+int tgaLoad(FILE *f, unsigned char **image,
                 unsigned int *width, unsigned int *height, char *type);
 
 /*!
@@ -66,10 +66,10 @@ int tga_load(FILE *f, unsigned char **image,
  * \param image pixmap to be stored
  * \param width width of pixmap/image
  * \param height height of pixmap/image
- * \param type tga_type_t to use
+ * \param type tga type to use
  * \returns 0 on success, else error condition
  */
-int tga_save(FILE *f, unsigned char *image,
+int tgaSave(FILE *f, unsigned char *image,
                 unsigned int width, unsigned int height, char type);
 
 /*!
@@ -77,13 +77,13 @@ int tga_save(FILE *f, unsigned char *image,
  * \param image pixmap to be stored
  * \param width width of pixmap/image
  * \param height height of pixmap/image
- * \param type tga_type_t to use
+ * \param type tga type to use
  * \param s format string for file path/name
  * \returns 0 on success, else error condition
  */
-int tga_save_filename(unsigned char *image,
+int tgaSaveFilename(unsigned char *image,
                         unsigned int width, unsigned int height,
-                        char type, char *s, ...)
+                        char type, const char *s, ...)
     __attribute__((format(printf, 5, 6)));
 
 #endif

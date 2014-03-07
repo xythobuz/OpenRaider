@@ -14,11 +14,11 @@
 
 #include "utils/tga.h"
 
-int tga_check(FILE *f) {
+int tgaCheck(FILE *f) {
     char buffer[10];
 
     if (!f) {
-        perror("tga_check> Passed invalid file.\n");
+        perror("tgaCheck> Passed invalid file.\n");
         return -1;
     }
 
@@ -30,13 +30,13 @@ int tga_check(FILE *f) {
     if (!(buffer[1] == 0 && (buffer[2] == TGA_TYPE__COLOR ||
                     //buffer[2] == TGA_TYPE__GREYSCALE ||
                     buffer[2] == TGA_TYPE__COLOR_RLE))) {
-        printf("tga_check> Inavlid or unknown TGA format.\n");
+        printf("tgaCheck> Inavlid or unknown TGA format.\n");
         return -2;
     }
     return 0;
 }
 
-int tga_load(FILE *f, unsigned char **image, unsigned int *width, unsigned int *height, char *type) {
+int tgaLoad(FILE *f, unsigned char **image, unsigned int *width, unsigned int *height, char *type) {
     tga_t header;
     char comment[256];
     unsigned char pixel[4];
@@ -47,7 +47,7 @@ int tga_load(FILE *f, unsigned char **image, unsigned int *width, unsigned int *
     unsigned int i, j;
 
     if (!f) {
-        fprintf(stderr, "tga_load> Invalid parameters.\n");
+        fprintf(stderr, "tgaLoad> Invalid parameters.\n");
         return -1;
     }
 
@@ -122,7 +122,7 @@ int tga_load(FILE *f, unsigned char **image, unsigned int *width, unsigned int *
     size = header.width * header.height;
 
     if (!size || (!(header.colormap_type == 0 && (header.image_type == 2 || header.image_type == 10)))) {
-        fprintf(stderr, "tga_load> Unknown image format.\n");
+        fprintf(stderr, "tgaLoad> Unknown image format.\n");
         return -2;
     }
 
@@ -162,7 +162,7 @@ int tga_load(FILE *f, unsigned char **image, unsigned int *width, unsigned int *
                     break;
                 case TGA_TYPE__COLOR:
                     if (fread((*image), size, 1, f) < 1) {
-                        fprintf(stderr, "tga_load> Image fread failed.\n");
+                        fprintf(stderr, "tgaLoad> Image fread failed.\n");
                         delete [] *image;
                         return -4;
                     }
@@ -214,7 +214,7 @@ int tga_load(FILE *f, unsigned char **image, unsigned int *width, unsigned int *
                     break;
                 case TGA_TYPE__COLOR:
                     if (fread((*image), size, 1, f) < 1) {
-                        fprintf(stderr, "tga_load> Image fread failed.\n");
+                        fprintf(stderr, "tgaLoad> Image fread failed.\n");
                         delete [] *image;
                         return -4;
                     }
@@ -239,7 +239,7 @@ int tga_load(FILE *f, unsigned char **image, unsigned int *width, unsigned int *
             }
             break;
         case 8:
-            printf("tga_load> 8bpp Not implemented\n");
+            printf("tgaLoad> 8bpp Not implemented\n");
             break;
         default:
             ;
@@ -257,7 +257,7 @@ int tga_load(FILE *f, unsigned char **image, unsigned int *width, unsigned int *
     return 0;
 }
 
-int tga_save(FILE *f, unsigned char *image, unsigned int width, unsigned int height, char type) {
+int tgaSave(FILE *f, unsigned char *image, unsigned int width, unsigned int height, char type) {
     tga_t header;
     unsigned int size;
     char comment[64];
@@ -265,7 +265,7 @@ int tga_save(FILE *f, unsigned char *image, unsigned int width, unsigned int hei
     //unsigned char tmp;
 
     if (!f || !image || !width || !height) {
-        fprintf(stderr, "tga_save> Invalid parameters.\n");
+        fprintf(stderr, "tgaSave> Invalid parameters.\n");
         return -1;
     }
 
@@ -350,13 +350,13 @@ int tga_save(FILE *f, unsigned char *image, unsigned int width, unsigned int hei
 
     // Write image data
     if (fwrite(image, size, 1, f) < 1) {
-        perror("tga_save> Disk write failed.\n");
+        perror("tgaSave> Disk write failed.\n");
         return -2;
     }
     return 0;
 }
 
-int tga_save_filename(unsigned char *image, unsigned int width, unsigned int height, char type, char *s, ...) {
+int tgaSaveFilename(unsigned char *image, unsigned int width, unsigned int height, char type, const char *s, ...) {
     char buffer[1024];
     FILE *f;
     int v;
@@ -369,7 +369,7 @@ int tga_save_filename(unsigned char *image, unsigned int width, unsigned int hei
         perror(buffer);
         return -1;
     }
-    v = tga_save(f, image, width, height, type);
+    v = tgaSave(f, image, width, height, type);
     fclose(f);
     return v;
 }

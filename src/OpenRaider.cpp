@@ -3218,7 +3218,7 @@ void OpenRaider::consoleCommand(char *cmd)
         m_render.screenShot(sfilename);
         delete [] tmp;
         delete [] sfilename;
-        print(true, "Took screenshot");
+        print(false, "Took screenshot");
     }
     else if (rc_command("fullscreen", cmd))
     {
