@@ -45,24 +45,6 @@ bool equalEpsilon(vec_t a, vec_t b);
 int helIntersectionLineAndPolygon(vec3_t intersect, vec3_t p1, vec3_t p2, vec3_t *polygon);
 
 /*!
- * \brief Calculate the distance from a sphere to a plane
- * \param center Center of sphere
- * \param radius Radius of sphere
- * \param plane Plane
- * \returns distance
- */
-vec_t helDistToSphereFromPlane3v(vec3_t center, vec_t radius, vec4_t plane);
-
-/*!
- * \brief Calculate the distance from a box to a plane
- * \param min Minimum Point of a bounding box
- * \param max Maximum Point of a bounding box
- * \param plane Plane
- * \returns distance
- */
-vec_t helDistToBboxFromPlane3v(vec3_t min, vec3_t max, vec4_t plane);
-
-/*!
  * \brief Calculate the length of a line segment / the distance between two points
  * \param a First point
  * \param b Second point

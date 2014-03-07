@@ -57,14 +57,6 @@ System::System() {
 System::~System() {
 }
 
-int System::createDir(char *path) {
-#ifdef WIN32
-    return _mkdir(path);
-#else
-    return mkdir(path, S_IRWXU | S_IRWXG);
-#endif
-}
-
 unsigned int System::addCommandMode(const char *command) {
     if (command && command[0] == '[') {
         mCmdModes.pushBack(command);

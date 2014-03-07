@@ -68,13 +68,6 @@ public:
     virtual ~System();
 
     /*!
-     * \brief Created a directory
-     * \param path Directory to create
-     * \returns -1 on error
-     */
-    static int createDir(char *path);
-
-    /*!
      * \brief Created a new Command Mode.
      * \param command valid command mode for the resource file, eg "[Engine.OpenGL.Driver]"
      * \returns id given to mode

@@ -128,7 +128,7 @@ If you want to change this behaviour, this happens around line 1075 of `src/Open
 
 ### Console/Config Commands
 
-Console commands (BOOL is now '0' or '1' for less typing).
+Console commands (BOOL is '0', '1', "true" or "false").
 Pressing &lt;UP&gt; will go back to last command entered (saves typing).
 
 #### Game
@@ -183,11 +183,15 @@ Pressing &lt;UP&gt; will go back to last command entered (saves typing).
 
 #### Set Commands
 
+These commands have to be entered as `set COMMAND VALUE` or `set COMMAND=VALUE`.
+
 | Command        | Action                    |
 | --------------:|:------------------------- |
 | mousegrab BOOL | Set mouse grabbing on/off |
 
 #### Stat Commands
+
+These commands have to be entered as `stat COMMAND`.
 
 | Command | Action                 |
 | -------:|:---------------------- |

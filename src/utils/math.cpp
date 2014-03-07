@@ -93,45 +93,6 @@ int helIntersectionLineAndPolygon(vec3_t intersect,
 }
 
 
-vec_t helDistToSphereFromPlane3v(vec3_t center, vec_t radius, vec4_t plane)
-{
-    vec_t d;
-
-
-    d = (plane[0] * center[0] +
-            plane[1] * center[1] +
-            plane[2] * center[2] +
-            plane[3]);
-
-    if (d <= -radius)
-        return 0;
-
-    return d + radius;
-}
-
-
-vec_t helDistToBboxFromPlane3v(vec3_t min, vec3_t max, vec4_t plane)
-{
-    vec3_t center;
-    vec_t d, radius;
-
-
-    helMidpoint3v(min, max, center);
-
-    d = (plane[0] * center[0] +
-            plane[1] * center[1] +
-            plane[2] * center[2] +
-            plane[3]);
-
-    radius = helDist3v(max, center);
-
-    if (d <= -radius)
-        return 0;
-
-    return d + radius;
-}
-
-
 vec_t helDist3v(vec3_t a, vec3_t b)
 {
     return (sqrtf( ((b[0] - a[0]) * (b[0] - a[0])) +

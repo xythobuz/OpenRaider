@@ -2698,6 +2698,8 @@ void OpenRaider::processRoom(int index)
 //! \fixme Use rc_get_bool consistently!
 void OpenRaider::consoleCommand(char *cmd)
 {
+    bool b = false;
+
     if (!cmd || !cmd[0])
         return;
 
@@ -2805,7 +2807,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_animate", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fAnimateAllModels);
             print(false, "Animating all models");
@@ -2818,7 +2821,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_ponytail", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fRenderPonytail);
             print(false, "Rendering ponytail");
@@ -2831,7 +2835,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_light", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fGL_Lights);
         }
@@ -2842,7 +2847,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("hop", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             gWorld.setFlag(World::fEnableHopping);
             print(true, "Room hopping is on");
@@ -2855,7 +2861,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_fog", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fFog);
         }
@@ -2906,7 +2913,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_oneroom", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fOneRoom);
         }
@@ -2917,7 +2925,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_allrooms", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fAllRooms);
         }
@@ -2930,7 +2939,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_sprite", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fSprites);
         }
@@ -2941,7 +2951,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_roommodel", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fRoomModels);
         }
@@ -2952,7 +2963,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_entmodel", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fEntityModels);
         }
@@ -2963,7 +2975,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_particle", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fParticles);
         }
@@ -2974,7 +2987,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_vis", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fUsePortals);
         }
@@ -2985,7 +2999,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_upf", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fUpdateRoomListPerFrame);
         }
@@ -2996,7 +3011,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_portal", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fPortals);
         }
@@ -3007,7 +3023,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_vmodel", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fViewModel);
         }
@@ -3018,7 +3035,8 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("r_ralpha", cmd))
     {
-        if (atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (b)
         {
             m_render.setFlags(Render::fRoomAlpha);
         }
@@ -3062,7 +3080,8 @@ void OpenRaider::consoleCommand(char *cmd)
     {
         m_flags |= OpenRaider_ShowFPS;
 
-        if (!atoi(cmd))
+        rc_get_bool(cmd, &b);
+        if (!b)
         {
             m_flags ^= OpenRaider_ShowFPS;
         }
