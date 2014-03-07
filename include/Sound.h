@@ -37,6 +37,12 @@ public:
     int init();
 
     /*!
+     * \brief Get number of registered sources
+     * \returns number of registered sources
+     */
+    int registeredSources();
+
+    /*!
      * \brief Move listener and repositions them
      * \param pos New position for listener
      * \param angle New orientation for listener

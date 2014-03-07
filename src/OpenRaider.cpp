@@ -625,8 +625,6 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
     switch (key)
     {
         case SYS_MOUSE_LEFT:
-            mSound.play(m_testSFX);
-
             if (LARA)
             {
                 eventAnimTest(15);
@@ -672,7 +670,11 @@ void OpenRaider::handleKeyPressEvent(unsigned int key, unsigned int mod)
             }
             break;
         case 'r':
-            mSound.play(m_testSFX);
+            if (m_flags & OpenRaider_EnableSound) {
+                if (m_testSFX < mSound.registeredSources()) {
+                    mSound.play(m_testSFX);
+                }
+            }
             break;
     }
 }
@@ -1072,7 +1074,8 @@ void OpenRaider::gameFrame()
                         {
                             if (m_flags & OpenRaider_EnableSound)
                             {
-                                mSound.play(TR_SOUND_FOOTSTEP0);
+                                if (TR_SOUND_FOOTSTEP0 < mSound.registeredSources())
+                                    mSound.play(TR_SOUND_FOOTSTEP0);
                             }
                         }
                         else if (mdl->getAnimation() == 15)
@@ -1193,14 +1196,18 @@ void OpenRaider::processTextures()
 
 void OpenRaider::soundEvent(int type, int id, vec3_t pos, vec3_t angles)
 {
-    switch (type)
-    {
-        case 0: //  Reset listener position
-            mSound.listenAt(pos, angles);
-            break;
-        default:
-            mSound.sourceAt(id, pos);
-            mSound.play(id);
+    if (m_flags & OpenRaider_EnableSound) {
+        switch (type)
+        {
+            case 0: //  Reset listener position
+                mSound.listenAt(pos, angles);
+                break;
+            default:
+                if (id < mSound.registeredSources()) {
+                    mSound.sourceAt(id, pos);
+                    mSound.play(id);
+                }
+        }
     }
 }
 

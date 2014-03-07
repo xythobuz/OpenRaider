@@ -76,6 +76,11 @@ int Sound::init()
 }
 
 
+int Sound::registeredSources() {
+    return mNext;
+}
+
+
 void Sound::listenAt(float pos[3], float angle[3])
 {
     assert(mInit == true);
