@@ -70,8 +70,18 @@ char *fullPath(const char *path, char end) {
 
     if (path[0] == '~') {
 #if defined(unix) || defined(__APPLE__)
+#ifdef __APPLE__
+        // Workaround for Mac OS X. See:
+        // http://stackoverflow.com/questions/20534788/why-does-wordexp-fail-with-wrde-syntax-on-os-x
+        signal(SIGCHLD, SIG_DFL);
+#endif
         // Expand string into segments
-        if (wordexp(path, &word, 0) != 0) {
+        int res = wordexp(path, &word, 0);
+#ifdef __APPLE__
+        signal(SIGCHLD, SIG_IGN);
+#endif
+        if (res != 0) {
+            printf("fullPath> wordexp() failed: %d\n", res);
             return NULL;
         }
 
@@ -106,7 +116,7 @@ char *fullPath(const char *path, char end) {
     }
 
     // Make sure ends in "end" char
-    if (end && (dir[lenPath - 1] != end)) {
+    if ((lenPath > 0) && (end != 0) && (dir[lenPath - 1] != end)) {
         dir[lenPath] = end;
         dir[lenPath + 1] = 0;
     } else {
