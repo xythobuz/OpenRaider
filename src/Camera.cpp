@@ -11,15 +11,7 @@
 #include "utils/math.h"
 #include "Camera.h"
 
-unsigned int Camera::mCounter = 0;
-
-////////////////////////////////////////////////////////////
-// Constructors
-////////////////////////////////////////////////////////////
-
-Camera::Camera()
-{
-    mId = ++mCounter;
+Camera::Camera() {
     mFlags = 0;
     mViewDistance = 14.0f;
     mTranslateDelta = 256.0f;
@@ -29,70 +21,40 @@ Camera::Camera()
     reset();
 }
 
-
-Camera::~Camera()
-{
+Camera::~Camera() {
 }
 
-
-////////////////////////////////////////////////////////////
-// Public Accessors
-////////////////////////////////////////////////////////////
-
-unsigned int Camera::getId()
-{
-    return mId;
-}
-
-
-void Camera::getPosition(vec3_t pos)
-{
+void Camera::getPosition(vec3_t pos) {
     pos[0] = mPos[0];
     pos[1] = mPos[1];
     pos[2] = mPos[2];
 }
 
-
-void Camera::getUp(vec3_t up)
-{
+void Camera::getUp(vec3_t up) {
     up[0] = mUp[0];
     up[1] = mUp[1];
     up[2] = mUp[2];
 }
 
-
-void Camera::getTarget(vec3_t target)
-{
+void Camera::getTarget(vec3_t target) {
     target[0] = mTarget[0];
     target[1] = mTarget[1];
     target[2] = mTarget[2];
 }
 
-
-float Camera::getYaw()
-{
+float Camera::getYaw() {
     return HEL_RAD_TO_DEG(mTheta);
 }
 
-
-vec_t Camera::getRadianYaw()
-{
+vec_t Camera::getRadianYaw() {
     return mTheta;
 }
 
-
-vec_t Camera::getRadianPitch()
-{
+vec_t Camera::getRadianPitch() {
     return mTheta2;
 }
 
-
-////////////////////////////////////////////////////////////
-// Public Mutators
-////////////////////////////////////////////////////////////
-
-void Camera::rotate(float angle, float x, float y, float z)
-{
+void Camera::rotate(float angle, float x, float y, float z) {
     Quaternion t, n;
     Matrix matrix;
     vec_t side[4] = { 1.0f, 0.0f,  0.0f, 1.0f };
@@ -100,7 +62,6 @@ void Camera::rotate(float angle, float x, float y, float z)
     vec_t look[4] = { 0.0f, 0.0f, -1.0f, 1.0f };
     unsigned int i;
     matrix_t m;
-
 
     t.set(angle, x, y, z);
     n = mQ * t;
@@ -112,8 +73,7 @@ void Camera::rotate(float angle, float x, float y, float z)
     matrix.multiply4v(look, mTarget);
     matrix.multiply4v(up, mUp);
 
-    for (i = 0; i < 3; ++i)
-    {
+    for (i = 0; i < 3; ++i) {
         mSide[i] += mPos[i];
         mTarget[i] += mPos[i];
         mUp[i] += mPos[i];
@@ -122,15 +82,12 @@ void Camera::rotate(float angle, float x, float y, float z)
     mQ = n;
 }
 
-
-void Camera::translate(float x, float y, float z)
-{
+void Camera::translate(float x, float y, float z) {
     int i;
     vec_t result[4];
     vec_t v[4];
     matrix_t m;
     Matrix matrix;
-
 
     v[0] = x;
     v[1] = y;
@@ -157,8 +114,7 @@ void Camera::translate(float x, float y, float z)
     matrix.setMatrix(m);
     matrix.multiply4v(v, result);
 
-    for (i = 0; i < 3; ++i)
-    {
+    for (i = 0; i < 3; ++i) {
         mSide[i] += result[i];
         mUp[i] += result[i];
         mTarget[i] += result[i];
@@ -170,9 +126,7 @@ void Camera::translate(float x, float y, float z)
     mPos[2] = z;
 }
 
-
-void Camera::reset()
-{
+void Camera::reset() {
     mTheta = 0.0f;
     mTheta2 = 0.0f;
 
@@ -196,38 +150,26 @@ void Camera::reset()
     translate(0.0f, 0.0f, 0.0f);
 }
 
-
-void Camera::setSensitivityY(float angle)
-{
+void Camera::setSensitivityY(float angle) {
     mRotateDelta2 = HEL_DEG_TO_RAD(angle);
 }
 
-
-void Camera::setSensitivityX(float angle)
-{
+void Camera::setSensitivityX(float angle) {
     mRotateDelta = HEL_DEG_TO_RAD(angle);
 }
 
-
-////////
-void Camera::command(enum camera_command cmd)
-{
-    switch (cmd)
-    {
+void Camera::command(enum camera_command cmd) {
+    switch (cmd) {
         case CAMERA_MOVE_FORWARD:
             if (mFlags & Camera_FlyMode)
-            {
                 mPos[2] += (mTranslateDelta * cosf(mTheta));
-            }
 
             mPos[0] += (mTranslateDelta * sinf(mTheta));
             mPos[1] += (mTranslateDelta * sinf(mTheta2));
             break;
         case CAMERA_MOVE_BACKWARD:
             if (mFlags & Camera_FlyMode)
-            {
                 mPos[2] -= (mTranslateDelta * cosf(mTheta));
-            }
 
             mPos[0] -= (mTranslateDelta * sinf(mTheta));
             mPos[1] -= (mTranslateDelta * sinf(mTheta2));
@@ -278,75 +220,31 @@ void Camera::command(enum camera_command cmd)
     }
 }
 
-
-//! \fixme Mostly invalid for QUAT_CAM (can rotate on XYZ)
-bool Camera::isBehind(int x, int z)
-{
-    vec_t bTheta, bCameraX, bCameraZ, Distance;
-
-
-    // Set up a "virtual camera" a huge distance behind us
-    bTheta = mTheta + HEL_PI;
-
-    if (bTheta > HEL_PI)
-        bTheta -= HEL_2_PI;
-
-    // 64k is a fair distance away...
-    bCameraX = (65536.0f * sinf(bTheta)) + mPos[0];
-    bCameraZ = (65536.0f * cosf(bTheta)) + mPos[2];
-
-    bCameraX -= x;
-    bCameraZ -= z;
-    Distance = sqrtf((bCameraX * bCameraX) + (bCameraZ * bCameraZ));
-
-    return (Distance < 65536.0f);
-}
-
-
-void Camera::setSpeed(float s)
-{
+void Camera::setSpeed(float s) {
     mTranslateDelta = s;
 }
 
-
-void Camera::update()
-{
+void Camera::update() {
     mTarget[2] = (mViewDistance * cosf(mTheta)) + mPos[2];
     mTarget[0] = (mViewDistance * sinf(mTheta)) + mPos[0];
     mTarget[1] = (mViewDistance * sinf(mTheta2)) + mPos[1]; // + height_offset;
 }
 
-
-void Camera::setPosition(vec3_t pos)
-{
+void Camera::setPosition(vec3_t pos) {
     mPos[0] = pos[0];
     mPos[1] = pos[1];
     mPos[2] = pos[2];
 }
 
-
-void Camera::setUp(vec3_t up)
-{
+void Camera::setUp(vec3_t up) {
     mUp[0] = up[0];
     mUp[1] = up[1];
     mUp[2] = up[2];
 }
 
-
-void Camera::setTarget(vec3_t target)
-{
+void Camera::setTarget(vec3_t target) {
     mTarget[0] = target[0];
     mTarget[1] = target[1];
     mTarget[2] = target[2];
 }
-
-
-////////////////////////////////////////////////////////////
-// Private Accessors
-////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////
-// Private Mutators
-////////////////////////////////////////////////////////////
 

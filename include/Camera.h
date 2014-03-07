@@ -71,12 +71,6 @@ public:
     ~Camera();
 
     /*!
-     * \brief Get this cameras ID
-     * \returns id
-     */
-    unsigned int getId();
-
-    /*!
      * \brief Returns the current position
      * \param pos where the position will be stored
      */
@@ -105,15 +99,6 @@ public:
      * \returns theta angle/yaw of camera
      */
     vec_t getRadianYaw();
-    /*------------------------------------------------------
-     * Pre  :
-     * Post : Returns theta angle/yaw of camera
-     *
-     *-- History ------------------------------------------
-     *
-     * 2001.05.26:
-     * Mongoose - Created
-     ------------------------------------------------------*/
 
     /*!
      * \brief Get current angle/pitch
@@ -126,14 +111,6 @@ public:
      * \returns phi angle/pitch of camera
      */
     vec_t getRadianPitch();
-
-    /*!
-     * \brief Check if the coordinate is behind camera eye
-     * \param x X coordinate to check
-     * \param z Z coordinate to check
-     * \returns true if (x, z) is behind camera eye
-     */
-    bool isBehind(int x, int z);
 
     /*!
      * \brief Rotate the camera
@@ -205,7 +182,6 @@ public:
     void setTarget(vec3_t target);
 
 private:
-    unsigned int mId;             //!< Unique id
     Quaternion mQ;                //!< Quaternion for rotation
     unsigned int mFlags;          //!< For testing with flags
     vec_t mPos[4];                //!< Location in 3 space (aka eye)
@@ -218,7 +194,6 @@ private:
     vec_t mTheta;                 //!< View angle Y
     vec_t mRotateDelta2;          //!< Radians to rotate Z
     vec_t mTheta2;                //!< View angle Z
-    static unsigned int mCounter; //!< Id system use
 };
 
 #endif
