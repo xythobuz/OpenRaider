@@ -30,8 +30,7 @@ Sound::Sound()
 {
     mSource[0] = 0;
     mBuffer[0] = 0;
-    mNextBuffer = 0;
-    mNextSource = 0;
+    mNext = 0;
     mInit = false;
 }
 
@@ -92,9 +91,10 @@ void Sound::sourceAt(int source, float pos[3])
 {
     assert(mInit == true);
     assert(source >= 0);
+    assert(source < mNext);
     assert(pos != NULL);
 
-    alSourcefv(mSource[source-1], AL_POSITION, pos);
+    alSourcefv(mSource[source], AL_POSITION, pos);
 }
 
 
@@ -115,7 +115,7 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags)
 
     alGetError();
 
-    alGenBuffers(1, &mBuffer[mNextBuffer]);
+    alGenBuffers(1, &mBuffer[mNext]);
 
     if (alGetError() != AL_NO_ERROR)
     {
@@ -125,7 +125,7 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags)
 
     alGetError();
 
-    alGenSources(1, &mSource[mNextSource]);
+    alGenSources(1, &mSource[mNext]);
 
     if (alGetError() != AL_NO_ERROR)
     {
@@ -143,19 +143,16 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags)
         return -3;
     }
 
-    alBufferData(mBuffer[mNextBuffer], format, data, size, static_cast<ALsizei>(freq));
+    alBufferData(mBuffer[mNext], format, data, size, static_cast<ALsizei>(freq));
 
-    alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
+    alSourcei(mSource[mNext], AL_BUFFER, mBuffer[mNext]);
 
     if (flags & SoundFlagsLoop)
     {
-        alSourcei(mSource[mNextSource], AL_LOOPING, 1);
+        alSourcei(mSource[mNext], AL_LOOPING, 1);
     }
 
-    ++mNextBuffer;
-    ++mNextSource;
-
-    *source = mNextBuffer;
+    *source = mNext++;
 
     return 0;
 }
@@ -178,7 +175,7 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
     alGetError();
 
-    alGenBuffers(1, &mBuffer[mNextBuffer]);
+    alGenBuffers(1, &mBuffer[mNext]);
 
     if (alGetError() != AL_NO_ERROR)
     {
@@ -188,7 +185,7 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
     alGetError();
 
-    alGenSources(1, &mSource[mNextSource]);
+    alGenSources(1, &mSource[mNext]);
 
     if (alGetError() != AL_NO_ERROR)
     {
@@ -197,7 +194,7 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     }
 
     //AL_FORMAT_WAVE_EXT does not exist on Mac!"
-    // alBufferData(mBuffer[mNextBuffer], AL_FORMAT_WAVE_EXT, data, size, freq);
+    // alBufferData(mBuffer[mNext], AL_FORMAT_WAVE_EXT, data, size, freq);
     // Idea: Fill Buffer with
     // alutLoadMemoryFromFileImage
     //     (const ALvoid *data, ALsizei length, ALenum *format, ALsizei *size, ALfloat *frequency)
@@ -210,19 +207,16 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     }
 
 
-    alBufferData(mBuffer[mNextBuffer], format, data, size, static_cast<ALsizei>(freq));
+    alBufferData(mBuffer[mNext], format, data, size, static_cast<ALsizei>(freq));
 
-    alSourcei(mSource[mNextSource], AL_BUFFER, mBuffer[mNextBuffer]);
+    alSourcei(mSource[mNext], AL_BUFFER, mBuffer[mNext]);
 
     if (flags & SoundFlagsLoop)
     {
-        alSourcei(mSource[mNextSource], AL_LOOPING, 1);
+        alSourcei(mSource[mNext], AL_LOOPING, 1);
     }
 
-    ++mNextBuffer;
-    ++mNextSource;
-
-    *source = mNextBuffer;
+    *source = mNext++;
 
     //! \fixme Should free alut buffer?
 
@@ -234,8 +228,9 @@ void Sound::play(int source)
 {
     assert(mInit == true);
     assert(source >= 0);
+    assert(source < mNext);
 
-    alSourcePlay(mSource[source-1]);
+    alSourcePlay(mSource[source]);
 }
 
 
@@ -243,7 +238,8 @@ void Sound::stop(int source)
 {
     assert(mInit == true);
     assert(source >= 0);
+    assert(source < mNext);
 
-    alSourceStop(mSource[source-1]);
+    alSourceStop(mSource[source]);
 }
 

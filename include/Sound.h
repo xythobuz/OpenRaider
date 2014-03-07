@@ -82,11 +82,10 @@ public:
     void stop(int source);
 
 private:
-    bool mInit;                    //!< Guard to ensure ausio system is active
-    unsigned int mBuffer[256];     //!< Audio buffer id list
-    unsigned int mSource[256];     //!< Audio source id list
-    unsigned int mNextBuffer;      //!< Audio buffer id cursor
-    unsigned int mNextSource;      //!< Audio source id cursor
+    bool mInit;                //!< Guard to ensure ausio system is active
+    unsigned int mBuffer[256]; //!< Audio buffer id list
+    unsigned int mSource[256]; //!< Audio source id list
+    int mNext;                 //!< Audio id cursor
 };
 
 #endif
