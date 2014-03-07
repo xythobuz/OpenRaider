@@ -63,21 +63,20 @@ OpenRaider *OpenRaider::Instance()
 }
 
 
-void killOpenRaiderSingleton()
-{
+void killOpenRaiderSingleton() {
     killNetworkSingleton();
 
     printf("Shutting down Game...\n");
 
     // Requires public deconstructor
-    // Causes pointer-being-freed-not-allocated error!
+    //! \fixme Causes pointer-being-freed-not-allocated error!
     //delete OpenRaider::Instance();
-#warning "Can't delete OpenRaider::Instance() without a not-allocated-free error. Something is fishy here..."
 
     printf("\nThanks for testing %s\n", VERSION);
     printf("Build date: %s @ %s\n", __DATE__, __TIME__);
     printf("Build host: %s\n", BUILD_HOST);
     printf("Web site  : http://github.com/xythobuz/OpenRaider\n");
+    printf("Contact   : xythobuz@xythobuz.de");
 }
 
 
@@ -116,33 +115,26 @@ OpenRaider::OpenRaider() : SDLSystem()
 }
 
 
-OpenRaider::~OpenRaider()
-{
+OpenRaider::~OpenRaider() {
     /*! \fixme GL call to critical section,
      * needs mutex really -- Mongoose 2002.01.02
      */
     m_render.setMode(Render::modeDisabled);
-    sleep(1);
+    //sleep(1);
 
     printf("Removing World...\n");
     gWorld.destroy();
 
     printf("Cleaning up...\n");
 
-    for (mMapList.start(); mMapList.forward(); mMapList.next())
-    {
+    for (mMapList.start(); mMapList.forward(); mMapList.next()) {
         if (mMapList.current())
-        {
             delete [] mMapList.current();
-        }
     }
 
-    for (mMusicList.start(); mMusicList.forward(); mMusicList.next())
-    {
+    for (mMusicList.start(); mMusicList.forward(); mMusicList.next()) {
         if (mMusicList.current())
-        {
             delete [] mMusicList.current();
-        }
     }
 
     if (m_pakDir)
@@ -182,18 +174,16 @@ void eventAnimTest(int anim)
 }
 
 
-void percent_callback(int p)
-{
+void percent_callback(int p) {
     OpenRaider &game = *OpenRaider::Instance();
 
-    switch (p)
-    {
+    switch (p) {
         case 10:
             game.print(true, "Level textures loaded");
             break;
         default:
-            // %% has problems with OpenRaider::print it seems
-            game.print(false, "Level pak %i/100 loaded", p);
+            game.print(false, "Level pak %i%% loaded", p);
+            break;
     }
 }
 
@@ -832,7 +822,7 @@ void OpenRaider::print(bool dump_stdout, const char *format, ...)
         return;
     }
 
-    // Strip message of an trailing carrage return
+    // Strip message of trailing newline
     if (buffer[l-1] == '\n')
     {
         buffer[l-1] = 0;
@@ -853,7 +843,7 @@ void OpenRaider::print(bool dump_stdout, const char *format, ...)
     va_end(args);
 
     // Mongoose 2002.08.14, Currently, you must request
-    //   frame redraws in this mode
+    // frame redraws in this mode
     if (m_flags & OpenRaider_Loading)
     {
         gameFrame();
@@ -921,7 +911,7 @@ void OpenRaider::start()
     m_render.setMode(Render::modeLoadScreen);
 
     // Mongoose 2002.01.02, Load external audio tracks and fx
-    //   General audio init
+    // General audio init
     initSound();
 
     // Old room movement
@@ -1518,7 +1508,7 @@ void OpenRaider::processMoveables()
         switch ((int)moveable[i].object_id)
         {
             case 30:
-            case 2: // Which tr needs this as model agian?
+            case 2: // Which tr needs this as model again?
                 processMoveable(i, i, &ent, cache2, cache,
                         (int)moveable[i].object_id);
                 break;
@@ -2832,7 +2822,7 @@ void OpenRaider::processRoom(int index)
     fflush(stdout);
 }
 
-
+//! \fixme Use rc_get_bool consistently!
 void OpenRaider::consoleCommand(char *cmd)
 {
     if (!cmd || !cmd[0])
@@ -3223,14 +3213,12 @@ void OpenRaider::consoleCommand(char *cmd)
     }
     else if (rc_command("sshot", cmd))
     {
-        char sfilename[1024];
         char *tmp = fullPath("~/.OpenRaider/sshots/", '/');
-
-        /* Not very pretty, but gets it done */
-        snprintf(sfilename, 1024, "%s%s", tmp, VERSION);
-        delete [] tmp;
+        char *sfilename = bufferString("%s%s", tmp, VERSION);
         m_render.screenShot(sfilename);
-        print(false, "Took screenshot");
+        delete [] tmp;
+        delete [] sfilename;
+        print(true, "Took screenshot");
     }
     else if (rc_command("fullscreen", cmd))
     {
