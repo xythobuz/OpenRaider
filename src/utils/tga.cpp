@@ -11,16 +11,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+#include <assert.h>
 
 #include "utils/tga.h"
 
 int tgaCheck(FILE *f) {
     char buffer[10];
 
-    if (!f) {
-        perror("tgaCheck> Passed invalid file.\n");
-        return -1;
-    }
+    assert(f != NULL);
 
     /* Read the header */
     fseek(f, 0, SEEK_SET);
@@ -46,10 +44,11 @@ int tgaLoad(FILE *f, unsigned char **image, unsigned int *width, unsigned int *h
     unsigned int size;
     unsigned int i, j;
 
-    if (!f) {
-        fprintf(stderr, "tgaLoad> Invalid parameters.\n");
-        return -1;
-    }
+    assert(f != NULL);
+    assert(image != NULL);
+    assert(width != NULL);
+    assert(height != NULL);
+    assert(type != NULL);
 
     fseek(f, 0, SEEK_SET);
 
@@ -264,10 +263,10 @@ int tgaSave(FILE *f, unsigned char *image, unsigned int width, unsigned int heig
     //unsigned int i;
     //unsigned char tmp;
 
-    if (!f || !image || !width || !height) {
-        fprintf(stderr, "tgaSave> Invalid parameters.\n");
-        return -1;
-    }
+    assert(f != NULL);
+    assert(image != NULL);
+    assert(width > 0);
+    assert(height > 0);
 
     strncpy(comment, "OpenRaider TGA", 63);
     comment[63] = 0;
@@ -361,6 +360,12 @@ int tgaSaveFilename(unsigned char *image, unsigned int width, unsigned int heigh
     FILE *f;
     int v;
     va_list args;
+
+    assert(image != NULL);
+    assert(width > 0);
+    assert(height > 0);
+    assert(s != NULL);
+
     va_start(args, s);
     vsnprintf(buffer, 1023, s, args);
     va_end(args);

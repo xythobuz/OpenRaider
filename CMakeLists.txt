@@ -32,6 +32,20 @@ set (WARNINGS "${WARNINGS} -Wno-disabled-macro-expansion")
 
 set (WARNINGS "${WARNINGS} -Wno-shorten-64-to-32 -Wno-sign-conversion")
 
+# Flags for all builds
+set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11 ${WARNINGS}")
+set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_EMITTER")
+
+# Flags for Debug build
+set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -g -O0")
+set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DDEBUG")
+set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DEXPERIMENTAL")
+
+# Flags for Releasae builds
+set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -DNDEBUG -O2")
+set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -ffast-math -funroll-loops")
+set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -fomit-frame-pointer")
+
 # Add subdirectories
 add_subdirectory (src)
 add_subdirectory (test)
