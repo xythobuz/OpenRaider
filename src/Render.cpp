@@ -407,11 +407,10 @@ void Render::Init(int width, int height)
     mHeight = height;
 
     // Print driver support information
-    printf("\n## GL Driver Info ##\n");
-    printf("Vendor     : %s\n", glGetString(GL_VENDOR));
-    printf("Renderer   : %s\n", glGetString(GL_RENDERER));
-    printf("Version    : %s\n\n", glGetString(GL_VERSION));
-    //printf("\tExtensions : %s\n\n\n", (char*)glGetString(GL_EXTENSIONS));
+    printf("GL Vendor   : %s\n", glGetString(GL_VENDOR));
+    printf("GL Renderer : %s\n", glGetString(GL_RENDERER));
+    printf("GL Version  : %s\n", glGetString(GL_VERSION));
+    //printf("Extensions : %s\n\n\n", (char*)glGetString(GL_EXTENSIONS));
 
     // Testing for goodies
     // Mongoose 2001.12.31, Fixed string use to check for bad strings
@@ -419,13 +418,14 @@ void Render::Init(int width, int height)
 
     if (s && s[0])
     {
-        printf("\tGL_ARB_multitexture       \t\t");
+        //printf("\tGL_ARB_multitexture       \t\t");
 
         if (strstr(s, "GL_ARB_multitexture"))
         {
             mFlags |= Render::fMultiTexture;
-            printf("YES\n");
+            //printf("YES\n");
         }
+        /*
         else
         {
             printf("NO\n");
@@ -441,6 +441,7 @@ void Render::Init(int width, int height)
         {
             printf("NO\n");
         }
+        */
     }
 
     // Set up Z buffer

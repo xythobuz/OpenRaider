@@ -158,7 +158,7 @@ void percent_callback(int p) {
 
     switch (p) {
         case 10:
-            game.print(true, "Level textures loaded");
+            game.print(false, "Level textures loaded");
             break;
         default:
             game.print(false, "Level pak %i%% loaded", p);
@@ -863,14 +863,10 @@ void OpenRaider::processPakSounds()
     // in this group, bits 0-1: channel number
     */
 
-    if (m_flags & OpenRaider_EnableSound)
-    {
-        printf("Processing pak sound files: ");
-    }
-    else
-    {
+    if (!(m_flags & OpenRaider_EnableSound))
         return;
-    }
+
+    printf("Processing pak sound files: ");
 
     for (i = 0; i < m_tombraider.getSoundSamplesCount(); ++i)
     {
@@ -895,11 +891,11 @@ void OpenRaider::processPakSounds()
         //pos[2] = sound[i].z;
         //mSound.SourceAt(id, pos);
 
-        printf(".");
-        fflush(stdout);
+        //printf(".");
+        //fflush(stdout);
     }
 
-    printf("\n");
+    printf("Done! Found %u files.\n", m_tombraider.getSoundSamplesCount());
 }
 
 
@@ -993,7 +989,7 @@ void OpenRaider::loadLevel(char *mapname)
         print(false, "Processing rooms: %i/%i", i, m_tombraider.NumRooms());
     }
 
-    printf("\n");
+    printf("Done! Found %d rooms.\n", m_tombraider.NumRooms());
 
     // Cache/process meshes
     printf("Processing meshes: ");
@@ -1006,7 +1002,7 @@ void OpenRaider::loadLevel(char *mapname)
         print(false, "Processing meshes: %i/%i", i, m_tombraider.getMeshCount());
     }
 
-    printf("\n");
+    printf("Done! Found %d meshes.\n", m_tombraider.getMeshCount());
 
     // Cache/process sprites
     processSprites();
@@ -1175,13 +1171,13 @@ void OpenRaider::processTextures()
         if (bumpmap)
             delete [] bumpmap;
 
-        printf(".");
-        fflush(stdout);
+        //printf(".");
+        //fflush(stdout);
     }
 
     gTextureOffset = mLevelTextureOffset + m_tombraider.NumTextures();
 
-    printf("\n");
+    printf("Done! Found %d textures.\n", m_tombraider.NumTextures());
 }
 
 
@@ -1194,11 +1190,9 @@ void OpenRaider::processTextures()
 // Private Mutators
 ////////////////////////////////////////////////////////////
 
-void OpenRaider::soundEvent(int type, int id, vec3_t pos, vec3_t angles)
-{
+void OpenRaider::soundEvent(int type, int id, vec3_t pos, vec3_t angles) {
     if (m_flags & OpenRaider_EnableSound) {
-        switch (type)
-        {
+        switch (type) {
             case 0: //  Reset listener position
                 mSound.listenAt(pos, angles);
                 break;
@@ -1302,14 +1296,14 @@ void OpenRaider::processSprites()
                     r_mesh->sprite[l].texel[0].st[0] = (vec_t)(x) / TexelScale;
                     r_mesh->sprite[l].texel[0].st[1] = (vec_t)(y+height)/TexelScale;
 
-                    printf(".");
-                    fflush(stdout);
+                    //printf(".");
+                    //fflush(stdout);
                 }
             }
         }
     }
 
-    printf("\n");
+    printf("Done! Found %d sprites.\n", m_tombraider.NumSpriteSequences());
 }
 
 
@@ -1327,6 +1321,7 @@ void OpenRaider::processMoveables()
     tr2_object_texture_t *object_texture = NULL;
     int i, j, object_id;
     int ent = 0;
+    unsigned int statCount = 0;
 
 
     frame = m_tombraider.Frame();
@@ -1356,8 +1351,8 @@ void OpenRaider::processMoveables()
             // It's not a moveable, skip sprite
             if (j != (int)m_tombraider.NumSpriteSequences())
             {
-                printf("s");
-                fflush(stdout);
+                //printf("s");
+                //fflush(stdout);
                 continue;
             }
         }
@@ -1371,12 +1366,13 @@ void OpenRaider::processMoveables()
         // It's not a moveable or even a sprite?, skip unknown
         if (j == (int)m_tombraider.NumMoveables())
         {
-            printf("?"); // what the wolf?
-            fflush(stdout);
+            //printf("?"); // what the wolf?
+            //fflush(stdout);
             continue;
         }
 
         processMoveable(j, i, &ent, cache2, cache, object_id);
+        statCount++;
     }
 
     // Get models that aren't items
@@ -1427,7 +1423,7 @@ void OpenRaider::processMoveables()
         }
     }
 
-    printf("\n");
+    printf("Done! Found %d models.\n", m_tombraider.NumMoveables() + statCount);
 }
 
 
@@ -1659,8 +1655,8 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
         sModel->model = c_model;
         gWorld.addEntity(thing);
         gWorld.addModel(c_model);
-        printf("c"); // it's already cached
-        fflush(stdout);
+        //printf("c"); // it's already cached
+        //fflush(stdout);
 
         //continue;
         return;
@@ -1845,8 +1841,8 @@ void OpenRaider::processMoveable(int index, int i, int *ent,
                 (m_tombraider.Engine() == TR_VERSION_2));
     }
 
-    printf(".");
-    fflush(stdout);
+    //printf(".");
+    //fflush(stdout);
 }
 
 
@@ -1926,8 +1922,8 @@ void OpenRaider::processModel(int index)
     {
         //! \fixme allow sparse lists with matching ids instead?
         gWorld.addMesh(NULL); // Filler, to make meshes array ids align
-        printf("x");
-        fflush(stdout);
+        //printf("x");
+        //fflush(stdout);
         return;
     }
 
@@ -2111,8 +2107,8 @@ void OpenRaider::processModel(int index)
     mesh->coloredRectangles.qSort(compareFaceTextureId);
 
     gWorld.addMesh(mesh);
-    printf(".");
-    fflush(stdout);
+    //printf(".");
+    //fflush(stdout);
 }
 
 
@@ -2136,8 +2132,8 @@ void OpenRaider::processRoom(int index)
         gWorld.addRoom(0x0);
         m_render.addRoom(0x0);
 
-        printf("x");
-        fflush(stdout);
+        //printf("x");
+        //fflush(stdout);
         return;
     }
 
@@ -2698,8 +2694,8 @@ void OpenRaider::processRoom(int index)
     rRoom->room = r_mesh;
     m_render.addRoom(rRoom);
 
-    printf(".");
-    fflush(stdout);
+    //printf(".");
+    //fflush(stdout);
 }
 
 //! \fixme Use rc_get_bool consistently!
