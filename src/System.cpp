@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <cmath>
+#include <assert.h>
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -58,16 +59,18 @@ System::~System() {
 }
 
 unsigned int System::addCommandMode(const char *command) {
-    if (command && command[0] == '[') {
-        mCmdModes.pushBack(command);
-        return (mCmdModes.size() - 1);
-    } else {
-        return 0;
-    }
+    assert(command != NULL);
+    assert(command[0] == '[');
+
+    mCmdModes.pushBack(command);
+    return (mCmdModes.size() - 1);
 }
 
 //! \fixme Modifer support later
 void System::bindKeyCommand(const char *cmd, unsigned int key, int event) {
+    assert(cmd != NULL);
+    assert(cmd[0] != '\0');
+
     printf("Bound command '%s' -> event %i (0x%x key)\n", cmd, event, key);
     mKeyEvents[key] = event;
 }
@@ -76,8 +79,8 @@ void System::command(const char *cmd) {
     bool modeFound = false;
     char *cmdbuf;
 
-    if (!cmd || !cmd[0]) // Null command string
-        return;
+    assert(cmd != NULL);
+    assert(cmd[0] != '\0');
 
     if (cmd[0] == '[') { // Set a mode, eg "[Engine.OpenGL.Driver]"
         for (mCmdModes.start(); mCmdModes.forward(); mCmdModes.next()) {
@@ -104,6 +107,9 @@ int System::loadResourceFile(const char *filename) {
     FILE *f;
     char c;
     int i, j;
+
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
 
     f = fopen(filename, "r");
 
@@ -191,10 +197,8 @@ void System::setDriverGL(const char *driver) {
 }
 
 void System::resizeGL(unsigned int w, unsigned int h) {
-    if (!w || !h) {
-        printf("resizeGL> ERROR assertions 'w > 0', 'h > 0' failed\n");
-        return;
-    }
+    assert(w > 0);
+    assert(h > 0);
 
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);

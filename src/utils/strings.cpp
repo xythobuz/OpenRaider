@@ -31,18 +31,15 @@ bool stringEndsWith(const char *str, const char *suffix) {
     return strncmp(str + lenstr - lensuffix, suffix, lensuffix) == 0;
 }
 
-char *bufferString(const char *string, ...) {
+char *bufferString(const char *string, va_list args) {
     int sz = 60;
     int n;
     char *text;
-    va_list args;
 
     assert(string != NULL);
     assert(string[0] != '\0');
 
     text = new char[sz];
-
-    va_start(args, string);
 
     n = vsnprintf(text, sz, string, args);
 
@@ -56,8 +53,14 @@ char *bufferString(const char *string, ...) {
         n = vsnprintf(text, sz, string, args);
     }
 
-    va_end(args);
+    return text;
+}
 
+char *bufferString(const char *string, ...) {
+    va_list args;
+    va_start(args, string);
+    char *text = bufferString(string, args);
+    va_end(args);
     return text;
 }
 

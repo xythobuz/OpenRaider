@@ -22,6 +22,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <assert.h>
 
 #include "Sound.h"
 
@@ -78,8 +79,9 @@ int Sound::init()
 
 void Sound::listenAt(float pos[3], float angle[3])
 {
-    if (!mInit)
-        return;
+    assert(mInit == true);
+    assert(pos != NULL);
+    assert(angle != NULL);
 
     alListenerfv(AL_POSITION, pos);
     alListenerfv(AL_ORIENTATION, angle);
@@ -88,8 +90,9 @@ void Sound::listenAt(float pos[3], float angle[3])
 
 void Sound::sourceAt(int source, float pos[3])
 {
-    if (!mInit || source < 0)
-        return;
+    assert(mInit == true);
+    assert(source >= 0);
+    assert(pos != NULL);
 
     alSourcefv(mSource[source-1], AL_POSITION, pos);
 }
@@ -103,12 +106,10 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags)
     ALenum format;
     ALvoid *data;
 
-
-    if (!mInit || !filename || !source)
-    {
-        printf("Sound::AddFile> ERROR pre condition assertion failed\n");
-        return -1000;
-    }
+    assert(mInit == true);
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
+    assert(source != NULL);
 
     *source = -1;
 
@@ -167,11 +168,9 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     ALvoid *data;
     int error = 0;
 
-    if (!mInit || !wav || !source)
-    {
-        printf("Sound::AddWave> ERROR pre condition assertion failed\n");
-        return -1000;
-    }
+    assert(mInit == true);
+    assert(wav != NULL);
+    assert(source != NULL);
 
     *source = -1;
 
@@ -233,17 +232,8 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
 void Sound::play(int source)
 {
-    if (!mInit)
-    {
-        printf("Sound::Play> ERROR: Sound not initialized\n");
-        return;
-    }
-
-    if (source < 0)
-    {
-        printf("Sound::Play> ERROR: Source Id invalid\n");
-        return;
-    }
+    assert(mInit == true);
+    assert(source >= 0);
 
     alSourcePlay(mSource[source-1]);
 }
@@ -251,11 +241,8 @@ void Sound::play(int source)
 
 void Sound::stop(int source)
 {
-    if (!mInit || source < 0)
-    {
-        printf("Sound::Stop> ERROR pre condition assertion failed\n");
-        return;
-    }
+    assert(mInit == true);
+    assert(source >= 0);
 
     alSourceStop(mSource[source-1]);
 }
