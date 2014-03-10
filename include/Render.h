@@ -232,6 +232,13 @@ public:
 
     void addSkeletalModel(SkeletalModel *mdl);
 
+    /*!
+     * \brief Show a texture for a second, for debugging
+     * \param textureId texture id to show
+     * \returns GL texture id on success, < 0 on error
+     */
+    int showTextureDebug(int textureId);
+
 private:
 
     /*!

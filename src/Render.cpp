@@ -161,6 +161,12 @@ void Render::screenShot(char *filenameBase)
 // Public Mutators
 ////////////////////////////////////////////////////////////
 
+
+int Render::showTextureDebug(int textureId) {
+    return mTexture.showTextureDebug(textureId);
+}
+
+
 void Render::addRoom(RenderRoom *room)
 {
     mRooms.pushBack(room);
@@ -959,6 +965,7 @@ void Render::Display()
     glEnterMode2d(mWidth, mHeight);
     glColor3fv(OR_BLUE);
     mString.Render();
+    mTexture.debugTextureRender(mWidth, mHeight);
     glExitMode2d();
 
 #ifdef USING_EMITTER

@@ -152,6 +152,7 @@ Pressing &lt;UP&gt; will go back to last command entered (saves typing).
 
 | Command          | Action                                       |
 | ----------------:|:-------------------------------------------- |
+| texture INT      | Display the specified 2D texture for 2s      |
 | wireframe        | Render in wireframe (for debugging)          |
 | solid            | Render solid color polygons                  |
 | texture          | Render with textures                         |

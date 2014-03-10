@@ -2762,6 +2762,14 @@ void OpenRaider::consoleCommand(char *cmd)
     {
         m_mouseY = static_cast<float>(atof(cmd));
     }
+    else if (rc_command("texture", cmd))
+    {
+        int error, tex = atoi(cmd);
+        if ((error = m_render.showTextureDebug(tex)) < 0)
+            print(false, "Could not load texture %d (%d)!", tex, error);
+        else
+            print(false, "Displaying texture %d in %d...", tex, error);
+    }
     else if (rc_command("r_pigtails", cmd))
     {
         if (gLaraModel)

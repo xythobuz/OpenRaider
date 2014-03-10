@@ -231,12 +231,29 @@ public:
 
     void useMultiTexture(float aU, float aV, float bU, float bV);
 
+    /*!
+     * \brief Show a texture for a second, for debugging
+     * \param textureId texture id to show
+     * \returns GL texture id on success, < 0 on error
+     */
+    int showTextureDebug(int textureId);
+
+    /*!
+     * \brief Renders debug texture.
+     *
+     * Called in 2D mode from Texture::Display().
+     */
+    void debugTextureRender(int width, int height);
+
 private:
 
     int nextPower(int seed);
 
     unsigned char *scaleBuffer(unsigned char *image, int width, int height,
                                 int components);
+
+    int textureDebug;
+    int textureDebugFrames;
 
     unsigned int *mTextureIds;  //!< GL texture list
     unsigned int mTextureCount; //!< Texture counter

@@ -44,6 +44,8 @@ Texture::Texture()
     //gTextureManager = this;
 
     initSDL_TTF();
+
+    textureDebug = -1;
 }
 
 
@@ -207,6 +209,42 @@ void glPrint3d(float x, float y, float z,
     glListBase(font->drawListBase - font->utf8Offset);
     glCallLists(strlen(string), GL_BYTE, string);
     glPopMatrix();
+}
+
+
+int Texture::showTextureDebug(int textureId) {
+    if (textureId >= getTextureCount())
+        return -1;
+
+    textureDebug = textureId;
+    textureDebugFrames = 100;
+
+    return mTextureIds[textureId];
+}
+
+
+void Texture::debugTextureRender(int width, int height) {
+    int xMin, xMax, yMin, yMax;
+
+    xMin = yMin = 0;
+    xMax = width;
+    yMax = height;
+
+    if ((textureDebug >= 0) && (textureDebugFrames > 0)) {
+        glColor3f(1, 1, 1);
+        bindTextureId(textureDebug);
+
+        // Draw a textured quad
+        glBegin(GL_QUADS);
+        glTexCoord2f(0, 0); glVertex3f(xMin, yMin, 0);
+        glTexCoord2f(0, 1); glVertex3f(xMin, yMax, 0);
+        glTexCoord2f(1, 1); glVertex3f(xMax, yMax, 0);
+        glTexCoord2f(1, 0); glVertex3f(xMax, yMin, 0);
+
+        glEnd();
+
+        textureDebugFrames--;
+    }
 }
 
 
@@ -653,7 +691,13 @@ void convertARGB32bppToRGBA32bpp(unsigned char *image,
     }
 }
 
-GLint deprecated_gluBuild2DMipmaps(GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *data);
+// http://mmmovania.blogspot.de/2011/01/opengl-30-and-above-deprecated-func-and.html
+// http://www.g-truc.net/post-0256.html
+GLint deprecated_gluBuild2DMipmaps(GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *data) {
+    glTexParameteri(target, GL_GENERATE_MIPMAP, GL_TRUE);
+    glTexImage2D(target, 0, internalFormat, width, height, 0, format, type, data);
+    return 0;
+}
 
 int Texture::loadBufferSlot(unsigned char *image,
         unsigned int width, unsigned int height,
@@ -755,15 +799,6 @@ int Texture::loadBufferSlot(unsigned char *image,
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
     return slot;
-}
-
-
-// http://mmmovania.blogspot.de/2011/01/opengl-30-and-above-deprecated-func-and.html
-// http://www.g-truc.net/post-0256.html
-GLint deprecated_gluBuild2DMipmaps(GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *data) {
-    glTexParameteri(target, GL_GENERATE_MIPMAP, GL_TRUE);
-    glTexImage2D(target, 0, internalFormat, width, height, 0, format, type, data);
-    return 0;
 }
 
 
