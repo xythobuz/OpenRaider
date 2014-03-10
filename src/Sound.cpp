@@ -229,6 +229,18 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 }
 
 
+void Sound::remove(int source) {
+    assert(source >= 0);
+    assert(source < mNext);
+
+    alDeleteSources(1, &mSource[source]);
+    alDeleteBuffers(1, &mBuffer[source]);
+
+    if (source == (mNext - 1))
+        mNext--;
+}
+
+
 void Sound::play(int source)
 {
     assert(mInit == true);

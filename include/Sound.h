@@ -76,6 +76,12 @@ public:
     int addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags);
 
     /*!
+     * \brief Remove a loaded sound
+     * \param source valid source id
+     */
+    void remove(int source);
+
+    /*!
      * \brief Play sound source
      * \param source sound source to play
      */
