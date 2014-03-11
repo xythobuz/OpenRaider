@@ -30,9 +30,6 @@ Quaternion::Quaternion(vec4_t v) {
     mZ = v[3];
 }
 
-Quaternion::~Quaternion() {
-}
-
 void Quaternion::getMatrix(matrix_t m) {
     m[ 0] = 1.0f - 2.0f * (mY*mY + mZ*mZ);
     m[ 1] = 2.0f * (mX*mY - mW*mZ);
@@ -53,14 +50,6 @@ void Quaternion::getMatrix(matrix_t m) {
     m[13] = 0.0f;
     m[14] = 0.0f;
     m[15] = 1.0f;
-}
-
-Quaternion &Quaternion::operator =(const Quaternion &q) {
-    mW  = q.mW;
-    mX = q.mX;
-    mY = q.mY;
-    mZ = q.mZ;
-    return *this;
 }
 
 Quaternion Quaternion::operator *(const Quaternion &q) {

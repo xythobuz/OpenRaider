@@ -36,9 +36,10 @@ public:
     Vector3d(vec_t x, vec_t y, vec_t z);
 
     /*!
-     * \brief Deconstructs an object of Vector3d
+     * \brief Constructs an object of Vector3d
+     * \param v contents of new Vector3d
      */
-    ~Vector3d();
+    Vector3d(const Vector3d &v);
 
     /*!
      * \brief Calculate dot product

@@ -24,9 +24,6 @@ Matrix::Matrix(Quaternion &q) {
     setMatrix(m);
 }
 
-Matrix::~Matrix() {
-}
-
 bool Matrix::getInvert(matrix_t out) {
     matrix_t m;
 

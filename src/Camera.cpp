@@ -21,9 +21,6 @@ Camera::Camera() {
     reset();
 }
 
-Camera::~Camera() {
-}
-
 void Camera::getPosition(vec3_t pos) {
     pos[0] = mPos[0];
     pos[1] = mPos[1];

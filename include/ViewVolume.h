@@ -71,11 +71,6 @@ public:
     ViewVolume();
 
     /*!
-     * \brief Deconstructs an object of ViewVolume
-     */
-    ~ViewVolume();
-
-    /*!
      * \brief Check if bounding volume is in view volume
      * \param bvol bounding volume to check
      * \returns true if frustum contains the given bounding volume

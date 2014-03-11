@@ -20,9 +20,6 @@ ViewVolume::ViewVolume() {
     mFrustum[5][0] = mFrustum[5][1] = mFrustum[5][2] = mFrustum[5][3] = 0.0f;
 }
 
-ViewVolume::~ViewVolume() {
-}
-
 bool ViewVolume::isBoundingVolumeInFrustum(BoundingVolume bvol) {
     return (isBoundingSphereInFrustum(bvol.mSphere) &&
             isBoundingBoxInFrustum(bvol.mBox));

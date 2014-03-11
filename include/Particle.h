@@ -22,11 +22,6 @@ public:
     Particle();
 
     /*!
-     * \brief Deconstructs an object of Sound
-     */
-    ~Particle();
-
-    /*!
      * \brief Toggles active state of particle
      * \param active new state
      */

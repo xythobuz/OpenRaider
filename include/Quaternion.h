@@ -37,22 +37,10 @@ public:
     Quaternion(vec4_t v);
 
     /*!
-     * \brief Deconstructs an object of Quaternion
-     */
-    ~Quaternion();
-
-    /*!
      * \brief Get column order matrix equivalent of this quaternion
      * \param m where matrix will be stored
      */
     void getMatrix(matrix_t m);
-
-    /*!
-     * \brief Assign q to this quaternion
-     * \param q what to assign this quaternion to
-     * \returns this quaternion
-     */
-    Quaternion &operator =(const Quaternion &q);
 
     /*!
      * \brief Multiplies this quaternion.

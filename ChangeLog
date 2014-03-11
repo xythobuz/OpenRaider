@@ -5,6 +5,12 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140311 ]
+	* Removed empty Camera, Matrix, Particle, Quaternion,
+	  Vector3d and ViewVolume destructors
+	* Removed unneeded Quaternion assignment operator
+	* Added Vector3d copy constructor
+
 	[ 20140307 ]
 	* Removed duplicated GL initialization code
 	* Removed duplicated TGA writing code from Texture

@@ -66,11 +66,6 @@ public:
     Camera();
 
     /*!
-     * \brief Deconstructs an object of Camera
-     */
-    ~Camera();
-
-    /*!
      * \brief Returns the current position
      * \param pos where the position will be stored
      */

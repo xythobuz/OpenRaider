@@ -55,11 +55,6 @@ public:
     Matrix(Quaternion &q);
 
     /*!
-     * \brief Deconstructs an object of Matrix
-     */
-    ~Matrix();
-
-    /*!
      * \brief Returns this matrix copy
      * \param mat target
      */

@@ -22,11 +22,6 @@ Particle::Particle()
 }
 
 
-Particle::~Particle()
-{
-}
-
-
 void Particle::TextureId(int id)
 {
     _texture = id;

@@ -25,7 +25,10 @@ Vector3d::Vector3d(vec_t x, vec_t y, vec_t z) {
     mVec[2] = z;
 }
 
-Vector3d::~Vector3d() {
+Vector3d::Vector3d(const Vector3d &v) {
+    mVec[0] = v.mVec[0];
+    mVec[1] = v.mVec[1];
+    mVec[2] = v.mVec[2];
 }
 
 vec_t Vector3d::dot(const Vector3d &u, const Vector3d &v) {
