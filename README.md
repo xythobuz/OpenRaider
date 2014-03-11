@@ -218,14 +218,25 @@ The included sample WAV file is made from the [Falling Mate ringtone](http://bre
 
 The included Unit Test Framework [greatest](https://github.com/silentbicycle/greatest/) by Scott Vokes is licensed under the [ISC License](http://www.isc.org/downloads/software-support-policy/isc-license/).
 
-The included cmake scripts [FindALUT](https://github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake), [FindSDL2](https://github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake) and [FindSDL2TTF](https://github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake) are released under the Boost Software License (for FindALUT) and under the BSD License for the other two. Authors: Ryan Pavlik, Iowa State University, Eric Wing and Kitware Inc.
+There are some included cmake scripts:
+
+* [FindALUT](https://github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake)
+* [FindSDL2](https://github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake)
+* [FindSDL2TTF](https://github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake)
+* [FindSSE](https://gitorious.org/vc/vc/source/a1d8b9fc31060d870386613cc72319546c850b87:cmake/FindSSE.cmake)
+
+See the respective files in `cmake` for their licensing.
+
+* Copyright 2009-2010 Ryan Pavlik <rpavlik@iastate.edu> <abiryan@ryand.net>, Iowa State University, Distributed under the Boost Software License.
+* Copyright 2003-2009 Kitware, Inc.
+* Eric Wing
 
 OpenRaider is based on code, specs, and alogrithms from:
 
-+ GooseEgg/Freyja 3d Modelers by Mongoose
-+ TR Rosetta Stone spec sheet by Anonymous
-+ TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose
+* GooseEgg/Freyja 3d Modelers by Mongoose
+* TR Rosetta Stone spec sheet by Anonymous
+* TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose
 
 All code should be GPLed, unless otherwise noted.
 
-2013, 2014 improvements & clean-up by xythobuz.
+2013, 2014 improvements, clean-up by xythobuz.
