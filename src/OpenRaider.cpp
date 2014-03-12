@@ -3061,17 +3061,14 @@ void OpenRaider::consoleCommand(char *cmd)
         if (rc_command("xga", cmd))
         {
             resize(1024, 768);
-            m_render.Update(1024, 768);
         }
         else if (rc_command("svga", cmd))
         {
             resize(800, 600);
-            m_render.Update(800, 600);
         }
         else if (rc_command("vga", cmd))
         {
             resize(640, 460);
-            m_render.Update(640, 460);
         }
     }
     else if (rc_command("sshot", cmd))
@@ -3172,6 +3169,10 @@ void OpenRaider::consoleCommand(char *cmd)
     }
 }
 
+void OpenRaider::resize(unsigned int width, unsigned int height) {
+    SDLSystem::resize(width, height);
+    m_render.Update(width, height);
+}
 
 void OpenRaider::loadPakFolderRecursive(const char *dir) {
     struct dirent *ep;

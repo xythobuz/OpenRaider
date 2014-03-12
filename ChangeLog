@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140312 ]
+	* Resizing the window works properly (except for fixed string positions)
+
 	[ 20140311 ]
 	* Removed empty Camera, Matrix, Particle, Quaternion,
 	  Vector3d and ViewVolume destructors

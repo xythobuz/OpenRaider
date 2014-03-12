@@ -106,6 +106,8 @@ void SDLSystem::resize(unsigned int width, unsigned int height) {
     m_width = width;
     m_height = height;
 
+    SDL_SetWindowSize(mWindow, width, height);
+
     // Resize context
     resizeGL(width, height);
 }
@@ -316,7 +318,7 @@ void SDLSystem::runGame() {
                 case SDL_WINDOWEVENT:
                     switch(event.window.event) {
                         case SDL_WINDOWEVENT_RESIZED:
-                            resizeGL(event.window.data1, event.window.data2);
+                            resize(event.window.data1, event.window.data2);
                             break;
                     }
                     break;

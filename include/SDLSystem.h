@@ -86,7 +86,7 @@ public:
      * \param width new width
      * \param height new height
      */
-    void resize(unsigned int width, unsigned int height);
+    virtual void resize(unsigned int width, unsigned int height);
 
     /*!
      * \brief Start game loop

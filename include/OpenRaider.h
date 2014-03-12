@@ -74,6 +74,13 @@ public:
     void start();
 
     /*!
+     * \brief Resizes game window and updated renderer
+     * \param width new width
+     * \param height new height
+     */
+    virtual void resize(unsigned int width, unsigned int height);
+
+    /*!
      * \brief Mouse motion input
      * \param x relative x motion
      * \param y relative y motion
