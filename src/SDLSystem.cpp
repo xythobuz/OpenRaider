@@ -49,6 +49,8 @@ void SDLSystem::bindKeyCommand(const char *cmd, int key, int event) {
 
 void SDLSystem::setGrabMouse(bool on) {
     SDL_SetRelativeMouseMode(on ? SDL_TRUE : SDL_FALSE);
+    if (!on)
+        SDL_ShowCursor(1);
 }
 
 void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscreen) {

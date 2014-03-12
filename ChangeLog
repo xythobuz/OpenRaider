@@ -8,6 +8,7 @@
 	[ 20140312 ]
 	* Resizing the window works properly (except for fixed string positions)
 	* Removed FullScreen config command and flag that had no effect
+	* Set cursor visible when disabling mousegrab
 
 	[ 20140311 ]
 	* Removed empty Camera, Matrix, Particle, Quaternion,
