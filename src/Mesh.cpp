@@ -5,6 +5,9 @@
  * \author Mongoose
  */
 
+#include <stdlib.h>
+#include <assert.h>
+
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #else
@@ -571,10 +574,7 @@ void Mesh::bufferVertexArray(unsigned int vertexCount, vec_t *vertices)
 void Mesh::setColor(unsigned int index,
         float r, float g, float b, float a)
 {
-    if (index > mNumColors)
-    {
-        return;
-    }
+    assert(index < mNumColors);
 
     mColors[index][0] = r;
     mColors[index][1] = g;
@@ -585,10 +585,7 @@ void Mesh::setColor(unsigned int index,
 
 void Mesh::setColor(unsigned int index, float rgba[4])
 {
-    if (index > mNumColors)
-    {
-        return;
-    }
+    assert(index < mNumColors);
 
     mColors[index][0] = rgba[0];
     mColors[index][1] = rgba[1];
@@ -599,10 +596,7 @@ void Mesh::setColor(unsigned int index, float rgba[4])
 
 void Mesh::setNormal(unsigned int index, float i, float j, float k)
 {
-    if (index > mNumNormals)
-    {
-        return;
-    }
+    assert(index < mNumNormals);
 
     mNormals[index][0] = i;
     mNormals[index][1] = j;
@@ -612,10 +606,7 @@ void Mesh::setNormal(unsigned int index, float i, float j, float k)
 
 void Mesh::setVertex(unsigned int index, float x, float y, float z)
 {
-    if (index > mNumVertices)
-    {
-        return;
-    }
+    assert(index < mNumVertices);
 
     mVertices[index][0] = x;
     mVertices[index][1] = y;

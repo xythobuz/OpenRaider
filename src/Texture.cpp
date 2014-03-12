@@ -23,7 +23,6 @@
 #include "utils/tga.h"
 #include "Texture.h"
 
-//Texture *gTextureManager = 0x0;
 gl_font_t *gFontTest = 0x0;
 
 
@@ -40,8 +39,6 @@ Texture::Texture()
     mTextureId2 = -1;
     mTextureCount = 0;
     mTextureLimit = 0;
-
-    //gTextureManager = this;
 
     initSDL_TTF();
 

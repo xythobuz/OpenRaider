@@ -183,17 +183,16 @@ int System::loadResourceFile(const char *filename) {
 }
 
 void System::setDriverGL(const char *driver) {
-    unsigned int len;
+    assert(driver != NULL);
+    assert(driver[0] != '\0');
 
     if (m_driver)
         delete [] m_driver;
 
-    if (driver && driver[0]) {
-        len = strlen(driver);
-        m_driver = new char[len+1];
-        strncpy(m_driver, driver, len);
-        m_driver[len] = 0;
-    }
+    unsigned int len = strlen(driver);
+    m_driver = new char[len + 1];
+    strncpy(m_driver, driver, len);
+    m_driver[len] = 0;
 }
 
 void System::resizeGL(unsigned int w, unsigned int h) {

@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 
 #include "Particle.h"
 
@@ -98,6 +99,10 @@ void Particle::Reset()
 
 void Particle::Pos(float *x, float *y, float *z)
 {
+    assert(x != NULL);
+    assert(y != NULL);
+    assert(z != NULL);
+
     *x = _pos[0];
     *y = _pos[1];
     *z = _pos[2];
@@ -106,6 +111,10 @@ void Particle::Pos(float *x, float *y, float *z)
 
 void Particle::Color(float *r, float *g, float *b)
 {
+    assert(r != NULL);
+    assert(g != NULL);
+    assert(b != NULL);
+
     *r = _color[0];
     *g = _color[1];
     *b = _color[2];

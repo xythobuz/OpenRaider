@@ -9,30 +9,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <cmath>
+#include <assert.h>
 
 #include "SDL_opengl.h"
 
 #include "utils/math.h"
 #include "SDLSystem.h"
 
-unsigned int *gWidth = 0x0;
-unsigned int *gHeight = 0x0;
-
 SDLSystem::SDLSystem() : System() {
     mWindow = 0x0;
-    gWidth = &m_width;
-    gHeight = &m_height;
     mFullscreen = false;
 }
 
 SDLSystem::~SDLSystem() {
 }
-
-/*
-unsigned int SDLSystem::getTicks() {
-    return SDL_GetTicks();
-}
-*/
 
 #ifdef FIXME
 void SDLSystem::bindKeyCommand(const char *cmd, int key, int event) {
@@ -55,6 +45,9 @@ void SDLSystem::setGrabMouse(bool on) {
 
 void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscreen) {
     int flags = 0; //, x, y;
+
+    assert(width > 0);
+    assert(height > 0);
 
     // Create GL context
     SDL_Init(SDL_INIT_VIDEO);
@@ -105,6 +98,9 @@ void SDLSystem::initVideo(unsigned int width, unsigned int height, bool fullscre
 }
 
 void SDLSystem::resize(unsigned int width, unsigned int height) {
+    assert(width > 0);
+    assert(height > 0);
+
     m_width = width;
     m_height = height;
 
