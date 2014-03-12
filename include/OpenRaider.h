@@ -46,9 +46,8 @@ typedef enum {
     OpenRaider_DebugMap    = (1 << 1),
     OpenRaider_DebugModel  = (1 << 2),
     OpenRaider_EnableSound = (1 << 3),
-    OpenRaider_DumpTexture = (1 << 4),
-    OpenRaider_FullScreen  = (1 << 5),
-    OpenRaider_Loading     = (1 << 6)
+    OpenRaider_DumpTexture = (1 << 4), //!< \fixme Not used!
+    OpenRaider_Loading     = (1 << 5)
 } OpenRaider_Flags;
 
 /*!

@@ -3243,17 +3243,6 @@ void OpenRaider::handleCommand(char *cmd, unsigned int mode)
             {
                 m_height = atoi(cmd);
             }
-            else if (rc_command("FullScreen", cmd))
-            {
-                rc_get_bool(cmd, &b);
-
-                m_flags |= OpenRaider_FullScreen;
-
-                if (!b)
-                {
-                    m_flags ^= OpenRaider_FullScreen;
-                }
-            }
             else if (rc_command("Font", cmd))
             {
                 gFontFilename = fullPath(cmd, 0);

@@ -5,7 +5,6 @@
 Driver=/usr/lib/libGL.so.1
 Width=1280
 Height=720
-FullScreen=false
 Font=~/.OpenRaider/data/test.ttf
 
 [Audio.OpenAL]
@@ -19,6 +18,7 @@ SensitivityY=1.0
 PakDir=~/.OpenRaider/paks/
 AudioDir=~/.OpenRaider/music/
 HomeDir=~/.OpenRaider/data/
+
 DisplayFPS=false
 MapDebug=false
 ModelDebug=false
