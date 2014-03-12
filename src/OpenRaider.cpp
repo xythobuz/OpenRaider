@@ -485,7 +485,7 @@ void OpenRaider::handleConsoleKeyPressEvent(unsigned int key,unsigned int mod)
                 buffer[2] = 0;
                 break;
             default:
-                // Workaround until proper SDL2 text input is used
+                //! \fixme Workaround until proper SDL2 text input is used
                 if ((key >= 1073742049) && (key <= 1073742051))
                     break;
 
@@ -2698,7 +2698,6 @@ void OpenRaider::processRoom(int index)
     //fflush(stdout);
 }
 
-//! \fixme Use rc_get_bool consistently!
 void OpenRaider::consoleCommand(char *cmd)
 {
     bool b = false;

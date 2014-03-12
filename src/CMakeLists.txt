@@ -96,6 +96,7 @@ if (APPLE)
         add_custom_command (TARGET OpenRaider POST_BUILD
             COMMAND echo "Injecting setup script..."
             COMMAND cp "${PROJECT_SOURCE_DIR}/cmake/setup_mac.sh" "${PROJECT_BINARY_DIR}/src/OpenRaider.app/Contents/MacOS/OpenRaider.sh"
+            COMMAND chmod "a+x" "${PROJECT_BINARY_DIR}/src/OpenRaider.app/Contents/MacOS/OpenRaider.sh"
         )
 
         # Fix executable name, so setup script will be called

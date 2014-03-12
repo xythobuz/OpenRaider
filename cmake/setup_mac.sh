@@ -17,16 +17,7 @@ if [ ! -d "${HOME}/.OpenRaider" ]; then
 fi
 if [[ ! -n `find "${HOME}/.OpenRaider/paks" -type f -exec echo Found {} \;` ]]; then
     echo "Missing level files!"
-    osascript -e 'tell app "System Events" to display alert "No level files stored in ~/.OpenRaider/paks\n\nPlace level files there and edit ~/.OpenRaider/OpenRaider.init"'
+    osascript -e 'tell app "System Events" to display alert "No level files stored in ~/.OpenRaider/paks\n\nPlace original Tomb Raider level files there!"'
 else
-    if [[ ! `diff "${HOME}/.OpenRaider/OpenRaider.init" "../Resources/defaults/OpenRaider.init"` ]]; then
-        if [[ ! `diff "${HOME}/.OpenRaider/custom.cfg" "../Resources/defaults/custom.cfg"` ]]; then
-            echo "Unconfigured user!"
-            osascript -e 'tell app "System Events" to display alert "Please edit ~/.OpenRaider/OpenRaider.init or ~/.OpenRaider/custom.cfg"'
-        else
-            ./OpenRaider
-        fi
-    else
-        ./OpenRaider
-    fi
+    ./OpenRaider
 fi
