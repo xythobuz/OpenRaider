@@ -38,9 +38,8 @@ if (APPLE)
     set (SRCS ${SRCS} ${MAC_ICON})
 
     # Copy Data
-    set (MAC_DATA "../data/custom.cfg" "../data/OpenRaider.init" "../data/particle.tga" "../data/sample.wav")
-    set (MAC_DATA ${MAC_DATA} "../data/snow.tga" "../data/snow2.tga" "../data/splash.tga" "../data/test.ttf")
-    set (MAC_DATA ${MAC_DATA} "../data/white.tga")
+    set (MAC_DATA "../data/custom.cfg" "../data/OpenRaider.init" "../data/test.ttf")
+    set (MAC_DATA ${MAC_DATA} "../data/snow.tga" "../data/snow2.tga" "../data/splash.tga")
     set_source_files_properties (${MAC_DATA} PROPERTIES MACOSX_PACKAGE_LOCATION Resources/defaults)
     set (SRCS ${SRCS} ${MAC_DATA})
 endif (APPLE)
@@ -163,10 +162,6 @@ set (LIBS ${LIBS} ${ALUT_LIBRARIES})
 find_package (ZLIB REQUIRED)
 include_directories (SYSTEM ${ZLIB_INCLUDE_DIRS})
 set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
-
-# Add Thread Library
-find_package (Threads REQUIRED)
-set (LIBS ${LIBS} ${CMAKE_THREAD_LIBS_INIT})
 
 # Add utils Library
 set (LIBS ${LIBS} utilities)

@@ -9,6 +9,5 @@ mkdir -p ~/.OpenRaider/music
 mkdir -p ~/.OpenRaider/data
 mkdir -p ~/.OpenRaider/sshots
 cp data/*.tga ~/.OpenRaider/data
-cp data/*.wav ~/.OpenRaider/data
 cp data/*.ttf ~/.OpenRaider/data
 echo "DONE"

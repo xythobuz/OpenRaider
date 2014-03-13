@@ -5,6 +5,10 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140313 ]
+	* Removed unit tests. No unit tests are better then some half-assed
+	  non working ones...
+
 	[ 20140312 ]
 	* Resizing the window works properly (except for fixed string positions)
 	* Removed FullScreen config command and flag that had no effect

@@ -62,7 +62,6 @@ set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -fomit-frame-
 
 # Add subdirectories
 add_subdirectory (src)
-add_subdirectory (test)
 
 #################################################################
 

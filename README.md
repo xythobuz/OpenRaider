@@ -30,7 +30,6 @@ Basically, OpenRaider depends on the following:
 * OpenGL
 * SDL2 & SDL2-TTF
 * OpenAL & ALUT
-* Posix Threads
 * zlib
 * cmake as build system
 
@@ -61,10 +60,6 @@ Do a standard cmake out-of-source build to get a debug configuration and then ru
     make run
 
 On Mac OS X, running `make install` will produce a (more or less) distributable OpenRaider.app bundle.
-
-To build all Unit Tests run `make tests`, to build and run most of them use `make testRun`.
-
-To run a TombRaider level loader regression test use `make testReg`. The results will be put into log files in your build folder.
 
 You can run a static analysis with cppcheck using `make check`, `make checkFull` or `make checkConfig`.
 
@@ -213,10 +208,6 @@ These commands have to be entered as `stat COMMAND`.
 ## License
 
 The included example Font, [Droid Sans Mono](http://www.droidfonts.com/licensing/), was created by Steve Matteson and is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
-
-The included sample WAV file is made from the [Falling Mate ringtone](http://brechler-web.de/fallingmate/) by [Plaetzchen](http://plaetzchen.cc).
-
-The included Unit Test Framework [greatest](https://github.com/silentbicycle/greatest/) by Scott Vokes is licensed under the [ISC License](http://www.isc.org/downloads/software-support-policy/isc-license/).
 
 There are some included cmake scripts:
 
