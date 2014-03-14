@@ -20,12 +20,6 @@ endif()
 
 #################################################################
 
-# Configuration Header file
-configure_file (
-    "${PROJECT_SOURCE_DIR}/cmake/Config.h.in"
-    "${PROJECT_BINARY_DIR}/Config.h"
-)
-
 # Include directories
 include_directories ("${PROJECT_SOURCE_DIR}/include")
 include_directories ("${PROJECT_BINARY_DIR}")

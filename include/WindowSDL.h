@@ -8,6 +8,8 @@
 #ifndef _WINDOW_SDL_H_
 #define _WINDOW_SDL_H_
 
+#include "SDL.h"
+
 #include "Window.h"
 
 /*!
@@ -39,6 +41,9 @@ private:
     unsigned int mHeight;
     bool mFullscreen;
     bool mMousegrab;
+
+    SDL_Window *mWindow;      //!< This is the pointer to the SDL surface
+    SDL_GLContext mGLContext; //!< The OpenGL Context
 };
 
 #endif

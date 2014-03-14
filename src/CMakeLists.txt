@@ -1,8 +1,55 @@
+# Add SDL2 Library
+find_package (SDL2)
+include_directories (SYSTEM ${SDL2_INCLUDE_DIR})
+set (LIBS ${LIBS} ${SDL2_LIBRARY})
+
+# Add SDL2_ttf Library
+find_package (SDL2TTF)
+include_directories (SYSTEM ${SDL2TTF_INCLUDE_DIR})
+set (LIBS ${LIBS} ${SDL2TTF_LIBRARY})
+
+# Add OpenGL Library
+find_package (OpenGL REQUIRED)
+include_directories (SYSTEM ${OPENGL_INCLUDE_DIRS})
+set (LIBS ${LIBS} ${OPENGL_LIBRARIES})
+
+# Add OpenAL Library
+find_package (OpenAL REQUIRED)
+include_directories (SYSTEM ${OPENAL_INCLUDE_DIRS})
+set (LIBS ${LIBS} ${OPENAL_LIBRARIES})
+
+# Add ALUT Library
+find_package (ALUT REQUIRED)
+include_directories (SYSTEM ${ALUT_INCLUDE_DIRS})
+set (LIBS ${LIBS} ${ALUT_LIBRARIES})
+
+# Add Z Library
+find_package (ZLIB REQUIRED)
+include_directories (SYSTEM ${ZLIB_INCLUDE_DIRS})
+set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
+
+#################################################################
+
 # Set Source files
 set (SRCS ${SRCS} "main.cpp")
 set (SRCS ${SRCS} "OpenRaider.cpp")
 set (SRCS ${SRCS} "Sound.cpp")
-set (SRCS ${SRCS} "WindowSDL.cpp")
+
+# Select available Windowing library
+if (SDL2_FOUND AND SDL2TTF_FOUND)
+    set (SRCS ${SRCS} "WindowSDL.cpp")
+else (SDL2_FOUND AND SDL2TTF_FOUND)
+    # Currently only SDL2 support
+    message (FATAL_ERROR "SDL2 and SDL2-TTF are required!")
+endif (SDL2_FOUND AND SDL2TTF_FOUND)
+
+#################################################################
+
+# Configuration Header file
+configure_file (
+    "${PROJECT_SOURCE_DIR}/cmake/Config.h.in"
+    "${PROJECT_BINARY_DIR}/Config.h"
+)
 
 #################################################################
 
@@ -119,36 +166,6 @@ endif (NOT APPLE)
 
 # Add Math Library
 set (LIBS ${LIBS} m)
-
-# Add SDL2 Library
-find_package (SDL2 REQUIRED)
-include_directories (SYSTEM ${SDL2_INCLUDE_DIR})
-set (LIBS ${LIBS} ${SDL2_LIBRARY})
-
-# Add SDL2_ttf Library
-find_package (SDL2TTF REQUIRED)
-include_directories (SYSTEM ${SDL2TTF_INCLUDE_DIR})
-set (LIBS ${LIBS} ${SDL2TTF_LIBRARY})
-
-# Add OpenGL Library
-find_package (OpenGL REQUIRED)
-include_directories (SYSTEM ${OPENGL_INCLUDE_DIRS})
-set (LIBS ${LIBS} ${OPENGL_LIBRARIES})
-
-# Add OpenAL Library
-find_package (OpenAL REQUIRED)
-include_directories (SYSTEM ${OPENAL_INCLUDE_DIRS})
-set (LIBS ${LIBS} ${OPENAL_LIBRARIES})
-
-# Add ALUT Library
-find_package (ALUT REQUIRED)
-include_directories (SYSTEM ${ALUT_INCLUDE_DIRS})
-set (LIBS ${LIBS} ${ALUT_LIBRARIES})
-
-# Add Z Library
-find_package (ZLIB REQUIRED)
-include_directories (SYSTEM ${ZLIB_INCLUDE_DIRS})
-set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
 
 # Add utils Library
 set (LIBS ${LIBS} OpenRaider_math)

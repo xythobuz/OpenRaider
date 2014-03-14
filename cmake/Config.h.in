@@ -1,2 +1,3 @@
 #define VERSION "OpenRaider-@OpenRaider_VERSION_MAJOR@.@OpenRaider_VERSION_MINOR@.@OpenRaider_VERSION_MICRO@@OpenRaider_VERSION_RELEASE@ (@CMAKE_BUILD_TYPE@)"
 #define BUILD_HOST "@OpenRaider_BUILD_HOST@"
+
