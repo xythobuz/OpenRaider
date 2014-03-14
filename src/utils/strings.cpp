@@ -74,16 +74,20 @@ char *fullPath(const char *path, char end) {
 
     if (path[0] == '~') {
 #if defined(unix) || defined(__APPLE__)
+
 #ifdef __APPLE__
         // Workaround for Mac OS X. See:
         // http://stackoverflow.com/questions/20534788/why-does-wordexp-fail-with-wrde-syntax-on-os-x
         signal(SIGCHLD, SIG_DFL);
 #endif
+
         // Expand string into segments
         int res = wordexp(path, &word, 0);
+
 #ifdef __APPLE__
         signal(SIGCHLD, SIG_IGN);
 #endif
+
         if (res != 0) {
             printf("fullPath> wordexp() failed: %d\n", res);
             return NULL;
@@ -108,7 +112,7 @@ char *fullPath(const char *path, char end) {
 
         wordfree(&word);
 #else
-        printf("WARNING: Tilde expansion not supported on this platform!\n");
+        printf("WARNING: Tilde expansion not supported on this platform:\n\t%s\n", path);
         lenPath = strlen(path);
         dir = new char[lenPath + 2]; // space for end char
         strncpy(dir, path, lenPath);
@@ -128,44 +132,5 @@ char *fullPath(const char *path, char end) {
     }
 
     return dir;
-}
-
-bool rc_command(const char *symbol, char *command) {
-    assert(symbol != NULL);
-    assert(symbol[0] != '\0');
-    assert(command != NULL);
-    assert(command[0] != '\0');
-
-    int lens = strlen(symbol);
-
-    if (strncmp(command, symbol, lens) == 0) {
-        int lenc = strlen(command);
-
-        //! \fixme Should ignore whitespace, but only if it is really there...?
-        // lens+1 skips '=' or ' '
-        for (int i = 0, j = lens+1; j < lenc; ++i, ++j) {
-            command[i] = command[j];
-            command[i+1] = 0;
-        }
-
-        return true;
-    }
-
-    return false;
-}
-
-int rc_get_bool(const char *buffer, bool *val) {
-    assert(buffer != NULL);
-    assert(buffer[0] != '\0');
-    assert(val != NULL);
-
-    if ((buffer[0] == '1') || (strncmp(buffer, "true", 4) == 0))
-        *val = true;
-    else if ((buffer[0] == '0') || (strncmp(buffer, "false", 5) == 0))
-        *val = false;
-    else
-        return -2;
-
-    return 0;
 }
 

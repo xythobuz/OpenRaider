@@ -2,8 +2,8 @@
  * \file include/Sound.h
  * \brief This is the audio manager Header
  *
- * \author xythobuz
  * \author Mongoose
+ * \author xythobuz
  */
 
 #ifndef _SOUND_H_
@@ -109,3 +109,4 @@ private:
 };
 
 #endif
+

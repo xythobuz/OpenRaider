@@ -41,21 +41,5 @@ char *bufferString(const char *string, ...) __attribute__((format(printf, 1, 2))
  */
 char *fullPath(const char *path, char end);
 
-/*!
- * \brief Checks if Command matches Symbol.
- * Returns the rest of the argument list back in command buffer, if any
- * \param symbol command string
- * \param command with arguments
- * \returns true if command matches symbol
- */
-bool rc_command(const char *symbol, char *command);
-
-/*!
- * \brief Interpret a string as a bool
- * \param buffer "true" or "false"
- * \param val is set to boolean interpretation of buffer
- * \returns -1 for null string, -2 if string is not "true" or "false"
- */
-int rc_get_bool(const char *buffer, bool *val);
-
 #endif
+

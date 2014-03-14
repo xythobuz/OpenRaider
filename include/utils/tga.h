@@ -87,3 +87,4 @@ int tgaSaveFilename(unsigned char *image,
     __attribute__((format(printf, 5, 6)));
 
 #endif
+

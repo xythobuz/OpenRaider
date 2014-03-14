@@ -69,3 +69,4 @@ void helMidpoint3v(vec3_t a, vec3_t b, vec3_t mid);
 vec_t helRandomNum(vec_t from, vec_t to);
 
 #endif
+

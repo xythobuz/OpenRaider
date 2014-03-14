@@ -2,8 +2,8 @@
  * \file src/Sound.cpp
  * \brief This is the audio manager Implementation
  *
- * \author xythobuz
  * \author Mongoose
+ * \author xythobuz
  */
 
 #ifdef __APPLE__
@@ -122,8 +122,7 @@ void Sound::sourceAt(int source, float pos[3]) {
 }
 
 //! \fixme Seperate sourcing and buffering, Mongoose 2002.01.04
-int Sound::addFile(const char *filename, int *source, unsigned int flags)
-{
+int Sound::addFile(const char *filename, int *source, unsigned int flags) {
     ALsizei size;
     ALfloat freq;
     ALenum format;
