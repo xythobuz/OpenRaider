@@ -1,22 +1,5 @@
 # Set Source files
-set (SRCS ${SRCS} "Camera.cpp")
-set (SRCS ${SRCS} "Emitter.cpp")
-set (SRCS ${SRCS} "GLString.cpp")
-set (SRCS ${SRCS} "Matrix.cpp")
-set (SRCS ${SRCS} "Mesh.cpp")
-set (SRCS ${SRCS} "OpenRaider.cpp")
-set (SRCS ${SRCS} "Particle.cpp")
-set (SRCS ${SRCS} "Quaternion.cpp")
-set (SRCS ${SRCS} "Render.cpp")
-set (SRCS ${SRCS} "SDLSystem.cpp")
-set (SRCS ${SRCS} "SkeletalModel.cpp")
-set (SRCS ${SRCS} "Sound.cpp")
-set (SRCS ${SRCS} "System.cpp")
-set (SRCS ${SRCS} "Texture.cpp")
-set (SRCS ${SRCS} "TombRaider.cpp")
-set (SRCS ${SRCS} "Vector3d.cpp")
-set (SRCS ${SRCS} "ViewVolume.cpp")
-set (SRCS ${SRCS} "World.cpp")
+set (SRCS ${SRCS} "main.cpp")
 
 #################################################################
 
@@ -82,7 +65,7 @@ set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${OpenRaider_CXX_FLAGS} ${O
 set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS} ${OpenRaider_CXX_FLAGS_RELEASE}")
 
 # Add utils directory
-add_subdirectory (utils)
+# add_subdirectory (utils)
 
 # Add Executable
 add_executable (OpenRaider MACOSX_BUNDLE ${SRCS})
@@ -164,7 +147,7 @@ include_directories (SYSTEM ${ZLIB_INCLUDE_DIRS})
 set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
 
 # Add utils Library
-set (LIBS ${LIBS} utilities)
+# set (LIBS ${LIBS} utilities)
 
 # Link to all found libs
 target_link_libraries (OpenRaider ${LIBS})
