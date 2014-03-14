@@ -7,6 +7,8 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+extern OpenRaider *gOpenRaider; //!< Main Game Singleton
+
 /*!
  * \brief atexit() handler
  */

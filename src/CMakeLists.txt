@@ -1,5 +1,6 @@
 # Set Source files
 set (SRCS ${SRCS} "main.cpp")
+set (SRCS ${SRCS} "OpenRaider.cpp")
 set (SRCS ${SRCS} "Sound.cpp")
 
 #################################################################

@@ -6,7 +6,6 @@
  * \author Mongoose
  */
 
-#include <cstdarg>
 #include <cstdlib>
 #include <stdio.h>
 #include <string.h>

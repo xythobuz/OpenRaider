@@ -1,0 +1,36 @@
+/*!
+ * \file include/OpenRaider.h
+ * \brief Main Game Object
+ *
+ * \author xythobuz
+ */
+
+#ifndef _OPENRAIDER_H_
+#define _OPENRAIDER_H_
+
+/*!
+ * \brief Main Game Singleton
+ */
+class OpenRaider {
+public:
+
+    /*!
+     * \brief Constructs an object of OpenRaider
+     */
+    OpenRaider();
+
+    /*!
+     * \brief Deconstructs an object of OpenRaider
+     */
+    ~OpenRaider();
+
+    /*!
+     * \brief Load the configuration file
+     * \returns 0 on success
+     */
+    int loadConfig(const char *config);
+
+private:
+};
+
+#endif

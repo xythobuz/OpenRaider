@@ -9,6 +9,8 @@
 #ifndef _UTILS_STRINGS_H_
 #define _UTILS_STRINGS_H_
 
+#include <cstdarg>
+
 /*!
  * \brief Check if a string ends with another string.
  * \param str string to check
