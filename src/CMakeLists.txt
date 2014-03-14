@@ -22,7 +22,7 @@ if (APPLE)
     set (SRCS ${SRCS} ${MAC_ICON})
 
     # Copy Data
-    set (MAC_DATA "../data/custom.cfg" "../data/OpenRaider.init" "../data/test.ttf")
+    set (MAC_DATA "../data/OpenRaider.init" "../data/test.ttf")
     set (MAC_DATA ${MAC_DATA} "../data/snow.tga" "../data/snow2.tga" "../data/splash.tga")
     set_source_files_properties (${MAC_DATA} PROPERTIES MACOSX_PACKAGE_LOCATION Resources/defaults)
     set (SRCS ${SRCS} ${MAC_DATA})

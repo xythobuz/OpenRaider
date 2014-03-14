@@ -4,7 +4,6 @@ if [ ! -d "${HOME}/.OpenRaider" ]; then
     echo "Setting up OpenRaider for user $USER..."
     mkdir -p ~/.OpenRaider
     cp ../Resources/defaults/OpenRaider.init ~/.OpenRaider/
-    cp ../Resources/defaults/custom.cfg ~/.OpenRaider/
     mkdir -p ~/.OpenRaider/paks
     mkdir -p ~/.OpenRaider/music
     mkdir -p ~/.OpenRaider/data

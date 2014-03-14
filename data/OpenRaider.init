@@ -1,48 +1,25 @@
-# This is the OpenRaider RC file
-#####################################
+# OpenRaider configuration file
 
-[Video.OpenGL]
-Driver=/usr/lib/libGL.so.1
-Width=1280
-Height=720
-Font=~/.OpenRaider/data/test.ttf
+set basedir   "~/.OpenRaider"
+set pakdir    "$(basedir)/paks"
+set audiodir  "$(basedir)/music"
+set datadir   "$(basedir)/data"
+set font      "$(datadir)/test.ttf"
 
-[Audio.OpenAL]
-Enable=true
+set gldriver  "/usr/lib/libGL.so.1" # Not needed for Mac!
+set size      "1280x720"
 
-[Input.Mouse]
-SensitivityX=1.0
-SensitivityY=1.0
+set audio     true # Enable Audio Output
+set volume    0.5
 
-[OpenRaider.Engine]
-PakDir=~/.OpenRaider/paks/
-AudioDir=~/.OpenRaider/music/
-HomeDir=~/.OpenRaider/data/
+set mouse_x   1.0
+set mouse_y   1.0
 
-DisplayFPS=false
-MapDebug=false
-ModelDebug=false
-DumpTexture=false
-
-#Script=tr3/tombPC.dat
-#Music=tr4/039_TR4_Title_Q10.wav
-#Music=tr4/103_A3_Out_Night.wav
-#Music=tr4/108_A8_Coastal.wav
-
-[OpenRaider.Console]
-bind +console 96
-bind +forward 119
-bind +backward 115
-bind +jump 32
-bind +crouch 99
-bind +left 97
-bind +right 100
-#bind +attack 122
-
-#r_light 1				# Enable GL Lighting
-#r_fog 1				# Enable depth fog
-#r_particle 1				# Enable particle test
-#r_portal 1				# Enable portal rendering
-
-# Support for external configs
-@include ~/.OpenRaider/custom.cfg
+bind console  96
+bind forward  119
+bind backward 115
+bind jump     32
+bind crouch   99
+bind left     97
+bind right    100
+# bind attack   122
