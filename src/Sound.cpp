@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include <assert.h>
 
+#include "utils/math.h"
 #include "Sound.h"
 
 Sound::Sound() {
@@ -91,7 +92,7 @@ void Sound::setVolume(float vol) {
     assert(mInit == true);
     assert(mSource.size() == mBuffer.size());
 
-    if ((mSource.size() > 0) && (mVolume != vol)) {
+    if ((mSource.size() > 0) && (!equalEpsilon(mVolume, vol))) {
         // Apply new volume to old sources if needed
         for (size_t i = 0; i < mSource.size(); i++)
             alSourcef(mSource[i], AL_GAIN, vol);
