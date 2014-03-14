@@ -2,6 +2,7 @@
 set (SRCS ${SRCS} "main.cpp")
 set (SRCS ${SRCS} "OpenRaider.cpp")
 set (SRCS ${SRCS} "Sound.cpp")
+set (SRCS ${SRCS} "WindowSDL.cpp")
 
 #################################################################
 

@@ -8,6 +8,8 @@
 #ifndef _OPENRAIDER_H_
 #define _OPENRAIDER_H_
 
+#include "Window.h"
+
 /*!
  * \brief Main Game Singleton
  */
@@ -31,6 +33,7 @@ public:
     int loadConfig(const char *config);
 
 private:
+    Window *mWindow;
 };
 
 #endif
