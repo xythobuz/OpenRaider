@@ -1,14 +1,14 @@
 /*!
- * \file include/utils/Quaternion.h
+ * \file include/math/Quaternion.h
  * \brief Quaternion
  *
  * \author Mongoose
  */
 
-#ifndef _UTILS_QUATERNION_H_
-#define _UTILS_QUATERNION_H_
+#ifndef _MATH_QUATERNION_H_
+#define _MATH_QUATERNION_H_
 
-#include "utils/math.h"
+#include "math/math.h"
 
 /*!
  * \brief Quaternion

@@ -1,5 +1,5 @@
 /*!
- * \file src/utils/Vector3d.cpp
+ * \file src/math/Vector3d.cpp
  * \brief 3D Math vector
  *
  * \author Mongoose
@@ -7,7 +7,7 @@
 
 #include <math.h>
 
-#include "utils/Vector3d.h"
+#include "math/Vector3d.h"
 
 Vector3d::Vector3d() {
     mVec[0] = mVec[1] = mVec[2] = 0.0f;

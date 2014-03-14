@@ -1,6 +1,6 @@
 /*!
  *
- * \file include/utils/math.h
+ * \file include/math/math.h
  * \brief Vector and Matrix math
  *
  * \author Mongoose
@@ -8,8 +8,8 @@
 
 #include <math.h>
 
-#ifndef _UTILS_MATH_H
-#define _UTILS_MATH_H
+#ifndef _MATH_MATH_H
+#define _MATH_MATH_H
 
 #define HEL_PI           ((float)M_PI) //!< pi
 #define HEL_2_PI         (HEL_PI * 2.0f) //!< pi*2

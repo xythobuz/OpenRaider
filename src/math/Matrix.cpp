@@ -1,5 +1,5 @@
 /*!
- * \file src/utils/Matrix.cpp
+ * \file src/math/Matrix.cpp
  * \brief 3D Matrix
  *
  * \author Mongoose
@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "utils/Matrix.h"
+#include "math/Matrix.h"
 
 Matrix::Matrix() {
     setIdentity();

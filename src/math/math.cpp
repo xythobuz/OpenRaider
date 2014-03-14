@@ -1,6 +1,6 @@
 /*!
  *
- * \file src/utils/math.cpp
+ * \file src/math/math.cpp
  * \brief Vector and Matrix math
  *
  * \author Mongoose
@@ -11,9 +11,9 @@
 #include <float.h>
 #include <assert.h>
 
-#include "utils/Vector3d.h"
-#include "utils/Matrix.h"
-#include "utils/math.h"
+#include "math/Vector3d.h"
+#include "math/Matrix.h"
+#include "math/math.h"
 
 bool equalEpsilon(vec_t a, vec_t b) {
     vec_t epsilon = FLT_EPSILON;

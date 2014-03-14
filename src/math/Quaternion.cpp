@@ -1,5 +1,5 @@
 /*!
- * \file src/utils/Quaternion.cpp
+ * \file src/math/Quaternion.cpp
  * \brief Quaternion
  *
  * \author Mongoose
@@ -7,7 +7,7 @@
 
 #include <math.h>
 
-#include "utils/Quaternion.h"
+#include "math/Quaternion.h"
 
 Quaternion::Quaternion() {
     mW = 0;

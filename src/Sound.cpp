@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include <assert.h>
 
-#include "utils/math.h"
+#include "math/math.h"
 #include "Sound.h"
 
 Sound::Sound() {

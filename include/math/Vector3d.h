@@ -1,14 +1,14 @@
 /*!
- * \file include/utils/Vector3d.h
+ * \file include/math/Vector3d.h
  * \brief 3D Math vector
  *
  * \author Mongoose
  */
 
-#ifndef _UTILS_VECTOR3D_H_
-#define _UTILS_VECTOR3D_H_
+#ifndef _MATH_VECTOR3D_H_
+#define _MATH_VECTOR3D_H_
 
-#include "utils/math.h"
+#include "math/math.h"
 
 /*!
  * \brief 3D Math Vector

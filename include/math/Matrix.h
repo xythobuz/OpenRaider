@@ -1,16 +1,16 @@
 /*!
- * \file include/utils/Matrix.h
+ * \file include/math/Matrix.h
  * \brief 3D Matrix
  *
  * \author Mongoose
  */
 
-#ifndef _UTILS_MATRIX_H_
-#define _UTILS_MATRIX_H_
+#ifndef _MATH_MATRIX_H_
+#define _MATH_MATRIX_H_
 
-#include "utils/math.h"
-#include "utils/Quaternion.h"
-#include "utils/Vector3d.h"
+#include "math/math.h"
+#include "math/Quaternion.h"
+#include "math/Vector3d.h"
 
 
 /*!

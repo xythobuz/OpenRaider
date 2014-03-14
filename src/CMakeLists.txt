@@ -65,8 +65,9 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenRaider_CXX_FLAGS}")
 set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${OpenRaider_CXX_FLAGS} ${OpenRaider_CXX_FLAGS_DEBUG}")
 set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS} ${OpenRaider_CXX_FLAGS_RELEASE}")
 
-# Add utils directory
-add_subdirectory (utils)
+# Add subdirectories
+add_subdirectory ("math")
+add_subdirectory ("utils")
 
 # Add Executable
 add_executable (OpenRaider MACOSX_BUNDLE ${SRCS})
@@ -148,7 +149,8 @@ include_directories (SYSTEM ${ZLIB_INCLUDE_DIRS})
 set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
 
 # Add utils Library
-set (LIBS ${LIBS} utilities)
+set (LIBS ${LIBS} OpenRaider_math)
+set (LIBS ${LIBS} OpenRaider_utils)
 
 # Link to all found libs
 target_link_libraries (OpenRaider ${LIBS})
