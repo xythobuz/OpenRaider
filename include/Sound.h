@@ -45,6 +45,17 @@ public:
     int registeredSources();
 
     /*!
+     * \brief Remove all loaded sounds
+     */
+    void clear();
+
+    /*!
+     * \brief Set the volume
+     * \param vol new source gain
+     */
+    void setVolume(float vol);
+
+    /*!
      * \brief Move listener and repositions them
      * \param pos New position for listener
      * \param angle New orientation for listener
@@ -78,11 +89,6 @@ public:
     int addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags);
 
     /*!
-     * \brief Remove all loaded sounds
-     */
-    void clear();
-
-    /*!
      * \brief Play sound source
      * \param source sound source to play
      */
@@ -97,6 +103,7 @@ public:
 private:
 
     bool mInit;                        //!< Guard to ensure ausio system is active
+    float mVolume;                     //!< Listener gain
     std::vector<unsigned int> mBuffer; //!< Audio buffer id list
     std::vector<unsigned int> mSource; //!< Audio source id list
 };

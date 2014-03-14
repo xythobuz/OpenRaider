@@ -28,6 +28,7 @@
 
 Sound::Sound() {
     mInit = false;
+    mVolume = 1.0f;
 }
 
 Sound::~Sound() {
@@ -36,6 +37,8 @@ Sound::~Sound() {
 }
 
 int Sound::init() {
+    assert(mInit == false);
+
 #ifndef __APPLE__
     int fd;
 
@@ -69,6 +72,32 @@ int Sound::registeredSources() {
     assert(mSource.size() == mBuffer.size());
 
     return mSource.size();
+}
+
+void Sound::clear() {
+    assert(mInit == true);
+    assert(mSource.size() == mBuffer.size());
+
+    for (size_t i = 0; i < mSource.size(); i++) {
+        alDeleteSources(1, &mSource[i]);
+        alDeleteBuffers(1, &mBuffer[i]);
+    }
+
+    mSource.clear();
+    mBuffer.clear();
+}
+
+void Sound::setVolume(float vol) {
+    assert(mInit == true);
+    assert(mSource.size() == mBuffer.size());
+
+    if ((mSource.size() > 0) && (mVolume != vol)) {
+        // Apply new volume to old sources if needed
+        for (size_t i = 0; i < mSource.size(); i++)
+            alSourcef(mSource[i], AL_GAIN, vol);
+    }
+
+    mVolume = vol;
 }
 
 void Sound::listenAt(float pos[3], float angle[3]) {
@@ -138,6 +167,8 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags)
         alSourcei(mSource[id], AL_LOOPING, 1);
     }
 
+    alSourcef(mSource[id], AL_GAIN, mVolume);
+
     *source = id;
 
     return 0;
@@ -194,24 +225,13 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
         alSourcei(mSource[id], AL_LOOPING, 1);
     }
 
+    alSourcef(mSource[id], AL_GAIN, mVolume);
+
     *source = id;
 
     //! \fixme Should free alut buffer?
 
     return 0;
-}
-
-void Sound::clear() {
-    assert(mInit == true);
-    assert(mSource.size() == mBuffer.size());
-
-    for (size_t i = 0; i < mSource.size(); i++) {
-        alDeleteSources(1, &mSource[i]);
-        alDeleteBuffers(1, &mBuffer[i]);
-    }
-
-    mSource.clear();
-    mBuffer.clear();
 }
 
 void Sound::play(int source) {
