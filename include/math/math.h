@@ -4,6 +4,7 @@
  * \brief Vector and Matrix math
  *
  * \author Mongoose
+ * \author xythobuz
  */
 
 #include <math.h>
@@ -11,14 +12,14 @@
 #ifndef _MATH_MATH_H
 #define _MATH_MATH_H
 
-#define HEL_PI           ((float)M_PI) //!< pi
-#define HEL_2_PI         (HEL_PI * 2.0f) //!< pi*2
-#define HEL_PI_OVER_4    (HEL_PI / 4.0f) //!< pi/4
-#define HEL_PI_OVER_180  (HEL_PI / 180.0f) //!< pi/180
-#define HEL_180_OVER_PI  (180.0f / HEL_PI) //!< 180/pi
+#define OR_PI           ((float)M_PI) //!< pi
+#define OR_2_PI         (OR_PI * 2.0f) //!< pi*2
+#define OR_PI_OVER_4    (OR_PI / 4.0f) //!< pi/4
+#define OR_PI_OVER_180  (OR_PI / 180.0f) //!< pi/180
+#define OR_180_OVER_PI  (180.0f / OR_PI) //!< 180/pi
 
-#define HEL_RAD_TO_DEG(x) ((x) * HEL_180_OVER_PI) //!< Convert radians to degrees
-#define HEL_DEG_TO_RAD(x) ((x) * HEL_PI_OVER_180) //!< Convert degrees to radians
+#define OR_RAD_TO_DEG(x) ((x) * OR_180_OVER_PI) //!< Convert radians to degrees
+#define OR_DEG_TO_RAD(x) ((x) * OR_PI_OVER_180) //!< Convert degrees to radians
 
 typedef float vec_t;        //!< 1D Vector, aka float
 typedef float vec2_t[2];    //!< 2D Vector
@@ -42,7 +43,7 @@ bool equalEpsilon(vec_t a, vec_t b);
  * \param polygon polygon vertex array (0 to 2 are used)
  * \returns 0 if there is no intersection
  */
-int helIntersectionLineAndPolygon(vec3_t intersect, vec3_t p1, vec3_t p2, vec3_t *polygon);
+int intersectionLinePolygon(vec3_t intersect, vec3_t p1, vec3_t p2, vec3_t *polygon);
 
 /*!
  * \brief Calculate the length of a line segment / the distance between two points
@@ -50,7 +51,7 @@ int helIntersectionLineAndPolygon(vec3_t intersect, vec3_t p1, vec3_t p2, vec3_t
  * \param b Second point
  * \returns distance/length
  */
-vec_t helDist3v(vec3_t a, vec3_t b);
+vec_t distance(vec3_t a, vec3_t b);
 
 /*!
  * \brief Calculates the midpoint between two points / of a line segment
@@ -58,7 +59,7 @@ vec_t helDist3v(vec3_t a, vec3_t b);
  * \param b Second point
  * \param mid Midpoint will be stored here
  */
-void helMidpoint3v(vec3_t a, vec3_t b, vec3_t mid);
+void midpoint(vec3_t a, vec3_t b, vec3_t mid);
 
 /*!
  * \brief Calculates a pseudo-random number
@@ -66,7 +67,7 @@ void helMidpoint3v(vec3_t a, vec3_t b, vec3_t mid);
  * \param to Upper bound
  * \returns random number
  */
-vec_t helRandomNum(vec_t from, vec_t to);
+vec_t randomNum(vec_t from, vec_t to);
 
 #endif
 
