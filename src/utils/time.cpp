@@ -3,31 +3,23 @@
  * \brief Time handling utilities
  *
  * \author xythobuz
- * \author Mongoose
  */
+
+#include <ctime>
 
 #include "utils/time.h"
 
-struct timeval system_timer_start;
-struct timeval system_timer_stop;
-struct timezone system_timer_tz;
+#define CLOCKS_PER_MS (CLOCKS_PER_SEC / 1000)
+
+clock_t system_timer_start;
+clock_t system_timer_stop;
 
 unsigned int systemTimerGet() {
-    gettimeofday(&system_timer_stop, &system_timer_tz);
-
-    if (system_timer_start.tv_usec > system_timer_stop.tv_usec) {
-        system_timer_stop.tv_usec += 1000000;
-        system_timer_stop.tv_sec--;
-    }
-
-    system_timer_stop.tv_usec -= system_timer_start.tv_usec;
-    system_timer_stop.tv_sec -= system_timer_start.tv_sec;
-
-    return ((system_timer_stop.tv_sec - system_timer_start.tv_sec) * 1000)
-        + ((system_timer_stop.tv_usec - system_timer_start.tv_usec) / 1000);
+    system_timer_stop = clock();
+    return (system_timer_stop - system_timer_start) / CLOCKS_PER_MS;
 }
 
 void systemTimerReset() {
-    gettimeofday(&system_timer_start, &system_timer_tz);
+    system_timer_start = clock();
 }
 

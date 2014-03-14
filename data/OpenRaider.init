@@ -1,25 +1,32 @@
 # OpenRaider configuration file
 
-set basedir   "~/.OpenRaider"
-set pakdir    "$(basedir)/paks"
-set audiodir  "$(basedir)/music"
-set datadir   "$(basedir)/data"
-set font      "$(datadir)/test.ttf"
+# File locations
+set basedir    "~/.OpenRaider"
+set pakdir     "$(basedir)/paks"
+set audiodir   "$(basedir)/music"
+set datadir    "$(basedir)/data"
+set font       "$(datadir)/test.ttf"
 
-set gldriver  "/usr/lib/libGL.so.1" # Not needed for Mac!
-set size      "1280x720"
+ # Not needed for Mac OS X
+set gldriver   "/usr/lib/libGL.so.1"
 
-set audio     true # Enable Audio Output
-set volume    0.5
+# Windowing
+set size       "1280x720"
+set fullscreen false
 
-set mouse_x   1.0
-set mouse_y   1.0
+# Audio
+set audio      true # Enable Audio Output
+set volume     0.5
 
-bind console  96
-bind forward  119
-bind backward 115
-bind jump     32
-bind crouch   99
-bind left     97
-bind right    100
-# bind attack   122
+# Input
+set mouse_x    1.0
+set mouse_y    1.0
+
+bind console   96
+bind forward   119
+bind backward  115
+bind jump      32
+bind crouch    99
+bind left      97
+bind right     100
+# bind attack    122
