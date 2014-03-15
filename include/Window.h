@@ -14,6 +14,7 @@ typedef struct {
     char *text;
     unsigned int x;
     unsigned int y;
+    float scale;
 } WindowString;
 
 /*!
@@ -39,13 +40,17 @@ public:
 
     virtual void eventHandling() = 0;
 
-    virtual void writeString(WindowString *s) = 0;
-
     virtual void delay(clock_t ms) = 0;
 
     virtual void swapBuffersGL() = 0;
 
     virtual void resizeGL(unsigned int w, unsigned int h);
+
+    virtual void setFont(const char *font) = 0;
+
+    virtual int initializeFont() = 0;
+
+    virtual void writeString(WindowString *s) = 0;
 };
 
 #endif

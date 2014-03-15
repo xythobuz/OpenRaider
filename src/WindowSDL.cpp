@@ -21,18 +21,26 @@ WindowSDL::WindowSDL() {
     mHeight = DEFAULT_HEIGHT;
     mFullscreen = false;
     mMousegrab = false;
+    mFont = NULL;
+    mFontInit = false;
     mWindow = NULL;
     mGLContext = NULL;
+
+#ifdef WIN32
+    setDriver("libGL32.dll");
+#elif !defined(__APPLE__)
+    setDriver("/usr/lib/libGL.so.1");
+#endif
 }
 
 WindowSDL::~WindowSDL() {
-    if (mDriver)
-        delete [] mDriver;
-
     if (mInit) {
         SDL_QuitSubSystem(SUBSYSTEMS_USED);
         SDL_Quit();
     }
+
+    if (mDriver)
+        delete [] mDriver;
 }
 
 void WindowSDL::setDriver(const char *driver) {
@@ -174,14 +182,6 @@ void WindowSDL::eventHandling() {
     }
 }
 
-void WindowSDL::writeString(WindowString *s) {
-    assert(s != NULL);
-    assert(s->text != NULL);
-    assert(mInit == true);
-
-
-}
-
 void WindowSDL::delay(clock_t ms) {
     assert(mInit == true);
 
@@ -192,5 +192,30 @@ void WindowSDL::swapBuffersGL() {
     assert(mInit == true);
 
     SDL_GL_SwapWindow(mWindow);
+}
+
+void WindowSDL::setFont(const char *font) {
+    assert(font != NULL);
+    assert(font[0] != '\0');
+    assert(mFontInit == false);
+
+    mFont = fullPath(font, 0);
+}
+
+int WindowSDL::initializeFont() {
+    assert(mFontInit == false);
+    assert(mFont != NULL);
+    assert(mFont[0] != '\0');
+
+    mFontInit = true;
+    return 0;
+}
+
+void WindowSDL::writeString(WindowString *s) {
+    assert(s != NULL);
+    assert(s->text != NULL);
+    assert(mInit == true);
+
+
 }
 

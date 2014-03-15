@@ -40,11 +40,15 @@ public:
 
     virtual void eventHandling();
 
-    virtual void writeString(WindowString *s);
-
     virtual void delay(clock_t ms);
 
     virtual void swapBuffersGL();
+
+    virtual void setFont(const char *font);
+
+    virtual int initializeFont();
+
+    virtual void writeString(WindowString *s);
 
 private:
     bool mInit;
@@ -53,6 +57,8 @@ private:
     unsigned int mHeight;
     bool mFullscreen;
     bool mMousegrab;
+    char *mFont;
+    bool mFontInit;
 
     SDL_Window *mWindow;      //!< This is the pointer to the SDL surface
     SDL_GLContext mGLContext; //!< The OpenGL Context

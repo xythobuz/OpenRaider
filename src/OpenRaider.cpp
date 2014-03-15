@@ -42,9 +42,14 @@ int OpenRaider::initialize() {
     assert(mInit == false);
     assert(mRunning == false);
 
+    // Initialize Windowing
     mWindow = new WindowSDL();
     if (mWindow->initialize() != 0)
         return -1;
+
+    // Initialize windows font
+    if (mWindow->initializeFont() != 0)
+        return -2;
 
     mInit = true;
 
