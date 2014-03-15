@@ -47,11 +47,15 @@ int OpenRaider::initialize() {
     if (mWindow->initialize() != 0)
         return -1;
 
+    // Initialize OpenGL
+    if (mWindow->initializeGL() != 0)
+        return -2;
+
     mWindow->setFont("~/.OpenRaider/data/test.ttf");
 
-    // Initialize windows font
+    // Initialize window font
     if (mWindow->initializeFont() != 0)
-        return -2;
+        return -3;
 
     mInit = true;
 
@@ -68,11 +72,10 @@ void OpenRaider::run() {
 
         mWindow->eventHandling();
 
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         WindowString s;
-        s.text = bufferString("Hello World");
+        s.text = bufferString("This text is not fixed-width...");
         s.x = 100;
         s.y = 100;
         s.scale = 1.5f;

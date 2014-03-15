@@ -45,6 +45,8 @@ public:
 
     virtual void swapBuffersGL() = 0;
 
+    virtual int initializeGL();
+
     virtual void resizeGL(unsigned int w, unsigned int h);
 
     virtual void glEnter2D(unsigned int width, unsigned int height);

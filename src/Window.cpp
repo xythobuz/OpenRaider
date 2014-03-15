@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include <cstdio>
+#include <cstring>
 #include <assert.h>
 
 #ifdef __APPLE__
@@ -19,6 +21,78 @@
 #include "Window.h"
 
 Window::~Window() {
+}
+
+int Window::initializeGL() {
+    // Print driver support information
+    printf("GL Vendor  : %s\n", glGetString(GL_VENDOR));
+    printf("GL Renderer: %s\n", glGetString(GL_RENDERER));
+    printf("GL Version : %s\n", glGetString(GL_VERSION));
+
+    // Testing for goodies
+    const char *s = (const char *)glGetString(GL_EXTENSIONS);
+    if ((s != NULL) && (s[0] != '\0')) {
+        //if (strstr(s, "GL_ARB_multitexture"))
+            //mFlags |= Render::fMultiTexture;
+    }
+
+    // Set up Z buffer
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
+    // Set up culling
+    glEnable(GL_CULL_FACE);
+    glFrontFace(GL_CW);
+    //glFrontFace(GL_CCW);
+    //glCullFace(GL_FRONT);
+
+    // Set background to black
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+    // Disable lighting
+    glDisable(GL_LIGHTING);
+
+    // Set up alpha blending
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+    //glEnable(GL_ALPHA_TEST); // Disable per pixel alpha blending
+    glAlphaFunc(GL_GREATER, 0);
+
+    glPointSize(5.0);
+
+    // Setup shading
+    glShadeModel(GL_SMOOTH);
+
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    glHint(GL_FOG_HINT, GL_NICEST);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_DITHER);
+
+    // AA polygon edges
+    glEnable(GL_POLYGON_SMOOTH);
+    glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
+
+    glDisable(GL_LINE_SMOOTH);
+    glDisable(GL_POINT_SMOOTH);
+    glDisable(GL_AUTO_NORMAL);
+    glDisable(GL_LOGIC_OP);
+    glDisable(GL_TEXTURE_1D);
+    glDisable(GL_STENCIL_TEST);
+    glDisable(GL_FOG);
+
+    glDisable(GL_NORMALIZE);
+
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_EDGE_FLAG_ARRAY);
+    glDisableClientState(GL_COLOR_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+
+    glPolygonMode(GL_FRONT, GL_FILL);
+
+    glMatrixMode(GL_MODELVIEW);
+
+    return 0;
 }
 
 void Window::resizeGL(unsigned int w, unsigned int h) {
