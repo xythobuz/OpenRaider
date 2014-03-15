@@ -8,6 +8,16 @@
 #include <cstdio>
 #include <assert.h>
 
+#include "SDL_ttf.h"
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
 #include "config.h"
 #include "utils/strings.h"
 #include "WindowSDL.h"
@@ -39,8 +49,14 @@ WindowSDL::~WindowSDL() {
         SDL_Quit();
     }
 
+    if (mFontInit)
+        TTF_Quit();
+
     if (mDriver)
         delete [] mDriver;
+
+    if (mFont)
+        delete [] mFont;
 }
 
 void WindowSDL::setDriver(const char *driver) {
@@ -206,6 +222,11 @@ int WindowSDL::initializeFont() {
     assert(mFontInit == false);
     assert(mFont != NULL);
     assert(mFont[0] != '\0');
+
+    if (TTF_Init() != 0) {
+        printf("Could not initialize SDL-TTF!\n");
+        return -1;
+    }
 
     mFontInit = true;
     return 0;

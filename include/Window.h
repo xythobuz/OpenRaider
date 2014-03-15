@@ -46,6 +46,10 @@ public:
 
     virtual void resizeGL(unsigned int w, unsigned int h);
 
+    virtual void glEnter2D(unsigned int width, unsigned int height);
+
+    virtual void glExit2D();
+
     virtual void setFont(const char *font) = 0;
 
     virtual int initializeFont() = 0;
