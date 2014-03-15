@@ -14,6 +14,8 @@
 
 void printStringVector(std::vector<char *> *args);
 
+int readBool(const char *value, bool *var);
+
 /*!
  * \brief Check if a string ends with another string.
  * \param str string to check

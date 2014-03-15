@@ -128,17 +128,27 @@ int OpenRaider::set(const char *var, const char *value) {
         }
         mWindow->setSize(w, h);
     } else if (strcmp(var, "fullscreen") == 0) {
-
+        bool fullscreen = false;
+        if (readBool(value, &fullscreen) != 0) {
+            printf("set-fullscreen-Error: Invalid value (%s)\n", value);
+            return -3;
+        }
+        mWindow->setFullscreen(fullscreen);
     } else if (strcmp(var, "gldriver") == 0) {
-
+        mWindow->setDriver(value);
     } else if (strcmp(var, "audio") == 0) {
-
+        bool audio = false;
+        if (readBool(value, &audio) != 0) {
+            printf("set-audio-Error: Invalid value (%s)\n", value);
+            return -4;
+        }
+        // TODO enable audio
     } else if (strcmp(var, "volume") == 0) {
-
+        // TODO set volume
     } else if (strcmp(var, "mouse_x") == 0) {
-
+        // TODO set
     } else if (strcmp(var, "mouse_y") == 0) {
-
+        // TODO set
     } else if (strcmp(var, "basedir") == 0) {
 
     } else if (strcmp(var, "pakdir") == 0) {

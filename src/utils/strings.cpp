@@ -27,6 +27,18 @@ void printStringVector(std::vector<char *> *args) {
     printf(")");
 }
 
+int readBool(const char *value, bool *var) {
+    if ((strcmp(value, "1") == 0) || (strcmp(value, "true") == 0) || (strcmp(value, "TRUE") == 0)) {
+        *var = true;
+    } else if ((strcmp(value, "0") == 0) || (strcmp(value, "false") == 0) || (strcmp(value, "FALSE") == 0)) {
+        *var = false;
+    } else {
+        return -1;
+    }
+
+    return 0;
+}
+
 bool stringEndsWith(const char *str, const char *suffix) {
     assert(str != NULL);
     assert(suffix != NULL);
