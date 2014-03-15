@@ -243,6 +243,7 @@ void WindowSDL::writeString(WindowString *s) {
     color.r = s->color[0];
     color.g = s->color[1];
     color.b = s->color[2];
+    color.a = s->color[3];
 
     SDL_Surface *surface = TTF_RenderUTF8_Blended(mFont, s->text, color);
     if (surface == NULL) {
@@ -276,6 +277,8 @@ void WindowSDL::writeString(WindowString *s) {
     GLuint yMin = s->y;
     GLuint xMax = xMin + (int)((float)surface->w * s->scale);
     GLuint yMax = yMin + (int)((float)surface->h * s->scale);
+
+    glColor4f(color.r / 256.0f, color.g / 256.0f, color.b / 256.0f, color.a / 256.0f);
 
     glBegin(GL_QUADS);
         glTexCoord2f(0.0f, 0.0f);

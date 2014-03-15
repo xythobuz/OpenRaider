@@ -24,6 +24,7 @@ Menu::Menu() {
     mainText.color[0] = 0xFF;
     mainText.color[1] = 0xFF;
     mainText.color[2] = 0xFF;
+    mainText.color[3] = 0xFF;
     mainText.scale = 1.2f;
     mainText.w = 0;
     mainText.h = 0;
@@ -45,6 +46,13 @@ void Menu::display() {
     Window *window = gOpenRaider->mWindow;
 
     if (mVisible) {
+        // Draw half-transparent *overlay*
+        glColor4f(0.0f, 0.0f, 0.0f, 0.5f);
+        glDisable(GL_TEXTURE_2D);
+        glRecti(0, 0, window->mWidth, window->mHeight);
+        glEnable(GL_TEXTURE_2D);
+
+        // Draw heading text
         mainText.x = (window->mWidth / 2) - (mainText.w / 2);
         mainText.y = 10;
         window->writeString(&mainText);
