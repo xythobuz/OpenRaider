@@ -10,6 +10,7 @@
 
 #include <vector>
 
+#include "Menu.h"
 #include "Sound.h"
 #include "Window.h"
 
@@ -49,12 +50,13 @@ public:
 
     void run();
 
+    Window *mWindow;
+    Sound *mSound;
+    Menu *mMenu;
+
 private:
     bool mInit;
     bool mRunning;
-    Window *mWindow;
-
-    Sound *mSound;
 
     char *mBaseDir;
     char *mPakDir;

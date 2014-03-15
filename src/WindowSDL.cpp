@@ -70,7 +70,7 @@ void WindowSDL::setSize(unsigned int width, unsigned int height) {
 
     if (mInit == true) {
         SDL_SetWindowSize(mWindow, mWidth, mHeight);
-        resizeGL(mWidth, mHeight);
+        resizeGL();
     }
 }
 
@@ -250,6 +250,13 @@ void WindowSDL::writeString(WindowString *s) {
         return;
     }
 
+    if (TTF_SizeUTF8(mFont, s->text, &s->w, &s->h) != 0) {
+        printf("TTF_SizeUTF8 Error: %s\n", TTF_GetError());
+        // Don't need to abort
+    }
+    s->w = (int)((float)s->w * s->scale);
+    s->h = (int)((float)s->h * s->scale);
+
     GLenum textureFormat;
     if (surface->format->BytesPerPixel == 4) {
         if (surface->format->Rmask == 0x000000FF)
@@ -265,23 +272,24 @@ void WindowSDL::writeString(WindowString *s) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0, textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
 
-    glEnter2D(mWidth, mHeight);
+    GLuint xMin = s->x;
+    GLuint yMin = s->y;
+    GLuint xMax = xMin + (int)((float)surface->w * s->scale);
+    GLuint yMax = yMin + (int)((float)surface->h * s->scale);
 
     glBegin(GL_QUADS);
         glTexCoord2f(0.0f, 0.0f);
-        glVertex2i(s->x, s->y);
+        glVertex2i(xMin, yMin);
 
         glTexCoord2f(0.0f, 1.0f);
-        glVertex2i(s->x, (int)((float)surface->h * s->scale));
+        glVertex2i(xMin, yMax);
 
         glTexCoord2f(1.0f, 1.0f);
-        glVertex2i((int)((float)surface->w * s->scale), (int)((float)surface->h * s->scale));
+        glVertex2i(xMax, yMax);
 
         glTexCoord2f(1.0f, 0.0f);
-        glVertex2i((int)((float)surface->w * s->scale), s->y);
+        glVertex2i(xMax, yMin);
     glEnd();
-
-    glExit2D();
 
     SDL_FreeSurface(surface);
 }

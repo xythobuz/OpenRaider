@@ -26,11 +26,15 @@ OpenRaider::OpenRaider() {
     mAudioDir = NULL;
     mDataDir = NULL;
 
+    mMenu = new Menu();
     mSound = new Sound();
     mWindow = new WindowSDL();
 }
 
 OpenRaider::~OpenRaider() {
+    if (mMenu)
+        delete mMenu;
+
     if (mSound)
         delete mSound;
 
@@ -171,6 +175,18 @@ char *OpenRaider::expandDirectoryNames(const char *s) {
     return NULL;
 }
 
+#define CHANGE_DIR_WITH_EXPANSION(a) do {     \
+    char *quotes = stringRemoveQuotes(value); \
+    char *tmp = expandDirectoryNames(quotes); \
+    if (tmp == NULL) {                        \
+        a = fullPath(quotes, 0);              \
+    } else {                                  \
+        a = fullPath(tmp, 0);                 \
+        delete [] tmp;                        \
+    }                                         \
+    delete [] quotes;                         \
+} while(false)
+
 int OpenRaider::set(const char *var, const char *value) {
     if (strcmp(var, "size") == 0) {
         // value has format like "\"1024x768\""
@@ -204,49 +220,27 @@ int OpenRaider::set(const char *var, const char *value) {
         }
         mSound->setVolume(vol);
     } else if (strcmp(var, "mouse_x") == 0) {
-        // TODO mouse support
+        float sense = 1.0f;
+        if (sscanf(value, "%f", &sense) != 1) {
+            printf("set-mouse_x-Error: Invalid value (%s)\n", value);
+            return -6;
+        }
+        //! \todo mouse support
     } else if (strcmp(var, "mouse_y") == 0) {
-        // TODO mouse support
+        float sense = 1.0f;
+        if (sscanf(value, "%f", &sense) != 1) {
+            printf("set-mouse_y-Error: Invalid value (%s)\n", value);
+            return -7;
+        }
+        //! \todo mouse support
     } else if (strcmp(var, "basedir") == 0) {
-        char *quotes = stringReplace(value, "\"", "");
-        char *tmp = expandDirectoryNames(quotes);
-        if (tmp == NULL) {
-            mBaseDir = fullPath(quotes, 0);
-        } else {
-            mBaseDir = fullPath(tmp, 0);
-            delete [] tmp;
-        }
-        delete [] quotes;
+        CHANGE_DIR_WITH_EXPANSION(mBaseDir);
     } else if (strcmp(var, "pakdir") == 0) {
-        char *quotes = stringReplace(value, "\"", "");
-        char *tmp = expandDirectoryNames(quotes);
-        if (tmp == NULL) {
-            mPakDir = fullPath(quotes, 0);
-        } else {
-            mPakDir = fullPath(tmp, 0);
-            delete [] tmp;
-        }
-        delete [] quotes;
+        CHANGE_DIR_WITH_EXPANSION(mPakDir);
     } else if (strcmp(var, "audiodir") == 0) {
-        char *quotes = stringReplace(value, "\"", "");
-        char *tmp = expandDirectoryNames(quotes);
-        if (tmp == NULL) {
-            mAudioDir = fullPath(quotes, 0);
-        } else {
-            mAudioDir = fullPath(tmp, 0);
-            delete [] tmp;
-        }
-        delete [] quotes;
+        CHANGE_DIR_WITH_EXPANSION(mAudioDir);
     } else if (strcmp(var, "datadir") == 0) {
-        char *quotes = stringReplace(value, "\"", "");
-        char *tmp = expandDirectoryNames(quotes);
-        if (tmp == NULL) {
-            mDataDir = fullPath(quotes, 0);
-        } else {
-            mDataDir = fullPath(tmp, 0);
-            delete [] tmp;
-        }
-        delete [] quotes;
+        CHANGE_DIR_WITH_EXPANSION(mDataDir);
     } else if (strcmp(var, "font") == 0) {
         char *quotes = stringReplace(value, "\"", "");
         char *tmp = expandDirectoryNames(quotes);
@@ -266,19 +260,23 @@ int OpenRaider::set(const char *var, const char *value) {
 }
 
 int OpenRaider::bind(const char *action, const char *key) {
-    if (strcmp(action, "console") == 0) {
+    const char *tmp = action;
+    if (action[0] == '+')
+        tmp++;
 
-    } else if (strcmp(action, "forward") == 0) {
+    if (strcmp(tmp, "console") == 0) {
 
-    } else if (strcmp(action, "backward") == 0) {
+    } else if (strcmp(tmp, "forward") == 0) {
 
-    } else if (strcmp(action, "jump") == 0) {
+    } else if (strcmp(tmp, "backward") == 0) {
 
-    } else if (strcmp(action, "crouch") == 0) {
+    } else if (strcmp(tmp, "jump") == 0) {
 
-    } else if (strcmp(action, "left") == 0) {
+    } else if (strcmp(tmp, "crouch") == 0) {
 
-    } else if (strcmp(action, "right") == 0) {
+    } else if (strcmp(tmp, "left") == 0) {
+
+    } else if (strcmp(tmp, "right") == 0) {
 
     } else {
         printf("bind-Error: Unknown action (%s --> %s)\n", key, action);
@@ -307,6 +305,8 @@ int OpenRaider::initialize() {
     if (mSound->initialize() != 0)
         return -4;
 
+    mMenu->setVisible(true);
+
     mInit = true;
 
     return 0;
@@ -322,15 +322,15 @@ void OpenRaider::run() {
 
         mWindow->eventHandling();
 
+        // Temp Debug
+        glClearColor(0.25f, 0.75f, 0.25f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        WindowString s;
-        s.text = bufferString("This text is not fixed-width...");
-        s.x = 100;
-        s.y = 100;
-        s.scale = 1.5f;
-        s.color[0] = s.color[1] = s.color[2] = 0xFF;
-        mWindow->writeString(&s);
+        mWindow->glEnter2D();
+
+        mMenu->display();
+
+        mWindow->glExit2D();
 
         mWindow->swapBuffersGL();
 

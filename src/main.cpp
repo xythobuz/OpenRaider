@@ -10,7 +10,6 @@
 #include <cstring>
 
 #include "config.h"
-#include "OpenRaider.h"
 #include "main.h"
 
 OpenRaider *gOpenRaider = NULL;

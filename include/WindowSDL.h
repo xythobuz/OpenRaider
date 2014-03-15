@@ -60,17 +60,10 @@ public:
     virtual void writeString(WindowString *s);
 
 private:
-    bool mInit;
-    char *mDriver;
-    unsigned int mWidth;
-    unsigned int mHeight;
-    bool mFullscreen;
-    bool mMousegrab;
+
     SDL_Window *mWindow;      //!< This is the pointer to the SDL surface
     SDL_GLContext mGLContext; //!< The OpenGL Context
 
-    bool mFontInit;
-    char *mFontName;
     TTF_Font *mFont;
     GLuint mFontTexture;
 };

@@ -17,6 +17,19 @@
 
 #include "utils/strings.h"
 
+char *stringRemoveQuotes(const char *s) {
+    size_t length = strlen(s);
+    if ((s[0] == '"') && (s[length - 1] == '"')) {
+        char *buf = new char[length - 1];
+        for (size_t i = 1; i < (length - 1); i++)
+            buf[i - 1] = s[i];
+        buf[length - 2] = '\0';
+        return buf;
+    } else {
+        return bufferString("%s", s);
+    }
+}
+
 char *stringReplace(const char *s, const char *search, const char *replace) {
     char *tmp = strstr(s, search);
     if (tmp == NULL)

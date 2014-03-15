@@ -7,6 +7,8 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+#include "OpenRaider.h"
+
 extern OpenRaider *gOpenRaider; //!< Main Game Singleton
 
 /*!

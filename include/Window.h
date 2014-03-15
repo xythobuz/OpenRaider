@@ -14,6 +14,8 @@ typedef struct {
     char *text;
     unsigned int x;
     unsigned int y;
+    int w;
+    int h;
     float scale;
     unsigned char color[3];
 } WindowString;
@@ -47,9 +49,9 @@ public:
 
     virtual int initializeGL();
 
-    virtual void resizeGL(unsigned int w, unsigned int h);
+    virtual void resizeGL();
 
-    virtual void glEnter2D(unsigned int width, unsigned int height);
+    virtual void glEnter2D();
 
     virtual void glExit2D();
 
@@ -58,6 +60,18 @@ public:
     virtual int initializeFont() = 0;
 
     virtual void writeString(WindowString *s) = 0;
+
+    unsigned int mWidth;
+    unsigned int mHeight;
+
+protected:
+    bool mInit;
+    char *mDriver;
+    bool mFullscreen;
+    bool mMousegrab;
+
+    bool mFontInit;
+    char *mFontName;
 };
 
 #endif

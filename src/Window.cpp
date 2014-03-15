@@ -25,13 +25,14 @@ Window::~Window() {
 
 int Window::initializeGL() {
     // Print driver support information
-    printf("GL Vendor  : %s\n", glGetString(GL_VENDOR));
-    printf("GL Renderer: %s\n", glGetString(GL_RENDERER));
-    printf("GL Version : %s\n", glGetString(GL_VERSION));
+    //printf("GL Vendor  : %s\n", glGetString(GL_VENDOR));
+    //printf("GL Renderer: %s\n", glGetString(GL_RENDERER));
+    //printf("GL Version : %s\n", glGetString(GL_VERSION));
 
     // Testing for goodies
     const char *s = (const char *)glGetString(GL_EXTENSIONS);
     if ((s != NULL) && (s[0] != '\0')) {
+        //! \todo MultiTexture flag
         //if (strstr(s, "GL_ARB_multitexture"))
             //mFlags |= Render::fMultiTexture;
     }
@@ -95,28 +96,25 @@ int Window::initializeGL() {
     return 0;
 }
 
-void Window::resizeGL(unsigned int w, unsigned int h) {
+void Window::resizeGL() {
     float fovY = 45.0f;
     float clipNear = 4.0f;
     float clipFar = 4000.0f;
 
-    assert(w > 0);
-    assert(h > 0);
-
-    glViewport(0, 0, w, h);
+    glViewport(0, 0, mWidth, mHeight);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
     // Adjust clipping
     GLfloat fH = tanf(fovY * OR_PI / 360.0f) * clipNear;
-    GLfloat fW = fH * ((GLfloat)w) / ((GLfloat)h);
+    GLfloat fW = fH * ((GLfloat)mWidth) / ((GLfloat)mHeight);
     glFrustum(-fW, fW, -fH, fH, clipNear, clipFar);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
 
-void Window::glEnter2D(unsigned int width, unsigned int height) {
+void Window::glEnter2D() {
     glPushAttrib(GL_ENABLE_BIT);
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
@@ -126,13 +124,13 @@ void Window::glEnter2D(unsigned int width, unsigned int height) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glViewport(0, 0, width, height);
+    glViewport(0, 0, mWidth, mHeight);
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
 
-    glOrtho(0.0, (GLdouble)width, (GLdouble)height, 0.0, 0.0, 1.0);
+    glOrtho(0.0, (GLdouble)mWidth, (GLdouble)mHeight, 0.0, 0.0, 1.0);
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
