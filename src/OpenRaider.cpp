@@ -47,6 +47,8 @@ int OpenRaider::initialize() {
     if (mWindow->initialize() != 0)
         return -1;
 
+    mWindow->setFont("~/.OpenRaider/data/test.ttf");
+
     // Initialize windows font
     if (mWindow->initializeFont() != 0)
         return -2;
@@ -65,6 +67,16 @@ void OpenRaider::run() {
         clock_t startTime = systemTimerGet();
 
         mWindow->eventHandling();
+
+        /*WindowString s;
+        s.text = bufferString("Hello World");
+        s.x = 100;
+        s.y = 100;
+        s.scale = 1.0;
+        s.color[0] = s.color[1] = s.color[2] = 0xFF;
+        mWindow->writeString(&s);*/
+
+        mWindow->swapBuffersGL();
 
         clock_t stopTime = systemTimerGet();
         if (MAX_MS_PER_FRAME > (stopTime - startTime))

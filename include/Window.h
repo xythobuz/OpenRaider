@@ -15,6 +15,7 @@ typedef struct {
     unsigned int x;
     unsigned int y;
     float scale;
+    unsigned char color[3];
 } WindowString;
 
 /*!

@@ -8,16 +8,6 @@
 #include <cstdio>
 #include <assert.h>
 
-#include "SDL_ttf.h"
-
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#else
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
-
 #include "config.h"
 #include "utils/strings.h"
 #include "WindowSDL.h"
@@ -31,10 +21,11 @@ WindowSDL::WindowSDL() {
     mHeight = DEFAULT_HEIGHT;
     mFullscreen = false;
     mMousegrab = false;
-    mFont = NULL;
-    mFontInit = false;
     mWindow = NULL;
     mGLContext = NULL;
+    mFontInit = false;
+    mFontName = NULL;
+    mFont = NULL;
 
 #ifdef WIN32
     setDriver("libGL32.dll");
@@ -49,14 +40,17 @@ WindowSDL::~WindowSDL() {
         SDL_Quit();
     }
 
+    if (mFont)
+        TTF_CloseFont(mFont);
+
     if (mFontInit)
         TTF_Quit();
 
     if (mDriver)
         delete [] mDriver;
 
-    if (mFont)
-        delete [] mFont;
+    if (mFontName)
+        delete [] mFontName;
 }
 
 void WindowSDL::setDriver(const char *driver) {
@@ -215,17 +209,23 @@ void WindowSDL::setFont(const char *font) {
     assert(font[0] != '\0');
     assert(mFontInit == false);
 
-    mFont = fullPath(font, 0);
+    mFontName = fullPath(font, 0);
 }
 
 int WindowSDL::initializeFont() {
     assert(mFontInit == false);
-    assert(mFont != NULL);
-    assert(mFont[0] != '\0');
+    assert(mFontName != NULL);
+    assert(mFontName[0] != '\0');
 
     if (TTF_Init() != 0) {
         printf("Could not initialize SDL-TTF!\n");
         return -1;
+    }
+
+    mFont = TTF_OpenFont(mFontName, 24);
+    if (mFont == NULL) {
+        printf("TTF_OpenFont Error: %s\n", TTF_GetError());
+        return -2;
     }
 
     mFontInit = true;
@@ -237,6 +237,34 @@ void WindowSDL::writeString(WindowString *s) {
     assert(s->text != NULL);
     assert(mInit == true);
 
+    SDL_Color color;
+    color.r = s->color[0];
+    color.g = s->color[1];
+    color.b = s->color[2];
 
+    SDL_Surface *surface = TTF_RenderUTF8_Blended(mFont, s->text, color);
+    if (surface == NULL) {
+        printf("TTF_RenderUTF8_Blended Error: %s\n", TTF_GetError());
+        return;
+    }
+
+    SDL_Surface *window = SDL_GetWindowSurface(mWindow);
+    if (window == NULL) {
+        printf("SDL_GetWindowSurface Error: %s\n", SDL_GetError());
+        return;
+    }
+
+    SDL_Rect destination;
+    destination.x = s->x;
+    destination.y = s->y;
+    destination.w = (int)((float)surface->w * s->scale);
+    destination.h = (int)((float)surface->h * s->scale);
+
+    if (SDL_BlitScaled(surface, NULL, window, &destination) != 0) {
+        printf("SDL_BlitScaled Error: %s\n", SDL_GetError());
+        return;
+    }
+
+    SDL_FreeSurface(surface);
 }
 

@@ -9,6 +9,7 @@
 #define _WINDOW_SDL_H_
 
 #include "SDL.h"
+#include "SDL_ttf.h"
 
 #include "Window.h"
 
@@ -57,11 +58,12 @@ private:
     unsigned int mHeight;
     bool mFullscreen;
     bool mMousegrab;
-    char *mFont;
-    bool mFontInit;
-
     SDL_Window *mWindow;      //!< This is the pointer to the SDL surface
     SDL_GLContext mGLContext; //!< The OpenGL Context
+
+    bool mFontInit;
+    char *mFontName;
+    TTF_Font *mFont;
 };
 
 #endif
