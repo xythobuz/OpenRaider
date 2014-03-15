@@ -10,6 +10,9 @@
 #define _UTILS_STRINGS_H_
 
 #include <cstdarg>
+#include <vector>
+
+void printStringVector(std::vector<char *> *args);
 
 /*!
  * \brief Check if a string ends with another string.

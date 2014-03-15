@@ -17,6 +17,16 @@
 
 #include "utils/strings.h"
 
+void printStringVector(std::vector<char *> *args) {
+    printf("(");
+    for (std::vector<char *>::size_type i = 0; i < args->size(); i++) {
+        printf("%s", args->at(i));
+        if (i < (args->size() - 1))
+            printf(" ");
+    }
+    printf(")");
+}
+
 bool stringEndsWith(const char *str, const char *suffix) {
     assert(str != NULL);
     assert(suffix != NULL);

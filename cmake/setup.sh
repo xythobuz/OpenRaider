@@ -2,7 +2,7 @@
 
 echo "Setting up OpenRaider for user $USER..."
 mkdir -p ~/.OpenRaider
-cp data/OpenRaider.init ~/.OpenRaider/
+cp data/OpenRaider.ini ~/.OpenRaider/
 mkdir -p ~/.OpenRaider/paks
 mkdir -p ~/.OpenRaider/music
 mkdir -p ~/.OpenRaider/data

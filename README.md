@@ -13,7 +13,7 @@ It seems as if OpenRaider will currently only work on Little-Endian platforms. T
 OpenRaider needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.
 These are stored in `~/.OpenRaider`. Running `make setup` will create/copy the necessary files and directories.
 
-You still need to add level files in `~/.OpenRaider/paks/` and add them to `~/.OpenRaider/OpenRaider.init`.
+You still need to add level files in `~/.OpenRaider/paks/` and add them to `~/.OpenRaider/OpenRaider.ini`.
 Dust off your old Tomb Raider CDs or grab some [custom levels](http://www.aspidetr.com/levels/yvel-woods-v1-5/) from the interwebs.
 
 ## Documentation
@@ -71,7 +71,7 @@ A Doxygen API documentation can be created with `make doc`.
 
 ### Configuration file
 
-OpenRaider will try to load `~/.OpenRaider/OpenRaider.init` or, if it doesn't exist, `OpenRaider.init` from the current directory.
+OpenRaider will try to load `~/.OpenRaider/OpenRaider.ini` or, if it doesn't exist, `OpenRaider.ini` from the current directory.
 Running `make setup` will create a minimal configuration in your home directory.
 
 The configuration file format is very simple:

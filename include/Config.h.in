@@ -2,7 +2,7 @@
 #define BUILD_HOST "@OpenRaider_BUILD_HOST@ @OpenRaider_HOSTNAME@"
 
 #define DEFAULT_CONFIG_PATH "~/.OpenRaider/"
-#define DEFAULT_CONFIG_FILE "OpenRaider.init"
+#define DEFAULT_CONFIG_FILE "OpenRaider.ini"
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
 
