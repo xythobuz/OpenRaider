@@ -32,9 +32,7 @@ public:
 
     void display();
 
-    void actionMouse(unsigned int x, unsigned int y, int button);
-
-    void actionKeyboard(int key);
+    void handleKeyboard(KeyboardButton key, bool pressed);
 
 private:
 

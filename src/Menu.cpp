@@ -33,7 +33,7 @@ Menu::Menu() {
 }
 
 Menu::~Menu() {
-
+    delete [] mainText.text;
 }
 
 void Menu::setVisible(bool visible) {
@@ -58,6 +58,7 @@ void Menu::drawText(unsigned int x, unsigned int y, float scale, const char *s, 
     w.color[2] = 0xFF;
     w.color[3] = 0xFF;
     gOpenRaider->mWindow->writeString(&w);
+    delete [] w.text;
 }
 
 void Menu::display() {
@@ -79,11 +80,7 @@ void Menu::display() {
     }
 }
 
-void Menu::actionMouse(unsigned int x, unsigned int y, int button) {
-
-}
-
-void Menu::actionKeyboard(int key) {
+void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
 
 }
 

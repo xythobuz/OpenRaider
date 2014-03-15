@@ -483,26 +483,28 @@ void OpenRaider::run() {
 void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
     if ((keyBindings[menu] == key) && pressed) {
         mMenu->setVisible(!mMenu->isVisible());
-    }
+    } else if (!mMenu->isVisible()) {
+        if (keyBindings[console] == key) {
 
-    if (keyBindings[console] == key) {
+        } else if (keyBindings[forward] == key) {
 
-    } else if (keyBindings[forward] == key) {
+        } else if (keyBindings[backward] == key) {
 
-    } else if (keyBindings[backward] == key) {
+        } else if (keyBindings[left] == key) {
 
-    } else if (keyBindings[left] == key) {
+        } else if (keyBindings[right] == key) {
 
-    } else if (keyBindings[right] == key) {
+        } else if (keyBindings[jump] == key) {
 
-    } else if (keyBindings[jump] == key) {
+        } else if (keyBindings[crouch] == key) {
 
-    } else if (keyBindings[crouch] == key) {
+        } else if (keyBindings[use] == key) {
 
-    } else if (keyBindings[use] == key) {
+        } else if (keyBindings[holster] == key) {
 
-    } else if (keyBindings[holster] == key) {
-
+        }
+    } else {
+        mMenu->handleKeyboard(key, pressed);
     }
 }
 
