@@ -8,11 +8,13 @@
 #ifndef _UTILS_TIME_H_
 #define _UTILS_TIME_H_
 
+#include <ctime>
+
 /*!
  * \brief Read the system timer
  * \returns number of ticks
  */
-unsigned int systemTimerGet();
+clock_t systemTimerGet();
 
 /*!
  * \brief Reset the system timer

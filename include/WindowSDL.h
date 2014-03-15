@@ -38,9 +38,15 @@ public:
 
     virtual int initialize();
 
+    virtual void eventHandling();
+
     virtual void writeString(WindowString *s);
 
+    virtual void delay(clock_t ms);
+
     virtual void swapBuffersGL();
+
+    virtual void cleanup();
 
 private:
     bool mInit;

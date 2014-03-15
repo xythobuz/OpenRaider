@@ -5,3 +5,5 @@
 #define DEFAULT_CONFIG_FILE "OpenRaider.init"
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
+
+#define MAXIMUM_FPS 100

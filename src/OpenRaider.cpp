@@ -10,10 +10,14 @@
 
 #include "WindowSDL.h"
 
+#include "config.h"
 #include "utils/strings.h"
+#include "utils/time.h"
 #include "OpenRaider.h"
 
 OpenRaider::OpenRaider() {
+    mInit = false;
+    mRunning = false;
     mWindow = NULL;
 }
 
@@ -33,10 +37,34 @@ int OpenRaider::loadConfig(const char *config) {
 
 int OpenRaider::initialize() {
     assert(mWindow == NULL);
+    assert(mInit == false);
+    assert(mRunning == false);
 
     mWindow = new WindowSDL();
-    mWindow->initialize();
+    if (mWindow->initialize() != 0)
+        return -1;
+
+    mInit = true;
 
     return 0;
+}
+
+void OpenRaider::run() {
+    assert(mInit == true);
+    assert(mRunning == false);
+
+    mRunning = true;
+    while (mRunning) {
+        clock_t startTime = systemTimerGet();
+
+        mWindow->eventHandling();
+
+        clock_t stopTime = systemTimerGet();
+        mWindow->delay((1000 / MAXIMUM_FPS) - (stopTime - startTime));
+    }
+}
+
+void OpenRaider::cleanup() {
+    mWindow->cleanup();
 }
 

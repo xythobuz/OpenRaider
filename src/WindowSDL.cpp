@@ -31,6 +31,7 @@ WindowSDL::~WindowSDL() {
 void WindowSDL::setDriver(const char *driver) {
     assert(driver != NULL);
     assert(driver[0] != '\0');
+    assert(mInit == false);
 
     mDriver = bufferString("%s", driver);
 }
@@ -73,21 +74,24 @@ void WindowSDL::setMousegrab(bool grab) {
 }
 
 int WindowSDL::initialize() {
+    assert(mInit == false);
+
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        printf("SDL Error: %s\n", SDL_GetError());
+        printf("SDL_Init Error: %s\n", SDL_GetError());
         return -1;
     }
 
 #ifndef __APPLE__
     assert(mDriver != NULL);
     assert(mDriver[0] != '\0');
+
     if (SDL_GL_LoadLibrary(mDriver) < 0) {
         SDL_ClearError();
         if (SDL_GL_LoadLibrary("libGL.so") < 0) {
             SDL_ClearError();
             if (SDL_GL_LoadLibrary("libGL.so.1") < 0) {
                 printf("Could not load OpenGL driver!\n");
-                printf("SDL Error: %s\n", SDL_GetError());
+                printf("SDL_GL_LoadLibrary Error: %s\n", SDL_GetError());
                 return -2;
             }
         }
@@ -106,7 +110,7 @@ int WindowSDL::initialize() {
         || (SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1) != 0)) {
-        printf("SDL Error: %s\n", SDL_GetError());
+        printf("SDL_GL_SetAttribute Error: %s\n", SDL_GetError());
         mInit = false;
         return -3;
     }
@@ -114,14 +118,14 @@ int WindowSDL::initialize() {
     mWindow = SDL_CreateWindow(VERSION, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                 mWidth, mHeight, flags);
     if (mWindow == NULL) {
-        printf("SDL Error: %s\n", SDL_GetError());
+        printf("SDL_CreateWindow Error: %s\n", SDL_GetError());
         mInit = false;
         return -4;
     }
 
     mGLContext = SDL_GL_CreateContext(mWindow);
     if (mGLContext == NULL) {
-        printf("SDL Error: %s\n", SDL_GetError());
+        printf("SDL_GL_CreateContext Error: %s\n", SDL_GetError());
         mInit = false;
         return -5;
     }
@@ -129,6 +133,39 @@ int WindowSDL::initialize() {
     setSize(mWidth, mHeight);
 
     return 0;
+}
+
+void WindowSDL::eventHandling() {
+    SDL_Event event;
+
+    assert(mInit == true);
+
+    while(SDL_PollEvent(&event)) {
+        switch (event.type) {
+            case SDL_QUIT:
+                exit(0);
+                break;
+
+            case SDL_MOUSEMOTION:
+
+                break;
+
+            case SDL_MOUSEBUTTONDOWN:
+            case SDL_MOUSEBUTTONUP:
+
+                break;
+
+            case SDL_KEYDOWN:
+            case SDL_KEYUP:
+
+                break;
+
+            case SDL_WINDOWEVENT:
+                if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+                    setSize(event.window.data1, event.window.data2);
+                break;
+        }
+    }
 }
 
 void WindowSDL::writeString(WindowString *s) {
@@ -139,7 +176,22 @@ void WindowSDL::writeString(WindowString *s) {
 
 }
 
+void WindowSDL::delay(clock_t ms) {
+    assert(mInit == true);
+
+    SDL_Delay(ms);
+}
+
 void WindowSDL::swapBuffersGL() {
+    assert(mInit == true);
+
     SDL_GL_SwapWindow(mWindow);
+}
+
+void WindowSDL::cleanup() {
+    if (mInit) {
+        //SDL_QuitSubSystem(SDL_OPENGL);
+        SDL_Quit();
+    }
 }
 

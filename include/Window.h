@@ -8,6 +8,8 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
+#include <ctime>
+
 typedef struct {
     char *text;
     unsigned int x;
@@ -35,11 +37,17 @@ public:
 
     virtual int initialize() = 0;
 
+    virtual void eventHandling() = 0;
+
     virtual void writeString(WindowString *s) = 0;
+
+    virtual void delay(clock_t ms) = 0;
 
     virtual void swapBuffersGL() = 0;
 
     virtual void resizeGL(unsigned int w, unsigned int h);
+
+    virtual void cleanup() = 0;
 };
 
 #endif

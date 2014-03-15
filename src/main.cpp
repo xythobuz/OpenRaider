@@ -16,8 +16,10 @@
 OpenRaider *gOpenRaider = NULL;
 
 void cleanupHandler() {
-    if (gOpenRaider)
+    if (gOpenRaider) {
+        gOpenRaider->cleanup();
         delete gOpenRaider;
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -70,6 +72,10 @@ int main(int argc, char *argv[]) {
 
     // Initialize the "subsystems"
     gOpenRaider->initialize();
+
+    // Enter Main loop
+    printf("Starting " VERSION "\n");
+    gOpenRaider->run();
 
     return 0;
 }
