@@ -40,6 +40,8 @@ public:
 
     virtual void writeString(WindowString *s);
 
+    virtual void swapBuffersGL();
+
 private:
     bool mInit;
     char *mDriver;

@@ -37,6 +37,8 @@ public:
 
     virtual void writeString(WindowString *s) = 0;
 
+    virtual void swapBuffersGL() = 0;
+
     virtual void resizeGL(unsigned int w, unsigned int h);
 };
 

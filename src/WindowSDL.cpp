@@ -139,3 +139,7 @@ void WindowSDL::writeString(WindowString *s) {
 
 }
 
+void WindowSDL::swapBuffersGL() {
+    SDL_GL_SwapWindow(mWindow);
+}
+
