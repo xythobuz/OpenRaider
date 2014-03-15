@@ -68,13 +68,16 @@ void OpenRaider::run() {
 
         mWindow->eventHandling();
 
-        /*WindowString s;
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        WindowString s;
         s.text = bufferString("Hello World");
         s.x = 100;
         s.y = 100;
-        s.scale = 1.0;
+        s.scale = 1.5f;
         s.color[0] = s.color[1] = s.color[2] = 0xFF;
-        mWindow->writeString(&s);*/
+        mWindow->writeString(&s);
 
         mWindow->swapBuffersGL();
 

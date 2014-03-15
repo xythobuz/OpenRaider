@@ -228,6 +228,8 @@ int WindowSDL::initializeFont() {
         return -2;
     }
 
+    glGenTextures(1, &mFontTexture);
+
     mFontInit = true;
     return 0;
 }
@@ -248,22 +250,38 @@ void WindowSDL::writeString(WindowString *s) {
         return;
     }
 
-    SDL_Surface *window = SDL_GetWindowSurface(mWindow);
-    if (window == NULL) {
-        printf("SDL_GetWindowSurface Error: %s\n", SDL_GetError());
-        return;
+    GLenum textureFormat;
+    if (surface->format->BytesPerPixel == 4) {
+        if (surface->format->Rmask == 0x000000FF)
+            textureFormat = GL_RGBA;
+        else
+            textureFormat = GL_BGRA_EXT;
+    } else {
+        textureFormat = GL_RGB;
     }
 
-    SDL_Rect destination;
-    destination.x = s->x;
-    destination.y = s->y;
-    destination.w = (int)((float)surface->w * s->scale);
-    destination.h = (int)((float)surface->h * s->scale);
+    glBindTexture(GL_TEXTURE_2D, mFontTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0, textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
 
-    if (SDL_BlitScaled(surface, NULL, window, &destination) != 0) {
-        printf("SDL_BlitScaled Error: %s\n", SDL_GetError());
-        return;
-    }
+    glEnter2D(mWidth, mHeight);
+
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex2i(s->x, s->y);
+
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex2i(s->x, (int)((float)surface->h * s->scale));
+
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex2i((int)((float)surface->w * s->scale), (int)((float)surface->h * s->scale));
+
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex2i((int)((float)surface->w * s->scale), s->y);
+    glEnd();
+
+    glExit2D();
 
     SDL_FreeSurface(surface);
 }

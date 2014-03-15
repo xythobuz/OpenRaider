@@ -11,6 +11,14 @@
 #include "SDL.h"
 #include "SDL_ttf.h"
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
 #include "Window.h"
 
 /*!
@@ -64,6 +72,7 @@ private:
     bool mFontInit;
     char *mFontName;
     TTF_Font *mFont;
+    GLuint mFontTexture;
 };
 
 #endif
