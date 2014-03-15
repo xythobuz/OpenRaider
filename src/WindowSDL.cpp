@@ -5,13 +5,16 @@
  * \author xythobuz
  */
 
+#include <cstdio>
 #include <assert.h>
 
 #include "config.h"
+#include "utils/strings.h"
 #include "WindowSDL.h"
 
 WindowSDL::WindowSDL() {
     mInit = false;
+    mDriver = NULL;
     mWidth = DEFAULT_WIDTH;
     mHeight = DEFAULT_HEIGHT;
     mFullscreen = false;
@@ -21,7 +24,15 @@ WindowSDL::WindowSDL() {
 }
 
 WindowSDL::~WindowSDL() {
+    if (mDriver)
+        delete [] mDriver;
+}
 
+void WindowSDL::setDriver(const char *driver) {
+    assert(driver != NULL);
+    assert(driver[0] != '\0');
+
+    mDriver = bufferString("%s", driver);
 }
 
 void WindowSDL::setSize(unsigned int width, unsigned int height) {
@@ -62,25 +73,59 @@ void WindowSDL::setMousegrab(bool grab) {
 }
 
 int WindowSDL::initialize() {
-    SDL_Init(SDL_INIT_VIDEO);
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        printf("SDL Error: %s\n", SDL_GetError());
+        return -1;
+    }
 
-    mInit = true;
+#ifndef __APPLE__
+    assert(mDriver != NULL);
+    assert(mDriver[0] != '\0');
+    if (SDL_GL_LoadLibrary(mDriver) < 0) {
+        SDL_ClearError();
+        if (SDL_GL_LoadLibrary("libGL.so") < 0) {
+            SDL_ClearError();
+            if (SDL_GL_LoadLibrary("libGL.so.1") < 0) {
+                printf("Could not load OpenGL driver!\n");
+                printf("SDL Error: %s\n", SDL_GetError());
+                return -2;
+            }
+        }
+    }
+#endif
 
     int flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
     if (mFullscreen)
         flags |= SDL_WINDOW_FULLSCREEN;
 
+    mInit = true;
     setMousegrab(mMousegrab);
 
-    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    if ((SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1) != 0)) {
+        printf("SDL Error: %s\n", SDL_GetError());
+        mInit = false;
+        return -3;
+    }
 
     mWindow = SDL_CreateWindow(VERSION, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                 mWidth, mHeight, flags);
+    if (mWindow == NULL) {
+        printf("SDL Error: %s\n", SDL_GetError());
+        mInit = false;
+        return -4;
+    }
+
     mGLContext = SDL_GL_CreateContext(mWindow);
+    if (mGLContext == NULL) {
+        printf("SDL Error: %s\n", SDL_GetError());
+        mInit = false;
+        return -5;
+    }
+
     setSize(mWidth, mHeight);
 
     return 0;
@@ -90,5 +135,7 @@ void WindowSDL::writeString(WindowString *s) {
     assert(s != NULL);
     assert(s->text != NULL);
     assert(mInit == true);
+
+
 }
 

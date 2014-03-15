@@ -28,6 +28,8 @@ public:
      */
     virtual ~WindowSDL();
 
+    virtual void setDriver(const char *driver);
+
     virtual void setSize(unsigned int width, unsigned int height);
 
     virtual void setFullscreen(bool fullscreen);
@@ -40,6 +42,7 @@ public:
 
 private:
     bool mInit;
+    char *mDriver;
     unsigned int mWidth;
     unsigned int mHeight;
     bool mFullscreen;

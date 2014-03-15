@@ -25,6 +25,8 @@ public:
      */
     virtual ~Window();
 
+    virtual void setDriver(const char *driver) = 0;
+
     virtual void setSize(unsigned int width, unsigned int height) = 0;
 
     virtual void setFullscreen(bool fullscreen) = 0;
