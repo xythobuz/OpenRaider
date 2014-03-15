@@ -18,6 +18,12 @@ OpenRaider *gOpenRaider = NULL;
 void cleanupHandler() {
     if (gOpenRaider)
         delete gOpenRaider;
+
+    printf("\nThanks for testing %s\n", VERSION);
+    printf("Build date: %s @ %s\n", __DATE__, __TIME__);
+    printf("Build host: %s\n", BUILD_HOST);
+    printf("Web site  : http://github.com/xythobuz/OpenRaider\n");
+    printf("Contact   : xythobuz@xythobuz.de\n");
 }
 
 int main(int argc, char *argv[]) {
