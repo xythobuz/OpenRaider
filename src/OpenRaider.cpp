@@ -15,6 +15,8 @@
 #include "utils/time.h"
 #include "OpenRaider.h"
 
+#define MAX_MS_PER_FRAME (1000 / MAXIMUM_FPS)
+
 OpenRaider::OpenRaider() {
     mInit = false;
     mRunning = false;
@@ -60,11 +62,8 @@ void OpenRaider::run() {
         mWindow->eventHandling();
 
         clock_t stopTime = systemTimerGet();
-        mWindow->delay((1000 / MAXIMUM_FPS) - (stopTime - startTime));
+        if (MAX_MS_PER_FRAME > (stopTime - startTime))
+            mWindow->delay(MAX_MS_PER_FRAME - (stopTime - startTime));
     }
-}
-
-void OpenRaider::cleanup() {
-    mWindow->cleanup();
 }
 

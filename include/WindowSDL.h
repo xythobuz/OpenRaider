@@ -46,8 +46,6 @@ public:
 
     virtual void swapBuffersGL();
 
-    virtual void cleanup();
-
 private:
     bool mInit;
     char *mDriver;

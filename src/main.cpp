@@ -16,10 +16,8 @@
 OpenRaider *gOpenRaider = NULL;
 
 void cleanupHandler() {
-    if (gOpenRaider) {
-        gOpenRaider->cleanup();
+    if (gOpenRaider)
         delete gOpenRaider;
-    }
 }
 
 int main(int argc, char *argv[]) {

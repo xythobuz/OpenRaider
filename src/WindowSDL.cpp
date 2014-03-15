@@ -12,6 +12,8 @@
 #include "utils/strings.h"
 #include "WindowSDL.h"
 
+#define SUBSYSTEMS_USED (SDL_INIT_VIDEO | SDL_INIT_EVENTS)
+
 WindowSDL::WindowSDL() {
     mInit = false;
     mDriver = NULL;
@@ -26,6 +28,11 @@ WindowSDL::WindowSDL() {
 WindowSDL::~WindowSDL() {
     if (mDriver)
         delete [] mDriver;
+
+    if (mInit) {
+        SDL_QuitSubSystem(SUBSYSTEMS_USED);
+        SDL_Quit();
+    }
 }
 
 void WindowSDL::setDriver(const char *driver) {
@@ -76,7 +83,7 @@ void WindowSDL::setMousegrab(bool grab) {
 int WindowSDL::initialize() {
     assert(mInit == false);
 
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+    if (SDL_Init(SUBSYSTEMS_USED) != 0) {
         printf("SDL_Init Error: %s\n", SDL_GetError());
         return -1;
     }
@@ -142,10 +149,6 @@ void WindowSDL::eventHandling() {
 
     while(SDL_PollEvent(&event)) {
         switch (event.type) {
-            case SDL_QUIT:
-                exit(0);
-                break;
-
             case SDL_MOUSEMOTION:
 
                 break;
@@ -164,6 +167,9 @@ void WindowSDL::eventHandling() {
                 if (event.window.event == SDL_WINDOWEVENT_RESIZED)
                     setSize(event.window.data1, event.window.data2);
                 break;
+
+            case SDL_QUIT:
+                exit(0);
         }
     }
 }
@@ -186,12 +192,5 @@ void WindowSDL::swapBuffersGL() {
     assert(mInit == true);
 
     SDL_GL_SwapWindow(mWindow);
-}
-
-void WindowSDL::cleanup() {
-    if (mInit) {
-        //SDL_QuitSubSystem(SDL_OPENGL);
-        SDL_Quit();
-    }
 }
 

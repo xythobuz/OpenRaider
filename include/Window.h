@@ -46,8 +46,6 @@ public:
     virtual void swapBuffersGL() = 0;
 
     virtual void resizeGL(unsigned int w, unsigned int h);
-
-    virtual void cleanup() = 0;
 };
 
 #endif

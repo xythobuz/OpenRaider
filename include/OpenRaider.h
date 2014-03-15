@@ -36,8 +36,6 @@ public:
 
     void run();
 
-    void cleanup();
-
 private:
     bool mInit;
     bool mRunning;
