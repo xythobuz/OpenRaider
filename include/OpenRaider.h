@@ -75,7 +75,15 @@ public:
     Sound *mSound;
     Menu *mMenu;
 
+    bool mMapListFilled;
+    std::vector<char *> mMapList;
+
 private:
+
+    void loadPakFolderRecursive(const char *dir);
+
+    void fillMapList();
+
     bool mInit;
     bool mRunning;
 

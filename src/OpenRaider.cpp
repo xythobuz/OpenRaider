@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <cstring>
 #include <assert.h>
+#include <dirent.h>
 
 #include "WindowSDL.h"
 
@@ -25,6 +26,7 @@ OpenRaider::OpenRaider() {
     mPakDir = NULL;
     mAudioDir = NULL;
     mDataDir = NULL;
+    mMapListFilled = false;
 
     mMenu = new Menu();
     mSound = new Sound();
@@ -55,6 +57,11 @@ OpenRaider::~OpenRaider() {
 
     if (mDataDir)
         delete mDataDir;
+
+    while (mMapList.size() > 0) {
+        delete [] mMapList.back();
+        mMapList.pop_back();
+    }
 }
 
 int OpenRaider::loadConfig(const char *config) {
@@ -425,6 +432,60 @@ int OpenRaider::bind(ActionEvents action, const char *key) {
     return 0;
 }
 
+void OpenRaider::loadPakFolderRecursive(const char *dir) {
+    struct dirent *ep;
+    DIR *pakDir;
+
+    pakDir = opendir(dir);
+    if (pakDir != NULL) {
+        while ((ep = readdir(pakDir)) != NULL) {
+            if (ep->d_type == DT_DIR) {
+                if ((strcmp(".", ep->d_name) != 0)
+                 && (strcmp("..", ep->d_name) != 0)) {
+                    char *tmp = bufferString("%s%s", dir, ep->d_name);
+                    char *next = fullPath(tmp, '/');
+                    loadPakFolderRecursive(next);
+                    delete next;
+                    delete tmp;
+                }
+            } else {
+                char *fullPathMap = bufferString("%s%s", dir, ep->d_name);
+
+                char *lowerPath = bufferString("%s", fullPathMap);
+                for (char *p = lowerPath; *p; ++p) *p = (char)tolower(*p);
+
+                // Check for valid extension
+                if (stringEndsWith(lowerPath, ".phd")
+                     || stringEndsWith(lowerPath, ".tr2")
+                     || stringEndsWith(lowerPath, ".tr4")
+                     || stringEndsWith(lowerPath, ".trc")) {
+                    //if (m_tombraider.checkMime(fullPathMap) == 0) {
+                        // printf("Validated pak: '%s'\n", fullPathMap);
+
+                        // Just load relative filename
+                        mMapList.push_back(bufferString("%s", (fullPathMap + strlen(mPakDir))));
+                    //} else {
+                    //    printf("ERROR: pak file '%s' not found or invalid\n", fullPathMap);
+                    //}
+                }
+
+                delete [] lowerPath;
+                delete [] fullPathMap;
+            }
+        }
+        closedir(pakDir);
+    } else {
+        printf("Could not open PAK dir %s!\n", dir);
+    }
+}
+
+void OpenRaider::fillMapList() {
+    char *tmp = fullPath(mPakDir, '/');
+    loadPakFolderRecursive(tmp);
+    delete [] tmp;
+    mMapListFilled = true;
+}
+
 int OpenRaider::initialize() {
     assert(mInit == false);
     assert(mRunning == false);
@@ -473,6 +534,11 @@ void OpenRaider::run() {
         mWindow->glExit2D();
 
         mWindow->swapBuffersGL();
+
+        // Fill map list after first render pass,
+        // so menu *loading screen* is visible
+        if (!mMapListFilled)
+            fillMapList();
 
         clock_t stopTime = systemTimerGet();
         if (MAX_MS_PER_FRAME > (stopTime - startTime))
