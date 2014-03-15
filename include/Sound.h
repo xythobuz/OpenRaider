@@ -36,7 +36,15 @@ public:
      * \brief Initialize sound system
      * \returns 0 on success or < 0 error flags
      */
-    int init();
+    int initialize();
+
+    void setEnabled(bool on);
+
+    /*!
+     * \brief Set the volume
+     * \param vol new source gain
+     */
+    void setVolume(float vol);
 
     /*!
      * \brief Get number of registered sources
@@ -48,12 +56,6 @@ public:
      * \brief Remove all loaded sounds
      */
     void clear();
-
-    /*!
-     * \brief Set the volume
-     * \param vol new source gain
-     */
-    void setVolume(float vol);
 
     /*!
      * \brief Move listener and repositions them
@@ -102,6 +104,7 @@ public:
 
 private:
 
+    bool mEnabled;
     bool mInit;                        //!< Guard to ensure ausio system is active
     float mVolume;                     //!< Listener gain
     std::vector<unsigned int> mBuffer; //!< Audio buffer id list

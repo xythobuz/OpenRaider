@@ -10,24 +10,21 @@
 #include <OpenAL/al.h>
 #else
 #include <AL/al.h>
+#include <fcntl.h>
+#include <unistd.h>
 #endif
 
 #include <AL/alut.h>
 
-#include <time.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include <cstdio>
+#include <cstdlib>
 #include <assert.h>
 
 #include "math/math.h"
 #include "Sound.h"
 
 Sound::Sound() {
+    mEnabled = false;
     mInit = false;
     mVolume = 1.0f;
 }
@@ -37,19 +34,18 @@ Sound::~Sound() {
         alutExit();
 }
 
-int Sound::init() {
+int Sound::initialize() {
     assert(mInit == false);
 
+    if (!mEnabled)
+        return 0;
+
 #ifndef __APPLE__
-    int fd;
-
-    fd = open("/dev/dsp", O_RDWR);
-
+    int fd = open("/dev/dsp", O_RDWR);
     if (fd < 0) {
-        perror("Sound::Init> Could not open /dev/dsp : ");
+        printf("Could not initialize Sound (/dev/dsp)\n");
         return -1;
     }
-
     close(fd);
 #endif
 
@@ -58,26 +54,47 @@ int Sound::init() {
     alcMakeContextCurrent(Context);
 
     if (alutInitWithoutContext(NULL, NULL) == AL_FALSE) {
-        printf("Sound::Init> Could not initialize alut (%s)\n", alutGetErrorString(alutGetError()));
+        printf("ALUT-Error: %s\n", alutGetErrorString(alutGetError()));
         return -2;
     }
 
     mInit = true;
-    printf("Created OpenAL Context\n");
 
     return 0;
 }
 
-int Sound::registeredSources() {
-    assert(mInit == true);
+void Sound::setEnabled(bool on) {
+    mEnabled = on;
+}
+
+void Sound::setVolume(float vol) {
     assert(mSource.size() == mBuffer.size());
+
+    if (mEnabled) {
+        if ((mSource.size() > 0) && (!equalEpsilon(mVolume, vol))) {
+            // Apply new volume to old sources if needed
+            for (size_t i = 0; i < mSource.size(); i++)
+                alSourcef(mSource[i], AL_GAIN, vol);
+        }
+    }
+
+    mVolume = vol;
+}
+
+int Sound::registeredSources() {
+    assert(mSource.size() == mBuffer.size());
+
+    if ((!mEnabled) || (!mInit))
+        return 0;
 
     return mSource.size();
 }
 
 void Sound::clear() {
-    assert(mInit == true);
     assert(mSource.size() == mBuffer.size());
+
+    if ((!mEnabled) || (!mInit))
+        return;
 
     for (size_t i = 0; i < mSource.size(); i++) {
         alDeleteSources(1, &mSource[i]);
@@ -88,35 +105,26 @@ void Sound::clear() {
     mBuffer.clear();
 }
 
-void Sound::setVolume(float vol) {
-    assert(mInit == true);
-    assert(mSource.size() == mBuffer.size());
-
-    if ((mSource.size() > 0) && (!equalEpsilon(mVolume, vol))) {
-        // Apply new volume to old sources if needed
-        for (size_t i = 0; i < mSource.size(); i++)
-            alSourcef(mSource[i], AL_GAIN, vol);
-    }
-
-    mVolume = vol;
-}
-
 void Sound::listenAt(float pos[3], float angle[3]) {
-    assert(mInit == true);
     assert(mSource.size() == mBuffer.size());
     assert(pos != NULL);
     assert(angle != NULL);
+
+    if ((!mEnabled) || (!mInit))
+        return;
 
     alListenerfv(AL_POSITION, pos);
     alListenerfv(AL_ORIENTATION, angle);
 }
 
 void Sound::sourceAt(int source, float pos[3]) {
-    assert(mInit == true);
     assert(mSource.size() == mBuffer.size());
     assert(source >= 0);
     assert(source < (int)mSource.size());
     assert(pos != NULL);
+
+    if ((!mEnabled) || (!mInit))
+        return;
 
     alSourcefv(mSource[source], AL_POSITION, pos);
 }
@@ -129,11 +137,15 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags) {
     ALvoid *data;
     int id;
 
-    assert(mInit == true);
     assert(mSource.size() == mBuffer.size());
     assert(filename != NULL);
     assert(filename[0] != '\0');
     assert(source != NULL);
+
+    if ((!mEnabled) || (!mInit)) {
+        *source = 0;
+        return 0;
+    }
 
     *source = -1;
     id = mSource.size();
@@ -141,22 +153,20 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags) {
     alGetError();
     alGenBuffers(1, &mBuffer[id]);
     if (alGetError() != AL_NO_ERROR) {
-        fprintf(stderr, "Sound::AddFile> alGenBuffers call failed\n");
+        printf("Could not load wav file (alGenBuffers)\n");
         return -1;
     }
 
     alGetError();
     alGenSources(1, &mSource[id]);
     if (alGetError() != AL_NO_ERROR) {
-        fprintf(stderr, "Sound::AddFile> alGenSources call failed\n");
+        printf("Could not load wav file (alGenSources)\n");
         return -2;
     }
 
-    // err = alutLoadWAV(filename, &data, &format, &size, &bits, &freq);
-    // is deprecated!
     data = alutLoadMemoryFromFile(filename, &format, &size, &freq);
     if (alutGetError() != ALUT_ERROR_NO_ERROR) {
-        fprintf(stderr, "Could not load %s\n", filename);
+        printf("Could not load %s\n", filename);
         return -3;
     }
 
@@ -182,10 +192,14 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     int error = 0;
     int id;
 
-    assert(mInit == true);
     assert(mSource.size() == mBuffer.size());
     assert(wav != NULL);
     assert(source != NULL);
+
+    if ((!mEnabled) || (!mInit)) {
+        *source = 0;
+        return 0;
+    }
 
     *source = -1;
     id = mSource.size();
@@ -195,26 +209,20 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
     alGetError();
     alGenBuffers(1, &mBuffer[id]);
     if (alGetError() != AL_NO_ERROR) {
-        fprintf(stderr, "Sound::AddWave> alGenBuffers call failed\n");
+        printf("Could not load wav (alGenBuffers)\n");
         return -1;
     }
 
     alGetError();
     alGenSources(1, &mSource[id]);
     if (alGetError() != AL_NO_ERROR) {
-        fprintf(stderr, "Sound::AddWave> alGenSources call failed\n");
+        printf("Could not load wav (alGenSources)\n");
         return -2;
     }
 
-    //AL_FORMAT_WAVE_EXT does not exist on Mac!"
-    // alBufferData(mBuffer[id], AL_FORMAT_WAVE_EXT, data, size, freq);
-    // Idea: Fill Buffer with
-    // alutLoadMemoryFromFileImage
-    //     (const ALvoid *data, ALsizei length, ALenum *format, ALsizei *size, ALfloat *frequency)
-
     data = alutLoadMemoryFromFileImage(wav, length, &format, &size, &freq);
     if (((error = alutGetError()) != ALUT_ERROR_NO_ERROR) || (data == NULL)) {
-        fprintf(stderr, "Could not load wav buffer (%s)\n", alutGetErrorString(error));
+        printf("Could not load wav buffer (%s)\n", alutGetErrorString(error));
         return -3;
     }
 
@@ -235,19 +243,23 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 }
 
 void Sound::play(int source) {
-    assert(mInit == true);
     assert(mSource.size() == mBuffer.size());
     assert(source >= 0);
     assert(source < (int)mSource.size());
+
+    if ((!mEnabled) || (!mInit))
+        return;
 
     alSourcePlay(mSource[source]);
 }
 
 void Sound::stop(int source) {
-    assert(mInit == true);
     assert(mSource.size() == mBuffer.size());
     assert(source >= 0);
     assert(source < (int)mSource.size());
+
+    if ((!mEnabled) || (!mInit))
+        return;
 
     alSourceStop(mSource[source]);
 }

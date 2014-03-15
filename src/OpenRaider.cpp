@@ -22,10 +22,14 @@ OpenRaider::OpenRaider() {
     mInit = false;
     mRunning = false;
 
+    mSound = new Sound();
     mWindow = new WindowSDL();
 }
 
 OpenRaider::~OpenRaider() {
+    if (mSound)
+        delete mSound;
+
     if (mWindow)
         delete mWindow;
 }
@@ -142,9 +146,13 @@ int OpenRaider::set(const char *var, const char *value) {
             printf("set-audio-Error: Invalid value (%s)\n", value);
             return -4;
         }
-        // TODO enable audio
+        mSound->setEnabled(audio);
     } else if (strcmp(var, "volume") == 0) {
-        // TODO set volume
+        float vol = 1.0f;
+        if (sscanf(value, "%f", &vol) != 1) {
+            printf("set-volume-Error: Invalid value (%s)\n", value);
+        }
+        mSound->setVolume(vol);
     } else if (strcmp(var, "mouse_x") == 0) {
         // TODO set
     } else if (strcmp(var, "mouse_y") == 0) {
@@ -206,6 +214,10 @@ int OpenRaider::initialize() {
     // Initialize window font
     if (mWindow->initializeFont() != 0)
         return -3;
+
+    // Initialize sound
+    if (mSound->initialize() != 0)
+        return -4;
 
     mInit = true;
 

@@ -10,6 +10,7 @@
 
 #include <vector>
 
+#include "Sound.h"
 #include "Window.h"
 
 /*!
@@ -50,6 +51,8 @@ private:
     bool mInit;
     bool mRunning;
     Window *mWindow;
+
+    Sound *mSound;
 };
 
 #endif
