@@ -13,9 +13,6 @@
 #include "OpenRaider.h"
 #include "main.h"
 
-#define DEFAULT_CONFIG_PATH "~/.OpenRaider/"
-#define DEFAULT_CONFIG_FILE "OpenRaider.init"
-
 OpenRaider *gOpenRaider = NULL;
 
 void cleanupHandler() {

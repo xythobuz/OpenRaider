@@ -1,3 +1,7 @@
 #define VERSION "OpenRaider-@OpenRaider_VERSION_MAJOR@.@OpenRaider_VERSION_MINOR@.@OpenRaider_VERSION_MICRO@@OpenRaider_VERSION_RELEASE@ (@CMAKE_BUILD_TYPE@)"
 #define BUILD_HOST "@OpenRaider_BUILD_HOST@"
 
+#define DEFAULT_CONFIG_PATH "~/.OpenRaider/"
+#define DEFAULT_CONFIG_FILE "OpenRaider.init"
+#define DEFAULT_WIDTH 640
+#define DEFAULT_HEIGHT 480

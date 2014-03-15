@@ -8,6 +8,12 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
+typedef struct {
+    char *text;
+    unsigned int x;
+    unsigned int y;
+} WindowString;
+
 /*!
  * \brief Windowing interface
  */
@@ -26,6 +32,10 @@ public:
     virtual void setMousegrab(bool grab) = 0;
 
     virtual int initialize() = 0;
+
+    virtual void writeString(WindowString *s) = 0;
+
+    virtual void resizeGL(unsigned int width, unsigned int height);
 };
 
 #endif

@@ -36,7 +36,10 @@ public:
 
     virtual int initialize();
 
+    virtual void writeString(WindowString *s);
+
 private:
+    bool mInit;
     unsigned int mWidth;
     unsigned int mHeight;
     bool mFullscreen;

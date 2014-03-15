@@ -34,6 +34,7 @@ set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
 set (SRCS ${SRCS} "main.cpp")
 set (SRCS ${SRCS} "OpenRaider.cpp")
 set (SRCS ${SRCS} "Sound.cpp")
+set (SRCS ${SRCS} "Window.cpp")
 
 # Select available Windowing library
 if (SDL2_FOUND AND SDL2TTF_FOUND)
@@ -47,7 +48,7 @@ endif (SDL2_FOUND AND SDL2TTF_FOUND)
 
 # Configuration Header file
 configure_file (
-    "${PROJECT_SOURCE_DIR}/cmake/Config.h.in"
+    "${PROJECT_SOURCE_DIR}/include/Config.h.in"
     "${PROJECT_BINARY_DIR}/Config.h"
 )
 
@@ -105,7 +106,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
     # Display message if something is enabled
     if (NOT "${SSE_FOUND_MSG}" STREQUAL "")
-        message ("Enabled${SSE_FOUND_MSG}...")
+        message (STATUS "Enabled${SSE_FOUND_MSG}...")
     endif (NOT "${SSE_FOUND_MSG}" STREQUAL "")
 endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 

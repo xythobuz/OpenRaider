@@ -30,7 +30,7 @@ set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 #################################################################
 
 # Build warnings
-set (WARNINGS "${WARNINGS} -Weverything -Wno-padded -Wno-packed -Wno-weak-vtables")
+set (WARNINGS "${WARNINGS} -Weverything -Wno-padded -Wno-packed")
 set (WARNINGS "${WARNINGS} -Wno-global-constructors -Wno-exit-time-destructors")
 set (WARNINGS "${WARNINGS} -Wno-documentation-unknown-command -Wno-c++98-compat-pedantic")
 set (WARNINGS "${WARNINGS} -Wno-missing-prototypes -Wno-missing-variable-declarations")
