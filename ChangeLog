@@ -5,6 +5,9 @@
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140314 ]
+	* Started complete re-write...
+
 	[ 20140313 ]
 	* Removed unit tests. No unit tests are better then some half-assed
 	  non working ones...
