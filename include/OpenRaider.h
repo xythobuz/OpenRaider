@@ -39,6 +39,8 @@ public:
 
     int command(const char *command, std::vector<char *> *args);
 
+    char *expandDirectoryNames(const char *s);
+
     int set(const char *var, const char *value);
 
     int bind(const char *action, const char *key);
@@ -53,6 +55,11 @@ private:
     Window *mWindow;
 
     Sound *mSound;
+
+    char *mBaseDir;
+    char *mPakDir;
+    char *mAudioDir;
+    char *mDataDir;
 };
 
 #endif

@@ -12,6 +12,8 @@
 #include <cstdarg>
 #include <vector>
 
+char *stringReplace(const char *s, const char *search, const char *replace);
+
 void printStringVector(std::vector<char *> *args);
 
 int readBool(const char *value, bool *var);

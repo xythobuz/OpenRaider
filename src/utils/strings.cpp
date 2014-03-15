@@ -17,6 +17,34 @@
 
 #include "utils/strings.h"
 
+char *stringReplace(const char *s, const char *search, const char *replace) {
+    char *tmp = strstr(s, search);
+    if (tmp == NULL)
+        return NULL;
+    size_t offset = tmp - s;
+
+    size_t length = strlen(s) - strlen(search) + strlen(replace);
+    char *buf = new char[length + 1];
+    buf[length] = '\0';
+
+    for (size_t i = 0; i < offset; i++)
+        buf[i] = s[i];
+
+    for (size_t i = 0; i < strlen(replace); i++)
+        buf[offset + i] = replace[i];
+
+    for (size_t i = (offset + strlen(search)); i < strlen(s); i++)
+        buf[i + strlen(replace) - strlen(search)] = s[i];
+
+    tmp = stringReplace(buf, search, replace);
+    if (tmp == NULL)
+        return buf;
+    else {
+        delete [] buf;
+        return tmp;
+    }
+}
+
 void printStringVector(std::vector<char *> *args) {
     printf("(");
     for (std::vector<char *>::size_type i = 0; i < args->size(); i++) {

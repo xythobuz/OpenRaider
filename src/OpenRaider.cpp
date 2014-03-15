@@ -21,6 +21,10 @@
 OpenRaider::OpenRaider() {
     mInit = false;
     mRunning = false;
+    mBaseDir = NULL;
+    mPakDir = NULL;
+    mAudioDir = NULL;
+    mDataDir = NULL;
 
     mSound = new Sound();
     mWindow = new WindowSDL();
@@ -32,6 +36,18 @@ OpenRaider::~OpenRaider() {
 
     if (mWindow)
         delete mWindow;
+
+    if (mBaseDir)
+        delete mBaseDir;
+
+    if (mPakDir)
+        delete mPakDir;
+
+    if (mAudioDir)
+        delete mAudioDir;
+
+    if (mDataDir)
+        delete mDataDir;
 }
 
 int OpenRaider::loadConfig(const char *config) {
@@ -122,6 +138,39 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
     }
 }
 
+char *OpenRaider::expandDirectoryNames(const char *s) {
+    const char *base = "$(basedir)";
+    const char *pak = "$(pakdir)";
+    const char *audio = "$(audiodir)";
+    const char *data = "$(datadir)";
+
+    if (mBaseDir != NULL) {
+        if (strstr(s, base) != NULL) {
+            return stringReplace(s, base, mBaseDir);
+        }
+    }
+
+    if (mPakDir != NULL) {
+        if (strstr(s, pak) != NULL) {
+            return stringReplace(s, pak, mPakDir);
+        }
+    }
+
+    if (mAudioDir != NULL) {
+        if (strstr(s, audio) != NULL) {
+            return stringReplace(s, audio, mAudioDir);
+        }
+    }
+
+    if (mDataDir != NULL) {
+        if (strstr(s, data) != NULL) {
+            return stringReplace(s, data, mDataDir);
+        }
+    }
+
+    return NULL;
+}
+
 int OpenRaider::set(const char *var, const char *value) {
     if (strcmp(var, "size") == 0) {
         // value has format like "\"1024x768\""
@@ -151,22 +200,63 @@ int OpenRaider::set(const char *var, const char *value) {
         float vol = 1.0f;
         if (sscanf(value, "%f", &vol) != 1) {
             printf("set-volume-Error: Invalid value (%s)\n", value);
+            return -5;
         }
         mSound->setVolume(vol);
     } else if (strcmp(var, "mouse_x") == 0) {
-        // TODO set
+        // TODO mouse support
     } else if (strcmp(var, "mouse_y") == 0) {
-        // TODO set
+        // TODO mouse support
     } else if (strcmp(var, "basedir") == 0) {
-
+        char *quotes = stringReplace(value, "\"", "");
+        char *tmp = expandDirectoryNames(quotes);
+        if (tmp == NULL) {
+            mBaseDir = fullPath(quotes, 0);
+        } else {
+            mBaseDir = fullPath(tmp, 0);
+            delete [] tmp;
+        }
+        delete [] quotes;
     } else if (strcmp(var, "pakdir") == 0) {
-
+        char *quotes = stringReplace(value, "\"", "");
+        char *tmp = expandDirectoryNames(quotes);
+        if (tmp == NULL) {
+            mPakDir = fullPath(quotes, 0);
+        } else {
+            mPakDir = fullPath(tmp, 0);
+            delete [] tmp;
+        }
+        delete [] quotes;
     } else if (strcmp(var, "audiodir") == 0) {
-
+        char *quotes = stringReplace(value, "\"", "");
+        char *tmp = expandDirectoryNames(quotes);
+        if (tmp == NULL) {
+            mAudioDir = fullPath(quotes, 0);
+        } else {
+            mAudioDir = fullPath(tmp, 0);
+            delete [] tmp;
+        }
+        delete [] quotes;
     } else if (strcmp(var, "datadir") == 0) {
-
+        char *quotes = stringReplace(value, "\"", "");
+        char *tmp = expandDirectoryNames(quotes);
+        if (tmp == NULL) {
+            mDataDir = fullPath(quotes, 0);
+        } else {
+            mDataDir = fullPath(tmp, 0);
+            delete [] tmp;
+        }
+        delete [] quotes;
     } else if (strcmp(var, "font") == 0) {
-
+        char *quotes = stringReplace(value, "\"", "");
+        char *tmp = expandDirectoryNames(quotes);
+        if (tmp == NULL) {
+            mWindow->setFont(quotes);
+        } else {
+            mWindow->setFont(tmp);
+            delete [] tmp;
+        }
+        delete [] quotes;
     } else {
         printf("set-Error: Unknown variable (%s = %s)\n", var, value);
         return -1;
@@ -208,8 +298,6 @@ int OpenRaider::initialize() {
     // Initialize OpenGL
     if (mWindow->initializeGL() != 0)
         return -2;
-
-    mWindow->setFont("~/.OpenRaider/data/test.ttf");
 
     // Initialize window font
     if (mWindow->initializeFont() != 0)
