@@ -49,6 +49,8 @@ public:
 
     virtual void eventHandling();
 
+    virtual void setTextInput(bool on);
+
     virtual void delay(clock_t ms);
 
     virtual void swapBuffersGL();
@@ -66,6 +68,8 @@ private:
 
     TTF_Font *mFont;
     GLuint mFontTexture;
+
+    bool mTextInput;
 };
 
 #endif

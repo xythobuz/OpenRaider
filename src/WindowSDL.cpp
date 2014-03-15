@@ -9,6 +9,7 @@
 #include <assert.h>
 
 #include "config.h"
+#include "main.h"
 #include "utils/strings.h"
 #include "WindowSDL.h"
 
@@ -21,6 +22,7 @@ WindowSDL::WindowSDL() {
     mHeight = DEFAULT_HEIGHT;
     mFullscreen = false;
     mMousegrab = false;
+    mTextInput = false;
     mWindow = NULL;
     mGLContext = NULL;
     mFontInit = false;
@@ -176,9 +178,280 @@ void WindowSDL::eventHandling() {
 
                 break;
 
+            case SDL_TEXTINPUT:
+            case SDL_TEXTEDITING:
+                gOpenRaider->handleText(event.text.text, (event.type == SDL_TEXTEDITING));
+                break;
+
             case SDL_KEYDOWN:
             case SDL_KEYUP:
+                KeyboardButton key;
+                switch (event.key.keysym.sym) {
+                    case SDLK_0:
+                        key = zero;
+                        break;
+                    case SDLK_1:
+                        key = one;
+                        break;
+                    case SDLK_2:
+                        key = two;
+                        break;
+                    case SDLK_3:
+                        key = three;
+                        break;
+                    case SDLK_4:
+                        key = four;
+                        break;
+                    case SDLK_5:
+                        key = five;
+                        break;
+                    case SDLK_6:
+                        key = six;
+                        break;
+                    case SDLK_7:
+                        key = seven;
+                        break;
+                    case SDLK_8:
+                        key = eight;
+                        break;
+                    case SDLK_9:
+                        key = nine;
+                        break;
+                    case SDLK_a:
+                        key = a;
+                        break;
+                    case SDLK_b:
+                        key = b;
+                        break;
+                    case SDLK_c:
+                        key = c;
+                        break;
+                    case SDLK_d:
+                        key = d;
+                        break;
+                    case SDLK_e:
+                        key = e;
+                        break;
+                    case SDLK_f:
+                        key = f;
+                        break;
+                    case SDLK_g:
+                        key = g;
+                        break;
+                    case SDLK_h:
+                        key = h;
+                        break;
+                    case SDLK_i:
+                        key = i;
+                        break;
+                    case SDLK_j:
+                        key = j;
+                        break;
+                    case SDLK_k:
+                        key = k;
+                        break;
+                    case SDLK_l:
+                        key = l;
+                        break;
+                    case SDLK_m:
+                        key = m;
+                        break;
+                    case SDLK_n:
+                        key = n;
+                        break;
+                    case SDLK_o:
+                        key = o;
+                        break;
+                    case SDLK_p:
+                        key = p;
+                        break;
+                    case SDLK_q:
+                        key = q;
+                        break;
+                    case SDLK_r:
+                        key = r;
+                        break;
+                    case SDLK_s:
+                        key = s;
+                        break;
+                    case SDLK_t:
+                        key = t;
+                        break;
+                    case SDLK_u:
+                        key = u;
+                        break;
+                    case SDLK_v:
+                        key = v;
+                        break;
+                    case SDLK_w:
+                        key = w;
+                        break;
+                    case SDLK_x:
+                        key = x;
+                        break;
+                    case SDLK_y:
+                        key = y;
+                        break;
+                    case SDLK_z:
+                        key = z;
+                        break;
+                    case SDLK_QUOTE:
+                        key = quote;
+                        break;
+                    case SDLK_BACKSLASH:
+                        key = backslash;
+                        break;
+                    case SDLK_BACKSPACE:
+                        key = backspace;
+                        break;
+                    case SDLK_CAPSLOCK:
+                        key = capslock;
+                        break;
+                    case SDLK_COMMA:
+                        key = comma;
+                        break;
+                    case SDLK_DELETE:
+                        key = del;
+                        break;
+                    case SDLK_UP:
+                        key = up;
+                        break;
+                    case SDLK_DOWN:
+                        key = down;
+                        break;
+                    case SDLK_LEFT:
+                        key = left;
+                        break;
+                    case SDLK_RIGHT:
+                        key = right;
+                        break;
+                    case SDLK_END:
+                        key = end;
+                        break;
+                    case SDLK_EQUALS:
+                        key = equals;
+                        break;
+                    case SDLK_ESCAPE:
+                        key = escape;
+                        break;
+                    case SDLK_F1:
+                        key = f1;
+                        break;
+                    case SDLK_F2:
+                        key = f2;
+                        break;
+                    case SDLK_F3:
+                        key = f3;
+                        break;
+                    case SDLK_F4:
+                        key = f4;
+                        break;
+                    case SDLK_F5:
+                        key = f5;
+                        break;
+                    case SDLK_F6:
+                        key = f6;
+                        break;
+                    case SDLK_F7:
+                        key = f7;
+                        break;
+                    case SDLK_F8:
+                        key = f8;
+                        break;
+                    case SDLK_F9:
+                        key = f9;
+                        break;
+                    case SDLK_F10:
+                        key = f10;
+                        break;
+                    case SDLK_F11:
+                        key = f11;
+                        break;
+                    case SDLK_F12:
+                        key = f12;
+                        break;
+                    case SDLK_BACKQUOTE:
+                        key = backquote;
+                        break;
+                    case SDLK_HOME:
+                        key = home;
+                        break;
+                    case SDLK_INSERT:
+                        key = insert;
+                        break;
+                    case SDLK_LALT:
+                        key = leftalt;
+                        break;
+                    case SDLK_LCTRL:
+                        key = leftctrl;
+                        break;
+                    case SDLK_LEFTBRACKET:
+                        key = leftbracket;
+                        break;
+                    case SDLK_LGUI:
+                        key = leftgui;
+                        break;
+                    case SDLK_LSHIFT:
+                        key = leftshift;
+                        break;
+                    case SDLK_MINUS:
+                        key = minus;
+                        break;
+                    case SDLK_NUMLOCKCLEAR:
+                        key = numlock;
+                        break;
+                    case SDLK_PAGEDOWN:
+                        key = pagedown;
+                        break;
+                    case SDLK_PAGEUP:
+                        key = pageup;
+                        break;
+                    case SDLK_PAUSE:
+                        key = pause;
+                        break;
+                    case SDLK_PERIOD:
+                        key = dot;
+                        break;
+                    case SDLK_RALT:
+                        key = rightalt;
+                        break;
+                    case SDLK_RCTRL:
+                        key = rightctrl;
+                        break;
+                    case SDLK_RETURN:
+                    case SDLK_RETURN2:
+                        key = enter;
+                        break;
+                    case SDLK_RGUI:
+                        key = rightgui;
+                        break;
+                    case SDLK_RIGHTBRACKET:
+                        key = rightbracket;
+                        break;
+                    case SDLK_RSHIFT:
+                        key = rightshift;
+                        break;
+                    case SDLK_SCROLLLOCK:
+                        key = scrolllock;
+                        break;
+                    case SDLK_SEMICOLON:
+                        key = semicolon;
+                        break;
+                    case SDLK_SLASH:
+                        key = slash;
+                        break;
+                    case SDLK_SPACE:
+                        key = space;
+                        break;
+                    case SDLK_TAB:
+                        key = tab;
+                        break;
+                    default:
+                        key = unknown;
+                        break;
 
+                }
+                gOpenRaider->handleKeyboard(key, (event.type == SDL_KEYDOWN));
                 break;
 
             case SDL_WINDOWEVENT:
@@ -190,6 +463,16 @@ void WindowSDL::eventHandling() {
                 exit(0);
         }
     }
+}
+
+void WindowSDL::setTextInput(bool on) {
+    assert(mInit == true);
+
+    mTextInput = on;
+    if (mTextInput)
+        SDL_StartTextInput();
+    else
+        SDL_StopTextInput();
 }
 
 void WindowSDL::delay(clock_t ms) {

@@ -29,6 +29,9 @@ OpenRaider::OpenRaider() {
     mMenu = new Menu();
     mSound = new Sound();
     mWindow = new WindowSDL();
+
+    for (int i = 0; i < ActionEventCount; i++)
+        keyBindings[i] = unknown;
 }
 
 OpenRaider::~OpenRaider() {
@@ -264,23 +267,160 @@ int OpenRaider::bind(const char *action, const char *key) {
     if (action[0] == '+')
         tmp++;
 
-    if (strcmp(tmp, "console") == 0) {
-
+    if (strcmp(tmp, "menu") == 0) {
+        return bind(menu, key);
+    } else if (strcmp(tmp, "console") == 0) {
+        return bind(console, key);
     } else if (strcmp(tmp, "forward") == 0) {
-
+        return bind(forward, key);
     } else if (strcmp(tmp, "backward") == 0) {
-
-    } else if (strcmp(tmp, "jump") == 0) {
-
-    } else if (strcmp(tmp, "crouch") == 0) {
-
+        return bind(backward, key);
     } else if (strcmp(tmp, "left") == 0) {
-
+        return bind(left, key);
     } else if (strcmp(tmp, "right") == 0) {
-
+        return bind(right, key);
+    } else if (strcmp(tmp, "jump") == 0) {
+        return bind(jump, key);
+    } else if (strcmp(tmp, "crouch") == 0) {
+        return bind(crouch, key);
+    } else if (strcmp(tmp, "use") == 0) {
+        return bind(use, key);
+    } else if (strcmp(tmp, "holster") == 0) {
+        return bind(holster, key);
     } else {
         printf("bind-Error: Unknown action (%s --> %s)\n", key, action);
         return -1;
+    }
+}
+
+int OpenRaider::bind(ActionEvents action, const char *key) {
+    assert(action != ActionEventCount);
+    assert(key != NULL);
+    assert(key[0] != '\0');
+
+    size_t length = strlen(key);
+    if ((key[0] == '\'') && (key[length - 1] == '\'') && (length == 3)) {
+        // Literal character like w, a, s, d, 0, 1...
+        char c = key[1];
+        if (((c >= '0') && (c <= '9'))
+            || ((c >= 'a') && (c <= 'z'))) {
+            keyBindings[action] = (KeyboardButton)c;
+        } else {
+            printf("bind-\'\'-Error: Unknown key (%s)\n", key);
+            return -1;
+        }
+    } else if ((key[0] == '\"') && (key[length - 1] == '\"')) {
+        // Special characters like tilde, esc, quote...
+        char *tmp = stringRemoveQuotes(key);
+        if (strcmp(tmp, "quote") == 0) {
+            keyBindings[action] = quote;
+        } else if (strcmp(tmp, "backslash") == 0) {
+            keyBindings[action] = quote;
+        } else if (strcmp(tmp, "backspace") == 0) {
+            keyBindings[action] = backspace;
+        } else if (strcmp(tmp, "capslock") == 0) {
+            keyBindings[action] = capslock;
+        } else if (strcmp(tmp, "comma") == 0) {
+            keyBindings[action] = comma;
+        } else if (strcmp(tmp, "del") == 0) {
+            keyBindings[action] = del;
+        } else if (strcmp(tmp, "up") == 0) {
+            keyBindings[action] = up;
+        } else if (strcmp(tmp, "down") == 0) {
+            keyBindings[action] = down;
+        } else if (strcmp(tmp, "left") == 0) {
+            keyBindings[action] = KeyboardButton::left;
+        } else if (strcmp(tmp, "right") == 0) {
+            keyBindings[action] = KeyboardButton::right;
+        } else if (strcmp(tmp, "end") == 0) {
+            keyBindings[action] = end;
+        } else if (strcmp(tmp, "equals") == 0) {
+            keyBindings[action] = equals;
+        } else if (strcmp(tmp, "escape") == 0) {
+            keyBindings[action] = escape;
+        } else if (strcmp(tmp, "f1") == 0) {
+            keyBindings[action] = f1;
+        } else if (strcmp(tmp, "f2") == 0) {
+            keyBindings[action] = f2;
+        } else if (strcmp(tmp, "f3") == 0) {
+            keyBindings[action] = f3;
+        } else if (strcmp(tmp, "f4") == 0) {
+            keyBindings[action] = f4;
+        } else if (strcmp(tmp, "f5") == 0) {
+            keyBindings[action] = f5;
+        } else if (strcmp(tmp, "f6") == 0) {
+            keyBindings[action] = f6;
+        } else if (strcmp(tmp, "f7") == 0) {
+            keyBindings[action] = f7;
+        } else if (strcmp(tmp, "f8") == 0) {
+            keyBindings[action] = f8;
+        } else if (strcmp(tmp, "f9") == 0) {
+            keyBindings[action] = f9;
+        } else if (strcmp(tmp, "f10") == 0) {
+            keyBindings[action] = f10;
+        } else if (strcmp(tmp, "f11") == 0) {
+            keyBindings[action] = f11;
+        } else if (strcmp(tmp, "f12") == 0) {
+            keyBindings[action] = f12;
+        } else if (strcmp(tmp, "backquote") == 0) {
+            keyBindings[action] = backquote;
+        } else if (strcmp(tmp, "home") == 0) {
+            keyBindings[action] = home;
+        } else if (strcmp(tmp, "insert") == 0) {
+            keyBindings[action] = insert;
+        } else if (strcmp(tmp, "leftalt") == 0) {
+            keyBindings[action] = leftalt;
+        } else if (strcmp(tmp, "leftctrl") == 0) {
+            keyBindings[action] = leftctrl;
+        } else if (strcmp(tmp, "leftbracket") == 0) {
+            keyBindings[action] = leftbracket;
+        } else if (strcmp(tmp, "leftgui") == 0) {
+            keyBindings[action] = leftgui;
+        } else if (strcmp(tmp, "leftshift") == 0) {
+            keyBindings[action] = leftshift;
+        } else if (strcmp(tmp, "minus") == 0) {
+            keyBindings[action] = minus;
+        } else if (strcmp(tmp, "numlock") == 0) {
+            keyBindings[action] = numlock;
+        } else if (strcmp(tmp, "pagedown") == 0) {
+            keyBindings[action] = pagedown;
+        } else if (strcmp(tmp, "pageup") == 0) {
+            keyBindings[action] = pageup;
+        } else if (strcmp(tmp, "pause") == 0) {
+            keyBindings[action] = pause;
+        } else if (strcmp(tmp, "dot") == 0) {
+            keyBindings[action] = dot;
+        } else if (strcmp(tmp, "rightalt") == 0) {
+            keyBindings[action] = rightalt;
+        } else if (strcmp(tmp, "rightctrl") == 0) {
+            keyBindings[action] = rightctrl;
+        } else if (strcmp(tmp, "enter") == 0) {
+            keyBindings[action] = enter;
+        } else if (strcmp(tmp, "rightgui") == 0) {
+            keyBindings[action] = rightgui;
+        } else if (strcmp(tmp, "rightbracket") == 0) {
+            keyBindings[action] = rightbracket;
+        } else if (strcmp(tmp, "rightshift") == 0) {
+            keyBindings[action] = rightshift;
+        } else if (strcmp(tmp, "scrolllock") == 0) {
+            keyBindings[action] = scrolllock;
+        } else if (strcmp(tmp, "semicolon") == 0) {
+            keyBindings[action] = semicolon;
+        } else if (strcmp(tmp, "slash") == 0) {
+            keyBindings[action] = slash;
+        } else if (strcmp(tmp, "space") == 0) {
+            keyBindings[action] = space;
+        } else if (strcmp(tmp, "tab") == 0) {
+            keyBindings[action] = tab;
+        } else {
+            printf("bind-\"\"-Error: Unknown key (%s)\n", key);
+            delete [] tmp;
+            return -2;
+        }
+        delete [] tmp;
+    } else {
+        printf("bind-Error: Unknown key (%s)\n", key);
+        return -3;
     }
     return 0;
 }
@@ -338,5 +478,35 @@ void OpenRaider::run() {
         if (MAX_MS_PER_FRAME > (stopTime - startTime))
             mWindow->delay(MAX_MS_PER_FRAME - (stopTime - startTime));
     }
+}
+
+void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
+    if ((keyBindings[menu] == key) && pressed) {
+        mMenu->setVisible(!mMenu->isVisible());
+    }
+
+    if (keyBindings[console] == key) {
+
+    } else if (keyBindings[forward] == key) {
+
+    } else if (keyBindings[backward] == key) {
+
+    } else if (keyBindings[left] == key) {
+
+    } else if (keyBindings[right] == key) {
+
+    } else if (keyBindings[jump] == key) {
+
+    } else if (keyBindings[crouch] == key) {
+
+    } else if (keyBindings[use] == key) {
+
+    } else if (keyBindings[holster] == key) {
+
+    }
+}
+
+void OpenRaider::handleText(char *text, bool notFinished) {
+
 }
 

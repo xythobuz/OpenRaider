@@ -20,6 +20,21 @@
 class OpenRaider {
 public:
 
+    typedef enum {
+        menu = 0,
+        console,
+        forward,
+        backward,
+        left,
+        right,
+        jump,
+        crouch,
+        use,
+        holster,
+
+        ActionEventCount // Should always be at the end
+    } ActionEvents;
+
     /*!
      * \brief Constructs an object of OpenRaider
      */
@@ -46,9 +61,15 @@ public:
 
     int bind(const char *action, const char *key);
 
+    int bind(ActionEvents action, const char *key);
+
     int initialize();
 
     void run();
+
+    void handleKeyboard(KeyboardButton key, bool pressed);
+
+    void handleText(char *text, bool notFinished);
 
     Window *mWindow;
     Sound *mSound;
@@ -62,6 +83,8 @@ private:
     char *mPakDir;
     char *mAudioDir;
     char *mDataDir;
+
+    KeyboardButton keyBindings[ActionEventCount];
 };
 
 #endif
