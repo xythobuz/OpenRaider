@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include <cstdarg>
+
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
@@ -42,6 +44,22 @@ bool Menu::isVisible() {
     return mVisible;
 }
 
+void Menu::drawText(unsigned int x, unsigned int y, float scale, const char *s, ...) {
+    va_list args;
+    va_start(args, s);
+    WindowString w;
+    w.text = bufferString(s, args);
+    va_end(args);
+    w.scale = scale;
+    w.x = x;
+    w.y = y;
+    w.color[0] = 0xFF;
+    w.color[1] = 0xFF;
+    w.color[2] = 0xFF;
+    w.color[3] = 0xFF;
+    gOpenRaider->mWindow->writeString(&w);
+}
+
 void Menu::display() {
     Window *window = gOpenRaider->mWindow;
 
@@ -56,6 +74,16 @@ void Menu::display() {
         mainText.x = (window->mWidth / 2) - (mainText.w / 2);
         mainText.y = 10;
         window->writeString(&mainText);
+
+        drawText(20, (window->mHeight / 2) - 20, 0.75f, "Generating map list...");
     }
+}
+
+void Menu::actionMouse(unsigned int x, unsigned int y, int button) {
+
+}
+
+void Menu::actionKeyboard(int key) {
+
 }
 

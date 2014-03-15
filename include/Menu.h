@@ -32,7 +32,14 @@ public:
 
     void display();
 
+    void actionMouse(unsigned int x, unsigned int y, int button);
+
+    void actionKeyboard(int key);
+
 private:
+
+    void drawText(unsigned int x, unsigned int y, float scale, const char *s, ...) __attribute__((format(printf, 5, 0)));
+
     bool mVisible;
     WindowString mainText;
 };
