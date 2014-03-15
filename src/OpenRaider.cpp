@@ -8,13 +8,18 @@
 #include <cstdio>
 #include <assert.h>
 
+#include "WindowSDL.h"
+
 #include "utils/strings.h"
 #include "OpenRaider.h"
 
 OpenRaider::OpenRaider() {
+    mWindow = NULL;
 }
 
 OpenRaider::~OpenRaider() {
+    if (mWindow)
+        delete mWindow;
 }
 
 int OpenRaider::loadConfig(const char *config) {
@@ -23,6 +28,15 @@ int OpenRaider::loadConfig(const char *config) {
     char *configFile = fullPath(config, 0);
     printf("Trying to load \"%s\"...\n", configFile);
 
-    return -1;
+    return 0;
+}
+
+int OpenRaider::initialize() {
+    assert(mWindow == NULL);
+
+    mWindow = new WindowSDL();
+    mWindow->initialize();
+
+    return 0;
 }
 

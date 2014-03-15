@@ -69,6 +69,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Initialize the "subsystems"
+    gOpenRaider->initialize();
 
     return 0;
 }

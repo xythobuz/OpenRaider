@@ -23,7 +23,7 @@ public:
     /*!
      * \brief Deconstructs an object of Window
      */
-    virtual ~Window() {}
+    virtual ~Window();
 
     virtual void setSize(unsigned int width, unsigned int height) = 0;
 
@@ -35,7 +35,7 @@ public:
 
     virtual void writeString(WindowString *s) = 0;
 
-    virtual void resizeGL(unsigned int width, unsigned int height);
+    virtual void resizeGL(unsigned int w, unsigned int h);
 };
 
 #endif

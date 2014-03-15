@@ -32,6 +32,8 @@ public:
      */
     int loadConfig(const char *config);
 
+    int initialize();
+
 private:
     Window *mWindow;
 };
