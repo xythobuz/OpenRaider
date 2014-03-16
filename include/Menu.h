@@ -34,6 +34,8 @@ public:
 
     void handleKeyboard(KeyboardButton key, bool pressed);
 
+    void handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released);
+
 private:
 
     void displayMapList();
@@ -42,6 +44,7 @@ private:
 
     bool mVisible;
     unsigned int mCursor;
+    unsigned int mMin;
 
     WindowString mainText;
     WindowString tempText;

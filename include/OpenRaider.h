@@ -71,6 +71,8 @@ public:
 
     void handleText(char *text, bool notFinished);
 
+    void handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released);
+
     Window *mWindow;
     Sound *mSound;
     Menu *mMenu;

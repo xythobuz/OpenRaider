@@ -23,6 +23,7 @@
 Menu::Menu() {
     mVisible = false;
     mCursor = 0;
+    mMin = 0;
 
     mainText.text = bufferString(VERSION);
     mainText.color[0] = 0xFF;
@@ -89,15 +90,17 @@ void Menu::displayMapList() {
     while ((max - min) < items) {
         if (min > 0)
             min--;
-        else if (max < (gOpenRaider->mMapList.size()))
+        else if (max < ((int)gOpenRaider->mMapList.size()))
             max++;
         else
             break;
     }
 
+    mMin = min;
+
     for (int i = 0; i < (max - min); i++) {
         char *map = gOpenRaider->mMapList[i + min];
-        if ((i + min) == mCursor) {
+        if ((i + min) == (int)mCursor) {
             // Less greem & red --> highlight in red
             tempText.color[1] = 0x42;
             tempText.color[2] = 0x42;
@@ -126,7 +129,24 @@ void Menu::display() {
         if (!gOpenRaider->mMapListFilled) {
             drawText(25, (window->mHeight / 2) - 20, 0.75f, "Generating map list...");
         } else {
-            displayMapList();
+            if (gOpenRaider->mMapList.size() == 0) {
+                drawText(25, (window->mHeight / 2) - 20, 0.75f, "No maps found! See README.md");
+            } else {
+                // draw *play button* above list
+                glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+                glDisable(GL_TEXTURE_2D);
+                glRecti(25, 25, 100, 75);
+                glEnable(GL_TEXTURE_2D);
+                tempText.color[0] = 0x00;
+                tempText.color[1] = 0x00;
+                tempText.color[2] = 0x00;
+                drawText(40, 35, 0.75f, "Play");
+                tempText.color[0] = 0xFF;
+                tempText.color[1] = 0xFF;
+                tempText.color[2] = 0xFF;
+
+                displayMapList();
+            }
         }
     }
 }
@@ -159,6 +179,21 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
             handleKeyboard(up, true);
     } else if (key == enter) {
 
+    }
+}
+
+void Menu::handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released) {
+    int items = (gOpenRaider->mWindow->mHeight - 110) / 25;
+
+    if ((!released) || (button != leftButton))
+        return;
+
+    if ((y >= 100) && (y <= (100 + (25 * items)))) {
+        y -= 100;
+        mCursor = mMin + (y / 25);
+    } else if ((y >= 25) && (y <= 100) && (x >= 25) && (x <= 125)) {
+        // Play button
+        mCursor = 0;
     }
 }
 

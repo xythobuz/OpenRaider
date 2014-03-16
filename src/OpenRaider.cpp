@@ -578,3 +578,9 @@ void OpenRaider::handleText(char *text, bool notFinished) {
 
 }
 
+void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released) {
+    if (mMenu->isVisible()) {
+        mMenu->handleMouseClick(x, y, button, released);
+    }
+}
+

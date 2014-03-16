@@ -40,6 +40,12 @@ typedef enum {
     semicolon, slash, space, tab, unknown
 } KeyboardButton;
 
+typedef enum {
+    leftButton,
+    rightButton,
+    middleButton
+} MouseButton;
+
 typedef struct {
     char *text;
     unsigned int x;

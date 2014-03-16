@@ -175,7 +175,14 @@ void WindowSDL::eventHandling() {
 
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
-
+                MouseButton button;
+                if (event.button.button == SDL_BUTTON_LEFT)
+                    button = leftButton;
+                else if (event.button.button == SDL_BUTTON_RIGHT)
+                    button = rightButton;
+                else
+                    button = middleButton;
+                gOpenRaider->handleMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
                 break;
 
             case SDL_TEXTINPUT:
