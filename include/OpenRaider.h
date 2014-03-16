@@ -73,6 +73,8 @@ public:
 
     void handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released);
 
+    void handleMouseMotion(int xrel, int yrel);
+
     Window *mWindow;
     Sound *mSound;
     Menu *mMenu;

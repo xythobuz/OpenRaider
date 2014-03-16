@@ -170,7 +170,7 @@ void WindowSDL::eventHandling() {
     while(SDL_PollEvent(&event)) {
         switch (event.type) {
             case SDL_MOUSEMOTION:
-
+                gOpenRaider->handleMouseMotion(event.motion.xrel, event.motion.yrel);
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
@@ -541,12 +541,8 @@ void WindowSDL::writeString(WindowString *s) {
         return;
     }
 
-    if (TTF_SizeUTF8(mFont, s->text, &s->w, &s->h) != 0) {
-        printf("TTF_SizeUTF8 Error: %s\n", TTF_GetError());
-        // Don't need to abort
-    }
-    s->w = (int)((float)s->w * s->scale);
-    s->h = (int)((float)s->h * s->scale);
+    s->w = (int)((float)surface->w * s->scale);
+    s->h = (int)((float)surface->h * s->scale);
 
     GLenum textureFormat;
     if (surface->format->BytesPerPixel == 4) {

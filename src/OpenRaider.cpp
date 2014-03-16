@@ -584,3 +584,7 @@ void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, MouseButton bu
     }
 }
 
+void OpenRaider::handleMouseMotion(int xrel, int yrel) {
+
+}
+

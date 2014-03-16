@@ -188,7 +188,7 @@ void Menu::handleMouseClick(unsigned int x, unsigned int y, MouseButton button, 
     if ((!released) || (button != leftButton))
         return;
 
-    if ((y >= 100) && (y <= (100 + (25 * items)))) {
+    if ((y >= 100) && (y <= (unsigned int)(100 + (25 * items)))) {
         y -= 100;
         mCursor = mMin + (y / 25);
     } else if ((y >= 25) && (y <= 100) && (x >= 25) && (x <= 125)) {
