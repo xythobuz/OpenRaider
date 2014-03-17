@@ -11,6 +11,7 @@
 
 #include "config.h"
 #include "main.h"
+#include "utils/time.h"
 
 OpenRaider *gOpenRaider = NULL;
 
@@ -27,6 +28,8 @@ void cleanupHandler() {
 
 int main(int argc, char *argv[]) {
     const char *config = NULL;
+
+    systemTimerReset();
 
     // Handle arguments
     if (argc == 1) {

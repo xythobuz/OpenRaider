@@ -5,19 +5,21 @@
  * \author xythobuz
  */
 
+#include <sys/time.h>
+
 #include "utils/time.h"
 
-#define CLOCKS_PER_MS (CLOCKS_PER_SEC / 1000)
+struct timeval system_timer_start;
+struct timeval system_timer_stop;
+struct timezone system_timer_zone;
 
-clock_t system_timer_start;
-clock_t system_timer_stop;
-
-clock_t systemTimerGet() {
-    system_timer_stop = clock();
-    return (system_timer_stop - system_timer_start) / CLOCKS_PER_MS;
+unsigned long systemTimerGet() {
+    gettimeofday(&system_timer_stop, &system_timer_zone);
+    return ((system_timer_stop.tv_sec - system_timer_start.tv_sec) * 1000)
+        + (((system_timer_stop.tv_usec - system_timer_start.tv_usec) / 1000));
 }
 
 void systemTimerReset() {
-    system_timer_start = clock();
+    gettimeofday(&system_timer_start, &system_timer_zone);
 }
 

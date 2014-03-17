@@ -14,9 +14,9 @@
 #endif
 
 #include "config.h"
-#include "main.h"
 #include "Console.h"
-#include "utils/strings.h"
+#include "main.h"
+#include "utils/time.h"
 
 Console::Console() {
     mVisible = false;
@@ -45,15 +45,17 @@ void Console::display() {
         glRecti(0, 0, window->mWidth, window->mHeight / 2);
         glEnable(GL_TEXTURE_2D);
 
-        gOpenRaider->mWindow->drawText(25, (window->mHeight / 4) - 20, 0.75f, color, "Console");
+        gOpenRaider->mWindow->drawText(10, 10, 0.50f, color, "%lus uptime %s", systemTimerGet() / 1000, VERSION);
     }
 }
 
 void Console::handleKeyboard(KeyboardButton key, bool pressed) {
+    if (pressed && (key == enter)) {
 
+    }
 }
 
 void Console::handleText(char *text, bool notFinished) {
-    printf("Got %s (%s)\n", (notFinished ? "not finished" : "finished"));
+    printf("Got %s (%s)\n", text, (notFinished ? "not finished" : "finished"));
 }
 
