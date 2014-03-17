@@ -29,6 +29,7 @@ OpenRaider::OpenRaider() {
     mMapListFilled = false;
 
     mMenu = new Menu();
+    mConsole = new Console();
     mSound = new Sound();
     mWindow = new WindowSDL();
 
@@ -39,6 +40,9 @@ OpenRaider::OpenRaider() {
 OpenRaider::~OpenRaider() {
     if (mMenu)
         delete mMenu;
+
+    if (mConsole)
+        delete mConsole;
 
     if (mSound)
         delete mSound;
@@ -528,11 +532,11 @@ void OpenRaider::run() {
         glClear(GL_COLOR_BUFFER_BIT);
 
         mWindow->glEnter2D();
-
+        mConsole->display();
         mMenu->display();
-
         mWindow->glExit2D();
 
+        // Put on screen
         mWindow->swapBuffersGL();
 
         // Fill map list after first render pass,
@@ -550,24 +554,28 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
     if ((keyBindings[menu] == key) && pressed) {
         mMenu->setVisible(!mMenu->isVisible());
     } else if (!mMenu->isVisible()) {
-        if (keyBindings[console] == key) {
+        if ((keyBindings[console] == key) && pressed) {
+            mConsole->setVisible(!mConsole->isVisible());
+        } else if (!mConsole->isVisible()) {
+            if (keyBindings[forward] == key) {
 
-        } else if (keyBindings[forward] == key) {
+            } else if (keyBindings[backward] == key) {
 
-        } else if (keyBindings[backward] == key) {
+            } else if (keyBindings[left] == key) {
 
-        } else if (keyBindings[left] == key) {
+            } else if (keyBindings[right] == key) {
 
-        } else if (keyBindings[right] == key) {
+            } else if (keyBindings[jump] == key) {
 
-        } else if (keyBindings[jump] == key) {
+            } else if (keyBindings[crouch] == key) {
 
-        } else if (keyBindings[crouch] == key) {
+            } else if (keyBindings[use] == key) {
 
-        } else if (keyBindings[use] == key) {
+            } else if (keyBindings[holster] == key) {
 
-        } else if (keyBindings[holster] == key) {
-
+            }
+        } else {
+            mConsole->handleKeyboard(key, pressed);
         }
     } else {
         mMenu->handleKeyboard(key, pressed);
@@ -575,7 +583,9 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
 }
 
 void OpenRaider::handleText(char *text, bool notFinished) {
-
+    if ((mConsole->isVisible()) && (!mMenu->isVisible())) {
+        mConsole->handleText(text, notFinished);
+    }
 }
 
 void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released) {

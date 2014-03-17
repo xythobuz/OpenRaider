@@ -34,6 +34,15 @@ WindowSDL::WindowSDL() {
 #elif !defined(__APPLE__)
     setDriver("/usr/lib/libGL.so.1");
 #endif
+
+    tempText.text = new char[256];
+    tempText.color[0] = 0xFF;
+    tempText.color[1] = 0xFF;
+    tempText.color[2] = 0xFF;
+    tempText.color[3] = 0xFF;
+    tempText.scale = 1.2f;
+    tempText.w = 0;
+    tempText.h = 0;
 }
 
 WindowSDL::~WindowSDL() {
@@ -53,6 +62,9 @@ WindowSDL::~WindowSDL() {
 
     if (mFontName)
         delete [] mFontName;
+
+    if (tempText.text)
+        delete [] tempText.text;
 }
 
 void WindowSDL::setDriver(const char *driver) {
@@ -581,5 +593,24 @@ void WindowSDL::writeString(WindowString *s) {
     glEnd();
 
     SDL_FreeSurface(surface);
+}
+
+void WindowSDL::drawText(unsigned int x, unsigned int y, float scale, unsigned char *color, const char *s, ...) {
+    va_list args;
+    va_start(args, s);
+    vsnprintf(tempText.text, 256, s, args);
+    tempText.text[255] = '\0';
+    va_end(args);
+
+    tempText.scale = scale;
+    tempText.x = x;
+    tempText.y = y;
+    if (color) {
+        tempText.color[0] = color[0];
+        tempText.color[1] = color[1];
+        tempText.color[2] = color[2];
+        tempText.color[3] = color[3];
+    }
+    writeString(&tempText);
 }
 

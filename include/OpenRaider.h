@@ -10,6 +10,7 @@
 
 #include <vector>
 
+#include "Console.h"
 #include "Menu.h"
 #include "Sound.h"
 #include "Window.h"
@@ -78,6 +79,7 @@ public:
     Window *mWindow;
     Sound *mSound;
     Menu *mMenu;
+    Console *mConsole;
 
     bool mMapListFilled;
     std::vector<char *> mMapList;

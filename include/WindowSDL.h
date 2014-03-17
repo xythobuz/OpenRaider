@@ -61,6 +61,9 @@ public:
 
     virtual void writeString(WindowString *s);
 
+    virtual void drawText(unsigned int x, unsigned int y, float scale, unsigned char *color, const char *s, ...)
+        __attribute__((format(printf, 6, 0)));
+
 private:
 
     SDL_Window *mWindow;      //!< This is the pointer to the SDL surface
@@ -70,6 +73,8 @@ private:
     GLuint mFontTexture;
 
     bool mTextInput;
+
+    WindowString tempText;
 };
 
 #endif

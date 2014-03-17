@@ -5,8 +5,6 @@
  * \author xythobuz
  */
 
-#include <cstdarg>
-
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
@@ -34,20 +32,10 @@ Menu::Menu() {
     mainText.y = 10;
     mainText.w = 0;
     mainText.h = 0;
-
-    tempText.text = new char[256];
-    tempText.color[0] = 0xFF;
-    tempText.color[1] = 0xFF;
-    tempText.color[2] = 0xFF;
-    tempText.color[3] = 0xFF;
-    tempText.scale = 1.2f;
-    tempText.w = 0;
-    tempText.h = 0;
 }
 
 Menu::~Menu() {
     delete [] mainText.text;
-    delete [] tempText.text;
 }
 
 void Menu::setVisible(bool visible) {
@@ -56,19 +44,6 @@ void Menu::setVisible(bool visible) {
 
 bool Menu::isVisible() {
     return mVisible;
-}
-
-void Menu::drawText(unsigned int x, unsigned int y, float scale, const char *s, ...) {
-    va_list args;
-    va_start(args, s);
-    vsnprintf(tempText.text, 256, s, args);
-    tempText.text[255] = '\0';
-    va_end(args);
-
-    tempText.scale = scale;
-    tempText.x = x;
-    tempText.y = y;
-    gOpenRaider->mWindow->writeString(&tempText);
 }
 
 void Menu::displayMapList() {
@@ -100,20 +75,19 @@ void Menu::displayMapList() {
 
     for (int i = 0; i < (max - min); i++) {
         char *map = gOpenRaider->mMapList[i + min];
+        unsigned char color[4] = {0xFF, 0xFF, 0xFF, 0xFF};
         if ((i + min) == (int)mCursor) {
             // Less greem & red --> highlight in red
-            tempText.color[1] = 0x42;
-            tempText.color[2] = 0x42;
-        } else {
-            tempText.color[1] = 0xFF;
-            tempText.color[2] = 0xFF;
+            color[1] = 0x42;
+            color[2] = 0x42;
         }
-        drawText(25, 100 + (25 * i), 0.75f, "%s", map);
+        gOpenRaider->mWindow->drawText(25, 100 + (25 * i), 0.75f, color, "%s", map);
     }
 }
 
 void Menu::display() {
     Window *window = gOpenRaider->mWindow;
+    unsigned char color[4] = {0xFF, 0xFF, 0xFF, 0xFF};
 
     if (mVisible) {
         // Draw half-transparent *overlay*
@@ -127,23 +101,19 @@ void Menu::display() {
         window->writeString(&mainText);
 
         if (!gOpenRaider->mMapListFilled) {
-            drawText(25, (window->mHeight / 2) - 20, 0.75f, "Generating map list...");
+            gOpenRaider->mWindow->drawText(25, (window->mHeight / 2) - 20, 0.75f, color, "Generating map list...");
         } else {
             if (gOpenRaider->mMapList.size() == 0) {
-                drawText(25, (window->mHeight / 2) - 20, 0.75f, "No maps found! See README.md");
+                gOpenRaider->mWindow->drawText(25, (window->mHeight / 2) - 20, 0.75f, color, "No maps found! See README.md");
             } else {
                 // draw *play button* above list
                 glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
                 glDisable(GL_TEXTURE_2D);
                 glRecti(25, 25, 100, 75);
                 glEnable(GL_TEXTURE_2D);
-                tempText.color[0] = 0x00;
-                tempText.color[1] = 0x00;
-                tempText.color[2] = 0x00;
-                drawText(40, 35, 0.75f, "Play");
-                tempText.color[0] = 0xFF;
-                tempText.color[1] = 0xFF;
-                tempText.color[2] = 0xFF;
+                color[0] = color[1] = color[2] = 0x00;
+                gOpenRaider->mWindow->drawText(40, 35, 0.75f, color, "Play");
+                color[0] = color[1] = color[2] = 0xFF;
 
                 displayMapList();
             }

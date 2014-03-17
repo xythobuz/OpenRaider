@@ -7,6 +7,7 @@
 
 #include <cstdio>
 #include <cstring>
+#include <cstdarg>
 #include <assert.h>
 
 #ifdef __APPLE__

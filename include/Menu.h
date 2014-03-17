@@ -40,14 +40,11 @@ private:
 
     void displayMapList();
 
-    void drawText(unsigned int x, unsigned int y, float scale, const char *s, ...) __attribute__((format(printf, 5, 0)));
-
     bool mVisible;
     unsigned int mCursor;
     unsigned int mMin;
 
     WindowString mainText;
-    WindowString tempText;
 };
 
 #endif
