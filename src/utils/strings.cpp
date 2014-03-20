@@ -97,13 +97,16 @@ char *bufferString(const char *string, va_list args) {
     int sz = 60;
     int n;
     char *text;
+    va_list tmp;
 
     assert(string != NULL);
     assert(string[0] != '\0');
 
     text = new char[sz];
 
-    n = vsnprintf(text, sz, string, args);
+    va_copy(tmp, args);
+    n = vsnprintf(text, sz, string, tmp);
+    va_end(tmp);
 
     if (n < 0) {
         delete [] text;
@@ -111,8 +114,10 @@ char *bufferString(const char *string, va_list args) {
     } else if (n >= sz) {
         sz = n + 1; // buffer too small
         delete [] text;
-        text = new char[sz];
-        n = vsnprintf(text, sz, string, args);
+        text = new char[sz + 1];
+        va_copy(tmp, args);
+        n = vsnprintf(text, sz, string, tmp);
+        va_end(tmp);
     }
 
     return text;
@@ -188,9 +193,9 @@ char *fullPath(const char *path, char end) {
     // Make sure ends in "end" char
     if ((lenPath > 0) && (end != 0) && (dir[lenPath - 1] != end)) {
         dir[lenPath] = end;
-        dir[lenPath + 1] = 0;
+        dir[lenPath + 1] = '\0';
     } else {
-        dir[lenPath] = 0;
+        dir[lenPath] = '\0';
     }
 
     return dir;

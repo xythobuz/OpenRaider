@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 
     // Create globals
     atexit(cleanupHandler);
-    printf("Initializing " VERSION "\n");
+    printf("Initializing %s", VERSION);
     gOpenRaider = new OpenRaider();
 
     // Try to load a configuration
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
     gOpenRaider->initialize();
 
     // Enter Main loop
-    printf("Starting " VERSION "\n");
+    gOpenRaider->mConsole->print("Starting %s", VERSION);
     gOpenRaider->run();
 
     return 0;

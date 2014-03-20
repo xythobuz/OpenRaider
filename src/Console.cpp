@@ -16,13 +16,32 @@
 #include "config.h"
 #include "Console.h"
 #include "main.h"
+#include "utils/strings.h"
 #include "utils/time.h"
+
+#define INPUT_BUFFER_SIZE 255
 
 Console::Console() {
     mVisible = false;
+    mInputBuffer = new char[INPUT_BUFFER_SIZE + 1];
+    mInputBuffer[INPUT_BUFFER_SIZE] = '\0';
+    mInputBufferPointer = 0;
+    mPartialInput = NULL;
 }
 
 Console::~Console() {
+    if (mInputBuffer)
+        delete [] mInputBuffer;
+
+    if (mPartialInput)
+        delete [] mPartialInput;
+
+    while (mHistory.size() > 0) {
+        char *tmp = mHistory.back();
+        if (tmp != NULL)
+            delete [] tmp;
+        mHistory.pop_back();
+    }
 }
 
 void Console::setVisible(bool visible) {
@@ -34,28 +53,123 @@ bool Console::isVisible() {
     return mVisible;
 }
 
+void Console::print(const char *s, ...) {
+    va_list args;
+    va_start(args, s);
+    char *tmp = bufferString(s, args);
+    va_end(args);
+
+    if (tmp != NULL) {
+        mHistory.push_back(tmp);
+        printf("%s\n", tmp);
+    }
+}
+
 void Console::display() {
     Window *window = gOpenRaider->mWindow;
     unsigned char color[4] = {0xFF, 0xFF, 0xFF, 0xFF};
 
     if (mVisible) {
+        // Calculate line drawing geometry
+        // Depends on window height, so recalculate every time
+        unsigned int firstLine = 35;
+        unsigned int lastLine = (window->mHeight / 2) - 55;
+        unsigned int inputLine = (window->mHeight / 2) - 30;
+        unsigned int lineSteps = 20;
+        unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps;
+        while (((lineCount * lineSteps) + firstLine) < inputLine) {
+            lineSteps++;
+            lineCount = (lastLine - firstLine + lineSteps) / lineSteps;
+        }
+
         // Draw half-transparent *overlay*
         glColor4f(0.0f, 0.0f, 0.0f, 0.5f);
         glDisable(GL_TEXTURE_2D);
         glRecti(0, 0, window->mWidth, window->mHeight / 2);
         glEnable(GL_TEXTURE_2D);
 
-        gOpenRaider->mWindow->drawText(10, 10, 0.50f, color, "%lus uptime %s", systemTimerGet() / 1000, VERSION);
+        gOpenRaider->mWindow->drawText(10, 10, 0.70f, color, "%s uptime %lus", VERSION, systemTimerGet() / 1000);
+
+        // Draw output log
+        int end = lineCount;
+        int drawOffset = 0;
+        int historyOffset = 0;
+        if (mHistory.size() < lineCount) {
+            end = mHistory.size();
+            drawOffset = lineCount - mHistory.size();
+        } else if (lineCount < mHistory.size()) {
+            historyOffset = mHistory.size() - lineCount;
+        }
+        for (int i = 0; i < end; i++) {
+            gOpenRaider->mWindow->drawText(10, ((i + drawOffset) * lineSteps) + firstLine,
+                    0.75f, color, "%s", mHistory[i + historyOffset]);
+        }
+
+        // Draw current input
+        if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
+            gOpenRaider->mWindow->drawText(10, inputLine, 0.75f, color, "> %s", mInputBuffer);
+        } else {
+            gOpenRaider->mWindow->drawText(10, inputLine, 0.75f, color, ">");
+        }
+
+        //! \todo display the current mPartialInput. The UTF-8 segfaults SDL-TTF, somehow?
     }
 }
 
 void Console::handleKeyboard(KeyboardButton key, bool pressed) {
     if (pressed && (key == enter)) {
+        // Execute entered command
+        if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
+            mHistory.push_back(bufferString("> %s", mInputBuffer));
+            gOpenRaider->command(mInputBuffer);
+        }
 
+        // Clear partial and input buffer
+        mInputBufferPointer = 0;
+        mInputBuffer[0] = '\0';
+        if (mPartialInput != NULL) {
+            delete [] mPartialInput;
+            mPartialInput = NULL;
+        }
+    }
+
+    //! \fixme only deleting the last byte is not valid for non-ASCII UTF-8 strings
+    if (pressed && (key == backspace)) {
+        if (mInputBufferPointer > 0) {
+            mInputBufferPointer--;
+            mInputBuffer[mInputBufferPointer] = '\0';
+        }
     }
 }
 
 void Console::handleText(char *text, bool notFinished) {
-    printf("Got %s (%s)\n", text, (notFinished ? "not finished" : "finished"));
+    //printf("Text: %s (%s)\n", text, (notFinished ? "not finished" : "finished"));
+
+    if (!notFinished) {
+        // Finished entering character
+        // delete previous partial character, if present
+        if (mPartialInput != NULL) {
+            delete [] mPartialInput;
+        }
+
+        //! \fixme Temporary hack filtering the console activation key
+        if (text[0] == '`')
+            return;
+
+        // Append new input to buffer
+        size_t length = strlen(text);
+        if (length > 0) {
+            if (((INPUT_BUFFER_SIZE - mInputBufferPointer) < length)) {
+                printf("Console input buffer overflowed! (> %d)\n", INPUT_BUFFER_SIZE);
+                return;
+            }
+            strcpy((mInputBuffer + mInputBufferPointer), text);
+            mInputBufferPointer += length;
+            mInputBuffer[mInputBufferPointer] = '\0';
+        }
+    } else {
+        // Partial character received
+        mPartialInput = bufferString("%s", text);
+    }
 }
 

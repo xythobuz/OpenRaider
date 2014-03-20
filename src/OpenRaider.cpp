@@ -73,11 +73,11 @@ int OpenRaider::loadConfig(const char *config) {
     assert(config[0] != '\0');
 
     char *configFile = fullPath(config, 0);
-    printf("Loading config from \"%s\"...\n", configFile);
+    mConsole->print("Loading config from \"%s\"...", configFile);
 
     FILE *f = fopen(configFile, "r");
     if (f == NULL) {
-        printf("Could not open file!\n");
+        mConsole->print("Could not open file!");
         return -1;
     }
 
@@ -132,7 +132,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
 
     if (strcmp(command, "set") == 0) {
         if (args->size() != 2) {
-            printf("Invalid use of set-command ");
+            mConsole->print("Invalid use of set-command ");
             printStringVector(args);
             printf("\n");
             return -2;
@@ -141,15 +141,17 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         }
     } else if (strcmp(command, "bind") == 0) {
         if (args->size() != 2) {
-            printf("Invalid use of bind-command ");
+            mConsole->print("Invalid use of bind-command ");
             printStringVector(args);
             printf("\n");
             return -3;
         } else {
             return bind(args->at(0), args->at(1));
         }
+    } else if (strcmp(command, "quit") == 0) {
+        exit(0);
     } else {
-        printf("Unknown command: %s ", command);
+        mConsole->print("Unknown command: %s ", command);
         printStringVector(args);
         printf("\n");
         return -1;
@@ -206,14 +208,14 @@ int OpenRaider::set(const char *var, const char *value) {
         // value has format like "\"1024x768\""
         unsigned int w = DEFAULT_WIDTH, h = DEFAULT_HEIGHT;
         if (sscanf(value, "\"%dx%d\"", &w, &h) != 2) {
-            printf("set-size-Error: Invalid value (%s)\n", value);
+            mConsole->print("set-size-Error: Invalid value (%s)", value);
             return -2;
         }
         mWindow->setSize(w, h);
     } else if (strcmp(var, "fullscreen") == 0) {
         bool fullscreen = false;
         if (readBool(value, &fullscreen) != 0) {
-            printf("set-fullscreen-Error: Invalid value (%s)\n", value);
+            mConsole->print("set-fullscreen-Error: Invalid value (%s)", value);
             return -3;
         }
         mWindow->setFullscreen(fullscreen);
@@ -222,28 +224,28 @@ int OpenRaider::set(const char *var, const char *value) {
     } else if (strcmp(var, "audio") == 0) {
         bool audio = false;
         if (readBool(value, &audio) != 0) {
-            printf("set-audio-Error: Invalid value (%s)\n", value);
+            mConsole->print("set-audio-Error: Invalid value (%s)", value);
             return -4;
         }
         mSound->setEnabled(audio);
     } else if (strcmp(var, "volume") == 0) {
         float vol = 1.0f;
         if (sscanf(value, "%f", &vol) != 1) {
-            printf("set-volume-Error: Invalid value (%s)\n", value);
+            mConsole->print("set-volume-Error: Invalid value (%s)", value);
             return -5;
         }
         mSound->setVolume(vol);
     } else if (strcmp(var, "mouse_x") == 0) {
         float sense = 1.0f;
         if (sscanf(value, "%f", &sense) != 1) {
-            printf("set-mouse_x-Error: Invalid value (%s)\n", value);
+            mConsole->print("set-mouse_x-Error: Invalid value (%s)", value);
             return -6;
         }
         //! \todo mouse support
     } else if (strcmp(var, "mouse_y") == 0) {
         float sense = 1.0f;
         if (sscanf(value, "%f", &sense) != 1) {
-            printf("set-mouse_y-Error: Invalid value (%s)\n", value);
+            mConsole->print("set-mouse_y-Error: Invalid value (%s)", value);
             return -7;
         }
         //! \todo mouse support
@@ -266,7 +268,7 @@ int OpenRaider::set(const char *var, const char *value) {
         }
         delete [] quotes;
     } else {
-        printf("set-Error: Unknown variable (%s = %s)\n", var, value);
+        mConsole->print("set-Error: Unknown variable (%s = %s)", var, value);
         return -1;
     }
 
@@ -299,7 +301,7 @@ int OpenRaider::bind(const char *action, const char *key) {
     } else if (strcmp(tmp, "holster") == 0) {
         return bind(holster, key);
     } else {
-        printf("bind-Error: Unknown action (%s --> %s)\n", key, action);
+        mConsole->print("bind-Error: Unknown action (%s --> %s)", key, action);
         return -1;
     }
 }
@@ -317,7 +319,7 @@ int OpenRaider::bind(ActionEvents action, const char *key) {
             || ((c >= 'a') && (c <= 'z'))) {
             keyBindings[action] = (KeyboardButton)c;
         } else {
-            printf("bind-\'\'-Error: Unknown key (%s)\n", key);
+            mConsole->print("bind-\'\'-Error: Unknown key (%s)", key);
             return -1;
         }
     } else if ((key[0] == '\"') && (key[length - 1] == '\"')) {
@@ -424,13 +426,13 @@ int OpenRaider::bind(ActionEvents action, const char *key) {
         } else if (strcmp(tmp, "tab") == 0) {
             keyBindings[action] = tab;
         } else {
-            printf("bind-\"\"-Error: Unknown key (%s)\n", key);
+            mConsole->print("bind-\"\"-Error: Unknown key (%s)", key);
             delete [] tmp;
             return -2;
         }
         delete [] tmp;
     } else {
-        printf("bind-Error: Unknown key (%s)\n", key);
+        mConsole->print("bind-Error: Unknown key (%s)", key);
         return -3;
     }
     return 0;
@@ -464,12 +466,12 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
                      || stringEndsWith(lowerPath, ".tr4")
                      || stringEndsWith(lowerPath, ".trc")) {
                     //if (m_tombraider.checkMime(fullPathMap) == 0) {
-                        // printf("Validated pak: '%s'\n", fullPathMap);
+                        // mConsole->print("Validated pak: '%s'", fullPathMap);
 
                         // Just load relative filename
                         mMapList.push_back(bufferString("%s", (fullPathMap + strlen(mPakDir))));
                     //} else {
-                    //    printf("ERROR: pak file '%s' not found or invalid\n", fullPathMap);
+                    //    mConsole->print("ERROR: pak file '%s' not found or invalid", fullPathMap);
                     //}
                 }
 
@@ -479,7 +481,7 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
         }
         closedir(pakDir);
     } else {
-        printf("Could not open PAK dir %s!\n", dir);
+        mConsole->print("Could not open PAK dir %s!", dir);
     }
 }
 

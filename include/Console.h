@@ -8,6 +8,9 @@
 #ifndef _CONSOLE_H_
 #define _CONSOLE_H_
 
+#include <cstring>
+#include <vector>
+
 #include "Window.h"
 
 /*!
@@ -30,6 +33,8 @@ public:
 
     bool isVisible();
 
+    void print(const char *s, ...) __attribute__((format(printf, 2, 3)));
+
     void display();
 
     void handleKeyboard(KeyboardButton key, bool pressed);
@@ -39,6 +44,10 @@ public:
 private:
 
     bool mVisible;
+    char *mInputBuffer;
+    size_t mInputBufferPointer;
+    char *mPartialInput;
+    std::vector<char *> mHistory;
 };
 
 #endif
