@@ -29,6 +29,7 @@ Console::Console() {
     mPartialInput = NULL;
     mHistoryPointer = 0;
     mUnfinishedInput = NULL;
+    mLineOffset = 0;
 }
 
 Console::~Console() {
@@ -77,6 +78,16 @@ void Console::print(const char *s, ...) {
     }
 }
 
+#define LINE_GEOMETRY(window) unsigned int firstLine = 35; \
+        unsigned int lastLine = (window->mHeight / 2) - 55; \
+        unsigned int inputLine = (window->mHeight / 2) - 30; \
+        unsigned int lineSteps = 20; \
+        unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
+        while (((lineCount * lineSteps) + firstLine) < inputLine) { \
+            lineSteps++; \
+            lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
+        }
+
 void Console::display() {
     Window *window = gOpenRaider->mWindow;
     unsigned char color[4] = {0xFF, 0xFF, 0xFF, 0xFF};
@@ -84,15 +95,7 @@ void Console::display() {
     if (mVisible) {
         // Calculate line drawing geometry
         // Depends on window height, so recalculate every time
-        unsigned int firstLine = 35;
-        unsigned int lastLine = (window->mHeight / 2) - 55;
-        unsigned int inputLine = (window->mHeight / 2) - 30;
-        unsigned int lineSteps = 20;
-        unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps;
-        while (((lineCount * lineSteps) + firstLine) < inputLine) {
-            lineSteps++;
-            lineCount = (lastLine - firstLine + lineSteps) / lineSteps;
-        }
+        LINE_GEOMETRY(window);
 
         // Draw half-transparent *overlay*
         glColor4f(0.0f, 0.0f, 0.0f, 0.5f);
@@ -100,7 +103,15 @@ void Console::display() {
         glRecti(0, 0, window->mWidth, window->mHeight / 2);
         glEnable(GL_TEXTURE_2D);
 
-        gOpenRaider->mWindow->drawText(10, 10, 0.70f, color, "%s uptime %lus", VERSION, systemTimerGet() / 1000);
+        int scrollIndicator;
+        if (mHistory.size() > lineCount) {
+            scrollIndicator = (mHistory.size() - lineCount - mLineOffset) * 100 / (mHistory.size() - lineCount);
+        } else {
+            scrollIndicator = 100;
+        }
+
+        gOpenRaider->mWindow->drawText(10, 10, 0.70f, color,
+                "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
 
         // Draw output log
         int end = lineCount;
@@ -114,7 +125,7 @@ void Console::display() {
         }
         for (int i = 0; i < end; i++) {
             gOpenRaider->mWindow->drawText(10, ((i + drawOffset) * lineSteps) + firstLine,
-                    0.75f, color, "%s", mHistory[i + historyOffset]);
+                    0.75f, color, "%s", mHistory[i + historyOffset - mLineOffset]);
         }
 
         // Draw current input
@@ -135,6 +146,8 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
             mHistory.push_back(bufferString("> %s", mInputBuffer));
             mCommandHistory.push_back(bufferString("%s", mInputBuffer));
             gOpenRaider->command(mInputBuffer);
+        } else {
+            mHistory.push_back(bufferString("> "));
         }
 
         // Clear partial and input buffer
@@ -200,6 +213,9 @@ void Console::moveInHistory(bool up) {
 void Console::handleText(char *text, bool notFinished) {
     //printf("Text: %s (%s)\n", text, (notFinished ? "not finished" : "finished"));
 
+    // Always scroll to bottom when text input is received
+    mLineOffset = 0;
+
     if (!notFinished) {
         // Finished entering character
         // delete previous partial character, if present
@@ -225,6 +241,22 @@ void Console::handleText(char *text, bool notFinished) {
     } else {
         // Partial character received
         mPartialInput = bufferString("%s", text);
+    }
+}
+
+void Console::handleMouseScroll(int xrel, int yrel) {
+    LINE_GEOMETRY(gOpenRaider->mWindow);
+
+    if (mHistory.size() > lineCount) {
+        if (yrel > 0) {
+            if (mLineOffset < (mHistory.size() - lineCount)) {
+                mLineOffset++;
+            }
+        } else if (yrel < 0) {
+            if (mLineOffset > 0) {
+                mLineOffset--;
+            }
+        }
     }
 }
 

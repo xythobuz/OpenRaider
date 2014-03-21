@@ -41,6 +41,8 @@ public:
 
     void handleText(char *text, bool notFinished);
 
+    void handleMouseScroll(int xrel, int yrel);
+
 private:
 
     void moveInHistory(bool up);
@@ -54,6 +56,8 @@ private:
     size_t mHistoryPointer;
     std::vector<char *> mCommandHistory;
     char *mUnfinishedInput;
+
+    unsigned int mLineOffset;
 };
 
 #endif

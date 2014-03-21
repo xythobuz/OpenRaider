@@ -58,16 +58,6 @@ char *stringReplace(const char *s, const char *search, const char *replace) {
     }
 }
 
-void printStringVector(std::vector<char *> *args) {
-    printf("(");
-    for (std::vector<char *>::size_type i = 0; i < args->size(); i++) {
-        printf("%s", args->at(i));
-        if (i < (args->size() - 1))
-            printf(" ");
-    }
-    printf(")");
-}
-
 int readBool(const char *value, bool *var) {
     if ((strcmp(value, "1") == 0) || (strcmp(value, "true") == 0) || (strcmp(value, "TRUE") == 0)) {
         *var = true;

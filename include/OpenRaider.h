@@ -66,6 +66,8 @@ public:
 
     void handleMouseMotion(int xrel, int yrel);
 
+    void handleMouseScroll(int xrel, int yrel);
+
     Window *mWindow;
     Sound *mSound;
     Menu *mMenu;

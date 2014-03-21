@@ -197,6 +197,10 @@ void WindowSDL::eventHandling() {
                 gOpenRaider->handleMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
                 break;
 
+            case SDL_MOUSEWHEEL:
+                gOpenRaider->handleMouseScroll(event.wheel.x, event.wheel.y);
+                break;
+
             case SDL_TEXTINPUT:
             case SDL_TEXTEDITING:
                 gOpenRaider->handleText(event.text.text, (event.type == SDL_TEXTEDITING));

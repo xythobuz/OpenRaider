@@ -16,8 +16,6 @@ char *stringRemoveQuotes(const char *s);
 
 char *stringReplace(const char *s, const char *search, const char *replace);
 
-void printStringVector(std::vector<char *> *args);
-
 int readBool(const char *value, bool *var);
 
 /*!

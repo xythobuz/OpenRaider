@@ -133,8 +133,6 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
     if (strcmp(command, "set") == 0) {
         if (args->size() != 2) {
             mConsole->print("Invalid use of set-command ");
-            printStringVector(args);
-            printf("\n");
             return -2;
         } else {
             return set(args->at(0), args->at(1));
@@ -142,8 +140,6 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
     } else if (strcmp(command, "bind") == 0) {
         if (args->size() != 2) {
             mConsole->print("Invalid use of bind-command ");
-            printStringVector(args);
-            printf("\n");
             return -3;
         } else {
             return bind(args->at(0), args->at(1));
@@ -162,14 +158,10 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return help(args->at(0));
         } else {
             mConsole->print("Invalid use of help-command ");
-            printStringVector(args);
-            printf("\n");
             return -4;
         }
     } else {
         mConsole->print("Unknown command: %s ", command);
-        printStringVector(args);
-        printf("\n");
         return -1;
     }
 
@@ -658,5 +650,11 @@ void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, MouseButton bu
 
 void OpenRaider::handleMouseMotion(int xrel, int yrel) {
 
+}
+
+void OpenRaider::handleMouseScroll(int xrel, int yrel) {
+    if ((mConsole->isVisible()) && (!mMenu->isVisible())) {
+        mConsole->handleMouseScroll(xrel, yrel);
+    }
 }
 
