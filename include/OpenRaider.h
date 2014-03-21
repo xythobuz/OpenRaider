@@ -10,7 +10,9 @@
 
 #include <vector>
 
+#include "global.h"
 #include "Console.h"
+#include "Game.h"
 #include "Menu.h"
 #include "Sound.h"
 #include "Window.h"
@@ -20,21 +22,6 @@
  */
 class OpenRaider {
 public:
-
-    typedef enum {
-        menu = 0,
-        console,
-        forward,
-        backward,
-        left,
-        right,
-        jump,
-        crouch,
-        use,
-        holster,
-
-        ActionEventCount // Should always be at the end
-    } ActionEvents;
 
     /*!
      * \brief Constructs an object of OpenRaider
@@ -72,6 +59,7 @@ public:
     Sound *mSound;
     Menu *mMenu;
     Console *mConsole;
+    Game *mGame;
 
     bool mMapListFilled;
     std::vector<char *> mMapList;

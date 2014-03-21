@@ -91,7 +91,7 @@ void Menu::display() {
 
     if (mVisible) {
         // Draw half-transparent *overlay*
-        glColor4f(0.0f, 0.0f, 0.0f, 0.5f);
+        glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
         glDisable(GL_TEXTURE_2D);
         glRecti(0, 0, window->mWidth, window->mHeight);
         glEnable(GL_TEXTURE_2D);

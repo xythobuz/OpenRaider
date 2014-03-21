@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 
     // Create globals
     atexit(cleanupHandler);
-    printf("Initializing %s", VERSION);
+    printf("Initializing %s\n", VERSION);
     gOpenRaider = new OpenRaider();
 
     // Try to load a configuration
