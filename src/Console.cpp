@@ -27,6 +27,8 @@ Console::Console() {
     mInputBuffer[INPUT_BUFFER_SIZE] = '\0';
     mInputBufferPointer = 0;
     mPartialInput = NULL;
+    mHistoryPointer = 0;
+    mUnfinishedInput = NULL;
 }
 
 Console::~Console() {
@@ -36,11 +38,21 @@ Console::~Console() {
     if (mPartialInput)
         delete [] mPartialInput;
 
+    if (mUnfinishedInput)
+        delete [] mUnfinishedInput;
+
     while (mHistory.size() > 0) {
         char *tmp = mHistory.back();
         if (tmp != NULL)
             delete [] tmp;
         mHistory.pop_back();
+    }
+
+    while (mCommandHistory.size() > 0) {
+        char *tmp = mCommandHistory.back();
+        if (tmp != NULL)
+            delete [] tmp;
+        mCommandHistory.pop_back();
     }
 }
 
@@ -121,6 +133,7 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
         // Execute entered command
         if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
             mHistory.push_back(bufferString("> %s", mInputBuffer));
+            mCommandHistory.push_back(bufferString("%s", mInputBuffer));
             gOpenRaider->command(mInputBuffer);
         }
 
@@ -131,6 +144,8 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
             delete [] mPartialInput;
             mPartialInput = NULL;
         }
+
+        mHistoryPointer = 0;
     }
 
     //! \fixme only deleting the last byte is not valid for non-ASCII UTF-8 strings
@@ -138,6 +153,46 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
         if (mInputBufferPointer > 0) {
             mInputBufferPointer--;
             mInputBuffer[mInputBufferPointer] = '\0';
+        }
+    }
+
+    if (pressed && ((key == up) || (key == down))) {
+        moveInHistory(key == up);
+    }
+}
+
+void Console::moveInHistory(bool up) {
+    if (mCommandHistory.size() == 0)
+        return;
+
+    if (up) {
+        if (mHistoryPointer < mCommandHistory.size()) {
+            mHistoryPointer++;
+            if (mHistoryPointer == 1) {
+                mUnfinishedInput = bufferString("%s", mInputBuffer);
+            }
+        } else {
+            return;
+        }
+    } else {
+        if (mHistoryPointer > 0)
+            mHistoryPointer--;
+        else
+            return;
+    }
+
+    if ((mHistoryPointer > 0) && (mHistoryPointer <= mCommandHistory.size())) {
+        strcpy(mInputBuffer, mCommandHistory[mCommandHistory.size() - mHistoryPointer]);
+        mInputBufferPointer = strlen(mInputBuffer);
+    } else {
+        if (mUnfinishedInput != NULL) {
+            strcpy(mInputBuffer, mUnfinishedInput);
+            mInputBufferPointer = strlen(mInputBuffer);
+            delete [] mUnfinishedInput;
+            mUnfinishedInput = NULL;
+        } else {
+            mInputBuffer[0] = '\0';
+            mInputBufferPointer = 0;
         }
     }
 }

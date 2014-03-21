@@ -43,11 +43,17 @@ public:
 
 private:
 
+    void moveInHistory(bool up);
+
     bool mVisible;
     char *mInputBuffer;
     size_t mInputBufferPointer;
     char *mPartialInput;
     std::vector<char *> mHistory;
+
+    size_t mHistoryPointer;
+    std::vector<char *> mCommandHistory;
+    char *mUnfinishedInput;
 };
 
 #endif
