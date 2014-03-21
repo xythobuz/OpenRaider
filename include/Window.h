@@ -37,14 +37,10 @@ typedef enum {
     leftgui, leftshift, minus, numlock, pagedown,
     pageup, pause, dot, rightalt, rightctrl, enter,
     rightgui, rightbracket, rightshift, scrolllock,
-    semicolon, slash, space, tab, unknown
+    semicolon, slash, space, tab,
+    leftmouse, middlemouse, rightmouse,
+    unknown
 } KeyboardButton;
-
-typedef enum {
-    leftButton,
-    rightButton,
-    middleButton
-} MouseButton;
 
 typedef struct {
     char *text;

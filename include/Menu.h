@@ -34,7 +34,7 @@ public:
 
     void handleKeyboard(KeyboardButton key, bool pressed);
 
-    void handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released);
+    void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
 
 private:
 

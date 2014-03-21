@@ -62,7 +62,7 @@ public:
 
     void handleText(char *text, bool notFinished);
 
-    void handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released);
+    void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
 
     void handleMouseMotion(int xrel, int yrel);
 

@@ -83,7 +83,10 @@ int OpenRaider::loadConfig(const char *config) {
 
     char buffer[256];
     while (fgets(buffer, 256, f) != NULL) {
-        command(buffer);
+        int error = command(buffer);
+        if (error != 0) {
+            mConsole->print("Error Code: %d", error);
+        }
     }
 
     fclose(f);
@@ -132,14 +135,14 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
 
     if (strcmp(command, "set") == 0) {
         if (args->size() != 2) {
-            mConsole->print("Invalid use of set-command ");
+            mConsole->print("Invalid use of set-command");
             return -2;
         } else {
             return set(args->at(0), args->at(1));
         }
     } else if (strcmp(command, "bind") == 0) {
         if (args->size() != 2) {
-            mConsole->print("Invalid use of bind-command ");
+            mConsole->print("Invalid use of bind-command");
             return -3;
         } else {
             return bind(args->at(0), args->at(1));
@@ -157,8 +160,8 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         } else if (args->size() == 1) {
             return help(args->at(0));
         } else {
-            mConsole->print("Invalid use of help-command ");
-            return -4;
+            mConsole->print("Invalid use of help-command");
+            return -5;
         }
     } else {
         mConsole->print("Unknown command: %s ", command);
@@ -185,6 +188,8 @@ int OpenRaider::help(const char *cmd) {
         mConsole->print("  volume      BOOL");
         mConsole->print("  mouse_x     FLOAT");
         mConsole->print("  mouse_y     FLOAT");
+        mConsole->print("Enclose STRINGs with \"\"!");
+        mConsole->print("size expects a STRING in the specified format");
     } else if (strcmp(cmd, "bind") == 0) {
         mConsole->print("bind-Command Usage:");
         mConsole->print("  bind ACTION KEY");
@@ -477,6 +482,12 @@ int OpenRaider::bind(ActionEvents action, const char *key) {
             keyBindings[action] = space;
         } else if (strcmp(tmp, "tab") == 0) {
             keyBindings[action] = tab;
+        } else if (strcmp(tmp, "leftmouse") == 0) {
+            keyBindings[action] = leftmouse;
+        } else if (strcmp(tmp, "middlemouse") == 0) {
+            keyBindings[action] = middlemouse;
+        } else if (strcmp(tmp, "rightmouse") == 0) {
+            keyBindings[action] = rightmouse;
         } else {
             mConsole->print("bind-\"\"-Error: Unknown key (%s)", key);
             delete [] tmp;
@@ -642,7 +653,7 @@ void OpenRaider::handleText(char *text, bool notFinished) {
     }
 }
 
-void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released) {
+void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
     if (mMenu->isVisible()) {
         mMenu->handleMouseClick(x, y, button, released);
     }

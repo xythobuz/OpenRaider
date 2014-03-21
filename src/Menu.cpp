@@ -152,10 +152,10 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
     }
 }
 
-void Menu::handleMouseClick(unsigned int x, unsigned int y, MouseButton button, bool released) {
+void Menu::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
     int items = (gOpenRaider->mWindow->mHeight - 110) / 25;
 
-    if ((!released) || (button != leftButton))
+    if ((!released) || (button != leftmouse))
         return;
 
     if ((y >= 100) && (y <= (unsigned int)(100 + (25 * items)))) {

@@ -145,7 +145,10 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
         if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
             mHistory.push_back(bufferString("> %s", mInputBuffer));
             mCommandHistory.push_back(bufferString("%s", mInputBuffer));
-            gOpenRaider->command(mInputBuffer);
+            int error = gOpenRaider->command(mInputBuffer);
+            if (error != 0) {
+                print("Error Code: %d", error);
+            }
         } else {
             mHistory.push_back(bufferString("> "));
         }
