@@ -54,16 +54,6 @@ public:
 
     int command(const char *command);
 
-    int command(const char *command, std::vector<char *> *args);
-
-    char *expandDirectoryNames(const char *s);
-
-    int set(const char *var, const char *value);
-
-    int bind(const char *action, const char *key);
-
-    int bind(ActionEvents action, const char *key);
-
     int initialize();
 
     void run();
@@ -85,6 +75,18 @@ public:
     std::vector<char *> mMapList;
 
 private:
+
+    int command(const char *command, std::vector<char *> *args);
+
+    char *expandDirectoryNames(const char *s);
+
+    int help(const char *cmd);
+
+    int set(const char *var, const char *value);
+
+    int bind(const char *action, const char *key);
+
+    int bind(ActionEvents action, const char *key);
 
     void loadPakFolderRecursive(const char *dir);
 

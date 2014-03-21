@@ -150,12 +150,72 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         }
     } else if (strcmp(command, "quit") == 0) {
         exit(0);
+    } else if (strcmp(command, "help") == 0) {
+        if (args->size() == 0) {
+            mConsole->print("Available commands:");
+            mConsole->print("  set");
+            mConsole->print("  bind");
+            mConsole->print("  help");
+            mConsole->print("  quit");
+            mConsole->print("Use help COMMAND to get additional info");
+        } else if (args->size() == 1) {
+            return help(args->at(0));
+        } else {
+            mConsole->print("Invalid use of help-command ");
+            printStringVector(args);
+            printf("\n");
+            return -4;
+        }
     } else {
         mConsole->print("Unknown command: %s ", command);
         printStringVector(args);
         printf("\n");
         return -1;
     }
+
+    return 0;
+}
+
+int OpenRaider::help(const char *cmd) {
+    if (strcmp(cmd, "set") == 0) {
+        mConsole->print("set-Command Usage:");
+        mConsole->print("  set VAR VAL");
+        mConsole->print("Available Variables:");
+        mConsole->print("  basedir     STRING");
+        mConsole->print("  pakdir      STRING");
+        mConsole->print("  audiodir    STRING");
+        mConsole->print("  datadir     STRING");
+        mConsole->print("  font        STRING");
+        mConsole->print("  gldriver    STRING");
+        mConsole->print("  size        \"INTxINT\"");
+        mConsole->print("  fullscreen  BOOL");
+        mConsole->print("  audio       BOOL");
+        mConsole->print("  volume      BOOL");
+        mConsole->print("  mouse_x     FLOAT");
+        mConsole->print("  mouse_y     FLOAT");
+    } else if (strcmp(cmd, "bind") == 0) {
+        mConsole->print("bind-Command Usage:");
+        mConsole->print("  bind ACTION KEY");
+        mConsole->print("Available Actions:");
+        mConsole->print("  menu");
+        mConsole->print("  console");
+        mConsole->print("  forward");
+        mConsole->print("  backward");
+        mConsole->print("  left");
+        mConsole->print("  right");
+        mConsole->print("  jump");
+        mConsole->print("  crouch");
+        mConsole->print("  use");
+        mConsole->print("  holster");
+        mConsole->print("Key-Format:");
+        mConsole->print("  'a' or '1'    for character/number keys");
+        mConsole->print("  \"leftctrl\"  for symbols and special keys");
+    } else {
+        mConsole->print("No help available for %s", cmd);
+        return -1;
+    }
+
+    return 0;
 }
 
 char *OpenRaider::expandDirectoryNames(const char *s) {
