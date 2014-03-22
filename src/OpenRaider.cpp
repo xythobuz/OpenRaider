@@ -425,9 +425,9 @@ int OpenRaider::bind(ActionEvents action, const char *key) {
         } else if (strcmp(tmp, "down") == 0) {
             keyBindings[action] = down;
         } else if (strcmp(tmp, "left") == 0) {
-            keyBindings[action] = KeyboardButton::left;
+            keyBindings[action] = left;
         } else if (strcmp(tmp, "right") == 0) {
-            keyBindings[action] = KeyboardButton::right;
+            keyBindings[action] = right;
         } else if (strcmp(tmp, "end") == 0) {
             keyBindings[action] = end;
         } else if (strcmp(tmp, "equals") == 0) {
@@ -679,6 +679,13 @@ void OpenRaider::handleText(char *text, bool notFinished) {
 void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
     if (mMenu->isVisible()) {
         mMenu->handleMouseClick(x, y, button, released);
+    } else if (!mConsole->isVisible()) {
+        for (int i = forwardAction; i < ActionEventCount; i++) {
+            if (keyBindings[i] == button) {
+                if (mGame)
+                    mGame->handleAction((ActionEvents)i, !released);
+            }
+        }
     }
 }
 
