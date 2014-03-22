@@ -359,22 +359,18 @@ unsigned char *TombRaider::Palette8()
 }
 
 
-int TombRaider::checkMime(char *filename)
-{
+int TombRaider::checkMime(char *filename) {
     FILE *f;
     unsigned int version;
 
-
-    if (!filename || !filename[0])
-    {
+    if (!filename || !filename[0]) {
         print("checkFile", "Given filename was empty string or NULL");
         return -1;
     }
 
     f = fopen(filename, "rb");
 
-    if (!f)
-    {
+    if (!f) {
         perror(filename);
         return -1;
     }
@@ -383,20 +379,17 @@ int TombRaider::checkMime(char *filename)
     fread(&version, sizeof(version), 1, f);
     fclose(f);
 
-    switch (version)
-    {
+    switch (version) {
         case 0x00000020:
         case 0x0000002d:
         case 0xff080038:
         case 0xff180038:
-        case 0xfffffff0:           // bogus
-        case 0x00345254:           // "TR4\0"
+        case 0xfffffff0: // bogus
+        case 0x00345254: // "TR4\0"
             return 0;
         default:
-            ;
+            return 1;
     }
-
-    return 1;
 }
 
 

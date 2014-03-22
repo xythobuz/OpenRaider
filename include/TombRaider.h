@@ -124,7 +124,7 @@ public:
      * \param filename file to check
      * \returns 0 if it is a TombRaider pak
      */
-    int checkMime(char *filename);
+    static int checkMime(char *filename);
 
     /*!
      * \brief Loads TombRaider 1-5 pak into memory
@@ -669,7 +669,7 @@ private:
      */
     int loadTR5(FILE *f, void (*percent)(int, void *), void *obj);
 
-    void print(const char *methodName, const char *s, ...) __attribute__((format(printf, 3, 4)));
+    static void print(const char *methodName, const char *s, ...) __attribute__((format(printf, 2, 3)));
 
     void printDebug(const char *methodName, const char *s, ...) __attribute__((format(printf, 3, 4)));
 

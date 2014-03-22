@@ -19,6 +19,21 @@
 #pragma pack(push, tr2_h, 1)
 #endif
 
+#define TR_SOUND_FOOTSTEP0 1
+#define TR_SOUND_F_PISTOL  12
+
+#define TR_ANIAMTION_RUN            0
+#define TR_ANIAMTION_STAND          11
+#define TR_ANIAMTION_TURN_L         12
+#define TR_ANIAMTION_TURN_R         13
+#define TR_ANIAMTION_HIT_WALL_FRONT 53
+#define TR_ANIAMTION_SWIM_IDLE      87
+#define TR_ANIAMTION_SWIM           86
+#define TR_ANIAMTION_SWIM_L         143
+#define TR_ANIAMTION_SWIM_R         144
+#define TR_ANIAMTION_GRAB_LEDGE     96
+#define TR_ANIAMTION_PULLING_UP     97
+
 typedef enum {
     TR_VERSION_UNKNOWN,
     TR_VERSION_1,
@@ -58,9 +73,6 @@ typedef enum {
     tombraiderFace_PartialAlpha = (1 << 2)
 } tombraiderFace_Flags;
 
-#define TR_SOUND_FOOTSTEP0    1
-#define TR_SOUND_F_PISTOL    12
-
 enum TR4_Objects {
     TR4_LARA = 0,
     TR4_PISTOLS_ANIM = 1,
@@ -84,18 +96,6 @@ enum TR4_Objects {
     TR4_LARA_SPEECH_HEAD3 = 19,
     TR4_LARA_SPEECH_HEAD4 = 20
 };
-
-#define TR_ANIAMTION_RUN               0
-#define TR_ANIAMTION_STAND            11
-#define TR_ANIAMTION_TURN_L           12
-#define TR_ANIAMTION_TURN_R           13
-#define TR_ANIAMTION_HIT_WALL_FRONT   53
-#define TR_ANIAMTION_SWIM_IDLE        87
-#define TR_ANIAMTION_SWIM             86
-#define TR_ANIAMTION_SWIM_L          143
-#define TR_ANIAMTION_SWIM_R          144
-#define TR_ANIAMTION_GRAB_LEDGE       96
-#define TR_ANIAMTION_PULLING_UP       97
 
 /*!
  * \brief Basic 24-bit colour structure.

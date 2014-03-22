@@ -17,6 +17,7 @@
 #include "Game.h"
 #include "Menu.h"
 #include "Sound.h"
+#include "TombRaider.h"
 #include "Window.h"
 #include "utils/strings.h"
 #include "utils/time.h"
@@ -176,7 +177,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
     } else if (strcmp(command, "load") == 0) {
         if (mGame)
             delete mGame;
-        char *tmp = bufferString("%s%s", mPakDir, args->at(0));
+        char *tmp = bufferString("%s/%s", mPakDir, args->at(0));
         try {
             mGame = new Game(tmp);
             delete [] tmp;
@@ -553,14 +554,14 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
                      || stringEndsWith(lowerPath, ".tr2")
                      || stringEndsWith(lowerPath, ".tr4")
                      || stringEndsWith(lowerPath, ".trc")) {
-                    //if (m_tombraider.checkMime(fullPathMap) == 0) {
-                        // mConsole->print("Validated pak: '%s'", fullPathMap);
-
+                    int error = TombRaider::checkMime(fullPathMap);
+                    if (error == 0) {
                         // Just load relative filename
-                        mMapList.push_back(bufferString("%s", (fullPathMap + strlen(mPakDir))));
-                    //} else {
-                    //    mConsole->print("ERROR: pak file '%s' not found or invalid", fullPathMap);
-                    //}
+                        mMapList.push_back(bufferString("%s", (fullPathMap + strlen(mPakDir) + 1)));
+                    } else {
+                        mConsole->print("Error: pak file '%s' %s",
+                                fullPathMap, (error == -1) ? "not found" : "invalid");
+                    }
                 }
 
                 delete [] lowerPath;
