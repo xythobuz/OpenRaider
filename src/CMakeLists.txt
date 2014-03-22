@@ -37,6 +37,7 @@ set (SRCS ${SRCS} "main.cpp")
 set (SRCS ${SRCS} "Menu.cpp")
 set (SRCS ${SRCS} "OpenRaider.cpp")
 set (SRCS ${SRCS} "Sound.cpp")
+set (SRCS ${SRCS} "TombRaider.cpp")
 set (SRCS ${SRCS} "Window.cpp")
 
 # Select available Windowing library

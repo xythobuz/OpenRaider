@@ -161,6 +161,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             mConsole->print("Available commands:");
+            mConsole->print("  load");
             mConsole->print("  set");
             mConsole->print("  bind");
             mConsole->print("  help");
@@ -170,7 +171,19 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return help(args->at(0));
         } else {
             mConsole->print("Invalid use of help-command");
-            return -5;
+            return -4;
+        }
+    } else if (strcmp(command, "load") == 0) {
+        if (mGame)
+            delete mGame;
+        char *tmp = bufferString("%s%s", mPakDir, args->at(0));
+        try {
+            mGame = new Game(tmp);
+            delete [] tmp;
+            return 0;
+        } catch (int error) {
+            delete [] tmp;
+            return error;
         }
     } else {
         mConsole->print("Unknown command: %s ", command);
@@ -216,6 +229,9 @@ int OpenRaider::help(const char *cmd) {
         mConsole->print("Key-Format:");
         mConsole->print("  'a' or '1'    for character/number keys");
         mConsole->print("  \"leftctrl\"  for symbols and special keys");
+    } else if (strcmp(cmd, "load") == 0) {
+        mConsole->print("load-Command Usage:");
+        mConsole->print("  load levelfile.name");
     } else {
         mConsole->print("No help available for %s", cmd);
         return -1;

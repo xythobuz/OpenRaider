@@ -148,7 +148,10 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
         while (i-- > 0)
             handleKeyboard(up, true);
     } else if (key == enter) {
-
+        char *tmp = bufferString("load %s", gOpenRaider->mMapList[mCursor]);
+        if (gOpenRaider->command(tmp) == 0)
+            setVisible(false);
+        delete [] tmp;
     }
 }
 

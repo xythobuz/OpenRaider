@@ -9,6 +9,7 @@
 #define _GAME_H_
 
 #include "global.h"
+#include "TombRaider.h"
 
 /*!
  * \brief Game abstraction
@@ -16,6 +17,7 @@
 class Game {
 public:
 
+    // Throw exception with negative integer error code if fails
     Game(const char *level);
 
     ~Game();
@@ -26,8 +28,12 @@ public:
 
     void display();
 
+    void percentCallback(int percent);
+
 private:
 
+    char *mName;
+    TombRaider mTombRaider;
 };
 
 #endif
