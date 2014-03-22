@@ -46,6 +46,7 @@ set (SRCS ${SRCS} "Texture.cpp")
 set (SRCS ${SRCS} "TombRaider.cpp")
 set (SRCS ${SRCS} "ViewVolume.cpp")
 set (SRCS ${SRCS} "Window.cpp")
+set (SRCS ${SRCS} "World.cpp")
 
 # Select available Windowing library
 if (SDL2_FOUND AND SDL2TTF_FOUND)
