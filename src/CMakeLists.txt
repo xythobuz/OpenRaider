@@ -31,13 +31,18 @@ set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
 #################################################################
 
 # Set Source files
+set (SRCS ${SRCS} "Camera.cpp")
 set (SRCS ${SRCS} "Console.cpp")
+set (SRCS ${SRCS} "Emitter.cpp")
 set (SRCS ${SRCS} "Game.cpp")
 set (SRCS ${SRCS} "main.cpp")
 set (SRCS ${SRCS} "Menu.cpp")
+set (SRCS ${SRCS} "Mesh.cpp")
 set (SRCS ${SRCS} "OpenRaider.cpp")
+set (SRCS ${SRCS} "Particle.cpp")
 set (SRCS ${SRCS} "Sound.cpp")
 set (SRCS ${SRCS} "TombRaider.cpp")
+set (SRCS ${SRCS} "ViewVolume.cpp")
 set (SRCS ${SRCS} "Window.cpp")
 
 # Select available Windowing library
