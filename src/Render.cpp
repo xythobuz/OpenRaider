@@ -112,13 +112,13 @@ void Render::drawLoadScreen()
 }
 
 
-int compareEntites(const void *voidA, const void *voidB)
+bool compareEntites(const void *voidA, const void *voidB)
 {
     entity_t *a = (entity_t *)voidA, *b = (entity_t *)voidB;
     vec_t distA, distB;
 
     if (!a || !b)
-        return -1; // error really
+        return false; // error really
 
     distA = gViewVolume.getDistToSphereFromNear(a->pos[0],
             a->pos[1],
@@ -129,22 +129,17 @@ int compareEntites(const void *voidA, const void *voidB)
             b->pos[2],
             1.0f);
 
-    // less than
-    if (distA < distB)
-        return -1;
-
-    // greater than ( no need for equal )
-    return 1;
+    return (distA < distB);
 }
 
 
-int compareStaticModels(const void *voidA, const void *voidB)
+bool compareStaticModels(const void *voidA, const void *voidB)
 {
     static_model_t *a = (static_model_t *)voidA, *b = (static_model_t *)voidB;
     vec_t distA, distB;
 
     if (!a || !b)
-        return -1; // error really
+        return false; // error really
 
     distA = gViewVolume.getDistToSphereFromNear(a->pos[0],
             a->pos[1],
@@ -155,30 +150,20 @@ int compareStaticModels(const void *voidA, const void *voidB)
             b->pos[2],
             128.0f);
 
-    // less than
-    if (distA < distB)
-        return -1;
-
-    // greater than ( no need for equal )
-    return 1;
+    return (distA < distB);
 }
 
 
-int compareRoomDist(const void *voidA, const void *voidB)
+bool compareRoomDist(const void *voidA, const void *voidB)
 {
     const RenderRoom *a = static_cast<const RenderRoom *>(voidA);
     const RenderRoom *b = static_cast<const RenderRoom *>(voidB);
 
 
     if (!a || !b || !a->room || !b->room)
-        return -1; // error really
+        return false; // error really
 
-    // less than
-    if (a->dist < b->dist)
-        return -1;
-
-    // greater than ( no need for equal )
-    return 1;
+    return (a->dist < b->dist);
 }
 
 

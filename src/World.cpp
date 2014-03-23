@@ -121,7 +121,6 @@ int World::getSector(int room, float x, float z, float *floor, float *ceiling)
     sector_t * s;
     int sector;
 
-
     r = mRooms[room];
 
     if (!r)
@@ -149,7 +148,6 @@ int World::getSector(int room, float x, float z)
 {
     int sector;
     room_mesh_t *r;
-
 
     r = mRooms[room];
 

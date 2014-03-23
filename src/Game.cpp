@@ -132,8 +132,9 @@ int Game::loadLevel(const char *level) {
         processRoom(i);
     printf("Done! Found %d rooms.\n", mTombRaider.NumRooms());
     printf("Processing meshes: ");
-    for (int i = 0; i < mTombRaider.getMeshCount(); i++)
+    for (int i = 0; i < mTombRaider.getMeshCount(); i++) {
         processModel(i);
+    }
     printf("Done! Found %d meshes.\n", mTombRaider.getMeshCount());
     processSprites();
     processMoveables();
@@ -633,7 +634,7 @@ void Game::processMoveable(int index, int i, int *ent,
             break;
         }
     }
-    if (cache.empty() || (!found))
+    if (!found)
     {
         sModel->model = r_model;
         mWorld.addEntity(thing);
@@ -892,19 +893,14 @@ void Game::processMoveable(int index, int i, int *ent,
     //fflush(stdout);
 }
 
-int compareFaceTextureId(const void *voidA, const void *voidB)
+bool compareFaceTextureId(const void *voidA, const void *voidB)
 {
     texture_tri_t *a = (texture_tri_t *)voidA, *b = (texture_tri_t *)voidB;
 
     if (!a || !b)
-        return -1; // error really
+        return false; // error really
 
-    // less than
-    if (a->texture < b->texture)
-        return -1;
-
-    // greater than ( no need for equal )
-    return 1;
+    return (a->texture < b->texture);
 }
 
 #ifdef EXPERIMENTAL
