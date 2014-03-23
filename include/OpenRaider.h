@@ -67,6 +67,11 @@ public:
     float mCameraRotationDeltaX;
     float mCameraRotationDeltaY;
 
+    char *mBaseDir;
+    char *mPakDir;
+    char *mAudioDir;
+    char *mDataDir;
+
 private:
 
     int command(const char *command, std::vector<char *> *args);
@@ -87,11 +92,6 @@ private:
 
     bool mInit;
     bool mRunning;
-
-    char *mBaseDir;
-    char *mPakDir;
-    char *mAudioDir;
-    char *mDataDir;
 
     KeyboardButton keyBindings[ActionEventCount];
 };

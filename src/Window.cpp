@@ -98,9 +98,9 @@ int Window::initializeGL() {
 }
 
 void Window::resizeGL() {
-    float fovY = 45.0f;
-    float clipNear = 4.0f;
-    float clipFar = 4000.0f;
+    float fovY = 40.0f; // 45.0f
+    float clipNear = 10.0f; // 4.0f
+    float clipFar = 600000.0f; // 4000.0f
 
     glViewport(0, 0, mWidth, mHeight);
     glMatrixMode(GL_PROJECTION);

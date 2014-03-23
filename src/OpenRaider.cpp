@@ -39,7 +39,7 @@ OpenRaider::OpenRaider() {
     mConsole = new Console();
     mSound = new Sound();
     mWindow = new WindowSDL();
-    mGame = NULL;
+    mGame = new Game();
 
     for (int i = 0; i < ActionEventCount; i++)
         keyBindings[i] = unknown;
@@ -179,17 +179,10 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -4;
         }
     } else if (strcmp(command, "load") == 0) {
-        if (mGame)
-            delete mGame;
         char *tmp = bufferString("%s/%s", mPakDir, args->at(0));
-        try {
-            mGame = new Game(tmp);
-            delete [] tmp;
-            return 0;
-        } catch (int error) {
-            delete [] tmp;
-            return error;
-        }
+        int error = mGame->loadLevel(tmp);
+        delete [] tmp;
+        return error;
     } else {
         mConsole->print("Unknown command: %s ", command);
         return -1;
@@ -605,6 +598,10 @@ int OpenRaider::initialize() {
     if (mSound->initialize() != 0)
         return -4;
 
+    // Initialize game engine
+    if (mGame->initialize() != 0)
+        return -5;
+
     mMenu->setVisible(true);
 
     mInit = true;
@@ -628,8 +625,7 @@ void OpenRaider::run() {
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Draw game scene
-        if (mGame)
-            mGame->display();
+        mGame->display();
 
         // Draw 2D overlays (console and menu)
         mWindow->glEnter2D();
@@ -662,8 +658,7 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
         } else if (!mConsole->isVisible()) {
             for (int i = forwardAction; i < ActionEventCount; i++) {
                 if (keyBindings[i] == key) {
-                    if (mGame)
-                        mGame->handleAction((ActionEvents)i, pressed);
+                    mGame->handleAction((ActionEvents)i, pressed);
                 }
             }
         } else {
@@ -686,8 +681,7 @@ void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
     } else if (!mConsole->isVisible()) {
         for (int i = forwardAction; i < ActionEventCount; i++) {
             if (keyBindings[i] == button) {
-                if (mGame)
-                    mGame->handleAction((ActionEvents)i, !released);
+                mGame->handleAction((ActionEvents)i, !released);
             }
         }
     }
@@ -695,8 +689,7 @@ void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
 
 void OpenRaider::handleMouseMotion(int xrel, int yrel) {
     if ((!mConsole->isVisible()) && (!mMenu->isVisible())) {
-        if (mGame)
-            mGame->handleMouseMotion(xrel, yrel);
+        mGame->handleMouseMotion(xrel, yrel);
     }
 }
 

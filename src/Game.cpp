@@ -18,6 +18,39 @@
 #include "Game.h"
 #include "utils/strings.h"
 
+Game::Game() {
+    mLoaded = false;
+    mName = NULL;
+    mLara = NULL;
+
+    mTextureStart = 0;
+    mTextureLevelOffset = 0;
+    mTextureOffset = 0;
+
+    mCamera = NULL;
+    mRender = NULL;
+}
+
+Game::~Game() {
+    destroy();
+
+    if (mRender)
+        delete mRender;
+
+    if (mCamera)
+        delete mCamera;
+}
+
+int Game::initialize() {
+    mCamera = new Camera();
+    // TODO setup Camera
+
+    mRender = new Render();
+    mRender->initTextures(gOpenRaider->mDataDir, &mTextureStart, &mTextureLevelOffset);
+
+    return 0;
+}
+
 void percentCallbackTrampoline(int percent, void *data) {
     Game *self = static_cast<Game *>(data);
     self->percentCallback(percent);
@@ -27,9 +60,8 @@ void Game::percentCallback(int percent) {
 
 }
 
-// Throw exception with negative integer error code if fails
-Game::Game(const char *level) {
-    mLara = NULL;
+int Game::loadLevel(const char *level) {
+    destroy();
 
     mName = bufferString("%s", level);
 
@@ -37,7 +69,7 @@ Game::Game(const char *level) {
     gOpenRaider->mConsole->print("Loading %s", mName);
     int error = mTombRaider.Load(mName, percentCallbackTrampoline, this);
     if (error != 0) {
-        throw error;
+        return error;
     }
 
     // If required, load the external sound effect file MAIN.SFX into TombRaider
@@ -58,23 +90,39 @@ Game::Game(const char *level) {
         }
         delete [] tmp;
     }
+
+    mLoaded = true;
+    //mRender->setMode(Render::modeTexture);
+    // TODO enable Renderer
+    return 0;
 }
 
-Game::~Game() {
+void Game::destroy() {
     if (mName)
         delete [] mName;
+
+    mLoaded = false;
+    mRender->setMode(Render::modeDisabled);
 }
 
 void Game::handleAction(ActionEvents action, bool isFinished) {
+    if (mLoaded) {
 
+    }
 }
 
 void Game::handleMouseMotion(int xrel, int yrel) {
+    if (mLoaded) {
 
+    }
 }
 
 void Game::display() {
-    glClearColor(0.00f, 0.70f, 0.00f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    if (mLoaded) {
+        //glClearColor(0.00f, 0.70f, 0.00f, 1.0f);
+        //glClear(GL_COLOR_BUFFER_BIT);
+
+        mRender->Display();
+    }
 }
 

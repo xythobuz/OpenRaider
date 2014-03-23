@@ -8,7 +8,9 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#include "Camera.h"
 #include "global.h"
+#include "Render.h"
 #include "TombRaider.h"
 #include "World.h"
 
@@ -18,10 +20,15 @@
 class Game {
 public:
 
-    // Throw exception with negative integer error code if fails
-    Game(const char *level);
+    Game();
 
     ~Game();
+
+    int initialize();
+
+    int loadLevel(const char *level);
+
+    void destroy();
 
     void handleAction(ActionEvents action, bool isFinished);
 
@@ -33,12 +40,18 @@ public:
 
     World mWorld;
     entity_t *mLara;
+    Render *mRender;
+    Camera *mCamera;
 
 private:
 
+    bool mLoaded;
     char *mName;
     TombRaider mTombRaider;
 
+    unsigned int mTextureStart;
+    unsigned int mTextureLevelOffset;
+    unsigned int mTextureOffset;
 };
 
 #endif

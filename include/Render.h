@@ -144,13 +144,6 @@ public:
     void addRoom(RenderRoom *rRoom);
 
     /*!
-     * \brief Starts and sets up OpenGL target
-     * \param width width of window
-     * \param height height of window
-     */
-    void Init(int width, int height);
-
-    /*!
      * \brief Loads textures in a certain id slot
      * \param image Image to load
      * \param width width of image
@@ -207,8 +200,6 @@ public:
 
     void setMode(int n);
 
-    void Update(int width, int height);
-
     /*!
      * \brief Renders a single game frame
      */
@@ -217,8 +208,6 @@ public:
     void setSkyMesh(int index, bool rot);
 
     void ViewModel(entity_t *ent, int index);
-
-    void RegisterCamera(Camera *camera);
 
     void addSkeletalModel(SkeletalModel *mdl);
 
@@ -332,15 +321,12 @@ private:
     void tmpRenderModelMesh(model_mesh_t *r_mesh, texture_tri_t *ttri);
 
     Texture mTexture;                     //!< Texture subsystem
-    Camera *mCamera;                      //!< Camera subsystem
 
     std::vector<RenderRoom *> mRoomRenderList;
     std::vector<RenderRoom *> mRooms;
     std::vector<SkeletalModel *> mModels;
 
     unsigned int mFlags;                  //!< Rendering flags
-    unsigned int mWidth;                  //!< Viewport width
-    unsigned int mHeight;                 //!< Viewport height
     unsigned int mMode;                   //!< Rendering mode
     unsigned int *mNumTexturesLoaded;
     unsigned int *mNextTextureId;

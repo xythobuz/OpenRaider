@@ -127,7 +127,6 @@ Render::Render()
 #ifdef USING_EMITTER
     mEmitter = 0x0;
 #endif
-    mCamera = 0x0;
     mSkyMesh = -1;
     mSkyMeshRotation = false;
     mMode = Render::modeDisabled;
@@ -138,9 +137,6 @@ Render::Render()
 
     mNextTextureId = NULL;
     mNumTexturesLoaded = NULL;
-
-    mWidth = 640;
-    mHeight = 480;
 }
 
 
@@ -156,7 +152,7 @@ Render::~Render()
 
 void Render::screenShot(char *filenameBase)
 {
-    mTexture.glScreenShot(filenameBase, mWidth, mHeight);
+    mTexture.glScreenShot(filenameBase, gOpenRaider->mWindow->mWidth, gOpenRaider->mWindow->mHeight);
 }
 
 
@@ -213,7 +209,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
         ++numTextures;
     }
 
-    snprintf(filename, 126, "%s%s", textureDir, "splash.tga");
+    snprintf(filename, 126, "%s/%s", textureDir, "splash.tga");
     filename[127] = 0;
 
     if ((bg_id = mTexture.loadTGA(filename)) > -1)
@@ -221,7 +217,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
         ++numTextures;
     }
 
-    snprintf(filename, 126, "%s%s", textureDir, "snow.tga");
+    snprintf(filename, 126, "%s/%s", textureDir, "snow.tga");
     filename[127] = 0;
 
     if ((snow1_id = mTexture.loadTGA(filename)) > -1)
@@ -229,7 +225,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
         ++numTextures;
     }
 
-    snprintf(filename, 126, "%s%s", textureDir, "snow2.tga");
+    snprintf(filename, 126, "%s/%s", textureDir, "snow2.tga");
     filename[127] = 0;
 
     if ((snow2_id = mTexture.loadTGA(filename)) > -1)
@@ -348,109 +344,6 @@ void renderTrace(int color, vec3_t start, vec3_t end)
 }
 
 
-void Render::Init(int width, int height)
-{
-    char *s;
-
-    mWidth = width;
-    mHeight = height;
-
-    // Print driver support information
-    printf("GL Vendor   : %s\n", glGetString(GL_VENDOR));
-    printf("GL Renderer : %s\n", glGetString(GL_RENDERER));
-    printf("GL Version  : %s\n", glGetString(GL_VERSION));
-    //printf("Extensions : %s\n\n\n", (char*)glGetString(GL_EXTENSIONS));
-
-    // Testing for goodies
-    // Mongoose 2001.12.31, Fixed string use to check for bad strings
-    s = (char*)glGetString(GL_EXTENSIONS);
-
-    if (s && s[0])
-    {
-        //printf("\tGL_ARB_multitexture       \t\t");
-
-        if (strstr(s, "GL_ARB_multitexture"))
-        {
-            mFlags |= Render::fMultiTexture;
-            //printf("YES\n");
-        }
-        /*
-        else
-        {
-            printf("NO\n");
-        }
-
-        printf("\tGL_EXT_texture_env_combine\t\t");
-
-        if (strstr(s, "GL_EXT_texture_env_combine"))
-        {
-            printf("YES\n");
-        }
-        else
-        {
-            printf("NO\n");
-        }
-        */
-    }
-
-    // Set up Z buffer
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-
-    // Set up culling
-    glEnable(GL_CULL_FACE);
-    glFrontFace(GL_CW);
-    //glFrontFace(GL_CCW);
-    //glCullFace(GL_FRONT);
-
-    // Set background to black
-    glClearColor(BLACK[0], BLACK[1], BLACK[2], BLACK[3]);
-
-    // Disable lighting
-    glDisable(GL_LIGHTING);
-
-    // Set up alpha blending
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
-    //glEnable(GL_ALPHA_TEST); // Disable per pixel alpha blending
-    glAlphaFunc(GL_GREATER, 0);
-
-    glPointSize(5.0);
-
-    // Setup shading
-    glShadeModel(GL_SMOOTH);
-
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-    glHint(GL_FOG_HINT, GL_NICEST);
-    glEnable(GL_COLOR_MATERIAL);
-    glEnable(GL_DITHER);
-
-    // AA polygon edges
-    glEnable(GL_POLYGON_SMOOTH);
-    glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-
-    glDisable(GL_LINE_SMOOTH);
-    glDisable(GL_POINT_SMOOTH);
-    glDisable(GL_AUTO_NORMAL);
-    glDisable(GL_LOGIC_OP);
-    glDisable(GL_TEXTURE_1D);
-    glDisable(GL_STENCIL_TEST);
-    glDisable(GL_FOG);
-
-    glDisable(GL_NORMALIZE);
-
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_EDGE_FLAG_ARRAY);
-    glDisableClientState(GL_COLOR_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
-
-    glPolygonMode(GL_FRONT, GL_FILL);
-
-    glMatrixMode(GL_MODELVIEW);
-}
-
-
 void setLighting(bool on)
 {
     if (on)
@@ -548,13 +441,6 @@ void Render::setFlags(unsigned int flags)
 }
 
 
-void Render::Update(int width, int height)
-{
-    mWidth = width;
-    mHeight = height;
-}
-
-
 int Render::getMode()
 {
     return mMode;
@@ -638,13 +524,6 @@ void Render::Display()
     gl_test_reset();
 #endif
 
-    // Assertion: Rendering is disabled without texture or camera
-    if (!mCamera)
-    {
-        fprintf(stderr, "Render::Display> ERROR: No camera is registered\n");
-        return;
-    }
-
     switch (mMode)
     {
         case Render::modeDisabled:
@@ -705,16 +584,16 @@ void Render::Display()
             camPos[2] = curPos[2] + (64.0f * cosf(yaw));
         }
 
-        mCamera->setPosition(camPos);
+        gOpenRaider->mGame->mCamera->setPosition(camPos);
     }
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
     // Setup view in OpenGL with camera
-    mCamera->update();
-    mCamera->getPosition(camPos);
-    mCamera->getTarget(atPos);
+    gOpenRaider->mGame->mCamera->update();
+    gOpenRaider->mGame->mCamera->getPosition(camPos);
+    gOpenRaider->mGame->mCamera->getTarget(atPos);
     // Mongoose 2002.08.13, Quick fix to render OpenRaider upside down
     // gluLookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0, -1.0, 0.0);
 
@@ -1107,13 +986,13 @@ void Render::drawObjects()
         glPushMatrix();
 
 #ifdef USING_FPS_CAMERA
-        mCamera->getPosition(curPos);
+        gOpenRaider->mGame->mCamera->getPosition(curPos);
         glTranslated(curPos[0], curPos[1], curPos[2]);
-        glRotated(mCamera->getYaw(), 0, 1, 0);
+        glRotated(gOpenRaider->mGame->mCamera->getYaw(), 0, 1, 0);
         glTranslated(0, 500, 1200);
 #else
         glTranslated(LARA->pos[0], LARA->pos[1], LARA->pos[2]);
-        glRotated(mCamera->getYaw(), 0, 1, 0);
+        glRotated(gOpenRaider->mGame->mCamera->getYaw(), 0, 1, 0);
 #endif
 
         drawModel(static_cast<SkeletalModel *>(LARA->tmpHook));
@@ -1638,7 +1517,7 @@ void Render::drawSprite(sprite_t *sprite)
     glTranslated(sprite->pos[0], sprite->pos[1], sprite->pos[2]);
 
     // Sprites must always face camera, because they have no depth  =)
-    glRotated(mCamera->getYaw(), 0, 1, 0);
+    glRotated(gOpenRaider->mGame->mCamera->getYaw(), 0, 1, 0);
 
     switch (mMode)
     {
@@ -1952,15 +1831,6 @@ void Render::ViewModel(entity_t *ent, int index)
     {
         ent->modelId = index;
         printf("Viewmodel skeletal model %i\n", model->id);
-    }
-}
-
-
-void Render::RegisterCamera(Camera *camera)
-{
-    if (camera)
-    {
-        mCamera = camera;
     }
 }
 
