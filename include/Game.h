@@ -8,11 +8,17 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#include <list>
+
 #include "Camera.h"
 #include "global.h"
 #include "Render.h"
 #include "TombRaider.h"
 #include "World.h"
+
+typedef enum {
+    Flag_DebugModel = (1 << 0)
+} GameFlags;
 
 /*!
  * \brief Game abstraction
@@ -45,8 +51,20 @@ public:
 
 private:
 
+    void processPakSounds();
+    void processTextures();
+    void processSprites();
+    void processMoveables();
+    void processMoveable(int index, int i, int *ent,
+                            std::vector<skeletal_model_t *> &cache2,
+                            std::vector<unsigned int> &cache, int object_id);
+    void processModel(int index);
+    void processRoom(int index);
+    void setupTextureColor(texture_tri_t *r_tri, float *colorf);
+
     bool mLoaded;
     char *mName;
+    unsigned int mFlags;
     TombRaider mTombRaider;
 
     unsigned int mTextureStart;
