@@ -29,6 +29,8 @@ void Game::percentCallback(int percent) {
 
 // Throw exception with negative integer error code if fails
 Game::Game(const char *level) {
+    mLara = NULL;
+
     mName = bufferString("%s", level);
 
     // Load the level pak into TombRaider

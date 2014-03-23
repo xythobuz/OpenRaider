@@ -24,11 +24,14 @@
 #include "Emitter.h"
 #endif
 
+#include "main.h"
+#include "Game.h"
+#include "OpenRaider.h"
 #include "Render.h"
 
-//! \fixme really should be changed!
-entity_t *LARA = NULL;
-World gWorld;
+//! \fixme Should be changed
+#define LARA gOpenRaider->mGame->mLara
+#define gWorld gOpenRaider->mGame->mWorld
 
 // Colors
 const float BLACK[]       = {  0.0f,  0.0f,  0.0f, 1.0f };

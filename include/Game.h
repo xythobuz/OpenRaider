@@ -10,6 +10,7 @@
 
 #include "global.h"
 #include "TombRaider.h"
+#include "World.h"
 
 /*!
  * \brief Game abstraction
@@ -30,10 +31,14 @@ public:
 
     void percentCallback(int percent);
 
+    World mWorld;
+    entity_t *mLara;
+
 private:
 
     char *mName;
     TombRaider mTombRaider;
+
 };
 
 #endif
