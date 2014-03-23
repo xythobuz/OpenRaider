@@ -31,10 +31,30 @@ void Game::percentCallback(int percent) {
 Game::Game(const char *level) {
     mName = bufferString("%s", level);
 
+    // Load the level pak into TombRaider
     gOpenRaider->mConsole->print("Loading %s", mName);
     int error = mTombRaider.Load(mName, percentCallbackTrampoline, this);
     if (error != 0) {
         throw error;
+    }
+
+    // If required, load the external sound effect file MAIN.SFX into TombRaider
+    if ((mTombRaider.getEngine() == TR_VERSION_2) || (mTombRaider.getEngine() == TR_VERSION_3)) {
+        char *tmp = bufferString("%sMAIN.SFX", level); // Ensure theres enough space
+        size_t length = strlen(tmp);
+        size_t dir = 0;
+        for (int i = length - 1; i >= 0; i--) {
+            if ((tmp[i] == '/') || (tmp[i] == '\\')) {
+                dir = i + 1; // Find where the filename (bla.tr2) starts
+                break;
+            }
+        }
+        strcpy(tmp + dir, "MAIN.SFX\0"); // overwrite the name itself with MAIN.SFX
+        error = mTombRaider.loadSFX(tmp);
+        if (error != 0) {
+            gOpenRaider->mConsole->print("Could not load %s", tmp);
+        }
+        delete [] tmp;
     }
 }
 
