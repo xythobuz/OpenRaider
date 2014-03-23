@@ -64,6 +64,9 @@ public:
     bool mMapListFilled;
     std::vector<char *> mMapList;
 
+    float mCameraRotationDeltaX;
+    float mCameraRotationDeltaY;
+
 private:
 
     int command(const char *command, std::vector<char *> *args);

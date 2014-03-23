@@ -8,14 +8,13 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "main.h"
 #include "Camera.h"
 
 Camera::Camera() {
     mFlags = 0;
     mViewDistance = 14.0f;
     mTranslateDelta = 256.0f;
-    mRotateDelta = OR_DEG_TO_RAD(15.0f);
-    mRotateDelta2 = OR_DEG_TO_RAD(5.0f);
     mFlags &= Camera_FlyMode;
     reset();
 }
@@ -146,14 +145,6 @@ void Camera::reset() {
     translate(0.0f, 0.0f, 0.0f);
 }
 
-void Camera::setSensitivityY(float angle) {
-    mRotateDelta2 = OR_DEG_TO_RAD(angle);
-}
-
-void Camera::setSensitivityX(float angle) {
-    mRotateDelta = OR_DEG_TO_RAD(angle);
-}
-
 void Camera::command(enum camera_command cmd) {
     switch (cmd) {
         case CAMERA_MOVE_FORWARD:
@@ -180,22 +171,22 @@ void Camera::command(enum camera_command cmd) {
             break;
         case CAMERA_ROTATE_UP:
             if (mTheta2 < (M_PI / 2)) {
-                mTheta2 += mRotateDelta2;
+                mTheta2 += gOpenRaider->mCameraRotationDeltaY;
                 rotate(mTheta2, 1.0f, 0.0f, 0.0f);
             }
             break;
         case CAMERA_ROTATE_DOWN:
             if (mTheta2 > -(M_PI / 2)) {
-                mTheta2 -= mRotateDelta2;
+                mTheta2 -= gOpenRaider->mCameraRotationDeltaY;
                 rotate(mTheta2, 1.0f, 0.0f, 0.0f);
             }
             break;
         case CAMERA_ROTATE_RIGHT:
-            mTheta += mRotateDelta;
+            mTheta += gOpenRaider->mCameraRotationDeltaX;
             rotate(mTheta, 0.0f, 1.0f, 0.0f);
             break;
         case CAMERA_ROTATE_LEFT:
-            mTheta -= mRotateDelta;
+            mTheta -= gOpenRaider->mCameraRotationDeltaX;
             rotate(mTheta, 0.0f, 1.0f, 0.0f);
             break;
         case CAMERA_MOVE_UP:

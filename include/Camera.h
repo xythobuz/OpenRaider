@@ -130,18 +130,6 @@ public:
     void reset();
 
     /*!
-     * \brief Sets the X rotation delta
-     * \param angle thetas rotation delta in degrees
-     */
-    void setSensitivityX(float angle);
-
-    /*!
-     * \brief Sets the Y rotation delta
-     * \param angle thetas rotation delta in degrees
-     */
-    void setSensitivityY(float angle);
-
-    /*!
      * \brief Sends interactive command to camera
      * \param cmd valid camera command
      */
@@ -185,9 +173,7 @@ private:
     vec_t mSide[4];               //!< Side vector
     vec_t mViewDistance;          //!< Distance from target
     vec_t mTranslateDelta;        //!< Step size to move
-    vec_t mRotateDelta;           //!< Radians to rotate Y
     vec_t mTheta;                 //!< View angle Y
-    vec_t mRotateDelta2;          //!< Radians to rotate Z
     vec_t mTheta2;                //!< View angle Z
 };
 

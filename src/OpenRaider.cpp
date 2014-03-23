@@ -15,6 +15,7 @@
 #include "config.h"
 #include "Console.h"
 #include "Game.h"
+#include "math/math.h"
 #include "Menu.h"
 #include "Sound.h"
 #include "TombRaider.h"
@@ -42,6 +43,9 @@ OpenRaider::OpenRaider() {
 
     for (int i = 0; i < ActionEventCount; i++)
         keyBindings[i] = unknown;
+
+    mCameraRotationDeltaX = OR_DEG_TO_RAD(1.0f);
+    mCameraRotationDeltaY = OR_DEG_TO_RAD(1.0f);
 }
 
 OpenRaider::~OpenRaider() {
@@ -324,14 +328,14 @@ int OpenRaider::set(const char *var, const char *value) {
             mConsole->print("set-mouse_x-Error: Invalid value (%s)", value);
             return -6;
         }
-        //! \todo mouse support
+        mCameraRotationDeltaX = OR_DEG_TO_RAD(sense);
     } else if (strcmp(var, "mouse_y") == 0) {
         float sense = 1.0f;
         if (sscanf(value, "%f", &sense) != 1) {
             mConsole->print("set-mouse_y-Error: Invalid value (%s)", value);
             return -7;
         }
-        //! \todo mouse support
+        mCameraRotationDeltaY = OR_DEG_TO_RAD(sense);
     } else if (strcmp(var, "basedir") == 0) {
         CHANGE_DIR_WITH_EXPANSION(mBaseDir);
     } else if (strcmp(var, "pakdir") == 0) {
