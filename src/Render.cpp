@@ -47,6 +47,70 @@ const float CYAN[]        = {  0.0f,  1.0f,  1.0f, 1.0f };
 
 ViewVolume gViewVolume; /* View volume for frustum culling */
 
+void Render::drawLoadScreen()
+{
+    float x = 0.0f, y = 0.0f, z = -160.0f;
+    float w = 500.0f, h = 500.0f;
+
+
+    if (mTexture.getTextureCount() <= 0)
+        return;
+
+    // Mongoose 2002.01.01, Rendered while game is loading...
+    //! \fixme seperate logo/particle coor later
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+
+    glColor3fv(WHITE);
+
+    if (mFlags & Render::fGL_Lights)
+        glDisable(GL_LIGHTING);
+
+    // Mongoose 2002.01.01, Draw logo/load screen
+    glTranslatef(0.0f, 0.0f, -2000.0f);
+    glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
+
+    glBindTexture(GL_TEXTURE_2D, 3);
+
+    glBegin(GL_TRIANGLE_STRIP);
+    glTexCoord2f(1.0, 1.0);
+    glVertex3f(x + w, y + h, z);
+    glTexCoord2f(0.0, 1.0);
+    glVertex3f(x - w, y + h, z);
+    glTexCoord2f(1.0, 0.0);
+    glVertex3f(x + w, y - h, z);
+    glTexCoord2f(0.0, 0.0);
+    glVertex3f(x - w, y - h, z);
+    glEnd();
+
+    if (mFlags & Render::fGL_Lights)
+        glEnable(GL_LIGHTING);
+
+#ifdef USING_EMITTER
+    // Mongoose 2002.01.01, Test particle prototype on load screen
+    if (mEmitter && mFlags & Render::fParticles)
+    {
+        glPushMatrix();
+        glLoadIdentity();
+
+        glEnable(GL_BLEND);
+        glRotatef(180.0, 1.0, 0.0, 0.0);
+        glTranslatef(0.0, -820.0, 575.0);
+        glScalef(80.0, 80.0, 80.0);
+
+        // Update view volume for vising
+        updateViewVolume();
+        gViewVolume.getFrustum(mEmitter->mFrustum);
+        mEmitter->Flags(Emitter::fUseDepthSorting, true);
+        mEmitter->Draw();
+
+        glPopMatrix();
+    }
+#endif
+
+    glFlush();
+}
+
 
 int compareEntites(const void *voidA, const void *voidB)
 {
@@ -462,7 +526,14 @@ void Render::setMode(int n)
             glDisable(GL_TEXTURE_2D);
             break;
         default:
-            glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+            if (mMode == Render::modeLoadScreen)
+            {
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+            }
+            else
+            {
+                glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+            }
 
             glClearColor(BLACK[0], BLACK[1], BLACK[2], BLACK[3]);
 
@@ -527,6 +598,10 @@ void Render::Display()
     switch (mMode)
     {
         case Render::modeDisabled:
+            return;
+        case Render::modeLoadScreen:
+            //! \fixme entry for seperate main drawing method -- Mongoose 2002.01.01
+            drawLoadScreen();
             return;
         default:
             ;

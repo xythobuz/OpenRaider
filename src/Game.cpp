@@ -48,6 +48,8 @@ int Game::initialize() {
     mRender = new Render();
     mRender->initTextures(gOpenRaider->mDataDir, &mTextureStart, &mTextureLevelOffset);
 
+    mRender->setMode(Render::modeLoadScreen);
+
     return 0;
 }
 
@@ -61,7 +63,8 @@ void Game::percentCallback(int percent) {
 }
 
 int Game::loadLevel(const char *level) {
-    destroy();
+    if (mLoaded)
+        destroy();
 
     mName = bufferString("%s", level);
 
@@ -119,10 +122,9 @@ void Game::handleMouseMotion(int xrel, int yrel) {
 
 void Game::display() {
     if (mLoaded) {
-        //glClearColor(0.00f, 0.70f, 0.00f, 1.0f);
-        //glClear(GL_COLOR_BUFFER_BIT);
 
-        mRender->Display();
     }
+
+    mRender->Display();
 }
 

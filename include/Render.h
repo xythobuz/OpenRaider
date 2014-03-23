@@ -88,6 +88,7 @@ public:
 
     typedef enum {
         modeDisabled,
+        modeLoadScreen,
         modeVertexLight,
         modeSolid,
         modeWireframe,
@@ -117,6 +118,8 @@ public:
         roomMesh,
         skeletalMesh
     } RenderMeshType;
+
+    void drawLoadScreen();
 
     /*!
      * \brief Constructs an object of Render
