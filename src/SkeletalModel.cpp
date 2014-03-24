@@ -20,7 +20,8 @@ SkeletalModel::SkeletalModel() {
 }
 
 SkeletalModel::~SkeletalModel() {
-    if (model) {
+    //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
+    /* if (model) {
         for(std::vector<animation_frame_t>::size_type i = 0; i < model->animation.size(); i++) {
             animation_frame_t *af = model->animation[i];
 
@@ -44,9 +45,8 @@ SkeletalModel::~SkeletalModel() {
             delete af;
         }
 
-        // \fixme Causes "freeing already freed pointer" exception
         delete model;
-    }
+    } */
 }
 
 int SkeletalModel::getAnimation() {

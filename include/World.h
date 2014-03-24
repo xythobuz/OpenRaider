@@ -27,7 +27,7 @@ class World {
 public:
 
     enum WorldFlag {
-        fEnableHopping = 1
+        fEnableHopping = (1 << 0)
     };
 
     /*!

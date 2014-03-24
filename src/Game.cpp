@@ -70,6 +70,9 @@ int Game::initialize() {
     // Enable Renderer
     mRender->setMode(Render::modeLoadScreen);
 
+    // Enable World Hopping
+    mWorld.setFlag(World::fEnableHopping);
+
     return 0;
 }
 
@@ -636,6 +639,9 @@ void Game::processMoveable(int index, int i, int *ent,
     }
     if (!found)
     {
+        if (mLara == thing) {
+            printf("Processing Lara...\n");
+        }
         sModel->model = r_model;
         mWorld.addEntity(thing);
 

@@ -119,8 +119,6 @@ public:
         skeletalMesh
     } RenderMeshType;
 
-    void drawLoadScreen();
-
     /*!
      * \brief Constructs an object of Render
      */
@@ -215,6 +213,8 @@ public:
     void addSkeletalModel(SkeletalModel *mdl);
 
 private:
+
+    void drawLoadScreen();
 
     /*!
      * \brief Check if a bounding box is in the View Volume

@@ -55,18 +55,18 @@ int World::getRoomByLocation(float x, float y, float z)
     int hop = -1;
 
 
-    for(std::vector<int>::size_type i = 0; i != mRooms.size(); i++)
+    for(std::vector<int>::size_type i = 0; i < mRooms.size(); i++)
     {
         room = mRooms[i];
 
         if (!room)
             continue;
 
-        if (x > room->bbox_min[0] && x < room->bbox_max[0] &&
-                z > room->bbox_min[2] && z < room->bbox_max[2])
+        if ((x > room->bbox_min[0]) && (x < room->bbox_max[0]) &&
+                (z > room->bbox_min[2]) && (z < room->bbox_max[2]))
         {
             // This room contains current position
-            if (y > room->bbox_min[1] && y < room->bbox_max[1])
+            if ((y > room->bbox_min[1]) && (y < room->bbox_max[1]))
                 return i;
 
             // This room is above or below current position
@@ -315,8 +315,7 @@ void World::setFlag(WorldFlag flag)
 
 void World::clearFlag(WorldFlag flag)
 {
-    mFlags |= flag;
-    mFlags ^= flag;
+    mFlags &= ~flag;
 }
 
 
@@ -325,7 +324,8 @@ void World::destroy()
     // Add some locking to check use state first
     if (!mClearLock)
     {
-        clear();
+        //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
+        //clear();
     }
 }
 
@@ -450,7 +450,7 @@ void World::moveEntity(entity_t *e, char movement)
                 e->pos[0],  e->pos[1], e->pos[2],
                 x, y, z);
 #else
-        if (!mFlags & fEnableHopping)
+        if (!(mFlags & fEnableHopping))
         {
             mFlags |= fEnableHopping;
             room = getRoomByLocation(e->room, x, y, z);
