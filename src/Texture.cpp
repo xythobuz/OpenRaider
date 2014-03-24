@@ -22,6 +22,8 @@
 #include "utils/tga.h"
 #include "Texture.h"
 
+#define TEXTURE_OFFSET -1
+
 Texture::Texture() {
     mTextureIds = NULL;
     mFlags = 0;
@@ -124,11 +126,11 @@ void Texture::bindMultiTexture(int texture0, int texture1) {
 
     glActiveTextureARB(GL_TEXTURE0_ARB);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, mTextureIds[texture0]);
+    glBindTexture(GL_TEXTURE_2D, mTextureIds[texture0] + TEXTURE_OFFSET);
 
     glActiveTextureARB(GL_TEXTURE1_ARB);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, mTextureIds[texture1]);
+    glBindTexture(GL_TEXTURE_2D, mTextureIds[texture1] + TEXTURE_OFFSET);
 }
 
 void Texture::setMaxTextureCount(unsigned int n) {
@@ -241,7 +243,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-    glBindTexture(GL_TEXTURE_2D, mTextureIds[slot]);
+    glBindTexture(GL_TEXTURE_2D, mTextureIds[slot] + TEXTURE_OFFSET);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -279,7 +281,7 @@ void Texture::bindTextureId(unsigned int n) {
     glEnable(GL_TEXTURE_2D);
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-    glBindTexture(GL_TEXTURE_2D, mTextureIds[n]);
+    glBindTexture(GL_TEXTURE_2D, mTextureIds[n] + TEXTURE_OFFSET);
 }
 
 void Texture::glScreenShot(char *base, unsigned int width, unsigned int height) {

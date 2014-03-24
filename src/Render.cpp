@@ -70,7 +70,7 @@ void Render::drawLoadScreen()
     glTranslatef(0.0f, 0.0f, -2000.0f);
     glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
 
-    glBindTexture(GL_TEXTURE_2D, 3);
+    glBindTexture(GL_TEXTURE_2D, 2);
 
     glBegin(GL_TRIANGLE_STRIP);
     glTexCoord2f(1.0, 1.0);
