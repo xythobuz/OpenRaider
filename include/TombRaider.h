@@ -129,16 +129,11 @@ public:
     /*!
      * \brief Loads TombRaider 1-5 pak into memory
      * and does some processing.
-     *
-     * At 10% all textures are loaded. The exact figure
-     * '10' will always be passed to allow for texture
-     * caching while meshes load for TR4.
      * \param filename points to valid TombRaider pak
-     * \param percent load progress callback
      * \returns 0 on success, < 0 on error
      * \sa TombRaider::loadTR5()
      */
-    int Load(char *filename, void (*percent)(int, void *), void *obj);
+    int Load(char *filename);
 
     /*!
      * \brief Makes a clamped 0.0 to 1.0 texel from coord pair
@@ -659,15 +654,10 @@ private:
 
     /*!
      * \brief Loads a TR5 pak into memory.
-     *
-     * At 10% all textures are loaded
-     * the exact figure '10' will always be passed to
-     * allow for texture caching while meshes load.
      * \param f valid FILE
-     * \param percent callback for loading progress
      * \returns 0 on success, < 0 on error
      */
-    int loadTR5(FILE *f, void (*percent)(int, void *), void *obj);
+    int loadTR5(FILE *f);
 
     static void print(const char *methodName, const char *s, ...) __attribute__((format(printf, 2, 3)));
 

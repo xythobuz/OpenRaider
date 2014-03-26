@@ -42,8 +42,6 @@ public:
 
     void display();
 
-    void percentCallback(int percent);
-
     World mWorld;
     entity_t *mLara;
     Render *mRender;
@@ -58,8 +56,8 @@ private:
     void processMoveable(int index, int i, int *ent,
                             std::vector<skeletal_model_t *> &cache2,
                             std::vector<unsigned int> &cache, int object_id);
-    void processModel(int index);
-    void processRoom(int index);
+    void processModels();
+    void processRooms();
     void setupTextureColor(texture_tri_t *r_tri, float *colorf);
 
     bool mLoaded;

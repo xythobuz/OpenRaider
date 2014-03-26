@@ -393,7 +393,7 @@ int TombRaider::checkMime(char *filename) {
 }
 
 
-int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
+int TombRaider::Load(char *filename)
 {
     FILE *f;
     int i, j, l;
@@ -412,9 +412,6 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
         return -1;
     }
 
-
-    if (percent)
-        (*percent)(1, obj);
 
     mReset = false;
 
@@ -451,16 +448,13 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
             {
                 printDebug("Load", "This is really a TR5 pak");
                 mEngineVersion = TR_VERSION_5;
-                return loadTR5(f, percent, obj);
+                return loadTR5(f);
             }
 
             break;
         default:
             mEngineVersion = TR_VERSION_UNKNOWN;
     }
-
-    if (percent)
-        (*percent)(5, obj);
 
     printDebug("Load", "mEngineVersion = 0x%x", mPakVersion);
 
@@ -509,9 +503,6 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
                 sz);
         usz = foo;
 
-        if (percent)
-            (*percent)(6, obj);
-
         printDebug("LoadTR4", "textile decompress  [%s]",
                 (zerr == Z_OK) ? "OK" : "ERROR");
 
@@ -558,9 +549,6 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
                 compressed_data,
                 sz);
         usz = foo;
-
-        if (percent)
-            (*percent)(7, obj);
 
         //     printDebug("Load", "TR4 textile decompress  [%s]",
         //    (zerr == Z_OK) ? "OK" : "ERROR");
@@ -642,9 +630,6 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
             delete [] compressed_data;
         }
 
-        if (percent)
-            (*percent)(9, obj);
-
         // Read the sizes of the level data
         Fread(&usz, sizeof(usz), 1, f);
         Fread(&sz, sizeof(sz), 1, f);
@@ -721,9 +706,6 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
         }
     }
 
-    if (percent)
-        (*percent)(10, obj);
-
     /* 32-bit unknown - seems to always be 0 */
     Fread(&_unknown_t, sizeof(_unknown_t), 1, f);
     printDebug("Load", "_unknown_t = 0x%x", _unknown_t);
@@ -739,11 +721,6 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
     /* Extract room details */
     for (i = 0; i < _num_rooms; ++i)
     {
-        if (percent)
-        {
-            (*percent)(11 + (int)(((float)i/(float)_num_rooms)*70.0), obj);
-        }
-
         /* Read RoomInfo */
         //! \fixme endian check needed
         Fread(&_rooms[i].info, sizeof(tr2_room_info_t), 1, f);
@@ -1204,9 +1181,6 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
     //! \fixme endian
 
 
-    if (percent)
-        (*percent)(80, obj);
-
     printDebug("Load", "_num_state_changes = %u", _num_state_changes);
 
     if (_num_state_changes > 0)
@@ -1354,9 +1328,6 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
         //! \fixme endian
     }
 
-
-    if (percent)
-        (*percent)(90, obj);
 
     if (mEngineVersion == TR_VERSION_4)
     {
@@ -1921,9 +1892,6 @@ int TombRaider::Load(char *filename, void (*percent)(int, void *), void *obj)
     mCompressedLevelData = NULL;
 
     fclose(f);
-
-    if (percent)
-        (*percent)(100, obj);
 
     return 0;
 }
@@ -5000,7 +4968,7 @@ unsigned char *TombRaider::getTexTile(int texture)
 
 
 //! \fixme Move these data about to make full use in the class  ;)
-int TombRaider::loadTR5(FILE *f, void (*percent)(int, void *), void *obj)
+int TombRaider::loadTR5(FILE *f)
 {
     unsigned int level_data_sz, riffOffset, seperator0;
     unsigned int portalOffset, nextRoomOffset, thisRoomOffset;
@@ -5011,9 +4979,6 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int, void *), void *obj)
     u_int32_t *meshPointers;
     u_int8_t *meshData;
     char check[32];
-
-    if (percent)
-        (*percent)(5, obj);
 
     printDebug("Load", "mEngineVersion = 0x%x", mPakVersion);
 
@@ -5108,9 +5073,6 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int, void *), void *obj)
             sz);
     usz = foo;
 
-    if (percent)
-        (*percent)(7, obj);
-
     printDebug("LoadTR5", "textile decompress  [%s]",
             (zerr == Z_OK) ? "OK" : "ERROR");
 
@@ -5185,9 +5147,6 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int, void *), void *obj)
         delete [] compressed_data;
     }
 
-    if (percent)
-        (*percent)(10, obj);
-
     // Mongoose 2002.01.08, Michiel has discovered the
     //   first 4 bytes here are 2 bitu16 flags for Lara type and weather
     u_int16_t laraType, weather;
@@ -5230,9 +5189,6 @@ int TombRaider::loadTR5(FILE *f, void (*percent)(int, void *), void *obj)
 
     for (i = 0; i < _num_rooms; ++i)
     {
-        if (percent)
-            (*percent)(11 + (int)(((float)i/(float)_num_rooms)*90.0), obj);
-
         thisRoomOffset = ftell(f);
 
         Fread(&mRoomsTR5[i].checkXELA, 4, 1, f);
