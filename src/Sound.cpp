@@ -149,6 +149,9 @@ int Sound::addFile(const char *filename, int *source, unsigned int flags) {
 
     *source = -1;
     id = mSource.size();
+    
+    mSource.push_back(0);
+    mBuffer.push_back(0);
 
     alGetError();
     alGenBuffers(1, &mBuffer[id]);
@@ -203,6 +206,9 @@ int Sound::addWave(unsigned char *wav, unsigned int length, int *source, unsigne
 
     *source = -1;
     id = mSource.size();
+    
+    mSource.push_back(0);
+    mBuffer.push_back(0);
 
     data = wav;
 

@@ -639,9 +639,6 @@ void Game::processMoveable(int index, int i, int *ent,
     }
     if (!found)
     {
-        if (mLara == thing) {
-            printf("Processing Lara...\n");
-        }
         sModel->model = r_model;
         mWorld.addEntity(thing);
 
