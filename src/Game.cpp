@@ -91,6 +91,9 @@ void Game::destroy() {
 
     mLoaded = false;
     mRender->setMode(Render::modeDisabled);
+
+    mRender->ClearWorld();
+    mWorld.destroy();
 }
 
 int Game::loadLevel(const char *level) {
@@ -98,9 +101,6 @@ int Game::loadLevel(const char *level) {
         destroy();
 
     mName = bufferString("%s", level);
-
-    mRender->ClearWorld();
-    mWorld.destroy();
 
     // Load the level pak into TombRaider
     gOpenRaider->mConsole->print("Loading %s", mName);
@@ -159,15 +159,28 @@ void Game::handleAction(ActionEvents action, bool isFinished) {
 
 void Game::handleMouseMotion(int xrel, int yrel) {
     if (mLoaded) {
+        if (xrel > 0)
+            while (xrel-- > 0)
+                mCamera->command(CAMERA_ROTATE_RIGHT);
+        else if (xrel < 0)
+            while (xrel++ < 0)
+                mCamera->command(CAMERA_ROTATE_LEFT);
 
+        if (yrel > 0)
+            while (yrel-- > 0)
+                mCamera->command(CAMERA_ROTATE_UP);
+        else if (yrel < 0)
+            while (yrel++ < 0)
+                mCamera->command(CAMERA_ROTATE_DOWN);
+
+        if (mLara) {
+            mLara->angles[1] = mCamera->getRadianYaw();
+            mLara->angles[2] = mCamera->getRadianPitch();
+        }
     }
 }
 
 void Game::display() {
-    if (mLoaded) {
-
-    }
-
     mRender->Display();
 }
 

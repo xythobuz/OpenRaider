@@ -667,6 +667,8 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
     } else {
         mMenu->handleKeyboard(key, pressed);
     }
+
+    mWindow->setMousegrab(!(mMenu->isVisible() || mConsole->isVisible()));
 }
 
 void OpenRaider::handleText(char *text, bool notFinished) {
