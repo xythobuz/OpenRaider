@@ -44,6 +44,7 @@ public:
 
     int command(std::vector<char *> *args);
 
+    //! \fixme should be private
     World mWorld;
     entity_t *mLara;
     Render *mRender;

@@ -176,10 +176,8 @@ void Game::handleMouseMotion(int xrel, int yrel) {
                 mCamera->command(CAMERA_ROTATE_DOWN);
 
         // Fix Laras rotation
-        if (mLara) {
-            mLara->angles[1] = mCamera->getRadianYaw();
-            mLara->angles[2] = mCamera->getRadianPitch();
-        }
+        mLara->angles[1] = mCamera->getRadianYaw();
+        mLara->angles[2] = mCamera->getRadianPitch();
     }
 }
 
@@ -194,42 +192,119 @@ int Game::command(std::vector<char *> *args) {
     }
 
     char *cmd = args->at(0);
-    if (strcmp(cmd, "noclip") == 0) {
-        mLara->moveType = worldMoveType_noClipping;
-        gOpenRaider->mConsole->print("Lara is noclipping...");
-    } else if (strcmp(cmd, "fly") == 0) {
-        mLara->moveType = worldMoveType_fly;
-        gOpenRaider->mConsole->print("Lara is flying...");
-    } else if (strcmp(cmd, "walk") == 0) {
-        mLara->moveType = worldMoveType_walk;
-        gOpenRaider->mConsole->print("Lara is walking...");
+    if (strcmp(cmd, "mode") == 0) {
+        if (args->size() > 1) {
+            char *mode = args->at(1);
+            if (strcmp(mode, "wireframe") == 0) {
+                if (mLoaded) {
+                    mRender->setMode(Render::modeWireframe);
+                    gOpenRaider->mConsole->print("Wireframe mode");
+                } else {
+                    gOpenRaider->mConsole->print("Load a level to set this mode!");
+                    return -2;
+                }
+            } else if (strcmp(mode, "solid") == 0) {
+                if (mLoaded) {
+                    mRender->setMode(Render::modeSolid);
+                    gOpenRaider->mConsole->print("Solid mode");
+                } else {
+                    gOpenRaider->mConsole->print("Load a level to set this mode!");
+                    return -3;
+                }
+            } else if (strcmp(mode, "texture") == 0) {
+                if (mLoaded) {
+                    mRender->setMode(Render::modeTexture);
+                    gOpenRaider->mConsole->print("Texture mode");
+                } else {
+                    gOpenRaider->mConsole->print("Load a level to set this mode!");
+                    return -4;
+                }
+            } else if (strcmp(mode, "vertexlight") == 0) {
+                if (mLoaded) {
+                    mRender->setMode(Render::modeVertexLight);
+                    gOpenRaider->mConsole->print("Vertexlight mode");
+                } else {
+                    gOpenRaider->mConsole->print("Load a level to set this mode!");
+                    return -5;
+                }
+            } else if (strcmp(mode, "titlescreen") == 0) {
+                mRender->setMode(Render::modeLoadScreen);
+                gOpenRaider->mConsole->print("Titlescreen mode");
+            } else {
+                gOpenRaider->mConsole->print("Invalid use of mode command (%s)!", mode);
+                return -6;
+            }
+        } else {
+            gOpenRaider->mConsole->print("Invalid use of mode command!");
+            return -7;
+        }
+    } else if (strcmp(cmd, "move") == 0) {
+        if (args->size() > 1) {
+            if (mLoaded) {
+                char *move = args->at(1);
+                if (strcmp(move, "walk") == 0) {
+                    mLara->moveType = worldMoveType_walk;
+                    gOpenRaider->mConsole->print("Lara is walking...");
+                } else if (strcmp(move, "fly") == 0) {
+                    mLara->moveType = worldMoveType_fly;
+                    gOpenRaider->mConsole->print("Lara is flying...");
+                } else if (strcmp(move, "noclip") == 0) {
+                    mLara->moveType = worldMoveType_noClipping;
+                    gOpenRaider->mConsole->print("Lara is noclipping...");
+                } else {
+                    gOpenRaider->mConsole->print("Invalid use of move command (%s)!", move);
+                    return -8;
+                }
+            } else {
+                gOpenRaider->mConsole->print("Load a level to change the movement type!");
+                return -9;
+            }
+        } else {
+            gOpenRaider->mConsole->print("Invalid use of move command!");
+            return -10;
+        }
     } else if (strcmp(cmd, "sound") == 0) {
         if (args->size() > 1) {
             gOpenRaider->mSound->play(atoi(args->at(1)));
         } else {
             gOpenRaider->mConsole->print("Invalid use of sound command!");
-            return -2;
+            return -11;
         }
     } else if (strcmp(cmd, "help") == 0) {
         if (args->size() < 2) {
             gOpenRaider->mConsole->print("game-command Usage:");
             gOpenRaider->mConsole->print("  game COMMAND");
             gOpenRaider->mConsole->print("Available commands:");
-            gOpenRaider->mConsole->print("  walk");
-            gOpenRaider->mConsole->print("  fly");
-            gOpenRaider->mConsole->print("  noclip");
+            gOpenRaider->mConsole->print("  move [walk|fly|noclip]");
             gOpenRaider->mConsole->print("  sound INT");
+            gOpenRaider->mConsole->print("  mode MODE");
         } else if (strcmp(args->at(1), "sound") == 0) {
             gOpenRaider->mConsole->print("game-sound-command Usage:");
             gOpenRaider->mConsole->print("  game sound INT");
             gOpenRaider->mConsole->print("Where INT is a valid sound ID integer");
+        } else if (strcmp(args->at(1), "move") == 0) {
+            gOpenRaider->mConsole->print("game-move-command Usage:");
+            gOpenRaider->mConsole->print("  game move COMMAND");
+            gOpenRaider->mConsole->print("Where COMMAND is one of the following:");
+            gOpenRaider->mConsole->print("  walk");
+            gOpenRaider->mConsole->print("  fly");
+            gOpenRaider->mConsole->print("  noclip");
+        } else if (strcmp(args->at(1), "mode") == 0) {
+            gOpenRaider->mConsole->print("game-mode-command Usage:");
+            gOpenRaider->mConsole->print("  game mode MODE");
+            gOpenRaider->mConsole->print("Where MODE is one of the following:");
+            gOpenRaider->mConsole->print("  wireframe");
+            gOpenRaider->mConsole->print("  solid");
+            gOpenRaider->mConsole->print("  texture");
+            gOpenRaider->mConsole->print("  vertexlight");
+            gOpenRaider->mConsole->print("  titlescreen");
         } else {
             gOpenRaider->mConsole->print("No help available for game %s.", args->at(1));
-            return -3;
+            return -12;
         }
     } else {
         gOpenRaider->mConsole->print("Invalid use of game-command (%s)!", cmd);
-        return -4;
+        return -13;
     }
 
     return 0;
@@ -737,7 +812,7 @@ void Game::processMoveable(int index, int i, int *ent,
                     }
 
                     mRender->setFlags(Render::fRenderPonytail);
-                    printf("Found known ponytail\n");
+                    gOpenRaider->mConsole->print("Found known ponytail");
                 }
                 break; // ?
             case TR_VERSION_1:
@@ -766,16 +841,13 @@ void Game::processMoveable(int index, int i, int *ent,
     }
     else
     {
+        // Already cached
         delete r_model;
-
         c_model = cache2[foundIndex];
         sModel->model = c_model;
         mWorld.addEntity(thing);
         mWorld.addModel(c_model);
-        //printf("c"); // it's already cached
-        //fflush(stdout);
-
-        //continue;
+        printf("c");
         return;
     }
 

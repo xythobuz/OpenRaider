@@ -30,73 +30,6 @@
 #include "OpenRaider.h"
 #include "Render.h"
 
-ViewVolume gViewVolume; /* View volume for frustum culling */
-
-void Render::drawLoadScreen()
-{
-    float x = 0.0f, y = 0.0f, z = -160.0f;
-    float w = 500.0f, h = 500.0f;
-
-
-    if (mTexture.getTextureCount() <= 0)
-        return;
-
-    // Mongoose 2002.01.01, Rendered while game is loading...
-    //! \fixme seperate logo/particle coor later
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
-
-    glColor3fv(WHITE);
-
-    if (mFlags & Render::fGL_Lights)
-        glDisable(GL_LIGHTING);
-
-    // Mongoose 2002.01.01, Draw logo/load screen
-    glTranslatef(0.0f, 0.0f, -2000.0f);
-    glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
-
-    glBindTexture(GL_TEXTURE_2D, 2);
-
-    glBegin(GL_TRIANGLE_STRIP);
-    glTexCoord2f(1.0, 1.0);
-    glVertex3f(x + w, y + h, z);
-    glTexCoord2f(0.0, 1.0);
-    glVertex3f(x - w, y + h, z);
-    glTexCoord2f(1.0, 0.0);
-    glVertex3f(x + w, y - h, z);
-    glTexCoord2f(0.0, 0.0);
-    glVertex3f(x - w, y - h, z);
-    glEnd();
-
-    if (mFlags & Render::fGL_Lights)
-        glEnable(GL_LIGHTING);
-
-#ifdef USING_EMITTER
-    // Mongoose 2002.01.01, Test particle prototype on load screen
-    if (mEmitter && mFlags & Render::fParticles)
-    {
-        glPushMatrix();
-        glLoadIdentity();
-
-        glEnable(GL_BLEND);
-        glRotatef(180.0, 1.0, 0.0, 0.0);
-        glTranslatef(0.0, -820.0, 575.0);
-        glScalef(80.0, 80.0, 80.0);
-
-        // Update view volume for vising
-        updateViewVolume();
-        gViewVolume.getFrustum(mEmitter->mFrustum);
-        mEmitter->Flags(Emitter::fUseDepthSorting, true);
-        mEmitter->Draw();
-
-        glPopMatrix();
-    }
-#endif
-
-    glFlush();
-}
-
-
 bool compareEntites(const void *voidA, const void *voidB)
 {
     entity_t *a = (entity_t *)voidA, *b = (entity_t *)voidB;
@@ -105,11 +38,11 @@ bool compareEntites(const void *voidA, const void *voidB)
     if (!a || !b)
         return false; // error really
 
-    distA = gViewVolume.getDistToSphereFromNear(a->pos[0],
+    distA = gOpenRaider->mGame->mRender->mViewVolume.getDistToSphereFromNear(a->pos[0],
             a->pos[1],
             a->pos[2],
             1.0f);
-    distB = gViewVolume.getDistToSphereFromNear(b->pos[0],
+    distB = gOpenRaider->mGame->mRender->mViewVolume.getDistToSphereFromNear(b->pos[0],
             b->pos[1],
             b->pos[2],
             1.0f);
@@ -126,11 +59,11 @@ bool compareStaticModels(const void *voidA, const void *voidB)
     if (!a || !b)
         return false; // error really
 
-    distA = gViewVolume.getDistToSphereFromNear(a->pos[0],
+    distA = gOpenRaider->mGame->mRender->mViewVolume.getDistToSphereFromNear(a->pos[0],
             a->pos[1],
             a->pos[2],
             128.0f);
-    distB = gViewVolume.getDistToSphereFromNear(b->pos[0],
+    distB = gOpenRaider->mGame->mRender->mViewVolume.getDistToSphereFromNear(b->pos[0],
             b->pos[1],
             b->pos[2],
             128.0f);
@@ -830,6 +763,74 @@ void Render::Display()
     glFlush();
 }
 
+void Render::drawLoadScreen()
+{
+    float x = 0.0f, y = 0.0f, z = -160.0f;
+    float w, h;
+
+    if (gOpenRaider->mWindow->mWidth < gOpenRaider->mWindow->mHeight)
+        w = h = (float)gOpenRaider->mWindow->mWidth;
+    else
+        w = h = (float)gOpenRaider->mWindow->mHeight;
+
+
+    if (mTexture.getTextureCount() <= 0)
+        return;
+
+    // Mongoose 2002.01.01, Rendered while game is loading...
+    //! \fixme seperate logo/particle coor later
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+
+    glColor3fv(WHITE);
+
+    if (mFlags & Render::fGL_Lights)
+        glDisable(GL_LIGHTING);
+
+    // Mongoose 2002.01.01, Draw logo/load screen
+    glTranslatef(0.0f, 0.0f, -2000.0f);
+    glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
+
+    glBindTexture(GL_TEXTURE_2D, 2); //! \fixme store texture id somewhere
+
+    glBegin(GL_TRIANGLE_STRIP);
+    glTexCoord2f(1.0, 1.0);
+    glVertex3f(x + w, y + h, z);
+    glTexCoord2f(0.0, 1.0);
+    glVertex3f(x - w, y + h, z);
+    glTexCoord2f(1.0, 0.0);
+    glVertex3f(x + w, y - h, z);
+    glTexCoord2f(0.0, 0.0);
+    glVertex3f(x - w, y - h, z);
+    glEnd();
+
+    if (mFlags & Render::fGL_Lights)
+        glEnable(GL_LIGHTING);
+
+#ifdef USING_EMITTER
+    // Mongoose 2002.01.01, Test particle prototype on load screen
+    if (mEmitter && mFlags & Render::fParticles)
+    {
+        glPushMatrix();
+        glLoadIdentity();
+
+        glEnable(GL_BLEND);
+        glRotatef(180.0, 1.0, 0.0, 0.0);
+        glTranslatef(0.0, -820.0, 575.0);
+        glScalef(80.0, 80.0, 80.0);
+
+        // Update view volume for vising
+        updateViewVolume();
+        mViewVolume.getFrustum(mEmitter->mFrustum);
+        mEmitter->Flags(Emitter::fUseDepthSorting, true);
+        mEmitter->Draw();
+
+        glPopMatrix();
+    }
+#endif
+
+    glFlush();
+}
 
 void Render::newRoomRenderList(int index)
 {
@@ -880,7 +881,7 @@ void Render::newRoomRenderList(int index)
                     continue;
 
                 //room->dist =
-                //gViewVolume.getDistToBboxFromNear(room->room->bbox_min,
+                //mViewVolume.getDistToBboxFromNear(room->room->bbox_min,
                 //                                           room->room->bbox_max);
 
                 mRoomRenderList.push_back(room);
@@ -919,7 +920,7 @@ void Render::buildRoomRenderList(RenderRoom *rRoom)
     }
 
     //rRoom->dist =
-    //gViewVolume.getDistToBboxFromNear(rRoom->room->bbox_min,
+    //mViewVolume.getDistToBboxFromNear(rRoom->room->bbox_min,
     //                                           rRoom->room->bbox_max);
 
     /* Add current room to list */
@@ -1894,7 +1895,7 @@ void Render::updateViewVolume()
 
     glGetFloatv(GL_PROJECTION_MATRIX, proj);
     glGetFloatv(GL_MODELVIEW_MATRIX, mdl);
-    gViewVolume.updateFrame(proj, mdl);
+    mViewVolume.updateFrame(proj, mdl);
 }
 
 
@@ -1913,7 +1914,7 @@ bool Render::isVisible(float bbox_min[3], float bbox_max[3])
         draw_bbox_color(bbox_min, bbox_max, true, PINK, RED);
     }
 
-    return gViewVolume.isBboxInFrustum(bbox_min, bbox_max);
+    return mViewVolume.isBboxInFrustum(bbox_min, bbox_max);
 }
 
 
@@ -1929,7 +1930,7 @@ bool Render::isVisible(float x, float y, float z)
         glEnd();
     }
 
-    return (gViewVolume.isPointInFrustum(x, y, z));
+    return (mViewVolume.isPointInFrustum(x, y, z));
 }
 
 
@@ -1945,5 +1946,5 @@ bool Render::isVisible(float x, float y, float z, float radius)
         glEnd();
     }
 
-    return (gViewVolume.isSphereInFrustum(x, y, z, radius));
+    return (mViewVolume.isSphereInFrustum(x, y, z, radius));
 }

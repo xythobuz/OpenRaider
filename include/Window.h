@@ -58,6 +58,7 @@ public:
     virtual void drawText(unsigned int x, unsigned int y, float scale, const float color[4], const char *s, ...)
         __attribute__((format(printf, 6, 0))) = 0;
 
+    //! \fixme should be private
     unsigned int mWidth;
     unsigned int mHeight;
 

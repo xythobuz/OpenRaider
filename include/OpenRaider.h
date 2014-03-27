@@ -55,6 +55,8 @@ public:
 
     void handleMouseScroll(int xrel, int yrel);
 
+    //! \fixme should be private
+
     Window *mWindow;
     Sound *mSound;
     Menu *mMenu;

@@ -212,6 +212,10 @@ public:
 
     void addSkeletalModel(SkeletalModel *mdl);
 
+    //! \fixme should be private
+
+    ViewVolume mViewVolume; //!< View Volume for frustum culling
+
 private:
 
     void drawLoadScreen();
