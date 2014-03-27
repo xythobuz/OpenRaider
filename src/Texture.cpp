@@ -72,8 +72,7 @@ void Texture::setFlag(TextureFlag flag) {
 }
 
 void Texture::clearFlag(TextureFlag flag) {
-    mFlags |= flag;
-    mFlags ^= flag;
+    mFlags &= ~flag;
 }
 
 void Texture::reset() {

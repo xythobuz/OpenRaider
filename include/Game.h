@@ -42,6 +42,8 @@ public:
 
     void display();
 
+    int command(std::vector<char *> *args);
+
     World mWorld;
     entity_t *mLara;
     Render *mRender;

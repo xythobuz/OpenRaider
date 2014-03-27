@@ -166,11 +166,12 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             mConsole->print("Available commands:");
-            mConsole->print("  load");
-            mConsole->print("  set");
-            mConsole->print("  bind");
-            mConsole->print("  help");
-            mConsole->print("  quit");
+            mConsole->print("  load - load a level");
+            mConsole->print("  set  - set a parameter");
+            mConsole->print("  bind - bind a keyboard/mouse action");
+            mConsole->print("  game - send a command to the game engine");
+            mConsole->print("  help - print command help");
+            mConsole->print("  quit - exit OpenRaider");
             mConsole->print("Use help COMMAND to get additional info");
         } else if (args->size() == 1) {
             return help(args->at(0));
@@ -183,6 +184,8 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         int error = mGame->loadLevel(tmp);
         delete [] tmp;
         return error;
+    } else if (strcmp(command, "game") == 0) {
+        return mGame->command(args);
     } else {
         mConsole->print("Unknown command: %s ", command);
         return -1;
@@ -192,6 +195,8 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
 }
 
 int OpenRaider::help(const char *cmd) {
+    assert(cmd != NULL);
+
     if (strcmp(cmd, "set") == 0) {
         mConsole->print("set-Command Usage:");
         mConsole->print("  set VAR VAL");
@@ -230,6 +235,8 @@ int OpenRaider::help(const char *cmd) {
     } else if (strcmp(cmd, "load") == 0) {
         mConsole->print("load-Command Usage:");
         mConsole->print("  load levelfile.name");
+    } else if (strcmp(cmd, "game") == 0) {
+        mConsole->print("Use \"game help\" for more info");
     } else {
         mConsole->print("No help available for %s", cmd);
         return -1;

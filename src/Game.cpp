@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <map>
 #include <vector>
+#include <cstdlib>
 
 #include "main.h"
 #include "Console.h"
@@ -111,7 +112,8 @@ int Game::loadLevel(const char *level) {
                 break;
             }
         }
-        strcpy(tmp + dir, "MAIN.SFX\0"); // overwrite the name itself with MAIN.SFX
+        strcpy(tmp + dir, "MAIN.SFX"); // overwrite the name itself with MAIN.SFX
+        tmp[dir + 8] = '\0';
         error = mTombRaider.loadSFX(tmp);
         if (error != 0) {
             gOpenRaider->mConsole->print("Could not load %s", tmp);
@@ -129,6 +131,12 @@ int Game::loadLevel(const char *level) {
 
     // Free pak file
     mTombRaider.reset();
+
+    // Check if the level contains Lara
+    if (mLara == NULL) {
+        gOpenRaider->mConsole->print("Can't find Lara entity in level pak!");
+        return -1;
+    }
 
     mLoaded = true;
     mRender->setMode(Render::modeVertexLight);
@@ -151,6 +159,7 @@ void Game::handleAction(ActionEvents action, bool isFinished) {
 
 void Game::handleMouseMotion(int xrel, int yrel) {
     if (mLoaded) {
+        // Move Camera on X Axis
         if (xrel > 0)
             while (xrel-- > 0)
                 mCamera->command(CAMERA_ROTATE_RIGHT);
@@ -158,6 +167,7 @@ void Game::handleMouseMotion(int xrel, int yrel) {
             while (xrel++ < 0)
                 mCamera->command(CAMERA_ROTATE_LEFT);
 
+        // Move Camera on Y Axis
         if (yrel > 0)
             while (yrel-- > 0)
                 mCamera->command(CAMERA_ROTATE_UP);
@@ -165,6 +175,7 @@ void Game::handleMouseMotion(int xrel, int yrel) {
             while (yrel++ < 0)
                 mCamera->command(CAMERA_ROTATE_DOWN);
 
+        // Fix Laras rotation
         if (mLara) {
             mLara->angles[1] = mCamera->getRadianYaw();
             mLara->angles[2] = mCamera->getRadianPitch();
@@ -174,6 +185,54 @@ void Game::handleMouseMotion(int xrel, int yrel) {
 
 void Game::display() {
     mRender->Display();
+}
+
+int Game::command(std::vector<char *> *args) {
+    if (args->size() < 1) {
+        gOpenRaider->mConsole->print("Invalid use of game-command!");
+        return -1;
+    }
+
+    char *cmd = args->at(0);
+    if (strcmp(cmd, "noclip") == 0) {
+        mLara->moveType = worldMoveType_noClipping;
+        gOpenRaider->mConsole->print("Lara is noclipping...");
+    } else if (strcmp(cmd, "fly") == 0) {
+        mLara->moveType = worldMoveType_fly;
+        gOpenRaider->mConsole->print("Lara is flying...");
+    } else if (strcmp(cmd, "walk") == 0) {
+        mLara->moveType = worldMoveType_walk;
+        gOpenRaider->mConsole->print("Lara is walking...");
+    } else if (strcmp(cmd, "sound") == 0) {
+        if (args->size() > 1) {
+            gOpenRaider->mSound->play(atoi(args->at(1)));
+        } else {
+            gOpenRaider->mConsole->print("Invalid use of sound command!");
+            return -2;
+        }
+    } else if (strcmp(cmd, "help") == 0) {
+        if (args->size() < 2) {
+            gOpenRaider->mConsole->print("game-command Usage:");
+            gOpenRaider->mConsole->print("  game COMMAND");
+            gOpenRaider->mConsole->print("Available commands:");
+            gOpenRaider->mConsole->print("  walk");
+            gOpenRaider->mConsole->print("  fly");
+            gOpenRaider->mConsole->print("  noclip");
+            gOpenRaider->mConsole->print("  sound INT");
+        } else if (strcmp(args->at(1), "sound") == 0) {
+            gOpenRaider->mConsole->print("game-sound-command Usage:");
+            gOpenRaider->mConsole->print("  game sound INT");
+            gOpenRaider->mConsole->print("Where INT is a valid sound ID integer");
+        } else {
+            gOpenRaider->mConsole->print("No help available for game %s.", args->at(1));
+            return -3;
+        }
+    } else {
+        gOpenRaider->mConsole->print("Invalid use of game-command (%s)!", cmd);
+        return -4;
+    }
+
+    return 0;
 }
 
 void Game::processPakSounds()
@@ -700,7 +759,7 @@ void Game::processMoveable(int index, int i, int *ent,
                     r_model->ponyOff2 = 0;
 
                     mRender->setFlags(Render::fRenderPonytail);
-                    gOpenRaider->mConsole->print("Found ponytail?\n");
+                    gOpenRaider->mConsole->print("Found ponytail?");
                 }
                 break;
         }
@@ -822,7 +881,7 @@ void Game::processMoveable(int index, int i, int *ent,
             //   if (frame_offset + 8 > _tombraider.NumFrames())
             if (frame_offset > mTombRaider.NumFrames())
             {
-                gOpenRaider->mConsole->print("WARNING: Bad animation frame %i > %i\n",
+                gOpenRaider->mConsole->print("WARNING: Bad animation frame %i > %i",
                         frame_offset, mTombRaider.NumFrames());
 
                 // Mongoose 2002.08.15, Attempt to skip more likely bad animation data
