@@ -546,10 +546,10 @@ void WindowSDL::writeString(WindowString *s) {
     assert(mInit == true);
 
     SDL_Color color;
-    color.r = s->color[0];
-    color.g = s->color[1];
-    color.b = s->color[2];
-    color.a = s->color[3];
+    color.r = (unsigned char)(s->color[0] * 255.0f);
+    color.g = (unsigned char)(s->color[1] * 255.0f);
+    color.b = (unsigned char)(s->color[2] * 255.0f);
+    color.a = (unsigned char)(s->color[3] * 255.0f);
 
     SDL_Surface *surface = TTF_RenderUTF8_Blended(mFont, s->text, color);
     if (surface == NULL) {
@@ -599,7 +599,7 @@ void WindowSDL::writeString(WindowString *s) {
     SDL_FreeSurface(surface);
 }
 
-void WindowSDL::drawText(unsigned int x, unsigned int y, float scale, unsigned char *color, const char *s, ...) {
+void WindowSDL::drawText(unsigned int x, unsigned int y, float scale, const float color[4], const char *s, ...) {
     va_list args;
     va_start(args, s);
     vsnprintf(tempText.text, 256, s, args);

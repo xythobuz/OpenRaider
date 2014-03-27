@@ -14,6 +14,7 @@
 #endif
 
 #include "config.h"
+#include "global.h"
 #include "main.h"
 #include "Menu.h"
 #include "utils/strings.h"
@@ -75,19 +76,15 @@ void Menu::displayMapList() {
 
     for (int i = 0; i < (max - min); i++) {
         char *map = gOpenRaider->mMapList[i + min];
-        unsigned char color[4] = {0xFF, 0xFF, 0xFF, 0xFF};
-        if ((i + min) == (int)mCursor) {
-            // Less greem & red --> highlight in red
-            color[1] = 0x42;
-            color[2] = 0x42;
-        }
-        gOpenRaider->mWindow->drawText(25, 100 + (25 * i), 0.75f, color, "%s", map);
+        if ((i + min) == (int)mCursor)
+            gOpenRaider->mWindow->drawText(25, 100 + (25 * i), 0.75f, RED, "%s", map);
+        else
+            gOpenRaider->mWindow->drawText(25, 100 + (25 * i), 0.75f, OR_BLUE, "%s", map);
     }
 }
 
 void Menu::display() {
     Window *window = gOpenRaider->mWindow;
-    unsigned char color[4] = {0xFF, 0xFF, 0xFF, 0xFF};
 
     if (mVisible) {
         // Draw half-transparent *overlay*
@@ -101,19 +98,17 @@ void Menu::display() {
         window->writeString(&mainText);
 
         if (!gOpenRaider->mMapListFilled) {
-            gOpenRaider->mWindow->drawText(25, (window->mHeight / 2) - 20, 0.75f, color, "Generating map list...");
+            gOpenRaider->mWindow->drawText(25, (window->mHeight / 2) - 20, 0.75f, OR_BLUE, "Generating map list...");
         } else {
             if (gOpenRaider->mMapList.size() == 0) {
-                gOpenRaider->mWindow->drawText(25, (window->mHeight / 2) - 20, 0.75f, color, "No maps found! See README.md");
+                gOpenRaider->mWindow->drawText(25, (window->mHeight / 2) - 20, 0.75f, RED, "No maps found! See README.md");
             } else {
                 // draw *play button* above list
                 glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
                 glDisable(GL_TEXTURE_2D);
                 glRecti(25, 25, 100, 75);
                 glEnable(GL_TEXTURE_2D);
-                color[0] = color[1] = color[2] = 0x00;
-                gOpenRaider->mWindow->drawText(40, 35, 0.75f, color, "Play");
-                color[0] = color[1] = color[2] = 0xFF;
+                gOpenRaider->mWindow->drawText(40, 35, 0.75f, BLACK, "Play");
 
                 displayMapList();
             }

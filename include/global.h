@@ -7,6 +7,17 @@
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
 
+const float BLACK[]       = {  0.0f,  0.0f,  0.0f, 1.0f };
+const float DIM_WHITE[]   = {  0.5f,  0.5f,  0.5f, 1.0f };
+const float WHITE[]       = {  1.0f,  1.0f,  1.0f, 1.0f };
+const float RED[]         = {  1.0f,  0.0f,  0.0f, 1.0f };
+const float GREEN[]       = {  0.0f,  1.0f,  0.0f, 1.0f };
+const float NEXT_PURPLE[] = {  0.3f,  0.3f,  0.5f, 1.0f };
+const float OR_BLUE[]     = {  0.5f,  0.7f,  1.0f, 1.0f };
+const float PINK[]        = {  1.0f,  0.0f,  1.0f, 1.0f };
+const float YELLOW[]      = {  1.0f,  1.0f,  0.0f, 1.0f };
+const float CYAN[]        = {  0.0f,  1.0f,  1.0f, 1.0f };
+
 typedef enum {
     menuAction = 0,
     consoleAction, // menu and console should always be the first two items
@@ -61,7 +72,7 @@ typedef struct {
     int w;
     int h;
     float scale;
-    unsigned char color[4];
+    float color[4];
 } WindowString;
 
 #endif

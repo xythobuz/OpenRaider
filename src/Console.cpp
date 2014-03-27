@@ -14,6 +14,7 @@
 #endif
 
 #include "config.h"
+#include "global.h"
 #include "Console.h"
 #include "main.h"
 #include "utils/strings.h"
@@ -90,7 +91,6 @@ void Console::print(const char *s, ...) {
 
 void Console::display() {
     Window *window = gOpenRaider->mWindow;
-    unsigned char color[4] = {0xFF, 0xFF, 0xFF, 0xFF};
 
     if (mVisible) {
         // Calculate line drawing geometry
@@ -110,7 +110,7 @@ void Console::display() {
             scrollIndicator = 100;
         }
 
-        gOpenRaider->mWindow->drawText(10, 10, 0.70f, color,
+        gOpenRaider->mWindow->drawText(10, 10, 0.70f, OR_BLUE,
                 "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
 
         // Draw output log
@@ -125,14 +125,14 @@ void Console::display() {
         }
         for (int i = 0; i < end; i++) {
             gOpenRaider->mWindow->drawText(10, ((i + drawOffset) * lineSteps) + firstLine,
-                    0.75f, color, "%s", mHistory[i + historyOffset - mLineOffset]);
+                    0.75f, OR_BLUE, "%s", mHistory[i + historyOffset - mLineOffset]);
         }
 
         // Draw current input
         if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
-            gOpenRaider->mWindow->drawText(10, inputLine, 0.75f, color, "> %s", mInputBuffer);
+            gOpenRaider->mWindow->drawText(10, inputLine, 0.75f, OR_BLUE, "> %s", mInputBuffer);
         } else {
-            gOpenRaider->mWindow->drawText(10, inputLine, 0.75f, color, ">");
+            gOpenRaider->mWindow->drawText(10, inputLine, 0.75f, OR_BLUE, ">");
         }
 
         //! \todo display the current mPartialInput. The UTF-8 segfaults SDL-TTF, somehow?
