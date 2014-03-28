@@ -98,9 +98,9 @@ Render::Render()
     mSkyMeshRotation = false;
     mMode = Render::modeDisabled;
     mLock = 0;
-    mFlags = (Render::fRoomAlpha | Render::fViewModel | Render::fSprites |
-            Render::fRoomModels | Render::fEntityModels |
-            Render::fUsePortals | fUpdateRoomListPerFrame);
+    mFlags = (fRoomAlpha | fViewModel | fSprites |
+            fRoomModels | fEntityModels | // fParticles |
+            fUsePortals | fUpdateRoomListPerFrame);
 
     mNextTextureId = NULL;
     mNumTexturesLoaded = NULL;
