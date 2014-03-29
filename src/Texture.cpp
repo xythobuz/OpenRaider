@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <assert.h>
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -21,8 +22,6 @@
 
 #include "utils/tga.h"
 #include "Texture.h"
-
-#define TEXTURE_OFFSET -1
 
 Texture::Texture() {
     mTextureIds = NULL;
@@ -42,6 +41,10 @@ unsigned char *Texture::generateColorTexture(unsigned char rgba[4],
     unsigned char *image;
     unsigned int i, size;
 
+    assert(rgba != NULL);
+    assert(width > 0);
+    assert(height > 0);
+
     image = new unsigned char[height*width*4];
 
     for (i = 0, size = width*height; i < size; ++i) {
@@ -59,6 +62,10 @@ int Texture::loadColorTexture(unsigned char rgba[4],
         unsigned int width, unsigned int height) {
     unsigned char *image;
     int id;
+
+    assert(rgba != NULL);
+    assert(width > 0);
+    assert(height > 0);
 
     image = generateColorTexture(rgba, width, height);
     id = loadBuffer(image, width, height, RGBA, 32);
@@ -81,7 +88,7 @@ void Texture::reset() {
         delete [] mTextureIds;
     }
 
-    mTextureIds = 0x0;
+    mTextureIds = NULL;
     mTextureCount = 0;
     mTextureLimit = 0;
 }
@@ -112,12 +119,11 @@ void Texture::useMultiTexture(float u, float v) {
 }
 
 void Texture::bindMultiTexture(int texture0, int texture1) {
-    if (//(int)a == mTextureId && (int)b == mTextureId2 ||
-            !mTextureIds ||
-            texture0 < 0 || texture0 > (int)mTextureCount ||
-            texture1 < 0 || texture1 > (int)mTextureCount) {
-        return;
-    }
+    assert(mTextureIds != NULL);
+    assert(texture0 >= 0);
+    assert((unsigned int)texture0 <= mTextureCount);
+    assert(texture1 >= 0);
+    assert((unsigned int)texture1 <= mTextureCount);
 
     mFlags |= fUseMultiTexture;
     mTextureId  = texture0;
@@ -125,14 +131,16 @@ void Texture::bindMultiTexture(int texture0, int texture1) {
 
     glActiveTextureARB(GL_TEXTURE0_ARB);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, mTextureIds[texture0] + TEXTURE_OFFSET);
+    glBindTexture(GL_TEXTURE_2D, mTextureIds[texture0]);
 
     glActiveTextureARB(GL_TEXTURE1_ARB);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, mTextureIds[texture1] + TEXTURE_OFFSET);
+    glBindTexture(GL_TEXTURE_2D, mTextureIds[texture1]);
 }
 
 void Texture::setMaxTextureCount(unsigned int n) {
+    assert(n > 0);
+
     mTextureLimit = n;
 
     mTextureIds = new unsigned int[n];
@@ -141,7 +149,7 @@ void Texture::setMaxTextureCount(unsigned int n) {
 }
 
 int Texture::getTextureCount() {
-    return (mTextureCount-1);
+    return mTextureCount - 1;
 }
 
 int Texture::loadBuffer(unsigned char *image,
@@ -149,27 +157,35 @@ int Texture::loadBuffer(unsigned char *image,
         ColorMode mode, unsigned int bpp) {
     int id;
 
+    assert(image != NULL);
+    assert(width > 0);
+    assert(height > 0);
+    assert((bpp == 8) || (bpp == 24) || (bpp == 32));
+
     id = loadBufferSlot(image, width, height, mode, bpp, mTextureCount++);
 
     if (id < 0)
         return id;
 
-    return ++id;
+    return id;
 }
 
 void convertARGB32bppToRGBA32bpp(unsigned char *image,
         unsigned int w, unsigned int h) {
-    unsigned int i, size = w*h;
+    unsigned int i, size = w * h;
     unsigned char swap;
 
-    for (i = 0; i < size; ++i)
-    {
+    assert(image != NULL);
+    assert(w > 0);
+    assert(h > 0);
+
+    for (i = 0; i < size; ++i) {
         /* 32-bit ARGB to RGBA */
-        swap = image[i*4+3];
-        image[i*4]   = image[i*4+1];
-        image[i*4+1] = image[i*4+2];
-        image[i*4+2] = image[i*4+3];
-        image[i*4+3] = swap;
+        swap = image[(i * 4) + 3];
+        image[(i * 4)] = image[(i * 4) + 1];
+        image[(i * 4) + 1] = image[(i * 4) + 2];
+        image[(i * 4) + 2] = image[(i * 4) + 3];
+        image[(i * 4) + 3] = swap;
     }
 }
 
@@ -188,30 +204,26 @@ int Texture::loadBufferSlot(unsigned char *image,
     unsigned char bytes;
     unsigned int glcMode;
 
-
-    if (!mTextureIds || slot >= mTextureLimit) {
-        printf("Texture::Load> ERROR Not initialized or out of free slots\n");
-        return -1000;
-    }
-
-    if (!width || !height || !image) {
-        printf("Texture::Load> ERROR Assertion 'image is valid' failed\n");
-        return -1;
-    }
+    assert(mTextureIds != NULL);
+    assert(slot < mTextureLimit);
+    assert(image != NULL);
+    assert(width > 0);
+    assert(height > 0);
+    assert((bpp == 8) || (bpp == 24) || (bpp == 32));
 
     switch (mode) {
         case GREYSCALE:
             if (bpp != 8) {
-                printf("Texture::Load> ERROR Unsupported GREYSCALE, %i bpp\n", bpp);
-                return -2;
+                printf("Texture::Load ERROR Unsupported GREYSCALE, %i bpp\n", bpp);
+                return -1;
             }
             bytes = 1;
             glcMode = GL_LUMINANCE;
             break;
         case RGB:
             if (bpp != 24) {
-                printf("Texture::Load> ERROR Unsupported RGB, %i bpp\n", bpp);
-                return -2;
+                printf("Texture::Load ERROR Unsupported RGB, %i bpp\n", bpp);
+                return -1;
             }
             bytes = 3;
             glcMode = GL_RGB;
@@ -220,16 +232,16 @@ int Texture::loadBufferSlot(unsigned char *image,
             if (bpp == 32) {
                 convertARGB32bppToRGBA32bpp(image, width, height);
             } else {
-                printf("Texture::Load> ERROR Unsupported ARGB, %i bpp\n", bpp);
-                return -2;
+                printf("Texture::Load ERROR Unsupported ARGB, %i bpp\n", bpp);
+                return -1;
             }
             bytes = 4;
             glcMode = GL_RGBA;
             break;
         case RGBA:
             if (bpp != 32) {
-                printf("Texture::Load> ERROR Unsupported RGBA, %i bpp\n", bpp);
-                return -2;
+                printf("Texture::Load ERROR Unsupported RGBA, %i bpp\n", bpp);
+                return -1;
             }
             bytes = 4;
             glcMode = GL_RGBA;
@@ -242,7 +254,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-    glBindTexture(GL_TEXTURE_2D, mTextureIds[slot] + TEXTURE_OFFSET);
+    glBindTexture(GL_TEXTURE_2D, mTextureIds[slot]);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -271,16 +283,16 @@ int Texture::loadBufferSlot(unsigned char *image,
 }
 
 void Texture::bindTextureId(unsigned int n) {
-    if ((int)n == mTextureId || !mTextureIds || n > mTextureCount) {
-        return;
-    }
+    assert(mTextureIds != NULL);
+    assert((int)n != mTextureId);
+    assert(n <= mTextureCount);
 
     mTextureId = n;
 
     glEnable(GL_TEXTURE_2D);
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-    glBindTexture(GL_TEXTURE_2D, mTextureIds[n] + TEXTURE_OFFSET);
+    glBindTexture(GL_TEXTURE_2D, mTextureIds[n]);
 }
 
 void Texture::glScreenShot(char *base, unsigned int width, unsigned int height) {
@@ -291,13 +303,9 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height) 
     static int count = 0;
     bool done = false;
 
-    if (!image || !width || !height) {
-        if (image)
-            delete [] image;
-
-        printf("glScreenShot> ERROR: Couldn't allocate image!\n");
-        return;
-    }
+    assert(base != NULL);
+    assert(width > 0);
+    assert(height > 0);
 
     // Don't overwrite files
     while (!done) {
@@ -327,6 +335,9 @@ int Texture::loadTGA(const char *filename) {
     unsigned int w, h;
     char type;
     int id = -1;
+
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
 
     f = fopen(filename, "rb");
 
@@ -363,14 +374,14 @@ int Texture::loadTGA(const char *filename) {
 }
 
 int Texture::nextPower(int seed) {
-    int i;
-    for (i = 1; i < seed; i *= 2);
+    int i = 1;
+    for (; i < seed; i *= 2);
     return i;
 }
 
 /* This code based off on gluScaleImage()  */
 unsigned char *Texture::scaleBuffer(unsigned char *image,
-        int width,  int height, int components) {
+        int width, int height, int components) {
     int i, j, k;
     float* tempin;
     float* tempout;
@@ -380,8 +391,9 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
     int original_height = height;
     int original_width = width;
 
-    if (!image || !width || !height)
-        return NULL;
+    assert(image != NULL);
+    assert(width > 0);
+    assert(height > 0);
 
     height = nextPower(height);
     width = nextPower(width);

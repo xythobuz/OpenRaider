@@ -27,7 +27,6 @@ public:
     enum TextureFlag {
         fUseMipmaps      = (1 << 0),
         fUseMultiTexture = (1 << 1),
-        fUseSDL_TTF      = (1 << 2)
     };
 
     /*!

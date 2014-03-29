@@ -149,10 +149,8 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     char filename[128];
     int snow1_id;
     int snow2_id;
-    int bg_id;
     unsigned int numTextures = 0;
     unsigned char color[4];
-
 
     // We want to update as needed later
     mNumTexturesLoaded = numLoaded;
@@ -172,33 +170,25 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     color[3] = 0xff;
 
     if (mTexture.loadColorTexture(color, 32, 32) > -1)
-    {
-        ++numTextures;
-    }
+        numTextures++;
 
     snprintf(filename, 126, "%s/%s", textureDir, "splash.tga");
     filename[127] = 0;
 
-    if ((bg_id = mTexture.loadTGA(filename)) > -1)
-    {
-        ++numTextures;
-    }
+    if (mTexture.loadTGA(filename) > -1)
+        numTextures++;
 
     snprintf(filename, 126, "%s/%s", textureDir, "snow.tga");
     filename[127] = 0;
 
     if ((snow1_id = mTexture.loadTGA(filename)) > -1)
-    {
-        ++numTextures;
-    }
+        numTextures++;
 
     snprintf(filename, 126, "%s/%s", textureDir, "snow2.tga");
     filename[127] = 0;
 
     if ((snow2_id = mTexture.loadTGA(filename)) > -1)
-    {
-        ++numTextures;
-    }
+        numTextures++;
 
     // Weird that it isn't linear, must be some storage deal in Texture
     // I forgot about Id allocation
@@ -791,7 +781,7 @@ void Render::drawLoadScreen()
     glTranslatef(0.0f, 0.0f, -2000.0f);
     glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
 
-    glBindTexture(GL_TEXTURE_2D, 2); //! \fixme store texture id somewhere
+    glBindTexture(GL_TEXTURE_2D, 3); //! \fixme store texture id somewhere
 
     glBegin(GL_TRIANGLE_STRIP);
     glTexCoord2f(1.0, 1.0);
