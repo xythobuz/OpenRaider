@@ -24,11 +24,10 @@
 #include "utils/time.h"
 #include "OpenRaider.h"
 
-#define MAX_MS_PER_FRAME (1000 / MAXIMUM_FPS)
-
 OpenRaider::OpenRaider() {
     mInit = false;
     mRunning = false;
+    mFPS = false;
     mBaseDir = NULL;
     mPakDir = NULL;
     mAudioDir = NULL;
@@ -214,6 +213,7 @@ int OpenRaider::help(const char *cmd) {
         mConsole->print("  volume      BOOL");
         mConsole->print("  mouse_x     FLOAT");
         mConsole->print("  mouse_y     FLOAT");
+        mConsole->print("  fps         BOOL");
         mConsole->print("Enclose STRINGs with \"\"!");
         mConsole->print("size expects a STRING in the specified format");
     } else if (strcmp(cmd, "bind") == 0) {
@@ -345,6 +345,13 @@ int OpenRaider::set(const char *var, const char *value) {
             return -7;
         }
         mCameraRotationDeltaY = OR_DEG_TO_RAD(sense);
+    } else if (strcmp(var, "fps") == 0) {
+        bool fps = false;
+        if (readBool(value, &fps) != 0) {
+            mConsole->print("set-fps-Error: Invalid value (%s)", value);
+            return -8;
+        }
+        mFPS = fps;
     } else if (strcmp(var, "basedir") == 0) {
         CHANGE_DIR_WITH_EXPANSION(mBaseDir);
     } else if (strcmp(var, "pakdir") == 0) {
@@ -642,6 +649,9 @@ void OpenRaider::run() {
     assert(mInit == true);
     assert(mRunning == false);
 
+    static clock_t fpsSum = 0, fpsCount = 0;
+    static int fps = 0;
+
     mRunning = true;
     while (mRunning) {
         clock_t startTime = systemTimerGet();
@@ -658,8 +668,14 @@ void OpenRaider::run() {
 
         // Draw 2D overlays (console and menu)
         mWindow->glEnter2D();
+
         mConsole->display();
         mMenu->display();
+
+        // Draw FPS counter
+        if (mFPS)
+            mWindow->drawText(10, mWindow->mHeight - 20, 0.5f, OR_BLUE, "%dFPS", fps);
+
         mWindow->glExit2D();
 
         // Put new frame on screen
@@ -670,11 +686,14 @@ void OpenRaider::run() {
         if (!mMapListFilled)
             fillMapList();
 
-        // Check time it took to compute the last frame
-        // and delay for an appropriate amount of time
-        clock_t stopTime = systemTimerGet();
-        if (MAX_MS_PER_FRAME > (stopTime - startTime))
-            mWindow->delay(MAX_MS_PER_FRAME - (stopTime - startTime));
+        // Calculate FPS display value
+        fpsCount++;
+        fpsSum += (systemTimerGet() - startTime);
+        if (fpsSum >= 500) {
+            // Update every 500ms
+            fps = (int)((float)fpsCount * (1000.0f / (float)fpsSum));
+            fpsCount = fpsSum = 0;
+        }
     }
 }
 

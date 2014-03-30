@@ -94,6 +94,7 @@ private:
 
     bool mInit;
     bool mRunning;
+    bool mFPS;
 
     KeyboardButton keyBindings[ActionEventCount];
 };
