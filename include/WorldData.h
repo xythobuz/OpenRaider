@@ -1,6 +1,6 @@
 /*!
- * \file include/World.h
- * \brief The game world (model)
+ * \file include/WorldData.h
+ * \brief Structs and enums for the game world (model)
  *
  * \author Mongoose
  * \author xythobuz
