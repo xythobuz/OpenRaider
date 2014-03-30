@@ -1,8 +1,8 @@
 # OpenRaider
 
-[OpenRaider](http://openraider.sourceforge.net) is an Open Source implementation of the classic Tomb Raider Game Engine. It was abandoned in 2003.
+This is a fork of the [OpenRaider](http://openraider.sourceforge.net) Open Source implementation of the classic Tomb Raider Game Engine. The original project was abandoned in 2003.
 
-This project aims to get OpenRaider in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...
+This fork aims to get OpenRaider in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...
 
 If you just want to see OpenRaider doing something on your Mac, without installing any of the dependencies needed to build OpenRaider, grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
 
@@ -13,13 +13,12 @@ It seems as if OpenRaider will currently only work on Little-Endian platforms. T
 OpenRaider needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.
 These are stored in `~/.OpenRaider`. Running `make setup` will create/copy the necessary files and directories.
 
-You still need to add level files in `~/.OpenRaider/paks/` and add them to `~/.OpenRaider/OpenRaider.ini`.
+You still need to add level files in `~/.OpenRaider/paks/`.
 Dust off your old Tomb Raider CDs or grab some [custom levels](http://www.aspidetr.com/levels/yvel-woods-v1-5/) from the interwebs.
 
 ## Documentation
 
 All previously included documentation was moved into the [OpenRaider Repo Wiki](https://github.com/xythobuz/OpenRaider/wiki/_pages).
-Also take a look at the [BUGS](https://github.com/xythobuz/OpenRaider/wiki/Bugs), [TODO](https://github.com/xythobuz/OpenRaider/wiki/To-Do) and [Requirements](https://github.com/xythobuz/OpenRaider/wiki/Requirements).
 
 A more or less recent [Doxygen documentation](http://xythobuz.github.io/OpenRaider/) of OpenRaider should be on the Github Pages for OpenRaider.
 
@@ -67,6 +66,8 @@ A Doxygen API documentation can be created with `make doc`.
 
 `make clean` should remove all intermediary files. `make run` will run the binary.
 
+You can also generate working XCode Project files with `cmake -G Xcode ..`.
+
 ## Usage
 
 ### Configuration file
@@ -75,124 +76,39 @@ OpenRaider will try to load `~/.OpenRaider/OpenRaider.ini` or, if it doesn't exi
 Running `make setup` will create a minimal configuration in your home directory.
 
 The configuration file format is very simple:
-* Anything following a `#` up to the next `\n` will be ignored.
-* Lines starting with an `@` mark a "preprocessor" command. The only one currently implemented is `@include`, allowing you to include another file as configuration file.
-* Lines surrounded with `[]`, eg. `[Engine.OpenGL.Driver]` set the mode for following commands.
-* Everything else is interpreted as command for the current mode.
+* Every line will be executed as in-game console command
+* The # character marks the beginning of a single-line comment
 
 ### Level PAKs
 
-You can use paks from any Tomb Raider version supported and most user made paks for Tomb Raider.
-Only PHD, TR1, TR2, TR3, and TR4 paks are supported as of this writing.
+You can use paks from any classic Tomb Raider Game (1 - 5) and most user made paks for Tomb Raider. Tomb Raider 5 support is however still very limited.
 
 ### Sound FXs
-
-Setting up external sound SFX, for TR2 and TR3 paks only.
 
 TR2 and TR3 paks (both have file extension `.tr2`) don't have sound data contained in the pak itself, but instead
 they share a common SFX file (often MAIN.SFX) for each pak from a given Tomb Raider version.
 
-Previously, OpenRaider tried to load an SFX file with the same name as the level file, with `.sfx` added to the end.
-You had to create a symlink for each level to the SFX file if you were using original Tomb Raider levels, like this:
+OpenRaider tries to load a `MAIN.SFX` from the same folder as the selected level file.
 
-    cd ~/.OpenRaider/paks/tr3/
-    cp /mnt/cdrom/data/MAIN.SFX .
-    for i in *.tr2; do ln -s MAIN.SFX $i.sfx; done
+### Default Key Bindings
 
-Now, OpenRaider just tries to load a `MAIN.SFX` in the same folder as the level file.
-If you want to change this behaviour, this happens around line 1075 of `src/OpenRaider.cpp`.
-
-### Key Bindings
-
-| Key                      | Action                                       |
-| ------------------------:|:-------------------------------------------- |
-| &lt;Alt&gt;&lt;Enter&gt; | Toggle fullscreen                            |
-| &lt;Esc&gt;              | Interactive Level load menu                  |
-| `                        | Console toggle on/off                        |
-| Mouse                    | Turn                                         |
-| MouseBtn Left            | Shoot                                        |
-| w                        | Move forward                                 |
-| s                        | Move back                                    |
-| e                        | Move down                                    |
-| q                        | Move up                                      |
-| r                        | Play sound quick test                        |
-| /                        | Drop a waypoint test (formally undocumented) |
-| [ ]                      | Adjust idle animation for testing            |
+| Key               | Action                |
+| -----------------:|:--------------------- |
+| &lt;Esc&gt;       | Toggle menu           |
+| &lt;backquote&gt; | Console toggle on/off |
+| w                 | Move forward          |
+| s                 | Move back             |
+| a                 | Move left             |
+| d                 | Move right            |
+| &lt;space&gt;     | Jump                  |
+| &lt;left ctrl&gt; | crouch                |
+| Mouse             | Turn                  |
+| MouseBtn Left     | Shoot/Use             |
+| MouseBtn Right    | Holster/Equip weapons |
 
 ### Console/Config Commands
 
-Console commands (BOOL is '0', '1', "true" or "false").
-Pressing &lt;UP&gt; will go back to last command entered (saves typing).
-
-#### Game
-
-| Command             | Action                                                 |
-| -------------------:|:------------------------------------------------------ |
-| quit                | Quit the game                                          |
-| sshot               | Take screenshot                                        |
-| play INT            | Play sound fx with number                              |
-| loadlevel STRING    | Load level with mapname STRING                         |
-| sensitivity.x FLOAT | Set mouse sensitivity for X movement                   |
-| sensitivity.y FLOAT | Set mouse sensitivity for Y movement                   |
-| fullscreen          | Toggles fullscreen mode                                |
-| walk                | Toggle world clipping on                               |
-| ghost               | Toggle world clipping off                              |
-| fly                 | Toggle world clipping off without gravity              |
-| noclip              | Toggle world clipping in cycle                         |
-| hop                 | Toggle room hopping hack                               |
-| showfps BOOL        | Show FPS                                               |
-| resize STRING       | Change resolution to `xga`, `svga` or `vga`            |
-
-#### Render
-
-| Command          | Action                                       |
-| ----------------:|:-------------------------------------------- |
-| texture INT      | Display the specified 2D texture for 2s      |
-| wireframe        | Render in wireframe (for debugging)          |
-| solid            | Render solid color polygons                  |
-| texture          | Render with textures                         |
-| vertexlight      | Render with vertexlights                     |
-| titlescreen      | Render titlescreen                           |
-| r_animate BOOL   | Animate all models at once                   |
-| r_upf BOOL       | Update room render list once per frame       |
-| r_ponytail BOOL  | Render ponytail on Lara                      |
-| r_pigtails BOOL  | Render ponytails as pigtails on Lara         |
-| r_ponyangle INT  | Set rotation of ponytail on Lara             |
-| r_ponyx INT      | Set X offset of ponytail on Lara             |
-| r_ponyy INT      | Set Y offset of ponytail on Lara             |
-| r_ponyz INT      | Set Z offset of ponytail on Lara             |
-| r_viewmodel INT  | Load skeletal model with index INT           |
-| r_fog BOOL       | Render fog toggle                            |
-| r_portal BOOL    | Render portals in rooms                      |
-| r_particle BOOL  | Render particles                             |
-| r_vmodel BOOL    | Render view model                            |
-| r_sprite BOOL    | Render sprites (room fx and items)           |
-| r_roommodel BOOL | Render room models                           |
-| r_entmodel BOOL  | Render entity models                         |
-| r_light BOOL     | Render with GL lights                        |
-| r_ralpha BOOL    | Render alpha pass for rooms                  |
-| r_vis BOOL       | Render using visibility checking             |
-| r_oneroom        | Render only the current room                 |
-| r_allrooms       | Render all rooms in the level (debug/stress) |
-
-#### Set Commands
-
-These commands have to be entered as `set COMMAND VALUE` or `set COMMAND=VALUE`.
-
-| Command        | Action                    |
-| --------------:|:------------------------- |
-| mousegrab BOOL | Set mouse grabbing on/off |
-
-#### Stat Commands
-
-These commands have to be entered as `stat COMMAND`.
-
-| Command | Action                 |
-| -------:|:---------------------- |
-| fps     | Toggle showing FPS     |
-| pos     | Show current location  |
-| room    |                        |
-| flags   | Show room flags in hex |
+Every available command should be listed in the in-game help. Just type `help` in the OpenRaider console, which can be activated by default with the backquote key.
 
 ### Wireframe mode colors
 
@@ -206,6 +122,16 @@ These commands have to be entered as `stat COMMAND`.
 * Pink dots are visibility checks
 
 ## License
+
+OpenRaider is based on code, specs, and alogrithms from:
+
+* GooseEgg/Freyja 3d Modelers by Mongoose
+* TR Rosetta Stone spec sheet by Anonymous
+* TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose
+
+All code should be GPLed, unless otherwise noted.
+
+Forked in December 2013 by xythobuz.
 
 The included example Font, [Droid Sans Mono](http://www.droidfonts.com/licensing/), was created by Steve Matteson and is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
 
@@ -222,12 +148,3 @@ See the respective files in `cmake` for their licensing.
 * Copyright 2003-2009 Kitware, Inc.
 * Eric Wing
 
-OpenRaider is based on code, specs, and alogrithms from:
-
-* GooseEgg/Freyja 3d Modelers by Mongoose
-* TR Rosetta Stone spec sheet by Anonymous
-* TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose
-
-All code should be GPLed, unless otherwise noted.
-
-2013, 2014 improvements, clean-up by xythobuz.
