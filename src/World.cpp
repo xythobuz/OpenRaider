@@ -122,6 +122,10 @@ int World::getSector(int room, float x, float z, float *floor, float *ceiling)
     sector_t * s;
     int sector;
 
+    assert(room >= 0);
+    assert(floor != NULL);
+    assert(ceiling != NULL);
+
     r = mRooms[room];
 
     if (!r)
@@ -145,67 +149,61 @@ int World::getSector(int room, float x, float z, float *floor, float *ceiling)
 }
 
 
-int World::getSector(int room, float x, float z)
-{
+int World::getSector(int room, float x, float z) {
     int sector;
     room_mesh_t *r;
+
+    if ((room < 0) || (room >= mRooms.size()))
+        return -1;
 
     r = mRooms[room];
 
     if (!r)
-    {
         return -1;
-    }
 
     sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) +
             (((int)z - (int)r->pos[2]) / 1024));
 
     if (sector < 0)
-    {
         return -1;
-    }
 
     return sector;
 }
 
 
-unsigned int World::getRoomInfo(int room)
-{
+unsigned int World::getRoomInfo(int room) {
     room_mesh_t *r;
 
+    if ((room >= mRooms.size()) || (room < 0))
+        return 0;
 
     r = mRooms[room];
 
     if (!r)
-    {
         return 0;
-    }
 
     return r->flags;
 }
 
 
-bool World::isWall(int room, int sector)
-{
+bool World::isWall(int room, int sector) {
     room_mesh_t *r;
     sector_t *sect;
 
+    if ((room >= mRooms.size()) || (room < 0))
+        return true;
 
     r = mRooms[room];
 
-    if (!r)
-    {
+    if ((!r) || (sector >= r->sectors.size()) || (sector < 0))
         return true;
-    }
 
     sect = r->sectors[sector];
 
     if (!sect)
-    {
         return true;
-    }
 
-    return ((sector > 0) && sect->wall);
+    return ((sector > 0) && sect->wall); //! \fixme is (sector > 0) correct??
 }
 
 
@@ -465,6 +463,9 @@ void World::moveEntity(entity_t *e, char movement)
         if (room > -1)
         {
             printf("Crossing from room %i to %i\n", e->room, room);
+        } else {
+            //! \fixme mRooms, sectors, ... are now std::vector, but often upper bound checks are missing
+            return;
         }
     }
 
