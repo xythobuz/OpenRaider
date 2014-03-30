@@ -5,8 +5,66 @@
 
  OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+	[ 20140330 ]
+	* Fixed some segfaults relating to missing upper-bound-checks
+	  while accessing std::vectors in World/Render
+	* Added animation test command, FPS display
+
+	[ 20140329 ]
+	* Proper fix for texture offset bug
+	* Added more asserts
+
+	[ 20140327 ]
+	* Started reimplementing game/render commands
+	* Using only colors defined for renderer
+
+	[ 20140326 ]
+	* Fixed Sound segfault
+	* Added basic camera and entity movement
+
+	[ 20140324 ]
+	* Hacked Texture Offset fix
+
+	[ 20140323 ]
+	* Try to load external sound effect files
+	* Added Renderer
+	* Moved gWorld, LARA into Game
+	* Moved Camera sensitivity into OpenRaider
+	* Re-Added LoadScreen render mode
+	* Added level data processing code
+
+	[ 20140322 ]
+	* Added Game class, TombRaider level loader, Camera, Emitter,
+	  Mesh, Particle, ViewVolume, Texture
+	* Added SkeletalModel, now using std::vector
+	* Added World, now using std::vector and std::list
+
+	[ 20140321 ]
+	* Added help command
+	* Added proper command history for console
+	* Added mouse scrolling support
+	* Can bind mouse actions
+
+	[ 20140316 ]
+	* Added mouse support, also for menu
+	* Added Console
+	* Fixed system timer for BSDs (like Mac OS X)
+
+	[ 20140315 ]
+	* Added Window interface and WindowSDL implementation
+	* Prepared cmake to make SDL optional in the future
+	* Added event handling and font support
+	* Started implementing command system
+	* Config file now has .ini extension
+	* Added transparent menu overlay
+	* Implemented key bindings
+
 	[ 20140314 ]
 	* Started more or less complete re-write...
+	* Sound now uses std::vector, volume setting, clear()
+	* Moved math, Matrix, Quaternion and Vector3d into new math lib
+	* Added main.h/cpp with OpenRaider global
+	* Rewrote time lib using ctime
 
  OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
