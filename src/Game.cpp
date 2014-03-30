@@ -272,6 +272,54 @@ int Game::command(std::vector<char *> *args) {
             gOpenRaider->mConsole->print("Invalid use of sound command!");
             return -11;
         }
+    } else if (strcmp(cmd, "animate") == 0) {
+        if (args->size() > 1) {
+            char c = args->at(1)[0];
+            if (c == 'n') {
+                // Step all skeletal models to their next animation
+                if (mRender->getFlags() & Render::fAnimateAllModels) {
+                    for (unsigned int i = 0; i < mRender->mModels.size(); i++) {
+                        SkeletalModel *m = mRender->mModels[i];
+                        if (m->getAnimation() < ((int)m->model->animation.size() - 1))
+                            m->setAnimation(m->getAnimation() + 1);
+                        else
+                            if (m->getAnimation() != 0)
+                                m->setAnimation(0);
+                    }
+                } else {
+                    gOpenRaider->mConsole->print("Animations need to be enabled!");
+                }
+            } else if (c == 'p') {
+                // Step all skeletal models to their previous animation
+                if (mRender->getFlags() & Render::fAnimateAllModels) {
+                    for (unsigned int i = 0; i < mRender->mModels.size(); i++) {
+                        SkeletalModel *m = mRender->mModels[i];
+                        if (m->getAnimation() > 0)
+                            m->setAnimation(m->getAnimation() - 1);
+                        else
+                            if (m->model->animation.size() > 0)
+                                m->setAnimation(m->model->animation.size() - 1);
+                    }
+                } else {
+                    gOpenRaider->mConsole->print("Animations need to be enabled!");
+                }
+            } else {
+                // Enable or disable animating all skeletal models
+                bool b;
+                if (readBool(args->at(1), &b) < 0) {
+                    gOpenRaider->mConsole->print("Pass BOOL to animate command!");
+                    return -12;
+                }
+                if (b)
+                    mRender->setFlags(Render::fAnimateAllModels);
+                else
+                    mRender->clearFlags(Render::fAnimateAllModels);
+                gOpenRaider->mConsole->print(b ? "Animating all models" : "No longer animating all models");
+            }
+        } else {
+            gOpenRaider->mConsole->print("Invalid use of animate command!");
+            return -13;
+        }
     } else if (strcmp(cmd, "help") == 0) {
         if (args->size() < 2) {
             gOpenRaider->mConsole->print("game-command Usage:");
@@ -280,6 +328,7 @@ int Game::command(std::vector<char *> *args) {
             gOpenRaider->mConsole->print("  move [walk|fly|noclip]");
             gOpenRaider->mConsole->print("  sound INT");
             gOpenRaider->mConsole->print("  mode MODE");
+            gOpenRaider->mConsole->print("  animate [BOOL|n|p]");
         } else if (strcmp(args->at(1), "sound") == 0) {
             gOpenRaider->mConsole->print("game-sound-command Usage:");
             gOpenRaider->mConsole->print("  game sound INT");
@@ -300,13 +349,20 @@ int Game::command(std::vector<char *> *args) {
             gOpenRaider->mConsole->print("  texture");
             gOpenRaider->mConsole->print("  vertexlight");
             gOpenRaider->mConsole->print("  titlescreen");
+        } else if (strcmp(args->at(1), "animate") == 0) {
+            gOpenRaider->mConsole->print("game-animate-command Usage:");
+            gOpenRaider->mConsole->print("  game animate [n|p|BOOL]");
+            gOpenRaider->mConsole->print("Where the commands have the following meaning:");
+            gOpenRaider->mConsole->print("  BOOL to (de)activate animating all models");
+            gOpenRaider->mConsole->print("  n to step all models to their next animation");
+            gOpenRaider->mConsole->print("  p to step all models to their previous animation");
         } else {
             gOpenRaider->mConsole->print("No help available for game %s.", args->at(1));
-            return -12;
+            return -14;
         }
     } else {
         gOpenRaider->mConsole->print("Invalid use of game-command (%s)!", cmd);
-        return -13;
+        return -15;
     }
 
     return 0;

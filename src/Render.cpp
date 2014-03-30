@@ -122,6 +122,9 @@ void Render::screenShot(char *filenameBase)
     mTexture.glScreenShot(filenameBase, gOpenRaider->mWindow->mWidth, gOpenRaider->mWindow->mHeight);
 }
 
+unsigned int Render::getFlags() {
+    return mFlags;
+}
 
 ////////////////////////////////////////////////////////////
 // Public Mutators

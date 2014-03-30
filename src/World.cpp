@@ -153,7 +153,7 @@ int World::getSector(int room, float x, float z) {
     int sector;
     room_mesh_t *r;
 
-    if ((room < 0) || (room >= mRooms.size()))
+    if ((room < 0) || (room >= (int)mRooms.size()))
         return -1;
 
     r = mRooms[room];
@@ -174,7 +174,7 @@ int World::getSector(int room, float x, float z) {
 unsigned int World::getRoomInfo(int room) {
     room_mesh_t *r;
 
-    if ((room >= mRooms.size()) || (room < 0))
+    if ((room >= (int)mRooms.size()) || (room < 0))
         return 0;
 
     r = mRooms[room];
@@ -190,12 +190,12 @@ bool World::isWall(int room, int sector) {
     room_mesh_t *r;
     sector_t *sect;
 
-    if ((room >= mRooms.size()) || (room < 0))
+    if ((room >= (int)mRooms.size()) || (room < 0))
         return true;
 
     r = mRooms[room];
 
-    if ((!r) || (sector >= r->sectors.size()) || (sector < 0))
+    if ((!r) || (sector >= (int)r->sectors.size()) || (sector < 0))
         return true;
 
     sect = r->sectors[sector];

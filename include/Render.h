@@ -212,9 +212,12 @@ public:
 
     void addSkeletalModel(SkeletalModel *mdl);
 
+    unsigned int getFlags();
+
     //! \fixme should be private
 
     ViewVolume mViewVolume; //!< View Volume for frustum culling
+    std::vector<SkeletalModel *> mModels;
 
 private:
 
@@ -331,7 +334,6 @@ private:
 
     std::vector<RenderRoom *> mRoomRenderList;
     std::vector<RenderRoom *> mRooms;
-    std::vector<SkeletalModel *> mModels;
 
     unsigned int mFlags;                  //!< Rendering flags
     unsigned int mMode;                   //!< Rendering mode
