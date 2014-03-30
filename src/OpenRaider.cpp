@@ -196,6 +196,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
 
 int OpenRaider::help(const char *cmd) {
     assert(cmd != NULL);
+    assert(cmd[0] != '\0');
 
     if (strcmp(cmd, "set") == 0) {
         mConsole->print("set-Command Usage:");
@@ -251,6 +252,9 @@ char *OpenRaider::expandDirectoryNames(const char *s) {
     const char *audio = "$(audiodir)";
     const char *data = "$(datadir)";
 
+    assert(s != NULL);
+    assert(s[0] != '\0');
+
     if (mBaseDir != NULL) {
         if (strstr(s, base) != NULL) {
             return stringReplace(s, base, mBaseDir);
@@ -291,6 +295,11 @@ char *OpenRaider::expandDirectoryNames(const char *s) {
 } while(false)
 
 int OpenRaider::set(const char *var, const char *value) {
+    assert(var != NULL);
+    assert(var[0] != '\0');
+    assert(value != NULL);
+    assert(value[0] != '\0');
+
     if (strcmp(var, "size") == 0) {
         // value has format like "\"1024x768\""
         unsigned int w = DEFAULT_WIDTH, h = DEFAULT_HEIGHT;
@@ -363,6 +372,11 @@ int OpenRaider::set(const char *var, const char *value) {
 }
 
 int OpenRaider::bind(const char *action, const char *key) {
+    assert(action != NULL);
+    assert(action[0] != '\0');
+    assert(key != NULL);
+    assert(key[0] != '\0');
+
     const char *tmp = action;
     if (action[0] == '+')
         tmp++;
@@ -394,7 +408,7 @@ int OpenRaider::bind(const char *action, const char *key) {
 }
 
 int OpenRaider::bind(ActionEvents action, const char *key) {
-    assert(action != ActionEventCount);
+    assert(action < ActionEventCount);
     assert(key != NULL);
     assert(key[0] != '\0');
 
@@ -535,6 +549,11 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
     struct dirent *ep;
     DIR *pakDir;
 
+    assert(dir != NULL);
+    assert(dir[0] != '\0');
+    assert(mInit == true);
+    assert(mRunning == true);
+
     pakDir = opendir(dir);
     if (pakDir != NULL) {
         while ((ep = readdir(pakDir)) != NULL) {
@@ -579,6 +598,9 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
 }
 
 void OpenRaider::fillMapList() {
+    assert(mInit == true);
+    assert(mRunning == true);
+
     char *tmp = fullPath(mPakDir, '/');
     loadPakFolderRecursive(tmp);
     delete [] tmp;
@@ -657,6 +679,10 @@ void OpenRaider::run() {
 }
 
 void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
+    assert(key < unknown);
+    assert(mInit == true);
+    assert(mRunning == true);
+
     if ((keyBindings[menuAction] == key) && pressed) {
         mMenu->setVisible(!mMenu->isVisible());
     } else if (!mMenu->isVisible()) {
@@ -679,12 +705,21 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
 }
 
 void OpenRaider::handleText(char *text, bool notFinished) {
+    assert(text != NULL);
+    assert(text[0] != '\0');
+    assert(mInit == true);
+    assert(mRunning == true);
+
     if ((mConsole->isVisible()) && (!mMenu->isVisible())) {
         mConsole->handleText(text, notFinished);
     }
 }
 
 void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
+    assert(button < unknown);
+    assert(mInit == true);
+    assert(mRunning == true);
+
     if (mMenu->isVisible()) {
         mMenu->handleMouseClick(x, y, button, released);
     } else if (!mConsole->isVisible()) {
@@ -697,12 +732,20 @@ void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
 }
 
 void OpenRaider::handleMouseMotion(int xrel, int yrel) {
+    assert((xrel != 0) || (yrel != 0));
+    assert(mInit == true);
+    assert(mRunning == true);
+
     if ((!mConsole->isVisible()) && (!mMenu->isVisible())) {
         mGame->handleMouseMotion(xrel, yrel);
     }
 }
 
 void OpenRaider::handleMouseScroll(int xrel, int yrel) {
+    assert((xrel != 0) || (yrel != 0));
+    assert(mInit == true);
+    assert(mRunning == true);
+
     if ((mConsole->isVisible()) && (!mMenu->isVisible())) {
         mConsole->handleMouseScroll(xrel, yrel);
     }

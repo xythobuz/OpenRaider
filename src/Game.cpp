@@ -86,6 +86,7 @@ void Game::destroy() {
 
     mRender->ClearWorld();
     mWorld.destroy();
+    gOpenRaider->mSound->clear(); // Remove all previously loaded sounds
 }
 
 int Game::loadLevel(const char *level) {
@@ -140,6 +141,7 @@ int Game::loadLevel(const char *level) {
 
     mLoaded = true;
     mRender->setMode(Render::modeVertexLight);
+
     return 0;
 }
 

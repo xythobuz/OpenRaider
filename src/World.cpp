@@ -6,6 +6,7 @@
  */
 
 #include <math.h>
+#include <assert.h>
 
 #include "World.h"
 
@@ -204,7 +205,7 @@ bool World::isWall(int room, int sector)
         return true;
     }
 
-    return (sector > 0 && sect->wall);
+    return ((sector > 0) && sect->wall);
 }
 
 
