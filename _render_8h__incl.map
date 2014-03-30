@@ -1,17 +1,13 @@
 <map id="include/Render.h" name="include/Render.h">
-<area shape="rect" id="node3" href="$_list_8h.html" title="Template list. " alt="" coords="73,155,124,181"/>
-<area shape="rect" id="node7" href="$_vector_8h.html" title="Template Vector. " alt="" coords="159,229,225,256"/>
-<area shape="rect" id="node8" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="616,155,683,181"/>
-<area shape="rect" id="node13" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="506,80,608,107"/>
-<area shape="rect" id="node15" href="$_light_8h.html" title="The GL light class. " alt="" coords="864,155,923,181"/>
-<area shape="rect" id="node16" href="$_world_8h.html" title="The game world (model) " alt="" coords="231,80,295,107"/>
-<area shape="rect" id="node17" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="301,155,411,181"/>
-<area shape="rect" id="node18" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="947,155,1011,181"/>
-<area shape="rect" id="node19" href="$_texture_8h.html" title="Texture registry. " alt="" coords="435,155,508,181"/>
-<area shape="rect" id="node20" href="$_camera_8h.html" title="OpenGL camera class. " alt="" coords="685,80,763,107"/>
-<area shape="rect" id="node21" href="$_g_l_string_8h.html" title="Open GL rendering font/string class. " alt="" coords="890,80,971,107"/>
-<area shape="rect" id="node9" href="$_mat_math_8h.html" title="Vector and Matrix math. " alt="" coords="631,304,713,331"/>
-<area shape="rect" id="node11" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="710,229,804,256"/>
-<area shape="rect" id="node12" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="553,229,633,256"/>
-<area shape="rect" id="node14" href="$_bounding_volume_8h.html" title="Bounding volume class for world/vis/culling/clipping/collision stuff. " alt="" coords="402,229,528,256"/>
+<area shape="rect" id="node4" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="371,155,473,181"/>
+<area shape="rect" id="node8" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="371,80,473,107"/>
+<area shape="rect" id="node9" href="$_world_8h.html" title="The game world (model) " alt="" coords="171,80,237,107"/>
+<area shape="rect" id="node11" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="232,155,347,181"/>
+<area shape="rect" id="node13" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="651,155,716,181"/>
+<area shape="rect" id="node14" href="$_texture_8h.html" title="Texture registry. " alt="" coords="718,80,793,107"/>
+<area shape="rect" id="node16" href="$_camera_8h.html" title="OpenGL camera class. " alt="" coords="498,80,576,107"/>
+<area shape="rect" id="node5" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="321,304,415,331"/>
+<area shape="rect" id="node6" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="451,229,580,256"/>
+<area shape="rect" id="node7" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="309,229,427,256"/>
+<area shape="rect" id="node12" href="$_world_data_8h.html" title="Structs and enums for the game world (model) " alt="" coords="5,229,99,256"/>
 </map>

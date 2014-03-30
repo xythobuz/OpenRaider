@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2-dev</span>
+   &#160;<span id="projectnumber">0.1.3-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -110,8 +110,7 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="separator:a43b9b9d60943d3fa5a11cc2d80958496"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87b2fed2c768145467cd9c260c54413a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413a">TextureFlag</a> { <a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aa339735b02d78eca67cda6cd19af45dd6">fUseMipmaps</a> = (1 &lt;&lt; 0), 
-<a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aadef4a836917f066a4d0c424496e852e5">fUseMultiTexture</a> = (1 &lt;&lt; 1), 
-<a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aa675e50939bea377c7b2ae26e79401b4b">fUseSDL_TTF</a> = (1 &lt;&lt; 2)
+<a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413aadef4a836917f066a4d0c424496e852e5">fUseMultiTexture</a> = (1 &lt;&lt; 1)
  }</td></tr>
 <tr class="separator:a87b2fed2c768145467cd9c260c54413a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -123,11 +122,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">~Texture</a> ()</td></tr>
 <tr class="memdesc:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_texture.html" title="Texture registry. ">Texture</a>.  <a href="#a09c4bcb7462f64c1d20fa69dba3cee8a">More...</a><br/></td></tr>
 <tr class="separator:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72fc44255d1315d5da3cce3f80fc8cd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_texture_8h.html#structgl__font__t">gl_font_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a72fc44255d1315d5da3cce3f80fc8cd9">generateFont</a> (<a class="el" href="_texture_8h.html#structttf__texture__t">ttf_texture_t</a> *texture)</td></tr>
-<tr class="separator:a72fc44255d1315d5da3cce3f80fc8cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a385357c034bb9a5935d8a06142763e3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_texture_8h.html#structttf__texture__t">ttf_texture_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a385357c034bb9a5935d8a06142763e3e">generateFontTexture</a> (const char *filename, int pointSize, unsigned int textureWidth, unsigned char color[3], unsigned int utf8Offset, unsigned int count, char verbose)</td></tr>
-<tr class="memdesc:a385357c034bb9a5935d8a06142763e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a font texture with typeset info from TTF.  <a href="#a385357c034bb9a5935d8a06142763e3e">More...</a><br/></td></tr>
-<tr class="separator:a385357c034bb9a5935d8a06142763e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa913149a378e8f80b73f1f25b8fc9e51"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#aa913149a378e8f80b73f1f25b8fc9e51">getTextureCount</a> ()</td></tr>
 <tr class="memdesc:aa913149a378e8f80b73f1f25b8fc9e51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of textures in use.  <a href="#aa913149a378e8f80b73f1f25b8fc9e51">More...</a><br/></td></tr>
 <tr class="separator:aa913149a378e8f80b73f1f25b8fc9e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,7 +131,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a37e098713f433f759bddaafcbecfc75a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a37e098713f433f759bddaafcbecfc75a">bindMultiTexture</a> (int texture0, int texture1)</td></tr>
 <tr class="memdesc:a37e098713f433f759bddaafcbecfc75a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up multitexture rendering with passed ids.  <a href="#a37e098713f433f759bddaafcbecfc75a">More...</a><br/></td></tr>
 <tr class="separator:a37e098713f433f759bddaafcbecfc75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad8d219ecb0fbe15b219e371c55965ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#aad8d219ecb0fbe15b219e371c55965ea">bindTextureId</a> (unsigned int n)</td></tr>
+<tr class="memitem:aad8d219ecb0fbe15b219e371c55965ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#aad8d219ecb0fbe15b219e371c55965ea">bindTextureId</a> (unsigned int <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aafe0cb765d0bfc2535a3f5b124ec8f887">n</a>)</td></tr>
 <tr class="memdesc:aad8d219ecb0fbe15b219e371c55965ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds the texture for use in GL.  <a href="#aad8d219ecb0fbe15b219e371c55965ea">More...</a><br/></td></tr>
 <tr class="separator:aad8d219ecb0fbe15b219e371c55965ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ca51aaf5e1c6af0683b801b1c70e562"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a6ca51aaf5e1c6af0683b801b1c70e562">clearFlag</a> (<a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413a">TextureFlag</a> flag)</td></tr>
@@ -145,9 +139,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6ca51aaf5e1c6af0683b801b1c70e562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a481dee2e69a3ad281146a506d5352a78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a481dee2e69a3ad281146a506d5352a78">disableMultiTexture</a> ()</td></tr>
 <tr class="separator:a481dee2e69a3ad281146a506d5352a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6cb919e2a319d275da47af00cc4e5dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#ac6cb919e2a319d275da47af00cc4e5dc">initSDL_TTF</a> ()</td></tr>
-<tr class="memdesc:ac6cb919e2a319d275da47af00cc4e5dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads SDL_TTF.  <a href="#ac6cb919e2a319d275da47af00cc4e5dc">More...</a><br/></td></tr>
-<tr class="separator:ac6cb919e2a319d275da47af00cc4e5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d40bbf05574035fb8c2093fca3a6ee7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a3d40bbf05574035fb8c2093fca3a6ee7">loadBuffer</a> (unsigned char *image, unsigned int width, unsigned int height, <a class="el" href="class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496">ColorMode</a> mode, unsigned int bpp)</td></tr>
 <tr class="memdesc:a3d40bbf05574035fb8c2093fca3a6ee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads Buffer as texture.  <a href="#a3d40bbf05574035fb8c2093fca3a6ee7">More...</a><br/></td></tr>
 <tr class="separator:a3d40bbf05574035fb8c2093fca3a6ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,9 +148,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a18fd6e2d8ca4f854652c9f437b7a9961"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a18fd6e2d8ca4f854652c9f437b7a9961">loadColorTexture</a> (unsigned char rgba[4], unsigned int width, unsigned int height)</td></tr>
 <tr class="memdesc:a18fd6e2d8ca4f854652c9f437b7a9961"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates and loads a solid color texture.  <a href="#a18fd6e2d8ca4f854652c9f437b7a9961">More...</a><br/></td></tr>
 <tr class="separator:a18fd6e2d8ca4f854652c9f437b7a9961"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c961286594357d003dce3cad2613d6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a1c961286594357d003dce3cad2613d6b">loadFontTTF</a> (const char *filename, unsigned int utf8Offset, unsigned int count)</td></tr>
-<tr class="memdesc:a1c961286594357d003dce3cad2613d6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a TTF, generates texture image, glyph list and drawlist.  <a href="#a1c961286594357d003dce3cad2613d6b">More...</a><br/></td></tr>
-<tr class="separator:a1c961286594357d003dce3cad2613d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bcfb2bb4c1a318217a42a30286f8315"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a5bcfb2bb4c1a318217a42a30286f8315">loadTGA</a> (const char *filename)</td></tr>
 <tr class="memdesc:a5bcfb2bb4c1a318217a42a30286f8315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads TGA file as texture.  <a href="#a5bcfb2bb4c1a318217a42a30286f8315">More...</a><br/></td></tr>
 <tr class="separator:a5bcfb2bb4c1a318217a42a30286f8315"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,10 +157,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a305ac8ed2401d8282f132a11c332a2a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a305ac8ed2401d8282f132a11c332a2a1">setFlag</a> (<a class="el" href="class_texture.html#a87b2fed2c768145467cd9c260c54413a">TextureFlag</a> flag)</td></tr>
 <tr class="memdesc:a305ac8ed2401d8282f132a11c332a2a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an option flag.  <a href="#a305ac8ed2401d8282f132a11c332a2a1">More...</a><br/></td></tr>
 <tr class="separator:a305ac8ed2401d8282f132a11c332a2a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b764ffa594a2fcc4473766fd1d47b63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a0b764ffa594a2fcc4473766fd1d47b63">setMaxTextureCount</a> (unsigned int n)</td></tr>
+<tr class="memitem:a0b764ffa594a2fcc4473766fd1d47b63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a0b764ffa594a2fcc4473766fd1d47b63">setMaxTextureCount</a> (unsigned int <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aafe0cb765d0bfc2535a3f5b124ec8f887">n</a>)</td></tr>
 <tr class="memdesc:a0b764ffa594a2fcc4473766fd1d47b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up GL texturing.  <a href="#a0b764ffa594a2fcc4473766fd1d47b63">More...</a><br/></td></tr>
 <tr class="separator:a0b764ffa594a2fcc4473766fd1d47b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45202c7f1196df7d69c4adc046280ea6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a45202c7f1196df7d69c4adc046280ea6">useMultiTexture</a> (float u, float v)</td></tr>
+<tr class="memitem:a45202c7f1196df7d69c4adc046280ea6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a45202c7f1196df7d69c4adc046280ea6">useMultiTexture</a> (float <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa63f235d4a03b00a5e43f0bfa785c853d">u</a>, float <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa7571419a9cfbfae012aedf01dc8883de">v</a>)</td></tr>
 <tr class="separator:a45202c7f1196df7d69c4adc046280ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab20351d7226315c1a864365afdef9bf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#ab20351d7226315c1a864365afdef9bf3">useMultiTexture</a> (float aU, float aV, float bU, float bV)</td></tr>
 <tr class="separator:ab20351d7226315c1a864365afdef9bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,7 +202,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_texture.html" title="Texture registry. ">Texture</a> registry. </p>
 
-<p>Definition at line <a class="el" href="_texture_8h_source.html#l00055">55</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8h_source.html#l00017">17</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a43b9b9d60943d3fa5a11cc2d80958496"></a>
 <div class="memitem">
@@ -236,7 +224,7 @@ Private Attributes</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_texture_8h_source.html#l00058">58</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8h_source.html#l00020">20</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
 
 </div>
 </div>
@@ -254,11 +242,9 @@ Private Attributes</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a87b2fed2c768145467cd9c260c54413aadef4a836917f066a4d0c424496e852e5"></a>fUseMultiTexture</em>&nbsp;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a87b2fed2c768145467cd9c260c54413aa675e50939bea377c7b2ae26e79401b4b"></a>fUseSDL_TTF</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_texture_8h_source.html#l00065">65</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8h_source.html#l00027">27</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
 
 </div>
 </div>
@@ -278,7 +264,7 @@ Private Attributes</h2></td></tr>
 
 <p>Constructs an object of <a class="el" href="class_texture.html" title="Texture registry. ">Texture</a>. </p>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00034">34</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00026">26</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -297,7 +283,7 @@ Private Attributes</h2></td></tr>
 
 <p>Deconstructs an object of <a class="el" href="class_texture.html" title="Texture registry. ">Texture</a>. </p>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00050">50</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00035">35</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -335,7 +321,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00588">588</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00121">121</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -361,7 +347,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00779">779</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00285">285</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -387,7 +373,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00536">536</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00081">81</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,7 +390,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00557">557</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00096">96</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,99 +443,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>newly allocated texture buffer filled with specified color </dd></dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00066">66</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a72fc44255d1315d5da3cce3f80fc8cd9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_texture_8h.html#structgl__font__t">gl_font_t</a> * Texture::generateFont </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_texture_8h.html#structttf__texture__t">ttf_texture_t</a> *&#160;</td>
-          <td class="paramname"><em>texture</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00266">266</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a385357c034bb9a5935d8a06142763e3e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_texture_8h.html#structttf__texture__t">ttf_texture_t</a> * Texture::generateFontTexture </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pointSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>textureWidth</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>color</em>[3], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>utf8Offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>count</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>verbose</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Generates a font texture with typeset info from TTF. </p>
-<p>Does not load the texture itself! Call loadFont() on returned <a class="el" href="_texture_8h.html#structttf__texture__t">ttf_texture_t</a> </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filename</td><td>filename of TTF font </td></tr>
-    <tr><td class="paramname">pointSize</td><td>Point Size to generate </td></tr>
-    <tr><td class="paramname">textureWidth</td><td>width of texture, height will match it </td></tr>
-    <tr><td class="paramname">color</td><td>RGB 24bit color </td></tr>
-    <tr><td class="paramname">utf8Offset</td><td>Offset into fonts encoding chart </td></tr>
-    <tr><td class="paramname">count</td><td>number of glyphs to read from offset start </td></tr>
-    <tr><td class="paramname">verbose</td><td>dumps debug info to stdout </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>font texture. Load it with loadFont()! </dd></dl>
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00351">351</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00039">39</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -569,7 +463,7 @@ Private Attributes</h2></td></tr>
 <p>Get number of textures in use. </p>
 <dl class="section return"><dt>Returns</dt><dd>used texture count, or -1 on error (uninitialized) </dd></dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00622">622</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00151">151</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -614,26 +508,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00795">795</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac6cb919e2a319d275da47af00cc4e5dc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Texture::initSDL_TTF </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Loads SDL_TTF. </p>
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00512">512</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00298">298</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -692,7 +567,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>texture ID or &lt; 0 on error </dd></dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00629">629</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00155">155</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -758,7 +633,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>texture ID or &lt; 0 on error </dd></dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00667">667</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00200">200</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -803,53 +678,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>texture ID or -1 on error </dd></dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00498">498</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1c961286594357d003dce3cad2613d6b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Texture::loadFontTTF </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>utf8Offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>count</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Loads a TTF, generates texture image, glyph list and drawlist. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filename</td><td>Filename of TTF font </td></tr>
-    <tr><td class="paramname">utf8Offset</td><td>Offset into Unicode table </td></tr>
-    <tr><td class="paramname">count</td><td>number of glyphs to load </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>font id if successful, or &lt; 0 on error </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000046">FIXME:</a></b></dt><dd>Until UTF8 decoder is working, we map from ASCII when rendering </dd></dl>
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00213">213</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00061">61</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -876,7 +705,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ID of new texture or -1 on error </dd></dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00923">923</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00331">331</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -902,7 +731,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00978">978</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00376">376</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -921,7 +750,7 @@ Private Attributes</h2></td></tr>
 
 <p>Resets all texture data. </p>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00543">543</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00085">85</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -969,7 +798,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00990">990</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00383">383</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -995,7 +824,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00530">530</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00077">77</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -1022,7 +851,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00612">612</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00141">141</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -1050,7 +879,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00578">578</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00113">113</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -1090,7 +919,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00568">568</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00105">105</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -1115,7 +944,7 @@ Private Attributes</h2></td></tr>
 
 <p>Class options. </p>
 
-<p>Definition at line <a class="el" href="_texture_8h_source.html#l00244">244</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8h_source.html#l00168">168</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
 
 </div>
 </div>
@@ -1139,7 +968,7 @@ Private Attributes</h2></td></tr>
 
 <p><a class="el" href="class_texture.html" title="Texture registry. ">Texture</a> counter. </p>
 
-<p>Definition at line <a class="el" href="_texture_8h_source.html#l00242">242</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8h_source.html#l00166">166</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
 
 </div>
 </div>
@@ -1163,7 +992,7 @@ Private Attributes</h2></td></tr>
 
 <p>Currently bound texture id. </p>
 
-<p>Definition at line <a class="el" href="_texture_8h_source.html#l00245">245</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8h_source.html#l00169">169</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
 
 </div>
 </div>
@@ -1187,7 +1016,7 @@ Private Attributes</h2></td></tr>
 
 <p>Multitexture <a class="el" href="class_texture.html" title="Texture registry. ">Texture</a> Id. </p>
 
-<p>Definition at line <a class="el" href="_texture_8h_source.html#l00246">246</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8h_source.html#l00170">170</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
 
 </div>
 </div>
@@ -1211,7 +1040,7 @@ Private Attributes</h2></td></tr>
 
 <p>GL texture list. </p>
 
-<p>Definition at line <a class="el" href="_texture_8h_source.html#l00241">241</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8h_source.html#l00165">165</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
 
 </div>
 </div>
@@ -1235,7 +1064,7 @@ Private Attributes</h2></td></tr>
 
 <p>The texture limit. </p>
 
-<p>Definition at line <a class="el" href="_texture_8h_source.html#l00243">243</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8h_source.html#l00167">167</a> of file <a class="el" href="_texture_8h_source.html">Texture.h</a>.</p>
 
 </div>
 </div>

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['sdl_5fsys_5fmod_5fkey_5ft',['sdl_sys_mod_key_t',['../_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1',1,'System.h']]],
   ['shackstates',['ShackStates',['../_tomb_raider1_8h.html#ade77c947a0a11346974d186f82b68cea',1,'TombRaider1']]],
   ['skateboardkidstates',['SkateboardKidStates',['../_tomb_raider1_8h.html#a090610eb066a8d953848fa973ffc75e7',1,'TombRaider1']]],
   ['skateboardstates',['SkateboardStates',['../_tomb_raider1_8h.html#a2178584b8869e4215565494b18fee075',1,'TombRaider1']]],

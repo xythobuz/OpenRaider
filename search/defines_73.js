@@ -1,27 +1,5 @@
 var searchData=
 [
-  ['swap_5frows',['SWAP_ROWS',['../src_2_matrix_8cpp.html#ab05eff8e781b00b86776d167de0be400',1,'Matrix.cpp']]],
-  ['sys_5fkey_5fdown',['SYS_KEY_DOWN',['../_system_8h.html#a001173b091f9a0ea14633350af722ea9',1,'System.h']]],
-  ['sys_5fkey_5fenter',['SYS_KEY_ENTER',['../_system_8h.html#ad3164474d93eca0275976a532de5bdbf',1,'System.h']]],
-  ['sys_5fkey_5fesc',['SYS_KEY_ESC',['../_system_8h.html#a69ca9845458826c42752587e93449cf7',1,'System.h']]],
-  ['sys_5fkey_5ff1',['SYS_KEY_F1',['../_system_8h.html#a788bac8e3cedc92bda91baf54da5aeda',1,'System.h']]],
-  ['sys_5fkey_5ff10',['SYS_KEY_F10',['../_system_8h.html#a4976fbb5b689f077c14ad6ec9b8d4d62',1,'System.h']]],
-  ['sys_5fkey_5ff11',['SYS_KEY_F11',['../_system_8h.html#ad9fd88c872d24187f37df0da74efe49a',1,'System.h']]],
-  ['sys_5fkey_5ff12',['SYS_KEY_F12',['../_system_8h.html#a496b522026750fa336beb95f6b6c3919',1,'System.h']]],
-  ['sys_5fkey_5ff2',['SYS_KEY_F2',['../_system_8h.html#a9aaa9da8b653501e1485e223a1a09659',1,'System.h']]],
-  ['sys_5fkey_5ff3',['SYS_KEY_F3',['../_system_8h.html#a5d86c4b12288003dd3737b65c36fffdb',1,'System.h']]],
-  ['sys_5fkey_5ff4',['SYS_KEY_F4',['../_system_8h.html#ad0708d988a90afbe7193886969c29123',1,'System.h']]],
-  ['sys_5fkey_5ff5',['SYS_KEY_F5',['../_system_8h.html#aada9fdc679ac04a3c0e386905bc18d02',1,'System.h']]],
-  ['sys_5fkey_5ff6',['SYS_KEY_F6',['../_system_8h.html#a633ef922bf465251127a27994275599c',1,'System.h']]],
-  ['sys_5fkey_5ff7',['SYS_KEY_F7',['../_system_8h.html#a85ab9300876bf75fa705b6be79573f7a',1,'System.h']]],
-  ['sys_5fkey_5ff8',['SYS_KEY_F8',['../_system_8h.html#ac68b3a7fbec4c7a78af517c2355d8308',1,'System.h']]],
-  ['sys_5fkey_5ff9',['SYS_KEY_F9',['../_system_8h.html#af3c2f6cac08827cde46d68bf037f9623',1,'System.h']]],
-  ['sys_5fkey_5fleft',['SYS_KEY_LEFT',['../_system_8h.html#ad9713bd1d744b45b009107bfbb4f61ab',1,'System.h']]],
-  ['sys_5fkey_5fpagedown',['SYS_KEY_PAGEDOWN',['../_system_8h.html#a8269b0104aaa16240cc28f10069e76ef',1,'System.h']]],
-  ['sys_5fkey_5fpageup',['SYS_KEY_PAGEUP',['../_system_8h.html#a099e6a2fa85150b4daf5b0b3eb2e5f27',1,'System.h']]],
-  ['sys_5fkey_5fright',['SYS_KEY_RIGHT',['../_system_8h.html#a26bfa04bdb9c35599ccf15831f09479a',1,'System.h']]],
-  ['sys_5fkey_5fup',['SYS_KEY_UP',['../_system_8h.html#a704a6e1821351a065a5752c000ff2411',1,'System.h']]],
-  ['sys_5fmouse_5fleft',['SYS_MOUSE_LEFT',['../_system_8h.html#a974142330faa7c79e73f52cbeb16e139',1,'System.h']]],
-  ['sys_5fmouse_5fmiddle',['SYS_MOUSE_MIDDLE',['../_system_8h.html#a6439eb5a948104d45a35466caff95cbe',1,'System.h']]],
-  ['sys_5fmouse_5fright',['SYS_MOUSE_RIGHT',['../_system_8h.html#a6297e268cba108755ef8bbd40a709d38',1,'System.h']]]
+  ['subsystems_5fused',['SUBSYSTEMS_USED',['../_window_s_d_l_8cpp.html#a2dcc36da9fca14ed23a6f367b509cf8e',1,'WindowSDL.cpp']]],
+  ['swap_5frows',['SWAP_ROWS',['../_matrix_8cpp.html#ab05eff8e781b00b86776d167de0be400',1,'Matrix.cpp']]]
 ];

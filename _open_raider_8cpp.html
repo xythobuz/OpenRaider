@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2-dev</span>
+   &#160;<span id="projectnumber">0.1.3-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -87,25 +87,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">OpenRaider.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br/>
-<code>#include &lt;string.h&gt;</code><br/>
-<code>#include &lt;stdio.h&gt;</code><br/>
-<code>#include &lt;stdarg.h&gt;</code><br/>
-<code>#include &lt;unistd.h&gt;</code><br/>
-<code>#include &lt;math.h&gt;</code><br/>
-<code>#include &lt;sys/types.h&gt;</code><br/>
+
+<p>Main <a class="el" href="class_game.html" title="Game abstraction. ">Game</a> Object.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;cstdio&gt;</code><br/>
+<code>#include &lt;cstring&gt;</code><br/>
+<code>#include &lt;assert.h&gt;</code><br/>
 <code>#include &lt;dirent.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="_world_8h_source.html">World.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_skeletal_model_8h_source.html">SkeletalModel.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_tomb_raider1_8h_source.html">TombRaider1.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_window_s_d_l_8h_source.html">WindowSDL.h</a>&quot;</code><br/>
+<code>#include &quot;config.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_console_8h_source.html">Console.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_game_8h_source.html">Game.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="math_8h_source.html">math/math.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_menu_8h_source.html">Menu.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_sound_8h_source.html">Sound.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_tomb_raider_8h_source.html">TombRaider.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_window_8h_source.html">Window.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="strings_8h_source.html">utils/strings.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="time_8h_source.html">utils/time.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for OpenRaider.cpp:</div>
@@ -118,576 +122,44 @@ Include dependency graph for OpenRaider.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ae589a7ae819d593ffabfe7ce533d56f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#ae589a7ae819d593ffabfe7ce533d56f8">MATRIX_TRANSFORMS</a></td></tr>
-<tr class="separator:ae589a7ae819d593ffabfe7ce533d56f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a622cdc6bbe3511f8bd7bc2d762d55470"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a622cdc6bbe3511f8bd7bc2d762d55470">OpenRaiderText</a> { <a class="el" href="_open_raider_8cpp.html#a622cdc6bbe3511f8bd7bc2d762d55470a1722b8c221e28f38a1d3165cc3c5470e">textConsole</a> = 2, 
-<a class="el" href="_open_raider_8cpp.html#a622cdc6bbe3511f8bd7bc2d762d55470aaf98bbf8a8a5518edf68caeb78ad34d0">textMenu</a> = 3, 
-<a class="el" href="_open_raider_8cpp.html#a622cdc6bbe3511f8bd7bc2d762d55470a8acba99f5c75938fda42a187f37b09bb">textOutput</a> = 4
- }</td></tr>
-<tr class="separator:a622cdc6bbe3511f8bd7bc2d762d55470"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a70fbd6de83ac984eb29583753be614eb"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a70fbd6de83ac984eb29583753be614eb">getTicks</a> ()</td></tr>
-<tr class="separator:a70fbd6de83ac984eb29583753be614eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a889a0ff7faae8973dc5ae2e592a14bca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a889a0ff7faae8973dc5ae2e592a14bca">killOpenRaiderSingleton</a> ()</td></tr>
-<tr class="separator:a889a0ff7faae8973dc5ae2e592a14bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe5c1b68400922c3c2438382ee58b334"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#afe5c1b68400922c3c2438382ee58b334">eventAnimTest</a> (int anim)</td></tr>
-<tr class="separator:afe5c1b68400922c3c2438382ee58b334"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18b6043df2c0301ca82f8e721ec27b80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a18b6043df2c0301ca82f8e721ec27b80">percent_callback</a> (int p)</td></tr>
-<tr class="separator:a18b6043df2c0301ca82f8e721ec27b80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e1036b7971dffa5bf2fc48db49ba165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a6e1036b7971dffa5bf2fc48db49ba165">openraider_warning</a> (const char *func_name, const char *warning, const char *filename, int line)</td></tr>
-<tr class="separator:a6e1036b7971dffa5bf2fc48db49ba165"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63b4e406d61d73d4c3c03e5458a58a27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a63b4e406d61d73d4c3c03e5458a58a27">openraider_error</a> (const char *func_name, const char *error, const char *filename, int line)</td></tr>
-<tr class="separator:a63b4e406d61d73d4c3c03e5458a58a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a209c1691a6e97ae572659772a6f94e7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a209c1691a6e97ae572659772a6f94e7b">from_network_layer</a> (<a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a> *p, unsigned int *last_id)</td></tr>
-<tr class="separator:a209c1691a6e97ae572659772a6f94e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3345bcb791358be30bd2daee0818faab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a3345bcb791358be30bd2daee0818faab">to_network_layer</a> (<a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a> p)</td></tr>
-<tr class="separator:a3345bcb791358be30bd2daee0818faab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f7089d2fef81917c5f0b998eee1c7f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a1f7089d2fef81917c5f0b998eee1c7f1">compareFaceTextureId</a> (const void *voidA, const void *voidB)</td></tr>
-<tr class="separator:a1f7089d2fef81917c5f0b998eee1c7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3319c47a58e16c6b40d462a4e77fbbab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a3319c47a58e16c6b40d462a4e77fbbab">setupTextureColor</a> (<a class="el" href="_world_8h.html#structtexture__tri__t">texture_tri_t</a> *r_tri, <a class="el" href="class_render.html">Render</a> *render, float *colorf)</td></tr>
-<tr class="separator:a3319c47a58e16c6b40d462a4e77fbbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
-<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a9c907447782c33d52f340ad31c6fc807"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a9c907447782c33d52f340ad31c6fc807">TextureLimit</a> = 24</td></tr>
-<tr class="separator:a9c907447782c33d52f340ad31c6fc807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2d5115db9664cbd08b8ca0adbb9d733"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#ab2d5115db9664cbd08b8ca0adbb9d733">TexelScale</a> = 256.0f</td></tr>
-<tr class="separator:ab2d5115db9664cbd08b8ca0adbb9d733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac2a078bd15bb08f36417cf55d9ce512"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_world.html">World</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#aac2a078bd15bb08f36417cf55d9ce512">gWorld</a></td></tr>
-<tr class="separator:aac2a078bd15bb08f36417cf55d9ce512"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36ccfdfe50f901b0ff3fb72b47de674f"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a36ccfdfe50f901b0ff3fb72b47de674f">gMapTex2Bump</a></td></tr>
-<tr class="separator:a36ccfdfe50f901b0ff3fb72b47de674f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a8dd5943e3f3d8d0a9b95d155067c1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a6a8dd5943e3f3d8d0a9b95d155067c1c">gColorTextureHACK</a></td></tr>
-<tr class="separator:a6a8dd5943e3f3d8d0a9b95d155067c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4370cf948384bf64073c29dcff766f61"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a4370cf948384bf64073c29dcff766f61">gTextureOffset</a></td></tr>
-<tr class="separator:a4370cf948384bf64073c29dcff766f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cc4add46562cc3af15837cacda34e53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_world_8h.html#structentity__t">entity_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a3cc4add46562cc3af15837cacda34e53">LARA</a> = 0x0</td></tr>
-<tr class="separator:a3cc4add46562cc3af15837cacda34e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19923898184a70bb4ca1f624d833d14f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_world_8h.html#structentity__t">entity_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a19923898184a70bb4ca1f624d833d14f">gClientPlayer</a> [32]</td></tr>
-<tr class="separator:a19923898184a70bb4ca1f624d833d14f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64d9d6fd033308c3dd84561e36c977af"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a64d9d6fd033308c3dd84561e36c977af">gNetTicks</a> = 0</td></tr>
-<tr class="separator:a64d9d6fd033308c3dd84561e36c977af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72ff4c6e17f169a1d85d0f28c3b6e397"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a72ff4c6e17f169a1d85d0f28c3b6e397">gNetLastTicks</a> = 0</td></tr>
-<tr class="separator:a72ff4c6e17f169a1d85d0f28c3b6e397"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a392fc942a97a830e918969e6482f8f76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a392fc942a97a830e918969e6482f8f76">gStartServer</a> = false</td></tr>
-<tr class="separator:a392fc942a97a830e918969e6482f8f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3da3ebca8bec57d7693a63fe558df3b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_skeletal_model_8h.html#structskeletal__model__t">skeletal_model_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a3da3ebca8bec57d7693a63fe558df3b2">gLaraModel</a> = 0x0</td></tr>
-<tr class="separator:a3da3ebca8bec57d7693a63fe558df3b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac415716ac3e6a5b10b49f26dbd199a9e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#ac415716ac3e6a5b10b49f26dbd199a9e">gFontFilename</a> = 0x0</td></tr>
-<tr class="separator:ac415716ac3e6a5b10b49f26dbd199a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54c6740c32204d29e7ec771c8c8f33bb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a54c6740c32204d29e7ec771c8c8f33bb">CHANGE_DIR_WITH_EXPANSION</a>(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">a</a>)</td></tr>
+<tr class="separator:a54c6740c32204d29e7ec771c8c8f33bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="ae589a7ae819d593ffabfe7ce533d56f8"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main <a class="el" href="class_game.html" title="Game abstraction. ">Game</a> Object. </p>
+<dl class="section author"><dt>Author</dt><dd>xythobuz </dd></dl>
+
+<p>Definition in file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a54c6740c32204d29e7ec771c8c8f33bb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MATRIX_TRANSFORMS</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l02254">2254</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a class="anchor" id="a622cdc6bbe3511f8bd7bc2d762d55470"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="_open_raider_8cpp.html#a622cdc6bbe3511f8bd7bc2d762d55470">OpenRaiderText</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a622cdc6bbe3511f8bd7bc2d762d55470a1722b8c221e28f38a1d3165cc3c5470e"></a>textConsole</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a622cdc6bbe3511f8bd7bc2d762d55470aaf98bbf8a8a5518edf68caeb78ad34d0"></a>textMenu</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a622cdc6bbe3511f8bd7bc2d762d55470a8acba99f5c75938fda42a187f37b09bb"></a>textOutput</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00022">22</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a1f7089d2fef81917c5f0b998eee1c7f1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int compareFaceTextureId </td>
+          <td class="memname">#define CHANGE_DIR_WITH_EXPANSION</td>
           <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>voidA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>voidB</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l01988">1988</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afe5c1b68400922c3c2438382ee58b334"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void eventAnimTest </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>anim</em></td><td>)</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">a</a></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00170">170</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a209c1691a6e97ae572659772a6f94e7b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void from_network_layer </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a> *&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int *&#160;</td>
-          <td class="paramname"><em>last_id</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00213">213</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a70fbd6de83ac984eb29583753be614eb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int getTicks </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00039">39</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a889a0ff7faae8973dc5ae2e592a14bca"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void killOpenRaiderSingleton </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00065">65</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int main </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>argv</em>[]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l03600">3600</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a63b4e406d61d73d4c3c03e5458a58a27"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void openraider_error </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>func_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>error</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>line</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00206">206</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6e1036b7971dffa5bf2fc48db49ba165"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void openraider_warning </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>func_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>warning</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>line</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00200">200</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a18b6043df2c0301ca82f8e721ec27b80"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void percent_callback </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>p</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00184">184</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3319c47a58e16c6b40d462a4e77fbbab"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setupTextureColor </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_world_8h.html#structtexture__tri__t">texture_tri_t</a> *&#160;</td>
-          <td class="paramname"><em>r_tri</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_render.html">Render</a> *&#160;</td>
-          <td class="paramname"><em>render</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float *&#160;</td>
-          <td class="paramname"><em>colorf</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l02005">2005</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3345bcb791358be30bd2daee0818faab"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void to_network_layer </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_network_8h.html#structnetwork__packet__t">network_packet_t</a>&#160;</td>
-          <td class="paramname"><em>p</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00250">250</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a19923898184a70bb4ca1f624d833d14f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_world_8h.html#structentity__t">entity_t</a>* gClientPlayer[32]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00032">32</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6a8dd5943e3f3d8d0a9b95d155067c1c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector.html">Vector</a>&lt;unsigned int&gt; gColorTextureHACK</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00029">29</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac415716ac3e6a5b10b49f26dbd199a9e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* gFontFilename = 0x0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00037">37</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3da3ebca8bec57d7693a63fe558df3b2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_skeletal_model_8h.html#structskeletal__model__t">skeletal_model_t</a>* gLaraModel = 0x0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00036">36</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a36ccfdfe50f901b0ff3fb72b47de674f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::map&lt;int, int&gt; gMapTex2Bump</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00028">28</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a72ff4c6e17f169a1d85d0f28c3b6e397"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int gNetLastTicks = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00034">34</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a64d9d6fd033308c3dd84561e36c977af"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int gNetTicks = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00033">33</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a392fc942a97a830e918969e6482f8f76"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool gStartServer = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00035">35</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4370cf948384bf64073c29dcff766f61"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int gTextureOffset</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00030">30</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aac2a078bd15bb08f36417cf55d9ce512"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_world.html">World</a> gWorld</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00027">27</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3cc4add46562cc3af15837cacda34e53"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_world_8h.html#structentity__t">entity_t</a>* LARA = 0x0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00031">31</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab2d5115db9664cbd08b8ca0adbb9d733"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const float TexelScale = 256.0f</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00025">25</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9c907447782c33d52f340ad31c6fc807"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const unsigned int TextureLimit = 24</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00024">24</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {     \</div>
+<div class="line">    char *quotes = <a class="code" href="strings_8h.html#a146e6329df145a070a4eaf3183d6375f">stringRemoveQuotes</a>(value); \</div>
+<div class="line">    char *tmp = expandDirectoryNames(quotes); \</div>
+<div class="line">    if (tmp == NULL) {                        <a class="code" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">\</a></div>
+<div class="line"><a class="code" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">        a</a> = <a class="code" href="strings_8h.html#a6a449382aef1af389360262a56c6d49f">fullPath</a>(quotes, 0);              \</div>
+<div class="line">    } <span class="keywordflow">else</span> {                                  <a class="code" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">\</a></div>
+<div class="line"><a class="code" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">        a</a> = <a class="code" href="strings_8h.html#a6a449382aef1af389360262a56c6d49f">fullPath</a>(tmp, 0);                 \</div>
+<div class="line">        delete [] tmp;                        \</div>
+<div class="line">    }                                         \</div>
+<div class="line">    delete [] quotes;                         \</div>
+<div class="line">} <span class="keywordflow">while</span>(<span class="keyword">false</span>)</div>
+<div class="ttc" id="strings_8h_html_a6a449382aef1af389360262a56c6d49f"><div class="ttname"><a href="strings_8h.html#a6a449382aef1af389360262a56c6d49f">fullPath</a></div><div class="ttdeci">char * fullPath(const char *path, char end)</div><div class="ttdoc">Expansion of unix home enviroment char. Also makes sure string ends in &amp;quot;end&amp;quot; char. </div><div class="ttdef"><b>Definition:</b> <a href="strings_8cpp_source.html#l00124">strings.cpp:124</a></div></div>
+<div class="ttc" id="strings_8h_html_a146e6329df145a070a4eaf3183d6375f"><div class="ttname"><a href="strings_8h.html#a146e6329df145a070a4eaf3183d6375f">stringRemoveQuotes</a></div><div class="ttdeci">char * stringRemoveQuotes(const char *s)</div><div class="ttdef"><b>Definition:</b> <a href="strings_8cpp_source.html#l00020">strings.cpp:20</a></div></div>
+<div class="ttc" id="global_8h_html_a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63"><div class="ttname"><a href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">a</a></div><div class="ttdef"><b>Definition:</b> <a href="global_8h_source.html#l00042">global.h:42</a></div></div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00285">285</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
 
 </div>
 </div>

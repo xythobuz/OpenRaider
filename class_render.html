@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2-dev</span>
+   &#160;<span id="projectnumber">0.1.3-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -87,6 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_render-members.html">List of all members</a>  </div>
@@ -102,7 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Render:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_render__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_render__coll__graph.svg" width="219" height="248"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -163,9 +164,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5e78d572dcada630a89662c400f80335"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae351d5faf0ba22ea2017b6cc343c4971"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#ae351d5faf0ba22ea2017b6cc343c4971">addRoom</a> (<a class="el" href="class_render_room.html">RenderRoom</a> *rRoom)</td></tr>
 <tr class="separator:ae351d5faf0ba22ea2017b6cc343c4971"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09046cc7d4167eda1d26fcd76390cfba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a09046cc7d4167eda1d26fcd76390cfba">Init</a> (int width, int height)</td></tr>
-<tr class="memdesc:a09046cc7d4167eda1d26fcd76390cfba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts and sets up OpenGL target.  <a href="#a09046cc7d4167eda1d26fcd76390cfba">More...</a><br/></td></tr>
-<tr class="separator:a09046cc7d4167eda1d26fcd76390cfba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80a30c019161874ab29869e786d984c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a80a30c019161874ab29869e786d984c9">loadTexture</a> (unsigned char *image, unsigned int width, unsigned int height, unsigned int id)</td></tr>
 <tr class="memdesc:a80a30c019161874ab29869e786d984c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads textures in a certain id slot.  <a href="#a80a30c019161874ab29869e786d984c9">More...</a><br/></td></tr>
 <tr class="separator:a80a30c019161874ab29869e786d984c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,37 +181,39 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afd402df2d4eb19b0abdb66690f1b3f68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#afd402df2d4eb19b0abdb66690f1b3f68">setFlags</a> (unsigned int flags)</td></tr>
 <tr class="memdesc:afd402df2d4eb19b0abdb66690f1b3f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets bitflags, changes state of renderer in some way.  <a href="#afd402df2d4eb19b0abdb66690f1b3f68">More...</a><br/></td></tr>
 <tr class="separator:afd402df2d4eb19b0abdb66690f1b3f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa18327e9b23384b3ccb939a143a4b5c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#aa18327e9b23384b3ccb939a143a4b5c2">setMode</a> (int n)</td></tr>
+<tr class="memitem:aa18327e9b23384b3ccb939a143a4b5c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#aa18327e9b23384b3ccb939a143a4b5c2">setMode</a> (int <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aafe0cb765d0bfc2535a3f5b124ec8f887">n</a>)</td></tr>
 <tr class="separator:aa18327e9b23384b3ccb939a143a4b5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a289501f6251e10f01cff7319fce55eca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a289501f6251e10f01cff7319fce55eca">Update</a> (int width, int height)</td></tr>
-<tr class="separator:a289501f6251e10f01cff7319fce55eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e223719c00e1e9fe74aa430d4099058"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a7e223719c00e1e9fe74aa430d4099058">Display</a> ()</td></tr>
 <tr class="memdesc:a7e223719c00e1e9fe74aa430d4099058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a single game frame.  <a href="#a7e223719c00e1e9fe74aa430d4099058">More...</a><br/></td></tr>
 <tr class="separator:a7e223719c00e1e9fe74aa430d4099058"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ff512211ab624ddfe256e2019c18427"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a3ff512211ab624ddfe256e2019c18427">setSkyMesh</a> (int index, bool rot)</td></tr>
 <tr class="separator:a3ff512211ab624ddfe256e2019c18427"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acda29dc3a65dee3c12bdd5347929ac1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#acda29dc3a65dee3c12bdd5347929ac1e">ViewModel</a> (<a class="el" href="_world_8h.html#structentity__t">entity_t</a> *ent, int index)</td></tr>
+<tr class="memitem:acda29dc3a65dee3c12bdd5347929ac1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#acda29dc3a65dee3c12bdd5347929ac1e">ViewModel</a> (<a class="el" href="_world_data_8h.html#structentity__t">entity_t</a> *ent, int index)</td></tr>
 <tr class="separator:acda29dc3a65dee3c12bdd5347929ac1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf3f7af21cd66748df2208758ff005cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#adf3f7af21cd66748df2208758ff005cd">RegisterCamera</a> (<a class="el" href="class_camera.html">Camera</a> *camera)</td></tr>
-<tr class="separator:adf3f7af21cd66748df2208758ff005cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64c7be1407a0c86084e8547221a105db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_l_string.html">GLString</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a64c7be1407a0c86084e8547221a105db">GetString</a> ()</td></tr>
-<tr class="memdesc:a64c7be1407a0c86084e8547221a105db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the GL text output agent.  <a href="#a64c7be1407a0c86084e8547221a105db">More...</a><br/></td></tr>
-<tr class="separator:a64c7be1407a0c86084e8547221a105db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e58116021c447832f6434bc81030442"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a5e58116021c447832f6434bc81030442">drawLoadScreen</a> ()</td></tr>
-<tr class="memdesc:a5e58116021c447832f6434bc81030442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders load screen.  <a href="#a5e58116021c447832f6434bc81030442">More...</a><br/></td></tr>
-<tr class="separator:a5e58116021c447832f6434bc81030442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b33d805bff1cd715b1eed7b73eb94ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a5b33d805bff1cd715b1eed7b73eb94ab">addSkeletalModel</a> (<a class="el" href="class_skeletal_model.html">SkeletalModel</a> *mdl)</td></tr>
 <tr class="separator:a5b33d805bff1cd715b1eed7b73eb94ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0f76ecd339725dad7c49baa92de1b82"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#ab0f76ecd339725dad7c49baa92de1b82">getFlags</a> ()</td></tr>
+<tr class="separator:ab0f76ecd339725dad7c49baa92de1b82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a01fabd8cb467368e954ecf20aa1768d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_view_volume.html">ViewVolume</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a01fabd8cb467368e954ecf20aa1768d6">mViewVolume</a></td></tr>
+<tr class="memdesc:a01fabd8cb467368e954ecf20aa1768d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">View Volume for frustum culling.  <a href="#a01fabd8cb467368e954ecf20aa1768d6">More...</a><br/></td></tr>
+<tr class="separator:a01fabd8cb467368e954ecf20aa1768d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56bf1bf05a3964b76a0d0db45e4b5af5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_skeletal_model.html">SkeletalModel</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a56bf1bf05a3964b76a0d0db45e4b5af5">mModels</a></td></tr>
+<tr class="separator:a56bf1bf05a3964b76a0d0db45e4b5af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr class="memitem:a5e58116021c447832f6434bc81030442"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a5e58116021c447832f6434bc81030442">drawLoadScreen</a> ()</td></tr>
+<tr class="separator:a5e58116021c447832f6434bc81030442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f097b4d10ec6dfb0b201c7f823ffc97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a0f097b4d10ec6dfb0b201c7f823ffc97">isVisible</a> (float bboxMin[3], float bboxMax[3])</td></tr>
 <tr class="memdesc:a0f097b4d10ec6dfb0b201c7f823ffc97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a bounding box is in the View Volume.  <a href="#a0f097b4d10ec6dfb0b201c7f823ffc97">More...</a><br/></td></tr>
 <tr class="separator:a0f097b4d10ec6dfb0b201c7f823ffc97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a919ec5d8670e0436091d05c44f876f15"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a919ec5d8670e0436091d05c44f876f15">isVisible</a> (float x, float y, float z)</td></tr>
+<tr class="memitem:a919ec5d8670e0436091d05c44f876f15"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a919ec5d8670e0436091d05c44f876f15">isVisible</a> (float <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aacab1e15e82c5976bfb476ddfe145263c">x</a>, float <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aae1f9fdb8b786c63efc4ce44eeacd17f2">y</a>, float <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa766ef8aad745d24433e347150a35da61">z</a>)</td></tr>
 <tr class="memdesc:a919ec5d8670e0436091d05c44f876f15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a point is in the View Volume.  <a href="#a919ec5d8670e0436091d05c44f876f15">More...</a><br/></td></tr>
 <tr class="separator:a919ec5d8670e0436091d05c44f876f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab84a98e8590fd76bb911367dab8b28bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#ab84a98e8590fd76bb911367dab8b28bf">isVisible</a> (float x, float y, float z, float radius)</td></tr>
+<tr class="memitem:ab84a98e8590fd76bb911367dab8b28bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#ab84a98e8590fd76bb911367dab8b28bf">isVisible</a> (float <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aacab1e15e82c5976bfb476ddfe145263c">x</a>, float <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aae1f9fdb8b786c63efc4ce44eeacd17f2">y</a>, float <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa766ef8aad745d24433e347150a35da61">z</a>, float radius)</td></tr>
 <tr class="memdesc:ab84a98e8590fd76bb911367dab8b28bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a sphere is in the View Volume.  <a href="#ab84a98e8590fd76bb911367dab8b28bf">More...</a><br/></td></tr>
 <tr class="separator:ab84a98e8590fd76bb911367dab8b28bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e22a8cff8ef993db48cc79ed602ac5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a6e22a8cff8ef993db48cc79ed602ac5e">newRoomRenderList</a> (int index)</td></tr>
@@ -233,19 +233,19 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a15447804845568b319f76131688354c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2908b0754a2e8692864a07a99b03398"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#aa2908b0754a2e8692864a07a99b03398">drawRoom</a> (<a class="el" href="class_render_room.html">RenderRoom</a> *rRoom, bool draw_alpha)</td></tr>
 <tr class="separator:aa2908b0754a2e8692864a07a99b03398"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3798037ffd0fa213e4154abba0498926"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a3798037ffd0fa213e4154abba0498926">drawRoomModel</a> (<a class="el" href="_world_8h.html#structstatic__model__t">static_model_t</a> *mesh)</td></tr>
+<tr class="memitem:a3798037ffd0fa213e4154abba0498926"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a3798037ffd0fa213e4154abba0498926">drawRoomModel</a> (<a class="el" href="_world_data_8h.html#structstatic__model__t">static_model_t</a> *mesh)</td></tr>
 <tr class="memdesc:a3798037ffd0fa213e4154abba0498926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders static room model.  <a href="#a3798037ffd0fa213e4154abba0498926">More...</a><br/></td></tr>
 <tr class="separator:a3798037ffd0fa213e4154abba0498926"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f6e6fafdd221bbcf12331b930ed3571"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a4f6e6fafdd221bbcf12331b930ed3571">drawModelMesh</a> (<a class="el" href="_world_8h.html#structmodel__mesh__t">model_mesh_t</a> *r_mesh, <a class="el" href="class_render.html#abc9be40e4be3e1b64792ce4c03b751c8">RenderMeshType</a> type)</td></tr>
+<tr class="memitem:a4f6e6fafdd221bbcf12331b930ed3571"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a4f6e6fafdd221bbcf12331b930ed3571">drawModelMesh</a> (<a class="el" href="_world_data_8h.html#structmodel__mesh__t">model_mesh_t</a> *r_mesh, <a class="el" href="class_render.html#abc9be40e4be3e1b64792ce4c03b751c8">RenderMeshType</a> type)</td></tr>
 <tr class="memdesc:a4f6e6fafdd221bbcf12331b930ed3571"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a mesh.  <a href="#a4f6e6fafdd221bbcf12331b930ed3571">More...</a><br/></td></tr>
 <tr class="separator:a4f6e6fafdd221bbcf12331b930ed3571"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb9398eab81029fbcb5853cba21b27df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#adb9398eab81029fbcb5853cba21b27df">drawSprite</a> (<a class="el" href="_world_8h.html#structsprite__t">sprite_t</a> *sprite)</td></tr>
+<tr class="memitem:adb9398eab81029fbcb5853cba21b27df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#adb9398eab81029fbcb5853cba21b27df">drawSprite</a> (<a class="el" href="_world_data_8h.html#structsprite__t">sprite_t</a> *sprite)</td></tr>
 <tr class="memdesc:adb9398eab81029fbcb5853cba21b27df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a sprite.  <a href="#adb9398eab81029fbcb5853cba21b27df">More...</a><br/></td></tr>
 <tr class="separator:adb9398eab81029fbcb5853cba21b27df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cee96657b2d590cc392c7b4f48d96c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a3cee96657b2d590cc392c7b4f48d96c4">updateViewVolume</a> ()</td></tr>
 <tr class="memdesc:a3cee96657b2d590cc392c7b4f48d96c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates View Volume. Call once per render frame.  <a href="#a3cee96657b2d590cc392c7b4f48d96c4">More...</a><br/></td></tr>
 <tr class="separator:a3cee96657b2d590cc392c7b4f48d96c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada96447ae3d3e2f02f7c87e5219ccc16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#ada96447ae3d3e2f02f7c87e5219ccc16">tmpRenderModelMesh</a> (<a class="el" href="_world_8h.html#structmodel__mesh__t">model_mesh_t</a> *r_mesh, <a class="el" href="_world_8h.html#structtexture__tri__t">texture_tri_t</a> *ttri)</td></tr>
+<tr class="memitem:ada96447ae3d3e2f02f7c87e5219ccc16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#ada96447ae3d3e2f02f7c87e5219ccc16">tmpRenderModelMesh</a> (<a class="el" href="_world_data_8h.html#structmodel__mesh__t">model_mesh_t</a> *r_mesh, <a class="el" href="_world_data_8h.html#structtexture__tri__t">texture_tri_t</a> *ttri)</td></tr>
 <tr class="separator:ada96447ae3d3e2f02f7c87e5219ccc16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -253,27 +253,13 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:af5795192e3ed6c616182d1d11fadf919"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_texture.html">Texture</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#af5795192e3ed6c616182d1d11fadf919">mTexture</a></td></tr>
 <tr class="memdesc:af5795192e3ed6c616182d1d11fadf919"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_texture.html" title="Texture registry. ">Texture</a> subsystem.  <a href="#af5795192e3ed6c616182d1d11fadf919">More...</a><br/></td></tr>
 <tr class="separator:af5795192e3ed6c616182d1d11fadf919"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa203a9750f230c73b888f4b4653a2b8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#aa203a9750f230c73b888f4b4653a2b8f">mCamera</a></td></tr>
-<tr class="memdesc:aa203a9750f230c73b888f4b4653a2b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_camera.html" title="OpenGL camera class. ">Camera</a> subsystem.  <a href="#aa203a9750f230c73b888f4b4653a2b8f">More...</a><br/></td></tr>
-<tr class="separator:aa203a9750f230c73b888f4b4653a2b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36d7c1b20a05aff0f139107164a61edc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_l_string.html">GLString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a36d7c1b20a05aff0f139107164a61edc">mString</a></td></tr>
-<tr class="memdesc:a36d7c1b20a05aff0f139107164a61edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">GL Text subsystem.  <a href="#a36d7c1b20a05aff0f139107164a61edc">More...</a><br/></td></tr>
-<tr class="separator:a36d7c1b20a05aff0f139107164a61edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07e76325d8c12fe03ec4561716810a06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&lt; <a class="el" href="class_render_room.html">RenderRoom</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a07e76325d8c12fe03ec4561716810a06">mRoomRenderList</a></td></tr>
-<tr class="separator:a07e76325d8c12fe03ec4561716810a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafa4a159afce155fe06dac2f5b4ef70c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&lt; <a class="el" href="class_render_room.html">RenderRoom</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#aafa4a159afce155fe06dac2f5b4ef70c">mRooms</a></td></tr>
-<tr class="separator:aafa4a159afce155fe06dac2f5b4ef70c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6450a02c873d2b8ed79c870d110d7271"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&lt; <a class="el" href="class_skeletal_model.html">SkeletalModel</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a6450a02c873d2b8ed79c870d110d7271">mModels</a></td></tr>
-<tr class="separator:a6450a02c873d2b8ed79c870d110d7271"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96defd1226c56485fd3a58db3cb380f9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_render_room.html">RenderRoom</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a96defd1226c56485fd3a58db3cb380f9">mRoomRenderList</a></td></tr>
+<tr class="separator:a96defd1226c56485fd3a58db3cb380f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a280c3d702340aa9a677d4660fe002fca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_render_room.html">RenderRoom</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a280c3d702340aa9a677d4660fe002fca">mRooms</a></td></tr>
+<tr class="separator:a280c3d702340aa9a677d4660fe002fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a778ee436ce62e5baf45fbd2385d0c4ce"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a778ee436ce62e5baf45fbd2385d0c4ce">mFlags</a></td></tr>
 <tr class="memdesc:a778ee436ce62e5baf45fbd2385d0c4ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rendering flags.  <a href="#a778ee436ce62e5baf45fbd2385d0c4ce">More...</a><br/></td></tr>
 <tr class="separator:a778ee436ce62e5baf45fbd2385d0c4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9217138bd32f50843a1017b4ddee891c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a9217138bd32f50843a1017b4ddee891c">mWidth</a></td></tr>
-<tr class="memdesc:a9217138bd32f50843a1017b4ddee891c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Viewport width.  <a href="#a9217138bd32f50843a1017b4ddee891c">More...</a><br/></td></tr>
-<tr class="separator:a9217138bd32f50843a1017b4ddee891c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc6cfe7571c10c1b17f2da7399a063b8"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#acc6cfe7571c10c1b17f2da7399a063b8">mHeight</a></td></tr>
-<tr class="memdesc:acc6cfe7571c10c1b17f2da7399a063b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Viewport height.  <a href="#acc6cfe7571c10c1b17f2da7399a063b8">More...</a><br/></td></tr>
-<tr class="separator:acc6cfe7571c10c1b17f2da7399a063b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96811a29221b6c488937f09c62d6599f"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render.html#a96811a29221b6c488937f09c62d6599f">mMode</a></td></tr>
 <tr class="memdesc:a96811a29221b6c488937f09c62d6599f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rendering mode.  <a href="#a96811a29221b6c488937f09c62d6599f">More...</a><br/></td></tr>
 <tr class="separator:a96811a29221b6c488937f09c62d6599f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -293,7 +279,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> Renderer class. </p>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00072">72</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00086">86</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="ad86ae8e22847d773eae6342ad65109b7"></a>
 <div class="memitem">
@@ -339,7 +325,7 @@ Private Attributes</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00084">84</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00098">98</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -359,7 +345,7 @@ Private Attributes</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00103">103</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00117">117</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -387,7 +373,7 @@ Private Attributes</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00075">75</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00089">89</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -407,7 +393,7 @@ Private Attributes</h2></td></tr>
 
 <p>Constructs an object of <a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a>. </p>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00118">118</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00092">92</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -426,7 +412,7 @@ Private Attributes</h2></td></tr>
 
 <p>Deconstructs an object of <a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a>. </p>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00144">144</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00110">110</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -445,7 +431,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00164">164</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00134">134</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -463,7 +449,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l02166">2166</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01877">1877</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -496,9 +482,9 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000032">FIXME:</a></b></dt><dd>Add depth sorting here - remove multipass </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000034">FIXME:</a></b></dt><dd>Add depth sorting here - remove multipass </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01047">1047</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00892">892</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -523,9 +509,9 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000007">FIXME:</a></b></dt><dd>use enum not integer as parameter?! </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000006">FIXME:</a></b></dt><dd>use enum not integer as parameter?! </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00560">560</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00363">363</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -543,7 +529,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Removes current world/entity/etc geometry </p>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00340">340</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00237">237</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -563,13 +549,16 @@ Private Attributes</h2></td></tr>
 <p>Renders a single game frame. </p>
 <dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000031">FIXME:</a></b></dt><dd>entry for seperate main drawing method &ndash; Mongoose 2002.01.01 </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00685">685</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00481">481</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a5e58116021c447832f6434bc81030442"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Render::drawLoadScreen </td>
@@ -578,14 +567,16 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000032">FIXME:</a></b></dt><dd>seperate logo/particle coor later </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000033">FIXME:</a></b></dt><dd>store texture id somewhere </dd></dl>
 
-<p>Renders load screen. </p>
-<p>Textures must be initialized. </p>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000009">FIXME:</a></b></dt><dd>Should be private! </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000033">FIXME:</a></b></dt><dd>seperate logo/particle coor later </dd></dl>
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01141">1141</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00759">759</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -620,7 +611,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01329">1329</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01067">1067</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -634,7 +625,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Render::drawModelMesh </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_world_8h.html#structmodel__mesh__t">model_mesh_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_world_data_8h.html#structmodel__mesh__t">model_mesh_t</a> *&#160;</td>
           <td class="paramname"><em>r_mesh</em>, </td>
         </tr>
         <tr>
@@ -665,10 +656,10 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000036">FIXME:</a></b></dt><dd>Duh, vis tests need to be put back </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000037">FIXME:</a></b></dt><dd>'AMBIENT' &ndash; Mongoose 2002.01.08 </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000037">FIXME:</a></b></dt><dd>Duh, vis tests need to be put back </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000038">FIXME:</a></b></dt><dd>'AMBIENT' &ndash; Mongoose 2002.01.08 </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01962">1962</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01698">1698</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -696,7 +687,7 @@ Private Attributes</h2></td></tr>
 <p>Renders visible world object. </p>
 <p><a class="el" href="class_texture.html" title="Texture registry. ">Texture</a> must be initialized. </p>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01246">1246</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00984">984</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -741,7 +732,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01668">1668</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01406">1406</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -755,7 +746,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Render::drawRoomModel </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_world_8h.html#structstatic__model__t">static_model_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_world_data_8h.html#structstatic__model__t">static_model_t</a> *&#160;</td>
           <td class="paramname"><em>mesh</em></td><td>)</td>
           <td></td>
         </tr>
@@ -776,7 +767,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01873">1873</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01609">1609</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -811,7 +802,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01116">1116</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00959">959</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -825,7 +816,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Render::drawSprite </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_world_8h.html#structsprite__t">sprite_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_world_data_8h.html#structsprite__t">sprite_t</a> *&#160;</td>
           <td class="paramname"><em>sprite</em></td><td>)</td>
           <td></td>
         </tr>
@@ -846,7 +837,24 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01810">1810</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01546">1546</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab0f76ecd339725dad7c49baa92de1b82"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Render::getFlags </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00125">125</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -865,66 +873,9 @@ Private Attributes</h2></td></tr>
 
 <p>Gets current rendering mode. </p>
 <dl class="section return"><dt>Returns</dt><dd>current RenderMode </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000006">FIXME:</a></b></dt><dd>Don't return enum as int?! </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000005">FIXME:</a></b></dt><dd>Don't return enum as int?! </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00608">608</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a64c7be1407a0c86084e8547221a105db"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_g_l_string.html">GLString</a> * Render::GetString </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the GL text output agent. </p>
-<dl class="section return"><dt>Returns</dt><dd>Used <a class="el" href="class_g_l_string.html" title="Open GL rendering font/string class. ">GLString</a> instance </dd></dl>
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l02160">2160</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a09046cc7d4167eda1d26fcd76390cfba"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Render::Init </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Starts and sets up OpenGL target. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">width</td><td>width of window </td></tr>
-    <tr><td class="paramname">height</td><td>height of window </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00402">402</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00404">404</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -976,7 +927,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00310">310</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00207">207</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1020,7 +971,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00179">179</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00149">149</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1066,7 +1017,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if bounding box is visible </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l02184">2184</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01895">1895</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1119,7 +1070,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if point is visible </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l02203">2203</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01914">1914</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1179,7 +1130,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if sphere is visible </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l02219">2219</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01930">1930</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1231,7 +1182,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_texture.html#a1ef7fdf1e3ac760512b1e30b623ae608" title="Loads Buffer as texture. ">Texture::loadBufferSlot()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00170">170</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00140">140</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1265,25 +1216,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00983">983</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adf3f7af21cd66748df2208758ff005cd"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Render::RegisterCamera </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_camera.html">Camera</a> *&#160;</td>
-          <td class="paramname"><em>camera</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l02151">2151</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00828">828</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1309,7 +1242,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00154">154</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00120">120</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1334,9 +1267,9 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000008">FIXME:</a></b></dt><dd>use enum not integer as parameter?! </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000007">FIXME:</a></b></dt><dd>use enum not integer as parameter?! </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00580">580</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00383">383</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1354,7 +1287,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00614">614</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00410">410</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1382,7 +1315,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l02124">2124</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01850">1850</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1396,13 +1329,13 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Render::tmpRenderModelMesh </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_world_8h.html#structmodel__mesh__t">model_mesh_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_world_data_8h.html#structmodel__mesh__t">model_mesh_t</a> *&#160;</td>
           <td class="paramname"><em>r_mesh</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_world_8h.html#structtexture__tri__t">texture_tri_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_world_data_8h.html#structtexture__tri__t">texture_tri_t</a> *&#160;</td>
           <td class="paramname"><em>ttri</em>&#160;</td>
         </tr>
         <tr>
@@ -1417,37 +1350,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000010">FIXME:</a></b></dt><dd>Let them eat cake...? O.o </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000009">FIXME:</a></b></dt><dd>Let them eat cake...? O.o </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01898">1898</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a289501f6251e10f01cff7319fce55eca"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Render::Update </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00601">601</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01634">1634</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1474,7 +1379,7 @@ Private Attributes</h2></td></tr>
 
 <p>Updates View Volume. Call once per render frame. </p>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l02172">2172</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01883">1883</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -1485,7 +1390,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Render::ViewModel </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_world_8h.html#structentity__t">entity_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_world_data_8h.html#structentity__t">entity_t</a> *&#160;</td>
           <td class="paramname"><em>ent</em>, </td>
         </tr>
         <tr>
@@ -1502,35 +1407,11 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l02131">2131</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01857">1857</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="aa203a9750f230c73b888f4b4653a2b8f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_camera.html">Camera</a>* Render::mCamera</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><a class="el" href="class_camera.html" title="OpenGL camera class. ">Camera</a> subsystem. </p>
-
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00336">336</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a778ee436ce62e5baf45fbd2385d0c4ce"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1551,31 +1432,7 @@ Private Attributes</h2></td></tr>
 
 <p>Rendering flags. </p>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00341">341</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acc6cfe7571c10c1b17f2da7399a063b8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int Render::mHeight</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Viewport height. </p>
-
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00343">343</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00338">338</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -1597,7 +1454,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00347">347</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00342">342</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -1621,29 +1478,21 @@ Private Attributes</h2></td></tr>
 
 <p>Rendering mode. </p>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00344">344</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00339">339</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6450a02c873d2b8ed79c870d110d7271"></a>
+<a class="anchor" id="a56bf1bf05a3964b76a0d0db45e4b5af5"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_vector.html">Vector</a>&lt;<a class="el" href="class_skeletal_model.html">SkeletalModel</a> *&gt; Render::mModels</td>
+          <td class="memname">std::vector&lt;<a class="el" href="class_skeletal_model.html">SkeletalModel</a> *&gt; Render::mModels</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00340">340</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00220">220</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -1665,7 +1514,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00346">346</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00341">341</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -1687,11 +1536,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00345">345</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00340">340</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a07e76325d8c12fe03ec4561716810a06"></a>
+<a class="anchor" id="a96defd1226c56485fd3a58db3cb380f9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1699,7 +1548,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_vector.html">Vector</a>&lt;<a class="el" href="class_render_room.html">RenderRoom</a> *&gt; Render::mRoomRenderList</td>
+          <td class="memname">std::vector&lt;<a class="el" href="class_render_room.html">RenderRoom</a> *&gt; Render::mRoomRenderList</td>
         </tr>
       </table>
   </td>
@@ -1709,11 +1558,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00338">338</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00335">335</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aafa4a159afce155fe06dac2f5b4ef70c"></a>
+<a class="anchor" id="a280c3d702340aa9a677d4660fe002fca"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1721,7 +1570,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_vector.html">Vector</a>&lt;<a class="el" href="class_render_room.html">RenderRoom</a> *&gt; Render::mRooms</td>
+          <td class="memname">std::vector&lt;<a class="el" href="class_render_room.html">RenderRoom</a> *&gt; Render::mRooms</td>
         </tr>
       </table>
   </td>
@@ -1731,7 +1580,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00339">339</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00336">336</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -1755,7 +1604,7 @@ Private Attributes</h2></td></tr>
 
 <p>Skymesh model id. </p>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00348">348</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00343">343</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -1779,31 +1628,7 @@ Private Attributes</h2></td></tr>
 
 <p>Should Skymesh be rotated? </p>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00349">349</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a36d7c1b20a05aff0f139107164a61edc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_g_l_string.html">GLString</a> Render::mString</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>GL Text subsystem. </p>
-
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00337">337</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00344">344</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
@@ -1827,31 +1652,24 @@ Private Attributes</h2></td></tr>
 
 <p><a class="el" href="class_texture.html" title="Texture registry. ">Texture</a> subsystem. </p>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00335">335</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00333">333</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9217138bd32f50843a1017b4ddee891c"></a>
+<a class="anchor" id="a01fabd8cb467368e954ecf20aa1768d6"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int Render::mWidth</td>
+          <td class="memname"><a class="el" href="class_view_volume.html">ViewVolume</a> Render::mViewVolume</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Viewport width. </p>
+<p>View Volume for frustum culling. </p>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000008">FIXME:</a></b></dt><dd>should be private </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8h_source.html#l00342">342</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00219">219</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
 
 </div>
 </div>

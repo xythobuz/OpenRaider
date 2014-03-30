@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2-dev</span>
+   &#160;<span id="projectnumber">0.1.3-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -80,15 +80,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">OpenRaider Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a href="http://openraider.sourceforge.net">OpenRaider</a> is an Open Source implementation of the classic Tomb Raider Game Engine. It was abandoned in 2003.</p>
-<p>This project aims to get <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...</p>
+<div class="textblock"><p>This is a fork of the <a href="http://openraider.sourceforge.net">OpenRaider</a> Open Source implementation of the classic Tomb Raider <a class="el" href="class_game.html" title="Game abstraction. ">Game</a> Engine. The original project was abandoned in 2003.</p>
+<p>This fork aims to get <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...</p>
 <p>If you just want to see <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> doing something on your Mac, without installing any of the dependencies needed to build <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>, grab the Mac App Bundle from the <a href="https://github.com/xythobuz/OpenRaider/releases">most recent release</a>.</p>
 <p>It seems as if <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!</p>
 <h2>Configuration</h2>
-<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> needs some configuration files, and level data and assets from custom levels or the Tomb Raider games. These are stored in <code>~/.<a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a></code>. Running the included <code>setup.sh</code> will create/copy the necessary files and directories.</p>
-<p>You still need to add level files in <code>~/.OpenRaider/paks/</code> and add them to <code>~/.OpenRaider/OpenRaider.init</code>. Dust off your old Tomb Raider CDs or grab some <a href="http://www.aspidetr.com/levels/yvel-woods-v1-5/">custom levels</a> from the interwebs.</p>
+<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> needs some configuration files, and level data and assets from custom levels or the Tomb Raider games. These are stored in <code>~/.<a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a></code>. Running <code>make setup</code> will create/copy the necessary files and directories.</p>
+<p>You still need to add level files in <code>~/.OpenRaider/paks/</code>. Dust off your old Tomb Raider CDs or grab some <a href="http://www.aspidetr.com/levels/yvel-woods-v1-5/">custom levels</a> from the interwebs.</p>
 <h2>Documentation</h2>
-<p>All previously included documentation was moved into the <a href="https://github.com/xythobuz/OpenRaider/wiki/_pages">OpenRaider Repo Wiki</a>. Also take a look at the <a href="https://github.com/xythobuz/OpenRaider/wiki/Bugs">BUGS</a>, <a href="https://github.com/xythobuz/OpenRaider/wiki/To-Do">TODO</a> and <a href="https://github.com/xythobuz/OpenRaider/wiki/Requirements">Requirements</a>.</p>
+<p>All previously included documentation was moved into the <a href="https://github.com/xythobuz/OpenRaider/wiki/_pages">OpenRaider Repo Wiki</a>.</p>
 <p>A more or less recent <a href="http://xythobuz.github.io/OpenRaider/">Doxygen documentation</a> of <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> should be on the Github Pages for <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>.</p>
 <h2>Dependencies</h2>
 <p>Basically, <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> depends on the following:</p>
@@ -96,7 +96,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>OpenGL</li>
 <li>SDL2 &amp; SDL2-TTF</li>
 <li>OpenAL &amp; ALUT</li>
-<li>Posix Threads</li>
 <li>zlib</li>
 <li>cmake as build system</li>
 </ul>
@@ -112,194 +111,57 @@ make
 sudo make install
 </pre><p>Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won't need to compile freealut.</p>
 <h2>Building</h2>
-<p>Do a standard cmake out-of-source build and then run the resulting executable: </p>
-<pre class="fragment">mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Debug ..
-make
-./src/OpenRaider
+<p>Do a standard cmake out-of-source build to get a debug configuration and then run the resulting executable: </p>
+<pre class="fragment">mkdir build &amp;&amp; cd build
+cmake ..
+make run
 </pre><p>On Mac OS X, running <code>make install</code> will produce a (more or less) distributable OpenRaider.app bundle.</p>
-<p>To build all Unit Tests run <code>make tests</code>, to build and run most of them use <code>make testRun</code>.</p>
-<p>To run a <a class="el" href="class_tomb_raider.html" title="Loads maps, meshes, textures... ">TombRaider</a> level loader regression test use <code>make testReg</code>. The results will be put into log files in your build folder.</p>
 <p>You can run a static analysis with cppcheck using <code>make check</code>, <code>make checkFull</code> or <code>make checkConfig</code>.</p>
 <p>A Doxygen API documentation can be created with <code>make doc</code>.</p>
 <p><code>make clean</code> should remove all intermediary files. <code>make run</code> will run the binary.</p>
+<p>You can also generate working XCode Project files with <code>cmake -G Xcode ..</code>.</p>
 <h2>Usage</h2>
 <h3>Configuration file</h3>
-<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> will try to load <code>~/.OpenRaider/OpenRaider.init</code> or, if it doesn't exist, <code>OpenRaider.init</code> from the current directory. Running <code>make setup</code> or the <code>cmake/setup.sh</code> script will create a minimal configuration in your home directory.</p>
+<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> will try to load <code>~/.OpenRaider/OpenRaider.ini</code> or, if it doesn't exist, <code>OpenRaider.ini</code> from the current directory. Running <code>make setup</code> will create a minimal configuration in your home directory.</p>
 <p>The configuration file format is very simple:</p>
 <ul>
-<li>Anything following a <code>#</code> up to the next <code>\n</code> will be ignored.</li>
-<li>Lines starting with an <code>@</code> mark a "preprocessor" command. The only one currently implemented is <code>@include</code>, allowing you to include another file as configuration file.</li>
-<li>Lines surrounded with <code>[]</code>, eg. <code>[Engine.OpenGL.Driver]</code> set the mode for following commands.</li>
-<li>Everything else is interpreted as command for the current mode.</li>
+<li>Every line will be executed as in-game console command</li>
+<li>The # character marks the beginning of a single-line comment</li>
 </ul>
 <h3>Level PAKs</h3>
-<p>You can use paks from any Tomb Raider version supported and most user made paks for Tomb Raider. Only PHD, TR1, TR2, TR3, and TR4 paks are supported as of this writing.</p>
+<p>You can use paks from any classic Tomb Raider <a class="el" href="class_game.html" title="Game abstraction. ">Game</a> (1 - 5) and most user made paks for Tomb Raider. Tomb Raider 5 support is however still very limited.</p>
 <h3><a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a> FXs</h3>
-<p>Setting up external sound SFX, for TR2 and TR3 paks only.</p>
 <p>TR2 and TR3 paks (both have file extension <code>.tr2</code>) don't have sound data contained in the pak itself, but instead they share a common SFX file (often MAIN.SFX) for each pak from a given Tomb Raider version.</p>
-<p>Previously, <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> tried to load an SFX file with the same name as the level file, with <code>.sfx</code> added to the end. You had to create a symlink for each level to the SFX file if you were using original Tomb Raider levels, like this: </p>
-<pre class="fragment">cd ~/.OpenRaider/paks/tr3/
-cp /mnt/cdrom/data/MAIN.SFX .
-for i in *.tr2; do ln -s MAIN.SFX $i.sfx; done
-</pre><p>Now, <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> just tries to load a <code>MAIN.SFX</code> in the same folder as the level file. If you want to change this behaviour, this happens around line 1075 of <code><a class="el" href="_open_raider_8cpp.html">src/OpenRaider.cpp</a></code>.</p>
-<h3>Key Bindings</h3>
+<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> tries to load a <code>MAIN.SFX</code> from the same folder as the selected level file.</p>
+<h3>Default Key Bindings</h3>
 <table class="doxtable">
 <tr>
 <th align="right">Key </th><th align="left">Action  </th></tr>
 <tr>
-<td align="right">&lt;Alt&gt;&lt;Enter&gt; </td><td align="left">Toggle fullscreen </td></tr>
+<td align="right">&lt;Esc&gt; </td><td align="left">Toggle menu </td></tr>
 <tr>
-<td align="right">&lt;Esc&gt; </td><td align="left">Interactive Level load menu </td></tr>
-<tr>
-<td align="right">` </td><td align="left">Console toggle on/off </td></tr>
-<tr>
-<td align="right">Mouse </td><td align="left">Turn </td></tr>
-<tr>
-<td align="right">MouseBtn Left </td><td align="left">Shoot </td></tr>
+<td align="right">&lt;backquote&gt; </td><td align="left"><a class="el" href="class_console.html" title="Console &#39;overlay&#39;. ">Console</a> toggle on/off </td></tr>
 <tr>
 <td align="right">w </td><td align="left">Move forward </td></tr>
 <tr>
 <td align="right">s </td><td align="left">Move back </td></tr>
 <tr>
-<td align="right">e </td><td align="left">Move down </td></tr>
+<td align="right">a </td><td align="left">Move left </td></tr>
 <tr>
-<td align="right">q </td><td align="left">Move up </td></tr>
+<td align="right">d </td><td align="left">Move right </td></tr>
 <tr>
-<td align="right">r </td><td align="left">Play sound quick test </td></tr>
+<td align="right">&lt;space&gt; </td><td align="left">Jump </td></tr>
 <tr>
-<td align="right">/ </td><td align="left">Drop a waypoint test (formally undocumented) </td></tr>
+<td align="right">&lt;left ctrl&gt; </td><td align="left">crouch </td></tr>
 <tr>
-<td align="right">[ ] </td><td align="left">Adjust idle animation for testing </td></tr>
+<td align="right">Mouse </td><td align="left">Turn </td></tr>
+<tr>
+<td align="right">MouseBtn Left </td><td align="left">Shoot/Use </td></tr>
+<tr>
+<td align="right">MouseBtn Right </td><td align="left">Holster/Equip weapons </td></tr>
 </table>
 <h3>Console/Config Commands</h3>
-<p>Console commands (BOOL is now '0' or '1' for less typing). Pressing &lt;UP&gt; will go back to last command entered (saves typing).</p>
-<h4><a class="el" href="class_network.html" title="Networking Singleton class. ">Network</a></h4>
-<table class="doxtable">
-<tr>
-<th align="right">Command </th><th align="left">Action  </th></tr>
-<tr>
-<td align="right">server </td><td align="left">Start network listen server </td></tr>
-<tr>
-<td align="right">killserver </td><td align="left">Stop network listen server </td></tr>
-<tr>
-<td align="right">port INT </td><td align="left">Set network port number </td></tr>
-<tr>
-<td align="right">connect HOSTNAME </td><td align="left">Connect to network server at HOSTNAME </td></tr>
-<tr>
-<td align="right">disconnect </td><td align="left">Disconnect from network server </td></tr>
-</table>
-<h4>Game</h4>
-<table class="doxtable">
-<tr>
-<th align="right">Command </th><th align="left">Action  </th></tr>
-<tr>
-<td align="right">quit </td><td align="left">Quit the game </td></tr>
-<tr>
-<td align="right">sshot </td><td align="left">Take screenshot </td></tr>
-<tr>
-<td align="right">play INT </td><td align="left">Play sound fx with number </td></tr>
-<tr>
-<td align="right">loadlevel STRING </td><td align="left">Load level with mapname STRING </td></tr>
-<tr>
-<td align="right">sensitivity.x FLOAT </td><td align="left">Set mouse sensitivity for X movement </td></tr>
-<tr>
-<td align="right">sensitivity.y FLOAT </td><td align="left">Set mouse sensitivity for Y movement </td></tr>
-<tr>
-<td align="right">fullscreen </td><td align="left">Toggles fullscreen mode </td></tr>
-<tr>
-<td align="right">walk </td><td align="left">Toggle world clipping on </td></tr>
-<tr>
-<td align="right">ghost </td><td align="left">Toggle world clipping off </td></tr>
-<tr>
-<td align="right">fly </td><td align="left">Toggle world clipping off without gravity </td></tr>
-<tr>
-<td align="right">noclip </td><td align="left">Toggle world clipping in cycle </td></tr>
-<tr>
-<td align="right">hop </td><td align="left">Toggle room hopping hack </td></tr>
-<tr>
-<td align="right">showfps BOOL </td><td align="left">Show FPS </td></tr>
-<tr>
-<td align="right">resize STRING </td><td align="left">Change resolution to <code>xga</code>, <code>svga</code> or <code>vga</code> </td></tr>
-</table>
-<h4><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a></h4>
-<table class="doxtable">
-<tr>
-<th align="right">Command </th><th align="left">Action  </th></tr>
-<tr>
-<td align="right">wireframe </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> in wireframe (for debugging) </td></tr>
-<tr>
-<td align="right">solid </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> solid color polygons </td></tr>
-<tr>
-<td align="right">texture </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> with textures </td></tr>
-<tr>
-<td align="right">vertexlight </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> with vertexlights </td></tr>
-<tr>
-<td align="right">titlescreen </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> titlescreen </td></tr>
-<tr>
-<td align="right">r_animate BOOL </td><td align="left">Animate all models at once </td></tr>
-<tr>
-<td align="right">r_upf BOOL </td><td align="left">Update room render list once per frame </td></tr>
-<tr>
-<td align="right">r_ponytail BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> ponytail on Lara </td></tr>
-<tr>
-<td align="right">r_pigtails BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> ponytails as pigtails on Lara </td></tr>
-<tr>
-<td align="right">r_ponyangle INT </td><td align="left">Set rotation of ponytail on Lara </td></tr>
-<tr>
-<td align="right">r_ponyx INT </td><td align="left">Set X offset of ponytail on Lara </td></tr>
-<tr>
-<td align="right">r_ponyy INT </td><td align="left">Set Y offset of ponytail on Lara </td></tr>
-<tr>
-<td align="right">r_ponyz INT </td><td align="left">Set Z offset of ponytail on Lara </td></tr>
-<tr>
-<td align="right">r_viewmodel INT </td><td align="left">Load skeletal model with index INT </td></tr>
-<tr>
-<td align="right">r_fog BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> fog toggle </td></tr>
-<tr>
-<td align="right">r_portal BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> portals in rooms </td></tr>
-<tr>
-<td align="right">r_particle BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> particles </td></tr>
-<tr>
-<td align="right">r_vmodel BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> view model </td></tr>
-<tr>
-<td align="right">r_sprite BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> sprites (room fx and items) </td></tr>
-<tr>
-<td align="right">r_roommodel BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> room models </td></tr>
-<tr>
-<td align="right">r_entmodel BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> entity models </td></tr>
-<tr>
-<td align="right">r_light BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> with GL lights </td></tr>
-<tr>
-<td align="right">r_ralpha BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> alpha pass for rooms </td></tr>
-<tr>
-<td align="right">r_vis BOOL </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> using visibility checking </td></tr>
-<tr>
-<td align="right">r_oneroom </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> only the current room </td></tr>
-<tr>
-<td align="right">r_allrooms </td><td align="left"><a class="el" href="class_render.html" title="OpenRaider Renderer class. ">Render</a> all rooms in the level (debug/stress) </td></tr>
-</table>
-<h4>Set Commands</h4>
-<table class="doxtable">
-<tr>
-<th align="right">Command </th><th align="left">Action  </th></tr>
-<tr>
-<td align="right">mousegrab BOOL </td><td align="left">Set mouse grabbing on/off </td></tr>
-</table>
-<h4>Stat Commands</h4>
-<table class="doxtable">
-<tr>
-<th align="right">Command </th><th align="left">Action  </th></tr>
-<tr>
-<td align="right">fps </td><td align="left">Toggle showing FPS </td></tr>
-<tr>
-<td align="right">pos </td><td align="left">Show current location </td></tr>
-<tr>
-<td align="right">room </td><td align="left"></td></tr>
-<tr>
-<td align="right">flags </td><td align="left">Show room flags in hex </td></tr>
-</table>
+<p>Every available command should be listed in the in-game help. Just type <code>help</code> in the <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> console, which can be activated by default with the backquote key.</p>
 <h3>Wireframe mode colors</h3>
 <ul>
 <li>Red (thick) lines are portal outlines</li>
@@ -312,10 +174,6 @@ for i in *.tr2; do ln -s MAIN.SFX $i.sfx; done
 <li>Pink dots are visibility checks</li>
 </ul>
 <h2>License</h2>
-<p>The included example Font, <a href="http://www.droidfonts.com/licensing/">Droid Sans Mono</a>, was created by Steve Matteson and is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.</p>
-<p>The included sample WAV file is made from the <a href="http://brechler-web.de/fallingmate/">Falling Mate ringtone</a> by <a href="http://plaetzchen.cc">Plaetzchen</a>.</p>
-<p>The included Unit Test Framework <a href="https://github.com/silentbicycle/greatest/">greatest</a> by Scott Vokes is licensed under the <a href="http://www.isc.org/downloads/software-support-policy/isc-license/">ISC License</a>.</p>
-<p>The included cmake scripts <a href="https://github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake">FindALUT</a>, <a href="https://github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake">FindSDL2</a> and <a href="https://github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake">FindSDL2TTF</a> are released under the Boost Software License (for FindALUT) and under the BSD License for the other two. Authors: Ryan Pavlik, Iowa State University, Eric Wing and Kitware Inc.</p>
 <p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> is based on code, specs, and alogrithms from:</p>
 <ul>
 <li>GooseEgg/Freyja 3d Modelers by Mongoose</li>
@@ -323,7 +181,21 @@ for i in *.tr2; do ln -s MAIN.SFX $i.sfx; done
 <li>TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose</li>
 </ul>
 <p>All code should be GPLed, unless otherwise noted.</p>
-<p>2013, 2014 improvements &amp; clean-up by xythobuz. </p>
+<p>Forked in December 2013 by xythobuz.</p>
+<p>The included example Font, <a href="http://www.droidfonts.com/licensing/">Droid Sans Mono</a>, was created by Steve Matteson and is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.</p>
+<p>There are some included cmake scripts:</p>
+<ul>
+<li><a href="https://github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake">FindALUT</a></li>
+<li><a href="https://github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake">FindSDL2</a></li>
+<li><a href="https://github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake">FindSDL2TTF</a></li>
+<li><a href="https://gitorious.org/vc/vc/source/a1d8b9fc31060d870386613cc72319546c850b87:cmake/FindSSE.cmake">FindSSE</a></li>
+</ul>
+<p>See the respective files in <code>cmake</code> for their licensing.</p>
+<ul>
+<li>Copyright 2009-2010 Ryan Pavlik <a href="#" onclick="location.href='mai'+'lto:'+'rpa'+'vl'+'ik@'+'ia'+'sta'+'te'+'.ed'+'u'; return false;">rpavl<span style="display: none;">.nosp@m.</span>ik@i<span style="display: none;">.nosp@m.</span>astat<span style="display: none;">.nosp@m.</span>e.ed<span style="display: none;">.nosp@m.</span>u</a> <a href="#" onclick="location.href='mai'+'lto:'+'abi'+'ry'+'an@'+'ry'+'and'+'.n'+'et'; return false;">abiry<span style="display: none;">.nosp@m.</span>an@r<span style="display: none;">.nosp@m.</span>yand.<span style="display: none;">.nosp@m.</span>net</a>, Iowa State University, Distributed under the Boost Software License.</li>
+<li>Copyright 2003-2009 Kitware, Inc.</li>
+<li>Eric Wing </li>
+</ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

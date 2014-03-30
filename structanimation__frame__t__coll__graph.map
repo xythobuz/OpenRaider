@@ -1,6 +1,0 @@
-<map id="animation_frame_t" name="animation_frame_t">
-<area shape="rect" id="node2" href="$class_vector.html" title="Vector\&lt; bone_frame\l_t * \&gt;" alt="" coords="14,305,148,346"/>
-<area shape="rect" id="node3" href="$_skeletal_model_8h.html#structbone__frame__t" title="bone_frame_t" alt="" coords="32,200,131,227"/>
-<area shape="rect" id="node4" href="$class_vector.html" title="Vector\&lt; bone_tag_t * \&gt;" alt="" coords="5,109,157,136"/>
-<area shape="rect" id="node5" href="$_skeletal_model_8h.html#structbone__tag__t" title="bone_tag_t" alt="" coords="38,5,124,32"/>
-</map>

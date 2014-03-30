@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2-dev</span>
+   &#160;<span id="projectnumber">0.1.3-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -102,7 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a6ffdae62cb2dc7589c0ec12bd4846eee"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eee">SoundFlags</a> { <a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eeea638d6e4330149070cc5f051558475205">SoundFlagsNone</a> = 0, 
-<a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eeea324a2e68682c8aa0b21bbcbf02630dca">SoundFlagsLoop</a> = 1
+<a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eeea324a2e68682c8aa0b21bbcbf02630dca">SoundFlagsLoop</a> = (1 &lt;&lt; 0)
  }</td></tr>
 <tr class="separator:a6ffdae62cb2dc7589c0ec12bd4846eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -114,9 +114,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0907389078bf740be2a5763366ad3376"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a0907389078bf740be2a5763366ad3376">~Sound</a> ()</td></tr>
 <tr class="memdesc:a0907389078bf740be2a5763366ad3376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a>.  <a href="#a0907389078bf740be2a5763366ad3376">More...</a><br/></td></tr>
 <tr class="separator:a0907389078bf740be2a5763366ad3376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ac0d7e6e2df583764ebfe0e3c0cbe34"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a9ac0d7e6e2df583764ebfe0e3c0cbe34">init</a> ()</td></tr>
-<tr class="memdesc:a9ac0d7e6e2df583764ebfe0e3c0cbe34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize sound system.  <a href="#a9ac0d7e6e2df583764ebfe0e3c0cbe34">More...</a><br/></td></tr>
-<tr class="separator:a9ac0d7e6e2df583764ebfe0e3c0cbe34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae1c8633b69065f23e0bf16f873c23c2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#aae1c8633b69065f23e0bf16f873c23c2">initialize</a> ()</td></tr>
+<tr class="memdesc:aae1c8633b69065f23e0bf16f873c23c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize sound system.  <a href="#aae1c8633b69065f23e0bf16f873c23c2">More...</a><br/></td></tr>
+<tr class="separator:aae1c8633b69065f23e0bf16f873c23c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de4a94fa5823c0bf8a93548c46b64b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a1de4a94fa5823c0bf8a93548c46b64b3">setEnabled</a> (bool on)</td></tr>
+<tr class="separator:a1de4a94fa5823c0bf8a93548c46b64b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adea39b5bc59591a21210a7a07d67fb6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#adea39b5bc59591a21210a7a07d67fb6e">setVolume</a> (float vol)</td></tr>
+<tr class="memdesc:adea39b5bc59591a21210a7a07d67fb6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the volume.  <a href="#adea39b5bc59591a21210a7a07d67fb6e">More...</a><br/></td></tr>
+<tr class="separator:adea39b5bc59591a21210a7a07d67fb6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e9aa087e064157b6cf7310825b8fc22"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a2e9aa087e064157b6cf7310825b8fc22">registeredSources</a> ()</td></tr>
+<tr class="memdesc:a2e9aa087e064157b6cf7310825b8fc22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of registered sources.  <a href="#a2e9aa087e064157b6cf7310825b8fc22">More...</a><br/></td></tr>
+<tr class="separator:a2e9aa087e064157b6cf7310825b8fc22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85b633b8dcb01ce44826486a007ee71c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a85b633b8dcb01ce44826486a007ee71c">clear</a> ()</td></tr>
+<tr class="memdesc:a85b633b8dcb01ce44826486a007ee71c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all loaded sounds.  <a href="#a85b633b8dcb01ce44826486a007ee71c">More...</a><br/></td></tr>
+<tr class="separator:a85b633b8dcb01ce44826486a007ee71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a333d11f2f3edca7c96e1b05de407df70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a333d11f2f3edca7c96e1b05de407df70">listenAt</a> (float pos[3], float angle[3])</td></tr>
 <tr class="memdesc:a333d11f2f3edca7c96e1b05de407df70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move listener and repositions them.  <a href="#a333d11f2f3edca7c96e1b05de407df70">More...</a><br/></td></tr>
 <tr class="separator:a333d11f2f3edca7c96e1b05de407df70"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,26 +149,25 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:adcdfa0f993c1375fae4ed59453d0fd52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#adcdfa0f993c1375fae4ed59453d0fd52">mEnabled</a></td></tr>
+<tr class="separator:adcdfa0f993c1375fae4ed59453d0fd52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59c303b2f626e069533505ebd9380aa4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a59c303b2f626e069533505ebd9380aa4">mInit</a></td></tr>
 <tr class="memdesc:a59c303b2f626e069533505ebd9380aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guard to ensure ausio system is active.  <a href="#a59c303b2f626e069533505ebd9380aa4">More...</a><br/></td></tr>
 <tr class="separator:a59c303b2f626e069533505ebd9380aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66de2856a0bfc14bfb79e2992cf3c51e"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a66de2856a0bfc14bfb79e2992cf3c51e">mBuffer</a> [256]</td></tr>
-<tr class="memdesc:a66de2856a0bfc14bfb79e2992cf3c51e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio buffer id list.  <a href="#a66de2856a0bfc14bfb79e2992cf3c51e">More...</a><br/></td></tr>
-<tr class="separator:a66de2856a0bfc14bfb79e2992cf3c51e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28d9901d7620fec01b4947fa54de9fd9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a28d9901d7620fec01b4947fa54de9fd9">mSource</a> [256]</td></tr>
-<tr class="memdesc:a28d9901d7620fec01b4947fa54de9fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio source id list.  <a href="#a28d9901d7620fec01b4947fa54de9fd9">More...</a><br/></td></tr>
-<tr class="separator:a28d9901d7620fec01b4947fa54de9fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45eeb6e3a80218f23e52d5c87d6b4263"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a45eeb6e3a80218f23e52d5c87d6b4263">mNextBuffer</a></td></tr>
-<tr class="memdesc:a45eeb6e3a80218f23e52d5c87d6b4263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio buffer id cursor.  <a href="#a45eeb6e3a80218f23e52d5c87d6b4263">More...</a><br/></td></tr>
-<tr class="separator:a45eeb6e3a80218f23e52d5c87d6b4263"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2756a114f371ab67b4a9af8237bf7f9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#aa2756a114f371ab67b4a9af8237bf7f9">mNextSource</a></td></tr>
-<tr class="memdesc:aa2756a114f371ab67b4a9af8237bf7f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio source id cursor.  <a href="#aa2756a114f371ab67b4a9af8237bf7f9">More...</a><br/></td></tr>
-<tr class="separator:aa2756a114f371ab67b4a9af8237bf7f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b3d3e153b010b9127d19875d9a01d38"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a2b3d3e153b010b9127d19875d9a01d38">mVolume</a></td></tr>
+<tr class="memdesc:a2b3d3e153b010b9127d19875d9a01d38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listener gain.  <a href="#a2b3d3e153b010b9127d19875d9a01d38">More...</a><br/></td></tr>
+<tr class="separator:a2b3d3e153b010b9127d19875d9a01d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78b6f29e0e724cde6b19a3d8fd0aa48a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a78b6f29e0e724cde6b19a3d8fd0aa48a">mBuffer</a></td></tr>
+<tr class="memdesc:a78b6f29e0e724cde6b19a3d8fd0aa48a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio buffer id list.  <a href="#a78b6f29e0e724cde6b19a3d8fd0aa48a">More...</a><br/></td></tr>
+<tr class="separator:a78b6f29e0e724cde6b19a3d8fd0aa48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a418bacc9d3aa87fa5a4bc0d7654e8d73"><td class="memItemLeft" align="right" valign="top">std::vector&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a418bacc9d3aa87fa5a4bc0d7654e8d73">mSource</a></td></tr>
+<tr class="memdesc:a418bacc9d3aa87fa5a4bc0d7654e8d73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio source id list.  <a href="#a418bacc9d3aa87fa5a4bc0d7654e8d73">More...</a><br/></td></tr>
+<tr class="separator:a418bacc9d3aa87fa5a4bc0d7654e8d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the audio manager for <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>. </p>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00015">15</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00017">17</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a6ffdae62cb2dc7589c0ec12bd4846eee"></a>
 <div class="memitem">
@@ -170,14 +180,14 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a6ffdae62cb2dc7589c0ec12bd4846eeea638d6e4330149070cc5f051558475205"></a>SoundFlagsNone</em>&nbsp;</td><td class="fielddoc">
-<p>No FX. </p>
+<p>No effect. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a6ffdae62cb2dc7589c0ec12bd4846eeea324a2e68682c8aa0b21bbcbf02630dca"></a>SoundFlagsLoop</em>&nbsp;</td><td class="fielddoc">
 <p>Enable looping during playback. </p>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00018">18</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00020">20</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -197,7 +207,7 @@ Private Attributes</h2></td></tr>
 
 <p>Constructs an object of <a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a>. </p>
 
-<p>Definition at line <a class="el" href="src_2_sound_8cpp_source.html#l00028">28</a> of file <a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00026">26</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -216,7 +226,7 @@ Private Attributes</h2></td></tr>
 
 <p>Deconstructs an object of <a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a>. </p>
 
-<p>Definition at line <a class="el" href="src_2_sound_8cpp_source.html#l00038">38</a> of file <a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00032">32</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -256,14 +266,14 @@ Private Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">filename</td><td>not NULL! </td></tr>
     <tr><td class="paramname">source</td><td>not NULL! Returns new source ID or -1 on error. </td></tr>
-    <tr><td class="paramname">flags</td><td>(un)set options. Use SoundFlags enum </td></tr>
+    <tr><td class="paramname">flags</td><td>set options. Use SoundFlags enum bitwise OR-ed </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag</dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000041">FIXME:</a></b></dt><dd>Seperate sourcing and buffering, Mongoose 2002.01.04 </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000040">FIXME:</a></b></dt><dd>Seperate sourcing and buffering, Mongoose 2002.01.04 </dd></dl>
 
-<p>Definition at line <a class="el" href="src_2_sound_8cpp_source.html#l00099">99</a> of file <a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00133">133</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -309,23 +319,42 @@ Private Attributes</h2></td></tr>
     <tr><td class="paramname">wav</td><td>not NULL! Is a valid waveform buffer! </td></tr>
     <tr><td class="paramname">length</td><td>length of wav buffer </td></tr>
     <tr><td class="paramname">source</td><td>not NULL! Returns new source ID or -1 on error. </td></tr>
-    <tr><td class="paramname">flags</td><td>(un)set options. Use SoundFlags enum </td></tr>
+    <tr><td class="paramname">flags</td><td>set options. Use SoundFlags enum bitwise OR-ed </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000042">FIXME:</a></b></dt><dd>Should free alut buffer? </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000041">FIXME:</a></b></dt><dd>Should free alut buffer? </dd></dl>
 
-<p>Definition at line <a class="el" href="src_2_sound_8cpp_source.html#l00162">162</a> of file <a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00190">190</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9ac0d7e6e2df583764ebfe0e3c0cbe34"></a>
+<a class="anchor" id="a85b633b8dcb01ce44826486a007ee71c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Sound::init </td>
+          <td class="memname">void Sound::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove all loaded sounds. </p>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00093">93</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aae1c8633b69065f23e0bf16f873c23c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Sound::initialize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -336,7 +365,7 @@ Private Attributes</h2></td></tr>
 <p>Initialize sound system. </p>
 <dl class="section return"><dt>Returns</dt><dd>0 on success or &lt; 0 error flags </dd></dl>
 
-<p>Definition at line <a class="el" href="src_2_sound_8cpp_source.html#l00047">47</a> of file <a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00037">37</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -373,7 +402,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_sound_8cpp_source.html#l00079">79</a> of file <a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00108">108</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -399,7 +428,71 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_sound_8cpp_source.html#l00234">234</a> of file <a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00251">251</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2e9aa087e064157b6cf7310825b8fc22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Sound::registeredSources </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get number of registered sources. </p>
+<dl class="section return"><dt>Returns</dt><dd>number of registered sources </dd></dl>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00084">84</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1de4a94fa5823c0bf8a93548c46b64b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sound::setEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>on</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00066">66</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adea39b5bc59591a21210a7a07d67fb6e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sound::setVolume </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>vol</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vol</td><td>new source gain </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00070">70</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -436,7 +529,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_sound_8cpp_source.html#l00089">89</a> of file <a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00120">120</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -462,12 +555,12 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="src_2_sound_8cpp_source.html#l00252">252</a> of file <a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8cpp_source.html#l00262">262</a> of file <a class="el" href="_sound_8cpp_source.html">Sound.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a66de2856a0bfc14bfb79e2992cf3c51e"></a>
+<a class="anchor" id="a78b6f29e0e724cde6b19a3d8fd0aa48a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -475,7 +568,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int Sound::mBuffer[256]</td>
+          <td class="memname">std::vector&lt;unsigned int&gt; Sound::mBuffer</td>
         </tr>
       </table>
   </td>
@@ -487,7 +580,29 @@ Private Attributes</h2></td></tr>
 
 <p>Audio buffer id list. </p>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00086">86</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00110">110</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adcdfa0f993c1375fae4ed59453d0fd52"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Sound::mEnabled</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00107">107</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
@@ -511,11 +626,11 @@ Private Attributes</h2></td></tr>
 
 <p>Guard to ensure ausio system is active. </p>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00085">85</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00108">108</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a45eeb6e3a80218f23e52d5c87d6b4263"></a>
+<a class="anchor" id="a418bacc9d3aa87fa5a4bc0d7654e8d73"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -523,55 +638,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int Sound::mNextBuffer</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Audio buffer id cursor. </p>
-
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00088">88</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa2756a114f371ab67b4a9af8237bf7f9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int Sound::mNextSource</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Audio source id cursor. </p>
-
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00089">89</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a28d9901d7620fec01b4947fa54de9fd9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int Sound::mSource[256]</td>
+          <td class="memname">std::vector&lt;unsigned int&gt; Sound::mSource</td>
         </tr>
       </table>
   </td>
@@ -583,13 +650,37 @@ Private Attributes</h2></td></tr>
 
 <p>Audio source id list. </p>
 
-<p>Definition at line <a class="el" href="_sound_8h_source.html#l00087">87</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00111">111</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2b3d3e153b010b9127d19875d9a01d38"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Sound::mVolume</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Listener gain. </p>
+
+<p>Definition at line <a class="el" href="_sound_8h_source.html#l00109">109</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="_sound_8h_source.html">Sound.h</a></li>
-<li>src/<a class="el" href="src_2_sound_8cpp_source.html">Sound.cpp</a></li>
+<li>src/<a class="el" href="_sound_8cpp_source.html">Sound.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

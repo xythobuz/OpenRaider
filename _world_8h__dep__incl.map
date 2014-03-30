@@ -1,7 +1,15 @@
 <map id="include/World.h" name="include/World.h">
-<area shape="rect" id="node2" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="168,80,283,107"/>
-<area shape="rect" id="node3" href="$_open_raider_8h.html" title="Main Game Singleton. " alt="" coords="5,155,149,181"/>
-<area shape="rect" id="node4" href="$_open_raider_8cpp.html" title="src/OpenRaider.cpp" alt="" coords="130,229,267,256"/>
-<area shape="rect" id="node6" href="$_world_8cpp.html" title="The game world (model) " alt="" coords="357,80,456,107"/>
-<area shape="rect" id="node5" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="174,155,281,181"/>
+<area shape="rect" id="node2" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="649,80,769,107"/>
+<area shape="rect" id="node3" href="$_game_8h.html" title="Game abstraction. " alt="" coords="553,155,668,181"/>
+<area shape="rect" id="node14" href="$_world_8cpp.html" title="The game world (model) " alt="" coords="794,80,899,107"/>
+<area shape="rect" id="node11" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="835,379,948,405"/>
+<area shape="rect" id="node4" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="536,229,685,256"/>
+<area shape="rect" id="node8" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="5,379,112,405"/>
+<area shape="rect" id="node13" href="$_open_raider_8cpp.html" title="Main Game Object. " alt="" coords="392,304,533,331"/>
+<area shape="rect" id="node5" href="$main_8h.html" title="Where main() is. " alt="" coords="557,304,664,331"/>
+<area shape="rect" id="node6" href="$_camera_8cpp.html" title="OpenGL camera class. " alt="" coords="553,379,668,405"/>
+<area shape="rect" id="node7" href="$_console_8cpp.html" title="Console &#39;overlay&#39;. " alt="" coords="693,379,811,405"/>
+<area shape="rect" id="node9" href="$main_8cpp.html" title="Where main() is. " alt="" coords="136,379,235,405"/>
+<area shape="rect" id="node10" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="259,379,361,405"/>
+<area shape="rect" id="node12" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="387,379,528,405"/>
 </map>

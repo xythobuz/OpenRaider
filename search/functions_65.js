@@ -1,13 +1,9 @@
 var searchData=
 [
   ['emitter',['Emitter',['../class_emitter.html#ac41d7cd19307ad9e9ef30fef12f1281f',1,'Emitter']]],
-  ['empty',['Empty',['../class_list.html#af4e5c9ead70957ebab8d2d4d2ac6f83f',1,'List::Empty()'],['../class_vector.html#a82e899c6fb4771fee489f30a07a5c5a2',1,'Vector::empty()']]],
-  ['end',['end',['../class_vector.html#a2e5cbbdc05f0f8b71dd91b46c7aad0ac',1,'Vector']]],
   ['engine',['Engine',['../class_tomb_raider.html#aa020667e2394f5c3a8173ee0231ef0fb',1,'TombRaider']]],
-  ['equalepsilon',['equalEpsilon',['../_mat_math_8h.html#abf30bf910851d5d113d324c2d3fa7c1a',1,'equalEpsilon(vec_t a, vec_t b):&#160;MatMath.cpp'],['../src_2_mat_math_8cpp.html#abf30bf910851d5d113d324c2d3fa7c1a',1,'equalEpsilon(vec_t a, vec_t b):&#160;MatMath.cpp']]],
-  ['erase',['erase',['../class_vector.html#a784061ba0f2123e75054838484d96cbe',1,'Vector']]],
-  ['event_5fdisplay',['event_display',['../test_2_g_l_string_8cpp.html#abb8b6637aa287d5c7580c5434c2a239e',1,'GLString.cpp']]],
-  ['event_5fresize',['event_resize',['../test_2_g_l_string_8cpp.html#ad4fe41f9fef455aca6e9ac24c29177f7',1,'GLString.cpp']]],
-  ['eventanimtest',['eventAnimTest',['../_open_raider_8cpp.html#afe5c1b68400922c3c2438382ee58b334',1,'OpenRaider.cpp']]],
+  ['equalepsilon',['equalEpsilon',['../math_8h.html#abf30bf910851d5d113d324c2d3fa7c1a',1,'equalEpsilon(vec_t a, vec_t b):&#160;math.cpp'],['../math_8cpp.html#abf30bf910851d5d113d324c2d3fa7c1a',1,'equalEpsilon(vec_t a, vec_t b):&#160;math.cpp']]],
+  ['eventhandling',['eventHandling',['../class_window.html#ad0e10dbad80b888d431459e0fa772266',1,'Window::eventHandling()'],['../class_window_s_d_l.html#a77e59286d958d1be56b9dc53108e58b0',1,'WindowSDL::eventHandling()']]],
+  ['expanddirectorynames',['expandDirectoryNames',['../class_open_raider.html#af1bf8fcd30a018e49159e5f9a7c9616c',1,'OpenRaider']]],
   ['extractmeshes',['extractMeshes',['../class_tomb_raider.html#a6972a37348fb59f3e2eb5a89c419bda4',1,'TombRaider']]]
 ];

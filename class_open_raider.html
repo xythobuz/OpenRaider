@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2-dev</span>
+   &#160;<span id="projectnumber">0.1.3-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -86,27 +86,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_open_raider-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">OpenRaider Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Main Game Singleton.  
+<p>Main <a class="el" href="class_game.html" title="Game abstraction. ">Game</a> Singleton.  
  <a href="class_open_raider.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for OpenRaider:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_open_raider__inherit__graph.svg" width="102" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for OpenRaider:</div>
 <div class="dyncontent">
@@ -116,279 +108,115 @@ Collaboration diagram for OpenRaider:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a56bfb54b529fcd6b77c2ded160396621"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a56bfb54b529fcd6b77c2ded160396621">~OpenRaider</a> ()</td></tr>
-<tr class="memdesc:a56bfb54b529fcd6b77c2ded160396621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>.  <a href="#a56bfb54b529fcd6b77c2ded160396621">More...</a><br/></td></tr>
-<tr class="separator:a56bfb54b529fcd6b77c2ded160396621"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb23fbd7cdb8923e3653e0300d4928cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#adb23fbd7cdb8923e3653e0300d4928cd">start</a> ()</td></tr>
-<tr class="memdesc:adb23fbd7cdb8923e3653e0300d4928cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the Game.  <a href="#adb23fbd7cdb8923e3653e0300d4928cd">More...</a><br/></td></tr>
-<tr class="separator:adb23fbd7cdb8923e3653e0300d4928cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d6a1893b6df72cb86be3a4102e1bebf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a8d6a1893b6df72cb86be3a4102e1bebf">handleMouseMotionEvent</a> (float x, float y)</td></tr>
-<tr class="memdesc:a8d6a1893b6df72cb86be3a4102e1bebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mouse motion input.  <a href="#a8d6a1893b6df72cb86be3a4102e1bebf">More...</a><br/></td></tr>
-<tr class="separator:a8d6a1893b6df72cb86be3a4102e1bebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa908c43aeee0df9aa71aa377d2c62d45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#aa908c43aeee0df9aa71aa377d2c62d45">handleBoundKeyPressEvent</a> (unsigned int key)</td></tr>
-<tr class="memdesc:aa908c43aeee0df9aa71aa377d2c62d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives <code>Event</code> bound to <code>Cmd</code> from <code>Key</code> press.  <a href="#aa908c43aeee0df9aa71aa377d2c62d45">More...</a><br/></td></tr>
-<tr class="separator:aa908c43aeee0df9aa71aa377d2c62d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae6c39b204754746de3085d2127cde2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#aae6c39b204754746de3085d2127cde2c">handleBoundKeyReleaseEvent</a> (unsigned int key)</td></tr>
-<tr class="memdesc:aae6c39b204754746de3085d2127cde2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives <code>Event</code> bound to <code>Cmd</code> from <code>Key</code> release.  <a href="#aae6c39b204754746de3085d2127cde2c">More...</a><br/></td></tr>
-<tr class="separator:aae6c39b204754746de3085d2127cde2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1fa63178b7af5fb6ee0519390efc2fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ae1fa63178b7af5fb6ee0519390efc2fd">handleCommand</a> (char *<a class="el" href="class_system.html#adb64c0001a2e42daa5f9fda46ec80319">command</a>, unsigned int mode)</td></tr>
-<tr class="memdesc:ae1fa63178b7af5fb6ee0519390efc2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes valid command based on keyword.  <a href="#ae1fa63178b7af5fb6ee0519390efc2fd">More...</a><br/></td></tr>
-<tr class="separator:ae1fa63178b7af5fb6ee0519390efc2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8c408d8cc090ea92a85e2f1574fa7c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ad8c408d8cc090ea92a85e2f1574fa7c4">handleConsoleKeyPressEvent</a> (unsigned int key, unsigned int mod)</td></tr>
-<tr class="memdesc:ad8c408d8cc090ea92a85e2f1574fa7c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives <code>Key</code> code from text input in console mode.  <a href="#ad8c408d8cc090ea92a85e2f1574fa7c4">More...</a><br/></td></tr>
-<tr class="separator:ad8c408d8cc090ea92a85e2f1574fa7c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70c655bfd1aae0d4f10e490840fec09a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a70c655bfd1aae0d4f10e490840fec09a">handleKeyPressEvent</a> (unsigned int key, unsigned int mod)</td></tr>
-<tr class="memdesc:a70c655bfd1aae0d4f10e490840fec09a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes command associated with key press, if any.  <a href="#a70c655bfd1aae0d4f10e490840fec09a">More...</a><br/></td></tr>
-<tr class="separator:a70c655bfd1aae0d4f10e490840fec09a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf1c3505742b8c5e53946ed4d87c3609"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#adf1c3505742b8c5e53946ed4d87c3609">handleKeyReleaseEvent</a> (unsigned int key, unsigned int mod)</td></tr>
-<tr class="memdesc:adf1c3505742b8c5e53946ed4d87c3609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes command associated with key release, if any.  <a href="#adf1c3505742b8c5e53946ed4d87c3609">More...</a><br/></td></tr>
-<tr class="separator:adf1c3505742b8c5e53946ed4d87c3609"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a052263b9c969fcaa3d09c872857fdd70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a052263b9c969fcaa3d09c872857fdd70">initGL</a> ()</td></tr>
-<tr class="separator:a052263b9c969fcaa3d09c872857fdd70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11606b638f7570cc13aefcdf1ef6a880"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a11606b638f7570cc13aefcdf1ef6a880">gameFrame</a> ()</td></tr>
-<tr class="memdesc:a11606b638f7570cc13aefcdf1ef6a880"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass a time frame and render a new frame.  <a href="#a11606b638f7570cc13aefcdf1ef6a880">More...</a><br/></td></tr>
-<tr class="separator:a11606b638f7570cc13aefcdf1ef6a880"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a353a516d187386ac66b8a2d1aa373873"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a353a516d187386ac66b8a2d1aa373873">print</a> (bool dump_stdout, const char *format,...)</td></tr>
-<tr class="memdesc:a353a516d187386ac66b8a2d1aa373873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs message in game console.  <a href="#a353a516d187386ac66b8a2d1aa373873">More...</a><br/></td></tr>
-<tr class="separator:a353a516d187386ac66b8a2d1aa373873"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_s_d_l_system"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_s_d_l_system')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_s_d_l_system.html">SDLSystem</a></td></tr>
-<tr class="memitem:a3bc62709ebb1836e195bcf0b3288cce1 inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#a3bc62709ebb1836e195bcf0b3288cce1">SDLSystem</a> ()</td></tr>
-<tr class="memdesc:a3bc62709ebb1836e195bcf0b3288cce1 inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an object of <a class="el" href="class_s_d_l_system.html" title="SDL System interface implementation. ">SDLSystem</a>.  <a href="#a3bc62709ebb1836e195bcf0b3288cce1">More...</a><br/></td></tr>
-<tr class="separator:a3bc62709ebb1836e195bcf0b3288cce1 inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a772dbadad5c324b45186d524d8e9e5e8 inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#a772dbadad5c324b45186d524d8e9e5e8">~SDLSystem</a> ()</td></tr>
-<tr class="memdesc:a772dbadad5c324b45186d524d8e9e5e8 inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_s_d_l_system.html" title="SDL System interface implementation. ">SDLSystem</a>.  <a href="#a772dbadad5c324b45186d524d8e9e5e8">More...</a><br/></td></tr>
-<tr class="separator:a772dbadad5c324b45186d524d8e9e5e8 inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dc2ce5e46f82bd0921de087285c9d31 inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#a9dc2ce5e46f82bd0921de087285c9d31">getTicks</a> ()</td></tr>
-<tr class="memdesc:a9dc2ce5e46f82bd0921de087285c9d31 inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get ticks.  <a href="#a9dc2ce5e46f82bd0921de087285c9d31">More...</a><br/></td></tr>
-<tr class="separator:a9dc2ce5e46f82bd0921de087285c9d31 inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab57c4ba735d2493d2e047b0425ee345 inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#aab57c4ba735d2493d2e047b0425ee345">glPrintf2d</a> (float x, float y, char *string)</td></tr>
-<tr class="memdesc:aab57c4ba735d2493d2e047b0425ee345 inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders string in OpenGL (2D projection).  <a href="#aab57c4ba735d2493d2e047b0425ee345">More...</a><br/></td></tr>
-<tr class="separator:aab57c4ba735d2493d2e047b0425ee345 inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6884ef14810507fddbbc38f3d75838f5 inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#a6884ef14810507fddbbc38f3d75838f5">glPrintf3d</a> (float x, float y, float z, char *string)</td></tr>
-<tr class="memdesc:a6884ef14810507fddbbc38f3d75838f5 inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders string in OpenGL (3D projection).  <a href="#a6884ef14810507fddbbc38f3d75838f5">More...</a><br/></td></tr>
-<tr class="separator:a6884ef14810507fddbbc38f3d75838f5 inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a580b3102d110eadf2d3168201dab91fe inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#a580b3102d110eadf2d3168201dab91fe">initVideo</a> (unsigned int width, unsigned int height, bool fullscreen)</td></tr>
-<tr class="memdesc:a580b3102d110eadf2d3168201dab91fe inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start up video subsystem.  <a href="#a580b3102d110eadf2d3168201dab91fe">More...</a><br/></td></tr>
-<tr class="separator:a580b3102d110eadf2d3168201dab91fe inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1570a193291424708e2d326241c82f9 inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#ad1570a193291424708e2d326241c82f9">resize</a> (unsigned int width, unsigned int height)</td></tr>
-<tr class="memdesc:ad1570a193291424708e2d326241c82f9 inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes game window.  <a href="#ad1570a193291424708e2d326241c82f9">More...</a><br/></td></tr>
-<tr class="separator:ad1570a193291424708e2d326241c82f9 inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae440495ed0dcae08937b7461d1bb3dde inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#ae440495ed0dcae08937b7461d1bb3dde">runGame</a> ()</td></tr>
-<tr class="memdesc:ae440495ed0dcae08937b7461d1bb3dde inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start game loop.  <a href="#ae440495ed0dcae08937b7461d1bb3dde">More...</a><br/></td></tr>
-<tr class="separator:ae440495ed0dcae08937b7461d1bb3dde inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2234bc651ebcca72b63aec3995cf2221 inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#a2234bc651ebcca72b63aec3995cf2221">setGrabMouse</a> (bool on)</td></tr>
-<tr class="separator:a2234bc651ebcca72b63aec3995cf2221 inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8277c33828385ffe8c7e68fa08580d52 inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#a8277c33828385ffe8c7e68fa08580d52">shutdown</a> (int i)</td></tr>
-<tr class="memdesc:a8277c33828385ffe8c7e68fa08580d52 inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the game subsystems, exits game loop.  <a href="#a8277c33828385ffe8c7e68fa08580d52">More...</a><br/></td></tr>
-<tr class="separator:a8277c33828385ffe8c7e68fa08580d52 inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad3caf289a517570274380e132928bbf inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#aad3caf289a517570274380e132928bbf">swapBuffersGL</a> ()</td></tr>
-<tr class="memdesc:aad3caf289a517570274380e132928bbf inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps OpenGL buffers. Call at end of frame.  <a href="#aad3caf289a517570274380e132928bbf">More...</a><br/></td></tr>
-<tr class="separator:aad3caf289a517570274380e132928bbf inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07038518a95c95b492ae4c4f3903c3a5 inherit pub_methods_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#a07038518a95c95b492ae4c4f3903c3a5">toggleFullscreen</a> ()</td></tr>
-<tr class="memdesc:a07038518a95c95b492ae4c4f3903c3a5 inherit pub_methods_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle fullscreen windowing mode.  <a href="#a07038518a95c95b492ae4c4f3903c3a5">More...</a><br/></td></tr>
-<tr class="separator:a07038518a95c95b492ae4c4f3903c3a5 inherit pub_methods_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_system"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_system')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_system.html">System</a></td></tr>
-<tr class="memitem:ae317936c9bcf1374d61745572e0f2f8a inherit pub_methods_class_system"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#ae317936c9bcf1374d61745572e0f2f8a">System</a> ()</td></tr>
-<tr class="memdesc:ae317936c9bcf1374d61745572e0f2f8a inherit pub_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an object of <a class="el" href="class_system.html" title="Basic Interface for System implementations (SDLSystem) ">System</a>.  <a href="#ae317936c9bcf1374d61745572e0f2f8a">More...</a><br/></td></tr>
-<tr class="separator:ae317936c9bcf1374d61745572e0f2f8a inherit pub_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3be70bb338e3f062f821173fd15680d0 inherit pub_methods_class_system"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a3be70bb338e3f062f821173fd15680d0">~System</a> ()</td></tr>
-<tr class="memdesc:a3be70bb338e3f062f821173fd15680d0 inherit pub_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_system.html" title="Basic Interface for System implementations (SDLSystem) ">System</a>.  <a href="#a3be70bb338e3f062f821173fd15680d0">More...</a><br/></td></tr>
-<tr class="separator:a3be70bb338e3f062f821173fd15680d0 inherit pub_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72e8f14cea545580824e349038e18272 inherit pub_methods_class_system"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a72e8f14cea545580824e349038e18272">addCommandMode</a> (const char *<a class="el" href="class_system.html#adb64c0001a2e42daa5f9fda46ec80319">command</a>)</td></tr>
-<tr class="memdesc:a72e8f14cea545580824e349038e18272 inherit pub_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Created a new Command Mode.  <a href="#a72e8f14cea545580824e349038e18272">More...</a><br/></td></tr>
-<tr class="separator:a72e8f14cea545580824e349038e18272 inherit pub_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed748f7e5dc73f15c1038cb6edb150d0 inherit pub_methods_class_system"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#aed748f7e5dc73f15c1038cb6edb150d0">bindKeyCommand</a> (const char *cmd, unsigned int key, int event)</td></tr>
-<tr class="memdesc:aed748f7e5dc73f15c1038cb6edb150d0 inherit pub_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a key to a command.  <a href="#aed748f7e5dc73f15c1038cb6edb150d0">More...</a><br/></td></tr>
-<tr class="separator:aed748f7e5dc73f15c1038cb6edb150d0 inherit pub_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb64c0001a2e42daa5f9fda46ec80319 inherit pub_methods_class_system"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#adb64c0001a2e42daa5f9fda46ec80319">command</a> (const char *cmd)</td></tr>
-<tr class="memdesc:adb64c0001a2e42daa5f9fda46ec80319 inherit pub_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes a command string.  <a href="#adb64c0001a2e42daa5f9fda46ec80319">More...</a><br/></td></tr>
-<tr class="separator:adb64c0001a2e42daa5f9fda46ec80319 inherit pub_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d9e726c209b46715c69e26846a1ff67 inherit pub_methods_class_system"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a3d9e726c209b46715c69e26846a1ff67">loadResourceFile</a> (const char *filename)</td></tr>
-<tr class="memdesc:a3d9e726c209b46715c69e26846a1ff67 inherit pub_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init the resource vars.  <a href="#a3d9e726c209b46715c69e26846a1ff67">More...</a><br/></td></tr>
-<tr class="separator:a3d9e726c209b46715c69e26846a1ff67 inherit pub_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a444b038c3eab08477c7ea13673a9b0d4 inherit pub_methods_class_system"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a444b038c3eab08477c7ea13673a9b0d4">resizeGL</a> (unsigned int width, unsigned int height)</td></tr>
-<tr class="separator:a444b038c3eab08477c7ea13673a9b0d4 inherit pub_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3c0a19fb8115d138d0f97811d14532c inherit pub_methods_class_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#aa3c0a19fb8115d138d0f97811d14532c">setConsoleMode</a> (bool on)</td></tr>
-<tr class="memdesc:aa3c0a19fb8115d138d0f97811d14532c inherit pub_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turns console key events on/off Mostly for allowing text entry vs key impulse commands.  <a href="#aa3c0a19fb8115d138d0f97811d14532c">More...</a><br/></td></tr>
-<tr class="separator:aa3c0a19fb8115d138d0f97811d14532c inherit pub_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9e1cbe8dabee382c71db905182626d4 inherit pub_methods_class_system"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#ac9e1cbe8dabee382c71db905182626d4">setDriverGL</a> (const char *driver)</td></tr>
-<tr class="separator:ac9e1cbe8dabee382c71db905182626d4 inherit pub_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:afc3684aeeb91d6ee09b8ad1a193e1f14"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_open_raider.html">OpenRaider</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#afc3684aeeb91d6ee09b8ad1a193e1f14">Instance</a> ()</td></tr>
-<tr class="memdesc:afc3684aeeb91d6ee09b8ad1a193e1f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs or returns the <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> Singleton.  <a href="#afc3684aeeb91d6ee09b8ad1a193e1f14">More...</a><br/></td></tr>
-<tr class="separator:afc3684aeeb91d6ee09b8ad1a193e1f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_static_methods_class_system"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_system')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_system.html">System</a></td></tr>
-<tr class="memitem:ab9515b37758b42a84f4eac3dc5686aa7 inherit pub_static_methods_class_system"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#ab9515b37758b42a84f4eac3dc5686aa7">bufferString</a> (const char *string,...)</td></tr>
-<tr class="memdesc:ab9515b37758b42a84f4eac3dc5686aa7 inherit pub_static_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a buffered string for the printf call.  <a href="#ab9515b37758b42a84f4eac3dc5686aa7">More...</a><br/></td></tr>
-<tr class="separator:ab9515b37758b42a84f4eac3dc5686aa7 inherit pub_static_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c9aa3b0568647506088174a066567dc inherit pub_static_methods_class_system"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a8c9aa3b0568647506088174a066567dc">fullPath</a> (const char *path, char end)</td></tr>
-<tr class="memdesc:a8c9aa3b0568647506088174a066567dc inherit pub_static_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expansion of unix home enviroment char. Also makes sure string ends in "end" char.  <a href="#a8c9aa3b0568647506088174a066567dc">More...</a><br/></td></tr>
-<tr class="separator:a8c9aa3b0568647506088174a066567dc inherit pub_static_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9913e1b9d2f80cfae363c2c0d683c12e inherit pub_static_methods_class_system"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a9913e1b9d2f80cfae363c2c0d683c12e">getFileFromFullPath</a> (char *filename)</td></tr>
-<tr class="memdesc:a9913e1b9d2f80cfae363c2c0d683c12e inherit pub_static_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only returns last part of a path string.  <a href="#a9913e1b9d2f80cfae363c2c0d683c12e">More...</a><br/></td></tr>
-<tr class="separator:a9913e1b9d2f80cfae363c2c0d683c12e inherit pub_static_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab057919d9d5838e6382987e7439a4de3 inherit pub_static_methods_class_system"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#ab057919d9d5838e6382987e7439a4de3">createDir</a> (char *path)</td></tr>
-<tr class="memdesc:ab057919d9d5838e6382987e7439a4de3 inherit pub_static_methods_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Created a directory.  <a href="#ab057919d9d5838e6382987e7439a4de3">More...</a><br/></td></tr>
-<tr class="separator:ab057919d9d5838e6382987e7439a4de3 inherit pub_static_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a649af22b8f62d683e09db753e610f465 inherit pub_static_methods_class_system"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a649af22b8f62d683e09db753e610f465">resetTicks</a> ()</td></tr>
-<tr class="separator:a649af22b8f62d683e09db753e610f465 inherit pub_static_methods_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
 <tr class="memitem:ae13c597a87b12db771ec57fe7bfb96e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ae13c597a87b12db771ec57fe7bfb96e1">OpenRaider</a> ()</td></tr>
 <tr class="memdesc:ae13c597a87b12db771ec57fe7bfb96e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an object of <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>.  <a href="#ae13c597a87b12db771ec57fe7bfb96e1">More...</a><br/></td></tr>
 <tr class="separator:ae13c597a87b12db771ec57fe7bfb96e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56bfb54b529fcd6b77c2ded160396621"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a56bfb54b529fcd6b77c2ded160396621">~OpenRaider</a> ()</td></tr>
+<tr class="memdesc:a56bfb54b529fcd6b77c2ded160396621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>.  <a href="#a56bfb54b529fcd6b77c2ded160396621">More...</a><br/></td></tr>
+<tr class="separator:a56bfb54b529fcd6b77c2ded160396621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cfe65052ed788d515b9684a7698c56c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a0cfe65052ed788d515b9684a7698c56c">loadConfig</a> (const char *config)</td></tr>
+<tr class="memdesc:a0cfe65052ed788d515b9684a7698c56c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the configuration file.  <a href="#a0cfe65052ed788d515b9684a7698c56c">More...</a><br/></td></tr>
+<tr class="separator:a0cfe65052ed788d515b9684a7698c56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10d3686b6db2187221b524a17ccc9eaf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a10d3686b6db2187221b524a17ccc9eaf">command</a> (const char *command)</td></tr>
+<tr class="separator:a10d3686b6db2187221b524a17ccc9eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b53e80f5c91fa97b674ef00a6926aac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a0b53e80f5c91fa97b674ef00a6926aac">initialize</a> ()</td></tr>
+<tr class="separator:a0b53e80f5c91fa97b674ef00a6926aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cf0a7dd3b6e0e91da328caa1dd583bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a2cf0a7dd3b6e0e91da328caa1dd583bb">run</a> ()</td></tr>
+<tr class="separator:a2cf0a7dd3b6e0e91da328caa1dd583bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c4cc5eb44aa8069afe0a980a4046b16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a5c4cc5eb44aa8069afe0a980a4046b16">handleKeyboard</a> (<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065a">KeyboardButton</a> key, bool pressed)</td></tr>
+<tr class="separator:a5c4cc5eb44aa8069afe0a980a4046b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2b25f909de3275600fb82b460b3faf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ac2b25f909de3275600fb82b460b3faf4">handleText</a> (char *text, bool notFinished)</td></tr>
+<tr class="separator:ac2b25f909de3275600fb82b460b3faf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf9f39289dff7360cbbb56540e2da5f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#abf9f39289dff7360cbbb56540e2da5f4">handleMouseClick</a> (unsigned int <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aacab1e15e82c5976bfb476ddfe145263c">x</a>, unsigned int <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aae1f9fdb8b786c63efc4ce44eeacd17f2">y</a>, <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065a">KeyboardButton</a> button, bool released)</td></tr>
+<tr class="separator:abf9f39289dff7360cbbb56540e2da5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ec729129fb565eae17d66536ee86d11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a6ec729129fb565eae17d66536ee86d11">handleMouseMotion</a> (int xrel, int yrel)</td></tr>
+<tr class="separator:a6ec729129fb565eae17d66536ee86d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21290143e5a964adfa4665ca0f9d95d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a21290143e5a964adfa4665ca0f9d95d7">handleMouseScroll</a> (int xrel, int yrel)</td></tr>
+<tr class="separator:a21290143e5a964adfa4665ca0f9d95d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aef8af374fc168071c291a0d75eecab3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#aef8af374fc168071c291a0d75eecab3f">mWindow</a></td></tr>
+<tr class="separator:aef8af374fc168071c291a0d75eecab3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d0970427e450a4f16567d07a5f5d1ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sound.html">Sound</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a3d0970427e450a4f16567d07a5f5d1ce">mSound</a></td></tr>
+<tr class="separator:a3d0970427e450a4f16567d07a5f5d1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d9c5361df1f823cfffdfed17f84ef39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_menu.html">Menu</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a9d9c5361df1f823cfffdfed17f84ef39">mMenu</a></td></tr>
+<tr class="separator:a9d9c5361df1f823cfffdfed17f84ef39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae341dbf5b0451cc6609287af0354025"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_console.html">Console</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#aae341dbf5b0451cc6609287af0354025">mConsole</a></td></tr>
+<tr class="separator:aae341dbf5b0451cc6609287af0354025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a618279093c2107cf875b733904aaa9d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_game.html">Game</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a618279093c2107cf875b733904aaa9d0">mGame</a></td></tr>
+<tr class="separator:a618279093c2107cf875b733904aaa9d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f40c169e555d0041dd278e8f1dcf2ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a8f40c169e555d0041dd278e8f1dcf2ce">mMapListFilled</a></td></tr>
+<tr class="separator:a8f40c169e555d0041dd278e8f1dcf2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a025a0d961ccbffccd915d61c5e49890f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; char * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a025a0d961ccbffccd915d61c5e49890f">mMapList</a></td></tr>
+<tr class="separator:a025a0d961ccbffccd915d61c5e49890f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7f4e4e995fa985a491120eb21e68f92"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ab7f4e4e995fa985a491120eb21e68f92">mCameraRotationDeltaX</a></td></tr>
+<tr class="separator:ab7f4e4e995fa985a491120eb21e68f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdfc828795b66a624f75ad8f3bbb9c31"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#abdfc828795b66a624f75ad8f3bbb9c31">mCameraRotationDeltaY</a></td></tr>
+<tr class="separator:abdfc828795b66a624f75ad8f3bbb9c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4bc3c7e0dd2bffae238dba7532f60d1"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ae4bc3c7e0dd2bffae238dba7532f60d1">mBaseDir</a></td></tr>
+<tr class="separator:ae4bc3c7e0dd2bffae238dba7532f60d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b8c1a25fdf97ad58e47690cb7d89be5"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a1b8c1a25fdf97ad58e47690cb7d89be5">mPakDir</a></td></tr>
+<tr class="separator:a1b8c1a25fdf97ad58e47690cb7d89be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafddb99c77b0e9832201f6b30342bde3"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#aafddb99c77b0e9832201f6b30342bde3">mAudioDir</a></td></tr>
+<tr class="separator:aafddb99c77b0e9832201f6b30342bde3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a445f9d009adb7a49b048e2e1b85508a5"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a445f9d009adb7a49b048e2e1b85508a5">mDataDir</a></td></tr>
+<tr class="separator:a445f9d009adb7a49b048e2e1b85508a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a9a94a25520f5d4addcbee3d7cafd7e0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a9a94a25520f5d4addcbee3d7cafd7e0a">consoleCommand</a> (char *cmd)</td></tr>
-<tr class="separator:a9a94a25520f5d4addcbee3d7cafd7e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b3db34847b7daecc45b5a3364596952"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a1b3db34847b7daecc45b5a3364596952">soundEvent</a> (int type, int id, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> pos, <a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> angles)</td></tr>
-<tr class="separator:a1b3db34847b7daecc45b5a3364596952"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef6ee4d42ccade2689d2fb360cceacad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#aef6ee4d42ccade2689d2fb360cceacad">processPakSounds</a> ()</td></tr>
-<tr class="separator:aef6ee4d42ccade2689d2fb360cceacad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a572f857af3afb85d4735c48026b91b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a5a572f857af3afb85d4735c48026b91b">initSound</a> ()</td></tr>
-<tr class="memdesc:a5a572f857af3afb85d4735c48026b91b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads and positions level sounds and music.  <a href="#a5a572f857af3afb85d4735c48026b91b">More...</a><br/></td></tr>
-<tr class="separator:a5a572f857af3afb85d4735c48026b91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d4c0171c1218263ceda823e1d4bc953"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a1d4c0171c1218263ceda823e1d4bc953">initTextures</a> ()</td></tr>
-<tr class="memdesc:a1d4c0171c1218263ceda823e1d4bc953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates textures or mipmaps for fonts, splash, external particles.  <a href="#a1d4c0171c1218263ceda823e1d4bc953">More...</a><br/></td></tr>
-<tr class="separator:a1d4c0171c1218263ceda823e1d4bc953"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a41ae7fa55c18ae74190f37c52bb1a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a5a41ae7fa55c18ae74190f37c52bb1a1">processTextures</a> ()</td></tr>
-<tr class="memdesc:a5a41ae7fa55c18ae74190f37c52bb1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates tombraider textures or mipmaps for sprites, rooms and models.  <a href="#a5a41ae7fa55c18ae74190f37c52bb1a1">More...</a><br/></td></tr>
-<tr class="separator:a5a41ae7fa55c18ae74190f37c52bb1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace20df4b9194cc41752154ce28879426"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ace20df4b9194cc41752154ce28879426">processSprites</a> ()</td></tr>
-<tr class="memdesc:ace20df4b9194cc41752154ce28879426"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates render sprite sequences.  <a href="#ace20df4b9194cc41752154ce28879426">More...</a><br/></td></tr>
-<tr class="separator:ace20df4b9194cc41752154ce28879426"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af27643fee173dcd476c70532d596c5fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#af27643fee173dcd476c70532d596c5fd">processMoveables</a> ()</td></tr>
-<tr class="separator:af27643fee173dcd476c70532d596c5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1bb774d4f95dd70eba4887fb2a794bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ae1bb774d4f95dd70eba4887fb2a794bd">processMoveable</a> (int index, int i, int *ent, <a class="el" href="class_list.html">List</a>&lt; <a class="el" href="_skeletal_model_8h.html#structskeletal__model__t">skeletal_model_t</a> * &gt; &amp;cache2, <a class="el" href="class_list.html">List</a>&lt; unsigned int &gt; &amp;cache, int object_id)</td></tr>
-<tr class="separator:ae1bb774d4f95dd70eba4887fb2a794bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40d03e2f52d7a70481f8e899295eef6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a40d03e2f52d7a70481f8e899295eef6c">processModel</a> (int index)</td></tr>
-<tr class="memdesc:a40d03e2f52d7a70481f8e899295eef6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates render mesh and any textures needed for the specified model.  <a href="#a40d03e2f52d7a70481f8e899295eef6c">More...</a><br/></td></tr>
-<tr class="separator:a40d03e2f52d7a70481f8e899295eef6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad81bc7cf66ab6f37b12c55c667fe5388"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ad81bc7cf66ab6f37b12c55c667fe5388">processRoom</a> (int index)</td></tr>
-<tr class="memdesc:ad81bc7cf66ab6f37b12c55c667fe5388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates render mesh and any textures needed for the specified room.  <a href="#ad81bc7cf66ab6f37b12c55c667fe5388">More...</a><br/></td></tr>
-<tr class="separator:ad81bc7cf66ab6f37b12c55c667fe5388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a8f99fb95921302256266ca8d445e22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a9a8f99fb95921302256266ca8d445e22">loadLevel</a> (char *filename)</td></tr>
-<tr class="memdesc:a9a8f99fb95921302256266ca8d445e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads validated level pak from diskfile using maplist.  <a href="#a9a8f99fb95921302256266ca8d445e22">More...</a><br/></td></tr>
-<tr class="separator:a9a8f99fb95921302256266ca8d445e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3b70302ed27977b50ccca1059ae00f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ab3b70302ed27977b50ccca1059ae00f3">command</a> (const char *command, std::vector&lt; char * &gt; *args)</td></tr>
+<tr class="separator:ab3b70302ed27977b50ccca1059ae00f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1bf8fcd30a018e49159e5f9a7c9616c"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#af1bf8fcd30a018e49159e5f9a7c9616c">expandDirectoryNames</a> (const char *<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa8e9307350b1e20521f37dfe5268df55">s</a>)</td></tr>
+<tr class="separator:af1bf8fcd30a018e49159e5f9a7c9616c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a4dd62f89d32927973f18d41ed1b1f5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a5a4dd62f89d32927973f18d41ed1b1f5">help</a> (const char *cmd)</td></tr>
+<tr class="separator:a5a4dd62f89d32927973f18d41ed1b1f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a669b7e20be98f5bb41573e1f24360313"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a669b7e20be98f5bb41573e1f24360313">set</a> (const char *var, const char *value)</td></tr>
+<tr class="separator:a669b7e20be98f5bb41573e1f24360313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4876410386cb6055072ca0fedd7b26d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#af4876410386cb6055072ca0fedd7b26d">bind</a> (const char *action, const char *key)</td></tr>
+<tr class="separator:af4876410386cb6055072ca0fedd7b26d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7be8517d0c0f43741dccc5b25db35713"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a7be8517d0c0f43741dccc5b25db35713">bind</a> (<a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8c">ActionEvents</a> action, const char *key)</td></tr>
+<tr class="separator:a7be8517d0c0f43741dccc5b25db35713"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abddad353220ee53cb6e3710caccd4679"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#abddad353220ee53cb6e3710caccd4679">loadPakFolderRecursive</a> (const char *dir)</td></tr>
 <tr class="separator:abddad353220ee53cb6e3710caccd4679"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87f22e899fcc949d49dc4a95da1c55e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a87f22e899fcc949d49dc4a95da1c55e5">menuMapListMove</a> (char dir, bool show)</td></tr>
-<tr class="separator:a87f22e899fcc949d49dc4a95da1c55e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59807f7342782b1bde609af8aa95cfae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a59807f7342782b1bde609af8aa95cfae">fillMapList</a> ()</td></tr>
+<tr class="separator:a59807f7342782b1bde609af8aa95cfae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a88e7ced8f576f99fce1cfbc9e8523259"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tomb_raider.html">TombRaider</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a88e7ced8f576f99fce1cfbc9e8523259">m_tombraider</a></td></tr>
-<tr class="memdesc:a88e7ced8f576f99fce1cfbc9e8523259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tombraider data support.  <a href="#a88e7ced8f576f99fce1cfbc9e8523259">More...</a><br/></td></tr>
-<tr class="separator:a88e7ced8f576f99fce1cfbc9e8523259"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0025b26e7455e77964bb1d229ef22dfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sound.html">Sound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a0025b26e7455e77964bb1d229ef22dfa">mSound</a></td></tr>
-<tr class="memdesc:a0025b26e7455e77964bb1d229ef22dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">3d Audio support  <a href="#a0025b26e7455e77964bb1d229ef22dfa">More...</a><br/></td></tr>
-<tr class="separator:a0025b26e7455e77964bb1d229ef22dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69c729fa45c0c4928df354b613d23317"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_render.html">Render</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a69c729fa45c0c4928df354b613d23317">m_render</a></td></tr>
-<tr class="memdesc:a69c729fa45c0c4928df354b613d23317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rendering support.  <a href="#a69c729fa45c0c4928df354b613d23317">More...</a><br/></td></tr>
-<tr class="separator:a69c729fa45c0c4928df354b613d23317"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11ec679877321bb6237a56b5acea165c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera.html">Camera</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a11ec679877321bb6237a56b5acea165c">m_camera</a></td></tr>
-<tr class="memdesc:a11ec679877321bb6237a56b5acea165c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client camera support.  <a href="#a11ec679877321bb6237a56b5acea165c">More...</a><br/></td></tr>
-<tr class="separator:a11ec679877321bb6237a56b5acea165c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedc466532eb93343851d92371b0e91aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_l_string.html">GLString</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#aedc466532eb93343851d92371b0e91aa">mText</a></td></tr>
-<tr class="memdesc:aedc466532eb93343851d92371b0e91aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hook to textbox like output.  <a href="#aedc466532eb93343851d92371b0e91aa">More...</a><br/></td></tr>
-<tr class="separator:aedc466532eb93343851d92371b0e91aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15e518814cf29cf956d5ecef51e70dae"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a15e518814cf29cf956d5ecef51e70dae">mMode</a> [8]</td></tr>
-<tr class="memdesc:a15e518814cf29cf956d5ecef51e70dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translate <a class="el" href="class_system.html" title="Basic Interface for System implementations (SDLSystem) ">System</a>'s mode ids to OR's.  <a href="#a15e518814cf29cf956d5ecef51e70dae">More...</a><br/></td></tr>
-<tr class="separator:a15e518814cf29cf956d5ecef51e70dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66db921535ba29a22842a7762dfedfdd"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a66db921535ba29a22842a7762dfedfdd">m_flags</a></td></tr>
-<tr class="memdesc:a66db921535ba29a22842a7762dfedfdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set options by flags.  <a href="#a66db921535ba29a22842a7762dfedfdd">More...</a><br/></td></tr>
-<tr class="separator:a66db921535ba29a22842a7762dfedfdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a696c3d560af7a7176ccd81886fa566ff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a696c3d560af7a7176ccd81886fa566ff">m_testSFX</a></td></tr>
-<tr class="memdesc:a696c3d560af7a7176ccd81886fa566ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for mixed channel sound tests.  <a href="#a696c3d560af7a7176ccd81886fa566ff">More...</a><br/></td></tr>
-<tr class="separator:a696c3d560af7a7176ccd81886fa566ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a983cf3a0515141746a0a7ee8e9091dea"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a983cf3a0515141746a0a7ee8e9091dea">m_mouseX</a></td></tr>
-<tr class="separator:a983cf3a0515141746a0a7ee8e9091dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88b618736f0f30480821f322f9c7769c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a88b618736f0f30480821f322f9c7769c">m_mouseY</a></td></tr>
-<tr class="memdesc:a88b618736f0f30480821f322f9c7769c"><td class="mdescLeft">&#160;</td><td class="mdescRight">XY axis rotation deltas.  <a href="#a88b618736f0f30480821f322f9c7769c">More...</a><br/></td></tr>
-<tr class="separator:a88b618736f0f30480821f322f9c7769c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00eb1c41edf668eec3e6cbcb38ed509c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a00eb1c41edf668eec3e6cbcb38ed509c">m_texOffset</a></td></tr>
-<tr class="memdesc:a00eb1c41edf668eec3e6cbcb38ed509c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset of <a class="el" href="class_tomb_raider.html" title="Loads maps, meshes, textures... ">TombRaider</a> textures in list.  <a href="#a00eb1c41edf668eec3e6cbcb38ed509c">More...</a><br/></td></tr>
-<tr class="separator:a00eb1c41edf668eec3e6cbcb38ed509c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47452dc9506cee5ea7cced9018275ffd"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a47452dc9506cee5ea7cced9018275ffd">mLevelTextureOffset</a></td></tr>
-<tr class="separator:a47452dc9506cee5ea7cced9018275ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f642867f69e06b8a908768741829339"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&lt; char * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a2f642867f69e06b8a908768741829339">mMusicList</a></td></tr>
-<tr class="memdesc:a2f642867f69e06b8a908768741829339"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_list.html" title="Template class representing a linked list. ">List</a> of game level music.  <a href="#a2f642867f69e06b8a908768741829339">More...</a><br/></td></tr>
-<tr class="separator:a2f642867f69e06b8a908768741829339"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d132f1a82f6e4fe16a10ff5cdf14148"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&lt; char * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a8d132f1a82f6e4fe16a10ff5cdf14148">mMapList</a></td></tr>
-<tr class="memdesc:a8d132f1a82f6e4fe16a10ff5cdf14148"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_list.html" title="Template class representing a linked list. ">List</a> of game maps.  <a href="#a8d132f1a82f6e4fe16a10ff5cdf14148">More...</a><br/></td></tr>
-<tr class="separator:a8d132f1a82f6e4fe16a10ff5cdf14148"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa688ff5af4adc89cbd022869f2bc0939"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#aa688ff5af4adc89cbd022869f2bc0939">m_mapName</a> [32]</td></tr>
-<tr class="memdesc:aa688ff5af4adc89cbd022869f2bc0939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current map filename.  <a href="#aa688ff5af4adc89cbd022869f2bc0939">More...</a><br/></td></tr>
-<tr class="separator:aa688ff5af4adc89cbd022869f2bc0939"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0296eb2bcf3ac803d16b551b889e690b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a0296eb2bcf3ac803d16b551b889e690b">m_pakDir</a></td></tr>
-<tr class="memdesc:a0296eb2bcf3ac803d16b551b889e690b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current pak directory.  <a href="#a0296eb2bcf3ac803d16b551b889e690b">More...</a><br/></td></tr>
-<tr class="separator:a0296eb2bcf3ac803d16b551b889e690b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af649ef3b3d359fab688241920685acc0"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#af649ef3b3d359fab688241920685acc0">m_audioDir</a></td></tr>
-<tr class="memdesc:af649ef3b3d359fab688241920685acc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current audio directory.  <a href="#af649ef3b3d359fab688241920685acc0">More...</a><br/></td></tr>
-<tr class="separator:af649ef3b3d359fab688241920685acc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12d59f4ef14a5b1721289c98df57fdf4"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a12d59f4ef14a5b1721289c98df57fdf4">m_homeDir</a></td></tr>
-<tr class="memdesc:a12d59f4ef14a5b1721289c98df57fdf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current home directory.  <a href="#a12d59f4ef14a5b1721289c98df57fdf4">More...</a><br/></td></tr>
-<tr class="separator:a12d59f4ef14a5b1721289c98df57fdf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad085042a700fc8938a9f7e961be226c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&lt; <a class="el" href="_world_8h.html#structentity__t">entity_t</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#aad085042a700fc8938a9f7e961be226c">mClients</a></td></tr>
-<tr class="memdesc:aad085042a700fc8938a9f7e961be226c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Player entity/clients.  <a href="#aad085042a700fc8938a9f7e961be226c">More...</a><br/></td></tr>
-<tr class="separator:aad085042a700fc8938a9f7e961be226c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
-Static Private Attributes</h2></td></tr>
-<tr class="memitem:a38ca9671957aad82c6bfcdbd21dda878"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_open_raider.html">OpenRaider</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a38ca9671957aad82c6bfcdbd21dda878">mInstance</a> = 0x0</td></tr>
-<tr class="memdesc:a38ca9671957aad82c6bfcdbd21dda878"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton use.  <a href="#a38ca9671957aad82c6bfcdbd21dda878">More...</a><br/></td></tr>
-<tr class="separator:a38ca9671957aad82c6bfcdbd21dda878"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_attribs_class_s_d_l_system"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_s_d_l_system')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_s_d_l_system.html">SDLSystem</a></td></tr>
-<tr class="memitem:adc298211342d4acb6251b5461136dca3 inherit pro_attribs_class_s_d_l_system"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_d_l_system.html#adc298211342d4acb6251b5461136dca3">mFullscreen</a></td></tr>
-<tr class="memdesc:adc298211342d4acb6251b5461136dca3 inherit pro_attribs_class_s_d_l_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current Fullscreen/Windowed mode.  <a href="#adc298211342d4acb6251b5461136dca3">More...</a><br/></td></tr>
-<tr class="separator:adc298211342d4acb6251b5461136dca3 inherit pro_attribs_class_s_d_l_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_class_system"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_system')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_system.html">System</a></td></tr>
-<tr class="memitem:aaad2905c02f20cbff4f58855e6173b92 inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#aaad2905c02f20cbff4f58855e6173b92">m_width</a></td></tr>
-<tr class="memdesc:aaad2905c02f20cbff4f58855e6173b92 inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Width of the viewport.  <a href="#aaad2905c02f20cbff4f58855e6173b92">More...</a><br/></td></tr>
-<tr class="separator:aaad2905c02f20cbff4f58855e6173b92 inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adba09d9d581bbc37d4361c74a2d4823f inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#adba09d9d581bbc37d4361c74a2d4823f">m_height</a></td></tr>
-<tr class="memdesc:adba09d9d581bbc37d4361c74a2d4823f inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Height of the viewport.  <a href="#adba09d9d581bbc37d4361c74a2d4823f">More...</a><br/></td></tr>
-<tr class="separator:adba09d9d581bbc37d4361c74a2d4823f inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8648dbd93ade6bba590c3b232cd88bf inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#ae8648dbd93ade6bba590c3b232cd88bf">m_driver</a></td></tr>
-<tr class="memdesc:ae8648dbd93ade6bba590c3b232cd88bf inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">String for dynamic use of GL library.  <a href="#ae8648dbd93ade6bba590c3b232cd88bf">More...</a><br/></td></tr>
-<tr class="separator:ae8648dbd93ade6bba590c3b232cd88bf inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addc77fd9cc39517d87a61b64c8101f3a inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#addc77fd9cc39517d87a61b64c8101f3a">m_clipNear</a></td></tr>
-<tr class="memdesc:addc77fd9cc39517d87a61b64c8101f3a inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clip near distance.  <a href="#addc77fd9cc39517d87a61b64c8101f3a">More...</a><br/></td></tr>
-<tr class="separator:addc77fd9cc39517d87a61b64c8101f3a inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae14fa2a81634bc28dc65820a1786e041 inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#ae14fa2a81634bc28dc65820a1786e041">m_clipFar</a></td></tr>
-<tr class="memdesc:ae14fa2a81634bc28dc65820a1786e041 inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clip far distance.  <a href="#ae14fa2a81634bc28dc65820a1786e041">More...</a><br/></td></tr>
-<tr class="separator:ae14fa2a81634bc28dc65820a1786e041 inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a4e289b8f715e0ee232d0294d91b5f2 inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a8a4e289b8f715e0ee232d0294d91b5f2">m_fovY</a></td></tr>
-<tr class="memdesc:a8a4e289b8f715e0ee232d0294d91b5f2 inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Field of vision.  <a href="#a8a4e289b8f715e0ee232d0294d91b5f2">More...</a><br/></td></tr>
-<tr class="separator:a8a4e289b8f715e0ee232d0294d91b5f2 inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d237be799e74c4fdad827e1adab8f77 inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">std::map&lt; unsigned int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a1d237be799e74c4fdad827e1adab8f77">mKeyEvents</a></td></tr>
-<tr class="memdesc:a1d237be799e74c4fdad827e1adab8f77 inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single key press event mappings.  <a href="#a1d237be799e74c4fdad827e1adab8f77">More...</a><br/></td></tr>
-<tr class="separator:a1d237be799e74c4fdad827e1adab8f77 inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23012d0c7e57c529178c3e325f3e4dc2 inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a23012d0c7e57c529178c3e325f3e4dc2">mConsoleMode</a></td></tr>
-<tr class="memdesc:a23012d0c7e57c529178c3e325f3e4dc2 inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Using text (console) event handler?  <a href="#a23012d0c7e57c529178c3e325f3e4dc2">More...</a><br/></td></tr>
-<tr class="separator:a23012d0c7e57c529178c3e325f3e4dc2 inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ea75cea8819d62b5971a8ee6ada90ac inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&lt; const char * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a7ea75cea8819d62b5971a8ee6ada90ac">mCmdModes</a></td></tr>
-<tr class="memdesc:a7ea75cea8819d62b5971a8ee6ada90ac inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dynamic resource command collection.  <a href="#a7ea75cea8819d62b5971a8ee6ada90ac">More...</a><br/></td></tr>
-<tr class="separator:a7ea75cea8819d62b5971a8ee6ada90ac inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eee5e3de4e1f6ae6ce6b528f1080707 inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a6eee5e3de4e1f6ae6ce6b528f1080707">mCommandMode</a></td></tr>
-<tr class="memdesc:a6eee5e3de4e1f6ae6ce6b528f1080707 inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current resource command mode.  <a href="#a6eee5e3de4e1f6ae6ce6b528f1080707">More...</a><br/></td></tr>
-<tr class="separator:a6eee5e3de4e1f6ae6ce6b528f1080707 inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a619937c41cce998d5a769066a2227590 inherit pro_attribs_class_system"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a619937c41cce998d5a769066a2227590">mConsoleKey</a></td></tr>
-<tr class="memdesc:a619937c41cce998d5a769066a2227590 inherit pro_attribs_class_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Console toggle event now handled lower.  <a href="#a619937c41cce998d5a769066a2227590">More...</a><br/></td></tr>
-<tr class="separator:a619937c41cce998d5a769066a2227590 inherit pro_attribs_class_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae988dd62102e7dade1e4e90caeab0086"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#ae988dd62102e7dade1e4e90caeab0086">mInit</a></td></tr>
+<tr class="separator:ae988dd62102e7dade1e4e90caeab0086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20fb983aa195dbb1b0d0d6151081ff22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a20fb983aa195dbb1b0d0d6151081ff22">mRunning</a></td></tr>
+<tr class="separator:a20fb983aa195dbb1b0d0d6151081ff22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59d7968afb63e72a959bb4d37c941b06"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a59d7968afb63e72a959bb4d37c941b06">mFPS</a></td></tr>
+<tr class="separator:a59d7968afb63e72a959bb4d37c941b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e86f2b54b0a5c5d9e39dfebb79e6fca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065a">KeyboardButton</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_raider.html#a3e86f2b54b0a5c5d9e39dfebb79e6fca">keyBindings</a> [<a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8cabeeffaac80cc3bf98be5737491959fb9">ActionEventCount</a>]</td></tr>
+<tr class="separator:a3e86f2b54b0a5c5d9e39dfebb79e6fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Main Game Singleton. </p>
+<div class="textblock"><p>Main <a class="el" href="class_game.html" title="Game abstraction. ">Game</a> Singleton. </p>
 
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00057">57</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00023">23</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ae13c597a87b12db771ec57fe7bfb96e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OpenRaider::OpenRaider </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs an object of <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>. </p>
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00027">27</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a56bfb54b529fcd6b77c2ded160396621"></a>
 <div class="memitem">
 <div class="memproto">
@@ -403,13 +231,13 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Deconstructs an object of <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>. </p>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000020">FIXME:</a></b></dt><dd>GL call to critical section, needs mutex really &ndash; Mongoose 2002.01.02 </dd></dl>
 
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00118">118</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00050">50</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae13c597a87b12db771ec57fe7bfb96e1"></a>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="af4876410386cb6055072ca0fedd7b26d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -417,7 +245,159 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">OpenRaider::OpenRaider </td>
+          <td class="memname">int OpenRaider::bind </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00381">381</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7be8517d0c0f43741dccc5b25db35713"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OpenRaider::bind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8c">ActionEvents</a>&#160;</td>
+          <td class="paramname"><em>action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00417">417</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a10d3686b6db2187221b524a17ccc9eaf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OpenRaider::command </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00110">110</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab3b70302ed27977b50ccca1059ae00f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OpenRaider::command </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>command</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; char * &gt; *&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00144">144</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af1bf8fcd30a018e49159e5f9a7c9616c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * OpenRaider::expandDirectoryNames </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00249">249</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a59807f7342782b1bde609af8aa95cfae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OpenRaider::fillMapList </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -425,20 +405,168 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructs an object of <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Replace numbers with enum modes. Only do this when you know the amount of commands + 1 (0 reserved) </dd></dl>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00083">83</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00607">607</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a9a94a25520f5d4addcbee3d7cafd7e0a"></a>
+<a class="anchor" id="a5c4cc5eb44aa8069afe0a980a4046b16"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OpenRaider::handleKeyboard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065a">KeyboardButton</a>&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>pressed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00700">700</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abf9f39289dff7360cbbb56540e2da5f4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OpenRaider::handleMouseClick </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065a">KeyboardButton</a>&#160;</td>
+          <td class="paramname"><em>button</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>released</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00737">737</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6ec729129fb565eae17d66536ee86d11"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OpenRaider::handleMouseMotion </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xrel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>yrel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00753">753</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a21290143e5a964adfa4665ca0f9d95d7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OpenRaider::handleMouseScroll </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xrel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>yrel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00763">763</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac2b25f909de3275600fb82b460b3faf4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OpenRaider::handleText </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>notFinished</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00726">726</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5a4dd62f89d32927973f18d41ed1b1f5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -446,9 +574,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void OpenRaider::consoleCommand </td>
+          <td class="memname">int OpenRaider::help </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>cmd</em></td><td>)</td>
           <td></td>
         </tr>
@@ -460,486 +588,45 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l02847">2847</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00196">196</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a11606b638f7570cc13aefcdf1ef6a880"></a>
+<a class="anchor" id="a0b53e80f5c91fa97b674ef00a6926aac"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void OpenRaider::gameFrame </td>
+          <td class="memname">int OpenRaider::initialize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Pass a time frame and render a new frame. </p>
-
-<p>Implements <a class="el" href="class_system.html#a443271510c93d198bb1c53d88c364550">System</a>.</p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l01178">1178</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00617">617</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa908c43aeee0df9aa71aa377d2c62d45"></a>
+<a class="anchor" id="a0cfe65052ed788d515b9684a7698c56c"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void OpenRaider::handleBoundKeyPressEvent </td>
+          <td class="memname">int OpenRaider::loadConfig </td>
           <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Receives <code>Event</code> bound to <code>Cmd</code> from <code>Key</code> press. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>valid keyboard code </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Load the configuration file. </p>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd></dl>
 
-<p>Implements <a class="el" href="class_system.html#ac0dd30a42fffd6e5c288d7f815007732">System</a>.</p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00392">392</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aae6c39b204754746de3085d2127cde2c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::handleBoundKeyReleaseEvent </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Receives <code>Event</code> bound to <code>Cmd</code> from <code>Key</code> release. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>valid keyboard code </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_system.html#a65f2dbd9177785e8dd964481591c0d35">System</a>.</p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00531">531</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae1fa63178b7af5fb6ee0519390efc2fd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::handleCommand </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>command</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>mode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Executes valid command based on keyword. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">command</td><td>valid keyword optionally followed by space separated arguments </td></tr>
-    <tr><td class="paramname">mode</td><td>current type or resource mode </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_system.html#aa8dcdf4d75bce2cbb8d63c6109155092">System</a>.</p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l03380">3380</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad8c408d8cc090ea92a85e2f1574fa7c4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::handleConsoleKeyPressEvent </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>mod</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Receives <code>Key</code> code from text input in console mode. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>valid keyboard code </td></tr>
-    <tr><td class="paramname">mod</td><td>valid modifier code </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_system.html#a18bec0fded2e33f5e22b657dbbaa308f">System</a>.</p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00564">564</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a70c655bfd1aae0d4f10e490840fec09a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::handleKeyPressEvent </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>mod</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Executes command associated with key press, if any. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>valid keyboard code </td></tr>
-    <tr><td class="paramname">mod</td><td>valid modifier code </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_system.html#a39aa758190c36caecd80ecd88957ba22">System</a>.</p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00706">706</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adf1c3505742b8c5e53946ed4d87c3609"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::handleKeyReleaseEvent </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>mod</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Executes command associated with key release, if any. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>valid keyboard code </td></tr>
-    <tr><td class="paramname">mod</td><td>valid modifier code </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_system.html#aa656b0e5028db399d683ff7a04b2b0e6">System</a>.</p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00387">387</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8d6a1893b6df72cb86be3a4102e1bebf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::handleMouseMotionEvent </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Mouse motion input. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>relative x motion </td></tr>
-    <tr><td class="paramname">y</td><td>relative y motion </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_system.html#a2040ef3b12148143e6c73099f2f7ab60">System</a>.</p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00323">323</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a052263b9c969fcaa3d09c872857fdd70"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::initGL </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Reimplemented from <a class="el" href="class_system.html#aa69c83209d4b66269bca93fd7177c2d9">System</a>.</p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00863">863</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5a572f857af3afb85d4735c48026b91b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::initSound </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Loads and positions level sounds and music. </p>
-<p><a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a> system has to be initialized. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00942">942</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1d4c0171c1218263ceda823e1d4bc953"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::initTextures </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Generates textures or mipmaps for fonts, splash, external particles. </p>
-
-</div>
-</div>
-<a class="anchor" id="afc3684aeeb91d6ee09b8ad1a193e1f14"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_open_raider.html">OpenRaider</a> * OpenRaider::Instance </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Constructs or returns the <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> Singleton. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> Singleton </dd></dl>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00054">54</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9a8f99fb95921302256266ca8d445e22"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::loadLevel </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Loads validated level pak from diskfile using maplist. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filename</td><td>level pak file name </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000021">FIXME:</a></b></dt><dd>GL call to critical section, needs mutex really &ndash; Mongoose 2002.01.02 </dd></dl>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l01046">1046</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00084">84</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
 
 </div>
 </div>
@@ -964,13 +651,29 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000028">FIXME:</a></b></dt><dd>Currently just tries to validate every file in the pak folders. Should check the exstension to see if it could be a level pak... </dd></dl>
 
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l03335">3335</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00555">555</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a87f22e899fcc949d49dc4a95da1c55e5"></a>
+<a class="anchor" id="a2cf0a7dd3b6e0e91da328caa1dd583bb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OpenRaider::run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00648">648</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a669b7e20be98f5bb41573e1f24360313"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -978,346 +681,16 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void OpenRaider::menuMapListMove </td>
+          <td class="memname">int OpenRaider::set </td>
           <td>(</td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>dir</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>show</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00650">650</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a353a516d187386ac66b8a2d1aa373873"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::print </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>dump_stdout</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>var</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>format</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Outputs message in game console. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dump_stdout</td><td>if true, also print to stdout </td></tr>
-    <tr><td class="paramname">format</td><td>printf() style format string </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00817">817</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a40d03e2f52d7a70481f8e899295eef6c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::processModel </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Generates render mesh and any textures needed for the specified model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>valid model index </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000024">FIXME:</a></b></dt><dd>allow sparse lists with matching ids instead? </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000025">FIXME:</a></b></dt><dd>Arrays don't work either =) </dd></dl>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l02049">2049</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae1bb774d4f95dd70eba4887fb2a794bd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::processMoveable </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>ent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_list.html">List</a>&lt; <a class="el" href="_skeletal_model_8h.html#structskeletal__model__t">skeletal_model_t</a> * &gt; &amp;&#160;</td>
-          <td class="paramname"><em>cache2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_list.html">List</a>&lt; unsigned int &gt; &amp;&#160;</td>
-          <td class="paramname"><em>cache</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>object_id</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000022">FIXME:</a></b></dt><dd>Check here and see if we already have one for object_id later </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000023">FIXME:</a></b></dt><dd>Might be better UID for each model, but this seems to work well </dd></dl>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l01569">1569</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af27643fee173dcd476c70532d596c5fd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::processMoveables </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l01451">1451</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aef6ee4d42ccade2689d2fb360cceacad"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::processPakSounds </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00988">988</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad81bc7cf66ab6f37b12c55c667fe5388"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::processRoom </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Generates render mesh and any textures needed for the specified room. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>valid room index </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000026">FIXME:</a></b></dt><dd>OR wrongly uses a cached adj room list for rendering vis </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000027">FIXME:</a></b></dt><dd>Use more of sector structure, boxes, and floordata </dd></dl>
-<p>fixme Only to be done only on room[0]? I don't think so... </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l02255">2255</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ace20df4b9194cc41752154ce28879426"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::processSprites </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Generates render sprite sequences. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l01350">1350</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5a41ae7fa55c18ae74190f37c52bb1a1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::processTextures </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Generates tombraider textures or mipmaps for sprites, rooms and models. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l01280">1280</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1b3db34847b7daecc45b5a3364596952"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::soundEvent </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_mat_math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>angles</em>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1332,31 +705,12 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l01336">1336</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adb23fbd7cdb8923e3653e0300d4928cd"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OpenRaider::start </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialize the Game. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00869">869</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00297">297</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="af649ef3b3d359fab688241920685acc0"></a>
+<a class="anchor" id="a3e86f2b54b0a5c5d9e39dfebb79e6fca"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1364,7 +718,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">char* OpenRaider::m_audioDir</td>
+          <td class="memname"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065a">KeyboardButton</a> OpenRaider::keyBindings[<a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8cabeeffaac80cc3bf98be5737491959fb9">ActionEventCount</a>]</td>
         </tr>
       </table>
   </td>
@@ -1374,13 +728,95 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Current audio directory. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00228">228</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00099">99</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a11ec679877321bb6237a56b5acea165c"></a>
+<a class="anchor" id="aafddb99c77b0e9832201f6b30342bde3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* OpenRaider::mAudioDir</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00074">74</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae4bc3c7e0dd2bffae238dba7532f60d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* OpenRaider::mBaseDir</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00072">72</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab7f4e4e995fa985a491120eb21e68f92"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float OpenRaider::mCameraRotationDeltaX</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00069">69</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abdfc828795b66a624f75ad8f3bbb9c31"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float OpenRaider::mCameraRotationDeltaY</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00070">70</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aae341dbf5b0451cc6609287af0354025"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_console.html">Console</a>* OpenRaider::mConsole</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00063">63</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a445f9d009adb7a49b048e2e1b85508a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* OpenRaider::mDataDir</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00075">75</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a59d7968afb63e72a959bb4d37c941b06"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1388,7 +824,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_camera.html">Camera</a> OpenRaider::m_camera</td>
+          <td class="memname">bool OpenRaider::mFPS</td>
         </tr>
       </table>
   </td>
@@ -1398,13 +834,25 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Client camera support. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00210">210</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00097">97</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a66db921535ba29a22842a7762dfedfdd"></a>
+<a class="anchor" id="a618279093c2107cf875b733904aaa9d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_game.html">Game</a>* OpenRaider::mGame</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00064">64</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae988dd62102e7dade1e4e90caeab0086"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1412,7 +860,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int OpenRaider::m_flags</td>
+          <td class="memname">bool OpenRaider::mInit</td>
         </tr>
       </table>
   </td>
@@ -1422,13 +870,67 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Set options by flags. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00216">216</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00095">95</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a12d59f4ef14a5b1721289c98df57fdf4"></a>
+<a class="anchor" id="a025a0d961ccbffccd915d61c5e49890f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;char *&gt; OpenRaider::mMapList</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00067">67</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8f40c169e555d0041dd278e8f1dcf2ce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool OpenRaider::mMapListFilled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00066">66</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9d9c5361df1f823cfffdfed17f84ef39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_menu.html">Menu</a>* OpenRaider::mMenu</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00062">62</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1b8c1a25fdf97ad58e47690cb7d89be5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* OpenRaider::mPakDir</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00073">73</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a20fb983aa195dbb1b0d0d6151081ff22"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1436,7 +938,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">char* OpenRaider::m_homeDir</td>
+          <td class="memname">bool OpenRaider::mRunning</td>
         </tr>
       </table>
   </td>
@@ -1446,389 +948,36 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Current home directory. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00229">229</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00096">96</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa688ff5af4adc89cbd022869f2bc0939"></a>
+<a class="anchor" id="a3d0970427e450a4f16567d07a5f5d1ce"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">char OpenRaider::m_mapName[32]</td>
+          <td class="memname"><a class="el" href="class_sound.html">Sound</a>* OpenRaider::mSound</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Current map filename. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00226">226</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00061">61</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a983cf3a0515141746a0a7ee8e9091dea"></a>
+<a class="anchor" id="aef8af374fc168071c291a0d75eecab3f"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float OpenRaider::m_mouseX</td>
+          <td class="memname"><a class="el" href="class_window.html">Window</a>* OpenRaider::mWindow</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000003">FIXME:</a></b></dt><dd>should be private </dd></dl>
 
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00218">218</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a88b618736f0f30480821f322f9c7769c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float OpenRaider::m_mouseY</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>XY axis rotation deltas. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00218">218</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0296eb2bcf3ac803d16b551b889e690b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* OpenRaider::m_pakDir</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Current pak directory. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00227">227</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a69c729fa45c0c4928df354b613d23317"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_render.html">Render</a> OpenRaider::m_render</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Rendering support. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00209">209</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a696c3d560af7a7176ccd81886fa566ff"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int OpenRaider::m_testSFX</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Used for mixed channel sound tests. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00217">217</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a00eb1c41edf668eec3e6cbcb38ed509c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int OpenRaider::m_texOffset</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Offset of <a class="el" href="class_tomb_raider.html" title="Loads maps, meshes, textures... ">TombRaider</a> textures in list. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00219">219</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a88e7ced8f576f99fce1cfbc9e8523259"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_tomb_raider.html">TombRaider</a> OpenRaider::m_tombraider</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Tombraider data support. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00207">207</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aad085042a700fc8938a9f7e961be226c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector.html">Vector</a>&lt;<a class="el" href="_world_8h.html#structentity__t">entity_t</a> *&gt; OpenRaider::mClients</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Player entity/clients. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00230">230</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a38ca9671957aad82c6bfcdbd21dda878"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_open_raider.html">OpenRaider</a> * OpenRaider::mInstance = 0x0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Singleton use. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00206">206</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a47452dc9506cee5ea7cced9018275ffd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int OpenRaider::mLevelTextureOffset</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00220">220</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8d132f1a82f6e4fe16a10ff5cdf14148"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector.html">Vector</a>&lt;char *&gt; OpenRaider::mMapList</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><a class="el" href="class_list.html" title="Template class representing a linked list. ">List</a> of game maps. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00225">225</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a15e518814cf29cf956d5ecef51e70dae"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int OpenRaider::mMode[8]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Translate <a class="el" href="class_system.html" title="Basic Interface for System implementations (SDLSystem) ">System</a>'s mode ids to OR's. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00215">215</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2f642867f69e06b8a908768741829339"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector.html">Vector</a>&lt;char *&gt; OpenRaider::mMusicList</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><a class="el" href="class_list.html" title="Template class representing a linked list. ">List</a> of game level music. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00224">224</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0025b26e7455e77964bb1d229ef22dfa"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_sound.html">Sound</a> OpenRaider::mSound</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>3d Audio support </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00208">208</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aedc466532eb93343851d92371b0e91aa"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_g_l_string.html">GLString</a>* OpenRaider::mText</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Hook to textbox like output. </p>
-
-<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00211">211</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
+<p>Definition at line <a class="el" href="_open_raider_8h_source.html#l00060">60</a> of file <a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>.</p>
 
 </div>
 </div>

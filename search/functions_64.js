@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['data',['Data',['../class_list_node.html#a340a4a53750d1182a124a071c76837f7',1,'ListNode::Data(T data)'],['../class_list_node.html#a84e798d025e41c496190193377caa816',1,'ListNode::Data()']]],
+  ['delay',['delay',['../class_window.html#a2e61534a544bd1b774c91b43ab61da73',1,'Window::delay()'],['../class_window_s_d_l.html#a868f2741c76b44e278ae241c647f71fc',1,'WindowSDL::delay()']]],
   ['deprecated_5fglubuild2dmipmaps',['deprecated_gluBuild2DMipmaps',['../_texture_8cpp.html#ac90870d538f2d9159e912b0b07e7c532',1,'Texture.cpp']]],
   ['deprecated_5fglulookat',['deprecated_gluLookAt',['../_render_8cpp.html#a6bd53f77232730f0850ad6cabc6534ab',1,'Render.cpp']]],
-  ['destroy',['destroy',['../class_world.html#a02d69ed7161ba4b4cb07471eb1bf2ec9',1,'World']]],
+  ['destroy',['destroy',['../class_game.html#a9896347cdc3da739d0099fbd7645b796',1,'Game::destroy()'],['../class_world.html#a02d69ed7161ba4b4cb07471eb1bf2ec9',1,'World::destroy()']]],
   ['disablemultitexture',['disableMultiTexture',['../class_texture.html#a481dee2e69a3ad281146a506d5352a78',1,'Texture']]],
-  ['display',['Display',['../class_render.html#a7e223719c00e1e9fe74aa430d4099058',1,'Render']]],
+  ['display',['display',['../class_console.html#aa392bbf2aeecd5e86a4e624bcf9b087a',1,'Console::display()'],['../class_game.html#a4d0223a84926cbabea95ed7e0392690a',1,'Game::display()'],['../class_menu.html#a2e784e39d600214e778acbfcbfe04a1b',1,'Menu::display()'],['../class_render.html#a7e223719c00e1e9fe74aa430d4099058',1,'Render::Display()']]],
+  ['displaymaplist',['displayMapList',['../class_menu.html#aa7db570c96617d8eb24a52f1b4abcf75',1,'Menu']]],
+  ['distance',['distance',['../math_8h.html#a0a0d1f33df1c36dff4aac1792a640d03',1,'distance(vec3_t a, vec3_t b):&#160;math.cpp'],['../math_8cpp.html#a0a0d1f33df1c36dff4aac1792a640d03',1,'distance(vec3_t a, vec3_t b):&#160;math.cpp']]],
   ['divide',['divide',['../class_quaternion.html#a958be9504c7e111445f73521f764b806',1,'Quaternion']]],
   ['dot',['dot',['../class_quaternion.html#a3eee17d5277c9104aaa1b023680186b5',1,'Quaternion::dot()'],['../class_vector3d.html#a43f2f7721cc087492c74031ef7454c9f',1,'Vector3d::dot()']]],
   ['draw',['Draw',['../class_emitter.html#a1a7f88acfebb09e0a3ab3bc6740a7287',1,'Emitter']]],
@@ -21,7 +23,5 @@ var searchData=
   ['drawskymesh',['drawSkyMesh',['../class_render.html#adfa399c2fd290283eae9ddf2c9c4e8f1',1,'Render']]],
   ['drawsolid',['drawSolid',['../class_mesh.html#a975242e234e30cdb7e92a3da76f8d2a2',1,'Mesh']]],
   ['drawsprite',['drawSprite',['../class_render.html#adb9398eab81029fbcb5853cba21b27df',1,'Render']]],
-  ['dump_5flara_5fstuff',['dump_lara_stuff',['../test_2_tomb_raider_8cpp.html#a68685774b098c518967491c29323e4c8',1,'TombRaider.cpp']]],
-  ['dump_5fmesh',['dump_mesh',['../test_2_tomb_raider_8cpp.html#a92fa7a6ab5e29c8a71780c6eb9142a18',1,'TombRaider.cpp']]],
-  ['dump_5ftextures',['dump_textures',['../test_2_tomb_raider_8cpp.html#a41adf3c25f63aa88abd0ed9d1a83072d',1,'TombRaider.cpp']]]
+  ['drawtext',['drawText',['../class_window.html#a92440ad4e7cb868c534fab1928931b42',1,'Window::drawText()'],['../class_window_s_d_l.html#a753ae3aacf3b8ca9dbe7d31bb539ea8e',1,'WindowSDL::drawText()']]]
 ];

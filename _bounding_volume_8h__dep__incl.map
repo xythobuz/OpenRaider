@@ -1,8 +1,0 @@
-<map id="include/BoundingVolume.h" name="include/BoundingVolume.h">
-<area shape="rect" id="node2" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="154,80,299,107"/>
-<area shape="rect" id="node3" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="95,155,209,181"/>
-<area shape="rect" id="node7" href="$_view_volume_8cpp.html" title="src/ViewVolume.cpp" alt="" coords="233,155,372,181"/>
-<area shape="rect" id="node4" href="$_open_raider_8h.html" title="Main Game Singleton. " alt="" coords="5,229,149,256"/>
-<area shape="rect" id="node6" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="174,229,281,256"/>
-<area shape="rect" id="node5" href="$_open_raider_8cpp.html" title="src/OpenRaider.cpp" alt="" coords="9,304,145,331"/>
-</map>

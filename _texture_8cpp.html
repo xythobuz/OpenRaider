@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2-dev</span>
+   &#160;<span id="projectnumber">0.1.3-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -87,8 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Texture.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -100,10 +99,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;stdio.h&gt;</code><br/>
 <code>#include &lt;stdarg.h&gt;</code><br/>
-<code>#include &quot;SDL_ttf.h&quot;</code><br/>
+<code>#include &lt;assert.h&gt;</code><br/>
 <code>#include &lt;GL/gl.h&gt;</code><br/>
 <code>#include &lt;GL/glu.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="tga_8h_source.html">TGA.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="tga_8h_source.html">utils/tga.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_texture_8h_source.html">Texture.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Texture.cpp:</div>
@@ -116,74 +115,19 @@ Include dependency graph for Texture.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a08c553e8a4410ec710f2dfbb0f5db905"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_texture_8cpp.html#a08c553e8a4410ec710f2dfbb0f5db905">glEnterMode2d</a> (unsigned int width, unsigned int height)</td></tr>
-<tr class="memdesc:a08c553e8a4410ec710f2dfbb0f5db905"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenGL ortho projection.  <a href="#a08c553e8a4410ec710f2dfbb0f5db905">More...</a><br/></td></tr>
-<tr class="separator:a08c553e8a4410ec710f2dfbb0f5db905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af18b578b2e4d9b0dc22ff4b7a2cd9ade"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_texture_8cpp.html#af18b578b2e4d9b0dc22ff4b7a2cd9ade">glExitMode2d</a> ()</td></tr>
-<tr class="memdesc:af18b578b2e4d9b0dc22ff4b7a2cd9ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenGL model matrix projection.  <a href="#af18b578b2e4d9b0dc22ff4b7a2cd9ade">More...</a><br/></td></tr>
-<tr class="separator:af18b578b2e4d9b0dc22ff4b7a2cd9ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4336d89f7962686c8e07942ca829d4b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_texture_8cpp.html#a4336d89f7962686c8e07942ca829d4b8">bufferedPrintf</a> (char *string, unsigned int len, char *s,...)</td></tr>
-<tr class="separator:a4336d89f7962686c8e07942ca829d4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49232a38497bc243903a803b6519b20e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_texture_8cpp.html#a49232a38497bc243903a803b6519b20e">glPrint2d</a> (float x, float y, float scale, char *string)</td></tr>
-<tr class="separator:a49232a38497bc243903a803b6519b20e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6556020ca2915e0d30489d9737774a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_texture_8cpp.html#af6556020ca2915e0d30489d9737774a0">glPrint3d</a> (float x, float y, float z, float pitch, float yaw, float roll, float scale, char *string)</td></tr>
-<tr class="separator:af6556020ca2915e0d30489d9737774a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1da9635b03c0f17960ee262affacdfd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_texture_8cpp.html#a1da9635b03c0f17960ee262affacdfd9">convertARGB32bppToRGBA32bpp</a> (unsigned char *image, unsigned int w, unsigned int h)</td></tr>
+<tr class="memitem:a1da9635b03c0f17960ee262affacdfd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_texture_8cpp.html#a1da9635b03c0f17960ee262affacdfd9">convertARGB32bppToRGBA32bpp</a> (unsigned char *image, unsigned int <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aac2ee9060499a346927bbe8470a68e274">w</a>, unsigned int <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa83684c9789c44b5b6edca6ae4ae1eeb5">h</a>)</td></tr>
 <tr class="separator:a1da9635b03c0f17960ee262affacdfd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac90870d538f2d9159e912b0b07e7c532"><td class="memItemLeft" align="right" valign="top">GLint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_texture_8cpp.html#ac90870d538f2d9159e912b0b07e7c532">deprecated_gluBuild2DMipmaps</a> (GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *data)</td></tr>
 <tr class="separator:ac90870d538f2d9159e912b0b07e7c532"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a7de671118f1216f2dc7ead9579b9d209"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_texture_8h.html#structgl__font__t">gl_font_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_texture_8cpp.html#a7de671118f1216f2dc7ead9579b9d209">gFontTest</a> = 0x0</td></tr>
-<tr class="separator:a7de671118f1216f2dc7ead9579b9d209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_texture.html" title="Texture registry. ">Texture</a> registry. </p>
-<dl class="section author"><dt>Author</dt><dd>Mongoose </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Mongoose </dd>
+<dd>
+xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a4336d89f7962686c8e07942ca829d4b8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void bufferedPrintf </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>string</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00130">130</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a1da9635b03c0f17960ee262affacdfd9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -214,7 +158,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00647">647</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00173">173</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -272,188 +216,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00772">772</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a08c553e8a4410ec710f2dfbb0f5db905"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void glEnterMode2d </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>OpenGL ortho projection. </p>
-<p>Call before using <a class="el" href="_texture_8h.html#a49232a38497bc243903a803b6519b20e">glPrint2d()</a> </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">width</td><td>window width </td></tr>
-    <tr><td class="paramname">height</td><td>window height </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00089">89</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af18b578b2e4d9b0dc22ff4b7a2cd9ade"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void glExitMode2d </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>OpenGL model matrix projection. </p>
-<p>Call after using <a class="el" href="_texture_8h.html#a49232a38497bc243903a803b6519b20e">glPrint2d()</a> </p>
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00116">116</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a49232a38497bc243903a803b6519b20e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void glPrint2d </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>scale</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>string</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000044">FIXME:</a></b></dt><dd>Add utf-8 dencoding of char* string</dd></dl>
-<p>Also this string must be preprocessed to have glyph offsets instead of ASCII text in it and support counts over 256 </p>
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00145">145</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af6556020ca2915e0d30489d9737774a0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void glPrint3d </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>z</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>pitch</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>yaw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>roll</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>scale</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>string</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000045">FIXME:</a></b></dt><dd>Add utf-8 dencoding of char* string</dd></dl>
-<p>Also this string must be preprocessed to have glyph offsets instead of ASCII text in it and support counts over 256 </p>
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00176">176</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a7de671118f1216f2dc7ead9579b9d209"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_texture_8h.html#structgl__font__t">gl_font_t</a>* gFontTest = 0x0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00027">27</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_8cpp_source.html#l00194">194</a> of file <a class="el" href="_texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>

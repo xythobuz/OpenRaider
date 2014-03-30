@@ -1,21 +1,6 @@
 <map id="RenderRoom" name="RenderRoom">
-<area shape="rect" id="node2" href="$_world_8h.html#structroom__mesh__t" title="room_mesh_t" alt="" coords="646,181,743,208"/>
-<area shape="rect" id="node3" href="$class_vector.html" title="Vector\&lt; static_model\l_t * \&gt;" alt="" coords="355,14,493,55"/>
-<area shape="rect" id="node4" href="$_world_8h.html#structstatic__model__t" title="static_model_t" alt="" coords="160,21,261,48"/>
-<area shape="rect" id="node5" href="$class_vector.html" title="Vector\&lt; int \&gt;" alt="" coords="379,80,469,107"/>
-<area shape="rect" id="node6" href="$class_vector.html" title="Vector\&lt; box_t * \&gt;" alt="" coords="363,131,485,157"/>
-<area shape="rect" id="node7" href="$_world_8h.html#structbox__t" title="box_t" alt="" coords="183,116,238,143"/>
-<area shape="rect" id="node8" href="$_world_8h.html#structvertex__t" title="vertex_t" alt="" coords="5,136,72,163"/>
-<area shape="rect" id="node12" href="$_world_8h.html#structsprite__t" title="sprite_t" alt="" coords="179,176,242,203"/>
-<area shape="rect" id="node9" href="$class_vector.html" title="Vector\&lt; sector_t * \&gt;" alt="" coords="358,232,490,259"/>
-<area shape="rect" id="node10" href="$_world_8h.html#structsector__t" title="sector_t" alt="" coords="178,236,243,263"/>
-<area shape="rect" id="node11" href="$class_vector.html" title="Vector\&lt; sprite_t * \&gt;" alt="" coords="359,181,489,208"/>
-<area shape="rect" id="node13" href="$_world_8h.html#structtexel__t" title="texel_t" alt="" coords="9,207,68,233"/>
-<area shape="rect" id="node14" href="$class_vector.html" title="Vector\&lt; portal_t * \&gt;" alt="" coords="359,283,489,309"/>
-<area shape="rect" id="node15" href="$_world_8h.html#structportal__t" title="portal_t" alt="" coords="179,296,242,323"/>
-<area shape="rect" id="node16" href="$class_vector.html" title="Vector\&lt; Light * \&gt;" alt="" coords="637,333,752,360"/>
-<area shape="rect" id="node17" href="$_light_8h.html#class_light" title="The GL light class. " alt="" coords="400,333,448,360"/>
-<area shape="rect" id="node18" href="$class_mesh.html" title="OpenGL Mesh. " alt="" coords="667,384,722,411"/>
-<area shape="rect" id="node19" href="$_mesh_8h.html#structrect__t" title="rect_t" alt="" coords="399,384,449,411"/>
-<area shape="rect" id="node20" href="$_mesh_8h.html#structtris__t" title="tris_t" alt="" coords="401,435,447,461"/>
+<area shape="rect" id="node2" href="$_world_data_8h.html#structroom__mesh__t" title="room_mesh_t" alt="" coords="5,96,107,123"/>
+<area shape="rect" id="node3" href="$class_mesh.html" title="OpenGL Mesh. " alt="" coords="131,96,185,123"/>
+<area shape="rect" id="node4" href="$class_mesh.html#struct_mesh_1_1tris__t" title="Mesh::tris_t" alt="" coords="55,5,145,32"/>
+<area shape="rect" id="node5" href="$class_mesh.html#struct_mesh_1_1rect__t" title="Mesh::rect_t" alt="" coords="170,5,264,32"/>
 </map>

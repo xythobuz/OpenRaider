@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2-dev</span>
+   &#160;<span id="projectnumber">0.1.3-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -93,14 +93,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a55e96e145a81b98c44c8911ceb3dec50">addFile</a>(const char *filename, int *source, unsigned int flags)</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_sound.html#aecb014051cbedd55b0a76ece2e7b011b">addWave</a>(unsigned char *wav, unsigned int length, int *source, unsigned int flags)</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a9ac0d7e6e2df583764ebfe0e3c0cbe34">init</a>()</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_sound.html#a333d11f2f3edca7c96e1b05de407df70">listenAt</a>(float pos[3], float angle[3])</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a66de2856a0bfc14bfb79e2992cf3c51e">mBuffer</a></td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a85b633b8dcb01ce44826486a007ee71c">clear</a>()</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_sound.html#aae1c8633b69065f23e0bf16f873c23c2">initialize</a>()</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a333d11f2f3edca7c96e1b05de407df70">listenAt</a>(float pos[3], float angle[3])</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_sound.html#a78b6f29e0e724cde6b19a3d8fd0aa48a">mBuffer</a></td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#adcdfa0f993c1375fae4ed59453d0fd52">mEnabled</a></td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_sound.html#a59c303b2f626e069533505ebd9380aa4">mInit</a></td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a45eeb6e3a80218f23e52d5c87d6b4263">mNextBuffer</a></td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_sound.html#aa2756a114f371ab67b4a9af8237bf7f9">mNextSource</a></td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a28d9901d7620fec01b4947fa54de9fd9">mSource</a></td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_sound.html#aec9ee494c3029f675f0d8e6ab3ebdfc1">play</a>(int source)</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a418bacc9d3aa87fa5a4bc0d7654e8d73">mSource</a></td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_sound.html#a2b3d3e153b010b9127d19875d9a01d38">mVolume</a></td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#aec9ee494c3029f675f0d8e6ab3ebdfc1">play</a>(int source)</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_sound.html#a2e9aa087e064157b6cf7310825b8fc22">registeredSources</a>()</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a1de4a94fa5823c0bf8a93548c46b64b3">setEnabled</a>(bool on)</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_sound.html#adea39b5bc59591a21210a7a07d67fb6e">setVolume</a>(float vol)</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a539c205cdf06fe2c621fd77c37bcfac9">Sound</a>()</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eee">SoundFlags</a> enum name</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eeea324a2e68682c8aa0b21bbcbf02630dca">SoundFlagsLoop</a> enum value</td><td class="entry"><a class="el" href="class_sound.html">Sound</a></td><td class="entry"></td></tr>

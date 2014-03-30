@@ -1,51 +1,51 @@
 <map id="OpenRaider" name="OpenRaider">
-<area shape="rect" id="node2" href="$class_s_d_l_system.html" title="SDL System interface implementation. " alt="" coords="656,7,747,33"/>
-<area shape="rect" id="node3" href="$class_system.html" title="Basic Interface for System implementations (SDLSystem) " alt="" coords="350,7,415,33"/>
-<area shape="rect" id="node4" href="$class_vector.html" title="Vector\&lt; const char * \&gt;" alt="" coords="5,7,152,33"/>
-<area shape="rect" id="node5" href="$class_g_l_string.html" title="Open GL rendering font/string class. " alt="" coords="347,315,418,341"/>
-<area shape="rect" id="node9" href="$class_render.html" title="OpenRaider Renderer class. " alt="" coords="670,221,733,248"/>
-<area shape="rect" id="node6" href="$_g_l_string_8h.html#structgl__string__t" title="Internal data structure representing GL Strings. " alt="" coords="40,315,117,341"/>
-<area shape="rect" id="node7" href="$class_camera.html" title="OpenGL camera class. " alt="" coords="349,67,417,93"/>
-<area shape="rect" id="node8" href="$class_quaternion.html" title="Quaternion. " alt="" coords="37,67,121,93"/>
-<area shape="rect" id="node10" href="$class_vector.html" title="Vector\&lt; SkeletalModel * \&gt;" alt="" coords="299,139,466,165"/>
-<area shape="rect" id="node11" href="$class_skeletal_model.html" title="This is the factored out skeletal model class. " alt="" coords="29,136,129,163"/>
-<area shape="rect" id="node12" href="$class_vector.html" title="Vector\&lt; RenderRoom * \&gt;" alt="" coords="301,195,465,221"/>
-<area shape="rect" id="node13" href="$class_render_room.html" title="RenderRoom used by Renderer. " alt="" coords="30,196,127,223"/>
-<area shape="rect" id="node14" href="$class_texture.html" title="Texture registry. " alt="" coords="351,245,414,272"/>
-<area shape="rect" id="node15" href="$class_vector.html" title="Vector\&lt; entity_t * \&gt;" alt="" coords="637,395,765,421"/>
-<area shape="rect" id="node16" href="$_world_8h.html#structentity__t" title="entity_t" alt="" coords="352,389,413,416"/>
-<area shape="rect" id="node17" href="$class_vector.html" title="Vector\&lt; char * \&gt;" alt="" coords="645,445,758,472"/>
-<area shape="rect" id="node18" href="$class_sound.html" title="This is the audio manager for OpenRaider. " alt="" coords="672,496,731,523"/>
-<area shape="rect" id="node19" href="$class_tomb_raider.html" title="Loads maps, meshes, textures... " alt="" coords="656,1111,747,1137"/>
-<area shape="rect" id="node20" href="$_tomb_raider_8h.html#structtr5__object__texture__t" title="TR5 Object Texture (40 bytes) " alt="" coords="317,440,448,467"/>
-<area shape="rect" id="node21" href="$_tomb_raider_8h.html#structtr5__object__texture__vertex__t" title="TR5 Object Texture Vertex (4 bytes) " alt="" coords="19,411,139,453"/>
-<area shape="rect" id="node22" href="$_tomb_raider_8h.html#structtr5__animation__t" title="TR5 Animation (40 bytes). " alt="" coords="329,491,436,517"/>
-<area shape="rect" id="node23" href="$_tomb_raider_8h.html#structtr2__room__t" title="Room structure. " alt="" coords="343,592,422,619"/>
-<area shape="rect" id="node24" href="$_tomb_raider_8h.html#structtr2__room__staticmesh__t" title="Room static mesh data. " alt="" coords="5,491,152,517"/>
-<area shape="rect" id="node28" href="$_tomb_raider_8h.html#structtr5__room__t" title="TR5 Room. " alt="" coords="343,541,422,568"/>
-<area shape="rect" id="node25" href="$_tomb_raider_8h.html#structtr2__room__info__t" title="The &quot;header&quot; of a room. " alt="" coords="26,555,131,581"/>
-<area shape="rect" id="node26" href="$_tomb_raider_8h.html#structtr2__colour__t" title="Basic 24&#45;bit colour structure. " alt="" coords="37,624,121,651"/>
-<area shape="rect" id="node27" href="$_tomb_raider_8h.html#structtr2__object__texture__t" title="Object texture structure. " alt="" coords="317,705,448,732"/>
-<area shape="rect" id="node29" href="$_tomb_raider_8h.html#structtr2__textile8__t" title="An 8&#45;bit texture tile (65536 bytes). " alt="" coords="337,756,428,783"/>
-<area shape="rect" id="node30" href="$_tomb_raider_8h.html#structtr2__box__t" title="Boxes structure. " alt="" coords="345,807,420,833"/>
-<area shape="rect" id="node31" href="$_tomb_raider_8h.html#structtr2__textile16__t" title="A 16&#45;bit texture tile (131072 bytes). " alt="" coords="334,857,431,884"/>
-<area shape="rect" id="node32" href="$_tomb_raider_8h.html#structtr2__anim__command__t" title="AnimCommand structure. " alt="" coords="312,908,453,935"/>
-<area shape="rect" id="node33" href="$_tomb_raider_8h.html#structtr2__sound__details__t" title="Sound sample structure. " alt="" coords="317,959,448,985"/>
-<area shape="rect" id="node34" href="$_tomb_raider_8h.html#structtr2__state__change__t" title="State Change structure. " alt="" coords="318,1009,447,1036"/>
-<area shape="rect" id="node35" href="$_tomb_raider_8h.html#structtr2__sound__source__t" title="SoundSource structure. " alt="" coords="317,1060,448,1087"/>
-<area shape="rect" id="node36" href="$_tomb_raider_8h.html#structtr2__sprite__sequence__t" title="Sprite Sequence structure. " alt="" coords="311,1111,455,1137"/>
-<area shape="rect" id="node37" href="$_tomb_raider_8h.html#structtr2__sprite__texture__t" title="Sprite texture structure. " alt="" coords="319,1161,446,1188"/>
-<area shape="rect" id="node38" href="$_tomb_raider_8h.html#structtr2__moveable__t" title="Moveable structure. " alt="" coords="329,1212,437,1239"/>
-<area shape="rect" id="node39" href="$_tomb_raider_8h.html#structtr2__staticmesh__t" title="StaticMesh structure. " alt="" coords="327,1263,439,1289"/>
-<area shape="rect" id="node40" href="$_tomb_raider_8h.html#structtr5__flyby__camera__t" title="TR5 Flyby camera (40 bytes) " alt="" coords="319,1313,447,1340"/>
-<area shape="rect" id="node41" href="$_tomb_raider_8h.html#structtr5__moveable__t" title="TR5 Moveable (20 bytes). " alt="" coords="329,1364,437,1391"/>
-<area shape="rect" id="node42" href="$_tomb_raider_8h.html#structtr2__textile32__t" title="A 32&#45;bit texture tile (262144 bytes). " alt="" coords="334,1415,431,1441"/>
-<area shape="rect" id="node43" href="$_tomb_raider_8h.html#structtr2__anim__dispatch__t" title="Animation Dispatch structure. " alt="" coords="315,1465,450,1492"/>
-<area shape="rect" id="node44" href="$_tomb_raider_8h.html#structtr2__mesh__t" title="Mesh structure. " alt="" coords="341,1516,424,1543"/>
-<area shape="rect" id="node45" href="$_tomb_raider_8h.html#structtr2__camera__t" title="Camera structure. " alt="" coords="335,1567,430,1593"/>
-<area shape="rect" id="node46" href="$_tomb_raider_8h.html#structtr5__cinematic__frame__t" title="tr5_cinematic_frame_t" alt="" coords="312,1617,453,1644"/>
-<area shape="rect" id="node47" href="$_tomb_raider_8h.html#structtr2__cinematic__frame__t" title="Cutscene Camera structure. " alt="" coords="312,1668,453,1695"/>
-<area shape="rect" id="node48" href="$_tomb_raider_8h.html#structtr2__animation__t" title="Animation structure up to TR3. " alt="" coords="329,1719,436,1745"/>
-<area shape="rect" id="node49" href="$_tomb_raider_8h.html#structtr2__meshtree__t" title="MeshTree structure. " alt="" coords="331,1769,434,1796"/>
-<area shape="rect" id="node50" href="$_tomb_raider_8h.html#structtr2__item__t" title="Item structure. " alt="" coords="345,1820,420,1847"/>
+<area shape="rect" id="node2" href="$class_game.html" title="Game abstraction. " alt="" coords="891,1396,949,1423"/>
+<area shape="rect" id="node3" href="$_world_data_8h.html#structentity__t" title="entity_t" alt="" coords="665,1396,730,1423"/>
+<area shape="rect" id="node4" href="$class_camera.html" title="OpenGL camera class. " alt="" coords="664,1447,731,1473"/>
+<area shape="rect" id="node5" href="$class_quaternion.html" title="Quaternion. " alt="" coords="351,1447,436,1473"/>
+<area shape="rect" id="node6" href="$class_render.html" title="OpenRaider Renderer class. " alt="" coords="665,1497,729,1524"/>
+<area shape="rect" id="node7" href="$class_texture.html" title="Texture registry. " alt="" coords="361,1497,426,1524"/>
+<area shape="rect" id="node8" href="$class_view_volume.html" title="Viewing Volume for culling use. " alt="" coords="347,1548,439,1575"/>
+<area shape="rect" id="node9" href="$class_matrix.html" title="3D Matrix " alt="" coords="53,1548,112,1575"/>
+<area shape="rect" id="node10" href="$class_tomb_raider.html" title="Loads maps, meshes, textures... " alt="" coords="651,737,744,764"/>
+<area shape="rect" id="node11" href="$_tomb_raider_data_8h.html#structtr5__object__texture__t" title="TR5 Object Texture (40 bytes) " alt="" coords="324,320,463,347"/>
+<area shape="rect" id="node12" href="$_tomb_raider_data_8h.html#structtr5__object__texture__vertex__t" title="TR5 Object Texture Vertex (4 bytes) " alt="" coords="19,313,146,354"/>
+<area shape="rect" id="node13" href="$_tomb_raider_data_8h.html#structtr5__animation__t" title="TR5 Animation (40 bytes). " alt="" coords="338,371,449,397"/>
+<area shape="rect" id="node14" href="$_tomb_raider_data_8h.html#structtr2__room__t" title="Room structure. " alt="" coords="351,484,435,511"/>
+<area shape="rect" id="node15" href="$_tomb_raider_data_8h.html#structtr2__room__staticmesh__t" title="Room static mesh data. " alt="" coords="5,653,160,680"/>
+<area shape="rect" id="node22" href="$_tomb_raider_data_8h.html#structtr5__room__t" title="TR5 Room. " alt="" coords="351,585,435,612"/>
+<area shape="rect" id="node16" href="$_tomb_raider_data_8h.html#structtr2__room__info__t" title="The &quot;header&quot; of a room. " alt="" coords="27,447,139,473"/>
+<area shape="rect" id="node17" href="$_tomb_raider_data_8h.html#structtr2__colour__t" title="Basic 24&#45;bit colour structure. " alt="" coords="37,388,128,415"/>
+<area shape="rect" id="node18" href="$_tomb_raider_data_8h.html#structtr2__room__sector__t" title="Room sector structure. " alt="" coords="19,565,146,592"/>
+<area shape="rect" id="node19" href="$_tomb_raider_data_8h.html#structtr2__room__portal__t" title="Portal structure. " alt="" coords="21,744,145,771"/>
+<area shape="rect" id="node20" href="$_tomb_raider_data_8h.html#structtr2__room__light__t" title="Room lighting structure. " alt="" coords="25,497,141,524"/>
+<area shape="rect" id="node21" href="$_tomb_raider_data_8h.html#structtr2__object__texture__t" title="Object texture structure. " alt="" coords="324,535,463,561"/>
+<area shape="rect" id="node23" href="$_tomb_raider_data_8h.html#structtr2__textile8__t" title="An 8&#45;bit texture tile (65536 bytes). " alt="" coords="345,636,442,663"/>
+<area shape="rect" id="node24" href="$_tomb_raider_data_8h.html#structtr2__box__t" title="Boxes structure. " alt="" coords="355,687,432,713"/>
+<area shape="rect" id="node25" href="$_tomb_raider_data_8h.html#structtr2__textile16__t" title="A 16&#45;bit texture tile (131072 bytes). " alt="" coords="341,737,445,764"/>
+<area shape="rect" id="node26" href="$_tomb_raider_data_8h.html#structtr2__anim__command__t" title="AnimCommand structure. " alt="" coords="319,788,467,815"/>
+<area shape="rect" id="node27" href="$_tomb_raider_data_8h.html#structtr2__sound__details__t" title="Sound sample structure. " alt="" coords="325,839,462,865"/>
+<area shape="rect" id="node28" href="$_tomb_raider_data_8h.html#structtr2__state__change__t" title="State Change structure. " alt="" coords="326,889,461,916"/>
+<area shape="rect" id="node29" href="$_tomb_raider_data_8h.html#structtr2__sound__source__t" title="SoundSource structure. " alt="" coords="325,940,462,967"/>
+<area shape="rect" id="node30" href="$_tomb_raider_data_8h.html#structtr2__sprite__sequence__t" title="Sprite Sequence structure. " alt="" coords="317,991,469,1017"/>
+<area shape="rect" id="node31" href="$_tomb_raider_data_8h.html#structtr2__sprite__texture__t" title="Sprite texture structure. " alt="" coords="326,1041,461,1068"/>
+<area shape="rect" id="node32" href="$_tomb_raider_data_8h.html#structtr2__moveable__t" title="Moveable structure. " alt="" coords="337,1092,449,1119"/>
+<area shape="rect" id="node33" href="$_tomb_raider_data_8h.html#structtr2__staticmesh__t" title="StaticMesh structure. " alt="" coords="334,1143,453,1169"/>
+<area shape="rect" id="node34" href="$_tomb_raider_data_8h.html#structtr5__flyby__camera__t" title="TR5 Flyby camera (40 bytes) " alt="" coords="326,1193,461,1220"/>
+<area shape="rect" id="node35" href="$_tomb_raider_data_8h.html#structtr5__moveable__t" title="TR5 Moveable (20 bytes). " alt="" coords="337,1244,449,1271"/>
+<area shape="rect" id="node36" href="$_tomb_raider_data_8h.html#structtr2__textile32__t" title="A 32&#45;bit texture tile (262144 bytes). " alt="" coords="341,1295,445,1321"/>
+<area shape="rect" id="node37" href="$_tomb_raider_data_8h.html#structtr2__anim__dispatch__t" title="Animation Dispatch structure. " alt="" coords="323,1345,464,1372"/>
+<area shape="rect" id="node38" href="$_tomb_raider_data_8h.html#structtr2__mesh__t" title="Mesh structure. " alt="" coords="350,1396,437,1423"/>
+<area shape="rect" id="node39" href="$_tomb_raider_data_8h.html#structtr2__camera__t" title="Camera structure. " alt="" coords="344,16,443,43"/>
+<area shape="rect" id="node40" href="$_tomb_raider_data_8h.html#structtr5__cinematic__frame__t" title="tr5_cinematic_frame_t" alt="" coords="318,67,469,93"/>
+<area shape="rect" id="node41" href="$_tomb_raider_data_8h.html#structtr2__cinematic__frame__t" title="Cutscene Camera structure. " alt="" coords="318,117,469,144"/>
+<area shape="rect" id="node42" href="$_tomb_raider_data_8h.html#structtr2__animation__t" title="Animation structure up to TR3. " alt="" coords="338,168,449,195"/>
+<area shape="rect" id="node43" href="$_tomb_raider_data_8h.html#structtr2__meshtree__t" title="MeshTree structure. " alt="" coords="339,219,448,245"/>
+<area shape="rect" id="node44" href="$_tomb_raider_data_8h.html#structtr2__item__t" title="Item structure. " alt="" coords="353,269,433,296"/>
+<area shape="rect" id="node45" href="$class_world.html" title="The game world (model) " alt="" coords="669,1345,725,1372"/>
+<area shape="rect" id="node46" href="$class_console.html" title="Console &#39;overlay&#39;. " alt="" coords="885,1447,955,1473"/>
+<area shape="rect" id="node47" href="$class_sound.html" title="This is the audio manager for OpenRaider. " alt="" coords="891,1497,949,1524"/>
+<area shape="rect" id="node48" href="$class_menu.html" title="Menu &#39;overlay&#39;. " alt="" coords="893,1548,947,1575"/>
+<area shape="rect" id="node49" href="$global_8h.html#struct_window_string" title="WindowString" alt="" coords="646,1548,749,1575"/>
+<area shape="rect" id="node50" href="$class_window.html" title="Windowing interface. " alt="" coords="886,1599,954,1625"/>
 </map>

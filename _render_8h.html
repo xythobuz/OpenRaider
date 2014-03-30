@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OpenRaider
-   &#160;<span id="projectnumber">0.1.2-dev</span>
+   &#160;<span id="projectnumber">0.1.3-dev</span>
    </div>
    <div id="projectbrief">Open Source Tomb Raider Game Engine implementation</div>
   </td>
@@ -95,28 +95,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> Renderer class.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;Config.h&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_list_8h_source.html">List.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_vector_8h_source.html">Vector.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_matrix_8h_source.html">Matrix.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &lt;vector&gt;</code><br/>
+<code>#include &quot;Config.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_matrix_8h_source.html">math/Matrix.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_view_volume_8h_source.html">ViewVolume.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_light_8h_source.html">Light.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_world_8h_source.html">World.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_skeletal_model_8h_source.html">SkeletalModel.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_mesh_8h_source.html">Mesh.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_texture_8h_source.html">Texture.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_camera_8h_source.html">Camera.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_g_l_string_8h_source.html">GLString.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Render.h:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="_render_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="_render_8h__incl.svg" width="100%" height="553"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_render_8h__dep__incl.svg" width="287" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="_render_8h__dep__incl.svg" width="100%" height="552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div>
@@ -124,6 +121,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:class_light"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8h.html#class_light">Light</a></td></tr>
+<tr class="memdesc:class_light"><td class="mdescLeft">&#160;</td><td class="mdescRight">The GL light class.  <a href="_render_8h.html#class_light">More...</a><br/></td></tr>
+<tr class="separator:class_light"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_room.html">RenderRoom</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_render_room.html" title="RenderRoom used by Renderer. ">RenderRoom</a> used by Renderer.  <a href="class_render_room.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,10 +133,76 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> Renderer class. </p>
-<dl class="section author"><dt>Author</dt><dd>Mongoose </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Mongoose </dd>
+<dd>
+xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
-</div></div><!-- contents -->
+</div><hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="class_light" id="class_light"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">class Light</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>The GL light class. </p>
+
+<p>Definition at line <a class="el" href="_render_8h_source.html#l00030">30</a> of file <a class="el" href="_render_8h_source.html">Render.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a661d9480e01af8b1612860b9630ef5f8"></a></td>
+<td class="fieldname">
+LightType</td>
+<td class="fielddoc">
+Type a light can be of. </td></tr>
+</table>
+<table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="aaee0b8a8827e732509e43360ac7fa340"></a>float</td>
+<td class="fieldname">
+mAtt</td>
+<td class="fielddoc">
+<a class="el" href="_render_8h.html#class_light" title="The GL light class. ">Light</a> direction. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a7721a2fa803167bb9fb20d67cac6105f"></a><a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a></td>
+<td class="fieldname">
+mColor</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="ac3828ad45dae9b73c1e999c5246d8d35"></a><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a></td>
+<td class="fieldname">
+mCutoff</td>
+<td class="fielddoc">
+Color of light. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a380cb4557975efaaca1124c4f7da5381"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
+<td class="fieldname">
+mDir</td>
+<td class="fielddoc">
+<a class="el" href="_render_8h.html#class_light" title="The GL light class. ">Light</a> position in 3 space. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a729c9e57393dd34502bd9fba92edd6e3"></a><a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a></td>
+<td class="fieldname">
+mPos</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a0b609e78b30877a4b562fec7f283e41a"></a><a class="el" href="_render_8h.html#a661d9480e01af8b1612860b9630ef5f8">LightType</a></td>
+<td class="fieldname">
+mType</td>
+<td class="fielddoc">
+Fade out distance. </td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

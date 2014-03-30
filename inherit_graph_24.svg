@@ -11,9 +11,9 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-24 52,-24 52,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a xlink:href="class_particle.html" target="_top" xlink:title="Partcle systems atomic base. ">
-<polygon fill="white" stroke="black" points="0.5,-0.5 0.5,-19.5 47.5,-19.5 47.5,-0.5 0.5,-0.5"/>
-<text text-anchor="middle" x="24" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Particle</text>
+<g id="a_node1"><a xlink:href="class_render.html" target="_top" xlink:title="OpenRaider Renderer class. ">
+<polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 48,-19.5 48,-0.5 0,-0.5"/>
+<text text-anchor="middle" x="24" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Render</text>
 </a>
 </g>
 </g>

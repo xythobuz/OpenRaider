@@ -1,8 +1,12 @@
 var searchData=
 [
+  ['s',['s',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa8e9307350b1e20521f37dfe5268df55',1,'global.h']]],
   ['savecrystal',['SaveCrystal',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea843455f92a9d24c45fe442abd19c454b',1,'TombRaider1']]],
   ['scionholder',['ScionHolder',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea6be9b88d93aa4d26322a618861bf5518',1,'TombRaider1']]],
   ['scionpiece',['ScionPiece',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea67e6ee2efa98f79cc3171c74de301185',1,'TombRaider1']]],
+  ['scrolllock',['scrolllock',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa10ee28bbf49cef21ea3fc8a68b36cf9f',1,'global.h']]],
+  ['semicolon',['semicolon',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa4986a40f028634af873a13f70135c72d',1,'global.h']]],
+  ['seven',['seven',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aac4765f17cdb9e07fa4a02dd4b58cbc3d',1,'global.h']]],
   ['shack',['Shack',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea37b7f7b610119005a24415bd9e93f1b1',1,'TombRaider1']]],
   ['shackstate_5fdroppingfirst',['ShackState_DroppingFirst',['../_tomb_raider1_8h.html#ade77c947a0a11346974d186f82b68ceaa01054cd31817a2df9b4c111406d930c0',1,'TombRaider1']]],
   ['shackstate_5fdroppingsecond',['ShackState_DroppingSecond',['../_tomb_raider1_8h.html#ade77c947a0a11346974d186f82b68ceaaa186e6c2d8ecf2916064f313c6929ef0',1,'TombRaider1']]],
@@ -13,6 +17,7 @@ var searchData=
   ['shotgunammo',['ShotgunAmmo',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea71108abd362ed7abdce23e6dfb6c32f8',1,'TombRaider1']]],
   ['shotgunanimation',['ShotgunAnimation',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea7fd4f41a224e0917454dde4788050dcb',1,'TombRaider1']]],
   ['shrinkingwedge',['ShrinkingWedge',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea9016666c86fcaee3741595448b4cc1fd',1,'TombRaider1']]],
+  ['six',['six',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa03db40c2d800ba7ef47d1c94fab7dad0',1,'global.h']]],
   ['skateboard',['Skateboard',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eae7163a5335be1558d7d6c1f738023d1d',1,'TombRaider1']]],
   ['skateboardkid',['SkateboardKid',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaf3f53864f904a9bc983348885e41ea49',1,'TombRaider1']]],
   ['skateboardkidstate_5faiming',['SkateboardKidState_Aiming',['../_tomb_raider1_8h.html#a090610eb066a8d953848fa973ffc75e7a46905108ecc8f4b0c383b2f69f3ea3e5',1,'TombRaider1']]],
@@ -30,6 +35,7 @@ var searchData=
   ['slammingdoor',['SlammingDoor',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eacc07723b8c27777c39f7ab8f8abebb2b',1,'TombRaider1']]],
   ['slammingdoorstate_5fclosed',['SlammingDoorState_Closed',['../_tomb_raider1_8h.html#a9d7b0802f55557e486d251b3c9e8d226a044ff6faded9a77ef1eba10640dea8b8',1,'TombRaider1']]],
   ['slammingdoorstate_5fopen',['SlammingDoorState_Open',['../_tomb_raider1_8h.html#a9d7b0802f55557e486d251b3c9e8d226a821f7ce26dfc0412a7d7f1bee7156b5b',1,'TombRaider1']]],
+  ['slash',['slash',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa77fb3b0860ec504f39f45cb59413f731',1,'global.h']]],
   ['slot1empty',['Slot1Empty',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea8981882c10637c349a7f79ecb1d7713c',1,'TombRaider1']]],
   ['slot1full',['Slot1Full',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea188dffb8b25fb15acfbc45afefd61474',1,'TombRaider1']]],
   ['slot2empty',['Slot2Empty',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaf6dfffdf602c66b807f2b56f2c2c399d',1,'TombRaider1']]],
@@ -41,6 +47,7 @@ var searchData=
   ['smallmedipack',['SmallMedipack',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaa0885d59fe595f4b1c106938ec4a4671',1,'TombRaider1']]],
   ['soundflagsloop',['SoundFlagsLoop',['../class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eeea324a2e68682c8aa0b21bbcbf02630dca',1,'Sound']]],
   ['soundflagsnone',['SoundFlagsNone',['../class_sound.html#a6ffdae62cb2dc7589c0ec12bd4846eeea638d6e4330149070cc5f051558475205',1,'Sound']]],
+  ['space',['space',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aada1fec8e1a3870378ee50323bf5d338b',1,'global.h']]],
   ['spikes',['Spikes',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea710260cd2f3c4b2b1c29693818182a78',1,'TombRaider1']]],
   ['sunglasses',['Sunglasses',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eab473e706c00d322530f240709ad0099f',1,'TombRaider1']]],
   ['swingingblade',['SwingingBlade',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaf705eada7930205b4f01b07c30744e66',1,'TombRaider1']]],
@@ -49,13 +56,5 @@ var searchData=
   ['switchstate_5foff',['SwitchState_Off',['../_tomb_raider1_8h.html#ad6936c95195b74300822e9cee61f82bcac14a7071086ff305c42639da9ce633d5',1,'TombRaider1']]],
   ['switchstate_5fon',['SwitchState_On',['../_tomb_raider1_8h.html#ad6936c95195b74300822e9cee61f82bca2440d9b47f1c09d59a255669a5dfbf10',1,'TombRaider1']]],
   ['swordofdamocles1',['SwordOfDamocles1',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea5ee40742b8f5fe9110a333887d82f87e',1,'TombRaider1']]],
-  ['swordofdamocles2',['SwordOfDamocles2',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea5c827d7e2a9849c567993b3211d6c2f9',1,'TombRaider1']]],
-  ['sys_5fmod_5fkey_5flalt',['SYS_MOD_KEY_LALT',['../_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a32a897a4c44761361c0823eaad0ccded',1,'System.h']]],
-  ['sys_5fmod_5fkey_5flctrl',['SYS_MOD_KEY_LCTRL',['../_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1af2447392b07748061da3827c6c4f82dd',1,'System.h']]],
-  ['sys_5fmod_5fkey_5flmeta',['SYS_MOD_KEY_LMETA',['../_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1aaca0425499b686d8410a45013067e3f0',1,'System.h']]],
-  ['sys_5fmod_5fkey_5flshift',['SYS_MOD_KEY_LSHIFT',['../_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a423d7a749ecbd74277a9e0f9fdf563b0',1,'System.h']]],
-  ['sys_5fmod_5fkey_5fralt',['SYS_MOD_KEY_RALT',['../_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1afad4d90fc08dd2d6a40dba5762724ec5',1,'System.h']]],
-  ['sys_5fmod_5fkey_5frctrl',['SYS_MOD_KEY_RCTRL',['../_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1ac97c9f11bc76e1e7111eeb56cabe7cf3',1,'System.h']]],
-  ['sys_5fmod_5fkey_5frmeta',['SYS_MOD_KEY_RMETA',['../_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a01ecd1627e8b371cbe50fcda93c2c178',1,'System.h']]],
-  ['sys_5fmod_5fkey_5frshift',['SYS_MOD_KEY_RSHIFT',['../_system_8h.html#ab81ba8d0a9569745eed58de8da4ee2e1a984b6123ff4e9a9323b28a9e0c060fcc',1,'System.h']]]
+  ['swordofdamocles2',['SwordOfDamocles2',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea5c827d7e2a9849c567993b3211d6c2f9',1,'TombRaider1']]]
 ];
