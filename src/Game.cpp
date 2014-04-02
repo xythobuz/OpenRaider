@@ -82,8 +82,8 @@ void Game::destroy() {
     mLoaded = false;
     mRender->setMode(Render::modeDisabled);
 
-    mRender->ClearWorld();
     mWorld.destroy();
+    mRender->ClearWorld();
     gOpenRaider->mSound->clear(); // Remove all previously loaded sounds
 }
 

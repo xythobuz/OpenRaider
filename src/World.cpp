@@ -323,8 +323,7 @@ void World::destroy()
     // Add some locking to check use state first
     if (!mClearLock)
     {
-        //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
-        //clear();
+        clear();
     }
 }
 
@@ -600,8 +599,7 @@ void World::moveEntity(entity_t *e, char movement)
 // Private Mutators
 ////////////////////////////////////////////////////////////
 
-void World::clear()
-{
+void World::clear() {
     room_mesh_t *room;
     model_mesh_t *mesh;
     sprite_seq_t *sprite;
@@ -621,24 +619,26 @@ void World::clear()
         room = mRooms[i];
 
         if (room) {
-            for (std::vector<int>::size_type j = 0; j != room->portals.size(); j++)
-                delete room->portals[i];
+            //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
+
+            //for (std::vector<int>::size_type j = 0; j != room->portals.size(); j++)
+            //    delete room->portals[i];
             room->portals.clear();
 
-            for (std::vector<int>::size_type j = 0; j != room->models.size(); j++)
-                delete room->models[i];
+            //for (std::vector<int>::size_type j = 0; j != room->models.size(); j++)
+            //    delete room->models[i];
             room->models.clear();
 
-            for (std::vector<int>::size_type j = 0; j != room->sprites.size(); j++)
-                delete room->sprites[i];
+            //for (std::vector<int>::size_type j = 0; j != room->sprites.size(); j++)
+            //    delete room->sprites[i];
             room->sprites.clear();
 
-            for (std::vector<int>::size_type j = 0; j != room->sectors.size(); j++)
-                delete room->sectors[i];
+            //for (std::vector<int>::size_type j = 0; j != room->sectors.size(); j++)
+            //    delete room->sectors[i];
             room->sectors.clear();
 
-            for (std::vector<int>::size_type j = 0; j != room->boxes.size(); j++)
-                delete room->boxes[i];
+            //for (std::vector<int>::size_type j = 0; j != room->boxes.size(); j++)
+            //    delete room->boxes[i];
             room->boxes.clear();
 
             delete room;
@@ -651,26 +651,22 @@ void World::clear()
         if (!mesh)
             continue;
 
-        for (std::vector<int>::size_type j = 0; j != mesh->texturedTriangles.size(); j++)
-        {
+        for (std::vector<int>::size_type j = 0; j != mesh->texturedTriangles.size(); j++) {
             if (mesh->texturedTriangles[j])
                 delete mesh->texturedTriangles[j];
         }
 
-        for (std::vector<int>::size_type j = 0; j != mesh->coloredTriangles.size(); j++)
-        {
+        for (std::vector<int>::size_type j = 0; j != mesh->coloredTriangles.size(); j++) {
             if (mesh->coloredTriangles[j])
                 delete mesh->coloredTriangles[j];
         }
 
-        for (std::vector<int>::size_type j = 0; j != mesh->texturedRectangles.size(); j++)
-        {
+        for (std::vector<int>::size_type j = 0; j != mesh->texturedRectangles.size(); j++) {
             if (mesh->texturedRectangles[j])
                 delete mesh->texturedRectangles[j];
         }
 
-        for (std::vector<int>::size_type j = 0; j != mesh->coloredRectangles.size(); j++)
-        {
+        for (std::vector<int>::size_type j = 0; j != mesh->coloredRectangles.size(); j++) {
             if (mesh->coloredRectangles[j])
                 delete mesh->coloredRectangles[j];
         }
@@ -689,8 +685,7 @@ void World::clear()
 
     mMeshes.clear();
 
-    for (std::vector<int>::size_type i = 0; i != mSprites.size(); i++)
-    {
+    for (std::vector<int>::size_type i = 0; i != mSprites.size(); i++) {
         sprite = mSprites[i];
 
         if (!sprite)
@@ -704,8 +699,7 @@ void World::clear()
 
     mSprites.clear();
 
-    for (std::vector<int>::size_type i = 0; i != mModels.size(); i++)
-    {
+    for (std::vector<int>::size_type i = 0; i != mModels.size(); i++) {
         model = mModels[i];
 
         if (!model)
@@ -721,30 +715,23 @@ void World::clear()
         }
 
         if (!found)
-        {
             cache.push_back(model);
-        }
         else
-        {
             continue;
-        }
 
-        for (std::vector<int>::size_type j = 0; j != model->animation.size(); j++)
-        {
+        for (std::vector<int>::size_type j = 0; j != model->animation.size(); j++) {
             animation  = model->animation[j];
 
             if (!animation)
                 continue;
 
-            for (std::vector<int>::size_type k = 0; k != animation->frame.size(); k++)
-            {
+            for (std::vector<int>::size_type k = 0; k != animation->frame.size(); k++) {
                 boneframe = animation->frame[k];
 
                 if (!boneframe)
                     continue;
 
-                for (std::vector<int>::size_type l = 0; l != boneframe->tag.size(); l++)
-                {
+                for (std::vector<int>::size_type l = 0; l != boneframe->tag.size(); l++) {
                     tag = boneframe->tag[l];
 
                     if (!tag)
