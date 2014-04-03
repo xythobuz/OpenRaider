@@ -7,14 +7,17 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+#include "Console.h"
+#include "Game.h"
+#include "Menu.h"
 #include "OpenRaider.h"
+#include "Window.h"
 
-extern OpenRaider *gOpenRaider; //!< Main Game Singleton
-
-/*!
- * \brief atexit() handler
- */
-void cleanupHandler(void);
+Console    &getConsole();
+Game       &getGame();
+Menu       &getMenu();
+OpenRaider &getOpenRaider();
+Window     &getWindow();
 
 /*!
  * \brief Program entry point

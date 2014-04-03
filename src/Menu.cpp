@@ -47,7 +47,7 @@ bool Menu::isVisible() {
 
 void Menu::displayMapList() {
     // Estimate displayable number of items
-    int items = (gOpenRaider->mWindow->mHeight - 110) / 25;
+    int items = (getWindow().mHeight - 110) / 25;
 
     // Select which part of the list to show
     int min, max;
@@ -56,15 +56,15 @@ void Menu::displayMapList() {
     else
         min = 0;
 
-    if ((mCursor + (items / 2)) < gOpenRaider->mMapList.size())
+    if ((mCursor + (items / 2)) < getOpenRaider().mMapList.size())
         max = mCursor + (items / 2);
     else
-        max = gOpenRaider->mMapList.size();
+        max = getOpenRaider().mMapList.size();
 
     while ((max - min) < items) {
         if (min > 0)
             min--;
-        else if (max < ((int)gOpenRaider->mMapList.size()))
+        else if (max < ((int)getOpenRaider().mMapList.size()))
             max++;
         else
             break;
@@ -73,40 +73,38 @@ void Menu::displayMapList() {
     mMin = min;
 
     for (int i = 0; i < (max - min); i++) {
-        char *map = gOpenRaider->mMapList[i + min];
+        char *map = getOpenRaider().mMapList[i + min];
         if ((i + min) == (int)mCursor)
-            gOpenRaider->mWindow->drawText(25, 100 + (25 * i), 0.75f, RED, "%s", map);
+            getWindow().drawText(25, 100 + (25 * i), 0.75f, RED, "%s", map);
         else
-            gOpenRaider->mWindow->drawText(25, 100 + (25 * i), 0.75f, OR_BLUE, "%s", map);
+            getWindow().drawText(25, 100 + (25 * i), 0.75f, OR_BLUE, "%s", map);
     }
 }
 
 void Menu::display() {
-    Window *window = gOpenRaider->mWindow;
-
     if (mVisible) {
         // Draw half-transparent *overlay*
         glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
         glDisable(GL_TEXTURE_2D);
-        glRecti(0, 0, window->mWidth, window->mHeight);
+        glRecti(0, 0, getWindow().mWidth, getWindow().mHeight);
         glEnable(GL_TEXTURE_2D);
 
         // Draw heading text
-        mainText.x = (window->mWidth / 2) - (mainText.w / 2);
-        window->writeString(&mainText);
+        mainText.x = (getWindow().mWidth / 2) - (mainText.w / 2);
+        getWindow().writeString(&mainText);
 
-        if (!gOpenRaider->mMapListFilled) {
-            gOpenRaider->mWindow->drawText(25, (window->mHeight / 2) - 20, 0.75f, OR_BLUE, "Generating map list...");
+        if (!getOpenRaider().mMapListFilled) {
+            getWindow().drawText(25, (getWindow().mHeight / 2) - 20, 0.75f, OR_BLUE, "Generating map list...");
         } else {
-            if (gOpenRaider->mMapList.size() == 0) {
-                gOpenRaider->mWindow->drawText(25, (window->mHeight / 2) - 20, 0.75f, RED, "No maps found! See README.md");
+            if (getOpenRaider().mMapList.size() == 0) {
+                getWindow().drawText(25, (getWindow().mHeight / 2) - 20, 0.75f, RED, "No maps found! See README.md");
             } else {
                 // draw *play button* above list
                 glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
                 glDisable(GL_TEXTURE_2D);
                 glRecti(25, 25, 100, 75);
                 glEnable(GL_TEXTURE_2D);
-                gOpenRaider->mWindow->drawText(40, 35, 0.75f, BLACK, "Play");
+                getWindow().drawText(40, 35, 0.75f, BLACK, "Play");
 
                 displayMapList();
             }
@@ -122,16 +120,16 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
         if (mCursor > 0)
             mCursor--;
         else
-            mCursor = gOpenRaider->mMapList.size() - 1;
+            mCursor = getOpenRaider().mMapList.size() - 1;
     } else if (key == down) {
-        if (mCursor < (gOpenRaider->mMapList.size() - 1))
+        if (mCursor < (getOpenRaider().mMapList.size() - 1))
             mCursor++;
         else
             mCursor = 0;
     } else if (key == right) {
         int i = 10;
-        if (mCursor > (gOpenRaider->mMapList.size() - 11))
-            i = gOpenRaider->mMapList.size() - 1 - mCursor;
+        if (mCursor > (getOpenRaider().mMapList.size() - 11))
+            i = getOpenRaider().mMapList.size() - 1 - mCursor;
         while (i-- > 0)
             handleKeyboard(down, true);
     } else if (key == left) {
@@ -141,15 +139,15 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
         while (i-- > 0)
             handleKeyboard(up, true);
     } else if (key == enter) {
-        char *tmp = bufferString("load %s", gOpenRaider->mMapList[mCursor]);
-        if (gOpenRaider->command(tmp) == 0)
+        char *tmp = bufferString("load %s", getOpenRaider().mMapList[mCursor]);
+        if (getOpenRaider().command(tmp) == 0)
             setVisible(false);
         delete [] tmp;
     }
 }
 
 void Menu::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
-    int items = (gOpenRaider->mWindow->mHeight - 110) / 25;
+    int items = (getWindow().mHeight - 110) / 25;
 
     if ((!released) || (button != leftmouse))
         return;

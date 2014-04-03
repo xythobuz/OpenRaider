@@ -36,11 +36,11 @@ bool compareEntites(const void *voidA, const void *voidB)
     if (!a || !b)
         return false; // error really
 
-    distA = gOpenRaider->mGame->mRender->mViewVolume.getDistToSphereFromNear(a->pos[0],
+    distA = getGame().mRender->mViewVolume.getDistToSphereFromNear(a->pos[0],
             a->pos[1],
             a->pos[2],
             1.0f);
-    distB = gOpenRaider->mGame->mRender->mViewVolume.getDistToSphereFromNear(b->pos[0],
+    distB = getGame().mRender->mViewVolume.getDistToSphereFromNear(b->pos[0],
             b->pos[1],
             b->pos[2],
             1.0f);
@@ -57,11 +57,11 @@ bool compareStaticModels(const void *voidA, const void *voidB)
     if (!a || !b)
         return false; // error really
 
-    distA = gOpenRaider->mGame->mRender->mViewVolume.getDistToSphereFromNear(a->pos[0],
+    distA = getGame().mRender->mViewVolume.getDistToSphereFromNear(a->pos[0],
             a->pos[1],
             a->pos[2],
             128.0f);
-    distB = gOpenRaider->mGame->mRender->mViewVolume.getDistToSphereFromNear(b->pos[0],
+    distB = getGame().mRender->mViewVolume.getDistToSphereFromNear(b->pos[0],
             b->pos[1],
             b->pos[2],
             128.0f);
@@ -117,7 +117,7 @@ Render::~Render()
 
 void Render::screenShot(char *filenameBase)
 {
-    mTexture.glScreenShot(filenameBase, gOpenRaider->mWindow->mWidth, gOpenRaider->mWindow->mHeight);
+    mTexture.glScreenShot(filenameBase, getWindow().mWidth, getWindow().mHeight);
 }
 
 unsigned int Render::getFlags() {
@@ -234,7 +234,7 @@ void Render::initEmitter(const char *name, unsigned int size,
 
 void Render::ClearWorld()
 {
-    gOpenRaider->mGame->mLara = NULL;
+    getGame().mLara = NULL;
 
     mRoomRenderList.clear();
 
@@ -509,14 +509,14 @@ void Render::Display()
 
     index = -1;
 
-    if (gOpenRaider->mGame->mLara)
+    if (getGame().mLara)
     {
         float yaw;
         int sector;
         float camOffsetH = 0.0f;
 
 
-        switch (gOpenRaider->mGame->mLara->moveType)
+        switch (getGame().mLara->moveType)
         {
             case worldMoveType_fly:
             case worldMoveType_noClipping:
@@ -529,12 +529,12 @@ void Render::Display()
                 break;
         }
 
-        curPos[0] = gOpenRaider->mGame->mLara->pos[0];
-        curPos[1] = gOpenRaider->mGame->mLara->pos[1];
-        curPos[2] = gOpenRaider->mGame->mLara->pos[2];
-        yaw = gOpenRaider->mGame->mLara->angles[1];
+        curPos[0] = getGame().mLara->pos[0];
+        curPos[1] = getGame().mLara->pos[1];
+        curPos[2] = getGame().mLara->pos[2];
+        yaw = getGame().mLara->angles[1];
 
-        index = gOpenRaider->mGame->mLara->room;
+        index = getGame().mLara->room;
 
         // Mongoose 2002.08.24, New 3rd person camera hack
         camPos[0] = curPos[0];
@@ -544,26 +544,26 @@ void Render::Display()
         camPos[0] -= (1024.0f * sinf(yaw));
         camPos[2] -= (1024.0f * cosf(yaw));
 
-        sector = gOpenRaider->mGame->mWorld.getSector(index, camPos[0], camPos[2]);
+        sector = getGame().mWorld.getSector(index, camPos[0], camPos[2]);
 
         // Handle camera out of world
-        if (sector < 0 || gOpenRaider->mGame->mWorld.isWall(index, sector))
+        if (sector < 0 || getGame().mWorld.isWall(index, sector))
         {
             camPos[0] = curPos[0] + (64.0f * sinf(yaw));
             camPos[1] -= 64.0f;
             camPos[2] = curPos[2] + (64.0f * cosf(yaw));
         }
 
-        gOpenRaider->mGame->mCamera->setPosition(camPos);
+        getGame().mCamera->setPosition(camPos);
     }
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
     // Setup view in OpenGL with camera
-    gOpenRaider->mGame->mCamera->update();
-    gOpenRaider->mGame->mCamera->getPosition(camPos);
-    gOpenRaider->mGame->mCamera->getTarget(atPos);
+    getGame().mCamera->update();
+    getGame().mCamera->getPosition(camPos);
+    getGame().mCamera->getTarget(atPos);
     // Mongoose 2002.08.13, Quick fix to render OpenRaider upside down
 
     gluLookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0f, -1.0f, 0.0f);
@@ -572,33 +572,33 @@ void Render::Display()
     updateViewVolume();
 
     // Let's see the LoS -- should be event controled
-    if (gOpenRaider->mGame->mLara)
+    if (getGame().mLara)
     {
-        //      SkeletalModel *mdl = (SkeletalModel *)gOpenRaider->mGame->mLara->tmpHook;
+        //      SkeletalModel *mdl = (SkeletalModel *)getGame().mLara->tmpHook;
 
         // Draw in solid colors
         glDisable(GL_TEXTURE_2D);
         glDisable(GL_CULL_FACE);
 
-        if (gOpenRaider->mGame->mLara->state == 64) // eWeaponFire
+        if (getGame().mLara->state == 64) // eWeaponFire
         {
             vec3_t u, v; //, s, t;
 
-            // Center of gOpenRaider->mGame->mLara
+            // Center of getGame().mLara
             u[0] = curPos[0];
             u[1] = curPos[1] - 512.0f;
             u[2] = curPos[2];
 
-            // Location gOpenRaider->mGame->mLara is aiming at?  ( Not finished yet )
-            v[0] = u[0] + (9000.0f * sinf(gOpenRaider->mGame->mLara->angles[1]));
-            v[1] = u[1] + (9000.0f * sinf(gOpenRaider->mGame->mLara->angles[2]));
-            v[2] = u[2] + (9000.0f * cosf(gOpenRaider->mGame->mLara->angles[1]));
+            // Location getGame().mLara is aiming at?  ( Not finished yet )
+            v[0] = u[0] + (9000.0f * sinf(getGame().mLara->angles[1]));
+            v[1] = u[1] + (9000.0f * sinf(getGame().mLara->angles[2]));
+            v[2] = u[2] + (9000.0f * cosf(getGame().mLara->angles[1]));
 
             // Test tracing of aim
             renderTrace(0, u, v); // v = target
         }
 
-        entity_t *route = gOpenRaider->mGame->mLara->master;
+        entity_t *route = getGame().mLara->master;
 
         while (route)
         {
@@ -642,14 +642,14 @@ void Render::Display()
     {
         entity_t *e;
         std::vector<entity_t *> entityRenderList;
-        std::vector<entity_t *> *entities = gOpenRaider->mGame->mWorld.getEntities();
+        std::vector<entity_t *> *entities = getGame().mWorld.getEntities();
 
         for (unsigned int i = 0; i < entities->size(); i++)
         {
             e = entities->at(i);
 
             // Mongoose 2002.03.26, Don't show lara to it's own player
-            if (!e || e == gOpenRaider->mGame->mLara)
+            if (!e || e == getGame().mLara)
             {
                 continue;
             }
@@ -759,10 +759,10 @@ void Render::drawLoadScreen()
     float x = 0.0f, y = 0.0f, z = -160.0f;
     float w, h;
 
-    if (gOpenRaider->mWindow->mWidth < gOpenRaider->mWindow->mHeight)
-        w = h = (float)gOpenRaider->mWindow->mWidth;
+    if (getWindow().mWidth < getWindow().mHeight)
+        w = h = (float)getWindow().mWidth;
     else
-        w = h = (float)gOpenRaider->mWindow->mHeight;
+        w = h = (float)getWindow().mHeight;
 
 
     if (mTexture.getTextureCount() <= 0)
@@ -956,7 +956,7 @@ void Render::buildRoomRenderList(RenderRoom *rRoom)
 
 void Render::drawSkyMesh(float scale)
 {
-    skeletal_model_t *model = gOpenRaider->mGame->mWorld.getModel(mSkyMesh);
+    skeletal_model_t *model = getGame().mWorld.getModel(mSkyMesh);
 
 
     if (!model)
@@ -973,7 +973,7 @@ void Render::drawSkyMesh(float scale)
     glTranslated(0.0, 1000.0, 0.0);
     glScaled(scale, scale, scale);
     //drawModel(model);
-    //drawModelMesh(gOpenRaider->mGame->mWorld.getMesh(mSkyMesh), );
+    //drawModelMesh(getGame().mWorld.getMesh(mSkyMesh), );
     glPopMatrix();
     glEnable(GL_DEPTH_TEST);
 }
@@ -989,15 +989,15 @@ void Render::drawObjects()
 
 
     // Draw lara or other player model ( move to entity rendering method )
-    if (mFlags & Render::fViewModel && gOpenRaider->mGame->mLara && gOpenRaider->mGame->mLara->tmpHook)
+    if (mFlags & Render::fViewModel && getGame().mLara && getGame().mLara->tmpHook)
     {
-        SkeletalModel *mdl = static_cast<SkeletalModel *>(gOpenRaider->mGame->mLara->tmpHook);
+        SkeletalModel *mdl = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
 
         if (mdl)
         {
 
             // Mongoose 2002.03.22, Test 'idle' aniamtions
-            if (!gOpenRaider->mGame->mLara->moving)
+            if (!getGame().mLara->moving)
             {
                 frame = mdl->getIdleAnimation();
 
@@ -1023,16 +1023,16 @@ void Render::drawObjects()
         glPushMatrix();
 
 #ifdef USING_FPS_CAMERA
-        gOpenRaider->mGame->mCamera->getPosition(curPos);
+        getGame().mCamera->getPosition(curPos);
         glTranslated(curPos[0], curPos[1], curPos[2]);
-        glRotated(gOpenRaider->mGame->mCamera->getYaw(), 0, 1, 0);
+        glRotated(getGame().mCamera->getYaw(), 0, 1, 0);
         glTranslated(0, 500, 1200);
 #else
-        glTranslated(gOpenRaider->mGame->mLara->pos[0], gOpenRaider->mGame->mLara->pos[1], gOpenRaider->mGame->mLara->pos[2]);
-        glRotated(gOpenRaider->mGame->mCamera->getYaw(), 0, 1, 0);
+        glTranslated(getGame().mLara->pos[0], getGame().mLara->pos[1], getGame().mLara->pos[2]);
+        glRotated(getGame().mCamera->getYaw(), 0, 1, 0);
 #endif
 
-        drawModel(static_cast<SkeletalModel *>(gOpenRaider->mGame->mLara->tmpHook));
+        drawModel(static_cast<SkeletalModel *>(getGame().mLara->tmpHook));
         glPopMatrix();
     }
 
@@ -1041,7 +1041,7 @@ void Render::drawObjects()
     {
         std::vector<sprite_seq_t *> *sprites;
 
-        sprites = gOpenRaider->mGame->mWorld.getSprites();
+        sprites = getGame().mWorld.getSprites();
 
         for (unsigned int i = 0; i < sprites->size(); i++)
         {
@@ -1161,7 +1161,7 @@ void Render::drawModel(SkeletalModel *model)
 
                 if (tag2)
                 {
-                    drawModelMesh(gOpenRaider->mGame->mWorld.getMesh(tag2->mesh), Render::skeletalMesh);
+                    drawModelMesh(getGame().mWorld.getMesh(tag2->mesh), Render::skeletalMesh);
                 }
             }
         }
@@ -1204,19 +1204,19 @@ void Render::drawModel(SkeletalModel *model)
                     {
                         glPushMatrix();
                         glTranslatef(mdl->ponyOff2, 0.0, 0.0);
-                        drawModelMesh(gOpenRaider->mGame->mWorld.getMesh(mdl->ponytailMeshId + i),
+                        drawModelMesh(getGame().mWorld.getMesh(mdl->ponytailMeshId + i),
                                 Render::skeletalMesh);
                         glPopMatrix();
 
                         glPushMatrix();
                         glTranslatef(-mdl->ponyOff2, 0.0, 0.0);
-                        drawModelMesh(gOpenRaider->mGame->mWorld.getMesh(mdl->ponytailMeshId + i),
+                        drawModelMesh(getGame().mWorld.getMesh(mdl->ponytailMeshId + i),
                                 Render::skeletalMesh);
                         glPopMatrix();
                     }
                     else
                     {
-                        drawModelMesh(gOpenRaider->mGame->mWorld.getMesh(mdl->ponytailMeshId + i),
+                        drawModelMesh(getGame().mWorld.getMesh(mdl->ponytailMeshId + i),
                                 Render::skeletalMesh);
                     }
                 }
@@ -1230,7 +1230,7 @@ void Render::drawModel(SkeletalModel *model)
             }
         }
 
-        drawModelMesh(gOpenRaider->mGame->mWorld.getMesh(tag->mesh), Render::skeletalMesh);
+        drawModelMesh(getGame().mWorld.getMesh(tag->mesh), Render::skeletalMesh);
     }
 
     // Cycle frames ( cheap hack from old ent state based system )
@@ -1554,7 +1554,7 @@ void Render::drawSprite(sprite_t *sprite)
     glTranslated(sprite->pos[0], sprite->pos[1], sprite->pos[2]);
 
     // Sprites must always face camera, because they have no depth  =)
-    glRotated(gOpenRaider->mGame->mCamera->getYaw(), 0, 1, 0);
+    glRotated(getGame().mCamera->getYaw(), 0, 1, 0);
 
     switch (mMode)
     {
@@ -1612,7 +1612,7 @@ void Render::drawRoomModel(static_model_t *mesh)
     if (!mesh)
         return;
 
-    r_mesh = gOpenRaider->mGame->mWorld.getMesh(mesh->index);
+    r_mesh = getGame().mWorld.getMesh(mesh->index);
 
     if (!r_mesh)
         return;
@@ -1862,7 +1862,7 @@ void Render::ViewModel(entity_t *ent, int index)
         return;
     }
 
-    model = gOpenRaider->mGame->mWorld.getModel(index);
+    model = getGame().mWorld.getModel(index);
 
     if (model)
     {

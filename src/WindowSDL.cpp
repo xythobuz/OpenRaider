@@ -182,7 +182,7 @@ void WindowSDL::eventHandling() {
     while(SDL_PollEvent(&event)) {
         switch (event.type) {
             case SDL_MOUSEMOTION:
-                gOpenRaider->handleMouseMotion(event.motion.xrel, event.motion.yrel);
+                getOpenRaider().handleMouseMotion(event.motion.xrel, event.motion.yrel);
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
@@ -194,16 +194,16 @@ void WindowSDL::eventHandling() {
                     button = rightmouse;
                 else
                     button = middlemouse;
-                gOpenRaider->handleMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
+                getOpenRaider().handleMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
                 break;
 
             case SDL_MOUSEWHEEL:
-                gOpenRaider->handleMouseScroll(event.wheel.x, event.wheel.y);
+                getOpenRaider().handleMouseScroll(event.wheel.x, event.wheel.y);
                 break;
 
             case SDL_TEXTINPUT:
             case SDL_TEXTEDITING:
-                gOpenRaider->handleText(event.text.text, (event.type == SDL_TEXTEDITING));
+                getOpenRaider().handleText(event.text.text, (event.type == SDL_TEXTEDITING));
                 break;
 
             case SDL_KEYDOWN:
@@ -474,7 +474,7 @@ void WindowSDL::eventHandling() {
                         break;
 
                 }
-                gOpenRaider->handleKeyboard(key, (event.type == SDL_KEYDOWN));
+                getOpenRaider().handleKeyboard(key, (event.type == SDL_KEYDOWN));
                 break;
 
             case SDL_WINDOWEVENT:

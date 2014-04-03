@@ -58,7 +58,7 @@ Console::~Console() {
 
 void Console::setVisible(bool visible) {
     mVisible = visible;
-    gOpenRaider->mWindow->setTextInput(mVisible);
+    getWindow().setTextInput(mVisible);
 }
 
 bool Console::isVisible() {
@@ -78,8 +78,8 @@ void Console::print(const char *s, ...) {
 }
 
 #define LINE_GEOMETRY(window) unsigned int firstLine = 35; \
-        unsigned int lastLine = (window->mHeight / 2) - 55; \
-        unsigned int inputLine = (window->mHeight / 2) - 30; \
+        unsigned int lastLine = (window.mHeight / 2) - 55; \
+        unsigned int inputLine = (window.mHeight / 2) - 30; \
         unsigned int lineSteps = 20; \
         unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
         while (((lineCount * lineSteps) + firstLine) < inputLine) { \
@@ -88,17 +88,15 @@ void Console::print(const char *s, ...) {
         }
 
 void Console::display() {
-    Window *window = gOpenRaider->mWindow;
-
     if (mVisible) {
         // Calculate line drawing geometry
         // Depends on window height, so recalculate every time
-        LINE_GEOMETRY(window);
+        LINE_GEOMETRY(getWindow());
 
         // Draw half-transparent *overlay*
         glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
         glDisable(GL_TEXTURE_2D);
-        glRecti(0, 0, window->mWidth, window->mHeight / 2);
+        glRecti(0, 0, getWindow().mWidth, getWindow().mHeight / 2);
         glEnable(GL_TEXTURE_2D);
 
         int scrollIndicator;
@@ -108,7 +106,7 @@ void Console::display() {
             scrollIndicator = 100;
         }
 
-        gOpenRaider->mWindow->drawText(10, 10, 0.70f, OR_BLUE,
+        getWindow().drawText(10, 10, 0.70f, OR_BLUE,
                 "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
 
         // Draw output log
@@ -122,15 +120,15 @@ void Console::display() {
             historyOffset = mHistory.size() - lineCount;
         }
         for (int i = 0; i < end; i++) {
-            gOpenRaider->mWindow->drawText(10, ((i + drawOffset) * lineSteps) + firstLine,
+            getWindow().drawText(10, ((i + drawOffset) * lineSteps) + firstLine,
                     0.75f, OR_BLUE, "%s", mHistory[i + historyOffset - mLineOffset]);
         }
 
         // Draw current input
         if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
-            gOpenRaider->mWindow->drawText(10, inputLine, 0.75f, OR_BLUE, "> %s", mInputBuffer);
+            getWindow().drawText(10, inputLine, 0.75f, OR_BLUE, "> %s", mInputBuffer);
         } else {
-            gOpenRaider->mWindow->drawText(10, inputLine, 0.75f, OR_BLUE, ">");
+            getWindow().drawText(10, inputLine, 0.75f, OR_BLUE, ">");
         }
 
         //! \todo display the current mPartialInput. The UTF-8 segfaults SDL-TTF, somehow?
@@ -143,7 +141,7 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
         if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
             mHistory.push_back(bufferString("> %s", mInputBuffer));
             mCommandHistory.push_back(bufferString("%s", mInputBuffer));
-            int error = gOpenRaider->command(mInputBuffer);
+            int error = getOpenRaider().command(mInputBuffer);
             if (error != 0) {
                 print("Error Code: %d", error);
             }
@@ -246,7 +244,7 @@ void Console::handleText(char *text, bool notFinished) {
 }
 
 void Console::handleMouseScroll(int xrel, int yrel) {
-    LINE_GEOMETRY(gOpenRaider->mWindow);
+    LINE_GEOMETRY(getWindow());
 
     if (mHistory.size() > lineCount) {
         if (yrel > 0) {

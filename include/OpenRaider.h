@@ -57,11 +57,7 @@ public:
 
     //! \fixme should be private
 
-    Window *mWindow;
     Sound *mSound;
-    Menu *mMenu;
-    Console *mConsole;
-    Game *mGame;
 
     bool mMapListFilled;
     std::vector<char *> mMapList;

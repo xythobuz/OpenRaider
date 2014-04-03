@@ -15,11 +15,11 @@
 #include "config.h"
 #include "Console.h"
 #include "Game.h"
+#include "main.h"
 #include "math/math.h"
 #include "Menu.h"
 #include "Sound.h"
 #include "TombRaider.h"
-#include "Window.h"
 #include "utils/strings.h"
 #include "utils/time.h"
 #include "OpenRaider.h"
@@ -34,11 +34,7 @@ OpenRaider::OpenRaider() {
     mDataDir = NULL;
     mMapListFilled = false;
 
-    mMenu = new Menu();
-    mConsole = new Console();
     mSound = new Sound();
-    mWindow = new WindowSDL();
-    mGame = new Game();
 
     for (int i = 0; i < ActionEventCount; i++)
         keyBindings[i] = unknown;
@@ -48,20 +44,8 @@ OpenRaider::OpenRaider() {
 }
 
 OpenRaider::~OpenRaider() {
-    if (mGame)
-        delete mGame;
-
-    if (mMenu)
-        delete mMenu;
-
-    if (mConsole)
-        delete mConsole;
-
     if (mSound)
         delete mSound;
-
-    if (mWindow)
-        delete mWindow;
 
     if (mBaseDir)
         delete mBaseDir;
@@ -86,11 +70,11 @@ int OpenRaider::loadConfig(const char *config) {
     assert(config[0] != '\0');
 
     char *configFile = fullPath(config, 0);
-    mConsole->print("Loading config from \"%s\"...", configFile);
+    getConsole().print("Loading config from \"%s\"...", configFile);
 
     FILE *f = fopen(configFile, "r");
     if (f == NULL) {
-        mConsole->print("Could not open file!");
+        getConsole().print("Could not open file!");
         return -1;
     }
 
@@ -98,7 +82,7 @@ int OpenRaider::loadConfig(const char *config) {
     while (fgets(buffer, 256, f) != NULL) {
         int error = command(buffer);
         if (error != 0) {
-            mConsole->print("Error Code: %d", error);
+            getConsole().print("Error Code: %d", error);
         }
     }
 
@@ -148,14 +132,14 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
 
     if (strcmp(command, "set") == 0) {
         if (args->size() != 2) {
-            mConsole->print("Invalid use of set-command");
+            getConsole().print("Invalid use of set-command");
             return -2;
         } else {
             return set(args->at(0), args->at(1));
         }
     } else if (strcmp(command, "bind") == 0) {
         if (args->size() != 2) {
-            mConsole->print("Invalid use of bind-command");
+            getConsole().print("Invalid use of bind-command");
             return -3;
         } else {
             return bind(args->at(0), args->at(1));
@@ -164,29 +148,29 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         exit(0);
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
-            mConsole->print("Available commands:");
-            mConsole->print("  load - load a level");
-            mConsole->print("  set  - set a parameter");
-            mConsole->print("  bind - bind a keyboard/mouse action");
-            mConsole->print("  game - send a command to the game engine");
-            mConsole->print("  help - print command help");
-            mConsole->print("  quit - exit OpenRaider");
-            mConsole->print("Use help COMMAND to get additional info");
+            getConsole().print("Available commands:");
+            getConsole().print("  load - load a level");
+            getConsole().print("  set  - set a parameter");
+            getConsole().print("  bind - bind a keyboard/mouse action");
+            getConsole().print("  game - send a command to the game engine");
+            getConsole().print("  help - print command help");
+            getConsole().print("  quit - exit OpenRaider");
+            getConsole().print("Use help COMMAND to get additional info");
         } else if (args->size() == 1) {
             return help(args->at(0));
         } else {
-            mConsole->print("Invalid use of help-command");
+            getConsole().print("Invalid use of help-command");
             return -4;
         }
     } else if (strcmp(command, "load") == 0) {
         char *tmp = bufferString("%s/%s", mPakDir, args->at(0));
-        int error = mGame->loadLevel(tmp);
+        int error = getGame().loadLevel(tmp);
         delete [] tmp;
         return error;
     } else if (strcmp(command, "game") == 0) {
-        return mGame->command(args);
+        return getGame().command(args);
     } else {
-        mConsole->print("Unknown command: %s ", command);
+        getConsole().print("Unknown command: %s ", command);
         return -1;
     }
 
@@ -198,48 +182,48 @@ int OpenRaider::help(const char *cmd) {
     assert(cmd[0] != '\0');
 
     if (strcmp(cmd, "set") == 0) {
-        mConsole->print("set-Command Usage:");
-        mConsole->print("  set VAR VAL");
-        mConsole->print("Available Variables:");
-        mConsole->print("  basedir     STRING");
-        mConsole->print("  pakdir      STRING");
-        mConsole->print("  audiodir    STRING");
-        mConsole->print("  datadir     STRING");
-        mConsole->print("  font        STRING");
-        mConsole->print("  gldriver    STRING");
-        mConsole->print("  size        \"INTxINT\"");
-        mConsole->print("  fullscreen  BOOL");
-        mConsole->print("  audio       BOOL");
-        mConsole->print("  volume      BOOL");
-        mConsole->print("  mouse_x     FLOAT");
-        mConsole->print("  mouse_y     FLOAT");
-        mConsole->print("  fps         BOOL");
-        mConsole->print("Enclose STRINGs with \"\"!");
-        mConsole->print("size expects a STRING in the specified format");
+        getConsole().print("set-Command Usage:");
+        getConsole().print("  set VAR VAL");
+        getConsole().print("Available Variables:");
+        getConsole().print("  basedir     STRING");
+        getConsole().print("  pakdir      STRING");
+        getConsole().print("  audiodir    STRING");
+        getConsole().print("  datadir     STRING");
+        getConsole().print("  font        STRING");
+        getConsole().print("  gldriver    STRING");
+        getConsole().print("  size        \"INTxINT\"");
+        getConsole().print("  fullscreen  BOOL");
+        getConsole().print("  audio       BOOL");
+        getConsole().print("  volume      BOOL");
+        getConsole().print("  mouse_x     FLOAT");
+        getConsole().print("  mouse_y     FLOAT");
+        getConsole().print("  fps         BOOL");
+        getConsole().print("Enclose STRINGs with \"\"!");
+        getConsole().print("size expects a STRING in the specified format");
     } else if (strcmp(cmd, "bind") == 0) {
-        mConsole->print("bind-Command Usage:");
-        mConsole->print("  bind ACTION KEY");
-        mConsole->print("Available Actions:");
-        mConsole->print("  menu");
-        mConsole->print("  console");
-        mConsole->print("  forward");
-        mConsole->print("  backward");
-        mConsole->print("  left");
-        mConsole->print("  right");
-        mConsole->print("  jump");
-        mConsole->print("  crouch");
-        mConsole->print("  use");
-        mConsole->print("  holster");
-        mConsole->print("Key-Format:");
-        mConsole->print("  'a' or '1'    for character/number keys");
-        mConsole->print("  \"leftctrl\"  for symbols and special keys");
+        getConsole().print("bind-Command Usage:");
+        getConsole().print("  bind ACTION KEY");
+        getConsole().print("Available Actions:");
+        getConsole().print("  menu");
+        getConsole().print("  console");
+        getConsole().print("  forward");
+        getConsole().print("  backward");
+        getConsole().print("  left");
+        getConsole().print("  right");
+        getConsole().print("  jump");
+        getConsole().print("  crouch");
+        getConsole().print("  use");
+        getConsole().print("  holster");
+        getConsole().print("Key-Format:");
+        getConsole().print("  'a' or '1'    for character/number keys");
+        getConsole().print("  \"leftctrl\"  for symbols and special keys");
     } else if (strcmp(cmd, "load") == 0) {
-        mConsole->print("load-Command Usage:");
-        mConsole->print("  load levelfile.name");
+        getConsole().print("load-Command Usage:");
+        getConsole().print("  load levelfile.name");
     } else if (strcmp(cmd, "game") == 0) {
-        mConsole->print("Use \"game help\" for more info");
+        getConsole().print("Use \"game help\" for more info");
     } else {
-        mConsole->print("No help available for %s", cmd);
+        getConsole().print("No help available for %s", cmd);
         return -1;
     }
 
@@ -304,51 +288,51 @@ int OpenRaider::set(const char *var, const char *value) {
         // value has format like "\"1024x768\""
         unsigned int w = DEFAULT_WIDTH, h = DEFAULT_HEIGHT;
         if (sscanf(value, "\"%dx%d\"", &w, &h) != 2) {
-            mConsole->print("set-size-Error: Invalid value (%s)", value);
+            getConsole().print("set-size-Error: Invalid value (%s)", value);
             return -2;
         }
-        mWindow->setSize(w, h);
+        getWindow().setSize(w, h);
     } else if (strcmp(var, "fullscreen") == 0) {
         bool fullscreen = false;
         if (readBool(value, &fullscreen) != 0) {
-            mConsole->print("set-fullscreen-Error: Invalid value (%s)", value);
+            getConsole().print("set-fullscreen-Error: Invalid value (%s)", value);
             return -3;
         }
-        mWindow->setFullscreen(fullscreen);
+        getWindow().setFullscreen(fullscreen);
     } else if (strcmp(var, "gldriver") == 0) {
-        mWindow->setDriver(value);
+        getWindow().setDriver(value);
     } else if (strcmp(var, "audio") == 0) {
         bool audio = false;
         if (readBool(value, &audio) != 0) {
-            mConsole->print("set-audio-Error: Invalid value (%s)", value);
+            getConsole().print("set-audio-Error: Invalid value (%s)", value);
             return -4;
         }
         mSound->setEnabled(audio);
     } else if (strcmp(var, "volume") == 0) {
         float vol = 1.0f;
         if (sscanf(value, "%f", &vol) != 1) {
-            mConsole->print("set-volume-Error: Invalid value (%s)", value);
+            getConsole().print("set-volume-Error: Invalid value (%s)", value);
             return -5;
         }
         mSound->setVolume(vol);
     } else if (strcmp(var, "mouse_x") == 0) {
         float sense = 1.0f;
         if (sscanf(value, "%f", &sense) != 1) {
-            mConsole->print("set-mouse_x-Error: Invalid value (%s)", value);
+            getConsole().print("set-mouse_x-Error: Invalid value (%s)", value);
             return -6;
         }
         mCameraRotationDeltaX = OR_DEG_TO_RAD(sense);
     } else if (strcmp(var, "mouse_y") == 0) {
         float sense = 1.0f;
         if (sscanf(value, "%f", &sense) != 1) {
-            mConsole->print("set-mouse_y-Error: Invalid value (%s)", value);
+            getConsole().print("set-mouse_y-Error: Invalid value (%s)", value);
             return -7;
         }
         mCameraRotationDeltaY = OR_DEG_TO_RAD(sense);
     } else if (strcmp(var, "fps") == 0) {
         bool fps = false;
         if (readBool(value, &fps) != 0) {
-            mConsole->print("set-fps-Error: Invalid value (%s)", value);
+            getConsole().print("set-fps-Error: Invalid value (%s)", value);
             return -8;
         }
         mFPS = fps;
@@ -364,14 +348,14 @@ int OpenRaider::set(const char *var, const char *value) {
         char *quotes = stringReplace(value, "\"", "");
         char *tmp = expandDirectoryNames(quotes);
         if (tmp == NULL) {
-            mWindow->setFont(quotes);
+            getWindow().setFont(quotes);
         } else {
-            mWindow->setFont(tmp);
+            getWindow().setFont(tmp);
             delete [] tmp;
         }
         delete [] quotes;
     } else {
-        mConsole->print("set-Error: Unknown variable (%s = %s)", var, value);
+        getConsole().print("set-Error: Unknown variable (%s = %s)", var, value);
         return -1;
     }
 
@@ -409,7 +393,7 @@ int OpenRaider::bind(const char *action, const char *key) {
     } else if (strcmp(tmp, "holster") == 0) {
         return bind(holsterAction, key);
     } else {
-        mConsole->print("bind-Error: Unknown action (%s --> %s)", key, action);
+        getConsole().print("bind-Error: Unknown action (%s --> %s)", key, action);
         return -1;
     }
 }
@@ -427,7 +411,7 @@ int OpenRaider::bind(ActionEvents action, const char *key) {
             || ((c >= 'a') && (c <= 'z'))) {
             keyBindings[action] = (KeyboardButton)c;
         } else {
-            mConsole->print("bind-\'\'-Error: Unknown key (%s)", key);
+            getConsole().print("bind-\'\'-Error: Unknown key (%s)", key);
             return -1;
         }
     } else if ((key[0] == '\"') && (key[length - 1] == '\"')) {
@@ -540,13 +524,13 @@ int OpenRaider::bind(ActionEvents action, const char *key) {
         } else if (strcmp(tmp, "rightmouse") == 0) {
             keyBindings[action] = rightmouse;
         } else {
-            mConsole->print("bind-\"\"-Error: Unknown key (%s)", key);
+            getConsole().print("bind-\"\"-Error: Unknown key (%s)", key);
             delete [] tmp;
             return -2;
         }
         delete [] tmp;
     } else {
-        mConsole->print("bind-Error: Unknown key (%s)", key);
+        getConsole().print("bind-Error: Unknown key (%s)", key);
         return -3;
     }
     return 0;
@@ -589,7 +573,7 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
                         // Just load relative filename
                         mMapList.push_back(bufferString("%s", (fullPathMap + strlen(mPakDir) + 1)));
                     } else {
-                        mConsole->print("Error: pak file '%s' %s",
+                        getConsole().print("Error: pak file '%s' %s",
                                 fullPathMap, (error == -1) ? "not found" : "invalid");
                     }
                 }
@@ -600,7 +584,7 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
         }
         closedir(pakDir);
     } else {
-        mConsole->print("Could not open PAK dir %s!", dir);
+        getConsole().print("Could not open PAK dir %s!", dir);
     }
 }
 
@@ -618,27 +602,9 @@ int OpenRaider::initialize() {
     assert(mInit == false);
     assert(mRunning == false);
 
-    // Initialize Windowing
-    if (mWindow->initialize() != 0)
-        return -1;
-
-    // Initialize OpenGL
-    if (mWindow->initializeGL() != 0)
-        return -2;
-
-    // Initialize window font
-    if (mWindow->initializeFont() != 0)
-        return -3;
-
     // Initialize sound
     if (mSound->initialize() != 0)
-        return -4;
-
-    // Initialize game engine
-    if (mGame->initialize() != 0)
-        return -5;
-
-    mMenu->setVisible(true);
+        return -1;
 
     mInit = true;
 
@@ -657,29 +623,29 @@ void OpenRaider::run() {
         clock_t startTime = systemTimerGet();
 
         // Get keyboard and mouse input
-        mWindow->eventHandling();
+        getWindow().eventHandling();
 
         // Clear screen
         glClearColor(0.00f, 0.00f, 0.00f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Draw game scene
-        mGame->display();
+        getGame().display();
 
         // Draw 2D overlays (console and menu)
-        mWindow->glEnter2D();
+        getWindow().glEnter2D();
 
-        mConsole->display();
-        mMenu->display();
+        getConsole().display();
+        getMenu().display();
 
         // Draw FPS counter
         if (mFPS)
-            mWindow->drawText(10, mWindow->mHeight - 20, 0.5f, OR_BLUE, "%dFPS", fps);
+            getWindow().drawText(10, getWindow().mHeight - 20, 0.5f, OR_BLUE, "%dFPS", fps);
 
-        mWindow->glExit2D();
+        getWindow().glExit2D();
 
         // Put new frame on screen
-        mWindow->swapBuffersGL();
+        getWindow().swapBuffersGL();
 
         // Fill map list after first render pass,
         // so menu *loading screen* is visible
@@ -703,24 +669,24 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
     assert(mRunning == true);
 
     if ((keyBindings[menuAction] == key) && pressed) {
-        mMenu->setVisible(!mMenu->isVisible());
-    } else if (!mMenu->isVisible()) {
+        getMenu().setVisible(!getMenu().isVisible());
+    } else if (!getMenu().isVisible()) {
         if ((keyBindings[consoleAction] == key) && pressed) {
-            mConsole->setVisible(!mConsole->isVisible());
-        } else if (!mConsole->isVisible()) {
+            getConsole().setVisible(!getConsole().isVisible());
+        } else if (!getConsole().isVisible()) {
             for (int i = forwardAction; i < ActionEventCount; i++) {
                 if (keyBindings[i] == key) {
-                    mGame->handleAction((ActionEvents)i, pressed);
+                    getGame().handleAction((ActionEvents)i, pressed);
                 }
             }
         } else {
-            mConsole->handleKeyboard(key, pressed);
+            getConsole().handleKeyboard(key, pressed);
         }
     } else {
-        mMenu->handleKeyboard(key, pressed);
+        getMenu().handleKeyboard(key, pressed);
     }
 
-    mWindow->setMousegrab(!(mMenu->isVisible() || mConsole->isVisible()));
+    getWindow().setMousegrab(!(getMenu().isVisible() || getConsole().isVisible()));
 }
 
 void OpenRaider::handleText(char *text, bool notFinished) {
@@ -729,8 +695,8 @@ void OpenRaider::handleText(char *text, bool notFinished) {
     assert(mInit == true);
     assert(mRunning == true);
 
-    if ((mConsole->isVisible()) && (!mMenu->isVisible())) {
-        mConsole->handleText(text, notFinished);
+    if ((getConsole().isVisible()) && (!getMenu().isVisible())) {
+        getConsole().handleText(text, notFinished);
     }
 }
 
@@ -739,12 +705,12 @@ void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
     assert(mInit == true);
     assert(mRunning == true);
 
-    if (mMenu->isVisible()) {
-        mMenu->handleMouseClick(x, y, button, released);
-    } else if (!mConsole->isVisible()) {
+    if (getMenu().isVisible()) {
+        getMenu().handleMouseClick(x, y, button, released);
+    } else if (!getConsole().isVisible()) {
         for (int i = forwardAction; i < ActionEventCount; i++) {
             if (keyBindings[i] == button) {
-                mGame->handleAction((ActionEvents)i, !released);
+                getGame().handleAction((ActionEvents)i, !released);
             }
         }
     }
@@ -755,8 +721,8 @@ void OpenRaider::handleMouseMotion(int xrel, int yrel) {
     assert(mInit == true);
     assert(mRunning == true);
 
-    if ((!mConsole->isVisible()) && (!mMenu->isVisible())) {
-        mGame->handleMouseMotion(xrel, yrel);
+    if ((!getConsole().isVisible()) && (!getMenu().isVisible())) {
+        getGame().handleMouseMotion(xrel, yrel);
     }
 }
 
@@ -765,8 +731,8 @@ void OpenRaider::handleMouseScroll(int xrel, int yrel) {
     assert(mInit == true);
     assert(mRunning == true);
 
-    if ((mConsole->isVisible()) && (!mMenu->isVisible())) {
-        mConsole->handleMouseScroll(xrel, yrel);
+    if ((getConsole().isVisible()) && (!getMenu().isVisible())) {
+        getConsole().handleMouseScroll(xrel, yrel);
     }
 }
 

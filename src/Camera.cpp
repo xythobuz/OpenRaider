@@ -171,22 +171,22 @@ void Camera::command(enum camera_command cmd) {
             break;
         case CAMERA_ROTATE_UP:
             if (mTheta2 < (M_PI / 2)) {
-                mTheta2 += gOpenRaider->mCameraRotationDeltaY;
+                mTheta2 += getOpenRaider().mCameraRotationDeltaY;
                 rotate(mTheta2, 1.0f, 0.0f, 0.0f);
             }
             break;
         case CAMERA_ROTATE_DOWN:
             if (mTheta2 > -(M_PI / 2)) {
-                mTheta2 -= gOpenRaider->mCameraRotationDeltaY;
+                mTheta2 -= getOpenRaider().mCameraRotationDeltaY;
                 rotate(mTheta2, 1.0f, 0.0f, 0.0f);
             }
             break;
         case CAMERA_ROTATE_RIGHT:
-            mTheta += gOpenRaider->mCameraRotationDeltaX;
+            mTheta += getOpenRaider().mCameraRotationDeltaX;
             rotate(mTheta, 0.0f, 1.0f, 0.0f);
             break;
         case CAMERA_ROTATE_LEFT:
-            mTheta -= gOpenRaider->mCameraRotationDeltaX;
+            mTheta -= getOpenRaider().mCameraRotationDeltaX;
             rotate(mTheta, 0.0f, 1.0f, 0.0f);
             break;
         case CAMERA_MOVE_UP:

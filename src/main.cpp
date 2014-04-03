@@ -12,12 +12,49 @@
 #include "config.h"
 #include "main.h"
 #include "utils/time.h"
+#include "WindowSDL.h"
 
+Console *gConsole = NULL;
+Game *gGame = NULL;
+Menu *gMenu = NULL;
 OpenRaider *gOpenRaider = NULL;
+Window *gWindow = NULL;
 
-void cleanupHandler() {
+Console &getConsole() {
+    return *gConsole;
+}
+
+Game &getGame() {
+    return *gGame;
+}
+
+Menu &getMenu() {
+    return *gMenu;
+}
+
+OpenRaider &getOpenRaider() {
+    return *gOpenRaider;
+}
+
+Window &getWindow() {
+    return *gWindow;
+}
+
+void cleanupHandler(void) {
+    if (gConsole)
+        delete gConsole;
+
+    if (gGame)
+        delete gGame;
+
+    if (gMenu)
+        delete gMenu;
+
     if (gOpenRaider)
         delete gOpenRaider;
+
+    if (gWindow)
+        delete gWindow;
 
     printf("\nThanks for testing %s\n", VERSION);
     printf("Build date: %s @ %s\n", __DATE__, __TIME__);
@@ -28,8 +65,6 @@ void cleanupHandler() {
 
 int main(int argc, char *argv[]) {
     const char *config = NULL;
-
-    systemTimerReset();
 
     // Handle arguments
     if (argc == 1) {
@@ -62,9 +97,13 @@ int main(int argc, char *argv[]) {
     }
 
     // Create globals
-    atexit(cleanupHandler);
     printf("Initializing %s\n", VERSION);
+    atexit(cleanupHandler);
     gOpenRaider = new OpenRaider();
+    gWindow = new WindowSDL();
+    gConsole = new Console();
+    gMenu = new Menu();
+    gGame = new Game();
 
     // Try to load a configuration
     if (gOpenRaider->loadConfig(config) != 0) {
@@ -76,11 +115,45 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Initialize the "subsystems"
-    gOpenRaider->initialize();
+    // Initialize Windowing
+    int error = gWindow->initialize();
+    if (error != 0) {
+        printf("Could not initialize Window (%d)!\n", error);
+        return 3;
+    }
+
+    // Initialize OpenGL
+    error = gWindow->initializeGL();
+    if (error != 0) {
+        printf("Could not initialize OpenGL (%d)!\n", error);
+        return 4;
+    }
+
+    error = gWindow->initializeFont();
+    if (error != 0) {
+        printf("Could not initialize SDL-TTF (%d)!\n", error);
+        return 5;
+    }
+
+    error = gOpenRaider->initialize();
+    if (error != 0) {
+        printf("Could not initialize OpenRaider (%d)!\n", error);
+        return 6;
+    }
+
+    // Initialize game engine
+    error = gGame->initialize();
+    if (error != 0) {
+        printf("Could not initialize Game Engine (%d)!\n", error);
+        return 7;
+    }
+
+    gMenu->setVisible(true);
+
+    systemTimerReset();
 
     // Enter Main loop
-    gOpenRaider->mConsole->print("Starting %s", VERSION);
+    gConsole->print("Starting %s", VERSION);
     gOpenRaider->run();
 
     return 0;
