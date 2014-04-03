@@ -389,6 +389,23 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Invalid use of ralpha-command!");
             return -25;
         }
+    } else if (strcmp(command, "portal") == 0) {
+
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to portal command!");
+                return -26;
+            }
+            if (b)
+                getRender().setFlags(Render::fPortals);
+            else
+                getRender().clearFlags(Render::fPortals);
+            getConsole().print("Portals are now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of portal-command!");
+            return -27;
+        }
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             getConsole().print("Available commands:");
@@ -407,6 +424,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("  pos       - Print position info");
             getConsole().print("  vmodel    - BOOL - View Model");
             getConsole().print("  ralpha    - BOOL - Room Alpha");
+            getConsole().print("  portal    - BOOL");
             getConsole().print("  help      - print command help");
             getConsole().print("  quit      - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
@@ -414,11 +432,11 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return help(args->at(0));
         } else {
             getConsole().print("Invalid use of help-command");
-            return -26;
+            return -28;
         }
     } else {
         getConsole().print("Unknown command: %s ", command);
-        return -27;
+        return -29;
     }
 
     return 0;
