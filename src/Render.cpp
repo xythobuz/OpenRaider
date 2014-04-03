@@ -477,7 +477,7 @@ void gluLookAt(float eyeX, float eyeY, float eyeZ,
     glTranslatef(-eyeX, -eyeY, -eyeZ);
 }
 
-void Render::Display()
+void Render::display()
 {
     vec3_t curPos;
     vec3_t camPos;

@@ -36,12 +36,9 @@ public:
 
     void handleMouseMotion(int xrel, int yrel);
 
-    void display();
-
-    int command(std::vector<char *> *args);
-
     //! \fixme should be private
     entity_t *mLara;
+    bool mLoaded;
 
 private:
 
@@ -56,7 +53,6 @@ private:
     void processRooms();
     void setupTextureColor(texture_tri_t *r_tri, float *colorf);
 
-    bool mLoaded;
     char *mName;
     TombRaider mTombRaider;
 

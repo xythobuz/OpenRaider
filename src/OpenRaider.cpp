@@ -127,36 +127,19 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
     if (strcmp(command, "set") == 0) {
         if (args->size() != 2) {
             getConsole().print("Invalid use of set-command");
-            return -2;
+            return -1;
         } else {
             return set(args->at(0), args->at(1));
         }
     } else if (strcmp(command, "bind") == 0) {
         if (args->size() != 2) {
             getConsole().print("Invalid use of bind-command");
-            return -3;
+            return -2;
         } else {
             return bind(args->at(0), args->at(1));
         }
     } else if (strcmp(command, "quit") == 0) {
         exit(0);
-    } else if (strcmp(command, "help") == 0) {
-        if (args->size() == 0) {
-            getConsole().print("Available commands:");
-            getConsole().print("  load  - load a level");
-            getConsole().print("  set   - set a parameter");
-            getConsole().print("  bind  - bind a keyboard/mouse action");
-            getConsole().print("  sshot - make a screenshot");
-            getConsole().print("  game  - send a command to the game engine");
-            getConsole().print("  help  - print command help");
-            getConsole().print("  quit  - exit OpenRaider");
-            getConsole().print("Use help COMMAND to get additional info");
-        } else if (args->size() == 1) {
-            return help(args->at(0));
-        } else {
-            getConsole().print("Invalid use of help-command");
-            return -4;
-        }
     } else if (strcmp(command, "load") == 0) {
         char *tmp = bufferString("%s/%s", mPakDir, args->at(0));
         int error = getGame().loadLevel(tmp);
@@ -181,11 +164,207 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         }
         getConsole().print("Screenshot stored...");
         delete filename;
-    } else if (strcmp(command, "game") == 0) {
-        return getGame().command(args);
+    } else if (strcmp(command, "mode") == 0) {
+        if (args->size() > 0) {
+            char *mode = args->at(0);
+            if (strcmp(mode, "wireframe") == 0) {
+                if (getGame().mLoaded) {
+                    getRender().setMode(Render::modeWireframe);
+                    getConsole().print("Wireframe mode");
+                } else {
+                    getConsole().print("Load a level to set this mode!");
+                    return -3;
+                }
+            } else if (strcmp(mode, "solid") == 0) {
+                if (getGame().mLoaded) {
+                    getRender().setMode(Render::modeSolid);
+                    getConsole().print("Solid mode");
+                } else {
+                    getConsole().print("Load a level to set this mode!");
+                    return -4;
+                }
+            } else if (strcmp(mode, "texture") == 0) {
+                if (getGame().mLoaded) {
+                    getRender().setMode(Render::modeTexture);
+                    getConsole().print("Texture mode");
+                } else {
+                    getConsole().print("Load a level to set this mode!");
+                    return -5;
+                }
+            } else if (strcmp(mode, "vertexlight") == 0) {
+                if (getGame().mLoaded) {
+                    getRender().setMode(Render::modeVertexLight);
+                    getConsole().print("Vertexlight mode");
+                } else {
+                    getConsole().print("Load a level to set this mode!");
+                    return -6;
+                }
+            } else if (strcmp(mode, "titlescreen") == 0) {
+                getRender().setMode(Render::modeLoadScreen);
+                getConsole().print("Titlescreen mode");
+            } else {
+                getConsole().print("Invalid use of mode command (%s)!", mode);
+                return -7;
+            }
+        } else {
+            getConsole().print("Invalid use of mode command!");
+            return -8;
+        }
+    } else if (strcmp(command, "move") == 0) {
+        if (args->size() > 0) {
+            if (getGame().mLoaded) {
+                char *move = args->at(0);
+                if (strcmp(move, "walk") == 0) {
+                    getGame().mLara->moveType = worldMoveType_walk;
+                    getConsole().print("Lara is walking...");
+                } else if (strcmp(move, "fly") == 0) {
+                    getGame().mLara->moveType = worldMoveType_fly;
+                    getConsole().print("Lara is flying...");
+                } else if (strcmp(move, "noclip") == 0) {
+                    getGame().mLara->moveType = worldMoveType_noClipping;
+                    getConsole().print("Lara is noclipping...");
+                } else {
+                    getConsole().print("Invalid use of move command (%s)!", move);
+                    return -9;
+                }
+            } else {
+                getConsole().print("Load a level to change the movement type!");
+                return -10;
+            }
+        } else {
+            getConsole().print("Invalid use of move command!");
+            return -11;
+        }
+    } else if (strcmp(command, "sound") == 0) {
+        if (args->size() > 0) {
+            getSound().play(atoi(args->at(0)));
+        } else {
+            getConsole().print("Invalid use of sound command!");
+            return -12;
+        }
+    } else if (strcmp(command, "animate") == 0) {
+        if (args->size() > 0) {
+            char c = args->at(0)[0];
+            if (c == 'n') {
+                // Step all skeletal models to their next animation
+                if (getRender().getFlags() & Render::fAnimateAllModels) {
+                    for (unsigned int i = 0; i < getRender().mModels.size(); i++) {
+                        SkeletalModel *m = getRender().mModels[i];
+                        if (m->getAnimation() < ((int)m->model->animation.size() - 1))
+                            m->setAnimation(m->getAnimation() + 1);
+                        else
+                            if (m->getAnimation() != 0)
+                                m->setAnimation(0);
+                    }
+                } else {
+                    getConsole().print("Animations need to be enabled!");
+                }
+            } else if (c == 'p') {
+                // Step all skeletal models to their previous animation
+                if (getRender().getFlags() & Render::fAnimateAllModels) {
+                    for (unsigned int i = 0; i < getRender().mModels.size(); i++) {
+                        SkeletalModel *m = getRender().mModels[i];
+                        if (m->getAnimation() > 0)
+                            m->setAnimation(m->getAnimation() - 1);
+                        else
+                            if (m->model->animation.size() > 0)
+                                m->setAnimation(m->model->animation.size() - 1);
+                    }
+                } else {
+                    getConsole().print("Animations need to be enabled!");
+                }
+            } else {
+                // Enable or disable animating all skeletal models
+                bool b;
+                if (readBool(args->at(0), &b) < 0) {
+                    getConsole().print("Pass BOOL to animate command!");
+                    return -13;
+                }
+                if (b)
+                    getRender().setFlags(Render::fAnimateAllModels);
+                else
+                    getRender().clearFlags(Render::fAnimateAllModels);
+                getConsole().print(b ? "Animating all models" : "No longer animating all models");
+            }
+        } else {
+            getConsole().print("Invalid use of animate command!");
+            return -14;
+        }
+
+    } else if (strcmp(command, "light") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to light command!");
+                return -15;
+            }
+            if (b)
+                getRender().setFlags(Render::fGL_Lights);
+            else
+                getRender().clearFlags(Render::fGL_Lights);
+            getConsole().print("GL-Lights are now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of light-command!");
+            return -16;
+        }
+    } else if (strcmp(command, "fog") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to fog command!");
+                return -17;
+            }
+            if (b)
+                getRender().setFlags(Render::fFog);
+            else
+                getRender().clearFlags(Render::fFog);
+            getConsole().print("Fog is now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of fog-command!");
+            return -18;
+        }
+    } else if (strcmp(command, "hop") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to hop command!");
+                return -19;
+            }
+            if (b)
+                getWorld().setFlag(World::fEnableHopping);
+            else
+                getWorld().clearFlag(World::fEnableHopping);
+            getConsole().print("Room hopping is now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of hop-command!");
+            return -20;
+        }
+    } else if (strcmp(command, "help") == 0) {
+        if (args->size() == 0) {
+            getConsole().print("Available commands:");
+            getConsole().print("  load    - load a level");
+            getConsole().print("  set     - set a parameter");
+            getConsole().print("  bind    - bind a keyboard/mouse action");
+            getConsole().print("  sshot   - make a screenshot");
+            getConsole().print("  move    - [walk|fly|noclip]");
+            getConsole().print("  sound   - INT - Test play sound");
+            getConsole().print("  mode    - MODE - Render mode");
+            getConsole().print("  animate - [BOOL|n|p] - Animate models");
+            getConsole().print("  light   - BOOL - GL Lights");
+            getConsole().print("  fog     - BOOL - GL Fog");
+            getConsole().print("  hop     - BOOL - Room hop");
+            getConsole().print("  help    - print command help");
+            getConsole().print("  quit    - exit OpenRaider");
+            getConsole().print("Use help COMMAND to get additional info");
+        } else if (args->size() == 1) {
+            return help(args->at(0));
+        } else {
+            getConsole().print("Invalid use of help-command");
+            return -21;
+        }
     } else {
         getConsole().print("Unknown command: %s ", command);
-        return -1;
+        return -22;
     }
 
     return 0;
@@ -199,19 +378,19 @@ int OpenRaider::help(const char *cmd) {
         getConsole().print("set-Command Usage:");
         getConsole().print("  set VAR VAL");
         getConsole().print("Available Variables:");
-        getConsole().print("  basedir     STRING");
-        getConsole().print("  pakdir      STRING");
-        getConsole().print("  audiodir    STRING");
-        getConsole().print("  datadir     STRING");
-        getConsole().print("  font        STRING");
-        getConsole().print("  gldriver    STRING");
-        getConsole().print("  size        \"INTxINT\"");
-        getConsole().print("  fullscreen  BOOL");
-        getConsole().print("  audio       BOOL");
-        getConsole().print("  volume      BOOL");
-        getConsole().print("  mouse_x     FLOAT");
-        getConsole().print("  mouse_y     FLOAT");
-        getConsole().print("  fps         BOOL");
+        getConsole().print("  basedir    STRING");
+        getConsole().print("  pakdir     STRING");
+        getConsole().print("  audiodir   STRING");
+        getConsole().print("  datadir    STRING");
+        getConsole().print("  font       STRING");
+        getConsole().print("  gldriver   STRING");
+        getConsole().print("  size       \"INTxINT\"");
+        getConsole().print("  fullscreen BOOL");
+        getConsole().print("  audio      BOOL");
+        getConsole().print("  volume     BOOL");
+        getConsole().print("  mouse_x    FLOAT");
+        getConsole().print("  mouse_y    FLOAT");
+        getConsole().print("  fps        BOOL");
         getConsole().print("Enclose STRINGs with \"\"!");
         getConsole().print("size expects a STRING in the specified format");
     } else if (strcmp(cmd, "bind") == 0) {
@@ -240,6 +419,33 @@ int OpenRaider::help(const char *cmd) {
         getConsole().print("sshot-Command Usage:");
         getConsole().print("  sshot [console|menu]");
         getConsole().print("Add console/menu to capture them too");
+    } else if (strcmp(cmd, "sound") == 0) {
+        getConsole().print("sound-Command Usage:");
+        getConsole().print("  sound INT");
+        getConsole().print("Where INT is a valid sound ID integer");
+    } else if (strcmp(cmd, "move") == 0) {
+        getConsole().print("move-Command Usage:");
+        getConsole().print("  move COMMAND");
+        getConsole().print("Where COMMAND is one of the following:");
+        getConsole().print("  walk");
+        getConsole().print("  fly");
+        getConsole().print("  noclip");
+    } else if (strcmp(cmd, "mode") == 0) {
+        getConsole().print("mode-Command Usage:");
+        getConsole().print("  mode MODE");
+        getConsole().print("Where MODE is one of the following:");
+        getConsole().print("  wireframe");
+        getConsole().print("  solid");
+        getConsole().print("  texture");
+        getConsole().print("  vertexlight");
+        getConsole().print("  titlescreen");
+    } else if (strcmp(cmd, "animate") == 0) {
+        getConsole().print("animate-Command Usage:");
+        getConsole().print("  animate [n|p|BOOL]");
+        getConsole().print("Where the commands have the following meaning:");
+        getConsole().print("  BOOL to (de)activate animating all models");
+        getConsole().print("  n to step all models to their next animation");
+        getConsole().print("  p to step all models to their previous animation");
     } else {
         getConsole().print("No help available for %s", cmd);
         return -1;
@@ -638,7 +844,7 @@ void OpenRaider::frame() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     // Draw game scene
-    getGame().display();
+    getRender().display();
 
     // Draw 2D overlays (console and menu)
     getWindow().glEnter2D();

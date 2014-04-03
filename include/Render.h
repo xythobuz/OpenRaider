@@ -204,7 +204,7 @@ public:
     /*!
      * \brief Renders a single game frame
      */
-    void Display();
+    void display();
 
     void setSkyMesh(int index, bool rot);
 
