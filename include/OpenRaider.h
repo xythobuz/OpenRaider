@@ -43,6 +43,8 @@ public:
 
     void run();
 
+    void frame();
+
     void handleKeyboard(KeyboardButton key, bool pressed);
 
     void handleText(char *text, bool notFinished);

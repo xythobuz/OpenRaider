@@ -143,12 +143,13 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             getConsole().print("Available commands:");
-            getConsole().print("  load - load a level");
-            getConsole().print("  set  - set a parameter");
-            getConsole().print("  bind - bind a keyboard/mouse action");
-            getConsole().print("  game - send a command to the game engine");
-            getConsole().print("  help - print command help");
-            getConsole().print("  quit - exit OpenRaider");
+            getConsole().print("  load  - load a level");
+            getConsole().print("  set   - set a parameter");
+            getConsole().print("  bind  - bind a keyboard/mouse action");
+            getConsole().print("  sshot - make a screenshot");
+            getConsole().print("  game  - send a command to the game engine");
+            getConsole().print("  help  - print command help");
+            getConsole().print("  quit  - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
         } else if (args->size() == 1) {
             return help(args->at(0));
@@ -161,6 +162,25 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         int error = getGame().loadLevel(tmp);
         delete [] tmp;
         return error;
+    } else if (strcmp(command, "sshot") == 0) {
+        char *filename = bufferString("%s/sshots/%s", mBaseDir, VERSION);
+        bool console = (args->size() > 0) && (strcmp(args->at(0), "console") == 0);
+        bool menu = (args->size() > 0) && (strcmp(args->at(0), "menu") == 0);
+        if (!console) {
+            getConsole().setVisible(false);
+            if (menu)
+                getMenu().setVisible(true);
+            frame();
+            frame(); // Double buffered
+        }
+        getGame().mRender->screenShot(filename);
+        if (!console) {
+            getConsole().setVisible(true);
+            if (menu)
+                getMenu().setVisible(false);
+        }
+        getConsole().print("Screenshot stored...");
+        delete filename;
     } else if (strcmp(command, "game") == 0) {
         return getGame().command(args);
     } else {
@@ -216,6 +236,10 @@ int OpenRaider::help(const char *cmd) {
         getConsole().print("  load levelfile.name");
     } else if (strcmp(cmd, "game") == 0) {
         getConsole().print("Use \"game help\" for more info");
+    } else if (strcmp(cmd, "sshot") == 0) {
+        getConsole().print("sshot-Command Usage:");
+        getConsole().print("  sshot [console|menu]");
+        getConsole().print("Add console/menu to capture them too");
     } else {
         getConsole().print("No help available for %s", cmd);
         return -1;
@@ -593,51 +617,56 @@ void OpenRaider::fillMapList() {
 void OpenRaider::run() {
     assert(mRunning == false);
 
-    static clock_t fpsSum = 0, fpsCount = 0;
-    static int fps = 0;
-
     mRunning = true;
     while (mRunning) {
-        clock_t startTime = systemTimerGet();
+        frame();
+    }
+}
 
-        // Get keyboard and mouse input
-        getWindow().eventHandling();
+void OpenRaider::frame() {
+    assert(mRunning == true);
 
-        // Clear screen
-        glClearColor(0.00f, 0.00f, 0.00f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+    static clock_t fpsSum = 0, fpsCount = 0;
+    static int fps = 0;
+    clock_t startTime = systemTimerGet();
 
-        // Draw game scene
-        getGame().display();
+    // Get keyboard and mouse input
+    getWindow().eventHandling();
 
-        // Draw 2D overlays (console and menu)
-        getWindow().glEnter2D();
+    // Clear screen
+    glClearColor(0.00f, 0.00f, 0.00f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
 
-        getConsole().display();
-        getMenu().display();
+    // Draw game scene
+    getGame().display();
 
-        // Draw FPS counter
-        if (mFPS)
-            getWindow().drawText(10, getWindow().mHeight - 20, 0.5f, OR_BLUE, "%dFPS", fps);
+    // Draw 2D overlays (console and menu)
+    getWindow().glEnter2D();
 
-        getWindow().glExit2D();
+    getConsole().display();
+    getMenu().display();
 
-        // Put new frame on screen
-        getWindow().swapBuffersGL();
+    // Draw FPS counter
+    if (mFPS)
+        getWindow().drawText(10, getWindow().mHeight - 20, 0.5f, OR_BLUE, "%dFPS", fps);
 
-        // Fill map list after first render pass,
-        // so menu *loading screen* is visible
-        if (!mMapListFilled)
-            fillMapList();
+    getWindow().glExit2D();
 
-        // Calculate FPS display value
-        fpsCount++;
-        fpsSum += (systemTimerGet() - startTime);
-        if (fpsSum >= 500) {
-            // Update every 500ms
-            fps = (int)((float)fpsCount * (1000.0f / (float)fpsSum));
-            fpsCount = fpsSum = 0;
-        }
+    // Put new frame on screen
+    getWindow().swapBuffersGL();
+
+    // Fill map list after first render pass,
+    // so menu *loading screen* is visible
+    if (!mMapListFilled)
+        fillMapList();
+
+    // Calculate FPS display value
+    fpsCount++;
+    fpsSum += (systemTimerGet() - startTime);
+    if (fpsSum >= 500) {
+        // Update every 500ms
+        fps = (int)((float)fpsCount * (1000.0f / (float)fpsSum));
+        fpsCount = fpsSum = 0;
     }
 }
 
