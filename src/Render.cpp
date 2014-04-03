@@ -36,11 +36,11 @@ bool compareEntites(const void *voidA, const void *voidB)
     if (!a || !b)
         return false; // error really
 
-    distA = getGame().mRender->mViewVolume.getDistToSphereFromNear(a->pos[0],
+    distA = getRender().mViewVolume.getDistToSphereFromNear(a->pos[0],
             a->pos[1],
             a->pos[2],
             1.0f);
-    distB = getGame().mRender->mViewVolume.getDistToSphereFromNear(b->pos[0],
+    distB = getRender().mViewVolume.getDistToSphereFromNear(b->pos[0],
             b->pos[1],
             b->pos[2],
             1.0f);
@@ -57,11 +57,11 @@ bool compareStaticModels(const void *voidA, const void *voidB)
     if (!a || !b)
         return false; // error really
 
-    distA = getGame().mRender->mViewVolume.getDistToSphereFromNear(a->pos[0],
+    distA = getRender().mViewVolume.getDistToSphereFromNear(a->pos[0],
             a->pos[1],
             a->pos[2],
             128.0f);
-    distB = getGame().mRender->mViewVolume.getDistToSphereFromNear(b->pos[0],
+    distB = getRender().mViewVolume.getDistToSphereFromNear(b->pos[0],
             b->pos[1],
             b->pos[2],
             128.0f);

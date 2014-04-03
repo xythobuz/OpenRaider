@@ -173,7 +173,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             frame();
             frame(); // Double buffered
         }
-        getGame().mRender->screenShot(filename);
+        getRender().screenShot(filename);
         if (!console) {
             getConsole().setVisible(true);
             if (menu)

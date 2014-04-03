@@ -22,6 +22,7 @@ Console *gConsole = NULL;
 Game *gGame = NULL;
 Menu *gMenu = NULL;
 OpenRaider *gOpenRaider = NULL;
+Render *gRender = NULL;
 Sound *gSound = NULL;
 Window *gWindow = NULL;
 World *gWorld = NULL;
@@ -51,6 +52,11 @@ OpenRaider &getOpenRaider() {
     return *gOpenRaider;
 }
 
+Render &getRender() {
+    assert(gRender != NULL);
+    return *gRender;
+}
+
 Sound &getSound() {
     assert(gSound != NULL);
     return *gSound;
@@ -78,6 +84,9 @@ void cleanupHandler(void) {
 
     if (gWorld)
         delete gWorld;
+
+    if (gRender)
+        delete gRender;
 
     if (gCamera)
         delete gCamera;
@@ -139,6 +148,7 @@ int main(int argc, char *argv[]) {
     gSound = new SoundAL();
     gWorld = new World();
     gCamera = new Camera();
+    gRender = new Render();
     gConsole = new Console();
     gMenu = new Menu();
     gGame = new Game();

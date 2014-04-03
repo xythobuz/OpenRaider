@@ -46,24 +46,16 @@ Game::Game() {
     mTextureStart = 0;
     mTextureLevelOffset = 0;
     mTextureOffset = 0;
-
-    mRender = NULL;
 }
 
 Game::~Game() {
     destroy();
-
-    if (mRender)
-        delete mRender;
 }
 
 int Game::initialize() {
-    // Set up Renderer
-    mRender = new Render();
-    mRender->initTextures(getOpenRaider().mDataDir, &mTextureStart, &mTextureLevelOffset);
-
     // Enable Renderer
-    mRender->setMode(Render::modeLoadScreen);
+    getRender().initTextures(getOpenRaider().mDataDir, &mTextureStart, &mTextureLevelOffset);
+    getRender().setMode(Render::modeLoadScreen);
 
     // Enable World Hopping
     getWorld().setFlag(World::fEnableHopping);
@@ -76,10 +68,10 @@ void Game::destroy() {
         delete [] mName;
 
     mLoaded = false;
-    mRender->setMode(Render::modeDisabled);
+    getRender().setMode(Render::modeDisabled);
 
     getWorld().destroy();
-    mRender->ClearWorld();
+    getRender().ClearWorld();
     getSound().clear(); // Remove all previously loaded sounds
 }
 
@@ -134,7 +126,7 @@ int Game::loadLevel(const char *level) {
     }
 
     mLoaded = true;
-    mRender->setMode(Render::modeVertexLight);
+    getRender().setMode(Render::modeVertexLight);
 
     return 0;
 }
@@ -178,7 +170,7 @@ void Game::handleMouseMotion(int xrel, int yrel) {
 }
 
 void Game::display() {
-    mRender->Display();
+    getRender().Display();
 }
 
 int Game::command(std::vector<char *> *args) {
@@ -193,7 +185,7 @@ int Game::command(std::vector<char *> *args) {
             char *mode = args->at(1);
             if (strcmp(mode, "wireframe") == 0) {
                 if (mLoaded) {
-                    mRender->setMode(Render::modeWireframe);
+                    getRender().setMode(Render::modeWireframe);
                     getConsole().print("Wireframe mode");
                 } else {
                     getConsole().print("Load a level to set this mode!");
@@ -201,7 +193,7 @@ int Game::command(std::vector<char *> *args) {
                 }
             } else if (strcmp(mode, "solid") == 0) {
                 if (mLoaded) {
-                    mRender->setMode(Render::modeSolid);
+                    getRender().setMode(Render::modeSolid);
                     getConsole().print("Solid mode");
                 } else {
                     getConsole().print("Load a level to set this mode!");
@@ -209,7 +201,7 @@ int Game::command(std::vector<char *> *args) {
                 }
             } else if (strcmp(mode, "texture") == 0) {
                 if (mLoaded) {
-                    mRender->setMode(Render::modeTexture);
+                    getRender().setMode(Render::modeTexture);
                     getConsole().print("Texture mode");
                 } else {
                     getConsole().print("Load a level to set this mode!");
@@ -217,14 +209,14 @@ int Game::command(std::vector<char *> *args) {
                 }
             } else if (strcmp(mode, "vertexlight") == 0) {
                 if (mLoaded) {
-                    mRender->setMode(Render::modeVertexLight);
+                    getRender().setMode(Render::modeVertexLight);
                     getConsole().print("Vertexlight mode");
                 } else {
                     getConsole().print("Load a level to set this mode!");
                     return -5;
                 }
             } else if (strcmp(mode, "titlescreen") == 0) {
-                mRender->setMode(Render::modeLoadScreen);
+                getRender().setMode(Render::modeLoadScreen);
                 getConsole().print("Titlescreen mode");
             } else {
                 getConsole().print("Invalid use of mode command (%s)!", mode);
@@ -271,9 +263,9 @@ int Game::command(std::vector<char *> *args) {
             char c = args->at(1)[0];
             if (c == 'n') {
                 // Step all skeletal models to their next animation
-                if (mRender->getFlags() & Render::fAnimateAllModels) {
-                    for (unsigned int i = 0; i < mRender->mModels.size(); i++) {
-                        SkeletalModel *m = mRender->mModels[i];
+                if (getRender().getFlags() & Render::fAnimateAllModels) {
+                    for (unsigned int i = 0; i < getRender().mModels.size(); i++) {
+                        SkeletalModel *m = getRender().mModels[i];
                         if (m->getAnimation() < ((int)m->model->animation.size() - 1))
                             m->setAnimation(m->getAnimation() + 1);
                         else
@@ -285,9 +277,9 @@ int Game::command(std::vector<char *> *args) {
                 }
             } else if (c == 'p') {
                 // Step all skeletal models to their previous animation
-                if (mRender->getFlags() & Render::fAnimateAllModels) {
-                    for (unsigned int i = 0; i < mRender->mModels.size(); i++) {
-                        SkeletalModel *m = mRender->mModels[i];
+                if (getRender().getFlags() & Render::fAnimateAllModels) {
+                    for (unsigned int i = 0; i < getRender().mModels.size(); i++) {
+                        SkeletalModel *m = getRender().mModels[i];
                         if (m->getAnimation() > 0)
                             m->setAnimation(m->getAnimation() - 1);
                         else
@@ -305,9 +297,9 @@ int Game::command(std::vector<char *> *args) {
                     return -12;
                 }
                 if (b)
-                    mRender->setFlags(Render::fAnimateAllModels);
+                    getRender().setFlags(Render::fAnimateAllModels);
                 else
-                    mRender->clearFlags(Render::fAnimateAllModels);
+                    getRender().clearFlags(Render::fAnimateAllModels);
                 getConsole().print(b ? "Animating all models" : "No longer animating all models");
             }
         } else {
@@ -364,9 +356,9 @@ int Game::command(std::vector<char *> *args) {
                 return -15;
             }
             if (b)
-                mRender->setFlags(Render::fGL_Lights);
+                getRender().setFlags(Render::fGL_Lights);
             else
-                mRender->clearFlags(Render::fGL_Lights);
+                getRender().clearFlags(Render::fGL_Lights);
             getConsole().print("GL-Lights are now %s", b ? "on" : "off");
         } else {
             getConsole().print("Invalid use of game-light-command!");
@@ -380,9 +372,9 @@ int Game::command(std::vector<char *> *args) {
                 return -17;
             }
             if (b)
-                mRender->setFlags(Render::fFog);
+                getRender().setFlags(Render::fFog);
             else
-                mRender->clearFlags(Render::fFog);
+                getRender().clearFlags(Render::fFog);
             getConsole().print("Fog is now %s", b ? "on" : "off");
         } else {
             getConsole().print("Invalid use of game-fog-command!");
@@ -459,7 +451,7 @@ void Game::processTextures()
         mTombRaider.Texture(i, &image, &bumpmap);
 
         // Overwrite any previous level textures on load
-        mRender->loadTexture(image, 256, 256, mTextureLevelOffset + i);
+        getRender().loadTexture(image, 256, 256, mTextureLevelOffset + i);
 
 #ifdef MULTITEXTURE
         gMapTex2Bump[mTextureLevelOffset + i] = -1;
@@ -471,7 +463,7 @@ void Game::processTextures()
             gMapTex2Bump[mTextureLevelOffset + i] = mTextureLevelOffset + i +
                     mTombRaider.NumTextures();
 #endif
-            mRender->loadTexture(bumpmap, 256, 256, mTextureLevelOffset + i +
+            getRender().loadTexture(bumpmap, 256, 256, mTextureLevelOffset + i +
                     mTombRaider.NumTextures());
         }
 
@@ -754,7 +746,7 @@ void Game::processMoveable(int index, int i, int *ent,
     thing->animate = false;
 
     sModel = new SkeletalModel();
-    mRender->addSkeletalModel(sModel);
+    getRender().addSkeletalModel(sModel);
     thing->tmpHook = sModel; // temp hack to keep a running version during refactoring
 
     if (mTombRaider.Engine() == TR_VERSION_1)
@@ -773,7 +765,7 @@ void Game::processMoveable(int index, int i, int *ent,
     //! \fixme Check here and see if we already have one for object_id later
     // if (getWorld().isCachedSkeletalModel(moveable[index].object_id))
     // {
-    //   thing->modelId = mRender->add(sModel);
+    //   thing->modelId = getRender().add(sModel);
     //   return;
     // }
 
@@ -901,7 +893,7 @@ void Game::processMoveable(int index, int i, int *ent,
                         r_model->ponytail[1] -= 32;
                     }
 
-                    mRender->setFlags(Render::fRenderPonytail);
+                    getRender().setFlags(Render::fRenderPonytail);
                     getConsole().print("Found known ponytail");
                 }
                 break; // ?
@@ -923,7 +915,7 @@ void Game::processMoveable(int index, int i, int *ent,
                     r_model->ponyOff = 40;
                     r_model->ponyOff2 = 0;
 
-                    mRender->setFlags(Render::fRenderPonytail);
+                    getRender().setFlags(Render::fRenderPonytail);
                     getConsole().print("Found ponytail?");
                 }
                 break;
@@ -1105,7 +1097,7 @@ void Game::processMoveable(int index, int i, int *ent,
 
     if (i == skyMesh)
     {
-        mRender->setSkyMesh(i, //moveable[i].starting_mesh,
+        getRender().setSkyMesh(i, //moveable[i].starting_mesh,
                 (mTombRaider.Engine() == TR_VERSION_2));
     }
 
@@ -1152,7 +1144,7 @@ void Game::setupTextureColor(texture_tri_t *r_tri, float *colorf)
         gColorTextureHACK.push_back(colorI);
         r_tri->texture = mTextureOffset + gColorTextureHACK.size();
 
-        mRender->loadTexture(Texture::generateColorTexture(color, 32, 32),
+        getRender().loadTexture(Texture::generateColorTexture(color, 32, 32),
                 32, 32,
                 r_tri->texture);
 
@@ -1393,7 +1385,7 @@ void Game::processRooms()
         {
             getConsole().print("WARNING: Handling invalid vertex array in room");
             getWorld().addRoom(0x0);
-            mRender->addRoom(0x0);
+            getRender().addRoom(0x0);
 
             //printf("x");
             //fflush(stdout);
@@ -1936,7 +1928,7 @@ void Game::processRooms()
         getWorld().addRoom(r_mesh);
 
         rRoom->room = r_mesh;
-        mRender->addRoom(rRoom);
+        getRender().addRoom(rRoom);
 
         //printf(".");
         //fflush(stdout);

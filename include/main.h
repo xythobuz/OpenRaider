@@ -12,6 +12,7 @@
 #include "Game.h"
 #include "Menu.h"
 #include "OpenRaider.h"
+#include "Render.h"
 #include "Sound.h"
 #include "Window.h"
 #include "World.h"
@@ -25,6 +26,8 @@ Game &getGame();
 Menu &getMenu();
 
 OpenRaider &getOpenRaider();
+
+Render &getRender();
 
 Sound &getSound();
 
