@@ -554,16 +554,16 @@ void Render::Display()
             camPos[2] = curPos[2] + (64.0f * cosf(yaw));
         }
 
-        getGame().mCamera->setPosition(camPos);
+        getCamera().setPosition(camPos);
     }
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
     // Setup view in OpenGL with camera
-    getGame().mCamera->update();
-    getGame().mCamera->getPosition(camPos);
-    getGame().mCamera->getTarget(atPos);
+    getCamera().update();
+    getCamera().getPosition(camPos);
+    getCamera().getTarget(atPos);
     // Mongoose 2002.08.13, Quick fix to render OpenRaider upside down
 
     gluLookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0f, -1.0f, 0.0f);
@@ -1023,13 +1023,13 @@ void Render::drawObjects()
         glPushMatrix();
 
 #ifdef USING_FPS_CAMERA
-        getGame().mCamera->getPosition(curPos);
+        getCamera().getPosition(curPos);
         glTranslated(curPos[0], curPos[1], curPos[2]);
-        glRotated(getGame().mCamera->getYaw(), 0, 1, 0);
+        glRotated(getCamera().getYaw(), 0, 1, 0);
         glTranslated(0, 500, 1200);
 #else
         glTranslated(getGame().mLara->pos[0], getGame().mLara->pos[1], getGame().mLara->pos[2]);
-        glRotated(getGame().mCamera->getYaw(), 0, 1, 0);
+        glRotated(getCamera().getYaw(), 0, 1, 0);
 #endif
 
         drawModel(static_cast<SkeletalModel *>(getGame().mLara->tmpHook));
@@ -1554,7 +1554,7 @@ void Render::drawSprite(sprite_t *sprite)
     glTranslated(sprite->pos[0], sprite->pos[1], sprite->pos[2]);
 
     // Sprites must always face camera, because they have no depth  =)
-    glRotated(getGame().mCamera->getYaw(), 0, 1, 0);
+    glRotated(getCamera().getYaw(), 0, 1, 0);
 
     switch (mMode)
     {

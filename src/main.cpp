@@ -15,6 +15,7 @@
 #include "utils/time.h"
 #include "WindowSDL.h"
 
+Camera *gCamera = NULL;
 Console *gConsole = NULL;
 Game *gGame = NULL;
 Menu *gMenu = NULL;
@@ -22,6 +23,11 @@ OpenRaider *gOpenRaider = NULL;
 Sound *gSound = NULL;
 Window *gWindow = NULL;
 World *gWorld = NULL;
+
+Camera &getCamera() {
+    assert(gCamera != NULL);
+    return *gCamera;
+}
 
 Console &getConsole() {
     assert(gConsole != NULL);
@@ -70,6 +76,9 @@ void cleanupHandler(void) {
 
     if (gWorld)
         delete gWorld;
+
+    if (gCamera)
+        delete gCamera;
 
     if (gOpenRaider)
         delete gOpenRaider;
@@ -127,6 +136,7 @@ int main(int argc, char *argv[]) {
     gWindow = new WindowSDL();
     gSound = new Sound();
     gWorld = new World();
+    gCamera = new Camera();
     gConsole = new Console();
     gMenu = new Menu();
     gGame = new Game();

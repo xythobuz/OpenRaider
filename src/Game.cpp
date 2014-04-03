@@ -38,7 +38,6 @@ Game::Game() {
     mTextureLevelOffset = 0;
     mTextureOffset = 0;
 
-    mCamera = NULL;
     mRender = NULL;
 }
 
@@ -47,19 +46,9 @@ Game::~Game() {
 
     if (mRender)
         delete mRender;
-
-    if (mCamera)
-        delete mCamera;
 }
 
 int Game::initialize() {
-    // Set up Camera
-    vec3_t up = {0.0f, -1.0f, 0.0f};
-    mCamera = new Camera();
-    mCamera->reset();
-    mCamera->setSpeed(512);
-    mCamera->setUp(up);
-
     // Set up Renderer
     mRender = new Render();
     mRender->initTextures(getOpenRaider().mDataDir, &mTextureStart, &mTextureLevelOffset);
@@ -160,22 +149,22 @@ void Game::handleMouseMotion(int xrel, int yrel) {
         // Move Camera on X Axis
         if (xrel > 0)
             while (xrel-- > 0)
-                mCamera->command(CAMERA_ROTATE_RIGHT);
+                getCamera().command(CAMERA_ROTATE_RIGHT);
         else if (xrel < 0)
             while (xrel++ < 0)
-                mCamera->command(CAMERA_ROTATE_LEFT);
+                getCamera().command(CAMERA_ROTATE_LEFT);
 
         // Move Camera on Y Axis
         if (yrel > 0)
             while (yrel-- > 0)
-                mCamera->command(CAMERA_ROTATE_UP);
+                getCamera().command(CAMERA_ROTATE_UP);
         else if (yrel < 0)
             while (yrel++ < 0)
-                mCamera->command(CAMERA_ROTATE_DOWN);
+                getCamera().command(CAMERA_ROTATE_DOWN);
 
         // Fix Laras rotation
-        mLara->angles[1] = mCamera->getRadianYaw();
-        mLara->angles[2] = mCamera->getRadianPitch();
+        mLara->angles[1] = getCamera().getRadianYaw();
+        mLara->angles[2] = getCamera().getRadianPitch();
     }
 }
 
@@ -750,7 +739,7 @@ void Game::processMoveable(int index, int i, int *ent,
         gLaraModel = r_model; // hack to avoid broken system until new event sys
 
         lara = true;
-        mCamera->translate(pos[0], pos[1] - 470, pos[2]);
+        getCamera().translate(pos[0], pos[1] - 470, pos[2]);
         thing->type = 0x02;
         mLara = thing; // Mongoose 2002.03.22, Cheap hack for now
         mLara->master = 0x0;

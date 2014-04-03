@@ -7,6 +7,7 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+#include "Camera.h"
 #include "Console.h"
 #include "Game.h"
 #include "Menu.h"
@@ -14,6 +15,8 @@
 #include "Sound.h"
 #include "Window.h"
 #include "World.h"
+
+Camera &getCamera();
 
 Console &getConsole();
 

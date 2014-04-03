@@ -14,7 +14,7 @@
 Camera::Camera() {
     mFlags = 0;
     mViewDistance = 14.0f;
-    mTranslateDelta = 256.0f;
+    mTranslateDelta = 512.0f; // 256.0f
     mFlags &= Camera_FlyMode;
     reset();
 }
@@ -138,7 +138,7 @@ void Camera::reset() {
     mSide[2] = 0.0f;
 
     mUp[0] = 0.0f;
-    mUp[1] = 1.0f;
+    mUp[1] = -1.0f; // 1.0f
     mUp[2] = 0.0f;
 
     mQ.setIdentity();

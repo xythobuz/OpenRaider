@@ -43,7 +43,6 @@ public:
     //! \fixme should be private
     entity_t *mLara;
     Render *mRender;
-    Camera *mCamera;
 
 private:
 
