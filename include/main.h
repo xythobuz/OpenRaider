@@ -11,12 +11,14 @@
 #include "Game.h"
 #include "Menu.h"
 #include "OpenRaider.h"
+#include "Sound.h"
 #include "Window.h"
 
 Console    &getConsole();
 Game       &getGame();
 Menu       &getMenu();
 OpenRaider &getOpenRaider();
+Sound      &getSound();
 Window     &getWindow();
 
 /*!

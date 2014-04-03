@@ -57,8 +57,6 @@ public:
 
     //! \fixme should be private
 
-    Sound *mSound;
-
     bool mMapListFilled;
     std::vector<char *> mMapList;
 
@@ -88,7 +86,6 @@ private:
 
     void fillMapList();
 
-    bool mInit;
     bool mRunning;
     bool mFPS;
 

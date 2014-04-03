@@ -18,6 +18,7 @@ Console *gConsole = NULL;
 Game *gGame = NULL;
 Menu *gMenu = NULL;
 OpenRaider *gOpenRaider = NULL;
+Sound *gSound = NULL;
 Window *gWindow = NULL;
 
 Console &getConsole() {
@@ -36,6 +37,10 @@ OpenRaider &getOpenRaider() {
     return *gOpenRaider;
 }
 
+Sound &getSound() {
+    return *gSound;
+}
+
 Window &getWindow() {
     return *gWindow;
 }
@@ -52,6 +57,9 @@ void cleanupHandler(void) {
 
     if (gOpenRaider)
         delete gOpenRaider;
+
+    if (gSound)
+        delete gSound;
 
     if (gWindow)
         delete gWindow;
@@ -101,6 +109,7 @@ int main(int argc, char *argv[]) {
     atexit(cleanupHandler);
     gOpenRaider = new OpenRaider();
     gWindow = new WindowSDL();
+    gSound = new Sound();
     gConsole = new Console();
     gMenu = new Menu();
     gGame = new Game();
@@ -135,17 +144,17 @@ int main(int argc, char *argv[]) {
         return 5;
     }
 
-    error = gOpenRaider->initialize();
+    error = gSound->initialize();
     if (error != 0) {
-        printf("Could not initialize OpenRaider (%d)!\n", error);
-        return 6;
+        printf("Could not initialize Sound (%d)!\n", error);
+        return 7;
     }
 
     // Initialize game engine
     error = gGame->initialize();
     if (error != 0) {
         printf("Could not initialize Game Engine (%d)!\n", error);
-        return 7;
+        return 8;
     }
 
     gMenu->setVisible(true);

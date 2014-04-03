@@ -84,7 +84,7 @@ void Game::destroy() {
 
     mWorld.destroy();
     mRender->ClearWorld();
-    getOpenRaider().mSound->clear(); // Remove all previously loaded sounds
+    getSound().clear(); // Remove all previously loaded sounds
 }
 
 int Game::loadLevel(const char *level) {
@@ -265,7 +265,7 @@ int Game::command(std::vector<char *> *args) {
         }
     } else if (strcmp(cmd, "sound") == 0) {
         if (args->size() > 1) {
-            getOpenRaider().mSound->play(atoi(args->at(1)));
+            getSound().play(atoi(args->at(1)));
         } else {
             getConsole().print("Invalid use of sound command!");
             return -11;
@@ -390,7 +390,7 @@ void Game::processPakSounds()
     {
         mTombRaider.getSoundSample(i, &riffSz, &riff);
 
-        getOpenRaider().mSound->addWave(riff, riffSz, &id, getOpenRaider().mSound->SoundFlagsNone);
+        getSound().addWave(riff, riffSz, &id, getSound().SoundFlagsNone);
 
         //if (((i + 1) == TR_SOUND_F_PISTOL) && (id > 0))
         //{
@@ -404,7 +404,7 @@ void Game::processPakSounds()
         //pos[0] = sound[i].x;
         //pos[1] = sound[i].y;
         //pos[2] = sound[i].z;
-        //getOpenRaider().mSound->SourceAt(id, pos);
+        //getSound().SourceAt(id, pos);
 
         //printf(".");
         //fflush(stdout);

@@ -25,7 +25,6 @@
 #include "OpenRaider.h"
 
 OpenRaider::OpenRaider() {
-    mInit = false;
     mRunning = false;
     mFPS = false;
     mBaseDir = NULL;
@@ -33,8 +32,6 @@ OpenRaider::OpenRaider() {
     mAudioDir = NULL;
     mDataDir = NULL;
     mMapListFilled = false;
-
-    mSound = new Sound();
 
     for (int i = 0; i < ActionEventCount; i++)
         keyBindings[i] = unknown;
@@ -44,9 +41,6 @@ OpenRaider::OpenRaider() {
 }
 
 OpenRaider::~OpenRaider() {
-    if (mSound)
-        delete mSound;
-
     if (mBaseDir)
         delete mBaseDir;
 
@@ -307,14 +301,14 @@ int OpenRaider::set(const char *var, const char *value) {
             getConsole().print("set-audio-Error: Invalid value (%s)", value);
             return -4;
         }
-        mSound->setEnabled(audio);
+        getSound().setEnabled(audio);
     } else if (strcmp(var, "volume") == 0) {
         float vol = 1.0f;
         if (sscanf(value, "%f", &vol) != 1) {
             getConsole().print("set-volume-Error: Invalid value (%s)", value);
             return -5;
         }
-        mSound->setVolume(vol);
+        getSound().setVolume(vol);
     } else if (strcmp(var, "mouse_x") == 0) {
         float sense = 1.0f;
         if (sscanf(value, "%f", &sense) != 1) {
@@ -542,7 +536,6 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
 
     assert(dir != NULL);
     assert(dir[0] != '\0');
-    assert(mInit == true);
     assert(mRunning == true);
 
     pakDir = opendir(dir);
@@ -589,7 +582,6 @@ void OpenRaider::loadPakFolderRecursive(const char *dir) {
 }
 
 void OpenRaider::fillMapList() {
-    assert(mInit == true);
     assert(mRunning == true);
 
     char *tmp = fullPath(mPakDir, '/');
@@ -598,21 +590,7 @@ void OpenRaider::fillMapList() {
     mMapListFilled = true;
 }
 
-int OpenRaider::initialize() {
-    assert(mInit == false);
-    assert(mRunning == false);
-
-    // Initialize sound
-    if (mSound->initialize() != 0)
-        return -1;
-
-    mInit = true;
-
-    return 0;
-}
-
 void OpenRaider::run() {
-    assert(mInit == true);
     assert(mRunning == false);
 
     static clock_t fpsSum = 0, fpsCount = 0;
@@ -665,7 +643,6 @@ void OpenRaider::run() {
 
 void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
     assert(key < unknown);
-    assert(mInit == true);
     assert(mRunning == true);
 
     if ((keyBindings[menuAction] == key) && pressed) {
@@ -692,7 +669,6 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
 void OpenRaider::handleText(char *text, bool notFinished) {
     assert(text != NULL);
     assert(text[0] != '\0');
-    assert(mInit == true);
     assert(mRunning == true);
 
     if ((getConsole().isVisible()) && (!getMenu().isVisible())) {
@@ -702,7 +678,6 @@ void OpenRaider::handleText(char *text, bool notFinished) {
 
 void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
     assert(button < unknown);
-    assert(mInit == true);
     assert(mRunning == true);
 
     if (getMenu().isVisible()) {
@@ -718,7 +693,6 @@ void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
 
 void OpenRaider::handleMouseMotion(int xrel, int yrel) {
     assert((xrel != 0) || (yrel != 0));
-    assert(mInit == true);
     assert(mRunning == true);
 
     if ((!getConsole().isVisible()) && (!getMenu().isVisible())) {
@@ -728,7 +702,6 @@ void OpenRaider::handleMouseMotion(int xrel, int yrel) {
 
 void OpenRaider::handleMouseScroll(int xrel, int yrel) {
     assert((xrel != 0) || (yrel != 0));
-    assert(mInit == true);
     assert(mRunning == true);
 
     if ((getConsole().isVisible()) && (!getMenu().isVisible())) {
