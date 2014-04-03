@@ -533,6 +533,22 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Invalid use of allrooms-command!");
             return -43;
         }
+    } else if (strcmp(command, "ponytail") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to ponytail command!");
+                return -44;
+            }
+            if (b)
+                getRender().setFlags(Render::fRenderPonytail);
+            else
+                getRender().clearFlags(Render::fRenderPonytail);
+            getConsole().print("Ponytail is now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of ponytail-command!");
+            return -45;
+        }
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             getConsole().print("Available commands:");
@@ -560,6 +576,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("  entmodel  - BOOL");
             getConsole().print("  oneroom   - BOOL");
             getConsole().print("  allrooms  - BOOL");
+            getConsole().print("  ponytail  - BOOL");
             getConsole().print("  help      - print command help");
             getConsole().print("  quit      - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
@@ -567,11 +584,11 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return help(args->at(0));
         } else {
             getConsole().print("Invalid use of help-command");
-            return -44;
+            return -46;
         }
     } else {
         getConsole().print("Unknown command: %s ", command);
-        return -45;
+        return -47;
     }
 
     return 0;
