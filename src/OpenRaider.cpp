@@ -357,6 +357,38 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Load a level to get Laras position!");
             return -21;
         }
+    } else if (strcmp(command, "vmodel") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to vmodel command!");
+                return -22;
+            }
+            if (b)
+                getRender().setFlags(Render::fViewModel);
+            else
+                getRender().clearFlags(Render::fViewModel);
+            getConsole().print("Viewmodel is now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of vmodel-command!");
+            return -23;
+        }
+    } else if (strcmp(command, "ralpha") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to ralpha command!");
+                return -24;
+            }
+            if (b)
+                getRender().setFlags(Render::fRoomAlpha);
+            else
+                getRender().clearFlags(Render::fRoomAlpha);
+            getConsole().print("Room Alpha is now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of ralpha-command!");
+            return -25;
+        }
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             getConsole().print("Available commands:");
@@ -373,6 +405,8 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("  hop       - BOOL - Room hop");
             getConsole().print("  viewmodel - INT - Change Laras model");
             getConsole().print("  pos       - Print position info");
+            getConsole().print("  vmodel    - BOOL - View Model");
+            getConsole().print("  ralpha    - BOOL - Room Alpha");
             getConsole().print("  help      - print command help");
             getConsole().print("  quit      - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
@@ -380,11 +414,11 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return help(args->at(0));
         } else {
             getConsole().print("Invalid use of help-command");
-            return -22;
+            return -26;
         }
     } else {
         getConsole().print("Unknown command: %s ", command);
-        return -23;
+        return -27;
     }
 
     return 0;
