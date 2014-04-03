@@ -213,10 +213,10 @@ void Render::initEmitter(const char *name, unsigned int size,
     //   note this is backwards b/c load screen is rendered upsidedown
     //mEmitter = new Emitter(/*name*/"snow", size);
     mEmitter = new Emitter(name, size);
-    mEmitter->SetTextureId(snowTex1);
-    mEmitter->TextureId(120, 280, snowTex2);
-    mEmitter->TextureId(400, 450, snowTex2);
-    mEmitter->TextureId(500, 550, snowTex2);
+    mEmitter->SetTextureId(snowTex1 + 2); //! \fixme What's up with this +2 offset?
+    mEmitter->TextureId(120, 280, snowTex2 + 2);
+    mEmitter->TextureId(400, 450, snowTex2 + 2);
+    mEmitter->TextureId(500, 550, snowTex2 + 2);
 
     // Mongoose 2002.01.01, Varing force and speed should look
     //   like varing mass/SA in wind, maybe

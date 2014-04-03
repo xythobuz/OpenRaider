@@ -437,6 +437,70 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Invalid use of upf-command!");
             return -31;
         }
+    } else if (strcmp(command, "particle") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to particle command!");
+                return -32;
+            }
+            if (b)
+                getRender().setFlags(Render::fParticles);
+            else
+                getRender().clearFlags(Render::fParticles);
+            getConsole().print("Particles are now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of particle-command!");
+            return -33;
+        }
+    } else if (strcmp(command, "sprite") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to sprite command!");
+                return -34;
+            }
+            if (b)
+                getRender().setFlags(Render::fSprites);
+            else
+                getRender().clearFlags(Render::fSprites);
+            getConsole().print("Sprites are now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of sprite-command!");
+            return -35;
+        }
+    } else if (strcmp(command, "roommodel") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to roommodel command!");
+                return -36;
+            }
+            if (b)
+                getRender().setFlags(Render::fRoomModels);
+            else
+                getRender().clearFlags(Render::fRoomModels);
+            getConsole().print("Roommodels are now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of roommodel-command!");
+            return -37;
+        }
+    } else if (strcmp(command, "entmodel") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to entmodel command!");
+                return -38;
+            }
+            if (b)
+                getRender().setFlags(Render::fEntityModels);
+            else
+                getRender().clearFlags(Render::fEntityModels);
+            getConsole().print("Entmodels are now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of entmodel-command!");
+            return -39;
+        }
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             getConsole().print("Available commands:");
@@ -458,6 +522,10 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("  portal    - BOOL");
             getConsole().print("  vis       - BOOL - Use Portals");
             getConsole().print("  upf       - BOOL - Update Room List Per Frame");
+            getConsole().print("  particle  - BOOL");
+            getConsole().print("  sprite    - BOOL");
+            getConsole().print("  roommodel - BOOL");
+            getConsole().print("  entmodel  - BOOL");
             getConsole().print("  help      - print command help");
             getConsole().print("  quit      - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
@@ -465,11 +533,11 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return help(args->at(0));
         } else {
             getConsole().print("Invalid use of help-command");
-            return -32;
+            return -40;
         }
     } else {
         getConsole().print("Unknown command: %s ", command);
-        return -33;
+        return -41;
     }
 
     return 0;
