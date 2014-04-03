@@ -13,7 +13,6 @@
 
 #include <algorithm>
 #include <map>
-#include <vector>
 #include <cstdlib>
 
 #include "main.h"
@@ -34,7 +33,6 @@ Game::Game() {
     mLoaded = false;
     mName = NULL;
     mLara = NULL;
-    mFlags = 0;
 
     mTextureStart = 0;
     mTextureLevelOffset = 0;
@@ -70,7 +68,7 @@ int Game::initialize() {
     mRender->setMode(Render::modeLoadScreen);
 
     // Enable World Hopping
-    mWorld.setFlag(World::fEnableHopping);
+    getWorld().setFlag(World::fEnableHopping);
 
     return 0;
 }
@@ -82,7 +80,7 @@ void Game::destroy() {
     mLoaded = false;
     mRender->setMode(Render::modeDisabled);
 
-    mWorld.destroy();
+    getWorld().destroy();
     mRender->ClearWorld();
     getSound().clear(); // Remove all previously loaded sounds
 }
@@ -146,13 +144,13 @@ int Game::loadLevel(const char *level) {
 void Game::handleAction(ActionEvents action, bool isFinished) {
     if (mLoaded) {
         if (action == forwardAction) {
-            mWorld.moveEntity(mLara, 'f');
+            getWorld().moveEntity(mLara, 'f');
         } else if (action == backwardAction) {
-            mWorld.moveEntity(mLara, 'b');
+            getWorld().moveEntity(mLara, 'b');
         } else if (action == leftAction) {
-            mWorld.moveEntity(mLara, 'l');
+            getWorld().moveEntity(mLara, 'l');
         } else if (action == rightAction) {
-            mWorld.moveEntity(mLara, 'r');
+            getWorld().moveEntity(mLara, 'r');
         }
     }
 }
@@ -493,7 +491,7 @@ void Game::processSprites()
                 s_index = sprite_sequence[j].offset;
 
                 r_mesh = new sprite_seq_t;
-                mWorld.addSprite(r_mesh);
+                getWorld().addSprite(r_mesh);
                 r_mesh->num_sprites = -sprite_sequence[j].negative_length;
                 r_mesh->sprite = new sprite_t[r_mesh->num_sprites];
 
@@ -737,7 +735,7 @@ void Game::processMoveable(int index, int i, int *ent,
     }
 
     //! \fixme Check here and see if we already have one for object_id later
-    // if (mWorld.isCachedSkeletalModel(moveable[index].object_id))
+    // if (getWorld().isCachedSkeletalModel(moveable[index].object_id))
     // {
     //   thing->modelId = mRender->add(sModel);
     //   return;
@@ -835,9 +833,9 @@ void Game::processMoveable(int index, int i, int *ent,
     if (!found)
     {
         sModel->model = r_model;
-        mWorld.addEntity(thing);
+        getWorld().addEntity(thing);
 
-        k = mWorld.addModel(r_model);
+        k = getWorld().addModel(r_model);
 
         cache.push_back(j);
         cache2.push_back(r_model);
@@ -901,22 +899,19 @@ void Game::processMoveable(int index, int i, int *ent,
         delete r_model;
         c_model = cache2[foundIndex];
         sModel->model = c_model;
-        mWorld.addEntity(thing);
-        mWorld.addModel(c_model);
+        getWorld().addEntity(thing);
+        getWorld().addModel(c_model);
         printf("c");
         return;
     }
 
     int aloop = mTombRaider.getNumAnimsForMoveable(index);
 
-#ifdef DEBUG
-    if (mFlags & Flag_DebugModel)
-    {
-        printf("\nanimation = %i, num_animations = %i\n",
-                moveable[index].animation, aloop);
-        printf("\nitem[%i].flags = %i\nentity[%i]\n",
-                i, item[i].flags, thing->id);
-    }
+#ifdef DEBUG_MOVEABLE
+    printf("\nanimation = %i, num_animations = %i\n",
+            moveable[index].animation, aloop);
+    printf("\nitem[%i].flags = %i\nentity[%i]\n",
+            i, item[i].flags, thing->id);
 #endif
 
     //a = moveable[index].animation;
@@ -933,28 +928,25 @@ void Game::processMoveable(int index, int i, int *ent,
         frame_count = (animation[a].frame_end - animation[a].frame_start) + 1;
         animation_frame->rate = animation[a].frame_rate;
 
-#ifdef DEBUG
-        if (mFlags & Flag_DebugModel)
-        {
-            printf("animation[%i] state and unknowns = %i, %i, %i, %i, %i\n",
-                    a, animation[a].state_id, animation[a].unknown1,
-                    animation[a].unknown2, animation[a].unknown3,
-                    animation[a].unknown4);
-            printf("animation[%i].frame_rate = %i\n",
-                    a, animation[a].frame_rate);
-            printf("animation[%i].next_animation = %i\n",
-                    a, animation[a].next_animation);
-            printf("animation[%i].frame_offset = %u\n",
-                    a, animation[a].frame_offset);
-            printf("animation[%i].anim_command = %i\n",
-                    a, animation[a].anim_command);
-            printf("animation[%i].num_anim_commands = %i\n",
-                    a, animation[a].num_anim_commands);
-            printf("animation[%i].state_change_offset = %i\n",
-                    a, animation[a].state_change_offset);
-            printf("              frame_offset = %u\n",
-                    frame_offset);
-        }
+#ifdef DEBUG_MOVEABLE
+        printf("animation[%i] state and unknowns = %i, %i, %i, %i, %i\n",
+                a, animation[a].state_id, animation[a].unknown1,
+                animation[a].unknown2, animation[a].unknown3,
+                animation[a].unknown4);
+        printf("animation[%i].frame_rate = %i\n",
+                a, animation[a].frame_rate);
+        printf("animation[%i].next_animation = %i\n",
+                a, animation[a].next_animation);
+        printf("animation[%i].frame_offset = %u\n",
+                a, animation[a].frame_offset);
+        printf("animation[%i].anim_command = %i\n",
+                a, animation[a].anim_command);
+        printf("animation[%i].num_anim_commands = %i\n",
+                a, animation[a].num_anim_commands);
+        printf("animation[%i].state_change_offset = %i\n",
+                a, animation[a].state_change_offset);
+        printf("              frame_offset = %u\n",
+                frame_offset);
 #endif
 
         // Get all the frames for aniamtion
@@ -997,12 +989,9 @@ void Game::processMoveable(int index, int i, int *ent,
                 }
             }
 
-#ifdef DEBUG
-            if (mFlags & Flag_DebugModel)
-            {
-                printf("animation[%i].boneframe[%u] = offset %u, step %i\n",
-                        a, f, frame_offset, frame_step);
-            }
+#ifdef DEBUG_MOVEABLE
+            printf("animation[%i].boneframe[%u] = offset %u, step %i\n",
+                    a, f, frame_offset, frame_step);
 #endif
 
             // Mongoose 2002.08.15, Was
@@ -1165,7 +1154,7 @@ void Game::processModels()
         if (index < 0 || !mTombRaider.isMeshValid(index))
         {
             //! \fixme allow sparse lists with matching ids instead?
-            mWorld.addMesh(NULL); // Filler, to make meshes array ids align
+            getWorld().addMesh(NULL); // Filler, to make meshes array ids align
             //printf("x");
             //fflush(stdout);
             return;
@@ -1347,7 +1336,7 @@ void Game::processModels()
         std::sort(mesh->texturedRectangles.begin(), mesh->texturedRectangles.end(), compareFaceTextureId);
         std::sort(mesh->coloredRectangles.begin(), mesh->coloredRectangles.end(), compareFaceTextureId);
 
-        mWorld.addMesh(mesh);
+        getWorld().addMesh(mesh);
         //printf(".");
         //fflush(stdout);
     }
@@ -1367,7 +1356,7 @@ void Game::processRooms()
         if (!mTombRaider.isRoomValid(index))
         {
             getConsole().print("WARNING: Handling invalid vertex array in room");
-            mWorld.addRoom(0x0);
+            getWorld().addRoom(0x0);
             mRender->addRoom(0x0);
 
             //printf("x");
@@ -1908,7 +1897,7 @@ void Game::processRooms()
             r_mesh->sprites.push_back(sprite);
         }
 
-        mWorld.addRoom(r_mesh);
+        getWorld().addRoom(r_mesh);
 
         rRoom->room = r_mesh;
         mRender->addRoom(rRoom);

@@ -41,8 +41,6 @@ public:
 
     int command(const char *command);
 
-    int initialize();
-
     void run();
 
     void handleKeyboard(KeyboardButton key, bool pressed);

@@ -8,17 +8,13 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include <list>
+#include <vector>
 
 #include "Camera.h"
 #include "global.h"
 #include "Render.h"
 #include "TombRaider.h"
 #include "World.h"
-
-typedef enum {
-    Flag_DebugModel = (1 << 0)
-} GameFlags;
 
 /*!
  * \brief Game abstraction
@@ -45,7 +41,6 @@ public:
     int command(std::vector<char *> *args);
 
     //! \fixme should be private
-    World mWorld;
     entity_t *mLara;
     Render *mRender;
     Camera *mCamera;
@@ -65,7 +60,6 @@ private:
 
     bool mLoaded;
     char *mName;
-    unsigned int mFlags;
     TombRaider mTombRaider;
 
     unsigned int mTextureStart;

@@ -544,10 +544,10 @@ void Render::Display()
         camPos[0] -= (1024.0f * sinf(yaw));
         camPos[2] -= (1024.0f * cosf(yaw));
 
-        sector = getGame().mWorld.getSector(index, camPos[0], camPos[2]);
+        sector = getWorld().getSector(index, camPos[0], camPos[2]);
 
         // Handle camera out of world
-        if (sector < 0 || getGame().mWorld.isWall(index, sector))
+        if (sector < 0 || getWorld().isWall(index, sector))
         {
             camPos[0] = curPos[0] + (64.0f * sinf(yaw));
             camPos[1] -= 64.0f;
@@ -642,7 +642,7 @@ void Render::Display()
     {
         entity_t *e;
         std::vector<entity_t *> entityRenderList;
-        std::vector<entity_t *> *entities = getGame().mWorld.getEntities();
+        std::vector<entity_t *> *entities = getWorld().getEntities();
 
         for (unsigned int i = 0; i < entities->size(); i++)
         {
@@ -956,7 +956,7 @@ void Render::buildRoomRenderList(RenderRoom *rRoom)
 
 void Render::drawSkyMesh(float scale)
 {
-    skeletal_model_t *model = getGame().mWorld.getModel(mSkyMesh);
+    skeletal_model_t *model = getWorld().getModel(mSkyMesh);
 
 
     if (!model)
@@ -973,7 +973,7 @@ void Render::drawSkyMesh(float scale)
     glTranslated(0.0, 1000.0, 0.0);
     glScaled(scale, scale, scale);
     //drawModel(model);
-    //drawModelMesh(getGame().mWorld.getMesh(mSkyMesh), );
+    //drawModelMesh(getWorld().getMesh(mSkyMesh), );
     glPopMatrix();
     glEnable(GL_DEPTH_TEST);
 }
@@ -1041,7 +1041,7 @@ void Render::drawObjects()
     {
         std::vector<sprite_seq_t *> *sprites;
 
-        sprites = getGame().mWorld.getSprites();
+        sprites = getWorld().getSprites();
 
         for (unsigned int i = 0; i < sprites->size(); i++)
         {
@@ -1161,7 +1161,7 @@ void Render::drawModel(SkeletalModel *model)
 
                 if (tag2)
                 {
-                    drawModelMesh(getGame().mWorld.getMesh(tag2->mesh), Render::skeletalMesh);
+                    drawModelMesh(getWorld().getMesh(tag2->mesh), Render::skeletalMesh);
                 }
             }
         }
@@ -1204,19 +1204,19 @@ void Render::drawModel(SkeletalModel *model)
                     {
                         glPushMatrix();
                         glTranslatef(mdl->ponyOff2, 0.0, 0.0);
-                        drawModelMesh(getGame().mWorld.getMesh(mdl->ponytailMeshId + i),
+                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i),
                                 Render::skeletalMesh);
                         glPopMatrix();
 
                         glPushMatrix();
                         glTranslatef(-mdl->ponyOff2, 0.0, 0.0);
-                        drawModelMesh(getGame().mWorld.getMesh(mdl->ponytailMeshId + i),
+                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i),
                                 Render::skeletalMesh);
                         glPopMatrix();
                     }
                     else
                     {
-                        drawModelMesh(getGame().mWorld.getMesh(mdl->ponytailMeshId + i),
+                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i),
                                 Render::skeletalMesh);
                     }
                 }
@@ -1230,7 +1230,7 @@ void Render::drawModel(SkeletalModel *model)
             }
         }
 
-        drawModelMesh(getGame().mWorld.getMesh(tag->mesh), Render::skeletalMesh);
+        drawModelMesh(getWorld().getMesh(tag->mesh), Render::skeletalMesh);
     }
 
     // Cycle frames ( cheap hack from old ent state based system )
@@ -1612,7 +1612,7 @@ void Render::drawRoomModel(static_model_t *mesh)
     if (!mesh)
         return;
 
-    r_mesh = getGame().mWorld.getMesh(mesh->index);
+    r_mesh = getWorld().getMesh(mesh->index);
 
     if (!r_mesh)
         return;
@@ -1862,7 +1862,7 @@ void Render::ViewModel(entity_t *ent, int index)
         return;
     }
 
-    model = getGame().mWorld.getModel(index);
+    model = getWorld().getModel(index);
 
     if (model)
     {

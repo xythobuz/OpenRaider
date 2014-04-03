@@ -1,6 +1,6 @@
 /*!
  * \file include/main.h
- * \brief Where main() is
+ * \brief Service locator
  *
  * \author xythobuz
  */
@@ -13,13 +13,21 @@
 #include "OpenRaider.h"
 #include "Sound.h"
 #include "Window.h"
+#include "World.h"
 
-Console    &getConsole();
-Game       &getGame();
-Menu       &getMenu();
+Console &getConsole();
+
+Game &getGame();
+
+Menu &getMenu();
+
 OpenRaider &getOpenRaider();
-Sound      &getSound();
-Window     &getWindow();
+
+Sound &getSound();
+
+Window &getWindow();
+
+World &getWorld();
 
 /*!
  * \brief Program entry point

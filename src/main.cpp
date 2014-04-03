@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
+#include <assert.h>
 
 #include "config.h"
 #include "main.h"
@@ -20,29 +21,41 @@ Menu *gMenu = NULL;
 OpenRaider *gOpenRaider = NULL;
 Sound *gSound = NULL;
 Window *gWindow = NULL;
+World *gWorld = NULL;
 
 Console &getConsole() {
+    assert(gConsole != NULL);
     return *gConsole;
 }
 
 Game &getGame() {
+    assert(gGame != NULL);
     return *gGame;
 }
 
 Menu &getMenu() {
+    assert(gMenu != NULL);
     return *gMenu;
 }
 
 OpenRaider &getOpenRaider() {
+    assert(gOpenRaider != NULL);
     return *gOpenRaider;
 }
 
 Sound &getSound() {
+    assert(gSound != NULL);
     return *gSound;
 }
 
 Window &getWindow() {
+    assert(gWindow != NULL);
     return *gWindow;
+}
+
+World &getWorld() {
+    assert(gWorld != NULL);
+    return *gWorld;
 }
 
 void cleanupHandler(void) {
@@ -54,6 +67,9 @@ void cleanupHandler(void) {
 
     if (gMenu)
         delete gMenu;
+
+    if (gWorld)
+        delete gWorld;
 
     if (gOpenRaider)
         delete gOpenRaider;
@@ -110,6 +126,7 @@ int main(int argc, char *argv[]) {
     gOpenRaider = new OpenRaider();
     gWindow = new WindowSDL();
     gSound = new Sound();
+    gWorld = new World();
     gConsole = new Console();
     gMenu = new Menu();
     gGame = new Game();
