@@ -339,22 +339,31 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Invalid use of hop-command!");
             return -20;
         }
+    } else if (strcmp(command, "viewmodel") == 0)  {
+        if (getGame().mLara) {
+            SkeletalModel *smdl = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
+            skeletal_model_t *mdl = getWorld().getModel(atoi(args->at(0)));
+            if (smdl)
+                smdl->setModel(mdl);
+        }
+        //m_render.ViewModel(LARA, atoi(cmd));
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             getConsole().print("Available commands:");
-            getConsole().print("  load    - load a level");
-            getConsole().print("  set     - set a parameter");
-            getConsole().print("  bind    - bind a keyboard/mouse action");
-            getConsole().print("  sshot   - make a screenshot");
-            getConsole().print("  move    - [walk|fly|noclip]");
-            getConsole().print("  sound   - INT - Test play sound");
-            getConsole().print("  mode    - MODE - Render mode");
-            getConsole().print("  animate - [BOOL|n|p] - Animate models");
-            getConsole().print("  light   - BOOL - GL Lights");
-            getConsole().print("  fog     - BOOL - GL Fog");
-            getConsole().print("  hop     - BOOL - Room hop");
-            getConsole().print("  help    - print command help");
-            getConsole().print("  quit    - exit OpenRaider");
+            getConsole().print("  load      - load a level");
+            getConsole().print("  set       - set a parameter");
+            getConsole().print("  bind      - bind a keyboard/mouse action");
+            getConsole().print("  sshot     - make a screenshot");
+            getConsole().print("  move      - [walk|fly|noclip]");
+            getConsole().print("  sound     - INT - Test play sound");
+            getConsole().print("  mode      - MODE - Render mode");
+            getConsole().print("  animate   - [BOOL|n|p] - Animate models");
+            getConsole().print("  light     - BOOL - GL Lights");
+            getConsole().print("  fog       - BOOL - GL Fog");
+            getConsole().print("  hop       - BOOL - Room hop");
+            getConsole().print("  viewmodel - INT - Change Laras model");
+            getConsole().print("  help      - print command help");
+            getConsole().print("  quit      - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
         } else if (args->size() == 1) {
             return help(args->at(0));
