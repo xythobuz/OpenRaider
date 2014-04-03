@@ -24,10 +24,19 @@
 
 // Old Code compatibility
 #define TexelScale 256.0f
-#define TextureLimit 24
-std::map<int, int> gMapTex2Bump;
 skeletal_model_t *gLaraModel;
+
+#ifndef EXPERIMENTAL_UNFIFIED_ROOM_GEOMETERY
+#define TextureLimit 24
+#endif
+
+#ifdef EXPERIMENTAL
 std::vector<unsigned int> gColorTextureHACK;
+#endif
+
+#ifdef MULTITEXTURE
+std::map<int, int> gMapTex2Bump;
+#endif
 
 Game::Game() {
     mLoaded = false;
@@ -314,6 +323,7 @@ int Game::command(std::vector<char *> *args) {
             getConsole().print("  sound INT");
             getConsole().print("  mode MODE");
             getConsole().print("  animate [BOOL|n|p]");
+            getConsole().print("  light BOOL");
         } else if (strcmp(args->at(1), "sound") == 0) {
             getConsole().print("game-sound-command Usage:");
             getConsole().print("  game sound INT");
@@ -345,9 +355,25 @@ int Game::command(std::vector<char *> *args) {
             getConsole().print("No help available for game %s.", args->at(1));
             return -14;
         }
+    } else if (strcmp(cmd, "light") == 0) {
+        if (args->size() >= 2) {
+            bool b;
+            if (readBool(args->at(1), &b) < 0) {
+                getConsole().print("Pass BOOL to light command!");
+                return -15;
+            }
+            if (b)
+                mRender->setFlags(Render::fGL_Lights);
+            else
+                mRender->clearFlags(Render::fGL_Lights);
+            getConsole().print("GL-Lights are now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of game-light-command!");
+            return -16;
+        }
     } else {
         getConsole().print("Invalid use of game-command (%s)!", cmd);
-        return -15;
+        return -17;
     }
 
     return 0;
@@ -418,12 +444,16 @@ void Game::processTextures()
         // Overwrite any previous level textures on load
         mRender->loadTexture(image, 256, 256, mTextureLevelOffset + i);
 
+#ifdef MULTITEXTURE
         gMapTex2Bump[mTextureLevelOffset + i] = -1;
+#endif
 
         if (bumpmap)
         {
+#ifdef MULTITEXTURE
             gMapTex2Bump[mTextureLevelOffset + i] = mTextureLevelOffset + i +
                     mTombRaider.NumTextures();
+#endif
             mRender->loadTexture(bumpmap, 256, 256, mTextureLevelOffset + i +
                     mTombRaider.NumTextures());
         }

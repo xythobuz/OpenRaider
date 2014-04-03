@@ -47,6 +47,7 @@ set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_EMITTER")
 set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -g -O0")
 set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DDEBUG")
 set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DEXPERIMENTAL")
+# set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DMULTITEXTURE")
 
 # Flags for Releasae builds
 set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -DNDEBUG -O2")

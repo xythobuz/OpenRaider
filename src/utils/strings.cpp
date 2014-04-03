@@ -59,9 +59,9 @@ char *stringReplace(const char *s, const char *search, const char *replace) {
 }
 
 int readBool(const char *value, bool *var) {
-    if ((strcmp(value, "1") == 0) || (strcmp(value, "true") == 0) || (strcmp(value, "TRUE") == 0)) {
+    if ((strcmp(value, "1") == 0) || (strcmp(value, "true") == 0) || (strcmp(value, "on") == 0)) {
         *var = true;
-    } else if ((strcmp(value, "0") == 0) || (strcmp(value, "false") == 0) || (strcmp(value, "FALSE") == 0)) {
+    } else if ((strcmp(value, "0") == 0) || (strcmp(value, "false") == 0) || (strcmp(value, "off") == 0)) {
         *var = false;
     } else {
         return -1;
