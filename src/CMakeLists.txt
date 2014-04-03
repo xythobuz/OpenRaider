@@ -14,12 +14,12 @@ include_directories (SYSTEM ${OPENGL_INCLUDE_DIRS})
 set (LIBS ${LIBS} ${OPENGL_LIBRARIES})
 
 # Add OpenAL Library
-find_package (OpenAL REQUIRED)
+find_package (OpenAL)
 include_directories (SYSTEM ${OPENAL_INCLUDE_DIRS})
 set (LIBS ${LIBS} ${OPENAL_LIBRARIES})
 
 # Add ALUT Library
-find_package (ALUT REQUIRED)
+find_package (ALUT)
 include_directories (SYSTEM ${ALUT_INCLUDE_DIRS})
 set (LIBS ${LIBS} ${ALUT_LIBRARIES})
 
@@ -48,6 +48,14 @@ set (SRCS ${SRCS} "TombRaider.cpp")
 set (SRCS ${SRCS} "ViewVolume.cpp")
 set (SRCS ${SRCS} "Window.cpp")
 set (SRCS ${SRCS} "World.cpp")
+
+# Select available Sound library
+if (OPENAL_FOUND AND ALUT_FOUND)
+    set (SRCS ${SRCS} "SoundAL.cpp")
+else (OPENAL_FOUND AND ALUT_FOUND)
+    # Currently only OpenAL support
+    message (FATAL_ERROR "OpenAL and ALUT are required!")
+endif (OPENAL_FOUND AND ALUT_FOUND)
 
 # Select available Windowing library
 if (SDL2_FOUND AND SDL2TTF_FOUND)

@@ -13,6 +13,8 @@
 #include "config.h"
 #include "main.h"
 #include "utils/time.h"
+
+#include "SoundAL.h"
 #include "WindowSDL.h"
 
 Camera *gCamera = NULL;
@@ -134,7 +136,7 @@ int main(int argc, char *argv[]) {
     atexit(cleanupHandler);
     gOpenRaider = new OpenRaider();
     gWindow = new WindowSDL();
-    gSound = new Sound();
+    gSound = new SoundAL();
     gWorld = new World();
     gCamera = new Camera();
     gConsole = new Console();

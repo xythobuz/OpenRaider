@@ -377,7 +377,7 @@ void Game::processPakSounds()
     {
         mTombRaider.getSoundSample(i, &riffSz, &riff);
 
-        getSound().addWave(riff, riffSz, &id, getSound().SoundFlagsNone);
+        getSound().addWave(riff, riffSz, &id, Sound::SoundFlagsNone);
 
         //if (((i + 1) == TR_SOUND_F_PISTOL) && (id > 0))
         //{

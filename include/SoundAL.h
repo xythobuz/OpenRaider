@@ -1,68 +1,72 @@
 /*!
- * \file include/Sound.h
- * \brief This is the audio manager Header
+ * \file include/SoundAL.h
+ * \brief This is the OpenAL audio manager Header
  *
  * \author Mongoose
  * \author xythobuz
  */
 
-#ifndef _SOUND_H_
-#define _SOUND_H_
+#ifndef _SOUND_AL_H_
+#define _SOUND_AL_H_
+
+#include <vector>
+
+#include "Sound.h"
 
 /*!
- * \brief This is the audio manager for OpenRaider
+ * \brief This is the OpenAL audio manager
  */
-class Sound {
+class SoundAL : public Sound {
 public:
 
-    typedef enum {
-        SoundFlagsNone = 0,       //!< No effect
-        SoundFlagsLoop = (1 << 0) //!< Enable looping during playback
-    } SoundFlags;
+    /*!
+     * \brief Constructs an object of SoundAL
+     */
+    SoundAL();
 
     /*!
-     * \brief Deconstructs an object of Sound
+     * \brief Deconstructs an object of SoundAL
      */
-    virtual ~Sound();
+    virtual ~SoundAL();
 
     /*!
      * \brief Initialize sound system
      * \returns 0 on success or < 0 error flags
      */
-    virtual int initialize() = 0;
+    virtual int initialize();
 
-    virtual void setEnabled(bool on) = 0;
+    virtual void setEnabled(bool on);
 
     /*!
      * \brief Set the volume
      * \param vol new source gain
      */
-    virtual void setVolume(float vol) = 0;
+    virtual void setVolume(float vol);
 
     /*!
      * \brief Get number of registered sources
      * \returns number of registered sources
      */
-    virtual int registeredSources() = 0;
+    virtual int registeredSources();
 
     /*!
      * \brief Remove all loaded sounds
      */
-    virtual void clear() = 0;
+    virtual void clear();
 
     /*!
      * \brief Move listener and repositions them
      * \param pos New position for listener
      * \param angle New orientation for listener
      */
-    virtual void listenAt(float pos[3], float angle[3]) = 0;
+    virtual void listenAt(float pos[3], float angle[3]);
 
     /*!
      * \brief Move sound source to position
      * \param source valid source id
      * \param pos new position for source
      */
-    virtual void sourceAt(int source, float pos[3]) = 0;
+    virtual void sourceAt(int source, float pos[3]);
 
     /*!
      * \brief Load wav file from disk
@@ -71,7 +75,7 @@ public:
      * \param flags set options. Use SoundFlags enum bitwise OR-ed
      * \returns 0 for no error or < 0 error flag
      */
-    virtual int addFile(const char *filename, int *source, unsigned int flags) = 0;
+    virtual int addFile(const char *filename, int *source, unsigned int flags);
 
     /*!
      * \brief Load wav file from buffer
@@ -81,21 +85,27 @@ public:
      * \param flags set options. Use SoundFlags enum bitwise OR-ed
      * \returns 0 for no error or < 0 error flag
      */
-    virtual int addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags) = 0;
+    virtual int addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags);
 
     /*!
      * \brief Play sound source
      * \param source sound source to play
      */
-    virtual void play(int source) = 0;
+    virtual void play(int source);
 
     /*!
      * \brief Stop playing sound source
      * \param source sound source to stop
      */
-    virtual void stop(int source) = 0;
+    virtual void stop(int source);
 
 private:
+
+    bool mEnabled;
+    bool mInit;                        //!< Guard to ensure ausio system is active
+    float mVolume;                     //!< Listener gain
+    std::vector<unsigned int> mBuffer; //!< Audio buffer id list
+    std::vector<unsigned int> mSource; //!< Audio source id list
 };
 
 #endif
