@@ -339,7 +339,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Invalid use of hop-command!");
             return -20;
         }
-    } else if (strcmp(command, "viewmodel") == 0)  {
+    } else if (strcmp(command, "viewmodel") == 0) {
         if (getGame().mLara) {
             SkeletalModel *smdl = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
             skeletal_model_t *mdl = getWorld().getModel(atoi(args->at(0)));
@@ -347,6 +347,16 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
                 smdl->setModel(mdl);
         }
         //m_render.ViewModel(LARA, atoi(cmd));
+    } else if (strcmp(command, "pos") == 0) {
+        if (getGame().mLara) {
+            getConsole().print("Position:");
+            getConsole().print("  Room %i (0x%X)", getGame().mLara->room, getWorld().getRoomInfo(getGame().mLara->room));
+            getConsole().print("  %.1fx %.1fy %.1fz", getGame().mLara->pos[0], getGame().mLara->pos[1], getGame().mLara->pos[2]);
+            getConsole().print("  %.1f Yaw %.1f Pitch", OR_RAD_TO_DEG(getGame().mLara->angles[1]), OR_RAD_TO_DEG(getGame().mLara->angles[2]));
+        } else {
+            getConsole().print("Load a level to get Laras position!");
+            return -21;
+        }
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             getConsole().print("Available commands:");
@@ -362,6 +372,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("  fog       - BOOL - GL Fog");
             getConsole().print("  hop       - BOOL - Room hop");
             getConsole().print("  viewmodel - INT - Change Laras model");
+            getConsole().print("  pos       - Print position info");
             getConsole().print("  help      - print command help");
             getConsole().print("  quit      - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
@@ -369,11 +380,11 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return help(args->at(0));
         } else {
             getConsole().print("Invalid use of help-command");
-            return -21;
+            return -22;
         }
     } else {
         getConsole().print("Unknown command: %s ", command);
-        return -22;
+        return -23;
     }
 
     return 0;
