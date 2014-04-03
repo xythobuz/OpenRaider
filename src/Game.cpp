@@ -324,6 +324,7 @@ int Game::command(std::vector<char *> *args) {
             getConsole().print("  mode MODE");
             getConsole().print("  animate [BOOL|n|p]");
             getConsole().print("  light BOOL");
+            getConsole().print("  fog BOOL");
         } else if (strcmp(args->at(1), "sound") == 0) {
             getConsole().print("game-sound-command Usage:");
             getConsole().print("  game sound INT");
@@ -371,9 +372,25 @@ int Game::command(std::vector<char *> *args) {
             getConsole().print("Invalid use of game-light-command!");
             return -16;
         }
+    } else if (strcmp(cmd, "fog") == 0) {
+        if (args->size() >= 2) {
+            bool b;
+            if (readBool(args->at(1), &b) < 0) {
+                getConsole().print("Pass BOOL to fog command!");
+                return -17;
+            }
+            if (b)
+                mRender->setFlags(Render::fFog);
+            else
+                mRender->clearFlags(Render::fFog);
+            getConsole().print("Fog is now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of game-fog-command!");
+            return -18;
+        }
     } else {
         getConsole().print("Invalid use of game-command (%s)!", cmd);
-        return -17;
+        return -19;
     }
 
     return 0;
