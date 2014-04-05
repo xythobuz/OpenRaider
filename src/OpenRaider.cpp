@@ -141,11 +141,19 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
     } else if (strcmp(command, "quit") == 0) {
         exit(0);
     } else if (strcmp(command, "load") == 0) {
+        if (!mRunning) {
+            getConsole().print("Use load command interactively!");
+            return -999;
+        }
         char *tmp = bufferString("%s/%s", mPakDir, args->at(0));
         int error = getGame().loadLevel(tmp);
         delete [] tmp;
         return error;
     } else if (strcmp(command, "sshot") == 0) {
+        if (!mRunning) {
+            getConsole().print("Use sshot command interactively!");
+            return -999;
+        }
         char *filename = bufferString("%s/sshots/%s", mBaseDir, VERSION);
         bool console = (args->size() > 0) && (strcmp(args->at(0), "console") == 0);
         bool menu = (args->size() > 0) && (strcmp(args->at(0), "menu") == 0);
@@ -211,6 +219,10 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -8;
         }
     } else if (strcmp(command, "move") == 0) {
+        if (!mRunning) {
+            getConsole().print("Use move command interactively!");
+            return -999;
+        }
         if (args->size() > 0) {
             if (getGame().mLoaded) {
                 char *move = args->at(0);
@@ -236,6 +248,10 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -11;
         }
     } else if (strcmp(command, "sound") == 0) {
+        if ((!mRunning) || (!getGame().mLoaded)) {
+            getConsole().print("Use sound command interactively!");
+            return -999;
+        }
         if (args->size() > 0) {
             getSound().play(atoi(args->at(0)));
         } else {
@@ -243,6 +259,10 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -12;
         }
     } else if (strcmp(command, "animate") == 0) {
+        if ((!mRunning) || (!getGame().mLoaded)) {
+            getConsole().print("Use animate command interactively!");
+            return -999;
+        }
         if (args->size() > 0) {
             char c = args->at(0)[0];
             if (c == 'n') {
@@ -340,6 +360,10 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -20;
         }
     } else if (strcmp(command, "viewmodel") == 0) {
+        if ((!mRunning) || (!getGame().mLoaded)) {
+            getConsole().print("Use viewmodel command interactively!");
+            return -999;
+        }
         if (getGame().mLara) {
             SkeletalModel *smdl = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
             skeletal_model_t *mdl = getWorld().getModel(atoi(args->at(0)));
@@ -550,6 +574,10 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -45;
         }
     } else if (strcmp(command, "pigtail") == 0) {
+        if ((!mRunning) || (!getGame().mLoaded)) {
+            getConsole().print("Use pigtail command interactively!");
+            return -999;
+        }
         if (args->size() > 0) {
             bool b;
             if (readBool(args->at(0), &b) < 0) {
@@ -571,6 +599,10 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -47;
         }
     } else if (strcmp(command, "ponypos") == 0) {
+        if ((!mRunning) || (!getGame().mLoaded)) {
+            getConsole().print("Use ponypos command interactively!");
+            return -999;
+        }
         if (args->size() > 3) {
             SkeletalModel *tmp = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
             tmp->model->ponytail[0] = (float)atof(args->at(0));

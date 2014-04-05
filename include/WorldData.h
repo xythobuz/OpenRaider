@@ -193,22 +193,5 @@ typedef struct {
 
 } actor_entity_t;
 
-enum OpenRaiderEvent {
-    eNone = 0,
-    eWeaponDischarge,
-    eDying,
-    eDead,
-    eWounded,
-    eRunForward,
-    eRunBackward,
-    eJump,
-    eCrouchWalk,
-    eIdle,
-    eTaunt,
-    eTurn,
-    eRespawn,
-    eLand
-};
-
 #endif
 
