@@ -35,9 +35,6 @@ OpenRaider::OpenRaider() {
 
     for (int i = 0; i < ActionEventCount; i++)
         keyBindings[i] = unknown;
-
-    mCameraRotationDeltaX = OR_DEG_TO_RAD(1.0f);
-    mCameraRotationDeltaY = OR_DEG_TO_RAD(1.0f);
 }
 
 OpenRaider::~OpenRaider() {
@@ -835,14 +832,14 @@ int OpenRaider::set(const char *var, const char *value) {
             getConsole().print("set-mouse_x-Error: Invalid value (%s)", value);
             return -6;
         }
-        mCameraRotationDeltaX = OR_DEG_TO_RAD(sense);
+        getCamera().setSensitivityX(OR_DEG_TO_RAD(sense));
     } else if (strcmp(var, "mouse_y") == 0) {
         float sense = 1.0f;
         if (sscanf(value, "%f", &sense) != 1) {
             getConsole().print("set-mouse_y-Error: Invalid value (%s)", value);
             return -7;
         }
-        mCameraRotationDeltaY = OR_DEG_TO_RAD(sense);
+        getCamera().setSensitivityY(OR_DEG_TO_RAD(sense));
     } else if (strcmp(var, "fps") == 0) {
         bool fps = false;
         if (readBool(value, &fps) != 0) {

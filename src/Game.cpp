@@ -560,7 +560,6 @@ void Game::processMoveable(int index, int i, int *ent,
     if (moveable[index].object_id == 0)
     {
         lara = true;
-        getCamera().translate(pos[0], pos[1] - 470, pos[2]);
         thing->type = 0x02;
         mLara = thing; // Mongoose 2002.03.22, Cheap hack for now
         mLara->master = 0x0;

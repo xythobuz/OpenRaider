@@ -60,9 +60,6 @@ public:
     bool mMapListFilled;
     std::vector<char *> mMapList;
 
-    float mCameraRotationDeltaX;
-    float mCameraRotationDeltaY;
-
     char *mBaseDir;
     char *mPakDir;
     char *mAudioDir;

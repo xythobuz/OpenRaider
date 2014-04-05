@@ -1025,11 +1025,11 @@ void Render::drawObjects()
 #ifdef USING_FPS_CAMERA
         getCamera().getPosition(curPos);
         glTranslated(curPos[0], curPos[1], curPos[2]);
-        glRotated(getCamera().getYaw(), 0, 1, 0);
+        glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
         glTranslated(0, 500, 1200);
 #else
         glTranslated(getGame().mLara->pos[0], getGame().mLara->pos[1], getGame().mLara->pos[2]);
-        glRotated(getCamera().getYaw(), 0, 1, 0);
+        glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
 #endif
 
         drawModel(static_cast<SkeletalModel *>(getGame().mLara->tmpHook));
@@ -1554,7 +1554,7 @@ void Render::drawSprite(sprite_t *sprite)
     glTranslated(sprite->pos[0], sprite->pos[1], sprite->pos[2]);
 
     // Sprites must always face camera, because they have no depth  =)
-    glRotated(getCamera().getYaw(), 0, 1, 0);
+    glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
 
     switch (mMode)
     {
