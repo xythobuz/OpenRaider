@@ -92,9 +92,6 @@ Render::Render()
     mFlags = (fRoomAlpha | fViewModel | fSprites |
             fRoomModels | fEntityModels |
             fUsePortals | fUpdateRoomListPerFrame);
-
-    mNextTextureId = NULL;
-    mNumTexturesLoaded = NULL;
 }
 
 
@@ -137,25 +134,16 @@ void Render::loadTexture(unsigned char *image,
 }
 
 
-void Render::initTextures(char *textureDir, unsigned int *numLoaded,
-        unsigned int *nextId)
-{
+int Render::initTextures(char *textureDir) {
     char filename[128];
-    int bg;
     unsigned int numTextures = 0;
     unsigned char color[4];
-
-    // We want to update as needed later
-    mNumTexturesLoaded = numLoaded;
-    mNextTextureId = nextId;
 
     mTexture.reset();
     mTexture.setMaxTextureCount(128);  /* TR never needs more than 32 iirc
                                           However, color texturegen is a lot */
 
     mTexture.setFlag(Texture::fUseMipmaps);
-
-    printf("Processing Textures:\n");
 
     color[0] = 0xff;
     color[1] = 0xff;
@@ -165,17 +153,13 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     if (mTexture.loadColorTexture(color, 32, 32) > -1)
         numTextures++;
 
+    //! \fixme Error Checking. Return negative error code, check in calling place too
     snprintf(filename, 126, "%s/%s", textureDir, "splash.tga");
     filename[127] = 0;
-
-    if ((bg = mTexture.loadTGA(filename)) > -1)
+    if (mTexture.loadTGA(filename) > -1)
         numTextures++;
 
-    // Weird that it isn't linear, must be some storage deal in Texture
-    // I forgot about Id allocation
-    *nextId = bg;
-
-    *numLoaded = numTextures;
+    return numTextures;
 }
 
 

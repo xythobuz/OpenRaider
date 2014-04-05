@@ -43,7 +43,6 @@ Game::Game() {
     mLara = NULL;
 
     mTextureStart = 0;
-    mTextureLevelOffset = 0;
     mTextureOffset = 0;
 }
 
@@ -53,7 +52,7 @@ Game::~Game() {
 
 int Game::initialize() {
     // Enable Renderer
-    getRender().initTextures(getOpenRaider().mDataDir, &mTextureStart, &mTextureLevelOffset);
+    mTextureStart = getRender().initTextures(getOpenRaider().mDataDir);
     getRender().setMode(Render::modeLoadScreen);
 
     // Enable World Hopping
@@ -235,19 +234,19 @@ void Game::processTextures()
         mTombRaider.Texture(i, &image, &bumpmap);
 
         // Overwrite any previous level textures on load
-        getRender().loadTexture(image, 256, 256, mTextureLevelOffset + i);
+        getRender().loadTexture(image, 256, 256, (mTextureStart - 1) + i);
 
 #ifdef MULTITEXTURE
-        gMapTex2Bump[mTextureLevelOffset + i] = -1;
+        gMapTex2Bump[(mTextureStart - 1) + i] = -1;
 #endif
 
         if (bumpmap)
         {
 #ifdef MULTITEXTURE
-            gMapTex2Bump[mTextureLevelOffset + i] = mTextureLevelOffset + i +
+            gMapTex2Bump[(mTextureStart - 1) + i] = (mTextureStart - 1) + i +
                     mTombRaider.NumTextures();
 #endif
-            getRender().loadTexture(bumpmap, 256, 256, mTextureLevelOffset + i +
+            getRender().loadTexture(bumpmap, 256, 256, (mTextureStart - 1) + i +
                     mTombRaider.NumTextures());
         }
 
@@ -261,7 +260,7 @@ void Game::processTextures()
         //fflush(stdout);
     }
 
-    mTextureOffset = mTextureLevelOffset + mTombRaider.NumTextures();
+    mTextureOffset = (mTextureStart - 1) + mTombRaider.NumTextures();
 
     printf("Done! Found %d textures.\n", mTombRaider.NumTextures());
 }

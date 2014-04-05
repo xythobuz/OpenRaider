@@ -152,14 +152,11 @@ public:
                           unsigned int id);
 
     /*!
-     * \brief Sets up textures for OpenRaider.
+     * \brief Sets up textures for OpenRaider
      * \param textureDir Is valid and exists with textures
-     * \param numLoaded returns number of loaded textures and will update
-     * number of external textures loaded
-     * \param nextId will update next level texture id
+     * \returns number of loaded textures
      */
-    void initTextures(char *textureDir, unsigned int *numLoaded,
-                            unsigned int *nextId);
+    int initTextures(char *textureDir);
 
     /*!
      * Removes current world/entity/etc geometry
@@ -318,8 +315,6 @@ private:
 
     unsigned int mFlags;                  //!< Rendering flags
     unsigned int mMode;                   //!< Rendering mode
-    unsigned int *mNumTexturesLoaded;
-    unsigned int *mNextTextureId;
     int mLock;
     int mSkyMesh;                         //!< Skymesh model id
     bool mSkyMeshRotation;                //!< Should Skymesh be rotated?

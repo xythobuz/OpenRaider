@@ -60,7 +60,6 @@ private:
     TombRaider mTombRaider;
 
     unsigned int mTextureStart;
-    unsigned int mTextureLevelOffset;
     unsigned int mTextureOffset;
 };
 
