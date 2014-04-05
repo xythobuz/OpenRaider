@@ -24,7 +24,6 @@
 
 // Old Code compatibility
 #define TexelScale 256.0f
-skeletal_model_t *gLaraModel;
 
 #ifndef EXPERIMENTAL_UNFIFIED_ROOM_GEOMETERY
 #define TextureLimit 24
@@ -556,8 +555,6 @@ void Game::processMoveable(int index, int i, int *ent,
     // Gather more info if this is lara
     if (moveable[index].object_id == 0)
     {
-        gLaraModel = r_model; // hack to avoid broken system until new event sys
-
         lara = true;
         getCamera().translate(pos[0], pos[1] - 470, pos[2]);
         thing->type = 0x02;

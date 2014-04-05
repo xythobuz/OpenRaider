@@ -24,8 +24,6 @@
 #include "utils/time.h"
 #include "OpenRaider.h"
 
-extern skeletal_model_t *gLaraModel; //! \fixme
-
 OpenRaider::OpenRaider() {
     mRunning = false;
     mFPS = false;
@@ -558,13 +556,14 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
                 getConsole().print("Pass BOOL to pigtail command!");
                 return -46;
             }
-            gLaraModel->pigtails = b;
+            SkeletalModel *tmp = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
+            tmp->model->pigtails = b;
             if (b) {
-                gLaraModel->ponyOff -= 20;
-                gLaraModel->ponytail[1] -= 32;
+                tmp->model->ponyOff -= 20;
+                tmp->model->ponytail[1] -= 32;
             } else {
-                gLaraModel->ponyOff += 20;
-                gLaraModel->ponytail[1] += 32;
+                tmp->model->ponyOff += 20;
+                tmp->model->ponytail[1] += 32;
             }
             getConsole().print("Pigtail is now %s", b ? "on" : "off");
         } else {
@@ -573,10 +572,11 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         }
     } else if (strcmp(command, "ponypos") == 0) {
         if (args->size() > 3) {
-            gLaraModel->ponytail[0] = (float)atof(args->at(0));
-            gLaraModel->ponytail[1] = (float)atof(args->at(1));
-            gLaraModel->ponytail[2] = (float)atof(args->at(2));
-            gLaraModel->ponytailAngle = (float)atof(args->at(3));
+            SkeletalModel *tmp = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
+            tmp->model->ponytail[0] = (float)atof(args->at(0));
+            tmp->model->ponytail[1] = (float)atof(args->at(1));
+            tmp->model->ponytail[2] = (float)atof(args->at(2));
+            tmp->model->ponytailAngle = (float)atof(args->at(3));
         } else {
             getConsole().print("Invalid use of ponypos-command!");
             return -48;
