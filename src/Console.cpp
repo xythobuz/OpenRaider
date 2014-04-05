@@ -73,7 +73,9 @@ void Console::print(const char *s, ...) {
 
     if (tmp != NULL) {
         mHistory.push_back(tmp);
+#ifdef DEBUG
         printf("%s\n", tmp);
+#endif
     }
 }
 
