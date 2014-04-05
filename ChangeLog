@@ -1,9 +1,6 @@
+# OpenRaider Developer Branch ChangeLog 
 
- OpenRaider Developer Branch
- ChangeLog 
- ==================================================================
-
- OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
+## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140405 ]
 	* "Ported" all commands from old source
@@ -78,7 +75,7 @@
 	* Added main.h/cpp with OpenRaider global
 	* Rewrote time lib using ctime
 
- OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
+## OpenRaider (0.1.2) xythobuz <xythobuz@xythobuz.de>
 
 	[ 20140313 ]
 	* Removed unit tests. No unit tests are better then some half-assed
@@ -306,7 +303,7 @@
 	* Wrote new README file
 	* Added stub for missing hel/CollisionObject
 
- OpenRaider (0.1.1) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.1) Mongoose <mongoose@users.sourceforge.net>
 
 	[ 20030713 ]
 	* UTPackage class forked from PSKModel class
@@ -488,7 +485,7 @@
 	* Seperating entity and animation states and it's ugly
 	* Finer animation control starts	
 	
- OpenRaider (0.1.0) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0) Mongoose <mongoose@users.sourceforge.net>
 	
 	[ 20021228 ]
 	* Md3 refactoring
@@ -514,7 +511,7 @@
 	* Lots of minor depth sorting and vising work
 	
 	
- OpenRaider (0.1.0pre11) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre11) Mongoose <mongoose@users.sourceforge.net>
 
 	* Entity vis no longer considers rooms agian
 	* New Vector replaces List as renderable container
@@ -534,7 +531,7 @@
 	* Entity sprites back
 	* Time to move to beta versioning
 	
- OpenRaider (0.1.0pre10) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre10) Mongoose <mongoose@users.sourceforge.net>
 
 	* New sshot upload script for my conv ;)
 	* New entity rendering vising starts, primative depth sort
@@ -556,7 +553,7 @@
 	* Hel clean up, unit testing fixes
 
 	
- OpenRaider (0.1.0pre9-20021215) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre9-20021215) Mongoose <mongoose@users.sourceforge.net>
 
 	* New Camera API, clean up starting
 	* Quaternion ( class ) in cvs
@@ -566,20 +563,20 @@
 	* Netcode fix
 
 	
- OpenRaider (0.1.0pre7-20021109) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre7-20021109) Mongoose <mongoose@users.sourceforge.net>
 
 	* Inactive text no longer rendered
 	* More libhel work
 
 	
- OpenRaider (0.1.0pre7-20021109) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre7-20021109) Mongoose <mongoose@users.sourceforge.net>
 
 	* Little manual route chaining test for the fun of it
 	* Trace tests
 	* Merged (all?) GCC 3.2.x minor patches from my knoppix tests
 	
 	
- OpenRaider (0.1.0pre6-20020913) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre6-20020913) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fix for console use before level load crash
 	* TR4 hack to play footsteps when running
@@ -588,7 +585,7 @@
 	* Improved sound support
 	
 	
- OpenRaider (0.1.0pre6-20020907) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre6-20020907) Mongoose <mongoose@users.sourceforge.net>
 
 	* TR4 pak sound reading and dumping 
 	  ( I couldn't find any paks using compression - however
@@ -606,7 +603,7 @@
 	* TR4 GL light support ( pretty )
 
 	
- OpenRaider (0.1.0pre6-20020906) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre6-20020906) Mongoose <mongoose@users.sourceforge.net>
 
 	* One room render command and changes for other old commands
 	* Fix for crash using new room ->adJRoom vector
@@ -619,7 +616,7 @@
 	  collections and what not
 
 	
- OpenRaider (0.1.0pre6-20020905) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre6-20020905) Mongoose <mongoose@users.sourceforge.net>
 
 	* Hack to handle camera out of world - moves to like a FPS
 	  viewpoint -- needs quats and 'dragging' to make it smoother
@@ -629,19 +626,19 @@
 	* Lowered network traffic rate and disabled debugging to stdout
 
 	
- OpenRaider (0.1.0pre5-20020904) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre5-20020904) Mongoose <mongoose@users.sourceforge.net>
 
 	* Code to handle bad texture ids, like in Nasa.tr2
 	* Network multiplayer test Client/Server can now connect
 	  and pass data and generate clients on each end of game
 	
 	
- OpenRaider (0.1.0pre5-20020903) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre5-20020903) Mongoose <mongoose@users.sourceforge.net>
 
 	* Network code starts
 	
 	
- OpenRaider (0.1.0pre5-20020902) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre5-20020902) Mongoose <mongoose@users.sourceforge.net>
 
 	* Speed boost for entity room clipping
 	* Fixed color lighting - still some polygons can go all white
@@ -657,7 +654,7 @@
 	* Vectors replacing Lists for most collection implementations in Render
 
 	
- OpenRaider (0.1.0pre5-20020830) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre5-20020830) Mongoose <mongoose@users.sourceforge.net>
 
 	* Turn animation for fun
 	* Room vertex lighting back in
@@ -665,7 +662,7 @@
 	* Skeletal model/mesh model collision _support_
 	
 	
- OpenRaider (0.1.0pre5-20020824) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre5-20020824) Mongoose <mongoose@users.sourceforge.net>
 
 	* Hop up/down to rooms when in void
 	* Primative 3rd person camera
@@ -674,19 +671,19 @@
 	* Removed room mesh rendering from Render
 	
 	
- OpenRaider (0.1.0pre5-20020823) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre5-20020823) Mongoose <mongoose@users.sourceforge.net>
 
 	* OpenGLMesh and Light classes start
 	* OpenRaider becomes singleton ( Trying to reduce Gobal deps )
 	* Ah, a little free time -- cleaning up Render class a little
 
 	
- OpenRaider (0.1.0pre5-20020818) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre5-20020818) Mongoose <mongoose@users.sourceforge.net>
 
 	* Auto depends generation for certian people  =p
 	
 	
- OpenRaider (0.1.0pre5-20020817) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre5-20020817) Mongoose <mongoose@users.sourceforge.net>
 
 	* Time based animation tracer
 	* Rounded out mtk3d a little more with common func from
@@ -696,7 +693,7 @@
 	  Set by using init var 'HomeDir'
 
 	
- OpenRaider (0.1.0pre4-20020816) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre4-20020816) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixed room mesh cache tris texcoors
 	* Changed room tracking code
@@ -708,7 +705,7 @@
 	* BUGS update, all maps retested -- should load all TR1-TR4 maps
 
 	
- OpenRaider (0.1.0pre3-20020815) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre3-20020815) Mongoose <mongoose@users.sourceforge.net>
 
 	* Debugging bad texture coor/vertex layout in some TR1/TR3/TR4 quads
 	* Removed strict dummy quad insertion in OpenRaider::ProcessMoveables
@@ -722,7 +719,7 @@
 	* Better bad cache quad handling?
 	
 	
- OpenRaider (0.1.0pre2-20020814) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre2-20020814) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fix for room quad's texture bug
 	* Console print system prototype
@@ -732,7 +729,7 @@
 	* Floor player clipping by sector ( yay )
 	
 	
- OpenRaider (0.1.0pre1-20020813) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.1.0pre1-20020813) Mongoose <mongoose@users.sourceforge.net>
 
 	* Floor player clipping by box ( hhmmm... )
 	* Backport of Camera
@@ -743,7 +740,7 @@
 	* Backport of UnRaider Texture handler
 
 	
- OpenRaider (0.0.5-20020615) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.5-20020615) Mongoose <mongoose@users.sourceforge.net>
 
 	* Todo new texcoors for alpha quads, tris, and alpha tris not done
 	* Bug found Texture ids broken on new room mesh translation
@@ -751,24 +748,24 @@
 	* Removed damned vertex arrays
 	
 	
- OpenRaider (0.0.5-20020609) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.5-20020609) Mongoose <mongoose@users.sourceforge.net>
 
 	* Partially fixed new renderer/translator
 
 	
- OpenRaider (0.0.5-20020608) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.5-20020608) Mongoose <mongoose@users.sourceforge.net>
 
 	* New Makefile optional memeory_test.cpp OBJ injection
 	* "Commit of Doom" to break cvs source, yay!
 	
 	
- OpenRaider (0.0.5-20020607) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.5-20020607) Mongoose <mongoose@users.sourceforge.net>
 
 	* Render cleaned up a little more
 	* New room mesh system using arrays
 	
 	
- OpenRaider (0.0.4-20020405) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020405) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixed TR4 bone layering
 	* Worked on finiding/rendering ponytail some more
@@ -776,7 +773,7 @@
 	* Screenshot TGA file fix
 
 	
- OpenRaider (0.0.4-20020405) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020405) Mongoose <mongoose@users.sourceforge.net>
 
 	* Ponytail hack
 	* Better UV generation
@@ -786,7 +783,7 @@
 	* Animation translation fixes
 
 	
- OpenRaider (0.0.4-20020404) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020404) Mongoose <mongoose@users.sourceforge.net>
 
 	* More TR format notes
 	* TR4 object header
@@ -794,7 +791,7 @@
 	* Idle aframe test code in
 	
 	
- OpenRaider (0.0.4-20020403) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020403) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fix for Lara model picking in TR4
 	* Fix for TR4 loading ( tr4_light )
@@ -805,7 +802,7 @@
 	* Fix for HUGE memory leaks in TombRaider class
 	
 	
- OpenRaider (0.0.4-20020401) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020401) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fix for memfile size reporting
 	* Fix for GLString truncation
@@ -817,7 +814,7 @@
 	* RBTree fix for memeory ( must stop coding after 0200 )
 	
 	
- OpenRaider (0.0.4-20020330) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020330) Mongoose <mongoose@users.sourceforge.net>
 
 	* Stability has degraded with aggressive feature prototyping
 	* More information for zero allocs
@@ -835,12 +832,12 @@
 	* Removed working list tracker from memeory
 	
 	
- OpenRaider (0.0.4-20020329) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020329) Mongoose <mongoose@users.sourceforge.net>
 
 	* Memeory memory overhead reduction for filename storage
 	
 	
- OpenRaider (0.0.4-20020328) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020328) Mongoose <mongoose@users.sourceforge.net>
 
 	* You may want to disable USE_TREE_MEMINFO until RB is fixed
 	* Back to dynamic C-strings to save 'memeory memory'
@@ -859,7 +856,7 @@
 	* Printing addr with hexadecimal for obvious reasons
 
 	
- OpenRaider (0.0.4-20020327) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020327) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixed overlapped vars/data members
 	* Dumps memeory report filename fix
@@ -871,7 +868,7 @@
 	* Fixed sourceforge cvs tree
 
 	
- OpenRaider (0.0.4-20020325) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020325) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixed bug where ent draw didn't account for viewmodel
 	  in same room
@@ -882,7 +879,7 @@
 	* Moved more commands to console only ( See README )
 	
 	
- OpenRaider (0.0.4-20020323) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020323) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fix rendering bug with r_portal
 	* RC uses pakdir for strict path enforcement now
@@ -895,7 +892,7 @@
 	  rewrite  =)
 	
 	
- OpenRaider (0.0.4-20020322) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020322) Mongoose <mongoose@users.sourceforge.net>
 
 	* Screenshot console command
 	* View model render toggle console command
@@ -911,32 +908,32 @@
 	* Fix for bad cvs sync
 	
 	
- OpenRaider (0.0.4-20020321) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.4-20020321) Mongoose <mongoose@users.sourceforge.net>
 
 	* Portal (precompiled) use starts
 	* Very basic console prototype in place
 	* Render control flags ( Not same as mode flags )
 	
 
- OpenRaider (0.0.3-20020119) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020119) Mongoose <mongoose@users.sourceforge.net>
 	
 	* Compile w/ -DEXPERIMENTAL_EMITTER_TEST to run snow test in game
 	* Fix for RC loader
 
 	
- OpenRaider (0.0.3-20020111) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020111) Mongoose <mongoose@users.sourceforge.net>
 
 	* Temp resource redundency pruning solution
 	* More string safety auditing and fixes
 
 	
- OpenRaider (0.0.3-20020109) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020109) Mongoose <mongoose@users.sourceforge.net>
 
 	* Hack to fix texture dumping
 	* More string clean up
 
 	
- OpenRaider (0.0.3-20020108) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020108) Mongoose <mongoose@users.sourceforge.net>
 
 	* Minor TR support work
 	* Texture dumping fix for new mtk_tga
@@ -946,14 +943,14 @@
 	* Clean up in screenshot code
 
 	
- OpenRaider (0.0.3-20020107) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020107) Mongoose <mongoose@users.sourceforge.net>
 
 	* Animation frame testing hack back  keys '[' and ']' 
 	* Reduction of room rendering top levels ( consistent speed? )
 	* Improvments to texture handling and loading
 
 	
- OpenRaider (0.0.3-20020106) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020106) Mongoose <mongoose@users.sourceforge.net>
 
 	* Updated mtk_tga from my current mtk_image source
 	  fixes tga save bug and more stuff
@@ -965,7 +962,7 @@
 	* Readying class based system for new physics and rendering
 
 	
- OpenRaider (0.0.3-20020104) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020104) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixes for fast texture cache for older tombraider data
 	* Fixes for TombRaider unit test
@@ -974,7 +971,7 @@
 	* Keyboard turning ( On keys 1 and 4 for now ) by request  =)
 
 
- OpenRaider (0.0.3-20020103) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020103) Mongoose <mongoose@users.sourceforge.net>
 
 	* Tune up of Sound
 	* Disable cusor show on switch to fullscreen also
@@ -985,7 +982,7 @@
 	* NOTE audio support is fine - just low memory condition kill
 
 	
- OpenRaider (0.0.3-20020102) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020102) Mongoose <mongoose@users.sourceforge.net>
 
 	* Broke audio support by switching around 
 	  OpenRaider, LoadLevel/SetupAudio
@@ -997,7 +994,7 @@
 	* More work on GLString use in OR
 	
 	
- OpenRaider (0.0.3-20020101) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20020101) Mongoose <mongoose@users.sourceforge.net>
 
 	* Speed set on Camera
 	* Played with some refactoring in OpenRaider class
@@ -1013,7 +1010,7 @@
 	* New GL font system for OpenRaider ( GLString )
 
 	
- OpenRaider (0.0.3-20011231-2) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20011231-2) Mongoose <mongoose@users.sourceforge.net>
 
 	* GlGetString use 'correct' fix
 	* Music list reimplemented for CVS
@@ -1021,7 +1018,7 @@
 	* Changlog reformated
 
 
- OpenRaider (0.0.3-20011231) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20011231) Mongoose <mongoose@users.sourceforge.net>
 
 	* New Changlog format
 	* Minor GL string use 'temp fix' in Render
@@ -1029,29 +1026,29 @@
 	* TODO update
 
 	
- OpenRaider (0.0.3-20010813) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010813) Mongoose <mongoose@users.sourceforge.net>
 
 	* Minor rendering changes
 	* Particle test fix
 
 
- OpenRaider (0.0.3-20010813) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010813) Mongoose <mongoose@users.sourceforge.net>
 
 	* Particle testing ( Using one of my freyja prototypes )
 	* Fullscreen toggle - '9' key
 
 
- OpenRaider (0.0.3-20010810) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010810) Mongoose <mongoose@users.sourceforge.net>
 
 	* Timer prototype starts, just using a time delay for now
 
 
- OpenRaider (0.0.3-20010624) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010624) Mongoose <mongoose@users.sourceforge.net>
 
 	* New reference specs, moved to G400 MGA DRI on X 4.1.0
 
 
- OpenRaider (0.0.3-20010621) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010621) Mongoose <mongoose@users.sourceforge.net>
 
 	* Set up new box just for windows TR compatibility tests
 	  ( got old ppro out, bought a hdd for it - weee )
@@ -1061,7 +1058,7 @@
 	* Texel adjustment method rolled back into TombRaider
 
 
- OpenRaider (0.0.3-20010620) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010620) Mongoose <mongoose@users.sourceforge.net>
 
 	* TR4 sky mesh?
 	* Texture changes
@@ -1073,7 +1070,7 @@
 	* Threading testing
 
 
- OpenRaider (0.0.3-20010619) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010619) Mongoose <mongoose@users.sourceforge.net>
 
 	* Might wait to install X 4.0.1 to work on bump map rendering
 	* Render check for multitexture
@@ -1086,7 +1083,7 @@
 	* Fixed special texture loading/dumping
 
 
- OpenRaider (0.0.3-20010618) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010618) Mongoose <mongoose@users.sourceforge.net>
 
 	* 32bit texture default use in TR4/TR5
 	* 32bit texture testing in TR5
@@ -1098,12 +1095,12 @@
 	* Worked on TombRaider agent
 
 
- OpenRaider (0.0.3-20010617) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010617) Mongoose <mongoose@users.sourceforge.net>
 
 	* Added *some of the TR5 spec to regression test build
 
 
- OpenRaider (0.0.3-20010616) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010616) Mongoose <mongoose@users.sourceforge.net>
 
 	* Some minor checks for bad allocation of meshes?
 	* Changed moveable code to assume nonanimated entity
@@ -1112,7 +1109,7 @@
 	* Screenshot name now based on VERSION string (better bugs reports)
 
 
- OpenRaider (0.0.3-20010615) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010615) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixed Freyja tree's colored polygons
 	* More debug output on animation building
@@ -1122,7 +1119,7 @@
 	* Animation grouping prototype
 
 
- OpenRaider (0.0.3-20010614) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010614) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixes for mesh rendering ambient light level
 	* Fixes for animtion rendering
@@ -1131,25 +1128,25 @@
 	  (TR1 lara works because all the right indices = 0)
 
 
- OpenRaider (0.0.3-20010613) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010613) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixed animations using steping fix I wrote for libfreyja_egg
 	  this breaks the old TR aniamtion hacks though  =)
 
 
- OpenRaider (0.0.3-20010612) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010612) Mongoose <mongoose@users.sourceforge.net>
 
 	* Back porting to Freyja to help figure out TR animation problems
 	* Worked on TR5 and TR4 texture alpha flags
 
 
- OpenRaider (0.0.3-20010611) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010611) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixed skeletal/moveable loading and animation 
 	* Starting entity mapping tracer
 
 
- OpenRaider (0.0.3-20010610) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010610) Mongoose <mongoose@users.sourceforge.net>
 
 	* NOTE make enities list so dup models won't draw to same position
 	* Caching caused segfault - so now emulate dumb smart pointers
@@ -1169,7 +1166,7 @@
 	* Fixed sprite/room amb lighting back to white ( heh, oops )
 
 
- OpenRaider (0.0.3-20010609) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010609) Mongoose <mongoose@users.sourceforge.net>
 
 	* Void color only when outside world
 	* Various minor renderer changes
@@ -1185,7 +1182,7 @@
 	  correct behavior ( ie animation and placement )
 
 
- OpenRaider (0.0.3-20010608) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010608) Mongoose <mongoose@users.sourceforge.net>
 
 	* Planning rendering engine #3 
 	* Once skeletal models are in rendering engine #2 
@@ -1193,7 +1190,7 @@
 	* EXPERIMENTAL moveable code starts
 
 
- OpenRaider (0.0.3-20010607) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010607) Mongoose <mongoose@users.sourceforge.net>
 
 	* Moveable code finaling coming back in ( now with quats )
 	* Bug fix to ignore bad meshes in some TR4 levels?
@@ -1201,7 +1198,7 @@
 	* Some TR5 specs fell in my lap today  =)
 
 
- OpenRaider (0.0.3-20010606) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010606) Mongoose <mongoose@users.sourceforge.net>
 
 	* Mouse motion control fixes
 	* Item sprite rendering ( TR1, TR2, and should work for others )
@@ -1210,7 +1207,7 @@
 	* Hack temp fixes for camera ( broke it bad last night )
 
 
- OpenRaider (0.0.3-20010605) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010605) Mongoose <mongoose@users.sourceforge.net>
 
 	* Baisc strafing and better forward/backward movement on camera 
 	* More user documentation and bug tracking
@@ -1218,7 +1215,7 @@
 	* Fixed TR4 crash on -1 mesh light flag; can't alloc -1 objects  =)
 
 
- OpenRaider (0.0.3-20010604) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010604) Mongoose <mongoose@users.sourceforge.net>
 
 	* Mouse look code
 	* The portal code is hindered by the old XZ vis check  =(
@@ -1234,7 +1231,7 @@
 	* GL driver string from resource
 
 
- OpenRaider (0.0.3-20010603) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010603) Mongoose <mongoose@users.sourceforge.net>
 
 	* OpenGL fixes ( hopefully fixes radeon 'lineloop' bug )
 	* SDL key code fixes
@@ -1243,7 +1240,7 @@
 	* FPS counter prints to console every 100 frames
 
 
- OpenRaider (0.0.3-20010602) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010602) Mongoose <mongoose@users.sourceforge.net>
 
 	* SDL is very slow atm ( drag ass )
 	  You can edit Makefile to set it to use it if you want
@@ -1260,14 +1257,14 @@
 	* No longer dump textures, unless explictly set in rc file
 
 
- OpenRaider (0.0.3-20010531) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010531) Mongoose <mongoose@users.sourceforge.net>
 
 	* Fixed XEmacs modes should have been 'Mode: C++'
 	* Looked at portal design guide, was useless
 	* Added texel adjust fix to meshes ( fixes 1 pixel off alignment )
 
 
- OpenRaider (0.0.3-20010530) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010530) Mongoose <mongoose@users.sourceforge.net>
 
 	* SDL support starts back
 	* Added my old linux joystick code
@@ -1280,7 +1277,7 @@
 	* Texel alignment
 
 
- OpenRaider (0.0.3-20010529) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010529) Mongoose <mongoose@users.sourceforge.net>
 
 	* Static meshes
 	* Model meshes
@@ -1291,7 +1288,7 @@
 	  made it produce TGAs instead of PPMs ( cmd 'S' )
 
 
- OpenRaider (0.0.3-20010528) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010528) Mongoose <mongoose@users.sourceforge.net>
 
 	* POublic CVS Release 
 	* Vertex lighting now functional and stable in new engine
@@ -1307,7 +1304,7 @@
 	* User documentation
 
 
- OpenRaider (0.0.3-20010527) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010527) Mongoose <mongoose@users.sourceforge.net>
 
 	* Testing
 	* Resource system back in
@@ -1316,7 +1313,7 @@
 	  ( so you can have in game progess loader for loading )
 
 
- OpenRaider (0.0.3-20010526) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010526) Mongoose <mongoose@users.sourceforge.net>
 
 	* Should have all the best of the engines merged by Monday!
 	* Started model rendering code for engine #2
@@ -1326,7 +1323,7 @@
 	* Render engine #2 feature upgrade by merging with engine #1
 
 
- OpenRaider (0.0.3-20010525) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010525) Mongoose <mongoose@users.sourceforge.net>
 
 	* Rendering engine #2 fixes
 	* New Camera method for positioning
@@ -1334,7 +1331,7 @@
 	* Added documentation to Sound agent
 
 
- OpenRaider (0.0.3-20010524) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.3-20010524) Mongoose <mongoose@users.sourceforge.net>
 
 	* Texture manager fixes
 	* Tesselated quads
@@ -1342,7 +1339,7 @@
 	* Moved 16bit ARGB -> 32bit RGBA texture util to TombRaider loader
 
 
- OpenRaider (0.0.2-20010523) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.2-20010523) Mongoose <mongoose@users.sourceforge.net>
 
 	* Render fixes
 	* OpenAL fixes for /dev/dsp in use and _init guard
@@ -1355,14 +1352,14 @@
 	  ( Will later use loader screens just like TR )
 
 
- OpenRaider (0.0.2-20010522) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.2-20010522) Mongoose <mongoose@users.sourceforge.net>
 
 	* Splash screen as compile time support
 	* PThread support as compile time option
 	* TR4 texel loading fixes
 
 
- OpenRaider (0.0.2-20010521) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.2-20010521) Mongoose <mongoose@users.sourceforge.net>
 
 	* OpenRaider request for sourceforge hosting
 	* New Render class is now the new renderer
@@ -1377,7 +1374,7 @@
 	* New engine starts
 
 
- OpenRaider (0.0.2-20010520) Mongoose <mongoose@users.sourceforge.net>
+## OpenRaider (0.0.2-20010520) Mongoose <mongoose@users.sourceforge.net>
 
 	* Removed drawing another lara as an error marker for movables
 	* Removed level dumping and saving
