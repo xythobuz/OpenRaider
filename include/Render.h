@@ -108,7 +108,7 @@ public:
         fGL_Lights              = (1 << 9),
         fOneRoom                = (1 << 10),
         fRenderPonytail         = (1 << 11),
-        fMultiTexture           = (1 << 12),
+        // fMultiTexture           = (1 << 12), //! \todo Whats up with Multitexture stuff? Where is it needed?
         fUpdateRoomListPerFrame = (1 << 13),
         fAnimateAllModels       = (1 << 14),
         fAllRooms               = (1 << 15)

@@ -24,6 +24,8 @@
 #include "utils/time.h"
 #include "OpenRaider.h"
 
+extern skeletal_model_t *gLaraModel; //! \fixme
+
 OpenRaider::OpenRaider() {
     mRunning = false;
     mFPS = false;
@@ -549,6 +551,26 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Invalid use of ponytail-command!");
             return -45;
         }
+    } else if (strcmp(command, "pigtail") == 0) {
+        if (args->size() > 0) {
+            bool b;
+            if (readBool(args->at(0), &b) < 0) {
+                getConsole().print("Pass BOOL to pigtail command!");
+                return -46;
+            }
+            gLaraModel->pigtails = b;
+            if (b) {
+                gLaraModel->ponyOff -= 20;
+                gLaraModel->ponytail[1] -= 32;
+            } else {
+                gLaraModel->ponyOff += 20;
+                gLaraModel->ponytail[1] += 32;
+            }
+            getConsole().print("Pigtail is now %s", b ? "on" : "off");
+        } else {
+            getConsole().print("Invalid use of pigtail-command!");
+            return -47;
+        }
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             getConsole().print("Available commands:");
@@ -577,6 +599,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("  oneroom   - BOOL");
             getConsole().print("  allrooms  - BOOL");
             getConsole().print("  ponytail  - BOOL");
+            getConsole().print("  pigtail   - BOOL");
             getConsole().print("  help      - print command help");
             getConsole().print("  quit      - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
@@ -584,11 +607,11 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return help(args->at(0));
         } else {
             getConsole().print("Invalid use of help-command");
-            return -46;
+            return -48;
         }
     } else {
         getConsole().print("Unknown command: %s ", command);
-        return -47;
+        return -49;
     }
 
     return 0;
