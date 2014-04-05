@@ -1,6 +1,6 @@
 /*!
  * \file src/Camera.cpp
- * \brief OpenGL camera class
+ * \brief Camera class
  *
  * \author Mongoose
  * \author xythobuz
@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "main.h"
 #include "Camera.h"
 
 Camera::Camera() {

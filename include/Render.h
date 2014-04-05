@@ -20,10 +20,6 @@
 #include "Texture.h"
 #include "Camera.h"
 
-#ifdef USING_EMITTER
-#include "Emitter.h"
-#endif
-
 /*!
  * \brief The GL light class
  */
@@ -96,22 +92,21 @@ public:
     } RenderMode;
 
     typedef enum {
-        fParticles              = (1 << 0),
-        fPortals                = (1 << 1),
-        fRoomAlpha              = (1 << 2),
-        fViewModel              = (1 << 3),
-        fSprites                = (1 << 4),
-        fRoomModels             = (1 << 5),
-        fEntityModels           = (1 << 6),
-        fFog                    = (1 << 7),
-        fUsePortals             = (1 << 8),
-        fGL_Lights              = (1 << 9),
-        fOneRoom                = (1 << 10),
-        fRenderPonytail         = (1 << 11),
-        // fMultiTexture           = (1 << 12), //! \todo Whats up with Multitexture stuff? Where is it needed?
-        fUpdateRoomListPerFrame = (1 << 13),
-        fAnimateAllModels       = (1 << 14),
-        fAllRooms               = (1 << 15)
+        fPortals                = (1 << 0),
+        fRoomAlpha              = (1 << 1),
+        fViewModel              = (1 << 2),
+        fSprites                = (1 << 3),
+        fRoomModels             = (1 << 4),
+        fEntityModels           = (1 << 5),
+        fFog                    = (1 << 6),
+        fUsePortals             = (1 << 7),
+        fGL_Lights              = (1 << 8),
+        fOneRoom                = (1 << 9),
+        fRenderPonytail         = (1 << 10),
+        // fMultiTexture           = (1 << 11), //! \todo Whats up with Multitexture stuff? Where is it needed?
+        fUpdateRoomListPerFrame = (1 << 12),
+        fAnimateAllModels       = (1 << 13),
+        fAllRooms               = (1 << 14)
     } RenderFlags;
 
     typedef enum {
@@ -165,20 +160,6 @@ public:
      */
     void initTextures(char *textureDir, unsigned int *numLoaded,
                             unsigned int *nextId);
-
-    /*!
-     * \brief Initializes Emitter.
-     *
-     * Emitter is set up for rendering with 2 textures in
-     * a overhead rain or snow like pattern.
-     * Textures have to be initialized!
-     * \param name valid C-String name
-     * \param size valid size
-     * \param snowTex1 valid first texture
-     * \param snowTex2 valid second texture
-     */
-    void initEmitter(const char *name, unsigned int size,
-                          unsigned int snowTex1, unsigned int snowTex2);
 
     /*!
      * Removes current world/entity/etc geometry
@@ -342,10 +323,6 @@ private:
     int mLock;
     int mSkyMesh;                         //!< Skymesh model id
     bool mSkyMeshRotation;                //!< Should Skymesh be rotated?
-
-#ifdef USING_EMITTER
-    Emitter *mEmitter;                    //!< Particle emitter test
-#endif
 };
 
 #endif

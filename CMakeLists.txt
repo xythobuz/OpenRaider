@@ -41,7 +41,6 @@ set (WARNINGS "${WARNINGS} -Wno-shorten-64-to-32 -Wno-sign-conversion")
 
 # Flags for all builds
 set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11 ${WARNINGS}")
-set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_EMITTER")
 
 # Flags for Debug build
 set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -g -O0")

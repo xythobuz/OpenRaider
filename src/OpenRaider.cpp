@@ -458,22 +458,6 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Invalid use of upf-command!");
             return -31;
         }
-    } else if (strcmp(command, "particle") == 0) {
-        if (args->size() > 0) {
-            bool b;
-            if (readBool(args->at(0), &b) < 0) {
-                getConsole().print("Pass BOOL to particle command!");
-                return -32;
-            }
-            if (b)
-                getRender().setFlags(Render::fParticles);
-            else
-                getRender().clearFlags(Render::fParticles);
-            getConsole().print("Particles are now %s", b ? "on" : "off");
-        } else {
-            getConsole().print("Invalid use of particle-command!");
-            return -33;
-        }
     } else if (strcmp(command, "sprite") == 0) {
         if (args->size() > 0) {
             bool b;
@@ -631,7 +615,6 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("  portal    - BOOL");
             getConsole().print("  vis       - BOOL - Use Portals");
             getConsole().print("  upf       - BOOL - Update Room List Per Frame");
-            getConsole().print("  particle  - BOOL");
             getConsole().print("  sprite    - BOOL");
             getConsole().print("  roommodel - BOOL");
             getConsole().print("  entmodel  - BOOL");

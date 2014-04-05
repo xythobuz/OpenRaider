@@ -1,6 +1,6 @@
 /*!
  * \file include/Camera.h
- * \brief OpenGL camera class
+ * \brief Camera class
  *
  * \author Mongoose
  * \author xythobuz
@@ -23,7 +23,7 @@ enum camera_command {
 };
 
 /*!
- * \brief OpenGL camera class
+ * \brief Camera class
  */
 class Camera {
 public:

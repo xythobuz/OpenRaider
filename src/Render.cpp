@@ -18,10 +18,6 @@
 #include <math.h>
 #include <string.h>
 
-#ifdef USING_EMITTER
-#include "Emitter.h"
-#endif
-
 #include "global.h"
 #include "main.h"
 #include "Game.h"
@@ -89,15 +85,12 @@ bool compareRoomDist(const void *voidA, const void *voidB)
 
 Render::Render()
 {
-#ifdef USING_EMITTER
-    mEmitter = 0x0;
-#endif
     mSkyMesh = -1;
     mSkyMeshRotation = false;
     mMode = Render::modeDisabled;
     mLock = 0;
     mFlags = (fRoomAlpha | fViewModel | fSprites |
-            fRoomModels | fEntityModels | // fParticles |
+            fRoomModels | fEntityModels |
             fUsePortals | fUpdateRoomListPerFrame);
 
     mNextTextureId = NULL;
@@ -148,8 +141,7 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
         unsigned int *nextId)
 {
     char filename[128];
-    int snow1_id;
-    int snow2_id;
+    int bg;
     unsigned int numTextures = 0;
     unsigned char color[4];
 
@@ -176,59 +168,14 @@ void Render::initTextures(char *textureDir, unsigned int *numLoaded,
     snprintf(filename, 126, "%s/%s", textureDir, "splash.tga");
     filename[127] = 0;
 
-    if (mTexture.loadTGA(filename) > -1)
-        numTextures++;
-
-    snprintf(filename, 126, "%s/%s", textureDir, "snow.tga");
-    filename[127] = 0;
-
-    if ((snow1_id = mTexture.loadTGA(filename)) > -1)
-        numTextures++;
-
-    snprintf(filename, 126, "%s/%s", textureDir, "snow2.tga");
-    filename[127] = 0;
-
-    if ((snow2_id = mTexture.loadTGA(filename)) > -1)
+    if ((bg = mTexture.loadTGA(filename)) > -1)
         numTextures++;
 
     // Weird that it isn't linear, must be some storage deal in Texture
     // I forgot about Id allocation
-    *nextId = snow2_id;
-
-    // Setup particle system test
-    initEmitter("Snow test", 650, snow1_id, snow2_id);
+    *nextId = bg;
 
     *numLoaded = numTextures;
-}
-
-
-void Render::initEmitter(const char *name, unsigned int size,
-        unsigned int snowTex1, unsigned int snowTex2)
-{
-#ifdef USING_EMITTER
-    if (mEmitter)
-        delete mEmitter; // Public, so avoid possible leak
-
-    // Mongoose 2002.01.01, Screwing around with particle emitter test
-    //   note this is backwards b/c load screen is rendered upsidedown
-    //mEmitter = new Emitter(/*name*/"snow", size);
-    mEmitter = new Emitter(name, size);
-    mEmitter->SetTextureId(snowTex1 + 2); //! \fixme What's up with this +2 offset?
-    mEmitter->TextureId(120, 280, snowTex2 + 2);
-    mEmitter->TextureId(400, 450, snowTex2 + 2);
-    mEmitter->TextureId(500, 550, snowTex2 + 2);
-
-    // Mongoose 2002.01.01, Varing force and speed should look
-    //   like varing mass/SA in wind, maybe
-    mEmitter->Speed(0, 150, 3500, 3000, 3500);
-    mEmitter->Speed(150, 350, 3000, 4000, 3000);
-    mEmitter->Speed(400, 500, 2000, 5000, 2000);
-    mEmitter->Speed(400, 500, 2000, 5000, 2000);
-    mEmitter->Force(100, 200, 0.0, 7.0, 0.0);
-    mEmitter->Force(200, 300, 0.0, 5.0, 0.0);
-    mEmitter->Force(300, 500, 0.0, 10.0, 0.0);
-    mEmitter->Force(500, 650, 0.0, 9.0, 0.0);
-#endif
 }
 
 
@@ -249,14 +196,6 @@ void Render::ClearWorld()
             delete mModels[i];
     }
     mModels.clear();
-
-#ifdef USING_EMITTER
-    if (mEmitter)
-    {
-        delete mEmitter;
-        mEmitter = 0x0;
-    }
-#endif
 }
 
 
@@ -712,36 +651,8 @@ void Render::display()
         }
     }
 
-#ifdef USING_EMITTER_IN_GAME
-    // Mongoose 2002.01.01, Test particle prototype in game
-    if (EMIT && mFlags & RENDER_F_PARTICLES)
-    {
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-
-        glPushMatrix();
-        glLoadIdentity();
-
-        glEnable(GL_BLEND);
-        glRotatef(180.0, 1.0, 0.0, 0.0);
-        glTranslatef(0.0, -820.0, 575.0);
-        glScalef(80.0, 80.0, 80.0);
-
-        EMIT->Draw();
-
-        glPopMatrix();
-
-        // Mongoose 2002.03.26, Account for particle system
-        //   not using new binds by setting WHITE texture here
-        mTexture.bindTextureId(0);
-    }
-#endif
-
     if (mMode == Render::modeWireframe)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-#ifdef USING_EMITTER
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-#endif
 
     // Mongoose 2002.01.01, Test matrix ops
 #ifdef DEBUG_MATRIX
@@ -797,28 +708,6 @@ void Render::drawLoadScreen()
 
     if (mFlags & Render::fGL_Lights)
         glEnable(GL_LIGHTING);
-
-#ifdef USING_EMITTER
-    // Mongoose 2002.01.01, Test particle prototype on load screen
-    if (mEmitter && mFlags & Render::fParticles)
-    {
-        glPushMatrix();
-        glLoadIdentity();
-
-        glEnable(GL_BLEND);
-        glRotatef(180.0, 1.0, 0.0, 0.0);
-        glTranslatef(0.0, -820.0, 575.0);
-        glScalef(80.0, 80.0, 80.0);
-
-        // Update view volume for vising
-        updateViewVolume();
-        mViewVolume.getFrustum(mEmitter->mFrustum);
-        mEmitter->Flags(Emitter::fUseDepthSorting, true);
-        mEmitter->Draw();
-
-        glPopMatrix();
-    }
-#endif
 
     glFlush();
 }

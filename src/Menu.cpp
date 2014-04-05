@@ -140,8 +140,11 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
             handleKeyboard(up, true);
     } else if (key == enter) {
         char *tmp = bufferString("load %s", getOpenRaider().mMapList[mCursor]);
-        if (getOpenRaider().command(tmp) == 0)
+        if (getOpenRaider().command(tmp) == 0) {
             setVisible(false);
+        } else {
+            //! \todo Display something if an error occurs
+        }
         delete [] tmp;
     }
 }
