@@ -28,6 +28,8 @@ public:
 
     int initialize();
 
+    bool isLoaded();
+
     int loadLevel(const char *level);
 
     void destroy();
@@ -38,7 +40,6 @@ public:
 
     //! \fixme should be private
     entity_t *mLara;
-    bool mLoaded;
 
 private:
 
@@ -54,6 +55,8 @@ private:
     void setupTextureColor(texture_tri_t *r_tri, float *colorf);
 
     char *mName;
+    bool mLoaded;
+
     TombRaider mTombRaider;
 
     unsigned int mTextureStart;

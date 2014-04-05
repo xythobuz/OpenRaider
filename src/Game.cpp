@@ -74,6 +74,10 @@ void Game::destroy() {
     getSound().clear(); // Remove all previously loaded sounds
 }
 
+bool Game::isLoaded() {
+    return mLoaded;
+}
+
 int Game::loadLevel(const char *level) {
     if (mLoaded)
         destroy();

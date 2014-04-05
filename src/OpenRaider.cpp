@@ -176,7 +176,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         if (args->size() > 0) {
             char *mode = args->at(0);
             if (strcmp(mode, "wireframe") == 0) {
-                if (getGame().mLoaded) {
+                if (getGame().isLoaded()) {
                     getRender().setMode(Render::modeWireframe);
                     getConsole().print("Wireframe mode");
                 } else {
@@ -184,7 +184,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
                     return -3;
                 }
             } else if (strcmp(mode, "solid") == 0) {
-                if (getGame().mLoaded) {
+                if (getGame().isLoaded()) {
                     getRender().setMode(Render::modeSolid);
                     getConsole().print("Solid mode");
                 } else {
@@ -192,7 +192,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
                     return -4;
                 }
             } else if (strcmp(mode, "texture") == 0) {
-                if (getGame().mLoaded) {
+                if (getGame().isLoaded()) {
                     getRender().setMode(Render::modeTexture);
                     getConsole().print("Texture mode");
                 } else {
@@ -200,7 +200,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
                     return -5;
                 }
             } else if (strcmp(mode, "vertexlight") == 0) {
-                if (getGame().mLoaded) {
+                if (getGame().isLoaded()) {
                     getRender().setMode(Render::modeVertexLight);
                     getConsole().print("Vertexlight mode");
                 } else {
@@ -224,7 +224,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -999;
         }
         if (args->size() > 0) {
-            if (getGame().mLoaded) {
+            if (getGame().isLoaded()) {
                 char *move = args->at(0);
                 if (strcmp(move, "walk") == 0) {
                     getGame().mLara->moveType = worldMoveType_walk;
@@ -248,7 +248,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -11;
         }
     } else if (strcmp(command, "sound") == 0) {
-        if ((!mRunning) || (!getGame().mLoaded)) {
+        if ((!mRunning) || (!getGame().isLoaded())) {
             getConsole().print("Use sound command interactively!");
             return -999;
         }
@@ -259,7 +259,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -12;
         }
     } else if (strcmp(command, "animate") == 0) {
-        if ((!mRunning) || (!getGame().mLoaded)) {
+        if ((!mRunning) || (!getGame().isLoaded())) {
             getConsole().print("Use animate command interactively!");
             return -999;
         }
@@ -360,7 +360,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -20;
         }
     } else if (strcmp(command, "viewmodel") == 0) {
-        if ((!mRunning) || (!getGame().mLoaded)) {
+        if ((!mRunning) || (!getGame().isLoaded())) {
             getConsole().print("Use viewmodel command interactively!");
             return -999;
         }
@@ -574,7 +574,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -45;
         }
     } else if (strcmp(command, "pigtail") == 0) {
-        if ((!mRunning) || (!getGame().mLoaded)) {
+        if ((!mRunning) || (!getGame().isLoaded())) {
             getConsole().print("Use pigtail command interactively!");
             return -999;
         }
@@ -599,7 +599,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -47;
         }
     } else if (strcmp(command, "ponypos") == 0) {
-        if ((!mRunning) || (!getGame().mLoaded)) {
+        if ((!mRunning) || (!getGame().isLoaded())) {
             getConsole().print("Use ponypos command interactively!");
             return -999;
         }
