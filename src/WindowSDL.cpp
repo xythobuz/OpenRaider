@@ -189,11 +189,11 @@ void WindowSDL::eventHandling() {
             case SDL_MOUSEBUTTONUP:
                 KeyboardButton button;
                 if (event.button.button == SDL_BUTTON_LEFT)
-                    button = leftmouse;
+                    button = leftmouseKey;
                 else if (event.button.button == SDL_BUTTON_RIGHT)
-                    button = rightmouse;
+                    button = rightmouseKey;
                 else
-                    button = middlemouse;
+                    button = middlemouseKey;
                 getOpenRaider().handleMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
                 break;
 
@@ -211,266 +211,266 @@ void WindowSDL::eventHandling() {
                 KeyboardButton key;
                 switch (event.key.keysym.sym) {
                     case SDLK_0:
-                        key = zero;
+                        key = zeroKey;
                         break;
                     case SDLK_1:
-                        key = one;
+                        key = oneKey;
                         break;
                     case SDLK_2:
-                        key = two;
+                        key = twoKey;
                         break;
                     case SDLK_3:
-                        key = three;
+                        key = threeKey;
                         break;
                     case SDLK_4:
-                        key = four;
+                        key = fourKey;
                         break;
                     case SDLK_5:
-                        key = five;
+                        key = fiveKey;
                         break;
                     case SDLK_6:
-                        key = six;
+                        key = sixKey;
                         break;
                     case SDLK_7:
-                        key = seven;
+                        key = sevenKey;
                         break;
                     case SDLK_8:
-                        key = eight;
+                        key = eightKey;
                         break;
                     case SDLK_9:
-                        key = nine;
+                        key = nineKey;
                         break;
                     case SDLK_a:
-                        key = a;
+                        key = aKey;
                         break;
                     case SDLK_b:
-                        key = b;
+                        key = bKey;
                         break;
                     case SDLK_c:
-                        key = c;
+                        key = cKey;
                         break;
                     case SDLK_d:
-                        key = d;
+                        key = dKey;
                         break;
                     case SDLK_e:
-                        key = e;
+                        key = eKey;
                         break;
                     case SDLK_f:
-                        key = f;
+                        key = fKey;
                         break;
                     case SDLK_g:
-                        key = g;
+                        key = gKey;
                         break;
                     case SDLK_h:
-                        key = h;
+                        key = hKey;
                         break;
                     case SDLK_i:
-                        key = i;
+                        key = iKey;
                         break;
                     case SDLK_j:
-                        key = j;
+                        key = jKey;
                         break;
                     case SDLK_k:
-                        key = k;
+                        key = kKey;
                         break;
                     case SDLK_l:
-                        key = l;
+                        key = lKey;
                         break;
                     case SDLK_m:
-                        key = m;
+                        key = mKey;
                         break;
                     case SDLK_n:
-                        key = n;
+                        key = nKey;
                         break;
                     case SDLK_o:
-                        key = o;
+                        key = oKey;
                         break;
                     case SDLK_p:
-                        key = p;
+                        key = pKey;
                         break;
                     case SDLK_q:
-                        key = q;
+                        key = qKey;
                         break;
                     case SDLK_r:
-                        key = r;
+                        key = rKey;
                         break;
                     case SDLK_s:
-                        key = s;
+                        key = sKey;
                         break;
                     case SDLK_t:
-                        key = t;
+                        key = tKey;
                         break;
                     case SDLK_u:
-                        key = u;
+                        key = uKey;
                         break;
                     case SDLK_v:
-                        key = v;
+                        key = vKey;
                         break;
                     case SDLK_w:
-                        key = w;
+                        key = wKey;
                         break;
                     case SDLK_x:
-                        key = x;
+                        key = xKey;
                         break;
                     case SDLK_y:
-                        key = y;
+                        key = yKey;
                         break;
                     case SDLK_z:
-                        key = z;
+                        key = zKey;
                         break;
                     case SDLK_QUOTE:
-                        key = quote;
+                        key = quoteKey;
                         break;
                     case SDLK_BACKSLASH:
-                        key = backslash;
+                        key = backslashKey;
                         break;
                     case SDLK_BACKSPACE:
-                        key = backspace;
+                        key = backspaceKey;
                         break;
                     case SDLK_CAPSLOCK:
-                        key = capslock;
+                        key = capslockKey;
                         break;
                     case SDLK_COMMA:
-                        key = comma;
+                        key = commaKey;
                         break;
                     case SDLK_DELETE:
-                        key = del;
+                        key = delKey;
                         break;
                     case SDLK_UP:
-                        key = up;
+                        key = upKey;
                         break;
                     case SDLK_DOWN:
-                        key = down;
+                        key = downKey;
                         break;
                     case SDLK_LEFT:
-                        key = left;
+                        key = leftKey;
                         break;
                     case SDLK_RIGHT:
-                        key = right;
+                        key = rightKey;
                         break;
                     case SDLK_END:
-                        key = end;
+                        key = endKey;
                         break;
                     case SDLK_EQUALS:
-                        key = equals;
+                        key = equalsKey;
                         break;
                     case SDLK_ESCAPE:
-                        key = escape;
+                        key = escapeKey;
                         break;
                     case SDLK_F1:
-                        key = f1;
+                        key = f1Key;
                         break;
                     case SDLK_F2:
-                        key = f2;
+                        key = f2Key;
                         break;
                     case SDLK_F3:
-                        key = f3;
+                        key = f3Key;
                         break;
                     case SDLK_F4:
-                        key = f4;
+                        key = f4Key;
                         break;
                     case SDLK_F5:
-                        key = f5;
+                        key = f5Key;
                         break;
                     case SDLK_F6:
-                        key = f6;
+                        key = f6Key;
                         break;
                     case SDLK_F7:
-                        key = f7;
+                        key = f7Key;
                         break;
                     case SDLK_F8:
-                        key = f8;
+                        key = f8Key;
                         break;
                     case SDLK_F9:
-                        key = f9;
+                        key = f9Key;
                         break;
                     case SDLK_F10:
-                        key = f10;
+                        key = f10Key;
                         break;
                     case SDLK_F11:
-                        key = f11;
+                        key = f11Key;
                         break;
                     case SDLK_F12:
-                        key = f12;
+                        key = f12Key;
                         break;
                     case SDLK_BACKQUOTE:
-                        key = backquote;
+                        key = backquoteKey;
                         break;
                     case SDLK_HOME:
-                        key = home;
+                        key = homeKey;
                         break;
                     case SDLK_INSERT:
-                        key = insert;
+                        key = insertKey;
                         break;
                     case SDLK_LALT:
-                        key = leftalt;
+                        key = leftaltKey;
                         break;
                     case SDLK_LCTRL:
-                        key = leftctrl;
+                        key = leftctrlKey;
                         break;
                     case SDLK_LEFTBRACKET:
-                        key = leftbracket;
+                        key = leftbracketKey;
                         break;
                     case SDLK_LGUI:
-                        key = leftgui;
+                        key = leftguiKey;
                         break;
                     case SDLK_LSHIFT:
-                        key = leftshift;
+                        key = leftshiftKey;
                         break;
                     case SDLK_MINUS:
-                        key = minus;
+                        key = minusKey;
                         break;
                     case SDLK_NUMLOCKCLEAR:
-                        key = numlock;
+                        key = numlockKey;
                         break;
                     case SDLK_PAGEDOWN:
-                        key = pagedown;
+                        key = pagedownKey;
                         break;
                     case SDLK_PAGEUP:
-                        key = pageup;
+                        key = pageupKey;
                         break;
                     case SDLK_PAUSE:
-                        key = pause;
+                        key = pauseKey;
                         break;
                     case SDLK_PERIOD:
-                        key = dot;
+                        key = dotKey;
                         break;
                     case SDLK_RALT:
-                        key = rightalt;
+                        key = rightaltKey;
                         break;
                     case SDLK_RCTRL:
-                        key = rightctrl;
+                        key = rightctrlKey;
                         break;
                     case SDLK_RETURN:
                     case SDLK_RETURN2:
-                        key = enter;
+                        key = enterKey;
                         break;
                     case SDLK_RGUI:
-                        key = rightgui;
+                        key = rightguiKey;
                         break;
                     case SDLK_RIGHTBRACKET:
-                        key = rightbracket;
+                        key = rightbracketKey;
                         break;
                     case SDLK_RSHIFT:
-                        key = rightshift;
+                        key = rightshiftKey;
                         break;
                     case SDLK_SCROLLLOCK:
-                        key = scrolllock;
+                        key = scrolllockKey;
                         break;
                     case SDLK_SEMICOLON:
-                        key = semicolon;
+                        key = semicolonKey;
                         break;
                     case SDLK_SLASH:
-                        key = slash;
+                        key = slashKey;
                         break;
                     case SDLK_SPACE:
-                        key = space;
+                        key = spaceKey;
                         break;
                     case SDLK_TAB:
-                        key = tab;
+                        key = tabKey;
                         break;
                     default:
-                        key = unknown;
+                        key = unknownKey;
                         break;
 
                 }

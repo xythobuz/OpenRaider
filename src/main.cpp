@@ -100,11 +100,13 @@ void cleanupHandler(void) {
     if (gWindow)
         delete gWindow;
 
+#ifdef DEBUG
     printf("\nThanks for testing %s\n", VERSION);
     printf("Build date: %s @ %s\n", __DATE__, __TIME__);
     printf("Build host: %s\n", BUILD_HOST);
     printf("Web site  : http://github.com/xythobuz/OpenRaider\n");
     printf("Contact   : xythobuz@xythobuz.de\n");
+#endif
 }
 
 int main(int argc, char *argv[]) {
@@ -113,7 +115,7 @@ int main(int argc, char *argv[]) {
     // Handle arguments
     if (argc == 1) {
         // Use default rc file path
-        config = DEFAULT_CONFIG_PATH DEFAULT_CONFIG_FILE;
+        config = DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE;
     } else if (argc == 2) {
         // Check for command line switches
         if ((strcmp("-h", argv[1]) == 0)
@@ -124,7 +126,7 @@ int main(int argc, char *argv[]) {
                     "\t--help\n\t-h\tDisplay this help text\n"
                     "\t--version\n\t-v\tDisplay version information\n"
                     "If no options are given, the default config will be loaded from:\n"
-                    "\t" DEFAULT_CONFIG_PATH DEFAULT_CONFIG_FILE "\n", argv[0]);
+                    "\t" DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE "\n", argv[0]);
             return 0;
         } else if ((strcmp("-v", argv[1]) == 0)
                 || (strcmp("--version", argv[1]) == 0)) {
@@ -140,8 +142,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Create globals
+#ifdef DEBUG
     printf("Initializing %s\n", VERSION);
+#endif
+
+    // Create globals
     atexit(cleanupHandler);
     gOpenRaider = new OpenRaider();
     gWindow = new WindowSDL();
@@ -155,7 +160,7 @@ int main(int argc, char *argv[]) {
 
     // Try to load a configuration
     if (gOpenRaider->loadConfig(config) != 0) {
-        if (gOpenRaider->loadConfig(DEFAULT_CONFIG_PATH DEFAULT_CONFIG_FILE) != 0) {
+        if (gOpenRaider->loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE) != 0) {
             if (gOpenRaider->loadConfig(DEFAULT_CONFIG_FILE) != 0) {
                 printf("Could not find a config file. Aborting...\n");
                 return 2;

@@ -138,7 +138,7 @@ void Console::display() {
 }
 
 void Console::handleKeyboard(KeyboardButton key, bool pressed) {
-    if (pressed && (key == enter)) {
+    if (pressed && (key == enterKey)) {
         // Execute entered command
         if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
             print("> %s", mInputBuffer);
@@ -163,15 +163,15 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
     }
 
     //! \fixme only deleting the last byte is not valid for non-ASCII UTF-8 strings
-    if (pressed && (key == backspace)) {
+    if (pressed && (key == backspaceKey)) {
         if (mInputBufferPointer > 0) {
             mInputBufferPointer--;
             mInputBuffer[mInputBufferPointer] = '\0';
         }
     }
 
-    if (pressed && ((key == up) || (key == down))) {
-        moveInHistory(key == up);
+    if (pressed && ((key == upKey) || (key == downKey))) {
+        moveInHistory(key == upKey);
     }
 }
 

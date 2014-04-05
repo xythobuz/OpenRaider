@@ -116,29 +116,29 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
     if (!pressed)
         return;
 
-    if (key == up) {
+    if (key == upKey) {
         if (mCursor > 0)
             mCursor--;
         else
             mCursor = getOpenRaider().mMapList.size() - 1;
-    } else if (key == down) {
+    } else if (key == downKey) {
         if (mCursor < (getOpenRaider().mMapList.size() - 1))
             mCursor++;
         else
             mCursor = 0;
-    } else if (key == right) {
+    } else if (key == rightKey) {
         int i = 10;
         if (mCursor > (getOpenRaider().mMapList.size() - 11))
             i = getOpenRaider().mMapList.size() - 1 - mCursor;
         while (i-- > 0)
-            handleKeyboard(down, true);
-    } else if (key == left) {
+            handleKeyboard(downKey, true);
+    } else if (key == leftKey) {
         int i = 10;
         if (mCursor < 10)
             i = mCursor;
         while (i-- > 0)
-            handleKeyboard(up, true);
-    } else if (key == enter) {
+            handleKeyboard(upKey, true);
+    } else if (key == enterKey) {
         char *tmp = bufferString("load %s", getOpenRaider().mMapList[mCursor]);
         if (getOpenRaider().command(tmp) == 0) {
             setVisible(false);
@@ -152,7 +152,7 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
 void Menu::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
     int items = (getWindow().mHeight - 110) / 25;
 
-    if ((!released) || (button != leftmouse))
+    if ((!released) || (button != leftmouseKey))
         return;
 
     if ((y >= 100) && (y <= (unsigned int)(100 + (25 * items)))) {

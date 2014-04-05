@@ -106,7 +106,7 @@ char *bufferString(const char *string, va_list args) {
         delete [] text;
         text = new char[sz + 1];
         va_copy(tmp, args);
-        n = vsnprintf(text, sz, string, tmp);
+        vsnprintf(text, sz, string, tmp);
         va_end(tmp);
     }
 
@@ -122,7 +122,7 @@ char *bufferString(const char *string, ...) {
 }
 
 char *fullPath(const char *path, char end) {
-    unsigned int lenPath, offset;
+    unsigned int lenPath;
     wordexp_t word;
     char *dir;
 
@@ -160,7 +160,7 @@ char *fullPath(const char *path, char end) {
         dir = new char[lenPath + 2]; // space for end char
 
         // Copy segments into new string
-        offset = 0;
+        unsigned int offset = 0;
         for (unsigned int i = 0; i < word.we_wordc; i++) {
             unsigned int len = strlen(word.we_wordv[i]);
             strncpy(dir + offset, word.we_wordv[i], len);

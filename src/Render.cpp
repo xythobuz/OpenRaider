@@ -677,7 +677,7 @@ void Render::drawLoadScreen()
     glTranslatef(0.0f, 0.0f, -2000.0f);
     glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
 
-    glBindTexture(GL_TEXTURE_2D, 3); //! \fixme store texture id somewhere
+    mTexture.bindTextureId(1); //! \fixme store texture id somewhere
 
     glBegin(GL_TRIANGLE_STRIP);
     glTexCoord2f(1.0, 1.0);
@@ -1290,7 +1290,7 @@ void Render::drawRoom(RenderRoom *rRoom, bool draw_alpha)
     glPushMatrix();
     //LightingSetup();
 
-    glBindTexture(GL_TEXTURE_2D, 1);  // WHITE texture
+    mTexture.bindTextureId(0); // WHITE texture
 
     if (!draw_alpha &&
             (mFlags & Render::fPortals || mMode == Render::modeWireframe))

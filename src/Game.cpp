@@ -623,6 +623,8 @@ void Game::processMoveable(int index, int i, int *ent,
     if (a < 0)
     {
         //continue;
+        getConsole().print("Invalid animation data for model %d", index);
+        delete r_model;
         return;
     }
 

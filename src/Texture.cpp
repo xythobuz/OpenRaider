@@ -273,7 +273,6 @@ int Texture::loadBufferSlot(unsigned char *image,
 
 void Texture::bindTextureId(unsigned int n) {
     assert(mTextureIds != NULL);
-    assert((int)n != mTextureId);
     assert(n <= mTextureCount);
 
     mTextureId = n;

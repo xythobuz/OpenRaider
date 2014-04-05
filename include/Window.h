@@ -12,6 +12,16 @@
 
 #include "global.h"
 
+typedef struct {
+    char *text;
+    unsigned int x;
+    unsigned int y;
+    int w;
+    int h;
+    float scale;
+    float color[4];
+} WindowString;
+
 /*!
  * \brief Windowing interface
  */

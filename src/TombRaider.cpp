@@ -74,6 +74,13 @@ TombRaider::TombRaider()
     mTexelScale = 256.0f;
     mRiffDataSz = 0;
 
+    for (int i = 0; i < 256; i++) {
+        _palette8[i].r = 0;
+        _palette8[i].g = 0;
+        _palette8[i].b = 0;
+        _palette16[i] = 0;
+    }
+
     reset();
 }
 
