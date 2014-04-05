@@ -571,6 +571,16 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Invalid use of pigtail-command!");
             return -47;
         }
+    } else if (strcmp(command, "ponypos") == 0) {
+        if (args->size() > 3) {
+            gLaraModel->ponytail[0] = (float)atof(args->at(0));
+            gLaraModel->ponytail[1] = (float)atof(args->at(1));
+            gLaraModel->ponytail[2] = (float)atof(args->at(2));
+            gLaraModel->ponytailAngle = (float)atof(args->at(3));
+        } else {
+            getConsole().print("Invalid use of ponypos-command!");
+            return -48;
+        }
     } else if (strcmp(command, "help") == 0) {
         if (args->size() == 0) {
             getConsole().print("Available commands:");
@@ -600,6 +610,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("  allrooms  - BOOL");
             getConsole().print("  ponytail  - BOOL");
             getConsole().print("  pigtail   - BOOL");
+            getConsole().print("  ponypos   - FLOAT FLOAT FLOAT FLOAT - x y z angle");
             getConsole().print("  help      - print command help");
             getConsole().print("  quit      - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
@@ -607,11 +618,11 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return help(args->at(0));
         } else {
             getConsole().print("Invalid use of help-command");
-            return -48;
+            return -49;
         }
     } else {
         getConsole().print("Unknown command: %s ", command);
-        return -49;
+        return -50;
     }
 
     return 0;
