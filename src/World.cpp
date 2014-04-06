@@ -17,7 +17,6 @@
 
 World::World()
 {
-    mClearLock = false;
     mFlags = 0;
 }
 
@@ -320,17 +319,159 @@ void World::clearFlag(WorldFlag flag)
 
 void World::destroy()
 {
-    // Add some locking to check use state first
-    if (!mClearLock)
-    {
-        clear();
+    room_mesh_t *room;
+    model_mesh_t *mesh;
+    sprite_seq_t *sprite;
+    skeletal_model_t *model;
+    bone_frame_t *boneframe;
+    bone_tag_t *tag;
+    animation_frame_t *animation;
+    std::list<skeletal_model_t *> cache;
+
+    for (std::vector<int>::size_type i = 0; i != mEntities.size(); i++)
+        delete mEntities[i];
+    mEntities.clear();
+
+    for (std::vector<int>::size_type i = 0; i != mRooms.size(); i++) {
+        room = mRooms[i];
+
+        if (room) {
+            //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
+
+            //for (std::vector<int>::size_type j = 0; j != room->portals.size(); j++)
+            //    delete room->portals[i];
+            room->portals.clear();
+
+            //for (std::vector<int>::size_type j = 0; j != room->models.size(); j++)
+            //    delete room->models[i];
+            room->models.clear();
+
+            //for (std::vector<int>::size_type j = 0; j != room->sprites.size(); j++)
+            //    delete room->sprites[i];
+            room->sprites.clear();
+
+            //for (std::vector<int>::size_type j = 0; j != room->sectors.size(); j++)
+            //    delete room->sectors[i];
+            room->sectors.clear();
+
+            //for (std::vector<int>::size_type j = 0; j != room->boxes.size(); j++)
+            //    delete room->boxes[i];
+            room->boxes.clear();
+
+            delete room;
+        }
     }
+
+    for (std::vector<int>::size_type i = 0; i != mMeshes.size(); i++) {
+        mesh = mMeshes[i];
+
+        if (!mesh)
+            continue;
+
+        for (std::vector<int>::size_type j = 0; j != mesh->texturedTriangles.size(); j++) {
+            if (mesh->texturedTriangles[j])
+                delete mesh->texturedTriangles[j];
+        }
+
+        for (std::vector<int>::size_type j = 0; j != mesh->coloredTriangles.size(); j++) {
+            if (mesh->coloredTriangles[j])
+                delete mesh->coloredTriangles[j];
+        }
+
+        for (std::vector<int>::size_type j = 0; j != mesh->texturedRectangles.size(); j++) {
+            if (mesh->texturedRectangles[j])
+                delete mesh->texturedRectangles[j];
+        }
+
+        for (std::vector<int>::size_type j = 0; j != mesh->coloredRectangles.size(); j++) {
+            if (mesh->coloredRectangles[j])
+                delete mesh->coloredRectangles[j];
+        }
+
+        if (mesh->vertices)
+            delete [] mesh->vertices;
+
+        if (mesh->colors)
+            delete [] mesh->colors;
+
+        if (mesh->normals)
+            delete [] mesh->normals;
+
+        delete mesh;
+    }
+
+    mMeshes.clear();
+
+    for (std::vector<int>::size_type i = 0; i != mSprites.size(); i++) {
+        sprite = mSprites[i];
+
+        if (!sprite)
+            continue;
+
+        if (sprite->sprite)
+            delete [] sprite->sprite;
+
+        delete sprite;
+    }
+
+    mSprites.clear();
+
+    for (std::vector<int>::size_type i = 0; i != mModels.size(); i++) {
+        model = mModels[i];
+
+        if (!model)
+            continue;
+
+        // No smart pointers, so skip if deleted once  =)
+        bool found = false;
+        for (std::list<skeletal_model_t *>::const_iterator iterator = cache.begin(), end = cache.end(); iterator != end; ++iterator) {
+            if (model == *iterator) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+            cache.push_back(model);
+        else
+            continue;
+
+        for (std::vector<int>::size_type j = 0; j != model->animation.size(); j++) {
+            animation  = model->animation[j];
+
+            if (!animation)
+                continue;
+
+            for (std::vector<int>::size_type k = 0; k != animation->frame.size(); k++) {
+                boneframe = animation->frame[k];
+
+                if (!boneframe)
+                    continue;
+
+                for (std::vector<int>::size_type l = 0; l != boneframe->tag.size(); l++) {
+                    tag = boneframe->tag[l];
+
+                    if (!tag)
+                        continue;
+
+                    delete tag;
+                }
+
+                delete boneframe;
+            }
+
+            delete animation;
+        }
+
+        delete model;
+    }
+
+    mModels.clear();
 }
 
 
 void World::addRoom(room_mesh_t *room)
 {
-    mClearLock = false;
     mRooms.push_back(room);
 }
 
@@ -338,10 +479,7 @@ void World::addRoom(room_mesh_t *room)
 void World::addMesh(model_mesh_t *mesh)
 {
     if (mesh)
-    {
-        mClearLock = false;
         mMeshes.push_back(mesh);
-    }
 }
 
 
@@ -349,7 +487,6 @@ void World::addEntity(entity_t *e)
 {
     if (e)
     {
-        mClearLock = false;
         e->master = 0x0;
         e->moveType = worldMoveType_walk; // Walk
         e->room = getRoomByLocation(e->pos[0], e->pos[1], e->pos[2]);
@@ -362,7 +499,6 @@ int World::addModel(skeletal_model_t *model)
 {
     if (model)
     {
-        mClearLock = false;
         mModels.push_back(model);
         return mModels.size() - 1;
     }
@@ -374,10 +510,7 @@ int World::addModel(skeletal_model_t *model)
 void World::addSprite(sprite_seq_t *sprite)
 {
     if (sprite)
-    {
-        mClearLock = false;
         mSprites.push_back(sprite);
-    }
 }
 
 
@@ -599,156 +732,4 @@ void World::moveEntity(entity_t *e, char movement)
 // Private Mutators
 ////////////////////////////////////////////////////////////
 
-void World::clear() {
-    room_mesh_t *room;
-    model_mesh_t *mesh;
-    sprite_seq_t *sprite;
-    skeletal_model_t *model;
-    bone_frame_t *boneframe;
-    bone_tag_t *tag;
-    animation_frame_t *animation;
-    std::list<skeletal_model_t *> cache;
-
-    mClearLock = true;
-
-    for (std::vector<int>::size_type i = 0; i != mEntities.size(); i++)
-        delete mEntities[i];
-    mEntities.clear();
-
-    for (std::vector<int>::size_type i = 0; i != mRooms.size(); i++) {
-        room = mRooms[i];
-
-        if (room) {
-            //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
-
-            //for (std::vector<int>::size_type j = 0; j != room->portals.size(); j++)
-            //    delete room->portals[i];
-            room->portals.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->models.size(); j++)
-            //    delete room->models[i];
-            room->models.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->sprites.size(); j++)
-            //    delete room->sprites[i];
-            room->sprites.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->sectors.size(); j++)
-            //    delete room->sectors[i];
-            room->sectors.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->boxes.size(); j++)
-            //    delete room->boxes[i];
-            room->boxes.clear();
-
-            delete room;
-        }
-    }
-
-    for (std::vector<int>::size_type i = 0; i != mMeshes.size(); i++) {
-        mesh = mMeshes[i];
-
-        if (!mesh)
-            continue;
-
-        for (std::vector<int>::size_type j = 0; j != mesh->texturedTriangles.size(); j++) {
-            if (mesh->texturedTriangles[j])
-                delete mesh->texturedTriangles[j];
-        }
-
-        for (std::vector<int>::size_type j = 0; j != mesh->coloredTriangles.size(); j++) {
-            if (mesh->coloredTriangles[j])
-                delete mesh->coloredTriangles[j];
-        }
-
-        for (std::vector<int>::size_type j = 0; j != mesh->texturedRectangles.size(); j++) {
-            if (mesh->texturedRectangles[j])
-                delete mesh->texturedRectangles[j];
-        }
-
-        for (std::vector<int>::size_type j = 0; j != mesh->coloredRectangles.size(); j++) {
-            if (mesh->coloredRectangles[j])
-                delete mesh->coloredRectangles[j];
-        }
-
-        if (mesh->vertices)
-            delete [] mesh->vertices;
-
-        if (mesh->colors)
-            delete [] mesh->colors;
-
-        if (mesh->normals)
-            delete [] mesh->normals;
-
-        delete mesh;
-    }
-
-    mMeshes.clear();
-
-    for (std::vector<int>::size_type i = 0; i != mSprites.size(); i++) {
-        sprite = mSprites[i];
-
-        if (!sprite)
-            continue;
-
-        if (sprite->sprite)
-            delete [] sprite->sprite;
-
-        delete sprite;
-    }
-
-    mSprites.clear();
-
-    for (std::vector<int>::size_type i = 0; i != mModels.size(); i++) {
-        model = mModels[i];
-
-        if (!model)
-            continue;
-
-        // No smart pointers, so skip if deleted once  =)
-        bool found = false;
-        for (std::list<skeletal_model_t *>::const_iterator iterator = cache.begin(), end = cache.end(); iterator != end; ++iterator) {
-            if (model == *iterator) {
-                found = true;
-                break;
-            }
-        }
-
-        if (!found)
-            cache.push_back(model);
-        else
-            continue;
-
-        for (std::vector<int>::size_type j = 0; j != model->animation.size(); j++) {
-            animation  = model->animation[j];
-
-            if (!animation)
-                continue;
-
-            for (std::vector<int>::size_type k = 0; k != animation->frame.size(); k++) {
-                boneframe = animation->frame[k];
-
-                if (!boneframe)
-                    continue;
-
-                for (std::vector<int>::size_type l = 0; l != boneframe->tag.size(); l++) {
-                    tag = boneframe->tag[l];
-
-                    if (!tag)
-                        continue;
-
-                    delete tag;
-                }
-
-                delete boneframe;
-            }
-
-            delete animation;
-        }
-
-        delete model;
-    }
-
-    mModels.clear();
-}
 

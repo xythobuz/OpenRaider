@@ -28,16 +28,6 @@ typedef struct {
     vec3_t pos;
 } vertex_t;
 
-/*
-typedef struct {
-    vec2_t uv;
-} uv_t;
-
-typedef struct {
-    vec4_t rgba;
-} color_t;
-*/
-
 typedef struct {
     vec2_t st;
 } texel_t;
@@ -157,41 +147,6 @@ typedef struct {
     vec3_t bbox_min;
     vec3_t bbox_max;
 } room_mesh_t;
-
-// Workout generic entity and a client class from these entities
-typedef struct world_entity_s {
-    vec3_t pos;
-    vec3_t lastPos;
-    vec3_t angle;
-    vec_t ttl;
-
-    int type;
-    int state;
-
-    //struct world_entity_s *master;
-
-} world_entity_t;
-
-typedef struct {
-    vec3_t pos;
-    vec3_t lastPos;
-    vec3_t angle;
-    char clipping;
-    float time, eventTime, eventTimer;
-    int state, nextState;
-    float health;
-
-    // Client
-    unsigned int uid;
-    char name[32];
-    int actor, enemy;
-
-    // Render
-    unsigned int model;
-    unsigned int skin;
-    unsigned int animFrame;
-
-} actor_entity_t;
 
 #endif
 

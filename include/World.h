@@ -177,13 +177,8 @@ public:
 
 private:
 
-    /*!
-     * \brief Clears all data in world
-     */
-    void clear();
+    unsigned int mFlags;                     //!< World flags
 
-    bool mClearLock;
-    unsigned int mFlags;                //!< World flags
     std::vector<entity_t *> mEntities;       //!< World entities
     std::vector<room_mesh_t *> mRooms;       //!< Map data and meshes
     std::vector<model_mesh_t *> mMeshes;     //!< Unanimated meshes
