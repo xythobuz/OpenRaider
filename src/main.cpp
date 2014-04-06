@@ -17,89 +17,54 @@
 #include "SoundAL.h"
 #include "WindowSDL.h"
 
-Camera *gCamera = NULL;
-Console *gConsole = NULL;
-Game *gGame = NULL;
-Menu *gMenu = NULL;
-OpenRaider *gOpenRaider = NULL;
-Render *gRender = NULL;
-Sound *gSound = NULL;
-Window *gWindow = NULL;
-World *gWorld = NULL;
+Camera gCamera;
+Console gConsole;
+Game gGame;
+Menu gMenu;
+OpenRaider gOpenRaider;
+Render gRender;
+World gWorld;
+
+SoundAL gSound;
+WindowSDL gWindow;
 
 Camera &getCamera() {
-    assert(gCamera != NULL);
-    return *gCamera;
+    return gCamera;
 }
 
 Console &getConsole() {
-    assert(gConsole != NULL);
-    return *gConsole;
+    return gConsole;
 }
 
 Game &getGame() {
-    assert(gGame != NULL);
-    return *gGame;
+    return gGame;
 }
 
 Menu &getMenu() {
-    assert(gMenu != NULL);
-    return *gMenu;
+    return gMenu;
 }
 
 OpenRaider &getOpenRaider() {
-    assert(gOpenRaider != NULL);
-    return *gOpenRaider;
+    return gOpenRaider;
 }
 
 Render &getRender() {
-    assert(gRender != NULL);
-    return *gRender;
+    return gRender;
 }
 
 Sound &getSound() {
-    assert(gSound != NULL);
-    return *gSound;
+    return gSound;
 }
 
 Window &getWindow() {
-    assert(gWindow != NULL);
-    return *gWindow;
+    return gWindow;
 }
 
 World &getWorld() {
-    assert(gWorld != NULL);
-    return *gWorld;
+    return gWorld;
 }
 
 void cleanupHandler(void) {
-    if (gConsole)
-        delete gConsole;
-
-    if (gGame)
-        delete gGame;
-
-    if (gMenu)
-        delete gMenu;
-
-    if (gWorld)
-        delete gWorld;
-
-    if (gRender)
-        delete gRender;
-
-    if (gCamera)
-        delete gCamera;
-
-    if (gOpenRaider)
-        delete gOpenRaider;
-
-    if (gSound)
-        delete gSound;
-
-    if (gWindow)
-        delete gWindow;
-
 #ifdef DEBUG
     printf("\nThanks for testing %s\n", VERSION);
     printf("Build date: %s @ %s\n", __DATE__, __TIME__);
@@ -146,68 +111,28 @@ int main(int argc, char *argv[]) {
     printf("Initializing %s\n", VERSION);
 #endif
 
-    // Create globals
     atexit(cleanupHandler);
-    gOpenRaider = new OpenRaider();
-    gWindow = new WindowSDL();
-    gSound = new SoundAL();
-    gWorld = new World();
-    gCamera = new Camera();
-    gRender = new Render();
-    gConsole = new Console();
-    gMenu = new Menu();
-    gGame = new Game();
 
     // Try to load a configuration
-    if (gOpenRaider->loadConfig(config) != 0) {
-        if (gOpenRaider->loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE) != 0) {
-            if (gOpenRaider->loadConfig(DEFAULT_CONFIG_FILE) != 0) {
+    if (gOpenRaider.loadConfig(config) != 0) {
+        if (gOpenRaider.loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE) != 0) {
+            if (gOpenRaider.loadConfig(DEFAULT_CONFIG_FILE) != 0) {
                 printf("Could not find a config file. Aborting...\n");
                 return 2;
             }
         }
     }
 
-    // Initialize Windowing
-    int error = gWindow->initialize();
+    // Initialize everything
+    int error = gOpenRaider.initialize();
     if (error != 0) {
-        printf("Could not initialize Window (%d)!\n", error);
+        printf("Could not initialize OpenRaider (%d)!\n", error);
         return 3;
     }
 
-    // Initialize OpenGL
-    error = gWindow->initializeGL();
-    if (error != 0) {
-        printf("Could not initialize OpenGL (%d)!\n", error);
-        return 4;
-    }
-
-    error = gWindow->initializeFont();
-    if (error != 0) {
-        printf("Could not initialize SDL-TTF (%d)!\n", error);
-        return 5;
-    }
-
-    error = gSound->initialize();
-    if (error != 0) {
-        printf("Could not initialize Sound (%d)!\n", error);
-        return 7;
-    }
-
-    // Initialize game engine
-    error = gGame->initialize();
-    if (error != 0) {
-        printf("Could not initialize Game Engine (%d)!\n", error);
-        return 8;
-    }
-
-    gMenu->setVisible(true);
-
-    systemTimerReset();
-
     // Enter Main loop
-    gConsole->print("Starting %s", VERSION);
-    gOpenRaider->run();
+    gConsole.print("Starting %s", VERSION);
+    gOpenRaider.run();
 
     return 0;
 }

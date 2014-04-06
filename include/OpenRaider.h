@@ -33,6 +33,8 @@ public:
      */
     ~OpenRaider();
 
+    int initialize();
+
     /*!
      * \brief Load the configuration file
      * \returns 0 on success

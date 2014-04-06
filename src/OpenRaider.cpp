@@ -56,6 +56,46 @@ OpenRaider::~OpenRaider() {
     }
 }
 
+int OpenRaider::initialize() {
+    // Initialize Windowing
+    int error = getWindow().initialize();
+    if (error != 0) {
+        printf("Could not initialize Window (%d)!\n", error);
+        return -1;
+    }
+
+    // Initialize OpenGL
+    error = getWindow().initializeGL();
+    if (error != 0) {
+        printf("Could not initialize OpenGL (%d)!\n", error);
+        return -2;
+    }
+
+    error = getWindow().initializeFont();
+    if (error != 0) {
+        printf("Could not initialize SDL-TTF (%d)!\n", error);
+        return -3;
+    }
+
+    error = getSound().initialize();
+    if (error != 0) {
+        printf("Could not initialize Sound (%d)!\n", error);
+        return -4;
+    }
+
+    // Initialize game engine
+    error = getGame().initialize();
+    if (error != 0) {
+        printf("Could not initialize Game Engine (%d)!\n", error);
+        return -5;
+    }
+
+    getMenu().setVisible(true);
+    systemTimerReset();
+
+    return 0;
+}
+
 int OpenRaider::loadConfig(const char *config) {
     assert(config != NULL);
     assert(config[0] != '\0');
