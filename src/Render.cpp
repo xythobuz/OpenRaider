@@ -408,11 +408,6 @@ void Render::display()
     RenderRoom *room;
     int index;
 
-
-#ifdef DEBUG_MATRIX
-    gl_test_reset();
-#endif
-
     switch (mMode)
     {
         case Render::modeDisabled:
@@ -637,14 +632,6 @@ void Render::display()
 
     if (mMode == Render::modeWireframe)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-    // Mongoose 2002.01.01, Test matrix ops
-#ifdef DEBUG_MATRIX
-    if (gl_test_val())
-    {
-        printf("ERROR in matrix stack %i\n", gl_test_val());
-    }
-#endif
 
     glFlush();
 }
@@ -965,7 +952,7 @@ void Render::drawModel(SkeletalModel *model)
 
     if (animation->frame.empty())
     {
-#ifdef DEBUG_RENDER
+#ifdef DEBUG
         printf("ERROR: No boneframes?!?!  *** %i:%i ***\n",
                 mdl->id, bframe);
 #endif

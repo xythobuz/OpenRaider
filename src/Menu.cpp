@@ -5,6 +5,9 @@
  * \author xythobuz
  */
 
+#include <assert.h>
+#include <dirent.h>
+
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #else
@@ -31,10 +34,18 @@ Menu::Menu() {
     mainText.y = 10;
     mainText.w = 0;
     mainText.h = 0;
+
+    mMapListFilled = false;
+    mFirstPass = false;
 }
 
 Menu::~Menu() {
     delete [] mainText.text;
+
+    while (mMapList.size() > 0) {
+        delete [] mMapList.back();
+        mMapList.pop_back();
+    }
 }
 
 void Menu::setVisible(bool visible) {
@@ -43,6 +54,66 @@ void Menu::setVisible(bool visible) {
 
 bool Menu::isVisible() {
     return mVisible;
+}
+
+void Menu::loadPakFolderRecursive(const char *dir) {
+    struct dirent entry;
+    struct dirent *ep = NULL;
+    DIR *pakDir;
+
+    assert(dir != NULL);
+    assert(dir[0] != '\0');
+
+    pakDir = opendir(dir);
+    if (pakDir != NULL) {
+        readdir_r(pakDir, &entry, &ep);
+        while (ep != NULL) {
+            if (ep->d_type == DT_DIR) {
+                if ((strcmp(".", ep->d_name) != 0)
+                 && (strcmp("..", ep->d_name) != 0)) {
+                    char *tmp = bufferString("%s%s", dir, ep->d_name);
+                    char *next = fullPath(tmp, '/');
+                    loadPakFolderRecursive(next);
+                    delete next;
+                    delete tmp;
+                }
+            } else {
+                char *fullPathMap = bufferString("%s%s", dir, ep->d_name);
+
+                char *lowerPath = bufferString("%s", fullPathMap);
+                for (char *p = lowerPath; *p; ++p) *p = (char)tolower(*p);
+
+                // Check for valid extension
+                if (stringEndsWith(lowerPath, ".phd")
+                     || stringEndsWith(lowerPath, ".tr2")
+                     || stringEndsWith(lowerPath, ".tr4")
+                     || stringEndsWith(lowerPath, ".trc")) {
+                    int error = TombRaider::checkMime(fullPathMap);
+                    if (error == 0) {
+                        // Just load relative filename
+                        mMapList.push_back(bufferString("%s", (fullPathMap + strlen(getOpenRaider().mPakDir) + 1)));
+                    } else {
+                        getConsole().print("Error: pak file '%s' %s",
+                                fullPathMap, (error == -1) ? "not found" : "invalid");
+                    }
+                }
+
+                delete [] lowerPath;
+                delete [] fullPathMap;
+            }
+            readdir_r(pakDir, &entry, &ep);
+        }
+        closedir(pakDir);
+    } else {
+        getConsole().print("Could not open PAK dir %s!", dir);
+    }
+}
+
+void Menu::fillMapList() {
+    char *tmp = fullPath(getOpenRaider().mPakDir, '/');
+    loadPakFolderRecursive(tmp);
+    delete [] tmp;
+    mMapListFilled = true;
 }
 
 void Menu::displayMapList() {
@@ -56,15 +127,15 @@ void Menu::displayMapList() {
     else
         min = 0;
 
-    if ((mCursor + (items / 2)) < getOpenRaider().mMapList.size())
+    if ((mCursor + (items / 2)) < mMapList.size())
         max = mCursor + (items / 2);
     else
-        max = getOpenRaider().mMapList.size();
+        max = mMapList.size();
 
     while ((max - min) < items) {
         if (min > 0)
             min--;
-        else if (max < ((int)getOpenRaider().mMapList.size()))
+        else if (max < ((int)mMapList.size()))
             max++;
         else
             break;
@@ -73,7 +144,7 @@ void Menu::displayMapList() {
     mMin = min;
 
     for (int i = 0; i < (max - min); i++) {
-        char *map = getOpenRaider().mMapList[i + min];
+        char *map = mMapList[i + min];
         if ((i + min) == (int)mCursor)
             getWindow().drawText(25, 100 + (25 * i), 0.75f, RED, "%s", map);
         else
@@ -93,10 +164,10 @@ void Menu::display() {
         mainText.x = (getWindow().mWidth / 2) - (mainText.w / 2);
         getWindow().writeString(&mainText);
 
-        if (!getOpenRaider().mMapListFilled) {
+        if (!mMapListFilled) {
             getWindow().drawText(25, (getWindow().mHeight / 2) - 20, 0.75f, OR_BLUE, "Generating map list...");
         } else {
-            if (getOpenRaider().mMapList.size() == 0) {
+            if (mMapList.size() == 0) {
                 getWindow().drawText(25, (getWindow().mHeight / 2) - 20, 0.75f, RED, "No maps found! See README.md");
             } else {
                 // draw *play button* above list
@@ -109,6 +180,16 @@ void Menu::display() {
                 displayMapList();
             }
         }
+
+        // Fill map list after first render pass,
+        // so menu *loading screen* is visible
+        if (mFirstPass) {
+            if (!mMapListFilled) {
+                fillMapList();
+            }
+        } else {
+            mFirstPass = true;
+        }
     }
 }
 
@@ -120,16 +201,16 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
         if (mCursor > 0)
             mCursor--;
         else
-            mCursor = getOpenRaider().mMapList.size() - 1;
+            mCursor = mMapList.size() - 1;
     } else if (key == downKey) {
-        if (mCursor < (getOpenRaider().mMapList.size() - 1))
+        if (mCursor < (mMapList.size() - 1))
             mCursor++;
         else
             mCursor = 0;
     } else if (key == rightKey) {
         int i = 10;
-        if (mCursor > (getOpenRaider().mMapList.size() - 11))
-            i = getOpenRaider().mMapList.size() - 1 - mCursor;
+        if (mCursor > (mMapList.size() - 11))
+            i = mMapList.size() - 1 - mCursor;
         while (i-- > 0)
             handleKeyboard(downKey, true);
     } else if (key == leftKey) {
@@ -139,7 +220,7 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
         while (i-- > 0)
             handleKeyboard(upKey, true);
     } else if (key == enterKey) {
-        char *tmp = bufferString("load %s", getOpenRaider().mMapList[mCursor]);
+        char *tmp = bufferString("load %s", mMapList[mCursor]);
         if (getOpenRaider().command(tmp) == 0) {
             setVisible(false);
         } else {

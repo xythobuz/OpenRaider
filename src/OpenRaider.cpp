@@ -8,7 +8,6 @@
 #include <cstdio>
 #include <cstring>
 #include <assert.h>
-#include <dirent.h>
 
 #include "WindowSDL.h"
 
@@ -31,7 +30,6 @@ OpenRaider::OpenRaider() {
     mPakDir = NULL;
     mAudioDir = NULL;
     mDataDir = NULL;
-    mMapListFilled = false;
 
     for (int i = 0; i < ActionEventCount; i++)
         keyBindings[i] = unknownKey;
@@ -49,11 +47,6 @@ OpenRaider::~OpenRaider() {
 
     if (mDataDir)
         delete mDataDir;
-
-    while (mMapList.size() > 0) {
-        delete [] mMapList.back();
-        mMapList.pop_back();
-    }
 }
 
 int OpenRaider::initialize() {
@@ -89,6 +82,10 @@ int OpenRaider::initialize() {
         printf("Could not initialize Game Engine (%d)!\n", error);
         return -5;
     }
+
+#ifdef DEBUG
+    mFPS = true;
+#endif
 
     getMenu().setVisible(true);
     systemTimerReset();
@@ -1070,69 +1067,6 @@ int OpenRaider::bind(ActionEvents action, const char *key) {
     return 0;
 }
 
-void OpenRaider::loadPakFolderRecursive(const char *dir) {
-    struct dirent entry;
-    struct dirent *ep = NULL;
-    DIR *pakDir;
-
-    assert(dir != NULL);
-    assert(dir[0] != '\0');
-    assert(mRunning == true);
-
-    pakDir = opendir(dir);
-    if (pakDir != NULL) {
-        readdir_r(pakDir, &entry, &ep);
-        while (ep != NULL) {
-            if (ep->d_type == DT_DIR) {
-                if ((strcmp(".", ep->d_name) != 0)
-                 && (strcmp("..", ep->d_name) != 0)) {
-                    char *tmp = bufferString("%s%s", dir, ep->d_name);
-                    char *next = fullPath(tmp, '/');
-                    loadPakFolderRecursive(next);
-                    delete next;
-                    delete tmp;
-                }
-            } else {
-                char *fullPathMap = bufferString("%s%s", dir, ep->d_name);
-
-                char *lowerPath = bufferString("%s", fullPathMap);
-                for (char *p = lowerPath; *p; ++p) *p = (char)tolower(*p);
-
-                // Check for valid extension
-                if (stringEndsWith(lowerPath, ".phd")
-                     || stringEndsWith(lowerPath, ".tr2")
-                     || stringEndsWith(lowerPath, ".tr4")
-                     || stringEndsWith(lowerPath, ".trc")) {
-                    int error = TombRaider::checkMime(fullPathMap);
-                    if (error == 0) {
-                        // Just load relative filename
-                        mMapList.push_back(bufferString("%s", (fullPathMap + strlen(mPakDir) + 1)));
-                    } else {
-                        getConsole().print("Error: pak file '%s' %s",
-                                fullPathMap, (error == -1) ? "not found" : "invalid");
-                    }
-                }
-
-                delete [] lowerPath;
-                delete [] fullPathMap;
-            }
-            readdir_r(pakDir, &entry, &ep);
-        }
-        closedir(pakDir);
-    } else {
-        getConsole().print("Could not open PAK dir %s!", dir);
-    }
-}
-
-void OpenRaider::fillMapList() {
-    assert(mRunning == true);
-
-    char *tmp = fullPath(mPakDir, '/');
-    loadPakFolderRecursive(tmp);
-    delete [] tmp;
-    mMapListFilled = true;
-}
-
 void OpenRaider::run() {
     assert(mRunning == false);
 
@@ -1169,15 +1103,20 @@ void OpenRaider::frame() {
     if (mFPS)
         getWindow().drawText(10, getWindow().mHeight - 20, 0.5f, OR_BLUE, "%dFPS", fps);
 
+#ifdef DEBUG
+    // Draw debug infos
+    if (getGame().isLoaded()) {
+        for (int i = 0; i < 3; i++) {
+            getWindow().drawText(10, getWindow().mHeight - ((4 - i) * 20), 0.5f, OR_BLUE, "%.2f (%.2f)",
+                getGame().mLara->pos[i] / 256.0f, getGame().mLara->angles[i]);
+        }
+    }
+#endif
+
     getWindow().glExit2D();
 
     // Put new frame on screen
     getWindow().swapBuffersGL();
-
-    // Fill map list after first render pass,
-    // so menu *loading screen* is visible
-    if (!mMapListFilled)
-        fillMapList();
 
     // Calculate FPS display value
     fpsCount++;

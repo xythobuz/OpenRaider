@@ -58,10 +58,6 @@ public:
     void handleMouseScroll(int xrel, int yrel);
 
     //! \fixme should be private
-
-    bool mMapListFilled;
-    std::vector<char *> mMapList;
-
     char *mBaseDir;
     char *mPakDir;
     char *mAudioDir;
@@ -80,10 +76,6 @@ private:
     int bind(const char *action, const char *key);
 
     int bind(ActionEvents action, const char *key);
-
-    void loadPakFolderRecursive(const char *dir);
-
-    void fillMapList();
 
     bool mRunning;
     bool mFPS;

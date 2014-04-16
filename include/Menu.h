@@ -38,6 +38,10 @@ public:
 
 private:
 
+    void loadPakFolderRecursive(const char *dir);
+
+    void fillMapList();
+
     void displayMapList();
 
     bool mVisible;
@@ -45,6 +49,10 @@ private:
     unsigned int mMin;
 
     WindowString mainText;
+
+    bool mMapListFilled;
+    bool mFirstPass;
+    std::vector<char *> mMapList;
 };
 
 #endif

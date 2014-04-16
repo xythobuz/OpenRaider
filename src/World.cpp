@@ -209,40 +209,8 @@ bool World::isWall(int room, int sector) {
 bool World::getHeightAtPosition(int index, float x, float *y, float z)
 {
     room_mesh_t *room = mRooms[index];
-
-#ifdef OBSOLETE_USING_BOXES
-    unsigned int i;
-    float zmax, xmax, zmin, xmin;
-
-
-    if (!room)
-    {
-        return false;
-    }
-
-    // Mongoose 2002.08.14, It's 0302 - give me a fucking break --
-    //   this works albeit poorly  =)
-    for (i = 0; (int)i < room->num_boxes; ++i)
-    {
-        xmax = room->boxes[i].c.pos[0];
-        xmin = room->boxes[i].a.pos[0];
-        zmax = room->boxes[i].c.pos[2];
-        zmin = room->boxes[i].a.pos[2];
-
-        if (x < xmax && x > xmin && z < zmax && z > zmin)
-        {
-            //printf("%f %f %f %f\n", xmax, xmin, zmax, zmin);
-
-            *y =  room->boxes[i].a.pos[1]; // hhmm...room->pos[1] +
-            return true;
-        }
-    }
-
-    return false;
-#else
     int sector;
     sector_t *sect;
-
 
     if (!room)
     {
@@ -262,7 +230,6 @@ bool World::getHeightAtPosition(int index, float x, float *y, float z)
     *y = sect->floor;
 
     return true;
-#endif
 }
 
 
@@ -299,10 +266,6 @@ std::vector<room_mesh_t *> *World::getRooms()
 }
 #endif
 
-
-////////////////////////////////////////////////////////////
-// Public Mutators
-////////////////////////////////////////////////////////////
 
 void World::setFlag(WorldFlag flag)
 {
@@ -575,22 +538,9 @@ void World::moveEntity(entity_t *e, char movement)
 
     if (room == -1) // Will we hit a portal?
     {
-#define ADJ_ROOM_CHECK
-#ifdef ADJ_ROOM_CHECK
         room = getAdjoiningRoom(e->room,
                 e->pos[0],  e->pos[1], e->pos[2],
                 x, y, z);
-#else
-        if (!(mFlags & fEnableHopping))
-        {
-            mFlags |= fEnableHopping;
-            room = getRoomByLocation(e->room, x, y, z);
-            printf("Hopped\n");
-            mFlags ^= fEnableHopping;
-        }
-
-        //room = getRoomByLocation(x, y, z);
-#endif
 
         if (room > -1)
         {
@@ -660,16 +610,6 @@ void World::moveEntity(entity_t *e, char movement)
         {
             case worldMoveType_fly:
             case worldMoveType_swim:
-#ifdef DIVE_GAP
-                // Clips to top of water, waiting for DIVE event
-                if (h < floor)
-                    e->pos[1] = floor;
-                else if (h > ceiling)
-                    e->pos[1] = ceiling;
-                else
-                    e->pos[1] = y;
-#endif
-
                 // Don't fall out of world, avoid a movement that does
                 if (h > y - camHeight)
                 {
@@ -704,13 +644,6 @@ void World::moveEntity(entity_t *e, char movement)
                 e->pos[1] = y;
                 e->pos[2] = z;
         }
-
-#ifdef OBSOLETE
-        m_text->SetString(1,"Room %2i  Sector %2i %sPos %.0f %.0f %.0f Yaw %.0f",
-                room, sector,
-                wall ? " Wall " : " ",
-                e->pos[0], e->pos[1], e->pos[2], e->angles[1]);
-#endif
     }
     else
     {
@@ -721,15 +654,4 @@ void World::moveEntity(entity_t *e, char movement)
     e->room = room;
     e->moving = true;
 }
-
-
-////////////////////////////////////////////////////////////
-// Private Accessors
-////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////
-// Private Mutators
-////////////////////////////////////////////////////////////
-
 
