@@ -17,7 +17,6 @@
 
 World::World()
 {
-    mFlags = 0;
 }
 
 
@@ -75,10 +74,8 @@ int World::getRoomByLocation(float x, float y, float z)
     }
 
     // Room is -1?  Must be in void, try to hop to room with same X,Z
-    if (mFlags & fEnableHopping)
-        return hop;
-
-    return -1;
+    return hop;
+    //return -1;
 }
 
 
@@ -265,19 +262,6 @@ std::vector<room_mesh_t *> *World::getRooms()
     return &mRooms;
 }
 #endif
-
-
-void World::setFlag(WorldFlag flag)
-{
-    mFlags |= flag;
-}
-
-
-
-void World::clearFlag(WorldFlag flag)
-{
-    mFlags &= ~flag;
-}
 
 
 void World::destroy()

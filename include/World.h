@@ -26,10 +26,6 @@
 class World {
 public:
 
-    enum WorldFlag {
-        fEnableHopping = (1 << 0)
-    };
-
     /*!
      * \brief Constructs an object of World
      */
@@ -120,18 +116,6 @@ public:
 #endif
 
     /*!
-     * \brief Set an option flag
-     * \param flag flag to set
-     */
-    void setFlag(WorldFlag flag);
-
-    /*!
-     * \brief Clear an option flag
-     * \param flag flag to clear
-     */
-    void clearFlag(WorldFlag flag);
-
-    /*!
      * \brief Clears all data in world
      * \todo in future will check if data is in use before clearing
      */
@@ -176,8 +160,6 @@ public:
     void moveEntity(entity_t *e, char movement);
 
 private:
-
-    unsigned int mFlags;                     //!< World flags
 
     std::vector<entity_t *> mEntities;       //!< World entities
     std::vector<room_mesh_t *> mRooms;       //!< Map data and meshes

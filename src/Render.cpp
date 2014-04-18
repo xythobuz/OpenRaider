@@ -165,8 +165,6 @@ int Render::initTextures(char *textureDir) {
 
 void Render::ClearWorld()
 {
-    getGame().mLara = NULL;
-
     mRoomRenderList.clear();
 
     for (unsigned int i = 0; i < mRooms.size(); i++) {
@@ -492,7 +490,7 @@ void Render::display()
     // Let's see the LoS -- should be event controled
     if (getGame().mLara)
     {
-        //      SkeletalModel *mdl = (SkeletalModel *)getGame().mLara->tmpHook;
+        // SkeletalModel *mdl = (SkeletalModel *)getGame().mLara->tmpHook;
 
         // Draw in solid colors
         glDisable(GL_TEXTURE_2D);
@@ -586,7 +584,7 @@ void Render::display()
             if (!isVisible(e->pos[0], e->pos[1], e->pos[2], 512.0f))
                 continue;
 
-            // Is it in a room we're rendering?
+            //! \fixme Is it in a room we're rendering?
             //if (mRoomRenderList[e->room] == 0x0)
             //{
             //  continue;

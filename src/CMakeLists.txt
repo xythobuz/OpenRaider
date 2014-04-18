@@ -32,6 +32,7 @@ set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
 
 # Set Source files
 set (SRCS ${SRCS} "Camera.cpp")
+set (SRCS ${SRCS} "Command.cpp")
 set (SRCS ${SRCS} "Console.cpp")
 set (SRCS ${SRCS} "Game.cpp")
 set (SRCS ${SRCS} "main.cpp")

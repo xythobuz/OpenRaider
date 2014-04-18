@@ -567,7 +567,10 @@ void WindowSDL::writeString(WindowString *s) {
         else
             textureFormat = GL_BGRA_EXT;
     } else {
-        textureFormat = GL_RGB;
+        if (surface->format->Rmask == 0x000000FF)
+            textureFormat = GL_RGB;
+        else
+            textureFormat = GL_BGR;
     }
 
     glBindTexture(GL_TEXTURE_2D, mFontTexture);

@@ -55,9 +55,6 @@ int Game::initialize() {
     mTextureStart = getRender().initTextures(getOpenRaider().mDataDir);
     getRender().setMode(Render::modeLoadScreen);
 
-    // Enable World Hopping
-    getWorld().setFlag(World::fEnableHopping);
-
     return 0;
 }
 
@@ -66,6 +63,7 @@ void Game::destroy() {
         delete [] mName;
 
     mLoaded = false;
+    mLara = NULL;
     getRender().setMode(Render::modeDisabled);
 
     getWorld().destroy();
