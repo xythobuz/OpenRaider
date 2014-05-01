@@ -7,6 +7,7 @@
 
 #include <assert.h>
 #include <dirent.h>
+#include <cctype>
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
