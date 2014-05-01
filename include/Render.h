@@ -11,7 +11,7 @@
 
 #include <vector>
 
-#include "Config.h"
+#include "config.h"
 #include "math/Matrix.h"
 #include "ViewVolume.h"
 #include "World.h"
