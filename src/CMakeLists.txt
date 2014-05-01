@@ -176,7 +176,7 @@ endif (APPLE)
 
 if (NOT APPLE)
     # Install binary
-    install (TARGET OpenRaider
+    install (TARGETS OpenRaider
         RUNTIME DESTINATION bin
     )
 endif (NOT APPLE)
