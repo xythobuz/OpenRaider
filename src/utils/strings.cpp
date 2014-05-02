@@ -31,9 +31,9 @@ char *stringRemoveQuotes(const char *s) {
 }
 
 char *stringReplace(const char *s, const char *search, const char *replace) {
-    char *tmp = strstr((char *)s, search);
+    const char *tmp = strstr(s, search);
     if (tmp == NULL)
-        return NULL;
+        return bufferString("%s", s);
     size_t offset = tmp - s;
 
     size_t length = strlen(s) - strlen(search) + strlen(replace);
@@ -49,13 +49,9 @@ char *stringReplace(const char *s, const char *search, const char *replace) {
     for (size_t i = (offset + strlen(search)); i < strlen(s); i++)
         buf[i + strlen(replace) - strlen(search)] = s[i];
 
-    tmp = stringReplace(buf, search, replace);
-    if (tmp == NULL)
-        return buf;
-    else {
-        delete [] buf;
-        return tmp;
-    }
+    char *ret = stringReplace(buf, search, replace);
+    delete [] buf;
+    return ret;
 }
 
 int readBool(const char *value, bool *var) {
