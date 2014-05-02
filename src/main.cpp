@@ -14,8 +14,17 @@
 #include "main.h"
 #include "utils/time.h"
 
+#ifdef USING_AL
 #include "SoundAL.h"
+#else
+#error No Sound Library selected!
+#endif
+
+#ifdef USING_SDL
 #include "WindowSDL.h"
+#else
+#error No Windowing Library selected!
+#endif
 
 Camera gCamera;
 Console gConsole;
@@ -25,8 +34,13 @@ OpenRaider gOpenRaider;
 Render gRender;
 World gWorld;
 
+#ifdef USING_AL
 SoundAL gSound;
+#endif
+
+#ifdef USING_SDL
 WindowSDL gWindow;
+#endif
 
 Camera &getCamera() {
     return gCamera;

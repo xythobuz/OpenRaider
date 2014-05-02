@@ -1,32 +1,40 @@
-# Add SDL2 Library
-find_package (SDL2)
-include_directories (SYSTEM ${SDL2_INCLUDE_DIR})
-set (LIBS ${LIBS} ${SDL2_LIBRARY})
-
-# Add SDL2_ttf Library
-find_package (SDL2TTF)
-include_directories (SYSTEM ${SDL2TTF_INCLUDE_DIR})
-set (LIBS ${LIBS} ${SDL2TTF_LIBRARY})
-
 # Add OpenGL Library
 find_package (OpenGL REQUIRED)
 include_directories (SYSTEM ${OPENGL_INCLUDE_DIRS})
 set (LIBS ${LIBS} ${OPENGL_LIBRARIES})
 
-# Add OpenAL Library
-find_package (OpenAL)
-include_directories (SYSTEM ${OPENAL_INCLUDE_DIRS})
-set (LIBS ${LIBS} ${OPENAL_LIBRARIES})
-
-# Add ALUT Library
-find_package (ALUT)
-include_directories (SYSTEM ${ALUT_INCLUDE_DIRS})
-set (LIBS ${LIBS} ${ALUT_LIBRARIES})
-
 # Add Z Library
 find_package (ZLIB REQUIRED)
 include_directories (SYSTEM ${ZLIB_INCLUDE_DIRS})
 set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
+
+# Add SDL2 Library
+find_package (SDL2)
+if (SDL2_FOUND)
+    include_directories (SYSTEM ${SDL2_INCLUDE_DIR})
+    set (LIBS ${LIBS} ${SDL2_LIBRARY})
+
+    # Add SDL2_ttf Library
+    find_package (SDL2TTF)
+    if (SDL2TTF_FOUND)
+        include_directories (SYSTEM ${SDL2TTF_INCLUDE_DIR})
+        set (LIBS ${LIBS} ${SDL2TTF_LIBRARY})
+    endif (SDL2TTF_FOUND)
+endif (SDL2_FOUND)
+
+# Add OpenAL Library
+find_package (OpenAL)
+if (OPENAL_FOUND)
+    include_directories (SYSTEM ${OPENAL_INCLUDE_DIRS})
+    set (LIBS ${LIBS} ${OPENAL_LIBRARIES})
+
+    # Add ALUT Library
+    find_package (ALUT)
+    if (ALUT_FOUND)
+        include_directories (SYSTEM ${ALUT_INCLUDE_DIRS})
+        set (LIBS ${LIBS} ${ALUT_LIBRARIES})
+    endif (ALUT_FOUND)
+endif (OPENAL_FOUND)
 
 #################################################################
 
@@ -51,6 +59,7 @@ set (SRCS ${SRCS} "World.cpp")
 # Select available Sound library
 if (OPENAL_FOUND AND ALUT_FOUND)
     set (SRCS ${SRCS} "SoundAL.cpp")
+    set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_AL")
 else (OPENAL_FOUND AND ALUT_FOUND)
     # Currently only OpenAL support
     message (FATAL_ERROR "OpenAL and ALUT are required!")
@@ -59,6 +68,7 @@ endif (OPENAL_FOUND AND ALUT_FOUND)
 # Select available Windowing library
 if (SDL2_FOUND AND SDL2TTF_FOUND)
     set (SRCS ${SRCS} "WindowSDL.cpp")
+    set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_SDL")
 else (SDL2_FOUND AND SDL2TTF_FOUND)
     # Currently only SDL2 support
     message (FATAL_ERROR "SDL2 and SDL2-TTF are required!")

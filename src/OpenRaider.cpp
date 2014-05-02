@@ -9,8 +9,6 @@
 #include <cstring>
 #include <assert.h>
 
-#include "WindowSDL.h"
-
 #include "config.h"
 #include "Console.h"
 #include "Game.h"
@@ -477,10 +475,6 @@ void OpenRaider::frame() {
 
     // Get keyboard and mouse input
     getWindow().eventHandling();
-
-    // Clear screen
-    glClearColor(0.00f, 0.00f, 0.00f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
 
     // Draw game scene
     getRender().display();
