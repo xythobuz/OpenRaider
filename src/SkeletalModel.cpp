@@ -6,6 +6,7 @@
  * \author xythobuz
  */
 
+#include <cstddef>
 #include "SkeletalModel.h"
 
 SkeletalModel::SkeletalModel() {

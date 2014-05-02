@@ -5,6 +5,7 @@
  * \author Mongoose
  */
 
+#include <cstdio>
 #include <math.h>
 #include <assert.h>
 

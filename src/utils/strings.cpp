@@ -11,7 +11,7 @@
 #include <string.h>
 #include <assert.h>
 
-#if defined(unix) || defined(__APPLE__)
+#if defined(unix) || defined(__APPLE__) || defined(__linux__)
 #include <wordexp.h>
 #endif
 
@@ -31,7 +31,7 @@ char *stringRemoveQuotes(const char *s) {
 }
 
 char *stringReplace(const char *s, const char *search, const char *replace) {
-    char *tmp = strstr(s, search);
+    char *tmp = strstr((char *)s, search);
     if (tmp == NULL)
         return NULL;
     size_t offset = tmp - s;
@@ -130,7 +130,7 @@ char *fullPath(const char *path, char end) {
     assert(path[0] != '\0');
 
     if (path[0] == '~') {
-#if defined(unix) || defined(__APPLE__)
+#if defined(unix) || defined(__APPLE__) || defined(__linux__)
 
 #ifdef __APPLE__
         // Workaround for Mac OS X. See:

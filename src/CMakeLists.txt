@@ -68,8 +68,8 @@ endif (SDL2_FOUND AND SDL2TTF_FOUND)
 
 # Configuration Header file
 configure_file (
-    "${PROJECT_SOURCE_DIR}/include/Config.h.in"
-    "${PROJECT_BINARY_DIR}/Config.h"
+    "${PROJECT_SOURCE_DIR}/include/config.h.in"
+    "${PROJECT_BINARY_DIR}/config.h"
 )
 
 #################################################################
@@ -177,7 +177,7 @@ endif (APPLE)
 
 if (NOT APPLE)
     # Install binary
-    install (TARGET OpenRaider
+    install (TARGETS OpenRaider
         RUNTIME DESTINATION bin
     )
 endif (NOT APPLE)
