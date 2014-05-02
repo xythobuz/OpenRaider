@@ -252,10 +252,9 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -999;
         }
         if (getGame().mLara) {
-            SkeletalModel *smdl = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
             skeletal_model_t *mdl = getWorld().getModel(atoi(args->at(0)));
-            if (smdl)
-                smdl->setModel(mdl);
+            if (getGame().mLara->tmpHook)
+                getGame().mLara->tmpHook->setModel(mdl);
         }
         //m_render.ViewModel(LARA, atoi(cmd));
     } else if (strcmp(command, "pos") == 0) {
@@ -455,7 +454,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
                 getConsole().print("Pass BOOL to pigtail command!");
                 return -46;
             }
-            SkeletalModel *tmp = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
+            SkeletalModel *tmp = getGame().mLara->tmpHook;
             tmp->model->pigtails = b;
             if (b) {
                 tmp->model->ponyOff -= 20;
@@ -475,7 +474,7 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -999;
         }
         if (args->size() > 3) {
-            SkeletalModel *tmp = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
+            SkeletalModel *tmp = getGame().mLara->tmpHook;
             tmp->model->ponytail[0] = (float)atof(args->at(0));
             tmp->model->ponytail[1] = (float)atof(args->at(1));
             tmp->model->ponytail[2] = (float)atof(args->at(2));

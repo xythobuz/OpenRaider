@@ -128,7 +128,7 @@ public:
     void addRoom(room_mesh_t *room);
 
     /*!
-     * \brief ADds mesh to world
+     * \brief Adds mesh to world
      * \param model mesh to add
      */
     void addMesh(model_mesh_t *model);

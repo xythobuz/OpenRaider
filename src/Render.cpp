@@ -490,7 +490,7 @@ void Render::display()
     // Let's see the LoS -- should be event controled
     if (getGame().mLara)
     {
-        // SkeletalModel *mdl = (SkeletalModel *)getGame().mLara->tmpHook;
+        // SkeletalModel *mdl = getGame().mLara->tmpHook;
 
         // Draw in solid colors
         glDisable(GL_TEXTURE_2D);
@@ -573,12 +573,8 @@ void Render::display()
             // Mongoose 2002.08.15, Nothing to draw, skip
             // Mongoose 2002.12.24, Some entities have no animation  =p
             if (e->tmpHook)
-            {
-                SkeletalModel *mdl = static_cast<SkeletalModel *>(e->tmpHook);
-
-                if (mdl->model->animation.empty())
+                if (e->tmpHook->model->animation.empty())
                     continue;
-            }
 
             // Is it in view volume? ( Hack to use sphere )
             if (!isVisible(e->pos[0], e->pos[1], e->pos[2], 512.0f))
@@ -608,7 +604,7 @@ void Render::display()
             glPushMatrix();
             glTranslatef(e->pos[0], e->pos[1], e->pos[2]);
             glRotatef(e->angles[1], 0, 1, 0);
-            drawModel(static_cast<SkeletalModel *>(e->tmpHook));
+            drawModel(e->tmpHook);
             glPopMatrix();
         }
     }
@@ -849,7 +845,7 @@ void Render::drawObjects()
     // Draw lara or other player model ( move to entity rendering method )
     if (mFlags & Render::fViewModel && getGame().mLara && getGame().mLara->tmpHook)
     {
-        SkeletalModel *mdl = static_cast<SkeletalModel *>(getGame().mLara->tmpHook);
+        SkeletalModel *mdl = getGame().mLara->tmpHook;
 
         if (mdl)
         {
@@ -890,7 +886,7 @@ void Render::drawObjects()
         glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
 #endif
 
-        drawModel(static_cast<SkeletalModel *>(getGame().mLara->tmpHook));
+        drawModel(getGame().mLara->tmpHook);
         glPopMatrix();
     }
 

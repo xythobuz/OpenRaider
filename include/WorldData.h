@@ -10,6 +10,7 @@
 #define _WORLDDATA_H_
 
 #include "math/math.h"
+#include "SkeletalModel.h"
 
 // Mirrors TombRaider class' room flags really
 typedef enum {
@@ -37,7 +38,7 @@ typedef struct {
     vertex_t vertex[4];
     texel_t texel[4];
     float pos[3];
-    float radius;       //!< \fixme yeah, I know
+    float radius;       //!< \fixme yeah, I know (I don't? --xythobuz)
     int texture;
 } sprite_t;
 
@@ -90,7 +91,7 @@ typedef struct entity_s {
     int objectId;            //!< What kind of entity?
 
     int modelId;             //!< Animation model
-    void *tmpHook;
+    SkeletalModel *tmpHook;
     bool animate;
 
     /*
