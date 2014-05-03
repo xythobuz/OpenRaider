@@ -1,15 +1,15 @@
 <map id="tr2_room_t" name="tr2_room_t">
-<area shape="rect" id="node2" href="$_tomb_raider_data_8h.html#structtr2__room__staticmesh__t" title="Room static mesh data. " alt="" coords="493,7,648,33"/>
-<area shape="rect" id="node3" href="$_tomb_raider_data_8h.html#structtr2__room__info__t" title="The &quot;header&quot; of a room. " alt="" coords="515,57,627,84"/>
-<area shape="rect" id="node4" href="$_tomb_raider_data_8h.html#structtr2__colour__t" title="Basic 24&#45;bit colour structure. " alt="" coords="211,133,301,160"/>
-<area shape="rect" id="node14" href="$_tomb_raider_data_8h.html#structtr4__room__light__t" title="tr4_room_light_t" alt="" coords="513,171,629,197"/>
-<area shape="rect" id="node5" href="$_tomb_raider_data_8h.html#structtr2__room__sector__t" title="Room sector structure. " alt="" coords="507,221,634,248"/>
-<area shape="rect" id="node6" href="$_tomb_raider_data_8h.html#structtr2__room__portal__t" title="Portal structure. " alt="" coords="345,241,469,268"/>
-<area shape="rect" id="node7" href="$_tomb_raider_data_8h.html#structtr2__vertex__t" title="Basic vertex structure. " alt="" coords="5,257,96,284"/>
-<area shape="rect" id="node11" href="$_tomb_raider_data_8h.html#structtr2__vertex__room__t" title="Room vertex structure. " alt="" coords="193,284,319,311"/>
-<area shape="rect" id="node8" href="$_tomb_raider_data_8h.html#structtr2__room__light__t" title="Room lighting structure. " alt="" coords="513,385,629,412"/>
-<area shape="rect" id="node9" href="$_tomb_raider_data_8h.html#structtr2__room__data__t" title="Room mesh structure. " alt="" coords="512,335,629,361"/>
-<area shape="rect" id="node10" href="$_tomb_raider_data_8h.html#structtr2__quad__t" title="A rectangular (quad) face definition. " alt="" coords="213,335,299,361"/>
-<area shape="rect" id="node12" href="$_tomb_raider_data_8h.html#structtr2__tri__t" title="A triangular face definition. " alt="" coords="223,385,289,412"/>
-<area shape="rect" id="node13" href="$_tomb_raider_data_8h.html#structtr2__room__sprite__t" title="Sprite structure. " alt="" coords="194,436,318,463"/>
+<area shape="rect" id="node2" href="$_tomb_raider_data_8h.html#structtr2__room__staticmesh__t" title="Room static mesh data. " alt="" coords="468,5,615,32"/>
+<area shape="rect" id="node3" href="$_tomb_raider_data_8h.html#structtr2__room__info__t" title="The &quot;header&quot; of a room. " alt="" coords="489,56,594,83"/>
+<area shape="rect" id="node4" href="$_tomb_raider_data_8h.html#structtr2__colour__t" title="Basic 24&#45;bit colour structure. " alt="" coords="201,132,285,159"/>
+<area shape="rect" id="node14" href="$_tomb_raider_data_8h.html#structtr4__room__light__t" title="tr4_room_light_t" alt="" coords="488,169,595,196"/>
+<area shape="rect" id="node5" href="$_tomb_raider_data_8h.html#structtr2__room__sector__t" title="Room sector structure. " alt="" coords="482,220,601,247"/>
+<area shape="rect" id="node6" href="$_tomb_raider_data_8h.html#structtr2__room__portal__t" title="Portal structure. " alt="" coords="327,240,444,267"/>
+<area shape="rect" id="node7" href="$_tomb_raider_data_8h.html#structtr2__vertex__t" title="Basic vertex structure. " alt="" coords="5,256,92,283"/>
+<area shape="rect" id="node11" href="$_tomb_raider_data_8h.html#structtr2__vertex__room__t" title="Room vertex structure. " alt="" coords="183,283,303,309"/>
+<area shape="rect" id="node8" href="$_tomb_raider_data_8h.html#structtr2__room__light__t" title="Room lighting structure. " alt="" coords="488,384,595,411"/>
+<area shape="rect" id="node9" href="$_tomb_raider_data_8h.html#structtr2__room__data__t" title="Room mesh structure. " alt="" coords="485,333,597,360"/>
+<area shape="rect" id="node10" href="$_tomb_raider_data_8h.html#structtr2__quad__t" title="A rectangular (quad) face definition. " alt="" coords="202,333,283,360"/>
+<area shape="rect" id="node12" href="$_tomb_raider_data_8h.html#structtr2__tri__t" title="A triangular face definition. " alt="" coords="213,384,273,411"/>
+<area shape="rect" id="node13" href="$_tomb_raider_data_8h.html#structtr2__room__sprite__t" title="Sprite structure. " alt="" coords="185,435,301,461"/>
 </map>

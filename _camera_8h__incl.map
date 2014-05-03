@@ -1,6 +1,6 @@
 <map id="include/Camera.h" name="include/Camera.h">
-<area shape="rect" id="node2" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="5,229,99,256"/>
-<area shape="rect" id="node3" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="50,80,152,107"/>
-<area shape="rect" id="node4" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="185,155,313,181"/>
-<area shape="rect" id="node5" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="42,155,160,181"/>
+<area shape="rect" id="node2" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="5,229,97,256"/>
+<area shape="rect" id="node3" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="50,80,149,107"/>
+<area shape="rect" id="node4" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="180,155,307,181"/>
+<area shape="rect" id="node5" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="43,155,156,181"/>
 </map>

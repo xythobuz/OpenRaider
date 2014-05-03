@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['t',['t',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa0247320c476fffeaa81ffa7836e08dee',1,'global.h']]],
-  ['tab',['tab',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa66b91b0b0280859344702c8957170a7a',1,'global.h']]],
+  ['tabkey',['tabKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa9145d44347f353e204c1a933f48a4c13',1,'global.h']]],
   ['tga_5ftype_5f_5fcolor',['TGA_TYPE__COLOR',['../tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a355b39379657c22d08350671dfc8edec',1,'tga.h']]],
   ['tga_5ftype_5f_5fcolor_5frle',['TGA_TYPE__COLOR_RLE',['../tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a156fe86edaa5eb5b17f9278b2dff3431',1,'tga.h']]],
   ['tga_5ftype_5f_5fgreyscale',['TGA_TYPE__GREYSCALE',['../tga_8h.html#aa10934a8bc956c001867a8f3afe71b83a443ecaac7156e3364b2499dc7adc6ac9',1,'tga.h']]],
@@ -17,7 +16,8 @@ var searchData=
   ['thorhammerhandlestate_5fmoving2',['ThorHammerHandleState_Moving2',['../_tomb_raider1_8h.html#a41de3144077c5b246c0766d29bd2ef8cae499673b9b6832d526cb569401913e07',1,'TombRaider1']]],
   ['thorhammerhandlestate_5fstationary',['ThorHammerHandleState_Stationary',['../_tomb_raider1_8h.html#a41de3144077c5b246c0766d29bd2ef8caf715198b0be5e847a675ceea86977f9f',1,'TombRaider1']]],
   ['thorhammerhandlestate_5fstopped',['ThorHammerHandleState_Stopped',['../_tomb_raider1_8h.html#a41de3144077c5b246c0766d29bd2ef8caa1f76f5710126394edd643c408cdb5e9',1,'TombRaider1']]],
-  ['three',['three',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aad2d7fc92ccd07030eaa53897b6c90b57',1,'global.h']]],
+  ['threekey',['threeKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa147bade4351d0c0ec239e353cce207d7',1,'global.h']]],
+  ['tkey',['tKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa8f8345390b3dcf0b5843dbe3cc26c0f',1,'global.h']]],
   ['tombraiderface_5falpha',['tombraiderFace_Alpha',['../_tomb_raider_data_8h.html#a369d64e0f9693e2fd0ed9494f4b7da99a3d86385ac512869e6874951b0341cff1',1,'TombRaiderData.h']]],
   ['tombraiderface_5fcolored',['tombraiderFace_Colored',['../_tomb_raider_data_8h.html#a369d64e0f9693e2fd0ed9494f4b7da99a2943980fac9b3fc2b8ef33ad91287ed3',1,'TombRaiderData.h']]],
   ['tombraiderface_5fpartialalpha',['tombraiderFace_PartialAlpha',['../_tomb_raider_data_8h.html#a369d64e0f9693e2fd0ed9494f4b7da99a745e2e3dfebc8872ed9ecbd0fc6a668a',1,'TombRaiderData.h']]],
@@ -60,7 +60,7 @@ var searchData=
   ['tr_5fversion_5funknown',['TR_VERSION_UNKNOWN',['../_tomb_raider_data_8h.html#aa6a59fe91f5d6bbea4d57dd409b599ccad871133a03ad5421801167f193e32501',1,'TombRaiderData.h']]],
   ['trapdoor1',['Trapdoor1',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea4f042543423ac1fed0bbfe0d83794f53',1,'TombRaider1']]],
   ['trapdoor2',['Trapdoor2',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea89a0f57f374407519073958a22abb278',1,'TombRaider1']]],
-  ['two',['two',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aac53cac5d8c690a430b8e873887fa2c26',1,'global.h']]],
+  ['twokey',['twoKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa99b3622adf16ce9cd812c684b45a98b7',1,'global.h']]],
   ['typedirectional',['typeDirectional',['../_render_8h.html#a661d9480e01af8b1612860b9630ef5f8a418968f46d17af2212f5caae2200e34c',1,'Light']]],
   ['typepoint',['typePoint',['../_render_8h.html#a661d9480e01af8b1612860b9630ef5f8aaa020c0804868a8cbd973b351ec22d5b',1,'Light']]],
   ['typespot',['typeSpot',['../_render_8h.html#a661d9480e01af8b1612860b9630ef5f8a17f434198fffe568aea6a10cf96b8de5',1,'Light']]],

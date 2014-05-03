@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['name',['Name',['../class_emitter.html#a39612464ef82815d77b8bde93dff0e49',1,'Emitter']]],
   ['newroomrenderlist',['newRoomRenderList',['../class_render.html#a6e22a8cff8ef993db48cc79ed602ac5e',1,'Render']]],
   ['nextpower',['nextPower',['../class_texture.html#a37d3df01b882afc40482b695c09e916e',1,'Texture']]],
   ['normalize',['normalize',['../class_quaternion.html#a48e6bafb249c895ed25f29dc9170e11e',1,'Quaternion::normalize()'],['../class_vector3d.html#a3b031247cf3fba0d1370359702e97bd8',1,'Vector3d::normalize()']]],

@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['b',['b',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa06b03e4cd5c7c464c513a95a7fcf9bf',1,'global.h']]],
-  ['backquote',['backquote',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa1320906c2dee3c405463d781d9bc1386',1,'global.h']]],
-  ['backslash',['backslash',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa4d566778b8688f98494227cc373ea3ed',1,'global.h']]],
-  ['backspace',['backspace',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa29d499199786909fc338aa05ceb840ef',1,'global.h']]],
+  ['backquotekey',['backquoteKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aad3685a75a9213de7ae0513d809579105',1,'global.h']]],
+  ['backslashkey',['backslashKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaacfc4d1769365da63be6cc6efd31dd59',1,'global.h']]],
+  ['backspacekey',['backspaceKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa0596d2194d493d2a599fc65a0680ba2a',1,'global.h']]],
   ['backwardaction',['backwardAction',['../global_8h.html#a8657944732f2ddabce60de26e809df8ca59704c9c26b81f81e0ca8a6f2c28b5f7',1,'global.h']]],
   ['bat',['Bat',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eae0be2c2b9872896eef24ac36f56ecd37',1,'TombRaider1']]],
   ['batstate_5fbiting',['BatState_Biting',['../_tomb_raider1_8h.html#a8640dc347bd2141f87f16a7f77b44184acc4205843cb4c746f8b11ce4eefa11d9',1,'TombRaider1']]],
@@ -22,6 +21,7 @@ var searchData=
   ['bearstate_5fstanding',['BearState_Standing',['../_tomb_raider1_8h.html#a15ac7550534c331047d66da1426b54c2a76e7c02bfe2b56a0e1b842a70fa415ee',1,'TombRaider1']]],
   ['bearstate_5fwalking',['BearState_Walking',['../_tomb_raider1_8h.html#a15ac7550534c331047d66da1426b54c2ab61c52a323b1da0838d0c7a2193672d2',1,'TombRaider1']]],
   ['bearstate_5fwalkinghind',['BearState_WalkingHind',['../_tomb_raider1_8h.html#a15ac7550534c331047d66da1426b54c2a7e3191eafa2165af191535184b051b09',1,'TombRaider1']]],
+  ['bkey',['bKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aab123352b9e69101eef7c282c69d9dca4',1,'global.h']]],
   ['bottomside',['bottomSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa652d0bb9e7f48692c8460139f6efde5c',1,'ViewVolume']]],
   ['boulder',['Boulder',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea4cfb5a75d875474e28b0e99b4669ca66',1,'TombRaider1']]],
   ['boulderstate_5frolling',['BoulderState_Rolling',['../_tomb_raider1_8h.html#a62a69397ce669c902a2c69fabfe1a2baa517f6c554812795d92134c79600a1985',1,'TombRaider1']]],

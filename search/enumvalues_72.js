@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['r',['r',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa1381d2948406a6e29d37e72937824957',1,'global.h']]],
   ['raptor',['Raptor',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea1344ee9d2a044212f1b229ae211b3c1f',1,'TombRaider1']]],
   ['raptorstate_5fbellowing',['RaptorState_Bellowing',['../_tomb_raider1_8h.html#a84ab3cb3f3a2357bb1ba6b8583cfc6d6a5a159ad784217db6d77532395312479e',1,'TombRaider1']]],
   ['raptorstate_5fbiting',['RaptorState_Biting',['../_tomb_raider1_8h.html#a84ab3cb3f3a2357bb1ba6b8583cfc6d6a4600e7e67eafc77b0f8e2bb7b430e5d5',1,'TombRaider1']]],
@@ -12,15 +11,17 @@ var searchData=
   ['raptorstate_5fwalking',['RaptorState_Walking',['../_tomb_raider1_8h.html#a84ab3cb3f3a2357bb1ba6b8583cfc6d6a34479db689383405bfd3ab79eb7b0bed',1,'TombRaider1']]],
   ['rgb',['RGB',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496af7d1af8e5f3b864a48c081ca85112240',1,'Texture']]],
   ['rgba',['RGBA',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496a6a2e558c55ef02327963bae8c0938256',1,'Texture']]],
-  ['right',['right',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaf763d610923b0c4614e8ecd65212666a',1,'global.h']]],
   ['rightaction',['rightAction',['../global_8h.html#a8657944732f2ddabce60de26e809df8ca4457119b95f676c88c8cad01164ee2a5',1,'global.h']]],
-  ['rightalt',['rightalt',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aac377b4b37515c504a92570522e7df05f',1,'global.h']]],
-  ['rightbracket',['rightbracket',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaf1382bdc94891ae7c969975112db00f8',1,'global.h']]],
-  ['rightctrl',['rightctrl',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa374a97e77ac1fb28e7f73a2780d494bf',1,'global.h']]],
-  ['rightgui',['rightgui',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa2b50498651b8b2631057748e7cf2b569',1,'global.h']]],
-  ['rightmouse',['rightmouse',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa6b7c18a71df53caed3e4a311963839a5',1,'global.h']]],
-  ['rightshift',['rightshift',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa507f7b1acd7d0d7bfa6abd2c0275c6d3',1,'global.h']]],
+  ['rightaltkey',['rightaltKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa9cfaa80efc61f099f24279b085466152',1,'global.h']]],
+  ['rightbracketkey',['rightbracketKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aad64886a5b74291cdd8602da2896380c7',1,'global.h']]],
+  ['rightctrlkey',['rightctrlKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa7aeb6f83f6104a6107383de60bec2a30',1,'global.h']]],
+  ['rightguikey',['rightguiKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa3c9681753650e858e2422bfcb8a8b677',1,'global.h']]],
+  ['rightkey',['rightKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa250e2fa80c1f321d2f0e0e86eb30ac73',1,'global.h']]],
+  ['rightmousekey',['rightmouseKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa4e246ffb19964d73ab3c3776349c0616',1,'global.h']]],
+  ['rightshiftkey',['rightshiftKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aac9a7f4c9c0167519fa39a6473e7b8ba3',1,'global.h']]],
   ['rightside',['rightSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa13d7562aae131d95dd43be32c9c3db5a',1,'ViewVolume']]],
+  ['rkey',['rKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa44c331191b11fd60a9d4593748c550b4',1,'global.h']]],
   ['roomflag_5funderwater',['roomFlag_underWater',['../_world_data_8h.html#af4109bf4a2d7b1e665058dd8baa2765ca9ecdb089eb1c74ef2fad80553b5c7b63',1,'WorldData.h']]],
+  ['roomflagunderwater',['RoomFlagUnderWater',['../_room_8h.html#a321a4a7d36780d581a98f58365e538eda0ed2504f22f3a66b0727dd2efa487bcc',1,'Room.h']]],
   ['roommesh',['roomMesh',['../class_render.html#abc9be40e4be3e1b64792ce4c03b751c8acecc97ab27a6d207bcb9a50429e401ec',1,'Render']]]
 ];

@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['p',['p',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa188032b3e6837794e08d485d4426f1bb',1,'global.h']]],
-  ['pagedown',['pagedown',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa8928ceda1c6e73a8e32db8525f41fa66',1,'global.h']]],
-  ['pageup',['pageup',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa6e96037429b867c2f0dc2fa2e97c807f',1,'global.h']]],
+  ['pagedownkey',['pagedownKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaf0c48968162ff460bfb338b442c708cf',1,'global.h']]],
+  ['pageupkey',['pageupKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa9fac70666e6f1658678006886e3a3a7b',1,'global.h']]],
   ['panther',['Panther',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea8403f88d2c8848373f391db57492cd5a',1,'TombRaider1']]],
   ['passportclosed',['PassportClosed',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaf24267a1dca2d01c7df93a8f1252120a',1,'TombRaider1']]],
   ['passportopen',['PassportOpen',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea2b59baf409e7cf872086c0de49cfd6c0',1,'TombRaider1']]],
-  ['pause',['pause',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa5194bb80bcb44b904d0d1d7c671771bf',1,'global.h']]],
+  ['pausekey',['pauseKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa4ab4f78581106c95abbc8879370bd9d7',1,'global.h']]],
   ['pickup1',['Pickup1',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaa99d9af8edd2a7d635752453e967a2f5',1,'TombRaider1']]],
   ['pierre',['Pierre',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea9bda1ab40ecd060f4a3c420d331f27ed',1,'TombRaider1']]],
   ['pierrestate_5faiming',['PierreState_Aiming',['../_tomb_raider1_8h.html#aaeeb9c6dbe976c3624bf8dcde5b19ed7a5e671eed2911a04f3c40c93ead9e061f',1,'TombRaider1']]],
@@ -19,6 +18,7 @@ var searchData=
   ['pistol',['Pistol',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea3bc4966dec441e41b865d243c305c6d1',1,'TombRaider1']]],
   ['pistolammo',['PistolAmmo',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eaf846efb2e6958ee723bceffe218b5245',1,'TombRaider1']]],
   ['pistolanimation',['PistolAnimation',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea73402f9cefb85815ae0c117c00f2682e',1,'TombRaider1']]],
+  ['pkey',['pKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa179c793e91c179734f6fe630f7ca29cc',1,'global.h']]],
   ['planea',['planeA',['../class_view_volume.html#a44bc871ab36caad03c457e96e98676f1ad490268ef61bb7e4fa87469b2b5801a5',1,'ViewVolume']]],
   ['planeb',['planeB',['../class_view_volume.html#a44bc871ab36caad03c457e96e98676f1ace945ad85f840050479018e6e816eb36',1,'ViewVolume']]],
   ['planec',['planeC',['../class_view_volume.html#a44bc871ab36caad03c457e96e98676f1a391c78964cdc631a2169891ed054defd',1,'ViewVolume']]],

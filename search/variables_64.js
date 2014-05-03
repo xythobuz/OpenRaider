@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['d',['d',['../_world_data_8h.html#a7f66803533a81d7b90416cf11e4129a0',1,'box_t']]],
+  ['d',['d',['../class_box.html#a4f2d202c36d732922142e983514044a8',1,'Box::d()'],['../_world_data_8h.html#a7f66803533a81d7b90416cf11e4129a0',1,'box_t::d()']]],
   ['data',['data',['../_tomb_raider_data_8h.html#a1ab9a481f5912b237106d95755191426',1,'tr2_room_t']]],
   ['desc_5fflags',['desc_flags',['../tga_8h.html#a712a92c2a1d01d3ba881216b7ea8cebc',1,'tga_t']]],
   ['dim_5fwhite',['DIM_WHITE',['../global_8h.html#a0ab9b7f311d31ce860c3e4872c683382',1,'global.h']]],

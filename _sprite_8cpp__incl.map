@@ -1,0 +1,26 @@
+<map id="src/Sprite.cpp" name="src/Sprite.cpp">
+<area shape="rect" id="node4" href="$main_8h.html" title="Service locator. " alt="" coords="1148,80,1207,107"/>
+<area shape="rect" id="node25" href="$_sprite_8h.html" title="World Sprite. " alt="" coords="485,528,549,555"/>
+<area shape="rect" id="node5" href="$_camera_8h.html" title="Camera class. " alt="" coords="222,379,301,405"/>
+<area shape="rect" id="node10" href="$_console_8h.html" title="Console &#39;overlay&#39;. " alt="" coords="1221,229,1299,256"/>
+<area shape="rect" id="node13" href="$_window_8h.html" title="Windowing interface. " alt="" coords="1438,304,1517,331"/>
+<area shape="rect" id="node16" href="$_game_8h.html" title="Game abstraction. " alt="" coords="1025,229,1093,256"/>
+<area shape="rect" id="node17" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="661,304,734,331"/>
+<area shape="rect" id="node20" href="$_world_8h.html" title="The game world (model) " alt="" coords="804,379,868,405"/>
+<area shape="rect" id="node33" href="$_menu_8h.html" title="Menu &#39;overlay&#39;. " alt="" coords="1569,229,1633,256"/>
+<area shape="rect" id="node34" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="1311,155,1414,181"/>
+<area shape="rect" id="node35" href="$_sound_8h.html" title="This is the audio manager Header. " alt="" coords="1476,229,1545,256"/>
+<area shape="rect" id="node6" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="358,603,450,629"/>
+<area shape="rect" id="node7" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="245,453,344,480"/>
+<area shape="rect" id="node8" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="145,528,271,555"/>
+<area shape="rect" id="node9" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="347,528,461,555"/>
+<area shape="rect" id="node15" href="$global_8h.html" title="Global typedefs. " alt="" coords="1375,379,1441,405"/>
+<area shape="rect" id="node30" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="964,304,1065,331"/>
+<area shape="rect" id="node19" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="389,379,491,405"/>
+<area shape="rect" id="node22" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="817,528,927,555"/>
+<area shape="rect" id="node27" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="5,528,69,555"/>
+<area shape="rect" id="node28" href="$_texture_8h.html" title="Texture registry. " alt="" coords="567,379,641,405"/>
+<area shape="rect" id="node23" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="591,453,657,480"/>
+<area shape="rect" id="node26" href="$_world_data_8h.html" title="Structs and enums for the game world (model) " alt="" coords="732,453,825,480"/>
+<area shape="rect" id="node32" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="943,379,1073,405"/>
+</map>

@@ -1,14 +1,12 @@
 var searchData=
 [
-  ['name',['name',['../_world_data_8h.html#ae7fc2798845419be2f2a7f6b2e8388b3',1,'actor_entity_t']]],
   ['negative_5flength',['negative_length',['../_tomb_raider_data_8h.html#ad6fe1bf44b6740ac2704e3136b305248',1,'tr2_sprite_sequence_t']]],
   ['next_5fanimation',['next_animation',['../_tomb_raider_data_8h.html#a596b930cca2fd9ff500180f7632f0503',1,'tr2_animation_t::next_animation()'],['../_tomb_raider_data_8h.html#a9312bfe2f9ea6e77b16e3cc3fd18848f',1,'tr4_animation_t::next_animation()'],['../_tomb_raider_data_8h.html#adde48da26fa368edc86b5e4d9755684d',1,'tr2_anim_dispatch_t::next_animation()']]],
   ['next_5fframe',['next_frame',['../_tomb_raider_data_8h.html#a3b4d2343fdb03d266a29746f48542186',1,'tr2_animation_t::next_frame()'],['../_tomb_raider_data_8h.html#a6e3fb65fcfa203bd59fb0ddcc0d4f5d6',1,'tr4_animation_t::next_frame()'],['../_tomb_raider_data_8h.html#a57950fb9f012e690150fd6937d641937',1,'tr2_anim_dispatch_t::next_frame()']]],
   ['next_5fpurple',['NEXT_PURPLE',['../global_8h.html#a0986bed04aff1dced11ed5bcbbd95777',1,'global.h']]],
   ['nextanimation',['NextAnimation',['../_tomb_raider_data_8h.html#a9f4a14d740c8ac1983864d5c5695bd6b',1,'tr5_animation_t']]],
   ['nextframe',['NextFrame',['../_tomb_raider_data_8h.html#a20c8ae792e985e812b476f56d3ff622c',1,'tr5_animation_t']]],
-  ['nextstate',['nextState',['../_world_data_8h.html#af1ea313998296483fbd19e5c61e70e82',1,'actor_entity_t']]],
-  ['normal',['normal',['../_tomb_raider_data_8h.html#abe427c02b9a0c58ab82674ff3c227209',1,'tr2_room_portal_t::normal()'],['../_world_data_8h.html#a5e21b231041bb3d32b88056831a3f24b',1,'portal_t::normal()']]],
+  ['normal',['normal',['../class_portal.html#adfbea614b080a9b5f014aa97fa852439',1,'Portal::normal()'],['../_tomb_raider_data_8h.html#abe427c02b9a0c58ab82674ff3c227209',1,'tr2_room_portal_t::normal()'],['../_world_data_8h.html#a5e21b231041bb3d32b88056831a3f24b',1,'portal_t::normal()']]],
   ['normalcount',['normalCount',['../_world_data_8h.html#a52b805f52f8022e6ae6324f8dd3673c5',1,'model_mesh_t']]],
   ['normals',['normals',['../_tomb_raider_data_8h.html#a1d1af93bd3959f0d9570f70cd5fb8271',1,'tr2_mesh_t::normals()'],['../_tomb_raider_data_8h.html#ae7faccab60c84095af01c9ac38193d83',1,'tr5_mesh_t::normals()'],['../_world_data_8h.html#afe09cd88b8c432ccb1960285cacccb9d',1,'model_mesh_t::normals()']]],
   ['num_5falpha_5fquads',['num_alpha_quads',['../class_mesh.html#a7565d275971ed6f1003dd6479881a20e',1,'Mesh::rect_t']]],
@@ -60,8 +58,9 @@ var searchData=
   ['numtexturedtriangles',['numTexturedTriangles',['../_tomb_raider_data_8h.html#a7862a4a3ede3966885cdd7fb3a3a34ab',1,'tr5_mesh_t']]],
   ['numtotalroomlights',['numTotalRoomLights',['../_tomb_raider_data_8h.html#a44157b7e041a6fc9f115528bf52d4456',1,'tr5_room_t']]],
   ['numvertices',['numVertices',['../_tomb_raider_data_8h.html#a062092e92939ae0d98f7e23b2a371cbd',1,'tr5_mesh_t']]],
-  ['numxsectors',['numXSectors',['../_tomb_raider_data_8h.html#ada54665c8d220dad822c0fb447cc005d',1,'tr5_room_t::numXSectors()'],['../_world_data_8h.html#a9ef808ddcda454e4a3484fcd577504a1',1,'room_mesh_t::numXSectors()']]],
-  ['numzsectors',['numZSectors',['../_tomb_raider_data_8h.html#a47954ebc2c63f15ba45d34b140787409',1,'tr5_room_t::numZSectors()'],['../_world_data_8h.html#ae5ee8aba27434a1c69a3fab8425d1343',1,'room_mesh_t::numZSectors()']]],
+  ['numverts',['numVerts',['../class_sprite.html#a70cd383a5289f6ae2ca30cfcfb76592d',1,'Sprite']]],
+  ['numxsectors',['numXSectors',['../class_room.html#afaadb7abe80eca40c51f9b525a2e7a64',1,'Room::numXSectors()'],['../_tomb_raider_data_8h.html#ada54665c8d220dad822c0fb447cc005d',1,'tr5_room_t::numXSectors()'],['../_world_data_8h.html#a9ef808ddcda454e4a3484fcd577504a1',1,'room_mesh_t::numXSectors()']]],
+  ['numzsectors',['numZSectors',['../class_room.html#a5e912c89ef7d5cb337c2cdad0814c3dd',1,'Room::numZSectors()'],['../_tomb_raider_data_8h.html#a47954ebc2c63f15ba45d34b140787409',1,'tr5_room_t::numZSectors()'],['../_world_data_8h.html#ae5ee8aba27434a1c69a3fab8425d1343',1,'room_mesh_t::numZSectors()']]],
   ['nx',['nx',['../_tomb_raider_data_8h.html#a0eecb07ecf8d2c14d9f0ee7442e45b36',1,'tr5_vertex_t']]],
   ['ny',['ny',['../_tomb_raider_data_8h.html#a249c838472d56c35b085818058f6ecbb',1,'tr5_vertex_t']]],
   ['nz',['nz',['../_tomb_raider_data_8h.html#a2f4c6ee4929505a65ad770b1b0bb04f0',1,'tr5_vertex_t']]]

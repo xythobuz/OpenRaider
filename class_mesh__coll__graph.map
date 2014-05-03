@@ -1,4 +1,4 @@
 <map id="Mesh" name="Mesh">
-<area shape="rect" id="node2" href="$class_mesh.html#struct_mesh_1_1tris__t" title="Mesh::tris_t" alt="" coords="5,5,96,32"/>
-<area shape="rect" id="node3" href="$class_mesh.html#struct_mesh_1_1rect__t" title="Mesh::rect_t" alt="" coords="121,5,215,32"/>
+<area shape="rect" id="node2" href="$class_mesh.html#struct_mesh_1_1tris__t" title="Mesh::tris_t" alt="" coords="5,5,91,32"/>
+<area shape="rect" id="node3" href="$class_mesh.html#struct_mesh_1_1rect__t" title="Mesh::rect_t" alt="" coords="115,5,205,32"/>
 </map>

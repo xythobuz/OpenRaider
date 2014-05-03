@@ -1,12 +1,12 @@
 <map id="tr5_room_t" name="tr5_room_t">
-<area shape="rect" id="node2" href="$_tomb_raider_data_8h.html#structtr2__room__staticmesh__t" title="Room static mesh data. " alt="" coords="192,5,347,32"/>
-<area shape="rect" id="node3" href="$_tomb_raider_data_8h.html#structtr5__vertex__t" title="TR5 Vertex (28 bytes) " alt="" coords="5,71,96,97"/>
-<area shape="rect" id="node8" href="$_tomb_raider_data_8h.html#structtr5__room__geometry__t" title="This is to help store and manage TR5 layer based polgons for rooms. " alt="" coords="196,128,343,155"/>
-<area shape="rect" id="node4" href="$_tomb_raider_data_8h.html#structtr5__room__layer__t" title="TR5 Room Layer (56 bytes) " alt="" coords="210,179,329,205"/>
-<area shape="rect" id="node5" href="$_tomb_raider_data_8h.html#structtr2__room__portal__t" title="Portal structure. " alt="" coords="207,229,331,256"/>
-<area shape="rect" id="node6" href="$_tomb_raider_data_8h.html#structtr2__vertex__t" title="Basic vertex structure. " alt="" coords="5,245,96,272"/>
-<area shape="rect" id="node7" href="$_tomb_raider_data_8h.html#structtr2__room__sector__t" title="Room sector structure. " alt="" coords="206,280,333,307"/>
-<area shape="rect" id="node9" href="$_tomb_raider_data_8h.html#structtr5__face4__t" title="TR5 Quad (12 bytes) " alt="" coords="7,136,94,163"/>
-<area shape="rect" id="node10" href="$_tomb_raider_data_8h.html#structtr5__face3__t" title="TR5 triangular face (10 bytes) " alt="" coords="7,187,94,213"/>
-<area shape="rect" id="node11" href="$_tomb_raider_data_8h.html#structtr5__light__t" title="TR5 light (88 bytes) " alt="" coords="229,331,309,357"/>
+<area shape="rect" id="node2" href="$_tomb_raider_data_8h.html#structtr2__room__staticmesh__t" title="Room static mesh data. " alt="" coords="183,5,329,32"/>
+<area shape="rect" id="node3" href="$_tomb_raider_data_8h.html#structtr5__vertex__t" title="TR5 Vertex (28 bytes) " alt="" coords="5,71,92,97"/>
+<area shape="rect" id="node8" href="$_tomb_raider_data_8h.html#structtr5__room__geometry__t" title="This is to help store and manage TR5 layer based polgons for rooms. " alt="" coords="187,128,325,155"/>
+<area shape="rect" id="node4" href="$_tomb_raider_data_8h.html#structtr5__room__layer__t" title="TR5 Room Layer (56 bytes) " alt="" coords="199,179,313,205"/>
+<area shape="rect" id="node5" href="$_tomb_raider_data_8h.html#structtr2__room__portal__t" title="Portal structure. " alt="" coords="197,229,315,256"/>
+<area shape="rect" id="node6" href="$_tomb_raider_data_8h.html#structtr2__vertex__t" title="Basic vertex structure. " alt="" coords="5,245,92,272"/>
+<area shape="rect" id="node7" href="$_tomb_raider_data_8h.html#structtr2__room__sector__t" title="Room sector structure. " alt="" coords="197,280,315,307"/>
+<area shape="rect" id="node9" href="$_tomb_raider_data_8h.html#structtr5__face4__t" title="TR5 Quad (12 bytes) " alt="" coords="7,136,90,163"/>
+<area shape="rect" id="node10" href="$_tomb_raider_data_8h.html#structtr5__face3__t" title="TR5 triangular face (10 bytes) " alt="" coords="7,187,90,213"/>
+<area shape="rect" id="node11" href="$_tomb_raider_data_8h.html#structtr5__light__t" title="TR5 light (88 bytes) " alt="" coords="219,331,293,357"/>
 </map>

@@ -96,7 +96,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><a class="el" href="class_console.html" title="Console &#39;overlay&#39;. ">Console</a> 'overlay'.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;GL/gl.h&gt;</code><br/>
-<code>#include &lt;GL/glu.h&gt;</code><br/>
 <code>#include &quot;config.h&quot;</code><br/>
 <code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_console_8h_source.html">Console.h</a>&quot;</code><br/>
@@ -135,7 +134,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_console_8cpp_source.html#l00023">23</a> of file <a class="el" href="_console_8cpp_source.html">Console.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_console_8cpp_source.html#l00021">21</a> of file <a class="el" href="_console_8cpp_source.html">Console.cpp</a>.</p>
 
 </div>
 </div>
@@ -153,8 +152,8 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> firstLine = 35; \</div>
-<div class="line">        unsigned <span class="keywordtype">int</span> lastLine = (window-&gt;mHeight / 2) - 55; \</div>
-<div class="line">        unsigned <span class="keywordtype">int</span> inputLine = (window-&gt;mHeight / 2) - 30; \</div>
+<div class="line">        unsigned <span class="keywordtype">int</span> lastLine = (window.mHeight / 2) - 55; \</div>
+<div class="line">        unsigned <span class="keywordtype">int</span> inputLine = (window.mHeight / 2) - 30; \</div>
 <div class="line">        unsigned <span class="keywordtype">int</span> lineSteps = 20; \</div>
 <div class="line">        unsigned <span class="keywordtype">int</span> lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \</div>
 <div class="line">        while (((lineCount * lineSteps) + firstLine) &lt; inputLine) { \</div>

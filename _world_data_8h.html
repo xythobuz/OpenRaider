@@ -97,10 +97,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Structs and enums for the game world (model)  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="math_8h_source.html">math/math.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_skeletal_model_8h_source.html">SkeletalModel.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for WorldData.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_world_data_8h__incl.svg" width="151" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_world_data_8h__incl.svg" width="206" height="188"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -138,10 +139,6 @@ Classes</h2></td></tr>
 <tr class="separator:structsector__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structroom__mesh__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_data_8h.html#structroom__mesh__t">room_mesh_t</a></td></tr>
 <tr class="separator:structroom__mesh__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structworld__entity__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_data_8h.html#structworld__entity__t">world_entity_t</a></td></tr>
-<tr class="separator:structworld__entity__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structactor__entity__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_data_8h.html#structactor__entity__t">actor_entity_t</a></td></tr>
-<tr class="separator:structactor__entity__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -158,27 +155,6 @@ Enumerations</h2></td></tr>
 <br/>
  }</td></tr>
 <tr class="separator:a921ef2c68818962e43d6702b708da306"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc445ca2a21bdc9b879736295a33084a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084a">OpenRaiderEvent</a> { <br/>
-&#160;&#160;<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aa6505acf15690a324459e652a94fc339a">eNone</a> = 0, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aaa8d8f96ee879c910f0e042f9b5708905">eWeaponDischarge</a>, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aa7e63430f766bdc96453bdde112569705">eDying</a>, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aa5d70a02f56737b64f4528dd35b77a010">eDead</a>, 
-<br/>
-&#160;&#160;<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aa9ccbd082b79cc1449fb660a952f360b3">eWounded</a>, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aa34ed6d15ff8cd5eb278bae40f4dc7ea1">eRunForward</a>, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aa31a92fe875476168b4e9f9ee622c79ee">eRunBackward</a>, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aaa011c267484ead45744dbceb98511e31">eJump</a>, 
-<br/>
-&#160;&#160;<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aaee5df57c2bb106a80bb4f1b4f58d6ccd">eCrouchWalk</a>, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aaa022984e5d643ccf1aaee42688e01d65">eIdle</a>, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aaee87628f80abb95eb67f9cb4ebf30251">eTaunt</a>, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aa591080e931435b3ccd0d0c7a05346632">eTurn</a>, 
-<br/>
-&#160;&#160;<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aaa701d13000910a3262a6d68fbb95aa5b">eRespawn</a>, 
-<a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084aa342247d42f050695530c12c8db605b01">eLand</a>
-<br/>
- }</td></tr>
-<tr class="separator:afc445ca2a21bdc9b879736295a33084a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Structs and enums for the game world (model) </p>
@@ -198,7 +174,7 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00027">27</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00028">28</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -221,7 +197,7 @@ pos</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00041">41</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00032">32</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -244,11 +220,11 @@ st</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00045">45</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00036">36</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><div class="dynheader">
 Collaboration diagram for sprite_t:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structsprite__t__coll__graph.svg" width="166" height="128"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structsprite__t__coll__graph.svg" width="160" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="fieldtable">
@@ -270,7 +246,7 @@ pos[3]</td>
 <td class="fieldname">
 radius</td>
 <td class="fielddoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000018">FIXME:</a></b></dt><dd>yeah, I know </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000019">FIXME:</a></b></dt><dd>yeah, I know (I don't? &ndash;xythobuz) </dd></dl>
 </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="ad9bb99e855d94a71cb90955393110bd1"></a><a class="el" href="_world_data_8h.html#structtexel__t">texel_t</a></td>
@@ -304,11 +280,11 @@ vertex[4]</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00054">54</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00045">45</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><div class="dynheader">
 Collaboration diagram for sprite_seq_t:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structsprite__seq__t__coll__graph.svg" width="166" height="219"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structsprite__seq__t__coll__graph.svg" width="160" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="fieldtable">
@@ -338,9 +314,9 @@ sprite</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000016">FIXME:</a></b></dt><dd>For now shaders are textures on tex objects and materials on color objects. If -1 then it doesn't have that information yet. </dd></dl>
+<div class="textblock"><dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000017">FIXME:</a></b></dt><dd>For now shaders are textures on tex objects and materials on color objects. If -1 then it doesn't have that information yet. </dd></dl>
 
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00063">63</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00054">54</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -381,7 +357,7 @@ transparency</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00070">70</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00061">61</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -470,8 +446,14 @@ vertices</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00089">89</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
-</div><table class="fieldtable">
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00080">80</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+</div><div class="dynheader">
+Collaboration diagram for entity_t:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structentity__t__coll__graph.svg" width="126" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="af2ae80bedfffefaf0defdd4cd502b575"></a>float</td>
@@ -540,7 +522,7 @@ state</td>
 <td class="fielddoc">
 State of the Player, AI, or object. </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a9ba968793fd35fd81501e3b99dd18dce"></a>void *</td>
+<a class="anchor" id="a7a220b0b135c7a3e61bf5cdb6af1f030"></a><a class="el" href="class_skeletal_model.html">SkeletalModel</a> *</td>
 <td class="fieldname">
 tmpHook</td>
 <td class="fielddoc">
@@ -565,7 +547,7 @@ type</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00114">114</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00105">105</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -600,7 +582,7 @@ angle of rotation on Y </td></tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00123">123</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00114">114</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -635,11 +617,11 @@ vertices[4][3]</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00129">129</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00120">120</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><div class="dynheader">
 Collaboration diagram for box_t:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structbox__t__coll__graph.svg" width="80" height="171"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structbox__t__coll__graph.svg" width="78" height="171"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="fieldtable">
@@ -682,7 +664,7 @@ d</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00136">136</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00127">127</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -716,9 +698,9 @@ wall</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000017">FIXME:</a></b></dt><dd>No room mesh list or sprites and etc </dd></dl>
+<div class="textblock"><dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000018">FIXME:</a></b></dt><dd>No room mesh list or sprites and etc </dd></dl>
 
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00144">144</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00135">135</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -803,223 +785,7 @@ sprites</td>
 
 </div>
 </div>
-<a name="structworld__entity__t" id="structworld__entity__t"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct world_entity_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00162">162</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a2ca80092b3710eec70c2e8d8234dd311"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-angle</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a896de154b7bacbaab25179cedbd00e77"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-lastPos</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ae42fab69a162b0f6ed5dc0204e6bc6af"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-pos</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="aa2935668379989149ac9a2b4a1ac666b"></a>int</td>
-<td class="fieldname">
-state</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a24b811c49f5a1549d7a0697289740c30"></a><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a></td>
-<td class="fieldname">
-ttl</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="aa87315aefa7cb29b9631411dc7574742"></a>int</td>
-<td class="fieldname">
-type</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="structactor__entity__t" id="structactor__entity__t"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct actor_entity_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00175">175</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a3e6966214879a96092452bc66bead116"></a>int</td>
-<td class="fieldname">
-actor</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ae6fe58a9e32ecca9a69f5f8bf89aa073"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-angle</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a4ce9a51ce601b9b883de8015668397ab"></a>unsigned int</td>
-<td class="fieldname">
-animFrame</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a3a5483b62e7b277cc63e41db641aacf8"></a>char</td>
-<td class="fieldname">
-clipping</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="acdb6e9cd388c797b59d04af165fbc825"></a>int</td>
-<td class="fieldname">
-enemy</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a0974194c32277deba23f6466d653f039"></a>float</td>
-<td class="fieldname">
-eventTime</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a394f217e736c28b4d394ff0d3b8db515"></a>float</td>
-<td class="fieldname">
-eventTimer</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a057d405056a119471451f2098ffe8c7f"></a>float</td>
-<td class="fieldname">
-health</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a6a9cbc16700340b6b782be8e311818aa"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-lastPos</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="aecc22e6ba8b3c96a36ded64706fe7410"></a>unsigned int</td>
-<td class="fieldname">
-model</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ae7fc2798845419be2f2a7f6b2e8388b3"></a>char</td>
-<td class="fieldname">
-name[32]</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="af1ea313998296483fbd19e5c61e70e82"></a>int</td>
-<td class="fieldname">
-nextState</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="afbf74320e498eea9f580e9832b21d44b"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-pos</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ad2597bea411ee961227bd28112c6b94b"></a>unsigned int</td>
-<td class="fieldname">
-skin</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a06f5b72f0156054510b699a92ece748b"></a>int</td>
-<td class="fieldname">
-state</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="aac5ac029ac0ab08e57cae73331f8e0ae"></a>float</td>
-<td class="fieldname">
-time</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ab24d775179908744d082e28e44441603"></a>unsigned int</td>
-<td class="fieldname">
-uid</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a class="anchor" id="afc445ca2a21bdc9b879736295a33084a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="_world_data_8h.html#afc445ca2a21bdc9b879736295a33084a">OpenRaiderEvent</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aa6505acf15690a324459e652a94fc339a"></a>eNone</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aaa8d8f96ee879c910f0e042f9b5708905"></a>eWeaponDischarge</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aa7e63430f766bdc96453bdde112569705"></a>eDying</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aa5d70a02f56737b64f4528dd35b77a010"></a>eDead</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aa9ccbd082b79cc1449fb660a952f360b3"></a>eWounded</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aa34ed6d15ff8cd5eb278bae40f4dc7ea1"></a>eRunForward</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aa31a92fe875476168b4e9f9ee622c79ee"></a>eRunBackward</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aaa011c267484ead45744dbceb98511e31"></a>eJump</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aaee5df57c2bb106a80bb4f1b4f58d6ccd"></a>eCrouchWalk</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aaa022984e5d643ccf1aaee42688e01d65"></a>eIdle</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aaee87628f80abb95eb67f9cb4ebf30251"></a>eTaunt</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aa591080e931435b3ccd0d0c7a05346632"></a>eTurn</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aaa701d13000910a3262a6d68fbb95aa5b"></a>eRespawn</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="afc445ca2a21bdc9b879736295a33084aa342247d42f050695530c12c8db605b01"></a>eLand</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00196">196</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="af4109bf4a2d7b1e665058dd8baa2765c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1034,7 +800,7 @@ uid</td>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00015">15</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00016">16</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 
 </div>
 </div>
@@ -1060,7 +826,7 @@ uid</td>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00019">19</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
+<p>Definition at line <a class="el" href="_world_data_8h_source.html#l00020">20</a> of file <a class="el" href="_world_data_8h_source.html">WorldData.h</a>.</p>
 
 </div>
 </div>

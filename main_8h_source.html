@@ -94,20 +94,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef _MAIN_H_</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _MAIN_H_</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_open_raider_8h.html">OpenRaider.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_open_raider.html">OpenRaider</a> *<a class="code" href="main_8h.html#af3959100f4f55564892af865d2e7c645">gOpenRaider</a>; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8h.html#aeb5a6296aa4b62da2290d908b65a9641">cleanupHandler</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8h.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span></div>
-<div class="ttc" id="main_8h_html_aeb5a6296aa4b62da2290d908b65a9641"><div class="ttname"><a href="main_8h.html#aeb5a6296aa4b62da2290d908b65a9641">cleanupHandler</a></div><div class="ttdeci">void cleanupHandler(void)</div><div class="ttdoc">atexit() handler </div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00018">main.cpp:18</a></div></div>
-<div class="ttc" id="main_8h_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="main_8h.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Program entry point. </div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00029">main.cpp:29</a></div></div>
-<div class="ttc" id="main_8h_html_af3959100f4f55564892af865d2e7c645"><div class="ttname"><a href="main_8h.html#af3959100f4f55564892af865d2e7c645">gOpenRaider</a></div><div class="ttdeci">OpenRaider * gOpenRaider</div><div class="ttdoc">Main Game Singleton. </div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00016">main.cpp:16</a></div></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_camera_8h.html">Camera.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_console_8h.html">Console.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_game_8h.html">Game.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_menu_8h.html">Menu.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_open_raider_8h.html">OpenRaider.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_render_8h.html">Render.h</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_sound_8h.html">Sound.h</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_window_8h.html">Window.h</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_world_8h.html">World.h</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<a class="code" href="class_camera.html">Camera</a> &amp;<a class="code" href="main_8h.html#af662de0d8cf096f2986eac6a4290cc23">getCamera</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<a class="code" href="class_console.html">Console</a> &amp;<a class="code" href="main_8h.html#a42daf3f66ef8157f19a95a61c04bb0ae">getConsole</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<a class="code" href="class_game.html">Game</a> &amp;<a class="code" href="main_8h.html#a37da78d5bcf85296a978f23c73c49320">getGame</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="class_menu.html">Menu</a> &amp;<a class="code" href="main_8h.html#abd434c2e522fed4cc4cd1e4064caf45b">getMenu</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="class_open_raider.html">OpenRaider</a> &amp;<a class="code" href="main_8h.html#a2abbaddc1c6850a2fbae5a8c66d8d449">getOpenRaider</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<a class="code" href="class_render.html">Render</a> &amp;<a class="code" href="main_8h.html#a812cfcbdabb65847ea87dfed9fafc69d">getRender</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<a class="code" href="class_sound.html">Sound</a> &amp;<a class="code" href="main_8h.html#a0aafbf3a7424dbaa94d85640abc6c25e">getSound</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="class_window.html">Window</a> &amp;<a class="code" href="main_8h.html#a569be9f3eab26d2ba994a32b75dc9896">getWindow</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="class_world.html">World</a> &amp;<a class="code" href="main_8h.html#abea1a794341f4259c16d914064e97528">getWorld</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8h.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span></div>
+<div class="ttc" id="class_render_html"><div class="ttname"><a href="class_render.html">Render</a></div><div class="ttdoc">OpenRaider Renderer class. </div><div class="ttdef"><b>Definition:</b> <a href="_render_8h_source.html#l00082">Render.h:82</a></div></div>
+<div class="ttc" id="class_sound_html"><div class="ttname"><a href="class_sound.html">Sound</a></div><div class="ttdoc">This is the audio manager for OpenRaider. </div><div class="ttdef"><b>Definition:</b> <a href="_sound_8h_source.html#l00015">Sound.h:15</a></div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Windowing interface. </div><div class="ttdef"><b>Definition:</b> <a href="_window_8h_source.html#l00028">Window.h:28</a></div></div>
+<div class="ttc" id="class_menu_html"><div class="ttname"><a href="class_menu.html">Menu</a></div><div class="ttdoc">Menu &amp;#39;overlay&amp;#39;. </div><div class="ttdef"><b>Definition:</b> <a href="_menu_8h_source.html#l00016">Menu.h:16</a></div></div>
+<div class="ttc" id="main_8h_html_abea1a794341f4259c16d914064e97528"><div class="ttname"><a href="main_8h.html#abea1a794341f4259c16d914064e97528">getWorld</a></div><div class="ttdeci">World &amp; getWorld()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00077">main.cpp:77</a></div></div>
+<div class="ttc" id="main_8h_html_a37da78d5bcf85296a978f23c73c49320"><div class="ttname"><a href="main_8h.html#a37da78d5bcf85296a978f23c73c49320">getGame</a></div><div class="ttdeci">Game &amp; getGame()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00053">main.cpp:53</a></div></div>
+<div class="ttc" id="main_8h_html_a42daf3f66ef8157f19a95a61c04bb0ae"><div class="ttname"><a href="main_8h.html#a42daf3f66ef8157f19a95a61c04bb0ae">getConsole</a></div><div class="ttdeci">Console &amp; getConsole()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00049">main.cpp:49</a></div></div>
+<div class="ttc" id="class_world_html"><div class="ttname"><a href="class_world.html">World</a></div><div class="ttdoc">The game world (model) </div><div class="ttdef"><b>Definition:</b> <a href="_world_8h_source.html#l00028">World.h:28</a></div></div>
+<div class="ttc" id="_world_8h_html"><div class="ttname"><a href="_world_8h.html">World.h</a></div><div class="ttdoc">The game world (model) </div></div>
+<div class="ttc" id="_menu_8h_html"><div class="ttname"><a href="_menu_8h.html">Menu.h</a></div><div class="ttdoc">Menu &amp;#39;overlay&amp;#39;. </div></div>
+<div class="ttc" id="main_8h_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="main_8h.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Program entry point. </div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00091">main.cpp:91</a></div></div>
+<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">Camera class. </div><div class="ttdef"><b>Definition:</b> <a href="_camera_8h_source.html#l00028">Camera.h:28</a></div></div>
+<div class="ttc" id="main_8h_html_a0aafbf3a7424dbaa94d85640abc6c25e"><div class="ttname"><a href="main_8h.html#a0aafbf3a7424dbaa94d85640abc6c25e">getSound</a></div><div class="ttdeci">Sound &amp; getSound()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00069">main.cpp:69</a></div></div>
+<div class="ttc" id="main_8h_html_a812cfcbdabb65847ea87dfed9fafc69d"><div class="ttname"><a href="main_8h.html#a812cfcbdabb65847ea87dfed9fafc69d">getRender</a></div><div class="ttdeci">Render &amp; getRender()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00065">main.cpp:65</a></div></div>
+<div class="ttc" id="_window_8h_html"><div class="ttname"><a href="_window_8h.html">Window.h</a></div><div class="ttdoc">Windowing interface. </div></div>
+<div class="ttc" id="_console_8h_html"><div class="ttname"><a href="_console_8h.html">Console.h</a></div><div class="ttdoc">Console &amp;#39;overlay&amp;#39;. </div></div>
+<div class="ttc" id="_render_8h_html"><div class="ttname"><a href="_render_8h.html">Render.h</a></div><div class="ttdoc">OpenRaider Renderer class. </div></div>
+<div class="ttc" id="main_8h_html_af662de0d8cf096f2986eac6a4290cc23"><div class="ttname"><a href="main_8h.html#af662de0d8cf096f2986eac6a4290cc23">getCamera</a></div><div class="ttdeci">Camera &amp; getCamera()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00045">main.cpp:45</a></div></div>
+<div class="ttc" id="main_8h_html_abd434c2e522fed4cc4cd1e4064caf45b"><div class="ttname"><a href="main_8h.html#abd434c2e522fed4cc4cd1e4064caf45b">getMenu</a></div><div class="ttdeci">Menu &amp; getMenu()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00057">main.cpp:57</a></div></div>
+<div class="ttc" id="main_8h_html_a569be9f3eab26d2ba994a32b75dc9896"><div class="ttname"><a href="main_8h.html#a569be9f3eab26d2ba994a32b75dc9896">getWindow</a></div><div class="ttdeci">Window &amp; getWindow()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00073">main.cpp:73</a></div></div>
+<div class="ttc" id="class_console_html"><div class="ttname"><a href="class_console.html">Console</a></div><div class="ttdoc">Console &amp;#39;overlay&amp;#39;. </div><div class="ttdef"><b>Definition:</b> <a href="_console_8h_source.html#l00019">Console.h:19</a></div></div>
+<div class="ttc" id="class_game_html"><div class="ttname"><a href="class_game.html">Game</a></div><div class="ttdoc">Game abstraction. </div><div class="ttdef"><b>Definition:</b> <a href="_game_8h_source.html#l00022">Game.h:22</a></div></div>
+<div class="ttc" id="main_8h_html_a2abbaddc1c6850a2fbae5a8c66d8d449"><div class="ttname"><a href="main_8h.html#a2abbaddc1c6850a2fbae5a8c66d8d449">getOpenRaider</a></div><div class="ttdeci">OpenRaider &amp; getOpenRaider()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00061">main.cpp:61</a></div></div>
 <div class="ttc" id="_open_raider_8h_html"><div class="ttname"><a href="_open_raider_8h.html">OpenRaider.h</a></div><div class="ttdoc">Main Game Object. </div></div>
+<div class="ttc" id="_camera_8h_html"><div class="ttname"><a href="_camera_8h.html">Camera.h</a></div><div class="ttdoc">Camera class. </div></div>
+<div class="ttc" id="_game_8h_html"><div class="ttname"><a href="_game_8h.html">Game.h</a></div><div class="ttdoc">Game abstraction. </div></div>
+<div class="ttc" id="_sound_8h_html"><div class="ttname"><a href="_sound_8h.html">Sound.h</a></div><div class="ttdoc">This is the audio manager Header. </div></div>
 <div class="ttc" id="class_open_raider_html"><div class="ttname"><a href="class_open_raider.html">OpenRaider</a></div><div class="ttdoc">Main Game Singleton. </div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8h_source.html#l00023">OpenRaider.h:23</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

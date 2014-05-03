@@ -1,5 +1,7 @@
 <map id="include/World.h" name="include/World.h">
-<area shape="rect" id="node4" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="119,80,233,107"/>
-<area shape="rect" id="node6" href="$_world_data_8h.html" title="Structs and enums for the game world (model) " alt="" coords="258,80,352,107"/>
-<area shape="rect" id="node5" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="227,155,321,181"/>
+<area shape="rect" id="node4" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="120,155,231,181"/>
+<area shape="rect" id="node6" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="357,80,423,107"/>
+<area shape="rect" id="node8" href="$_sprite_8h.html" title="World Sprite. " alt="" coords="498,155,562,181"/>
+<area shape="rect" id="node9" href="$_world_data_8h.html" title="Structs and enums for the game world (model) " alt="" coords="213,80,306,107"/>
+<area shape="rect" id="node5" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="344,229,436,256"/>
 </map>

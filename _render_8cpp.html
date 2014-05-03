@@ -97,7 +97,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br/>
 <code>#include &lt;GL/gl.h&gt;</code><br/>
-<code>#include &lt;GL/glu.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;<a class="el" href="math_8h_source.html">math.h</a>&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
@@ -123,16 +122,14 @@ Functions</h2></td></tr>
 <tr class="separator:ae3c433346d32c3aea030d705ea68e3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78fb662eeeb47477720689174acc3065"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a78fb662eeeb47477720689174acc3065">compareRoomDist</a> (const void *voidA, const void *voidB)</td></tr>
 <tr class="separator:a78fb662eeeb47477720689174acc3065"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a807dd35eb943f32b4f80e4095f4be673"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a807dd35eb943f32b4f80e4095f4be673">renderTrace</a> (int color, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> start, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa80b1a820e533d7cf0e1715319339e6d0">end</a>)</td></tr>
+<tr class="memitem:a807dd35eb943f32b4f80e4095f4be673"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a807dd35eb943f32b4f80e4095f4be673">renderTrace</a> (int color, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> start, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> end)</td></tr>
 <tr class="separator:a807dd35eb943f32b4f80e4095f4be673"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a512339113cf8ab7c71ca9da0a0c82191"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a512339113cf8ab7c71ca9da0a0c82191">setLighting</a> (bool on)</td></tr>
 <tr class="separator:a512339113cf8ab7c71ca9da0a0c82191"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88f66bc25e882a2b3d670a2266c97d44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a88f66bc25e882a2b3d670a2266c97d44">lightRoom</a> (<a class="el" href="class_render_room.html">RenderRoom</a> *room)</td></tr>
 <tr class="separator:a88f66bc25e882a2b3d670a2266c97d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fef287cf7c955e94ebe99a8ea383c3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a2fef287cf7c955e94ebe99a8ea383c3d">CrossProd</a> (float x1, float y1, float z1, float x2, float y2, float z2, float res[3])</td></tr>
-<tr class="separator:a2fef287cf7c955e94ebe99a8ea383c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bd53f77232730f0850ad6cabc6534ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a6bd53f77232730f0850ad6cabc6534ab">deprecated_gluLookAt</a> (float eyeX, float eyeY, float eyeZ, float lookAtX, float lookAtY, float lookAtZ, float upX, float upY, float upZ)</td></tr>
-<tr class="separator:a6bd53f77232730f0850ad6cabc6534ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d1457cca8c0412548e23b877ede908"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#ad5d1457cca8c0412548e23b877ede908">gluLookAt</a> (float eyeX, float eyeY, float eyeZ, float lookAtX, float lookAtY, float lookAtZ, float upX, float upY, float upZ)</td></tr>
+<tr class="separator:ad5d1457cca8c0412548e23b877ede908"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6d4c31a0ea8ee4f430b8de0b0c457f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#ab6d4c31a0ea8ee4f430b8de0b0c457f1">draw_bbox</a> (<a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> min, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> max, bool draw_points)</td></tr>
 <tr class="separator:ab6d4c31a0ea8ee4f430b8de0b0c457f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5851f759764c299ce418a5451e317c49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a5851f759764c299ce418a5451e317c49">draw_bbox_color</a> (<a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> min, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> max, bool draw_points, const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> c1, const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> c2)</td></tr>
@@ -170,7 +167,7 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00033">33</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00027">27</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -198,7 +195,7 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00075">75</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00069">69</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -226,55 +223,31 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00054">54</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00048">48</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2fef287cf7c955e94ebe99a8ea383c3d"></a>
+<a class="anchor" id="ab6d4c31a0ea8ee4f430b8de0b0c457f1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CrossProd </td>
+          <td class="memname">void draw_bbox </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>x1</em>, </td>
+          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>y1</em>, </td>
+          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
+          <td class="paramname"><em>max</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>z1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>x2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>y2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>z2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>res</em>[3]&#160;</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>draw_points</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -283,17 +256,65 @@ xythobuz </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000036">FIXME:</a></b></dt><dd>Need to make custom color key for this </dd></dl>
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00442">442</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01105">1105</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6bd53f77232730f0850ad6cabc6534ab"></a>
+<a class="anchor" id="a5851f759764c299ce418a5451e317c49"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void deprecated_gluLookAt </td>
+          <td class="memname">void draw_bbox_color </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
+          <td class="paramname"><em>max</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>draw_points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a>&#160;</td>
+          <td class="paramname"><em>c1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a>&#160;</td>
+          <td class="paramname"><em>c2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000037">FIXME:</a></b></dt><dd>Need to make custom color key for this </dd></dl>
+
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01181">1181</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad5d1457cca8c0412548e23b877ede908"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gluLookAt </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>eyeX</em>, </td>
@@ -354,89 +375,7 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00448">448</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab6d4c31a0ea8ee4f430b8de0b0c457f1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void draw_bbox </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>max</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>draw_points</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000035">FIXME:</a></b></dt><dd>Need to make custom color key for this </dd></dl>
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01253">1253</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5851f759764c299ce418a5451e317c49"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void draw_bbox_color </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>max</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>draw_points</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a>&#160;</td>
-          <td class="paramname"><em>c1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a>&#160;</td>
-          <td class="paramname"><em>c2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000036">FIXME:</a></b></dt><dd>Need to make custom color key for this </dd></dl>
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01329">1329</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00361">361</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -454,7 +393,7 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00324">324</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00243">243</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,7 +427,7 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00266">266</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00185">185</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -506,7 +445,7 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00307">307</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00226">226</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>

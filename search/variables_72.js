@@ -2,7 +2,7 @@ var searchData=
 [
   ['r',['r',['../_tomb_raider_data_8h.html#a9b0f0caa5d08eb2142377e19635842f8',1,'tr2_colour_t']]],
   ['radinput',['radInput',['../_tomb_raider_data_8h.html#a21b79891c94de29e89685502f6c9524d',1,'tr5_light_t']]],
-  ['radius',['radius',['../_world_data_8h.html#a3c974c0c071119e9c8778f9e73581f8b',1,'sprite_t::radius()'],['../_world_data_8h.html#a4e00670bbc46fce1df826bec77cc6e89',1,'model_mesh_t::radius()']]],
+  ['radius',['radius',['../class_sprite.html#a59c86be72b6f3633fd8f22eaed11e10d',1,'Sprite::radius()'],['../_world_data_8h.html#a3c974c0c071119e9c8778f9e73581f8b',1,'sprite_t::radius()'],['../_world_data_8h.html#a4e00670bbc46fce1df826bec77cc6e89',1,'model_mesh_t::radius()']]],
   ['radoutput',['radOutput',['../_tomb_raider_data_8h.html#ad11595f4288951fddfd87f858fb0eadc',1,'tr5_light_t']]],
   ['range',['range',['../_tomb_raider_data_8h.html#ac8d4cef042471c06f7d9fc29d05f28ef',1,'tr5_light_t']]],
   ['rate',['rate',['../_skeletal_model_8h.html#a7af1a1cd18ff3a93f6cc1f231bfac6d0',1,'animation_frame_t::rate()'],['../class_skeletal_model.html#a72969ebee514d17acc00ae65e85df9a5',1,'SkeletalModel::rate()']]],

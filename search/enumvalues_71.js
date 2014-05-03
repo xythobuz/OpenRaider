@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['q',['q',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa721be5ab1d5748f1a0850f822c316094',1,'global.h']]],
-  ['quote',['quote',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa3f9ff45ea450916d2beca97573cb9631',1,'global.h']]]
+  ['qkey',['qKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aabd3a7db8c2b989d7df5ca7b994033452',1,'global.h']]],
+  ['quotekey',['quoteKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa3acc1978190ae78e98a143a0a4c1d8e5',1,'global.h']]]
 ];

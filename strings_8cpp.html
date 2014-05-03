@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for strings.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="strings_8cpp__incl.svg" width="491" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="strings_8cpp__incl.svg" width="467" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -108,9 +108,9 @@ Include dependency graph for strings.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a146e6329df145a070a4eaf3183d6375f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#a146e6329df145a070a4eaf3183d6375f">stringRemoveQuotes</a> (const char *<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa8e9307350b1e20521f37dfe5268df55">s</a>)</td></tr>
+<tr class="memitem:a146e6329df145a070a4eaf3183d6375f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#a146e6329df145a070a4eaf3183d6375f">stringRemoveQuotes</a> (const char *s)</td></tr>
 <tr class="separator:a146e6329df145a070a4eaf3183d6375f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af47e4fd1b1ce1b6f89d264233ce80cc9"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#af47e4fd1b1ce1b6f89d264233ce80cc9">stringReplace</a> (const char *<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa8e9307350b1e20521f37dfe5268df55">s</a>, const char *search, const char *replace)</td></tr>
+<tr class="memitem:af47e4fd1b1ce1b6f89d264233ce80cc9"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#af47e4fd1b1ce1b6f89d264233ce80cc9">stringReplace</a> (const char *s, const char *search, const char *replace)</td></tr>
 <tr class="separator:af47e4fd1b1ce1b6f89d264233ce80cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7fc1b2349de88a4bff333b202c96915"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#ae7fc1b2349de88a4bff333b202c96915">readBool</a> (const char *value, bool *var)</td></tr>
 <tr class="separator:ae7fc1b2349de88a4bff333b202c96915"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,7 +123,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ac64afe7233d622301ec5a9f25b559590"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#ac64afe7233d622301ec5a9f25b559590">bufferString</a> (const char *string,...)</td></tr>
 <tr class="memdesc:ac64afe7233d622301ec5a9f25b559590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a buffered string for the printf call.  <a href="#ac64afe7233d622301ec5a9f25b559590">More...</a><br/></td></tr>
 <tr class="separator:ac64afe7233d622301ec5a9f25b559590"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a449382aef1af389360262a56c6d49f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#a6a449382aef1af389360262a56c6d49f">fullPath</a> (const char *path, char <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa80b1a820e533d7cf0e1715319339e6d0">end</a>)</td></tr>
+<tr class="memitem:a6a449382aef1af389360262a56c6d49f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#a6a449382aef1af389360262a56c6d49f">fullPath</a> (const char *path, char end)</td></tr>
 <tr class="memdesc:a6a449382aef1af389360262a56c6d49f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expansion of unix home enviroment char. Also makes sure string ends in "end" char.  <a href="#a6a449382aef1af389360262a56c6d49f">More...</a><br/></td></tr>
 <tr class="separator:a6a449382aef1af389360262a56c6d49f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -162,7 +162,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string in a buffer </dd></dl>
 
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00086">86</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00082">82</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
 
 </div>
 </div>
@@ -199,7 +199,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string in a buffer </dd></dl>
 
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00116">116</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00112">112</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
 
 </div>
 </div>
@@ -237,7 +237,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>allocated string of path with expansions </dd></dl>
 
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00124">124</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00120">120</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
 
 </div>
 </div>
@@ -265,7 +265,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00061">61</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00057">57</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
 
 </div>
 </div>
@@ -303,7 +303,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if str ends with suffix </dd></dl>
 
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00073">73</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00069">69</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
 
 </div>
 </div>

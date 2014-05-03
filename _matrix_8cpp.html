@@ -101,7 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Matrix.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_matrix_8cpp__incl.svg" width="471" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_matrix_8cpp__incl.svg" width="460" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -109,9 +109,9 @@ Include dependency graph for Matrix.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ab05eff8e781b00b86776d167de0be400"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_matrix_8cpp.html#ab05eff8e781b00b86776d167de0be400">SWAP_ROWS</a>(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">a</a>, <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa06b03e4cd5c7c464c513a95a7fcf9bf">b</a>)&#160;&#160;&#160;{ float *_tmp = <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">a</a>; (<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">a</a>)=(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa06b03e4cd5c7c464c513a95a7fcf9bf">b</a>); (<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa06b03e4cd5c7c464c513a95a7fcf9bf">b</a>)=_tmp; }</td></tr>
+<tr class="memitem:ab05eff8e781b00b86776d167de0be400"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_matrix_8cpp.html#ab05eff8e781b00b86776d167de0be400">SWAP_ROWS</a>(a, b)&#160;&#160;&#160;{ float *_tmp = a; (a)=(b); (b)=_tmp; }</td></tr>
 <tr class="separator:ab05eff8e781b00b86776d167de0be400"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04fad4ee8b40909b70143ff909580d07"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_matrix_8cpp.html#a04fad4ee8b40909b70143ff909580d07">MAT</a>(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaca3cf2ca9e0e7f4e96f2bbc362b9353a">m</a>, <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa1381d2948406a6e29d37e72937824957">r</a>, <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa776304400122408ea717dde9234fdd2a">c</a>)&#160;&#160;&#160;(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaca3cf2ca9e0e7f4e96f2bbc362b9353a">m</a>)[(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa776304400122408ea717dde9234fdd2a">c</a>)*4+(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa1381d2948406a6e29d37e72937824957">r</a>)]</td></tr>
+<tr class="memitem:a04fad4ee8b40909b70143ff909580d07"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_matrix_8cpp.html#a04fad4ee8b40909b70143ff909580d07">MAT</a>(m, r, c)&#160;&#160;&#160;(m)[(c)*4+(r)]</td></tr>
 <tr class="separator:a04fad4ee8b40909b70143ff909580d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -128,24 +128,24 @@ Macros</h2></td></tr>
           <td class="memname">#define MAT</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaca3cf2ca9e0e7f4e96f2bbc362b9353a">m</a>, </td>
+          <td class="paramname">m, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa1381d2948406a6e29d37e72937824957">r</a>, </td>
+          <td class="paramname">r, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa776304400122408ea717dde9234fdd2a">c</a>&#160;</td>
+          <td class="paramname">c&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaca3cf2ca9e0e7f4e96f2bbc362b9353a">m</a>)[(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa776304400122408ea717dde9234fdd2a">c</a>)*4+(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa1381d2948406a6e29d37e72937824957">r</a>)]</td>
+          <td></td><td>&#160;&#160;&#160;(m)[(c)*4+(r)]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -160,18 +160,18 @@ Macros</h2></td></tr>
           <td class="memname">#define SWAP_ROWS</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">a</a>, </td>
+          <td class="paramname">a, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa06b03e4cd5c7c464c513a95a7fcf9bf">b</a>&#160;</td>
+          <td class="paramname">b&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;{ float *_tmp = <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">a</a>; (<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa91fb0824da12f8bb3b74dd78fb13b63">a</a>)=(<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa06b03e4cd5c7c464c513a95a7fcf9bf">b</a>); (<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaa06b03e4cd5c7c464c513a95a7fcf9bf">b</a>)=_tmp; }</td>
+          <td></td><td>&#160;&#160;&#160;{ float *_tmp = a; (a)=(b); (b)=_tmp; }</td>
         </tr>
       </table>
 </div><div class="memdoc">

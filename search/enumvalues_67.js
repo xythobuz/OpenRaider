@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['g',['g',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa35c0bb7088830963c73dcf0470ab8922',1,'global.h']]],
   ['giantmutant',['GiantMutant',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea228c27fdc29dcc3119fbc54d26040b62',1,'TombRaider1']]],
   ['giantmutantstate_5fdropping',['GiantMutantState_Dropping',['../_tomb_raider1_8h.html#a2eb3b22e84bd83211a1c3c359a31a7b4a9d1cf1c77d47c3d670498430d3a5911c',1,'TombRaider1']]],
   ['giantmutantstate_5fdying',['GiantMutantState_Dying',['../_tomb_raider1_8h.html#a2eb3b22e84bd83211a1c3c359a31a7b4a80d3f76b498fce8172a0e9bd4670d312',1,'TombRaider1']]],
@@ -22,6 +21,7 @@ var searchData=
   ['giantratwaterstate_5fbiting',['GiantRatWaterState_Biting',['../_tomb_raider1_8h.html#aa408e91b7c128b3c273d2b19ff8ad8c4aa3686744518976556ac0ee603c3cbc58',1,'TombRaider1']]],
   ['giantratwaterstate_5fdying',['GiantRatWaterState_Dying',['../_tomb_raider1_8h.html#aa408e91b7c128b3c273d2b19ff8ad8c4aaa4b878341e63226b47fbf3c818aa803',1,'TombRaider1']]],
   ['giantratwaterstate_5fswimming',['GiantRatWaterState_Swimming',['../_tomb_raider1_8h.html#aa408e91b7c128b3c273d2b19ff8ad8c4af2ed4efef5f06d5f879159f125c92659',1,'TombRaider1']]],
+  ['gkey',['gKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaf6b4b70e39c48ca45dc89dfc0edc9872',1,'global.h']]],
   ['gorilla',['Gorilla',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea9dcdcf3add8ed97101391d7ec5ff14af',1,'TombRaider1']]],
   ['gorillastate_5fclimbing',['GorillaState_Climbing',['../_tomb_raider1_8h.html#a91c915c3bceae2720bbd8b5ae9ab1cb4a12d1ff8abd721bd8e24bcd39a2e09657',1,'TombRaider1']]],
   ['gorillastate_5fdying',['GorillaState_Dying',['../_tomb_raider1_8h.html#a91c915c3bceae2720bbd8b5ae9ab1cb4a458aef4ddb2b239330db2005a19c4810',1,'TombRaider1']]],

@@ -10,6 +10,5 @@ var searchData=
   ['operator_2d_3d',['operator-=',['../class_vector3d.html#a9f60983a00301e76cb8468a3390853ff',1,'Vector3d']]],
   ['operator_2f',['operator/',['../class_quaternion.html#af4213cb383423c6ead7c56a3fa70499c',1,'Quaternion::operator/()'],['../class_vector3d.html#a87b6b4baac2a93d5b061d2dfdd175a9e',1,'Vector3d::operator/()']]],
   ['operator_3d',['operator=',['../class_vector3d.html#af7fa2fd9d32f5533f4ee73e84f8dc5ef',1,'Vector3d']]],
-  ['operator_3d_3d',['operator==',['../class_quaternion.html#ac753c725050060a9241623c6bf648d1f',1,'Quaternion']]],
-  ['orientation',['Orientation',['../class_emitter.html#aa2080c184aceaf26f32952c4742ec2f0',1,'Emitter::Orientation(float x, float y, float z)'],['../class_emitter.html#a04ea95ebd765943a92e407e54c358a29',1,'Emitter::Orientation(float *x, float *y, float *z)']]]
+  ['operator_3d_3d',['operator==',['../class_quaternion.html#ac753c725050060a9241623c6bf648d1f',1,'Quaternion']]]
 ];

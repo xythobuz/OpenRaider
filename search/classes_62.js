@@ -5,5 +5,6 @@ var searchData=
   ['boundingbox',['BoundingBox',['../_view_volume_8h.html#class_bounding_box',1,'']]],
   ['boundingsphere',['BoundingSphere',['../_view_volume_8h.html#class_bounding_sphere',1,'']]],
   ['boundingvolume',['BoundingVolume',['../_view_volume_8h.html#class_bounding_volume',1,'']]],
+  ['box',['Box',['../class_box.html',1,'']]],
   ['box_5ft',['box_t',['../_world_data_8h.html#structbox__t',1,'']]]
 ];

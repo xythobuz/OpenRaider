@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['m',['m',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaca3cf2ca9e0e7f4e96f2bbc362b9353a',1,'global.h']]],
   ['magnum',['Magnum',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea6af67f4bb8d13b5321af52daee767986',1,'TombRaider1']]],
   ['magnumammo',['MagnumAmmo',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eabc87d6b2e2971b2df5e48870e19d3d9f',1,'TombRaider1']]],
   ['magnumanimation',['MagnumAnimation',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eafc475c3fc41072c7e57ad854c864d866',1,'TombRaider1']]],
@@ -12,8 +11,9 @@ var searchData=
   ['metalrod',['MetalRod',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea9d1f19e1e6a957aadaeb15c76ed6c0bc',1,'TombRaider1']]],
   ['metalrodstate_5fmoving',['MetalRodState_Moving',['../_tomb_raider1_8h.html#a0566e6916e85c65218b02c2952f2b0bcab59bd674adf8725ee8f5460ed369eb04',1,'TombRaider1']]],
   ['metalrodstate_5fstationary',['MetalRodState_Stationary',['../_tomb_raider1_8h.html#a0566e6916e85c65218b02c2952f2b0bca6a8db7cffd9fb2259eb95325f84e30b6',1,'TombRaider1']]],
-  ['middlemouse',['middlemouse',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa9537a143fc23e3833a6b2a5e1ec21d21',1,'global.h']]],
-  ['minus',['minus',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaba34d25d1a0e7f60052d7418d1ccf58b',1,'global.h']]],
+  ['middlemousekey',['middlemouseKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa9902074f91c13e1aa9aec5282cf16322',1,'global.h']]],
+  ['minuskey',['minusKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aacdc8a20e839e38f99fb7235fbc76eee3',1,'global.h']]],
+  ['mkey',['mKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aad70a6976b5d804159d32ab76b596afc5',1,'global.h']]],
   ['modedisabled',['modeDisabled',['../class_render.html#a02ac8862c9a3c0e0a23a151f5bbf97b0aa77000acf94c0a5d13505098a9f532d7',1,'Render']]],
   ['modeloadscreen',['modeLoadScreen',['../class_render.html#a02ac8862c9a3c0e0a23a151f5bbf97b0a3619ea6063a4b848607e6e70ff38d8a4',1,'Render']]],
   ['modesolid',['modeSolid',['../class_render.html#a02ac8862c9a3c0e0a23a151f5bbf97b0aaf8806f44268395c2145132a15291e6d',1,'Render']]],

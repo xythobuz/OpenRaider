@@ -1,16 +1,13 @@
 var searchData=
 [
   ['delay',['delay',['../class_window.html#a2e61534a544bd1b774c91b43ab61da73',1,'Window::delay()'],['../class_window_s_d_l.html#a868f2741c76b44e278ae241c647f71fc',1,'WindowSDL::delay()']]],
-  ['deprecated_5fglubuild2dmipmaps',['deprecated_gluBuild2DMipmaps',['../_texture_8cpp.html#ac90870d538f2d9159e912b0b07e7c532',1,'Texture.cpp']]],
-  ['deprecated_5fglulookat',['deprecated_gluLookAt',['../_render_8cpp.html#a6bd53f77232730f0850ad6cabc6534ab',1,'Render.cpp']]],
   ['destroy',['destroy',['../class_game.html#a9896347cdc3da739d0099fbd7645b796',1,'Game::destroy()'],['../class_world.html#a02d69ed7161ba4b4cb07471eb1bf2ec9',1,'World::destroy()']]],
   ['disablemultitexture',['disableMultiTexture',['../class_texture.html#a481dee2e69a3ad281146a506d5352a78',1,'Texture']]],
-  ['display',['display',['../class_console.html#aa392bbf2aeecd5e86a4e624bcf9b087a',1,'Console::display()'],['../class_game.html#a4d0223a84926cbabea95ed7e0392690a',1,'Game::display()'],['../class_menu.html#a2e784e39d600214e778acbfcbfe04a1b',1,'Menu::display()'],['../class_render.html#a7e223719c00e1e9fe74aa430d4099058',1,'Render::Display()']]],
+  ['display',['display',['../class_console.html#aa392bbf2aeecd5e86a4e624bcf9b087a',1,'Console::display()'],['../class_menu.html#a2e784e39d600214e778acbfcbfe04a1b',1,'Menu::display()'],['../class_render.html#ab7facb0873c6f266b8849c5ce6f223da',1,'Render::display()'],['../class_sprite.html#a2f85747dc7af13dbccd692d59540dc05',1,'Sprite::display()']]],
   ['displaymaplist',['displayMapList',['../class_menu.html#aa7db570c96617d8eb24a52f1b4abcf75',1,'Menu']]],
   ['distance',['distance',['../math_8h.html#a0a0d1f33df1c36dff4aac1792a640d03',1,'distance(vec3_t a, vec3_t b):&#160;math.cpp'],['../math_8cpp.html#a0a0d1f33df1c36dff4aac1792a640d03',1,'distance(vec3_t a, vec3_t b):&#160;math.cpp']]],
   ['divide',['divide',['../class_quaternion.html#a958be9504c7e111445f73521f764b806',1,'Quaternion']]],
   ['dot',['dot',['../class_quaternion.html#a3eee17d5277c9104aaa1b023680186b5',1,'Quaternion::dot()'],['../class_vector3d.html#a43f2f7721cc087492c74031ef7454c9f',1,'Vector3d::dot()']]],
-  ['draw',['Draw',['../class_emitter.html#a1a7f88acfebb09e0a3ab3bc6740a7287',1,'Emitter']]],
   ['draw_5fbbox',['draw_bbox',['../_render_8cpp.html#ab6d4c31a0ea8ee4f430b8de0b0c457f1',1,'Render.cpp']]],
   ['draw_5fbbox_5fcolor',['draw_bbox_color',['../_render_8cpp.html#a5851f759764c299ce418a5451e317c49',1,'Render.cpp']]],
   ['drawalpha',['drawAlpha',['../class_mesh.html#a96157bd7087e0b64ac64f78421f98f11',1,'Mesh']]],
