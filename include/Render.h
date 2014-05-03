@@ -192,15 +192,6 @@ public:
 
     unsigned int getFlags();
 
-    //! \fixme should be private
-
-    ViewVolume mViewVolume; //!< View Volume for frustum culling
-    std::vector<SkeletalModel *> mModels;
-
-private:
-
-    void drawLoadScreen();
-
     /*!
      * \brief Check if a bounding box is in the View Volume
      * \param bboxMin Start coordinates of a valid bounding box
@@ -227,6 +218,15 @@ private:
      * \returns true if sphere is visible
      */
     bool isVisible(float x, float y, float z, float radius);
+
+    //! \fixme should be private
+
+    ViewVolume mViewVolume; //!< View Volume for frustum culling
+    std::vector<SkeletalModel *> mModels;
+
+private:
+
+    void drawLoadScreen();
 
     /*!
      * \brief Build a visible room list starting at index

@@ -25,7 +25,7 @@
 // Old Code compatibility
 #define TexelScale 256.0f
 
-#ifndef EXPERIMENTAL_UNFIFIED_ROOM_GEOMETERY
+#ifndef EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
 #define TextureLimit 24
 #endif
 
@@ -1300,8 +1300,8 @@ void Game::processRooms()
 
         // Room geometery //////////////////////////////////
 
-        //#define EXPERIMENTAL_UNFIFIED_ROOM_GEOMETERY
-#ifdef EXPERIMENTAL_UNFIFIED_ROOM_GEOMETERY
+//#define EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
+#ifdef EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
         unsigned int vertexCount, normalCount, colorCount, triCount;
         vec_t *vertexArray;
         vec_t *normalArray;
@@ -1680,27 +1680,11 @@ void Game::processRooms()
 
             sprite->texture += mTextureStart; // OpenRaider preloads some textures
 
-            sprite->vertex[0].pos[0] = spriteVertices[0];
-            sprite->vertex[0].pos[1] = spriteVertices[1];
-            sprite->vertex[0].pos[2] = spriteVertices[2];
-            sprite->vertex[1].pos[0] = spriteVertices[3];
-            sprite->vertex[1].pos[1] = spriteVertices[4];
-            sprite->vertex[1].pos[2] = spriteVertices[5];
-            sprite->vertex[2].pos[0] = spriteVertices[6];
-            sprite->vertex[2].pos[1] = spriteVertices[7];
-            sprite->vertex[2].pos[2] = spriteVertices[8];
-            sprite->vertex[3].pos[0] = spriteVertices[9];
-            sprite->vertex[3].pos[1] = spriteVertices[10];
-            sprite->vertex[3].pos[2] = spriteVertices[11];
+            for (j = 0; j < 12; j++)
+                sprite->vertex[j / 3].pos[j % 3] = spriteVertices[j];
 
-            sprite->texel[0].st[0] = spriteTexCoords[0];
-            sprite->texel[0].st[1] = spriteTexCoords[1];
-            sprite->texel[1].st[0] = spriteTexCoords[2];
-            sprite->texel[1].st[1] = spriteTexCoords[3];
-            sprite->texel[2].st[0] = spriteTexCoords[4];
-            sprite->texel[2].st[1] = spriteTexCoords[5];
-            sprite->texel[3].st[0] = spriteTexCoords[6];
-            sprite->texel[3].st[1] = spriteTexCoords[7];
+            for (j = 0; j < 8; j++)
+                sprite->texel[j / 2].st[j % 2] = spriteTexCoords[j];
 
             r_mesh->sprites.push_back(sprite);
         }
