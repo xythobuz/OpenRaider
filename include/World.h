@@ -18,6 +18,8 @@
 #include "SkeletalModel.h"
 #endif
 
+#include "Room.h"
+#include "Sprite.h"
 #include "WorldData.h"
 
 /*!
@@ -161,11 +163,16 @@ public:
 
 private:
 
+    // Old World
     std::vector<entity_t *> mEntities;       //!< World entities
     std::vector<room_mesh_t *> mRooms;       //!< Map data and meshes
     std::vector<model_mesh_t *> mMeshes;     //!< Unanimated meshes
     std::vector<sprite_seq_t *> mSprites;    //!< Sprites
     std::vector<skeletal_model_t *> mModels; //!< Skeletal animation models
+
+    // New World
+    //std::vector<Room *> mRooms;
+    //std::vector<std::vector<Sprite *>> mSprites; // Sprite sequence
 };
 
 #endif
