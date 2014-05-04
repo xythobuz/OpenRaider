@@ -39,6 +39,7 @@ public:
 class StaticModel {
 public:
     StaticModel(int _index, vec_t _yaw, vec3_t _pos);
+    void display();
 
     // Compares distance to ViewVolume for depth sorting
     bool operator<(const StaticModel &other);
@@ -56,7 +57,7 @@ class Portal {
 public:
     Portal(vec3_t _vertices[4], vec3_t _normal, int _adjoiningRoom);
 
-    vec3_t *getVertices();
+    void getVertices(vec3_t vert[4]);
     int getAdjoiningRoom();
 
 private:
@@ -110,10 +111,13 @@ public:
     void setPos(vec3_t p);
     void getPos(vec3_t p);
 
+    void getBoundingBox(vec3_t box[2]);
     void setBoundingBox(vec3_t box[2]);
     bool inBox(vec_t x, vec_t y, vec_t z);
     bool inBoxPlane(vec_t x, vec_t z);
 
+    unsigned int sizeAdjacentRooms();
+    int getAdjacentRoom(unsigned int index);
     void addAdjacentRoom(int r);
 
     unsigned int sizePortals();
@@ -124,10 +128,22 @@ public:
     Sector &getSector(unsigned int index);
     void addSector(Sector &s);
 
+    unsigned int sizeBox();
+    Box &getBox(unsigned int index);
     void addBox(Box &b);
+
+    unsigned int sizeModels();
+    StaticModel &getModel(unsigned int index);
     void addModel(StaticModel &m);
-    void addSprite(Sprite &s);
+    void sortModels();
+
+    unsigned int sizeLights();
+    Light &getLight(unsigned int index);
     void addLight(Light &l);
+
+    unsigned int sizeSprites();
+    Sprite &getSprite(unsigned int index);
+    void addSprite(Sprite &s);
 
     Mesh &getMesh();
 
@@ -147,7 +163,7 @@ private:
     std::vector<Sector *> sectors;
 
     // Was previously stored in RenderRoom
-    vec_t dist;                  //!< Distance to near plane, move to room?
+    //vec_t dist;                  //!< Distance to near plane, move to room?
     std::vector<Light *> lights; //!< List of lights in this room
     Mesh mesh;                   //!< OpenGL mesh that represents this room
 };

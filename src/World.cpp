@@ -273,7 +273,7 @@ SpriteSequence &World::getSprite(unsigned int index) {
 int World::getRoomByLocation(int index, float x, float y, float z)
 {
     assert(index >= 0);
-    assert(index < mRooms.size());
+    assert(index < (int)mRooms.size());
     Room &room = *mRooms.at(index);
 
     if (room.inBox(x, y, z))
@@ -303,16 +303,18 @@ int World::getAdjoiningRoom(int index,
         float x, float y, float z,
         float x2, float y2, float z2) {
     assert(index >= 0);
-    assert(index < mRooms.size());
+    assert(index < (int)mRooms.size());
     Room &room = *mRooms.at(index);
     vec3_t intersect, p1, p2;
+    vec3_t vertices[4];
 
     p1[0] = x;  p1[1] = y;  p1[2] = z;
     p2[0] = x2; p2[1] = y2; p2[2] = z2;
 
     for (unsigned int i = 0; i < room.sizePortals(); i++) {
+        room.getPortal(i).getVertices(vertices);
         if (intersectionLinePolygon(intersect, p1, p2, //4,
-                    room.getPortal(i).getVertices()))
+                    vertices))
             return room.getPortal(i).getAdjoiningRoom();
     }
 
@@ -322,13 +324,13 @@ int World::getAdjoiningRoom(int index,
 
 int World::getSector(int room, float x, float z, float *floor, float *ceiling) {
     assert(room >= 0);
-    assert(room < mRooms.size());
+    assert(room < (int)mRooms.size());
     assert(floor != NULL);
     assert(ceiling != NULL);
 
     int sector = getSector(room, x, z);
 
-    if ((sector >= 0) && (sector < mRooms.at(room)->sizeSectors())) {
+    if ((sector >= 0) && (sector < (int)mRooms.at(room)->sizeSectors())) {
         *floor = mRooms.at(room)->getSector(sector).getFloor();
         *ceiling = mRooms.at(room)->getSector(sector).getCeiling();
     }
@@ -339,7 +341,7 @@ int World::getSector(int room, float x, float z, float *floor, float *ceiling) {
 
 int World::getSector(int room, float x, float z) {
     assert(room >= 0);
-    assert(room < mRooms.size());
+    assert(room < (int)mRooms.size());
 
     vec3_t pos;
     mRooms.at(room)->getPos(pos);
@@ -355,7 +357,7 @@ int World::getSector(int room, float x, float z) {
 
 unsigned int World::getRoomInfo(int room) {
     assert(room >= 0);
-    assert(room < mRooms.size());
+    assert(room < (int)mRooms.size());
 
     return mRooms.at(room)->getFlags();
 }
@@ -363,9 +365,9 @@ unsigned int World::getRoomInfo(int room) {
 
 bool World::isWall(int room, int sector) {
     assert(room >= 0);
-    assert(room < mRooms.size());
+    assert(room < (int)mRooms.size());
     assert(sector >= 0);
-    assert(sector < mRooms.at(room)->sizeSectors());
+    assert(sector < (int)mRooms.at(room)->sizeSectors());
 
     //! \fixme is (sector > 0) correct??
     return ((sector > 0) && mRooms.at(room)->getSector(sector).isWall());
@@ -374,10 +376,10 @@ bool World::isWall(int room, int sector) {
 
 void World::getHeightAtPosition(int index, float x, float *y, float z) {
     assert(index >= 0);
-    assert(index < mRooms.size());
+    assert(index < (int)mRooms.size());
 
     int sector = getSector(index, x, z);
-    if ((sector >= 0) && (sector < mRooms.at(index)->sizeSectors()))
+    if ((sector >= 0) && (sector < (int)mRooms.at(index)->sizeSectors()))
         *y = mRooms.at(index)->getSector(sector).getFloor();
 }
 

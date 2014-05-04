@@ -161,6 +161,15 @@ public:
      */
     bool isVisible(float x, float y, float z, float radius);
 
+    /*!
+     * \brief Renders a mesh.
+     *
+     * Texture must be initialized.
+     * \param r_mesh Mesh to render.
+     * \param type Must be object containing mesh
+     */
+    void drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type);
+
     //! \fixme should be private
 
     ViewVolume mViewVolume; //!< View Volume for frustum culling
@@ -181,7 +190,7 @@ private:
      * only considers its linked rooms and their linked rooms.
      * \param room First room in list
      */
-    void buildRoomRenderList(Room *room);
+    void buildRoomRenderList(Room &room);
 
     /*!
      * \brief Renders visible world object.
@@ -215,32 +224,7 @@ private:
      * \param rRoom room to render
      * \param draw_alpha once false, once true
      */
-    void drawRoom(Room *rRoom, bool draw_alpha);
-
-    /*!
-     * \brief Renders static room model.
-     *
-     * Texture must be initialized.
-     * \param mesh Static model to render
-     */
-    void drawRoomModel(StaticModel &mesh);
-
-    /*!
-     * \brief Renders a mesh.
-     *
-     * Texture must be initialized.
-     * \param r_mesh Mesh to render.
-     * \param type Must be object containing mesh
-     */
-    void drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type);
-
-    /*!
-     * \brief Renders a sprite.
-     *
-     * Texture must be initialized.
-     * \param sprite sprite to render
-     */
-    void drawSprite(Sprite &sprite);
+    void drawRoom(Room &rRoom, bool draw_alpha);
 
     /*!
      * \brief Updates View Volume. Call once per render frame.

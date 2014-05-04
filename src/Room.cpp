@@ -5,6 +5,16 @@
  * \author xythobuz
  */
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
+#include <algorithm>
+
 #include "main.h"
 #include "Room.h"
 
@@ -13,6 +23,23 @@ StaticModel::StaticModel(int _index, vec_t _yaw, vec3_t _pos) {
     yaw = _yaw;
     for (unsigned int i = 0; i < 3; i++)
         pos[i] = _pos[i];
+}
+
+void StaticModel::display() {
+    model_mesh_t *mesh = getWorld().getMesh(index);
+
+    if (!mesh)
+        return;
+
+    if (!getRender().isVisible(pos[0], pos[1], pos[2], mesh->radius))
+        return;
+
+    glPushMatrix();
+    glTranslated(pos[0], pos[1], pos[2]);
+    glRotated(yaw, 0, 1, 0);
+
+    getRender().drawModelMesh(mesh, Render::roomMesh);
+    glPopMatrix();
 }
 
 bool StaticModel::operator<(const StaticModel &other) {
@@ -81,5 +108,9 @@ Room::~Room() {
     for (i = 0; i < lights.size(); i++) {
         delete lights[i];
     }
+}
+
+void Room::sortModels() {
+    std::sort(models.begin(), models.end());
 }
 

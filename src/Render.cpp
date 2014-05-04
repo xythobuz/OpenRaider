@@ -44,19 +44,6 @@ bool compareEntites(const void *voidA, const void *voidB)
     return (distA < distB);
 }
 
-bool compareRoomDist(const void *voidA, const void *voidB)
-{
-    const RenderRoom *a = static_cast<const RenderRoom *>(voidA);
-    const RenderRoom *b = static_cast<const RenderRoom *>(voidB);
-
-
-    if (!a || !b || !a->room || !b->room)
-        return false; // error really
-
-    return (a->dist < b->dist);
-}
-
-
 ////////////////////////////////////////////////////////////
 // Constructors
 ////////////////////////////////////////////////////////////
@@ -97,12 +84,6 @@ unsigned int Render::getFlags() {
 ////////////////////////////////////////////////////////////
 
 
-void Render::addRoom(RenderRoom *room)
-{
-    mRooms.push_back(room);
-}
-
-
 void Render::loadTexture(unsigned char *image,
         unsigned int width, unsigned int height,
         unsigned int id)
@@ -141,15 +122,8 @@ int Render::initTextures(char *textureDir) {
 }
 
 
-void Render::ClearWorld()
-{
+void Render::ClearWorld() {
     mRoomRenderList.clear();
-
-    for (unsigned int i = 0; i < mRooms.size(); i++) {
-        if (mRooms[i])
-            delete mRooms[i];
-    }
-    mRooms.clear();
 
     for (unsigned int i = 0; i < mModels.size(); i++) {
         if (mModels[i])
@@ -218,28 +192,21 @@ void setLighting(bool on)
 }
 
 
-void lightRoom(RenderRoom *room)
+void lightRoom(Room &room)
 {
-    unsigned int i;
-    Light *light;
-
-
-    for (i = 0; i < room->lights.size(); ++i)
+    for (unsigned int i = 0; i < room.sizeLights(); ++i)
     {
-        light = room->lights[i];
-
-        if (!light)
-            continue;
+        Light &light = room.getLight(i);
 
         glEnable(GL_LIGHT0 + i);
 
-        switch (light->mType)
+        switch (light.mType)
         {
             case Light::typeSpot:
-                glLightf(GL_LIGHT0 + i,  GL_SPOT_CUTOFF,    light->mCutoff);
-                glLightfv(GL_LIGHT0 + i, GL_POSITION,       light->mPos);
-                glLightfv(GL_LIGHT0 + i, GL_SPOT_DIRECTION, light->mDir);
-                glLightfv(GL_LIGHT0 + i, GL_DIFFUSE,        light->mColor);
+                glLightf(GL_LIGHT0 + i,  GL_SPOT_CUTOFF,    light.mCutoff);
+                glLightfv(GL_LIGHT0 + i, GL_POSITION,       light.mPos);
+                glLightfv(GL_LIGHT0 + i, GL_SPOT_DIRECTION, light.mDir);
+                glLightfv(GL_LIGHT0 + i, GL_DIFFUSE,        light.mColor);
                 break;
             case Light::typePoint:
             case Light::typeDirectional:
@@ -247,10 +214,10 @@ void lightRoom(RenderRoom *room)
 
                 // GL_QUADRATIC_ATTENUATION
                 // GL_LINEAR_ATTENUATION
-                glLightf(GL_LIGHT0 + i, GL_LINEAR_ATTENUATION, light->mAtt);
+                glLightf(GL_LIGHT0 + i, GL_LINEAR_ATTENUATION, light.mAtt);
 
-                glLightfv(GL_LIGHT0 + i, GL_DIFFUSE, light->mColor); // GL_DIFFUSE
-                glLightfv(GL_LIGHT0 + i, GL_POSITION, light->mPos);
+                glLightfv(GL_LIGHT0 + i, GL_DIFFUSE, light.mColor); // GL_DIFFUSE
+                glLightfv(GL_LIGHT0 + i, GL_POSITION, light.mPos);
                 break;
         }
     }
@@ -381,7 +348,6 @@ void Render::display()
     vec3_t curPos;
     vec3_t camPos;
     vec3_t atPos;
-    RenderRoom *room;
     int index;
 
     switch (mMode)
@@ -518,17 +484,14 @@ void Render::display()
     // Room solid pass, need to do depth sorting to avoid 2 pass render
     for (unsigned int i = 0; i < mRoomRenderList.size(); i++)
     {
-        room = mRoomRenderList[i];
+        Room &room = *mRoomRenderList[i];
 
-        if (room)
+        if (mFlags & Render::fGL_Lights)
         {
-            if (mFlags & Render::fGL_Lights)
-            {
-                lightRoom(room);
-            }
-
-            drawRoom(room, false);
+            lightRoom(room);
         }
+
+        drawRoom(room, false);
     }
 
     // Draw all visible enities
@@ -593,12 +556,7 @@ void Render::display()
     {
         for (unsigned int i = 0; i < mRoomRenderList.size(); i++)
         {
-            room = mRoomRenderList[i];
-
-            if (room)
-            {
-                drawRoom(room, true);
-            }
+            drawRoom(*mRoomRenderList[i], true);
         }
     }
 
@@ -658,21 +616,13 @@ void Render::drawLoadScreen()
 void Render::newRoomRenderList(int index)
 {
     static int currentRoomId = -1;
-    RenderRoom *room;
-
 
     if (mFlags & Render::fUsePortals)
     {
         if (index == -1) // -1 is error, so draw room 0, for the hell of it
         {
-            room = mRooms[0];
-
             mRoomRenderList.clear();
-
-            if (room)
-            {
-                mRoomRenderList.push_back(room);
-            }
+            mRoomRenderList.push_back(&getWorld().getRoom(0));
         }
         else
         {
@@ -680,9 +630,7 @@ void Render::newRoomRenderList(int index)
             if (mFlags & Render::fUpdateRoomListPerFrame ||
                     currentRoomId != index)
             {
-                mRoomRenderList.clear();
-                room = mRooms[index];
-                buildRoomRenderList(room);
+                buildRoomRenderList(getWorld().getRoom(index));
             }
         }
     }
@@ -693,61 +641,43 @@ void Render::newRoomRenderList(int index)
             printf("*** Room render list -> %i\n", index);
             mRoomRenderList.clear();
 
-            for (unsigned int i = 0; i < mRooms.size(); i++)
+            for (unsigned int i = 0; i < getWorld().sizeRoom(); i++)
             {
-                room = mRooms[i];
-
-                if (!room || !room->room)
+                vec3_t bbox[2];
+                getWorld().getRoom(i).getBoundingBox(bbox);
+                if (!isVisible(bbox[0], bbox[1]))
                     continue;
 
-                if (!isVisible(room->room->bbox_min, room->room->bbox_max))
-                    continue;
-
-                //room->dist =
-                //mViewVolume.getDistToBboxFromNear(room->room->bbox_min,
-                //                                           room->room->bbox_max);
-
-                mRoomRenderList.push_back(room);
+                mRoomRenderList.push_back(&getWorld().getRoom(i));
             }
         }
     }
-
-    // Depth Sort roomRenderList ( no use in that, work on portals first )
-    std::sort(mRoomRenderList.begin(), mRoomRenderList.end(), compareRoomDist);
 
     currentRoomId = index;
 }
 
 
-void Render::buildRoomRenderList(RenderRoom *rRoom)
+void Render::buildRoomRenderList(Room &room)
 {
-    RenderRoom *rRoom2;
-
-
-    // Must exist
-    if (!rRoom || !rRoom->room)
-        return;
 
     // Must be visible
     //! \fixme Add depth sorting here - remove multipass
-    if (!isVisible(rRoom->room->bbox_min, rRoom->room->bbox_max))
+    vec3_t bbox[2];
+    room.getBoundingBox(bbox);
+    if (!isVisible(bbox[0], bbox[1]))
         return;
 
     // Must not already be cached
     for (unsigned int i = 0; i < mRoomRenderList.size(); i++)
     {
-        rRoom2 = mRoomRenderList[i];
+        Room &room2 = *mRoomRenderList[i];
 
-        if (rRoom2 == rRoom)
+        if (&room2 == &room)
             return;
     }
 
-    //rRoom->dist =
-    //mViewVolume.getDistToBboxFromNear(rRoom->room->bbox_min,
-    //                                           rRoom->room->bbox_max);
-
     /* Add current room to list */
-    mRoomRenderList.push_back(rRoom);
+    mRoomRenderList.push_back(&room);
 
     if (mFlags & Render::fOneRoom)
     {
@@ -755,13 +685,13 @@ void Render::buildRoomRenderList(RenderRoom *rRoom)
     }
     else if (mFlags & Render::fAllRooms) /* Are you serious? */
     {
-        for (unsigned int i = 0; i < mRooms.size(); i++)
+        for (unsigned int i = 0; i < getWorld().sizeRoom(); i++)
         {
-            rRoom2 = mRooms[i];
+            Room &room2 = getWorld().getRoom(i);
 
-            if (rRoom2 && rRoom2 != rRoom)
+            if (&room2 != &room)
             {
-                buildRoomRenderList(rRoom2);
+                buildRoomRenderList(room2);
             }
         }
 
@@ -769,18 +699,18 @@ void Render::buildRoomRenderList(RenderRoom *rRoom)
     }
 
     // Try to add adj rooms and their adj rooms, skip this room
-    for (unsigned int i = 1; i < rRoom->room->adjacentRooms.size(); i++)
+    for (unsigned int i = 1; i < room.sizeAdjacentRooms(); i++)
     {
-        if (rRoom->room->adjacentRooms[i] < 0)
+        if (room.getAdjacentRoom(i) < 0)
             continue;
 
-        rRoom2 = mRooms[rRoom->room->adjacentRooms[i]];
+        Room &room2 = getWorld().getRoom(room.getAdjacentRoom(i));
 
         // Mongoose 2002.03.22, Add portal visibility check here
 
-        if (rRoom2 && rRoom2 != rRoom)
+        if (&room2 != &room)
         {
-            buildRoomRenderList(rRoom2);
+            buildRoomRenderList(room2);
         }
     }
 }
@@ -813,13 +743,6 @@ void Render::drawSkyMesh(float scale)
 
 void Render::drawObjects()
 {
-#ifdef USING_FPS_CAMERA
-    vec3_t curPos;
-#endif
-    sprite_seq_t *sprite;
-    int frame;
-
-
     // Draw lara or other player model ( move to entity rendering method )
     if (mFlags & Render::fViewModel && getGame().mLara && getGame().mLara->tmpHook)
     {
@@ -827,6 +750,7 @@ void Render::drawObjects()
 
         if (mdl)
         {
+            int frame;
 
             // Mongoose 2002.03.22, Test 'idle' aniamtions
             if (!getGame().mLara->moving)
@@ -854,41 +778,19 @@ void Render::drawObjects()
 
         glPushMatrix();
 
-#ifdef USING_FPS_CAMERA
-        getCamera().getPosition(curPos);
-        glTranslated(curPos[0], curPos[1], curPos[2]);
-        glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
-        glTranslated(0, 500, 1200);
-#else
         glTranslated(getGame().mLara->pos[0], getGame().mLara->pos[1], getGame().mLara->pos[2]);
         glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
-#endif
 
         drawModel(getGame().mLara->tmpHook);
         glPopMatrix();
     }
 
     // Mongoose 2002.03.22, Draw sprites after player to handle alpha
-    if (mFlags & Render::fSprites)
-    {
-        std::vector<sprite_seq_t *> *sprites;
-
-        sprites = getWorld().getSprites();
-
-        for (unsigned int i = 0; i < sprites->size(); i++)
-        {
-            sprite = sprites->at(i);
-
-            if (!sprite)
-                continue;
-
-            if (sprite->sprite && sprite->num_sprites)
-            {
-                for (int j = 0; j < sprite->num_sprites; j++)
-                {
-                    drawSprite((sprite_t *)(sprite->sprite+j));
-                }
-            }
+    if (mFlags & Render::fSprites) {
+        for (unsigned int i = 0; i < getWorld().sizeSprite(); i++) {
+            SpriteSequence &sprite = getWorld().getSprite(i);
+            for (unsigned int j = 0; j < sprite.size(); j++)
+                sprite.get(j).display();
         }
     }
 }
@@ -1233,16 +1135,8 @@ void draw_bbox_color(vec3_t min, vec3_t max, bool draw_points,
 }
 
 
-void Render::drawRoom(RenderRoom *rRoom, bool draw_alpha)
+void Render::drawRoom(Room &room, bool draw_alpha)
 {
-    room_mesh_t *room;
-
-
-    if (!rRoom || !rRoom->room)
-        return;
-
-    room = rRoom->room;
-
     if (!(mFlags & Render::fRoomAlpha) && draw_alpha)
         return;
 
@@ -1252,53 +1146,35 @@ void Render::drawRoom(RenderRoom *rRoom, bool draw_alpha)
     mTexture.bindTextureId(0); // WHITE texture
 
     if (!draw_alpha &&
-            (mFlags & Render::fPortals || mMode == Render::modeWireframe))
-    {
-        portal_t *portal;
-
+            (mFlags & Render::fPortals || mMode == Render::modeWireframe)) {
         glLineWidth(2.0);
         glColor3fv(RED);
 
-        for (unsigned int i = 0; i < room->portals.size(); i++)
-        {
-            portal = room->portals[i];
-
-            if (!portal)
-                continue;
+        for (unsigned int i = 0; i < room.sizePortals(); i++) {
+            Portal &portal = room.getPortal(i);
+            vec3_t vertices[4];
+            portal.getVertices(vertices);
 
             glBegin(GL_LINE_LOOP);
-            glVertex3fv(portal->vertices[0]);
-            glVertex3fv(portal->vertices[1]);
-            glVertex3fv(portal->vertices[2]);
-            glVertex3fv(portal->vertices[3]);
+            glVertex3fv(vertices[0]);
+            glVertex3fv(vertices[1]);
+            glVertex3fv(vertices[2]);
+            glVertex3fv(vertices[3]);
             glEnd();
         }
 
         glLineWidth(1.0);
-
-#ifdef OBSOLETE
-        glColor3fv(RED);
-
-        for (i = 0; i < (int)room->num_boxes; ++i)
-        {
-            // Mongoose 2002.08.14, This is a simple test -
-            //   these like portals are really planes
-            glBegin(GL_QUADS);
-            glVertex3fv(room->boxes[i].a.pos);
-            glVertex3fv(room->boxes[i].b.pos);
-            glVertex3fv(room->boxes[i].c.pos);
-            glVertex3fv(room->boxes[i].d.pos);
-            glEnd();
-        }
-#endif
     }
 
-    if (mMode == Render::modeWireframe && !draw_alpha)
-    {
-        draw_bbox(room->bbox_min, room->bbox_max, true);
+    if (mMode == Render::modeWireframe && !draw_alpha) {
+        vec3_t bbox[2];
+        room.getBoundingBox(bbox);
+        draw_bbox(bbox[0], bbox[1], true);
     }
 
-    glTranslated(room->pos[0], room->pos[1], room->pos[2]);
+    vec3_t pos;
+    room.getPos(pos);
+    glTranslated(pos[0], pos[1], pos[2]);
 
     // Reset since GL_MODULATE used, reset to WHITE
     glColor3fv(WHITE);
@@ -1306,158 +1182,41 @@ void Render::drawRoom(RenderRoom *rRoom, bool draw_alpha)
     switch (mMode)
     {
         case modeWireframe:
-            rRoom->mesh.mMode = Mesh::MeshModeWireframe;
+            room.getMesh().mMode = Mesh::MeshModeWireframe;
             break;
         case modeSolid:
-            rRoom->mesh.mMode = Mesh::MeshModeSolid;
+            room.getMesh().mMode = Mesh::MeshModeSolid;
             break;
         default:
-            rRoom->mesh.mMode = Mesh::MeshModeTexture;
+            room.getMesh().mMode = Mesh::MeshModeTexture;
             break;
     }
 
     if (draw_alpha)
-    {
-        rRoom->mesh.drawAlpha();
-    }
+        room.getMesh().drawAlpha();
     else
-    {
-        rRoom->mesh.drawSolid();
-    }
+        room.getMesh().drawSolid();
 
     glPopMatrix();
 
     //mTexture.bindTextureId(0);
 
     // Draw other room meshes and sprites
-    if (draw_alpha || mMode == modeWireframe || mMode == modeSolid)
-    {
-        if (mFlags & Render::fRoomModels)
-        {
-            static_model_t *mdl;
-
-            for (unsigned int i = 0; i < room->models.size(); i++)
-            {
-                mdl = room->models[i];
-
-                if (!mdl)
-                    continue;
-
-                mdl->pos[0] += room->pos[0];
-                mdl->pos[1] += room->pos[1];
-                mdl->pos[2] += room->pos[2];
-
-                // Depth sort room model render list with qsort
-                std::sort(room->models.begin(), room->models.end(), compareStaticModels);
-
-                mdl->pos[0] -= room->pos[0];
-                mdl->pos[1] -= room->pos[1];
-                mdl->pos[2] -= room->pos[2];
-            }
-
-            for (unsigned int i = 0; i < room->models.size(); i++)
-            {
-                drawRoomModel(room->models[i]);
+    if (draw_alpha || mMode == modeWireframe || mMode == modeSolid) {
+        if (mFlags & Render::fRoomModels) {
+            room.sortModels();
+            for (unsigned int i = 0; i < room.sizeModels(); i++) {
+                room.getModel(i).display();
             }
         }
 
         // Draw other room alpha polygon objects
-        if (mFlags & Render::fSprites)
-        {
-            for (unsigned int i = 0; i < room->sprites.size(); i++)
-            {
-                drawSprite(room->sprites[i]);
+        if (mFlags & Render::fSprites) {
+            for (unsigned int i = 0; i < room.sizeSprites(); i++) {
+                room.getSprite(i).display();
             }
         }
     }
-}
-
-
-void Render::drawSprite(sprite_t *sprite)
-{
-    if (!sprite)
-        return;
-
-    if (!isVisible(sprite->pos[0], sprite->pos[1], sprite->pos[2],
-                sprite->radius))
-        return;
-
-    glPushMatrix();
-    glTranslated(sprite->pos[0], sprite->pos[1], sprite->pos[2]);
-
-    // Sprites must always face camera, because they have no depth  =)
-    glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
-
-    switch (mMode)
-    {
-        // No vertex lighting on sprites, as far as I see in specs
-        // So just draw normal texture, no case 2
-        case Render::modeSolid:
-            glBegin(GL_TRIANGLE_STRIP);
-            glColor3f(sprite->texel[0].st[0], sprite->texel[0].st[1], 0.5);
-            glVertex3fv(sprite->vertex[0].pos);
-
-            glColor3f(sprite->texel[1].st[0], sprite->texel[1].st[1], 0.5);
-            glVertex3fv(sprite->vertex[1].pos);
-
-            glColor3f(sprite->texel[3].st[0], sprite->texel[3].st[1], 0.5);
-            glVertex3fv(sprite->vertex[3].pos);
-
-            glColor3f(sprite->texel[2].st[0], sprite->texel[2].st[1], 0.5);
-            glVertex3fv(sprite->vertex[2].pos);
-            glEnd();
-            break;
-        case Render::modeWireframe:
-            glColor3fv(CYAN);
-            glBegin(GL_LINE_LOOP);
-            glVertex3fv(sprite->vertex[0].pos);
-            glVertex3fv(sprite->vertex[1].pos);
-            glVertex3fv(sprite->vertex[2].pos);
-            glVertex3fv(sprite->vertex[3].pos);
-            glEnd();
-            glColor3fv(WHITE);
-            break;
-        default:
-            glBindTexture(GL_TEXTURE_2D, sprite->texture+1);
-
-            glBegin(GL_TRIANGLE_STRIP);
-            glTexCoord2fv(sprite->texel[0].st);
-            glVertex3fv(sprite->vertex[0].pos);
-            glTexCoord2fv(sprite->texel[1].st);
-            glVertex3fv(sprite->vertex[1].pos);
-            glTexCoord2fv(sprite->texel[3].st);
-            glVertex3fv(sprite->vertex[3].pos);
-            glTexCoord2fv(sprite->texel[2].st);
-            glVertex3fv(sprite->vertex[2].pos);
-            glEnd();
-    }
-
-    glPopMatrix();
-}
-
-
-void Render::drawRoomModel(static_model_t *mesh)
-{
-    model_mesh_t *r_mesh;
-
-
-    if (!mesh)
-        return;
-
-    r_mesh = getWorld().getMesh(mesh->index);
-
-    if (!r_mesh)
-        return;
-
-    if (!isVisible(mesh->pos[0], mesh->pos[1], mesh->pos[2], r_mesh->radius))
-        return;
-
-    glPushMatrix();
-    glTranslated(mesh->pos[0], mesh->pos[1], mesh->pos[2]);
-    glRotated(mesh->yaw, 0, 1, 0);
-
-    drawModelMesh(r_mesh, roomMesh);
-    glPopMatrix();
 }
 
 
