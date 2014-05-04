@@ -67,5 +67,9 @@ Room::~Room() {
 
     for (i = 0; i < sectors.size(); i++)
         delete sectors[i];
+
+    for (i = 0; i < lights.size(); i++) {
+        delete lights[i];
+    }
 }
 

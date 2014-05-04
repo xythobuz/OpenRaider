@@ -21,62 +21,6 @@
 #include "Camera.h"
 
 /*!
- * \brief The GL light class
- */
-class Light {
-public:
-    /*!
-     * \brief Type a light can be of
-     */
-    typedef enum {
-        typePoint       = 1, //!< Point light
-        typeSpot        = 2, //!< Spot light
-        typeDirectional = 3  //!< Directional light
-    } LightType;
-
-    vec4_t mPos; //! Light position in 3 space
-    vec3_t mDir; //! Light direction
-    float mAtt;
-    vec4_t mColor; //! Color of light
-    vec_t mCutoff; //! Fade out distance
-    LightType mType; //! Type of light
-};
-
-/*!
- * \brief RenderRoom used by Renderer
- */
-class RenderRoom {
-public:
-
-    /*!
-     * \brief Constructs an object of RenderRoom
-     */
-    RenderRoom() {
-        room = 0x0;
-        dist = 0.0f;
-    }
-
-    /*!
-     * \brief Deconstructs an object of RenderRoom
-     */
-    ~RenderRoom() {
-        // \fixme Hangs when erasing - might be shared pointers somewhere
-        for (std::vector<Light *>::size_type i = 0; i != lights.size(); i++) {
-            if (lights[i])
-                delete lights[i];
-        }
-        lights.clear();
-    }
-
-    vec_t dist;             //!< Distance to near plane, move to room?
-    std::vector<Light *> lights; //!< List of lights in this room
-    Mesh mesh;              //!< OpenGL mesh that represents this room
-
-    //! \fixme very dangerous as allocated and used
-    room_mesh_t *room;      //!< Physical room stored in World
-};
-
-/*!
  * \brief OpenRaider Renderer class
  */
 class Render {
@@ -136,8 +80,6 @@ public:
      * \fixme Don't return enum as int?!
      */
     int getMode();
-
-    void addRoom(RenderRoom *rRoom);
 
     /*!
      * \brief Loads textures in a certain id slot
@@ -239,7 +181,7 @@ private:
      * only considers its linked rooms and their linked rooms.
      * \param room First room in list
      */
-    void buildRoomRenderList(RenderRoom *room);
+    void buildRoomRenderList(Room *room);
 
     /*!
      * \brief Renders visible world object.
@@ -273,7 +215,7 @@ private:
      * \param rRoom room to render
      * \param draw_alpha once false, once true
      */
-    void drawRoom(RenderRoom *rRoom, bool draw_alpha);
+    void drawRoom(Room *rRoom, bool draw_alpha);
 
     /*!
      * \brief Renders static room model.
@@ -310,8 +252,7 @@ private:
 
     Texture mTexture;                     //!< Texture subsystem
 
-    std::vector<RenderRoom *> mRoomRenderList;
-    std::vector<RenderRoom *> mRooms;
+    std::vector<Room *> mRoomRenderList;
 
     unsigned int mFlags;                  //!< Rendering flags
     unsigned int mMode;                   //!< Rendering mode

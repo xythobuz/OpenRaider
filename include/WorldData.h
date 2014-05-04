@@ -33,6 +33,7 @@ typedef struct {
     vec2_t st;
 } texel_t;
 
+/*
 typedef struct {
     int num_verts;      //!< 4 == Quad, 3 == Triangle, rendered as triangles
     vertex_t vertex[4];
@@ -46,6 +47,7 @@ typedef struct {
     int num_sprites;
     sprite_t *sprite;
 } sprite_seq_t;
+*/
 
 /*! \fixme For now shaders are textures on tex objects
  * and materials on color objects. If -1
@@ -102,6 +104,7 @@ typedef struct entity_s {
     */
 } entity_t;
 
+/*
 typedef struct {
     int index;    //!< model_mesh index
     float yaw;    //!< angle of rotation on Y
@@ -148,6 +151,7 @@ typedef struct {
     vec3_t bbox_min;
     vec3_t bbox_max;
 } room_mesh_t;
+*/
 
 #endif
 
