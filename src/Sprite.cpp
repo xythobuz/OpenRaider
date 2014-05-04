@@ -33,8 +33,7 @@ Sprite &SpriteSequence::get(unsigned int index) {
     return *sprites.at(index);
 }
 
-Sprite::Sprite(int _numVerts, vec3_t _vertex[4], vec2_t _texel[4], vec3_t _pos, vec_t _radius, int _texture) {
-    numVerts = _numVerts;
+Sprite::Sprite(vec3_t _vertex[4], vec2_t _texel[4], vec3_t _pos, vec_t _radius, int _texture) {
     radius = _radius;
     texture = _texture;
     for (unsigned int i = 0; i < 3; i++) {

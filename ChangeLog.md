@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140504 ]
+    * Forcing use of new Room and Sprite classes in World.
+    * Rewrote Sprite loading code in Game
+
     [ 20140503 ]
     * Started big World-Data refactoring.
       - Created Sprite class with drawing code from Render

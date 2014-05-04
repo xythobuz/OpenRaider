@@ -18,7 +18,6 @@ World::~World()
 
 
 // Temp methods for rendering use until more refactoring is done
-#ifdef BAD_BLOOD
 model_mesh_t *World::getMesh(int index)
 {
     return mMeshes[index];
@@ -29,31 +28,10 @@ skeletal_model_t *World::getModel(int index)
     return mModels[index];
 }
 
-room_mesh_t *World::getRoom(int index)
-{
-    return mRooms[index];
-}
-
 std::vector<entity_t *> *World::getEntities()
 {
     return &mEntities;
 }
-
-std::vector<sprite_seq_t *> *World::getSprites()
-{
-    return &mSprites;
-}
-
-std::vector<room_mesh_t *> *World::getRooms()
-{
-    return &mRooms;
-}
-
-void World::addRoom(room_mesh_t *room)
-{
-    mRooms.push_back(room);
-}
-
 
 void World::addMesh(model_mesh_t *mesh)
 {
@@ -83,13 +61,6 @@ int World::addModel(skeletal_model_t *model)
     }
 
     return -1;
-}
-
-
-void World::addSprite(sprite_seq_t *sprite)
-{
-    if (sprite)
-        mSprites.push_back(sprite);
 }
 
 
@@ -271,128 +242,95 @@ void World::moveEntity(entity_t *e, char movement)
     e->moving = true;
 }
 
-#else
 
 void World::addRoom(Room &room) {
     mRooms.push_back(&room);
+}
+
+unsigned int World::sizeRoom() {
+    return mRooms.size();
+}
+
+Room &World::getRoom(unsigned int index) {
+    assert(index < mRooms.size());
+    return *mRooms.at(index);
 }
 
 void World::addSprite(SpriteSequence &sprite) {
     mSprites.push_back(&sprite);
 }
 
-#endif
+unsigned int World::sizeSprite() {
+    return mSprites.size();
+}
+
+SpriteSequence &World::getSprite(unsigned int index) {
+    assert(index < mSprites.size());
+    return *mSprites.at(index);
+}
 
 
 int World::getRoomByLocation(int index, float x, float y, float z)
 {
-    room_mesh_t *room = mRooms[index];
+    assert(index >= 0);
+    assert(index < mRooms.size());
+    Room &room = *mRooms.at(index);
 
-    if (room)
-    {
-        if (x > room->bbox_min[0] && x < room->bbox_max[0] &&
-                z > room->bbox_min[2] && z < room->bbox_max[2])
-        {
-            if (y > room->bbox_min[1] && y < room->bbox_max[1])
-                return index;
-        }
-    }
-
-    return getRoomByLocation(x, y, z);
+    if (room.inBox(x, y, z))
+        return index;
+    else
+        return getRoomByLocation(x, y, z);
 }
 
 
-int World::getRoomByLocation(float x, float y, float z)
-{
-    room_mesh_t *room;
+int World::getRoomByLocation(float x, float y, float z) {
     int hop = -1;
 
-
-    for(std::vector<int>::size_type i = 0; i < mRooms.size(); i++)
-    {
-        room = mRooms[i];
-
-        if (!room)
-            continue;
-
-        if ((x > room->bbox_min[0]) && (x < room->bbox_max[0]) &&
-                (z > room->bbox_min[2]) && (z < room->bbox_max[2]))
-        {
-            // This room contains current position
-            if ((y > room->bbox_min[1]) && (y < room->bbox_max[1]))
+    for (unsigned int i = 0; i < mRooms.size(); i++) {
+        if (mRooms.at(i)->inBoxPlane(x, z)) {
+            if (mRooms.at(i)->inBox(x, y, z))
                 return i;
-
-            // This room is above or below current position
-            hop = i;
+            else
+                hop = i; // This room is above or below current position
         }
     }
 
-    // Room is -1?  Must be in void, try to hop to room with same X,Z
     return hop;
-    //return -1;
 }
 
 
 int World::getAdjoiningRoom(int index,
         float x, float y, float z,
-        float x2, float y2, float z2)
-{
-    room_mesh_t *room = mRooms[index];
-    portal_t * portal;
+        float x2, float y2, float z2) {
+    assert(index >= 0);
+    assert(index < mRooms.size());
+    Room &room = *mRooms.at(index);
     vec3_t intersect, p1, p2;
-
 
     p1[0] = x;  p1[1] = y;  p1[2] = z;
     p2[0] = x2; p2[1] = y2; p2[2] = z2;
 
-    if (room)
-    {
-        for(std::vector<int>::size_type i = 0; i != room->portals.size(); i++)
-        {
-            portal = room->portals[i];
-
-            if (!portal)
-                continue;
-
-            if (intersectionLinePolygon(intersect, p1, p2, // 4,
-                        portal->vertices))
-            {
-                return portal->adjoining_room;
-            }
-        }
+    for (unsigned int i = 0; i < room.sizePortals(); i++) {
+        if (intersectionLinePolygon(intersect, p1, p2, //4,
+                    room.getPortal(i).getVertices()))
+            return room.getPortal(i).getAdjoiningRoom();
     }
 
     return -1;
 }
 
 
-int World::getSector(int room, float x, float z, float *floor, float *ceiling)
-{
-    room_mesh_t *r;
-    sector_t * s;
-    int sector;
-
+int World::getSector(int room, float x, float z, float *floor, float *ceiling) {
     assert(room >= 0);
+    assert(room < mRooms.size());
     assert(floor != NULL);
     assert(ceiling != NULL);
 
-    r = mRooms[room];
+    int sector = getSector(room, x, z);
 
-    if (!r)
-        return -1;
-
-    sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) +
-            (((int)z - (int)r->pos[2]) / 1024));
-
-    if (sector > -1)
-    {
-        s = r->sectors[sector];
-
-        if (!s)
-            return -1;
-
-        *floor = s->floor;
-        *ceiling = s->ceiling;
+    if ((sector >= 0) && (sector < mRooms.at(room)->sizeSectors())) {
+        *floor = mRooms.at(room)->getSector(sector).getFloor();
+        *ceiling = mRooms.at(room)->getSector(sector).getCeiling();
     }
 
     return sector;
@@ -400,19 +338,13 @@ int World::getSector(int room, float x, float z, float *floor, float *ceiling)
 
 
 int World::getSector(int room, float x, float z) {
-    int sector;
-    room_mesh_t *r;
+    assert(room >= 0);
+    assert(room < mRooms.size());
 
-    if ((room < 0) || (room >= (int)mRooms.size()))
-        return -1;
-
-    r = mRooms[room];
-
-    if (!r)
-        return -1;
-
-    sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) +
-            (((int)z - (int)r->pos[2]) / 1024));
+    vec3_t pos;
+    mRooms.at(room)->getPos(pos);
+    int sector = (((((int)x - (int)pos[0]) / 1024) *
+        mRooms.at(room)->getNumZSectors()) + (((int)z - (int)pos[2]) / 1024));
 
     if (sector < 0)
         return -1;
@@ -422,73 +354,43 @@ int World::getSector(int room, float x, float z) {
 
 
 unsigned int World::getRoomInfo(int room) {
-    room_mesh_t *r;
+    assert(room >= 0);
+    assert(room < mRooms.size());
 
-    if ((room >= (int)mRooms.size()) || (room < 0))
-        return 0;
-
-    r = mRooms[room];
-
-    if (!r)
-        return 0;
-
-    return r->flags;
+    return mRooms.at(room)->getFlags();
 }
 
 
 bool World::isWall(int room, int sector) {
-    room_mesh_t *r;
-    sector_t *sect;
+    assert(room >= 0);
+    assert(room < mRooms.size());
+    assert(sector >= 0);
+    assert(sector < mRooms.at(room)->sizeSectors());
 
-    if ((room >= (int)mRooms.size()) || (room < 0))
-        return true;
-
-    r = mRooms[room];
-
-    if ((!r) || (sector >= (int)r->sectors.size()) || (sector < 0))
-        return true;
-
-    sect = r->sectors[sector];
-
-    if (!sect)
-        return true;
-
-    return ((sector > 0) && sect->wall); //! \fixme is (sector > 0) correct??
+    //! \fixme is (sector > 0) correct??
+    return ((sector > 0) && mRooms.at(room)->getSector(sector).isWall());
 }
 
 
-bool World::getHeightAtPosition(int index, float x, float *y, float z)
-{
-    room_mesh_t *room = mRooms[index];
-    int sector;
-    sector_t *sect;
+void World::getHeightAtPosition(int index, float x, float *y, float z) {
+    assert(index >= 0);
+    assert(index < mRooms.size());
 
-    if (!room)
-    {
-        return false;
-    }
-
-    // Mongoose 2002.08.14, Remember sector_z is width of sector array
-    sector = getSector(index, x, z);
-
-    sect = room->sectors[sector];
-
-    if (!sect)
-    {
-        return true;
-    }
-
-    *y = sect->floor;
-
-    return true;
+    int sector = getSector(index, x, z);
+    if ((sector >= 0) && (sector < mRooms.at(index)->sizeSectors()))
+        *y = mRooms.at(index)->getSector(sector).getFloor();
 }
 
 
 void World::destroy()
 {
-    room_mesh_t *room;
+    for (unsigned int i = 0; i != mRooms.size(); i++)
+        delete mRooms[i];
+
+    for (unsigned int i = 0; i != mSprites.size(); i++)
+        delete mSprites[i];
+
     model_mesh_t *mesh;
-    sprite_seq_t *sprite;
     skeletal_model_t *model;
     bone_frame_t *boneframe;
     bone_tag_t *tag;
@@ -497,37 +399,6 @@ void World::destroy()
 
     for (std::vector<int>::size_type i = 0; i != mEntities.size(); i++)
         delete mEntities[i];
-    mEntities.clear();
-
-    for (std::vector<int>::size_type i = 0; i != mRooms.size(); i++) {
-        room = mRooms[i];
-
-        if (room) {
-            //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
-
-            //for (std::vector<int>::size_type j = 0; j != room->portals.size(); j++)
-            //    delete room->portals[i];
-            room->portals.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->models.size(); j++)
-            //    delete room->models[i];
-            room->models.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->sprites.size(); j++)
-            //    delete room->sprites[i];
-            room->sprites.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->sectors.size(); j++)
-            //    delete room->sectors[i];
-            room->sectors.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->boxes.size(); j++)
-            //    delete room->boxes[i];
-            room->boxes.clear();
-
-            delete room;
-        }
-    }
 
     for (std::vector<int>::size_type i = 0; i != mMeshes.size(); i++) {
         mesh = mMeshes[i];
@@ -568,20 +439,6 @@ void World::destroy()
     }
 
     mMeshes.clear();
-
-    for (std::vector<int>::size_type i = 0; i != mSprites.size(); i++) {
-        sprite = mSprites[i];
-
-        if (!sprite)
-            continue;
-
-        if (sprite->sprite)
-            delete [] sprite->sprite;
-
-        delete sprite;
-    }
-
-    mSprites.clear();
 
     for (std::vector<int>::size_type i = 0; i != mModels.size(); i++) {
         model = mModels[i];

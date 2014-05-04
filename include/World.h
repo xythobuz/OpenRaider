@@ -12,14 +12,8 @@
 #include <list>
 #include <vector>
 
-#define BAD_BLOOD //!< \todo For temp rendering use
-
-#ifdef BAD_BLOOD
-#include "SkeletalModel.h"
-#else
 #include "Room.h"
 #include "Sprite.h"
-#endif
 
 #include "WorldData.h"
 
@@ -33,16 +27,6 @@ public:
      * \brief Deconstructs an object of World
      */
     ~World();
-
-#ifdef BAD_BLOOD
-
-    //! \todo Temp methods for rendering use until more refactoring is done
-
-    /*!
-     * \brief Adds room to world
-     * \param room room to add
-     */
-    void addRoom(room_mesh_t *room);
 
     /*!
      * \brief Adds mesh to world
@@ -64,12 +48,6 @@ public:
     int addModel(skeletal_model_t *model);
 
     /*!
-     * \brief Adds sprite to world
-     * \param sprite sprite to add
-     */
-    void addSprite(sprite_seq_t *sprite);
-
-    /*!
      * \brief Move entity in given direction unless collision occurs
      * \param e entity to move
      * \param movement direction of movement ('f', 'b', 'l' or 'r')
@@ -78,18 +56,19 @@ public:
 
     model_mesh_t *getMesh(int index);
     skeletal_model_t *getModel(int index);
-    room_mesh_t *getRoom(int index);
     std::vector<entity_t *> *getEntities();
-    std::vector<sprite_seq_t *> *getSprites();
-    std::vector<room_mesh_t *> *getRooms();
-
-#else
 
     void addRoom(Room &room);
 
+    unsigned int sizeRoom();
+
+    Room &getRoom(unsigned int index);
+
     void addSprite(SpriteSequence &sprite);
 
-#endif
+    unsigned int sizeSprite();
+
+    SpriteSequence &getSprite(unsigned int index);
 
     /*!
      * \brief Find room a location is in.
@@ -156,9 +135,8 @@ public:
      * \param x X coordinate
      * \param y will be set to world height in that room
      * \param z Z coordinate
-     * \returns true if position is in a room
      */
-    bool getHeightAtPosition(int index, float x, float *y, float z);
+    void getHeightAtPosition(int index, float x, float *y, float z);
 
     /*!
      * \brief Clears all data in world
@@ -168,22 +146,14 @@ public:
 
 private:
 
-#ifdef BAD_BLOOD
-
     // Old World
     std::vector<entity_t *> mEntities;       //!< World entities
-    std::vector<room_mesh_t *> mRooms;       //!< Map data and meshes
     std::vector<model_mesh_t *> mMeshes;     //!< Unanimated meshes
-    std::vector<sprite_seq_t *> mSprites;    //!< Sprites
     std::vector<skeletal_model_t *> mModels; //!< Skeletal animation models
-
-#else
 
     // New World
     std::vector<Room *> mRooms;
     std::vector<SpriteSequence *> mSprites;
-
-#endif
 
 };
 

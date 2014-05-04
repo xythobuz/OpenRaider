@@ -30,6 +30,9 @@ class Portal {
 public:
     Portal(vec3_t _vertices[4], vec3_t _normal, int _adjoiningRoom);
 
+    vec3_t *getVertices();
+    int getAdjoiningRoom();
+
 private:
     vec3_t vertices[4];
     vec3_t normal;
@@ -50,6 +53,9 @@ private:
 class Sector {
 public:
     Sector(vec_t _floor, vec_t _ceiling, bool _wall);
+    vec_t getFloor();
+    vec_t getCeiling();
+    bool isWall();
 
 private:
     vec_t floor;
@@ -65,6 +71,20 @@ class Room {
 public:
     Room(int _id);
     ~Room();
+
+    unsigned int getFlags();
+    unsigned int getNumXSectors();
+    unsigned int getNumZSectors();
+    void getPos(vec_t *target);
+
+    bool inBox(vec_t x, vec_t y, vec_t z);
+    bool inBoxPlane(vec_t x, vec_t z);
+
+    unsigned int sizePortals();
+    Portal &getPortal(unsigned int index);
+
+    unsigned int sizeSectors();
+    Sector &getSector(unsigned int index);
 
 private:
     int id;

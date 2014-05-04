@@ -12,11 +12,10 @@
 
 class Sprite {
 public:
-    Sprite(int _numVerts, vec3_t _vertex[4], vec2_t _texel[4], vec3_t _pos, vec_t _radius, int _texture);
+    Sprite(vec3_t _vertex[4], vec2_t _texel[4], vec3_t _pos, vec_t _radius, int _texture);
     void display();
 
 private:
-    int numVerts;     //!< 4 == Quad, 3 == Triangle, rendered as triangles
     vec3_t vertex[4];
     vec2_t texel[4];
     vec3_t pos;
