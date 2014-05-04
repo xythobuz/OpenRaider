@@ -44,28 +44,6 @@ bool compareEntites(const void *voidA, const void *voidB)
     return (distA < distB);
 }
 
-
-bool compareStaticModels(const void *voidA, const void *voidB)
-{
-    static_model_t *a = (static_model_t *)voidA, *b = (static_model_t *)voidB;
-    vec_t distA, distB;
-
-    if (!a || !b)
-        return false; // error really
-
-    distA = getRender().mViewVolume.getDistToSphereFromNear(a->pos[0],
-            a->pos[1],
-            a->pos[2],
-            128.0f);
-    distB = getRender().mViewVolume.getDistToSphereFromNear(b->pos[0],
-            b->pos[1],
-            b->pos[2],
-            128.0f);
-
-    return (distA < distB);
-}
-
-
 bool compareRoomDist(const void *voidA, const void *voidB)
 {
     const RenderRoom *a = static_cast<const RenderRoom *>(voidA);

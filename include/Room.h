@@ -40,6 +40,9 @@ class StaticModel {
 public:
     StaticModel(int _index, vec_t _yaw, vec3_t _pos);
 
+    // Compares distance to ViewVolume for depth sorting
+    bool operator<(const StaticModel &other);
+
 private:
     int index;
     vec_t yaw;

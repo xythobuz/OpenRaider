@@ -5,6 +5,7 @@
  * \author xythobuz
  */
 
+#include "main.h"
 #include "Room.h"
 
 StaticModel::StaticModel(int _index, vec_t _yaw, vec3_t _pos) {
@@ -12,6 +13,15 @@ StaticModel::StaticModel(int _index, vec_t _yaw, vec3_t _pos) {
     yaw = _yaw;
     for (unsigned int i = 0; i < 3; i++)
         pos[i] = _pos[i];
+}
+
+bool StaticModel::operator<(const StaticModel &other) {
+    vec_t distA, distB;
+    distA = getRender().mViewVolume.getDistToSphereFromNear(pos[0],
+            pos[1], pos[2], 128.0f);
+    distB = getRender().mViewVolume.getDistToSphereFromNear(other.pos[0],
+            other.pos[1], other.pos[2], 128.0f);
+    return (distA < distB);
 }
 
 Portal::Portal(vec3_t _vertices[4], vec3_t _normal, int _adjoiningRoom) {

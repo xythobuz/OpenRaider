@@ -223,7 +223,7 @@ private:
      * Texture must be initialized.
      * \param mesh Static model to render
      */
-    void drawRoomModel(static_model_t *mesh);
+    void drawRoomModel(StaticModel &mesh);
 
     /*!
      * \brief Renders a mesh.
@@ -240,7 +240,7 @@ private:
      * Texture must be initialized.
      * \param sprite sprite to render
      */
-    void drawSprite(sprite_t *sprite);
+    void drawSprite(Sprite &sprite);
 
     /*!
      * \brief Updates View Volume. Call once per render frame.
