@@ -6,6 +6,9 @@
     * Forcing use of new Room and Sprite classes in World.
     * Rewrote Sprite loading code in Game
     * Rewrote Room loading code in Game
+    * Rewrote Render handling of Sprites, Rooms, Static Models, ...
+    * No longer using second list of RenderRooms
+    * Sprites and Static Models draw themselves
 
     [ 20140503 ]
     * Started big World-Data refactoring.
