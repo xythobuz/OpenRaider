@@ -16,6 +16,23 @@
 #include "main.h"
 #include "Sprite.h"
 
+SpriteSequence::~SpriteSequence() {
+    for (unsigned int i = 0; i < sprites.size(); i++)
+        delete &sprites.at(i);
+}
+
+void SpriteSequence::add(Sprite &s) {
+    sprites.push_back(&s);
+}
+
+unsigned int SpriteSequence::size() {
+    return sprites.size();
+}
+
+Sprite &SpriteSequence::get(unsigned int index) {
+    return *sprites.at(index);
+}
+
 Sprite::Sprite(int _numVerts, vec3_t _vertex[4], vec2_t _texel[4], vec3_t _pos, vec_t _radius, int _texture) {
     numVerts = _numVerts;
     radius = _radius;

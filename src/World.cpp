@@ -11,223 +11,9 @@
 
 #include "World.h"
 
-
-////////////////////////////////////////////////////////////
-// Constructors
-////////////////////////////////////////////////////////////
-
-World::World()
-{
-}
-
-
 World::~World()
 {
     destroy();
-}
-
-
-////////////////////////////////////////////////////////////
-// Public Accessors
-////////////////////////////////////////////////////////////
-
-int World::getRoomByLocation(int index, float x, float y, float z)
-{
-    room_mesh_t *room = mRooms[index];
-
-    if (room)
-    {
-        if (x > room->bbox_min[0] && x < room->bbox_max[0] &&
-                z > room->bbox_min[2] && z < room->bbox_max[2])
-        {
-            if (y > room->bbox_min[1] && y < room->bbox_max[1])
-                return index;
-        }
-    }
-
-    return getRoomByLocation(x, y, z);
-}
-
-
-int World::getRoomByLocation(float x, float y, float z)
-{
-    room_mesh_t *room;
-    int hop = -1;
-
-
-    for(std::vector<int>::size_type i = 0; i < mRooms.size(); i++)
-    {
-        room = mRooms[i];
-
-        if (!room)
-            continue;
-
-        if ((x > room->bbox_min[0]) && (x < room->bbox_max[0]) &&
-                (z > room->bbox_min[2]) && (z < room->bbox_max[2]))
-        {
-            // This room contains current position
-            if ((y > room->bbox_min[1]) && (y < room->bbox_max[1]))
-                return i;
-
-            // This room is above or below current position
-            hop = i;
-        }
-    }
-
-    // Room is -1?  Must be in void, try to hop to room with same X,Z
-    return hop;
-    //return -1;
-}
-
-
-int World::getAdjoiningRoom(int index,
-        float x, float y, float z,
-        float x2, float y2, float z2)
-{
-    room_mesh_t *room = mRooms[index];
-    portal_t * portal;
-    vec3_t intersect, p1, p2;
-
-
-    p1[0] = x;  p1[1] = y;  p1[2] = z;
-    p2[0] = x2; p2[1] = y2; p2[2] = z2;
-
-    if (room)
-    {
-        for(std::vector<int>::size_type i = 0; i != room->portals.size(); i++)
-        {
-            portal = room->portals[i];
-
-            if (!portal)
-                continue;
-
-            if (intersectionLinePolygon(intersect, p1, p2, // 4,
-                        portal->vertices))
-            {
-                return portal->adjoining_room;
-            }
-        }
-    }
-
-    return -1;
-}
-
-
-int World::getSector(int room, float x, float z, float *floor, float *ceiling)
-{
-    room_mesh_t *r;
-    sector_t * s;
-    int sector;
-
-    assert(room >= 0);
-    assert(floor != NULL);
-    assert(ceiling != NULL);
-
-    r = mRooms[room];
-
-    if (!r)
-        return -1;
-
-    sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) +
-            (((int)z - (int)r->pos[2]) / 1024));
-
-    if (sector > -1)
-    {
-        s = r->sectors[sector];
-
-        if (!s)
-            return -1;
-
-        *floor = s->floor;
-        *ceiling = s->ceiling;
-    }
-
-    return sector;
-}
-
-
-int World::getSector(int room, float x, float z) {
-    int sector;
-    room_mesh_t *r;
-
-    if ((room < 0) || (room >= (int)mRooms.size()))
-        return -1;
-
-    r = mRooms[room];
-
-    if (!r)
-        return -1;
-
-    sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) +
-            (((int)z - (int)r->pos[2]) / 1024));
-
-    if (sector < 0)
-        return -1;
-
-    return sector;
-}
-
-
-unsigned int World::getRoomInfo(int room) {
-    room_mesh_t *r;
-
-    if ((room >= (int)mRooms.size()) || (room < 0))
-        return 0;
-
-    r = mRooms[room];
-
-    if (!r)
-        return 0;
-
-    return r->flags;
-}
-
-
-bool World::isWall(int room, int sector) {
-    room_mesh_t *r;
-    sector_t *sect;
-
-    if ((room >= (int)mRooms.size()) || (room < 0))
-        return true;
-
-    r = mRooms[room];
-
-    if ((!r) || (sector >= (int)r->sectors.size()) || (sector < 0))
-        return true;
-
-    sect = r->sectors[sector];
-
-    if (!sect)
-        return true;
-
-    return ((sector > 0) && sect->wall); //! \fixme is (sector > 0) correct??
-}
-
-
-bool World::getHeightAtPosition(int index, float x, float *y, float z)
-{
-    room_mesh_t *room = mRooms[index];
-    int sector;
-    sector_t *sect;
-
-    if (!room)
-    {
-        return false;
-    }
-
-    // Mongoose 2002.08.14, Remember sector_z is width of sector array
-    sector = getSector(index, x, z);
-
-    sect = room->sectors[sector];
-
-    if (!sect)
-    {
-        return true;
-    }
-
-    *y = sect->floor;
-
-    return true;
 }
 
 
@@ -262,161 +48,6 @@ std::vector<room_mesh_t *> *World::getRooms()
 {
     return &mRooms;
 }
-#endif
-
-
-void World::destroy()
-{
-    room_mesh_t *room;
-    model_mesh_t *mesh;
-    sprite_seq_t *sprite;
-    skeletal_model_t *model;
-    bone_frame_t *boneframe;
-    bone_tag_t *tag;
-    animation_frame_t *animation;
-    std::list<skeletal_model_t *> cache;
-
-    for (std::vector<int>::size_type i = 0; i != mEntities.size(); i++)
-        delete mEntities[i];
-    mEntities.clear();
-
-    for (std::vector<int>::size_type i = 0; i != mRooms.size(); i++) {
-        room = mRooms[i];
-
-        if (room) {
-            //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
-
-            //for (std::vector<int>::size_type j = 0; j != room->portals.size(); j++)
-            //    delete room->portals[i];
-            room->portals.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->models.size(); j++)
-            //    delete room->models[i];
-            room->models.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->sprites.size(); j++)
-            //    delete room->sprites[i];
-            room->sprites.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->sectors.size(); j++)
-            //    delete room->sectors[i];
-            room->sectors.clear();
-
-            //for (std::vector<int>::size_type j = 0; j != room->boxes.size(); j++)
-            //    delete room->boxes[i];
-            room->boxes.clear();
-
-            delete room;
-        }
-    }
-
-    for (std::vector<int>::size_type i = 0; i != mMeshes.size(); i++) {
-        mesh = mMeshes[i];
-
-        if (!mesh)
-            continue;
-
-        for (std::vector<int>::size_type j = 0; j != mesh->texturedTriangles.size(); j++) {
-            if (mesh->texturedTriangles[j])
-                delete mesh->texturedTriangles[j];
-        }
-
-        for (std::vector<int>::size_type j = 0; j != mesh->coloredTriangles.size(); j++) {
-            if (mesh->coloredTriangles[j])
-                delete mesh->coloredTriangles[j];
-        }
-
-        for (std::vector<int>::size_type j = 0; j != mesh->texturedRectangles.size(); j++) {
-            if (mesh->texturedRectangles[j])
-                delete mesh->texturedRectangles[j];
-        }
-
-        for (std::vector<int>::size_type j = 0; j != mesh->coloredRectangles.size(); j++) {
-            if (mesh->coloredRectangles[j])
-                delete mesh->coloredRectangles[j];
-        }
-
-        if (mesh->vertices)
-            delete [] mesh->vertices;
-
-        if (mesh->colors)
-            delete [] mesh->colors;
-
-        if (mesh->normals)
-            delete [] mesh->normals;
-
-        delete mesh;
-    }
-
-    mMeshes.clear();
-
-    for (std::vector<int>::size_type i = 0; i != mSprites.size(); i++) {
-        sprite = mSprites[i];
-
-        if (!sprite)
-            continue;
-
-        if (sprite->sprite)
-            delete [] sprite->sprite;
-
-        delete sprite;
-    }
-
-    mSprites.clear();
-
-    for (std::vector<int>::size_type i = 0; i != mModels.size(); i++) {
-        model = mModels[i];
-
-        if (!model)
-            continue;
-
-        // No smart pointers, so skip if deleted once  =)
-        bool found = false;
-        for (std::list<skeletal_model_t *>::const_iterator iterator = cache.begin(), end = cache.end(); iterator != end; ++iterator) {
-            if (model == *iterator) {
-                found = true;
-                break;
-            }
-        }
-
-        if (!found)
-            cache.push_back(model);
-        else
-            continue;
-
-        for (std::vector<int>::size_type j = 0; j != model->animation.size(); j++) {
-            animation  = model->animation[j];
-
-            if (!animation)
-                continue;
-
-            for (std::vector<int>::size_type k = 0; k != animation->frame.size(); k++) {
-                boneframe = animation->frame[k];
-
-                if (!boneframe)
-                    continue;
-
-                for (std::vector<int>::size_type l = 0; l != boneframe->tag.size(); l++) {
-                    tag = boneframe->tag[l];
-
-                    if (!tag)
-                        continue;
-
-                    delete tag;
-                }
-
-                delete boneframe;
-            }
-
-            delete animation;
-        }
-
-        delete model;
-    }
-
-    mModels.clear();
-}
-
 
 void World::addRoom(room_mesh_t *room)
 {
@@ -638,5 +269,370 @@ void World::moveEntity(entity_t *e, char movement)
 
     e->room = room;
     e->moving = true;
+}
+
+#else
+
+void World::addRoom(Room &room) {
+    mRooms.push_back(&room);
+}
+
+void World::addSprite(SpriteSequence &sprite) {
+    mSprites.push_back(&sprite);
+}
+
+#endif
+
+
+int World::getRoomByLocation(int index, float x, float y, float z)
+{
+    room_mesh_t *room = mRooms[index];
+
+    if (room)
+    {
+        if (x > room->bbox_min[0] && x < room->bbox_max[0] &&
+                z > room->bbox_min[2] && z < room->bbox_max[2])
+        {
+            if (y > room->bbox_min[1] && y < room->bbox_max[1])
+                return index;
+        }
+    }
+
+    return getRoomByLocation(x, y, z);
+}
+
+
+int World::getRoomByLocation(float x, float y, float z)
+{
+    room_mesh_t *room;
+    int hop = -1;
+
+
+    for(std::vector<int>::size_type i = 0; i < mRooms.size(); i++)
+    {
+        room = mRooms[i];
+
+        if (!room)
+            continue;
+
+        if ((x > room->bbox_min[0]) && (x < room->bbox_max[0]) &&
+                (z > room->bbox_min[2]) && (z < room->bbox_max[2]))
+        {
+            // This room contains current position
+            if ((y > room->bbox_min[1]) && (y < room->bbox_max[1]))
+                return i;
+
+            // This room is above or below current position
+            hop = i;
+        }
+    }
+
+    // Room is -1?  Must be in void, try to hop to room with same X,Z
+    return hop;
+    //return -1;
+}
+
+
+int World::getAdjoiningRoom(int index,
+        float x, float y, float z,
+        float x2, float y2, float z2)
+{
+    room_mesh_t *room = mRooms[index];
+    portal_t * portal;
+    vec3_t intersect, p1, p2;
+
+
+    p1[0] = x;  p1[1] = y;  p1[2] = z;
+    p2[0] = x2; p2[1] = y2; p2[2] = z2;
+
+    if (room)
+    {
+        for(std::vector<int>::size_type i = 0; i != room->portals.size(); i++)
+        {
+            portal = room->portals[i];
+
+            if (!portal)
+                continue;
+
+            if (intersectionLinePolygon(intersect, p1, p2, // 4,
+                        portal->vertices))
+            {
+                return portal->adjoining_room;
+            }
+        }
+    }
+
+    return -1;
+}
+
+
+int World::getSector(int room, float x, float z, float *floor, float *ceiling)
+{
+    room_mesh_t *r;
+    sector_t * s;
+    int sector;
+
+    assert(room >= 0);
+    assert(floor != NULL);
+    assert(ceiling != NULL);
+
+    r = mRooms[room];
+
+    if (!r)
+        return -1;
+
+    sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) +
+            (((int)z - (int)r->pos[2]) / 1024));
+
+    if (sector > -1)
+    {
+        s = r->sectors[sector];
+
+        if (!s)
+            return -1;
+
+        *floor = s->floor;
+        *ceiling = s->ceiling;
+    }
+
+    return sector;
+}
+
+
+int World::getSector(int room, float x, float z) {
+    int sector;
+    room_mesh_t *r;
+
+    if ((room < 0) || (room >= (int)mRooms.size()))
+        return -1;
+
+    r = mRooms[room];
+
+    if (!r)
+        return -1;
+
+    sector = (((((int)x - (int)r->pos[0]) / 1024) * r->numZSectors) +
+            (((int)z - (int)r->pos[2]) / 1024));
+
+    if (sector < 0)
+        return -1;
+
+    return sector;
+}
+
+
+unsigned int World::getRoomInfo(int room) {
+    room_mesh_t *r;
+
+    if ((room >= (int)mRooms.size()) || (room < 0))
+        return 0;
+
+    r = mRooms[room];
+
+    if (!r)
+        return 0;
+
+    return r->flags;
+}
+
+
+bool World::isWall(int room, int sector) {
+    room_mesh_t *r;
+    sector_t *sect;
+
+    if ((room >= (int)mRooms.size()) || (room < 0))
+        return true;
+
+    r = mRooms[room];
+
+    if ((!r) || (sector >= (int)r->sectors.size()) || (sector < 0))
+        return true;
+
+    sect = r->sectors[sector];
+
+    if (!sect)
+        return true;
+
+    return ((sector > 0) && sect->wall); //! \fixme is (sector > 0) correct??
+}
+
+
+bool World::getHeightAtPosition(int index, float x, float *y, float z)
+{
+    room_mesh_t *room = mRooms[index];
+    int sector;
+    sector_t *sect;
+
+    if (!room)
+    {
+        return false;
+    }
+
+    // Mongoose 2002.08.14, Remember sector_z is width of sector array
+    sector = getSector(index, x, z);
+
+    sect = room->sectors[sector];
+
+    if (!sect)
+    {
+        return true;
+    }
+
+    *y = sect->floor;
+
+    return true;
+}
+
+
+void World::destroy()
+{
+    room_mesh_t *room;
+    model_mesh_t *mesh;
+    sprite_seq_t *sprite;
+    skeletal_model_t *model;
+    bone_frame_t *boneframe;
+    bone_tag_t *tag;
+    animation_frame_t *animation;
+    std::list<skeletal_model_t *> cache;
+
+    for (std::vector<int>::size_type i = 0; i != mEntities.size(); i++)
+        delete mEntities[i];
+    mEntities.clear();
+
+    for (std::vector<int>::size_type i = 0; i != mRooms.size(); i++) {
+        room = mRooms[i];
+
+        if (room) {
+            //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
+
+            //for (std::vector<int>::size_type j = 0; j != room->portals.size(); j++)
+            //    delete room->portals[i];
+            room->portals.clear();
+
+            //for (std::vector<int>::size_type j = 0; j != room->models.size(); j++)
+            //    delete room->models[i];
+            room->models.clear();
+
+            //for (std::vector<int>::size_type j = 0; j != room->sprites.size(); j++)
+            //    delete room->sprites[i];
+            room->sprites.clear();
+
+            //for (std::vector<int>::size_type j = 0; j != room->sectors.size(); j++)
+            //    delete room->sectors[i];
+            room->sectors.clear();
+
+            //for (std::vector<int>::size_type j = 0; j != room->boxes.size(); j++)
+            //    delete room->boxes[i];
+            room->boxes.clear();
+
+            delete room;
+        }
+    }
+
+    for (std::vector<int>::size_type i = 0; i != mMeshes.size(); i++) {
+        mesh = mMeshes[i];
+
+        if (!mesh)
+            continue;
+
+        for (std::vector<int>::size_type j = 0; j != mesh->texturedTriangles.size(); j++) {
+            if (mesh->texturedTriangles[j])
+                delete mesh->texturedTriangles[j];
+        }
+
+        for (std::vector<int>::size_type j = 0; j != mesh->coloredTriangles.size(); j++) {
+            if (mesh->coloredTriangles[j])
+                delete mesh->coloredTriangles[j];
+        }
+
+        for (std::vector<int>::size_type j = 0; j != mesh->texturedRectangles.size(); j++) {
+            if (mesh->texturedRectangles[j])
+                delete mesh->texturedRectangles[j];
+        }
+
+        for (std::vector<int>::size_type j = 0; j != mesh->coloredRectangles.size(); j++) {
+            if (mesh->coloredRectangles[j])
+                delete mesh->coloredRectangles[j];
+        }
+
+        if (mesh->vertices)
+            delete [] mesh->vertices;
+
+        if (mesh->colors)
+            delete [] mesh->colors;
+
+        if (mesh->normals)
+            delete [] mesh->normals;
+
+        delete mesh;
+    }
+
+    mMeshes.clear();
+
+    for (std::vector<int>::size_type i = 0; i != mSprites.size(); i++) {
+        sprite = mSprites[i];
+
+        if (!sprite)
+            continue;
+
+        if (sprite->sprite)
+            delete [] sprite->sprite;
+
+        delete sprite;
+    }
+
+    mSprites.clear();
+
+    for (std::vector<int>::size_type i = 0; i != mModels.size(); i++) {
+        model = mModels[i];
+
+        if (!model)
+            continue;
+
+        // No smart pointers, so skip if deleted once  =)
+        bool found = false;
+        for (std::list<skeletal_model_t *>::const_iterator iterator = cache.begin(), end = cache.end(); iterator != end; ++iterator) {
+            if (model == *iterator) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+            cache.push_back(model);
+        else
+            continue;
+
+        for (std::vector<int>::size_type j = 0; j != model->animation.size(); j++) {
+            animation  = model->animation[j];
+
+            if (!animation)
+                continue;
+
+            for (std::vector<int>::size_type k = 0; k != animation->frame.size(); k++) {
+                boneframe = animation->frame[k];
+
+                if (!boneframe)
+                    continue;
+
+                for (std::vector<int>::size_type l = 0; l != boneframe->tag.size(); l++) {
+                    tag = boneframe->tag[l];
+
+                    if (!tag)
+                        continue;
+
+                    delete tag;
+                }
+
+                delete boneframe;
+            }
+
+            delete animation;
+        }
+
+        delete model;
+    }
+
+    mModels.clear();
 }
 

@@ -12,14 +12,15 @@
 #include <list>
 #include <vector>
 
-#define BAD_BLOOD  //!< \todo For temp rendering use
+#define BAD_BLOOD //!< \todo For temp rendering use
 
 #ifdef BAD_BLOOD
 #include "SkeletalModel.h"
-#endif
-
+#else
 #include "Room.h"
 #include "Sprite.h"
+#endif
+
 #include "WorldData.h"
 
 /*!
@@ -29,14 +30,66 @@ class World {
 public:
 
     /*!
-     * \brief Constructs an object of World
-     */
-    World();
-
-    /*!
      * \brief Deconstructs an object of World
      */
     ~World();
+
+#ifdef BAD_BLOOD
+
+    //! \todo Temp methods for rendering use until more refactoring is done
+
+    /*!
+     * \brief Adds room to world
+     * \param room room to add
+     */
+    void addRoom(room_mesh_t *room);
+
+    /*!
+     * \brief Adds mesh to world
+     * \param model mesh to add
+     */
+    void addMesh(model_mesh_t *model);
+
+    /*!
+     * \brief Adds entity to world
+     * \param e entity to add
+     */
+    void addEntity(entity_t *e);
+
+    /*!
+     * \brief Adds model to world.
+     * \param model model to add
+     * \returns next model ID or -1 on error
+     */
+    int addModel(skeletal_model_t *model);
+
+    /*!
+     * \brief Adds sprite to world
+     * \param sprite sprite to add
+     */
+    void addSprite(sprite_seq_t *sprite);
+
+    /*!
+     * \brief Move entity in given direction unless collision occurs
+     * \param e entity to move
+     * \param movement direction of movement ('f', 'b', 'l' or 'r')
+     */
+    void moveEntity(entity_t *e, char movement);
+
+    model_mesh_t *getMesh(int index);
+    skeletal_model_t *getModel(int index);
+    room_mesh_t *getRoom(int index);
+    std::vector<entity_t *> *getEntities();
+    std::vector<sprite_seq_t *> *getSprites();
+    std::vector<room_mesh_t *> *getRooms();
+
+#else
+
+    void addRoom(Room &room);
+
+    void addSprite(SpriteSequence &sprite);
+
+#endif
 
     /*!
      * \brief Find room a location is in.
@@ -107,61 +160,15 @@ public:
      */
     bool getHeightAtPosition(int index, float x, float *y, float z);
 
-#ifdef BAD_BLOOD
-    //! \todo Temp methods for rendering use until more refactoring is done
-    model_mesh_t *getMesh(int index);
-    skeletal_model_t *getModel(int index);
-    room_mesh_t *getRoom(int index);
-    std::vector<entity_t *> *getEntities();
-    std::vector<sprite_seq_t *> *getSprites();
-    std::vector<room_mesh_t *> *getRooms();
-#endif
-
     /*!
      * \brief Clears all data in world
      * \todo in future will check if data is in use before clearing
      */
     void destroy();
 
-    /*!
-     * \brief Adds room to world
-     * \param room room to add
-     */
-    void addRoom(room_mesh_t *room);
-
-    /*!
-     * \brief Adds mesh to world
-     * \param model mesh to add
-     */
-    void addMesh(model_mesh_t *model);
-
-    /*!
-     * \brief Adds entity to world
-     * \param e entity to add
-     */
-    void addEntity(entity_t *e);
-
-    /*!
-     * \brief Adds model to world.
-     * \param model model to add
-     * \returns next model ID or -1 on error
-     */
-    int addModel(skeletal_model_t *model);
-
-    /*!
-     * \brief Adds sprite to world
-     * \param sprite sprite to add
-     */
-    void addSprite(sprite_seq_t *sprite);
-
-    /*!
-     * \brief Move entity in given direction unless collision occurs
-     * \param e entity to move
-     * \param movement direction of movement ('f', 'b', 'l' or 'r')
-     */
-    void moveEntity(entity_t *e, char movement);
-
 private:
+
+#ifdef BAD_BLOOD
 
     // Old World
     std::vector<entity_t *> mEntities;       //!< World entities
@@ -170,9 +177,14 @@ private:
     std::vector<sprite_seq_t *> mSprites;    //!< Sprites
     std::vector<skeletal_model_t *> mModels; //!< Skeletal animation models
 
+#else
+
     // New World
-    //std::vector<Room *> mRooms;
-    //std::vector<std::vector<Sprite *>> mSprites; // Sprite sequence
+    std::vector<Room *> mRooms;
+    std::vector<SpriteSequence *> mSprites;
+
+#endif
+
 };
 
 #endif

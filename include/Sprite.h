@@ -24,5 +24,17 @@ private:
     int texture;
 };
 
+class SpriteSequence {
+public:
+    ~SpriteSequence();
+
+    void add(Sprite &s);
+    unsigned int size();
+    Sprite &get(unsigned int index);
+
+private:
+    std::vector<Sprite *> sprites;
+};
+
 #endif
 
