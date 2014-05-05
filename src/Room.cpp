@@ -5,6 +5,14 @@
  * \author xythobuz
  */
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
 #include <algorithm>
 #include <assert.h>
 
@@ -12,6 +20,7 @@
 #include "Room.h"
 
 Room::Room(TombRaider &tr, unsigned int index) {
+    vec3_t box[2];
     Matrix transform;
 
     if (!tr.isRoomValid(index)) {
@@ -21,13 +30,15 @@ Room::Room(TombRaider &tr, unsigned int index) {
         return;
     }
 
-    tr.getRoomInfo(index, &flags, pos, bbox[0], bbox[1]);
+    tr.getRoomInfo(index, &flags, pos, box[0], box[1]);
 
     // Adjust positioning for OR world coordinate translation
-    bbox[0][0] += pos[0];
-    bbox[1][0] += pos[0];
-    bbox[0][2] += pos[2];
-    bbox[1][2] += pos[2];
+    box[0][0] += pos[0];
+    box[1][0] += pos[0];
+    box[0][2] += pos[2];
+    box[1][2] += pos[2];
+
+    bbox.setBoundingBox(box[0], box[1]);
 
     // Mongoose 2002.04.03, Setup 3D transform
     transform.setIdentity();
@@ -71,7 +82,7 @@ Room::Room(TombRaider &tr, unsigned int index) {
     for (unsigned int i = 0; i < count; i++)
         sprites.push_back(new Sprite(tr, index, i));
 
-#define EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
+//#define EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
 #ifdef EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
     unsigned int vertexCount, normalCount, colorCount, triCount;
     vec_t *vertexArray;
@@ -438,6 +449,75 @@ Room::~Room() {
     EMPTY_VECTOR(lights);
 }
 
+void Room::display(bool alpha) {
+    glPushMatrix();
+    //LightingSetup();
+
+    getRender().mTexture.bindTextureId(0); // WHITE texture
+
+    if ((!alpha) && getRender().getMode() == Render::modeWireframe) {
+        glLineWidth(2.0);
+        glColor3fv(RED);
+
+        for (unsigned int i = 0; i < sizePortals(); i++) {
+            Portal &portal = getPortal(i);
+            vec3_t vertices[4];
+            portal.getVertices(vertices);
+
+            glBegin(GL_LINE_LOOP);
+            glVertex3fv(vertices[0]);
+            glVertex3fv(vertices[1]);
+            glVertex3fv(vertices[2]);
+            glVertex3fv(vertices[3]);
+            glEnd();
+        }
+
+        glLineWidth(1.0);
+    }
+
+    if (getRender().getMode() == Render::modeWireframe && (!alpha)) {
+        bbox.display(true, RED, GREEN);
+    }
+
+    glTranslated(pos[0], pos[1], pos[2]);
+
+    // Reset since GL_MODULATE used, reset to WHITE
+    glColor3fv(WHITE);
+
+    switch (getRender().getMode())
+    {
+        case Render::modeWireframe:
+            getMesh().mMode = Mesh::MeshModeWireframe;
+            break;
+        case Render::modeSolid:
+            getMesh().mMode = Mesh::MeshModeSolid;
+            break;
+        default:
+            getMesh().mMode = Mesh::MeshModeTexture;
+            break;
+    }
+
+    if (alpha)
+        getMesh().drawAlpha();
+    else
+        getMesh().drawSolid();
+
+    glPopMatrix();
+
+    //getRender().mTexture.bindTextureId(0);
+
+    // Draw other room meshes and sprites
+    if (alpha || (getRender().getMode() == Render::modeWireframe)
+            || (getRender().getMode() == Render::modeSolid)) {
+        sortModels();
+        for (unsigned int i = 0; i < sizeModels(); i++)
+            getModel(i).display();
+
+        for (unsigned int i = 0; i < sizeSprites(); i++)
+            getSprite(i).display();
+    }
+}
+
 unsigned int Room::getFlags() {
     return flags;
 }
@@ -453,21 +533,6 @@ unsigned int Room::getNumZSectors() {
 void Room::getPos(vec3_t p) {
     for (unsigned int i = 0; i < 3; i++)
         p[i] = pos[i];
-}
-
-void Room::getBoundingBox(vec3_t box[2]) {
-    for (unsigned int i = 0; i < 2; i++)
-        for (unsigned int j = 0; j < 3; j++)
-            box[i][j] = bbox[i][j];
-}
-
-bool Room::inBox(vec_t x, vec_t y, vec_t z) {
-    return ((y > bbox[0][1]) && (y < bbox[1][1]) && inBoxPlane(x, z));
-}
-
-bool Room::inBoxPlane(vec_t x, vec_t z) {
-    return ((x > bbox[0][0]) && (x < bbox[1][0])
-            && (z > bbox[0][2]) && (z < bbox[1][2]));
 }
 
 unsigned int Room::sizeAdjacentRooms() {
@@ -535,6 +600,10 @@ unsigned int Room::sizeSprites() {
 Sprite &Room::getSprite(unsigned int index) {
     assert(index < sprites.size());
     return *sprites.at(index);
+}
+
+Box &Room::getBoundingBox() {
+    return bbox;
 }
 
 Mesh &Room::getMesh() {

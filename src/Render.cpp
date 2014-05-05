@@ -54,8 +54,8 @@ Render::Render()
     mSkyMeshRotation = false;
     mMode = Render::modeDisabled;
     mLock = 0;
-    mFlags = (fRoomAlpha | fViewModel | fSprites |
-            fRoomModels | fEntityModels | fRenderPonytail |
+    mFlags = (fRoomAlpha | fViewModel |
+            fEntityModels | fRenderPonytail |
             fUsePortals | fUpdateRoomListPerFrame);
 }
 
@@ -496,7 +496,7 @@ void Render::display()
             lightRoom(room);
         }
 
-        drawRoom(room, false);
+        room.display(false);
     }
 
     // Draw all visible enities
@@ -561,7 +561,7 @@ void Render::display()
     {
         for (unsigned int i = 0; i < mRoomRenderList.size(); i++)
         {
-            drawRoom(*mRoomRenderList[i], true);
+            mRoomRenderList[i]->display(true);
         }
     }
 
@@ -648,9 +648,7 @@ void Render::newRoomRenderList(int index)
 
             for (unsigned int i = 0; i < getWorld().sizeRoom(); i++)
             {
-                vec3_t bbox[2];
-                getWorld().getRoom(i).getBoundingBox(bbox);
-                if (!isVisible(bbox[0], bbox[1]))
+                if (!isVisible(getWorld().getRoom(i).getBoundingBox()))
                     continue;
 
                 mRoomRenderList.push_back(&getWorld().getRoom(i));
@@ -667,9 +665,7 @@ void Render::buildRoomRenderList(Room &room)
 
     // Must be visible
     //! \fixme Add depth sorting here - remove multipass
-    vec3_t bbox[2];
-    room.getBoundingBox(bbox);
-    if (!isVisible(bbox[0], bbox[1]))
+    if (!isVisible(room.getBoundingBox()))
         return;
 
     // Must not already be cached
@@ -791,12 +787,10 @@ void Render::drawObjects()
     }
 
     // Mongoose 2002.03.22, Draw sprites after player to handle alpha
-    if (mFlags & Render::fSprites) {
-        for (unsigned int i = 0; i < getWorld().sizeSprite(); i++) {
-            SpriteSequence &sprite = getWorld().getSprite(i);
-            for (unsigned int j = 0; j < sprite.size(); j++)
-                sprite.get(j).display();
-        }
+    for (unsigned int i = 0; i < getWorld().sizeSprite(); i++) {
+        SpriteSequence &sprite = getWorld().getSprite(i);
+        for (unsigned int j = 0; j < sprite.size(); j++)
+            sprite.get(j).display();
     }
 }
 
@@ -979,168 +973,6 @@ void Render::drawModel(SkeletalModel *model)
         else
         {
             model->setFrame(model->getFrame()+1);
-        }
-    }
-}
-
-
-void draw_bbox(vec3_t min, vec3_t max, bool draw_points,
-        const vec4_t c1, const vec4_t c2)
-{
-    // Bind before entering now
-    //glBindTexture(GL_TEXTURE_2D, 1);
-    glPointSize(4.0);
-    //glLineWidth(1.25);
-
-    //! \fixme Need to make custom color key for this
-    glColor3fv(c1);
-
-    glBegin(GL_POINTS);
-    glVertex3f(max[0], max[1], max[2]);
-    glVertex3f(min[0], min[1], min[2]);
-
-    if (draw_points)
-    {
-        glVertex3f(max[0], min[1], max[2]);
-        glVertex3f(min[0], max[1], max[2]);
-        glVertex3f(max[0], max[1], min[2]);
-        glVertex3f(min[0], min[1], max[2]);
-        glVertex3f(min[0], max[1], min[2]);
-        glVertex3f(max[0], min[1], min[2]);
-    }
-
-    glEnd();
-
-    glColor3fv(c2);
-
-    glBegin(GL_LINES);
-    // max, top quad
-    glVertex3f(max[0], max[1], max[2]);
-    glVertex3f(max[0], min[1], max[2]);
-
-    glVertex3f(max[0], max[1], max[2]);
-    glVertex3f(min[0], max[1], max[2]);
-
-    glVertex3f(max[0], max[1], max[2]);
-    glVertex3f(max[0], max[1], min[2]);
-
-    // max-min, vertical quads
-    glVertex3f(min[0], max[1], max[2]);
-    glVertex3f(min[0], max[1], min[2]);
-
-    glVertex3f(max[0], min[1], max[2]);
-    glVertex3f(max[0], min[1], min[2]);
-
-    glVertex3f(max[0], min[1], max[2]);
-    glVertex3f(min[0], min[1], max[2]);
-
-    // min-max, vertical quads
-    glVertex3f(max[0], max[1], min[2]);
-    glVertex3f(max[0], min[1], min[2]);
-
-    glVertex3f(max[0], max[1], min[2]);
-    glVertex3f(min[0], max[1], min[2]);
-
-    glVertex3f(min[0], max[1], max[2]);
-    glVertex3f(min[0], min[1], max[2]);
-
-
-    // min, bottom quad
-    glVertex3f(min[0], min[1], min[2]);
-    glVertex3f(min[0], max[1], min[2]);
-
-    glVertex3f(min[0], min[1], min[2]);
-    glVertex3f(max[0], min[1], min[2]);
-
-    glVertex3f(min[0], min[1], min[2]);
-    glVertex3f(min[0], min[1], max[2]);
-    glEnd();
-
-    glPointSize(1.0);
-    //glLineWidth(1.0);
-}
-
-
-void Render::drawRoom(Room &room, bool draw_alpha)
-{
-    if (!(mFlags & Render::fRoomAlpha) && draw_alpha)
-        return;
-
-    glPushMatrix();
-    //LightingSetup();
-
-    mTexture.bindTextureId(0); // WHITE texture
-
-    if (!draw_alpha &&
-            (mFlags & Render::fPortals || mMode == Render::modeWireframe)) {
-        glLineWidth(2.0);
-        glColor3fv(RED);
-
-        for (unsigned int i = 0; i < room.sizePortals(); i++) {
-            Portal &portal = room.getPortal(i);
-            vec3_t vertices[4];
-            portal.getVertices(vertices);
-
-            glBegin(GL_LINE_LOOP);
-            glVertex3fv(vertices[0]);
-            glVertex3fv(vertices[1]);
-            glVertex3fv(vertices[2]);
-            glVertex3fv(vertices[3]);
-            glEnd();
-        }
-
-        glLineWidth(1.0);
-    }
-
-    if (mMode == Render::modeWireframe && !draw_alpha) {
-        vec3_t bbox[2];
-        room.getBoundingBox(bbox);
-        draw_bbox(bbox[0], bbox[1], true, RED, GREEN);
-    }
-
-    vec3_t pos;
-    room.getPos(pos);
-    glTranslated(pos[0], pos[1], pos[2]);
-
-    // Reset since GL_MODULATE used, reset to WHITE
-    glColor3fv(WHITE);
-
-    switch (mMode)
-    {
-        case modeWireframe:
-            room.getMesh().mMode = Mesh::MeshModeWireframe;
-            break;
-        case modeSolid:
-            room.getMesh().mMode = Mesh::MeshModeSolid;
-            break;
-        default:
-            room.getMesh().mMode = Mesh::MeshModeTexture;
-            break;
-    }
-
-    if (draw_alpha)
-        room.getMesh().drawAlpha();
-    else
-        room.getMesh().drawSolid();
-
-    glPopMatrix();
-
-    //mTexture.bindTextureId(0);
-
-    // Draw other room meshes and sprites
-    if (draw_alpha || mMode == modeWireframe || mMode == modeSolid) {
-        if (mFlags & Render::fRoomModels) {
-            room.sortModels();
-            for (unsigned int i = 0; i < room.sizeModels(); i++) {
-                room.getModel(i).display();
-            }
-        }
-
-        // Draw other room alpha polygon objects
-        if (mFlags & Render::fSprites) {
-            for (unsigned int i = 0; i < room.sizeSprites(); i++) {
-                room.getSprite(i).display();
-            }
         }
     }
 }
@@ -1354,23 +1186,13 @@ void Render::updateViewVolume()
     mViewVolume.updateFrame(proj, mdl);
 }
 
-
-bool Render::isVisible(float bbox_min[3], float bbox_max[3])
-{
+bool Render::isVisible(Box &box) {
+    vec3_t bbox[2];
+    box.getBoundingBox(bbox);
     // For debugging purposes
     if (mMode == Render::modeWireframe)
-    {
-        //glPointSize(5.0);
-        //glColor3fv(PINK);
-        //glBegin(GL_POINTS);
-        //glVertex3fv(bbox_min);
-        //glVertex3fv(bbox_max);
-        //glEnd();
-
-        draw_bbox(bbox_min, bbox_max, true, PINK, RED);
-    }
-
-    return mViewVolume.isBboxInFrustum(bbox_min, bbox_max);
+        box.display(true, PINK, RED);
+    return mViewVolume.isBboxInFrustum(bbox[0], bbox[1]);
 }
 
 

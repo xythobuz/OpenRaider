@@ -276,7 +276,7 @@ int World::getRoomByLocation(int index, float x, float y, float z)
     assert(index < (int)mRooms.size());
     Room &room = *mRooms.at(index);
 
-    if (room.inBox(x, y, z))
+    if (room.getBoundingBox().inBox(x, y, z))
         return index;
     else
         return getRoomByLocation(x, y, z);
@@ -287,8 +287,8 @@ int World::getRoomByLocation(float x, float y, float z) {
     int hop = -1;
 
     for (unsigned int i = 0; i < mRooms.size(); i++) {
-        if (mRooms.at(i)->inBoxPlane(x, z)) {
-            if (mRooms.at(i)->inBox(x, y, z))
+        if (mRooms.at(i)->getBoundingBox().inBoxPlane(x, z)) {
+            if (mRooms.at(i)->getBoundingBox().inBox(x, y, z))
                 return i;
             else
                 hop = i; // This room is above or below current position

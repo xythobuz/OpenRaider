@@ -299,22 +299,6 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Invalid use of ralpha-command!");
             return -25;
         }
-    } else if (strcmp(command, "portal") == 0) {
-        if (args->size() > 0) {
-            bool b;
-            if (readBool(args->at(0), &b) < 0) {
-                getConsole().print("Pass BOOL to portal command!");
-                return -26;
-            }
-            if (b)
-                getRender().setFlags(Render::fPortals);
-            else
-                getRender().clearFlags(Render::fPortals);
-            getConsole().print("Portals are now %s", b ? "on" : "off");
-        } else {
-            getConsole().print("Invalid use of portal-command!");
-            return -27;
-        }
     } else if (strcmp(command, "vis") == 0) {
         if (args->size() > 0) {
             bool b;
@@ -346,38 +330,6 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
         } else {
             getConsole().print("Invalid use of upf-command!");
             return -31;
-        }
-    } else if (strcmp(command, "sprite") == 0) {
-        if (args->size() > 0) {
-            bool b;
-            if (readBool(args->at(0), &b) < 0) {
-                getConsole().print("Pass BOOL to sprite command!");
-                return -34;
-            }
-            if (b)
-                getRender().setFlags(Render::fSprites);
-            else
-                getRender().clearFlags(Render::fSprites);
-            getConsole().print("Sprites are now %s", b ? "on" : "off");
-        } else {
-            getConsole().print("Invalid use of sprite-command!");
-            return -35;
-        }
-    } else if (strcmp(command, "roommodel") == 0) {
-        if (args->size() > 0) {
-            bool b;
-            if (readBool(args->at(0), &b) < 0) {
-                getConsole().print("Pass BOOL to roommodel command!");
-                return -36;
-            }
-            if (b)
-                getRender().setFlags(Render::fRoomModels);
-            else
-                getRender().clearFlags(Render::fRoomModels);
-            getConsole().print("Roommodels are now %s", b ? "on" : "off");
-        } else {
-            getConsole().print("Invalid use of roommodel-command!");
-            return -37;
         }
     } else if (strcmp(command, "entmodel") == 0) {
         if (args->size() > 0) {
@@ -500,11 +452,8 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("  pos       - Print position info");
             getConsole().print("  vmodel    - BOOL - View Model");
             getConsole().print("  ralpha    - BOOL - Room Alpha");
-            getConsole().print("  portal    - BOOL");
             getConsole().print("  vis       - BOOL - Use Portals");
             getConsole().print("  upf       - BOOL - Update Room List Per Frame");
-            getConsole().print("  sprite    - BOOL");
-            getConsole().print("  roommodel - BOOL");
             getConsole().print("  entmodel  - BOOL");
             getConsole().print("  oneroom   - BOOL");
             getConsole().print("  allrooms  - BOOL");

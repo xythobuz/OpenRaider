@@ -24,18 +24,16 @@ public:
     Room(TombRaider &tr, unsigned int index);
     ~Room();
 
-    void setFlags(unsigned int f);
-    unsigned int getFlags();
+    Box &getBoundingBox();
+    Mesh &getMesh();
+    void display(bool alpha);
 
     unsigned int getNumXSectors();
-
     unsigned int getNumZSectors();
-
     void getPos(vec3_t p);
 
-    void getBoundingBox(vec3_t box[2]);
-    bool inBox(vec_t x, vec_t y, vec_t z);
-    bool inBoxPlane(vec_t x, vec_t z);
+    void setFlags(unsigned int f);
+    unsigned int getFlags();
 
     unsigned int sizeAdjacentRooms();
     int getAdjacentRoom(unsigned int index);
@@ -51,7 +49,6 @@ public:
 
     unsigned int sizeModels();
     StaticModel &getModel(unsigned int index);
-    void sortModels();
 
     unsigned int sizeLights();
     Light &getLight(unsigned int index);
@@ -59,14 +56,15 @@ public:
     unsigned int sizeSprites();
     Sprite &getSprite(unsigned int index);
 
-    Mesh &getMesh();
-
 private:
+    void sortModels();
+
     unsigned int flags;
     unsigned int numXSectors;
     unsigned int numZSectors;
     vec3_t pos;
-    vec3_t bbox[2];
+
+    Box bbox;
     Mesh mesh;
 
     std::vector<int> adjacentRooms;

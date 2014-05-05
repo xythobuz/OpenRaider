@@ -19,6 +19,7 @@
 #include "Mesh.h"
 #include "Texture.h"
 #include "Camera.h"
+#include "RoomData.h"
 
 /*!
  * \brief OpenRaider Renderer class
@@ -36,21 +37,18 @@ public:
     } RenderMode;
 
     typedef enum {
-        fPortals                = (1 << 0),
-        fRoomAlpha              = (1 << 1),
-        fViewModel              = (1 << 2),
-        fSprites                = (1 << 3),
-        fRoomModels             = (1 << 4),
-        fEntityModels           = (1 << 5),
-        fFog                    = (1 << 6),
-        fUsePortals             = (1 << 7),
-        fGL_Lights              = (1 << 8),
-        fOneRoom                = (1 << 9),
-        fRenderPonytail         = (1 << 10),
-        // fMultiTexture           = (1 << 11), //! \todo Whats up with Multitexture stuff? Where is it needed?
-        fUpdateRoomListPerFrame = (1 << 12),
-        fAnimateAllModels       = (1 << 13),
-        fAllRooms               = (1 << 14)
+        fRoomAlpha              = (1 << 0),
+        fViewModel              = (1 << 1),
+        fEntityModels           = (1 << 2),
+        fFog                    = (1 << 3),
+        fUsePortals             = (1 << 4),
+        fGL_Lights              = (1 << 5),
+        fOneRoom                = (1 << 6),
+        fRenderPonytail         = (1 << 7),
+        // fMultiTexture           = (1 << 8), //! \todo Whats up with Multitexture stuff? Where is it needed?
+        fUpdateRoomListPerFrame = (1 << 9),
+        fAnimateAllModels       = (1 << 10),
+        fAllRooms               = (1 << 11)
     } RenderFlags;
 
     /*!
@@ -130,14 +128,6 @@ public:
     unsigned int getFlags();
 
     /*!
-     * \brief Check if a bounding box is in the View Volume
-     * \param bboxMin Start coordinates of a valid bounding box
-     * \param bboxMax End coordinates of a valid bounding box
-     * \returns true if bounding box is visible
-     */
-    bool isVisible(float bboxMin[3], float bboxMax[3]);
-
-    /*!
      * \brief Check if a point is in the View Volume
      * \param x X coordinate
      * \param y Y coordinate
@@ -156,6 +146,8 @@ public:
      */
     bool isVisible(float x, float y, float z, float radius);
 
+    bool isVisible(Box &box);
+
     /*!
      * \brief Renders a mesh.
      *
@@ -168,6 +160,7 @@ public:
 
     ViewVolume mViewVolume; //!< View Volume for frustum culling
     std::vector<SkeletalModel *> mModels;
+    Texture mTexture;                     //!< Texture subsystem
 
 private:
 
@@ -210,25 +203,12 @@ private:
     void drawModel(SkeletalModel *model);
 
     /*!
-     * Renders a room in 2 seperate passes to handle alpha.
-     *
-     * Currently doesnt sort alpha but looks pretty good.
-     * Texture must be initialized.
-     * Draw all rooms with alpha false, then again with alpha true.
-     * \param rRoom room to render
-     * \param draw_alpha once false, once true
-     */
-    void drawRoom(Room &rRoom, bool draw_alpha);
-
-    /*!
      * \brief Updates View Volume. Call once per render frame.
      */
     void updateViewVolume();
 
     //! \fixme Let them eat cake...? O.o
     void tmpRenderModelMesh(model_mesh_t *r_mesh, texture_tri_t *ttri);
-
-    Texture mTexture;                     //!< Texture subsystem
 
     std::vector<Room *> mRoomRenderList;
 

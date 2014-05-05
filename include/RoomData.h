@@ -75,6 +75,15 @@ private:
 
 class Box {
 public:
+    // For use as bounding box
+    Box();
+    void getBoundingBox(vec3_t box[2]);
+    void setBoundingBox(vec3_t min, vec3_t max);
+    void display(bool points, const vec4_t c1, const vec4_t c2);
+    bool inBox(vec_t x, vec_t y, vec_t z);
+    bool inBoxPlane(vec_t x, vec_t z);
+
+    // For use as box in rooms
     Box(TombRaider &tr, unsigned int room, unsigned int index);
 
 private:
