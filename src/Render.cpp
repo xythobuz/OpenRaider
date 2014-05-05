@@ -1218,7 +1218,6 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
     texture_tri_t *ttri;
     int lastTexture = -1;
 
-
     // If they pass NULL structs let it hang up - this is tmp
 
     //! \fixme Duh, vis tests need to be put back
@@ -1226,47 +1225,6 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
     //{
     //   return;
     //}
-
-#ifdef USE_GL_ARRAYS
-    // Setup Arrays ( move these to another method depends on mMode )
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glVertexPointer(3, GL_FLOAT, 0, r_mesh->vertices);
-
-    if (r_mesh->normals)
-    {
-        glEnableClientState(GL_NORMAL_ARRAY);
-        glNormalPointer(3, GL_FLOAT, 0, r_mesh->normals);
-    }
-
-    if (r_mesh->colors)
-    {
-        glEnableClientState(GL_COLOR_ARRAY);
-        glColorPointer(4, GL_FLOAT, 0, r_mesh->colors);
-    }
-
-    //glTexCoordPointer(2, GL_FLOAT, 0, ttri->st);
-    //glDrawArrays(GL_TRIANGLES, i * 3, 3 * j);
-
-    glBegin(GL_TRIANGLES);
-
-    for (unsigned int i = 0; i < r_mesh->texturedTriangles.size(); i++)
-    {
-        ttri = r_mesh->texturedTriangles[i];
-
-        if (!ttri)
-            continue;
-
-        for (k = 0; k < 4; ++k)
-        {
-            index = mQuads[i].quads[j*4+k];
-            glTexCoord2fv(mQuads[i].texcoors[j*4+k]);
-            glArrayElement(mVertices[index]);
-        }
-    }
-
-    glEnd();
-#endif
-
 
     //! \fixme 'AMBIENT' -- Mongoose 2002.01.08
     glColor3fv(WHITE);
