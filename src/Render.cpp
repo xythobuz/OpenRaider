@@ -55,7 +55,7 @@ Render::Render()
     mMode = Render::modeDisabled;
     mLock = 0;
     mFlags = (fRoomAlpha | fViewModel | fSprites |
-            fRoomModels | fEntityModels |
+            fRoomModels | fEntityModels | fRenderPonytail |
             fUsePortals | fUpdateRoomListPerFrame);
 }
 
@@ -982,83 +982,7 @@ void Render::drawModel(SkeletalModel *model)
 }
 
 
-void draw_bbox(vec3_t min, vec3_t max, bool draw_points)
-{
-    // Bind before entering now
-    //glBindTexture(GL_TEXTURE_2D, 1);
-    glPointSize(4.0);
-    //glLineWidth(1.25);
-
-    //! \fixme Need to make custom color key for this
-    glColor3fv(RED);
-
-    glBegin(GL_POINTS);
-    glVertex3f(max[0], max[1], max[2]);
-    glVertex3f(min[0], min[1], min[2]);
-
-    if (draw_points)
-    {
-        glVertex3f(max[0], min[1], max[2]);
-        glVertex3f(min[0], max[1], max[2]);
-        glVertex3f(max[0], max[1], min[2]);
-        glVertex3f(min[0], min[1], max[2]);
-        glVertex3f(min[0], max[1], min[2]);
-        glVertex3f(max[0], min[1], min[2]);
-    }
-
-    glEnd();
-
-    glColor3fv(GREEN);
-
-    glBegin(GL_LINES);
-    // max, top quad
-    glVertex3f(max[0], max[1], max[2]);
-    glVertex3f(max[0], min[1], max[2]);
-
-    glVertex3f(max[0], max[1], max[2]);
-    glVertex3f(min[0], max[1], max[2]);
-
-    glVertex3f(max[0], max[1], max[2]);
-    glVertex3f(max[0], max[1], min[2]);
-
-    // max-min, vertical quads
-    glVertex3f(min[0], max[1], max[2]);
-    glVertex3f(min[0], max[1], min[2]);
-
-    glVertex3f(max[0], min[1], max[2]);
-    glVertex3f(max[0], min[1], min[2]);
-
-    glVertex3f(max[0], min[1], max[2]);
-    glVertex3f(min[0], min[1], max[2]);
-
-    // min-max, vertical quads
-    glVertex3f(max[0], max[1], min[2]);
-    glVertex3f(max[0], min[1], min[2]);
-
-    glVertex3f(max[0], max[1], min[2]);
-    glVertex3f(min[0], max[1], min[2]);
-
-    glVertex3f(min[0], max[1], max[2]);
-    glVertex3f(min[0], min[1], max[2]);
-
-
-    // min, bottom quad
-    glVertex3f(min[0], min[1], min[2]);
-    glVertex3f(min[0], max[1], min[2]);
-
-    glVertex3f(min[0], min[1], min[2]);
-    glVertex3f(max[0], min[1], min[2]);
-
-    glVertex3f(min[0], min[1], min[2]);
-    glVertex3f(min[0], min[1], max[2]);
-    glEnd();
-
-    glPointSize(1.0);
-    //glLineWidth(1.0);
-}
-
-
-void draw_bbox_color(vec3_t min, vec3_t max, bool draw_points,
+void draw_bbox(vec3_t min, vec3_t max, bool draw_points,
         const vec4_t c1, const vec4_t c2)
 {
     // Bind before entering now
@@ -1169,7 +1093,7 @@ void Render::drawRoom(Room &room, bool draw_alpha)
     if (mMode == Render::modeWireframe && !draw_alpha) {
         vec3_t bbox[2];
         room.getBoundingBox(bbox);
-        draw_bbox(bbox[0], bbox[1], true);
+        draw_bbox(bbox[0], bbox[1], true, RED, GREEN);
     }
 
     vec3_t pos;
@@ -1493,7 +1417,7 @@ bool Render::isVisible(float bbox_min[3], float bbox_max[3])
         //glVertex3fv(bbox_max);
         //glEnd();
 
-        draw_bbox_color(bbox_min, bbox_max, true, PINK, RED);
+        draw_bbox(bbox_min, bbox_max, true, PINK, RED);
     }
 
     return mViewVolume.isBboxInFrustum(bbox_min, bbox_max);
