@@ -11,8 +11,10 @@
 #include <vector>
 #include <memory>
 #include "math/math.h"
+#include "math/Matrix.h"
 #include "Mesh.h"
 #include "Sprite.h"
+#include "TombRaider.h"
 
 class Light {
 public:
@@ -25,20 +27,27 @@ public:
         typeDirectional = 3  //!< Directional light
     } LightType;
 
-    Light(vec4_t pos, vec3_t dir, vec_t att, vec4_t color, vec_t cutoff, LightType type);
+    Light(TombRaider &tr, unsigned int room, unsigned int index);
 
-//private:
-    vec4_t mPos; //! Light position in 3 space
-    vec3_t mDir; //! Light direction
-    vec_t mAtt;
-    vec4_t mColor; //! Color of light
-    vec_t mCutoff; //! Fade out distance
-    LightType mType; //! Type of light
+    void getPos(vec4_t p);
+    void getDir(vec3_t d);
+    vec_t getAtt();
+    void getColor(vec4_t c);
+    vec_t getCutoff();
+    LightType getType();
+
+private:
+    vec4_t pos; //! Light position in 3 space
+    vec3_t dir; //! Light direction
+    vec_t att;
+    vec4_t color; //! Color of light
+    vec_t cutoff; //! Fade out distance
+    LightType type; //! Type of light
 };
 
 class StaticModel {
 public:
-    StaticModel(int _index, vec_t _yaw, vec3_t _pos);
+    StaticModel(TombRaider &tr, unsigned int room, unsigned int i);
     void display();
 
     // Compares distance to ViewVolume for depth sorting
@@ -55,7 +64,7 @@ private:
 
 class Portal {
 public:
-    Portal(vec3_t _vertices[4], vec3_t _normal, int _adjoiningRoom);
+    Portal(TombRaider &tr, unsigned int room, unsigned int index, Matrix &transform);
 
     void getVertices(vec3_t vert[4]);
     int getAdjoiningRoom();
@@ -68,7 +77,7 @@ private:
 
 class Box {
 public:
-    Box(vec3_t _a, vec3_t _b, vec3_t _c, vec3_t _d);
+    Box(TombRaider &tr, unsigned int room, unsigned int index);
 
 private:
     vec3_t a;
@@ -79,7 +88,7 @@ private:
 
 class Sector {
 public:
-    Sector(vec_t _floor, vec_t _ceiling, bool _wall);
+    Sector(TombRaider &tr, unsigned int room, unsigned int index);
     vec_t getFloor();
     vec_t getCeiling();
     bool isWall();
@@ -96,64 +105,53 @@ typedef enum {
 
 class Room {
 public:
-    Room(int _id);
+    Room(TombRaider &tr, unsigned int index);
     ~Room();
 
     void setFlags(unsigned int f);
     unsigned int getFlags();
 
-    void setNumXSectors(unsigned int n);
     unsigned int getNumXSectors();
 
-    void setNumZSectors(unsigned int n);
     unsigned int getNumZSectors();
 
-    void setPos(vec3_t p);
     void getPos(vec3_t p);
 
     void getBoundingBox(vec3_t box[2]);
-    void setBoundingBox(vec3_t box[2]);
     bool inBox(vec_t x, vec_t y, vec_t z);
     bool inBoxPlane(vec_t x, vec_t z);
 
     unsigned int sizeAdjacentRooms();
     int getAdjacentRoom(unsigned int index);
-    void addAdjacentRoom(int r);
 
     unsigned int sizePortals();
     Portal &getPortal(unsigned int index);
-    void addPortal(Portal &p);
 
     unsigned int sizeSectors();
     Sector &getSector(unsigned int index);
-    void addSector(Sector &s);
 
     unsigned int sizeBox();
     Box &getBox(unsigned int index);
-    void addBox(Box &b);
 
     unsigned int sizeModels();
     StaticModel &getModel(unsigned int index);
-    void addModel(StaticModel &m);
     void sortModels();
 
     unsigned int sizeLights();
     Light &getLight(unsigned int index);
-    void addLight(Light &l);
 
     unsigned int sizeSprites();
     Sprite &getSprite(unsigned int index);
-    void addSprite(Sprite &s);
 
     Mesh &getMesh();
 
 private:
-    int id;
     unsigned int flags;
     unsigned int numXSectors;
     unsigned int numZSectors;
     vec3_t pos;
     vec3_t bbox[2];
+    Mesh mesh;
 
     std::vector<int> adjacentRooms;
     std::vector<Sprite *> sprites;
@@ -161,11 +159,10 @@ private:
     std::vector<Portal *> portals;
     std::vector<Box *> boxes;
     std::vector<Sector *> sectors;
+    std::vector<Light *> lights;
 
-    // Was previously stored in RenderRoom
-    //vec_t dist;                  //!< Distance to near plane, move to room?
-    std::vector<Light *> lights; //!< List of lights in this room
-    Mesh mesh;                   //!< OpenGL mesh that represents this room
+    // Was used for "depth sorting" render list, but never assigned...?!
+    //vec_t dist; // Distance to near plane, move to room?
 };
 
 #endif

@@ -113,7 +113,7 @@ vec_t ViewVolume::getDistToSphereFromNear(vec_t x, vec_t y, vec_t z, vec_t radiu
     return d + radius;
 }
 
-vec_t ViewVolume::getDistToBboxFromNear(vec3_t min, vec3_t max) {
+vec_t ViewVolume::getDistToBboxFromNear(const vec3_t min, const vec3_t max) {
     vec3_t center;
     vec_t d, radius;
 

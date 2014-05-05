@@ -197,16 +197,21 @@ void lightRoom(Room &room)
     for (unsigned int i = 0; i < room.sizeLights(); ++i)
     {
         Light &light = room.getLight(i);
+        vec4_t pos, color;
+        vec3_t dir;
+        light.getPos(pos);
+        light.getColor(color);
+        light.getDir(dir);
 
         glEnable(GL_LIGHT0 + i);
 
-        switch (light.mType)
+        switch (light.getType())
         {
             case Light::typeSpot:
-                glLightf(GL_LIGHT0 + i,  GL_SPOT_CUTOFF,    light.mCutoff);
-                glLightfv(GL_LIGHT0 + i, GL_POSITION,       light.mPos);
-                glLightfv(GL_LIGHT0 + i, GL_SPOT_DIRECTION, light.mDir);
-                glLightfv(GL_LIGHT0 + i, GL_DIFFUSE,        light.mColor);
+                glLightf(GL_LIGHT0 + i,  GL_SPOT_CUTOFF,    light.getCutoff());
+                glLightfv(GL_LIGHT0 + i, GL_POSITION,       pos);
+                glLightfv(GL_LIGHT0 + i, GL_SPOT_DIRECTION, dir);
+                glLightfv(GL_LIGHT0 + i, GL_DIFFUSE,        color);
                 break;
             case Light::typePoint:
             case Light::typeDirectional:
@@ -214,10 +219,10 @@ void lightRoom(Room &room)
 
                 // GL_QUADRATIC_ATTENUATION
                 // GL_LINEAR_ATTENUATION
-                glLightf(GL_LIGHT0 + i, GL_LINEAR_ATTENUATION, light.mAtt);
+                glLightf(GL_LIGHT0 + i, GL_LINEAR_ATTENUATION, light.getAtt());
 
-                glLightfv(GL_LIGHT0 + i, GL_DIFFUSE, light.mColor); // GL_DIFFUSE
-                glLightfv(GL_LIGHT0 + i, GL_POSITION, light.mPos);
+                glLightfv(GL_LIGHT0 + i, GL_DIFFUSE, color); // GL_DIFFUSE
+                glLightfv(GL_LIGHT0 + i, GL_POSITION, pos);
                 break;
         }
     }

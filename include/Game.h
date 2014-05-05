@@ -38,6 +38,9 @@ public:
 
     void handleMouseMotion(int xrel, int yrel);
 
+    unsigned int getTextureStart();
+    unsigned int getTextureOffset();
+
     //! \fixme should be private
     entity_t *mLara;
 

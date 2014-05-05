@@ -134,7 +134,7 @@ public:
      * \param max maximum point of a valid abstract bounding box
      * \returns distance to abstract box bounding volume
      */
-    vec_t getDistToBboxFromNear(vec3_t min, vec3_t max);
+    vec_t getDistToBboxFromNear(const vec3_t min, const vec3_t max);
 
     /*!
      * \brief Get a copy of the view volume

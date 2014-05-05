@@ -51,7 +51,7 @@ int intersectionLinePolygon(vec3_t intersect, vec3_t p1, vec3_t p2, vec3_t *poly
  * \param b Second point
  * \returns distance/length
  */
-vec_t distance(vec3_t a, vec3_t b);
+vec_t distance(const vec3_t a, const vec3_t b);
 
 /*!
  * \brief Calculates the midpoint between two points / of a line segment
@@ -59,7 +59,7 @@ vec_t distance(vec3_t a, vec3_t b);
  * \param b Second point
  * \param mid Midpoint will be stored here
  */
-void midpoint(vec3_t a, vec3_t b, vec3_t mid);
+void midpoint(const vec3_t a, const vec3_t b, vec3_t mid);
 
 /*!
  * \brief Calculates a pseudo-random number

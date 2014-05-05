@@ -75,13 +75,13 @@ int intersectionLinePolygon(vec3_t intersect,
     return 1;
 }
 
-vec_t distance(vec3_t a, vec3_t b) {
+vec_t distance(const vec3_t a, const vec3_t b) {
     return sqrtf(((b[0] - a[0]) * (b[0] - a[0])) +
                  ((b[1] - a[1]) * (b[1] - a[1])) +
                  ((b[2] - a[2]) * (b[2] - a[2])));
 }
 
-void midpoint(vec3_t a, vec3_t b, vec3_t mid) {
+void midpoint(const vec3_t a, const vec3_t b, vec3_t mid) {
     mid[0] = (a[0] + b[0]) / 2.0f;
     mid[1] = (a[1] + b[1]) / 2.0f;
     mid[2] = (a[2] + b[2]) / 2.0f;
