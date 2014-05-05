@@ -5,6 +5,7 @@
     [ 20140505 ]
     * Moved setup of Room, Portal, Box, Sector, ... into their
       Constructors.
+    * Fixed menu play button
 
     [ 20140504 ]
     * Forcing use of new Room and Sprite classes in World.

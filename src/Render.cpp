@@ -900,7 +900,7 @@ void Render::drawModel(SkeletalModel *model)
 
                 if (tag2)
                 {
-                    drawModelMesh(getWorld().getMesh(tag2->mesh), Render::skeletalMesh);
+                    drawModelMesh(getWorld().getMesh(tag2->mesh));
                 }
             }
         }
@@ -943,20 +943,17 @@ void Render::drawModel(SkeletalModel *model)
                     {
                         glPushMatrix();
                         glTranslatef(mdl->ponyOff2, 0.0, 0.0);
-                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i),
-                                Render::skeletalMesh);
+                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i));
                         glPopMatrix();
 
                         glPushMatrix();
                         glTranslatef(-mdl->ponyOff2, 0.0, 0.0);
-                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i),
-                                Render::skeletalMesh);
+                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i));
                         glPopMatrix();
                     }
                     else
                     {
-                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i),
-                                Render::skeletalMesh);
+                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i));
                     }
                 }
 
@@ -969,7 +966,7 @@ void Render::drawModel(SkeletalModel *model)
             }
         }
 
-        drawModelMesh(getWorld().getMesh(tag->mesh), Render::skeletalMesh);
+        drawModelMesh(getWorld().getMesh(tag->mesh));
     }
 
     // Cycle frames ( cheap hack from old ent state based system )
@@ -1213,7 +1210,7 @@ void Render::tmpRenderModelMesh(model_mesh_t *r_mesh, texture_tri_t *ttri)
 }
 
 
-void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
+void Render::drawModelMesh(model_mesh_t *r_mesh)
 {
     texture_tri_t *ttri;
     int lastTexture = -1;
@@ -1230,17 +1227,7 @@ void Render::drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type)
     glColor3fv(WHITE);
 
     if (mMode == modeWireframe)
-    {
-        switch (type)
-        {
-            case roomMesh:
-                glColor3fv(YELLOW);
-                break;
-            case skeletalMesh:
-                glColor3fv(WHITE);
-                break;
-        }
-    }
+        glColor3fv(WHITE);
 
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glBindTexture(GL_TEXTURE_2D, 1);  // White texture for colors

@@ -194,6 +194,16 @@ void Menu::display() {
     }
 }
 
+void Menu::play() {
+    char *tmp = bufferString("load %s", mMapList[mCursor]);
+    if (getOpenRaider().command(tmp) == 0) {
+        setVisible(false);
+    } else {
+        //! \todo Display something if an error occurs
+    }
+    delete [] tmp;
+}
+
 void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
     if (!pressed)
         return;
@@ -221,13 +231,7 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
         while (i-- > 0)
             handleKeyboard(upKey, true);
     } else if (key == enterKey) {
-        char *tmp = bufferString("load %s", mMapList[mCursor]);
-        if (getOpenRaider().command(tmp) == 0) {
-            setVisible(false);
-        } else {
-            //! \todo Display something if an error occurs
-        }
-        delete [] tmp;
+        play();
     }
 }
 
@@ -242,7 +246,7 @@ void Menu::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton butto
         mCursor = mMin + (y / 25);
     } else if ((y >= 25) && (y <= 100) && (x >= 25) && (x <= 125)) {
         // Play button
-        mCursor = 0;
+        play();
     }
 }
 

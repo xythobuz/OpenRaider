@@ -69,6 +69,8 @@ Light::LightType Light::getType() {
     return type;
 }
 
+// ----------------------------------------------------------------------------
+
 StaticModel::StaticModel(TombRaider &tr, unsigned int room, unsigned int i) {
     tr.getRoomModel(room, i, &index, pos, &yaw);
 }
@@ -86,7 +88,7 @@ void StaticModel::display() {
     glTranslated(pos[0], pos[1], pos[2]);
     glRotated(yaw, 0, 1, 0);
 
-    getRender().drawModelMesh(mesh, Render::roomMesh);
+    getRender().drawModelMesh(mesh);
     glPopMatrix();
 }
 
@@ -98,6 +100,8 @@ bool StaticModel::operator<(const StaticModel &other) {
             other.pos[1], other.pos[2], 128.0f);
     return (distA < distB);
 }
+
+// ----------------------------------------------------------------------------
 
 Portal::Portal(TombRaider &tr, unsigned int room, unsigned int index, Matrix &transform) {
     float portalVertices[12];
@@ -124,9 +128,13 @@ int Portal::getAdjoiningRoom() {
     return adjoiningRoom;
 }
 
+// ----------------------------------------------------------------------------
+
 Box::Box(TombRaider &tr, unsigned int room, unsigned int index) {
     tr.getRoomBox(room, index, a, b, c, d);
 }
+
+// ----------------------------------------------------------------------------
 
 Sector::Sector(TombRaider &tr, unsigned int room, unsigned int index) {
     unsigned int sectorFlags;

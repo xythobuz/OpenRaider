@@ -53,11 +53,6 @@ public:
         fAllRooms               = (1 << 14)
     } RenderFlags;
 
-    typedef enum {
-        roomMesh,
-        skeletalMesh
-    } RenderMeshType;
-
     /*!
      * \brief Constructs an object of Render
      */
@@ -166,9 +161,8 @@ public:
      *
      * Texture must be initialized.
      * \param r_mesh Mesh to render.
-     * \param type Must be object containing mesh
      */
-    void drawModelMesh(model_mesh_t *r_mesh, RenderMeshType type);
+    void drawModelMesh(model_mesh_t *r_mesh);
 
     //! \fixme should be private
 

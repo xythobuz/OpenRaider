@@ -12,8 +12,6 @@
 #include <memory>
 #include "math/math.h"
 #include "math/Matrix.h"
-#include "Mesh.h"
-#include "Sprite.h"
 #include "TombRaider.h"
 
 class Light {

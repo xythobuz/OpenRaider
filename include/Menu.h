@@ -44,6 +44,8 @@ private:
 
     void displayMapList();
 
+    void play();
+
     bool mVisible;
     unsigned int mCursor;
     unsigned int mMin;
