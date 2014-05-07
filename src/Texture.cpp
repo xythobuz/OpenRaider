@@ -14,10 +14,14 @@
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
+#elif defined WIN32
+#include <gl/glew.h>
+#include <gl/wglew.h>
 #else
 #include <GL/gl.h>
 #endif
 
+#include "utils/strings.h"
 #include "utils/tga.h"
 #include "Texture.h"
 
@@ -287,7 +291,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height) 
     FILE *f;
     int sz = width * height;
     unsigned char *image = new unsigned char[sz * 3];
-    char filename[1024];
+    char *filename = NULL;
     static int count = 0;
     bool done = false;
 
@@ -297,7 +301,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height) 
 
     // Don't overwrite files
     while (!done) {
-        snprintf(filename, 1024, "%s-%04i.tga", base, count++);
+        filename = bufferString("%s-%04i.tga", base, count++);
 
         f = fopen(filename, "rb");
 
@@ -313,6 +317,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height) 
     tgaSaveFilename(image, width, height, 0, "%s", filename);
     printf("Took screenshot '%s'.\n", filename);
 
+    delete [] filename;
     delete [] image;
 }
 

@@ -60,13 +60,14 @@ set (SRCS ${SRCS} "Window.cpp")
 set (SRCS ${SRCS} "World.cpp")
 
 # Select available Sound library
-if (OPENAL_FOUND AND ALUT_FOUND)
+option (ENABLE_AUDIO "Enable Sound Output" YES)
+if (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
     set (SRCS ${SRCS} "SoundAL.cpp")
     set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_AL")
-else (OPENAL_FOUND AND ALUT_FOUND)
-    # Currently only OpenAL support
-    message (FATAL_ERROR "OpenAL and ALUT are required!")
-endif (OPENAL_FOUND AND ALUT_FOUND)
+else (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
+    set (SRCS ${SRCS} "SoundNull.cpp")
+    message (STATUS "Disabled Sound support (no OpenAL and ALUT)!")
+endif (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
 
 # Select available Windowing library
 if (SDL2_FOUND AND SDL2TTF_FOUND)
@@ -74,7 +75,7 @@ if (SDL2_FOUND AND SDL2TTF_FOUND)
     set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_SDL")
 else (SDL2_FOUND AND SDL2TTF_FOUND)
     # Currently only SDL2 support
-    message (FATAL_ERROR "SDL2 and SDL2-TTF are required!")
+    message (FATAL_ERROR "SDL2 and SDL2-TTF are required at the moment!")
 endif (SDL2_FOUND AND SDL2TTF_FOUND)
 
 #################################################################
@@ -140,6 +141,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     if (NOT "${SSE_FOUND_MSG}" STREQUAL "")
         message (STATUS "Enabled${SSE_FOUND_MSG}...")
     endif (NOT "${SSE_FOUND_MSG}" STREQUAL "")
+# TODO support SSE with other compilers than Clang
 endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
 # Apply Flags
@@ -198,7 +200,9 @@ endif (NOT APPLE)
 #################################################################
 
 # Add Math Library
-set (LIBS ${LIBS} m)
+if (UNIX)
+    set (LIBS ${LIBS} m)
+endif (UNIX)
 
 # Add utils Library
 set (LIBS ${LIBS} OpenRaider_math)

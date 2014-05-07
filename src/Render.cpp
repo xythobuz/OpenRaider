@@ -10,6 +10,9 @@
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
+#elif defined WIN32
+#include <gl/glew.h>
+#include <gl/wglew.h>
 #else
 #include <GL/gl.h>
 #endif
@@ -23,6 +26,7 @@
 #include "Game.h"
 #include "OpenRaider.h"
 #include "Render.h"
+#include "utils/strings.h"
 
 bool compareEntites(const void *voidA, const void *voidB)
 {
@@ -94,7 +98,7 @@ void Render::loadTexture(unsigned char *image,
 
 
 int Render::initTextures(char *textureDir) {
-    char filename[128];
+    char *filename;
     unsigned int numTextures = 0;
     unsigned char color[4];
 
@@ -113,10 +117,10 @@ int Render::initTextures(char *textureDir) {
         numTextures++;
 
     //! \fixme Error Checking. Return negative error code, check in calling place too
-    snprintf(filename, 126, "%s/%s", textureDir, "splash.tga");
-    filename[127] = 0;
+    filename = bufferString("%s/%s", textureDir, "splash.tga");
     if (mTexture.loadTGA(filename) > -1)
         numTextures++;
+    delete [] filename;
 
     return numTextures;
 }

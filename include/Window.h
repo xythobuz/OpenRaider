@@ -8,6 +8,10 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
+#ifdef WIN32
+#define __attribute__(x)
+#endif
+
 #include <ctime>
 
 #include "global.h"

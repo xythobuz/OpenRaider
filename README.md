@@ -50,6 +50,8 @@ Get, compile and install freealut like this:
 
 Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won't need to compile freealut.
 
+Sound support is optional now, however. If cmake can’t find OpenAL and ALUT, Audio will be deactivated. If you want to explicitly deactivate it, call cmake with `-DENABLE_AUDIO=NO`.
+
 ## Building
 
 Do a standard cmake out-of-source build to get a debug configuration and then run the resulting executable:

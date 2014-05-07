@@ -2,6 +2,13 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140507 ]
+    * Prepared for Windows support using Visual C++
+      - Wrote utils/time implementation for Windows
+      - Audio output optional, added Null Sound implementation
+      - Added support for getting home folder location in Windows
+      - Added support for recursively looking for level paks in Windows
+
     [ 20140505 ]
     * Moved setup of Room, Portal, Box, Sector, ... into their
       Constructors.

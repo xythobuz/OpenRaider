@@ -7,6 +7,9 @@
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
+#elif defined WIN32
+#include <gl/glew.h>
+#include <gl/wglew.h>
 #else
 #include <GL/gl.h>
 #endif

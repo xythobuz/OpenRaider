@@ -17,7 +17,7 @@
 #ifdef USING_AL
 #include "SoundAL.h"
 #else
-#error No Sound Library selected!
+#include "SoundNull.h"
 #endif
 
 #ifdef USING_SDL
@@ -36,6 +36,9 @@ World gWorld;
 
 #ifdef USING_AL
 SoundAL gSound;
+#else
+#warn Sound output deactivated!
+SoundNull gSound;
 #endif
 
 #ifdef USING_SDL

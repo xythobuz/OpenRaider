@@ -15,8 +15,8 @@ site_name (OpenRaider_HOSTNAME)
 
 # Set a default build type if none was specified
 if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-    message(STATUS "Setting build type to 'Debug' as none was specified.")
-    set(CMAKE_BUILD_TYPE Debug)
+    message (STATUS "Setting build type to 'Debug' as none was specified.")
+    set (CMAKE_BUILD_TYPE Debug)
 endif()
 
 #################################################################
@@ -30,17 +30,18 @@ set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
 #################################################################
 
-# Build warnings
-if("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
+# Compiler specific flags
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     set (WARNINGS "${WARNINGS} -Weverything -Wno-padded -Wno-packed")
     set (WARNINGS "${WARNINGS} -Wno-global-constructors -Wno-exit-time-destructors")
     set (WARNINGS "${WARNINGS} -Wno-documentation-unknown-command -Wno-c++98-compat-pedantic")
     set (WARNINGS "${WARNINGS} -Wno-missing-prototypes -Wno-missing-variable-declarations")
     set (WARNINGS "${WARNINGS} -Wno-disabled-macro-expansion")
-
     set (WARNINGS "${WARNINGS} -Wno-shorten-64-to-32 -Wno-sign-conversion")
-else()
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set (WARNINGS "${WARNINGS} -Wall -Wextra -Wpedantic")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    # TODO Visual C++ compiler flags?
 endif()
 
 # Flags for all builds
@@ -72,53 +73,57 @@ add_custom_target (setup "${PROJECT_SOURCE_DIR}/cmake/setup.sh"
 #################################################################
 
 # Target for running cppcheck
-set (CHECK_STD "--std=c++11" "--std=posix")
-set (CHECK_FLAGS "--quiet" "--force")
-set (CHECK_NORMAL "--enable=information,warning,performance,portability")
-set (CHECK_FULL "--enable=all")
-set (CHECK_CONFIG "--check-config")
-add_custom_target (check echo "Running cppcheck..."
-    COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_STD} ${CHECK_NORMAL} ${PROJECT_SOURCE_DIR}
-)
-add_custom_target (checkFull echo "Running full cppcheck..."
-    COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_STD} ${CHECK_FULL} ${PROJECT_SOURCE_DIR}
-)
-add_custom_target (checkConfig echo "Checking cppcheck config..."
-    COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_CONFIG} ${PROJECT_SOURCE_DIR}
-)
+if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
+    set (CHECK_STD "--std=c++11" "--std=posix")
+    set (CHECK_FLAGS "--quiet" "--force")
+    set (CHECK_NORMAL "--enable=information,warning,performance,portability")
+    set (CHECK_FULL "--enable=all")
+    set (CHECK_CONFIG "--check-config")
+    add_custom_target (check echo "Running cppcheck..."
+        COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_STD} ${CHECK_NORMAL} ${PROJECT_SOURCE_DIR}
+    )
+    add_custom_target (checkFull echo "Running full cppcheck..."
+        COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_STD} ${CHECK_FULL} ${PROJECT_SOURCE_DIR}
+    )
+    add_custom_target (checkConfig echo "Checking cppcheck config..."
+        COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_CONFIG} ${PROJECT_SOURCE_DIR}
+    )
+endif (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
 
 #################################################################
 
 # Generate Doxygen Documentation
-find_package (Doxygen)
-if (DOXYGEN_FOUND)
-    # Configure the Template Doxyfile for our specific project
-    configure_file (cmake/Doxyfile.in 
-        ${PROJECT_BINARY_DIR}/Doxyfile  @ONLY IMMEDIATE)
+if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
+    find_package (Doxygen)
+    if (DOXYGEN_FOUND)
+        # Configure the Template Doxyfile for our specific project
+        configure_file (cmake/Doxyfile.in 
+            ${PROJECT_BINARY_DIR}/Doxyfile  @ONLY IMMEDIATE)
 
-    # Add a custom target to run Doxygen when ever the project is built
-    add_custom_target (doc
-  	    COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
-  		SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
+        # Add a custom target to run Doxygen when ever the project is built
+        add_custom_target (doc
+            COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
+            SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
 
-    # Add custom target to create local documentation without graphs
-    add_custom_target (docLocal
-        COMMAND sed -i '' "s/HAVE_DOT               = YES/HAVE_DOT               = NO/g" Doxyfile
-        COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
-        COMMAND cp -R doc/html/* ${PROJECT_SOURCE_DIR}/../apache/
-        COMMAND sed -i '' "s/HAVE_DOT               = NO/HAVE_DOT               = YES/g" Doxyfile
-        SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
+        # Add custom target to create local documentation without graphs
+        add_custom_target (docLocal
+            COMMAND sed -i '' "s/HAVE_DOT               = YES/HAVE_DOT               = NO/g" Doxyfile
+            COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
+            COMMAND cp -R doc/html/* ${PROJECT_SOURCE_DIR}/../apache/
+            COMMAND sed -i '' "s/HAVE_DOT               = NO/HAVE_DOT               = YES/g" Doxyfile
+            SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
 
-    # Add custom target to create local documentation with call and caller graphs
-    add_custom_target (docLocalFull
-        COMMAND sed -i '' "s/CALL_GRAPH             = NO/CALL_GRAPH             = YES/g" Doxyfile
-        COMMAND sed -i '' "s/CALLER_GRAPH           = NO/CALLER_GRAPH           = YES/g" Doxyfile
-        COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
-        COMMAND cp -R doc/html/* ${PROJECT_SOURCE_DIR}/../apache/
-        COMMAND sed -i '' "s/CALL_GRAPH             = YES/CALL_GRAPH             = NO/g" Doxyfile
-        COMMAND sed -i '' "s/CALLER_GRAPH           = YES/CALLER_GRAPH           = NO/g" Doxyfile
-        SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
-endif (DOXYGEN_FOUND)
+        # Add custom target to create local documentation with call and caller graphs
+        add_custom_target (docLocalFull
+            COMMAND sed -i '' "s/CALL_GRAPH             = NO/CALL_GRAPH             = YES/g" Doxyfile
+            COMMAND sed -i '' "s/CALLER_GRAPH           = NO/CALLER_GRAPH           = YES/g" Doxyfile
+            COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
+            COMMAND cp -R doc/html/* ${PROJECT_SOURCE_DIR}/../apache/
+            COMMAND sed -i '' "s/CALL_GRAPH             = YES/CALL_GRAPH             = NO/g" Doxyfile
+            COMMAND sed -i '' "s/CALLER_GRAPH           = YES/CALLER_GRAPH           = NO/g" Doxyfile
+            SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
+    endif (DOXYGEN_FOUND)
+endif (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
 
 # Clean doc files
 set_directory_properties (PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "doc")

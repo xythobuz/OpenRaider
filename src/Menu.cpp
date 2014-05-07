@@ -6,11 +6,19 @@
  */
 
 #include <assert.h>
-#include <dirent.h>
 #include <cctype>
+
+#ifdef WIN32
+#include <Windows.h>
+#else
+#include <dirent.h>
+#endif
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
+#elif defined WIN32
+#include <GL/glew.h>
+#include <GL/wglew.h>
 #else
 #include <GL/gl.h>
 #endif
@@ -57,13 +65,59 @@ bool Menu::isVisible() {
     return mVisible;
 }
 
+#ifdef WIN32
+void loadPakFolderHelper(std::list<char *> &list) {
+    WIN32_FIND_DATA fd;
+    char *tmp = bufferString("%s\\*", list.at(0));
+    HANDLE hFind = FindFirstFile(tmp, &fd);
+    do {
+        if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+            list.push_back(bufferString("%s\\%s", list.at(0), fd.cFileName));
+        } else {
+            char *fullPathMap = bufferString("%s\\%s", list.at(0), fd.cFileName);
+
+            char *lowerPath = bufferString("%s", fullPathMap);
+            for (char *p = lowerPath; *p; ++p) *p = (char)tolower(*p);
+
+            // Check for valid extension
+            if (stringEndsWith(lowerPath, ".phd")
+                 || stringEndsWith(lowerPath, ".tr2")
+                 || stringEndsWith(lowerPath, ".tr4")
+                 || stringEndsWith(lowerPath, ".trc")) {
+                int error = TombRaider::checkMime(fullPathMap);
+                if (error == 0) {
+                    // Just load relative filename
+                    mMapList.push_back(bufferString("%s", (fullPathMap + strlen(getOpenRaider().mPakDir) + 1)));
+                } else {
+                    getConsole().print("Error: pak file '%s' %s",
+                            fullPathMap, (error == -1) ? "not found" : "invalid");
+                }
+            }
+
+            delete [] lowerPath;
+            delete [] fullPathMap;
+        }
+    } while (FindNextFile(hFind, &fd) != 0);
+    FindClose(hFind);
+    delete [] tmp;
+    delete [] list.at(0);
+    list.pop_front();
+}
+#endif
+
 void Menu::loadPakFolderRecursive(const char *dir) {
+    assert(dir != NULL);
+    assert(dir[0] != '\0');
+#ifdef WIN32
+    std::list<char *> list;
+    list.push_back(bufferString("%s", dir));
+    do {
+        loadPakFolderHelper(list);
+    } while (list.size() > 0);
+#else
     struct dirent entry;
     struct dirent *ep = NULL;
     DIR *pakDir;
-
-    assert(dir != NULL);
-    assert(dir[0] != '\0');
 
     pakDir = opendir(dir);
     if (pakDir != NULL) {
@@ -108,6 +162,7 @@ void Menu::loadPakFolderRecursive(const char *dir) {
     } else {
         getConsole().print("Could not open PAK dir %s!", dir);
     }
+#endif
 }
 
 void Menu::fillMapList() {

@@ -133,14 +133,13 @@ int OpenRaider::command(const char *command) {
         }
     }
 
-    char *strtokState;
-    char *token = strtok_r(cmd, " \t", &strtokState);
+    char *token = strtok(cmd, " \t");
     if (token != NULL) {
         // token is the command to execute
         // get arguments
         std::vector<char *> args;
         char *next;
-        while ((next = strtok_r(NULL, " \t", &strtokState)) != NULL) {
+        while ((next = strtok(NULL, " \t")) != NULL) {
             args.push_back(next);
         }
 

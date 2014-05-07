@@ -12,6 +12,10 @@
 #ifndef _MATH_MATH_H
 #define _MATH_MATH_H
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 #define OR_PI           ((float)M_PI) //!< pi
 #define OR_2_PI         (OR_PI * 2.0f) //!< pi*2
 #define OR_PI_OVER_4    (OR_PI / 4.0f) //!< pi/4

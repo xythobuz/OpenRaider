@@ -13,6 +13,8 @@
 
 #if defined(unix) || defined(__APPLE__) || defined(__linux__)
 #include <wordexp.h>
+#elif defined(WIN32)
+#include <Windows.h>
 #endif
 
 #include "utils/strings.h"
@@ -119,7 +121,6 @@ char *bufferString(const char *string, ...) {
 
 char *fullPath(const char *path, char end) {
     unsigned int lenPath;
-    wordexp_t word;
     char *dir;
 
     assert(path != NULL);
@@ -127,6 +128,8 @@ char *fullPath(const char *path, char end) {
 
     if (path[0] == '~') {
 #if defined(unix) || defined(__APPLE__) || defined(__linux__)
+
+        wordexp_t word;
 
 #ifdef __APPLE__
         // Workaround for Mac OS X. See:
@@ -164,6 +167,22 @@ char *fullPath(const char *path, char end) {
         }
 
         wordfree(&word);
+#elif defined(WIN32)
+        WCHAR newPath[MAX_PATH];
+        if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, newPath)) {
+            lenPath = strlen(newPath);
+            unsigned int lenPath2 = strlen(path);
+            dir = new char[lenPath + lenPath2 + 2]; // space for end char
+            strncpy(dir, newPath, lenPath);
+            dir[lenPath] = '\\';
+            strncpy((dir + lenPath + 1), (path + 1), lenPath2 - 1);
+            lenPath += lenPath2;
+        } else {
+            printf("WARNING: Could not get home folder location for tilde expansion!\n");
+            lenPath = strlen(path);
+            dir = new char[lenPath + 2]; // space for end char
+            strncpy(dir, path, lenPath);
+        }
 #else
         printf("WARNING: Tilde expansion not supported on this platform:\n\t%s\n", path);
         lenPath = strlen(path);
