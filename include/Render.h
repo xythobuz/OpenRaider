@@ -146,7 +146,7 @@ public:
      */
     bool isVisible(float x, float y, float z, float radius);
 
-    bool isVisible(Box &box);
+    bool isVisible(BoundingBox &box);
 
     /*!
      * \brief Renders a mesh.

@@ -602,7 +602,7 @@ Sprite &Room::getSprite(unsigned int index) {
     return *sprites.at(index);
 }
 
-Box &Room::getBoundingBox() {
+BoundingBox &Room::getBoundingBox() {
     return bbox;
 }
 

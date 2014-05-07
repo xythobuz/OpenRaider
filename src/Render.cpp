@@ -1190,7 +1190,7 @@ void Render::updateViewVolume()
     mViewVolume.updateFrame(proj, mdl);
 }
 
-bool Render::isVisible(Box &box) {
+bool Render::isVisible(BoundingBox &box) {
     vec3_t bbox[2];
     box.getBoundingBox(bbox);
     // For debugging purposes

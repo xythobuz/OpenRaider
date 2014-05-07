@@ -20,22 +20,6 @@ ViewVolume::ViewVolume() {
     mFrustum[5][0] = mFrustum[5][1] = mFrustum[5][2] = mFrustum[5][3] = 0.0f;
 }
 
-bool ViewVolume::isBoundingVolumeInFrustum(BoundingVolume bvol) {
-    return (isBoundingSphereInFrustum(bvol.mSphere) &&
-            isBoundingBoxInFrustum(bvol.mBox));
-}
-
-bool ViewVolume::isBoundingSphereInFrustum(BoundingSphere bvol) {
-    return (isSphereInFrustum(bvol.mCenter[0],
-                bvol.mCenter[1],
-                bvol.mCenter[2],
-                bvol.mRadius));
-}
-
-bool ViewVolume::isBoundingBoxInFrustum(BoundingBox bvol) {
-    return (isBboxInFrustum(bvol.mMin, bvol.mMax));
-}
-
 bool ViewVolume::isPointInFrustum(vec_t x, vec_t y, vec_t z) {
     for (unsigned int p = 0; p < 6; ++p) {
         if (mFrustum[p][0] * x + mFrustum[p][1] * y + mFrustum[p][2] * z +

@@ -24,7 +24,7 @@ public:
     Room(TombRaider &tr, unsigned int index);
     ~Room();
 
-    Box &getBoundingBox();
+    BoundingBox &getBoundingBox();
     Mesh &getMesh();
     void display(bool alpha);
 
@@ -64,7 +64,7 @@ private:
     unsigned int numZSectors;
     vec3_t pos;
 
-    Box bbox;
+    BoundingBox bbox;
     Mesh mesh;
 
     std::vector<int> adjacentRooms;

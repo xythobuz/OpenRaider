@@ -8,6 +8,8 @@
       - Audio output optional, added Null Sound implementation
       - Added support for getting home folder location in Windows
       - Added support for recursively looking for level paks in Windows
+    * Removed unused BoundingVolume, Box, Sphere from ViewVolume,
+      split double used Box class into Box and BoundingBox.
 
     [ 20140505 ]
     * Moved setup of Room, Portal, Box, Sector, ... into their

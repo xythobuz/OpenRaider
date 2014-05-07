@@ -9,33 +9,7 @@
 #define _VIEWVOLUME_H_
 
 #include "math/Matrix.h"
-
-/*!
- * \brief Defines a 3D sphere.
- */
-class BoundingSphere {
-public:
-    vec3_t mCenter; //!< Center of bounding sphere
-    vec_t mRadius; //!< Raduis of bounding sphere
-};
-
-/*!
- * \brief Defines a 3D rectangle.
- */
-class BoundingBox {
-public:
-    vec3_t mMin; //!< Bounding box MIN point
-    vec3_t mMax; //!< Bounding box MAX point
-};
-
-/*!
- * \brief Defines a 3D sphere and/or rectangle.
- */
-class BoundingVolume {
-public:
-    BoundingSphere mSphere; //!< Bounding sphere of this volume
-    BoundingBox mBox; //!< Bounding box of this volume
-};
+#include "RoomData.h"
 
 /*!
  * \brief Viewing Volume for culling use
@@ -69,27 +43,6 @@ public:
      * \brief Constructs an object of ViewVolume
      */
     ViewVolume();
-
-    /*!
-     * \brief Check if bounding volume is in view volume
-     * \param bvol bounding volume to check
-     * \returns true if frustum contains the given bounding volume
-     */
-    bool isBoundingVolumeInFrustum(BoundingVolume bvol);
-
-    /*!
-     * \brief Check if bounding sphere is in view volume
-     * \param bvol bounding sphere to check
-     * \returns true if frustum contains the given bounding volume
-     */
-    bool isBoundingSphereInFrustum(BoundingSphere bvol);
-
-    /*!
-     * \brief Check if bounding box is in view volume
-     * \param bvol bounding box to check
-     * \returns true if frustum contains the given bounding volume
-     */
-    bool isBoundingBoxInFrustum(BoundingBox bvol);
 
     /*!
      * \brief Check if point is in view volume

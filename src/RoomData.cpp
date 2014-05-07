@@ -16,6 +16,114 @@
 #include "main.h"
 #include "RoomData.h"
 
+BoundingBox::BoundingBox() {
+    a[0] = a[1] = a[2] = 0;
+    b[0] = b[1] = b[2] = 0;
+}
+
+void BoundingBox::getBoundingBox(vec3_t box[2]) {
+    box[0][0] = a[0];
+    box[1][0] = b[0];
+    box[0][1] = a[1];
+    box[1][1] = b[1];
+    box[0][2] = a[2];
+    box[1][2] = b[2];
+}
+
+void BoundingBox::setBoundingBox(vec3_t min, vec3_t max) {
+    a[0] = min[0];
+    b[0] = max[0];
+    a[1] = min[1];
+    b[1] = max[1];
+    a[2] = min[2];
+    b[2] = max[2];
+}
+
+bool BoundingBox::inBox(vec_t x, vec_t y, vec_t z) {
+    return ((y > a[1]) && (y < b[1]) && inBoxPlane(x, z));
+}
+
+bool BoundingBox::inBoxPlane(vec_t x, vec_t z) {
+    return ((x > a[0]) && (x < b[0])
+            && (z > a[2]) && (z < b[2]));
+}
+
+void BoundingBox::display(bool points, const vec4_t c1, const vec4_t c2) {
+    // Bind before entering now
+    //glBindTexture(GL_TEXTURE_2D, 1);
+    glPointSize(4.0);
+    //glLineWidth(1.25);
+
+    //! \fixme Need to make custom color key for this
+    glColor3fv(c1);
+
+    glBegin(GL_POINTS);
+    glVertex3f(b[0], b[1], b[2]);
+    glVertex3f(a[0], a[1], a[2]);
+
+    if (points)
+    {
+        glVertex3f(b[0], a[1], b[2]);
+        glVertex3f(a[0], b[1], b[2]);
+        glVertex3f(b[0], b[1], a[2]);
+        glVertex3f(a[0], a[1], b[2]);
+        glVertex3f(a[0], b[1], a[2]);
+        glVertex3f(b[0], a[1], a[2]);
+    }
+
+    glEnd();
+
+    glColor3fv(c2);
+
+    glBegin(GL_LINES);
+    // max, top quad
+    glVertex3f(b[0], b[1], b[2]);
+    glVertex3f(b[0], a[1], b[2]);
+
+    glVertex3f(b[0], b[1], b[2]);
+    glVertex3f(a[0], b[1], b[2]);
+
+    glVertex3f(b[0], b[1], b[2]);
+    glVertex3f(b[0], b[1], a[2]);
+
+    // max-min, vertical quads
+    glVertex3f(a[0], b[1], b[2]);
+    glVertex3f(a[0], b[1], a[2]);
+
+    glVertex3f(b[0], a[1], b[2]);
+    glVertex3f(b[0], a[1], a[2]);
+
+    glVertex3f(b[0], a[1], b[2]);
+    glVertex3f(a[0], a[1], b[2]);
+
+    // min-max, vertical quads
+    glVertex3f(b[0], b[1], a[2]);
+    glVertex3f(b[0], a[1], a[2]);
+
+    glVertex3f(b[0], b[1], a[2]);
+    glVertex3f(a[0], b[1], a[2]);
+
+    glVertex3f(a[0], b[1], b[2]);
+    glVertex3f(a[0], a[1], b[2]);
+
+
+    // min, bottom quad
+    glVertex3f(a[0], a[1], a[2]);
+    glVertex3f(a[0], b[1], a[2]);
+
+    glVertex3f(a[0], a[1], a[2]);
+    glVertex3f(b[0], a[1], a[2]);
+
+    glVertex3f(a[0], a[1], a[2]);
+    glVertex3f(a[0], a[1], b[2]);
+    glEnd();
+
+    glPointSize(1.0);
+    //glLineWidth(1.0);
+}
+
+// ----------------------------------------------------------------------------
+
 Light::Light(TombRaider &tr, unsigned int room, unsigned int index) {
     unsigned int lightFlags, lightType;
 
@@ -129,112 +237,6 @@ int Portal::getAdjoiningRoom() {
 }
 
 // ----------------------------------------------------------------------------
-
-Box::Box() {
-    a[0] = a[1] = a[2] = 0;
-    b[0] = b[1] = b[2] = 0;
-}
-
-void Box::getBoundingBox(vec3_t box[2]) {
-    box[0][0] = a[0];
-    box[1][0] = b[0];
-    box[0][1] = a[1];
-    box[1][1] = b[1];
-    box[0][2] = a[2];
-    box[1][2] = b[2];
-}
-
-void Box::setBoundingBox(vec3_t min, vec3_t max) {
-    a[0] = min[0];
-    b[0] = max[0];
-    a[1] = min[1];
-    b[1] = max[1];
-    a[2] = min[2];
-    b[2] = max[2];
-}
-
-bool Box::inBox(vec_t x, vec_t y, vec_t z) {
-    return ((y > a[1]) && (y < b[1]) && inBoxPlane(x, z));
-}
-
-bool Box::inBoxPlane(vec_t x, vec_t z) {
-    return ((x > a[0]) && (x < b[0])
-            && (z > a[2]) && (z < b[2]));
-}
-
-void Box::display(bool points, const vec4_t c1, const vec4_t c2) {
-    // Bind before entering now
-    //glBindTexture(GL_TEXTURE_2D, 1);
-    glPointSize(4.0);
-    //glLineWidth(1.25);
-
-    //! \fixme Need to make custom color key for this
-    glColor3fv(c1);
-
-    glBegin(GL_POINTS);
-    glVertex3f(b[0], b[1], b[2]);
-    glVertex3f(a[0], a[1], a[2]);
-
-    if (points)
-    {
-        glVertex3f(b[0], a[1], b[2]);
-        glVertex3f(a[0], b[1], b[2]);
-        glVertex3f(b[0], b[1], a[2]);
-        glVertex3f(a[0], a[1], b[2]);
-        glVertex3f(a[0], b[1], a[2]);
-        glVertex3f(b[0], a[1], a[2]);
-    }
-
-    glEnd();
-
-    glColor3fv(c2);
-
-    glBegin(GL_LINES);
-    // max, top quad
-    glVertex3f(b[0], b[1], b[2]);
-    glVertex3f(b[0], a[1], b[2]);
-
-    glVertex3f(b[0], b[1], b[2]);
-    glVertex3f(a[0], b[1], b[2]);
-
-    glVertex3f(b[0], b[1], b[2]);
-    glVertex3f(b[0], b[1], a[2]);
-
-    // max-min, vertical quads
-    glVertex3f(a[0], b[1], b[2]);
-    glVertex3f(a[0], b[1], a[2]);
-
-    glVertex3f(b[0], a[1], b[2]);
-    glVertex3f(b[0], a[1], a[2]);
-
-    glVertex3f(b[0], a[1], b[2]);
-    glVertex3f(a[0], a[1], b[2]);
-
-    // min-max, vertical quads
-    glVertex3f(b[0], b[1], a[2]);
-    glVertex3f(b[0], a[1], a[2]);
-
-    glVertex3f(b[0], b[1], a[2]);
-    glVertex3f(a[0], b[1], a[2]);
-
-    glVertex3f(a[0], b[1], b[2]);
-    glVertex3f(a[0], a[1], b[2]);
-
-
-    // min, bottom quad
-    glVertex3f(a[0], a[1], a[2]);
-    glVertex3f(a[0], b[1], a[2]);
-
-    glVertex3f(a[0], a[1], a[2]);
-    glVertex3f(b[0], a[1], a[2]);
-
-    glVertex3f(a[0], a[1], a[2]);
-    glVertex3f(a[0], a[1], b[2]);
-    glEnd();
-
-    glPointSize(1.0);
-    //glLineWidth(1.0);
-}
 
 Box::Box(TombRaider &tr, unsigned int room, unsigned int index) {
     tr.getRoomBox(room, index, a, b, c, d);
