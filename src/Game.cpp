@@ -447,13 +447,11 @@ void Game::processMoveable(int index, int i, int *ent,
 
     thing = new entity_t;
     thing->id = (*ent)++;
-    thing->type = 0x00;
     thing->pos[0] = item[i].x;
     thing->pos[1] = item[i].y;
     thing->pos[2] = item[i].z;
     thing->angles[1] = yaw;
     thing->objectId = moveable[index].object_id;
-    thing->moving = false;
     thing->animate = false;
 
     sModel = new SkeletalModel();
@@ -487,9 +485,7 @@ void Game::processMoveable(int index, int i, int *ent,
     if (moveable[index].object_id == 0)
     {
         lara = true;
-        thing->type = 0x02;
         mLara = thing; // Mongoose 2002.03.22, Cheap hack for now
-        mLara->master = 0x0;
 
         switch (mTombRaider.Engine())
         {
@@ -855,14 +851,7 @@ void Game::setupTextureColor(texture_tri_t *r_tri, float *colorf)
         r_tri->texture = mTextureOffset + gColorTextureHACK.size();
 
         getRender().loadTexture(Texture::generateColorTexture(color, 32, 32),
-                32, 32,
-                r_tri->texture);
-
-#ifdef DEBUG_COLOR_TEXTURE_GEN
-        printf("Color 0x%02x%02x%02x%02x | 0x%08xto texture[%u]?\n",
-                color[0], color[1], color[2], color[3], colorI,
-                gColorTextureHACK.size());
-#endif
+                32, 32, r_tri->texture);
     }
     else
     {
@@ -1075,8 +1064,6 @@ void Game::processModels()
         std::sort(mesh->coloredRectangles.begin(), mesh->coloredRectangles.end(), compareFaceTextureId);
 
         getWorld().addMesh(mesh);
-        //printf(".");
-        //fflush(stdout);
     }
 
     printf("Done! Found %d meshes.\n", mTombRaider.getMeshCount());

@@ -44,7 +44,6 @@ void World::addEntity(entity_t *e)
 {
     if (e)
     {
-        e->master = 0x0;
         e->moveType = worldMoveType_walk; // Walk
         e->room = getRoomByLocation(e->pos[0], e->pos[1], e->pos[2]);
         mEntities.push_back(e);
@@ -144,16 +143,12 @@ void World::moveEntity(entity_t *e, char movement)
 
     // If you're underwater you may want to swim  =)
     // ...if you're worldMoveType_walkNoSwim, you better hope it's shallow
-    if (roomFlags & roomFlag_underWater && e->moveType == worldMoveType_walk)
-    {
+    if (roomFlags & RoomFlagUnderWater && e->moveType == worldMoveType_walk)
         e->moveType = worldMoveType_swim;
-    }
 
     // Don't swim on land
-    if (!(roomFlags & roomFlag_underWater) && e->moveType == worldMoveType_swim)
-    {
+    if (!(roomFlags & RoomFlagUnderWater) && e->moveType == worldMoveType_swim)
         e->moveType = worldMoveType_walk;
-    }
 
     // Mongoose 2002.09.02, Add check for room -> room transition
     //   ( Only allow by movement between rooms by using portals )
@@ -234,12 +229,10 @@ void World::moveEntity(entity_t *e, char movement)
     }
     else
     {
-        e->moving = false;
         return;
     }
 
     e->room = room;
-    e->moving = true;
 }
 
 

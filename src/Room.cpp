@@ -30,7 +30,12 @@ Room::Room(TombRaider &tr, unsigned int index) {
         return;
     }
 
-    tr.getRoomInfo(index, &flags, pos, box[0], box[1]);
+    flags = 0;
+    unsigned int trFlags = 0;
+    tr.getRoomInfo(index, &trFlags, pos, box[0], box[1]);
+
+    if (trFlags & tombraiderRoom_underWater)
+        flags |= RoomFlagUnderWater;
 
     // Adjust positioning for OR world coordinate translation
     box[0][0] += pos[0];

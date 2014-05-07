@@ -467,18 +467,6 @@ void Render::display()
             renderTrace(0, u, v); // v = target
         }
 
-        entity_t *route = getGame().mLara->master;
-
-        while (route)
-        {
-            if (route->master)
-            {
-                renderTrace(1, route->pos, route->master->pos);
-            }
-
-            route = route->master;
-        }
-
         glEnable(GL_CULL_FACE);
         glEnable(GL_TEXTURE_2D);
     }
@@ -751,36 +739,6 @@ void Render::drawObjects()
     // Draw lara or other player model ( move to entity rendering method )
     if (mFlags & Render::fViewModel && getGame().mLara && getGame().mLara->tmpHook)
     {
-        SkeletalModel *mdl = getGame().mLara->tmpHook;
-
-        if (mdl)
-        {
-            int frame;
-
-            // Mongoose 2002.03.22, Test 'idle' aniamtions
-            if (!getGame().mLara->moving)
-            {
-                frame = mdl->getIdleAnimation();
-
-                // Mongoose 2002.08.15, Stop flickering of idle lara here
-                if (frame == 11)
-                {
-                    mdl->setFrame(0);
-                }
-            }
-            else
-            {
-                frame = mdl->getAnimation();
-            }
-
-            animation_frame_t *animation = mdl->model->animation[frame];
-
-            if (animation && mdl->getFrame() > (int)animation->frame.size()-1)
-            {
-                mdl->setFrame(0);
-            }
-        }
-
         glPushMatrix();
 
         glTranslated(getGame().mLara->pos[0], getGame().mLara->pos[1], getGame().mLara->pos[2]);
