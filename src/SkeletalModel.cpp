@@ -11,17 +11,14 @@
 
 SkeletalModel::SkeletalModel() {
     model = NULL;
-    flags = 0;
     mBoneFrame = 0;
     mAnimationFrame = 0;
     mIdleAnimation = 0;
-    time = 0.0f;
-    lastTime = 0.0f;
-    rate = 0.0f;
 }
 
 SkeletalModel::~SkeletalModel() {
-    //! \fixme Causes "freeing already freed pointer" exceptions or EXEC_BAD_ACCESS
+    // Model is really stored in World and deleted there
+    // Deleting it here causes EXEC_BAD_ACCESS...
     /* if (model) {
         for(std::vector<animation_frame_t>::size_type i = 0; i < model->animation.size(); i++) {
             animation_frame_t *af = model->animation[i];
@@ -76,7 +73,6 @@ void SkeletalModel::setAnimation(int index) {
     if (a) {
         mAnimationFrame = index;
         mBoneFrame = 0;
-        rate = a->rate;
     }
 }
 

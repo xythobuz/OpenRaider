@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140515 ]
+    * Slight cmake script improvements
+    * Created Entity class that will also get animation state
+      from SkeletalModel
+    * Removed some unused old code parts
+
     [ 20140507 ]
     * Prepared for Windows support using Visual C++
       - Wrote utils/time implementation for Windows

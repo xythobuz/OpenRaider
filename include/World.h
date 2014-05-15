@@ -29,6 +29,23 @@ public:
     ~World();
 
     /*!
+     * \brief Clears all data in world
+     */
+    void destroy();
+
+    void addRoom(Room &room);
+
+    unsigned int sizeRoom();
+
+    Room &getRoom(unsigned int index);
+
+    void addSprite(SpriteSequence &sprite);
+
+    unsigned int sizeSprite();
+
+    SpriteSequence &getSprite(unsigned int index);
+
+    /*!
      * \brief Adds mesh to world
      * \param model mesh to add
      */
@@ -57,18 +74,6 @@ public:
     model_mesh_t *getMesh(int index);
     skeletal_model_t *getModel(int index);
     std::vector<entity_t *> *getEntities();
-
-    void addRoom(Room &room);
-
-    unsigned int sizeRoom();
-
-    Room &getRoom(unsigned int index);
-
-    void addSprite(SpriteSequence &sprite);
-
-    unsigned int sizeSprite();
-
-    SpriteSequence &getSprite(unsigned int index);
 
     /*!
      * \brief Find room a location is in.
@@ -117,6 +122,7 @@ public:
      * \returns sector index of position in room
      */
     int getSector(int room, float x, float z);
+
     int getSector(int room, float x, float z, float *floor, float *ceiling);
 
     unsigned int getRoomInfo(int room);
@@ -138,12 +144,6 @@ public:
      */
     void getHeightAtPosition(int index, float x, float *y, float z);
 
-    /*!
-     * \brief Clears all data in world
-     * \todo in future will check if data is in use before clearing
-     */
-    void destroy();
-
 private:
 
     // Old World
@@ -155,6 +155,8 @@ private:
     std::vector<Room *> mRooms;
     std::vector<SpriteSequence *> mSprites;
 
+    //std::vector<Entity *> mEntities;
+    //std::vector<SkeletalModel *> mModels;
 };
 
 #endif

@@ -38,25 +38,30 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     set (WARNINGS "${WARNINGS} -Wno-missing-prototypes -Wno-missing-variable-declarations")
     set (WARNINGS "${WARNINGS} -Wno-disabled-macro-expansion")
     set (WARNINGS "${WARNINGS} -Wno-shorten-64-to-32 -Wno-sign-conversion")
+    set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11")
+    set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -g -O0")
+    set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -O2 -fomit-frame-pointer")
+    set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -ffast-math -funroll-loops")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set (WARNINGS "${WARNINGS} -Wall -Wextra -Wpedantic")
+    set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11")
+    set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -g -O0")
+    set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -O2 -fomit-frame-pointer")
+    set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -ffast-math -funroll-loops")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     # TODO Visual C++ compiler flags?
 endif()
 
 # Flags for all builds
-set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11 ${WARNINGS}")
+set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} ${WARNINGS}")
 
 # Flags for Debug build
-set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -g -O0")
 set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DDEBUG")
 set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DEXPERIMENTAL")
 # set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DMULTITEXTURE")
 
 # Flags for Releasae builds
-set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -DNDEBUG -O2")
-set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -ffast-math -funroll-loops")
-set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -fomit-frame-pointer")
+set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -DNDEBUG")
 
 #################################################################
 
@@ -65,15 +70,16 @@ add_subdirectory (src)
 
 #################################################################
 
-# Target for running the setup
-add_custom_target (setup "${PROJECT_SOURCE_DIR}/cmake/setup.sh"
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-)
-
-#################################################################
-
-# Target for running cppcheck
 if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
+
+    # Target for running the setup
+    add_custom_target (setup "${PROJECT_SOURCE_DIR}/cmake/setup.sh"
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    )
+
+    #################################################################
+
+    # Target for running cppcheck
     set (CHECK_STD "--std=c++11" "--std=posix")
     set (CHECK_FLAGS "--quiet" "--force")
     set (CHECK_NORMAL "--enable=information,warning,performance,portability")
@@ -88,12 +94,10 @@ if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
     add_custom_target (checkConfig echo "Checking cppcheck config..."
         COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_CONFIG} ${PROJECT_SOURCE_DIR}
     )
-endif (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
 
-#################################################################
+    #################################################################
 
-# Generate Doxygen Documentation
-if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
+    # Generate Doxygen Documentation
     find_package (Doxygen)
     if (DOXYGEN_FOUND)
         # Configure the Template Doxyfile for our specific project
@@ -122,8 +126,9 @@ if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
             COMMAND sed -i '' "s/CALL_GRAPH             = YES/CALL_GRAPH             = NO/g" Doxyfile
             COMMAND sed -i '' "s/CALLER_GRAPH           = YES/CALLER_GRAPH           = NO/g" Doxyfile
             SOURCES ${PROJECT_BINARY_DIR}/Doxyfile)
+
+        # Clean doc files
+        set_directory_properties (PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "doc")
     endif (DOXYGEN_FOUND)
 endif (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
 
-# Clean doc files
-set_directory_properties (PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "doc")

@@ -10,6 +10,7 @@
 #define _TOMBRAIDER_H_
 
 #include <cstdint>
+#include <cstdio>
 
 #ifdef WIN32
 typedef uint8_t u_int8_t;

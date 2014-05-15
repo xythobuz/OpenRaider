@@ -1111,26 +1111,6 @@ void Render::setSkyMesh(int index, bool rot)
 }
 
 
-void Render::ViewModel(entity_t *ent, int index)
-{
-    skeletal_model_t *model;
-
-
-    if (!ent)
-    {
-        return;
-    }
-
-    model = getWorld().getModel(index);
-
-    if (model)
-    {
-        ent->modelId = index;
-        printf("Viewmodel skeletal model %i\n", model->id);
-    }
-}
-
-
 void Render::addSkeletalModel(SkeletalModel *mdl)
 {
     mModels.push_back(mdl);

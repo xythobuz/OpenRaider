@@ -18,6 +18,12 @@ There are these DebugModel, DebugMap flags...?
 
 * Using std::vector with [] is not bound checked. Segfaults were caused because the upper bound of the argument was never checked and garbage was returned... Do consistent checks, or use .at() as it throws an exception
 
+## Cmake
+
+* Windows setup script needed, moving to AppData/Roaming
+* Support SSE with other compilers than Clang (src/CMakeLists.txt)
+* Visual C++ compiler flags? (CMakeLists.txt)
+
 ## Future Features
 
 * Use only assets from old TR games?

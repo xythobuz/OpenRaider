@@ -189,10 +189,8 @@ void Game::processSprites() {
 
 void Game::processRooms() {
     printf("Processing rooms: ");
-    for (int index = 0; index < mTombRaider.NumRooms(); index++) {
-        Room &room = *new Room(mTombRaider, index);
-        getWorld().addRoom(room);
-    }
+    for (int index = 0; index < mTombRaider.NumRooms(); index++)
+        getWorld().addRoom(*new Room(mTombRaider, index));
     printf("Done! Found %d rooms.\n", mTombRaider.NumRooms());
 }
 
@@ -358,6 +356,7 @@ void Game::processMoveables()
     }
 
     // Get models that aren't items
+    /*
     for (i = 0; i < mTombRaider.NumMoveables(); ++i)
     {
         switch ((int)moveable[i].object_id)
@@ -401,14 +400,24 @@ void Game::processMoveables()
                 }
         }
     }
+    */
 
     printf("Done! Found %d models.\n", mTombRaider.NumMoveables() + statCount);
 }
 
+// index moveable, i item, sometimes both moveable
 void Game::processMoveable(int index, int i, int *ent,
         std::vector<skeletal_model_t *> &cache2,
         std::vector<unsigned int> &cache, int object_id)
 {
+    // This creates both Entity and SkeletalModel
+    // Basic Idea:
+    // - Move animation state from SkeletalModel into Entity
+    // - Check if skeletal model is already stored
+    // - If so tell new Entity to reuse
+    // - Else store new skeletal model, tell new entity to use this one
+
+
     skeletal_model_t *r_model = NULL;
     skeletal_model_t *c_model = NULL;
     animation_frame_t *animation_frame = NULL;
@@ -446,13 +455,13 @@ void Game::processMoveable(int index, int i, int *ent,
     yaw *= 90;
 
     thing = new entity_t;
-    thing->id = (*ent)++;
+    //thing->id = (*ent)++;
     thing->pos[0] = item[i].x;
     thing->pos[1] = item[i].y;
     thing->pos[2] = item[i].z;
     thing->angles[1] = yaw;
     thing->objectId = moveable[index].object_id;
-    thing->animate = false;
+    //thing->animate = false;
 
     sModel = new SkeletalModel();
     getRender().addSkeletalModel(sModel);
@@ -490,13 +499,11 @@ void Game::processMoveable(int index, int i, int *ent,
         switch (mTombRaider.Engine())
         {
             case TR_VERSION_3:
-                mLara->modelId = i;
                 sModel->setAnimation(TR_ANIAMTION_RUN);
                 sModel->setIdleAnimation(TR_ANIAMTION_STAND);
                 r_model->tr4Overlay = false;
                 break;
             case TR_VERSION_4:
-                mLara->modelId = i;
                 sModel->setAnimation(TR_ANIAMTION_RUN);
                 sModel->setIdleAnimation(TR_ANIAMTION_STAND);
                 // Only TR4 lara has 2 layer bone tags/meshes per bone frame
@@ -506,7 +513,6 @@ void Game::processMoveable(int index, int i, int *ent,
             case TR_VERSION_2:
             case TR_VERSION_5:
             case TR_VERSION_UNKNOWN:
-                mLara->modelId = index;
                 sModel->setAnimation(TR_ANIAMTION_RUN);
                 sModel->setIdleAnimation(TR_ANIAMTION_STAND);
                 r_model->tr4Overlay = false;

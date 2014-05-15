@@ -121,8 +121,6 @@ public:
 
     void setSkyMesh(int index, bool rot);
 
-    void ViewModel(entity_t *ent, int index);
-
     void addSkeletalModel(SkeletalModel *mdl);
 
     unsigned int getFlags();

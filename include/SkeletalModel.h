@@ -79,11 +79,7 @@ public:
 
     void setIdleAnimation(int index);
 
-    unsigned int flags;
     skeletal_model_t *model; //!< World render model
-    float time;              //!< Interpolation use
-    float lastTime;
-    float rate;              //!< \fixme temp cache this here for old animation system use
 
 private:
     int mBoneFrame;      //!< Bone frame

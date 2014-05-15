@@ -51,7 +51,6 @@ typedef struct {
 } model_mesh_t;
 
 typedef struct {
-    int id;                  //!< Unique identifier
     float pos[3];            //!< World position
     float angles[3];         //!< Euler angles (pitch, yaw, roll)
     int room;                //!< Current room entity is in
@@ -60,9 +59,7 @@ typedef struct {
     int state;               //!< State of the Player, AI, or object
     int objectId;            //!< What kind of entity?
 
-    int modelId;             //!< Animation model
     SkeletalModel *tmpHook;
-    bool animate;
 } entity_t;
 
 #endif

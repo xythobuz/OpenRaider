@@ -42,6 +42,7 @@ endif (OPENAL_FOUND)
 set (SRCS ${SRCS} "Camera.cpp")
 set (SRCS ${SRCS} "Command.cpp")
 set (SRCS ${SRCS} "Console.cpp")
+set (SRCS ${SRCS} "Entity.cpp")
 set (SRCS ${SRCS} "Game.cpp")
 set (SRCS ${SRCS} "main.cpp")
 set (SRCS ${SRCS} "Menu.cpp")
@@ -141,7 +142,6 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     if (NOT "${SSE_FOUND_MSG}" STREQUAL "")
         message (STATUS "Enabled${SSE_FOUND_MSG}...")
     endif (NOT "${SSE_FOUND_MSG}" STREQUAL "")
-# TODO support SSE with other compilers than Clang
 endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
 # Apply Flags
