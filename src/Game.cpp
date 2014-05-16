@@ -36,8 +36,7 @@ std::map<int, int> gMapTex2Bump;
 Game::Game() {
     mLoaded = false;
     mName = NULL;
-    mLara = NULL;
-
+    mLara = 0;
     mTextureStart = 0;
     mTextureOffset = 0;
 }
@@ -173,6 +172,11 @@ void Game::handleMouseMotion(int xrel, int yrel) {
     }
 }
 
+Entity &Game::getLara() {
+    assert(mLara < getWorld().sizeEntity());
+    return getWorld().getEntity(mLara);
+}
+
 void Game::processSprites() {
     printf("Processing sprites: ");
     for (int i = 0; i < (mTombRaider.NumItems() - 1); i++) {
@@ -290,81 +294,53 @@ void Game::processTextures()
 
 void Game::processMoveables()
 {
-    std::vector<unsigned int> cache;
-    std::vector<skeletal_model_t *> cache2;
-    tr2_mesh_t *mesh = NULL;
-    tr2_moveable_t *moveable = NULL;
-    tr2_meshtree_t *meshtree = NULL;
-    tr2_item_t *item = NULL;
-    tr2_animation_t *animation = NULL;
-    unsigned short *frame = NULL;
-    tr2_sprite_sequence_t *sprite_sequence = NULL;
-    tr2_object_texture_t *object_texture = NULL;
-    int i, j, object_id;
-    int ent = 0;
     unsigned int statCount = 0;
 
-    frame = mTombRaider.Frame();
-    moveable = mTombRaider.Moveable();
-    meshtree = mTombRaider.MeshTree();
-    mesh = mTombRaider.Mesh();
-    object_texture = mTombRaider.ObjectTextures();
-    item = mTombRaider.Item();
-    animation = mTombRaider.Animation();
-    sprite_sequence = mTombRaider.SpriteSequence();
+    tr2_moveable_t *moveable = mTombRaider.Moveable();
+    tr2_item_t *item = mTombRaider.Item();
+    tr2_sprite_sequence_t *sprite_sequence = mTombRaider.SpriteSequence();
 
     printf("Processing skeletal models: ");
 
-    for (i = 0; i < mTombRaider.NumItems(); ++i)
+    for (int i = 0; i < mTombRaider.NumItems(); ++i)
     {
-        object_id = item[i].object_id;
+        int j;
+        int object_id = item[i].object_id;
 
         // It may not be a moveable, test for sprite
-        if (!(mTombRaider.Engine() == TR_VERSION_1 && item[i].intensity1 == -1))
-        {
-            for (j = 0; j < (int)mTombRaider.NumSpriteSequences(); ++j)
-            {
+        if (!(mTombRaider.Engine() == TR_VERSION_1 && item[i].intensity1 == -1)) {
+            for (j = 0; j < (int)mTombRaider.NumSpriteSequences(); ++j) {
                 if (sprite_sequence[j].object_id == object_id)
                     break;
             }
 
             // It's not a moveable, skip sprite
-            if (j != (int)mTombRaider.NumSpriteSequences())
-            {
-                //printf("s");
-                //fflush(stdout);
+            if (j < (int)mTombRaider.NumSpriteSequences())
                 continue;
-            }
         }
 
-        for (j = 0; j < (int)mTombRaider.NumMoveables(); ++j)
-        {
+        for (j = 0; j < (int)mTombRaider.NumMoveables(); ++j) {
             if ((int)moveable[j].object_id == object_id)
                 break;
         }
 
-        // It's not a moveable or even a sprite?, skip unknown
+        // It's not a moveable or even a sprite? Skip unknown
         if (j == (int)mTombRaider.NumMoveables())
-        {
-            //printf("?"); // what the wolf?
-            //fflush(stdout);
             continue;
-        }
 
-        processMoveable(j, i, &ent, cache2, cache, object_id);
+        processMoveable(j, i, object_id);
         statCount++;
     }
 
-    // Get models that aren't items
     /*
-    for (i = 0; i < mTombRaider.NumMoveables(); ++i)
+    // Get models that aren't items
+    for (int i = 0; i < mTombRaider.NumMoveables(); ++i)
     {
         switch ((int)moveable[i].object_id)
         {
             case 30:
             case 2: // Which tr needs this as model again?
-                processMoveable(i, i, &ent, cache2, cache,
-                        (int)moveable[i].object_id);
+                processMoveable(i, i, (int)moveable[i].object_id);
                 break;
             default:
                 switch (mTombRaider.Engine())
@@ -373,8 +349,7 @@ void Game::processMoveables()
                         switch ((int)moveable[i].object_id)
                         {
                             case TombRaider1::LaraMutant:
-                                processMoveable(i, i, &ent, cache2, cache,
-                                        (int)moveable[i].object_id);
+                                processMoveable(i, i, (int)moveable[i].object_id);
                                 break;
                         }
                         break;
@@ -387,8 +362,7 @@ void Game::processMoveables()
                             case TR4_CROSSBOW_ANIM:
                             case TR4_GRENADE_GUN_ANIM:
                             case TR4_SIXSHOOTER_ANIM:
-                                processMoveable(i, i, &ent, cache2, cache,
-                                        (int)moveable[i].object_id);
+                                processMoveable(i, i, (int)moveable[i].object_id);
                                 break;
                         }
                         break;
@@ -406,10 +380,28 @@ void Game::processMoveables()
 }
 
 // index moveable, i item, sometimes both moveable
-void Game::processMoveable(int index, int i, int *ent,
-        std::vector<skeletal_model_t *> &cache2,
-        std::vector<unsigned int> &cache, int object_id)
+// object_id of item or moveable
+void Game::processMoveable(int index, int i, int object_id)
 {
+    //std::vector<skeletal_model_t *> &cache2
+    //std::vector<unsigned int> &cache
+
+    bool cached = false;
+    for (unsigned int mod = 0; mod < getWorld().sizeSkeletalModel(); mod++) {
+        if (getWorld().getSkeletalModel(mod).getId() == moveable[index].object_id) {
+            cached = true;
+            break;
+        }
+    }
+
+    if (!cached) {
+        getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider /* ... */));
+    }
+
+    getWorld().addEntity(*new Entity(mTombRaider, /* ... */ mod));
+
+
+
     // This creates both Entity and SkeletalModel
     // Basic Idea:
     // - Move animation state from SkeletalModel into Entity
@@ -418,52 +410,29 @@ void Game::processMoveable(int index, int i, int *ent,
     // - Else store new skeletal model, tell new entity to use this one
 
 
-    skeletal_model_t *r_model = NULL;
-    skeletal_model_t *c_model = NULL;
-    animation_frame_t *animation_frame = NULL;
-    tr2_mesh_t *mesh = NULL;
-    tr2_moveable_t *moveable = NULL;
-    tr2_meshtree_t *meshtree = NULL;
-    tr2_item_t *item = NULL;
-    tr2_animation_t *animation = NULL;
-    tr2_meshtree_t *mesh_tree = NULL;
-    bone_frame_t *bone = NULL;
-    bone_tag_t *tag = NULL;
-    entity_t *thing = NULL;
-    SkeletalModel *sModel = 0x0;
-    unsigned short *frame;
+
+
     int j, k, a, frame_step;
     unsigned int l, frame_offset, frame_count, f;
-    float pos[3];
-    float yaw;
-    bool lara = false;
-    int skyMesh;
 
-    skyMesh = mTombRaider.getSkyModelId();
-    frame = mTombRaider.Frame();
-    moveable = mTombRaider.Moveable();
-    meshtree = mTombRaider.MeshTree();
-    mesh = mTombRaider.Mesh();
-    item = mTombRaider.Item();
-    animation = mTombRaider.Animation();
+    unsigned short *frame = mTombRaider.Frame();
+    tr2_moveable_t *moveable = mTombRaider.Moveable();
+    tr2_meshtree_t *meshtree = mTombRaider.MeshTree();
+    tr2_mesh_t *mesh = mTombRaider.Mesh();
+    tr2_item_t *item = mTombRaider.Item();
+    tr2_animation_t *animation = mTombRaider.Animation();
 
-    pos[0] = item[i].x;
-    pos[1] = item[i].y;
-    pos[2] = item[i].z;
-
-    yaw = ((item[i].angle >> 14) & 0x03);
+    float yaw = ((item[i].angle >> 14) & 0x03);
     yaw *= 90;
 
-    thing = new entity_t;
-    //thing->id = (*ent)++;
+    entity_t *thing = new entity_t;
     thing->pos[0] = item[i].x;
     thing->pos[1] = item[i].y;
     thing->pos[2] = item[i].z;
     thing->angles[1] = yaw;
     thing->objectId = moveable[index].object_id;
-    //thing->animate = false;
 
-    sModel = new SkeletalModel();
+    SkeletalModel *sModel = new SkeletalModel();
     getRender().addSkeletalModel(sModel);
     thing->tmpHook = sModel; // temp hack to keep a running version during refactoring
 
@@ -473,7 +442,6 @@ void Game::processMoveable(int index, int i, int *ent,
         {
             case TombRaider1::Wolf:
                 thing->state = TombRaider1::WolfState_Lying;
-                //thing->animate = true;
                 sModel->setAnimation(3);
                 sModel->setFrame(0);
                 break;
@@ -487,43 +455,23 @@ void Game::processMoveable(int index, int i, int *ent,
     //   return;
     // }
 
-    r_model = new skeletal_model_t;
+    skeletal_model_t *r_model = new skeletal_model_t;
     r_model->id = moveable[index].object_id;
 
     // Gather more info if this is lara
     if (moveable[index].object_id == 0)
     {
-        lara = true;
         mLara = thing; // Mongoose 2002.03.22, Cheap hack for now
 
-        switch (mTombRaider.Engine())
-        {
-            case TR_VERSION_3:
-                sModel->setAnimation(TR_ANIAMTION_RUN);
-                sModel->setIdleAnimation(TR_ANIAMTION_STAND);
-                r_model->tr4Overlay = false;
-                break;
-            case TR_VERSION_4:
-                sModel->setAnimation(TR_ANIAMTION_RUN);
-                sModel->setIdleAnimation(TR_ANIAMTION_STAND);
-                // Only TR4 lara has 2 layer bone tags/meshes per bone frame
-                r_model->tr4Overlay = true;
-                break;
-            case TR_VERSION_1:
-            case TR_VERSION_2:
-            case TR_VERSION_5:
-            case TR_VERSION_UNKNOWN:
-                sModel->setAnimation(TR_ANIAMTION_RUN);
-                sModel->setIdleAnimation(TR_ANIAMTION_STAND);
-                r_model->tr4Overlay = false;
-                break;
-        }
+        sModel->setAnimation(TR_ANIAMTION_RUN);
+        sModel->setIdleAnimation(TR_ANIAMTION_STAND);
 
+        // Only TR4 lara has 2 layer bone tags/meshes per bone frame
+        r_model->tr4Overlay = (mTombRaider.Engine() == TR_VERSION_4);
         r_model->ponytailId = 0;
     }
     else
     {
-        lara = false;
         r_model->ponytailId = -1;
     }
 
@@ -532,8 +480,6 @@ void Game::processMoveable(int index, int i, int *ent,
 
     frame_offset = animation[a].frame_offset / 2;
     frame_step = animation[a].frame_size;
-
-    int frame_cycle = 0;
 
     if (a >= (int)mTombRaider.NumAnimations())
     {
@@ -547,15 +493,12 @@ void Game::processMoveable(int index, int i, int *ent,
     if (frame_step != 0)  // prevent divide-by-zero errors
         a /= frame_step;
 
-    if (a != 0) // prevent divide-by-zero errors
-        frame_offset += frame_step * (frame_cycle % a);
-
     if (a < 0)
     {
         //continue;
         getConsole().print("Invalid animation data for model %d", index);
         delete r_model;
-        return;
+        return; // leaking thing here!
     }
 
     //! \fixme Might be better UID for each model, but this seems to work well
@@ -637,22 +580,15 @@ void Game::processMoveable(int index, int i, int *ent,
     {
         // Already cached
         delete r_model;
-        c_model = cache2[foundIndex];
-        sModel->model = c_model;
+        r_model = cache2[foundIndex];
+        sModel->model = r_model;
         getWorld().addEntity(thing);
-        getWorld().addModel(c_model);
+        getWorld().addModel(r_model);
         printf("c");
         return;
     }
 
     int aloop = mTombRaider.getNumAnimsForMoveable(index);
-
-#ifdef DEBUG_MOVEABLE
-    printf("\nanimation = %i, num_animations = %i\n",
-            moveable[index].animation, aloop);
-    printf("\nitem[%i].flags = %i\nentity[%i]\n",
-            i, item[i].flags, thing->id);
-#endif
 
     //a = moveable[index].animation;
     //frame_offset = animation[a].frame_offset / 2;
@@ -662,32 +598,11 @@ void Game::processMoveable(int index, int i, int *ent,
             frame_offset = animation[a].frame_offset / 2,
             frame_step = animation[a].frame_size)
     {
-        animation_frame = new animation_frame_t;
+        animation_frame_t *animation_frame = new animation_frame_t;
         r_model->animation.push_back(animation_frame);
 
         frame_count = (animation[a].frame_end - animation[a].frame_start) + 1;
         animation_frame->rate = animation[a].frame_rate;
-
-#ifdef DEBUG_MOVEABLE
-        printf("animation[%i] state and unknowns = %i, %i, %i, %i, %i\n",
-                a, animation[a].state_id, animation[a].unknown1,
-                animation[a].unknown2, animation[a].unknown3,
-                animation[a].unknown4);
-        printf("animation[%i].frame_rate = %i\n",
-                a, animation[a].frame_rate);
-        printf("animation[%i].next_animation = %i\n",
-                a, animation[a].next_animation);
-        printf("animation[%i].frame_offset = %u\n",
-                a, animation[a].frame_offset);
-        printf("animation[%i].anim_command = %i\n",
-                a, animation[a].anim_command);
-        printf("animation[%i].num_anim_commands = %i\n",
-                a, animation[a].num_anim_commands);
-        printf("animation[%i].state_change_offset = %i\n",
-                a, animation[a].state_change_offset);
-        printf("              frame_offset = %u\n",
-                frame_offset);
-#endif
 
         // Get all the frames for aniamtion
         for (f = 0; f < frame_count; ++f, frame_offset += frame_step)
@@ -729,25 +644,17 @@ void Game::processMoveable(int index, int i, int *ent,
                 }
             }
 
-#ifdef DEBUG_MOVEABLE
-            printf("animation[%i].boneframe[%u] = offset %u, step %i\n",
-                    a, f, frame_offset, frame_step);
-#endif
-
             // Mongoose 2002.08.15, Was
             //   if (frame_offset + 8 > _tombraider.NumFrames())
             if (frame_offset > mTombRaider.NumFrames())
             {
                 getConsole().print("WARNING: Bad animation frame %i > %i",
                         frame_offset, mTombRaider.NumFrames());
-
-                // Mongoose 2002.08.15, Attempt to skip more likely bad animation data
-                getConsole().print("WARNING: Handling bad animation data...");
                 return; //continue;
             }
 
             // Generate bone frames and tags per frame ////////////
-            bone = new bone_frame_t;
+            bone_frame_t *bone = new bone_frame_t;
             animation_frame->frame.push_back(bone);
 
             // Init translate for bone frame
@@ -763,7 +670,7 @@ void Game::processMoveable(int index, int i, int *ent,
             // Run through the tag and calculate the rotation and offset
             for (j = 0; j < (int)moveable[index].num_meshes; ++j)
             {
-                tag = new bone_tag_t;
+                bone_tag_t *tag = new bone_tag_t;
                 bone->tag.push_back(tag);
                 tag->off[0] = 0.0;
                 tag->off[1] = 0.0;
@@ -777,11 +684,6 @@ void Game::processMoveable(int index, int i, int *ent,
                 // Setup offsets to produce skeletion
                 if (j == 0)
                 {
-                    // Since we use bone's offset, these aren't used
-                    tag->off[0] = 0.0;
-                    tag->off[1] = 0.0;
-                    tag->off[2] = 0.0;
-
                     // Always push tag[0], this isn't really used either
                     tag->flag = 0x02;
                 }
@@ -791,7 +693,7 @@ void Game::processMoveable(int index, int i, int *ent,
                     // Hack: moveable[index].mesh_tree is a byte offset
                     //       into mesh_tree[], so we have to convert to index
                     tree = (int *)(void *)meshtree;
-                    mesh_tree = (tr2_meshtree_t *)&tree[moveable[index].mesh_tree
+                    tr2_meshtree_t *mesh_tree = (tr2_meshtree_t *)&tree[moveable[index].mesh_tree
                         + ((j - 1) * 4)];
 
                     tag->off[0] = mesh_tree->x;
@@ -807,14 +709,9 @@ void Game::processMoveable(int index, int i, int *ent,
         }
     }
 
-    if (i == skyMesh)
-    {
+    if (i == mTombRaider.getSkyModelId())
         getRender().setSkyMesh(i, //moveable[i].starting_mesh,
                 (mTombRaider.Engine() == TR_VERSION_2));
-    }
-
-    //printf(".");
-    //fflush(stdout);
 }
 
 bool compareFaceTextureId(const void *voidA, const void *voidB)

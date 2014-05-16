@@ -6,95 +6,81 @@
  * \author xythobuz
  */
 
-#include <cstddef>
+#include <assert.h>
+
 #include "SkeletalModel.h"
 
+BoneTag::BoneTag() {
+
+}
+
+BoneFrame::BoneFrame() {
+
+}
+
+BoneFrame::~BoneFrame() {
+    for (unsigned int i = 0; i < tag.size(); i++)
+        delete tag[i];
+}
+
+unsigned int BoneFrame::size() {
+    return tag.size();
+}
+
+BoneTag &BoneFrame::get(unsigned int i) {
+    assert(i < tag.size());
+    return *tag.at(i);
+}
+
+void BoneFrame::add(BoneTag &b) {
+    tag.push_back(&b);
+}
+
+AnimationFrame::AnimationFrame() {
+
+}
+
+AnimationFrame::~AnimationFrame() {
+    for (unsigned int i = 0; i < frame.size(); i++)
+        delete frame[i];
+}
+
+unsigned int AnimationFrame::size() {
+    return frame.size();
+}
+
+BoneFrame &AnimationFrame::get(unsigned int i) {
+    assert(i < frame.size());
+    return *frame.at(i);
+}
+
+void AnimationFrame::add(BoneFrame &b) {
+    frame.push_back(&b);
+}
+
 SkeletalModel::SkeletalModel() {
-    model = NULL;
-    mBoneFrame = 0;
-    mAnimationFrame = 0;
-    mIdleAnimation = 0;
+
 }
 
 SkeletalModel::~SkeletalModel() {
-    // Model is really stored in World and deleted there
-    // Deleting it here causes EXEC_BAD_ACCESS...
-    /* if (model) {
-        for(std::vector<animation_frame_t>::size_type i = 0; i < model->animation.size(); i++) {
-            animation_frame_t *af = model->animation[i];
-
-            if (!af)
-                continue;
-
-            for(std::vector<bone_frame_t>::size_type j = 0; j < af->frame.size(); j++) {
-                bone_frame_t *bf = af->frame[j];
-
-                if (!bf)
-                    continue;
-
-                for(std::vector<bone_tag_t>::size_type k = 0; k < bf->tag.size(); k++) {
-                    if (bf->tag[i])
-                        delete bf->tag[i];
-                }
-
-                delete bf;
-            }
-
-            delete af;
-        }
-
-        delete model;
-    } */
+    for (unsigned int i = 0; i < animation.size(); i++)
+        delete animation[i];
 }
 
-int SkeletalModel::getAnimation() {
-    return mAnimationFrame;
+int SkeletalModel::getId() {
+    return id;
 }
 
-int SkeletalModel::getFrame() {
-    return mBoneFrame;
+unsigned int SkeletalModel::size() {
+    return animation.size();
 }
 
-int SkeletalModel::getIdleAnimation() {
-    return mIdleAnimation;
+AnimationFrame &SkeletalModel::get(unsigned int i) {
+    assert(i < animation.size());
+    return *animation.at(i);
 }
 
-void SkeletalModel::setModel(skeletal_model_t *mdl) {
-    if (mdl)
-        model = mdl;
-}
-
-void SkeletalModel::setAnimation(int index) {
-    if (!model) // index > (int)model->animation.size())
-        return;
-
-    animation_frame_t *a = model->animation[index];
-
-    if (a) {
-        mAnimationFrame = index;
-        mBoneFrame = 0;
-    }
-}
-
-void SkeletalModel::setFrame(int index) {
-    if (!model)
-        return;
-
-    animation_frame_t *a = model->animation[mAnimationFrame];
-
-    if (a) { // index > (int)a->frame.size())
-        bone_frame_t *b = a->frame[index];
-
-        if (b)
-            mBoneFrame = index;
-    }
-}
-
-void SkeletalModel::setIdleAnimation(int index) {
-    if (!model)
-        return;
-
-    if (model->animation[index])
-        mIdleAnimation = index;
+void SkeletalModel::add(AnimationFrame &a) {
+    animation.push_back(&a);
 }
 

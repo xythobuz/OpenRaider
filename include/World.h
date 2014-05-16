@@ -12,7 +12,9 @@
 #include <list>
 #include <vector>
 
+#include "Entity.h"
 #include "Room.h"
+#include "SkeletalModel.h"
 #include "Sprite.h"
 
 #include "WorldData.h"
@@ -34,16 +36,20 @@ public:
     void destroy();
 
     void addRoom(Room &room);
-
     unsigned int sizeRoom();
-
     Room &getRoom(unsigned int index);
 
     void addSprite(SpriteSequence &sprite);
-
     unsigned int sizeSprite();
-
     SpriteSequence &getSprite(unsigned int index);
+
+    void addEntity(Entity &entity);
+    unsigned int sizeEntity();
+    Entity &getEntity(unsigned int index);
+
+    void addSkeletalModel(SkeletalModel &model);
+    unsigned int sizeSkeletalModel();
+    SkeletalModel &getSkeletalModel(unsigned int index);
 
     /*!
      * \brief Adds mesh to world
@@ -51,18 +57,7 @@ public:
      */
     void addMesh(model_mesh_t *model);
 
-    /*!
-     * \brief Adds entity to world
-     * \param e entity to add
-     */
-    void addEntity(entity_t *e);
-
-    /*!
-     * \brief Adds model to world.
-     * \param model model to add
-     * \returns next model ID or -1 on error
-     */
-    int addModel(skeletal_model_t *model);
+    model_mesh_t *getMesh(int index);
 
     /*!
      * \brief Move entity in given direction unless collision occurs
@@ -70,10 +65,6 @@ public:
      * \param movement direction of movement ('f', 'b', 'l' or 'r')
      */
     void moveEntity(entity_t *e, char movement);
-
-    model_mesh_t *getMesh(int index);
-    skeletal_model_t *getModel(int index);
-    std::vector<entity_t *> *getEntities();
 
     /*!
      * \brief Find room a location is in.
@@ -147,16 +138,13 @@ public:
 private:
 
     // Old World
-    std::vector<entity_t *> mEntities;       //!< World entities
     std::vector<model_mesh_t *> mMeshes;     //!< Unanimated meshes
-    std::vector<skeletal_model_t *> mModels; //!< Skeletal animation models
 
     // New World
     std::vector<Room *> mRooms;
     std::vector<SpriteSequence *> mSprites;
-
-    //std::vector<Entity *> mEntities;
-    //std::vector<SkeletalModel *> mModels;
+    std::vector<Entity *> mEntities;
+    std::vector<SkeletalModel *> mModels;
 };
 
 #endif

@@ -4,10 +4,6 @@
  *
  * \author Mongoose
  * \author xythobuz
- *
- * \todo Start cutting off old hacks by simple force use of method interface.
- * Also move the publicly exposed attributes out  =)
- * Better animation system in general - this is memory wasteful
  */
 
 #ifndef _SKELETALMODEL_H_
@@ -16,27 +12,59 @@
 #include <vector>
 
 #include "math/math.h"
+#include "TombRaider.h"
 
-typedef struct {
+class BoneTag {
+public:
+    BoneTag();
+
+private:
     int mesh;
     vec3_t off;
     vec3_t rot;
     char flag;
-} bone_tag_t;
+};
 
-typedef struct {
-    std::vector<bone_tag_t *> tag;
+class BoneFrame {
+public:
+    BoneFrame();
+    ~BoneFrame();
+
+    unsigned int size();
+    BoneTag &get(unsigned int i);
+    void add(BoneTag &b);
+
+private:
     vec3_t pos;
-    float yaw;
-} bone_frame_t;
+    vec_t yaw;
+    std::vector<BoneTag *> tag;
+};
 
-typedef struct {
-    int id;
+class AnimationFrame {
+public:
+    AnimationFrame();
+    ~AnimationFrame();
+
+    unsigned int size();
+    BoneFrame &get(unsigned int i);
+    void add(BoneFrame &b);
+
+private:
     char rate;
-    std::vector<bone_frame_t *> frame;
-} animation_frame_t;
+    std::vector<BoneFrame *> frame;
+};
 
-typedef struct {
+class SkeletalModel {
+public:
+    SkeletalModel(TombRaider &tr, );
+    ~SkeletalModel();
+    int getId();
+
+    unsigned int size();
+    AnimationFrame &get(unsigned int i);
+    void add(AnimationFrame &a);
+
+private:
     int id;
     bool tr4Overlay;
     bool pigtails;
@@ -44,47 +72,10 @@ typedef struct {
     vec3_t ponytail;
     int ponytailMeshId;
     unsigned int ponytailNumMeshes;
-    float ponytailAngle;
-    float ponyOff;
-    float ponyOff2;
-    std::vector<animation_frame_t *> animation;
-} skeletal_model_t;
-
-/*!
- * \brief This is the factored out skeletal model class
- */
-class SkeletalModel {
-public:
-    /*!
-     * \brief Constructs an object of SkeletalModel
-     */
-    SkeletalModel();
-
-     /*!
-     * \brief Deconstructs an object of SkeletalModel
-     */
-    ~SkeletalModel();
-
-    int getAnimation();
-
-    int getFrame();
-
-    int getIdleAnimation();
-
-    void setModel(skeletal_model_t *mdl);
-
-    void setAnimation(int index);
-
-    void setFrame(int index);
-
-    void setIdleAnimation(int index);
-
-    skeletal_model_t *model; //!< World render model
-
-private:
-    int mBoneFrame;      //!< Bone frame
-    int mAnimationFrame; //!< Animation frame
-    int mIdleAnimation;  //!< Idle animation
+    vec_t ponytailAngle;
+    vec_t ponyOff;
+    vec_t ponyOff2;
+    std::vector<AnimationFrame *> animation;
 };
 
 #endif

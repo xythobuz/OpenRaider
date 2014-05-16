@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "Camera.h"
+#include "Entity.h"
 #include "global.h"
 #include "Render.h"
 #include "TombRaider.h"
@@ -41,8 +42,7 @@ public:
     unsigned int getTextureStart();
     unsigned int getTextureOffset();
 
-    //! \fixme should be private
-    entity_t *mLara;
+    Entity &getLara();
 
 private:
 
@@ -50,12 +50,13 @@ private:
     void processTextures();
     void processSprites();
     void processMoveables();
-    void processMoveable(int index, int i, int *ent,
-                            std::vector<skeletal_model_t *> &cache2,
-                            std::vector<unsigned int> &cache, int object_id);
+    void processMoveable(int index, int i, int object_id);
     void processModels();
     void processRooms();
+
+#ifdef EXPERIMENTAL
     void setupTextureColor(texture_tri_t *r_tri, float *colorf);
+#endif
 
     char *mName;
     bool mLoaded;
@@ -64,6 +65,8 @@ private:
 
     unsigned int mTextureStart;
     unsigned int mTextureOffset;
+
+    unsigned int mLara;
 };
 
 #endif

@@ -11,11 +11,9 @@
 
 #include "World.h"
 
-World::~World()
-{
+World::~World() {
     destroy();
 }
-
 
 // Temp methods for rendering use until more refactoring is done
 model_mesh_t *World::getMesh(int index)
@@ -23,45 +21,11 @@ model_mesh_t *World::getMesh(int index)
     return mMeshes[index];
 }
 
-skeletal_model_t *World::getModel(int index)
-{
-    return mModels[index];
-}
-
-std::vector<entity_t *> *World::getEntities()
-{
-    return &mEntities;
-}
-
 void World::addMesh(model_mesh_t *mesh)
 {
     if (mesh)
         mMeshes.push_back(mesh);
 }
-
-
-void World::addEntity(entity_t *e)
-{
-    if (e)
-    {
-        e->moveType = worldMoveType_walk; // Walk
-        e->room = getRoomByLocation(e->pos[0], e->pos[1], e->pos[2]);
-        mEntities.push_back(e);
-    }
-}
-
-
-int World::addModel(skeletal_model_t *model)
-{
-    if (model)
-    {
-        mModels.push_back(model);
-        return mModels.size() - 1;
-    }
-
-    return -1;
-}
-
 
 void World::moveEntity(entity_t *e, char movement)
 {
@@ -262,6 +226,34 @@ SpriteSequence &World::getSprite(unsigned int index) {
     return *mSprites.at(index);
 }
 
+void World::addEntity(Entity &entity) {
+    //e->moveType = worldMoveType_walk; // Walk
+    //e->room = getRoomByLocation(e->pos[0], e->pos[1], e->pos[2]);
+    mEntities.push_back(&entity);
+}
+
+unsigned int World::sizeEntity() {
+    return mEntities.size();
+}
+
+Entity &World::getEntity(unsigned int index) {
+    assert(index < mEntities.size());
+    return *mEntities.at(index);
+}
+
+void World::addSkeletalModel(SkeletalModel &model) {
+    mModels.push_back(&model);
+}
+
+unsigned int World::sizeSkeletalModel() {
+    return mModels.size();
+}
+
+SkeletalModel &World::getSkeletalModel(unsigned int index) {
+    assert(index < mModels.size());
+    return *mModels.at(index);
+}
+
 
 int World::getRoomByLocation(int index, float x, float y, float z)
 {
@@ -377,26 +369,25 @@ void World::getHeightAtPosition(int index, float x, float *y, float z) {
 }
 
 
-void World::destroy()
-{
+void World::destroy() {
     for (unsigned int i = 0; i != mRooms.size(); i++)
         delete mRooms[i];
+    mRooms.clear();
 
     for (unsigned int i = 0; i != mSprites.size(); i++)
         delete mSprites[i];
+    mSprites.clear();
 
-    model_mesh_t *mesh;
-    skeletal_model_t *model;
-    bone_frame_t *boneframe;
-    bone_tag_t *tag;
-    animation_frame_t *animation;
-    std::list<skeletal_model_t *> cache;
-
-    for (std::vector<int>::size_type i = 0; i != mEntities.size(); i++)
+    for (unsigned int i = 0; i != mEntities.size(); i++)
         delete mEntities[i];
+    mEntities.clear();
+
+    for (unsigned int i = 0; i != mModels.size(); i++)
+        delete mModels[i];
+    mModels.clear();
 
     for (std::vector<int>::size_type i = 0; i != mMeshes.size(); i++) {
-        mesh = mMeshes[i];
+        model_mesh_t *mesh = mMeshes[i];
 
         if (!mesh)
             continue;
@@ -432,59 +423,6 @@ void World::destroy()
 
         delete mesh;
     }
-
     mMeshes.clear();
-
-    for (std::vector<int>::size_type i = 0; i != mModels.size(); i++) {
-        model = mModels[i];
-
-        if (!model)
-            continue;
-
-        // No smart pointers, so skip if deleted once  =)
-        bool found = false;
-        for (std::list<skeletal_model_t *>::const_iterator iterator = cache.begin(), end = cache.end(); iterator != end; ++iterator) {
-            if (model == *iterator) {
-                found = true;
-                break;
-            }
-        }
-
-        if (!found)
-            cache.push_back(model);
-        else
-            continue;
-
-        for (std::vector<int>::size_type j = 0; j != model->animation.size(); j++) {
-            animation  = model->animation[j];
-
-            if (!animation)
-                continue;
-
-            for (std::vector<int>::size_type k = 0; k != animation->frame.size(); k++) {
-                boneframe = animation->frame[k];
-
-                if (!boneframe)
-                    continue;
-
-                for (std::vector<int>::size_type l = 0; l != boneframe->tag.size(); l++) {
-                    tag = boneframe->tag[l];
-
-                    if (!tag)
-                        continue;
-
-                    delete tag;
-                }
-
-                delete boneframe;
-            }
-
-            delete animation;
-        }
-
-        delete model;
-    }
-
-    mModels.clear();
 }
 

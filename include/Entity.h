@@ -23,14 +23,16 @@ public:
 
     Entity(TombRaider &tr);
 
-    // Animation State
+    bool operator<(Entity &o);
+    void display();
 
+    void setSkeletalModel(unsigned int model);
+
+    // Animation State
     unsigned int getAnimationFrame();
     void setAnimationFrame(unsigned int index);
-
     unsigned int getBoneFrame();
     void setBoneFrame(unsigned int index);
-
     unsigned int getIdleAnimation();
     void setIdleAnimation(unsigned int index);
 
@@ -46,7 +48,6 @@ private:
     int objectId;
 
     // Animation State
-
     unsigned int boneFrame;
     unsigned int animationFrame;
     unsigned int idleAnimation;

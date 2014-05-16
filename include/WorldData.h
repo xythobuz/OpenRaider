@@ -12,14 +12,6 @@
 #include "math/math.h"
 #include "SkeletalModel.h"
 
-typedef enum {
-    worldMoveType_walkNoSwim = -1,
-    worldMoveType_walk       = 0,
-    worldMoveType_noClipping = 1,
-    worldMoveType_fly        = 2,
-    worldMoveType_swim       = 3
-} worldMoveType;
-
 /*! \fixme For now shaders are textures on tex objects
  * and materials on color objects. If -1
  * then it doesn't have that information yet.
@@ -49,18 +41,6 @@ typedef struct {
     unsigned int normalCount;
     vec_t *normals;
 } model_mesh_t;
-
-typedef struct {
-    float pos[3];            //!< World position
-    float angles[3];         //!< Euler angles (pitch, yaw, roll)
-    int room;                //!< Current room entity is in
-    worldMoveType moveType;  //!< Type of motion/clipping
-
-    int state;               //!< State of the Player, AI, or object
-    int objectId;            //!< What kind of entity?
-
-    SkeletalModel *tmpHook;
-} entity_t;
 
 #endif
 
