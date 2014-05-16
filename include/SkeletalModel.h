@@ -16,7 +16,12 @@
 
 class BoneTag {
 public:
-    BoneTag();
+    BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l);
+    void display();
+
+    void getOffset(vec3_t o);
+    void getRotation(vec3_t r);
+    char getFlag();
 
 private:
     int mesh;
@@ -27,7 +32,7 @@ private:
 
 class BoneFrame {
 public:
-    BoneFrame();
+    BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigned int frame_offset);
     ~BoneFrame();
 
     unsigned int size();
@@ -42,7 +47,7 @@ private:
 
 class AnimationFrame {
 public:
-    AnimationFrame();
+    AnimationFrame(TombRaider &tr, unsigned int index, unsigned int i, int a);
     ~AnimationFrame();
 
     unsigned int size();
@@ -58,6 +63,8 @@ class SkeletalModel {
 public:
     SkeletalModel(TombRaider &tr, unsigned int index, unsigned int i, int objectId);
     ~SkeletalModel();
+    void display(unsigned int aframe, unsigned int bframe);
+
     int getId();
     void setPigTail(bool b);
     void setPonyPos(vec_t x, vec_t y, vec_t z, vec_t angle);

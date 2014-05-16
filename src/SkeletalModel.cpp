@@ -12,8 +12,8 @@
 #include "SkeletalModel.h"
 
 BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l) {
-    tr2_moveable_t *moveable = mTombRaider.Moveable();
-    tr2_meshtree_t *meshtree = mTombRaider.MeshTree();
+    tr2_moveable_t *moveable = tr.Moveable();
+    tr2_meshtree_t *meshtree = tr.MeshTree();
 
     off[0] = 0.0;
     off[1] = 0.0;
@@ -27,7 +27,7 @@ BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l) {
     // Setup offsets to produce skeleton
     if (j == 0) {
         // Always push tag[0], this isn't really used either
-        tag->flag = 0x02;
+        flag = 0x02;
     } else { // Nonprimary tag - position relative to first tag
 
         // Hack: moveable[index].mesh_tree is a byte offset
@@ -46,9 +46,13 @@ BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l) {
     tr.computeRotationAngles(&frame, &frame_offset, l, rot, rot+1, rot+2);
 }
 
+BoneTag::display() {
+    getRender().drawModelMesh(getWorld().getMesh(mesh));
+}
+
 BoneFrame::BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigned int frame_offset) {
-    tr2_moveable_t *moveable = mTombRaider.Moveable();
-    unsigned short *frame = mTombRaider.Frame();
+    tr2_moveable_t *moveable = tr.Moveable();
+    unsigned short *frame = tr.Frame();
 
     pos[0] = (short)frame[frame_offset + 6];
     pos[1] = (short)frame[frame_offset + 7];
@@ -83,8 +87,8 @@ void BoneFrame::add(BoneTag &b) {
 }
 
 AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, unsigned int i, int a) {
-    tr2_moveable_t *moveable = mTombRaider.Moveable();
-    tr2_animation_t *animation = mTombRaider.Animation();
+    tr2_moveable_t *moveable = tr.Moveable();
+    tr2_animation_t *animation = tr.Animation();
 
     unsigned int frame_offset = animation[a].frame_offset / 2;
     int frame_step = animation[a].frame_size;
@@ -147,22 +151,22 @@ void AnimationFrame::add(BoneFrame &b) {
 }
 
 SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, unsigned int i, int objectId) {
-    tr2_moveable_t *moveable = mTombRaider.Moveable();
-    tr2_animation_t *anim = mTombRaider.Animation();
+    tr2_moveable_t *moveable = tr.Moveable();
+    tr2_animation_t *anim = tr.Animation();
 
     id = objectId;
 
     // Gather more info if this is lara
     if (id == 0) {
         // Only TR4 lara has 2 layer bone tags/meshes per bone frame
-        tr4Overlay = (mTombRaider.Engine() == TR_VERSION_4);
+        tr4Overlay = (tr.Engine() == TR_VERSION_4);
         ponytailId = 0;
     } else {
         tr4Overlay = false;
         ponytailId = -1;
     }
 
-    switch (mTombRaider.Engine()) {
+    switch (tr.Engine()) {
         case TR_VERSION_4:
             if (moveable[index].object_id == 30) {
                 ponytailId = getWorld().sizeSkeletalModel(); //! \fixme Why is this even needed?
@@ -238,6 +242,113 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, unsigned int i,
 SkeletalModel::~SkeletalModel() {
     for (unsigned int i = 0; i < animation.size(); i++)
         delete animation[i];
+}
+
+void SkeletalModel::display(unsigned int aframe, unsigned int bframe) {
+    assert(aframe < size());
+    assert(bframe < get(aframe).size());
+
+    AnimationFrame &animation = get(aframe);
+    BoneFrame &boneframe = animation.get(bframe);
+
+    if (boneframe.size() == 0) {
+        printf("Empty bone frame?!?!\n");
+        return;
+    }
+
+    glTranslatef(boneframe->pos[0], boneframe->pos[1], boneframe->pos[2]);
+
+    for (unsigned int a = 0; a < boneframe.size(); a++) {
+        BoneTag &tag = boneframe.get(a);
+        vec3_t rot, off;
+        tag.getRotation(rot);
+        tag.getOffset(off);
+
+        if (a == 0) {
+            if (!equalEpsilon(rot[1], 0.0f))
+                glRotatef(rot[1], 0, 1, 0);
+
+            if (!equalEpsilon(rot[0], 0.0f))
+                glRotatef(rot[0], 1, 0, 0);
+
+            if (!equalEpsilon(rot[2], 0.0f))
+                glRotatef(rot[2], 0, 0, 1);
+        } else {
+            if (tag.getFlag() & 0x01)
+                glPopMatrix();
+
+            if (tag.getFlag() & 0x02)
+                glPushMatrix();
+
+            glTranslatef(off[0], off[1], off[2]);
+
+            if (!equalEpsilon(rot[1], 0.0f))
+                glRotatef(rot[1], 0, 1, 0);
+
+            if (!equalEpsilon(rot[0], 0.0f))
+                glRotatef(rot[0], 1, 0, 0);
+
+            if (!equalEpsilon(rot[2], 0.0f))
+                glRotatef(rot[2], 0, 0, 1);
+        }
+
+        // Draw layered lara in TR4 (2 meshes per tag)
+        if (tr4Overlay) {
+            BoneFrame &boneframe2 = get(0).get(0); //! \fixme Woot?
+            if (a < boneframe2.size())
+                boneframe2.get(a).display();
+        }
+
+        if (getRender().getFlags() & Render::fRenderPonytail) {
+            if ((mdl->ponytailId > 0) && (a == 14)) {
+                glPushMatrix();
+
+                // Mongoose 2002.08.30, TEST to align offset
+                glTranslatef(ponytail[0], ponytail[1], ponytail[2]);
+                glRotatef(ponytailAngle, 1, 0, 0);
+
+                // HACK: To fill TR4 void between ponytail/head
+                //   since no vertex welds are implemented yet
+                if (tr4Overlay)
+                    glScalef(1.20f, 1.20f, 1.20f);
+
+#ifdef EXPERIMENTAL_NON_ITEM_RENDER
+                getWorld().getSkeletalModel(mdl->ponytail).display(0, 0);
+#else
+                for (unsigned int i = 0; i < ponytailNumMeshes; i++) {
+                    glPushMatrix();
+
+                    if (i > 0) {
+                        glRotatef(randomNum(-8.0f, -10.0f), 1, 0, 0);
+                        glRotatef(randomNum(-5.0f, 5.0f), 0, 1, 0);
+                        glRotatef(randomNum(-5.0f, 5.0f), 0, 0, 1);
+                        glTranslatef(0.0, 0.0, ponyOff);
+                    }
+
+                    if (pigtails) {
+                        glPushMatrix();
+                        glTranslatef(mdl->ponyOff2, 0.0, 0.0);
+                        getRender().drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i));
+                        glPopMatrix();
+
+                        glPushMatrix();
+                        glTranslatef(-mdl->ponyOff2, 0.0, 0.0);
+                        getRender().drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i));
+                        glPopMatrix();
+                    } else {
+                        getRender().drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i));
+                    }
+                }
+
+                for (unsigned int i = 0; i < ponytailNumMeshes; i++)
+                    glPopMatrix();
+#endif
+                glPopMatrix();
+            }
+        }
+
+        tag.display();
+    }
 }
 
 int SkeletalModel::getId() {

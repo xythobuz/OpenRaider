@@ -18,6 +18,7 @@
 
 #include "Entity.h"
 #include "main.h"
+#include "Render.h"
 
 #include "games/TombRaider1.h"
 
@@ -66,13 +67,19 @@ bool Entity::operator<(Entity &o) {
 }
 
 void Entity::display() {
-    /*
     glPushMatrix();
     glTranslatef(pos[0], pos[1], pos[2]);
     glRotatef(angles[1], 0, 1, 0);
-    getWorld().getSkeletalModel(skeletalModel).display();
+    getWorld().getSkeletalModel(skeletalModel).display(animationFrame, boneFrame);
     glPopMatrix();
-    */
+
+    // Cycle frames
+    if (getRender().getFlags() & Render::fAnimateAllModels) {
+        if (boneFrame < (getModel().get(animationFrame).size() - 1))
+            boneFrame++;
+        else
+            boneFrame = 0;
+    }
 }
 
 void Entity::move(char movement) {

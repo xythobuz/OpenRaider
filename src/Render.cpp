@@ -28,32 +28,7 @@
 #include "Render.h"
 #include "utils/strings.h"
 
-bool compareEntites(const void *voidA, const void *voidB)
-{
-    entity_t *a = (entity_t *)voidA, *b = (entity_t *)voidB;
-    vec_t distA, distB;
-
-    if (!a || !b)
-        return false; // error really
-
-    distA = getRender().mViewVolume.getDistToSphereFromNear(a->pos[0],
-            a->pos[1],
-            a->pos[2],
-            1.0f);
-    distB = getRender().mViewVolume.getDistToSphereFromNear(b->pos[0],
-            b->pos[1],
-            b->pos[2],
-            1.0f);
-
-    return (distA < distB);
-}
-
-////////////////////////////////////////////////////////////
-// Constructors
-////////////////////////////////////////////////////////////
-
-Render::Render()
-{
+Render::Render() {
     mSkyMesh = -1;
     mSkyMeshRotation = false;
     mMode = Render::modeDisabled;
@@ -64,15 +39,10 @@ Render::Render()
 }
 
 
-Render::~Render()
-{
+Render::~Render() {
     ClearWorld();
 }
 
-
-////////////////////////////////////////////////////////////
-// Public Accessors
-////////////////////////////////////////////////////////////
 
 void Render::screenShot(char *filenameBase)
 {
@@ -82,10 +52,6 @@ void Render::screenShot(char *filenameBase)
 unsigned int Render::getFlags() {
     return mFlags;
 }
-
-////////////////////////////////////////////////////////////
-// Public Mutators
-////////////////////////////////////////////////////////////
 
 
 void Render::loadTexture(unsigned char *image,
@@ -128,12 +94,6 @@ int Render::initTextures(char *textureDir) {
 
 void Render::ClearWorld() {
     mRoomRenderList.clear();
-
-    for (unsigned int i = 0; i < mModels.size(); i++) {
-        if (mModels[i])
-            delete mModels[i];
-    }
-    mModels.clear();
 }
 
 
@@ -235,8 +195,7 @@ void lightRoom(Room &room)
 
 void Render::clearFlags(unsigned int flags)
 {
-    // _defaults |= flags; // Force removal if it wasn't set
-    mFlags ^= flags;
+    mFlags &= ~flags;
 
     if (flags & Render::fFog)
     {
@@ -354,11 +313,6 @@ void gluLookAt(float eyeX, float eyeY, float eyeZ,
 
 void Render::display()
 {
-    vec3_t curPos;
-    vec3_t camPos;
-    vec3_t atPos;
-    int index;
-
     switch (mMode)
     {
         case Render::modeDisabled:
@@ -368,7 +322,7 @@ void Render::display()
             drawLoadScreen();
             return;
         default:
-            ;
+            break;
     }
 
     if (mMode == Render::modeWireframe)
@@ -376,100 +330,57 @@ void Render::display()
     else
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    index = -1;
+    float camOffsetH = 0.0f;
 
-    if (getGame().mLara)
+    switch (getGame().getLara().getMoveType())
     {
-        float yaw;
-        int sector;
-        float camOffsetH = 0.0f;
+        case Entity::MoveTypeFly:
+        case Entity::MoveTypeNoClipping:
+        case Entity::MoveTypeSwim:
+            camOffsetH = 64.0f;
+            break;
+        case Entity::MoveTypeWalk:
+        case Entity::MoveTypeWalkNoSwim:
+            camOffsetH = 512.0f;
+            break;
+    }
 
+    vec3_t curPos;
+    vec3_t camPos;
+    vec3_t atPos;
 
-        switch (getGame().mLara->moveType)
-        {
-            case worldMoveType_fly:
-            case worldMoveType_noClipping:
-            case worldMoveType_swim:
-                camOffsetH = 64.0f;
-                break;
-            case worldMoveType_walk:
-            case worldMoveType_walkNoSwim:
-                camOffsetH = 512.0f;
-                break;
-        }
+    curPos[0] = getGame().getLara().getPos(0);
+    curPos[1] = getGame().getLara().getPos(1);
+    curPos[2] = getGame().getLara().getPos(2);
+    vec_t yaw = getGame().getLara().getAngle(1);
 
-        curPos[0] = getGame().mLara->pos[0];
-        curPos[1] = getGame().mLara->pos[1];
-        curPos[2] = getGame().mLara->pos[2];
-        yaw = getGame().mLara->angles[1];
+    // Mongoose 2002.08.24, New 3rd person camera hack
+    camPos[0] = curPos[0] - (1024.0f * sinf(yaw));
+    camPos[1] = curPos[1] - camOffsetH; // UP is lower val
+    camPos[2] = curPos[2] - (1024.0f * cosf(yaw));
 
-        index = getGame().mLara->room;
+    int index = getGame().getLara().getRoom();
+    int sector = getWorld().getSector(index, camPos[0], camPos[2]);
 
-        // Mongoose 2002.08.24, New 3rd person camera hack
-        camPos[0] = curPos[0];
-        camPos[1] = curPos[1] - camOffsetH; // UP is lower val
-        camPos[2] = curPos[2];
-
-        camPos[0] -= (1024.0f * sinf(yaw));
-        camPos[2] -= (1024.0f * cosf(yaw));
-
-        sector = getWorld().getSector(index, camPos[0], camPos[2]);
-
-        // Handle camera out of world
-        if (sector < 0 || getWorld().isWall(index, sector))
-        {
-            camPos[0] = curPos[0] + (64.0f * sinf(yaw));
-            camPos[1] -= 64.0f;
-            camPos[2] = curPos[2] + (64.0f * cosf(yaw));
-        }
-
-        getCamera().setPosition(camPos);
+    // Handle camera out of world
+    if (sector < 0 || getWorld().isWall(index, sector)) {
+        camPos[0] = curPos[0] + (64.0f * sinf(yaw));
+        camPos[1] -= 64.0f;
+        camPos[2] = curPos[2] + (64.0f * cosf(yaw));
     }
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
     // Setup view in OpenGL with camera
+    getCamera().setPosition(camPos);
     getCamera().update();
-    getCamera().getPosition(camPos);
     getCamera().getTarget(atPos);
     // Mongoose 2002.08.13, Quick fix to render OpenRaider upside down
-
     gluLookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0f, -1.0f, 0.0f);
 
     // Update view volume for vising
     updateViewVolume();
-
-    // Let's see the LoS -- should be event controled
-    if (getGame().mLara)
-    {
-        // SkeletalModel *mdl = getGame().mLara->tmpHook;
-
-        // Draw in solid colors
-        glDisable(GL_TEXTURE_2D);
-        glDisable(GL_CULL_FACE);
-
-        if (getGame().mLara->state == 64) // eWeaponFire
-        {
-            vec3_t u, v; //, s, t;
-
-            // Center of getGame().mLara
-            u[0] = curPos[0];
-            u[1] = curPos[1] - 512.0f;
-            u[2] = curPos[2];
-
-            // Location getGame().mLara is aiming at?  ( Not finished yet )
-            v[0] = u[0] + (9000.0f * sinf(getGame().mLara->angles[1]));
-            v[1] = u[1] + (9000.0f * sinf(getGame().mLara->angles[2]));
-            v[2] = u[2] + (9000.0f * cosf(getGame().mLara->angles[1]));
-
-            // Test tracing of aim
-            renderTrace(0, u, v); // v = target
-        }
-
-        glEnable(GL_CULL_FACE);
-        glEnable(GL_TEXTURE_2D);
-    }
 
     // Render world
     glColor3fv(DIM_WHITE); // was WHITE
@@ -479,43 +390,33 @@ void Render::display()
     newRoomRenderList(index);
 
     // Room solid pass, need to do depth sorting to avoid 2 pass render
-    for (unsigned int i = 0; i < mRoomRenderList.size(); i++)
-    {
+    for (unsigned int i = 0; i < mRoomRenderList.size(); i++) {
         Room &room = *mRoomRenderList[i];
 
         if (mFlags & Render::fGL_Lights)
-        {
             lightRoom(room);
-        }
 
         room.display(false);
     }
 
     // Draw all visible enities
-    if (mFlags & Render::fEntityModels)
-    {
-        entity_t *e;
-        std::vector<entity_t *> entityRenderList;
-        std::vector<entity_t *> *entities = getWorld().getEntities();
+    if (mFlags & Render::fEntityModels) {
+        std::vector<Entity *> entityRenderList;
 
-        for (unsigned int i = 0; i < entities->size(); i++)
-        {
-            e = entities->at(i);
+        for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
+            Entity &e = getWorld().getEntity(i);
 
-            // Mongoose 2002.03.26, Don't show lara to it's own player
-            if (!e || e == getGame().mLara)
-            {
+            // Don't show Lara to the player
+            if (&e == &getGame().getLara())
                 continue;
-            }
 
             // Mongoose 2002.08.15, Nothing to draw, skip
-            // Mongoose 2002.12.24, Some entities have no animation  =p
-            if (e->tmpHook)
-                if (e->tmpHook->model->animation.empty())
+            // Mongoose 2002.12.24, Some entities have no animation =p
+            if (e.getModel().size() == 0)
                     continue;
 
             // Is it in view volume? ( Hack to use sphere )
-            if (!isVisible(e->pos[0], e->pos[1], e->pos[2], 512.0f))
+            if (!isVisible(e.getPos(0), e.getPos(1), e.getPos(2), 512.0f))
                 continue;
 
             //! \fixme Is it in a room we're rendering?
@@ -524,7 +425,7 @@ void Render::display()
             //  continue;
             //}
 
-            entityRenderList.push_back(e);
+            entityRenderList.push_back(&e);
         }
 
         // Draw objects not tied to rooms
@@ -533,28 +434,18 @@ void Render::display()
         glPopMatrix();
 
         // Depth sort entityRenderList with qsort
-        std::sort(entityRenderList.begin(), entityRenderList.end(), compareEntites);
+        std::sort(entityRenderList.begin(), entityRenderList.end());
 
-        for (unsigned int i = 0; i < entityRenderList.size(); i++)
-        {
-            e = entityRenderList[i];
-
-            glPushMatrix();
-            glTranslatef(e->pos[0], e->pos[1], e->pos[2]);
-            glRotatef(e->angles[1], 0, 1, 0);
-            drawModel(e->tmpHook);
-            glPopMatrix();
+        for (unsigned int i = 0; i < entityRenderList.size(); i++) {
+            entityRenderList[i]->display();
         }
     }
 
     // Room alpha pass
     // Skip room alpha pass for modes w/o texture
-    if (!(mMode == Render::modeSolid || mMode == Render::modeWireframe))
-    {
+    if (!(mMode == Render::modeSolid || mMode == Render::modeWireframe)) {
         for (unsigned int i = 0; i < mRoomRenderList.size(); i++)
-        {
             mRoomRenderList[i]->display(true);
-        }
     }
 
     if (mMode == Render::modeWireframe)
@@ -711,11 +602,9 @@ void Render::buildRoomRenderList(Room &room)
 
 void Render::drawSkyMesh(float scale)
 {
-    skeletal_model_t *model = getWorld().getModel(mSkyMesh);
-
-
-    if (!model)
-        return;
+    //skeletal_model_t *model = getWorld().getModel(mSkyMesh);
+    //if (!model)
+    //    return;
 
     glDisable(GL_DEPTH_TEST);
     glPushMatrix();
@@ -734,208 +623,16 @@ void Render::drawSkyMesh(float scale)
 }
 
 
-void Render::drawObjects()
-{
+void Render::drawObjects() {
     // Draw lara or other player model ( move to entity rendering method )
-    if (mFlags & Render::fViewModel && getGame().mLara && getGame().mLara->tmpHook)
-    {
-        glPushMatrix();
+    if (mFlags & Render::fViewModel)
+        getGame().getLara().display();
 
-        glTranslated(getGame().mLara->pos[0], getGame().mLara->pos[1], getGame().mLara->pos[2]);
-        glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
-
-        drawModel(getGame().mLara->tmpHook);
-        glPopMatrix();
-    }
-
-    // Mongoose 2002.03.22, Draw sprites after player to handle alpha
+    // Draw sprites after player to handle alpha
     for (unsigned int i = 0; i < getWorld().sizeSprite(); i++) {
         SpriteSequence &sprite = getWorld().getSprite(i);
         for (unsigned int j = 0; j < sprite.size(); j++)
             sprite.get(j).display();
-    }
-}
-
-
-void Render::drawModel(SkeletalModel *model)
-{
-    animation_frame_t *animation;
-    bone_frame_t *boneframe;
-    bone_frame_t *boneframe2 = 0x0;
-    bone_tag_t *tag;
-    bone_tag_t *tag2;
-    int bframe, aframe;
-    skeletal_model_t *mdl;
-
-
-    if (!model || !model->model)
-        return;
-
-    mdl = model->model;
-    aframe = model->getAnimation();
-    bframe = model->getFrame();
-    animation = mdl->animation[aframe];
-
-    if (!animation)
-    {
-#ifdef DEBUG
-        printf("ERROR: No animation for model[%i].aframe[%i] %lu\n",
-                mdl->id, aframe, mdl->animation.size());
-#endif
-        return;
-    }
-
-    if (animation->frame.empty())
-    {
-#ifdef DEBUG
-        printf("ERROR: No boneframes?!?!  *** %i:%i ***\n",
-                mdl->id, bframe);
-#endif
-        return;
-    }
-
-    boneframe = animation->frame[bframe];
-
-    if (!boneframe)
-        return;
-
-    if (boneframe->tag.empty())
-    {
-        printf("Empty bone frame?!?!\n");
-        return;
-    }
-
-    glTranslatef(boneframe->pos[0], boneframe->pos[1], boneframe->pos[2]);
-
-    for (unsigned int a = 0; a < boneframe->tag.size(); a++)
-    {
-        tag = boneframe->tag[a];
-
-        if (!tag)
-            continue;
-
-        if (a == 0)
-        {
-            if (!equalEpsilon(tag->rot[1], 0.0f)) // was just if (tag->rot[1])
-                glRotatef(tag->rot[1], 0, 1, 0);
-
-            if (!equalEpsilon(tag->rot[0], 0.0f))
-                glRotatef(tag->rot[0], 1, 0, 0);
-
-            if (!equalEpsilon(tag->rot[2], 0.0f))
-                glRotatef(tag->rot[2], 0, 0, 1);
-        }
-        else
-        {
-            if (tag->flag & 0x01)
-                glPopMatrix();
-
-            if (tag->flag & 0x02)
-                glPushMatrix();
-
-            glTranslatef(tag->off[0], tag->off[1], tag->off[2]);
-
-            if (!equalEpsilon(tag->rot[1], 0.0f))
-                glRotatef(tag->rot[1], 0, 1, 0);
-
-            if (!equalEpsilon(tag->rot[0], 0.0f))
-                glRotatef(tag->rot[0], 1, 0, 0);
-
-            if (!equalEpsilon(tag->rot[2], 0.0f))
-                glRotatef(tag->rot[2], 0, 0, 1);
-        }
-
-        // Draw layered lara in TR4 ( 2 meshes per tag )
-        if (mdl->tr4Overlay == 1)
-        {
-            boneframe2 = (mdl->animation[0])->frame[0];
-
-            if (boneframe2)
-            {
-                tag2 = boneframe2->tag[a];
-
-                if (tag2)
-                {
-                    drawModelMesh(getWorld().getMesh(tag2->mesh));
-                }
-            }
-        }
-
-        if (mFlags & Render::fRenderPonytail)
-        {
-            if (mdl->ponytailId > 0 &&
-                    a == 14)
-            {
-                glPushMatrix();
-
-                // Mongoose 2002.08.30, TEST to align offset
-                glTranslatef(mdl->ponytail[0], mdl->ponytail[1], mdl->ponytail[2]);
-                glRotatef(mdl->ponytailAngle, 1, 0, 0);
-
-                // HACK: To fill TR4 void between ponytail/head
-                //   since no vertex welds are implemented yet
-                if (mdl->tr4Overlay == 1)
-                {
-                    glScalef(1.20f, 1.20f, 1.20f);
-                }
-
-#ifdef EXPERIMENTAL_NON_ITEM_RENDER
-                drawModel(mModels[mdl->ponytail], 0, 0);
-#else
-                for (unsigned int i = 0; i < mdl->ponytailNumMeshes; ++i)
-                {
-                    glPushMatrix();
-
-                    if (i > 0)
-                    {
-                        glRotatef(randomNum(-8.0f, -10.0f), 1, 0, 0);
-                        glRotatef(randomNum(-5.0f, 5.0f), 0, 1, 0);
-                        glRotatef(randomNum(-5.0f, 5.0f), 0, 0, 1);
-
-                        glTranslatef(0.0, 0.0, mdl->ponyOff);
-                    }
-
-                    if (mdl->pigtails)
-                    {
-                        glPushMatrix();
-                        glTranslatef(mdl->ponyOff2, 0.0, 0.0);
-                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i));
-                        glPopMatrix();
-
-                        glPushMatrix();
-                        glTranslatef(-mdl->ponyOff2, 0.0, 0.0);
-                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i));
-                        glPopMatrix();
-                    }
-                    else
-                    {
-                        drawModelMesh(getWorld().getMesh(mdl->ponytailMeshId + i));
-                    }
-                }
-
-                for (unsigned int i = 0; i < mdl->ponytailNumMeshes; ++i)
-                {
-                    glPopMatrix();
-                }
-#endif
-                glPopMatrix();
-            }
-        }
-
-        drawModelMesh(getWorld().getMesh(tag->mesh));
-    }
-
-    // Cycle frames ( cheap hack from old ent state based system )
-    if (mFlags & fAnimateAllModels)
-    {
-        if (model->getFrame() + 1 > (int)animation->frame.size()-1)
-        {
-            model->setFrame(0);
-        }
-        else
-        {
-            model->setFrame(model->getFrame()+1);
-        }
     }
 }
 
@@ -1111,12 +808,6 @@ void Render::setSkyMesh(int index, bool rot)
 }
 
 
-void Render::addSkeletalModel(SkeletalModel *mdl)
-{
-    mModels.push_back(mdl);
-}
-
-
 void Render::updateViewVolume()
 {
     matrix_t proj;
@@ -1131,9 +822,11 @@ void Render::updateViewVolume()
 bool Render::isVisible(BoundingBox &box) {
     vec3_t bbox[2];
     box.getBoundingBox(bbox);
+
     // For debugging purposes
     if (mMode == Render::modeWireframe)
         box.display(true, PINK, RED);
+
     return mViewVolume.isBboxInFrustum(bbox[0], bbox[1]);
 }
 
