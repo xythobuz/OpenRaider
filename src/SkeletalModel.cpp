@@ -146,11 +146,11 @@ void AnimationFrame::add(BoneFrame &b) {
     frame.push_back(&b);
 }
 
-SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, unsigned int i) {
+SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, unsigned int i, int objectId) {
     tr2_moveable_t *moveable = mTombRaider.Moveable();
     tr2_animation_t *anim = mTombRaider.Animation();
 
-    id = moveable[index].object_id;
+    id = objectId;
 
     // Gather more info if this is lara
     if (id == 0) {
@@ -242,6 +242,17 @@ SkeletalModel::~SkeletalModel() {
 
 int SkeletalModel::getId() {
     return id;
+}
+
+void SkeletalModel::setPigTail(bool b) {
+    pigtails = b;
+    if (b) {
+        ponyOff -= 20;
+        ponytail[1] -= 32;
+    } else {
+        ponyOff += 20;
+        ponytail[1] += 32;
+    }
 }
 
 unsigned int SkeletalModel::size() {

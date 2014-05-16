@@ -9,6 +9,7 @@
 #define _ENTITY_H_
 
 #include "math/math.h"
+#include "SkeletalModel.h"
 #include "TombRaider.h"
 
 class Entity {
@@ -25,12 +26,20 @@ public:
 
     bool operator<(Entity &o);
     void display();
+    void move(char movement);
+    void print();
 
+    SkeletalModel &getModel();
     void setSkeletalModel(unsigned int model);
+    void setMoveType(MoveType m);
+    int getObjectId();
+    void setAngles(vec_t yaw, vec_t pitch);
+    vec_t getPos(unsigned int i);
+    vec_t getAngle(unsigned int i);
 
     // Animation State
-    unsigned int getAnimationFrame();
-    void setAnimationFrame(unsigned int index);
+    unsigned int getAnimation();
+    void setAnimation(unsigned int index);
     unsigned int getBoneFrame();
     void setBoneFrame(unsigned int index);
     unsigned int getIdleAnimation();

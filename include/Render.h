@@ -15,7 +15,6 @@
 #include "math/Matrix.h"
 #include "ViewVolume.h"
 #include "World.h"
-#include "SkeletalModel.h"
 #include "Mesh.h"
 #include "Texture.h"
 #include "Camera.h"
@@ -121,8 +120,6 @@ public:
 
     void setSkyMesh(int index, bool rot);
 
-    void addSkeletalModel(SkeletalModel *mdl);
-
     unsigned int getFlags();
 
     /*!
@@ -157,8 +154,7 @@ public:
     //! \fixme should be private
 
     ViewVolume mViewVolume; //!< View Volume for frustum culling
-    std::vector<SkeletalModel *> mModels;
-    Texture mTexture;                     //!< Texture subsystem
+    Texture mTexture; //!< Texture subsystem
 
 private:
 

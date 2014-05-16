@@ -56,9 +56,11 @@ private:
 
 class SkeletalModel {
 public:
-    SkeletalModel(TombRaider &tr, unsigned int index);
+    SkeletalModel(TombRaider &tr, unsigned int index, unsigned int i, int objectId);
     ~SkeletalModel();
     int getId();
+    void setPigTail(bool b);
+    void setPonyPos(vec_t x, vec_t y, vec_t z, vec_t angle);
 
     unsigned int size();
     AnimationFrame &get(unsigned int i);

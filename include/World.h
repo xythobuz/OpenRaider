@@ -60,13 +60,6 @@ public:
     model_mesh_t *getMesh(int index);
 
     /*!
-     * \brief Move entity in given direction unless collision occurs
-     * \param e entity to move
-     * \param movement direction of movement ('f', 'b', 'l' or 'r')
-     */
-    void moveEntity(entity_t *e, char movement);
-
-    /*!
      * \brief Find room a location is in.
      *
      * If it fails to be in a room it gives closest overlapping room.

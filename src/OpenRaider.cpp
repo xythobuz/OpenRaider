@@ -493,7 +493,7 @@ void OpenRaider::frame() {
     if (getGame().isLoaded()) {
         for (int i = 0; i < 3; i++) {
             getWindow().drawText(10, getWindow().mHeight - ((4 - i) * 20), 0.5f, OR_BLUE, "%.2f (%.2f)",
-                getGame().mLara->pos[i] / 256.0f, getGame().mLara->angles[i]);
+                getGame().getLara().getPos(i) / 256.0f, getGame().getLara().getAngle(i));
         }
     }
 #endif

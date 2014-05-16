@@ -19,6 +19,8 @@
 #include "Entity.h"
 #include "main.h"
 
+#include "games/TombRaider1.h"
+
 Entity::Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int model) {
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_item_t *item = tr.Item();
@@ -73,6 +75,164 @@ void Entity::display() {
     */
 }
 
+void Entity::move(char movement) {
+    const float moved = 180.0f;
+    const float testd = 220.0f;
+    const float camHeight = 8.0f;
+    float x, y, z, pitch, h, floor, ceiling;
+    int roomNew, sector;
+    bool wall;
+    unsigned int roomFlags;
+
+    switch (moveType) {
+        case MoveTypeWalkNoSwim:
+        case MoveTypeWalk:
+            pitch = 0.0f; // in the future pitch could control jump up blocks here
+            break;
+
+        case MoveTypeNoClipping:
+        case MoveTypeFly:
+        case MoveTypeSwim:
+            pitch = angles[2];
+            break;
+    }
+
+    switch (movement) {
+        case 'f':
+            x = pos[0] + (testd * sinf(angles[1]));
+            y = pos[1] + (testd * sinf(pitch));
+            z = pos[2] + (testd * cosf(angles[1]));
+            break;
+        case 'b':
+            x = pos[0] - (testd * sinf(angles[1]));
+            y = pos[1] - (testd * sinf(pitch));
+            z = pos[2] - (testd * cosf(angles[1]));
+            break;
+        case 'l':
+            x = pos[0] - (testd * sinf(angles[1] + 90.0f));
+            y = pos[1];
+            z = pos[2] - (testd * cosf(angles[1] + 90.0f));
+            break;
+        case 'r':
+            x = pos[0] + (testd * sinf(angles[1] + 90.0f));
+            y = pos[1];
+            z = pos[2] + (testd * cosf(angles[1] + 90.0f));
+            break;
+        default:
+            return;
+    }
+
+    //room = getRoomByLocation(x, y, z);
+    roomNew = getWorld().getRoomByLocation(room, x, y, z);
+
+    if (roomNew == -1) { // Will we hit a portal?
+        roomNew = getWorld().getAdjoiningRoom(room,
+                pos[0],  pos[1], pos[2],
+                x, y, z);
+
+        if (roomNew > -1)
+            printf("Crossing from room %i to %i\n", room, roomNew);
+        else
+            //! \fixme mRooms, sectors, ... are now std::vector, but often upper bound checks are missing
+            return;
+    }
+
+    roomFlags = getWorld().getRoomInfo(roomNew);
+    sector = getWorld().getSector(roomNew, x, z, &floor, &ceiling);
+    wall = getWorld().isWall(roomNew, sector);
+
+    // If you're underwater you may want to swim  =)
+    // ...if you're worldMoveType_walkNoSwim, you better hope it's shallow
+    if ((roomFlags & RoomFlagUnderWater) && (moveType == MoveTypeWalk))
+        moveType = MoveTypeSwim;
+
+    // Don't swim on land
+    if (!(roomFlags & RoomFlagUnderWater) && (moveType == MoveTypeSwim))
+        moveType = MoveTypeWalk;
+
+    // Mongoose 2002.09.02, Add check for room -> room transition
+    // (Only allow by movement between rooms by using portals)
+    if (((moveType == MoveTypeNoClipping) ||
+                (moveType == MoveTypeFly) ||
+                (moveType == MoveTypeSwim)) ||
+            ((roomNew > -1) && (!wall))) {
+        room = roomNew;
+
+        switch (movement) {
+            case 'f':
+                x = pos[0] + (moved * sinf(angles[1]));
+                y = pos[1] + (moved * sinf(pitch));
+                z = pos[2] + (moved * cosf(angles[1]));
+                break;
+            case 'b':
+                x = pos[0] - (moved * sinf(angles[1]));
+                y = pos[1] - (moved * sinf(pitch));
+                z = pos[2] - (moved * cosf(angles[1]));
+                break;
+            case 'l':
+                x = pos[0] - (moved * sinf(angles[1] + 90.0f));
+                z = pos[2] - (moved * cosf(angles[1] + 90.0f));
+                break;
+            case 'r':
+                x = pos[0] + (moved * sinf(angles[1] + 90.0f));
+                z = pos[2] + (moved * cosf(angles[1] + 90.0f));
+                break;
+        }
+
+        /*! \fixme Test for vector (move vector) / plane (portal) collision here
+         * to see if we need to switch rooms... man...
+         */
+
+        h = y;
+        getWorld().getHeightAtPosition(room, x, &h, z);
+
+        switch (moveType) {
+            case MoveTypeFly:
+            case MoveTypeSwim:
+                // Don't fall out of world, avoid a movement that does
+                if (h > y - camHeight) {
+                    pos[0] = x;
+                    pos[1] = y;
+                    pos[2] = z;
+                }
+                break;
+
+            case MoveTypeWalk:
+            case MoveTypeWalkNoSwim:
+                y = pos[1];  // Override vector movement walking ( er, not pretty )
+
+                // Now fake gravity
+                // Mongoose 2002.08.14, Remember TR is upside down ( you fall 'up' )
+
+                //ddist = h - pos[1];
+
+                // This is to force false gravity, by making camera stay on ground
+                pos[1] = h; //roomFloor->bbox_min[1];
+
+                // Check for camera below terrian and correct
+                if (pos[1] < h - camHeight)
+                    pos[1] = h - camHeight;
+
+                pos[0] = x;
+                pos[2] = z;
+                break;
+
+            case MoveTypeNoClipping:
+                pos[0] = x;
+                pos[1] = y;
+                pos[2] = z;
+                break;
+        }
+    }
+}
+
+void Entity::print() {
+    getConsole().print("Entity %d:", objectId);
+    getConsole().print("  Room %i (0x%X)", room, getWorld().getRoomInfo(room));
+    getConsole().print("  %.1fx %.1fy %.1fz", pos[0], pos[1], pos[2]);
+    getConsole().print("  %.1f Yaw %.1f Pitch", OR_RAD_TO_DEG(angles[1]), OR_RAD_TO_DEG(angles[2]));
+}
+
 void Entity::setSkeletalModel(unsigned int model) {
     skeletalModel = model;
     animationFrame = 0;
@@ -80,11 +240,11 @@ void Entity::setSkeletalModel(unsigned int model) {
     idleAnimation = 0;
 }
 
-unsigned int Entity::getAnimationFrame() {
+unsigned int Entity::getAnimation() {
     return animationFrame;
 }
 
-void Entity::setAnimationFrame(unsigned int index) {
+void Entity::setAnimation(unsigned int index) {
     animationFrame = index;
     boneFrame = 0;
 }

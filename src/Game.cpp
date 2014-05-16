@@ -17,6 +17,7 @@
 #include <algorithm>
 #include <map>
 #include <cstdlib>
+#include <assert.h>
 
 #include "main.h"
 #include "Console.h"
@@ -64,9 +65,9 @@ int Game::initialize() {
 void Game::destroy() {
     if (mName)
         delete [] mName;
-
+    mName = NULL;
     mLoaded = false;
-    mLara = NULL;
+    mLara = -1;
     getRender().setMode(Render::modeDisabled);
 
     getWorld().destroy();
@@ -123,7 +124,7 @@ int Game::loadLevel(const char *level) {
     mTombRaider.reset();
 
     // Check if the level contains Lara
-    if (mLara == NULL) {
+    if (mLara == -1) {
         getConsole().print("Can't find Lara entity in level pak!");
         return -1;
     }
@@ -137,13 +138,13 @@ int Game::loadLevel(const char *level) {
 void Game::handleAction(ActionEvents action, bool isFinished) {
     if (mLoaded) {
         if (action == forwardAction) {
-            getWorld().moveEntity(mLara, 'f');
+            getLara().move('f');
         } else if (action == backwardAction) {
-            getWorld().moveEntity(mLara, 'b');
+            getLara().move('b');
         } else if (action == leftAction) {
-            getWorld().moveEntity(mLara, 'l');
+            getLara().move('l');
         } else if (action == rightAction) {
-            getWorld().moveEntity(mLara, 'r');
+            getLara().move('r');
         }
     }
 }
@@ -167,13 +168,13 @@ void Game::handleMouseMotion(int xrel, int yrel) {
                 getCamera().command(CAMERA_ROTATE_DOWN);
 
         // Fix Laras rotation
-        mLara->angles[1] = getCamera().getRadianYaw();
-        mLara->angles[2] = getCamera().getRadianPitch();
+        getLara().setAngles(getCamera().getRadianYaw(), getCamera().getRadianPitch());
     }
 }
 
 Entity &Game::getLara() {
-    assert(mLara < getWorld().sizeEntity());
+    assert(mLara >= 0);
+    assert(mLara < (int)getWorld().sizeEntity());
     return getWorld().getEntity(mLara);
 }
 
@@ -385,14 +386,14 @@ void Game::processMoveable(int index, int i, int object_id) {
     bool cached = false;
     unsigned int mod = 0;
     for (; mod < getWorld().sizeSkeletalModel(); mod++) {
-        if (getWorld().getSkeletalModel(mod).getId() == moveable[index].object_id) {
+        if (getWorld().getSkeletalModel(mod).getId() == object_id) {
             cached = true;
             break;
         }
     }
 
     if (!cached) {
-        getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider, index, i));
+        getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider, index, i, object_id));
     }
 
     getWorld().addEntity(*new Entity(mTombRaider, index, i, mod));

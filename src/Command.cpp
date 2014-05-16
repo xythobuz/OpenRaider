@@ -13,6 +13,7 @@
 
 #include "config.h"
 #include "Console.h"
+#include "Entity.h"
 #include "Game.h"
 #include "main.h"
 #include "math/math.h"
@@ -131,13 +132,13 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             if (getGame().isLoaded()) {
                 char *move = args->at(0);
                 if (strcmp(move, "walk") == 0) {
-                    getGame().mLara->moveType = worldMoveType_walk;
+                    getGame().getLara().setMoveType(Entity::MoveTypeWalk);
                     getConsole().print("Lara is walking...");
                 } else if (strcmp(move, "fly") == 0) {
-                    getGame().mLara->moveType = worldMoveType_fly;
+                    getGame().getLara().setMoveType(Entity::MoveTypeFly);
                     getConsole().print("Lara is flying...");
                 } else if (strcmp(move, "noclip") == 0) {
-                    getGame().mLara->moveType = worldMoveType_noClipping;
+                    getGame().getLara().setMoveType(Entity::MoveTypeNoClipping);
                     getConsole().print("Lara is noclipping...");
                 } else {
                     getConsole().print("Invalid use of move command (%s)!", move);
@@ -172,13 +173,13 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             if (c == 'n') {
                 // Step all skeletal models to their next animation
                 if (getRender().getFlags() & Render::fAnimateAllModels) {
-                    for (unsigned int i = 0; i < getRender().mModels.size(); i++) {
-                        SkeletalModel *m = getRender().mModels[i];
-                        if (m->getAnimation() < ((int)m->model->animation.size() - 1))
-                            m->setAnimation(m->getAnimation() + 1);
+                    for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
+                        Entity &e = getWorld().getEntity(i);
+                        SkeletalModel &m = e.getModel();
+                        if (e.getAnimation() < (m.size() - 1))
+                            e.setAnimation(e.getAnimation() + 1);
                         else
-                            if (m->getAnimation() != 0)
-                                m->setAnimation(0);
+                            e.setAnimation(0);
                     }
                 } else {
                     getConsole().print("Animations need to be enabled!");
@@ -186,13 +187,14 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             } else if (c == 'p') {
                 // Step all skeletal models to their previous animation
                 if (getRender().getFlags() & Render::fAnimateAllModels) {
-                    for (unsigned int i = 0; i < getRender().mModels.size(); i++) {
-                        SkeletalModel *m = getRender().mModels[i];
-                        if (m->getAnimation() > 0)
-                            m->setAnimation(m->getAnimation() - 1);
+                    for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
+                        Entity &e = getWorld().getEntity(i);
+                        SkeletalModel &m = e.getModel();
+                        if (e.getAnimation() > 0)
+                            e.setAnimation(e.getAnimation() - 1);
                         else
-                            if (m->model->animation.size() > 0)
-                                m->setAnimation(m->model->animation.size() - 1);
+                            if (m.size() > 0)
+                                e.setAnimation(m.size() - 1);
                     }
                 } else {
                     getConsole().print("Animations need to be enabled!");
@@ -251,22 +253,19 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             getConsole().print("Use viewmodel command interactively!");
             return -999;
         }
-        if (getGame().mLara) {
-            skeletal_model_t *mdl = getWorld().getModel(atoi(args->at(0)));
-            if (getGame().mLara->tmpHook)
-                getGame().mLara->tmpHook->setModel(mdl);
+        unsigned int n = atoi(args->at(0));
+        if (n < getWorld().sizeSkeletalModel())
+            getGame().getLara().setSkeletalModel(n);
+        else {
+            getConsole().print("Invalid SkeletalModel index!");
+            return -66;
         }
-        //m_render.ViewModel(LARA, atoi(cmd));
     } else if (strcmp(command, "pos") == 0) {
-        if (getGame().mLara) {
-            getConsole().print("Position:");
-            getConsole().print("  Room %i (0x%X)", getGame().mLara->room, getWorld().getRoomInfo(getGame().mLara->room));
-            getConsole().print("  %.1fx %.1fy %.1fz", getGame().mLara->pos[0], getGame().mLara->pos[1], getGame().mLara->pos[2]);
-            getConsole().print("  %.1f Yaw %.1f Pitch", OR_RAD_TO_DEG(getGame().mLara->angles[1]), OR_RAD_TO_DEG(getGame().mLara->angles[2]));
-        } else {
-            getConsole().print("Load a level to get Laras position!");
+        if ((!mRunning) || (!getGame().isLoaded())) {
+            getConsole().print("Use pos command interactively!");
             return -21;
         }
+        getGame().getLara().print();
     } else if (strcmp(command, "vmodel") == 0) {
         if (args->size() > 0) {
             bool b;
@@ -406,15 +405,8 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
                 getConsole().print("Pass BOOL to pigtail command!");
                 return -46;
             }
-            SkeletalModel *tmp = getGame().mLara->tmpHook;
-            tmp->model->pigtails = b;
-            if (b) {
-                tmp->model->ponyOff -= 20;
-                tmp->model->ponytail[1] -= 32;
-            } else {
-                tmp->model->ponyOff += 20;
-                tmp->model->ponytail[1] += 32;
-            }
+            SkeletalModel &tmp = getGame().getLara().getModel();
+            tmp.setPigTail(b);
             getConsole().print("Pigtail is now %s", b ? "on" : "off");
         } else {
             getConsole().print("Invalid use of pigtail-command!");
@@ -426,11 +418,9 @@ int OpenRaider::command(const char *command, std::vector<char *> *args) {
             return -999;
         }
         if (args->size() > 3) {
-            SkeletalModel *tmp = getGame().mLara->tmpHook;
-            tmp->model->ponytail[0] = (float)atof(args->at(0));
-            tmp->model->ponytail[1] = (float)atof(args->at(1));
-            tmp->model->ponytail[2] = (float)atof(args->at(2));
-            tmp->model->ponytailAngle = (float)atof(args->at(3));
+            SkeletalModel &tmp = getGame().getLara().getModel();
+            tmp.setPonyPos((float)atof(args->at(0)), (float)atof(args->at(1)),
+                    (float)atof(args->at(2)), (float)atof(args->at(3)));
         } else {
             getConsole().print("Invalid use of ponypos-command!");
             return -48;
