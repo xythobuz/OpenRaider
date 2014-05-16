@@ -66,7 +66,7 @@ private:
     unsigned int mTextureStart;
     unsigned int mTextureOffset;
 
-    unsigned int mLara;
+    int mLara;
 };
 
 #endif

@@ -36,7 +36,7 @@ std::map<int, int> gMapTex2Bump;
 Game::Game() {
     mLoaded = false;
     mName = NULL;
-    mLara = 0;
+    mLara = -1;
     mTextureStart = 0;
     mTextureOffset = 0;
 }
@@ -395,7 +395,7 @@ void Game::processMoveable(int index, int i, int object_id)
     }
 
     if (!cached) {
-        getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider /* ... */));
+        getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider, index));
     }
 
     getWorld().addEntity(*new Entity(mTombRaider, /* ... */ mod));
@@ -447,13 +447,6 @@ void Game::processMoveable(int index, int i, int object_id)
                 break;
         }
     }
-
-    //! \fixme Check here and see if we already have one for object_id later
-    // if (getWorld().isCachedSkeletalModel(moveable[index].object_id))
-    // {
-    //   thing->modelId = getRender().add(sModel);
-    //   return;
-    // }
 
     skeletal_model_t *r_model = new skeletal_model_t;
     r_model->id = moveable[index].object_id;
@@ -588,16 +581,14 @@ void Game::processMoveable(int index, int i, int object_id)
         return;
     }
 
-    int aloop = mTombRaider.getNumAnimsForMoveable(index);
-
     //a = moveable[index].animation;
     //frame_offset = animation[a].frame_offset / 2;
     //frame_step = animation[a].frame_size;
 
-    for (; a < aloop; ++a,
-            frame_offset = animation[a].frame_offset / 2,
-            frame_step = animation[a].frame_size)
-    {
+    for (; a < mTombRaider.getNumAnimsForMoveable(index); a++) {
+        frame_offset = animation[a].frame_offset / 2;
+        frame_step = animation[a].frame_size;
+
         animation_frame_t *animation_frame = new animation_frame_t;
         r_model->animation.push_back(animation_frame);
 

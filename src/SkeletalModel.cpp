@@ -58,7 +58,7 @@ void AnimationFrame::add(BoneFrame &b) {
     frame.push_back(&b);
 }
 
-SkeletalModel::SkeletalModel() {
+SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index) {
 
 }
 

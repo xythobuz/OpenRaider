@@ -56,7 +56,7 @@ private:
 
 class SkeletalModel {
 public:
-    SkeletalModel(TombRaider &tr, );
+    SkeletalModel(TombRaider &tr, unsigned int index);
     ~SkeletalModel();
     int getId();
 
