@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140516 ]
+    * Finished moving the Entity/SkeletalModel logic into classes
+    * Currently seems as if wrong SkeletalModels are used for entities?
+
     [ 20140515 ]
     * Slight cmake script improvements
     * Created Entity class that will also get animation state

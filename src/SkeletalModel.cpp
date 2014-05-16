@@ -81,9 +81,14 @@ BoneFrame::BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigne
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_item_t *item = tr.Item();
 
-    pos[0] = (short)*frame[*frame_offset + 6];
-    pos[1] = (short)*frame[*frame_offset + 7];
-    pos[2] = (short)*frame[*frame_offset + 8];
+    /*!
+     * \fixme Do we really need to keep frame and frame_offset
+     * at the top level, passing pointers?!
+     */
+
+    pos[0] = (short)((*frame)[(*frame_offset) + 6]);
+    pos[1] = (short)((*frame)[(*frame_offset) + 7]);
+    pos[2] = (short)((*frame)[(*frame_offset) + 8]);
 
     yaw = ((item[i].angle >> 14) & 0x03);
     yaw *= 90;

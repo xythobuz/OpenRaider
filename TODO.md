@@ -17,6 +17,11 @@ There are these DebugModel, DebugMap flags...?
 ## Changes
 
 * Using std::vector with [] is not bound checked. Segfaults were caused because the upper bound of the argument was never checked and garbage was returned... Do consistent checks, or use .at() as it throws an exception
+* Creating the Room class has introduced a bug that crashes when walking the level:
+
+    Assertion failed: (sector < (int)mRooms.at(room)->sizeSectors()), function isWall, file /Users/thomas/Projekte/OpenRaider/src/World.cpp, line 180.
+
+* The wrong SkeletalModels are used by other entities...?
 
 ## Cmake
 
