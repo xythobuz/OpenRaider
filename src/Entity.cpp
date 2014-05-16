@@ -19,8 +19,42 @@
 #include "Entity.h"
 #include "main.h"
 
-Entity::Entity(TombRaider &tr) {
+Entity::Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int model) {
+    tr2_moveable_t *moveable = tr.Moveable();
+    tr2_item_t *item = tr.Item();
 
+    vec_t yaw = ((item[i].angle >> 14) & 0x03);
+    yaw *= 90;
+
+    pos[0] = item[i].x;
+    pos[1] = item[i].y;
+    pos[2] = item[i].z;
+    angles[0] = 0;
+    angles[1] = yaw;
+    angles[2] = 0;
+    objectId = moveable[index].object_id;
+    moveType = MoveTypeWalk;
+    room = getWorld().getRoomByLocation(pos[0], pos[1], pos[2]);
+    skeletalModel = model;
+    boneFrame = 0;
+    animationFrame = 0;
+    idleAnimation = 0;
+    state = 0;
+
+    if (tr.Engine() == TR_VERSION_1) {
+        switch (objectId) {
+            case TombRaider1::Wolf:
+                state = TombRaider1::WolfState_Lying;
+                animationFrame = 3;
+                break;
+        }
+    }
+
+    // Gather more info if this is lara
+    if (objectId == 0) {
+        animationFrame = TR_ANIAMTION_RUN;
+        idleAnimation = TR_ANIAMTION_STAND;
+    }
 }
 
 bool Entity::operator<(Entity &o) {

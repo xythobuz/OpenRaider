@@ -62,7 +62,6 @@ public:
 
     unsigned int size();
     AnimationFrame &get(unsigned int i);
-    void add(AnimationFrame &a);
 
 private:
     int id;

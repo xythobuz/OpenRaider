@@ -21,7 +21,7 @@ public:
         MoveTypeSwim       = 3
     } MoveType;
 
-    Entity(TombRaider &tr);
+    Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int model);
 
     bool operator<(Entity &o);
     void display();

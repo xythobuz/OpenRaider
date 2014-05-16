@@ -227,8 +227,6 @@ SpriteSequence &World::getSprite(unsigned int index) {
 }
 
 void World::addEntity(Entity &entity) {
-    //e->moveType = worldMoveType_walk; // Walk
-    //e->room = getRoomByLocation(e->pos[0], e->pos[1], e->pos[2]);
     mEntities.push_back(&entity);
 }
 
