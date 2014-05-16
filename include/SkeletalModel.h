@@ -16,7 +16,7 @@
 
 class BoneTag {
 public:
-    BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l);
+    BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l, unsigned short **frame, unsigned int *frame_offset);
     void display();
 
     void getOffset(vec3_t o);
@@ -32,12 +32,13 @@ private:
 
 class BoneFrame {
 public:
-    BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigned int frame_offset);
+    BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigned short **frame, unsigned int *frame_offset);
     ~BoneFrame();
+
+    void getPosition(vec3_t p);
 
     unsigned int size();
     BoneTag &get(unsigned int i);
-    void add(BoneTag &b);
 
 private:
     vec3_t pos;
@@ -52,7 +53,6 @@ public:
 
     unsigned int size();
     BoneFrame &get(unsigned int i);
-    void add(BoneFrame &b);
 
 private:
     char rate;

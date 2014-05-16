@@ -240,11 +240,44 @@ void Entity::print() {
     getConsole().print("  %.1f Yaw %.1f Pitch", OR_RAD_TO_DEG(angles[1]), OR_RAD_TO_DEG(angles[2]));
 }
 
+SkeletalModel &Entity::getModel() {
+    return getWorld().getSkeletalModel(skeletalModel);
+}
+
 void Entity::setSkeletalModel(unsigned int model) {
     skeletalModel = model;
     animationFrame = 0;
     boneFrame = 0;
     idleAnimation = 0;
+}
+
+Entity::MoveType Entity::getMoveType() {
+    return moveType;
+}
+
+void Entity::setMoveType(MoveType m) {
+    moveType = m;
+}
+
+int Entity::getObjectId() {
+    return objectId;
+}
+
+void Entity::setAngles(vec_t yaw, vec_t pitch) {
+    angles[1] = yaw;
+    angles[2] = pitch;
+}
+
+vec_t Entity::getPos(unsigned int i) {
+    return pos[i];
+}
+
+vec_t Entity::getAngle(unsigned int i) {
+    return angles[i];
+}
+
+int Entity::getRoom() {
+    return room;
 }
 
 unsigned int Entity::getAnimation() {
