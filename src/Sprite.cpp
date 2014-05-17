@@ -13,16 +13,12 @@
 
 SpriteSequence::SpriteSequence(TombRaider &tr, unsigned int item, unsigned int sequence) {
     for (int i = 0; i < (-tr.SpriteSequence()[sequence].negative_length); i++)
-        add(*new Sprite(tr, item, sequence, i));
+        sprites.push_back(new Sprite(tr, item, sequence, i));
 }
 
 SpriteSequence::~SpriteSequence() {
     for (unsigned int i = 0; i < sprites.size(); i++)
-        delete &sprites.at(i);
-}
-
-void SpriteSequence::add(Sprite &s) {
-    sprites.push_back(&s);
+        delete sprites.at(i);
 }
 
 unsigned int SpriteSequence::size() {

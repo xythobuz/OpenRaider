@@ -77,12 +77,10 @@ int Game::loadLevel(const char *level) {
 
     mName = bufferString("%s", level);
 
-    // Load the level pak into TombRaider
     getConsole().print("Loading %s", mName);
     int error = mTombRaider.Load(mName);
-    if (error != 0) {
+    if (error != 0)
         return error;
-    }
 
     // If required, load the external sound effect file MAIN.SFX into TombRaider
     if ((mTombRaider.getEngine() == TR_VERSION_2) || (mTombRaider.getEngine() == TR_VERSION_3)) {
@@ -98,9 +96,8 @@ int Game::loadLevel(const char *level) {
         strcpy(tmp + dir, "MAIN.SFX"); // overwrite the name itself with MAIN.SFX
         tmp[dir + 8] = '\0';
         error = mTombRaider.loadSFX(tmp);
-        if (error != 0) {
+        if (error != 0)
             getConsole().print("Could not load %s", tmp);
-        }
         delete [] tmp;
     }
 
@@ -112,23 +109,21 @@ int Game::loadLevel(const char *level) {
     processMoveables();
     processPakSounds();
 
-    // Free pak file
     mTombRaider.reset();
 
-    // Check if the level contains Lara
     if (mLara == -1) {
         getConsole().print("Can't find Lara entity in level pak!");
+        destroy();
         return -1;
+    } else {
+        mLoaded = true;
+        getRender().setMode(Render::modeVertexLight);
+        return 0;
     }
-
-    mLoaded = true;
-    getRender().setMode(Render::modeVertexLight);
-
-    return 0;
 }
 
 void Game::handleAction(ActionEvents action, bool isFinished) {
-    if (mLoaded) {
+    if (mLoaded && (!isFinished)) {
         if (action == forwardAction) {
             getLara().move('f');
         } else if (action == backwardAction) {

@@ -278,40 +278,6 @@ void Texture::bindTextureId(unsigned int n) {
     glBindTexture(GL_TEXTURE_2D, mTextureIds[n]);
 }
 
-void Texture::glScreenShot(char *base, unsigned int width, unsigned int height) {
-    FILE *f;
-    int sz = width * height;
-    unsigned char *image = new unsigned char[sz * 3];
-    char *filename = NULL;
-    static int count = 0;
-    bool done = false;
-
-    assert(base != NULL);
-    assert(width > 0);
-    assert(height > 0);
-
-    // Don't overwrite files
-    while (!done) {
-        filename = bufferString("%s-%04i.tga", base, count++);
-
-        f = fopen(filename, "rb");
-
-        if (f)
-            fclose(f);
-        else
-            done = true;
-    }
-
-    // Capture frame buffer
-    glReadPixels(0, 0, width, height, GL_BGR_EXT, GL_UNSIGNED_BYTE, image);
-
-    tgaSaveFilename(image, width, height, 0, "%s", filename);
-    printf("Took screenshot '%s'.\n", filename);
-
-    delete [] filename;
-    delete [] image;
-}
-
 int Texture::loadTGA(const char *filename) {
     FILE *f;
     unsigned char *image = NULL;

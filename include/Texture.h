@@ -57,16 +57,6 @@ public:
     int getTextureCount();
 
     /*!
-     * \brief Dumps a screenshot to disk.
-     *
-     * Avoids overwriting files with same base name.
-     * \param base base filename
-     * \param width viewport width
-     * \param height viewport height
-     */
-    void glScreenShot(char *base, unsigned int width, unsigned int height);
-
-    /*!
      * \brief Sets up multitexture rendering with passed ids
      * \param texture0 first texture for multitexture
      * \param texture1 second texture for multitexture

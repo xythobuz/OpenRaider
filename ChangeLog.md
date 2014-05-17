@@ -8,6 +8,7 @@
       in the header of the service they provide, making main.h useless
     * Also some more work on the way to making OR compilable under Windows
     * Not using glu.h anywhere anymore
+    * No longer segfaults on exit
 
     [ 20140516 ]
     * Finished moving the Entity/SkeletalModel logic into classes

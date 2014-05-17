@@ -17,6 +17,7 @@
 #include "OpenRaider.h"
 #include "Render.h"
 #include "utils/strings.h"
+#include "utils/tga.h"
 
 Render::Render() {
     mSkyMesh = -1;
@@ -36,7 +37,35 @@ Render::~Render() {
 
 void Render::screenShot(char *filenameBase)
 {
-    mTexture.glScreenShot(filenameBase, getWindow().mWidth, getWindow().mHeight);
+    FILE *f;
+    int sz = getWindow().mWidth * getWindow().mHeight;
+    unsigned char *image = new unsigned char[sz * 3];
+    char *filename = NULL;
+    static int count = 0;
+    bool done = false;
+
+    assert(filenameBase != NULL);
+
+    // Don't overwrite files
+    while (!done) {
+        filename = bufferString("%s-%04i.tga", filenameBase, count++);
+
+        f = fopen(filename, "rb");
+
+        if (f)
+            fclose(f);
+        else
+            done = true;
+    }
+
+    // Capture frame buffer
+    glReadPixels(0, 0, getWindow().mWidth, getWindow().mHeight, GL_BGR_EXT, GL_UNSIGNED_BYTE, image);
+
+    tgaSaveFilename(image, getWindow().mWidth, getWindow().mHeight, 0, "%s", filename);
+    printf("Took screenshot '%s'.\n", filename);
+
+    delete [] filename;
+    delete [] image;
 }
 
 unsigned int Render::getFlags() {

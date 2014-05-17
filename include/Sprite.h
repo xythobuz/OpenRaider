@@ -30,7 +30,6 @@ public:
     SpriteSequence(TombRaider &tr, unsigned int item, unsigned int sequence);
     ~SpriteSequence();
 
-    void add(Sprite &s);
     unsigned int size();
     Sprite &get(unsigned int index);
 

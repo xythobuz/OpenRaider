@@ -523,7 +523,7 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
         } else if (!getConsole().isVisible()) {
             for (int i = forwardAction; i < ActionEventCount; i++) {
                 if (keyBindings[i] == key) {
-                    getGame().handleAction((ActionEvents)i, pressed);
+                    getGame().handleAction((ActionEvents)i, !pressed);
                 }
             }
         } else {
@@ -555,7 +555,7 @@ void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
     } else if (!getConsole().isVisible()) {
         for (int i = forwardAction; i < ActionEventCount; i++) {
             if (keyBindings[i] == button) {
-                getGame().handleAction((ActionEvents)i, !released);
+                getGame().handleAction((ActionEvents)i, released);
             }
         }
     }

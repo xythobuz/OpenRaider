@@ -281,7 +281,7 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
 void Menu::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
     int items = (getWindow().mHeight - 110) / 25;
 
-    if ((!released) || (button != leftmouseKey))
+    if (released || (button != leftmouseKey))
         return;
 
     if ((y >= 100) && (y <= (unsigned int)(100 + (25 * items)))) {
