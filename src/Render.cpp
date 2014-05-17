@@ -8,21 +8,11 @@
 
 #include <algorithm>
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#elif defined WIN32
-#include <gl/glew.h>
-#include <gl/wglew.h>
-#else
-#include <GL/gl.h>
-#endif
-
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
 
 #include "global.h"
-#include "main.h"
 #include "Game.h"
 #include "OpenRaider.h"
 #include "Render.h"

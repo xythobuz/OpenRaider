@@ -18,8 +18,8 @@
 
 #include <cstdio>
 #include <cstdlib>
-#include <assert.h>
 
+#include "global.h"
 #include "math/math.h"
 #include "SoundAL.h"
 

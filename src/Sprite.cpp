@@ -5,18 +5,10 @@
  * \author xythobuz
  */
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#elif defined WIN32
-#include <gl/glew.h>
-#include <gl/wglew.h>
-#else
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
-
-#include "main.h"
+#include "global.h"
+#include "Camera.h"
+#include "Game.h"
+#include "Render.h"
 #include "Sprite.h"
 
 SpriteSequence::SpriteSequence(TombRaider &tr, unsigned int item, unsigned int sequence) {

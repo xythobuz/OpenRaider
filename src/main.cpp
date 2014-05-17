@@ -8,10 +8,15 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
-#include <assert.h>
 
-#include "config.h"
-#include "main.h"
+#include "global.h"
+#include "Camera.h"
+#include "Console.h"
+#include "Game.h"
+#include "Menu.h"
+#include "OpenRaider.h"
+#include "Render.h"
+#include "World.h"
 #include "utils/time.h"
 
 #ifdef USING_AL
@@ -37,7 +42,6 @@ World gWorld;
 #ifdef USING_AL
 SoundAL gSound;
 #else
-#warn Sound output deactivated!
 SoundNull gSound;
 #endif
 
@@ -153,4 +157,27 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
+#if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS) && (!defined(NDEBUG))
+
+#include <execinfo.h>
+
+void assertImplementation(const char *exp, const char *file, int line) {
+    const unsigned int maxSize = 128;
+    void *callstack[maxSize];
+    int frames = backtrace(callstack, maxSize);
+    char **strs = backtrace_symbols(callstack, frames);
+
+    printf("\nassertion failed:\n");
+    printf("\t%s\n", exp);
+    printf("in %s:%d\n\n", file, line);
+
+    for (int i = 0; i < frames; i++)
+        printf("%s\n", strs[i]);
+
+    delete [] strs;
+    abort();
+}
+
+#endif
 

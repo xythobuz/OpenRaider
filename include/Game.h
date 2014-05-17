@@ -12,7 +12,6 @@
 
 #include "Camera.h"
 #include "Entity.h"
-#include "global.h"
 #include "Render.h"
 #include "TombRaider.h"
 #include "World.h"
@@ -68,5 +67,7 @@ private:
 
     int mLara;
 };
+
+Game &getGame();
 
 #endif

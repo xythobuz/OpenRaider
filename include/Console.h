@@ -60,4 +60,6 @@ private:
     unsigned int mLineOffset;
 };
 
+Console &getConsole();
+
 #endif

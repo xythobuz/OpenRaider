@@ -10,12 +10,7 @@
 
 #include <cstdint>
 
-#ifdef WIN32
-// Have to remove GCC packing, by removing in preprocessor
-#define __attribute__(packed)
-
-// MSVC++ pragma to pack structs
-#define TR2_H 1
+#ifdef _MSC_VER
 #pragma pack(push, tr2_h, 1)
 #endif
 
@@ -1135,7 +1130,7 @@ typedef struct {
     unsigned int unknown[24];
 } tr5_cinematic_frame_t;
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #pragma pack(pop, tr2_h, 1)
 #endif
 

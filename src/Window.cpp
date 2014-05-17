@@ -8,17 +8,8 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdarg>
-#include <assert.h>
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#elif defined WIN32
-#include <gl/glew.h>
-#include <gl/wglew.h>
-#else
-#include <GL/gl.h>
-#endif
-
+#include "global.h"
 #include "math/math.h"
 #include "Window.h"
 

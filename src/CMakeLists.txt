@@ -64,9 +64,10 @@ set (SRCS ${SRCS} "World.cpp")
 option (ENABLE_AUDIO "Enable Sound Output" YES)
 if (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
     set (SRCS ${SRCS} "SoundAL.cpp")
-    set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_AL")
+    set (USING_AL TRUE)
 else (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
     set (SRCS ${SRCS} "SoundNull.cpp")
+    set (USING_AL FALSE)
     message (STATUS "Disabled Sound support (no OpenAL and ALUT)!")
 endif (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
 
@@ -78,6 +79,17 @@ else (SDL2_FOUND AND SDL2TTF_FOUND)
     # Currently only SDL2 support
     message (FATAL_ERROR "SDL2 and SDL2-TTF are required at the moment!")
 endif (SDL2_FOUND AND SDL2TTF_FOUND)
+
+#################################################################
+
+# Check for header/function presence
+include (CheckIncludeFiles)
+include (CheckFunctionExists)
+
+# backtrace() for assert with call stack output
+check_include_files (execinfo.h HAVE_EXECINFO_H)
+check_function_exists (backtrace HAVE_BACKTRACE)
+check_function_exists (backtrace_symbols HAVE_BACKTRACE_SYMBOLS)
 
 #################################################################
 

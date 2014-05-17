@@ -7,12 +7,10 @@
 
 #include <cstdio>
 #include <cstring>
-#include <assert.h>
 
-#include "config.h"
+#include "global.h"
 #include "Console.h"
 #include "Game.h"
-#include "main.h"
 #include "math/math.h"
 #include "Menu.h"
 #include "Sound.h"
@@ -147,7 +145,7 @@ int OpenRaider::command(const char *command) {
         returnValue = this->command(token, &args);
     }
 
-    free(cmd);
+    delete [] cmd;
     return returnValue;
 }
 

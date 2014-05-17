@@ -8,10 +8,6 @@
 #ifndef _UTILS_TGA_H
 #define _UTILS_TGA_H
 
-#ifdef WIN32
-#define __attribute__(x)
-#endif
-
 /*!
  * \brief Possible TGA image types
  */

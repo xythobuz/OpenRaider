@@ -6,21 +6,11 @@
  * \author xythobuz
  */
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#elif defined WIN32
-#include <gl/glew.h>
-#include <gl/wglew.h>
-#else
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
-
-#include <assert.h>
-
-#include "main.h"
+#include "global.h"
+#include "Console.h"
+#include "Render.h"
 #include "SkeletalModel.h"
+#include "World.h"
 
 BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l, unsigned short **frame, unsigned int *frame_offset) {
     tr2_moveable_t *moveable = tr.Moveable();

@@ -1,3 +1,13 @@
+/*!
+ * \file include/config.h.in
+ * \brief Global config file template
+ *
+ * \author xythobuz
+ */
+
+#ifndef _CONFIG_H_
+#define _CONFIG_H_
+
 #define VERSION "OpenRaider-@OpenRaider_VERSION_MAJOR@.@OpenRaider_VERSION_MINOR@.@OpenRaider_VERSION_MICRO@@OpenRaider_VERSION_RELEASE@ (@CMAKE_BUILD_TYPE@)"
 #define BUILD_HOST "@OpenRaider_BUILD_HOST@ @OpenRaider_HOSTNAME@"
 
@@ -5,3 +15,11 @@
 #define DEFAULT_CONFIG_FILE "OpenRaider.ini"
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
+
+#cmakedefine USING_AL
+#cmakedefine HAVE_EXECINFO_H
+#cmakedefine HAVE_BACKTRACE
+#cmakedefine HAVE_BACKTRACE_SYMBOLS
+
+#endif
+

@@ -8,13 +8,7 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
-#ifdef WIN32
-#define __attribute__(x)
-#endif
-
 #include <ctime>
-
-#include "global.h"
 
 typedef struct {
     char *text;
@@ -85,5 +79,7 @@ protected:
     bool mFontInit;
     char *mFontName;
 };
+
+Window &getWindow();
 
 #endif

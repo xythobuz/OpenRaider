@@ -11,17 +11,6 @@
 #include "SDL.h"
 #include "SDL_ttf.h"
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#elif defined WIN32
-#include <gl/glew.h>
-#include <gl/wglew.h>
-#else
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
-
 #include "Window.h"
 
 /*!
@@ -73,7 +62,7 @@ private:
     SDL_GLContext mGLContext; //!< The OpenGL Context
 
     TTF_Font *mFont;
-    GLuint mFontTexture;
+    unsigned int mFontTexture;
 
     bool mTextInput;
 

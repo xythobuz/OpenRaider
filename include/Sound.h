@@ -94,9 +94,9 @@ public:
      * \param source sound source to stop
      */
     virtual void stop(int source) = 0;
-
-private:
 };
+
+Sound &getSound();
 
 #endif
 

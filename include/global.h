@@ -7,6 +7,34 @@
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
 
+#include "config.h"
+
+// Visual C++ does not understand __attribute__
+#ifdef _MSC_VER
+#define __attribute__(x)
+#endif
+
+// Globally include OpenGL header
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#ifdef WIN32
+#include <Windows.h>
+#endif
+#include <GL/gl.h>
+#endif
+
+#if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
+#ifndef NDEBUG
+[[noreturn]] void assertImplementation(const char *exp, const char *file, int line);
+#define assert(x) (void)((x) || (assertImplementation(#x, __FILE__, __LINE__),0))
+#else
+#define assert(x)
+#endif
+#else
+#include <cassert>
+#endif
+
 const float BLACK[]       = {  0.0f,  0.0f,  0.0f, 1.0f };
 const float DIM_WHITE[]   = {  0.5f,  0.5f,  0.5f, 1.0f };
 const float WHITE[]       = {  1.0f,  1.0f,  1.0f, 1.0f };

@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "global.h"
 #include "Camera.h"
 
 Camera::Camera() {

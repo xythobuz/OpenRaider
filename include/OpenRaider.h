@@ -10,7 +10,6 @@
 
 #include <vector>
 
-#include "global.h"
 #include "Console.h"
 #include "Game.h"
 #include "Menu.h"
@@ -82,5 +81,7 @@ private:
 
     KeyboardButton keyBindings[ActionEventCount];
 };
+
+OpenRaider &getOpenRaider();
 
 #endif

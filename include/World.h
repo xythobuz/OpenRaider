@@ -140,4 +140,6 @@ private:
     std::vector<SkeletalModel *> mModels;
 };
 
+World &getWorld();
+
 #endif

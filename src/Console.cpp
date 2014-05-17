@@ -5,19 +5,9 @@
  * \author xythobuz
  */
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#elif defined WIN32
-#include <gl/glew.h>
-#include <gl/wglew.h>
-#else
-#include <GL/gl.h>
-#endif
-
-#include "config.h"
 #include "global.h"
 #include "Console.h"
-#include "main.h"
+#include "OpenRaider.h"
 #include "utils/strings.h"
 #include "utils/time.h"
 

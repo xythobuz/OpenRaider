@@ -7,15 +7,13 @@
 
 #include <cstdio>
 #include <cstring>
-#include <assert.h>
 
 #include "WindowSDL.h"
 
-#include "config.h"
+#include "global.h"
 #include "Console.h"
 #include "Entity.h"
 #include "Game.h"
-#include "main.h"
 #include "math/math.h"
 #include "Menu.h"
 #include "Sound.h"

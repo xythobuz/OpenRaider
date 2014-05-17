@@ -5,6 +5,7 @@
  * \author xythobuz
  */
 
+#include "global.h"
 #include "Sound.h"
 
 Sound::~Sound() {

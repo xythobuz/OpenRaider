@@ -7,8 +7,8 @@
 
 #include <cstdio>
 #include <math.h>
-#include <assert.h>
 
+#include "global.h"
 #include "World.h"
 
 World::~World() {

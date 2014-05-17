@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "global.h"
 #include "math/Matrix.h"
 
 Matrix::Matrix() {

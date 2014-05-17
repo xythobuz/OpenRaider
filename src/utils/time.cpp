@@ -5,6 +5,7 @@
  * \author xythobuz
  */
 
+#include "global.h"
 #include "utils/time.h"
 
 #if defined(unix) || defined(__APPLE__) || defined (__linux__)
@@ -40,11 +41,8 @@ void systemTimerReset() {
 }
 
 #else
-#warn "No support for timer on this platform!"
 
-unsigned long systemTimerGet() { return 0; }
-
-void systemTimerReset() { }
+#error "No support for timer on this platform!"
 
 #endif
 

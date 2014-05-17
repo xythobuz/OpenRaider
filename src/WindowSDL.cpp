@@ -6,10 +6,9 @@
  */
 
 #include <cstdio>
-#include <assert.h>
 
-#include "config.h"
-#include "main.h"
+#include "global.h"
+#include "OpenRaider.h"
 #include "utils/strings.h"
 #include "WindowSDL.h"
 
@@ -570,7 +569,7 @@ void WindowSDL::writeString(WindowString *s) {
         if (surface->format->Rmask == 0x000000FF)
             textureFormat = GL_RGB;
         else
-            textureFormat = GL_BGR;
+            textureFormat = GL_BGR_EXT;
     }
 
     glBindTexture(GL_TEXTURE_2D, mFontTexture);

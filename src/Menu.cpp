@@ -5,28 +5,16 @@
  * \author xythobuz
  */
 
-#include <assert.h>
 #include <cctype>
 
-#ifdef WIN32
-#include <Windows.h>
-#else
+#ifndef WIN32
 #include <dirent.h>
 #endif
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#elif defined WIN32
-#include <GL/glew.h>
-#include <GL/wglew.h>
-#else
-#include <GL/gl.h>
-#endif
-
-#include "config.h"
 #include "global.h"
-#include "main.h"
+#include "Console.h"
 #include "Menu.h"
+#include "OpenRaider.h"
 #include "utils/strings.h"
 
 Menu::Menu() {
@@ -66,7 +54,7 @@ bool Menu::isVisible() {
 }
 
 #ifdef WIN32
-void loadPakFolderHelper(std::list<char *> &list) {
+void Menu::loadPakFolderHelper(std::vector<char *> &list) {
     WIN32_FIND_DATA fd;
     char *tmp = bufferString("%s\\*", list.at(0));
     HANDLE hFind = FindFirstFile(tmp, &fd);
@@ -101,7 +89,7 @@ void loadPakFolderHelper(std::list<char *> &list) {
     FindClose(hFind);
     delete [] tmp;
     delete [] list.at(0);
-    list.pop_front();
+    list.erase(list.begin());
 }
 #endif
 
@@ -109,7 +97,7 @@ void Menu::loadPakFolderRecursive(const char *dir) {
     assert(dir != NULL);
     assert(dir[0] != '\0');
 #ifdef WIN32
-    std::list<char *> list;
+    std::vector<char *> list;
     list.push_back(bufferString("%s", dir));
     do {
         loadPakFolderHelper(list);

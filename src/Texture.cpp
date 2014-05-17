@@ -10,17 +10,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include <assert.h>
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#elif defined WIN32
-#include <gl/glew.h>
-#include <gl/wglew.h>
-#else
-#include <GL/gl.h>
-#endif
-
+#include "global.h"
 #include "utils/strings.h"
 #include "utils/tga.h"
 #include "Texture.h"
@@ -312,7 +303,7 @@ void Texture::glScreenShot(char *base, unsigned int width, unsigned int height) 
     }
 
     // Capture frame buffer
-    glReadPixels(0, 0, width, height, GL_BGR, GL_UNSIGNED_BYTE, image);
+    glReadPixels(0, 0, width, height, GL_BGR_EXT, GL_UNSIGNED_BYTE, image);
 
     tgaSaveFilename(image, width, height, 0, "%s", filename);
     printf("Took screenshot '%s'.\n", filename);

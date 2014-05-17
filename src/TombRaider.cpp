@@ -13,6 +13,7 @@
 
 #include <zlib.h>
 
+#include "global.h"
 #include "TombRaider.h"
 
 #ifdef __TEST_TR5_DUMP_TGA

@@ -5,16 +5,10 @@
  * \author xythobuz
  */
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#else
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
-
-#include "main.h"
+#include "global.h"
+#include "Render.h"
 #include "RoomData.h"
+#include "World.h"
 
 BoundingBox::BoundingBox() {
     a[0] = a[1] = a[2] = 0;

@@ -5,6 +5,7 @@
  * \author xythobuz
  */
 
+#include "global.h"
 #include "SoundNull.h"
 
 SoundNull::SoundNull() {

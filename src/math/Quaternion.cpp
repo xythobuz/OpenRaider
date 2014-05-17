@@ -7,6 +7,7 @@
 
 #include <math.h>
 
+#include "global.h"
 #include "math/Quaternion.h"
 
 Quaternion::Quaternion() {

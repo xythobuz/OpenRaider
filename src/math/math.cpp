@@ -10,15 +10,16 @@
 #include <stdlib.h>
 #include <math.h>
 #include <float.h>
-#include <assert.h>
+#include <algorithm>
 
+#include "global.h"
 #include "math/Vector3d.h"
 #include "math/Matrix.h"
 #include "math/math.h"
 
 bool equalEpsilon(vec_t a, vec_t b) {
     vec_t epsilon = FLT_EPSILON;
-    if (fabs(a - b) <= (fmax(fabs(a), fabs(b)) * epsilon))
+    if (fabs(a - b) <= (std::max(fabs(a), fabs(b)) * epsilon))
         return true;
     return false;
 }

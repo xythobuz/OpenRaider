@@ -5,18 +5,12 @@
  * \author xythobuz
  */
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#else
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
-
 #include <algorithm>
-#include <assert.h>
 
-#include "main.h"
+#include "global.h"
+#include "Console.h"
+#include "Game.h"
+#include "Render.h"
 #include "Room.h"
 
 Room::Room(TombRaider &tr, unsigned int index) {

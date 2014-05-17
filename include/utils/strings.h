@@ -9,10 +9,6 @@
 #ifndef _UTILS_STRINGS_H_
 #define _UTILS_STRINGS_H_
 
-#ifdef WIN32
-#define __attribute__(x)
-#endif
-
 #include <cstdarg>
 #include <vector>
 

@@ -5,20 +5,11 @@
  * \author xythobuz
  */
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#elif defined WIN32
-#include <gl/glew.h>
-#include <gl/wglew.h>
-#else
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
-
+#include "global.h"
+#include "Console.h"
 #include "Entity.h"
-#include "main.h"
 #include "Render.h"
+#include "World.h"
 
 #include "games/TombRaider1.h"
 

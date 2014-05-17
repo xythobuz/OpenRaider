@@ -11,14 +11,11 @@
 
 #include <vector>
 
-#include "config.h"
-#include "math/Matrix.h"
-#include "ViewVolume.h"
-#include "World.h"
-#include "Mesh.h"
+#include "Room.h"
 #include "Texture.h"
-#include "Camera.h"
-#include "RoomData.h"
+#include "ViewVolume.h"
+
+#include "WorldData.h"
 
 /*!
  * \brief OpenRaider Renderer class
@@ -212,5 +209,7 @@ private:
     int mSkyMesh;                         //!< Skymesh model id
     bool mSkyMeshRotation;                //!< Should Skymesh be rotated?
 };
+
+Render &getRender();
 
 #endif

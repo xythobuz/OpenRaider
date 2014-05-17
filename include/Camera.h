@@ -99,4 +99,6 @@ private:
     vec_t mRotationDeltaY;
 };
 
+Camera &getCamera();
+
 #endif

@@ -9,14 +9,18 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <string.h>
-#include <assert.h>
 
 #if defined(unix) || defined(__APPLE__) || defined(__linux__)
 #include <wordexp.h>
 #elif defined(WIN32)
 #include <Windows.h>
+#include <shlobj.h>
+#ifndef va_copy
+#define va_copy(d,s) ((d) = (s))
+#endif
 #endif
 
+#include "global.h"
 #include "utils/strings.h"
 
 char *stringRemoveQuotes(const char *s) {
@@ -169,11 +173,11 @@ char *fullPath(const char *path, char end) {
         wordfree(&word);
 #elif defined(WIN32)
         WCHAR newPath[MAX_PATH];
-        if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, newPath)) {
-            lenPath = strlen(newPath);
+        if (SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, newPath) == S_OK) {
+            lenPath = strlen((const char *)newPath);
             unsigned int lenPath2 = strlen(path);
             dir = new char[lenPath + lenPath2 + 2]; // space for end char
-            strncpy(dir, newPath, lenPath);
+            strncpy(dir, (const char *)newPath, lenPath);
             dir[lenPath] = '\\';
             strncpy((dir + lenPath + 1), (path + 1), lenPath2 - 1);
             lenPath += lenPath2;
