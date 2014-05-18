@@ -12,9 +12,10 @@
 #include "SkeletalModel.h"
 #include "World.h"
 
-BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l, unsigned short **frame, unsigned int *frame_offset) {
+BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l, unsigned int frame_offset) {
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_meshtree_t *meshtree = tr.MeshTree();
+    unsigned short *frame = tr.Frame();
 
     off[0] = 0.0;
     off[1] = 0.0;
@@ -44,7 +45,7 @@ BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l, uns
     }
 
     // Setup tag rotations
-    tr.computeRotationAngles(frame, frame_offset, l, rot, rot+1, rot+2);
+    tr.computeRotationAngles(&frame, &frame_offset, l, rot, rot + 1, rot + 2);
 }
 
 void BoneTag::display() {
@@ -67,18 +68,14 @@ char BoneTag::getFlag() {
     return flag;
 }
 
-BoneFrame::BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigned short **frame, unsigned int *frame_offset) {
+BoneFrame::BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigned int frame_offset) {
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_item_t *item = tr.Item();
+    unsigned short *frame = tr.Frame();
 
-    /*!
-     * \fixme Do we really need to keep frame and frame_offset
-     * at the top level, passing pointers?!
-     */
-
-    pos[0] = (short)((*frame)[(*frame_offset) + 6]);
-    pos[1] = (short)((*frame)[(*frame_offset) + 7]);
-    pos[2] = (short)((*frame)[(*frame_offset) + 8]);
+    pos[0] = (short)(frame[frame_offset + 6]);
+    pos[1] = (short)(frame[frame_offset + 7]);
+    pos[2] = (short)(frame[frame_offset + 8]);
 
     yaw = ((item[i].angle >> 14) & 0x03);
     yaw *= 90;
@@ -87,7 +84,7 @@ BoneFrame::BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigne
 
     // Run through the tag and calculate the rotation and offset
     for (int j = 0; j < (int)moveable[index].num_meshes; ++j)
-        tag.push_back(new BoneTag(tr, index, j, &l, frame, frame_offset));
+        tag.push_back(new BoneTag(tr, index, j, &l, frame_offset));
 }
 
 BoneFrame::~BoneFrame() {
@@ -113,7 +110,6 @@ void BoneFrame::getPosition(vec3_t p) {
 AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, unsigned int i, int a) {
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_animation_t *animation = tr.Animation();
-    unsigned short *fr = tr.Frame();
 
     unsigned int frame_offset = animation[a].frame_offset / 2;
     int frame_step = animation[a].frame_size;
@@ -148,12 +144,12 @@ AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, unsigned int 
         }
 
         if (frame_offset > tr.NumFrames()) {
-            getConsole().print("WARNING: Bad animation frame %i > %i",
-                    frame_offset, tr.NumFrames());
+            getConsole().print("WARNING: Bad animation frame %i > %i (%u.%u.%d)",
+                    frame_offset, tr.NumFrames(), index, i, a);
             return;
         }
 
-        frame.push_back(new BoneFrame(tr, index, i, &fr, &frame_offset));
+        frame.push_back(new BoneFrame(tr, index, i, frame_offset));
     }
 }
 
@@ -272,11 +268,6 @@ void SkeletalModel::display(unsigned int aframe, unsigned int bframe) {
 
     AnimationFrame &anim = get(aframe);
     BoneFrame &boneframe = anim.get(bframe);
-
-    if (boneframe.size() == 0) {
-        printf("Empty bone frame?!?!\n");
-        return;
-    }
 
     vec3_t pos;
     boneframe.getPosition(pos);
