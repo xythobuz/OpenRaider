@@ -155,7 +155,7 @@ void Game::handleMouseMotion(int xrel, int yrel) {
                 getCamera().command(CAMERA_ROTATE_DOWN);
 
         // Fix Laras rotation
-        getLara().setAngles(getCamera().getRadianYaw(), getCamera().getRadianPitch());
+        getLara().setAngle(getCamera().getRadianYaw());
     }
 }
 
@@ -380,7 +380,7 @@ void Game::processMoveable(int index, int i, int object_id) {
     }
 
     if (!cached) {
-        getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider, index, i, object_id));
+        getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider, index, object_id));
     }
 
     getWorld().addEntity(*new Entity(mTombRaider, index, i, mod));

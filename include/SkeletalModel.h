@@ -16,7 +16,7 @@
 
 class BoneTag {
 public:
-    BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l, unsigned int frame_offset);
+    BoneTag(TombRaider &tr, unsigned int index, unsigned int j, unsigned int *l, unsigned int frame_offset);
     void display();
 
     void getOffset(vec3_t o);
@@ -32,7 +32,7 @@ private:
 
 class BoneFrame {
 public:
-    BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigned int frame_offset);
+    BoneFrame(TombRaider &tr, unsigned int index, unsigned int frame_offset);
     ~BoneFrame();
 
     void getPosition(vec3_t p);
@@ -42,13 +42,12 @@ public:
 
 private:
     vec3_t pos;
-    vec_t yaw;
     std::vector<BoneTag *> tag;
 };
 
 class AnimationFrame {
 public:
-    AnimationFrame(TombRaider &tr, unsigned int index, unsigned int i, int a);
+    AnimationFrame(TombRaider &tr, unsigned int index, int a);
     ~AnimationFrame();
 
     unsigned int size();
@@ -61,7 +60,7 @@ private:
 
 class SkeletalModel {
 public:
-    SkeletalModel(TombRaider &tr, unsigned int index, unsigned int i, int objectId);
+    SkeletalModel(TombRaider &tr, unsigned int index, int objectId);
     ~SkeletalModel();
     void display(unsigned int aframe, unsigned int bframe);
 

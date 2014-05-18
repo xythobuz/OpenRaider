@@ -12,7 +12,7 @@
 #include "SkeletalModel.h"
 #include "World.h"
 
-BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l, unsigned int frame_offset) {
+BoneTag::BoneTag(TombRaider &tr, unsigned int index, unsigned int i, unsigned int *l, unsigned int frame_offset) {
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_meshtree_t *meshtree = tr.MeshTree();
     unsigned short *frame = tr.Frame();
@@ -24,10 +24,10 @@ BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l, uns
     rot[0] = 0.0;
     rot[1] = 0.0;
     rot[2] = 0.0;
-    mesh = moveable[index].starting_mesh + j;
+    mesh = moveable[index].starting_mesh + i;
 
     // Setup offsets to produce skeleton
-    if (j == 0) {
+    if (i == 0) {
         // Always push tag[0], this isn't really used either
         flag = 0x02;
     } else { // Nonprimary tag - position relative to first tag
@@ -36,7 +36,7 @@ BoneTag::BoneTag(TombRaider &tr, unsigned int index, int j, unsigned int *l, uns
         //       into mesh_tree[], so we have to convert to index
         int *tree = (int *)(void *)meshtree;
         tr2_meshtree_t *mesh_tree = (tr2_meshtree_t *)(tree
-                + moveable[index].mesh_tree + ((j - 1) * 4));
+                + moveable[index].mesh_tree + ((i - 1) * 4));
 
         off[0] = mesh_tree->x;
         off[1] = mesh_tree->y;
@@ -68,23 +68,18 @@ char BoneTag::getFlag() {
     return flag;
 }
 
-BoneFrame::BoneFrame(TombRaider &tr, unsigned int index, unsigned int i, unsigned int frame_offset) {
+BoneFrame::BoneFrame(TombRaider &tr, unsigned int index, unsigned int frame_offset) {
     tr2_moveable_t *moveable = tr.Moveable();
-    tr2_item_t *item = tr.Item();
     unsigned short *frame = tr.Frame();
 
-    pos[0] = (short)(frame[frame_offset + 6]);
-    pos[1] = (short)(frame[frame_offset + 7]);
-    pos[2] = (short)(frame[frame_offset + 8]);
-
-    yaw = ((item[i].angle >> 14) & 0x03);
-    yaw *= 90;
+    pos[0] = (short)frame[frame_offset + 6];
+    pos[1] = (short)frame[frame_offset + 7];
+    pos[2] = (short)frame[frame_offset + 8];
 
     unsigned int l = 9; // First angle offset in this Frame
 
-    // Run through the tag and calculate the rotation and offset
-    for (int j = 0; j < (int)moveable[index].num_meshes; ++j)
-        tag.push_back(new BoneTag(tr, index, j, &l, frame_offset));
+    for (unsigned int i = 0; i < moveable[index].num_meshes; i++)
+        tag.push_back(new BoneTag(tr, index, i, &l, frame_offset));
 }
 
 BoneFrame::~BoneFrame() {
@@ -107,7 +102,7 @@ void BoneFrame::getPosition(vec3_t p) {
     p[2] = pos[2];
 }
 
-AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, unsigned int i, int a) {
+AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, int a) {
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_animation_t *animation = tr.Animation();
 
@@ -144,12 +139,12 @@ AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, unsigned int 
         }
 
         if (frame_offset > tr.NumFrames()) {
-            getConsole().print("WARNING: Bad animation frame %i > %i (%u.%u.%d)",
-                    frame_offset, tr.NumFrames(), index, i, a);
+            getConsole().print("WARNING: Bad animation frame %i > %i (%u.%d)",
+                    frame_offset, tr.NumFrames(), index, a);
             return;
         }
 
-        frame.push_back(new BoneFrame(tr, index, i, frame_offset));
+        frame.push_back(new BoneFrame(tr, index, frame_offset));
     }
 }
 
@@ -167,7 +162,7 @@ BoneFrame &AnimationFrame::get(unsigned int i) {
     return *frame.at(i);
 }
 
-SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, unsigned int i, int objectId) {
+SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_animation_t *anim = tr.Animation();
     tr2_mesh_t *mesh = tr.Mesh();
@@ -252,7 +247,7 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, unsigned int i,
         return;
     } else {
         for (; a < tr.getNumAnimsForMoveable(index); a++) {
-            animation.push_back(new AnimationFrame(tr, index, i, a));
+            animation.push_back(new AnimationFrame(tr, index, a));
         }
     }
 }

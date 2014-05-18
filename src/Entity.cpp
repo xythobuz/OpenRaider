@@ -60,7 +60,9 @@ bool Entity::operator<(Entity &o) {
 void Entity::display() {
     glPushMatrix();
     glTranslatef(pos[0], pos[1], pos[2]);
-    glRotatef(angles[1], 0, 1, 0);
+    glRotatef(angles[0], 1, 0, 0);
+    glRotatef(angles[1], 0, 1, 0); // Only this was done for non-lara entities
+    glRotatef(angles[2], 0, 0, 1);
     getWorld().getSkeletalModel(skeletalModel).display(animationFrame, boneFrame);
     glPopMatrix();
 
@@ -254,9 +256,8 @@ int Entity::getObjectId() {
     return objectId;
 }
 
-void Entity::setAngles(vec_t yaw, vec_t pitch) {
+void Entity::setAngle(vec_t yaw) {
     angles[1] = yaw;
-    angles[2] = pitch;
 }
 
 vec_t Entity::getPos(unsigned int i) {
