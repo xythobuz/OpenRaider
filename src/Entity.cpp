@@ -34,21 +34,6 @@ Entity::Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int 
     animationFrame = 0;
     idleAnimation = 0;
     state = 0;
-
-    if (tr.Engine() == TR_VERSION_1) {
-        switch (objectId) {
-            case TombRaider1::Wolf:
-                state = TombRaider1::WolfState_Lying;
-                animationFrame = 3;
-                break;
-        }
-    }
-
-    // Gather more info if this is lara
-    if (objectId == 0) {
-        animationFrame = TR_ANIAMTION_RUN;
-        idleAnimation = TR_ANIAMTION_STAND;
-    }
 }
 
 bool Entity::operator<(Entity &o) {
@@ -60,9 +45,7 @@ bool Entity::operator<(Entity &o) {
 void Entity::display() {
     glPushMatrix();
     glTranslatef(pos[0], pos[1], pos[2]);
-    glRotatef(angles[0], 1, 0, 0);
-    glRotatef(angles[1], 0, 1, 0); // Only this was done for non-lara entities
-    glRotatef(angles[2], 0, 0, 1);
+    glRotatef(OR_RAD_TO_DEG(angles[1]), 0, 1, 0);
     getWorld().getSkeletalModel(skeletalModel).display(animationFrame, boneFrame);
     glPopMatrix();
 
@@ -131,7 +114,7 @@ void Entity::move(char movement) {
                 x, y, z);
 
         if (roomNew > -1)
-            printf("Crossing from room %i to %i\n", room, roomNew);
+            getConsole().print("Crossing from room %i to %i", room, roomNew);
         else
             //! \fixme mRooms, sectors, ... are now std::vector, but often upper bound checks are missing
             return;
@@ -230,7 +213,7 @@ void Entity::print() {
     getConsole().print("Entity %d:", objectId);
     getConsole().print("  Room %i (0x%X)", room, getWorld().getRoomInfo(room));
     getConsole().print("  %.1fx %.1fy %.1fz", pos[0], pos[1], pos[2]);
-    getConsole().print("  %.1f Yaw %.1f Pitch", OR_RAD_TO_DEG(angles[1]), OR_RAD_TO_DEG(angles[2]));
+    getConsole().print("  %.1f Yaw", OR_RAD_TO_DEG(angles[1]));
 }
 
 SkeletalModel &Entity::getModel() {

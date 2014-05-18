@@ -166,7 +166,6 @@ Entity &Game::getLara() {
 }
 
 void Game::processSprites() {
-    printf("Processing sprites: ");
     for (int i = 0; i < (mTombRaider.NumItems() - 1); i++) {
         if ((mTombRaider.Engine() == TR_VERSION_1) && (mTombRaider.Item()[i].intensity1 == -1))
             continue;
@@ -176,14 +175,15 @@ void Game::processSprites() {
                 getWorld().addSprite(*new SpriteSequence(mTombRaider, i, j));
         }
     }
-    printf("Done! Found %d sprites.\n", mTombRaider.NumSpriteSequences());
+
+    getConsole().print("Found %d sprites.", mTombRaider.NumSpriteSequences());
 }
 
 void Game::processRooms() {
-    printf("Processing rooms: ");
     for (int index = 0; index < mTombRaider.NumRooms(); index++)
         getWorld().addRoom(*new Room(mTombRaider, index));
-    printf("Done! Found %d rooms.\n", mTombRaider.NumRooms());
+
+    getConsole().print("Found %d rooms.", mTombRaider.NumRooms());
 }
 
 void Game::processPakSounds()
@@ -204,8 +204,6 @@ void Game::processPakSounds()
     // in this group, bits 0-1: channel number
     */
 
-    printf("Processing pak sound files: ");
-
     for (i = 0; i < mTombRaider.getSoundSamplesCount(); ++i)
     {
         mTombRaider.getSoundSample(i, &riffSz, &riff);
@@ -225,12 +223,9 @@ void Game::processPakSounds()
         //pos[1] = sound[i].y;
         //pos[2] = sound[i].z;
         //getSound().SourceAt(id, pos);
-
-        //printf(".");
-        //fflush(stdout);
     }
 
-    printf("Done! Found %u files.\n", mTombRaider.getSoundSamplesCount());
+    getConsole().print("Found %u sound samples.", mTombRaider.getSoundSamplesCount());
 }
 
 void Game::processTextures()
@@ -238,8 +233,6 @@ void Game::processTextures()
     unsigned char *image;
     unsigned char *bumpmap;
     int i;
-
-    printf("Processing TR textures: ");
 
     //if ( mTombRaider.getNumBumpMaps())
     //  gBumpMapStart = mTombRaider.NumTextures();
@@ -270,14 +263,11 @@ void Game::processTextures()
 
         if (bumpmap)
             delete [] bumpmap;
-
-        //printf(".");
-        //fflush(stdout);
     }
 
     mTextureOffset = (mTextureStart - 1) + mTombRaider.NumTextures();
 
-    printf("Done! Found %d textures.\n", mTombRaider.NumTextures());
+    getConsole().print("Found %d textures.", mTombRaider.NumTextures());
 }
 
 void Game::processMoveables()
@@ -287,8 +277,6 @@ void Game::processMoveables()
     tr2_moveable_t *moveable = mTombRaider.Moveable();
     tr2_item_t *item = mTombRaider.Item();
     tr2_sprite_sequence_t *sprite_sequence = mTombRaider.SpriteSequence();
-
-    printf("Processing skeletal models: ");
 
     for (int i = 0; i < mTombRaider.NumItems(); ++i)
     {
@@ -364,7 +352,7 @@ void Game::processMoveables()
     }
     */
 
-    printf("Done! Found %d models.\n", mTombRaider.NumMoveables() + statCount);
+    getConsole().print("Found %d moveables.", mTombRaider.NumMoveables() + statCount);
 }
 
 // index moveable, i item, sometimes both moveable
@@ -438,7 +426,7 @@ void Game::setupTextureColor(texture_tri_t *r_tri, float *colorf)
     }
     else
     {
-        //printf("Color already loaded %i -> 0x%08x\n",
+        //getConsole().print("Color already loaded %i -> 0x%08x",
         //       gColorTextureHACK.getCurrentIndex(),
         //       gColorTextureHACK.current());
 
@@ -451,7 +439,6 @@ void Game::setupTextureColor(texture_tri_t *r_tri, float *colorf)
 
 void Game::processModels()
 {
-    printf("Processing meshes: ");
     for (int index = 0; index < mTombRaider.getMeshCount(); index++) {
         int i, j, count, texture;
         int vertexIndices[6];
@@ -465,8 +452,6 @@ void Game::processModels()
         {
             //! \fixme allow sparse lists with matching ids instead?
             getWorld().addMesh(NULL); // Filler, to make meshes array ids align
-            //printf("x");
-            //fflush(stdout);
             return;
         }
 
@@ -649,6 +634,6 @@ void Game::processModels()
         getWorld().addMesh(mesh);
     }
 
-    printf("Done! Found %d meshes.\n", mTombRaider.getMeshCount());
+    getConsole().print("Found %d meshes.", mTombRaider.getMeshCount());
 }
 

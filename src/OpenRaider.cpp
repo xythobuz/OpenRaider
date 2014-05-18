@@ -62,7 +62,7 @@ int OpenRaider::initialize() {
 
     error = getWindow().initializeFont();
     if (error != 0) {
-        printf("Could not initialize SDL-TTF (%d)!\n", error);
+        printf("Could not initialize Font (%d)!\n", error);
         return -3;
     }
 
@@ -75,7 +75,7 @@ int OpenRaider::initialize() {
     // Initialize game engine
     error = getGame().initialize();
     if (error != 0) {
-        printf("Could not initialize Game Engine (%d)!\n", error);
+        printf("Could not initialize Game (%d)!\n", error);
         return -5;
     }
 
@@ -456,11 +456,9 @@ int OpenRaider::bind(ActionEvents action, const char *key) {
 
 void OpenRaider::run() {
     assert(mRunning == false);
-
     mRunning = true;
-    while (mRunning) {
+    while (mRunning)
         frame();
-    }
 }
 
 void OpenRaider::frame() {

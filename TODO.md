@@ -21,7 +21,7 @@ There are these DebugModel, DebugMap flags...?
 
     Assertion failed: (sector < (int)mRooms.at(room)->sizeSectors()), function isWall, file /Users/thomas/Projekte/OpenRaider/src/World.cpp, line 180.
 
-* The wrong SkeletalModels are used by other entities...?
+* The wrong SkeletalModels are used by entities, except for Lara...?
 
 ## Cmake
 
@@ -35,11 +35,4 @@ There are these DebugModel, DebugMap flags...?
 * PCX image reading for eg. TR2 built-in menu background
     * Cut TGA image reader, currently only used for menu background?!
 * When cutscene rendering is working, use TR4/5 style menu?
-
-## Errors
-
-* Sometimes this on quitting OpenRaider:
-
-    OpenRaider(92329,0x7fff7a8c4310) malloc: *** error for object 0x7fabc2001000: incorrect checksum for freed object - object was probably modified after being freed.
-
 

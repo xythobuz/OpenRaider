@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include <iostream>
+
 #include "global.h"
 #include "Console.h"
 #include "OpenRaider.h"
@@ -67,7 +69,7 @@ void Console::print(const char *s, ...) {
     if (tmp != NULL) {
         mHistory.push_back(tmp);
 #ifdef DEBUG
-        printf("%s\n", tmp);
+        std::cout << tmp << std::endl;
 #endif
     }
 }
@@ -205,8 +207,6 @@ void Console::moveInHistory(bool up) {
 }
 
 void Console::handleText(char *text, bool notFinished) {
-    //printf("Text: %s (%s)\n", text, (notFinished ? "not finished" : "finished"));
-
     // Always scroll to bottom when text input is received
     mLineOffset = 0;
 
@@ -225,7 +225,7 @@ void Console::handleText(char *text, bool notFinished) {
         size_t length = strlen(text);
         if (length > 0) {
             if (((INPUT_BUFFER_SIZE - mInputBufferPointer) < length)) {
-                printf("Console input buffer overflowed! (> %d)\n", INPUT_BUFFER_SIZE);
+                print("Console input buffer overflowed! (> %d)", INPUT_BUFFER_SIZE);
                 return;
             }
             strcpy((mInputBuffer + mInputBufferPointer), text);

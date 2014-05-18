@@ -17,17 +17,17 @@
 #define TR_SOUND_FOOTSTEP0 1
 #define TR_SOUND_F_PISTOL  12
 
-#define TR_ANIAMTION_RUN            0
-#define TR_ANIAMTION_STAND          11
-#define TR_ANIAMTION_TURN_L         12
-#define TR_ANIAMTION_TURN_R         13
-#define TR_ANIAMTION_HIT_WALL_FRONT 53
-#define TR_ANIAMTION_SWIM_IDLE      87
-#define TR_ANIAMTION_SWIM           86
-#define TR_ANIAMTION_SWIM_L         143
-#define TR_ANIAMTION_SWIM_R         144
-#define TR_ANIAMTION_GRAB_LEDGE     96
-#define TR_ANIAMTION_PULLING_UP     97
+#define TR_ANIMATION_RUN            0
+#define TR_ANIMATION_STAND          11
+#define TR_ANIMATION_TURN_L         12
+#define TR_ANIMATION_TURN_R         13
+#define TR_ANIMATION_HIT_WALL_FRONT 53
+#define TR_ANIMATION_SWIM_IDLE      87
+#define TR_ANIMATION_SWIM           86
+#define TR_ANIMATION_SWIM_L         143
+#define TR_ANIMATION_SWIM_R         144
+#define TR_ANIMATION_GRAB_LEDGE     96
+#define TR_ANIMATION_PULLING_UP     97
 
 typedef enum {
     TR_VERSION_UNKNOWN,
