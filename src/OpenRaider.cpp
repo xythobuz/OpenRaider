@@ -310,6 +310,8 @@ int OpenRaider::bind(const char *action, const char *key) {
         return bind(useAction, key);
     } else if (strcmp(tmp, "holster") == 0) {
         return bind(holsterAction, key);
+    } else if (strcmp(tmp, "walk") == 0) {
+        return bind(walkAction, key);
     } else {
         getConsole().print("bind-Error: Unknown action (%s --> %s)", key, action);
         return -1;

@@ -7,7 +7,7 @@
  * \author xythobuz
  */
 
-#include <math.h>
+#include <cmath>
 
 #ifndef _MATH_MATH_H
 #define _MATH_MATH_H

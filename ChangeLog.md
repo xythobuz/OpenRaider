@@ -2,6 +2,11 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140519 ]
+    * No longer crashes simply by walking in the wrong place
+    * Added walk Action, supposed to switch to slow walking/sidesteps
+    * Removed unused Camera functionality (side and up vector)
+
     [ 20140517 ]
     * Wrote new assert() implementation for Unix that prints a call stack
     * Service provider methods (getCamera(), etc...) are now prototyped

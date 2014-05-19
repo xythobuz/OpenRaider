@@ -9,7 +9,6 @@
 #define _CAMERA_H_
 
 #include "math/math.h"
-#include "math/Matrix.h"
 #include "math/Quaternion.h"
 
 /*!
@@ -31,12 +30,6 @@ public:
      * \brief Constructs an object of Camera
      */
     Camera();
-
-    /*!
-     * \brief Returns the current position
-     * \param pos where the position will be stored
-     */
-    void getPosition(vec3_t pos);
 
     /*!
      * \brief Get the target currently looked at
@@ -87,16 +80,14 @@ public:
     void command(enum camera_command cmd);
 
 private:
-    Quaternion mQ;                //!< Quaternion for rotation
-    vec_t mPos[4];                //!< Location in 3 space (aka eye)
-    vec_t mTarget[4];             //!< Postition we're looking at
-    vec_t mUp[4];                 //!< Up vector
-    vec_t mSide[4];               //!< Side vector
-    vec_t mViewDistance;          //!< Distance from target
-    vec_t mTheta;                 //!< View angle Y
-    vec_t mTheta2;                //!< View angle Z
-    vec_t mRotationDeltaX;
-    vec_t mRotationDeltaY;
+    Quaternion mQ;         //!< Quaternion for rotation
+    vec4_t mPos;           //!< Location in 3 space (aka eye)
+    vec4_t mTarget;        //!< Postition we're looking at
+    vec_t mViewDistance;   //!< Distance from target
+    vec_t mTheta;          //!< View angle Y
+    vec_t mTheta2;         //!< View angle Z
+    vec_t mRotationDeltaX; //!< Horizontal mouse sensitivity
+    vec_t mRotationDeltaY; //!< Vertical mouse sensitivity
 };
 
 Camera &getCamera();

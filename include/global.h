@@ -57,6 +57,7 @@ typedef enum {
     crouchAction,
     useAction,
     holsterAction,
+    walkAction,
 
     ActionEventCount // Should always be at the end
 } ActionEvents;

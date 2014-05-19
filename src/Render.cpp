@@ -356,7 +356,8 @@ void Render::display()
         case Entity::MoveTypeFly:
         case Entity::MoveTypeNoClipping:
         case Entity::MoveTypeSwim:
-            camOffsetH = 64.0f;
+            //camOffsetH = 64.0f;
+            camOffsetH = 512.0f;
             break;
         case Entity::MoveTypeWalk:
         case Entity::MoveTypeWalkNoSwim:
@@ -382,7 +383,9 @@ void Render::display()
     int sector = getWorld().getSector(index, camPos[0], camPos[2]);
 
     // Handle camera out of world
-    if (sector < 0 || getWorld().isWall(index, sector)) {
+    if ((sector < 0) ||
+            ((unsigned int)sector >= getWorld().getRoom(index).sizeSectors()) ||
+            getWorld().isWall(index, sector)) {
         camPos[0] = curPos[0] + (64.0f * sinf(yaw));
         camPos[1] -= 64.0f;
         camPos[2] = curPos[2] + (64.0f * cosf(yaw));
