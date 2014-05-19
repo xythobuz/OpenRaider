@@ -12,6 +12,7 @@
 #include <stdarg.h>
 
 #include "global.h"
+#include "utils/pcx.h"
 #include "utils/strings.h"
 #include "utils/tga.h"
 #include "Texture.h"
@@ -279,6 +280,17 @@ void Texture::bindTextureId(unsigned int n) {
 }
 
 int Texture::loadTGA(const char *filename) {
+#ifdef PCX_PROOF_OF_CONCEPT
+    unsigned char *image;
+    unsigned int w, h;
+    int id = -1;
+    int error = pcxLoad(filename, &image, &w, &h);
+    if (error == 0) {
+        id = loadBuffer(image, w, h, RGBA, 32);
+        delete [] image;
+    }
+    return id;
+#else
     FILE *f;
     unsigned char *image = NULL;
     unsigned char *image2 = NULL;
@@ -321,6 +333,7 @@ int Texture::loadTGA(const char *filename) {
     }
 
     return id;
+#endif
 }
 
 int Texture::nextPower(int seed) {

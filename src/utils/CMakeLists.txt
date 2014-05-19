@@ -1,4 +1,5 @@
 # Source files
+set (UTIL_SRCS ${UTIL_SRCS} "pcx.cpp")
 set (UTIL_SRCS ${UTIL_SRCS} "strings.cpp")
 set (UTIL_SRCS ${UTIL_SRCS} "tga.cpp")
 set (UTIL_SRCS ${UTIL_SRCS} "time.cpp")

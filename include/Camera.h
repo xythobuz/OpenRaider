@@ -65,21 +65,15 @@ public:
     void update();
 
     /*!
-     * \brief Rotate the camera
-     * \param angle angle in radians
-     * \param x X coordinate of axis
-     * \param y Y coordinate of axis
-     * \param z Z coordinate of axis
-     */
-    void rotate(vec_t angle, vec_t x, vec_t y, vec_t z);
-
-    /*!
      * \brief Sends interactive command to camera
      * \param cmd valid camera command
      */
     void command(enum camera_command cmd);
 
 private:
+
+    void rotate(vec_t angle, vec_t x, vec_t y, vec_t z);
+
     Quaternion mQ;         //!< Quaternion for rotation
     vec4_t mPos;           //!< Location in 3 space (aka eye)
     vec4_t mTarget;        //!< Postition we're looking at

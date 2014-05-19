@@ -24,6 +24,7 @@
 #include <GL/gl.h>
 #endif
 
+// If available, use our own assert that prints the call stack
 #if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
 #ifndef NDEBUG
 [[noreturn]] void assertImplementation(const char *exp, const char *file, int line);
@@ -32,9 +33,11 @@
 #define assert(x)
 #endif
 #else
+// Fall back to the default C assert
 #include <cassert>
 #endif
 
+// Colors used for Rendering
 const float BLACK[]       = {  0.0f,  0.0f,  0.0f, 1.0f };
 const float DIM_WHITE[]   = {  0.5f,  0.5f,  0.5f, 1.0f };
 const float WHITE[]       = {  1.0f,  1.0f,  1.0f, 1.0f };
@@ -46,6 +49,7 @@ const float PINK[]        = {  1.0f,  0.0f,  1.0f, 1.0f };
 const float YELLOW[]      = {  1.0f,  1.0f,  0.0f, 1.0f };
 const float CYAN[]        = {  0.0f,  1.0f,  1.0f, 1.0f };
 
+// Actions that can be bound to a key and sent to the game engine
 typedef enum {
     menuAction = 0,
     consoleAction, // menu and console should always be the first two items
@@ -62,6 +66,7 @@ typedef enum {
     ActionEventCount // Should always be at the end
 } ActionEvents;
 
+// Keys available for binding
 typedef enum {
     zeroKey = '0', oneKey = '1', twoKey = '2',
     threeKey = '3', fourKey = '4', fiveKey = '5',
@@ -83,7 +88,8 @@ typedef enum {
     rightguiKey, rightbracketKey, rightshiftKey, scrolllockKey,
     semicolonKey, slashKey, spaceKey, tabKey,
     leftmouseKey, middlemouseKey, rightmouseKey,
-    unknownKey
+
+    unknownKey // Should always be at the end
 } KeyboardButton;
 
 #endif

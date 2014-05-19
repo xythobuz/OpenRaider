@@ -17,10 +17,6 @@ There are these DebugModel, DebugMap flags...?
 ## Changes
 
 * Using std::vector with [] is not bound checked. Segfaults were caused because the upper bound of the argument was never checked and garbage was returned... Do consistent checks, or use .at() as it throws an exception
-* Creating the Room class has introduced a bug that crashes when walking the level:
-
-    Assertion failed: (sector < (int)mRooms.at(room)->sizeSectors()), function isWall, file /Users/thomas/Projekte/OpenRaider/src/World.cpp, line 180.
-
 * The wrong SkeletalModels are used by entities, except for Lara...?
 
 ## Cmake
@@ -32,7 +28,7 @@ There are these DebugModel, DebugMap flags...?
 ## Future Features
 
 * Use only assets from old TR games?
-* PCX image reading for eg. TR2 built-in menu background
+* [PCX image reading](http://bespin.org/~qz/pc-gpe/pcx.txt) for eg. TR2 built-in menu background
     * Cut TGA image reader, currently only used for menu background?!
 * When cutscene rendering is working, use TR4/5 style menu?
 

@@ -6,6 +6,8 @@
     * No longer crashes simply by walking in the wrong place
     * Added walk Action, supposed to switch to slow walking/sidesteps
     * Removed unused Camera functionality (side and up vector)
+    * Wrote simple PCX image reading library with proof-of-concept
+      code to load the TR2 menu background as splash screen
 
     [ 20140517 ]
     * Wrote new assert() implementation for Unix that prints a call stack
