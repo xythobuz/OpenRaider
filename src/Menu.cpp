@@ -7,15 +7,21 @@
 
 #include <cctype>
 
-#ifndef WIN32
-#include <dirent.h>
-#endif
-
 #include "global.h"
 #include "Console.h"
 #include "Menu.h"
 #include "OpenRaider.h"
 #include "utils/strings.h"
+
+#if defined(HAVE_DIRENT_H) && defined(HAVE_OPENDIR) && defined(HAVE_READDIR_R) && defined(HAVE_CLOSEDIR) && defined(HAVE_DT_DIR)
+#include <dirent.h>
+#define USE_DIRENT
+#elif defined(HAVE_WINDOWS_H) && defined(HAVE_FINDFIRSTFILE) && defined(HAVE_FINDNEXTFILE) && defined(HAVE_FINDCLOSE)
+#include <windows.h>
+#define USE_FINDFILE
+#else
+#error No support for recursive folder traversal
+#endif
 
 Menu::Menu() {
     mVisible = false;
@@ -55,54 +61,14 @@ bool Menu::isVisible() {
 
 #ifdef WIN32
 void Menu::loadPakFolderHelper(std::vector<char *> &list) {
-    WIN32_FIND_DATA fd;
-    char *tmp = bufferString("%s\\*", list.at(0));
-    HANDLE hFind = FindFirstFile(tmp, &fd);
-    do {
-        if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-            list.push_back(bufferString("%s\\%s", list.at(0), fd.cFileName));
-        } else {
-            char *fullPathMap = bufferString("%s\\%s", list.at(0), fd.cFileName);
 
-            char *lowerPath = bufferString("%s", fullPathMap);
-            for (char *p = lowerPath; *p; ++p) *p = (char)tolower(*p);
-
-            // Check for valid extension
-            if (stringEndsWith(lowerPath, ".phd")
-                 || stringEndsWith(lowerPath, ".tr2")
-                 || stringEndsWith(lowerPath, ".tr4")
-                 || stringEndsWith(lowerPath, ".trc")) {
-                int error = TombRaider::checkMime(fullPathMap);
-                if (error == 0) {
-                    // Just load relative filename
-                    mMapList.push_back(bufferString("%s", (fullPathMap + strlen(getOpenRaider().mPakDir) + 1)));
-                } else {
-                    getConsole().print("Error: pak file '%s' %s",
-                            fullPathMap, (error == -1) ? "not found" : "invalid");
-                }
-            }
-
-            delete [] lowerPath;
-            delete [] fullPathMap;
-        }
-    } while (FindNextFile(hFind, &fd) != 0);
-    FindClose(hFind);
-    delete [] tmp;
-    delete [] list.at(0);
-    list.erase(list.begin());
 }
 #endif
 
 void Menu::loadPakFolderRecursive(const char *dir) {
     assert(dir != NULL);
     assert(dir[0] != '\0');
-#ifdef WIN32
-    std::vector<char *> list;
-    list.push_back(bufferString("%s", dir));
-    do {
-        loadPakFolderHelper(list);
-    } while (list.size() > 0);
-#else
+#ifdef USE_DIRENT
     struct dirent entry;
     struct dirent *ep = NULL;
     DIR *pakDir;
@@ -150,6 +116,46 @@ void Menu::loadPakFolderRecursive(const char *dir) {
     } else {
         getConsole().print("Could not open PAK dir %s!", dir);
     }
+#elif defined(USE_FINDFILE)
+    std::vector<char *> list;
+    list.push_back(bufferString("%s", dir));
+    do {
+        WIN32_FIND_DATA fd;
+        char *tmp = bufferString("%s\\*", list.at(0));
+        HANDLE hFind = FindFirstFile(tmp, &fd);
+        do {
+            if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+                list.push_back(bufferString("%s\\%s", list.at(0), fd.cFileName));
+            } else {
+                char *fullPathMap = bufferString("%s\\%s", list.at(0), fd.cFileName);
+
+                char *lowerPath = bufferString("%s", fullPathMap);
+                for (char *p = lowerPath; *p; ++p) *p = (char)tolower(*p);
+
+                // Check for valid extension
+                if (stringEndsWith(lowerPath, ".phd")
+                     || stringEndsWith(lowerPath, ".tr2")
+                     || stringEndsWith(lowerPath, ".tr4")
+                     || stringEndsWith(lowerPath, ".trc")) {
+                    int error = TombRaider::checkMime(fullPathMap);
+                    if (error == 0) {
+                        // Just load relative filename
+                        mMapList.push_back(bufferString("%s", (fullPathMap + strlen(getOpenRaider().mPakDir) + 1)));
+                    } else {
+                        getConsole().print("Error: pak file '%s' %s",
+                                fullPathMap, (error == -1) ? "not found" : "invalid");
+                    }
+                }
+
+                delete [] lowerPath;
+                delete [] fullPathMap;
+            }
+        } while (FindNextFile(hFind, &fd) != 0);
+        FindClose(hFind);
+        delete [] tmp;
+        delete [] list.at(0);
+        list.erase(list.begin());
+    } while (list.size() > 0);
 #endif
 }
 

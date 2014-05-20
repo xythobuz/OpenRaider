@@ -279,8 +279,7 @@ void Texture::bindTextureId(unsigned int n) {
     glBindTexture(GL_TEXTURE_2D, mTextureIds[n]);
 }
 
-int Texture::loadTGA(const char *filename) {
-#ifdef PCX_PROOF_OF_CONCEPT
+int Texture::loadPCX(const char *filename) {
     unsigned char *image;
     unsigned int w, h;
     int id = -1;
@@ -290,7 +289,9 @@ int Texture::loadTGA(const char *filename) {
         delete [] image;
     }
     return id;
-#else
+}
+
+int Texture::loadTGA(const char *filename) {
     FILE *f;
     unsigned char *image = NULL;
     unsigned char *image2 = NULL;
@@ -333,7 +334,6 @@ int Texture::loadTGA(const char *filename) {
     }
 
     return id;
-#endif
 }
 
 int Texture::nextPower(int seed) {

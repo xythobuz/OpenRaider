@@ -101,18 +101,19 @@ int Render::initTextures(char *textureDir) {
     if (mTexture.loadColorTexture(color, 32, 32) > -1)
         numTextures++;
 
-#ifdef PCX_PROOF_OF_CONCEPT
-    filename = bufferString("/Users/thomas/.OpenRaider/paks/tr2/TITLE.PCX");
-    if (mTexture.loadTGA(filename) > -1)
+    // Temporary
+    filename = bufferString("%s/tr2/TITLE.PCX", getOpenRaider().mPakDir);
+    if (mTexture.loadPCX(filename) > -1) {
         numTextures++;
-    delete [] filename;
-#else
-    //! \fixme Error Checking. Return negative error code, check in calling place too
-    filename = bufferString("%s/%s", textureDir, "splash.tga");
-    if (mTexture.loadTGA(filename) > -1)
-        numTextures++;
-    delete [] filename;
-#endif
+        delete [] filename;
+    } else {
+        delete [] filename;
+        //! \fixme Error Checking. Return negative error code, check in calling place too
+        filename = bufferString("%s/%s", textureDir, "splash.tga");
+        if (mTexture.loadTGA(filename) > -1)
+            numTextures++;
+        delete [] filename;
+    }
 
     return numTextures;
 }

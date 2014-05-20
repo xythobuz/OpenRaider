@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140520 ]
+    * cmake script checks for presence of functions needed for
+      recursive folder traversal
+
     [ 20140519 ]
     * No longer crashes simply by walking in the wrong place
     * Added walk Action, supposed to switch to slow walking/sidesteps

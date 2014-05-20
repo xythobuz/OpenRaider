@@ -122,6 +122,8 @@ public:
      */
     int loadTGA(const char *filename);
 
+    int loadPCX(const char *filename);
+
     /*!
      * \brief Resets all texture data
      */

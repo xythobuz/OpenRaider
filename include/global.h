@@ -18,8 +18,8 @@
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #else
-#ifdef WIN32
-#include <Windows.h>
+#ifdef HAVE_WINDOWS_H
+#include <windows.h>
 #endif
 #include <GL/gl.h>
 #endif

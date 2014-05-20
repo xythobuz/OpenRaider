@@ -17,9 +17,21 @@
 #define DEFAULT_HEIGHT 480
 
 #cmakedefine USING_AL
+
 #cmakedefine HAVE_EXECINFO_H
 #cmakedefine HAVE_BACKTRACE
 #cmakedefine HAVE_BACKTRACE_SYMBOLS
+
+#cmakedefine HAVE_DIRENT_H
+#cmakedefine HAVE_OPENDIR
+#cmakedefine HAVE_READDIR_R
+#cmakedefine HAVE_CLOSEDIR
+#cmakedefine HAVE_DT_DIR
+
+#cmakedefine HAVE_WINDOWS_H
+#cmakedefine HAVE_FINDFIRSTFILE
+#cmakedefine HAVE_FINDNEXTFILE
+#cmakedefine HAVE_FINDCLOSE
 
 #endif
 

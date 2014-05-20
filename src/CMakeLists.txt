@@ -85,11 +85,25 @@ endif (SDL2_FOUND AND SDL2TTF_FOUND)
 # Check for header/function presence
 include (CheckIncludeFiles)
 include (CheckFunctionExists)
+include (CheckSymbolExists)
 
 # backtrace() for assert with call stack output
 check_include_files (execinfo.h HAVE_EXECINFO_H)
 check_function_exists (backtrace HAVE_BACKTRACE)
 check_function_exists (backtrace_symbols HAVE_BACKTRACE_SYMBOLS)
+
+# readdir() for recursive folder traversal
+check_include_files (dirent.h HAVE_DIRENT_H)
+check_function_exists (opendir HAVE_OPENDIR)
+check_function_exists (readdir_r HAVE_READDIR_R)
+check_function_exists (closedir HAVE_CLOSEDIR)
+check_symbol_exists (DT_DIR "dirent.h" HAVE_DT_DIR)
+
+# recursive folder traversal for Windows
+check_include_files (windows.h HAVE_WINDOWS_H)
+check_function_exists (FindFirstFile HAVE_FINDFIRSTFILE)
+check_function_exists (FindNextFile HAVE_FINDNEXTFILE)
+check_function_exists (FindClose HAVE_FINDCLOSE)
 
 #################################################################
 
