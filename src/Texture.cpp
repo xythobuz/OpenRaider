@@ -167,7 +167,6 @@ int Texture::loadBuffer(unsigned char *image,
 void convertARGB32bppToRGBA32bpp(unsigned char *image,
         unsigned int w, unsigned int h) {
     unsigned int i, size = w * h;
-    unsigned char swap;
 
     assert(image != NULL);
     assert(w > 0);
@@ -175,7 +174,7 @@ void convertARGB32bppToRGBA32bpp(unsigned char *image,
 
     for (i = 0; i < size; ++i) {
         /* 32-bit ARGB to RGBA */
-        swap = image[(i * 4) + 3];
+        unsigned char swap = image[(i * 4) + 3];
         image[(i * 4)] = image[(i * 4) + 1];
         image[(i * 4) + 1] = image[(i * 4) + 2];
         image[(i * 4) + 2] = image[(i * 4) + 3];
@@ -397,82 +396,67 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
 
     if (sx < 1.0 && sy < 1.0) {
         /* Magnify both width and height:  use weighted sample of 4 pixels */
-        int i0, i1, j0, j1;
-        float alpha, beta;
-        float* src00;
-        float* src01;
-        float* src10;
-        float* src11;
-        float s1, s2;
-        float* dst;
-
         for (i = 0; i < height; ++i) {
-            i0 = (int)(i * sy);
-            i1 = i0 + 1;
+            int i0 = (int)(i * sy);
+            int i1 = i0 + 1;
 
             if (i1 >= original_height) {
                 i1 = original_height - 1;
             }
 
-            alpha = i * sy - i0;
+            float alpha = i * sy - i0;
 
             for (j = 0; j < width; ++j) {
-                j0 = (int) (j * sx);
-                j1 = j0 + 1;
+                int j0 = (int) (j * sx);
+                int j1 = j0 + 1;
 
                 if (j1 >= original_width) {
                     j1 = original_width - 1;
                 }
 
-                beta = j * sx - j0;
+                float beta = j * sx - j0;
 
                 /* Compute weighted average of pixels in rect (i0,j0)-(i1,j1) */
-                src00 = tempin + (i0 * original_width + j0) * components;
-                src01 = tempin + (i0 * original_width + j1) * components;
-                src10 = tempin + (i1 * original_width + j0) * components;
-                src11 = tempin + (i1 * original_width + j1) * components;
+                float *src00 = tempin + (i0 * original_width + j0) * components;
+                float *src01 = tempin + (i0 * original_width + j1) * components;
+                float *src10 = tempin + (i1 * original_width + j0) * components;
+                float *src11 = tempin + (i1 * original_width + j1) * components;
 
-                dst = tempout + (i * width + j) * components;
+                float *dst = tempout + (i * width + j) * components;
 
                 for (k = 0; k < components; ++k) {
-                    s1 = *src00++ * (1.0f - beta) + *src01++ * beta;
-                    s2 = *src10++ * (1.0f - beta) + *src11++ * beta;
+                    float s1 = *src00++ * (1.0f - beta) + *src01++ * beta;
+                    float s2 = *src10++ * (1.0f - beta) + *src11++ * beta;
                     *dst++ = s1 * (1.0f - alpha) + s2 * alpha;
                 }
             }
         }
     } else {
         /* Shrink width and/or height:  use an unweighted box filter */
-        int i0, i1;
-        int j0, j1;
-        int ii, jj;
-        float sum;
-        float* dst;
-
         for (i = 0; i < height; ++i) {
-            i0 = (int) (i * sy);
-            i1 = i0 + 1;
+            int i0 = (int) (i * sy);
+            int i1 = i0 + 1;
 
             if (i1 >= original_height) {
                 i1 = original_height - 1;
             }
 
             for (j = 0; j < width; ++j) {
-                j0 = (int) (j * sx);
-                j1 = j0 + 1;
+                int j0 = (int) (j * sx);
+                int j1 = j0 + 1;
 
                 if (j1 >= original_width) {
                     j1 = original_width - 1;
                 }
 
-                dst = tempout + (i * width + j) * components;
+                float *dst = tempout + (i * width + j) * components;
 
                 /* Compute average of pixels in the rectangle (i0,j0)-(i1,j1) */
                 for (k = 0; k < components; ++k) {
-                    sum = 0.0;
+                    float sum = 0.0;
 
-                    for (ii = i0; ii <= i1; ++ii) {
-                        for (jj = j0; jj <= j1; ++jj) {
+                    for (int ii = i0; ii <= i1; ++ii) {
+                        for (int jj = j0; jj <= j1; ++jj) {
                             sum += *(tempin + (ii * original_width + jj)
                                     * components + k);
                         }
@@ -486,7 +470,7 @@ unsigned char *Texture::scaleBuffer(unsigned char *image,
     }
 
     // Copy to our results.
-    for( i = 0; i < height * width * components; ++i) {
+    for (i = 0; i < height * width * components; ++i) {
         timage[i] = (unsigned char)tempout[i];
     }
 

@@ -38,10 +38,6 @@ public:
 
 private:
 
-#ifdef WIN32
-    void loadPakFolderHelper(std::vector<char *> &list);
-#endif
-
     void loadPakFolderRecursive(const char *dir);
 
     void fillMapList();

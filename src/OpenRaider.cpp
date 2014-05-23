@@ -205,7 +205,7 @@ int OpenRaider::set(const char *var, const char *value) {
     if (strcmp(var, "size") == 0) {
         // value has format like "\"1024x768\""
         unsigned int w = DEFAULT_WIDTH, h = DEFAULT_HEIGHT;
-        if (sscanf(value, "\"%5dx%5d\"", &w, &h) != 2) {
+        if (sscanf(value, "\"%5ux%5u\"", &w, &h) != 2) {
             getConsole().print("set-size-Error: Invalid value (%s)", value);
             return -2;
         }

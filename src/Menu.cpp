@@ -59,12 +59,6 @@ bool Menu::isVisible() {
     return mVisible;
 }
 
-#ifdef WIN32
-void Menu::loadPakFolderHelper(std::vector<char *> &list) {
-
-}
-#endif
-
 void Menu::loadPakFolderRecursive(const char *dir) {
     assert(dir != NULL);
     assert(dir[0] != '\0');
@@ -210,9 +204,10 @@ void Menu::display() {
         glRecti(0, 0, getWindow().mWidth, getWindow().mHeight);
         glEnable(GL_TEXTURE_2D);
 
-        // Draw heading text
+        // Draw heading text, using WindowString so we can get the
+        // width of the drawn text to center it
         mainText.x = (getWindow().mWidth / 2) - (mainText.w / 2);
-        getWindow().writeString(&mainText);
+        getWindow().writeString(mainText);
 
         if (!mMapListFilled) {
             getWindow().drawText(25, (getWindow().mHeight / 2) - 20, 0.75f, OR_BLUE, "Generating map list...");

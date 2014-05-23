@@ -96,6 +96,8 @@ Sprite::Sprite(TombRaider &tr, unsigned int room, unsigned int index) {
 
     for (unsigned int j = 0; j < 8; j++)
         texel[j / 2][j % 2] = spriteTexCoords[j];
+
+    radius = 0.0f;
 }
 
 void Sprite::display() {

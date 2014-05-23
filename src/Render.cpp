@@ -37,7 +37,6 @@ Render::~Render() {
 
 void Render::screenShot(char *filenameBase)
 {
-    FILE *f;
     int sz = getWindow().mWidth * getWindow().mHeight;
     unsigned char *image = new unsigned char[sz * 3];
     char *filename = NULL;
@@ -50,7 +49,7 @@ void Render::screenShot(char *filenameBase)
     while (!done) {
         filename = bufferString("%s-%04i.tga", filenameBase, count++);
 
-        f = fopen(filename, "rb");
+        FILE *f = fopen(filename, "rb");
 
         if (f)
             fclose(f);
@@ -307,9 +306,9 @@ void gluLookAt(float eyeX, float eyeY, float eyeZ,
     f[0] = lookAtX - eyeX;
     f[1] = lookAtY - eyeY;
     f[2] = lookAtZ - eyeZ;
-    float fMag, upMag;
-    fMag = sqrtf(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
-    upMag = sqrtf(upX * upX + upY * upY + upZ * upZ);
+
+    float fMag = sqrtf(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    //float upMag = sqrtf(upX * upX + upY * upY + upZ * upZ);
 
     // normalizing the viewing vector
     f[0] = f[0] / fMag;

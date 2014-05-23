@@ -51,7 +51,7 @@ public:
 
     virtual int initializeFont();
 
-    virtual void writeString(WindowString *s);
+    virtual void writeString(WindowString &s);
 
     virtual void drawText(unsigned int x, unsigned int y, float scale, const float color[4], const char *s, ...)
         __attribute__((format(printf, 6, 0)));

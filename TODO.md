@@ -12,6 +12,7 @@ There are these DebugModel, DebugMap flags...?
         * Don't even new ... the data structures but use std::make_shared or allocate_shared?
         * Pass object references to all other objects that need it, completely remove gOpenRaider
     * Use streams for (file) I/O
+        * Does not need strtok() anymore
     * Use std::strings
 
 ## Changes

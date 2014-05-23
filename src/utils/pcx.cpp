@@ -98,7 +98,7 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
         int c = file.get();
         if (!file) {
             pcxPrint("Could not read data (%lu%s)", i, (file.eof() ? " EOF" : ""));
-            delete buffer;
+            delete [] buffer;
             return -7;
         }
 
@@ -109,6 +109,7 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
                 c = file.get();
                 if (!file) {
                     pcxPrint("Could not read data rle (%lu%s)", i, (file.eof() ? " EOF" : ""));
+                    delete [] buffer;
                     return -8;
                 }
             }
@@ -130,6 +131,8 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
                 palette[i] = (unsigned char)file.get();
                 if (!file) {
                     pcxPrint("Could not read 256 color palette (%d)", i);
+                    delete [] buffer;
+                    delete [] palette;
                     return -9;
                 }
             }
@@ -153,6 +156,8 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
                     pcxPrint("Unsupported number of planes (%d)", nPlanes);
                     delete [] buffer;
                     delete [] *image;
+                    if (palette != NULL)
+                        delete [] palette;
                     return -10;
                 }
             } else {
@@ -168,6 +173,8 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
                     pcxPrint("Unsupported number of planes (%d)", nPlanes);
                     delete [] buffer;
                     delete [] *image;
+                    if (palette != NULL)
+                        delete [] palette;
                     return -11;
                 }
             }
@@ -178,6 +185,8 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
             (*image)[baseIndex + 3] = alpha;
         }
     }
+
+    delete [] buffer;
 
     if (palette != NULL)
         delete [] palette;

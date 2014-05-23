@@ -27,6 +27,7 @@ WindowSDL::WindowSDL() {
     mFontInit = false;
     mFontName = NULL;
     mFont = NULL;
+    mFontTexture = 0;
 
 #ifdef WIN32
     setDriver("libGL32.dll");
@@ -539,25 +540,24 @@ int WindowSDL::initializeFont() {
     return 0;
 }
 
-void WindowSDL::writeString(WindowString *s) {
-    assert(s != NULL);
-    assert(s->text != NULL);
+void WindowSDL::writeString(WindowString &s) {
+    assert(s.text != NULL);
     assert(mInit == true);
 
     SDL_Color color;
-    color.r = (unsigned char)(s->color[0] * 255.0f);
-    color.g = (unsigned char)(s->color[1] * 255.0f);
-    color.b = (unsigned char)(s->color[2] * 255.0f);
-    color.a = (unsigned char)(s->color[3] * 255.0f);
+    color.r = (unsigned char)(s.color[0] * 255.0f);
+    color.g = (unsigned char)(s.color[1] * 255.0f);
+    color.b = (unsigned char)(s.color[2] * 255.0f);
+    color.a = (unsigned char)(s.color[3] * 255.0f);
 
-    SDL_Surface *surface = TTF_RenderUTF8_Blended(mFont, s->text, color);
+    SDL_Surface *surface = TTF_RenderUTF8_Blended(mFont, s.text, color);
     if (surface == NULL) {
         printf("TTF_RenderUTF8_Blended Error: %s\n", TTF_GetError());
         return;
     }
 
-    s->w = (int)((float)surface->w * s->scale);
-    s->h = (int)((float)surface->h * s->scale);
+    s.w = (int)((float)surface->w * s.scale);
+    s.h = (int)((float)surface->h * s.scale);
 
     GLenum textureFormat;
     if (surface->format->BytesPerPixel == 4) {
@@ -577,10 +577,10 @@ void WindowSDL::writeString(WindowString *s) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0, textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
 
-    GLuint xMin = s->x;
-    GLuint yMin = s->y;
-    GLuint xMax = xMin + (int)((float)surface->w * s->scale);
-    GLuint yMax = yMin + (int)((float)surface->h * s->scale);
+    GLuint xMin = s.x;
+    GLuint yMin = s.y;
+    GLuint xMax = xMin + s.w;
+    GLuint yMax = yMin + s.h;
 
     glColor4f(color.r / 256.0f, color.g / 256.0f, color.b / 256.0f, color.a / 256.0f);
 
@@ -617,6 +617,6 @@ void WindowSDL::drawText(unsigned int x, unsigned int y, float scale, const floa
         tempText.color[2] = color[2];
         tempText.color[3] = color[3];
     }
-    writeString(&tempText);
+    writeString(tempText);
 }
 

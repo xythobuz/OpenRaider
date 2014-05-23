@@ -11,8 +11,6 @@
 #include <cstring>
 #include <vector>
 
-#include "Window.h"
-
 /*!
  * \brief Console 'overlay'
  */

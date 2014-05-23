@@ -32,9 +32,8 @@ bool ViewVolume::isPointInFrustum(vec_t x, vec_t y, vec_t z) {
 }
 
 bool ViewVolume::isSphereInFrustum(vec_t x, vec_t y, vec_t z, vec_t radius) {
-    vec_t d;
     for (unsigned int p = 0; p < 6; ++p) {
-        d = mFrustum[p][0] * x + mFrustum[p][1] * y + mFrustum[p][2] * z + mFrustum[p][3];
+        vec_t d = mFrustum[p][0] * x + mFrustum[p][1] * y + mFrustum[p][2] * z + mFrustum[p][3];
         if (d <= -radius)
             return false;
     }
