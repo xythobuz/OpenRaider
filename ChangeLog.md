@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140601 ]
+    * Started removing C-style I/O, now using Strings and Streams
+    * set size now takes two ints instead of a string
+
     [ 20140520 ]
     * cmake script checks for presence of functions needed for
       recursive folder traversal

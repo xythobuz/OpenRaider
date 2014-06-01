@@ -358,25 +358,29 @@ void Game::processMoveables()
 // index moveable, i item, sometimes both moveable
 // object_id of item or moveable
 void Game::processMoveable(int index, int i, int object_id) {
+    // Check if the SkeletalModel is already cached
     bool cached = false;
-    unsigned int mod = 0;
-    for (; mod < getWorld().sizeSkeletalModel(); mod++) {
-        if (getWorld().getSkeletalModel(mod).getId() == object_id) {
+    unsigned int model;
+    for (model = 0; model < getWorld().sizeSkeletalModel(); model++) {
+        if (getWorld().getSkeletalModel(model).getId() == object_id) {
             cached = true;
             break;
         }
     }
 
-    if (!cached) {
+    // Create a new SkeletalModel, if needed
+    if (!cached)
         getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider, index, object_id));
-    }
 
-    getWorld().addEntity(*new Entity(mTombRaider, index, i, mod));
+    // Create a new Entity, using the cached or the new SkeletalModel
+    Entity &entity = *new Entity(mTombRaider, index, i, model);
+    getWorld().addEntity(entity);
 
     // Store reference to Lara
-    if (getWorld().getEntity(getWorld().sizeEntity() - 1).getObjectId() == 0)
+    if (entity.getObjectId() == 0)
         mLara = getWorld().sizeEntity() - 1;
 
+    // Store reference to the SkyMesh
     if (i == mTombRaider.getSkyModelId())
         getRender().setSkyMesh(i, //moveable[i].starting_mesh,
                 (mTombRaider.Engine() == TR_VERSION_2));

@@ -8,6 +8,8 @@
 #ifndef _OPENRAIDER_H_
 #define _OPENRAIDER_H_
 
+#include <sstream>
+#include <string>
 #include <vector>
 
 #include "Console.h"
@@ -40,20 +42,16 @@ public:
      */
     int loadConfig(const char *config);
 
+    int command(std::string &command);
     int command(const char *command);
 
     void run();
-
     void frame();
 
     void handleKeyboard(KeyboardButton key, bool pressed);
-
     void handleText(char *text, bool notFinished);
-
     void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
-
     void handleMouseMotion(int xrel, int yrel);
-
     void handleMouseScroll(int xrel, int yrel);
 
     //! \fixme should be private
@@ -64,16 +62,11 @@ public:
 
 private:
 
-    int command(const char *command, std::vector<char *> *args);
-
+    int command(std::stringstream &command);
     char *expandDirectoryNames(const char *s);
-
-    int help(const char *cmd);
-
-    int set(const char *var, const char *value);
-
+    int help(std::string &cmd);
+    int set(std::stringstream &command);
     int bind(const char *action, const char *key);
-
     int bind(ActionEvents action, const char *key);
 
     bool mRunning;
