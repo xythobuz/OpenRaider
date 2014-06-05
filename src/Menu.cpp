@@ -9,9 +9,10 @@
 
 #include "global.h"
 #include "Console.h"
-#include "Menu.h"
 #include "OpenRaider.h"
 #include "utils/strings.h"
+#include "Window.h"
+#include "Menu.h"
 
 #if defined(HAVE_DIRENT_H) && defined(HAVE_OPENDIR) && defined(HAVE_READDIR_R) && defined(HAVE_CLOSEDIR) && defined(HAVE_DT_DIR)
 #include <dirent.h>
@@ -162,7 +163,7 @@ void Menu::fillMapList() {
 
 void Menu::displayMapList() {
     // Estimate displayable number of items
-    int items = (getWindow().mHeight - 110) / 25;
+    int items = (getWindow().getHeight() - 110) / 25;
 
     // Select which part of the list to show
     int min, max;
@@ -190,9 +191,9 @@ void Menu::displayMapList() {
     for (int i = 0; i < (max - min); i++) {
         char *map = mMapList[i + min];
         if ((i + min) == (int)mCursor)
-            getWindow().drawText(25, 100 + (25 * i), 0.75f, RED, "%s", map);
+            getFont().drawText(25, 100 + (25 * i), 0.75f, RED, "%s", map);
         else
-            getWindow().drawText(25, 100 + (25 * i), 0.75f, OR_BLUE, "%s", map);
+            getFont().drawText(25, 100 + (25 * i), 0.75f, OR_BLUE, "%s", map);
     }
 }
 
@@ -201,26 +202,26 @@ void Menu::display() {
         // Draw half-transparent *overlay*
         glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
         glDisable(GL_TEXTURE_2D);
-        glRecti(0, 0, getWindow().mWidth, getWindow().mHeight);
+        glRecti(0, 0, getWindow().getWidth(), getWindow().getHeight());
         glEnable(GL_TEXTURE_2D);
 
-        // Draw heading text, using WindowString so we can get the
+        // Draw heading text, using FontString so we can get the
         // width of the drawn text to center it
-        mainText.x = (getWindow().mWidth / 2) - (mainText.w / 2);
-        getWindow().writeString(mainText);
+        mainText.x = (getWindow().getWidth() / 2) - (mainText.w / 2);
+        getFont().writeString(mainText);
 
         if (!mMapListFilled) {
-            getWindow().drawText(25, (getWindow().mHeight / 2) - 20, 0.75f, OR_BLUE, "Generating map list...");
+            getFont().drawText(25, (getWindow().getHeight() / 2) - 20, 0.75f, OR_BLUE, "Generating map list...");
         } else {
             if (mMapList.size() == 0) {
-                getWindow().drawText(25, (getWindow().mHeight / 2) - 20, 0.75f, RED, "No maps found! See README.md");
+                getFont().drawText(25, (getWindow().getHeight() / 2) - 20, 0.75f, RED, "No maps found! See README.md");
             } else {
                 // draw *play button* above list
                 glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
                 glDisable(GL_TEXTURE_2D);
                 glRecti(25, 25, 100, 75);
                 glEnable(GL_TEXTURE_2D);
-                getWindow().drawText(40, 35, 0.75f, BLACK, "Play");
+                getFont().drawText(40, 35, 0.75f, BLACK, "Play");
 
                 displayMapList();
             }
@@ -280,7 +281,7 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
 }
 
 void Menu::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
-    int items = (getWindow().mHeight - 110) / 25;
+    int items = (getWindow().getHeight() - 110) / 25;
 
     if (released || (button != leftmouseKey))
         return;

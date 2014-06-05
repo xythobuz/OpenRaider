@@ -13,10 +13,10 @@
 #include <vector>
 
 #include "Console.h"
+#include "Font.h"
 #include "Game.h"
 #include "Menu.h"
 #include "Sound.h"
-#include "Window.h"
 
 /*!
  * \brief Main Game Singleton

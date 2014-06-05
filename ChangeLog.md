@@ -3,6 +3,9 @@
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
     [ 20140605 ]
+    * Split Font/Text-Rendering Subsystem from Windowing System
+    * Slight improvements on Window Interface/Implementation differences
+    * Window width/height finally private too
     * Created methods to convert strings of names to ActionEvents
       and KeyboardButtons.
     * Simplified bind commands

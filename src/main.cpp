@@ -28,6 +28,7 @@
 
 #ifdef USING_SDL
 #include "WindowSDL.h"
+#include "FontSDL.h"
 #else
 #error No Windowing Library selected!
 #endif
@@ -48,6 +49,7 @@ SoundNull gSound;
 
 #ifdef USING_SDL
 WindowSDL gWindow;
+FontSDL gFont;
 #endif
 
 Camera &getCamera() {
@@ -56,6 +58,10 @@ Camera &getCamera() {
 
 Console &getConsole() {
     return gConsole;
+}
+
+Font &getFont() {
+    return gFont;
 }
 
 Game &getGame() {

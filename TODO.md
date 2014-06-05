@@ -11,11 +11,9 @@ There are these DebugModel, DebugMap flags...?
     * Use shared_ptr, should make memory handling/segfaults much less of a problem
         * Don't even new ... the data structures but use std::make_shared or allocate_shared?
         * Pass object references to all other objects that need it, completely remove gOpenRaider
-    * Use streams for (file) I/O
-        * Does not need strtok() anymore
     * Use std::strings
+    * Rewrite Console and use operator << to write to the console
 * SDL_TTF 2.0.12+ can do line breaks, use it: http://stackoverflow.com/questions/17847818/how-to-do-line-breaks-and-line-wrapping-with-sdl-ttf/18418688#18418688
-* Rewrite Console using std::strings and use operator << to write to the console
 
 ## Changes
 
@@ -30,8 +28,7 @@ There are these DebugModel, DebugMap flags...?
 
 ## Future Features
 
-* Use only assets from old TR games?
-* [PCX image reading](http://bespin.org/~qz/pc-gpe/pcx.txt) for eg. TR2 built-in menu background
-    * Cut TGA image reader, currently only used for menu background?!
+* Use only assets from old TR games, not even depending on a font file?
+* Cut TGA image reader, currently only used for menu background?!
 * When cutscene rendering is working, use TR4/5 style menu?
 

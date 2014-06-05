@@ -8,10 +8,12 @@
 #include <iostream>
 
 #include "global.h"
-#include "Console.h"
+#include "Font.h"
 #include "OpenRaider.h"
 #include "utils/strings.h"
 #include "utils/time.h"
+#include "Window.h"
+#include "Console.h"
 
 #define INPUT_BUFFER_SIZE 255
 
@@ -75,8 +77,8 @@ void Console::print(const char *s, ...) {
 }
 
 #define LINE_GEOMETRY(window) unsigned int firstLine = 35; \
-        unsigned int lastLine = (window.mHeight / 2) - 55; \
-        unsigned int inputLine = (window.mHeight / 2) - 30; \
+        unsigned int lastLine = (window.getHeight() / 2) - 55; \
+        unsigned int inputLine = (window.getHeight() / 2) - 30; \
         unsigned int lineSteps = 20; \
         unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
         while (((lineCount * lineSteps) + firstLine) < inputLine) { \
@@ -93,7 +95,7 @@ void Console::display() {
         // Draw half-transparent *overlay*
         glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
         glDisable(GL_TEXTURE_2D);
-        glRecti(0, 0, getWindow().mWidth, getWindow().mHeight / 2);
+        glRecti(0, 0, getWindow().getWidth(), getWindow().getHeight() / 2);
         glEnable(GL_TEXTURE_2D);
 
         int scrollIndicator;
@@ -103,7 +105,7 @@ void Console::display() {
             scrollIndicator = 100;
         }
 
-        getWindow().drawText(10, 10, 0.70f, OR_BLUE,
+        getFont().drawText(10, 10, 0.70f, OR_BLUE,
                 "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
 
         // Draw output log
@@ -117,15 +119,15 @@ void Console::display() {
             historyOffset = mHistory.size() - lineCount;
         }
         for (int i = 0; i < end; i++) {
-            getWindow().drawText(10, ((i + drawOffset) * lineSteps) + firstLine,
+            getFont().drawText(10, ((i + drawOffset) * lineSteps) + firstLine,
                     0.75f, OR_BLUE, "%s", mHistory[i + historyOffset - mLineOffset]);
         }
 
         // Draw current input
         if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
-            getWindow().drawText(10, inputLine, 0.75f, OR_BLUE, "> %s", mInputBuffer);
+            getFont().drawText(10, inputLine, 0.75f, OR_BLUE, "> %s", mInputBuffer);
         } else {
-            getWindow().drawText(10, inputLine, 0.75f, OR_BLUE, ">");
+            getFont().drawText(10, inputLine, 0.75f, OR_BLUE, ">");
         }
 
         //! \todo display the current mPartialInput. The UTF-8 segfaults SDL-TTF, somehow?

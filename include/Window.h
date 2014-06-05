@@ -10,16 +10,6 @@
 
 #include <ctime>
 
-typedef struct {
-    char *text;
-    unsigned int x;
-    unsigned int y;
-    int w;
-    int h;
-    float scale;
-    float color[4];
-} WindowString;
-
 /*!
  * \brief Windowing interface
  */
@@ -30,8 +20,6 @@ public:
      * \brief Deconstructs an object of Window
      */
     virtual ~Window();
-
-    virtual void setDriver(const char *driver) = 0;
 
     virtual void setSize(unsigned int width, unsigned int height) = 0;
 
@@ -49,6 +37,12 @@ public:
 
     virtual void swapBuffersGL() = 0;
 
+    virtual void setDriver(const char *driver);
+
+    virtual unsigned int getWidth();
+
+    virtual unsigned int getHeight();
+
     virtual int initializeGL();
 
     virtual void resizeGL();
@@ -57,29 +51,16 @@ public:
 
     virtual void glExit2D();
 
-    virtual void setFont(const char *font) = 0;
-
-    virtual int initializeFont() = 0;
-
-    virtual void writeString(WindowString &s) = 0;
-
-    virtual void drawText(unsigned int x, unsigned int y, float scale, const float color[4], const char *s, ...)
-        __attribute__((format(printf, 6, 0))) = 0;
-
-    //! \fixme should be private
-    unsigned int mWidth;
-    unsigned int mHeight;
-
 protected:
     bool mInit;
     char *mDriver;
     bool mFullscreen;
     bool mMousegrab;
-
-    bool mFontInit;
-    char *mFontName;
+    unsigned int mWidth;
+    unsigned int mHeight;
 };
 
 Window &getWindow();
 
 #endif
+

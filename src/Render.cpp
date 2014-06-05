@@ -18,6 +18,7 @@
 #include "Render.h"
 #include "utils/strings.h"
 #include "utils/tga.h"
+#include "Window.h"
 
 Render::Render() {
     mSkyMesh = -1;
@@ -37,7 +38,7 @@ Render::~Render() {
 
 void Render::screenShot(char *filenameBase)
 {
-    int sz = getWindow().mWidth * getWindow().mHeight;
+    int sz = getWindow().getWidth() * getWindow().getHeight();
     unsigned char *image = new unsigned char[sz * 3];
     char *filename = NULL;
     static int count = 0;
@@ -58,9 +59,9 @@ void Render::screenShot(char *filenameBase)
     }
 
     // Capture frame buffer
-    glReadPixels(0, 0, getWindow().mWidth, getWindow().mHeight, GL_BGR_EXT, GL_UNSIGNED_BYTE, image);
+    glReadPixels(0, 0, getWindow().getWidth(), getWindow().getHeight(), GL_BGR_EXT, GL_UNSIGNED_BYTE, image);
 
-    tgaSaveFilename(image, getWindow().mWidth, getWindow().mHeight, 0, "%s", filename);
+    tgaSaveFilename(image, getWindow().getWidth(), getWindow().getHeight(), 0, "%s", filename);
     printf("Took screenshot '%s'.\n", filename);
 
     delete [] filename;
@@ -488,10 +489,10 @@ void Render::drawLoadScreen()
     float x = 0.0f, y = 0.0f, z = -160.0f;
     float w, h;
 
-    if (getWindow().mWidth < getWindow().mHeight)
-        w = h = (float)getWindow().mWidth;
+    if (getWindow().getWidth() < getWindow().getHeight())
+        w = h = (float)getWindow().getWidth();
     else
-        w = h = (float)getWindow().mHeight;
+        w = h = (float)getWindow().getHeight();
 
 
     if (mTexture.getTextureCount() <= 0)

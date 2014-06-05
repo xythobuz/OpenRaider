@@ -8,7 +8,7 @@
 #ifndef _MENU_H_
 #define _MENU_H_
 
-#include "Window.h"
+#include "Font.h"
 
 /*!
  * \brief Menu 'overlay'
@@ -50,7 +50,7 @@ private:
     unsigned int mCursor;
     unsigned int mMin;
 
-    WindowString mainText;
+    FontString mainText;
 
     bool mMapListFilled;
     bool mFirstPass;

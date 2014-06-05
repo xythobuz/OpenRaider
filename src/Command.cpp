@@ -12,6 +12,7 @@
 #include "global.h"
 #include "Console.h"
 #include "Entity.h"
+#include "Font.h"
 #include "Game.h"
 #include "math/math.h"
 #include "Menu.h"
@@ -682,7 +683,7 @@ int OpenRaider::set(std::istream &command) {
         const char *value = temp.c_str();
         char *quotes = stringReplace(value, "\"", "");
         char *tmp = expandDirectoryNames(quotes);
-        getWindow().setFont(tmp);
+        getFont().setFont(tmp);
         delete [] tmp;
         delete [] quotes;
     } else {

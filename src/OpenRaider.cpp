@@ -17,6 +17,7 @@
 #include "TombRaider.h"
 #include "utils/strings.h"
 #include "utils/time.h"
+#include "Window.h"
 #include "OpenRaider.h"
 
 OpenRaider::OpenRaider() {
@@ -60,12 +61,14 @@ int OpenRaider::initialize() {
         return -2;
     }
 
-    error = getWindow().initializeFont();
+    // Initialize Font
+    error = getFont().initialize();
     if (error != 0) {
         printf("Could not initialize Font (%d)!\n", error);
         return -3;
     }
 
+    // Initialize Sound
     error = getSound().initialize();
     if (error != 0) {
         printf("Could not initialize Sound (%d)!\n", error);
@@ -117,13 +120,13 @@ void OpenRaider::frame() {
 
     // Draw FPS counter
     if (mFPS)
-        getWindow().drawText(10, getWindow().mHeight - 20, 0.5f, OR_BLUE, "%dFPS", fps);
+        getFont().drawText(10, getWindow().getHeight() - 20, 0.5f, OR_BLUE, "%dFPS", fps);
 
 #ifdef DEBUG
     // Draw debug infos
     if (getGame().isLoaded() && (!getMenu().isVisible())) {
         for (int i = 0; i < 3; i++) {
-            getWindow().drawText(10, getWindow().mHeight - ((4 - i) * 20), 0.5f, OR_BLUE, "%.2f (%.2f)",
+            getFont().drawText(10, getWindow().getHeight() - ((4 - i) * 20), 0.5f, OR_BLUE, "%.2f (%.2f)",
                 getGame().getLara().getPos(i) / 256.0f, getGame().getLara().getAngle(i));
         }
     }

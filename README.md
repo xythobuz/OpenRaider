@@ -10,8 +10,6 @@ It seems as if OpenRaider will currently only work on Little-Endian platforms. T
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=xythobuz&url=https://github.com/xythobuz/OpenRaider&title=OpenRaider&language=&tags=github&category=software)
 
-<script data-gittip-username="xythobuz" data-gittip-widget="button" src="//gttp.co/v1.js"></script>
-
 ## Configuration
 
 OpenRaider needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.
