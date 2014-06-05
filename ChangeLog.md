@@ -6,6 +6,7 @@
     * Created methods to convert strings of names to ActionEvents
       and KeyboardButtons.
     * Simplified bind commands
+    * Simplified expandDirectoryNames()
     * Only show debug info if menu is not visible
 
     [ 20140601 ]

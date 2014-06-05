@@ -48,23 +48,19 @@ int OpenRaider::loadConfig(const char *config) {
     return 0;
 }
 
-int OpenRaider::command(std::string &command) {
-    // Remove comment, if any
-    size_t comment = command.find_first_of('#');
-    if (comment != std::string::npos)
-        command.erase(comment);
-
-    // Execute command
-    std::stringstream stream(command);
-    return this->command(stream);
-}
-
 int OpenRaider::command(const char *command) {
     std::string tmp(command);
     return this->command(tmp);
 }
 
-int OpenRaider::command(std::stringstream &command) {
+int OpenRaider::command(std::string &c) {
+    // Remove comment, if any
+    size_t comment = c.find_first_of('#');
+    if (comment != std::string::npos)
+        c.erase(comment);
+
+    // Execute command
+    std::stringstream command(c);
     std::string cmd;
     command >> cmd;
 
@@ -575,35 +571,33 @@ char *OpenRaider::expandDirectoryNames(const char *s) {
     assert(s != NULL);
     assert(s[0] != '\0');
 
-    if (mBaseDir != NULL) {
-        const char *base = "$(basedir)";
-        if (strstr(s, base) != NULL) {
-            return stringReplace(s, base, mBaseDir);
-        }
-    }
+    char *result = bufferString("%s", s);
 
     if (mPakDir != NULL) {
-        const char *pak = "$(pakdir)";
-        if (strstr(s, pak) != NULL) {
-            return stringReplace(s, pak, mPakDir);
-        }
+        char *tmp = stringReplace(s, "$(pakdir)", mPakDir);
+        delete [] result;
+        result = tmp;
     }
 
     if (mAudioDir != NULL) {
-        const char *audio = "$(audiodir)";
-        if (strstr(s, audio) != NULL) {
-            return stringReplace(s, audio, mAudioDir);
-        }
+        char *tmp = stringReplace(s, "$(audiodir)", mAudioDir);
+        delete [] result;
+        result = tmp;
     }
 
     if (mDataDir != NULL) {
-        const char *data = "$(datadir)";
-        if (strstr(s, data) != NULL) {
-            return stringReplace(s, data, mDataDir);
-        }
+        char *tmp = stringReplace(s, "$(datadir)", mDataDir);
+        delete [] result;
+        result = tmp;
     }
 
-    return NULL;
+    if (mBaseDir != NULL) {
+        char *tmp = stringReplace(result, "$(basedir)", mBaseDir);
+        delete [] result;
+        result = tmp;
+    }
+
+    return result;
 }
 
 #define CHANGE_DIR_WITH_EXPANSION(a) do {     \
@@ -612,16 +606,12 @@ char *OpenRaider::expandDirectoryNames(const char *s) {
     const char *value = temp.c_str();         \
     char *quotes = stringRemoveQuotes(value); \
     char *tmp = expandDirectoryNames(quotes); \
-    if (tmp == NULL) {                        \
-        a = fullPath(quotes, 0);              \
-    } else {                                  \
-        a = fullPath(tmp, 0);                 \
-        delete [] tmp;                        \
-    }                                         \
+    a = fullPath(tmp, 0);                     \
+    delete [] tmp;                            \
     delete [] quotes;                         \
 } while(false)
 
-int OpenRaider::set(std::stringstream &command) {
+int OpenRaider::set(std::istream &command) {
     std::string var;
     command >> var >> std::boolalpha;
 
@@ -692,12 +682,8 @@ int OpenRaider::set(std::stringstream &command) {
         const char *value = temp.c_str();
         char *quotes = stringReplace(value, "\"", "");
         char *tmp = expandDirectoryNames(quotes);
-        if (tmp == NULL) {
-            getWindow().setFont(quotes);
-        } else {
-            getWindow().setFont(tmp);
-            delete [] tmp;
-        }
+        getWindow().setFont(tmp);
+        delete [] tmp;
         delete [] quotes;
     } else {
         getConsole().print("set-Error: Unknown variable (%s)", var.c_str());

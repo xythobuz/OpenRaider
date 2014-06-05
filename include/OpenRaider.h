@@ -62,11 +62,11 @@ public:
 
 private:
 
-    int command(std::stringstream &command);
     char *expandDirectoryNames(const char *s);
-    int help(std::string &cmd);
-    int set(std::stringstream &command);
+    int set(std::istream &command);
     int bind(const char *action, const char *key);
+
+    static int help(std::string &cmd);
 
     bool mRunning;
     bool mFPS;
