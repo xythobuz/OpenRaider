@@ -121,7 +121,7 @@ void OpenRaider::frame() {
 
 #ifdef DEBUG
     // Draw debug infos
-    if (getGame().isLoaded()) {
+    if (getGame().isLoaded() && (!getMenu().isVisible())) {
         for (int i = 0; i < 3; i++) {
             getWindow().drawText(10, getWindow().mHeight - ((4 - i) * 20), 0.5f, OR_BLUE, "%.2f (%.2f)",
                 getGame().getLara().getPos(i) / 256.0f, getGame().getLara().getAngle(i));
@@ -166,6 +166,8 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
         getMenu().handleKeyboard(key, pressed);
     }
 
+    //! \fixme Menu/Console visibility could also change in other ways,
+    // that should still result in the correct mousegrab state
     getWindow().setMousegrab(!(getMenu().isVisible() || getConsole().isVisible()));
 }
 

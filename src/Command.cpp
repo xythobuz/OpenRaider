@@ -713,173 +713,19 @@ int OpenRaider::bind(const char *action, const char *key) {
     assert(key != NULL);
     assert(key[0] != '\0');
 
-    const char *tmp = action;
-    if (action[0] == '+')
-        tmp++;
-
-    if (strcmp(tmp, "menu") == 0) {
-        return bind(menuAction, key);
-    } else if (strcmp(tmp, "console") == 0) {
-        return bind(consoleAction, key);
-    } else if (strcmp(tmp, "forward") == 0) {
-        return bind(forwardAction, key);
-    } else if (strcmp(tmp, "backward") == 0) {
-        return bind(backwardAction, key);
-    } else if (strcmp(tmp, "left") == 0) {
-        return bind(leftAction, key);
-    } else if (strcmp(tmp, "right") == 0) {
-        return bind(rightAction, key);
-    } else if (strcmp(tmp, "jump") == 0) {
-        return bind(jumpAction, key);
-    } else if (strcmp(tmp, "crouch") == 0) {
-        return bind(crouchAction, key);
-    } else if (strcmp(tmp, "use") == 0) {
-        return bind(useAction, key);
-    } else if (strcmp(tmp, "holster") == 0) {
-        return bind(holsterAction, key);
-    } else if (strcmp(tmp, "walk") == 0) {
-        return bind(walkAction, key);
-    } else {
+    ActionEvents e = stringToActionEvent(action);
+    if (e == ActionEventCount) {
         getConsole().print("bind-Error: Unknown action (%s --> %s)", key, action);
         return -1;
     }
-}
 
-int OpenRaider::bind(ActionEvents action, const char *key) {
-    assert(action < ActionEventCount);
-    assert(key != NULL);
-    assert(key[0] != '\0');
-
-    size_t length = strlen(key);
-    if ((key[0] == '\'') && (key[length - 1] == '\'') && (length == 3)) {
-        // Literal character like w, a, s, d, 0, 1...
-        char c = key[1];
-        if (((c >= '0') && (c <= '9'))
-            || ((c >= 'a') && (c <= 'z'))) {
-            keyBindings[action] = (KeyboardButton)c;
-        } else {
-            getConsole().print("bind-\'\'-Error: Unknown key (%s)", key);
-            return -1;
-        }
-    } else if ((key[0] == '\"') && (key[length - 1] == '\"')) {
-        // Special characters like tilde, esc, quote...
-        char *tmp = stringRemoveQuotes(key);
-        if (strcmp(tmp, "quote") == 0) {
-            keyBindings[action] = quoteKey;
-        } else if (strcmp(tmp, "backslash") == 0) {
-            keyBindings[action] = backslashKey;
-        } else if (strcmp(tmp, "backspace") == 0) {
-            keyBindings[action] = backspaceKey;
-        } else if (strcmp(tmp, "capslock") == 0) {
-            keyBindings[action] = capslockKey;
-        } else if (strcmp(tmp, "comma") == 0) {
-            keyBindings[action] = commaKey;
-        } else if (strcmp(tmp, "del") == 0) {
-            keyBindings[action] = delKey;
-        } else if (strcmp(tmp, "up") == 0) {
-            keyBindings[action] = upKey;
-        } else if (strcmp(tmp, "down") == 0) {
-            keyBindings[action] = downKey;
-        } else if (strcmp(tmp, "left") == 0) {
-            keyBindings[action] = leftKey;
-        } else if (strcmp(tmp, "right") == 0) {
-            keyBindings[action] = rightKey;
-        } else if (strcmp(tmp, "end") == 0) {
-            keyBindings[action] = endKey;
-        } else if (strcmp(tmp, "equals") == 0) {
-            keyBindings[action] = equalsKey;
-        } else if (strcmp(tmp, "escape") == 0) {
-            keyBindings[action] = escapeKey;
-        } else if (strcmp(tmp, "f1") == 0) {
-            keyBindings[action] = f1Key;
-        } else if (strcmp(tmp, "f2") == 0) {
-            keyBindings[action] = f2Key;
-        } else if (strcmp(tmp, "f3") == 0) {
-            keyBindings[action] = f3Key;
-        } else if (strcmp(tmp, "f4") == 0) {
-            keyBindings[action] = f4Key;
-        } else if (strcmp(tmp, "f5") == 0) {
-            keyBindings[action] = f5Key;
-        } else if (strcmp(tmp, "f6") == 0) {
-            keyBindings[action] = f6Key;
-        } else if (strcmp(tmp, "f7") == 0) {
-            keyBindings[action] = f7Key;
-        } else if (strcmp(tmp, "f8") == 0) {
-            keyBindings[action] = f8Key;
-        } else if (strcmp(tmp, "f9") == 0) {
-            keyBindings[action] = f9Key;
-        } else if (strcmp(tmp, "f10") == 0) {
-            keyBindings[action] = f10Key;
-        } else if (strcmp(tmp, "f11") == 0) {
-            keyBindings[action] = f11Key;
-        } else if (strcmp(tmp, "f12") == 0) {
-            keyBindings[action] = f12Key;
-        } else if (strcmp(tmp, "backquote") == 0) {
-            keyBindings[action] = backquoteKey;
-        } else if (strcmp(tmp, "home") == 0) {
-            keyBindings[action] = homeKey;
-        } else if (strcmp(tmp, "insert") == 0) {
-            keyBindings[action] = insertKey;
-        } else if (strcmp(tmp, "leftalt") == 0) {
-            keyBindings[action] = leftaltKey;
-        } else if (strcmp(tmp, "leftctrl") == 0) {
-            keyBindings[action] = leftctrlKey;
-        } else if (strcmp(tmp, "leftbracket") == 0) {
-            keyBindings[action] = leftbracketKey;
-        } else if (strcmp(tmp, "leftgui") == 0) {
-            keyBindings[action] = leftguiKey;
-        } else if (strcmp(tmp, "leftshift") == 0) {
-            keyBindings[action] = leftshiftKey;
-        } else if (strcmp(tmp, "minus") == 0) {
-            keyBindings[action] = minusKey;
-        } else if (strcmp(tmp, "numlock") == 0) {
-            keyBindings[action] = numlockKey;
-        } else if (strcmp(tmp, "pagedown") == 0) {
-            keyBindings[action] = pagedownKey;
-        } else if (strcmp(tmp, "pageup") == 0) {
-            keyBindings[action] = pageupKey;
-        } else if (strcmp(tmp, "pause") == 0) {
-            keyBindings[action] = pauseKey;
-        } else if (strcmp(tmp, "dot") == 0) {
-            keyBindings[action] = dotKey;
-        } else if (strcmp(tmp, "rightalt") == 0) {
-            keyBindings[action] = rightaltKey;
-        } else if (strcmp(tmp, "rightctrl") == 0) {
-            keyBindings[action] = rightctrlKey;
-        } else if (strcmp(tmp, "enter") == 0) {
-            keyBindings[action] = enterKey;
-        } else if (strcmp(tmp, "rightgui") == 0) {
-            keyBindings[action] = rightguiKey;
-        } else if (strcmp(tmp, "rightbracket") == 0) {
-            keyBindings[action] = rightbracketKey;
-        } else if (strcmp(tmp, "rightshift") == 0) {
-            keyBindings[action] = rightshiftKey;
-        } else if (strcmp(tmp, "scrolllock") == 0) {
-            keyBindings[action] = scrolllockKey;
-        } else if (strcmp(tmp, "semicolon") == 0) {
-            keyBindings[action] = semicolonKey;
-        } else if (strcmp(tmp, "slash") == 0) {
-            keyBindings[action] = slashKey;
-        } else if (strcmp(tmp, "space") == 0) {
-            keyBindings[action] = spaceKey;
-        } else if (strcmp(tmp, "tab") == 0) {
-            keyBindings[action] = tabKey;
-        } else if (strcmp(tmp, "leftmouse") == 0) {
-            keyBindings[action] = leftmouseKey;
-        } else if (strcmp(tmp, "middlemouse") == 0) {
-            keyBindings[action] = middlemouseKey;
-        } else if (strcmp(tmp, "rightmouse") == 0) {
-            keyBindings[action] = rightmouseKey;
-        } else {
-            getConsole().print("bind-\"\"-Error: Unknown key (%s)", key);
-            delete [] tmp;
-            return -2;
-        }
-        delete [] tmp;
-    } else {
+    KeyboardButton c = stringToKeyboardButton(key);
+    if (c == unknownKey) {
         getConsole().print("bind-Error: Unknown key (%s)", key);
-        return -3;
+        return -2;
     }
+
+    keyBindings[e] = c;
     return 0;
 }
 

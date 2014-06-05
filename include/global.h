@@ -92,5 +92,9 @@ typedef enum {
     unknownKey // Should always be at the end
 } KeyboardButton;
 
+ActionEvents stringToActionEvent(const char *action);
+
+KeyboardButton stringToKeyboardButton(const char *key);
+
 #endif
 

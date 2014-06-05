@@ -67,7 +67,6 @@ private:
     int help(std::string &cmd);
     int set(std::stringstream &command);
     int bind(const char *action, const char *key);
-    int bind(ActionEvents action, const char *key);
 
     bool mRunning;
     bool mFPS;

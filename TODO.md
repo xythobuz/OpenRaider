@@ -14,6 +14,8 @@ There are these DebugModel, DebugMap flags...?
     * Use streams for (file) I/O
         * Does not need strtok() anymore
     * Use std::strings
+* SDL_TTF 2.0.12+ can do line breaks, use it: http://stackoverflow.com/questions/17847818/how-to-do-line-breaks-and-line-wrapping-with-sdl-ttf/18418688#18418688
+* Rewrite Console using std::strings and use operator << to write to the console
 
 ## Changes
 
