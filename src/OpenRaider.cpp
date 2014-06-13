@@ -33,17 +33,17 @@ OpenRaider::OpenRaider() {
 }
 
 OpenRaider::~OpenRaider() {
-    if (mBaseDir)
-        delete mBaseDir;
+    delete mBaseDir;
+    mBaseDir = NULL;
 
-    if (mPakDir)
-        delete mPakDir;
+    delete mPakDir;
+    mPakDir = NULL;
 
-    if (mAudioDir)
-        delete mAudioDir;
+    delete mAudioDir;
+    mAudioDir = NULL;
 
-    if (mDataDir)
-        delete mDataDir;
+    delete mDataDir;
+    mDataDir = NULL;
 }
 
 int OpenRaider::initialize() {

@@ -82,52 +82,6 @@ public:
      */
     int getRoomByLocation(float x, float y, float z);
 
-    /*!
-     * \brief Looks for portal crossings from xyz to xyz2 segment
-     * from room[index]
-     * \param index valid room index
-     * \param x X coordinate of first point
-     * \param y Y coordinate of first point
-     * \param z Z coordinate of first point
-     * \param x2 X coordinate of second point
-     * \param y2 Y coordinate of second point
-     * \param z2 Z coordinate of second point
-     * \returns index of adjoined room or -1
-     */
-    int getAdjoiningRoom(int index,
-                            float x, float y, float z,
-                            float x2, float y2, float z2);
-
-    /*!
-     * \brief Gets the sector index of the position in room
-     * \param room valid room index
-     * \param x X coordinate in room
-     * \param z Z coordinate in room
-     * \returns sector index of position in room
-     */
-    int getSector(int room, float x, float z);
-
-    int getSector(int room, float x, float z, float *floor, float *ceiling);
-
-    unsigned int getRoomInfo(int room);
-
-    /*!
-     * \brief Check if sector is a wall
-     * \param room valid room index
-     * \param sector valid sector index
-     * \returns true if this sector is a wall
-     */
-    bool isWall(int room, int sector);
-
-    /*!
-     * \brief Get the world height at a position
-     * \param index valid room index
-     * \param x X coordinate
-     * \param y will be set to world height in that room
-     * \param z Z coordinate
-     */
-    void getHeightAtPosition(int index, float x, float *y, float z);
-
 private:
 
     // Old World

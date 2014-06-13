@@ -35,6 +35,10 @@ Render::~Render() {
     ClearWorld();
 }
 
+void Render::ClearWorld() {
+    mRoomRenderList.clear();
+}
+
 
 void Render::screenShot(char *filenameBase)
 {
@@ -116,11 +120,6 @@ int Render::initTextures(char *textureDir) {
     }
 
     return numTextures;
-}
-
-
-void Render::ClearWorld() {
-    mRoomRenderList.clear();
 }
 
 
@@ -388,12 +387,12 @@ void Render::display()
     camPos[2] = curPos[2] - (1024.0f * cosf(yaw));
 
     int index = getGame().getLara().getRoom();
-    int sector = getWorld().getSector(index, camPos[0], camPos[2]);
+    int sector = getWorld().getRoom(index).getSector(camPos[0], camPos[2]);
 
     // Handle camera out of world
     if ((sector < 0) ||
             ((unsigned int)sector >= getWorld().getRoom(index).sizeSectors()) ||
-            getWorld().isWall(index, sector)) {
+            getWorld().getRoom(index).isWall(sector)) {
         camPos[0] = curPos[0] + (64.0f * sinf(yaw));
         camPos[1] -= 64.0f;
         camPos[2] = curPos[2] + (64.0f * cosf(yaw));
@@ -460,7 +459,18 @@ void Render::display()
 
         // Draw objects not tied to rooms
         glPushMatrix();
-        drawObjects();
+
+        // Draw lara or other player model ( move to entity rendering method )
+        if (mFlags & Render::fViewModel)
+            getGame().getLara().display();
+
+        // Draw sprites after player to handle alpha
+        for (unsigned int i = 0; i < getWorld().sizeSprite(); i++) {
+            SpriteSequence &sprite = getWorld().getSprite(i);
+            for (unsigned int j = 0; j < sprite.size(); j++)
+                sprite.get(j).display();
+        }
+
         glPopMatrix();
 
         // Depth sort entityRenderList with qsort
@@ -487,13 +497,7 @@ void Render::display()
 void Render::drawLoadScreen()
 {
     float x = 0.0f, y = 0.0f, z = -160.0f;
-    float w, h;
-
-    if (getWindow().getWidth() < getWindow().getHeight())
-        w = h = (float)getWindow().getWidth();
-    else
-        w = h = (float)getWindow().getHeight();
-
+    float w = getWindow().getWidth(), h = getWindow().getHeight();
 
     if (mTexture.getTextureCount() <= 0)
         return;
@@ -640,9 +644,7 @@ void Render::drawSkyMesh(float scale)
     glPushMatrix();
 
     if (mSkyMeshRotation)
-    {
         glRotated(90.0, 1, 0, 0);
-    }
 
     glTranslated(0.0, 1000.0, 0.0);
     glScaled(scale, scale, scale);
@@ -650,20 +652,6 @@ void Render::drawSkyMesh(float scale)
     //drawModelMesh(getWorld().getMesh(mSkyMesh), );
     glPopMatrix();
     glEnable(GL_DEPTH_TEST);
-}
-
-
-void Render::drawObjects() {
-    // Draw lara or other player model ( move to entity rendering method )
-    if (mFlags & Render::fViewModel)
-        getGame().getLara().display();
-
-    // Draw sprites after player to handle alpha
-    for (unsigned int i = 0; i < getWorld().sizeSprite(); i++) {
-        SpriteSequence &sprite = getWorld().getSprite(i);
-        for (unsigned int j = 0; j < sprite.size(); j++)
-            sprite.get(j).display();
-    }
 }
 
 

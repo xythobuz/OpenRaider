@@ -109,8 +109,7 @@ void Entity::move(char movement) {
     roomNew = getWorld().getRoomByLocation(room, x, y, z);
 
     if (roomNew == -1) { // Will we hit a portal?
-        roomNew = getWorld().getAdjoiningRoom(room,
-                pos[0],  pos[1], pos[2],
+        roomNew = getWorld().getRoom(room).getAdjoiningRoom(pos[0], pos[1], pos[2],
                 x, y, z);
 
         if (roomNew > -1)
@@ -120,9 +119,9 @@ void Entity::move(char movement) {
             return;
     }
 
-    roomFlags = getWorld().getRoomInfo(roomNew);
-    sector = getWorld().getSector(roomNew, x, z, &floor, &ceiling);
-    wall = getWorld().isWall(roomNew, sector);
+    roomFlags = getWorld().getRoom(roomNew).getFlags();
+    sector = getWorld().getRoom(roomNew).getSector(x, z, &floor, &ceiling);
+    wall = getWorld().getRoom(roomNew).isWall(sector);
 
     // If you're underwater you may want to swim  =)
     // ...if you're worldMoveType_walkNoSwim, you better hope it's shallow
@@ -167,7 +166,7 @@ void Entity::move(char movement) {
          */
 
         h = y;
-        getWorld().getHeightAtPosition(room, x, &h, z);
+        getWorld().getRoom(room).getHeightAtPosition(x, &h, z);
 
         switch (moveType) {
             case MoveTypeFly:
@@ -211,7 +210,7 @@ void Entity::move(char movement) {
 
 void Entity::print() {
     getConsole().print("Entity %d:", objectId);
-    getConsole().print("  Room %i (0x%X)", room, getWorld().getRoomInfo(room));
+    getConsole().print("  Room %i (0x%X)", room, getWorld().getRoom(room).getFlags());
     getConsole().print("  %.1fx %.1fy %.1fz", pos[0], pos[1], pos[2]);
     getConsole().print("  %.1f Yaw", OR_RAD_TO_DEG(angles[1]));
 }

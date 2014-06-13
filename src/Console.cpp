@@ -29,26 +29,22 @@ Console::Console() {
 }
 
 Console::~Console() {
-    if (mInputBuffer)
-        delete [] mInputBuffer;
+    delete [] mInputBuffer;
+    mInputBuffer = NULL;
 
-    if (mPartialInput)
-        delete [] mPartialInput;
+    delete [] mPartialInput;
+    mPartialInput = NULL;
 
-    if (mUnfinishedInput)
-        delete [] mUnfinishedInput;
+    delete [] mUnfinishedInput;
+    mUnfinishedInput = NULL;
 
     while (mHistory.size() > 0) {
-        char *tmp = mHistory.back();
-        if (tmp != NULL)
-            delete [] tmp;
+        delete [] mHistory.back();
         mHistory.pop_back();
     }
 
     while (mCommandHistory.size() > 0) {
-        char *tmp = mCommandHistory.back();
-        if (tmp != NULL)
-            delete [] tmp;
+        delete [] mCommandHistory.back();
         mCommandHistory.pop_back();
     }
 }

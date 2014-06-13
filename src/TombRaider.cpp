@@ -68,7 +68,6 @@ TombRaider::TombRaider()
     flyByCamerasTR5 = 0x0;
 
     mNumTR4Samples = 0;
-    mReset = false;
     mDebug = false;
     mRiffAlternateLoaded = false;
     mRoomVertexLightingFactor = 50.0f;
@@ -420,8 +419,6 @@ int TombRaider::Load(char *filename)
         return -1;
     }
 
-
-    mReset = false;
 
     Fread(&mPakVersion, sizeof(mPakVersion), 1, f);
     //! \fixme endian
@@ -4107,109 +4104,93 @@ int TombRaider::loadSFX(char *filename)
 
 void TombRaider::reset()
 {
-    unsigned int i;
+    delete [] _anim_dispatches;
+    _anim_dispatches = NULL;
 
+    delete [] _anim_commands;
+    _anim_commands = NULL;
 
-    // Mongoose 2003.05.13, Don't let some jackass reset over and over
-    if (mReset)
-    {
-        return;
-    }
+    delete [] _mesh_trees;
+    _mesh_trees = NULL;
 
-    //! \fixme Palettes aren't the same size anymore
-    //memset(_palette8, 0, 256);
-    //memset(_palette16, 0, 256);
+    delete [] _frames;
+    _frames = NULL;
 
-    if (_anim_dispatches)
-        delete [] _anim_dispatches;
+    delete [] _moveables;
+    _moveables = NULL;
 
-    if (_anim_commands)
-        delete [] _anim_commands;
+    delete [] _static_meshes;
+    _static_meshes = NULL;
 
-    if (_mesh_trees)
-        delete [] _mesh_trees;
+    delete [] _object_textures;
+    _object_textures = NULL;
 
-    if (_frames)
-        delete [] _frames;
+    delete [] _sprite_textures;
+    _sprite_textures = NULL;
 
-    if (_moveables)
-        delete [] _moveables;
+    delete [] _sprite_sequences;
+    _sprite_sequences = NULL;
 
-    if (_static_meshes)
-        delete [] _static_meshes;
+    delete [] _cameras;
+    _cameras = NULL;
 
-    if (_object_textures)
-        delete [] _object_textures;
+    delete [] _sound_sources;
+    _sound_sources = NULL;
 
-    if (_sprite_textures)
-        delete [] _sprite_textures;
+    delete [] _boxes;
+    _boxes = NULL;
 
-    if (_sprite_sequences)
-        delete [] _sprite_sequences;
+    delete [] _overlaps;
+    _overlaps = NULL;
 
-    if (_cameras)
-        delete [] _cameras;
+    delete [] _zones;
+    _zones = NULL;
 
-    if (_sound_sources)
-        delete [] _sound_sources;
+    delete [] _animated_textures;
+    _animated_textures = NULL;
 
-    if (_boxes)
-        delete [] _boxes;
+    delete [] _items;
+    _items = NULL;
 
-    if (_overlaps)
-        delete [] _overlaps;
+    delete [] _light_map;
+    _light_map = NULL;
 
-    if (_zones)
-        delete [] _zones;
+    delete [] _cinematic_frames;
+    _cinematic_frames = NULL;
 
-    if (_animated_textures)
-        delete [] _animated_textures;
+    delete [] _demo_data;
+    _demo_data = NULL;
 
-    if (_items)
-        delete [] _items;
+    delete [] mRiffAlternateOffsets;
+    mRiffAlternateOffsets = NULL;
 
-    if (_light_map)
-        delete [] _light_map;
+    delete [] mSoundMap;
+    mSoundMap = NULL;
 
-    if (_cinematic_frames)
-        delete [] _cinematic_frames;
+    delete [] mSoundDetails;
+    mSoundDetails = NULL;
 
-    if (_demo_data)
-        delete [] _demo_data;
+    delete [] mSampleIndices;
+    mSampleIndices = NULL;
 
-    if (mRiffAlternateOffsets)
-        delete [] mRiffAlternateOffsets;
+    delete [] mRiffData;
+    mRiffData = NULL;
 
-    if (mSoundMap)
-        delete [] mSoundMap;
-
-    if (mSoundDetails)
-        delete [] mSoundDetails;
-
-    if (mSampleIndices)
-        delete [] mSampleIndices;
-
-    if (mRiffData)
-        delete [] mRiffData;
-
-    if (mTR4Samples)
-    {
-        for (i = 0; i < mNumTR4Samples; ++i)
-        {
-            if (mTR4SamplesSz[i])
-                delete [] mTR4Samples[i];
+    if (mTR4Samples) {
+        for (unsigned int i = 0; i < mNumTR4Samples; ++i) {
+            delete [] mTR4Samples[i];
+            mTR4Samples[i] = NULL;
         }
 
         delete [] mTR4Samples;
+        mTR4Samples = NULL;
     }
 
-    if (mTR4SamplesSz)
-        delete [] mTR4SamplesSz;
+    delete [] mTR4SamplesSz;
+    mTR4SamplesSz = NULL;
 
-    if (_rooms)
-    {
-        for (i = 0; i < _num_rooms; ++i)
-        {
+    if (_rooms) {
+        for (unsigned int i = 0; i < _num_rooms; ++i) {
             if (_rooms[i].room_data.num_vertices > 0)
                 delete [] _rooms[i].room_data.vertices;
 
@@ -4223,107 +4204,78 @@ void TombRaider::reset()
                 delete [] _rooms[i].room_data.sprites;
 
             if (_rooms[i].num_portals > 0)
-                delete []_rooms[i].portals;
+                delete [] _rooms[i].portals;
 
-            if (_rooms[i].sector_list)
-                delete [] _rooms[i].sector_list;
-
-            if (_rooms[i].lights)
-                delete [] _rooms[i].lights;
-
-            if (_rooms[i].tr4Lights)
-                delete [] _rooms[i].tr4Lights;
-
-            if (_rooms[i].static_meshes)
-                delete [] _rooms[i].static_meshes;
+            delete [] _rooms[i].sector_list;
+            delete [] _rooms[i].lights;
+            delete [] _rooms[i].tr4Lights;
+            delete [] _rooms[i].static_meshes;
         }
 
         delete [] _rooms;
+        _rooms = NULL;
     }
 
-    if (_floor_data)
-    {
-        delete [] _floor_data;
-    }
+    delete [] _floor_data;
+    _floor_data = NULL;
 
-    if (mMeshes)
-    {
-        for (i = 0; (int)i < mMeshCount; ++i)
-        {
-            if (mMeshes[i].vertices)
-                delete [] mMeshes[i].vertices;
-
-            if (mMeshes[i].mesh_lights)
-                delete [] mMeshes[i].mesh_lights;
-
-            if (mMeshes[i].normals)
-                delete [] mMeshes[i].normals;
-
-            if (mMeshes[i].textured_rectangles)
-                delete [] mMeshes[i].textured_rectangles;
-
-            if (mMeshes[i].textured_triangles)
-                delete [] mMeshes[i].textured_triangles;
-
-            if (mMeshes[i].coloured_rectangles)
-                delete [] mMeshes[i].coloured_rectangles;
-
-            if (mMeshes[i].coloured_triangles)
-                delete [] mMeshes[i].coloured_triangles;
+    if (mMeshes) {
+        for (unsigned int i = 0; (int)i < mMeshCount; ++i) {
+            delete [] mMeshes[i].vertices;
+            delete [] mMeshes[i].mesh_lights;
+            delete [] mMeshes[i].normals;
+            delete [] mMeshes[i].textured_rectangles;
+            delete [] mMeshes[i].textured_triangles;
+            delete [] mMeshes[i].coloured_rectangles;
+            delete [] mMeshes[i].coloured_triangles;
         }
 
         delete [] mMeshes;
+        mMeshes = NULL;
     }
 
-    if (_animations)
-        delete [] _animations;
+    delete [] _animations;
+    _animations = NULL;
 
-    if (_state_changes)
-        delete _state_changes;
-    //delete [] _state_changes;
+    delete [] _state_changes;
+    _state_changes = NULL;
 
     numMoveablesTR5 = 0;
-    if (moveablesTR5)
-        delete [] moveablesTR5;
+    delete [] moveablesTR5;
+    moveablesTR5 = NULL;
 
     numAnimationsTR5 = 0;
-    if (animationsTR5)
-        delete [] animationsTR5;
+    delete [] animationsTR5;
+    animationsTR5 = NULL;
 
     numObjectTexturesTR5 = 0;
-    if (objectTexturesTR5)
-        delete [] objectTexturesTR5;
+    delete [] objectTexturesTR5;
+    objectTexturesTR5 = NULL;
 
     numCinematicFramesTR5 = 0;
-    if (cinematicFramesTR5)
-        delete [] cinematicFramesTR5;
+    delete [] cinematicFramesTR5;
+    cinematicFramesTR5 = NULL;
 
     numFlyByCamerasTR5 = 0;
-    if (flyByCamerasTR5)
-        delete [] flyByCamerasTR5;
+    delete [] flyByCamerasTR5;
+    flyByCamerasTR5 = NULL;
 
     // Texture use
-    if (_tex_special)
-        delete [] _tex_special;
-
-    if (_textile8)
-        delete [] _textile8;
-
-    if (_textile16)
-        delete [] _textile16;
-
-    if (_textile32)
-        delete [] _textile32;
-
-    //! \fixme Damaged memory causes delete to not set pointer to NULL?
+    delete [] _tex_special;
     _tex_special = NULL;
+
+    delete [] _textile8;
     _textile8 = NULL;
+
+    delete [] _textile16;
     _textile16 = NULL;
+
+    delete [] _textile32;
     _textile32 = NULL;
 
     // Compressed level use
-    if (mCompressedLevelData)
-        delete [] mCompressedLevelData;
+    delete [] mCompressedLevelData;
+    mCompressedLevelData = NULL;
 
     mCompressedLevelDataOffset  = 0;
     mCompressedLevelSize = 0;
@@ -4364,8 +4316,6 @@ void TombRaider::reset()
     _num_sprite_textures = 0;
     _num_sprite_sequences = 0;
     _num_overlaps = 0;
-
-    mReset = true;
 }
 
 

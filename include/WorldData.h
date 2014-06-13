@@ -10,7 +10,6 @@
 #define _WORLDDATA_H_
 
 #include "math/math.h"
-#include "SkeletalModel.h"
 
 /*! \fixme For now shaders are textures on tex objects
  * and materials on color objects. If -1

@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140613 ]
+    * Changed strange delete-guards
+    * Moved some methods from World into the proper classes
+
     [ 20140605 ]
     * Split Font/Text-Rendering Subsystem from Windowing System
     * Slight improvements on Window Interface/Implementation differences

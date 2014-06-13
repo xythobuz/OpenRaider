@@ -171,27 +171,12 @@ private:
     void buildRoomRenderList(Room &room);
 
     /*!
-     * \brief Renders visible world object.
-     *
-     * Texture must be initialized.
-     */
-    void drawObjects();
-
-    /*!
      * \brief Renders Sky domes/boxes/etc by scaling factor.
      *
      * Texture must be initialized.
      * \param scale correct scale for map size
      */
     void drawSkyMesh(float scale);
-
-    /*!
-     * \brief Renders a skeletal model.
-     *
-     * Texture must be initialized!
-     * \param model model to render
-     */
-    void drawModel(SkeletalModel *model);
 
     /*!
      * \brief Updates View Volume. Call once per render frame.

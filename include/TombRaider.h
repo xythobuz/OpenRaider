@@ -670,7 +670,6 @@ private:
 
     void printDebug(const char *methodName, const char *s, ...) __attribute__((format(printf, 3, 4)));
 
-    bool mReset;                           //!< Guard multiple calls to reset()
     bool mDebug;                           //!< Debug output toggle
     unsigned int mPakVersion;              //!< TombRaider pak file header version
     tr2_version_type mEngineVersion;       //!< TombRaider engine version

@@ -31,8 +31,8 @@ FontSDL::~FontSDL() {
     if (mFontInit)
         TTF_Quit();
 
-    if (tempText.text)
-        delete [] tempText.text;
+    delete [] tempText.text;
+    tempText.text = NULL;
 }
 
 int FontSDL::initialize() {

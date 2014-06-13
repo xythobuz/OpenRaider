@@ -55,9 +55,9 @@ int Game::initialize() {
 }
 
 void Game::destroy() {
-    if (mName)
-        delete [] mName;
+    delete [] mName;
     mName = NULL;
+
     mLoaded = false;
     mLara = -1;
     getRender().setMode(Render::modeDisabled);
@@ -132,6 +132,16 @@ void Game::handleAction(ActionEvents action, bool isFinished) {
             getLara().move('l');
         } else if (action == rightAction) {
             getLara().move('r');
+        } else if (action == jumpAction) {
+
+        } else if (action == crouchAction) {
+
+        } else if (action == useAction) {
+
+        } else if (action == holsterAction) {
+
+        } else if (action == walkAction) {
+
         }
     }
 }

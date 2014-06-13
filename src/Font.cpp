@@ -10,8 +10,8 @@
 #include "Font.h"
 
 Font::~Font() {
-    if (mFontName)
-        delete [] mFontName;
+    delete [] mFontName;
+    mFontName = NULL;
 }
 
 void Font::setFont(const char *font) {

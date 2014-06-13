@@ -7,8 +7,9 @@
 
 #include "global.h"
 #include "Render.h"
-#include "RoomData.h"
+#include "SkeletalModel.h"
 #include "World.h"
+#include "RoomData.h"
 
 BoundingBox::BoundingBox() {
     a[0] = a[1] = a[2] = 0;

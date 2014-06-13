@@ -49,98 +49,63 @@ Mesh::Mesh()
 
 Mesh::~Mesh()
 {
-    unsigned int i;
+    delete [] mVertices;
+    mVertices = NULL;
 
+    delete [] mNormals;
+    mNormals = NULL;
 
-    if (mVertices)
-    {
-        delete [] mVertices;
-    }
-
-    if (mNormals)
-    {
-        delete [] mNormals;
-    }
-
-    if (mColors)
-    {
-        delete [] mColors;
-    }
+    delete [] mColors;
+    mColors = NULL;
 
     if (mTris)
     {
-        for (i = 0; i < mNumTris; ++i)
+        for (unsigned int i = 0; i < mNumTris; ++i)
         {
-            if (mTris[i].triangles)
-                delete [] mTris[i].triangles;
-
-            if (mTris[i].alpha_triangles)
-                delete [] mTris[i].alpha_triangles;
-
-            if (mTris[i].texcoors)
-                delete [] mTris[i].texcoors;
-
-            if (mTris[i].texcoors2)
-                delete [] mTris[i].texcoors2;
+            delete [] mTris[i].triangles;
+            delete [] mTris[i].alpha_triangles;
+            delete [] mTris[i].texcoors;
+            delete [] mTris[i].texcoors2;
         }
 
         delete [] mTris;
+        mTris = NULL;
     }
 
     if (mQuads)
     {
-        for (i = 0; i < mNumQuads; ++i)
+        for (unsigned int i = 0; i < mNumQuads; ++i)
         {
-            if (mQuads[i].quads)
-                delete [] mQuads[i].quads;
-
-            if (mQuads[i].alpha_quads)
-                delete [] mQuads[i].alpha_quads;
-
-            if (mQuads[i].texcoors)
-                delete [] mQuads[i].texcoors;
-
-            if (mQuads[i].texcoors2)
-                delete [] mQuads[i].texcoors2;
+            delete [] mQuads[i].quads;
+            delete [] mQuads[i].alpha_quads;
+            delete [] mQuads[i].texcoors;
+            delete [] mQuads[i].texcoors2;
         }
 
         delete [] mQuads;
+        mQuads = NULL;
     }
 
-    if (mVertexArray)
-    {
-        delete [] mVertexArray;
-    }
+    delete [] mVertexArray;
+    mVertexArray = NULL;
 
-    if (mNormalArray)
-    {
-        delete [] mNormalArray;
-    }
+    delete [] mNormalArray;
+    mNormalArray = NULL;
 
-    if (mColorArray)
-    {
-        delete [] mColorArray;
-    }
+    delete [] mColorArray;
+    mColorArray = NULL;
 
-    if (mTriangleTextures)
-    {
-        delete [] mTriangleTextures;
-    }
+    delete [] mTriangleTextures;
+    mTriangleTextures = NULL;
 
-    if (mTriangleIndices)
-    {
-        delete [] mTriangleIndices;
-    }
+    delete [] mTriangleIndices;
+    mTriangleIndices = NULL;
 
-    if (mTriangleFlags)
-    {
-        delete [] mTriangleFlags;
-    }
+    delete [] mTriangleFlags;
+    mTriangleFlags = NULL;
 
-    if (mTriangleTexCoordArray)
-    {
-        delete [] mTriangleTexCoordArray;
-    }
+    delete [] mTriangleTexCoordArray;
+    mTriangleTexCoordArray = NULL;
 }
 
 

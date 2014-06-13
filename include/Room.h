@@ -28,6 +28,13 @@ public:
     Mesh &getMesh();
     void display(bool alpha);
 
+    bool isWall(unsigned int sector);
+    int getSector(float x, float z, float *floor, float *ceiling);
+    int getSector(float x, float z);
+    void getHeightAtPosition(float x, float *y, float z);
+    int getAdjoiningRoom(float x, float y, float z,
+        float x2, float y2, float z2);
+
     unsigned int getNumXSectors();
     unsigned int getNumZSectors();
     void getPos(vec3_t p);

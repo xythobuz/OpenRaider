@@ -45,6 +45,7 @@ Menu::Menu() {
 
 Menu::~Menu() {
     delete [] mainText.text;
+    mainText.text = NULL;
 
     while (mMapList.size() > 0) {
         delete [] mMapList.back();

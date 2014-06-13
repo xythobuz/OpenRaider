@@ -517,6 +517,62 @@ void Room::display(bool alpha) {
     }
 }
 
+bool Room::isWall(unsigned int sector) {
+    assert(sector >= 0);
+    assert(sector < sectors.size());
+
+    //! \fixme is (sector > 0) correct??
+    return ((sector > 0) && sectors.at(sector)->isWall());
+}
+
+int Room::getSector(float x, float z, float *floor, float *ceiling) {
+    assert(floor != NULL);
+    assert(ceiling != NULL);
+
+    int sector = getSector(x, z);
+
+    if ((sector >= 0) && (sector < (int)sectors.size())) {
+        *floor = sectors.at(sector)->getFloor();
+        *ceiling = sectors.at(sector)->getCeiling();
+    }
+
+    return sector;
+}
+
+int Room::getSector(float x, float z) {
+    int sector = (((((int)x - (int)pos[0]) / 1024) *
+        numZSectors) + (((int)z - (int)pos[2]) / 1024));
+
+    if (sector < 0)
+        return -1;
+
+    return sector;
+}
+
+void Room::getHeightAtPosition(float x, float *y, float z) {
+    int sector = getSector(x, z);
+    if ((sector >= 0) && (sector < (int)sectors.size()))
+        *y = sectors.at(sector)->getFloor();
+}
+
+int Room::getAdjoiningRoom(float x, float y, float z,
+        float x2, float y2, float z2) {
+    vec3_t intersect, p1, p2;
+    vec3_t vertices[4];
+
+    p1[0] = x;  p1[1] = y;  p1[2] = z;
+    p2[0] = x2; p2[1] = y2; p2[2] = z2;
+
+    for (unsigned int i = 0; i < portals.size(); i++) {
+        portals.at(i)->getVertices(vertices);
+        if (intersectionLinePolygon(intersect, p1, p2, //4,
+                    vertices))
+            return portals.at(i)->getAdjoiningRoom();
+    }
+
+    return -1;
+}
+
 unsigned int Room::getFlags() {
     return flags;
 }
