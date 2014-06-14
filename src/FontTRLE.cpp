@@ -5,8 +5,7 @@
  * \author xythobuz
  */
 
-#include <cstdio>
-#include <cstdarg>
+#include <fstream>
 
 #include "global.h"
 #include "utils/strings.h"
@@ -43,25 +42,37 @@ FontTRLE::~FontTRLE() {
 }
 
 int FontTRLE::initialize() {
+    // TODO font coloring not working when .pc has color?!?!
+
 
     // tmp debug
     delete [] mFontName;
     mFontName = bufferString("/Users/thomas/Downloads/TR Fonts/TR4 Official/Font.pc");
+    //mFontName = bufferString("/Users/thomas/Downloads/TR Fonts/TR2 Web/Font.pc");
+
 
     assert(mFontInit == false);
     assert(mFontName != NULL);
     assert(mFontName[0] != '\0');
     assert(stringEndsWith(mFontName, ".pc") == true);
 
-    // Load .pc file into GL texture
-    unsigned char *pixels = NULL;
+    // Load .pc file...
+    std::ifstream file(mFontName, std::ios::in | std::ios::binary);
+    unsigned char *pixels = new unsigned char[256 * 256 * 4];
+    if (!file.read((char *)pixels, 256 * 256 * 4)) {
+        delete [] pixels;
+        return -1;
+    }
+
+    // ...into GL texture
     glGenTextures(1, &mFontTexture);
     glBindTexture(GL_TEXTURE_2D, mFontTexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 256, 256, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pixels);
+    delete [] pixels;
 
-    // Try to load .lps file, overwriting defaults
+    // Try to load .lps file, overwriting default glyph positions
     char *lpsFile = stringReplace(mFontName, ".pc", ".lps");
     loadLPS(lpsFile);
     delete [] lpsFile;
@@ -71,40 +82,44 @@ int FontTRLE::initialize() {
 }
 
 void FontTRLE::loadLPS(const char *file) {
-    //! \todo load lps file
+    // TODO load lps file
+
+    // if baselineAbs != 0
+    //     all offset[4] + baselineAbs;
 }
 
+#define SCALING 2.0f
+
 void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, FontString &s) {
-/*
-    SDL_Color color;
-    color.r = (unsigned char)(s.color[0] * 255.0f);
-    color.g = (unsigned char)(s.color[1] * 255.0f);
-    color.b = (unsigned char)(s.color[2] * 255.0f);
-    color.a = (unsigned char)(s.color[3] * 255.0f);
+    int width = (int)(((vec_t)offsets[index][2]) * s.scale * SCALING);
+    int height = (int)(((vec_t)offsets[index][3]) * s.scale * SCALING);
+    int offset = (int)(((vec_t)offsets[index][4]) * s.scale * SCALING);
 
+    // screen coordinates
+    int xMin = xDraw;
+    int yMin = s.y + offset + (int)(10.0f * s.scale * SCALING);
+    int xMax = xMin + width;
+    int yMax = yMin + height;
+
+    // texture part
+    vec_t txMin = ((vec_t)offsets[index][0]) / 256.0f;
+    vec_t txMax = ((vec_t)(offsets[index][0] + offsets[index][2])) / 256.0f;
+    vec_t tyMin = ((vec_t)offsets[index][1]) / 256.0f;
+    vec_t tyMax = ((vec_t)(offsets[index][1] + offsets[index][3])) / 256.0f;
+
+    // draw
     glBindTexture(GL_TEXTURE_2D, mFontTexture);
-
-    GLuint xMin = s.x;
-    GLuint yMin = s.y;
-    GLuint xMax = xMin + s.w;
-    GLuint yMax = yMin + s.h;
-
-    glColor4f(color.r / 256.0f, color.g / 256.0f, color.b / 256.0f, color.a / 256.0f);
-
+    glColor4f(s.color[0], s.color[1], s.color[2], s.color[3]);
     glBegin(GL_QUADS);
-    glTexCoord2f(0.0f, 0.0f);
+    glTexCoord2f(txMin, tyMin);
     glVertex2i(xMin, yMin);
-
-    glTexCoord2f(0.0f, 1.0f);
+    glTexCoord2f(txMin, tyMax);
     glVertex2i(xMin, yMax);
-
-    glTexCoord2f(1.0f, 1.0f);
+    glTexCoord2f(txMax, tyMax);
     glVertex2i(xMax, yMax);
-
-    glTexCoord2f(1.0f, 0.0f);
+    glTexCoord2f(txMax, tyMin);
     glVertex2i(xMax, yMin);
     glEnd();
-*/
 }
 
 void FontTRLE::writeString(FontString &s) {
@@ -115,18 +130,23 @@ void FontTRLE::writeString(FontString &s) {
 
     for (unsigned int i = 0; s.text[i] != '\0'; i++) {
         // index into offset table
-        int index = s.text[i] - ' ';
+        int index = s.text[i] - '!';
+
+        if (index == -1) // space
+            x += (unsigned int)(14.0f * s.scale * SCALING);
 
         if ((index < 0) || (index > 105))
             continue; // skip unprintable chars
 
         writeChar((unsigned int)index, x, s);
-        x += offsets[index][2]; // width
+        x += (int)((vec_t)(offsets[index][2] + 1) * s.scale * SCALING); // width
     }
 
+    // TODO scaling?!
+    s.w = x;
 /*
-    s.w = (int)((float)surface->w * s.scale);
-    s.h = (int)((float)surface->h * s.scale);
+    s.w = (int)((float)surface->w * s.scale * SCALING);
+    s.h = (int)((float)surface->h * s.scale * SCALING);
 */
 }
 
