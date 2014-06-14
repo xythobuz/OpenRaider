@@ -78,8 +78,14 @@ if (SDL2_FOUND AND SDL2TTF_FOUND)
     set (SRCS ${SRCS} "FontSDL.cpp")
     set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_SDL")
 else (SDL2_FOUND AND SDL2TTF_FOUND)
-    # Currently only SDL2 support
-    message (FATAL_ERROR "SDL2 and SDL2-TTF are required at the moment!")
+    if (SDL2_FOUND)
+        set (SRCS ${SRCS} "WindowSDL.cpp")
+        set (SRCS ${SRCS} "FontTRLE.cpp")
+        set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_SDL")
+        set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_TRLE")
+    else (SDL2_FOUND)
+        message (FATAL_ERROR "SDL2 is required at the moment!")
+    endif (SDL2_FOUND)
 endif (SDL2_FOUND AND SDL2TTF_FOUND)
 
 #################################################################
@@ -135,7 +141,7 @@ if (APPLE)
     set (SRCS ${SRCS} ${MAC_ICON})
 
     # Copy Data
-    set (MAC_DATA "../data/OpenRaider.ini" "../data/test.ttf" "../data/splash.tga")
+    set (MAC_DATA "../data/font.pc" "../data/OpenRaider.ini" "../data/test.ttf" "../data/splash.tga")
     set_source_files_properties (${MAC_DATA} PROPERTIES MACOSX_PACKAGE_LOCATION Resources/defaults)
     set (SRCS ${SRCS} ${MAC_DATA})
 endif (APPLE)

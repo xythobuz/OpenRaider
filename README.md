@@ -29,7 +29,8 @@ A more or less recent [Doxygen documentation](http://xythobuz.github.io/OpenRaid
 Basically, OpenRaider depends on the following:
 
 * OpenGL
-* SDL2 & SDL2-TTF
+* SDL2
+* SDL2-TTF (if you want to use TTF fonts)
 * OpenAL & ALUT
 * zlib
 * cmake as build system
@@ -114,6 +115,14 @@ OpenRaider tries to load a `MAIN.SFX` from the same folder as the selected level
 
 Every available command should be listed in the in-game help. Just type `help` in the OpenRaider console, which can be activated by default with the backquote key.
 
+### Tomb Raider Level Editor Font support
+
+OpenRaider can read Font.pc files used by the TRLE. If the fonts glyph positions match the TR4 defaults, only a Font.pc file is required. If the positions differ, you also need a [Leikkuri/Cutter](http://trep.trlevel.de/en/downloads.html) preset file (.lps).
+
+TRLE Font support will automatically be built if SDL2-TTF is not available. Just change the font file path in your config file.
+
+I’ve made [a small writeup on my website](http://xythobuz.de/2014_06_14_trle_font.html) about this.
+
 ### Wireframe mode colors
 
 * Red (thick) lines are portal outlines
@@ -138,6 +147,8 @@ All code should be GPLed, unless otherwise noted.
 Forked in December 2013 by xythobuz.
 
 The included example Font, [Droid Sans Mono](http://www.droidfonts.com/licensing/), was created by Steve Matteson and is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
+
+The included TRLE Font is from [Laras Levelbase](http://laraslevelbase.org/stuff/index.asp?id=1967).
 
 There are some included cmake scripts:
 

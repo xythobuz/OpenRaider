@@ -36,19 +36,11 @@ public:
 
 private:
 
-    void loadLPS(const char *file);
+    void loadLPS(const char *f);
     void writeChar(unsigned int index, unsigned int xDraw, FontString &s);
 
     unsigned int mFontTexture;
     FontString tempText;
-
-    unsigned int resolution1;
-    unsigned int resolution2;
-    int ruler1;
-    int ruler2;
-    int baselineAbs; // always zero?
-    vec_t spacing;
-    vec_t squashedTextFactor;
 
     // 106 entries: (x, y, w, h, offset)
     int offsets[106][5] = {
@@ -131,7 +123,7 @@ private:
         {  96,  26,  17,   8, -7  },
         { 152,  48,  11,   8, -7  },
         {  62,  51,   9,   8, -7  },
-        { 244,  15,   0,  12, -7  },
+        { 244,  15,  10,  12, -7  },
         {  52,  39,   9,  12, -7  },
         {  10,  52,   9,   8, -7  },
         { 190,  52,   8,   8, -7  },

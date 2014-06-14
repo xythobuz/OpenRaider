@@ -3,7 +3,7 @@
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
     [ 20140614 ]
-    * Started implementing TRLE Font loader
+    * Implemented TRLE Font loader
 
     [ 20140613 ]
     * Changed strange delete-guards

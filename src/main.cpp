@@ -28,7 +28,11 @@
 
 #ifdef USING_SDL
 #include "WindowSDL.h"
+#ifdef USING_TRLE
+#include "FontTRLE.h"
+#else
 #include "FontSDL.h"
+#endif
 #else
 #error No Windowing Library selected!
 #endif
@@ -49,7 +53,11 @@ SoundNull gSound;
 
 #ifdef USING_SDL
 WindowSDL gWindow;
+#ifdef USING_TRLE
+FontTRLE gFont;
+#else
 FontSDL gFont;
+#endif
 #endif
 
 Camera &getCamera() {

@@ -6,6 +6,7 @@
  */
 
 #include <fstream>
+#include <sstream>
 
 #include "global.h"
 #include "utils/strings.h"
@@ -15,16 +16,6 @@ FontTRLE::FontTRLE() {
     mFontInit = false;
     mFontName = NULL;
     mFontTexture = 0;
-
-    // TRLE defaults
-    resolution1 = 240;
-    resolution2 = 512;
-    ruler1 = -16;
-    ruler2 = -40;
-    baselineAbs = 0; // always zero?
-    spacing = 0.075f;
-    squashedTextFactor = 0.75f;
-    // offset table default is set in header
 
     tempText.text = new char[256];
     tempText.color[0] = 0xFF;
@@ -42,14 +33,7 @@ FontTRLE::~FontTRLE() {
 }
 
 int FontTRLE::initialize() {
-    // TODO font coloring not working when .pc has color?!?!
-
-
-    // tmp debug
-    delete [] mFontName;
-    mFontName = bufferString("/Users/thomas/Downloads/TR Fonts/TR4 Official/Font.pc");
-    //mFontName = bufferString("/Users/thomas/Downloads/TR Fonts/TR2 Web/Font.pc");
-
+    //! \todo Font coloring not working when .pc has color?!?!
 
     assert(mFontInit == false);
     assert(mFontName != NULL);
@@ -81,11 +65,44 @@ int FontTRLE::initialize() {
     return 0;
 }
 
-void FontTRLE::loadLPS(const char *file) {
-    // TODO load lps file
+void FontTRLE::loadLPS(const char *f) {
+    std::ifstream file(f);
+    if (!file)
+        return;
 
-    // if baselineAbs != 0
-    //     all offset[4] + baselineAbs;
+    /*!
+     * \todo This is probably the worlds most unreliable parser...
+     */
+
+    for (std::string line; std::getline(file, line);) {
+        std::istringstream stream(line);
+        std::string tok1, tok2;
+        std::getline(stream, tok1, '=');
+        std::getline(stream, tok2);
+
+        // we are only interested in lines starting with
+        // xxx=
+        // Where xxx is a 3 digit number
+        try {
+            int index = std::stoi(tok1);
+            if ((index >= 0) && (index <= 105)) {
+                std::istringstream row(tok2);
+                std::string a, b, c, d, e;
+                std::getline(row, a, ',');
+                std::getline(row, b, ',');
+                std::getline(row, c, ',');
+                std::getline(row, d, ',');
+                std::getline(row, e);
+                offsets[index][0] = std::stoi(a);
+                offsets[index][1] = std::stoi(b);
+                offsets[index][2] = std::stoi(c);
+                offsets[index][3] = std::stoi(d);
+                offsets[index][4] = std::stoi(e);
+            }
+        } catch (std::invalid_argument) {
+
+        }
+    }
 }
 
 #define SCALING 2.0f
