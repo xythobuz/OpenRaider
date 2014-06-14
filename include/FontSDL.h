@@ -1,6 +1,6 @@
 /*!
  * \file include/FontSDL.h
- * \brief SDL windowing implementation
+ * \brief SDL Font implementation
  *
  * \author xythobuz
  */
@@ -13,7 +13,7 @@
 #include "Font.h"
 
 /*!
- * \brief SDL windowing implementation
+ * \brief SDL Font implementation
  */
 class FontSDL : public Font {
 public:

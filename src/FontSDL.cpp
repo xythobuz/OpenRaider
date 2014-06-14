@@ -58,6 +58,7 @@ int FontSDL::initialize() {
 }
 
 void FontSDL::writeString(FontString &s) {
+    assert(mFontInit == true);
     assert(s.text != NULL);
 
     SDL_Color color;
