@@ -16,15 +16,6 @@ FontTRLE::FontTRLE() {
     mFontInit = false;
     mFontName = NULL;
     mFontTexture = 0;
-
-    tempText.text = new char[256];
-    tempText.color[0] = 0xFF;
-    tempText.color[1] = 0xFF;
-    tempText.color[2] = 0xFF;
-    tempText.color[3] = 0xFF;
-    tempText.scale = 1.2f;
-    tempText.w = 0;
-    tempText.h = 0;
 }
 
 FontTRLE::~FontTRLE() {
@@ -44,6 +35,14 @@ int FontTRLE::initialize() {
     if (!file.read((char *)pixels, 256 * 256 * 4)) {
         delete [] pixels;
         return -1;
+    }
+
+    // Fix coloring
+    for (unsigned int i = 0; i < (256 * 256 * 4); i += 4) {
+        float y = (0.2126f * pixels[i + 2]);
+        y += (0.7152f * pixels[i + 1]);
+        y += (0.0722f * pixels[i]);
+        pixels[i] = pixels[i + 1] = pixels[i + 2] = (unsigned char)y;
     }
 
     // ...into GL texture
@@ -142,6 +141,7 @@ void FontTRLE::writeString(FontString &s) {
     assert(s.text != NULL);
 
     unsigned int x = s.x;
+    unsigned int y = 0;
 
     for (unsigned int i = 0; s.text[i] != '\0'; i++) {
         // index into offset table
@@ -155,13 +155,12 @@ void FontTRLE::writeString(FontString &s) {
 
         writeChar((unsigned int)index, x, s);
         x += (int)((vec_t)(offsets[index][2] + 1) * s.scale * SCALING); // width
+
+        if (y < (unsigned int)(((vec_t)offsets[index][3]) * s.scale * SCALING))
+            y = (unsigned int)(((vec_t)offsets[index][3]) * s.scale * SCALING);
     }
 
-    // TODO scaling?!
-    s.w = x;
-/*
-    s.w = (int)((float)surface->w * s.scale * SCALING);
-    s.h = (int)((float)surface->h * s.scale * SCALING);
-*/
+    s.w = x - s.x;
+    s.h = y;
 }
 

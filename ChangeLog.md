@@ -5,6 +5,9 @@
     [ 20140615 ]
     * Added FontManager, selecting Font library to use depending on
       the file extension of the font file specified in the config.
+    * Fixed menu heading not visible when using FontSDL
+    * Font::drawText now only implemented in Font
+    * TRLE Fonts can now be properly colored
 
     [ 20140614 ]
     * Implemented TRLE Font loader

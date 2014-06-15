@@ -41,7 +41,6 @@ public:
 protected:
     bool mFontInit;
     char *mFontName;
-    FontString tempText;
 };
 
 Font &getFont();

@@ -30,10 +30,10 @@ Menu::Menu() {
     mMin = 0;
 
     mainText.text = bufferString(VERSION);
-    mainText.color[0] = 0xFF;
-    mainText.color[1] = 0xFF;
-    mainText.color[2] = 0xFF;
-    mainText.color[3] = 0xFF;
+    mainText.color[0] = OR_BLUE[0];
+    mainText.color[1] = OR_BLUE[1];
+    mainText.color[2] = OR_BLUE[2];
+    mainText.color[3] = OR_BLUE[3];
     mainText.scale = 1.2f;
     mainText.y = 10;
     mainText.w = 0;

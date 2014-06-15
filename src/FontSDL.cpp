@@ -13,15 +13,6 @@ FontSDL::FontSDL() {
     mFontInit = false;
     mFontName = NULL;
     mFontTexture = 0;
-
-    tempText.text = new char[256];
-    tempText.color[0] = 0xFF;
-    tempText.color[1] = 0xFF;
-    tempText.color[2] = 0xFF;
-    tempText.color[3] = 0xFF;
-    tempText.scale = 1.2f;
-    tempText.w = 0;
-    tempText.h = 0;
 }
 
 FontSDL::~FontSDL() {
