@@ -26,6 +26,10 @@ There are these DebugModel, DebugMap flags...?
 * Support SSE with other compilers than Clang (src/CMakeLists.txt)
 * Visual C++ compiler flags? (CMakeLists.txt)
 
+## Bugs
+
+* Menu Header “OpenRaider” not visible when using FontSDL?
+
 ## Future Features
 
 * Use only assets from old TR games, not even depending on a font file?

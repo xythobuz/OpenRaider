@@ -36,11 +36,12 @@ public:
     virtual void writeString(FontString &s) = 0;
 
     virtual void drawText(unsigned int x, unsigned int y, float scale, const float color[4], const char *s, ...)
-        __attribute__((format(printf, 6, 0))) = 0;
+        __attribute__((format(printf, 6, 0)));
 
 protected:
     bool mFontInit;
     char *mFontName;
+    FontString tempText;
 };
 
 Font &getFont();

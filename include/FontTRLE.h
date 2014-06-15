@@ -31,16 +31,12 @@ public:
 
     virtual void writeString(FontString &s);
 
-    virtual void drawText(unsigned int x, unsigned int y, float scale, const float color[4], const char *s, ...)
-        __attribute__((format(printf, 6, 0)));
-
 private:
 
     void loadLPS(const char *f);
     void writeChar(unsigned int index, unsigned int xDraw, FontString &s);
 
     unsigned int mFontTexture;
-    FontString tempText;
 
     // 106 entries: (x, y, w, h, offset)
     int offsets[106][5] = {

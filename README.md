@@ -117,9 +117,11 @@ Every available command should be listed in the in-game help. Just type `help` i
 
 ### Tomb Raider Level Editor Font support
 
-OpenRaider can read Font.pc files used by the TRLE. If the fonts glyph positions match the TR4 defaults, only a Font.pc file is required. If the positions differ, you also need a [Leikkuri/Cutter](http://trep.trlevel.de/en/downloads.html) preset file (.lps).
+OpenRaider can read Font.pc files used by the TRLE. If the fonts glyph positions match the TR4 defaults, only a Font.pc file is required. If the positions differ, you also need a [Leikkuri/Cutter](http://trep.trlevel.de/en/downloads.html) preset file (`.lps`).
 
-TRLE Font support will automatically be built if SDL2-TTF is not available. Just change the font file path in your config file.
+TRLE Font support will automatically be built and used when selecting a font in your config file ending with `.pc`.
+
+If a `.lps` is required, give it the same name as your font file.
 
 I’ve made [a small writeup on my website](http://xythobuz.de/2014_06_14_trle_font.html) about this.
 

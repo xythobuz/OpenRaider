@@ -32,14 +32,9 @@ public:
 
     virtual void writeString(FontString &s);
 
-    virtual void drawText(unsigned int x, unsigned int y, float scale, const float color[4], const char *s, ...)
-        __attribute__((format(printf, 6, 0)));
-
 private:
     TTF_Font *mFont;
     unsigned int mFontTexture;
-
-    FontString tempText;
 };
 
 #endif

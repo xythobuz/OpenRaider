@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140615 ]
+    * Added FontManager, selecting Font library to use depending on
+      the file extension of the font file specified in the config.
+
     [ 20140614 ]
     * Implemented TRLE Font loader
 

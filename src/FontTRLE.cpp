@@ -28,8 +28,6 @@ FontTRLE::FontTRLE() {
 }
 
 FontTRLE::~FontTRLE() {
-    delete [] tempText.text;
-    tempText.text = NULL;
 }
 
 int FontTRLE::initialize() {
@@ -165,24 +163,5 @@ void FontTRLE::writeString(FontString &s) {
     s.w = (int)((float)surface->w * s.scale * SCALING);
     s.h = (int)((float)surface->h * s.scale * SCALING);
 */
-}
-
-void FontTRLE::drawText(unsigned int x, unsigned int y, float scale, const float color[4], const char *s, ...) {
-    va_list args;
-    va_start(args, s);
-    vsnprintf(tempText.text, 256, s, args);
-    tempText.text[255] = '\0';
-    va_end(args);
-
-    tempText.scale = scale;
-    tempText.x = x;
-    tempText.y = y;
-    if (color) {
-        tempText.color[0] = color[0];
-        tempText.color[1] = color[1];
-        tempText.color[2] = color[2];
-        tempText.color[3] = color[3];
-    }
-    writeString(tempText);
 }
 

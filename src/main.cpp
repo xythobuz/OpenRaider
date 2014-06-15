@@ -12,6 +12,7 @@
 #include "global.h"
 #include "Camera.h"
 #include "Console.h"
+#include "FontManager.h"
 #include "Game.h"
 #include "Menu.h"
 #include "OpenRaider.h"
@@ -28,17 +29,13 @@
 
 #ifdef USING_SDL
 #include "WindowSDL.h"
-#ifdef USING_TRLE
-#include "FontTRLE.h"
-#else
-#include "FontSDL.h"
-#endif
 #else
 #error No Windowing Library selected!
 #endif
 
 Camera gCamera;
 Console gConsole;
+FontManager gFont;
 Game gGame;
 Menu gMenu;
 OpenRaider gOpenRaider;
@@ -53,11 +50,6 @@ SoundNull gSound;
 
 #ifdef USING_SDL
 WindowSDL gWindow;
-#ifdef USING_TRLE
-FontTRLE gFont;
-#else
-FontSDL gFont;
-#endif
 #endif
 
 Camera &getCamera() {
