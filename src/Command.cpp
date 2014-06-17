@@ -64,6 +64,7 @@ int OpenRaider::command(std::string &c) {
     std::stringstream command(c);
     std::string cmd;
     command >> cmd;
+    command >> std::boolalpha >> std::ws;
 
     if (cmd.length() == 0)
         return 0;
@@ -98,12 +99,12 @@ int OpenRaider::command(std::string &c) {
             getConsole().print("  load      - load a level");
             getConsole().print("  set       - set a parameter");
             getConsole().print("  bind      - bind a keyboard/mouse action");
+            getConsole().print("  animate   - [BOOL|n|p] - Animate models");
 /*
             getConsole().print("  sshot     - make a screenshot");
             getConsole().print("  move      - [walk|fly|noclip]");
             getConsole().print("  sound     - INT - Test play sound");
             getConsole().print("  mode      - MODE - Render mode");
-            getConsole().print("  animate   - [BOOL|n|p] - Animate models");
             getConsole().print("  light     - BOOL - GL Lights");
             getConsole().print("  fog       - BOOL - GL Fog");
             getConsole().print("  viewmodel - INT - Change Laras model");
@@ -122,8 +123,56 @@ int OpenRaider::command(std::string &c) {
             getConsole().print("  help      - print command help");
             getConsole().print("  quit      - exit OpenRaider");
             getConsole().print("Use help COMMAND to get additional info");
+            getConsole().print("Pass BOOLs as true or false");
         } else {
             return help(tmp);
+        }
+    } else if (cmd.compare("animate") == 0) {
+        if ((!mRunning) || (!getGame().isLoaded())) {
+            getConsole().print("Use animate command interactively!");
+            return -999;
+        }
+        if (command.peek() == 'n') {
+            // Step all skeletal models to their next animation
+            if (getRender().getFlags() & Render::fAnimateAllModels) {
+                for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
+                    Entity &e = getWorld().getEntity(i);
+                    SkeletalModel &m = e.getModel();
+                    if (e.getAnimation() < (m.size() - 1))
+                        e.setAnimation(e.getAnimation() + 1);
+                    else
+                        e.setAnimation(0);
+                }
+            } else {
+                getConsole().print("Animations need to be enabled!");
+            }
+        } else if (command.peek() == 'p') {
+            // Step all skeletal models to their previous animation
+            if (getRender().getFlags() & Render::fAnimateAllModels) {
+                for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
+                    Entity &e = getWorld().getEntity(i);
+                    SkeletalModel &m = e.getModel();
+                    if (e.getAnimation() > 0)
+                        e.setAnimation(e.getAnimation() - 1);
+                    else
+                        if (m.size() > 0)
+                            e.setAnimation(m.size() - 1);
+                }
+            } else {
+                getConsole().print("Animations need to be enabled!");
+            }
+        } else {
+            // Enable or disable animating all skeletal models
+            bool b = false;
+            if (!(command >> b)) {
+                getConsole().print("Pass BOOL to animate command!");
+                return -2;
+            }
+            if (b)
+                getRender().setFlags(Render::fAnimateAllModels);
+            else
+                getRender().clearFlags(Render::fAnimateAllModels);
+            getConsole().print(b ? "Animating all models" : "No longer animating all models");
         }
 /*
     } else if (cmd.compare("mode") == 0) {
@@ -375,59 +424,6 @@ int OpenRaider::command(std::string &c) {
             getConsole().print("Invalid use of sound command!");
             return -12;
         }
-    } else if (cmd.compare("animate") == 0) {
-        if ((!mRunning) || (!getGame().isLoaded())) {
-            getConsole().print("Use animate command interactively!");
-            return -999;
-        }
-        if (args->size() > 0) {
-            char c = args->at(0)[0];
-            if (c == 'n') {
-                // Step all skeletal models to their next animation
-                if (getRender().getFlags() & Render::fAnimateAllModels) {
-                    for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
-                        Entity &e = getWorld().getEntity(i);
-                        SkeletalModel &m = e.getModel();
-                        if (e.getAnimation() < (m.size() - 1))
-                            e.setAnimation(e.getAnimation() + 1);
-                        else
-                            e.setAnimation(0);
-                    }
-                } else {
-                    getConsole().print("Animations need to be enabled!");
-                }
-            } else if (c == 'p') {
-                // Step all skeletal models to their previous animation
-                if (getRender().getFlags() & Render::fAnimateAllModels) {
-                    for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
-                        Entity &e = getWorld().getEntity(i);
-                        SkeletalModel &m = e.getModel();
-                        if (e.getAnimation() > 0)
-                            e.setAnimation(e.getAnimation() - 1);
-                        else
-                            if (m.size() > 0)
-                                e.setAnimation(m.size() - 1);
-                    }
-                } else {
-                    getConsole().print("Animations need to be enabled!");
-                }
-            } else {
-                // Enable or disable animating all skeletal models
-                bool b;
-                if (readBool(args->at(0), &b) < 0) {
-                    getConsole().print("Pass BOOL to animate command!");
-                    return -13;
-                }
-                if (b)
-                    getRender().setFlags(Render::fAnimateAllModels);
-                else
-                    getRender().clearFlags(Render::fAnimateAllModels);
-                getConsole().print(b ? "Animating all models" : "No longer animating all models");
-            }
-        } else {
-            getConsole().print("Invalid use of animate command!");
-            return -14;
-        }
     } else if (cmd.compare("viewmodel") == 0) {
         if ((!mRunning) || (!getGame().isLoaded())) {
             getConsole().print("Use viewmodel command interactively!");
@@ -526,8 +522,6 @@ int OpenRaider::help(std::string &cmd) {
         getConsole().print("load-Command Usage:");
         getConsole().print("  load levelfile.name");
 /*
-    } else if (cmd.compare("game") == 0) {
-        getConsole().print("Use \"game help\" for more info");
     } else if (cmd.compare("sshot") == 0) {
         getConsole().print("sshot-Command Usage:");
         getConsole().print("  sshot [console|menu]");
@@ -552,6 +546,7 @@ int OpenRaider::help(std::string &cmd) {
         getConsole().print("  texture");
         getConsole().print("  vertexlight");
         getConsole().print("  titlescreen");
+*/
     } else if (cmd.compare("animate") == 0) {
         getConsole().print("animate-Command Usage:");
         getConsole().print("  animate [n|p|BOOL]");
@@ -559,7 +554,6 @@ int OpenRaider::help(std::string &cmd) {
         getConsole().print("  BOOL to (de)activate animating all models");
         getConsole().print("  n to step all models to their next animation");
         getConsole().print("  p to step all models to their previous animation");
-*/
     } else {
         getConsole().print("No help available for %s", cmd.c_str());
         return -1;
@@ -614,7 +608,7 @@ char *OpenRaider::expandDirectoryNames(const char *s) {
 
 int OpenRaider::set(std::istream &command) {
     std::string var;
-    command >> var >> std::boolalpha;
+    command >> var;
 
     if (var.compare("size") == 0) {
         unsigned int w = DEFAULT_WIDTH, h = DEFAULT_HEIGHT;

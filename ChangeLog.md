@@ -4,6 +4,7 @@
 
     [ 20140617 ]
     * Finally fixed SkeletalModel bug introduced a month ago
+    * Reimplemented *animate* command
 
     [ 20140615 ]
     * Added FontManager, selecting Font library to use depending on
