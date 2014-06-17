@@ -3,7 +3,8 @@
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
     [ 20140617 ]
-    * Finally fixed SkeletalModel bug introduced a month ago
+    * Finally fixed SkeletalModel bugs introduced a month ago
+      (animations and rotations are *mostly* correct now)
     * Reimplemented *animate* command
 
     [ 20140615 ]

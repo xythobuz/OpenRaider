@@ -280,14 +280,9 @@ void SkeletalModel::display(unsigned int aframe, unsigned int bframe) {
         tag.getOffset(off);
 
         if (a == 0) {
-            if (!equalEpsilon(rot[1], 0.0f))
-                glRotatef(rot[1], 0, 1, 0);
-
-            if (!equalEpsilon(rot[0], 0.0f))
-                glRotatef(rot[0], 1, 0, 0);
-
-            if (!equalEpsilon(rot[2], 0.0f))
-                glRotatef(rot[2], 0, 0, 1);
+            glRotatef(rot[1], 0, 1, 0);
+            glRotatef(rot[0], 1, 0, 0);
+            glRotatef(rot[2], 0, 0, 1);
         } else {
             if (tag.getFlag() & 0x01)
                 glPopMatrix();
@@ -296,15 +291,9 @@ void SkeletalModel::display(unsigned int aframe, unsigned int bframe) {
                 glPushMatrix();
 
             glTranslatef(off[0], off[1], off[2]);
-
-            if (!equalEpsilon(rot[1], 0.0f))
-                glRotatef(rot[1], 0, 1, 0);
-
-            if (!equalEpsilon(rot[0], 0.0f))
-                glRotatef(rot[0], 1, 0, 0);
-
-            if (!equalEpsilon(rot[2], 0.0f))
-                glRotatef(rot[2], 0, 0, 1);
+            glRotatef(rot[1], 0, 1, 0);
+            glRotatef(rot[0], 1, 0, 0);
+            glRotatef(rot[2], 0, 0, 1);
         }
 
         // Draw layered lara in TR4 (2 meshes per tag)

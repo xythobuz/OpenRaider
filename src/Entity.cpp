@@ -17,14 +17,11 @@ Entity::Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int 
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_item_t *item = tr.Item();
 
-    vec_t yaw = ((item[i].angle >> 14) & 0x03);
-    yaw *= 90;
-
     pos[0] = item[i].x;
     pos[1] = item[i].y;
     pos[2] = item[i].z;
     angles[0] = 0;
-    angles[1] = yaw;
+    angles[1] = OR_DEG_TO_RAD(((item[i].angle >> 14) & 0x03) * 90.0f);
     angles[2] = 0;
     objectId = moveable[index].object_id;
     moveType = MoveTypeWalk;
@@ -46,6 +43,8 @@ void Entity::display() {
     glPushMatrix();
     glTranslatef(pos[0], pos[1], pos[2]);
     glRotatef(OR_RAD_TO_DEG(angles[1]), 0, 1, 0);
+    glRotatef(OR_RAD_TO_DEG(angles[0]), 1, 0, 0);
+    glRotatef(OR_RAD_TO_DEG(angles[2]), 0, 0, 1);
     getWorld().getSkeletalModel(skeletalModel).display(animationFrame, boneFrame);
     glPopMatrix();
 
