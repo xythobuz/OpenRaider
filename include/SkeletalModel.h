@@ -47,7 +47,7 @@ private:
 
 class AnimationFrame {
 public:
-    AnimationFrame(TombRaider &tr, unsigned int index, int a);
+    AnimationFrame(TombRaider &tr, unsigned int index, int a, unsigned int *frame_offset, int frame_step);
     ~AnimationFrame();
 
     unsigned int size();

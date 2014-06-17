@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140617 ]
+    * Finally fixed SkeletalModel bug introduced a month ago
+
     [ 20140615 ]
     * Added FontManager, selecting Font library to use depending on
       the file extension of the font file specified in the config.

@@ -102,16 +102,14 @@ void BoneFrame::getPosition(vec3_t p) {
     p[2] = pos[2];
 }
 
-AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, int a) {
+AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, int a, unsigned int *frame_offset, int frame_step) {
     tr2_moveable_t *moveable = tr.Moveable();
     tr2_animation_t *animation = tr.Animation();
 
-    unsigned int frame_offset = animation[a].frame_offset / 2;
-    int frame_step = animation[a].frame_size;
     unsigned int frame_count = (animation[a].frame_end - animation[a].frame_start) + 1;
     rate = animation[a].frame_rate;
 
-    for (unsigned int f = 0; f < frame_count; f++, frame_offset += frame_step) {
+    for (unsigned int f = 0; f < frame_count; f++, *frame_offset += frame_step) {
         // HACK: Lara's ObjectID is 315, but her meshes start at 0, so make a
         // quick substitution (so she doesn't appear as a bunch of thighs)
         if ((index == 0) && (tr.Engine() == TR_VERSION_3)) {
@@ -138,13 +136,13 @@ AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, int a) {
             }
         }
 
-        if (frame_offset > tr.NumFrames()) {
+        if (*frame_offset > tr.NumFrames()) {
             getConsole().print("WARNING: Bad animation frame %i > %i (%u.%d)",
-                    frame_offset, tr.NumFrames(), index, a);
+                    *frame_offset, tr.NumFrames(), index, a);
             return;
         }
 
-        frame.push_back(new BoneFrame(tr, index, frame_offset));
+        frame.push_back(new BoneFrame(tr, index, *frame_offset));
     }
 }
 
@@ -234,20 +232,27 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
     unsigned int frame_offset = anim[a].frame_offset / 2;
     int frame_step = anim[a].frame_size;
 
+    int frame_cycle = 0;
+
     if (a >= (int)tr.NumAnimations())
         a = tr.NumFrames() - frame_offset; //! \fixme Couldn't a be already used out of range?!
     else
-        a = (anim[a].frame_offset / 2) - frame_offset;
+        a = (anim[a].frame_offset / 2) - frame_offset; //! \fixme Same as a = 0; ??
 
     if (frame_step != 0) // prevent divide-by-zero errors
         a /= frame_step;
+
+    if (a != 0)
+        frame_offset += frame_step * (frame_cycle % a);
 
     if (a < 0) {
         getConsole().print("Invalid animation data for model %d. Skip!", index);
         return;
     } else {
         for (; a < tr.getNumAnimsForMoveable(index); a++) {
-            animation.push_back(new AnimationFrame(tr, index, a));
+            animation.push_back(new AnimationFrame(tr, index, a, &frame_offset, frame_step));
+            frame_offset = anim[a].frame_offset / 2;
+            frame_step = anim[a].frame_size;
         }
     }
 }
