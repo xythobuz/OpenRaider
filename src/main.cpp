@@ -5,8 +5,8 @@
  * \author xythobuz
  */
 
+#include <iostream>
 #include <cstdlib>
-#include <cstdio>
 #include <cstring>
 
 #include "global.h"
@@ -94,59 +94,66 @@ World &getWorld() {
 
 void cleanupHandler(void) {
 #ifdef DEBUG
-    printf("\nThanks for testing %s\n", VERSION);
-    printf("Build date: %s @ %s\n", __DATE__, __TIME__);
-    printf("Build host: %s\n", BUILD_HOST);
-    printf("Web site  : http://github.com/xythobuz/OpenRaider\n");
-    printf("Contact   : xythobuz@xythobuz.de\n");
+    std::cout << std::endl;
+    std::cout << "Thanks for testing " << VERSION << std::endl;
+    std::cout << "Build date: " << __DATE__ << " @ " << __TIME__ << std::endl;
+    std::cout << "Build host: " << BUILD_HOST << std::endl;
+    std::cout << "Web site  : http://github.com/xythobuz/OpenRaider" << std::endl;
+    std::cout << "Contact   : xythobuz@xythobuz.de" << std::endl;
 #endif
 }
 
 int main(int argc, char *argv[]) {
-    const char *config = NULL;
+    bool configArg = false;
 
     // Handle arguments
-    if (argc == 1) {
-        // Use default rc file path
-        config = DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE;
-    } else if (argc == 2) {
+    if (argc == 2) {
         // Check for command line switches
         if ((strcmp("-h", argv[1]) == 0)
                 || (strcmp("--help", argv[1]) == 0)) {
             // Display help text
-            printf("%s [OPTIONS | /path/to/config]\n"
-                    "Options:\n"
-                    "\t--help\n\t-h\tDisplay this help text\n"
-                    "\t--version\n\t-v\tDisplay version information\n"
-                    "If no options are given, the default config will be loaded from:\n"
-                    "\t" DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE "\n", argv[0]);
+            std::cout << argv[0] << " [OPTIONS | /path/to/config]" << std::endl;
+            std::cout << "Options:" << std::endl;
+            std::cout << "\t--help" << std::endl;
+            std::cout << "\t-h\tDisplay this help text" << std::endl;
+            std::cout << "\t--version" << std::endl;
+            std::cout << "\t-v\tDisplay version information" << std::endl;
+            std::cout << "If no options are given, the default config will be loaded from:" << std::endl;
+            std::cout << "\t" << DEFAULT_CONFIG_FILE << std::endl;
+            std::cout << "or" << std::endl;
+            std::cout << "\t" << DEFAULT_CONFIG_PATH << "/" << DEFAULT_CONFIG_FILE << std::endl;
             return 0;
         } else if ((strcmp("-v", argv[1]) == 0)
                 || (strcmp("--version", argv[1]) == 0)) {
             // Display version
-            printf(VERSION "\n");
+            std::cout << VERSION << std::endl;
             return 0;
         } else {
-            // Interpret as rc file name
-            config = argv[1];
+            configArg = true;
         }
-    } else {
-        printf("Usage:\n%s -h\n", argv[0]);
+    } else if (argc > 2) {
+        std::cout << "Usage:" << std::endl;
+        std::cout << argv[0] << " -h" << std::endl;
         return 1;
     }
 
 #ifdef DEBUG
-    printf("Initializing %s\n", VERSION);
+    std::cout << "Initializing " << VERSION << std::endl;
 #endif
 
     atexit(cleanupHandler);
 
     // Try to load a configuration
-    if (gOpenRaider.loadConfig(config) != 0) {
-        if (gOpenRaider.loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE) != 0) {
-            if (gOpenRaider.loadConfig(DEFAULT_CONFIG_FILE) != 0) {
-                printf("Could not find a config file. Aborting...\n");
-                return 2;
+    if (configArg) {
+        if (gOpenRaider.loadConfig(argv[1]) != 0) {
+            std::cout << "Could not find the specified config file. Aborting..." << std::endl;
+            return 2;
+        }
+    } else {
+        if (gOpenRaider.loadConfig(DEFAULT_CONFIG_FILE) != 0) {
+            if (gOpenRaider.loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE) != 0) {
+                std::cout << "Could not find a config file. Aborting..." << std::endl;
+                return 3;
             }
         }
     }
@@ -154,8 +161,8 @@ int main(int argc, char *argv[]) {
     // Initialize everything
     int error = gOpenRaider.initialize();
     if (error != 0) {
-        printf("Could not initialize OpenRaider (%d)!\n", error);
-        return 3;
+        std::cout << "Could not initialize OpenRaider (" << error << ")!" << std::endl;
+        return 4;
     }
 
     // Enter Main loop
@@ -175,12 +182,12 @@ void assertImplementation(const char *exp, const char *file, int line) {
     int frames = backtrace(callstack, maxSize);
     char **strs = backtrace_symbols(callstack, frames);
 
-    printf("\nassertion failed:\n");
-    printf("\t%s\n", exp);
-    printf("in %s:%d\n\n", file, line);
+    std::cout << std::endl << "assertion failed:" << std::endl;
+    std::cout << "\t" << exp << std::endl;
+    std::cout << "in " << file << ":" << line << std::endl << std::endl;
 
     for (int i = 0; i < frames; i++)
-        printf("%s\n", strs[i]);
+        std::cout << strs[i] << std::endl;
 
     delete [] strs;
     abort();
