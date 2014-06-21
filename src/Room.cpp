@@ -13,6 +13,11 @@
 #include "Render.h"
 #include "Room.h"
 
+#ifdef MULTITEXTURE
+#include <map>
+extern std::map<int, int> gMapTex2Bump;
+#endif
+
 Room::Room(TombRaider &tr, unsigned int index) {
     vec3_t box[2];
     Matrix transform;

@@ -104,7 +104,6 @@ void Entity::move(char movement) {
             return;
     }
 
-    //room = getRoomByLocation(x, y, z);
     roomNew = getWorld().getRoomByLocation(room, x, y, z);
 
     if (roomNew == -1) { // Will we hit a portal?
