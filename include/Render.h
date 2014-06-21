@@ -15,8 +15,6 @@
 #include "Texture.h"
 #include "ViewVolume.h"
 
-#include "WorldData.h"
-
 /*!
  * \brief OpenRaider Renderer class
  */
@@ -140,16 +138,7 @@ public:
 
     bool isVisible(BoundingBox &box);
 
-    /*!
-     * \brief Renders a mesh.
-     *
-     * Texture must be initialized.
-     * \param r_mesh Mesh to render.
-     */
-    void drawModelMesh(model_mesh_t *r_mesh);
-
     //! \fixme should be private
-
     ViewVolume mViewVolume; //!< View Volume for frustum culling
     Texture mTexture; //!< Texture subsystem
 
@@ -182,9 +171,6 @@ private:
      * \brief Updates View Volume. Call once per render frame.
      */
     void updateViewVolume();
-
-    //! \fixme Let them eat cake...? O.o
-    void tmpRenderModelMesh(model_mesh_t *r_mesh, texture_tri_t *ttri);
 
     std::vector<Room *> mRoomRenderList;
 

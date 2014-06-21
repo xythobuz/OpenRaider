@@ -49,7 +49,7 @@ BoneTag::BoneTag(TombRaider &tr, unsigned int index, unsigned int i, unsigned in
 }
 
 void BoneTag::display() {
-    getRender().drawModelMesh(getWorld().getMesh(mesh));
+    getWorld().getStaticMesh(mesh).display();
 }
 
 void BoneTag::getOffset(vec3_t o) {
@@ -332,15 +332,15 @@ void SkeletalModel::display(unsigned int aframe, unsigned int bframe) {
                     if (pigtails) {
                         glPushMatrix();
                         glTranslatef(ponyOff2, 0.0, 0.0);
-                        getRender().drawModelMesh(getWorld().getMesh(ponytailMeshId + i));
+                        getWorld().getStaticMesh(ponytailMeshId + i).display();
                         glPopMatrix();
 
                         glPushMatrix();
                         glTranslatef(-ponyOff2, 0.0, 0.0);
-                        getRender().drawModelMesh(getWorld().getMesh(ponytailMeshId + i));
+                        getWorld().getStaticMesh(ponytailMeshId + i).display();
                         glPopMatrix();
                     } else {
-                        getRender().drawModelMesh(getWorld().getMesh(ponytailMeshId + i));
+                        getWorld().getStaticMesh(ponytailMeshId + i).display();
                     }
                 }
 

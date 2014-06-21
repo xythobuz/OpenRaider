@@ -14,13 +14,10 @@
 #include "Game.h"
 #include "OpenRaider.h"
 #include "Sound.h"
+#include "StaticMesh.h"
 #include "utils/strings.h"
 
 #include "games/TombRaider1.h"
-
-#ifdef EXPERIMENTAL
-std::vector<unsigned int> gColorTextureHACK;
-#endif
 
 #ifdef MULTITEXTURE
 std::map<int, int> gMapTex2Bump;
@@ -194,6 +191,13 @@ void Game::processRooms() {
         getWorld().addRoom(*new Room(mTombRaider, index));
 
     getConsole().print("Found %d rooms.", mTombRaider.NumRooms());
+}
+
+void Game::processModels() {
+    for (int index = 0; index < mTombRaider.getMeshCount(); index++)
+        getWorld().addStaticMesh(*new StaticMesh(mTombRaider, index));
+
+    getConsole().print("Found %d meshes.", mTombRaider.getMeshCount());
 }
 
 void Game::processPakSounds()
@@ -394,260 +398,5 @@ void Game::processMoveable(int index, int i, int object_id) {
     if (i == mTombRaider.getSkyModelId())
         getRender().setSkyMesh(i, //moveable[i].starting_mesh,
                 (mTombRaider.Engine() == TR_VERSION_2));
-}
-
-bool compareFaceTextureId(const void *voidA, const void *voidB)
-{
-    texture_tri_t *a = (texture_tri_t *)voidA, *b = (texture_tri_t *)voidB;
-
-    if (!a || !b)
-        return false; // error really
-
-    return (a->texture < b->texture);
-}
-
-#ifdef EXPERIMENTAL
-void Game::setupTextureColor(texture_tri_t *r_tri, float *colorf)
-{
-    unsigned char color[4];
-    unsigned int colorI;
-
-    color[0] = (unsigned char)(colorf[0]*255.0f);
-    color[1] = (unsigned char)(colorf[1]*255.0f);
-    color[2] = (unsigned char)(colorf[2]*255.0f);
-    color[3] = (unsigned char)(colorf[3]*255.0f);
-
-    ((unsigned char *)(&colorI))[3] = color[0];
-    ((unsigned char *)(&colorI))[2] = color[1];
-    ((unsigned char *)(&colorI))[1] = color[2];
-    ((unsigned char *)(&colorI))[0] = color[3];
-
-    bool found = false;
-    unsigned int foundIndex = 0;
-    for (foundIndex = 0; foundIndex < gColorTextureHACK.size(); foundIndex++) {
-        if (gColorTextureHACK[foundIndex] == colorI) {
-            found = true;
-            break;
-        }
-    }
-    if (!found)
-    {
-        gColorTextureHACK.push_back(colorI);
-        r_tri->texture = mTextureOffset + gColorTextureHACK.size();
-
-        getRender().loadTexture(Texture::generateColorTexture(color, 32, 32),
-                32, 32, r_tri->texture);
-    }
-    else
-    {
-        //getConsole().print("Color already loaded %i -> 0x%08x",
-        //       gColorTextureHACK.getCurrentIndex(),
-        //       gColorTextureHACK.current());
-
-        r_tri->texture = mTextureOffset + foundIndex;
-    }
-
-    //r_tri->texture = white; // White texture
-}
-#endif
-
-void Game::processModels()
-{
-    for (int index = 0; index < mTombRaider.getMeshCount(); index++) {
-        int i, j, count, texture;
-        int vertexIndices[6];
-        float st[12];
-        float color[4];
-        unsigned short transparency;
-        texture_tri_t *r_tri;
-
-        // Assert common sense
-        if (index < 0 || !mTombRaider.isMeshValid(index))
-        {
-            //! \fixme allow sparse lists with matching ids instead?
-            getWorld().addMesh(NULL); // Filler, to make meshes array ids align
-            return;
-        }
-
-#ifndef EXPERIMENTAL
-        // WHITE texture id
-        int white = 0;
-#endif
-
-        model_mesh_t *mesh = new model_mesh_t;
-
-        // Mongoose 2002.08.30, Testing support for 'shootable' models ( traceable )
-        mTombRaider.getMeshCollisionInfo(index, mesh->center, &mesh->radius);
-
-        //! \fixme Arrays don't work either  =)
-        // Mesh geometery, colors, etc
-        mTombRaider.getMeshVertexArrays(index,
-                &mesh->vertexCount, &mesh->vertices,
-                &mesh->normalCount, &mesh->normals,
-                &mesh->colorCount,  &mesh->colors);
-
-        // Textured Triangles
-        count = mTombRaider.getMeshTexturedTriangleCount(index);
-        mesh->texturedTriangles.reserve(count); // little faster
-
-        for (i = 0; i < count; ++i)
-        {
-            r_tri = new texture_tri_t;
-
-            mTombRaider.getMeshTexturedTriangle(index, i,
-                    r_tri->index,
-                    r_tri->st,
-                    &r_tri->texture,
-                    &r_tri->transparency);
-
-            r_tri->texture += mTextureStart;
-
-            // Add to face vector
-            mesh->texturedTriangles.push_back(r_tri);
-        }
-
-        // Coloured Triangles
-        count = mTombRaider.getMeshColoredTriangleCount(index);
-        mesh->coloredTriangles.reserve(count); // little faster
-
-        for (i = 0; i < count; i++)
-        {
-            r_tri = new texture_tri_t;
-
-            mTombRaider.getMeshColoredTriangle(index, i,
-                    r_tri->index,
-                    color);
-            r_tri->st[0] = color[0];
-            r_tri->st[1] = color[1];
-            r_tri->st[2] = color[2];
-            r_tri->st[3] = color[3];
-            r_tri->st[4] = 1.0;
-            r_tri->st[5] = 1.0;
-
-#ifdef EXPERIMENTAL
-            setupTextureColor(r_tri, color);
-#else
-            r_tri->texture = white; // White texture
-#endif
-            r_tri->transparency = 0;
-
-            // Add to face vector
-            mesh->coloredTriangles.push_back(r_tri);
-        }
-
-        // Textured Rectangles
-        count = mTombRaider.getMeshTexturedRectangleCount(index);
-        mesh->texturedRectangles.reserve(count*2); // little faster
-
-        for (i = 0; i < count; ++i)
-        {
-            mTombRaider.getMeshTexturedRectangle(index, i,
-                    vertexIndices,
-                    st,
-                    &texture,
-                    &transparency);
-
-            r_tri = new texture_tri_t;
-
-            for (j = 0; j < 3; ++j)
-                r_tri->index[j] = vertexIndices[j];
-
-            for (j = 0; j < 6; ++j)
-                r_tri->st[j] = st[j];
-
-            r_tri->texture = texture + mTextureStart;
-            r_tri->transparency = transparency;
-
-            // Add to face vector
-            mesh->texturedRectangles.push_back(r_tri);
-
-            r_tri = new texture_tri_t;
-
-            for (j = 3; j < 6; ++j)
-                r_tri->index[j-3] = vertexIndices[j];
-
-            for (j = 6; j < 12; ++j)
-                r_tri->st[j-6] = st[j];
-
-            r_tri->texture = texture + mTextureStart;
-            r_tri->transparency = transparency;
-
-            // Add to face vector
-            mesh->texturedRectangles.push_back(r_tri);
-        }
-
-        // Coloured Rectangles
-        count = mTombRaider.getMeshColoredRectangleCount(index);
-        mesh->coloredRectangles.reserve(count*2); // little faster
-
-        for (i = 0; i < count; ++i)
-        {
-            mTombRaider.getMeshColoredRectangle(index, i,
-                    vertexIndices,
-                    color);
-
-            r_tri = new texture_tri_t;
-
-            for (j = 0; j < 3; ++j)
-                r_tri->index[j] = vertexIndices[j];
-
-            //for (j = 0; j < 6; ++j)
-            //  r_tri->st[j] = st[j];
-
-            r_tri->st[0] = color[0];
-            r_tri->st[1] = color[1];
-            r_tri->st[2] = color[2];
-            r_tri->st[3] = color[3];
-            r_tri->st[4] = 1.0;
-            r_tri->st[5] = 1.0;
-
-#ifdef EXPERIMENTAL
-            //for (j = 6; j < 12; ++j)
-            //  r_tri->st[j-6] = st[j];
-            setupTextureColor(r_tri, color);
-#else
-            r_tri->texture = white; // White texture
-#endif
-            r_tri->transparency = 0;
-
-            // Add to face vector
-            mesh->coloredRectangles.push_back(r_tri);
-
-            r_tri = new texture_tri_t;
-
-            for (j = 3; j < 6; ++j)
-                r_tri->index[j-3] = vertexIndices[j];
-
-            //for (j = 6; j < 12; ++j)
-            //  r_tri->st[j-6] = st[j];
-
-            r_tri->st[0] = color[0];
-            r_tri->st[1] = color[1];
-            r_tri->st[2] = color[2];
-            r_tri->st[3] = color[3];
-            r_tri->st[4] = 1.0;
-            r_tri->st[5] = 1.0;
-
-#ifdef EXPERIMENTAL
-            setupTextureColor(r_tri, color);
-#else
-            r_tri->texture = white; // White texture
-#endif
-            r_tri->transparency = 0;
-
-            // Add to face vector
-            mesh->coloredRectangles.push_back(r_tri);
-        }
-
-        // Sort faces by texture
-        std::sort(mesh->texturedTriangles.begin(), mesh->texturedTriangles.end(), compareFaceTextureId);
-        std::sort(mesh->coloredTriangles.begin(), mesh->coloredTriangles.end(), compareFaceTextureId);
-        std::sort(mesh->texturedRectangles.begin(), mesh->texturedRectangles.end(), compareFaceTextureId);
-        std::sort(mesh->coloredRectangles.begin(), mesh->coloredRectangles.end(), compareFaceTextureId);
-
-        getWorld().addMesh(mesh);
-    }
-
-    getConsole().print("Found %d meshes.", mTombRaider.getMeshCount());
 }
 

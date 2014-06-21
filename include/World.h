@@ -16,8 +16,7 @@
 #include "Room.h"
 #include "SkeletalModel.h"
 #include "Sprite.h"
-
-#include "WorldData.h"
+#include "StaticMesh.h"
 
 /*!
  * \brief The game world (model)
@@ -51,13 +50,9 @@ public:
     unsigned int sizeSkeletalModel();
     SkeletalModel &getSkeletalModel(unsigned int index);
 
-    /*!
-     * \brief Adds mesh to world
-     * \param model mesh to add
-     */
-    void addMesh(model_mesh_t *model);
-
-    model_mesh_t *getMesh(int index);
+    void addStaticMesh(StaticMesh &model);
+    unsigned int sizeStaticMesh();
+    StaticMesh &getStaticMesh(unsigned int index);
 
     /*!
      * \brief Find room a location is in.
@@ -83,15 +78,11 @@ public:
     int getRoomByLocation(float x, float y, float z);
 
 private:
-
-    // Old World
-    std::vector<model_mesh_t *> mMeshes;     //!< Unanimated meshes
-
-    // New World
     std::vector<Room *> mRooms;
     std::vector<SpriteSequence *> mSprites;
     std::vector<Entity *> mEntities;
     std::vector<SkeletalModel *> mModels;
+    std::vector<StaticMesh *> mMeshes;
 };
 
 World &getWorld();

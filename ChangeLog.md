@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140621 ]
+    * Created StaticMesh class replacing model_mesh_t stuff
+
     [ 20140617 ]
     * Finally fixed SkeletalModel bugs introduced a month ago
       (animations and rotations are *mostly* correct now)

@@ -179,19 +179,15 @@ StaticModel::StaticModel(TombRaider &tr, unsigned int room, unsigned int i) {
 }
 
 void StaticModel::display() {
-    model_mesh_t *mesh = getWorld().getMesh(index);
+    StaticMesh &mesh = getWorld().getStaticMesh(index);
 
-    if (!mesh)
-        return;
-
-    if (!getRender().isVisible(pos[0], pos[1], pos[2], mesh->radius))
+    if (!getRender().isVisible(pos[0], pos[1], pos[2], mesh.getRadius()))
         return;
 
     glPushMatrix();
     glTranslated(pos[0], pos[1], pos[2]);
     glRotated(yaw, 0, 1, 0);
-
-    getRender().drawModelMesh(mesh);
+    mesh.display();
     glPopMatrix();
 }
 

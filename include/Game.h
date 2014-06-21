@@ -53,10 +53,6 @@ private:
     void processModels();
     void processRooms();
 
-#ifdef EXPERIMENTAL
-    void setupTextureColor(texture_tri_t *r_tri, float *colorf);
-#endif
-
     char *mName;
     bool mLoaded;
 
