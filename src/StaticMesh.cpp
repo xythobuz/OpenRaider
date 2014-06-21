@@ -28,10 +28,6 @@ TexturedTriangle::TexturedTriangle(int i[3], vec_t s[6], int tex, unsigned short
     transparency = trans;
 }
 
-bool TexturedTriangle::operator< (TexturedTriangle &t) {
-    return texture < t.texture;
-}
-
 void TexturedTriangle::display(vec_t *vertices, vec_t *colors, vec_t *normals) {
     assert(vertices != NULL);
 
@@ -167,7 +163,7 @@ StaticMesh::StaticMesh(TombRaider &tr, unsigned int index) {
         tr.getMeshTexturedTriangle(index, i,
                 vertexIndices, st,
                 &texture, &transparency);
-        texturedTriangles.push_back(
+        triangles.push_back(
                 new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
     }
 
@@ -190,7 +186,7 @@ StaticMesh::StaticMesh(TombRaider &tr, unsigned int index) {
 #endif
         transparency = 0;
 
-        coloredTriangles.push_back(
+        triangles.push_back(
                 new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
     }
 
@@ -200,9 +196,9 @@ StaticMesh::StaticMesh(TombRaider &tr, unsigned int index) {
         tr.getMeshTexturedRectangle(index, i,
                 vertexIndices, st,
                 &texture, &transparency);
-        texturedRectangles.push_back(
+        triangles.push_back(
                 new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
-        texturedRectangles.push_back(
+        triangles.push_back(
                 new TexturedTriangle(vertexIndices + 3, st + 6, texture + getGame().getTextureStart(), transparency));
     }
 
@@ -226,38 +222,17 @@ StaticMesh::StaticMesh(TombRaider &tr, unsigned int index) {
 #endif
         transparency = 0;
 
-        coloredRectangles.push_back(
+        triangles.push_back(
                 new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
-        coloredRectangles.push_back(
+        triangles.push_back(
                 new TexturedTriangle(vertexIndices + 3, st, texture + getGame().getTextureStart(), transparency));
     }
-
-    // Sort faces by texture
-    std::sort(texturedTriangles.begin(), texturedTriangles.end());
-    std::sort(coloredTriangles.begin(), coloredTriangles.end());
-    std::sort(texturedRectangles.begin(), texturedRectangles.end());
-    std::sort(coloredRectangles.begin(), coloredRectangles.end());
 }
 
 StaticMesh::~StaticMesh() {
-    while (!texturedTriangles.empty()) {
-        delete texturedTriangles.back();
-        texturedTriangles.pop_back();
-    }
-
-    while (!coloredTriangles.empty()) {
-        delete coloredTriangles.back();
-        coloredTriangles.pop_back();
-    }
-
-    while (!texturedRectangles.empty()) {
-        delete texturedRectangles.back();
-        texturedRectangles.pop_back();
-    }
-
-    while (!coloredRectangles.empty()) {
-        delete coloredRectangles.back();
-        coloredRectangles.pop_back();
+    while (!triangles.empty()) {
+        delete triangles.back();
+        triangles.pop_back();
     }
 
     delete [] vertices;
@@ -280,17 +255,8 @@ void StaticMesh::display() {
         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
         glBindTexture(GL_TEXTURE_2D, 1);  // White texture for colors
 
-        for (unsigned int i = 0; i < coloredTriangles.size(); i++)
-            coloredTriangles.at(i)->display(vertices, colors, normals);
-
-        for (unsigned int i = 0; i < coloredRectangles.size(); i++)
-            coloredRectangles.at(i)->display(vertices, colors, normals);
-
-        for (unsigned int i = 0; i < texturedTriangles.size(); i++)
-            texturedTriangles.at(i)->display(vertices, colors, normals);
-
-        for (unsigned int i = 0; i < texturedRectangles.size(); i++)
-            texturedRectangles.at(i)->display(vertices, colors, normals);
+        for (unsigned int i = 0; i < triangles.size(); i++)
+            triangles.at(i)->display(vertices, colors, normals);
     }
 }
 

@@ -4,6 +4,7 @@
 
     [ 20140621 ]
     * Created StaticMesh class replacing model_mesh_t stuff
+    * Simplified StaticMesh’s data storage
 
     [ 20140617 ]
     * Finally fixed SkeletalModel bugs introduced a month ago

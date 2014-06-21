@@ -15,8 +15,6 @@
 class TexturedTriangle {
 public:
     TexturedTriangle(int i[3], vec_t s[6], int tex, unsigned short trans);
-    bool operator< (TexturedTriangle &t);
-
     void display(vec_t *vertices, vec_t *colors, vec_t *normals);
 
 private:
@@ -30,7 +28,6 @@ class StaticMesh {
 public:
     StaticMesh(TombRaider &tr, unsigned int index);
     ~StaticMesh();
-
     void display();
     vec_t getRadius();
 
@@ -47,10 +44,7 @@ private:
     vec_t *colors;
     vec_t *normals;
 
-    std::vector<TexturedTriangle *> texturedTriangles;
-    std::vector<TexturedTriangle *> coloredTriangles;
-    std::vector<TexturedTriangle *> texturedRectangles;
-    std::vector<TexturedTriangle *> coloredRectangles;
+    std::vector<TexturedTriangle *> triangles;
 };
 
 #endif
