@@ -12,6 +12,7 @@
 #define BUILD_HOST "@OpenRaider_BUILD_HOST@ @OpenRaider_HOSTNAME@"
 
 #cmakedefine USING_AL
+#cmakedefine USING_PNG
 
 #cmakedefine HAVE_EXECINFO_H
 #cmakedefine HAVE_BACKTRACE

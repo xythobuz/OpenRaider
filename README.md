@@ -30,10 +30,11 @@ Basically, OpenRaider depends on the following:
 
 * OpenGL
 * SDL2
-* SDL2-TTF (if you want to use TTF fonts)
+* SDL2-TTF (optional, needed if you want to use TTF fonts)
 * OpenAL & ALUT
 * zlib
 * cmake as build system
+* libpng (optional)
 
 On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 

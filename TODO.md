@@ -10,6 +10,7 @@
     * Rewrite Console and use operator << to write to the console?
 * SDL_TTF 2.0.12+ can do line breaks, use it: http://stackoverflow.com/questions/17847818/how-to-do-line-breaks-and-line-wrapping-with-sdl-ttf/18418688#18418688
 * Mesh has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even reusing the Mesh class for the model_meshes...
+* glTexImage2D has alignment requirements?!?! https://www.khronos.org/opengles/sdk/1.1/docs/man/glTexImage2D.xml
 
 ## Changes
 

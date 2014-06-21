@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140622 ]
+    * Wrote simple image reader/writer utilizing libpng
+
     [ 20140621 ]
     * Created StaticMesh class replacing model_mesh_t stuff
     * Simplified StaticMesh’s data storage

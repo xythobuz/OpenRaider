@@ -36,6 +36,14 @@ if (OPENAL_FOUND)
     endif (ALUT_FOUND)
 endif (OPENAL_FOUND)
 
+# Add PNG Library
+find_package (PNG)
+if (PNG_FOUND)
+    include_directories (SYSTEM ${PNG_INCLUDE_DIRS})
+    set (LIBS ${LIBS} ${PNG_LIBRARIES})
+    add_definitions (${PNG_DEFINITIONS})
+endif (PNG_FOUND)
+
 #################################################################
 
 # Set Source files
@@ -86,6 +94,12 @@ if (SDL2_FOUND)
 else (SDL2_FOUND)
     message (FATAL_ERROR "SDL2 is required at the moment!")
 endif (SDL2_FOUND)
+
+if (PNG_FOUND)
+    set (USING_PNG TRUE)
+else (PNG_FOUND)
+    set (USING_PNG FALSE)
+endif (PNG_FOUND)
 
 #################################################################
 
