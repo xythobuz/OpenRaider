@@ -13,9 +13,8 @@
 #include "global.h"
 #include "utils/pcx.h"
 
-#include "Console.h"
-
 #ifdef DEBUG
+#include "Console.h"
 #define pcxPrint getConsole().print
 #else
 void pcxPrint(...) { }

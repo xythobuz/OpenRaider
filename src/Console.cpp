@@ -237,6 +237,7 @@ void Console::handleText(char *text, bool notFinished) {
 }
 
 void Console::handleMouseScroll(int xrel, int yrel) {
+    assert((xrel != 0) || (yrel != 0));
     LINE_GEOMETRY(getWindow());
 
     if (mHistory.size() > lineCount) {

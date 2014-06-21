@@ -156,18 +156,26 @@ void WindowSDL::eventHandling() {
                     button = leftmouseKey;
                 else if (event.button.button == SDL_BUTTON_RIGHT)
                     button = rightmouseKey;
-                else
+                else if (event.button.button == SDL_BUTTON_MIDDLE)
                     button = middlemouseKey;
+                else if (event.button.button == SDL_BUTTON_X1)
+                    button = fourthmouseKey;
+                else if (event.button.button == SDL_BUTTON_X2)
+                    button = fifthmouseKey;
+                else
+                    button = unknownKey;
                 getOpenRaider().handleMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
                 break;
 
             case SDL_MOUSEWHEEL:
-                getOpenRaider().handleMouseScroll(event.wheel.x, event.wheel.y);
+                if ((event.wheel.x != 0) || (event.wheel.y != 0))
+                    getOpenRaider().handleMouseScroll(event.wheel.x, event.wheel.y);
                 break;
 
             case SDL_TEXTINPUT:
             case SDL_TEXTEDITING:
-                getOpenRaider().handleText(event.text.text, (event.type == SDL_TEXTEDITING));
+                if (event.text.text != NULL)
+                    getOpenRaider().handleText(event.text.text, (event.type == SDL_TEXTEDITING));
                 break;
 
             case SDL_KEYDOWN:

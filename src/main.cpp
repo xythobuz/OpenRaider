@@ -138,7 +138,7 @@ int main(int argc, char *argv[]) {
     }
 
 #ifdef DEBUG
-    std::cout << "Initializing " << VERSION << std::endl;
+    getConsole().print("Initializing %s", VERSION);
 #endif
 
     atexit(cleanupHandler);
@@ -219,6 +219,7 @@ ActionEvents stringToActionEvent(const char *action) {
     } else if (strcmp(action, "walk") == 0) {
         return walkAction;
     } else {
+        getConsole().print("Unknown action: \"%s\"", action);
         return ActionEventCount;
     }
 }
@@ -393,10 +394,17 @@ KeyboardButton stringToKeyboardButton(const char *key) {
         } else if (strcmp(tmp, "rightmouse") == 0) {
             delete [] tmp;
             return rightmouseKey;
+        } else if (strcmp(tmp, "fourthmouse") == 0) {
+            delete [] tmp;
+            return fourthmouseKey;
+        } else if (strcmp(tmp, "fifthmouse") == 0) {
+            delete [] tmp;
+            return fifthmouseKey;
         }
         delete [] tmp;
     }
 
+    getConsole().print("Unknown key: %s", key);
     return unknownKey;
 }
 

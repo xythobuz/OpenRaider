@@ -94,7 +94,7 @@ typedef enum {
     rightguiKey, rightbracketKey, rightshiftKey, scrolllockKey,
     semicolonKey, slashKey, spaceKey, tabKey,
     leftmouseKey, middlemouseKey, rightmouseKey,
-
+    fourthmouseKey, fifthmouseKey,
     unknownKey // Should always be at the end
 } KeyboardButton;
 

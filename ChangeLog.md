@@ -5,6 +5,7 @@
     [ 20140621 ]
     * Created StaticMesh class replacing model_mesh_t stuff
     * Simplified StaticMesh’s data storage
+    * Added support for fourth & fifth mouse keys
 
     [ 20140617 ]
     * Finally fixed SkeletalModel bugs introduced a month ago
