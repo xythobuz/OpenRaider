@@ -154,9 +154,9 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
                 } else {
                     pcxPrint("Unsupported number of planes (%d)", nPlanes);
                     delete [] buffer;
+                    delete [] palette;
                     delete [] *image;
-                    if (palette != NULL)
-                        delete [] palette;
+                    *image = NULL;
                     return -10;
                 }
             } else {
@@ -171,9 +171,9 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
                 } else {
                     pcxPrint("Unsupported number of planes (%d)", nPlanes);
                     delete [] buffer;
+                    delete [] palette;
                     delete [] *image;
-                    if (palette != NULL)
-                        delete [] palette;
+                    *image = NULL;
                     return -11;
                 }
             }
@@ -186,9 +186,7 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
     }
 
     delete [] buffer;
-
-    if (palette != NULL)
-        delete [] palette;
+    delete [] palette;
 
     return 0;
 }
