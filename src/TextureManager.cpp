@@ -301,7 +301,6 @@ int TextureManager::loadPCX(const char *filename) {
 }
 
 int TextureManager::loadTGA(const char *filename) {
-    FILE *f;
     unsigned char *image = NULL;
     unsigned char *image2 = NULL;
     unsigned int w, h;
@@ -311,12 +310,8 @@ int TextureManager::loadTGA(const char *filename) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
 
-    f = fopen(filename, "rb");
-
-    if (!f) {
-        perror("Couldn't load file");
-    } else if (!tgaCheck(f)) {
-        tgaLoad(f, &image, &w, &h, &type);
+    if (!tgaCheck(filename)) {
+        tgaLoad(filename, &image, &w, &h, &type);
 
         image2 = scaleBuffer(image, &w, &h, (type == 2) ? 32 : 24);
 
@@ -332,8 +327,6 @@ int TextureManager::loadTGA(const char *filename) {
 
             delete [] image;
         }
-
-        fclose(f);
     }
 
     if (id == -1) {

@@ -39,10 +39,17 @@ typedef struct {
     unsigned char desc_flags;       //!< Various magic bits
 } tga_t;
 
-int tgaCheck(FILE *f) {
+int tgaCheck(const char *filename) {
     char buffer[10];
 
-    assert(f != NULL);
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
+
+    FILE *f = fopen(filename, "rb");
+    if (!f) {
+        printf("tgaCheck> File not found\n");
+        return -1;
+    }
 
     /* Read the header */
     fseek(f, 0, SEEK_SET);
@@ -53,12 +60,15 @@ int tgaCheck(FILE *f) {
                     //buffer[2] == TGA_TYPE__GREYSCALE ||
                     buffer[2] == TGA_TYPE__COLOR_RLE))) {
         printf("tgaCheck> Inavlid or unknown TGA format.\n");
+        fclose(f);
         return -2;
     }
+
+    fclose(f);
     return 0;
 }
 
-int tgaLoad(FILE *f, unsigned char **image, unsigned int *width, unsigned int *height, char *type) {
+int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, char *type) {
     tga_t header;
     char comment[256];
     unsigned char pixel[4];
@@ -68,11 +78,18 @@ int tgaLoad(FILE *f, unsigned char **image, unsigned int *width, unsigned int *h
     unsigned int size;
     unsigned int i, j;
 
-    assert(f != NULL);
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
     assert(image != NULL);
     assert(width != NULL);
     assert(height != NULL);
     assert(type != NULL);
+
+    FILE *f = fopen(filename, "rb");
+    if (!f) {
+        printf("tgaLoad> File not found\n");
+        return -1;
+    }
 
     fseek(f, 0, SEEK_SET);
 
@@ -146,6 +163,7 @@ int tgaLoad(FILE *f, unsigned char **image, unsigned int *width, unsigned int *h
 
     if (!size || (!(header.colormap_type == 0 && (header.image_type == 2 || header.image_type == 10)))) {
         fprintf(stderr, "tgaLoad> Unknown image format.\n");
+        fclose(f);
         return -2;
     }
 
@@ -187,6 +205,7 @@ int tgaLoad(FILE *f, unsigned char **image, unsigned int *width, unsigned int *h
                     if (fread((*image), size, 1, f) < 1) {
                         fprintf(stderr, "tgaLoad> Image fread failed.\n");
                         delete [] *image;
+                        fclose(f);
                         return -4;
                     }
                     for (i = 0; i < size; i += 4) {
@@ -239,6 +258,7 @@ int tgaLoad(FILE *f, unsigned char **image, unsigned int *width, unsigned int *h
                     if (fread((*image), size, 1, f) < 1) {
                         fprintf(stderr, "tgaLoad> Image fread failed.\n");
                         delete [] *image;
+                        fclose(f);
                         return -4;
                     }
                     for (i = 0; i < size; i += 3) {
@@ -277,20 +297,28 @@ int tgaLoad(FILE *f, unsigned char **image, unsigned int *width, unsigned int *h
     printf("\n");
 #endif
 
+    fclose(f);
     return 0;
 }
 
-int tgaSave(FILE *f, unsigned char *image, unsigned int width, unsigned int height, char type) {
+int tgaSave(const char *filename, unsigned char *image, unsigned int width, unsigned int height, char type) {
     tga_t header;
     unsigned int size;
     char comment[64];
     //unsigned int i;
     //unsigned char tmp;
 
-    assert(f != NULL);
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
     assert(image != NULL);
     assert(width > 0);
     assert(height > 0);
+
+    FILE *f = fopen(filename, "wb");
+    if (!f) {
+        printf("tgaSave> File not found\n");
+        return -1;
+    }
 
     strncpy(comment, "OpenRaider TGA", 63);
     comment[63] = 0;
@@ -374,8 +402,11 @@ int tgaSave(FILE *f, unsigned char *image, unsigned int width, unsigned int heig
     // Write image data
     if (fwrite(image, size, 1, f) < 1) {
         perror("tgaSave> Disk write failed.\n");
+        fclose(f);
         return -2;
     }
+
+    fclose(f);
     return 0;
 }
 

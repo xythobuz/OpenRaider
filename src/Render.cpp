@@ -65,11 +65,8 @@ void Render::screenShot(char *filenameBase)
     // Capture frame buffer
     glReadPixels(0, 0, getWindow().getWidth(), getWindow().getHeight(), GL_BGR_EXT, GL_UNSIGNED_BYTE, image);
 
-    FILE *f = fopen(filename, "wb");
-    if (f) {
-        tgaSave(f, image, getWindow().getWidth(), getWindow().getHeight(), 0);
-        printf("Took screenshot '%s'.\n", filename);
-    }
+    tgaSave(filename, image, getWindow().getWidth(), getWindow().getHeight(), 0);
+    printf("Took screenshot '%s'.\n", filename);
 
     delete [] filename;
     delete [] image;
