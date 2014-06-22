@@ -12,7 +12,7 @@
 #include <vector>
 
 #include "Room.h"
-#include "Texture.h"
+#include "TextureManager.h"
 #include "ViewVolume.h"
 
 /*!
@@ -140,7 +140,7 @@ public:
 
     //! \fixme should be private
     ViewVolume mViewVolume; //!< View Volume for frustum culling
-    Texture mTexture; //!< Texture subsystem
+    TextureManager mTexture; //!< Texture subsystem
 
 private:
 

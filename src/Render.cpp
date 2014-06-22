@@ -65,8 +65,11 @@ void Render::screenShot(char *filenameBase)
     // Capture frame buffer
     glReadPixels(0, 0, getWindow().getWidth(), getWindow().getHeight(), GL_BGR_EXT, GL_UNSIGNED_BYTE, image);
 
-    tgaSaveFilename(image, getWindow().getWidth(), getWindow().getHeight(), 0, "%s", filename);
-    printf("Took screenshot '%s'.\n", filename);
+    FILE *f = fopen(filename, "wb");
+    if (f) {
+        tgaSave(f, image, getWindow().getWidth(), getWindow().getHeight(), 0);
+        printf("Took screenshot '%s'.\n", filename);
+    }
 
     delete [] filename;
     delete [] image;
@@ -82,7 +85,7 @@ void Render::loadTexture(unsigned char *image,
         unsigned int id)
 {
     glColor3fv(WHITE);
-    mTexture.loadBufferSlot(image, width, height, Texture::RGBA, 32, id);
+    mTexture.loadBufferSlot(image, width, height, TextureManager::RGBA, 32, id);
 }
 
 
@@ -95,7 +98,7 @@ int Render::initTextures(char *textureDir) {
     mTexture.setMaxTextureCount(128);  /* TR never needs more than 32 iirc
                                           However, color texturegen is a lot */
 
-    mTexture.setFlag(Texture::fUseMipmaps);
+    mTexture.setFlag(TextureManager::fUseMipmaps);
 
     color[0] = 0xff;
     color[1] = 0xff;

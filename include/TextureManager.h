@@ -1,18 +1,18 @@
 /*!
- * \file include/Texture.h
+ * \file include/TextureManager.h
  * \brief Texture registry
  *
  * \author Mongoose
  * \author xythobuz
  */
 
-#ifndef _TEXTURE_H
-#define _TEXTURE_H
+#ifndef _TEXTURE_MANAGER_H
+#define _TEXTURE_MANAGER_H
 
 /*!
  * \brief Texture registry
  */
-class Texture {
+class TextureManager {
 public:
 
     enum ColorMode {
@@ -32,12 +32,12 @@ public:
     /*!
     * \brief Constructs an object of Texture
     */
-    Texture();
+    TextureManager();
 
    /*!
     * \brief Deconstructs an object of Texture
     */
-    ~Texture();
+    ~TextureManager();
 
     /*!
      * \brief Resets all texture data
@@ -148,12 +148,6 @@ public:
     void useMultiTexture(float aU, float aV, float bU, float bV);
 
 private:
-
-    int nextPower(int seed);
-
-    unsigned char *scaleBuffer(unsigned char *image, int width, int height,
-                                int components);
-
     unsigned int *mTextureIds;  //!< GL texture list
     unsigned int mTextureCount; //!< Texture counter
     unsigned int mTextureLimit; //!< The texture limit

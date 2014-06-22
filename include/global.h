@@ -20,6 +20,11 @@
 #define __attribute__(x)
 #endif
 
+//! \todo Replace NULL usage with nullptr
+#ifndef NULL
+#define NULL nullptr
+#endif
+
 // Globally include OpenGL header
 #ifdef __APPLE__
 #include <OpenGL/gl.h>

@@ -4,6 +4,12 @@
 
     [ 20140622 ]
     * Wrote simple image reader/writer utilizing libpng
+    * Created utils/pixels for pixel handling utilities
+    * Renamed Texture to TextureManager
+    * Added support for BGR(A) color types in TextureManager
+    * Added pngCheck() and pcxCheck() methods
+    * Added ColorMode and bpp info to pcx/png API
+    * Modified tga to match png/pcx API
 
     [ 20140621 ]
     * Created StaticMesh class replacing model_mesh_t stuff

@@ -123,7 +123,7 @@ int setupTextureColor(float *colorf) {
         gColorTextureHACK.push_back(colorI);
         texture = getGame().getTextureOffset() + gColorTextureHACK.size();
 
-        getRender().loadTexture(Texture::generateColorTexture(color, 32, 32),
+        getRender().loadTexture(TextureManager::generateColorTexture(color, 32, 32),
                 32, 32, texture);
     } else {
         texture = getGame().getTextureOffset() + foundIndex;

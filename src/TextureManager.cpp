@@ -1,5 +1,5 @@
 /*!
- * \file src/Texture.cpp
+ * \file src/TextureManager.cpp
  * \brief Texture registry
  *
  * \author Mongoose
@@ -16,9 +16,9 @@
 #include "utils/pixel.h"
 #include "utils/strings.h"
 #include "utils/tga.h"
-#include "Texture.h"
+#include "TextureManager.h"
 
-Texture::Texture() {
+TextureManager::TextureManager() {
     mTextureIds = NULL;
     mFlags = 0;
     mTextureId = -1;
@@ -27,11 +27,11 @@ Texture::Texture() {
     mTextureLimit = 0;
 }
 
-Texture::~Texture() {
+TextureManager::~TextureManager() {
     reset();
 }
 
-unsigned char *Texture::generateColorTexture(unsigned char rgba[4],
+unsigned char *TextureManager::generateColorTexture(unsigned char rgba[4],
         unsigned int width, unsigned int height) {
     unsigned char *image;
     unsigned int i, size;
@@ -53,7 +53,7 @@ unsigned char *Texture::generateColorTexture(unsigned char rgba[4],
     return image;
 }
 
-int Texture::loadColorTexture(unsigned char rgba[4],
+int TextureManager::loadColorTexture(unsigned char rgba[4],
         unsigned int width, unsigned int height) {
     unsigned char *image;
     int id;
@@ -69,15 +69,15 @@ int Texture::loadColorTexture(unsigned char rgba[4],
     return id;
 }
 
-void Texture::setFlag(TextureFlag flag) {
+void TextureManager::setFlag(TextureFlag flag) {
     mFlags |= flag;
 }
 
-void Texture::clearFlag(TextureFlag flag) {
+void TextureManager::clearFlag(TextureFlag flag) {
     mFlags &= ~flag;
 }
 
-void Texture::reset() {
+void TextureManager::reset() {
     if (mTextureIds) {
         glDeleteTextures(mTextureLimit, mTextureIds);
         delete [] mTextureIds;
@@ -88,7 +88,7 @@ void Texture::reset() {
     mTextureLimit = 0;
 }
 
-void Texture::disableMultiTexture() {
+void TextureManager::disableMultiTexture() {
     mFlags ^= fUseMultiTexture;
     mTextureId = -1;
     mTextureId2 = -1;
@@ -97,7 +97,7 @@ void Texture::disableMultiTexture() {
     glActiveTextureARB(GL_TEXTURE0_ARB);
 }
 
-void Texture::useMultiTexture(float aU, float aV, float bU, float bV) {
+void TextureManager::useMultiTexture(float aU, float aV, float bU, float bV) {
     if (!(mFlags & fUseMultiTexture))
         return;
 
@@ -105,7 +105,7 @@ void Texture::useMultiTexture(float aU, float aV, float bU, float bV) {
     glMultiTexCoord2fARB(GL_TEXTURE1_ARB, bU, bV);
 }
 
-void Texture::useMultiTexture(float u, float v) {
+void TextureManager::useMultiTexture(float u, float v) {
     if (!(mFlags & fUseMultiTexture))
         return;
 
@@ -113,7 +113,7 @@ void Texture::useMultiTexture(float u, float v) {
     glMultiTexCoord2fARB(GL_TEXTURE1_ARB, u, v);
 }
 
-void Texture::bindMultiTexture(int texture0, int texture1) {
+void TextureManager::bindMultiTexture(int texture0, int texture1) {
     assert(mTextureIds != NULL);
     assert(texture0 >= 0);
     assert((unsigned int)texture0 <= mTextureCount);
@@ -133,7 +133,7 @@ void Texture::bindMultiTexture(int texture0, int texture1) {
     glBindTexture(GL_TEXTURE_2D, mTextureIds[texture1]);
 }
 
-void Texture::setMaxTextureCount(unsigned int n) {
+void TextureManager::setMaxTextureCount(unsigned int n) {
     assert(n > 0);
 
     mTextureLimit = n;
@@ -143,11 +143,11 @@ void Texture::setMaxTextureCount(unsigned int n) {
     glGenTextures(n, mTextureIds);
 }
 
-int Texture::getTextureCount() {
+int TextureManager::getTextureCount() {
     return mTextureCount - 1;
 }
 
-int Texture::loadBuffer(unsigned char *image,
+int TextureManager::loadBuffer(unsigned char *image,
         unsigned int width, unsigned int height,
         ColorMode mode, unsigned int bpp) {
     int id;
@@ -165,7 +165,7 @@ int Texture::loadBuffer(unsigned char *image,
     return id;
 }
 
-int Texture::loadBufferSlot(unsigned char *image,
+int TextureManager::loadBufferSlot(unsigned char *image,
         unsigned int width, unsigned int height,
         ColorMode mode, unsigned int bpp,
         unsigned int slot) {
@@ -182,7 +182,7 @@ int Texture::loadBufferSlot(unsigned char *image,
     switch (mode) {
         case GREYSCALE:
             if (bpp != 8) {
-                printf("Texture::Load ERROR Unsupported GREYSCALE, %i bpp\n", bpp);
+                printf("TextureManager::Load ERROR Unsupported GREYSCALE, %i bpp\n", bpp);
                 return -1;
             }
             bytes = 1;
@@ -191,7 +191,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 
         case RGB:
             if (bpp != 24) {
-                printf("Texture::Load ERROR Unsupported RGB, %i bpp\n", bpp);
+                printf("TextureManager::Load ERROR Unsupported RGB, %i bpp\n", bpp);
                 return -1;
             }
             bytes = 3;
@@ -202,7 +202,7 @@ int Texture::loadBufferSlot(unsigned char *image,
             if (bpp == 32) {
                 argb2rgba32(image, width, height);
             } else {
-                printf("Texture::Load ERROR Unsupported ARGB, %i bpp\n", bpp);
+                printf("TextureManager::Load ERROR Unsupported ARGB, %i bpp\n", bpp);
                 return -1;
             }
             bytes = 4;
@@ -211,7 +211,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 
         case RGBA:
             if (bpp != 32) {
-                printf("Texture::Load ERROR Unsupported RGBA, %i bpp\n", bpp);
+                printf("TextureManager::Load ERROR Unsupported RGBA, %i bpp\n", bpp);
                 return -1;
             }
             bytes = 4;
@@ -220,7 +220,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 
         case BGR:
             if (bpp != 24) {
-                printf("Texture::Load ERROR Unsupported BGR, %i bpp\n", bpp);
+                printf("TextureManager::Load ERROR Unsupported BGR, %i bpp\n", bpp);
                 return -1;
             }
             bytes = 3;
@@ -229,7 +229,7 @@ int Texture::loadBufferSlot(unsigned char *image,
 
         case BGRA:
             if (bpp != 32) {
-                printf("Texture::Load ERROR Unsupported BGRA, %i bpp\n", bpp);
+                printf("TextureManager::Load ERROR Unsupported BGRA, %i bpp\n", bpp);
                 return -1;
             }
             bytes = 4;
@@ -270,7 +270,7 @@ int Texture::loadBufferSlot(unsigned char *image,
     return slot;
 }
 
-void Texture::bindTextureId(unsigned int n) {
+void TextureManager::bindTextureId(unsigned int n) {
     assert(mTextureIds != NULL);
     assert(n <= mTextureCount);
 
@@ -282,19 +282,20 @@ void Texture::bindTextureId(unsigned int n) {
     glBindTexture(GL_TEXTURE_2D, mTextureIds[n]);
 }
 
-int Texture::loadPCX(const char *filename) {
+int TextureManager::loadPCX(const char *filename) {
     unsigned char *image;
-    unsigned int w, h;
+    unsigned int w, h, bpp;
+    ColorMode c;
     int id = -1;
-    int error = pcxLoad(filename, &image, &w, &h);
+    int error = pcxLoad(filename, &image, &w, &h, &c, &bpp);
     if (error == 0) {
-        id = loadBuffer(image, w, h, RGBA, 32);
+        id = loadBuffer(image, w, h, c, bpp);
         delete [] image;
     }
     return id;
 }
 
-int Texture::loadTGA(const char *filename) {
+int TextureManager::loadTGA(const char *filename) {
     FILE *f;
     unsigned char *image = NULL;
     unsigned char *image2 = NULL;
@@ -317,6 +318,7 @@ int Texture::loadTGA(const char *filename) {
         image2 = scaleBuffer(image, w, h, (type == 4) ? 4 : 3);
 
         if (image2) {
+            delete [] image;
             image = image2;
             w = h = 256;
         }
@@ -333,156 +335,9 @@ int Texture::loadTGA(const char *filename) {
     }
 
     if (id == -1) {
-        printf("Texture::loadTGA> ERROR: Failed to load '%s'\n", filename);
+        printf("TextureManager::loadTGA> ERROR: Failed to load '%s'\n", filename);
     }
 
     return id;
-}
-
-int Texture::nextPower(int seed) {
-    int i = 1;
-    for (; i < seed; i *= 2);
-    return i;
-}
-
-/* This code based off on gluScaleImage()  */
-unsigned char *Texture::scaleBuffer(unsigned char *image,
-        int width, int height, int components) {
-    int i, j, k;
-    float* tempin;
-    float* tempout;
-    float sx, sy;
-    //int components = 3;
-    unsigned char *timage;
-    int original_height = height;
-    int original_width = width;
-
-    assert(image != NULL);
-    assert(width > 0);
-    assert(height > 0);
-
-    height = nextPower(height);
-    width = nextPower(width);
-
-    if (height > 256)
-        height = 256;
-
-    if (width > 256)
-        width = 256;
-
-    // Check to see if scaling is needed
-    if (height == original_height && width == original_width)
-        return NULL;
-
-    //printf("%i\n", components);
-
-    timage = new unsigned char[height * width * components];
-    tempin = new float[original_width * original_height * components * sizeof(float)];
-    tempout = new float[width * height * components * sizeof(float)];
-
-    // Copy user data to float format.
-    for (i = 0; i < original_height * original_width * components; ++i) {
-        tempin[i] = (float)image[i];
-    }
-
-    // Determine which filter to use by checking ratios.
-    if (width > 1) {
-        sx = (float)(original_width - 1) / (float)(width - 1);
-    } else {
-        sx = (float)(original_width - 1);
-    }
-
-    if (height > 1) {
-        sy = (float)(original_height - 1) / (float) (height - 1);
-    } else {
-        sy = (float)(original_height - 1);
-    }
-
-    if (sx < 1.0 && sy < 1.0) {
-        /* Magnify both width and height:  use weighted sample of 4 pixels */
-        for (i = 0; i < height; ++i) {
-            int i0 = (int)(i * sy);
-            int i1 = i0 + 1;
-
-            if (i1 >= original_height) {
-                i1 = original_height - 1;
-            }
-
-            float alpha = i * sy - i0;
-
-            for (j = 0; j < width; ++j) {
-                int j0 = (int) (j * sx);
-                int j1 = j0 + 1;
-
-                if (j1 >= original_width) {
-                    j1 = original_width - 1;
-                }
-
-                float beta = j * sx - j0;
-
-                /* Compute weighted average of pixels in rect (i0,j0)-(i1,j1) */
-                float *src00 = tempin + (i0 * original_width + j0) * components;
-                float *src01 = tempin + (i0 * original_width + j1) * components;
-                float *src10 = tempin + (i1 * original_width + j0) * components;
-                float *src11 = tempin + (i1 * original_width + j1) * components;
-
-                float *dst = tempout + (i * width + j) * components;
-
-                for (k = 0; k < components; ++k) {
-                    float s1 = *src00++ * (1.0f - beta) + *src01++ * beta;
-                    float s2 = *src10++ * (1.0f - beta) + *src11++ * beta;
-                    *dst++ = s1 * (1.0f - alpha) + s2 * alpha;
-                }
-            }
-        }
-    } else {
-        /* Shrink width and/or height:  use an unweighted box filter */
-        for (i = 0; i < height; ++i) {
-            int i0 = (int) (i * sy);
-            int i1 = i0 + 1;
-
-            if (i1 >= original_height) {
-                i1 = original_height - 1;
-            }
-
-            for (j = 0; j < width; ++j) {
-                int j0 = (int) (j * sx);
-                int j1 = j0 + 1;
-
-                if (j1 >= original_width) {
-                    j1 = original_width - 1;
-                }
-
-                float *dst = tempout + (i * width + j) * components;
-
-                /* Compute average of pixels in the rectangle (i0,j0)-(i1,j1) */
-                for (k = 0; k < components; ++k) {
-                    float sum = 0.0;
-
-                    for (int ii = i0; ii <= i1; ++ii) {
-                        for (int jj = j0; jj <= j1; ++jj) {
-                            sum += *(tempin + (ii * original_width + jj)
-                                    * components + k);
-                        }
-                    }
-
-                    sum /= ( j1 - j0 + 1 ) * ( i1 - i0 + 1 );
-                    *dst++ = sum;
-                }
-            }
-        }
-    }
-
-    // Copy to our results.
-    for (i = 0; i < height * width * components; ++i) {
-        timage[i] = (unsigned char)tempout[i];
-    }
-
-    // Delete our temp buffers.
-    delete[] tempin;
-    delete[] tempout;
-    delete[] image;
-
-    return timage;
 }
 

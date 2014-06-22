@@ -20,7 +20,66 @@
 void pcxPrint(...) { }
 #endif
 
-int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height) {
+int pcxCheck(const char *filename) {
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
+
+    std::ifstream file(filename, std::ios::in | std::ios::binary);
+
+    // Read raw PCX header, 128 bytes
+    unsigned char *header = new unsigned char[128];
+
+    // Basic validation
+    if (!file.read((char *)(&header[0]), 128)) {
+        pcxPrint("File not big enough for valid PCX header!");
+        delete [] header;
+        return -1;
+    }
+
+    if (header[0] != 0x0A) {
+        pcxPrint("Magic number at file start is wrong (0x%X != 0x0A)", header[0]);
+        delete [] header;
+        return -2;
+    }
+
+    if ((header[1] != 0) && ((header[1] < 2) || (header[1] > 5))) {
+        // Valid: 0, 2, 3, 4, 5
+        pcxPrint("Unknown PCX file format version (%d)", header[1]);
+        delete [] header;
+        return -3;
+    }
+
+    if ((header[2] != 0) && (header[2] != 1)) {
+        pcxPrint("Unknown PCX file encoding (%d)", header[2]);
+        delete [] header;
+        return -4;
+    }
+
+    if (header[3] != 8) {
+        pcxPrint("Only supporting 8bit (%dbit)", header[3]);
+        delete [] header;
+        return -5;
+    }
+
+    if (header[64] != 0) {
+        pcxPrint("Reserved field is  used (%d != 0)", header[64]);
+        delete [] header;
+        return -6;
+    }
+
+    delete [] header;
+    return 0;
+}
+
+int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, TextureManager::ColorMode *mode, unsigned int *bpp) {
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
+    assert(image != NULL);
+    assert(width != NULL);
+    assert(height != NULL);
+    assert(mode != NULL);
+    assert(bpp != NULL);
+
     std::ifstream file(filename, std::ios::in | std::ios::binary);
 
     // Read raw PCX header, 128 bytes
@@ -185,9 +244,11 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
         }
     }
 
+    *mode = TextureManager::RGBA;
+    *bpp = 32;
+
     delete [] buffer;
     delete [] palette;
-
     return 0;
 }
 

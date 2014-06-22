@@ -12,6 +12,7 @@
 #include <cstdio>
 
 #include "global.h"
+#include "utils/pixel.h"
 #include "utils/png.h"
 
 #ifdef DEBUG
@@ -21,7 +22,30 @@
 void pngPrint(...) { }
 #endif
 
-int pngLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height) {
+int pngCheck(const char *filename) {
+    png_byte header[8];
+
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
+
+    FILE *fp = fopen(filename, "rb");
+    if (fp == NULL) {
+        pngPrint("Could not open %s", filename);
+        return -1;
+    }
+
+    fread(header, 1, 8, fp);
+    fclose(fp);
+
+    if (png_sig_cmp(header, 0, 8)) {
+        pngPrint("File %s is not a PNG.", filename);
+        return -2;
+    }
+
+    return 0;
+}
+
+int pngLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, TextureManager::ColorMode *mode, unsigned int *bpp) {
     png_byte header[8];
 
     assert(filename != NULL);
@@ -29,6 +53,8 @@ int pngLoad(const char *filename, unsigned char **image, unsigned int *width, un
     assert(image != NULL);
     assert(width != NULL);
     assert(height != NULL);
+    assert(mode != NULL);
+    assert(bpp != NULL);
 
     FILE *fp = fopen(filename, "rb");
     if (fp == NULL) {
@@ -104,34 +130,33 @@ int pngLoad(const char *filename, unsigned char **image, unsigned int *width, un
     delete [] row_pointers;
     fclose(fp);
 
-    // Fix alpha
-    if (color_type != PNG_COLOR_TYPE_RGB_ALPHA) {
-        unsigned char *tmpimage = image_data;
-        image_data = new unsigned char[*width * *height * 4];
-        if (color_type == PNG_COLOR_TYPE_RGB) {
-            for (unsigned int i = 0; i < (*width * *height); i++) {
-                image_data[i * 4] = tmpimage[i * 3];
-                image_data[(i * 4) + 1] = tmpimage[(i * 3) + 1];
-                image_data[(i * 4) + 2] = tmpimage[(i * 3) + 2];
-                image_data[(i * 4) + 3] = 255;
-            }
-        } else {
-            pngPrint("%s: Unknown libpng color type %d.", filename, color_type);
-            delete [] image_data;
-            delete [] tmpimage;
-            return -8;
-        }
-        delete [] tmpimage;
+    if (color_type == PNG_COLOR_TYPE_GRAY) {
+        *mode = TextureManager::GREYSCALE;
+        *bpp = 8;
+    } else if (color_type == PNG_COLOR_TYPE_RGB) {
+        *mode = TextureManager::RGB;
+        *bpp = 24;
+    } else if (color_type == PNG_COLOR_TYPE_RGB_ALPHA) {
+        *mode = TextureManager::RGBA;
+        *bpp = 32;
+    } else {
+        pngPrint("%s: Unknown libpng color type %d.", filename, color_type);
+        delete [] image_data;
+        return -8;
     }
 
     // Flip
-    *image = new unsigned char[*width * *height * 4];
+    *image = new unsigned char[*width * *height * (*bpp / 8)];
     for (unsigned int y = 0; y < (*height); y++) {
         for (unsigned int x = 0; x < (*width); x++) {
-            (*image)[((y * *width) + x) * 4] = image_data[(((*height - y - 1) * *width) + x) * 4];
-            (*image)[(((y * *width) + x) * 4) + 1] = image_data[((((*height - y - 1) * *width) + x) * 4) + 1];
-            (*image)[(((y * *width) + x) * 4) + 2] = image_data[((((*height - y - 1) * *width) + x) * 4) + 2];
-            (*image)[(((y * *width) + x) * 4) + 3] = image_data[((((*height - y - 1) * *width) + x) * 4) + 3];
+            (*image)[((y * *width) + x) * (*bpp / 8)]
+                = image_data[(((*height - y - 1) * *width) + x) * (*bpp / 8)];
+            (*image)[(((y * *width) + x) * (*bpp / 8)) + 1]
+                = image_data[((((*height - y - 1) * *width) + x) * (*bpp / 8)) + 1];
+            (*image)[(((y * *width) + x) * (*bpp / 8)) + 2]
+                = image_data[((((*height - y - 1) * *width) + x) * (*bpp / 8)) + 2];
+            (*image)[(((y * *width) + x) * (*bpp / 8)) + 3]
+                = image_data[((((*height - y - 1) * *width) + x) * (*bpp / 8)) + 3];
         }
     }
 
@@ -139,7 +164,7 @@ int pngLoad(const char *filename, unsigned char **image, unsigned int *width, un
     return 0;
 }
 
-int pngSave(const char *filename, unsigned char *image, unsigned int width, unsigned int height) {
+int pngSave(const char *filename, unsigned char *image, unsigned int width, unsigned int height, TextureManager::ColorMode mode, unsigned int bpp) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
     assert(image != NULL);
@@ -181,8 +206,27 @@ int pngSave(const char *filename, unsigned char *image, unsigned int width, unsi
         return -5;
     }
 
+    int color_type;
+    if ((mode == TextureManager::GREYSCALE) && (bpp == 8)) {
+        color_type = PNG_COLOR_TYPE_GRAY;
+    } else if (((mode == TextureManager::RGB) || (mode == TextureManager::BGR)) && (bpp == 24)) {
+        if (mode == TextureManager::BGR) {
+            bgr2rgb24(image, width, height);
+        }
+        color_type = PNG_COLOR_TYPE_RGB;
+    } else if (((mode == TextureManager::RGBA) || (mode == TextureManager::BGRA)) && (bpp == 32)) {
+        if (mode == TextureManager::BGRA) {
+            bgra2rgba32(image, width, height);
+        }
+        color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+    } else {
+        pngPrint("Error invalid color mode");
+        fclose(fp);
+        return -6;
+    }
+
     png_set_IHDR(png_ptr, info_ptr, width, height,
-            8, PNG_COLOR_TYPE_RGB_ALPHA, PNG_INTERLACE_NONE,
+            8, color_type, PNG_INTERLACE_NONE,
             PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
     png_write_info(png_ptr, info_ptr);
@@ -196,7 +240,7 @@ int pngSave(const char *filename, unsigned char *image, unsigned int width, unsi
         pngPrint("Error during writing bytes");
         delete [] row_pointers;
         fclose(fp);
-        return -6;
+        return -7;
     }
 
     png_write_image(png_ptr, row_pointers);
@@ -205,7 +249,7 @@ int pngSave(const char *filename, unsigned char *image, unsigned int width, unsi
         pngPrint("Error during end of write");
         delete [] row_pointers;
         fclose(fp);
-        return -7;
+        return -8;
     }
 
     png_write_end(png_ptr, NULL);
