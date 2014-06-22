@@ -10,6 +10,7 @@
     * Added pngCheck() and pcxCheck() methods
     * Added ColorMode and bpp info to pcx/png API
     * Modified tga to match png/pcx API
+    * scaleBuffer() no longer stops at 256x256
 
     [ 20140621 ]
     * Created StaticMesh class replacing model_mesh_t stuff

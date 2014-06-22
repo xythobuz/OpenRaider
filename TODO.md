@@ -8,8 +8,8 @@
 * Don't use C-Style code, try to replace with C++ lib
     * Use std::strings
     * Rewrite Console and use operator << to write to the console?
-* SDL_TTF 2.0.12+ can do line breaks, use it: http://stackoverflow.com/questions/17847818/how-to-do-line-breaks-and-line-wrapping-with-sdl-ttf/18418688#18418688
-* Mesh has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even reusing the Mesh class for the model_meshes...
+* SDL_TTF 2.0.12+ [can do line breaks](http://stackoverflow.com/questions/17847818/how-to-do-line-breaks-and-line-wrapping-with-sdl-ttf/18418688#18418688), use it
+* Mesh has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even combining Mesh and StaticMesh...
 
 ## Changes
 

@@ -289,6 +289,11 @@ int TextureManager::loadPCX(const char *filename) {
     int id = -1;
     int error = pcxLoad(filename, &image, &w, &h, &c, &bpp);
     if (error == 0) {
+        unsigned char *image2 = scaleBuffer(image, &w, &h, bpp);
+        if (image2) {
+            delete [] image;
+            image = image2;
+        }
         id = loadBuffer(image, w, h, c, bpp);
         delete [] image;
     }
@@ -313,20 +318,17 @@ int TextureManager::loadTGA(const char *filename) {
     } else if (!tgaCheck(f)) {
         tgaLoad(f, &image, &w, &h, &type);
 
-        type += 2;
-
-        image2 = scaleBuffer(image, w, h, (type == 4) ? 4 : 3);
+        image2 = scaleBuffer(image, &w, &h, (type == 2) ? 32 : 24);
 
         if (image2) {
             delete [] image;
             image = image2;
-            w = h = 256;
         }
 
         if (image) {
             id = loadBuffer(image, w, h,
-                    (type == 4) ? RGBA : RGB,
-                    (type == 4) ? 32 : 24);
+                    (type == 2) ? RGBA : RGB,
+                    (type == 2) ? 32 : 24);
 
             delete [] image;
         }

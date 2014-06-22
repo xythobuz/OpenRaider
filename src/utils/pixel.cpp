@@ -50,40 +50,40 @@ void argb2rgba32(unsigned char *image, unsigned int w, unsigned int h) {
 }
 
 #define NEXT_POWER(x) do {        \
-    int i;                        \
+    unsigned int i;               \
     for (i = 1; i < (x); i *= 2); \
-    x = i;                        \
+    (x) = i;                      \
 } while (false);
 
 // This code based off on gluScaleImage()
-unsigned char *scaleBuffer(unsigned char *image, int width, int height, int components) {
+unsigned char *scaleBuffer(unsigned char *image, unsigned int *w, unsigned int *h, unsigned int bpp) {
+    unsigned int width = *w;
+    unsigned int height = *h;
     assert(image != NULL);
     assert(width > 0);
     assert(height > 0);
-    assert((components == 3) || (components == 4));
+    assert((bpp % 8) == 0);
 
-    int original_height = height;
-    int original_width = width;
+    unsigned int components = bpp / 8;
+    unsigned int original_height = height;
+    unsigned int original_width = width;
 
     NEXT_POWER(height);
     NEXT_POWER(width);
 
-    if (height > 256)
-        height = 256;
-
-    if (width > 256)
-        width = 256;
-
     // Check to see if scaling is needed
     if (height == original_height && width == original_width)
         return NULL;
+
+    *w = width;
+    *h = height;
 
     unsigned char *timage = new unsigned char[height * width * components];
     float *tempin = new float[original_width * original_height * components];
     float *tempout = new float[width * height * components];
 
     // Copy user data to float format.
-    for (int i = 0; i < original_height * original_width * components; ++i) {
+    for (unsigned int i = 0; i < original_height * original_width * components; ++i) {
         tempin[i] = (float)image[i];
     }
 
@@ -103,9 +103,9 @@ unsigned char *scaleBuffer(unsigned char *image, int width, int height, int comp
     }
 
     if (sx < 1.0 && sy < 1.0) { // Magnify both width and height: use weighted sample of 4 pixels
-        for (int i = 0; i < height; ++i) {
-            int i0 = (int)(i * sy);
-            int i1 = i0 + 1;
+        for (unsigned int i = 0; i < height; ++i) {
+            unsigned int i0 = (unsigned int)(i * sy);
+            unsigned int i1 = i0 + 1;
 
             if (i1 >= original_height) {
                 i1 = original_height - 1;
@@ -113,9 +113,9 @@ unsigned char *scaleBuffer(unsigned char *image, int width, int height, int comp
 
             float alpha = i * sy - i0;
 
-            for (int j = 0; j < width; ++j) {
-                int j0 = (int) (j * sx);
-                int j1 = j0 + 1;
+            for (unsigned int j = 0; j < width; ++j) {
+                unsigned int j0 = (unsigned int) (j * sx);
+                unsigned int j1 = j0 + 1;
 
                 if (j1 >= original_width) {
                     j1 = original_width - 1;
@@ -131,7 +131,7 @@ unsigned char *scaleBuffer(unsigned char *image, int width, int height, int comp
 
                 float *dst = tempout + (i * width + j) * components;
 
-                for (int k = 0; k < components; ++k) {
+                for (unsigned int k = 0; k < components; ++k) {
                     float s1 = *src00++ * (1.0f - beta) + *src01++ * beta;
                     float s2 = *src10++ * (1.0f - beta) + *src11++ * beta;
                     *dst++ = s1 * (1.0f - alpha) + s2 * alpha;
@@ -139,17 +139,17 @@ unsigned char *scaleBuffer(unsigned char *image, int width, int height, int comp
             }
         }
     } else { // Shrink width and/or height: use an unweighted box filter
-        for (int i = 0; i < height; ++i) {
-            int i0 = (int) (i * sy);
-            int i1 = i0 + 1;
+        for (unsigned int i = 0; i < height; ++i) {
+            unsigned int i0 = (unsigned int) (i * sy);
+            unsigned int i1 = i0 + 1;
 
             if (i1 >= original_height) {
                 i1 = original_height - 1;
             }
 
-            for (int j = 0; j < width; ++j) {
-                int j0 = (int) (j * sx);
-                int j1 = j0 + 1;
+            for (unsigned int j = 0; j < width; ++j) {
+                unsigned int j0 = (unsigned int) (j * sx);
+                unsigned int j1 = j0 + 1;
 
                 if (j1 >= original_width) {
                     j1 = original_width - 1;
@@ -158,11 +158,11 @@ unsigned char *scaleBuffer(unsigned char *image, int width, int height, int comp
                 float *dst = tempout + (i * width + j) * components;
 
                 // Compute average of pixels in the rectangle (i0,j0)-(i1,j1)
-                for (int k = 0; k < components; ++k) {
+                for (unsigned int k = 0; k < components; ++k) {
                     float sum = 0.0;
 
-                    for (int ii = i0; ii <= i1; ++ii) {
-                        for (int jj = j0; jj <= j1; ++jj) {
+                    for (unsigned int ii = i0; ii <= i1; ++ii) {
+                        for (unsigned int jj = j0; jj <= j1; ++jj) {
                             sum += *(tempin + (ii * original_width + jj)
                                     * components + k);
                         }
@@ -176,7 +176,7 @@ unsigned char *scaleBuffer(unsigned char *image, int width, int height, int comp
     }
 
     // Copy to our results.
-    for (int i = 0; i < height * width * components; ++i) {
+    for (unsigned int i = 0; i < height * width * components; ++i) {
         timage[i] = (unsigned char)tempout[i];
     }
 
