@@ -13,6 +13,7 @@
 
 #include "global.h"
 #include "utils/pcx.h"
+#include "utils/pixel.h"
 #include "utils/strings.h"
 #include "utils/tga.h"
 #include "Texture.h"
@@ -164,24 +165,6 @@ int Texture::loadBuffer(unsigned char *image,
     return id;
 }
 
-void convertARGB32bppToRGBA32bpp(unsigned char *image,
-        unsigned int w, unsigned int h) {
-    unsigned int i, size = w * h;
-
-    assert(image != NULL);
-    assert(w > 0);
-    assert(h > 0);
-
-    for (i = 0; i < size; ++i) {
-        /* 32-bit ARGB to RGBA */
-        unsigned char swap = image[(i * 4) + 3];
-        image[(i * 4)] = image[(i * 4) + 1];
-        image[(i * 4) + 1] = image[(i * 4) + 2];
-        image[(i * 4) + 2] = image[(i * 4) + 3];
-        image[(i * 4) + 3] = swap;
-    }
-}
-
 int Texture::loadBufferSlot(unsigned char *image,
         unsigned int width, unsigned int height,
         ColorMode mode, unsigned int bpp,
@@ -205,6 +188,7 @@ int Texture::loadBufferSlot(unsigned char *image,
             bytes = 1;
             glcMode = GL_LUMINANCE;
             break;
+
         case RGB:
             if (bpp != 24) {
                 printf("Texture::Load ERROR Unsupported RGB, %i bpp\n", bpp);
@@ -213,9 +197,10 @@ int Texture::loadBufferSlot(unsigned char *image,
             bytes = 3;
             glcMode = GL_RGB;
             break;
+
         case ARGB:
             if (bpp == 32) {
-                convertARGB32bppToRGBA32bpp(image, width, height);
+                argb2rgba32(image, width, height);
             } else {
                 printf("Texture::Load ERROR Unsupported ARGB, %i bpp\n", bpp);
                 return -1;
@@ -223,6 +208,7 @@ int Texture::loadBufferSlot(unsigned char *image,
             bytes = 4;
             glcMode = GL_RGBA;
             break;
+
         case RGBA:
             if (bpp != 32) {
                 printf("Texture::Load ERROR Unsupported RGBA, %i bpp\n", bpp);
@@ -230,6 +216,24 @@ int Texture::loadBufferSlot(unsigned char *image,
             }
             bytes = 4;
             glcMode = GL_RGBA;
+            break;
+
+        case BGR:
+            if (bpp != 24) {
+                printf("Texture::Load ERROR Unsupported BGR, %i bpp\n", bpp);
+                return -1;
+            }
+            bytes = 3;
+            glcMode = GL_BGR_EXT;
+            break;
+
+        case BGRA:
+            if (bpp != 32) {
+                printf("Texture::Load ERROR Unsupported BGRA, %i bpp\n", bpp);
+                return -1;
+            }
+            bytes = 4;
+            glcMode = GL_BGRA_EXT;
             break;
     }
 

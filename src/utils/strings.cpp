@@ -1,5 +1,5 @@
 /*!
- * \file include/utils/strings.h
+ * \file src/utils/strings.cpp
  * \brief String handling utilities
  *
  * \author xythobuz

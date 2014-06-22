@@ -1,5 +1,5 @@
 /*!
- * \file include/utils/time.h
+ * \file src/utils/time.cpp
  * \brief Time handling utilities
  *
  * \author xythobuz

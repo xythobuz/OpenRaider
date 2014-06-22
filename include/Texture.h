@@ -9,8 +9,6 @@
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
 
-#include <stdio.h>
-
 /*!
  * \brief Texture registry
  */
@@ -18,10 +16,12 @@ class Texture {
 public:
 
     enum ColorMode {
-        GREYSCALE = 1,
+        GREYSCALE,
         RGB,
         RGBA,
-        ARGB
+        ARGB,
+        BGR,
+        BGRA
     };
 
     enum TextureFlag {
@@ -38,6 +38,11 @@ public:
     * \brief Deconstructs an object of Texture
     */
     ~Texture();
+
+    /*!
+     * \brief Resets all texture data
+     */
+    void reset();
 
     /*!
      * \brief Generates a texture buffer with (width * height * 4) bytes.
@@ -123,11 +128,6 @@ public:
     int loadTGA(const char *filename);
 
     int loadPCX(const char *filename);
-
-    /*!
-     * \brief Resets all texture data
-     */
-    void reset();
 
     /*!
      * \brief Sets an option flag
