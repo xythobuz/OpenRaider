@@ -104,27 +104,38 @@ int pngLoad(const char *filename, unsigned char **image, unsigned int *width, un
     delete [] row_pointers;
     fclose(fp);
 
-    if (color_type == PNG_COLOR_TYPE_RGB_ALPHA) {
-        *image = image_data;
-    } else {
-        *image = new unsigned char[*width * *height * 4];
+    // Fix alpha
+    if (color_type != PNG_COLOR_TYPE_RGB_ALPHA) {
+        unsigned char *tmpimage = image_data;
+        image_data = new unsigned char[*width * *height * 4];
         if (color_type == PNG_COLOR_TYPE_RGB) {
             for (unsigned int i = 0; i < (*width * *height); i++) {
-                *image[i * 4] = image_data[i * 3];
-                *image[(i * 4) + 1] = image_data[(i * 3) + 1];
-                *image[(i * 4) + 2] = image_data[(i * 3) + 2];
-                *image[(i * 4) + 3] = 255;
+                image_data[i * 4] = tmpimage[i * 3];
+                image_data[(i * 4) + 1] = tmpimage[(i * 3) + 1];
+                image_data[(i * 4) + 2] = tmpimage[(i * 3) + 2];
+                image_data[(i * 4) + 3] = 255;
             }
         } else {
             pngPrint("%s: Unknown libpng color type %d.", filename, color_type);
             delete [] image_data;
-            delete [] *image;
-            *image = NULL;
+            delete [] tmpimage;
             return -8;
         }
-        delete [] image_data;
+        delete [] tmpimage;
     }
 
+    // Flip
+    *image = new unsigned char[*width * *height * 4];
+    for (unsigned int y = 0; y < (*height); y++) {
+        for (unsigned int x = 0; x < (*width); x++) {
+            (*image)[((y * *width) + x) * 4] = image_data[(((*height - y - 1) * *width) + x) * 4];
+            (*image)[(((y * *width) + x) * 4) + 1] = image_data[((((*height - y - 1) * *width) + x) * 4) + 1];
+            (*image)[(((y * *width) + x) * 4) + 2] = image_data[((((*height - y - 1) * *width) + x) * 4) + 2];
+            (*image)[(((y * *width) + x) * 4) + 3] = image_data[((((*height - y - 1) * *width) + x) * 4) + 3];
+        }
+    }
+
+    delete [] image_data;
     return 0;
 }
 
