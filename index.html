@@ -84,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This fork aims to get <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...</p>
 <p>If you just want to see <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> doing something on your Mac, without installing any of the dependencies needed to build <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>, grab the Mac App Bundle from the <a href="https://github.com/xythobuz/OpenRaider/releases">most recent release</a>.</p>
 <p>It seems as if <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!</p>
+<p><a href="https://flattr.com/submit/auto?user_id=xythobuz&amp;url=https://github.com/xythobuz/OpenRaider&amp;title=OpenRaider&amp;language=&amp;tags=github&amp;category=software">![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)</a></p>
 <h2>Configuration</h2>
 <p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> needs some configuration files, and level data and assets from custom levels or the Tomb Raider games. These are stored in <code>~/.<a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a></code>. Running <code>make setup</code> will create/copy the necessary files and directories.</p>
 <p>You still need to add level files in <code>~/.OpenRaider/paks/</code>. Dust off your old Tomb Raider CDs or grab some <a href="http://www.aspidetr.com/levels/yvel-woods-v1-5/">custom levels</a> from the interwebs.</p>
@@ -94,10 +95,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Basically, <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> depends on the following:</p>
 <ul>
 <li>OpenGL</li>
-<li>SDL2 &amp; SDL2-TTF</li>
+<li>SDL2</li>
+<li>SDL2-TTF (optional, needed if you want to use TTF fonts)</li>
 <li>OpenAL &amp; ALUT</li>
 <li>zlib</li>
 <li>cmake as build system</li>
+<li>libpng (optional)</li>
+<li>C++11 compiler</li>
 </ul>
 <p>On Mac OS X 10.9 with <a href="https://developer.apple.com/xcode/">XCode</a> and <a href="http://www.macports.org">MacPorts</a> installed, the following should be enough to get all dependencies that are available as port: </p>
 <pre class="fragment">sudo port install cmake zlib libsdl2 libsdl2_ttf
@@ -110,6 +114,7 @@ cmake .. -DCMAKE_INSTALL_PREFIX:STRING="/usr/local" -DCMAKE_C_FLAGS:STRING="-O2"
 make
 sudo make install
 </pre><p>Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won't need to compile freealut.</p>
+<p><a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a> support is optional now, however. If cmake can’t find OpenAL and ALUT, Audio will be deactivated. If you want to explicitly deactivate it, call cmake with <code>-DENABLE_AUDIO=NO</code>.</p>
 <h2>Building</h2>
 <p>Do a standard cmake out-of-source build to get a debug configuration and then run the resulting executable: </p>
 <pre class="fragment">mkdir build &amp;&amp; cd build
@@ -162,6 +167,11 @@ make run
 </table>
 <h3>Console/Config Commands</h3>
 <p>Every available command should be listed in the in-game help. Just type <code>help</code> in the <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> console, which can be activated by default with the backquote key.</p>
+<h3>Tomb Raider Level Editor <a class="el" href="class_font.html" title="Font interface. ">Font</a> support</h3>
+<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> can read Font.pc files used by the TRLE. If the fonts glyph positions match the TR4 defaults, only a Font.pc file is required. If the positions differ, you also need a <a href="http://trep.trlevel.de/en/downloads.html">Leikkuri/Cutter</a> preset file (<code>.lps</code>).</p>
+<p>TRLE <a class="el" href="class_font.html" title="Font interface. ">Font</a> support will automatically be built and used when selecting a font in your config file ending with <code>.pc</code>.</p>
+<p>If a <code>.lps</code> is required, give it the same name as your font file.</p>
+<p>I’ve made <a href="http://xythobuz.de/2014_06_14_trle_font.html">a small writeup on my website</a> about this.</p>
 <h3>Wireframe mode colors</h3>
 <ul>
 <li>Red (thick) lines are portal outlines</li>
@@ -182,7 +192,8 @@ make run
 </ul>
 <p>All code should be GPLed, unless otherwise noted.</p>
 <p>Forked in December 2013 by xythobuz.</p>
-<p>The included example Font, <a href="http://www.droidfonts.com/licensing/">Droid Sans Mono</a>, was created by Steve Matteson and is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.</p>
+<p>The included example <a class="el" href="class_font.html" title="Font interface. ">Font</a>, <a href="http://www.droidfonts.com/licensing/">Droid Sans Mono</a>, was created by Steve Matteson and is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.</p>
+<p>The included TRLE <a class="el" href="class_font.html" title="Font interface. ">Font</a> is from <a href="http://laraslevelbase.org/stuff/index.asp?id=1967">Laras Levelbase</a>.</p>
 <p>There are some included cmake scripts:</p>
 <ul>
 <li><a href="https://github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake">FindALUT</a></li>

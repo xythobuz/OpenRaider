@@ -1,3 +1,4 @@
 <map id="include/games/TombRaider1.h" name="include/games/TombRaider1.h">
-<area shape="rect" id="node2" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="51,80,153,107"/>
+<area shape="rect" id="node2" href="$_entity_8cpp.html" title="World Entities. " alt="" coords="5,80,104,107"/>
+<area shape="rect" id="node3" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="129,80,231,107"/>
 </map>

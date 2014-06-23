@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['texel_5ft',['texel_t',['../_world_data_8h.html#structtexel__t',1,'']]],
-  ['texture',['Texture',['../class_texture.html',1,'']]],
-  ['texture_5ftri_5ft',['texture_tri_t',['../_world_data_8h.html#structtexture__tri__t',1,'']]],
-  ['tga_5ft',['tga_t',['../tga_8h.html#structtga__t',1,'']]],
+  ['texturedtriangle',['TexturedTriangle',['../class_textured_triangle.html',1,'']]],
+  ['texturemanager',['TextureManager',['../class_texture_manager.html',1,'']]],
+  ['tga_5ft',['tga_t',['../tga_8cpp.html#structtga__t',1,'']]],
   ['tombraider',['TombRaider',['../class_tomb_raider.html',1,'']]],
   ['tombraider1',['TombRaider1',['../_tomb_raider1_8h.html#class_tomb_raider1',1,'']]],
   ['tr2_5fanim_5fcommand_5ft',['tr2_anim_command_t',['../_tomb_raider_data_8h.html#structtr2__anim__command__t',1,'']]],

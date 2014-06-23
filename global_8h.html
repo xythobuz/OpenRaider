@@ -87,7 +87,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">global.h File Reference</div>  </div>
@@ -96,15 +98,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Global typedefs.  
 <a href="#details">More...</a></p>
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &quot;config.h&quot;</code><br/>
+<code>#include &lt;GL/gl.h&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for global.h:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="global_8h__incl.svg" width="163" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="global_8h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="global_8h__dep__incl.svg" width="100%" height="384"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div>
 <p><a href="global_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a814585e9e2b41f2f341c6368c39ba0c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a814585e9e2b41f2f341c6368c39ba0c7">DEFAULT_CONFIG_PATH</a>&#160;&#160;&#160;&quot;~/.OpenRaider&quot;</td></tr>
+<tr class="separator:a814585e9e2b41f2f341c6368c39ba0c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33cca38c576ada1ba69225b47cd975a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a33cca38c576ada1ba69225b47cd975a4">DEFAULT_CONFIG_FILE</a>&#160;&#160;&#160;&quot;OpenRaider.ini&quot;</td></tr>
+<tr class="separator:a33cca38c576ada1ba69225b47cd975a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93493eb8fae5549bd5be67f3449245e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a93493eb8fae5549bd5be67f3449245e0">DEFAULT_WIDTH</a>&#160;&#160;&#160;640</td></tr>
+<tr class="separator:a93493eb8fae5549bd5be67f3449245e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1879f9e5604a01f0983829846001ab23"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a1879f9e5604a01f0983829846001ab23">DEFAULT_HEIGHT</a>&#160;&#160;&#160;480</td></tr>
+<tr class="separator:a1879f9e5604a01f0983829846001ab23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>&#160;&#160;&#160;nullptr</td></tr>
+<tr class="separator:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af576bf8ffa22a44e53018c67095ffbf0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(x)&#160;&#160;&#160;(void)((x) || (<a class="el" href="global_8h.html#a216846de043c9f6095beed9b13ed3554">assertImplementation</a>(#x, __FILE__, __LINE__),0))</td></tr>
+<tr class="separator:af576bf8ffa22a44e53018c67095ffbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a8657944732f2ddabce60de26e809df8c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8c">ActionEvents</a> { <br/>
@@ -120,6 +145,7 @@ Enumerations</h2></td></tr>
 <br/>
 &#160;&#160;<a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8ca132804dabd8099961514b23d56bae0c6">useAction</a>, 
 <a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8ca7882a011a3f51797e951a59a9fecf70d">holsterAction</a>, 
+<a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8ca329e638ac1e3595f7a442d2e364e4c79">walkAction</a>, 
 <a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8cabeeffaac80cc3bf98be5737491959fb9">ActionEventCount</a>
 <br/>
  }</td></tr>
@@ -236,40 +262,141 @@ Enumerations</h2></td></tr>
 <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa9902074f91c13e1aa9aec5282cf16322">middlemouseKey</a>, 
 <br/>
 &#160;&#160;<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa4e246ffb19964d73ab3c3776349c0616">rightmouseKey</a>, 
+<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aab41d2b0eac7517ffe9b6046de339859e">fourthmouseKey</a>, 
+<a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa9100ca92718c23b9c2f842291fa54d8e">fifthmouseKey</a>, 
 <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa45a83fd8856a8b0e3c9b2ad0ce55c260">unknownKey</a>
 <br/>
  }</td></tr>
 <tr class="separator:a5f79a3b11da4b6155b05b48129ae065a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a216846de043c9f6095beed9b13ed3554"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a216846de043c9f6095beed9b13ed3554">assertImplementation</a> (const char *exp, const char *file, int line)</td></tr>
+<tr class="separator:a216846de043c9f6095beed9b13ed3554"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a475b47b1c45def79c0ea3481e09e0921"><td class="memItemLeft" align="right" valign="top"><a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8c">ActionEvents</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a475b47b1c45def79c0ea3481e09e0921">stringToActionEvent</a> (const char *action)</td></tr>
+<tr class="separator:a475b47b1c45def79c0ea3481e09e0921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfbb4dad503160e28530af5ff03f0830"><td class="memItemLeft" align="right" valign="top"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065a">KeyboardButton</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#adfbb4dad503160e28530af5ff03f0830">stringToKeyboardButton</a> (const char *key)</td></tr>
+<tr class="separator:adfbb4dad503160e28530af5ff03f0830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a17b0010f764505c24160873b3ced2096"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a17b0010f764505c24160873b3ced2096">BLACK</a> [] = { 0.0f, 0.0f, 0.0f, 1.0f }</td></tr>
-<tr class="separator:a17b0010f764505c24160873b3ced2096"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ab9b7f311d31ce860c3e4872c683382"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a0ab9b7f311d31ce860c3e4872c683382">DIM_WHITE</a> [] = { 0.5f, 0.5f, 0.5f, 1.0f }</td></tr>
-<tr class="separator:a0ab9b7f311d31ce860c3e4872c683382"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ba2d79adbf7bc110253f034d7b72ea8"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a2ba2d79adbf7bc110253f034d7b72ea8">WHITE</a> [] = { 1.0f, 1.0f, 1.0f, 1.0f }</td></tr>
-<tr class="separator:a2ba2d79adbf7bc110253f034d7b72ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d5188c8f475a875ef14f68c89738be9"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a8d5188c8f475a875ef14f68c89738be9">RED</a> [] = { 1.0f, 0.0f, 0.0f, 1.0f }</td></tr>
-<tr class="separator:a8d5188c8f475a875ef14f68c89738be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fe579c4ef37244b6176c84cf8f44459"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a0fe579c4ef37244b6176c84cf8f44459">GREEN</a> [] = { 0.0f, 1.0f, 0.0f, 1.0f }</td></tr>
-<tr class="separator:a0fe579c4ef37244b6176c84cf8f44459"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0986bed04aff1dced11ed5bcbbd95777"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a0986bed04aff1dced11ed5bcbbd95777">NEXT_PURPLE</a> [] = { 0.3f, 0.3f, 0.5f, 1.0f }</td></tr>
-<tr class="separator:a0986bed04aff1dced11ed5bcbbd95777"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a200e65f5ca987f6506821e8ba8c33119"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a200e65f5ca987f6506821e8ba8c33119">OR_BLUE</a> [] = { 0.5f, 0.7f, 1.0f, 1.0f }</td></tr>
-<tr class="separator:a200e65f5ca987f6506821e8ba8c33119"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac1687aa2e733566a4532bc79438d0a6"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#aac1687aa2e733566a4532bc79438d0a6">PINK</a> [] = { 1.0f, 0.0f, 1.0f, 1.0f }</td></tr>
-<tr class="separator:aac1687aa2e733566a4532bc79438d0a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac9553d8768ad8edfbde6320835fb0fa"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#aac9553d8768ad8edfbde6320835fb0fa">YELLOW</a> [] = { 1.0f, 1.0f, 0.0f, 1.0f }</td></tr>
-<tr class="separator:aac9553d8768ad8edfbde6320835fb0fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05f606bb73af924241e16292a129c4b8"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a05f606bb73af924241e16292a129c4b8">CYAN</a> [] = { 0.0f, 1.0f, 1.0f, 1.0f }</td></tr>
-<tr class="separator:a05f606bb73af924241e16292a129c4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff233ed869d218800b514fc108c8abd"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a5ff233ed869d218800b514fc108c8abd">BLACK</a> [] = { 0, 0, 0, 255 }</td></tr>
+<tr class="separator:a5ff233ed869d218800b514fc108c8abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13e719c024e4277496bf35f3e2194b63"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a13e719c024e4277496bf35f3e2194b63">GREY</a> [] = { 128, 128, 128, 255 }</td></tr>
+<tr class="separator:a13e719c024e4277496bf35f3e2194b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a950d786ca3096df00211e10504c3a8c1"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a950d786ca3096df00211e10504c3a8c1">WHITE</a> [] = { 255, 255, 255, 255 }</td></tr>
+<tr class="separator:a950d786ca3096df00211e10504c3a8c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a475b112e32c1ba6f202240077ea07a6c"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a475b112e32c1ba6f202240077ea07a6c">RED</a> [] = { 255, 0, 0, 255 }</td></tr>
+<tr class="separator:a475b112e32c1ba6f202240077ea07a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12ba9d60deeae060caa7041f42aac451"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a12ba9d60deeae060caa7041f42aac451">GREEN</a> [] = { 0, 255, 0, 255 }</td></tr>
+<tr class="separator:a12ba9d60deeae060caa7041f42aac451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cc1b52e7ac5d640fe6a5054ce503e14"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a6cc1b52e7ac5d640fe6a5054ce503e14">PURPLE</a> [] = { 77, 77, 128, 255 }</td></tr>
+<tr class="separator:a6cc1b52e7ac5d640fe6a5054ce503e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af81d2c4d18c6120ba15ac53709f70043"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#af81d2c4d18c6120ba15ac53709f70043">BLUE</a> [] = { 128, 179, 255, 255 }</td></tr>
+<tr class="separator:af81d2c4d18c6120ba15ac53709f70043"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ce80fe7a0a594b513354520b490bbce"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a4ce80fe7a0a594b513354520b490bbce">PINK</a> [] = { 255, 0, 255, 255 }</td></tr>
+<tr class="separator:a4ce80fe7a0a594b513354520b490bbce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52e04e4c241ddb242a1be86f718aec51"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a52e04e4c241ddb242a1be86f718aec51">YELLOW</a> [] = { 255, 255, 0, 255 }</td></tr>
+<tr class="separator:a52e04e4c241ddb242a1be86f718aec51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a058f98539206a6a9d3694e779e36a8c1"><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global_8h.html#a058f98539206a6a9d3694e779e36a8c1">CYAN</a> [] = { 0, 255, 255, 255 }</td></tr>
+<tr class="separator:a058f98539206a6a9d3694e779e36a8c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Global typedefs. </p>
 <dl class="section author"><dt>Author</dt><dd>xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="global_8h_source.html">global.h</a>.</p>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="af576bf8ffa22a44e53018c67095ffbf0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define assert</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;(void)((x) || (<a class="el" href="global_8h.html#a216846de043c9f6095beed9b13ed3554">assertImplementation</a>(#x, __FILE__, __LINE__),0))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="global_8h_source.html#l00042">42</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a33cca38c576ada1ba69225b47cd975a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_CONFIG_FILE&#160;&#160;&#160;&quot;OpenRaider.ini&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="global_8h_source.html#l00014">14</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a814585e9e2b41f2f341c6368c39ba0c7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_CONFIG_PATH&#160;&#160;&#160;&quot;~/.OpenRaider&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="global_8h_source.html#l00013">13</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1879f9e5604a01f0983829846001ab23"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_HEIGHT&#160;&#160;&#160;480</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="global_8h_source.html#l00016">16</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a93493eb8fae5549bd5be67f3449245e0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_WIDTH&#160;&#160;&#160;640</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="global_8h_source.html#l00015">15</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a070d2ce7b6bb7e5c05602aa8c308d0c4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NULL&#160;&#160;&#160;nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Replace NULL usage with nullptr </dd></dl>
+
+<p>Definition at line <a class="el" href="global_8h_source.html#l00025">25</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="a8657944732f2ddabce60de26e809df8c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -300,11 +427,13 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a8657944732f2ddabce60de26e809df8ca7882a011a3f51797e951a59a9fecf70d"></a>holsterAction</em>&nbsp;</td><td class="fielddoc">
 </td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8657944732f2ddabce60de26e809df8ca329e638ac1e3595f7a442d2e364e4c79"></a>walkAction</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a8657944732f2ddabce60de26e809df8cabeeffaac80cc3bf98be5737491959fb9"></a>ActionEventCount</em>&nbsp;</td><td class="fielddoc">
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00021">21</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00064">64</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
@@ -496,152 +625,225 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a5f79a3b11da4b6155b05b48129ae065aa4e246ffb19964d73ab3c3776349c0616"></a>rightmouseKey</em>&nbsp;</td><td class="fielddoc">
 </td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a5f79a3b11da4b6155b05b48129ae065aab41d2b0eac7517ffe9b6046de339859e"></a>fourthmouseKey</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a5f79a3b11da4b6155b05b48129ae065aa9100ca92718c23b9c2f842291fa54d8e"></a>fifthmouseKey</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a5f79a3b11da4b6155b05b48129ae065aa45a83fd8856a8b0e3c9b2ad0ce55c260"></a>unknownKey</em>&nbsp;</td><td class="fielddoc">
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00036">36</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00081">81</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a216846de043c9f6095beed9b13ed3554"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void assertImplementation </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>exp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a475b47b1c45def79c0ea3481e09e0921"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8c">ActionEvents</a> stringToActionEvent </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00198">198</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adfbb4dad503160e28530af5ff03f0830"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065a">KeyboardButton</a> stringToKeyboardButton </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00227">227</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a17b0010f764505c24160873b3ced2096"></a>
+<a class="anchor" id="a5ff233ed869d218800b514fc108c8abd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float BLACK[] = { 0.0f, 0.0f, 0.0f, 1.0f }</td>
+          <td class="memname">const unsigned char BLACK[] = { 0, 0, 0, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00010">10</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00052">52</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a05f606bb73af924241e16292a129c4b8"></a>
+<a class="anchor" id="af81d2c4d18c6120ba15ac53709f70043"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float CYAN[] = { 0.0f, 1.0f, 1.0f, 1.0f }</td>
+          <td class="memname">const unsigned char BLUE[] = { 128, 179, 255, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00019">19</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00058">58</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0ab9b7f311d31ce860c3e4872c683382"></a>
+<a class="anchor" id="a058f98539206a6a9d3694e779e36a8c1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float DIM_WHITE[] = { 0.5f, 0.5f, 0.5f, 1.0f }</td>
+          <td class="memname">const unsigned char CYAN[] = { 0, 255, 255, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00011">11</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00061">61</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0fe579c4ef37244b6176c84cf8f44459"></a>
+<a class="anchor" id="a12ba9d60deeae060caa7041f42aac451"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float GREEN[] = { 0.0f, 1.0f, 0.0f, 1.0f }</td>
+          <td class="memname">const unsigned char GREEN[] = { 0, 255, 0, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00014">14</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00056">56</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0986bed04aff1dced11ed5bcbbd95777"></a>
+<a class="anchor" id="a13e719c024e4277496bf35f3e2194b63"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float NEXT_PURPLE[] = { 0.3f, 0.3f, 0.5f, 1.0f }</td>
+          <td class="memname">const unsigned char GREY[] = { 128, 128, 128, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00015">15</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00053">53</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a200e65f5ca987f6506821e8ba8c33119"></a>
+<a class="anchor" id="a4ce80fe7a0a594b513354520b490bbce"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float OR_BLUE[] = { 0.5f, 0.7f, 1.0f, 1.0f }</td>
+          <td class="memname">const unsigned char PINK[] = { 255, 0, 255, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00016">16</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00059">59</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aac1687aa2e733566a4532bc79438d0a6"></a>
+<a class="anchor" id="a6cc1b52e7ac5d640fe6a5054ce503e14"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float PINK[] = { 1.0f, 0.0f, 1.0f, 1.0f }</td>
+          <td class="memname">const unsigned char PURPLE[] = { 77, 77, 128, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00017">17</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00057">57</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8d5188c8f475a875ef14f68c89738be9"></a>
+<a class="anchor" id="a475b112e32c1ba6f202240077ea07a6c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float RED[] = { 1.0f, 0.0f, 0.0f, 1.0f }</td>
+          <td class="memname">const unsigned char RED[] = { 255, 0, 0, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00013">13</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00055">55</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2ba2d79adbf7bc110253f034d7b72ea8"></a>
+<a class="anchor" id="a950d786ca3096df00211e10504c3a8c1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float WHITE[] = { 1.0f, 1.0f, 1.0f, 1.0f }</td>
+          <td class="memname">const unsigned char WHITE[] = { 255, 255, 255, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00012">12</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00054">54</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aac9553d8768ad8edfbde6320835fb0fa"></a>
+<a class="anchor" id="a52e04e4c241ddb242a1be86f718aec51"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const float YELLOW[] = { 1.0f, 1.0f, 0.0f, 1.0f }</td>
+          <td class="memname">const unsigned char YELLOW[] = { 255, 255, 0, 255 }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="global_8h_source.html#l00018">18</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
+<p>Definition at line <a class="el" href="global_8h_source.html#l00060">60</a> of file <a class="el" href="global_8h_source.html">global.h</a>.</p>
 
 </div>
 </div>

@@ -86,40 +86,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">TODO.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_t_o_d_o_8md.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">## General</span></div>
+<a href="_t_o_d_o_8md.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># To-Do List</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;There are these DebugModel, DebugMap flags...?</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">## General</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;* Endian dependence ugly, shouldn<span class="stringliteral">&#39;t dereference to different types?</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral">    * TombRaider.h/cpp structs aren&#39;</span>t aligned... unportable to some big endian &amp; other archs?!</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;* Use more asserts</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;* Don<span class="stringliteral">&#39;t use C-Style code, try to replace with C++ lib</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">    * Use shared_ptr, should make memory handling/segfaults much less of a problem</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">        * Don&#39;</span>t even <span class="keyword">new</span> ... the data structures but use std::make_shared or allocate_shared?</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        * Pass <span class="keywordtype">object</span> references to all other objects that need it, completely <span class="keyword">remove</span> <a class="code" href="main_8cpp.html#a4df056baa1d70b811aba0df4fa966262">gOpenRaider</a></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    * Use streams <span class="keywordflow">for</span> (file) I/O</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    * Use std::strings</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">## Changes</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;* Using std::vector with [] is not bound checked. Segfaults were caused because the upper bound of the argument was never checked and garbage was returned... Do consistent checks, or use .at() as it <span class="keywordflow">throws</span> an exception</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">## Future Features</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;* Use only assets from old TR games?</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;* PCX image reading <span class="keywordflow">for</span> eg. TR2 built-in menu background</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    * Cut TGA image reader, currently only used <span class="keywordflow">for</span> menu background?!</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;* When cutscene rendering is working, use TR4/5 style menu?</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">## Errors</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;* Sometimes <span class="keyword">this</span> on quitting <a class="code" href="class_open_raider.html">OpenRaider</a>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_open_raider.html">OpenRaider</a>(92329,0x7fff7a8c4310) malloc: *** error for <span class="keywordtype">object</span> 0x7fabc2001000: incorrect checksum for freed <span class="keywordtype">object</span> - <span class="keywordtype">object</span> was probably modified after being freed.</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="ttc" id="main_8cpp_html_a4df056baa1d70b811aba0df4fa966262"><div class="ttname"><a href="main_8cpp.html#a4df056baa1d70b811aba0df4fa966262">gOpenRaider</a></div><div class="ttdeci">OpenRaider gOpenRaider</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00033">main.cpp:33</a></div></div>
-<div class="ttc" id="class_open_raider_html"><div class="ttname"><a href="class_open_raider.html">OpenRaider</a></div><div class="ttdoc">Main Game Singleton. </div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8h_source.html#l00023">OpenRaider.h:23</a></div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">    * Use std::strings</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">    * Rewrite Console and use operator &lt;&lt; to write to the console?</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="stringliteral">* SDL_TTF 2.0.12+ [can do line breaks](http://stackoverflow.com/questions/17847818/how-to-do-line-breaks-and-line-wrapping-with-sdl-ttf/18418688#18418688), use it</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="stringliteral">* Mesh has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even combining Mesh and StaticMesh...</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="stringliteral">* Don’t use float everywhere just because (eg. float colors)</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="stringliteral">## Changes</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">* Using std::vector with [] is not bound checked. Segfaults were caused because the upper bound of the argument was never checked and garbage was returned... Do consistent checks, or use .at() as it throws an exception</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">## Cmake</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">* Windows setup script needed, moving to AppData/Roaming</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral">* Support SSE with other compilers than Clang (src/CMakeLists.txt)</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">* Visual C++ compiler flags? (CMakeLists.txt)</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">## Future Features</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="stringliteral">* Cut TGA image reader, currently only used for menu background?!</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="stringliteral">    * Abstract image reading/writing, like Font Engine selection</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="stringliteral">* When cutscene rendering is working, use TR4/5 style menu?</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="stringliteral"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

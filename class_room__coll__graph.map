@@ -1,0 +1,6 @@
+<map id="Room" name="Room">
+<area shape="rect" id="node2" href="$class_bounding_box.html" title="BoundingBox" alt="" coords="5,95,104,121"/>
+<area shape="rect" id="node3" href="$class_mesh.html" title="OpenGL Mesh. " alt="" coords="129,95,183,121"/>
+<area shape="rect" id="node4" href="$class_mesh.html#struct_mesh_1_1tris__t" title="Mesh::tris_t" alt="" coords="57,5,143,32"/>
+<area shape="rect" id="node5" href="$class_mesh.html#struct_mesh_1_1rect__t" title="Mesh::rect_t" alt="" coords="167,5,257,32"/>
+</map>

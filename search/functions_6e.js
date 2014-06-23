@@ -1,7 +1,6 @@
 var searchData=
 [
   ['newroomrenderlist',['newRoomRenderList',['../class_render.html#a6e22a8cff8ef993db48cc79ed602ac5e',1,'Render']]],
-  ['nextpower',['nextPower',['../class_texture.html#a37d3df01b882afc40482b695c09e916e',1,'Texture']]],
   ['normalize',['normalize',['../class_quaternion.html#a48e6bafb249c895ed25f29dc9170e11e',1,'Quaternion::normalize()'],['../class_vector3d.html#a3b031247cf3fba0d1370359702e97bd8',1,'Vector3d::normalize()']]],
   ['numanimations',['NumAnimations',['../class_tomb_raider.html#aa4211c639b56273f48406ba5e58dd944',1,'TombRaider']]],
   ['numframes',['NumFrames',['../class_tomb_raider.html#a9cc5d7e3f812377207747ea03d97f07c',1,'TombRaider']]],

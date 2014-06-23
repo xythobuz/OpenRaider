@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>OpenRaider: General</title>
+<title>OpenRaider: To-Do List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,10 +77,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">General </div>  </div>
+<div class="title">To-Do List </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>There are these DebugModel, DebugMap flags...?</p>
+<div class="textblock"><h2>General</h2>
 <ul>
 <li>Endian dependence ugly, shouldn't dereference to different types?<ul>
 <li><a class="el" href="_tomb_raider_8h.html" title="Loads maps, meshes, textures... ">TombRaider.h</a>/cpp structs aren't aligned... unportable to some big endian &amp; other archs?!</li>
@@ -88,34 +88,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>Use more asserts</li>
 <li>Don't use C-Style code, try to replace with C++ lib<ul>
-<li>Use shared_ptr, should make memory handling/segfaults much less of a problem<ul>
-<li>Don't even new ... the data structures but use std::make_shared or allocate_shared?</li>
-<li>Pass object references to all other objects that need it, completely remove gOpenRaider</li>
-</ul>
-</li>
-<li>Use streams for (file) I/O</li>
 <li>Use std::strings</li>
+<li>Rewrite <a class="el" href="class_console.html" title="Console &#39;overlay&#39;. ">Console</a> and use operator &lt;&lt; to write to the console?</li>
 </ul>
 </li>
+<li>SDL_TTF 2.0.12+ <a href="http://stackoverflow.com/questions/17847818/how-to-do-line-breaks-and-line-wrapping-with-sdl-ttf/18418688#18418688">can do line breaks</a>, use it</li>
+<li><a class="el" href="class_mesh.html" title="OpenGL Mesh. ">Mesh</a> has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even combining <a class="el" href="class_mesh.html" title="OpenGL Mesh. ">Mesh</a> and <a class="el" href="class_static_mesh.html">StaticMesh</a>...</li>
+<li>Don’t use float everywhere just because (eg. float colors)</li>
 </ul>
 <h2>Changes</h2>
 <ul>
 <li>Using std::vector with [] is not bound checked. Segfaults were caused because the upper bound of the argument was never checked and garbage was returned... Do consistent checks, or use .at() as it throws an exception</li>
 </ul>
+<h2>Cmake</h2>
+<ul>
+<li>Windows setup script needed, moving to AppData/Roaming</li>
+<li>Support SSE with other compilers than Clang (src/CMakeLists.txt)</li>
+<li>Visual C++ compiler flags? (CMakeLists.txt)</li>
+</ul>
 <h2>Future Features</h2>
 <ul>
-<li>Use only assets from old TR games?</li>
-<li>PCX image reading for eg. TR2 built-in menu background<ul>
-<li>Cut TGA image reader, currently only used for menu background?!</li>
+<li>Cut TGA image reader, currently only used for menu background?!<ul>
+<li>Abstract image reading/writing, like <a class="el" href="class_font.html" title="Font interface. ">Font</a> Engine selection</li>
 </ul>
 </li>
-<li>When cutscene rendering is working, use TR4/5 style menu?</li>
-</ul>
-<h2>Errors</h2>
-<ul>
-<li><p class="startli">Sometimes this on quitting <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>:</p>
-<p class="startli"><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider(92329,0x7fff7a8c4310)</a> malloc: *** error for object 0x7fabc2001000: incorrect checksum for freed object - object was probably modified after being freed. </p>
-</li>
+<li>When cutscene rendering is working, use TR4/5 style menu? </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->

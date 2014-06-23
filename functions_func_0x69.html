@@ -123,17 +123,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &#160;
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
-<li>initialize()
-: <a class="el" href="class_game.html#a14b1ae0c2d3438a71706f867f26f007e">Game</a>
-, <a class="el" href="class_open_raider.html#a0b53e80f5c91fa97b674ef00a6926aac">OpenRaider</a>
-, <a class="el" href="class_sound_a_l.html#aec31170b872fa9a15a86173b3aef28d5">SoundAL</a>
-, <a class="el" href="class_window.html#a5b7d6d8a20b2c342421b3c04a8d163d6">Window</a>
-, <a class="el" href="class_sound.html#a2ac43467f53d31198779491705612c91">Sound</a>
-, <a class="el" href="class_window_s_d_l.html#aeee964c4fb1b3b843d985583970b43a0">WindowSDL</a>
+<li>inBox()
+: <a class="el" href="class_bounding_box.html#a6b4ca371821bf57be54e20529da84c5e">BoundingBox</a>
 </li>
-<li>initializeFont()
-: <a class="el" href="class_window_s_d_l.html#a77bbf4755c3e610a63f90f939a6ad0b4">WindowSDL</a>
-, <a class="el" href="class_window.html#a42c583ab00adc8f456352175c079ff76">Window</a>
+<li>inBoxPlane()
+: <a class="el" href="class_bounding_box.html#ae9e05999fe3e98f291446442576e7b5e">BoundingBox</a>
+</li>
+<li>initialize()
+: <a class="el" href="class_font_manager.html#a495c2244c9ae3742b65e8ffe25bbc45e">FontManager</a>
+, <a class="el" href="class_open_raider.html#a0b53e80f5c91fa97b674ef00a6926aac">OpenRaider</a>
+, <a class="el" href="class_sound.html#a2ac43467f53d31198779491705612c91">Sound</a>
+, <a class="el" href="class_font_s_d_l.html#a1cb4f6a079b3dc3ca8a3dfb857926bb5">FontSDL</a>
+, <a class="el" href="class_sound_a_l.html#aec31170b872fa9a15a86173b3aef28d5">SoundAL</a>
+, <a class="el" href="class_sound_null.html#abfdf00cc7f1a0a5baacb7ccbdf3f8fa2">SoundNull</a>
+, <a class="el" href="class_font.html#aad2ecf4d13ddad7b5c7af0b018046361">Font</a>
+, <a class="el" href="class_font_t_r_l_e.html#aa1df23740878c4e5f863ddc1ebfcd642">FontTRLE</a>
+, <a class="el" href="class_window.html#a5b7d6d8a20b2c342421b3c04a8d163d6">Window</a>
+, <a class="el" href="class_window_s_d_l.html#aeee964c4fb1b3b843d985583970b43a0">WindowSDL</a>
+, <a class="el" href="class_game.html#a14b1ae0c2d3438a71706f867f26f007e">Game</a>
 </li>
 <li>initializeGL()
 : <a class="el" href="class_window.html#a3fd6d468af769ced9b67cd94843f7ee6">Window</a>
@@ -146,15 +153,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>isBboxInFrustum()
 : <a class="el" href="class_view_volume.html#acede344f69bc36f6d071ed9cc8e35c03">ViewVolume</a>
-</li>
-<li>isBoundingBoxInFrustum()
-: <a class="el" href="class_view_volume.html#ab5c4d58c038830e80715dcfeb00a27c5">ViewVolume</a>
-</li>
-<li>isBoundingSphereInFrustum()
-: <a class="el" href="class_view_volume.html#a0f13c87428361fa79d33d8cd0424190b">ViewVolume</a>
-</li>
-<li>isBoundingVolumeInFrustum()
-: <a class="el" href="class_view_volume.html#ae9933d382392257927cc480b79219efd">ViewVolume</a>
 </li>
 <li>isIdentity()
 : <a class="el" href="class_matrix.html#ae1c2332cd7da463bfcab55d3e122886f">Matrix</a>
@@ -175,12 +173,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_view_volume.html#a98a6261fe607074a66b20ba623a10e74">ViewVolume</a>
 </li>
 <li>isVisible()
-: <a class="el" href="class_render.html#a919ec5d8670e0436091d05c44f876f15">Render</a>
-, <a class="el" href="class_console.html#ad2792c6e7c10c728c170139c0b494393">Console</a>
+: <a class="el" href="class_render.html#ab84a98e8590fd76bb911367dab8b28bf">Render</a>
 , <a class="el" href="class_menu.html#a8d4da597309cd53365e00b48384652c8">Menu</a>
+, <a class="el" href="class_render.html#a919ec5d8670e0436091d05c44f876f15">Render</a>
+, <a class="el" href="class_console.html#ad2792c6e7c10c728c170139c0b494393">Console</a>
 </li>
 <li>isWall()
-: <a class="el" href="class_world.html#a83ef0dcc50bac9022c950fa6acd16b9a">World</a>
+: <a class="el" href="class_room.html#a9928024d5cfabdab7a76e5dd52e815e6">Room</a>
+, <a class="el" href="class_sector.html#a6bb7c9046c9aa2299a8071a6c07934e7">Sector</a>
 </li>
 <li>Item()
 : <a class="el" href="class_tomb_raider.html#a658c818d556c4f8fe0a5214d1b95eacf">TombRaider</a>

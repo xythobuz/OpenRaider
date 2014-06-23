@@ -1,4 +1,0 @@
-<map id="BoundingVolume" name="BoundingVolume">
-<area shape="rect" id="node2" href="$_view_volume_8h.html#class_bounding_sphere" title="Defines a 3D sphere. " alt="" coords="5,5,121,32"/>
-<area shape="rect" id="node3" href="$_view_volume_8h.html#class_bounding_box" title="Defines a 3D rectangle. " alt="" coords="146,5,245,32"/>
-</map>

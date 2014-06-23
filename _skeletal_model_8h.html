@@ -97,10 +97,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;vector&gt;</code><br/>
 <code>#include &quot;<a class="el" href="math_8h_source.html">math/math.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_tomb_raider_8h_source.html">TombRaider.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for SkeletalModel.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_skeletal_model_8h__incl.svg" width="207" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_skeletal_model_8h__incl.svg" width="447" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -114,222 +115,23 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:structbone__tag__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_skeletal_model_8h.html#structbone__tag__t">bone_tag_t</a></td></tr>
-<tr class="separator:structbone__tag__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structbone__frame__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_skeletal_model_8h.html#structbone__frame__t">bone_frame_t</a></td></tr>
-<tr class="separator:structbone__frame__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structanimation__frame__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_skeletal_model_8h.html#structanimation__frame__t">animation_frame_t</a></td></tr>
-<tr class="separator:structanimation__frame__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structskeletal__model__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_skeletal_model_8h.html#structskeletal__model__t">skeletal_model_t</a></td></tr>
-<tr class="separator:structskeletal__model__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bone_tag.html">BoneTag</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bone_frame.html">BoneFrame</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_frame.html">AnimationFrame</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_skeletal_model.html">SkeletalModel</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the factored out skeletal model class.  <a href="class_skeletal_model.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the factored out skeletal model class. </p>
 <dl class="section author"><dt>Author</dt><dd>Mongoose </dd>
 <dd>
-xythobuz</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Start cutting off old hacks by simple force use of method interface. Also move the publicly exposed attributes out =) Better animation system in general - this is memory wasteful </dd></dl>
+xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="_skeletal_model_8h_source.html">SkeletalModel.h</a>.</p>
-</div><hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="structbone__tag__t" id="structbone__tag__t"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct bone_tag_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_skeletal_model_8h_source.html#l00020">20</a> of file <a class="el" href="_skeletal_model_8h_source.html">SkeletalModel.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ab50a43c1e3d0b5c462b25dd7b73372f0"></a>char</td>
-<td class="fieldname">
-flag</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="acf5d70bb95f9e4034663081bbf95f414"></a>int</td>
-<td class="fieldname">
-mesh</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a635214c79c0b7462557e5bb05f10b40f"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-off</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a376dadf5c56d5cda0e05d3212e41fd63"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-rot</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="structbone__frame__t" id="structbone__frame__t"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct bone_frame_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_skeletal_model_8h_source.html#l00027">27</a> of file <a class="el" href="_skeletal_model_8h_source.html">SkeletalModel.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="aa07692319f10cebf0a93780290ec2d56"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-pos</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a481a27bee3e5f50e3d46a77eacced3a8"></a>vector&lt; <a class="el" href="_skeletal_model_8h.html#structbone__tag__t">bone_tag_t</a> * &gt;</td>
-<td class="fieldname">
-tag</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="aeb6061196c7320406b871fb6554325be"></a>float</td>
-<td class="fieldname">
-yaw</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="structanimation__frame__t" id="structanimation__frame__t"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct animation_frame_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_skeletal_model_8h_source.html#l00033">33</a> of file <a class="el" href="_skeletal_model_8h_source.html">SkeletalModel.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a876748cbb6a380114f84788e16eac5e5"></a>vector&lt; <a class="el" href="_skeletal_model_8h.html#structbone__frame__t">bone_frame_t</a> * &gt;</td>
-<td class="fieldname">
-frame</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="afd869083b0defca3959663fe3c385e63"></a>int</td>
-<td class="fieldname">
-id</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a7af1a1cd18ff3a93f6cc1f231bfac6d0"></a>char</td>
-<td class="fieldname">
-rate</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="structskeletal__model__t" id="structskeletal__model__t"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct skeletal_model_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="_skeletal_model_8h_source.html#l00039">39</a> of file <a class="el" href="_skeletal_model_8h_source.html">SkeletalModel.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a67a5cd5b013b7a61a905dd2672afae23"></a>vector&lt; <a class="el" href="_skeletal_model_8h.html#structanimation__frame__t">animation_frame_t</a> * &gt;</td>
-<td class="fieldname">
-animation</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a1b5cd0ae13842fcb8e080af5176bb65c"></a>int</td>
-<td class="fieldname">
-id</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="aabaefe297f41f28a485ae6a36d5de35f"></a>bool</td>
-<td class="fieldname">
-pigtails</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ad52803a0584a9ffefa6451f26381fb4c"></a>float</td>
-<td class="fieldname">
-ponyOff</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a62580c65f1900893e4ed01d602780406"></a>float</td>
-<td class="fieldname">
-ponyOff2</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ae27996c3773eb467454816f16aea4040"></a><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a></td>
-<td class="fieldname">
-ponytail</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="afbeccaad7216d9bbf5d5701087825af9"></a>float</td>
-<td class="fieldname">
-ponytailAngle</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a7ebc557b6be6928113ebac604df10b73"></a>int</td>
-<td class="fieldname">
-ponytailId</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="af0dfcf0d37e7d781f95611232eeadead"></a>int</td>
-<td class="fieldname">
-ponytailMeshId</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a383127cc96e3d969fab60807b187a88d"></a>unsigned int</td>
-<td class="fieldname">
-ponytailNumMeshes</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a7ed4c77359031a8fa7fb904d443684a5"></a>bool</td>
-<td class="fieldname">
-tr4Overlay</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

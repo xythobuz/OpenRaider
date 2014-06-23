@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 657;
+var viewWidth = 659;
 var viewHeight = 140;
 var sectionId = 'dynsection-0';
 </script>
@@ -54,7 +54,7 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>src/SoundAL.cpp</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-136 652.5,-136 652.5,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-136 654.5,-136 654.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="239.5,-112.5 239.5,-131.5 329.5,-131.5 329.5,-112.5 239.5,-112.5"/>
@@ -122,67 +122,95 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
-<polygon fill="white" stroke="#bfbfbf" points="384.5,-56.5 384.5,-75.5 434.5,-75.5 434.5,-56.5 384.5,-56.5"/>
-<text text-anchor="middle" x="409.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">assert.h</text>
+<g id="a_node8"><a xlink:href="global_8h.html" target="_top" xlink:title="Global typedefs. ">
+<polygon fill="white" stroke="black" points="384.5,-56.5 384.5,-75.5 434.5,-75.5 434.5,-56.5 384.5,-56.5"/>
+<text text-anchor="middle" x="409.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">global.h</text>
+</a>
+</g>
 </g>
 <!-- Node1&#45;&gt;Node8 -->
 <g id="edge7" class="edge"><title>Node1&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M304.307,-112.444C324.787,-103.596 356.983,-89.6875 380.365,-79.5865"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="381.994,-82.6953 389.786,-75.5164 379.218,-76.2692 381.994,-82.6953"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a xlink:href="math_8h.html" target="_top" xlink:title="Vector and Matrix math. ">
+<!-- Node11 -->
+<g id="node11" class="node"><title>Node11</title>
+<g id="a_node11"><a xlink:href="math_8h.html" target="_top" xlink:title="Vector and Matrix math. ">
 <polygon fill="white" stroke="black" points="453,-56.5 453,-75.5 522,-75.5 522,-56.5 453,-56.5"/>
 <text text-anchor="middle" x="487.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">math/math.h</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node9 -->
-<g id="edge8" class="edge"><title>Node1&#45;&gt;Node9</title>
+<!-- Node1&#45;&gt;Node11 -->
+<g id="edge10" class="edge"><title>Node1&#45;&gt;Node11</title>
 <path fill="none" stroke="midnightblue" d="M316.666,-112.444C351.559,-103.162 407.393,-88.3093 445.671,-78.127"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="446.72,-81.4696 455.485,-75.5164 444.921,-74.7048 446.72,-81.4696"/>
 </g>
-<!-- Node10 -->
-<g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="_sound_a_l_8h.html" target="_top" xlink:title="This is the OpenAL audio manager Header. ">
-<polygon fill="white" stroke="black" points="558.5,-56.5 558.5,-75.5 622.5,-75.5 622.5,-56.5 558.5,-56.5"/>
-<text text-anchor="middle" x="590.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">SoundAL.h</text>
+<!-- Node13 -->
+<g id="node13" class="node"><title>Node13</title>
+<g id="a_node13"><a xlink:href="_sound_a_l_8h.html" target="_top" xlink:title="This is the OpenAL audio manager Header. ">
+<polygon fill="white" stroke="black" points="540.5,-56.5 540.5,-75.5 604.5,-75.5 604.5,-56.5 540.5,-56.5"/>
+<text text-anchor="middle" x="572.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">SoundAL.h</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node10 -->
-<g id="edge10" class="edge"><title>Node1&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M329.632,-114.011C380.403,-105.998 465.564,-92.1102 548.234,-76.1739"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="549.151,-79.5614 558.301,-74.2206 547.818,-72.6896 549.151,-79.5614"/>
+<!-- Node1&#45;&gt;Node13 -->
+<g id="edge12" class="edge"><title>Node1&#45;&gt;Node13</title>
+<path fill="none" stroke="midnightblue" d="M329.664,-113.273C377.128,-105.04 454.219,-91.3547 530.085,-76.2295"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="531.177,-79.5805 540.294,-74.1839 529.801,-72.717 531.177,-79.5805"/>
 </g>
-<!-- Node9&#45;&gt;Node9 -->
-<g id="edge9" class="edge"><title>Node9&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M509.891,-75.5252C525.106,-78.3079 540,-75.1328 540,-66 540,-58.9363 531.09,-55.4366 520.014,-55.5009"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="519.51,-52.033 509.891,-56.4748 520.181,-59.0009 519.51,-52.033"/>
+<!-- Node9 -->
+<g id="node9" class="node"><title>Node9</title>
+<polygon fill="white" stroke="#bfbfbf" points="326.5,-0.5 326.5,-19.5 374.5,-19.5 374.5,-0.5 326.5,-0.5"/>
+<text text-anchor="middle" x="350.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">config.h</text>
 </g>
-<!-- Node11 -->
-<g id="node11" class="node"><title>Node11</title>
-<polygon fill="white" stroke="#bfbfbf" points="537,-0.5 537,-19.5 578,-19.5 578,-0.5 537,-0.5"/>
-<text text-anchor="middle" x="557.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">vector</text>
+<!-- Node8&#45;&gt;Node9 -->
+<g id="edge8" class="edge"><title>Node8&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M400.021,-56.324C391.299,-48.3414 378.157,-36.3128 367.602,-26.6529"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="369.892,-24.0036 360.152,-19.8339 365.166,-29.1674 369.892,-24.0036"/>
 </g>
-<!-- Node10&#45;&gt;Node11 -->
-<g id="edge11" class="edge"><title>Node10&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M585.051,-56.083C580.486,-48.6127 573.832,-37.7244 568.207,-28.5199"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="571.049,-26.4588 562.848,-19.7511 565.076,-30.109 571.049,-26.4588"/>
+<!-- Node10 -->
+<g id="node10" class="node"><title>Node10</title>
+<polygon fill="white" stroke="#bfbfbf" points="393,-0.5 393,-19.5 440,-19.5 440,-0.5 393,-0.5"/>
+<text text-anchor="middle" x="416.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">GL/gl.h</text>
+</g>
+<!-- Node8&#45;&gt;Node10 -->
+<g id="edge9" class="edge"><title>Node8&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M410.656,-56.083C411.584,-48.9272 412.918,-38.6353 414.077,-29.6911"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="417.551,-30.1181 415.366,-19.7511 410.609,-29.2181 417.551,-30.1181"/>
 </g>
 <!-- Node12 -->
 <g id="node12" class="node"><title>Node12</title>
-<g id="a_node12"><a xlink:href="_sound_8h.html" target="_top" xlink:title="This is the audio manager Header. ">
-<polygon fill="white" stroke="black" points="596.5,-0.5 596.5,-19.5 648.5,-19.5 648.5,-0.5 596.5,-0.5"/>
-<text text-anchor="middle" x="622.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sound.h</text>
+<polygon fill="white" stroke="#bfbfbf" points="466.5,-0.5 466.5,-19.5 508.5,-19.5 508.5,-0.5 466.5,-0.5"/>
+<text text-anchor="middle" x="487.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">cmath</text>
+</g>
+<!-- Node11&#45;&gt;Node12 -->
+<g id="edge11" class="edge"><title>Node11&#45;&gt;Node12</title>
+<path fill="none" stroke="midnightblue" d="M487.5,-56.083C487.5,-49.0059 487.5,-38.8611 487.5,-29.9865"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="491,-29.751 487.5,-19.7511 484,-29.7511 491,-29.751"/>
+</g>
+<!-- Node14 -->
+<g id="node14" class="node"><title>Node14</title>
+<polygon fill="white" stroke="#bfbfbf" points="539,-0.5 539,-19.5 580,-19.5 580,-0.5 539,-0.5"/>
+<text text-anchor="middle" x="559.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">vector</text>
+</g>
+<!-- Node13&#45;&gt;Node14 -->
+<g id="edge13" class="edge"><title>Node13&#45;&gt;Node14</title>
+<path fill="none" stroke="midnightblue" d="M570.353,-56.083C568.631,-48.9272 566.153,-38.6353 564,-29.6911"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="567.35,-28.6541 561.607,-19.7511 560.545,-30.2925 567.35,-28.6541"/>
+</g>
+<!-- Node15 -->
+<g id="node15" class="node"><title>Node15</title>
+<g id="a_node15"><a xlink:href="_sound_8h.html" target="_top" xlink:title="This is the audio manager Header. ">
+<polygon fill="white" stroke="black" points="598.5,-0.5 598.5,-19.5 650.5,-19.5 650.5,-0.5 598.5,-0.5"/>
+<text text-anchor="middle" x="624.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sound.h</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node12 -->
-<g id="edge12" class="edge"><title>Node10&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M595.784,-56.083C600.211,-48.6127 606.663,-37.7244 612.118,-28.5199"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="615.227,-30.1383 617.314,-19.7511 609.205,-26.5697 615.227,-30.1383"/>
+<!-- Node13&#45;&gt;Node15 -->
+<g id="edge14" class="edge"><title>Node13&#45;&gt;Node15</title>
+<path fill="none" stroke="midnightblue" d="M581.087,-56.083C588.659,-48.2195 599.878,-36.5688 609.014,-27.0813"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="611.658,-29.3821 616.073,-19.7511 606.615,-24.5266 611.658,-29.3821"/>
 </g>
 </g>
 </svg>

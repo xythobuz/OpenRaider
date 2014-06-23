@@ -9,6 +9,7 @@ var searchData=
   ['operator_2d',['operator-',['../class_quaternion.html#aa41e26d75de6904d9ad7088b2585635f',1,'Quaternion::operator-()'],['../class_vector3d.html#af3f86bf0da9ad989f3b7529c7de4af4d',1,'Vector3d::operator-(const Vector3d &amp;v)'],['../class_vector3d.html#a022297f418da1b31f60676eea175ea28',1,'Vector3d::operator-()']]],
   ['operator_2d_3d',['operator-=',['../class_vector3d.html#a9f60983a00301e76cb8468a3390853ff',1,'Vector3d']]],
   ['operator_2f',['operator/',['../class_quaternion.html#af4213cb383423c6ead7c56a3fa70499c',1,'Quaternion::operator/()'],['../class_vector3d.html#a87b6b4baac2a93d5b061d2dfdd175a9e',1,'Vector3d::operator/()']]],
+  ['operator_3c',['operator&lt;',['../class_entity.html#a7ec07bc0bb913564b22532d9af27ec76',1,'Entity::operator&lt;()'],['../class_static_model.html#aeeb56a201ae3b885c549e2948538e70c',1,'StaticModel::operator&lt;()']]],
   ['operator_3d',['operator=',['../class_vector3d.html#af7fa2fd9d32f5533f4ee73e84f8dc5ef',1,'Vector3d']]],
   ['operator_3d_3d',['operator==',['../class_quaternion.html#ac753c725050060a9241623c6bf648d1f',1,'Quaternion']]]
 ];

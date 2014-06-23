@@ -86,8 +86,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">OpenRaider.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -97,17 +95,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstdio&gt;</code><br/>
 <code>#include &lt;cstring&gt;</code><br/>
-<code>#include &lt;assert.h&gt;</code><br/>
-<code>#include &quot;config.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_console_8h_source.html">Console.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_game_8h_source.html">Game.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="math_8h_source.html">math/math.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_menu_8h_source.html">Menu.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_sound_8h_source.html">Sound.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_tomb_raider_8h_source.html">TombRaider.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="strings_8h_source.html">utils/strings.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="time_8h_source.html">utils/time.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_window_8h_source.html">Window.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for OpenRaider.cpp:</div>
@@ -117,50 +114,12 @@ Include dependency graph for OpenRaider.cpp:</div>
 </div>
 </div>
 <p><a href="_open_raider_8cpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a54c6740c32204d29e7ec771c8c8f33bb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_raider_8cpp.html#a54c6740c32204d29e7ec771c8c8f33bb">CHANGE_DIR_WITH_EXPANSION</a>(a)</td></tr>
-<tr class="separator:a54c6740c32204d29e7ec771c8c8f33bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main <a class="el" href="class_game.html" title="Game abstraction. ">Game</a> Object. </p>
 <dl class="section author"><dt>Author</dt><dd>xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a54c6740c32204d29e7ec771c8c8f33bb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CHANGE_DIR_WITH_EXPANSION</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {     \</div>
-<div class="line">    char *quotes = <a class="code" href="strings_8h.html#a146e6329df145a070a4eaf3183d6375f">stringRemoveQuotes</a>(value); \</div>
-<div class="line">    char *tmp = expandDirectoryNames(quotes); \</div>
-<div class="line">    if (tmp == NULL) {                        \</div>
-<div class="line">        a = <a class="code" href="strings_8h.html#a6a449382aef1af389360262a56c6d49f">fullPath</a>(quotes, 0);              \</div>
-<div class="line">    } <span class="keywordflow">else</span> {                                  \</div>
-<div class="line">        a = <a class="code" href="strings_8h.html#a6a449382aef1af389360262a56c6d49f">fullPath</a>(tmp, 0);                 \</div>
-<div class="line">        delete [] tmp;                        \</div>
-<div class="line">    }                                         \</div>
-<div class="line">    delete [] quotes;                         \</div>
-<div class="line">} <span class="keywordflow">while</span>(<span class="keyword">false</span>)</div>
-<div class="ttc" id="strings_8h_html_a6a449382aef1af389360262a56c6d49f"><div class="ttname"><a href="strings_8h.html#a6a449382aef1af389360262a56c6d49f">fullPath</a></div><div class="ttdeci">char * fullPath(const char *path, char end)</div><div class="ttdoc">Expansion of unix home enviroment char. Also makes sure string ends in &amp;quot;end&amp;quot; char. </div><div class="ttdef"><b>Definition:</b> <a href="strings_8cpp_source.html#l00120">strings.cpp:120</a></div></div>
-<div class="ttc" id="strings_8h_html_a146e6329df145a070a4eaf3183d6375f"><div class="ttname"><a href="strings_8h.html#a146e6329df145a070a4eaf3183d6375f">stringRemoveQuotes</a></div><div class="ttdeci">char * stringRemoveQuotes(const char *s)</div><div class="ttdef"><b>Definition:</b> <a href="strings_8cpp_source.html#l00020">strings.cpp:20</a></div></div>
-</div><!-- fragment -->
-<p>Definition at line <a class="el" href="_open_raider_8cpp_source.html#l00190">190</a> of file <a class="el" href="_open_raider_8cpp_source.html">OpenRaider.cpp</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

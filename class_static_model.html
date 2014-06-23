@@ -93,12 +93,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="_room_8h_source.html">Room.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_room_data_8h_source.html">RoomData.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a84b20201687633a8b59212c3f8ef007d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#a84b20201687633a8b59212c3f8ef007d">StaticModel</a> (int _index, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> _yaw, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> _pos)</td></tr>
-<tr class="separator:a84b20201687633a8b59212c3f8ef007d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbc006c5b4d1483e9d99c2a004a22d6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#adbc006c5b4d1483e9d99c2a004a22d6c">StaticModel</a> (<a class="el" href="class_tomb_raider.html">TombRaider</a> &amp;tr, unsigned int room, unsigned int i)</td></tr>
+<tr class="separator:adbc006c5b4d1483e9d99c2a004a22d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8bfdda62df3121d51901eacff79e08b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#ac8bfdda62df3121d51901eacff79e08b">display</a> ()</td></tr>
+<tr class="separator:ac8bfdda62df3121d51901eacff79e08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeb56a201ae3b885c549e2948538e70c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#aeeb56a201ae3b885c549e2948538e70c">operator&lt;</a> (const <a class="el" href="class_static_model.html">StaticModel</a> &amp;other)</td></tr>
+<tr class="separator:aeeb56a201ae3b885c549e2948538e70c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -111,29 +115,29 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="_room_8h_source.html#l00016">16</a> of file <a class="el" href="_room_8h_source.html">Room.h</a>.</p>
+<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00059">59</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a84b20201687633a8b59212c3f8ef007d"></a>
+<a class="anchor" id="adbc006c5b4d1483e9d99c2a004a22d6c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">StaticModel::StaticModel </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>_index</em>, </td>
+          <td class="paramtype"><a class="el" href="class_tomb_raider.html">TombRaider</a> &amp;&#160;</td>
+          <td class="paramname"><em>tr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td>
-          <td class="paramname"><em>_yaw</em>, </td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>room</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>_pos</em>&#160;</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -143,7 +147,43 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_room_8cpp_source.html#l00010">10</a> of file <a class="el" href="_room_8cpp_source.html">Room.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_room_data_8cpp_source.html#l00177">177</a> of file <a class="el" href="_room_data_8cpp_source.html">RoomData.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ac8bfdda62df3121d51901eacff79e08b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StaticModel::display </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_room_data_8cpp_source.html#l00181">181</a> of file <a class="el" href="_room_data_8cpp_source.html">RoomData.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeeb56a201ae3b885c549e2948538e70c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool StaticModel::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_static_model.html">StaticModel</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_room_data_8cpp_source.html#l00194">194</a> of file <a class="el" href="_room_data_8cpp_source.html">RoomData.cpp</a>.</p>
 
 </div>
 </div>
@@ -166,7 +206,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_room_8h_source.html#l00021">21</a> of file <a class="el" href="_room_8h_source.html">Room.h</a>.</p>
+<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00068">68</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
 
 </div>
 </div>
@@ -188,7 +228,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_room_8h_source.html#l00023">23</a> of file <a class="el" href="_room_8h_source.html">Room.h</a>.</p>
+<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00070">70</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
 
 </div>
 </div>
@@ -210,13 +250,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_room_8h_source.html#l00022">22</a> of file <a class="el" href="_room_8h_source.html">Room.h</a>.</p>
+<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00069">69</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>include/<a class="el" href="_room_8h_source.html">Room.h</a></li>
-<li>src/<a class="el" href="_room_8cpp_source.html">Room.cpp</a></li>
+<li>include/<a class="el" href="_room_data_8h_source.html">RoomData.h</a></li>
+<li>src/<a class="el" href="_room_data_8cpp_source.html">RoomData.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

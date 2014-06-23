@@ -95,13 +95,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><a class="el" href="class_console.html" title="Console &#39;overlay&#39;. ">Console</a> 'overlay'.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;GL/gl.h&gt;</code><br/>
-<code>#include &quot;config.h&quot;</code><br/>
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
 <code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_console_8h_source.html">Console.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_font_8h_source.html">Font.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="strings_8h_source.html">utils/strings.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="time_8h_source.html">utils/time.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_window_8h_source.html">Window.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_console_8h_source.html">Console.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Console.cpp:</div>
 <div class="dyncontent">
@@ -134,7 +135,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_console_8cpp_source.html#l00021">21</a> of file <a class="el" href="_console_8cpp_source.html">Console.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_console_8cpp_source.html#l00018">18</a> of file <a class="el" href="_console_8cpp_source.html">Console.cpp</a>.</p>
 
 </div>
 </div>
@@ -152,8 +153,8 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> firstLine = 35; \</div>
-<div class="line">        unsigned <span class="keywordtype">int</span> lastLine = (window.mHeight / 2) - 55; \</div>
-<div class="line">        unsigned <span class="keywordtype">int</span> inputLine = (window.mHeight / 2) - 30; \</div>
+<div class="line">        unsigned <span class="keywordtype">int</span> lastLine = (window.getHeight() / 2) - 55; \</div>
+<div class="line">        unsigned <span class="keywordtype">int</span> inputLine = (window.getHeight() / 2) - 30; \</div>
 <div class="line">        unsigned <span class="keywordtype">int</span> lineSteps = 20; \</div>
 <div class="line">        unsigned <span class="keywordtype">int</span> lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \</div>
 <div class="line">        while (((lineCount * lineSteps) + firstLine) &lt; inputLine) { \</div>
@@ -161,7 +162,7 @@ Macros</h2></td></tr>
 <div class="line">            lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \</div>
 <div class="line">        }</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="_console_8cpp_source.html#l00082">82</a> of file <a class="el" href="_console_8cpp_source.html">Console.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_console_8cpp_source.html#l00075">75</a> of file <a class="el" href="_console_8cpp_source.html">Console.cpp</a>.</p>
 
 </div>
 </div>

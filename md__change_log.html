@@ -81,7 +81,111 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.3) xythobuz <a href="#" onclick="location.href='mai'+'lto:'+'xyt'+'ho'+'buz'+'@x'+'yth'+'ob'+'uz.'+'de'; return false;">xytho<span style="display: none;">.nosp@m.</span>buz@<span style="display: none;">.nosp@m.</span>xytho<span style="display: none;">.nosp@m.</span>buz.<span style="display: none;">.nosp@m.</span>de</a></h2>
-<pre class="fragment">[ 20140503 ]
+<pre class="fragment">[ 20140623 ]
+* Use unsigned char instead of float for colors
+
+[ 20140622 ]
+* Wrote simple image reader/writer utilizing libpng
+* Created utils/pixels for pixel handling utilities
+* Renamed Texture to TextureManager
+* Added support for BGR(A) color types in TextureManager
+* Added pngCheck() and pcxCheck() methods
+* Added ColorMode and bpp info to pcx/png API
+* Modified tga to match png/pcx API
+* scaleBuffer() no longer stops at 256x256
+
+[ 20140621 ]
+* Created StaticMesh class replacing model_mesh_t stuff
+* Simplified StaticMesh’s data storage
+* Added support for fourth &amp; fifth mouse keys
+
+[ 20140617 ]
+* Finally fixed SkeletalModel bugs introduced a month ago
+  (animations and rotations are *mostly* correct now)
+* Reimplemented *animate* command
+
+[ 20140615 ]
+* Added FontManager, selecting Font library to use depending on
+  the file extension of the font file specified in the config.
+* Fixed menu heading not visible when using FontSDL
+* Font::drawText now only implemented in Font
+* TRLE Fonts can now be properly colored
+
+[ 20140614 ]
+* Implemented TRLE Font loader
+
+[ 20140613 ]
+* Changed strange delete-guards
+* Moved some methods from World into the proper classes
+
+[ 20140605 ]
+* Split Font/Text-Rendering Subsystem from Windowing System
+* Slight improvements on Window Interface/Implementation differences
+* Window width/height finally private too
+* Created methods to convert strings of names to ActionEvents
+  and KeyboardButtons.
+* Simplified bind commands
+* Simplified expandDirectoryNames()
+* Only show debug info if menu is not visible
+
+[ 20140601 ]
+* Started removing C-style I/O, now using Strings and Streams
+* set size now takes two ints instead of a string
+
+[ 20140520 ]
+* cmake script checks for presence of functions needed for
+  recursive folder traversal
+
+[ 20140519 ]
+* No longer crashes simply by walking in the wrong place
+* Added walk Action, supposed to switch to slow walking/sidesteps
+* Removed unused Camera functionality (side and up vector)
+* Wrote simple PCX image reading library with proof-of-concept
+  code to load the TR2 menu background as splash screen
+
+[ 20140517 ]
+* Wrote new assert() implementation for Unix that prints a call stack
+* Service provider methods (getCamera(), etc...) are now prototyped
+  in the header of the service they provide, making main.h useless
+* Also some more work on the way to making OR compilable under Windows
+* Not using glu.h anywhere anymore
+* No longer segfaults on exit
+
+[ 20140516 ]
+* Finished moving the Entity/SkeletalModel logic into classes
+* Currently seems as if wrong SkeletalModels are used for entities?
+
+[ 20140515 ]
+* Slight cmake script improvements
+* Created Entity class that will also get animation state
+  from SkeletalModel
+* Removed some unused old code parts
+
+[ 20140507 ]
+* Prepared for Windows support using Visual C++
+  - Wrote utils/time implementation for Windows
+  - Audio output optional, added Null Sound implementation
+  - Added support for getting home folder location in Windows
+  - Added support for recursively looking for level paks in Windows
+* Removed unused BoundingVolume, Box, Sphere from ViewVolume,
+  split double used Box class into Box and BoundingBox.
+
+[ 20140505 ]
+* Moved setup of Room, Portal, Box, Sector, ... into their
+  Constructors.
+* Fixed menu play button
+* Removed Render flags fSprite, fRoomModel, fPortals
+* Room BoundingBox now using Box object
+
+[ 20140504 ]
+* Forcing use of new Room and Sprite classes in World.
+* Rewrote Sprite loading code in Game
+* Rewrote Room loading code in Game
+* Rewrote Render handling of Sprites, Rooms, Static Models, ...
+* No longer using second list of RenderRooms
+* Sprites and Static Models draw themselves
+
+[ 20140503 ]
 * Started big World-Data refactoring.
   - Created Sprite class with drawing code from Render
   - Created Room, Portal, Box, Sector, StaticModel classes

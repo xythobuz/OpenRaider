@@ -21,6 +21,8 @@ var searchData=
   ['bearstate_5fstanding',['BearState_Standing',['../_tomb_raider1_8h.html#a15ac7550534c331047d66da1426b54c2a76e7c02bfe2b56a0e1b842a70fa415ee',1,'TombRaider1']]],
   ['bearstate_5fwalking',['BearState_Walking',['../_tomb_raider1_8h.html#a15ac7550534c331047d66da1426b54c2ab61c52a323b1da0838d0c7a2193672d2',1,'TombRaider1']]],
   ['bearstate_5fwalkinghind',['BearState_WalkingHind',['../_tomb_raider1_8h.html#a15ac7550534c331047d66da1426b54c2a7e3191eafa2165af191535184b051b09',1,'TombRaider1']]],
+  ['bgr',['BGR',['../class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbcacf519d6f538840256948b71a91c5e5a3',1,'TextureManager']]],
+  ['bgra',['BGRA',['../class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbca7cad995906cf9e4db73257bfd3c2e5e7',1,'TextureManager']]],
   ['bkey',['bKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aab123352b9e69101eef7c282c69d9dca4',1,'global.h']]],
   ['bottomside',['bottomSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa652d0bb9e7f48692c8460139f6efde5c',1,'ViewVolume']]],
   ['boulder',['Boulder',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea4cfb5a75d875474e28b0e99b4669ca66',1,'TombRaider1']]],

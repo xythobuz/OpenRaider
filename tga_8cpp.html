@@ -87,6 +87,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">tga.cpp File Reference</div>  </div>
@@ -98,31 +100,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;stdarg.h&gt;</code><br/>
-<code>#include &lt;assert.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="tga_8h_source.html">utils/tga.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for tga.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="tga_8cpp__incl.svg" width="435" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="tga_8cpp__incl.svg" width="435" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
 <p><a href="tga_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:structtga__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8cpp.html#structtga__t">tga_t</a></td></tr>
+<tr class="separator:structtga__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:aa10934a8bc956c001867a8f3afe71b83"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8cpp.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a> { <a class="el" href="tga_8cpp.html#aa10934a8bc956c001867a8f3afe71b83a355b39379657c22d08350671dfc8edec">TGA_TYPE__COLOR</a> = 2, 
+<a class="el" href="tga_8cpp.html#aa10934a8bc956c001867a8f3afe71b83a443ecaac7156e3364b2499dc7adc6ac9">TGA_TYPE__GREYSCALE</a> = 3, 
+<a class="el" href="tga_8cpp.html#aa10934a8bc956c001867a8f3afe71b83a156fe86edaa5eb5b17f9278b2dff3431">TGA_TYPE__COLOR_RLE</a> = 10
+ }</td></tr>
+<tr class="separator:aa10934a8bc956c001867a8f3afe71b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a261858e55c12764261502b137d07af43"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8cpp.html#a261858e55c12764261502b137d07af43">tgaCheck</a> (FILE *f)</td></tr>
-<tr class="memdesc:a261858e55c12764261502b137d07af43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a file is a valid TGA image.  <a href="#a261858e55c12764261502b137d07af43">More...</a><br/></td></tr>
-<tr class="separator:a261858e55c12764261502b137d07af43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ad6e46bd8e99423cfd139fa79480a82"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8cpp.html#a7ad6e46bd8e99423cfd139fa79480a82">tgaLoad</a> (FILE *f, unsigned char **image, unsigned int *width, unsigned int *height, char *type)</td></tr>
-<tr class="memdesc:a7ad6e46bd8e99423cfd139fa79480a82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a TGA image from file.  <a href="#a7ad6e46bd8e99423cfd139fa79480a82">More...</a><br/></td></tr>
-<tr class="separator:a7ad6e46bd8e99423cfd139fa79480a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2cdedcb30fa1f84bac5f1ba12614efc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8cpp.html#ac2cdedcb30fa1f84bac5f1ba12614efc">tgaSave</a> (FILE *f, unsigned char *image, unsigned int width, unsigned int height, char type)</td></tr>
-<tr class="memdesc:ac2cdedcb30fa1f84bac5f1ba12614efc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a pixel buffer into a file on disk.  <a href="#ac2cdedcb30fa1f84bac5f1ba12614efc">More...</a><br/></td></tr>
-<tr class="separator:ac2cdedcb30fa1f84bac5f1ba12614efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bee22a432ab0b9b13632398246e3682"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8cpp.html#a2bee22a432ab0b9b13632398246e3682">tgaSaveFilename</a> (unsigned char *image, unsigned int width, unsigned int height, char type, const char *s,...)</td></tr>
-<tr class="memdesc:a2bee22a432ab0b9b13632398246e3682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a pixel buffer into a file on disk.  <a href="#a2bee22a432ab0b9b13632398246e3682">More...</a><br/></td></tr>
-<tr class="separator:a2bee22a432ab0b9b13632398246e3682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a029f055518ded232051e3c64c2d22517"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8cpp.html#a029f055518ded232051e3c64c2d22517">tgaCheck</a> (const char *filename)</td></tr>
+<tr class="memdesc:a029f055518ded232051e3c64c2d22517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a file is a valid TGA image.  <a href="#a029f055518ded232051e3c64c2d22517">More...</a><br/></td></tr>
+<tr class="separator:a029f055518ded232051e3c64c2d22517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9214f51a3daad66aae81d1fb6447cd22"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8cpp.html#a9214f51a3daad66aae81d1fb6447cd22">tgaLoad</a> (const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, char *type)</td></tr>
+<tr class="memdesc:a9214f51a3daad66aae81d1fb6447cd22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a TGA image from file.  <a href="#a9214f51a3daad66aae81d1fb6447cd22">More...</a><br/></td></tr>
+<tr class="separator:a9214f51a3daad66aae81d1fb6447cd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47a99fdedd0dc2088251929de3e22670"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tga_8cpp.html#a47a99fdedd0dc2088251929de3e22670">tgaSave</a> (const char *filename, unsigned char *image, unsigned int width, unsigned int height, char type)</td></tr>
+<tr class="memdesc:a47a99fdedd0dc2088251929de3e22670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a pixel buffer into a file on disk.  <a href="#a47a99fdedd0dc2088251929de3e22670">More...</a><br/></td></tr>
+<tr class="separator:a47a99fdedd0dc2088251929de3e22670"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>TGA image reader/writer. </p>
@@ -132,16 +144,129 @@ Functions</h2></td></tr>
 xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a261858e55c12764261502b137d07af43"></a>
+</div><hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="structtga__t" id="structtga__t"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct tga_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock">
+<p>Definition at line <a class="el" href="tga_8cpp_source.html#l00027">27</a> of file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="aa928d84f8ba4d6437ca4e5f3d44486e5"></a>unsigned char</td>
+<td class="fieldname">
+bpp</td>
+<td class="fielddoc">
+Number of bits in a pixel index. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="af6cac520516b6cfd0b8c69617c3f1a6f"></a>unsigned char</td>
+<td class="fieldname">
+colormap_bbp</td>
+<td class="fielddoc">
+16, 24, or 32 bits per pixel format </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="af7b74a1f733d387f9eea57ad01796bc4"></a>unsigned short</td>
+<td class="fieldname">
+colormap_index</td>
+<td class="fielddoc">
+Index of first color map entry. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="aeffa6a5d8a8f70c0a53b20e7dd407053"></a>unsigned short</td>
+<td class="fieldname">
+colormap_lenght</td>
+<td class="fielddoc">
+Number of color map entries. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="ac067fad07c73ccde11ba9d583a404fd3"></a>unsigned char</td>
+<td class="fieldname">
+colormap_type</td>
+<td class="fielddoc">
+0 No colormap; 1 Has colormap </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a4dec311825bac72c84e5acd232c36376"></a>unsigned char</td>
+<td class="fieldname">
+comment_lenght</td>
+<td class="fielddoc">
+Number of bytes in comment. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a712a92c2a1d01d3ba881216b7ea8cebc"></a>unsigned char</td>
+<td class="fieldname">
+desc_flags</td>
+<td class="fielddoc">
+Various magic bits. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a6598f348ffe7b2c5c0c59fff865b9e69"></a>unsigned short</td>
+<td class="fieldname">
+height</td>
+<td class="fielddoc">
+Height in pixels. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a8381d5d7439e8a014c59bc844fe9d1d9"></a>unsigned char</td>
+<td class="fieldname">
+image_type</td>
+<td class="fielddoc">
+1 Colormapped; 2 Unmapped; 9 Colormapped RLE; 10 Unmapped RLE </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a8b1408a1c44504cfffd289934bf763ac"></a>unsigned short</td>
+<td class="fieldname">
+origin_x</td>
+<td class="fielddoc">
+X coor of lower-left corner. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a592664a1e0b67b9d382cf1ac335292ba"></a>unsigned short</td>
+<td class="fieldname">
+origin_y</td>
+<td class="fielddoc">
+Y coor of lower-left corner. </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a0729364da9ce763f51554511eda6fc1a"></a>unsigned short</td>
+<td class="fieldname">
+width</td>
+<td class="fielddoc">
+Width in pixels. </td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="aa10934a8bc956c001867a8f3afe71b83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="tga_8cpp.html#aa10934a8bc956c001867a8f3afe71b83">tga_type_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="aa10934a8bc956c001867a8f3afe71b83a355b39379657c22d08350671dfc8edec"></a>TGA_TYPE__COLOR</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aa10934a8bc956c001867a8f3afe71b83a443ecaac7156e3364b2499dc7adc6ac9"></a>TGA_TYPE__GREYSCALE</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aa10934a8bc956c001867a8f3afe71b83a156fe86edaa5eb5b17f9278b2dff3431"></a>TGA_TYPE__COLOR_RLE</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="tga_8cpp_source.html#l00018">18</a> of file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a029f055518ded232051e3c64c2d22517"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int tgaCheck </td>
           <td>(</td>
-          <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>f</em></td><td>)</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -150,25 +275,25 @@ xythobuz </dd></dl>
 <p>Check if a file is a valid TGA image. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f</td><td>file to be checked </td></tr>
+    <tr><td class="paramname">filename</td><td>path to file </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if valid, else error condition </dd></dl>
 
-<p>Definition at line <a class="el" href="tga_8cpp_source.html#l00018">18</a> of file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tga_8cpp_source.html#l00042">42</a> of file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7ad6e46bd8e99423cfd139fa79480a82"></a>
+<a class="anchor" id="a9214f51a3daad66aae81d1fb6447cd22"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int tgaLoad </td>
           <td>(</td>
-          <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -205,7 +330,7 @@ xythobuz </dd></dl>
 <p>Load a TGA image from file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f</td><td>valid image file </td></tr>
+    <tr><td class="paramname">filename</td><td>path to file </td></tr>
     <tr><td class="paramname">image</td><td>Where the pixmap will be stored (or NULL) </td></tr>
     <tr><td class="paramname">width</td><td>where the width will be stored </td></tr>
     <tr><td class="paramname">height</td><td>where the height will be stored </td></tr>
@@ -215,19 +340,19 @@ xythobuz </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success, else error condition </dd></dl>
 
-<p>Definition at line <a class="el" href="tga_8cpp_source.html#l00037">37</a> of file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tga_8cpp_source.html#l00071">71</a> of file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac2cdedcb30fa1f84bac5f1ba12614efc"></a>
+<a class="anchor" id="a47a99fdedd0dc2088251929de3e22670"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int tgaSave </td>
           <td>(</td>
-          <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -264,7 +389,7 @@ xythobuz </dd></dl>
 <p>Save a pixel buffer into a file on disk. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f</td><td>file in which image will be saved </td></tr>
+    <tr><td class="paramname">filename</td><td>path to file </td></tr>
     <tr><td class="paramname">image</td><td>pixmap to be stored </td></tr>
     <tr><td class="paramname">width</td><td>width of pixmap/image </td></tr>
     <tr><td class="paramname">height</td><td>height of pixmap/image </td></tr>
@@ -274,72 +399,7 @@ xythobuz </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success, else error condition </dd></dl>
 
-<p>Definition at line <a class="el" href="tga_8cpp_source.html#l00259">259</a> of file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2bee22a432ab0b9b13632398246e3682"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int tgaSaveFilename </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>image</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>height</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Save a pixel buffer into a file on disk. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">image</td><td>pixmap to be stored </td></tr>
-    <tr><td class="paramname">width</td><td>width of pixmap/image </td></tr>
-    <tr><td class="paramname">height</td><td>height of pixmap/image </td></tr>
-    <tr><td class="paramname">type</td><td>tga type to use </td></tr>
-    <tr><td class="paramname">s</td><td>format string for file path/name </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success, else error condition </dd></dl>
-
-<p>Definition at line <a class="el" href="tga_8cpp_source.html#l00358">358</a> of file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tga_8cpp_source.html#l00304">304</a> of file <a class="el" href="tga_8cpp_source.html">tga.cpp</a>.</p>
 
 </div>
 </div>

@@ -96,149 +96,169 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;It seems as <span class="keywordflow">if</span> <a class="code" href="class_open_raider.html">OpenRaider</a> will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">## Configuration</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<a class="code" href="class_open_raider.html">OpenRaider</a> needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;These are stored in `~/.<a class="code" href="class_open_raider.html#ae13c597a87b12db771ec57fe7bfb96e1">OpenRaider</a>`. Running `make setup` will create/copy the necessary files and directories.</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;You still need to add level files in `~/.OpenRaider/paks/`.</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;Dust off your old Tomb Raider CDs or grab some [custom levels](http:<span class="comment">//www.aspidetr.com/levels/yvel-woods-v1-5/) from the interwebs.</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">## Documentation</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;All previously included documentation was moved into the [<a class="code" href="class_open_raider.html">OpenRaider</a> Repo Wiki](https:<span class="comment">//github.com/xythobuz/OpenRaider/wiki/_pages).</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;A more or less recent [Doxygen documentation](http:<span class="comment">//xythobuz.github.io/OpenRaider/) of OpenRaider should be on the Github Pages for OpenRaider.</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;[![Flattr <span class="keyword">this</span> git repo](http:<span class="comment">//api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=xythobuz&amp;url=https://github.com/xythobuz/OpenRaider&amp;title=OpenRaider&amp;language=&amp;tags=github&amp;category=software)</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">## Configuration</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<a class="code" href="class_open_raider.html">OpenRaider</a> needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;These are stored in `~/.<a class="code" href="class_open_raider.html#ae13c597a87b12db771ec57fe7bfb96e1">OpenRaider</a>`. Running `make setup` will create/copy the necessary files and directories.</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;You still need to add level files in `~/.OpenRaider/paks/`.</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;Dust off your old Tomb Raider CDs or grab some [custom levels](http:<span class="comment">//www.aspidetr.com/levels/yvel-woods-v1-5/) from the interwebs.</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">## Documentation</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;All previously included documentation was moved into the [<a class="code" href="class_open_raider.html">OpenRaider</a> Repo Wiki](https:<span class="comment">//github.com/xythobuz/OpenRaider/wiki/_pages).</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">## Dependencies</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;Basically, <a class="code" href="class_open_raider.html">OpenRaider</a> depends on the following:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;* OpenGL</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;* SDL2 &amp; SDL2-TTF</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;* OpenAL &amp; ALUT</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;* zlib</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;* cmake as build system</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;On Mac OS X 10.9 with [XCode](https:<span class="comment">//developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    sudo port install cmake zlib libsdl2 libsdl2_ttf</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;A similar command <span class="keywordflow">for</span> the <span class="keyword">package </span>manager of your favorite Linux Distribution should do the trick.</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;cmake is also needed to build [freealut](https:<span class="comment">//github.com/vancegroup/freealut), which you&#39;ll need to enable sound output on Mac OS X.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;Get, compile and install freealut like this:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;A more or less recent [Doxygen documentation](http:<span class="comment">//xythobuz.github.io/OpenRaider/) of OpenRaider should be on the Github Pages for OpenRaider.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">## Dependencies</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;Basically, <a class="code" href="class_open_raider.html">OpenRaider</a> depends on the following:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;* OpenGL</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;* SDL2</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;* SDL2-TTF (optional, needed <span class="keywordflow">if</span> you want to use TTF fonts)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;* OpenAL &amp; ALUT</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;* zlib</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;* cmake as build system</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;* libpng (optional)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;* C++11 compiler</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;On Mac OS X 10.9 with [XCode](https:<span class="comment">//developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    sudo port install cmake zlib libsdl2 libsdl2_ttf</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    git clone git@github.com:vancegroup/freealut.git</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    mkdir build</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    cd build</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    cmake .. -DCMAKE_INSTALL_PREFIX:STRING=&quot;/usr/local&quot; -DCMAKE_C_FLAGS:STRING=&quot;-O2&quot;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    make</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    sudo make install</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won&#39;t need to compile freealut.</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;## Building</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;Do a standard cmake out-of-source build to get a debug configuration and then run the resulting executable:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    mkdir build &amp;&amp; cd build</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    cmake ..</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    make run</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;On Mac OS X, running `make install` will produce a (more or less) distributable OpenRaider.app bundle.</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;You can run a static analysis with cppcheck using `make check`, `make checkFull` or `make checkConfig`.</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;A Doxygen API documentation can be created with `make doc`.</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;`make clean` should remove all intermediary files. `make run` will run the binary.</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;You can also generate working XCode Project files with `cmake -G Xcode ..`.</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;## Usage</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;### Configuration file</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;OpenRaider will try to load `~/.OpenRaider/OpenRaider.ini` or, if it doesn&#39;t exist, `OpenRaider.ini` from the current directory.</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;Running `make setup` will create a minimal configuration in your home directory.</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;A similar command <span class="keywordflow">for</span> the <span class="keyword">package </span>manager of your favorite Linux Distribution should do the trick.</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;cmake is also needed to build [freealut](https:<span class="comment">//github.com/vancegroup/freealut), which you&#39;ll need to enable sound output on Mac OS X.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;Get, compile and install freealut like this:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    git clone git@github.com:vancegroup/freealut.git</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    mkdir build</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    cd build</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    cmake .. -DCMAKE_INSTALL_PREFIX:STRING=&quot;/usr/local&quot; -DCMAKE_C_FLAGS:STRING=&quot;-O2&quot;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    make</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    sudo make install</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won&#39;t need to compile freealut.</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;Sound support is optional now, however. If cmake can’t find OpenAL and ALUT, Audio will be deactivated. If you want to explicitly deactivate it, call cmake with `-DENABLE_AUDIO=NO`.</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;## Building</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;Do a standard cmake out-of-source build to get a debug configuration and then run the resulting executable:</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    mkdir build &amp;&amp; cd build</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    cmake ..</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    make run</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;On Mac OS X, running `make install` will produce a (more or less) distributable OpenRaider.app bundle.</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;You can run a static analysis with cppcheck using `make check`, `make checkFull` or `make checkConfig`.</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;A Doxygen API documentation can be created with `make doc`.</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;`make clean` should remove all intermediary files. `make run` will run the binary.</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;You can also generate working XCode Project files with `cmake -G Xcode ..`.</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;The configuration file format is very simple:</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;* Every line will be executed as in-game console command</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;* The # character marks the beginning of a single-line comment</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;## Usage</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;### Configuration file</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;### Level PAKs</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;You can use paks from any classic Tomb Raider Game (1 - 5) and most user made paks for Tomb Raider. Tomb Raider 5 support is however still very limited.</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;### Sound FXs</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;TR2 and TR3 paks (both have file extension `.tr2`) don&#39;t have sound data contained in the pak itself, but instead</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;they share a common SFX file (often MAIN.SFX) for each pak from a given Tomb Raider version.</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;OpenRaider will try to load `~/.OpenRaider/OpenRaider.ini` or, if it doesn&#39;t exist, `OpenRaider.ini` from the current directory.</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;Running `make setup` will create a minimal configuration in your home directory.</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;The configuration file format is very simple:</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;* Every line will be executed as in-game console command</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;* The # character marks the beginning of a single-line comment</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;### Level PAKs</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;OpenRaider tries to load a `MAIN.SFX` from the same folder as the selected level file.</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;You can use paks from any classic Tomb Raider Game (1 - 5) and most user made paks for Tomb Raider. Tomb Raider 5 support is however still very limited.</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;### Default Key Bindings</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;### Sound FXs</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;| Key               | Action                |</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;| -----------------:|:--------------------- |</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;| &amp;lt;Esc&amp;gt;       | Toggle menu           |</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;| &amp;lt;backquote&amp;gt; | <a class="code" href="class_console.html">Console</a> toggle on/off |</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;| w                 | Move forward          |</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;| s                 | Move back             |</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;| a                 | Move left             |</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;| d                 | Move right            |</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;| &amp;lt;space&amp;gt;     | Jump                  |</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;| &amp;lt;left ctrl&amp;gt; | crouch                |</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;| Mouse             | Turn                  |</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;| MouseBtn Left     | Shoot/Use             |</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;| MouseBtn Right    | Holster/Equip weapons |</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">### Console/Config Commands</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;Every available command should be listed in the in-game help. Just type `help` in the <a class="code" href="class_open_raider.html">OpenRaider</a> console, which can be activated by <span class="keywordflow">default</span> with the backquote key.</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;### Wireframe mode colors</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;* Red (thick) lines are portal outlines</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;* Red (thin) lines are triangle room polygons</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;* Black lines are quadralateral room polygons</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;* White meshes are entities</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;* Blue meshes are sprites</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;* Yellow meshes are room models</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;* Green lines with red endpoints are room bboxes</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;* Pink dots are visibility checks</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;TR2 and TR3 paks (both have file extension `.tr2`) don&#39;t have sound data contained in the pak itself, but instead</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;they share a common SFX file (often MAIN.SFX) for each pak from a given Tomb Raider version.</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;OpenRaider tries to load a `MAIN.SFX` from the same folder as the selected level file.</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;### Default Key Bindings</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;| Key               | Action                |</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;| -----------------:|:--------------------- |</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;| &amp;lt;Esc&amp;gt;       | Toggle menu           |</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;| &amp;lt;backquote&amp;gt; | <a class="code" href="class_console.html">Console</a> toggle on/off |</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;| w                 | Move forward          |</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;| s                 | Move back             |</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;| a                 | Move left             |</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;| d                 | Move right            |</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;| &amp;lt;space&amp;gt;     | Jump                  |</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;| &amp;lt;left ctrl&amp;gt; | crouch                |</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;| Mouse             | Turn                  |</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;| MouseBtn Left     | Shoot/Use             |</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;| MouseBtn Right    | Holster/Equip weapons |</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">### Console/Config Commands</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;Every available command should be listed in the in-game help. Just type `help` in the <a class="code" href="class_open_raider.html">OpenRaider</a> console, which can be activated by <span class="keywordflow">default</span> with the backquote key.</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;### Tomb Raider Level Editor <a class="code" href="class_font.html">Font</a> support</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<a class="code" href="class_open_raider.html">OpenRaider</a> can read <a class="code" href="class_font.html">Font</a>.pc files used by the TRLE. If the fonts glyph positions match the TR4 defaults, only a <a class="code" href="class_font.html">Font</a>.pc file is required. If the positions differ, you also need a [Leikkuri/Cutter](http:<span class="comment">//trep.trlevel.de/en/downloads.html) preset file (`.lps`).</span></div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">## License</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<a class="code" href="class_open_raider.html">OpenRaider</a> is based on code, specs, and alogrithms from:</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;TRLE <a class="code" href="class_font.html">Font</a> support will automatically be built and used when selecting a font in your config file ending with `.pc`.</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;If a `.lps` is required, give it the same name as your font file.</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;* GooseEgg/Freyja 3d Modelers by Mongoose</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;* TR Rosetta Stone spec sheet by Anonymous</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;* TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;All code should be GPLed, unless otherwise noted.</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;Forked in December 2013 by xythobuz.</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;The included example Font, [Droid Sans Mono](http:<span class="comment">//www.droidfonts.com/licensing/), was created by Steve Matteson and is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;There are some included cmake scripts:</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;* [FindALUT](https:<span class="comment">//github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake)</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;* [FindSDL2](https:<span class="comment">//github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake)</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;* [FindSDL2TTF](https:<span class="comment">//github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake)</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;* [FindSSE](https:<span class="comment">//gitorious.org/vc/vc/source/a1d8b9fc31060d870386613cc72319546c850b87:cmake/FindSSE.cmake)</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;I’ve made [a small writeup on my website](http:<span class="comment">//xythobuz.de/2014_06_14_trle_font.html) about this.</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">### Wireframe mode colors</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;* Red (thick) lines are portal outlines</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;* Red (thin) lines are triangle room polygons</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;* Black lines are quadralateral room polygons</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;* White meshes are entities</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;* Blue meshes are sprites</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;* Yellow meshes are room models</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;* Green lines with red endpoints are room bboxes</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;* Pink dots are visibility checks</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">## License</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<a class="code" href="class_open_raider.html">OpenRaider</a> is based on code, specs, and alogrithms from:</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;See the respective files in `cmake` <span class="keywordflow">for</span> their licensing.</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;* Copyright 2009-2010 Ryan Pavlik &lt;rpavlik@iastate.edu&gt; &lt;abiryan@ryand.net&gt;, Iowa State University, Distributed under the Boost Software License.</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;* Copyright 2003-2009 Kitware, Inc.</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;* Eric Wing</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;* GooseEgg/Freyja 3d Modelers by Mongoose</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;* TR Rosetta Stone spec sheet by Anonymous</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;* TRView 1.0.0 by Yuri Zhivago, with patches by Mongoose</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;All code should be GPLed, unless otherwise noted.</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
-<div class="ttc" id="class_open_raider_html_ae13c597a87b12db771ec57fe7bfb96e1"><div class="ttname"><a href="class_open_raider.html#ae13c597a87b12db771ec57fe7bfb96e1">OpenRaider::OpenRaider</a></div><div class="ttdeci">OpenRaider()</div><div class="ttdoc">Constructs an object of OpenRaider. </div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8cpp_source.html#l00024">OpenRaider.cpp:24</a></div></div>
-<div class="ttc" id="class_console_html"><div class="ttname"><a href="class_console.html">Console</a></div><div class="ttdoc">Console &amp;#39;overlay&amp;#39;. </div><div class="ttdef"><b>Definition:</b> <a href="_console_8h_source.html#l00019">Console.h:19</a></div></div>
-<div class="ttc" id="class_open_raider_html"><div class="ttname"><a href="class_open_raider.html">OpenRaider</a></div><div class="ttdoc">Main Game Singleton. </div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8h_source.html#l00023">OpenRaider.h:23</a></div></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;Forked in December 2013 by xythobuz.</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;The included example <a class="code" href="class_font.html">Font</a>, [Droid Sans Mono](http:<span class="comment">//www.droidfonts.com/licensing/), was created by Steve Matteson and is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;The included TRLE <a class="code" href="class_font.html">Font</a> is from [Laras Levelbase](http:<span class="comment">//laraslevelbase.org/stuff/index.asp?id=1967).</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;There are some included cmake scripts:</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;* [FindALUT](https:<span class="comment">//github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake)</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;* [FindSDL2](https:<span class="comment">//github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake)</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;* [FindSDL2TTF](https:<span class="comment">//github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake)</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;* [FindSSE](https:<span class="comment">//gitorious.org/vc/vc/source/a1d8b9fc31060d870386613cc72319546c850b87:cmake/FindSSE.cmake)</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;See the respective files in `cmake` <span class="keywordflow">for</span> their licensing.</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;* Copyright 2009-2010 Ryan Pavlik &lt;rpavlik@iastate.edu&gt; &lt;abiryan@ryand.net&gt;, Iowa State University, Distributed under the Boost Software License.</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;* Copyright 2003-2009 Kitware, Inc.</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;* Eric Wing</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="ttc" id="class_font_html"><div class="ttname"><a href="class_font.html">Font</a></div><div class="ttdoc">Font interface. </div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00024">Font.h:24</a></div></div>
+<div class="ttc" id="class_open_raider_html_ae13c597a87b12db771ec57fe7bfb96e1"><div class="ttname"><a href="class_open_raider.html#ae13c597a87b12db771ec57fe7bfb96e1">OpenRaider::OpenRaider</a></div><div class="ttdeci">OpenRaider()</div><div class="ttdoc">Constructs an object of OpenRaider. </div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8cpp_source.html#l00023">OpenRaider.cpp:23</a></div></div>
+<div class="ttc" id="class_console_html"><div class="ttname"><a href="class_console.html">Console</a></div><div class="ttdoc">Console &amp;#39;overlay&amp;#39;. </div><div class="ttdef"><b>Definition:</b> <a href="_console_8h_source.html#l00017">Console.h:17</a></div></div>
+<div class="ttc" id="class_open_raider_html"><div class="ttname"><a href="class_open_raider.html">OpenRaider</a></div><div class="ttdoc">Main Game Singleton. </div><div class="ttdef"><b>Definition:</b> <a href="_open_raider_8h_source.html#l00024">OpenRaider.h:24</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

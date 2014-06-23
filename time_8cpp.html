@@ -86,126 +86,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">time.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;sys/time.h&gt;</code><br/>
+
+<p>Time handling utilities.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="time_8h_source.html">utils/time.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for time.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="time_8cpp__incl.svg" width="192" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="time_8cpp__incl.svg" width="224" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
 <p><a href="time_8cpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a15c730eb70c62952fab33f8e04dca3c0"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8cpp.html#a15c730eb70c62952fab33f8e04dca3c0">systemTimerGet</a> ()</td></tr>
-<tr class="memdesc:a15c730eb70c62952fab33f8e04dca3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the system timer.  <a href="#a15c730eb70c62952fab33f8e04dca3c0">More...</a><br/></td></tr>
-<tr class="separator:a15c730eb70c62952fab33f8e04dca3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c86f3d30f80390674e46a501df2b0f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8cpp.html#a1c86f3d30f80390674e46a501df2b0f2">systemTimerReset</a> ()</td></tr>
-<tr class="memdesc:a1c86f3d30f80390674e46a501df2b0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the system timer.  <a href="#a1c86f3d30f80390674e46a501df2b0f2">More...</a><br/></td></tr>
-<tr class="separator:a1c86f3d30f80390674e46a501df2b0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ae8c4ba6aee147382d4ff7b75dde50ca1"><td class="memItemLeft" align="right" valign="top">struct timeval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8cpp.html#ae8c4ba6aee147382d4ff7b75dde50ca1">system_timer_start</a></td></tr>
-<tr class="separator:ae8c4ba6aee147382d4ff7b75dde50ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af85780cf2efb4f13182d143cb1ff8d19"><td class="memItemLeft" align="right" valign="top">struct timeval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8cpp.html#af85780cf2efb4f13182d143cb1ff8d19">system_timer_stop</a></td></tr>
-<tr class="separator:af85780cf2efb4f13182d143cb1ff8d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae60c163cdb7110c7f68c86939a63f3c9"><td class="memItemLeft" align="right" valign="top">struct timezone&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8cpp.html#ae60c163cdb7110c7f68c86939a63f3c9">system_timer_zone</a></td></tr>
-<tr class="separator:ae60c163cdb7110c7f68c86939a63f3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a15c730eb70c62952fab33f8e04dca3c0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned long systemTimerGet </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Time handling utilities. </p>
+<dl class="section author"><dt>Author</dt><dd>xythobuz </dd></dl>
 
-<p>Read the system timer. </p>
-<dl class="section return"><dt>Returns</dt><dd>number of ticks </dd></dl>
-
-<p>Definition at line <a class="el" href="time_8cpp_source.html#l00016">16</a> of file <a class="el" href="time_8cpp_source.html">time.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1c86f3d30f80390674e46a501df2b0f2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void systemTimerReset </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reset the system timer. </p>
-
-<p>Definition at line <a class="el" href="time_8cpp_source.html#l00022">22</a> of file <a class="el" href="time_8cpp_source.html">time.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="ae8c4ba6aee147382d4ff7b75dde50ca1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct timeval system_timer_start</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="time_8cpp_source.html#l00012">12</a> of file <a class="el" href="time_8cpp_source.html">time.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af85780cf2efb4f13182d143cb1ff8d19"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct timeval system_timer_stop</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="time_8cpp_source.html#l00013">13</a> of file <a class="el" href="time_8cpp_source.html">time.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae60c163cdb7110c7f68c86939a63f3c9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct timezone system_timer_zone</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="time_8cpp_source.html#l00014">14</a> of file <a class="el" href="time_8cpp_source.html">time.cpp</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+<p>Definition in file <a class="el" href="time_8cpp_source.html">time.cpp</a>.</p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

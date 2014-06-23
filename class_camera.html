@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_camera-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -109,9 +110,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a01f94c3543f56ede7af49dc778f19331"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a01f94c3543f56ede7af49dc778f19331">Camera</a> ()</td></tr>
 <tr class="memdesc:a01f94c3543f56ede7af49dc778f19331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an object of <a class="el" href="class_camera.html" title="Camera class. ">Camera</a>.  <a href="#a01f94c3543f56ede7af49dc778f19331">More...</a><br/></td></tr>
 <tr class="separator:a01f94c3543f56ede7af49dc778f19331"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cf0c11b62a8560c04c819f947d6f9f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a4cf0c11b62a8560c04c819f947d6f9f9">getPosition</a> (<a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> pos)</td></tr>
-<tr class="memdesc:a4cf0c11b62a8560c04c819f947d6f9f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current position.  <a href="#a4cf0c11b62a8560c04c819f947d6f9f9">More...</a><br/></td></tr>
-<tr class="separator:a4cf0c11b62a8560c04c819f947d6f9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab341c9499ba06d410b5de2279ef8b06f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ab341c9499ba06d410b5de2279ef8b06f">getTarget</a> (<a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> target)</td></tr>
 <tr class="memdesc:ab341c9499ba06d410b5de2279ef8b06f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the target currently looked at.  <a href="#ab341c9499ba06d410b5de2279ef8b06f">More...</a><br/></td></tr>
 <tr class="separator:ab341c9499ba06d410b5de2279ef8b06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,30 +129,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a42cda7239981a5618660d04bd5893556"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a42cda7239981a5618660d04bd5893556">update</a> ()</td></tr>
 <tr class="memdesc:a42cda7239981a5618660d04bd5893556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates view target.  <a href="#a42cda7239981a5618660d04bd5893556">More...</a><br/></td></tr>
 <tr class="separator:a42cda7239981a5618660d04bd5893556"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1de261fb97cb174ea8b524caf96ca2a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a1de261fb97cb174ea8b524caf96ca2a8">rotate</a> (<a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> angle, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> x, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> y, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> z)</td></tr>
-<tr class="memdesc:a1de261fb97cb174ea8b524caf96ca2a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotate the camera.  <a href="#a1de261fb97cb174ea8b524caf96ca2a8">More...</a><br/></td></tr>
-<tr class="separator:a1de261fb97cb174ea8b524caf96ca2a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f3a6b567730e6ff919d1347ae7adea5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a2f3a6b567730e6ff919d1347ae7adea5">command</a> (enum <a class="el" href="_camera_8h.html#a62f899123cfb759c439a7bba11793df4">camera_command</a> cmd)</td></tr>
 <tr class="memdesc:a2f3a6b567730e6ff919d1347ae7adea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends interactive command to camera.  <a href="#a2f3a6b567730e6ff919d1347ae7adea5">More...</a><br/></td></tr>
 <tr class="separator:a2f3a6b567730e6ff919d1347ae7adea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a1de261fb97cb174ea8b524caf96ca2a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a1de261fb97cb174ea8b524caf96ca2a8">rotate</a> (<a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> angle, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> x, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> y, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> z)</td></tr>
+<tr class="separator:a1de261fb97cb174ea8b524caf96ca2a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af45b05c9717cea3e97d480647f35bb75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#af45b05c9717cea3e97d480647f35bb75">mQ</a></td></tr>
 <tr class="memdesc:af45b05c9717cea3e97d480647f35bb75"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_quaternion.html" title="Quaternion. ">Quaternion</a> for rotation.  <a href="#af45b05c9717cea3e97d480647f35bb75">More...</a><br/></td></tr>
 <tr class="separator:af45b05c9717cea3e97d480647f35bb75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1832dc5487170b27f9e67a121e74cb84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a1832dc5487170b27f9e67a121e74cb84">mPos</a> [4]</td></tr>
-<tr class="memdesc:a1832dc5487170b27f9e67a121e74cb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Location in 3 space (aka eye)  <a href="#a1832dc5487170b27f9e67a121e74cb84">More...</a><br/></td></tr>
-<tr class="separator:a1832dc5487170b27f9e67a121e74cb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac56529e0ece5d002d873708d3977708e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ac56529e0ece5d002d873708d3977708e">mTarget</a> [4]</td></tr>
-<tr class="memdesc:ac56529e0ece5d002d873708d3977708e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postition we're looking at.  <a href="#ac56529e0ece5d002d873708d3977708e">More...</a><br/></td></tr>
-<tr class="separator:ac56529e0ece5d002d873708d3977708e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9865e1e918e7dc05bfe1f037b053e98d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a9865e1e918e7dc05bfe1f037b053e98d">mUp</a> [4]</td></tr>
-<tr class="memdesc:a9865e1e918e7dc05bfe1f037b053e98d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Up vector.  <a href="#a9865e1e918e7dc05bfe1f037b053e98d">More...</a><br/></td></tr>
-<tr class="separator:a9865e1e918e7dc05bfe1f037b053e98d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67bfee5ec45a3abadb11eac25dedd0c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a67bfee5ec45a3abadb11eac25dedd0c7">mSide</a> [4]</td></tr>
-<tr class="memdesc:a67bfee5ec45a3abadb11eac25dedd0c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Side vector.  <a href="#a67bfee5ec45a3abadb11eac25dedd0c7">More...</a><br/></td></tr>
-<tr class="separator:a67bfee5ec45a3abadb11eac25dedd0c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a293117d65e871f531a1c74ac032cd91d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a293117d65e871f531a1c74ac032cd91d">mPos</a></td></tr>
+<tr class="memdesc:a293117d65e871f531a1c74ac032cd91d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Location in 3 space (aka eye)  <a href="#a293117d65e871f531a1c74ac032cd91d">More...</a><br/></td></tr>
+<tr class="separator:a293117d65e871f531a1c74ac032cd91d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f11d18c8f9d682d53bcf58777d9b9a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a8f11d18c8f9d682d53bcf58777d9b9a2">mTarget</a></td></tr>
+<tr class="memdesc:a8f11d18c8f9d682d53bcf58777d9b9a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postition we're looking at.  <a href="#a8f11d18c8f9d682d53bcf58777d9b9a2">More...</a><br/></td></tr>
+<tr class="separator:a8f11d18c8f9d682d53bcf58777d9b9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ed6c78c29eac1ef93b764229fc9e657"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a0ed6c78c29eac1ef93b764229fc9e657">mViewDistance</a></td></tr>
 <tr class="memdesc:a0ed6c78c29eac1ef93b764229fc9e657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance from target.  <a href="#a0ed6c78c29eac1ef93b764229fc9e657">More...</a><br/></td></tr>
 <tr class="separator:a0ed6c78c29eac1ef93b764229fc9e657"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,8 +159,10 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a0811b6a8b7099c208adfa66b38bfa6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">View angle Z.  <a href="#a0811b6a8b7099c208adfa66b38bfa6a3">More...</a><br/></td></tr>
 <tr class="separator:a0811b6a8b7099c208adfa66b38bfa6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60d40a564aa0ff99bb218e915c8abe1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a60d40a564aa0ff99bb218e915c8abe1c">mRotationDeltaX</a></td></tr>
+<tr class="memdesc:a60d40a564aa0ff99bb218e915c8abe1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Horizontal mouse sensitivity.  <a href="#a60d40a564aa0ff99bb218e915c8abe1c">More...</a><br/></td></tr>
 <tr class="separator:a60d40a564aa0ff99bb218e915c8abe1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83f867b678da48321c1ee534d82f57df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a83f867b678da48321c1ee534d82f57df">mRotationDeltaY</a></td></tr>
+<tr class="memdesc:a83f867b678da48321c1ee534d82f57df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vertical mouse sensitivity.  <a href="#a83f867b678da48321c1ee534d82f57df">More...</a><br/></td></tr>
 <tr class="separator:a83f867b678da48321c1ee534d82f57df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -189,7 +185,7 @@ Private Attributes</h2></td></tr>
 
 <p>Constructs an object of <a class="el" href="class_camera.html" title="Camera class. ">Camera</a>. </p>
 
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00014">14</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00013">13</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -216,33 +212,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00107">107</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4cf0c11b62a8560c04c819f947d6f9f9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Camera::getPosition </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>pos</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the current position. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pos</td><td>where the position will be stored </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00040">40</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00082">82</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -262,7 +232,7 @@ Private Attributes</h2></td></tr>
 <p>Get angle/pitch of camera. </p>
 <dl class="section return"><dt>Returns</dt><dd>phi angle/pitch of camera </dd></dl>
 
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00056">56</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00041">41</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -282,7 +252,7 @@ Private Attributes</h2></td></tr>
 <p>Get angle/yaw of camera. </p>
 <dl class="section return"><dt>Returns</dt><dd>theta angle/yaw of camera </dd></dl>
 
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00052">52</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00037">37</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -308,13 +278,16 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00046">46</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00031">31</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a1de261fb97cb174ea8b524caf96ca2a8"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Camera::rotate </td>
@@ -346,20 +319,14 @@ Private Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Rotate the camera. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">angle</td><td>angle in radians </td></tr>
-    <tr><td class="paramname">x</td><td>X coordinate of axis </td></tr>
-    <tr><td class="paramname">y</td><td>Y coordinate of axis </td></tr>
-    <tr><td class="paramname">z</td><td>Z coordinate of axis </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00080">80</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00065">65</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -385,7 +352,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00060">60</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00045">45</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -403,7 +370,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00066">66</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00051">51</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -421,7 +388,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00070">70</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00055">55</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -440,12 +407,12 @@ Private Attributes</h2></td></tr>
 
 <p>Updates view target. </p>
 
-<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00074">74</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8cpp_source.html#l00059">59</a> of file <a class="el" href="_camera_8cpp_source.html">Camera.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a1832dc5487170b27f9e67a121e74cb84"></a>
+<a class="anchor" id="a293117d65e871f531a1c74ac032cd91d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -453,7 +420,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> Camera::mPos[4]</td>
+          <td class="memname"><a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> Camera::mPos</td>
         </tr>
       </table>
   </td>
@@ -465,7 +432,7 @@ Private Attributes</h2></td></tr>
 
 <p>Location in 3 space (aka eye) </p>
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00091">91</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00079">79</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>
@@ -489,7 +456,7 @@ Private Attributes</h2></td></tr>
 
 <p><a class="el" href="class_quaternion.html" title="Quaternion. ">Quaternion</a> for rotation. </p>
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00090">90</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00078">78</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>
@@ -511,7 +478,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00098">98</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Horizontal mouse sensitivity. </p>
+
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00084">84</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>
@@ -533,11 +502,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00099">99</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Vertical mouse sensitivity. </p>
+
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00085">85</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a67bfee5ec45a3abadb11eac25dedd0c7"></a>
+<a class="anchor" id="a8f11d18c8f9d682d53bcf58777d9b9a2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -545,31 +516,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> Camera::mSide[4]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Side vector. </p>
-
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00094">94</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac56529e0ece5d002d873708d3977708e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> Camera::mTarget[4]</td>
+          <td class="memname"><a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> Camera::mTarget</td>
         </tr>
       </table>
   </td>
@@ -581,7 +528,7 @@ Private Attributes</h2></td></tr>
 
 <p>Postition we're looking at. </p>
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00092">92</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00080">80</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>
@@ -605,7 +552,7 @@ Private Attributes</h2></td></tr>
 
 <p>View angle Y. </p>
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00096">96</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00082">82</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>
@@ -629,31 +576,7 @@ Private Attributes</h2></td></tr>
 
 <p>View angle Z. </p>
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00097">97</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9865e1e918e7dc05bfe1f037b053e98d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> Camera::mUp[4]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Up vector. </p>
-
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00093">93</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00083">83</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>
@@ -677,7 +600,7 @@ Private Attributes</h2></td></tr>
 
 <p>Distance from target. </p>
 
-<p>Definition at line <a class="el" href="_camera_8h_source.html#l00095">95</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
+<p>Definition at line <a class="el" href="_camera_8h_source.html#l00081">81</a> of file <a class="el" href="_camera_8h_source.html">Camera.h</a>.</p>
 
 </div>
 </div>

@@ -91,30 +91,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="time_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;sys/time.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="time_8h.html">utils/time.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="time_8cpp.html#ae8c4ba6aee147382d4ff7b75dde50ca1">   12</a></span>&#160;<span class="keyword">struct </span>timeval <a class="code" href="time_8cpp.html#ae8c4ba6aee147382d4ff7b75dde50ca1">system_timer_start</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="time_8cpp.html#af85780cf2efb4f13182d143cb1ff8d19">   13</a></span>&#160;<span class="keyword">struct </span>timeval <a class="code" href="time_8cpp.html#af85780cf2efb4f13182d143cb1ff8d19">system_timer_stop</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="time_8cpp.html#ae60c163cdb7110c7f68c86939a63f3c9">   14</a></span>&#160;<span class="keyword">struct </span>timezone <a class="code" href="time_8cpp.html#ae60c163cdb7110c7f68c86939a63f3c9">system_timer_zone</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="time_8cpp.html#a15c730eb70c62952fab33f8e04dca3c0">   16</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="time_8h.html#a15c730eb70c62952fab33f8e04dca3c0">systemTimerGet</a>() {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    gettimeofday(&amp;<a class="code" href="time_8cpp.html#af85780cf2efb4f13182d143cb1ff8d19">system_timer_stop</a>, &amp;<a class="code" href="time_8cpp.html#ae60c163cdb7110c7f68c86939a63f3c9">system_timer_zone</a>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">return</span> ((<a class="code" href="time_8cpp.html#af85780cf2efb4f13182d143cb1ff8d19">system_timer_stop</a>.tv_sec - <a class="code" href="time_8cpp.html#ae8c4ba6aee147382d4ff7b75dde50ca1">system_timer_start</a>.tv_sec) * 1000)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        + (((<a class="code" href="time_8cpp.html#af85780cf2efb4f13182d143cb1ff8d19">system_timer_stop</a>.tv_usec - <a class="code" href="time_8cpp.html#ae8c4ba6aee147382d4ff7b75dde50ca1">system_timer_start</a>.tv_usec) / 1000));</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="time_8cpp.html#a1c86f3d30f80390674e46a501df2b0f2">   22</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="time_8h.html#a1c86f3d30f80390674e46a501df2b0f2">systemTimerReset</a>() {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    gettimeofday(&amp;<a class="code" href="time_8cpp.html#ae8c4ba6aee147382d4ff7b75dde50ca1">system_timer_start</a>, &amp;<a class="code" href="time_8cpp.html#ae60c163cdb7110c7f68c86939a63f3c9">system_timer_zone</a>);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="global_8h.html">global.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="time_8h.html">utils/time.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#if defined(unix) || defined(__APPLE__) || defined (__linux__)</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;sys/time.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">struct </span>timeval system_timer_start;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">struct </span>timeval system_timer_stop;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">struct </span>timezone system_timer_zone;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="time_8h.html#a15c730eb70c62952fab33f8e04dca3c0">systemTimerGet</a>() {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    gettimeofday(&amp;system_timer_stop, &amp;system_timer_zone);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">return</span> ((system_timer_stop.tv_sec - system_timer_start.tv_sec) * 1000)</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        + (((system_timer_stop.tv_usec - system_timer_start.tv_usec) / 1000));</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> <a class="code" href="time_8h.html#a1c86f3d30f80390674e46a501df2b0f2">systemTimerReset</a>() {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    gettimeofday(&amp;system_timer_start, &amp;system_timer_zone);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#elif defined(WIN32)</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;Windows.h&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;DWORD system_timer_start = 0;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="time_8h.html#a15c730eb70c62952fab33f8e04dca3c0">systemTimerGet</a>() {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">return</span> GetTickCount() - system_timer_start;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> <a class="code" href="time_8h.html#a1c86f3d30f80390674e46a501df2b0f2">systemTimerReset</a>() {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    system_timer_start = GetTickCount();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#error &quot;No support for timer on this platform!&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor"></span></div>
 <div class="ttc" id="time_8h_html"><div class="ttname"><a href="time_8h.html">time.h</a></div><div class="ttdoc">Time handling utilities. </div></div>
-<div class="ttc" id="time_8cpp_html_ae8c4ba6aee147382d4ff7b75dde50ca1"><div class="ttname"><a href="time_8cpp.html#ae8c4ba6aee147382d4ff7b75dde50ca1">system_timer_start</a></div><div class="ttdeci">struct timeval system_timer_start</div><div class="ttdef"><b>Definition:</b> <a href="time_8cpp_source.html#l00012">time.cpp:12</a></div></div>
-<div class="ttc" id="time_8h_html_a15c730eb70c62952fab33f8e04dca3c0"><div class="ttname"><a href="time_8h.html#a15c730eb70c62952fab33f8e04dca3c0">systemTimerGet</a></div><div class="ttdeci">unsigned long systemTimerGet()</div><div class="ttdoc">Read the system timer. </div><div class="ttdef"><b>Definition:</b> <a href="time_8cpp_source.html#l00016">time.cpp:16</a></div></div>
-<div class="ttc" id="time_8cpp_html_af85780cf2efb4f13182d143cb1ff8d19"><div class="ttname"><a href="time_8cpp.html#af85780cf2efb4f13182d143cb1ff8d19">system_timer_stop</a></div><div class="ttdeci">struct timeval system_timer_stop</div><div class="ttdef"><b>Definition:</b> <a href="time_8cpp_source.html#l00013">time.cpp:13</a></div></div>
-<div class="ttc" id="time_8h_html_a1c86f3d30f80390674e46a501df2b0f2"><div class="ttname"><a href="time_8h.html#a1c86f3d30f80390674e46a501df2b0f2">systemTimerReset</a></div><div class="ttdeci">void systemTimerReset()</div><div class="ttdoc">Reset the system timer. </div><div class="ttdef"><b>Definition:</b> <a href="time_8cpp_source.html#l00022">time.cpp:22</a></div></div>
-<div class="ttc" id="time_8cpp_html_ae60c163cdb7110c7f68c86939a63f3c9"><div class="ttname"><a href="time_8cpp.html#ae60c163cdb7110c7f68c86939a63f3c9">system_timer_zone</a></div><div class="ttdeci">struct timezone system_timer_zone</div><div class="ttdef"><b>Definition:</b> <a href="time_8cpp_source.html#l00014">time.cpp:14</a></div></div>
+<div class="ttc" id="global_8h_html"><div class="ttname"><a href="global_8h.html">global.h</a></div><div class="ttdoc">Global typedefs. </div></div>
+<div class="ttc" id="time_8h_html_a15c730eb70c62952fab33f8e04dca3c0"><div class="ttname"><a href="time_8h.html#a15c730eb70c62952fab33f8e04dca3c0">systemTimerGet</a></div><div class="ttdeci">unsigned long systemTimerGet()</div><div class="ttdoc">Read the system timer. </div></div>
+<div class="ttc" id="time_8h_html_a1c86f3d30f80390674e46a501df2b0f2"><div class="ttname"><a href="time_8h.html#a1c86f3d30f80390674e46a501df2b0f2">systemTimerReset</a></div><div class="ttdeci">void systemTimerReset()</div><div class="ttdoc">Reset the system timer. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

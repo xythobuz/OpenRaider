@@ -9,8 +9,8 @@ var searchData=
   ['raptorstate_5frunning',['RaptorState_Running',['../_tomb_raider1_8h.html#a84ab3cb3f3a2357bb1ba6b8583cfc6d6aa2dd4543c675040e5dca4eb5760150dc',1,'TombRaider1']]],
   ['raptorstate_5fstanding',['RaptorState_Standing',['../_tomb_raider1_8h.html#a84ab3cb3f3a2357bb1ba6b8583cfc6d6affe0ca9a08a6dd3d6ab67f136b3ba2d0',1,'TombRaider1']]],
   ['raptorstate_5fwalking',['RaptorState_Walking',['../_tomb_raider1_8h.html#a84ab3cb3f3a2357bb1ba6b8583cfc6d6a34479db689383405bfd3ab79eb7b0bed',1,'TombRaider1']]],
-  ['rgb',['RGB',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496af7d1af8e5f3b864a48c081ca85112240',1,'Texture']]],
-  ['rgba',['RGBA',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496a6a2e558c55ef02327963bae8c0938256',1,'Texture']]],
+  ['rgb',['RGB',['../class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbcaf887e80213df37af3d3b640338acf90c',1,'TextureManager']]],
+  ['rgba',['RGBA',['../class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbca1d8b050d00eef9c10ce08ed272e27a5f',1,'TextureManager']]],
   ['rightaction',['rightAction',['../global_8h.html#a8657944732f2ddabce60de26e809df8ca4457119b95f676c88c8cad01164ee2a5',1,'global.h']]],
   ['rightaltkey',['rightaltKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa9cfaa80efc61f099f24279b085466152',1,'global.h']]],
   ['rightbracketkey',['rightbracketKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aad64886a5b74291cdd8602da2896380c7',1,'global.h']]],
@@ -21,7 +21,5 @@ var searchData=
   ['rightshiftkey',['rightshiftKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aac9a7f4c9c0167519fa39a6473e7b8ba3',1,'global.h']]],
   ['rightside',['rightSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa13d7562aae131d95dd43be32c9c3db5a',1,'ViewVolume']]],
   ['rkey',['rKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa44c331191b11fd60a9d4593748c550b4',1,'global.h']]],
-  ['roomflag_5funderwater',['roomFlag_underWater',['../_world_data_8h.html#af4109bf4a2d7b1e665058dd8baa2765ca9ecdb089eb1c74ef2fad80553b5c7b63',1,'WorldData.h']]],
-  ['roomflagunderwater',['RoomFlagUnderWater',['../_room_8h.html#a321a4a7d36780d581a98f58365e538eda0ed2504f22f3a66b0727dd2efa487bcc',1,'Room.h']]],
-  ['roommesh',['roomMesh',['../class_render.html#abc9be40e4be3e1b64792ce4c03b751c8acecc97ab27a6d207bcb9a50429e401ec',1,'Render']]]
+  ['roomflagunderwater',['RoomFlagUnderWater',['../_room_8h.html#a321a4a7d36780d581a98f58365e538eda0ed2504f22f3a66b0727dd2efa487bcc',1,'Room.h']]]
 ];

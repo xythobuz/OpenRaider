@@ -86,7 +86,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_game-members.html">List of all members</a>  </div>
@@ -124,11 +123,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2159fe214fb67768f3a0d6d887206c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33278ee8fca21f4a4ec00afd399b12f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a33278ee8fca21f4a4ec00afd399b12f4">handleMouseMotion</a> (int xrel, int yrel)</td></tr>
 <tr class="separator:a33278ee8fca21f4a4ec00afd399b12f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a7b39fd2e2dd0168031372a26fa1ec118"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_world_data_8h.html#structentity__t">entity_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a7b39fd2e2dd0168031372a26fa1ec118">mLara</a></td></tr>
-<tr class="separator:a7b39fd2e2dd0168031372a26fa1ec118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2522dc61112cfc5f5f9fe0975cbc17"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a8a2522dc61112cfc5f5f9fe0975cbc17">getTextureStart</a> ()</td></tr>
+<tr class="separator:a8a2522dc61112cfc5f5f9fe0975cbc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a656c6d80cb08a48661f347711caab446"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a656c6d80cb08a48661f347711caab446">getTextureOffset</a> ()</td></tr>
+<tr class="separator:a656c6d80cb08a48661f347711caab446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacc7cc1f43287635ec6d6fa4ae9a2141"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_entity.html">Entity</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#aacc7cc1f43287635ec6d6fa4ae9a2141">getLara</a> ()</td></tr>
+<tr class="separator:aacc7cc1f43287635ec6d6fa4ae9a2141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -140,14 +140,12 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a0ebd881543d2be2b4432c13063d36a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12754fc035b3671849e6a2337c1b1841"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a12754fc035b3671849e6a2337c1b1841">processMoveables</a> ()</td></tr>
 <tr class="separator:a12754fc035b3671849e6a2337c1b1841"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af038abb5e1d5f6b130306e1e4481aa43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#af038abb5e1d5f6b130306e1e4481aa43">processMoveable</a> (int index, int i, int *ent, std::vector&lt; <a class="el" href="_skeletal_model_8h.html#structskeletal__model__t">skeletal_model_t</a> * &gt; &amp;cache2, std::vector&lt; unsigned int &gt; &amp;cache, int object_id)</td></tr>
-<tr class="separator:af038abb5e1d5f6b130306e1e4481aa43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a157070b2fbcc214ee3ed5bb2e723a6ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a157070b2fbcc214ee3ed5bb2e723a6ac">processMoveable</a> (int index, int i, int object_id)</td></tr>
+<tr class="separator:a157070b2fbcc214ee3ed5bb2e723a6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a540e9c20773493b7dfd6e494065d826b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a540e9c20773493b7dfd6e494065d826b">processModels</a> ()</td></tr>
 <tr class="separator:a540e9c20773493b7dfd6e494065d826b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fd0461177184c291f89d1c917ddf9ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a6fd0461177184c291f89d1c917ddf9ec">processRooms</a> ()</td></tr>
 <tr class="separator:a6fd0461177184c291f89d1c917ddf9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99c8978b4019c9ad0bdac9bc3a4e89cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a99c8978b4019c9ad0bdac9bc3a4e89cc">setupTextureColor</a> (<a class="el" href="_world_data_8h.html#structtexture__tri__t">texture_tri_t</a> *r_tri, float *colorf)</td></tr>
-<tr class="separator:a99c8978b4019c9ad0bdac9bc3a4e89cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -161,6 +159,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:afb5e4e530654e46bee3172f27ad8cc96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ace0c352fa5c6826d098bf013bc3af4"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a5ace0c352fa5c6826d098bf013bc3af4">mTextureOffset</a></td></tr>
 <tr class="separator:a5ace0c352fa5c6826d098bf013bc3af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cb3410ca1c93c7b61ca3d281cc4db8c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a1cb3410ca1c93c7b61ca3d281cc4db8c">mLara</a></td></tr>
+<tr class="separator:a1cb3410ca1c93c7b61ca3d281cc4db8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_game.html" title="Game abstraction. ">Game</a> abstraction. </p>
@@ -180,7 +180,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00040">40</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00026">26</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -197,7 +197,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00049">49</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00034">34</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -215,7 +215,58 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00061">61</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00054">54</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aacc7cc1f43287635ec6d6fa4ae9a2141"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_entity.html">Entity</a> &amp; Game::getLara </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00169">169</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a656c6d80cb08a48661f347711caab446"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Game::getTextureOffset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00042">42</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8a2522dc61112cfc5f5f9fe0975cbc17"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Game::getTextureStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00038">38</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -243,7 +294,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00134">134</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00122">122</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -271,7 +322,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00148">148</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00146">146</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -288,7 +339,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00053">53</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00046">46</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,7 +356,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00074">74</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00067">67</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -323,7 +374,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00078">78</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00071">71</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -347,14 +398,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000024">FIXME:</a></b></dt><dd>allow sparse lists with matching ids instead? </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000025">FIXME:</a></b></dt><dd>Arrays don't work either =) </dd></dl>
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00950">950</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00196">196</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af038abb5e1d5f6b130306e1e4481aa43"></a>
+<a class="anchor" id="a157070b2fbcc214ee3ed5bb2e723a6ac"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -376,24 +425,6 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>ent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="_skeletal_model_8h.html#structskeletal__model__t">skeletal_model_t</a> * &gt; &amp;&#160;</td>
-          <td class="paramname"><em>cache2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; unsigned int &gt; &amp;&#160;</td>
-          <td class="paramname"><em>cache</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>object_id</em>&#160;</td>
         </tr>
@@ -409,10 +440,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000022">FIXME:</a></b></dt><dd>Check here and see if we already have one for object_id later </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000023">FIXME:</a></b></dt><dd>Might be better UID for each model, but this seems to work well </dd></dl>
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00478">478</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00374">374</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -437,7 +466,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00363">363</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00287">287</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -462,7 +491,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00172">172</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00203">203</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -486,11 +515,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000026">FIXME:</a></b></dt><dd>OR wrongly uses a cached adj room list for rendering vis </dd></dl>
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000027">FIXME:</a></b></dt><dd>Use more of sector structure, boxes, and floordata </dd></dl>
-<p>fixme Only to be done only on room[0]? I don't think so... </p>
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l01155">1155</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00189">189</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -515,7 +541,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00266">266</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00175">175</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -540,11 +566,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00219">219</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00245">245</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a99c8978b4019c9ad0bdac9bc3a4e89cc"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a1cb3410ca1c93c7b61ca3d281cc4db8c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -552,21 +579,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Game::setupTextureColor </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_world_data_8h.html#structtexture__tri__t">texture_tri_t</a> *&#160;</td>
-          <td class="paramname"><em>r_tri</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float *&#160;</td>
-          <td class="paramname"><em>colorf</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">int Game::mLara</td>
         </tr>
       </table>
   </td>
@@ -576,21 +589,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a7b39fd2e2dd0168031372a26fa1ec118"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_world_data_8h.html#structentity__t">entity_t</a>* Game::mLara</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000001">FIXME:</a></b></dt><dd>should be private </dd></dl>
-
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00042">42</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00064">64</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>
@@ -612,7 +611,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00058">58</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00057">57</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>
@@ -634,7 +633,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00057">57</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00056">56</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>
@@ -656,7 +655,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00063">63</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00062">62</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>
@@ -678,7 +677,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00062">62</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00061">61</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>
@@ -700,7 +699,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00060">60</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00059">59</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>

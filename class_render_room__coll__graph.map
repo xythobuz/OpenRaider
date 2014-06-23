@@ -1,6 +1,0 @@
-<map id="RenderRoom" name="RenderRoom">
-<area shape="rect" id="node2" href="$_world_data_8h.html#structroom__mesh__t" title="room_mesh_t" alt="" coords="5,95,103,121"/>
-<area shape="rect" id="node3" href="$class_mesh.html" title="OpenGL Mesh. " alt="" coords="127,95,181,121"/>
-<area shape="rect" id="node4" href="$class_mesh.html#struct_mesh_1_1tris__t" title="Mesh::tris_t" alt="" coords="55,5,141,32"/>
-<area shape="rect" id="node5" href="$class_mesh.html#struct_mesh_1_1rect__t" title="Mesh::rect_t" alt="" coords="165,5,255,32"/>
-</map>

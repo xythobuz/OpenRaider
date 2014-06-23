@@ -33,7 +33,7 @@ var searchData=
   ['gorillastate_5fturningr',['GorillaState_TurningR',['../_tomb_raider1_8h.html#a91c915c3bceae2720bbd8b5ae9ab1cb4a894d3a8a0a97e9d8e97fea4751fabc20',1,'TombRaider1']]],
   ['gorillastate_5fwalking',['GorillaState_Walking',['../_tomb_raider1_8h.html#a91c915c3bceae2720bbd8b5ae9ab1cb4aab5e16ea9ec38d659ac80db56828bc52',1,'TombRaider1']]],
   ['gorillastate_5fwaving',['GorillaState_Waving',['../_tomb_raider1_8h.html#a91c915c3bceae2720bbd8b5ae9ab1cb4a5819533d83956884209a259a0b03f5c8',1,'TombRaider1']]],
-  ['greyscale',['GREYSCALE',['../class_texture.html#a43b9b9d60943d3fa5a11cc2d80958496ada4e63c3c646ac687af34b5d60e9d0cc',1,'Texture']]],
+  ['greyscale',['GREYSCALE',['../class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbcac51372ac302b39d51df83b8ec12c779c',1,'TextureManager']]],
   ['gunflare1',['Gunflare1',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea3d003e50e5606892a79f34c0ec8f9636',1,'TombRaider1']]],
   ['gunflare2',['Gunflare2',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eadcad86cd78f2cbf7fb09c0d9df09502f',1,'TombRaider1']]]
 ];

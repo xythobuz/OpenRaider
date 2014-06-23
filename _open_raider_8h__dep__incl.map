@@ -1,12 +1,10 @@
 <map id="include/OpenRaider.h" name="include/OpenRaider.h">
-<area shape="rect" id="node2" href="$main_8h.html" title="Service locator. " alt="" coords="625,80,726,107"/>
-<area shape="rect" id="node3" href="$_command_8cpp.html" title="OpenRaider command implementation. " alt="" coords="5,155,132,181"/>
-<area shape="rect" id="node8" href="$_open_raider_8cpp.html" title="Main Game Object. " alt="" coords="952,155,1089,181"/>
-<area shape="rect" id="node9" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="1113,155,1221,181"/>
-<area shape="rect" id="node4" href="$_console_8cpp.html" title="Console &#39;overlay&#39;. " alt="" coords="567,155,682,181"/>
-<area shape="rect" id="node5" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="707,155,809,181"/>
-<area shape="rect" id="node6" href="$main_8cpp.html" title="Where main() is. " alt="" coords="833,155,928,181"/>
-<area shape="rect" id="node7" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="157,155,255,181"/>
-<area shape="rect" id="node10" href="$_sprite_8cpp.html" title="World Sprite. " alt="" coords="279,155,378,181"/>
-<area shape="rect" id="node11" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="403,155,543,181"/>
+<area shape="rect" id="node2" href="$_command_8cpp.html" title="OpenRaider command implementation. " alt="" coords="5,80,132,107"/>
+<area shape="rect" id="node3" href="$_console_8cpp.html" title="Console &#39;overlay&#39;. " alt="" coords="157,80,271,107"/>
+<area shape="rect" id="node4" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="296,80,399,107"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Where main() is. " alt="" coords="423,80,517,107"/>
+<area shape="rect" id="node6" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="542,80,641,107"/>
+<area shape="rect" id="node7" href="$_open_raider_8cpp.html" title="Main Game Object. " alt="" coords="665,80,803,107"/>
+<area shape="rect" id="node8" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="827,80,935,107"/>
+<area shape="rect" id="node9" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="959,80,1099,107"/>
 </map>

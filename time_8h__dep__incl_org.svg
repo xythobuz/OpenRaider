@@ -68,7 +68,7 @@
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="time_8cpp.html" target="_top" xlink:title="src/utils/time.cpp">
+<g id="a_node6"><a xlink:href="time_8cpp.html" target="_top" xlink:title="Time handling utilities. ">
 <polygon fill="white" stroke="black" points="428.5,-0.5 428.5,-19.5 514.5,-19.5 514.5,-0.5 428.5,-0.5"/>
 <text text-anchor="middle" x="471.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/utils/time.cpp</text>
 </a>

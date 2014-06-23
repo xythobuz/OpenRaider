@@ -4,5 +4,7 @@ var searchData=
   ['render_2ecpp',['Render.cpp',['../_render_8cpp.html',1,'']]],
   ['render_2eh',['Render.h',['../_render_8h.html',1,'']]],
   ['room_2ecpp',['Room.cpp',['../_room_8cpp.html',1,'']]],
-  ['room_2eh',['Room.h',['../_room_8h.html',1,'']]]
+  ['room_2eh',['Room.h',['../_room_8h.html',1,'']]],
+  ['roomdata_2ecpp',['RoomData.cpp',['../_room_data_8cpp.html',1,'']]],
+  ['roomdata_2eh',['RoomData.h',['../_room_data_8h.html',1,'']]]
 ];

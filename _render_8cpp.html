@@ -96,15 +96,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> Renderer class.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br/>
-<code>#include &lt;GL/gl.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;<a class="el" href="math_8h_source.html">math.h</a>&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_game_8h_source.html">Game.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_render_8h_source.html">Render.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="strings_8h_source.html">utils/strings.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="tga_8h_source.html">utils/tga.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_window_8h_source.html">Window.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Render.cpp:</div>
 <div class="dyncontent">
@@ -116,24 +117,14 @@ Include dependency graph for Render.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab66de7a7b4020b275661f30dbaf5a028"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#ab66de7a7b4020b275661f30dbaf5a028">compareEntites</a> (const void *voidA, const void *voidB)</td></tr>
-<tr class="separator:ab66de7a7b4020b275661f30dbaf5a028"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3c433346d32c3aea030d705ea68e3c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#ae3c433346d32c3aea030d705ea68e3c0">compareStaticModels</a> (const void *voidA, const void *voidB)</td></tr>
-<tr class="separator:ae3c433346d32c3aea030d705ea68e3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78fb662eeeb47477720689174acc3065"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a78fb662eeeb47477720689174acc3065">compareRoomDist</a> (const void *voidA, const void *voidB)</td></tr>
-<tr class="separator:a78fb662eeeb47477720689174acc3065"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a807dd35eb943f32b4f80e4095f4be673"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a807dd35eb943f32b4f80e4095f4be673">renderTrace</a> (int color, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> start, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> end)</td></tr>
 <tr class="separator:a807dd35eb943f32b4f80e4095f4be673"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a512339113cf8ab7c71ca9da0a0c82191"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a512339113cf8ab7c71ca9da0a0c82191">setLighting</a> (bool on)</td></tr>
 <tr class="separator:a512339113cf8ab7c71ca9da0a0c82191"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88f66bc25e882a2b3d670a2266c97d44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a88f66bc25e882a2b3d670a2266c97d44">lightRoom</a> (<a class="el" href="class_render_room.html">RenderRoom</a> *room)</td></tr>
-<tr class="separator:a88f66bc25e882a2b3d670a2266c97d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a934fe87cabd7af351dd011668f82d566"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a934fe87cabd7af351dd011668f82d566">lightRoom</a> (<a class="el" href="class_room.html">Room</a> &amp;room)</td></tr>
+<tr class="separator:a934fe87cabd7af351dd011668f82d566"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5d1457cca8c0412548e23b877ede908"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#ad5d1457cca8c0412548e23b877ede908">gluLookAt</a> (float eyeX, float eyeY, float eyeZ, float lookAtX, float lookAtY, float lookAtZ, float upX, float upY, float upZ)</td></tr>
 <tr class="separator:ad5d1457cca8c0412548e23b877ede908"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6d4c31a0ea8ee4f430b8de0b0c457f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#ab6d4c31a0ea8ee4f430b8de0b0c457f1">draw_bbox</a> (<a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> min, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> max, bool draw_points)</td></tr>
-<tr class="separator:ab6d4c31a0ea8ee4f430b8de0b0c457f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5851f759764c299ce418a5451e317c49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_8cpp.html#a5851f759764c299ce418a5451e317c49">draw_bbox_color</a> (<a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> min, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> max, bool draw_points, const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> c1, const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a> c2)</td></tr>
-<tr class="separator:a5851f759764c299ce418a5451e317c49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> Renderer class. </p>
@@ -143,172 +134,6 @@ xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ab66de7a7b4020b275661f30dbaf5a028"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool compareEntites </td>
-          <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>voidA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>voidB</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00027">27</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a78fb662eeeb47477720689174acc3065"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool compareRoomDist </td>
-          <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>voidA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>voidB</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00069">69</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae3c433346d32c3aea030d705ea68e3c0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool compareStaticModels </td>
-          <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>voidA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>voidB</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00048">48</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab6d4c31a0ea8ee4f430b8de0b0c457f1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void draw_bbox </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>max</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>draw_points</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000036">FIXME:</a></b></dt><dd>Need to make custom color key for this </dd></dl>
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01105">1105</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5851f759764c299ce418a5451e317c49"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void draw_bbox_color </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>max</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>draw_points</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a>&#160;</td>
-          <td class="paramname"><em>c1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="math_8h.html#afc6d3c0cf1cf7a2d9eab8a73060c6c2c">vec4_t</a>&#160;</td>
-          <td class="paramname"><em>c2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000037">FIXME:</a></b></dt><dd>Need to make custom color key for this </dd></dl>
-
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l01181">1181</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ad5d1457cca8c0412548e23b877ede908"></a>
 <div class="memitem">
 <div class="memproto">
@@ -375,25 +200,25 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00361">361</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00317">317</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a88f66bc25e882a2b3d670a2266c97d44"></a>
+<a class="anchor" id="a934fe87cabd7af351dd011668f82d566"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void lightRoom </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_render_room.html">RenderRoom</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_room.html">Room</a> &amp;&#160;</td>
           <td class="paramname"><em>room</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00243">243</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00196">196</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -427,7 +252,7 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00185">185</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00127">127</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>
@@ -445,7 +270,7 @@ xythobuz </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00226">226</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_render_8cpp_source.html#l00168">168</a> of file <a class="el" href="_render_8cpp_source.html">Render.cpp</a>.</p>
 
 </div>
 </div>

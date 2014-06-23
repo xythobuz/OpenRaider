@@ -86,7 +86,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_window-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -110,8 +109,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a245d821e6016fa1f6970ccbbedd635f6"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a245d821e6016fa1f6970ccbbedd635f6">~Window</a> ()</td></tr>
 <tr class="memdesc:a245d821e6016fa1f6970ccbbedd635f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_window.html" title="Windowing interface. ">Window</a>.  <a href="#a245d821e6016fa1f6970ccbbedd635f6">More...</a><br/></td></tr>
 <tr class="separator:a245d821e6016fa1f6970ccbbedd635f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f4bbc3d23c5f8b3bf0146cb9f4fe37a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a8f4bbc3d23c5f8b3bf0146cb9f4fe37a">setDriver</a> (const char *driver)=0</td></tr>
-<tr class="separator:a8f4bbc3d23c5f8b3bf0146cb9f4fe37a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c0c330eca0468938e911d051c915f23"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a8c0c330eca0468938e911d051c915f23">setSize</a> (unsigned int width, unsigned int height)=0</td></tr>
 <tr class="separator:a8c0c330eca0468938e911d051c915f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ca850bb2eeaf90f70e43066670be2f9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a9ca850bb2eeaf90f70e43066670be2f9">setFullscreen</a> (bool fullscreen)=0</td></tr>
@@ -128,6 +125,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2e61534a544bd1b774c91b43ab61da73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac988f1921a2452a32fb4c7e0c7806277"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ac988f1921a2452a32fb4c7e0c7806277">swapBuffersGL</a> ()=0</td></tr>
 <tr class="separator:ac988f1921a2452a32fb4c7e0c7806277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7fd0604bb76a1bfde32972b3cd7a96f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#af7fd0604bb76a1bfde32972b3cd7a96f">setDriver</a> (const char *driver)</td></tr>
+<tr class="separator:af7fd0604bb76a1bfde32972b3cd7a96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f714e1f40bf559bf1af47c2b0524912"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a6f714e1f40bf559bf1af47c2b0524912">getWidth</a> ()</td></tr>
+<tr class="separator:a6f714e1f40bf559bf1af47c2b0524912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7551e3521743ba1201d0fad2c726dd3c"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a7551e3521743ba1201d0fad2c726dd3c">getHeight</a> ()</td></tr>
+<tr class="separator:a7551e3521743ba1201d0fad2c726dd3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fd6d468af769ced9b67cd94843f7ee6"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a3fd6d468af769ced9b67cd94843f7ee6">initializeGL</a> ()</td></tr>
 <tr class="separator:a3fd6d468af769ced9b67cd94843f7ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26586639e05d1d14b23bb9675976ba35"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a26586639e05d1d14b23bb9675976ba35">resizeGL</a> ()</td></tr>
@@ -136,21 +139,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a21e2c2c52367bcb4c6293e3573c88b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c5982c43fc9d8d36e092965ac8cf940"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a6c5982c43fc9d8d36e092965ac8cf940">glExit2D</a> ()</td></tr>
 <tr class="separator:a6c5982c43fc9d8d36e092965ac8cf940"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa62e0e04596cbae0fcde9fad0eb35377"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aa62e0e04596cbae0fcde9fad0eb35377">setFont</a> (const char *font)=0</td></tr>
-<tr class="separator:aa62e0e04596cbae0fcde9fad0eb35377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42c583ab00adc8f456352175c079ff76"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a42c583ab00adc8f456352175c079ff76">initializeFont</a> ()=0</td></tr>
-<tr class="separator:a42c583ab00adc8f456352175c079ff76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25c0997b91f7e47f22e42178cc696b90"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a25c0997b91f7e47f22e42178cc696b90">writeString</a> (<a class="el" href="_window_8h.html#struct_window_string">WindowString</a> *s)=0</td></tr>
-<tr class="separator:a25c0997b91f7e47f22e42178cc696b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92440ad4e7cb868c534fab1928931b42"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a92440ad4e7cb868c534fab1928931b42">drawText</a> (unsigned int x, unsigned int y, float scale, const float color[4], const char *s,...)=0</td></tr>
-<tr class="separator:a92440ad4e7cb868c534fab1928931b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a5b32fc015f41b1dab7d48aa617c1bfa1"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a5b32fc015f41b1dab7d48aa617c1bfa1">mWidth</a></td></tr>
-<tr class="separator:a5b32fc015f41b1dab7d48aa617c1bfa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a289da91e2952c726422d9abb820eadc9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a289da91e2952c726422d9abb820eadc9">mHeight</a></td></tr>
-<tr class="separator:a289da91e2952c726422d9abb820eadc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -162,15 +150,15 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a480848015d1093836744ae82d042382b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5afe596c5572580fa7ea2a43c09589e8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a5afe596c5572580fa7ea2a43c09589e8">mMousegrab</a></td></tr>
 <tr class="separator:a5afe596c5572580fa7ea2a43c09589e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae051cb211e2b89b601db53cc164b2cf6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ae051cb211e2b89b601db53cc164b2cf6">mFontInit</a></td></tr>
-<tr class="separator:ae051cb211e2b89b601db53cc164b2cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fd2e22d78167c75f7cb7576f654834f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a7fd2e22d78167c75f7cb7576f654834f">mFontName</a></td></tr>
-<tr class="separator:a7fd2e22d78167c75f7cb7576f654834f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b32fc015f41b1dab7d48aa617c1bfa1"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a5b32fc015f41b1dab7d48aa617c1bfa1">mWidth</a></td></tr>
+<tr class="separator:a5b32fc015f41b1dab7d48aa617c1bfa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a289da91e2952c726422d9abb820eadc9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a289da91e2952c726422d9abb820eadc9">mHeight</a></td></tr>
+<tr class="separator:a289da91e2952c726422d9abb820eadc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Windowing interface. </p>
 
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00028">28</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
+<p>Definition at line <a class="el" href="_window_8h_source.html#l00016">16</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a245d821e6016fa1f6970ccbbedd635f6"></a>
 <div class="memitem">
@@ -195,7 +183,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Deconstructs an object of <a class="el" href="class_window.html" title="Windowing interface. ">Window</a>. </p>
 
-<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00022">22</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00017">17</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
 
 </div>
 </div>
@@ -226,66 +214,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a92440ad4e7cb868c534fab1928931b42"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Window::drawText </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>scale</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&#160;</td>
-          <td class="paramname"><em>color</em>[4], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="class_window_s_d_l.html#a753ae3aacf3b8ca9dbe7d31bb539ea8e">WindowSDL</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ad0e10dbad80b888d431459e0fa772266"></a>
 <div class="memitem">
 <div class="memproto">
@@ -311,6 +239,56 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a7551e3521743ba1201d0fad2c726dd3c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Window::getHeight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00026">26</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6f714e1f40bf559bf1af47c2b0524912"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Window::getWidth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00022">22</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a21e2c2c52367bcb4c6293e3573c88b9a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -332,7 +310,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00116">116</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00129">129</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
 
 </div>
 </div>
@@ -357,7 +335,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00141">141</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00154">154</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
 
 </div>
 </div>
@@ -386,31 +364,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a42c583ab00adc8f456352175c079ff76"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual int Window::initializeFont </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="class_window_s_d_l.html#a77bbf4755c3e610a63f90f939a6ad0b4">WindowSDL</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a3fd6d468af769ced9b67cd94843f7ee6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -433,7 +386,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>MultiTexture flag </dd></dl>
 
-<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00025">25</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00038">38</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
 
 </div>
 </div>
@@ -458,11 +411,11 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00098">98</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00111">111</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8f4bbc3d23c5f8b3bf0146cb9f4fe37a"></a>
+<a class="anchor" id="af7fd0604bb76a1bfde32972b3cd7a96f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -470,7 +423,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Window::setDriver </td>
+          <td class="memname">void Window::setDriver </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>driver</em></td><td>)</td>
@@ -479,38 +432,12 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_window_s_d_l.html#ae68759760c8de709e66bf2e164d06b40">WindowSDL</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa62e0e04596cbae0fcde9fad0eb35377"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Window::setFont </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>font</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="class_window_s_d_l.html#acd6e530405b9d391013de80e895aa4b1">WindowSDL</a>.</p>
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00030">30</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
 
 </div>
 </div>
@@ -653,32 +580,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a25c0997b91f7e47f22e42178cc696b90"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Window::writeString </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_window_8h.html#struct_window_string">WindowString</a> *&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="class_window_s_d_l.html#ac8a301a4c042af85afe6e977d649d451">WindowSDL</a>.</p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a7323318e37bdf17808309a9bb00b502b"></a>
 <div class="memitem">
@@ -698,51 +599,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00077">77</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae051cb211e2b89b601db53cc164b2cf6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Window::mFontInit</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00081">81</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7fd2e22d78167c75f7cb7576f654834f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* Window::mFontName</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00082">82</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
+<p>Definition at line <a class="el" href="_window_8h_source.html#l00056">56</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
 
 </div>
 </div>
@@ -764,21 +621,29 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00078">78</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
+<p>Definition at line <a class="el" href="_window_8h_source.html#l00057">57</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a289da91e2952c726422d9abb820eadc9"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">unsigned int Window::mHeight</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00073">73</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
+<p>Definition at line <a class="el" href="_window_8h_source.html#l00060">60</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
 
 </div>
 </div>
@@ -800,7 +665,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00076">76</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
+<p>Definition at line <a class="el" href="_window_8h_source.html#l00055">55</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
 
 </div>
 </div>
@@ -822,22 +687,29 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00079">79</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
+<p>Definition at line <a class="el" href="_window_8h_source.html#l00058">58</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a5b32fc015f41b1dab7d48aa617c1bfa1"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">unsigned int Window::mWidth</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000016">FIXME:</a></b></dt><dd>should be private </dd></dl>
 
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00072">72</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
+<p>Definition at line <a class="el" href="_window_8h_source.html#l00059">59</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
 
 </div>
 </div>

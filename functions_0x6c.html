@@ -193,9 +193,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>LarsonStates
 : <a class="el" href="_tomb_raider1_8h.html#ab38883b94ca9b33319364e7d4264f159">TombRaider1</a>
 </li>
-<li>lastTime
-: <a class="el" href="class_skeletal_model.html#a83af814667570bc4ad3b81c0c087eea3">SkeletalModel</a>
-</li>
 <li>layerBoundingBoxX1
 : <a class="el" href="_tomb_raider_data_8h.html#aab1955f3b53c748594bc156eb7ff33bb">tr5_room_layer_t</a>
 </li>
@@ -229,6 +226,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>length
 : <a class="el" href="_tomb_raider_data_8h.html#a9e03e81caadac2cbf251ab4f90b3f3fc">tr4_room_light_t</a>
 </li>
+<li>Light()
+: <a class="el" href="class_light.html#aa8d943f0be883ca2079f36c296938ba3">Light</a>
+</li>
 <li>light_mode
 : <a class="el" href="_tomb_raider_data_8h.html#a6802b0a4b95b257b8abfc4c320ba14bb">tr2_room_t</a>
 </li>
@@ -243,19 +243,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="_tomb_raider_data_8h.html#aa6f9cbf78b32e3bea478a2514222c4e4">tr2_vertex_room_t</a>
 </li>
 <li>lights
-: <a class="el" href="class_render_room.html#a19bc9a72cc7c7f928362ddbebadc47b3">RenderRoom</a>
+: <a class="el" href="class_room.html#a802562aae17af36bc16310e96d626be5">Room</a>
 , <a class="el" href="_tomb_raider_data_8h.html#a2e55f229831c32e781f0c718c3163de7">tr2_room_t</a>
 , <a class="el" href="_tomb_raider_data_8h.html#add9093a3d152d4a34bc5344e8d0b444f">tr5_room_t</a>
 </li>
 <li>lightSize
 : <a class="el" href="_tomb_raider_data_8h.html#a6b1c22170e40d52219d3bb676b5234c0">tr5_room_t</a>
 </li>
-<li>LightType
-: <a class="el" href="_render_8h.html#a661d9480e01af8b1612860b9630ef5f8">Light</a>
-</li>
 <li>lightType
 : <a class="el" href="_tomb_raider_data_8h.html#a0526760fda4fdf41209a604fa8189d9b">tr4_room_light_t</a>
 , <a class="el" href="_tomb_raider_data_8h.html#a5102fdd85e920b2bbacc16a96de596a0">tr5_light_t</a>
+</li>
+<li>LightType
+: <a class="el" href="class_light.html#a661d9480e01af8b1612860b9630ef5f8">Light</a>
 </li>
 <li>LionFemale
 : <a class="el" href="_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905ea018fd37d4e51780f7707bf6b69eb4882">TombRaider1</a>
@@ -288,20 +288,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="_tomb_raider1_8h.html#a9f6481efcb73c8a2bc8efefa8b1a5f6f">TombRaider1</a>
 </li>
 <li>listenAt()
-: <a class="el" href="class_sound_a_l.html#a6f23921e7d7a623dd27e53200e77f476">SoundAL</a>
-, <a class="el" href="class_sound.html#a808def7ad968ec06c474548da11a5ab8">Sound</a>
+: <a class="el" href="class_sound.html#a808def7ad968ec06c474548da11a5ab8">Sound</a>
+, <a class="el" href="class_sound_null.html#a9240d38023b5bd1dddcf7fab2ef3cfb2">SoundNull</a>
+, <a class="el" href="class_sound_a_l.html#a6f23921e7d7a623dd27e53200e77f476">SoundAL</a>
 </li>
 <li>Load()
 : <a class="el" href="class_tomb_raider.html#ab6d57a2a31e0886aa6e7dfe68398475e">TombRaider</a>
 </li>
 <li>loadBuffer()
-: <a class="el" href="class_texture.html#a3d40bbf05574035fb8c2093fca3a6ee7">Texture</a>
+: <a class="el" href="class_texture_manager.html#ae9d8698e037f611dd77d3047e5620fe6">TextureManager</a>
 </li>
 <li>loadBufferSlot()
-: <a class="el" href="class_texture.html#a1ef7fdf1e3ac760512b1e30b623ae608">Texture</a>
+: <a class="el" href="class_texture_manager.html#a8ef6554e38925268a65a520195096315">TextureManager</a>
 </li>
 <li>loadColorTexture()
-: <a class="el" href="class_texture.html#a18fd6e2d8ca4f854652c9f437b7a9961">Texture</a>
+: <a class="el" href="class_texture_manager.html#a98d1f9b00667a093c140d7978cd83c4d">TextureManager</a>
 </li>
 <li>loadConfig()
 : <a class="el" href="class_open_raider.html#a0cfe65052ed788d515b9684a7698c56c">OpenRaider</a>
@@ -309,8 +310,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>loadLevel()
 : <a class="el" href="class_game.html#a864d3ae5a554c8857118c48253ef7646">Game</a>
 </li>
+<li>loadLPS()
+: <a class="el" href="class_font_t_r_l_e.html#a26354f0a4649332e9e97a40c6fcc1fe7">FontTRLE</a>
+</li>
 <li>loadPakFolderRecursive()
 : <a class="el" href="class_menu.html#abc3c315c0ccc9449e9b13865dd291bdb">Menu</a>
+</li>
+<li>loadPCX()
+: <a class="el" href="class_texture_manager.html#aaecdd8e792f87f575ebce8c7f6175514">TextureManager</a>
 </li>
 <li>loadSFX()
 : <a class="el" href="class_tomb_raider.html#a3299f360388f4693dcdf0dddac9866af">TombRaider</a>
@@ -319,7 +326,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_render.html#a80a30c019161874ab29869e786d984c9">Render</a>
 </li>
 <li>loadTGA()
-: <a class="el" href="class_texture.html#a5bcfb2bb4c1a318217a42a30286f8315">Texture</a>
+: <a class="el" href="class_texture_manager.html#a2397216f8a31f900690555ec003ab32a">TextureManager</a>
 </li>
 <li>loadTR5()
 : <a class="el" href="class_tomb_raider.html#a5c0b1eeab5c4789c4995056d364a6be2">TombRaider</a>

@@ -1,27 +1,29 @@
 <map id="src/Menu.cpp" name="src/Menu.cpp">
-<area shape="rect" id="node7" href="$global_8h.html" title="Global typedefs. " alt="" coords="1181,379,1248,405"/>
-<area shape="rect" id="node8" href="$main_8h.html" title="Service locator. " alt="" coords="877,80,936,107"/>
-<area shape="rect" id="node35" href="$_menu_8h.html" title="Menu &#39;overlay&#39;. " alt="" coords="1404,229,1468,256"/>
-<area shape="rect" id="node38" href="$strings_8h.html" title="String handling utilities. " alt="" coords="1528,80,1621,107"/>
-<area shape="rect" id="node9" href="$_camera_8h.html" title="Camera class. " alt="" coords="94,379,173,405"/>
-<area shape="rect" id="node14" href="$_console_8h.html" title="Console &#39;overlay&#39;. " alt="" coords="1250,229,1329,256"/>
-<area shape="rect" id="node17" href="$_window_8h.html" title="Windowing interface. " alt="" coords="1383,304,1462,331"/>
-<area shape="rect" id="node19" href="$_game_8h.html" title="Game abstraction. " alt="" coords="867,229,935,256"/>
-<area shape="rect" id="node20" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="574,304,647,331"/>
-<area shape="rect" id="node22" href="$_world_8h.html" title="The game world (model) " alt="" coords="736,379,800,405"/>
-<area shape="rect" id="node36" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="970,155,1073,181"/>
-<area shape="rect" id="node37" href="$_sound_8h.html" title="This is the audio manager Header. " alt="" coords="963,229,1032,256"/>
-<area shape="rect" id="node10" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="369,603,461,629"/>
-<area shape="rect" id="node11" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="173,453,272,480"/>
-<area shape="rect" id="node12" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="43,528,170,555"/>
-<area shape="rect" id="node13" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="194,528,307,555"/>
-<area shape="rect" id="node32" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="871,304,972,331"/>
-<area shape="rect" id="node21" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="249,379,351,405"/>
-<area shape="rect" id="node24" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="522,528,633,555"/>
-<area shape="rect" id="node29" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="383,528,447,555"/>
-<area shape="rect" id="node30" href="$_texture_8h.html" title="Texture registry. " alt="" coords="375,379,449,405"/>
-<area shape="rect" id="node25" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="749,453,816,480"/>
-<area shape="rect" id="node27" href="$_sprite_8h.html" title="World Sprite. " alt="" coords="657,528,721,555"/>
-<area shape="rect" id="node28" href="$_world_data_8h.html" title="Structs and enums for the game world (model) " alt="" coords="531,453,624,480"/>
-<area shape="rect" id="node34" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="875,379,1005,405"/>
+<area shape="rect" id="node3" href="$global_8h.html" title="Global typedefs. " alt="" coords="795,80,862,107"/>
+<area shape="rect" id="node6" href="$_console_8h.html" title="Console &#39;overlay&#39;. " alt="" coords="1271,155,1349,181"/>
+<area shape="rect" id="node9" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="1043,80,1145,107"/>
+<area shape="rect" id="node37" href="$_menu_8h.html" title="Menu &#39;overlay&#39;. " alt="" coords="1182,155,1246,181"/>
+<area shape="rect" id="node39" href="$strings_8h.html" title="String handling utilities. " alt="" coords="1341,80,1434,107"/>
+<area shape="rect" id="node41" href="$_window_8h.html" title="Windowing interface. " alt="" coords="1479,80,1557,107"/>
+<area shape="rect" id="node12" href="$_font_8h.html" title="Font interface. " alt="" coords="1161,229,1217,256"/>
+<area shape="rect" id="node13" href="$_game_8h.html" title="Game abstraction. " alt="" coords="988,155,1056,181"/>
+<area shape="rect" id="node38" href="$_sound_8h.html" title="This is the audio manager Header. " alt="" coords="894,155,963,181"/>
+<area shape="rect" id="node14" href="$_camera_8h.html" title="Camera class. " alt="" coords="488,453,567,480"/>
+<area shape="rect" id="node18" href="$_entity_8h.html" title="World Entities. " alt="" coords="171,304,233,331"/>
+<area shape="rect" id="node20" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="153,453,254,480"/>
+<area shape="rect" id="node24" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="885,229,959,256"/>
+<area shape="rect" id="node34" href="$_world_8h.html" title="The game world (model) " alt="" coords="407,229,471,256"/>
+<area shape="rect" id="node15" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="487,603,579,629"/>
+<area shape="rect" id="node17" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="640,528,767,555"/>
+<area shape="rect" id="node19" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="147,379,257,405"/>
+<area shape="rect" id="node23" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="45,528,175,555"/>
+<area shape="rect" id="node25" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="590,304,657,331"/>
+<area shape="rect" id="node32" href="$_texture_manager_8h.html" title="Texture registry. " alt="" coords="860,304,984,331"/>
+<area shape="rect" id="node33" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="681,304,784,331"/>
+<area shape="rect" id="node26" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="501,528,565,555"/>
+<area shape="rect" id="node27" href="$_sprite_8h.html" title="World Sprite. " alt="" coords="282,379,346,405"/>
+<area shape="rect" id="node28" href="$_room_data_8h.html" title="World Room Mesh. " alt="" coords="693,379,788,405"/>
+<area shape="rect" id="node30" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="869,453,967,480"/>
+<area shape="rect" id="node31" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="843,528,956,555"/>
+<area shape="rect" id="node36" href="$_static_mesh_8h.html" title="Static Model Meshes. " alt="" coords="421,379,516,405"/>
 </map>

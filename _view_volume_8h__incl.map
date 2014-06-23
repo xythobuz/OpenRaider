@@ -1,6 +1,9 @@
 <map id="include/ViewVolume.h" name="include/ViewVolume.h">
-<area shape="rect" id="node2" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="36,80,135,107"/>
-<area shape="rect" id="node3" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="39,229,131,256"/>
-<area shape="rect" id="node4" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="22,155,149,181"/>
-<area shape="rect" id="node5" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="173,155,286,181"/>
+<area shape="rect" id="node2" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="184,155,282,181"/>
+<area shape="rect" id="node7" href="$_room_data_8h.html" title="World Room Mesh. " alt="" coords="312,80,407,107"/>
+<area shape="rect" id="node3" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="115,304,207,331"/>
+<area shape="rect" id="node5" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="26,229,152,256"/>
+<area shape="rect" id="node6" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="176,229,290,256"/>
+<area shape="rect" id="node10" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="536,155,637,181"/>
+<area shape="rect" id="node13" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="638,229,769,256"/>
 </map>

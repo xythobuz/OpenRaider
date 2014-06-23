@@ -1,19 +1,20 @@
 var searchData=
 [
-  ['pigtails',['pigtails',['../_skeletal_model_8h.html#aabaefe297f41f28a485ae6a36d5de35f',1,'skeletal_model_t']]],
-  ['pink',['PINK',['../global_8h.html#aac1687aa2e733566a4532bc79438d0a6',1,'global.h']]],
+  ['pigtails',['pigtails',['../class_skeletal_model.html#a6bde596fff239ed18d4fd9175971686f',1,'SkeletalModel']]],
+  ['pink',['PINK',['../global_8h.html#a4ce80fe7a0a594b513354520b490bbce',1,'global.h']]],
   ['polyoffset',['polyOffset',['../_tomb_raider_data_8h.html#af1e9edd84f77727d2af22a4bd504c103',1,'tr5_room_t']]],
   ['polyoffset2',['polyOffset2',['../_tomb_raider_data_8h.html#a832a8435b6563a2585b9d305f20abe58',1,'tr5_room_t']]],
-  ['ponyoff',['ponyOff',['../_skeletal_model_8h.html#ad52803a0584a9ffefa6451f26381fb4c',1,'skeletal_model_t']]],
-  ['ponyoff2',['ponyOff2',['../_skeletal_model_8h.html#a62580c65f1900893e4ed01d602780406',1,'skeletal_model_t']]],
-  ['ponytail',['ponytail',['../_skeletal_model_8h.html#ae27996c3773eb467454816f16aea4040',1,'skeletal_model_t']]],
-  ['ponytailangle',['ponytailAngle',['../_skeletal_model_8h.html#afbeccaad7216d9bbf5d5701087825af9',1,'skeletal_model_t']]],
-  ['ponytailid',['ponytailId',['../_skeletal_model_8h.html#a7ebc557b6be6928113ebac604df10b73',1,'skeletal_model_t']]],
-  ['ponytailmeshid',['ponytailMeshId',['../_skeletal_model_8h.html#af0dfcf0d37e7d781f95611232eeadead',1,'skeletal_model_t']]],
-  ['ponytailnummeshes',['ponytailNumMeshes',['../_skeletal_model_8h.html#a383127cc96e3d969fab60807b187a88d',1,'skeletal_model_t']]],
-  ['portals',['portals',['../class_room.html#a2a51069387e7c94eb1a39b517984d423',1,'Room::portals()'],['../_tomb_raider_data_8h.html#ac55a55b655766129bb6aab2ce95e6118',1,'tr2_room_t::portals()'],['../_world_data_8h.html#aee51855e20cbc0cbb2b70f46b92ef443',1,'room_mesh_t::portals()']]],
-  ['pos',['pos',['../class_static_model.html#aaba94527945f63639b5195e63fae2e72',1,'StaticModel::pos()'],['../class_room.html#a27956d38894f74da09c9578d8c5cfd6d',1,'Room::pos()'],['../_skeletal_model_8h.html#aa07692319f10cebf0a93780290ec2d56',1,'bone_frame_t::pos()'],['../class_sprite.html#aaefb1bfa00e84522f97a879ff2890e64',1,'Sprite::pos()'],['../_tomb_raider_data_8h.html#a7bf6a556e120134e4047abc253320674',1,'tr4_extra_camera_t::pos()'],['../_world_data_8h.html#aec9d4bce03c45fc6695d07ca22cfdf91',1,'vertex_t::pos()'],['../_world_data_8h.html#a905946312063dbd0d801df021d971bd5',1,'sprite_t::pos()'],['../_world_data_8h.html#a05036f7dfb282af2e734baa1a1a52a83',1,'entity_t::pos()'],['../_world_data_8h.html#aa79540d16b72719638270e0700cd353f',1,'static_model_t::pos()'],['../_world_data_8h.html#afa851396bf3cbad7dd60ac8f7bca913c',1,'room_mesh_t::pos()']]],
+  ['ponyoff',['ponyOff',['../class_skeletal_model.html#ae1e614141cb46d89df50f14b700c6857',1,'SkeletalModel']]],
+  ['ponyoff2',['ponyOff2',['../class_skeletal_model.html#af98d1b88569a416b310648207d606248',1,'SkeletalModel']]],
+  ['ponytail',['ponytail',['../class_skeletal_model.html#ae4a38d51f4af4f1367f53fbb127fa5b4',1,'SkeletalModel']]],
+  ['ponytailangle',['ponytailAngle',['../class_skeletal_model.html#aede706b1410c131f11ae3722f6349c79',1,'SkeletalModel']]],
+  ['ponytailid',['ponytailId',['../class_skeletal_model.html#adc6117e8e5158e2d18967401c18c5a27',1,'SkeletalModel']]],
+  ['ponytailmeshid',['ponytailMeshId',['../class_skeletal_model.html#a1fbb264f20034f90f6992ea913ea463a',1,'SkeletalModel']]],
+  ['ponytailnummeshes',['ponytailNumMeshes',['../class_skeletal_model.html#af6b39945df1cba3dfb28c699d3b2579b',1,'SkeletalModel']]],
+  ['portals',['portals',['../class_room.html#a2a51069387e7c94eb1a39b517984d423',1,'Room::portals()'],['../_tomb_raider_data_8h.html#ac55a55b655766129bb6aab2ce95e6118',1,'tr2_room_t::portals()']]],
+  ['pos',['pos',['../class_entity.html#a8ce31ff24a0a8c84c09d062cc34d7564',1,'Entity::pos()'],['../class_room.html#a27956d38894f74da09c9578d8c5cfd6d',1,'Room::pos()'],['../class_light.html#a9f55badeb02e47b983acfc61d130623d',1,'Light::pos()'],['../class_static_model.html#aaba94527945f63639b5195e63fae2e72',1,'StaticModel::pos()'],['../class_bone_frame.html#a6c5b172b6877c158c11768c9e61e0c9a',1,'BoneFrame::pos()'],['../class_sprite.html#aaefb1bfa00e84522f97a879ff2890e64',1,'Sprite::pos()'],['../_tomb_raider_data_8h.html#a7bf6a556e120134e4047abc253320674',1,'tr4_extra_camera_t::pos()']]],
   ['posx',['posx',['../_tomb_raider_data_8h.html#a65fe16d2fd05710a93dd96e081d962a8',1,'tr2_cinematic_frame_t']]],
   ['posy',['posy',['../_tomb_raider_data_8h.html#a28474e07dd98862a24a77963201aa392',1,'tr2_cinematic_frame_t']]],
-  ['posz',['posz',['../_tomb_raider_data_8h.html#a94b8bcec216f0541a534b66d699daeab',1,'tr2_cinematic_frame_t']]]
+  ['posz',['posz',['../_tomb_raider_data_8h.html#a94b8bcec216f0541a534b66d699daeab',1,'tr2_cinematic_frame_t']]],
+  ['purple',['PURPLE',['../global_8h.html#a6cc1b52e7ac5d640fe6a5054ce503e14',1,'global.h']]]
 ];
