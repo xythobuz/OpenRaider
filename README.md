@@ -35,6 +35,7 @@ Basically, OpenRaider depends on the following:
 * zlib
 * cmake as build system
 * libpng (optional)
+* C++11 compiler
 
 On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 

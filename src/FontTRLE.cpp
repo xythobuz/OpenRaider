@@ -22,8 +22,6 @@ FontTRLE::~FontTRLE() {
 }
 
 int FontTRLE::initialize() {
-    //! \todo Font coloring not working when .pc has color?!?!
-
     assert(mFontInit == false);
     assert(mFontName != NULL);
     assert(mFontName[0] != '\0');
