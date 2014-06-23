@@ -50,10 +50,10 @@ void FontSDL::writeString(FontString &s) {
     assert(s.text != NULL);
 
     SDL_Color color;
-    color.r = (unsigned char)(s.color[0] * 255.0f);
-    color.g = (unsigned char)(s.color[1] * 255.0f);
-    color.b = (unsigned char)(s.color[2] * 255.0f);
-    color.a = (unsigned char)(s.color[3] * 255.0f);
+    color.r = s.color[0];
+    color.g = s.color[1];
+    color.b = s.color[2];
+    color.a = s.color[3];
 
     SDL_Surface *surface = TTF_RenderUTF8_Blended(mFont, s.text, color);
     if (surface == NULL) {
@@ -87,7 +87,7 @@ void FontSDL::writeString(FontString &s) {
     GLuint xMax = xMin + s.w;
     GLuint yMax = yMin + s.h;
 
-    glColor4f(color.r / 256.0f, color.g / 256.0f, color.b / 256.0f, color.a / 256.0f);
+    glColor4ubv(s.color);
 
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f);

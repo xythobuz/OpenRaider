@@ -21,8 +21,6 @@
 TextureManager::TextureManager() {
     mTextureIds = NULL;
     mFlags = 0;
-    mTextureId = -1;
-    mTextureId2 = -1;
     mTextureCount = 0;
     mTextureLimit = 0;
 }
@@ -33,21 +31,17 @@ TextureManager::~TextureManager() {
 
 unsigned char *TextureManager::generateColorTexture(unsigned char rgba[4],
         unsigned int width, unsigned int height) {
-    unsigned char *image;
-    unsigned int i, size;
-
     assert(rgba != NULL);
     assert(width > 0);
     assert(height > 0);
 
-    image = new unsigned char[height*width*4];
+    unsigned char *image = new unsigned char[height * width * 4];
 
-    for (i = 0, size = width*height; i < size; ++i) {
-        /* RBGA */
-        image[i*4]   = rgba[0];
-        image[i*4+1] = rgba[1];
-        image[i*4+2] = rgba[2];
-        image[i*4+3] = rgba[3];
+    for (unsigned int i = 0; i < (width * height); i++) {
+        image[i * 4] = rgba[0];
+        image[(i * 4) + 1] = rgba[1];
+        image[(i * 4) + 2] = rgba[2];
+        image[(i * 4) + 3] = rgba[3];
     }
 
     return image;
@@ -55,15 +49,12 @@ unsigned char *TextureManager::generateColorTexture(unsigned char rgba[4],
 
 int TextureManager::loadColorTexture(unsigned char rgba[4],
         unsigned int width, unsigned int height) {
-    unsigned char *image;
-    int id;
-
     assert(rgba != NULL);
     assert(width > 0);
     assert(height > 0);
 
-    image = generateColorTexture(rgba, width, height);
-    id = loadBuffer(image, width, height, RGBA, 32);
+    unsigned char *image = generateColorTexture(rgba, width, height);
+    int id = loadBuffer(image, width, height, RGBA, 32);
     delete [] image;
 
     return id;
@@ -89,9 +80,7 @@ void TextureManager::reset() {
 }
 
 void TextureManager::disableMultiTexture() {
-    mFlags ^= fUseMultiTexture;
-    mTextureId = -1;
-    mTextureId2 = -1;
+    mFlags &= ~fUseMultiTexture;
 
     glDisable(GL_TEXTURE_2D);
     glActiveTextureARB(GL_TEXTURE0_ARB);
@@ -106,23 +95,17 @@ void TextureManager::useMultiTexture(float aU, float aV, float bU, float bV) {
 }
 
 void TextureManager::useMultiTexture(float u, float v) {
-    if (!(mFlags & fUseMultiTexture))
-        return;
-
-    glMultiTexCoord2fARB(GL_TEXTURE0_ARB, u, v);
-    glMultiTexCoord2fARB(GL_TEXTURE1_ARB, u, v);
+    useMultiTexture(u, v, u, v);
 }
 
 void TextureManager::bindMultiTexture(int texture0, int texture1) {
     assert(mTextureIds != NULL);
     assert(texture0 >= 0);
-    assert((unsigned int)texture0 <= mTextureCount);
     assert(texture1 >= 0);
+    assert((unsigned int)texture0 <= mTextureCount);
     assert((unsigned int)texture1 <= mTextureCount);
 
     mFlags |= fUseMultiTexture;
-    mTextureId  = texture0;
-    mTextureId2 = texture1;
 
     glActiveTextureARB(GL_TEXTURE0_ARB);
     glEnable(GL_TEXTURE_2D);
@@ -134,12 +117,8 @@ void TextureManager::bindMultiTexture(int texture0, int texture1) {
 }
 
 void TextureManager::setMaxTextureCount(unsigned int n) {
-    assert(n > 0);
-
     mTextureLimit = n;
-
     mTextureIds = new unsigned int[n];
-
     glGenTextures(n, mTextureIds);
 }
 
@@ -274,8 +253,6 @@ void TextureManager::bindTextureId(unsigned int n) {
     assert(mTextureIds != NULL);
     assert(n <= mTextureCount);
 
-    mTextureId = n;
-
     glEnable(GL_TEXTURE_2D);
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
@@ -283,11 +260,15 @@ void TextureManager::bindTextureId(unsigned int n) {
 }
 
 int TextureManager::loadPCX(const char *filename) {
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
+
     unsigned char *image;
     unsigned int w, h, bpp;
     ColorMode c;
     int id = -1;
     int error = pcxLoad(filename, &image, &w, &h, &c, &bpp);
+
     if (error == 0) {
         unsigned char *image2 = scaleBuffer(image, &w, &h, bpp);
         if (image2) {
@@ -297,18 +278,19 @@ int TextureManager::loadPCX(const char *filename) {
         id = loadBuffer(image, w, h, c, bpp);
         delete [] image;
     }
+
     return id;
 }
 
 int TextureManager::loadTGA(const char *filename) {
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
+
     unsigned char *image = NULL;
     unsigned char *image2 = NULL;
     unsigned int w, h;
     char type;
     int id = -1;
-
-    assert(filename != NULL);
-    assert(filename[0] != '\0');
 
     if (!tgaCheck(filename)) {
         tgaLoad(filename, &image, &w, &h, &type);

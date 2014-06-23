@@ -81,7 +81,7 @@ void Render::loadTexture(unsigned char *image,
         unsigned int width, unsigned int height,
         unsigned int id)
 {
-    glColor3fv(WHITE);
+    glColor3ubv(WHITE);
     mTexture.loadBufferSlot(image, width, height, TextureManager::RGBA, 32, id);
 }
 
@@ -169,11 +169,22 @@ void setLighting(bool on)
 {
     if (on)
     {
+        float color[4];
+        color[0] = WHITE[0] * 256.0f;
+        color[1] = WHITE[1] * 256.0f;
+        color[2] = WHITE[2] * 256.0f;
+        color[3] = WHITE[3] * 256.0f;
+
         glEnable(GL_LIGHTING);
         glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 0);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, WHITE);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, WHITE);
-        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, DIM_WHITE);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, color);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, color);
+
+        color[0] = GREY[0] * 256.0f;
+        color[1] = GREY[1] * 256.0f;
+        color[2] = GREY[2] * 256.0f;
+        color[3] = GREY[3] * 256.0f;
+        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, color);
     }
     else
     {
@@ -249,7 +260,13 @@ void Render::setFlags(unsigned int flags)
         glFogf(GL_FOG_DENSITY, 0.00008f);
         glFogf(GL_FOG_START, 30000.0f);
         glFogf(GL_FOG_END, 50000.0f);
-        glFogfv(GL_FOG_COLOR, BLACK);
+
+        float color[4];
+        color[0] = BLACK[0] * 256.0f;
+        color[1] = BLACK[1] * 256.0f;
+        color[2] = BLACK[2] * 256.0f;
+        color[3] = BLACK[3] * 256.0f;
+        glFogfv(GL_FOG_COLOR, color);
     }
 
     if (flags & Render::fGL_Lights)
@@ -275,8 +292,8 @@ void Render::setMode(int n)
             break;
         case Render::modeSolid:
         case Render::modeWireframe:
-            glClearColor(NEXT_PURPLE[0], NEXT_PURPLE[1],
-                    NEXT_PURPLE[2], NEXT_PURPLE[3]);
+            glClearColor(PURPLE[0] * 256.0f, PURPLE[1] * 256.0f,
+                    PURPLE[2] * 256.0f, PURPLE[3] * 256.0f);
             glDisable(GL_TEXTURE_2D);
             break;
         default:
@@ -412,7 +429,7 @@ void Render::display()
     updateViewVolume();
 
     // Render world
-    glColor3fv(DIM_WHITE); // was WHITE
+    glColor3ubv(GREY); // was WHITE
     drawSkyMesh(96.0);
 
     // Figure out how much of the map to render
@@ -507,7 +524,7 @@ void Render::drawLoadScreen()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    glColor3fv(WHITE);
+    glColor3ubv(WHITE);
 
     if (mFlags & Render::fGL_Lights)
         glDisable(GL_LIGHTING);
@@ -691,7 +708,7 @@ bool Render::isVisible(float x, float y, float z)
     if (mMode == Render::modeWireframe)
     {
         glPointSize(5.0);
-        glColor3fv(PINK);
+        glColor3ubv(PINK);
         glBegin(GL_POINTS);
         glVertex3f(x, y, z);
         glEnd();
@@ -707,7 +724,7 @@ bool Render::isVisible(float x, float y, float z, float radius)
     if (mMode == Render::modeWireframe)
     {
         glPointSize(5.0);
-        glColor3fv(PINK);
+        glColor3ubv(PINK);
         glBegin(GL_POINTS);
         glVertex3f(x, y, z);
         glEnd();

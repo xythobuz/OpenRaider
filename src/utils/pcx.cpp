@@ -13,12 +13,8 @@
 #include "global.h"
 #include "utils/pcx.h"
 
-#ifdef DEBUG
 #include "Console.h"
 #define pcxPrint getConsole().print
-#else
-void pcxPrint(...) { }
-#endif
 
 int pcxCheck(const char *filename) {
     assert(filename != NULL);

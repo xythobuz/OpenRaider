@@ -19,7 +19,7 @@ public:
     BoundingBox();
     void getBoundingBox(vec3_t box[2]);
     void setBoundingBox(vec3_t min, vec3_t max);
-    void display(bool points, const vec4_t c1, const vec4_t c2);
+    void display(bool points, const unsigned char c1[4], const unsigned char c2[4]);
     bool inBox(vec_t x, vec_t y, vec_t z);
     bool inBoxPlane(vec_t x, vec_t z);
 

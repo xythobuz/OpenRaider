@@ -123,7 +123,7 @@ void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, FontString &s) 
 
     // draw
     glBindTexture(GL_TEXTURE_2D, mFontTexture);
-    glColor4f(s.color[0], s.color[1], s.color[2], s.color[3]);
+    glColor4f(s.color[0] * 256.0f, s.color[1] * 256.0f, s.color[2] * 256.0f, s.color[3] * 256.0f);
     glBegin(GL_QUADS);
     glTexCoord2f(txMin, tyMin);
     glVertex2i(xMin, yMin);

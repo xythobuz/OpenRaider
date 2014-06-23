@@ -22,7 +22,7 @@ void Font::setFont(const char *font) {
     mFontName = fullPath(font, 0);
 }
 
-void Font::drawText(unsigned int x, unsigned int y, float scale, const float color[4], const char *s, ...) {
+void Font::drawText(unsigned int x, unsigned int y, float scale, const unsigned char color[4], const char *s, ...) {
     FontString tempText;
     va_list args;
     va_start(args, s);

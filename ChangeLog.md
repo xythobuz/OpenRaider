@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140623 ]
+    * Use unsigned char instead of float for colors
+
     [ 20140622 ]
     * Wrote simple image reader/writer utilizing libpng
     * Created utils/pixels for pixel handling utilities

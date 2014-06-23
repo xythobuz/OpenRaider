@@ -101,7 +101,7 @@ void Console::display() {
             scrollIndicator = 100;
         }
 
-        getFont().drawText(10, 10, 0.70f, OR_BLUE,
+        getFont().drawText(10, 10, 0.70f, BLUE,
                 "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
 
         // Draw output log
@@ -116,14 +116,14 @@ void Console::display() {
         }
         for (int i = 0; i < end; i++) {
             getFont().drawText(10, ((i + drawOffset) * lineSteps) + firstLine,
-                    0.75f, OR_BLUE, "%s", mHistory[i + historyOffset - mLineOffset]);
+                    0.75f, BLUE, "%s", mHistory[i + historyOffset - mLineOffset]);
         }
 
         // Draw current input
         if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
-            getFont().drawText(10, inputLine, 0.75f, OR_BLUE, "> %s", mInputBuffer);
+            getFont().drawText(10, inputLine, 0.75f, BLUE, "> %s", mInputBuffer);
         } else {
-            getFont().drawText(10, inputLine, 0.75f, OR_BLUE, ">");
+            getFont().drawText(10, inputLine, 0.75f, BLUE, ">");
         }
 
         //! \todo display the current mPartialInput. The UTF-8 segfaults SDL-TTF, somehow?

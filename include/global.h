@@ -48,17 +48,17 @@
 #include <cassert>
 #endif
 
-// Colors used for Rendering
-const float BLACK[]       = {  0.0f,  0.0f,  0.0f, 1.0f };
-const float DIM_WHITE[]   = {  0.5f,  0.5f,  0.5f, 1.0f };
-const float WHITE[]       = {  1.0f,  1.0f,  1.0f, 1.0f };
-const float RED[]         = {  1.0f,  0.0f,  0.0f, 1.0f };
-const float GREEN[]       = {  0.0f,  1.0f,  0.0f, 1.0f };
-const float NEXT_PURPLE[] = {  0.3f,  0.3f,  0.5f, 1.0f };
-const float OR_BLUE[]     = {  0.5f,  0.7f,  1.0f, 1.0f };
-const float PINK[]        = {  1.0f,  0.0f,  1.0f, 1.0f };
-const float YELLOW[]      = {  1.0f,  1.0f,  0.0f, 1.0f };
-const float CYAN[]        = {  0.0f,  1.0f,  1.0f, 1.0f };
+// Colors used where ever needed
+const unsigned char BLACK[]  = {   0,   0,   0, 255 };
+const unsigned char GREY[]   = { 128, 128, 128, 255 };
+const unsigned char WHITE[]  = { 255, 255, 255, 255 };
+const unsigned char RED[]    = { 255,   0,   0, 255 };
+const unsigned char GREEN[]  = {   0, 255,   0, 255 };
+const unsigned char PURPLE[] = {  77,  77, 128, 255 };
+const unsigned char BLUE[]   = { 128, 179, 255, 255 };
+const unsigned char PINK[]   = { 255,   0, 255, 255 };
+const unsigned char YELLOW[] = { 255, 255,   0, 255 };
+const unsigned char CYAN[]   = {   0, 255, 255, 255 };
 
 // Actions that can be bound to a key and sent to the game engine
 typedef enum {

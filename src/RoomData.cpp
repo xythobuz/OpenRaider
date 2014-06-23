@@ -43,14 +43,14 @@ bool BoundingBox::inBoxPlane(vec_t x, vec_t z) {
             && (z > a[2]) && (z < b[2]));
 }
 
-void BoundingBox::display(bool points, const vec4_t c1, const vec4_t c2) {
+void BoundingBox::display(bool points, const unsigned char c1[4], const unsigned char c2[4]) {
     // Bind before entering now
     //glBindTexture(GL_TEXTURE_2D, 1);
     glPointSize(4.0);
     //glLineWidth(1.25);
 
     //! \fixme Need to make custom color key for this
-    glColor3fv(c1);
+    glColor3ubv(c1);
 
     glBegin(GL_POINTS);
     glVertex3f(b[0], b[1], b[2]);
@@ -68,7 +68,7 @@ void BoundingBox::display(bool points, const vec4_t c1, const vec4_t c2) {
 
     glEnd();
 
-    glColor3fv(c2);
+    glColor3ubv(c2);
 
     glBegin(GL_LINES);
     // max, top quad

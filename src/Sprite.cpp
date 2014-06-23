@@ -129,14 +129,14 @@ void Sprite::display() {
             glEnd();
             break;
         case Render::modeWireframe:
-            glColor3fv(CYAN);
+            glColor3ubv(CYAN);
             glBegin(GL_LINE_LOOP);
             glVertex3fv(vertex[0]);
             glVertex3fv(vertex[1]);
             glVertex3fv(vertex[2]);
             glVertex3fv(vertex[3]);
             glEnd();
-            glColor3fv(WHITE);
+            glColor3ubv(WHITE);
             break;
         default:
             glBindTexture(GL_TEXTURE_2D, texture+1);

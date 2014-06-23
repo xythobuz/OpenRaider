@@ -5,6 +5,7 @@
  * \author Mongoose
  * \author xythobuz
  */
+
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 

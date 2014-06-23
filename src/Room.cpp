@@ -461,7 +461,7 @@ void Room::display(bool alpha) {
 
     if ((!alpha) && getRender().getMode() == Render::modeWireframe) {
         glLineWidth(2.0);
-        glColor3fv(RED);
+        glColor3ubv(RED);
 
         for (unsigned int i = 0; i < sizePortals(); i++) {
             Portal &portal = getPortal(i);
@@ -486,7 +486,7 @@ void Room::display(bool alpha) {
     glTranslated(pos[0], pos[1], pos[2]);
 
     // Reset since GL_MODULATE used, reset to WHITE
-    glColor3fv(WHITE);
+    glColor3ubv(WHITE);
 
     switch (getRender().getMode())
     {

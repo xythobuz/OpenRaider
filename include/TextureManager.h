@@ -152,8 +152,6 @@ private:
     unsigned int mTextureCount; //!< Texture counter
     unsigned int mTextureLimit; //!< The texture limit
     unsigned int mFlags;        //!< Class options
-    int mTextureId;             //!< Currently bound texture id
-    int mTextureId2;            //!< Multitexture Texture Id
 };
 
 #endif

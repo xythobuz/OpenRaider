@@ -120,13 +120,13 @@ void OpenRaider::frame() {
 
     // Draw FPS counter
     if (mFPS)
-        getFont().drawText(10, getWindow().getHeight() - 20, 0.5f, OR_BLUE, "%dFPS", fps);
+        getFont().drawText(10, getWindow().getHeight() - 20, 0.5f, BLUE, "%dFPS", fps);
 
 #ifdef DEBUG
     // Draw debug infos
     if (getGame().isLoaded() && (!getMenu().isVisible())) {
         for (int i = 0; i < 3; i++) {
-            getFont().drawText(10, getWindow().getHeight() - ((4 - i) * 20), 0.5f, OR_BLUE, "%.2f (%.2f)",
+            getFont().drawText(10, getWindow().getHeight() - ((4 - i) * 20), 0.5f, BLUE, "%.2f (%.2f)",
                 getGame().getLara().getPos(i) / 256.0f, getGame().getLara().getAngle(i));
         }
     }

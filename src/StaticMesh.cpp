@@ -247,10 +247,10 @@ void StaticMesh::display() {
         //   return;
 
         //! \fixme 'AMBIENT' -- Mongoose 2002.01.08
-        glColor3fv(WHITE);
+        glColor3ubv(WHITE);
 
         if (getRender().getMode() == Render::modeWireframe)
-            glColor3fv(WHITE);
+            glColor3ubv(WHITE);
 
         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
         glBindTexture(GL_TEXTURE_2D, 1);  // White texture for colors

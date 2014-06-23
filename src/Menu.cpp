@@ -30,10 +30,10 @@ Menu::Menu() {
     mMin = 0;
 
     mainText.text = bufferString(VERSION);
-    mainText.color[0] = OR_BLUE[0];
-    mainText.color[1] = OR_BLUE[1];
-    mainText.color[2] = OR_BLUE[2];
-    mainText.color[3] = OR_BLUE[3];
+    mainText.color[0] = BLUE[0];
+    mainText.color[1] = BLUE[1];
+    mainText.color[2] = BLUE[2];
+    mainText.color[3] = BLUE[3];
     mainText.scale = 1.2f;
     mainText.y = 10;
     mainText.w = 0;
@@ -194,7 +194,7 @@ void Menu::displayMapList() {
         if ((i + min) == (int)mCursor)
             getFont().drawText(25, 100 + (25 * i), 0.75f, RED, "%s", map);
         else
-            getFont().drawText(25, 100 + (25 * i), 0.75f, OR_BLUE, "%s", map);
+            getFont().drawText(25, 100 + (25 * i), 0.75f, BLUE, "%s", map);
     }
 }
 
@@ -212,7 +212,7 @@ void Menu::display() {
         getFont().writeString(mainText);
 
         if (!mMapListFilled) {
-            getFont().drawText(25, (getWindow().getHeight() / 2) - 20, 0.75f, OR_BLUE, "Generating map list...");
+            getFont().drawText(25, (getWindow().getHeight() / 2) - 20, 0.75f, BLUE, "Generating map list...");
         } else {
             if (mMapList.size() == 0) {
                 getFont().drawText(25, (getWindow().getHeight() / 2) - 20, 0.75f, RED, "No maps found! See README.md");

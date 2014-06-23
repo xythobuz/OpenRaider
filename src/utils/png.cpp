@@ -15,12 +15,8 @@
 #include "utils/pixel.h"
 #include "utils/png.h"
 
-#ifdef DEBUG
 #include "Console.h"
 #define pngPrint getConsole().print
-#else
-void pngPrint(...) { }
-#endif
 
 int pngCheck(const char *filename) {
     png_byte header[8];
