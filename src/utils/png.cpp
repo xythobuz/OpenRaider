@@ -101,9 +101,13 @@ int pngLoad(const char *filename, unsigned char **image, unsigned int *width, un
     png_read_info(png_ptr, info_ptr);
 
     int bit_depth, color_type;
+    png_uint_32 tmpWidth, tmpHeight;
 
-    png_get_IHDR(png_ptr, info_ptr, width, height, &bit_depth, &color_type,
+    png_get_IHDR(png_ptr, info_ptr, &tmpWidth, &tmpHeight, &bit_depth, &color_type,
             NULL, NULL, NULL);
+
+    *width = tmpWidth;
+    *height = tmpHeight;
 
     if (bit_depth != 8) {
         pngPrint("%s: Unsupported bit depth %d.  Must be 8.", filename, bit_depth);

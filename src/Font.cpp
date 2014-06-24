@@ -5,6 +5,9 @@
  * \author xythobuz
  */
 
+#include <stdio.h>
+#include <stdarg.h>
+
 #include "global.h"
 #include "utils/strings.h"
 #include "Font.h"

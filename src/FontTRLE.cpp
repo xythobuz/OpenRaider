@@ -7,6 +7,7 @@
 
 #include <fstream>
 #include <sstream>
+#include <stdexcept>
 
 #include "global.h"
 #include "utils/strings.h"

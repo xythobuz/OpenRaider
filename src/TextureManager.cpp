@@ -29,7 +29,7 @@ TextureManager::~TextureManager() {
     reset();
 }
 
-unsigned char *TextureManager::generateColorTexture(unsigned char rgba[4],
+unsigned char *TextureManager::generateColorTexture(const unsigned char rgba[4],
         unsigned int width, unsigned int height) {
     assert(rgba != NULL);
     assert(width > 0);
@@ -47,7 +47,7 @@ unsigned char *TextureManager::generateColorTexture(unsigned char rgba[4],
     return image;
 }
 
-int TextureManager::loadColorTexture(unsigned char rgba[4],
+int TextureManager::loadColorTexture(const unsigned char rgba[4],
         unsigned int width, unsigned int height) {
     assert(rgba != NULL);
     assert(width > 0);
@@ -228,21 +228,12 @@ int TextureManager::loadBufferSlot(unsigned char *image,
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-    if (mFlags & fUseMipmaps) {
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-                GL_NEAREST_MIPMAP_LINEAR);
-        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-                GL_LINEAR_MIPMAP_LINEAR);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
-        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-        glTexImage2D(GL_TEXTURE_2D, 0, bytes, width, height, 0, glcMode, GL_UNSIGNED_BYTE, image);
-    } else {
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-        glTexImage2D(GL_TEXTURE_2D, 0, glcMode, width, height, 0,
-                glcMode, GL_UNSIGNED_BYTE, image);
-    }
+    glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+    glTexImage2D(GL_TEXTURE_2D, 0, bytes, width, height, 0, glcMode, GL_UNSIGNED_BYTE, image);
 
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 

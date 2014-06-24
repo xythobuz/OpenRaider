@@ -25,8 +25,7 @@ public:
     };
 
     enum TextureFlag {
-        fUseMipmaps      = (1 << 0),
-        fUseMultiTexture = (1 << 1),
+        fUseMultiTexture = (1 << 0),
     };
 
     /*!
@@ -51,7 +50,7 @@ public:
      * \param height height of newly allocated buffer, power of 2, pref same as width
      * \returns newly allocated texture buffer filled with specified color
      */
-    static unsigned char *generateColorTexture(unsigned char rgba[4],
+    static unsigned char *generateColorTexture(const unsigned char rgba[4],
                                                 unsigned int width,
                                                 unsigned int height);
 
@@ -117,7 +116,7 @@ public:
      * \param height height of new texture
      * \returns texture ID or -1 on error
      */
-    int loadColorTexture(unsigned char rgba[4],
+    int loadColorTexture(const unsigned char rgba[4],
                             unsigned int width, unsigned int height);
 
     /*!

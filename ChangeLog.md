@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140624 ]
+    * Some changes to allow compilation with Ubuntu 14.04 / gcc
+    * Modified utils/png to allow compilation with different integer sizes
+      Thanks to Christian for his help and his Linux machine :)
+    * Removed TextureManagers fUseMipmaps flag, now always used
+
     [ 20140623 ]
     * Use unsigned char instead of float for colors
 

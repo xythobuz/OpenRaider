@@ -89,20 +89,12 @@ void Render::loadTexture(unsigned char *image,
 int Render::initTextures(char *textureDir) {
     char *filename;
     unsigned int numTextures = 0;
-    unsigned char color[4];
 
     mTexture.reset();
     mTexture.setMaxTextureCount(128);  /* TR never needs more than 32 iirc
                                           However, color texturegen is a lot */
 
-    mTexture.setFlag(TextureManager::fUseMipmaps);
-
-    color[0] = 0xff;
-    color[1] = 0xff;
-    color[2] = 0xff;
-    color[3] = 0xff;
-
-    if (mTexture.loadColorTexture(color, 32, 32) > -1)
+    if (mTexture.loadColorTexture(WHITE, 32, 32) > -1)
         numTextures++;
 
     // Temporary
