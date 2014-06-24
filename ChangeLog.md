@@ -7,6 +7,8 @@
     * Modified utils/png to allow compilation with different integer sizes
       Thanks to Christian for his help and his Linux machine :)
     * Removed TextureManagers fUseMipmaps flag, now always used
+    * TextureManager now using vector for GL texture IDs
+    * TextureManager now global object, no longer part of Render
 
     [ 20140623 ]
     * Use unsigned char instead of float for colors

@@ -15,6 +15,7 @@
 #include "OpenRaider.h"
 #include "Sound.h"
 #include "StaticMesh.h"
+#include "TextureManager.h"
 #include "utils/strings.h"
 
 #include "games/TombRaider1.h"
@@ -45,8 +46,9 @@ unsigned int Game::getTextureOffset() {
 
 int Game::initialize() {
     // Enable Renderer
-    mTextureStart = getRender().initTextures(getOpenRaider().mDataDir);
     getRender().setMode(Render::modeLoadScreen);
+
+    mTextureStart = getTextureManager().getTextureCount();
 
     return 0;
 }
@@ -256,7 +258,8 @@ void Game::processTextures()
         mTombRaider.Texture(i, &image, &bumpmap);
 
         // Overwrite any previous level textures on load
-        getRender().loadTexture(image, 256, 256, (mTextureStart - 1) + i);
+        getTextureManager().loadBufferSlot(image, 256, 256,
+                TextureManager::RGBA, 32, (mTextureStart - 1) + i);
 
 #ifdef MULTITEXTURE
         gMapTex2Bump[(mTextureStart - 1) + i] = -1;
@@ -268,8 +271,9 @@ void Game::processTextures()
             gMapTex2Bump[(mTextureStart - 1) + i] = (mTextureStart - 1) + i +
                     mTombRaider.NumTextures();
 #endif
-            getRender().loadTexture(bumpmap, 256, 256, (mTextureStart - 1) + i +
-                    mTombRaider.NumTextures());
+            getTextureManager().loadBufferSlot(bumpmap, 256, 256,
+                    TextureManager::RGBA, 32,
+                    (mTextureStart - 1) + i + mTombRaider.NumTextures());
         }
 
         if (image)

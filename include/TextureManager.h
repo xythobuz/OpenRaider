@@ -9,6 +9,8 @@
 #ifndef _TEXTURE_MANAGER_H
 #define _TEXTURE_MANAGER_H
 
+#include <vector>
+
 /*!
  * \brief Texture registry
  */
@@ -43,16 +45,7 @@ public:
      */
     void reset();
 
-    /*!
-     * \brief Generates a texture buffer with (width * height * 4) bytes.
-     * \param rgba 32bpp RGBA color to fill into buffer
-     * \param width width of newly allocated buffer, power of 2, pref same as height
-     * \param height height of newly allocated buffer, power of 2, pref same as width
-     * \returns newly allocated texture buffer filled with specified color
-     */
-    static unsigned char *generateColorTexture(const unsigned char rgba[4],
-                                                unsigned int width,
-                                                unsigned int height);
+    int initialize();
 
     /*!
      * \brief Get number of textures in use
@@ -88,19 +81,6 @@ public:
      * \param height height of image
      * \param mode mode of image
      * \param bpp bits per pixel of image
-     * \returns texture ID or < 0 on error
-     */
-    int loadBuffer(unsigned char *image,
-                    unsigned int width, unsigned int height,
-                    ColorMode mode, unsigned int bpp);
-
-    /*!
-     * \brief Loads Buffer as texture
-     * \param image pixmap matching other params
-     * \param width width of image
-     * \param height height of image
-     * \param mode mode of image
-     * \param bpp bits per pixel of image
      * \param slot slot (ID) of image
      * \returns texture ID or < 0 on error
      */
@@ -108,16 +88,6 @@ public:
                         unsigned int width, unsigned int height,
                         ColorMode mode, unsigned int bpp,
                         unsigned int slot);
-
-    /*!
-     * \brief Generates and loads a solid color texture.
-     * \param rgba color for new texture
-     * \param width width of new texture
-     * \param height height of new texture
-     * \returns texture ID or -1 on error
-     */
-    int loadColorTexture(const unsigned char rgba[4],
-                            unsigned int width, unsigned int height);
 
     /*!
      * \brief Loads TGA file as texture
@@ -134,24 +104,14 @@ public:
      */
     void setFlag(TextureFlag flag);
 
-    /*!
-     * \brief Sets up GL texturing.
-     *
-     * Must be called as first setup step!
-     * \param n maximum number of textures you wish to allow
-     */
-    void setMaxTextureCount(unsigned int n);
-
-    void useMultiTexture(float u, float v);
-
     void useMultiTexture(float aU, float aV, float bU, float bV);
 
 private:
-    unsigned int *mTextureIds;  //!< GL texture list
-    unsigned int mTextureCount; //!< Texture counter
-    unsigned int mTextureLimit; //!< The texture limit
-    unsigned int mFlags;        //!< Class options
+    std::vector<unsigned int> mTextureIds;
+    unsigned int mFlags;
 };
+
+TextureManager &getTextureManager();
 
 #endif
 

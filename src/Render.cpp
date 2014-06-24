@@ -16,6 +16,7 @@
 #include "Game.h"
 #include "OpenRaider.h"
 #include "Render.h"
+#include "TextureManager.h"
 #include "utils/strings.h"
 #include "utils/tga.h"
 #include "Window.h"
@@ -74,44 +75,6 @@ void Render::screenShot(char *filenameBase)
 
 unsigned int Render::getFlags() {
     return mFlags;
-}
-
-
-void Render::loadTexture(unsigned char *image,
-        unsigned int width, unsigned int height,
-        unsigned int id)
-{
-    glColor3ubv(WHITE);
-    mTexture.loadBufferSlot(image, width, height, TextureManager::RGBA, 32, id);
-}
-
-
-int Render::initTextures(char *textureDir) {
-    char *filename;
-    unsigned int numTextures = 0;
-
-    mTexture.reset();
-    mTexture.setMaxTextureCount(128);  /* TR never needs more than 32 iirc
-                                          However, color texturegen is a lot */
-
-    if (mTexture.loadColorTexture(WHITE, 32, 32) > -1)
-        numTextures++;
-
-    // Temporary
-    filename = bufferString("%s/tr2/TITLE.PCX", getOpenRaider().mPakDir);
-    if (mTexture.loadPCX(filename) > -1) {
-        numTextures++;
-        delete [] filename;
-    } else {
-        delete [] filename;
-        //! \fixme Error Checking. Return negative error code, check in calling place too
-        filename = bufferString("%s/%s", textureDir, "splash.tga");
-        if (mTexture.loadTGA(filename) > -1)
-            numTextures++;
-        delete [] filename;
-    }
-
-    return numTextures;
 }
 
 
@@ -508,7 +471,7 @@ void Render::drawLoadScreen()
     float x = 0.0f, y = 0.0f, z = -160.0f;
     float w = getWindow().getWidth(), h = getWindow().getHeight();
 
-    if (mTexture.getTextureCount() <= 0)
+    if (getTextureManager().getTextureCount() <= 0)
         return;
 
     // Mongoose 2002.01.01, Rendered while game is loading...
@@ -525,7 +488,10 @@ void Render::drawLoadScreen()
     glTranslatef(0.0f, 0.0f, -2000.0f);
     glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
 
-    mTexture.bindTextureId(1); //! \fixme store texture id somewhere
+    if (getTextureManager().getTextureCount() < 2)
+        getTextureManager().bindTextureId(0); //! \fixme store texture id somewhere
+    else
+        getTextureManager().bindTextureId(1);
 
     glBegin(GL_TRIANGLE_STRIP);
     glTexCoord2f(1.0, 1.0);

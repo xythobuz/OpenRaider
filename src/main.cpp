@@ -17,6 +17,7 @@
 #include "Menu.h"
 #include "OpenRaider.h"
 #include "Render.h"
+#include "TextureManager.h"
 #include "World.h"
 #include "utils/strings.h"
 #include "utils/time.h"
@@ -40,6 +41,7 @@ Game gGame;
 Menu gMenu;
 OpenRaider gOpenRaider;
 Render gRender;
+TextureManager gTextureManager;
 World gWorld;
 
 #ifdef USING_AL
@@ -82,6 +84,10 @@ Render &getRender() {
 
 Sound &getSound() {
     return gSound;
+}
+
+TextureManager &getTextureManager() {
+    return gTextureManager;
 }
 
 Window &getWindow() {

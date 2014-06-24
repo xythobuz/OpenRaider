@@ -8,11 +8,9 @@
 #include "global.h"
 #include "Game.h"
 #include "Render.h"
+#include "TextureManager.h"
+#include "utils/pixel.h"
 #include "StaticMesh.h"
-
-#ifdef EXPERIMENTAL
-std::vector<unsigned int> gColorTextureHACK;
-#endif
 
 TexturedTriangle::TexturedTriangle(int i[3], vec_t s[6], int tex, unsigned short trans) {
     index[0] = i[0];
@@ -95,10 +93,14 @@ void TexturedTriangle::display(vec_t *vertices, vec_t *colors, vec_t *normals) {
 }
 
 #ifdef EXPERIMENTAL
+
+#include <map>
+std::map<unsigned int, unsigned int> gColorTextureHACK;
+
 int setupTextureColor(float *colorf) {
     unsigned char color[4];
     unsigned int colorI;
-    int texture;
+    unsigned int texture;
 
     color[0] = (unsigned char)(colorf[0]*255.0f);
     color[1] = (unsigned char)(colorf[1]*255.0f);
@@ -110,23 +112,13 @@ int setupTextureColor(float *colorf) {
     ((unsigned char *)(&colorI))[1] = color[2];
     ((unsigned char *)(&colorI))[0] = color[3];
 
-    bool found = false;
-    unsigned int foundIndex = 0;
-    for (foundIndex = 0; foundIndex < gColorTextureHACK.size(); foundIndex++) {
-        if (gColorTextureHACK[foundIndex] == colorI) {
-            found = true;
-            break;
-        }
-    }
-
-    if (!found) {
-        gColorTextureHACK.push_back(colorI);
-        texture = getGame().getTextureOffset() + gColorTextureHACK.size();
-
-        getRender().loadTexture(TextureManager::generateColorTexture(color, 32, 32),
-                32, 32, texture);
-    } else {
-        texture = getGame().getTextureOffset() + foundIndex;
+    try {
+        texture = gColorTextureHACK.at(colorI);
+    } catch (...) {
+        unsigned char *image = generateColorTexture(color, 32, 32, 32);
+        texture = getTextureManager().loadBufferSlot(image, 32, 32,
+                TextureManager::RGBA, 32, getTextureManager().getTextureCount());
+        delete [] image;
     }
 
     return texture;

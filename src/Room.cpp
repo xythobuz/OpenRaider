@@ -12,6 +12,7 @@
 #include "Game.h"
 #include "Render.h"
 #include "Room.h"
+#include "TextureManager.h"
 
 #ifdef MULTITEXTURE
 #include <map>
@@ -457,7 +458,7 @@ void Room::display(bool alpha) {
     glPushMatrix();
     //LightingSetup();
 
-    getRender().mTexture.bindTextureId(0); // WHITE texture
+    getTextureManager().bindTextureId(0); // \fixme WHITE texture
 
     if ((!alpha) && getRender().getMode() == Render::modeWireframe) {
         glLineWidth(2.0);
@@ -507,8 +508,6 @@ void Room::display(bool alpha) {
         getMesh().drawSolid();
 
     glPopMatrix();
-
-    //getRender().mTexture.bindTextureId(0);
 
     // Draw other room meshes and sprites
     if (alpha || (getRender().getMode() == Render::modeWireframe)

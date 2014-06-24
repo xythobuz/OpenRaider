@@ -14,6 +14,7 @@
 #include "math/math.h"
 #include "Menu.h"
 #include "Sound.h"
+#include "TextureManager.h"
 #include "TombRaider.h"
 #include "utils/strings.h"
 #include "utils/time.h"
@@ -75,11 +76,18 @@ int OpenRaider::initialize() {
         return -4;
     }
 
+    // Initialize Texture Manager
+    error = getTextureManager().initialize();
+    if (error != 0) {
+        printf("Could not initialize Textures (%d)!\n", error);
+        return -5;
+    }
+
     // Initialize game engine
     error = getGame().initialize();
     if (error != 0) {
         printf("Could not initialize Game (%d)!\n", error);
-        return -5;
+        return -6;
     }
 
 #ifdef DEBUG

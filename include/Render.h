@@ -12,7 +12,6 @@
 #include <vector>
 
 #include "Room.h"
-#include "TextureManager.h"
 #include "ViewVolume.h"
 
 /*!
@@ -69,25 +68,6 @@ public:
     int getMode();
 
     /*!
-     * \brief Loads textures in a certain id slot
-     * \param image Image to load
-     * \param width width of image
-     * \param height height of image
-     * \param id id for texture
-     * \sa Texture::loadBufferSlot()
-     */
-    void loadTexture(unsigned char *image,
-                          unsigned int width, unsigned int height,
-                          unsigned int id);
-
-    /*!
-     * \brief Sets up textures for OpenRaider
-     * \param textureDir Is valid and exists with textures
-     * \returns number of loaded textures
-     */
-    int initTextures(char *textureDir);
-
-    /*!
      * Removes current world/entity/etc geometry
      */
     void ClearWorld();
@@ -140,7 +120,6 @@ public:
 
     //! \fixme should be private
     ViewVolume mViewVolume; //!< View Volume for frustum culling
-    TextureManager mTexture; //!< Texture subsystem
 
 private:
 

@@ -8,6 +8,22 @@
 #include "global.h"
 #include "utils/pixel.h"
 
+unsigned char *generateColorTexture(const unsigned char *rgba, unsigned int width,
+        unsigned int height, unsigned int bpp) {
+    assert(rgba != NULL);
+    assert(width > 0);
+    assert(height > 0);
+    assert((bpp % 8) == 0);
+
+    unsigned char *image = new unsigned char[height * width * (bpp / 8)];
+    for (unsigned int i = 0; i < (width * height); i++) {
+        for (unsigned int a = 0; a < (bpp / 8); a++) {
+            image[(i * (bpp / 8)) + a] = rgba[a];
+        }
+    }
+    return image;
+}
+
 void bgr2rgb24(unsigned char *image, unsigned int w, unsigned int h) {
     assert(image != nullptr);
     assert(w > 0);
