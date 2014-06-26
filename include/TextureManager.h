@@ -17,15 +17,6 @@
 class TextureManager {
 public:
 
-    enum ColorMode {
-        GREYSCALE,
-        RGB,
-        RGBA,
-        ARGB,
-        BGR,
-        BGRA
-    };
-
     enum TextureFlag {
         fUseMultiTexture = (1 << 0),
     };
@@ -89,14 +80,7 @@ public:
                         ColorMode mode, unsigned int bpp,
                         unsigned int slot);
 
-    /*!
-     * \brief Loads TGA file as texture
-     * \param filename Existing TGA file
-     * \returns ID of new texture or -1 on error
-     */
-    int loadTGA(const char *filename);
-
-    int loadPCX(const char *filename);
+    int loadImage(const char *filename);
 
     /*!
      * \brief Sets an option flag
@@ -107,6 +91,10 @@ public:
     void useMultiTexture(float aU, float aV, float bU, float bV);
 
 private:
+    int loadTGA(const char *filename);
+    int loadPCX(const char *filename);
+    int loadPNG(const char *filename);
+
     std::vector<unsigned int> mTextureIds;
     unsigned int mFlags;
 };

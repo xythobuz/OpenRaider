@@ -34,7 +34,7 @@ public:
     MoveType getMoveType();
     void setMoveType(MoveType m);
     int getObjectId();
-    void setAngle(vec_t yaw);
+    void setAngles(vec3_t a);
     vec_t getPos(unsigned int i);
     vec_t getAngle(unsigned int i);
     int getRoom();

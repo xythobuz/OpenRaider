@@ -8,8 +8,6 @@
 #ifndef _UTILS_PNG_H_
 #define _UTILS_PNG_H_
 
-#include "TextureManager.h"
-
 /*!
  * \brief Check if a file is a valid PNG image
  * \param filename path of file to read
@@ -27,7 +25,8 @@ int pngCheck(const char *filename);
  * \param bpp place where pixel width will be stored (8, 24, 32)
  * \returns 0 on success
  */
-int pngLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, TextureManager::ColorMode *mode, unsigned int *bpp);
+int pngLoad(const char *filename, unsigned char **image,
+        unsigned int *width, unsigned int *height, ColorMode *mode, unsigned int *bpp);
 
 /*!
  * \brief Create a PNG image file from an RGBA buffer
@@ -39,7 +38,8 @@ int pngLoad(const char *filename, unsigned char **image, unsigned int *width, un
  * \param bpp bits per pixel (8, 24, 32)
  * \returns 0 on success
  */
-int pngSave(const char *filename, unsigned char *image, unsigned int width, unsigned int height, TextureManager::ColorMode mode, unsigned int bpp);
+int pngSave(const char *filename, unsigned char *image,
+        unsigned int width, unsigned int height, ColorMode mode, unsigned int bpp);
 
 #endif
 

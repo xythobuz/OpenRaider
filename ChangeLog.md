@@ -2,6 +2,13 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140626 ]
+    * ColorMode enum now global
+    * Entities setAngles now sets all three angles
+    * Added loadPNG to TextureManager
+    * Added loadImage to TextureManager, _detecting_ the file type
+    * Re-Implemented the move command
+
     [ 20140624 ]
     * Some changes to allow compilation with Ubuntu 14.04 / gcc
     * Modified utils/png to allow compilation with different integer sizes

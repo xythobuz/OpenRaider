@@ -44,7 +44,7 @@ void Entity::display() {
     glTranslatef(pos[0], pos[1], pos[2]);
     glRotatef(OR_RAD_TO_DEG(angles[1]), 0, 1, 0);
     glRotatef(OR_RAD_TO_DEG(angles[0]), 1, 0, 0);
-    glRotatef(OR_RAD_TO_DEG(angles[2]), 0, 0, 1);
+    //glRotatef(OR_RAD_TO_DEG(angles[2]), 0, 0, 1);
     getWorld().getSkeletalModel(skeletalModel).display(animationFrame, boneFrame);
     glPopMatrix();
 
@@ -236,8 +236,9 @@ int Entity::getObjectId() {
     return objectId;
 }
 
-void Entity::setAngle(vec_t yaw) {
-    angles[1] = yaw;
+void Entity::setAngles(vec3_t a) {
+    for (unsigned int i = 0; i < 3; i++)
+        angles[i] = a[i];
 }
 
 vec_t Entity::getPos(unsigned int i) {

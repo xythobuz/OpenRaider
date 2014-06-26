@@ -90,14 +90,9 @@ int WindowSDL::initialize() {
 
     if (SDL_GL_LoadLibrary(mDriver) < 0) {
         SDL_ClearError();
-        if (SDL_GL_LoadLibrary("libGL.so") < 0) {
-            SDL_ClearError();
-            if (SDL_GL_LoadLibrary("libGL.so.1") < 0) {
-                printf("Could not load OpenGL driver!\n");
-                printf("SDL_GL_LoadLibrary Error: %s\n", SDL_GetError());
-                return -2;
-            }
-        }
+        printf("Could not load OpenGL driver!\n");
+        printf("SDL_GL_LoadLibrary Error: %s\n", SDL_GetError());
+        return -2;
     }
 #endif
 

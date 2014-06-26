@@ -19,6 +19,10 @@
 #include "utils/tga.h"
 #include "TextureManager.h"
 
+#ifdef USING_PNG
+#include "utils/png.h"
+#endif
+
 TextureManager::TextureManager() {
     mFlags = 0;
 }
@@ -107,23 +111,7 @@ int TextureManager::loadBufferSlot(unsigned char *image,
     assert((mode == GREYSCALE) || (mode == RGB)
             || (mode == BGR) || (mode == ARGB)
             || (mode == RGBA) || (mode ==  BGRA));
-
-    switch (mode) {
-        case GREYSCALE:
-            assert(bpp == 8);
-            break;
-
-        case RGB:
-        case BGR:
-            assert(bpp == 24);
-            break;
-
-        case ARGB:
-        case RGBA:
-        case BGRA:
-            assert(bpp == 32);
-            break;
-    }
+    assert((bpp == 8) || (bpp == 24) || (bpp == 32));
 
     while (mTextureIds.size() <= slot) {
         unsigned int id;
@@ -131,39 +119,33 @@ int TextureManager::loadBufferSlot(unsigned char *image,
         mTextureIds.push_back(id);
     }
 
-    unsigned char bytes;
     unsigned int glcMode;
-
     switch (mode) {
         case GREYSCALE:
-            bytes = 1;
             glcMode = GL_LUMINANCE;
             break;
 
+        case BGR:
+            bgr2rgb24(image, width, height);
+            glcMode = GL_RGB;
+            break;
+
         case RGB:
-            bytes = 3;
             glcMode = GL_RGB;
             break;
 
         case ARGB:
             argb2rgba32(image, width, height);
-            bytes = 4;
+            glcMode = GL_RGBA;
+            break;
+
+        case BGRA:
+            bgra2rgba32(image, width, height);
             glcMode = GL_RGBA;
             break;
 
         case RGBA:
-            bytes = 4;
             glcMode = GL_RGBA;
-            break;
-
-        case BGR:
-            bytes = 3;
-            glcMode = GL_BGR_EXT;
-            break;
-
-        case BGRA:
-            bytes = 4;
-            glcMode = GL_BGRA_EXT;
             break;
     }
 
@@ -185,7 +167,7 @@ int TextureManager::loadBufferSlot(unsigned char *image,
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
     glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-    glTexImage2D(GL_TEXTURE_2D, 0, bytes, width, height, 0, glcMode, GL_UNSIGNED_BYTE, image);
+    glTexImage2D(GL_TEXTURE_2D, 0, bpp / 8, width, height, 0, glcMode, GL_UNSIGNED_BYTE, image);
 
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
@@ -199,6 +181,20 @@ void TextureManager::bindTextureId(unsigned int n) {
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
     glBindTexture(GL_TEXTURE_2D, mTextureIds.at(n));
+}
+
+int TextureManager::loadImage(const char *filename) {
+    if (stringEndsWith(filename, ".pcx") || stringEndsWith(filename, ".PCX")) {
+        return loadPCX(filename);
+    } else if (stringEndsWith(filename, ".png") || stringEndsWith(filename, ".PNG")) {
+        return loadPNG(filename);
+    } else if (stringEndsWith(filename, ".tga") || stringEndsWith(filename, ".TGA")) {
+        return loadTGA(filename);
+    } else {
+        getConsole().print("No known image file type? (%s)", filename);
+    }
+
+    return -1;
 }
 
 int TextureManager::loadPCX(const char *filename) {
@@ -222,6 +218,38 @@ int TextureManager::loadPCX(const char *filename) {
     }
 
     return id;
+}
+
+int TextureManager::loadPNG(const char *filename) {
+#ifdef USING_PNG
+    assert(filename != NULL);
+    assert(filename[0] != '\0');
+
+    if (pngCheck(filename) != 0) {
+        return -1;
+    }
+
+    unsigned char *image;
+    unsigned int w, h, bpp;
+    ColorMode c;
+    int id = -1;
+    int error = pngLoad(filename, &image, &w, &h, &c, &bpp);
+
+    if (error == 0) {
+        unsigned char *image2 = scaleBuffer(image, &w, &h, bpp);
+        if (image2) {
+            delete [] image;
+            image = image2;
+        }
+        id = loadBufferSlot(image, w, h, c, bpp, mTextureIds.size());
+        delete [] image;
+    }
+
+    return id;
+#else
+    getConsole().print("No PNG support available (%s)", filename);
+    return -1;
+#endif
 }
 
 int TextureManager::loadTGA(const char *filename) {

@@ -11,8 +11,6 @@
 #ifndef _UTILS_PCX_H_
 #define _UTILS_PCX_H_
 
-#include "TextureManager.h"
-
 /*!
  * \brief Check if a file is a valid PCX image
  * \param filename path of file to read
@@ -30,7 +28,8 @@ int pcxCheck(const char *filename);
  * \param bpp place where pixel width will be stored (8, 24, 32)
  * \returns 0 on success
  */
-int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, TextureManager::ColorMode *mode, unsigned int *bpp);
+int pcxLoad(const char *filename, unsigned char **image,
+        unsigned int *width, unsigned int *height, ColorMode *mode, unsigned int *bpp);
 
 #endif
 

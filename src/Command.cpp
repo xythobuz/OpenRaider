@@ -100,9 +100,9 @@ int OpenRaider::command(std::string &c) {
             getConsole().print("  set       - set a parameter");
             getConsole().print("  bind      - bind a keyboard/mouse action");
             getConsole().print("  animate   - [BOOL|n|p] - Animate models");
+            getConsole().print("  move      - [walk|fly|noclip]");
 /*
             getConsole().print("  sshot     - make a screenshot");
-            getConsole().print("  move      - [walk|fly|noclip]");
             getConsole().print("  sound     - INT - Test play sound");
             getConsole().print("  mode      - MODE - Render mode");
             getConsole().print("  light     - BOOL - GL Lights");
@@ -174,6 +174,25 @@ int OpenRaider::command(std::string &c) {
                 getRender().clearFlags(Render::fAnimateAllModels);
             getConsole().print(b ? "Animating all models" : "No longer animating all models");
         }
+    } else if (cmd.compare("move") == 0) {
+        if ((!mRunning) || (!getGame().isLoaded())) {
+            getConsole().print("Use move command interactively!");
+            return -999;
+        }
+        std::string temp;
+        command >> temp;
+        if (temp.compare("walk") == 0) {
+            getGame().getLara().setMoveType(Entity::MoveTypeWalk);
+        } else if (temp.compare("fly") == 0) {
+            getGame().getLara().setMoveType(Entity::MoveTypeFly);
+        } else if (temp.compare("noclip") == 0) {
+            getGame().getLara().setMoveType(Entity::MoveTypeNoClipping);
+        } else {
+            getConsole().print("Invalid use of move command (%s)!", temp.c_str());
+            return -9;
+        }
+        getConsole().print("%sing", temp.c_str());
+
 /*
     } else if (cmd.compare("mode") == 0) {
         std::string mode;
@@ -384,35 +403,6 @@ int OpenRaider::command(std::string &c) {
         }
         getConsole().print("Screenshot stored...");
         delete filename;
-    } else if (cmd.compare("move") == 0) {
-        if (!mRunning) {
-            getConsole().print("Use move command interactively!");
-            return -999;
-        }
-        if (args->size() > 0) {
-            if (getGame().isLoaded()) {
-                char *move = args->at(0);
-                if (strcmp(move, "walk") == 0) {
-                    getGame().getLara().setMoveType(Entity::MoveTypeWalk);
-                    getConsole().print("Lara is walking...");
-                } else if (strcmp(move, "fly") == 0) {
-                    getGame().getLara().setMoveType(Entity::MoveTypeFly);
-                    getConsole().print("Lara is flying...");
-                } else if (strcmp(move, "noclip") == 0) {
-                    getGame().getLara().setMoveType(Entity::MoveTypeNoClipping);
-                    getConsole().print("Lara is noclipping...");
-                } else {
-                    getConsole().print("Invalid use of move command (%s)!", move);
-                    return -9;
-                }
-            } else {
-                getConsole().print("Load a level to change the movement type!");
-                return -10;
-            }
-        } else {
-            getConsole().print("Invalid use of move command!");
-            return -11;
-        }
     } else if (cmd.compare("sound") == 0) {
         if ((!mRunning) || (!getGame().isLoaded())) {
             getConsole().print("Use sound command interactively!");

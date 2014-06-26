@@ -67,7 +67,8 @@ int pcxCheck(const char *filename) {
     return 0;
 }
 
-int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, TextureManager::ColorMode *mode, unsigned int *bpp) {
+int pcxLoad(const char *filename, unsigned char **image,
+        unsigned int *width, unsigned int *height, ColorMode *mode, unsigned int *bpp) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
     assert(image != NULL);
@@ -240,7 +241,7 @@ int pcxLoad(const char *filename, unsigned char **image, unsigned int *width, un
         }
     }
 
-    *mode = TextureManager::RGBA;
+    *mode = RGBA;
     *bpp = 32;
 
     delete [] buffer;

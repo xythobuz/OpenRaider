@@ -19,8 +19,10 @@ FontSDL::~FontSDL() {
     if (mFont)
         TTF_CloseFont(mFont);
 
-    if (mFontInit)
+    if (mFontInit) {
         TTF_Quit();
+        glDeleteTextures(1, &mFontTexture);
+    }
 }
 
 int FontSDL::initialize() {
@@ -81,6 +83,7 @@ void FontSDL::writeString(FontString &s) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0, textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
+    SDL_FreeSurface(surface);
 
     GLuint xMin = s.x;
     GLuint yMin = s.y;
@@ -102,7 +105,5 @@ void FontSDL::writeString(FontString &s) {
     glTexCoord2f(1.0f, 0.0f);
     glVertex2i(xMax, yMin);
     glEnd();
-
-    SDL_FreeSurface(surface);
 }
 

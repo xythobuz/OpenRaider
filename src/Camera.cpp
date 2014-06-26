@@ -64,7 +64,7 @@ void Camera::update() {
 
 void Camera::rotate(float angle, float x, float y, float z) {
     Quaternion t, n;
-    vec_t look[4] = { 0.0f, 0.0f, -1.0f, 1.0f };
+    float look[4] = { 0.0f, 0.0f, -1.0f, 1.0f };
 
     t.set(angle, x, y, z);
     n = mQ * t;

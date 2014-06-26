@@ -15,38 +15,15 @@
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
 
-// Visual C++ does not understand __attribute__
-#ifdef _MSC_VER
-#define __attribute__(x)
-#endif
-
-//! \todo Replace NULL usage with nullptr
-#ifndef NULL
-#define NULL nullptr
-#endif
-
-// Globally include OpenGL header
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#else
-#ifdef HAVE_WINDOWS_H
-#include <windows.h>
-#endif
-#include <GL/gl.h>
-#endif
-
-// If available, use our own assert that prints the call stack
-#if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
-#ifndef NDEBUG
-[[noreturn]] void assertImplementation(const char *exp, const char *file, int line);
-#define assert(x) (void)((x) || (assertImplementation(#x, __FILE__, __LINE__),0))
-#else
-#define assert(x)
-#endif
-#else
-// Fall back to the default C assert
-#include <cassert>
-#endif
+// Supported pixelmap color formats
+enum ColorMode {
+    GREYSCALE,
+    RGB,
+    RGBA,
+    ARGB,
+    BGR,
+    BGRA
+};
 
 // Colors used where ever needed
 const unsigned char BLACK[]  = {   0,   0,   0, 255 };
@@ -106,6 +83,39 @@ typedef enum {
 ActionEvents stringToActionEvent(const char *action);
 
 KeyboardButton stringToKeyboardButton(const char *key);
+
+// Visual C++ does not understand __attribute__
+#ifdef _MSC_VER
+#define __attribute__(x)
+#endif
+
+//! \todo Replace NULL usage with nullptr
+#ifndef NULL
+#define NULL nullptr
+#endif
+
+// Globally include OpenGL header
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#ifdef HAVE_WINDOWS_H
+#include <windows.h>
+#endif
+#include <GL/gl.h>
+#endif
+
+// If available, use our own assert that prints the call stack
+#if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
+#ifndef NDEBUG
+[[noreturn]] void assertImplementation(const char *exp, const char *file, int line);
+#define assert(x) (void)((x) || (assertImplementation(#x, __FILE__, __LINE__),0))
+#else
+#define assert(x)
+#endif
+#else
+// Fall back to the default C assert
+#include <cassert>
+#endif
 
 #endif
 

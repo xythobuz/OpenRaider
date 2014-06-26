@@ -164,7 +164,8 @@ void Game::handleMouseMotion(int xrel, int yrel) {
                 getCamera().command(CAMERA_ROTATE_DOWN);
 
         // Fix Laras rotation
-        getLara().setAngle(getCamera().getRadianYaw());
+        vec3_t angles = { 0.0f, getCamera().getRadianYaw(), getCamera().getRadianPitch() };
+        getLara().setAngles(angles);
     }
 }
 
@@ -259,7 +260,7 @@ void Game::processTextures()
 
         // Overwrite any previous level textures on load
         getTextureManager().loadBufferSlot(image, 256, 256,
-                TextureManager::RGBA, 32, (mTextureStart - 1) + i);
+                RGBA, 32, (mTextureStart - 1) + i);
 
 #ifdef MULTITEXTURE
         gMapTex2Bump[(mTextureStart - 1) + i] = -1;
@@ -272,7 +273,7 @@ void Game::processTextures()
                     mTombRaider.NumTextures();
 #endif
             getTextureManager().loadBufferSlot(bumpmap, 256, 256,
-                    TextureManager::RGBA, 32,
+                    RGBA, 32,
                     (mTextureStart - 1) + i + mTombRaider.NumTextures());
         }
 

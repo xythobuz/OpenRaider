@@ -117,12 +117,13 @@ int setupTextureColor(float *colorf) {
     } catch (...) {
         unsigned char *image = generateColorTexture(color, 32, 32, 32);
         texture = getTextureManager().loadBufferSlot(image, 32, 32,
-                TextureManager::RGBA, 32, getTextureManager().getTextureCount());
+                RGBA, 32, getTextureManager().getTextureCount());
         delete [] image;
     }
 
     return texture;
 }
+
 #endif
 
 StaticMesh::StaticMesh(TombRaider &tr, unsigned int index) {

@@ -41,7 +41,8 @@ int pngCheck(const char *filename) {
     return 0;
 }
 
-int pngLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, TextureManager::ColorMode *mode, unsigned int *bpp) {
+int pngLoad(const char *filename, unsigned char **image,
+        unsigned int *width, unsigned int *height, ColorMode *mode, unsigned int *bpp) {
     png_byte header[8];
 
     assert(filename != NULL);
@@ -131,13 +132,13 @@ int pngLoad(const char *filename, unsigned char **image, unsigned int *width, un
     fclose(fp);
 
     if (color_type == PNG_COLOR_TYPE_GRAY) {
-        *mode = TextureManager::GREYSCALE;
+        *mode = GREYSCALE;
         *bpp = 8;
     } else if (color_type == PNG_COLOR_TYPE_RGB) {
-        *mode = TextureManager::RGB;
+        *mode = RGB;
         *bpp = 24;
     } else if (color_type == PNG_COLOR_TYPE_RGB_ALPHA) {
-        *mode = TextureManager::RGBA;
+        *mode = RGBA;
         *bpp = 32;
     } else {
         pngPrint("%s: Unknown libpng color type %d.", filename, color_type);
@@ -164,7 +165,8 @@ int pngLoad(const char *filename, unsigned char **image, unsigned int *width, un
     return 0;
 }
 
-int pngSave(const char *filename, unsigned char *image, unsigned int width, unsigned int height, TextureManager::ColorMode mode, unsigned int bpp) {
+int pngSave(const char *filename, unsigned char *image,
+        unsigned int width, unsigned int height, ColorMode mode, unsigned int bpp) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
     assert(image != NULL);
@@ -207,15 +209,15 @@ int pngSave(const char *filename, unsigned char *image, unsigned int width, unsi
     }
 
     int color_type;
-    if ((mode == TextureManager::GREYSCALE) && (bpp == 8)) {
+    if ((mode == GREYSCALE) && (bpp == 8)) {
         color_type = PNG_COLOR_TYPE_GRAY;
-    } else if (((mode == TextureManager::RGB) || (mode == TextureManager::BGR)) && (bpp == 24)) {
-        if (mode == TextureManager::BGR) {
+    } else if (((mode == RGB) || (mode == BGR)) && (bpp == 24)) {
+        if (mode == BGR) {
             bgr2rgb24(image, width, height);
         }
         color_type = PNG_COLOR_TYPE_RGB;
-    } else if (((mode == TextureManager::RGBA) || (mode == TextureManager::BGRA)) && (bpp == 32)) {
-        if (mode == TextureManager::BGRA) {
+    } else if (((mode == RGBA) || (mode == BGRA)) && (bpp == 32)) {
+        if (mode == BGRA) {
             bgra2rgba32(image, width, height);
         }
         color_type = PNG_COLOR_TYPE_RGB_ALPHA;
