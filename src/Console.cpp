@@ -99,6 +99,7 @@ void Console::display() {
             scrollIndicator = (mHistory.size() - lineCount - mLineOffset) * 100 / (mHistory.size() - lineCount);
         } else {
             scrollIndicator = 100;
+            mLineOffset = 0;
         }
 
         getFont().drawText(10, 10, 0.70f, BLUE,

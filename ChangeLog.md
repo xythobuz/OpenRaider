@@ -8,6 +8,8 @@
     * Added loadPNG to TextureManager
     * Added loadImage to TextureManager, _detecting_ the file type
     * Re-Implemented the move command
+    * Prevent crash (segfault) when resizing window while console is
+      not fully scrolled to the bottom
 
     [ 20140624 ]
     * Some changes to allow compilation with Ubuntu 14.04 / gcc

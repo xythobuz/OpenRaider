@@ -468,7 +468,7 @@ void Render::display()
 
 void Render::drawLoadScreen()
 {
-    float x = 0.0f, y = 0.0f, z = -160.0f;
+    float x = 0.0f, y = 0.0f, z = 0.0f;
     float w = getWindow().getWidth(), h = getWindow().getHeight();
 
     if (getTextureManager().getTextureCount() <= 0)
