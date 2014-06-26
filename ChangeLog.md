@@ -10,6 +10,8 @@
     * Re-Implemented the move command
     * Prevent crash (segfault) when resizing window while console is
       not fully scrolled to the bottom
+    * Removed Render flags fUsePortals, fAllRooms, fOneRoom,
+      fViewModel and fUpdateRoomListPerFrame
 
     [ 20140624 ]
     * Some changes to allow compilation with Ubuntu 14.04 / gcc

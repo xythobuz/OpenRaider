@@ -26,9 +26,7 @@ Render::Render() {
     mSkyMeshRotation = false;
     mMode = Render::modeDisabled;
     mLock = 0;
-    mFlags = (fRoomAlpha | fViewModel |
-            fEntityModels | fRenderPonytail |
-            fUsePortals | fUpdateRoomListPerFrame);
+    mFlags = (fRoomAlpha | fEntityModels | fRenderPonytail);
 }
 
 
@@ -75,48 +73,6 @@ void Render::screenShot(char *filenameBase)
 
 unsigned int Render::getFlags() {
     return mFlags;
-}
-
-
-// Texture must be set to WHITE solid color texture
-void renderTrace(int color, vec3_t start, vec3_t end)
-{
-    const float widthStart = 10.0f; //5.0f;
-    const float widthEnd = 10.0f;
-    float delta = randomNum(0.01f, 0.16f); // for flicker fx
-
-
-    // Draw two long quads that skrink and fade the they go further out
-    glBegin(GL_QUADS);
-
-    switch (color)
-    {
-        case 0:
-            glColor3f(0.9f - delta, 0.2f, 0.2f);
-            break;
-        case 1:
-            glColor3f(0.2f, 0.9f - delta, 0.2f);
-            break;
-        case 2:
-        default:
-            glColor3f(0.2f, 0.2f, 0.9f - delta);
-    }
-
-    glVertex3f(start[0], start[1], start[2]);
-    glVertex3f(start[0], start[1] + widthStart, start[2] + widthStart);
-    glVertex3f(end[0], end[1] + widthEnd, end[2] + widthEnd);
-    glVertex3f(end[0], end[1], end[2]);
-
-    glVertex3f(start[0],  start[1], start[2]);
-    glVertex3f(start[0],  start[1] + widthStart, start[2] - widthStart);
-    glVertex3f(end[0], end[1] + widthEnd, end[2] - widthEnd);
-    glVertex3f(end[0], end[1], end[2]);
-
-    glVertex3f(start[0],  start[1] + widthStart, start[2] + widthStart);
-    glVertex3f(start[0],  start[1] + widthStart, start[2] - widthStart);
-    glVertex3f(end[0], end[1] + widthEnd, end[2] - widthEnd);
-    glVertex3f(end[0], end[1] + widthEnd, end[2] + widthEnd);
-    glEnd();
 }
 
 
@@ -270,33 +226,31 @@ void Render::setMode(int n)
 // Replaced the deprecated gluLookAt with slightly modified code from here:
 // http://www.khronos.org/message_boards/showthread.php/4991
 void gluLookAt(float eyeX, float eyeY, float eyeZ,
-                            float lookAtX, float lookAtY, float lookAtZ,
-                            float upX, float upY, float upZ) {
-    float f[3];
-
+        float lookAtX, float lookAtY, float lookAtZ,
+        float upX, float upY, float upZ) {
     // calculating the viewing vector
-    f[0] = lookAtX - eyeX;
-    f[1] = lookAtY - eyeY;
-    f[2] = lookAtZ - eyeZ;
-
-    float fMag = sqrtf(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
-    //float upMag = sqrtf(upX * upX + upY * upY + upZ * upZ);
+    float f[3] = {
+        lookAtX - eyeX,
+        lookAtY - eyeY,
+        lookAtZ - eyeZ
+    };
 
     // normalizing the viewing vector
-    f[0] = f[0] / fMag;
-    f[1] = f[1] / fMag;
-    f[2] = f[2] / fMag;
+    float fMag = sqrtf(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    f[0] /= fMag;
+    f[1] /= fMag;
+    f[2] /= fMag;
 
     float s[3] = {
-        f[1] * upZ - upY * f[2],
-        upX * f[2] - f[0] * upZ,
-        f[0] * upY - upX * f[1]
+        (f[1] * upZ) - (upY * f[2]),
+        (upX * f[2]) - (f[0] * upZ),
+        (f[0] * upY) - (upX * f[1])
     };
 
     float u[3] = {
-        s[1] * f[2] - f[1] * s[2],
-        f[0] * s[2] - s[0] * f[2],
-        s[0] * f[1] - f[0] * s[1]
+        (s[1] * f[2]) - (f[1] * s[2]),
+        (f[0] * s[2]) - (s[0] * f[2]),
+        (s[0] * f[1]) - (f[0] * s[1])
     };
 
     float m[16] = {
@@ -433,8 +387,7 @@ void Render::display()
         glPushMatrix();
 
         // Draw lara or other player model ( move to entity rendering method )
-        if (mFlags & Render::fViewModel)
-            getGame().getLara().display();
+        getGame().getLara().display();
 
         // Draw sprites after player to handle alpha
         for (unsigned int i = 0; i < getWorld().sizeSprite(); i++) {
@@ -445,9 +398,8 @@ void Render::display()
 
         glPopMatrix();
 
-        // Depth sort entityRenderList with qsort
+        // Depth sort entityRenderList and display each entity
         std::sort(entityRenderList.begin(), entityRenderList.end());
-
         for (unsigned int i = 0; i < entityRenderList.size(); i++) {
             entityRenderList[i]->display();
         }
@@ -514,37 +466,17 @@ void Render::newRoomRenderList(int index)
 {
     static int currentRoomId = -1;
 
-    if (mFlags & Render::fUsePortals)
+    if (index == -1) // -1 is error, so draw room 0, for the hell of it
     {
-        if (index == -1) // -1 is error, so draw room 0, for the hell of it
-        {
-            mRoomRenderList.clear();
-            mRoomRenderList.push_back(&getWorld().getRoom(0));
-        }
-        else
-        {
-            // Update room render list if needed
-            if (mFlags & Render::fUpdateRoomListPerFrame ||
-                    currentRoomId != index)
-            {
-                buildRoomRenderList(getWorld().getRoom(index));
-            }
-        }
+        mRoomRenderList.clear();
+        mRoomRenderList.push_back(&getWorld().getRoom(0));
     }
-    else // Render all rooms pretty much
+    else
     {
-        if (currentRoomId != index || index == -1)
+        // Update room render list if needed
+        if (currentRoomId != index)
         {
-            printf("*** Room render list -> %i\n", index);
-            mRoomRenderList.clear();
-
-            for (unsigned int i = 0; i < getWorld().sizeRoom(); i++)
-            {
-                if (!isVisible(getWorld().getRoom(i).getBoundingBox()))
-                    continue;
-
-                mRoomRenderList.push_back(&getWorld().getRoom(i));
-            }
+            buildRoomRenderList(getWorld().getRoom(index));
         }
     }
 
@@ -563,33 +495,14 @@ void Render::buildRoomRenderList(Room &room)
     // Must not already be cached
     for (unsigned int i = 0; i < mRoomRenderList.size(); i++)
     {
-        Room &room2 = *mRoomRenderList[i];
+        Room *room2 = mRoomRenderList[i];
 
-        if (&room2 == &room)
+        if (room2 == &room)
             return;
     }
 
     /* Add current room to list */
     mRoomRenderList.push_back(&room);
-
-    if (mFlags & Render::fOneRoom)
-    {
-        return;
-    }
-    else if (mFlags & Render::fAllRooms) /* Are you serious? */
-    {
-        for (unsigned int i = 0; i < getWorld().sizeRoom(); i++)
-        {
-            Room &room2 = getWorld().getRoom(i);
-
-            if (&room2 != &room)
-            {
-                buildRoomRenderList(room2);
-            }
-        }
-
-        return;
-    }
 
     // Try to add adj rooms and their adj rooms, skip this room
     for (unsigned int i = 1; i < room.sizeAdjacentRooms(); i++)
@@ -599,12 +512,10 @@ void Render::buildRoomRenderList(Room &room)
 
         Room &room2 = getWorld().getRoom(room.getAdjacentRoom(i));
 
-        // Mongoose 2002.03.22, Add portal visibility check here
+        //! \fixme Add portal visibility check here
 
         if (&room2 != &room)
-        {
             buildRoomRenderList(room2);
-        }
     }
 }
 

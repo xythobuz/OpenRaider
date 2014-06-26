@@ -31,17 +31,12 @@ public:
 
     typedef enum {
         fRoomAlpha              = (1 << 0),
-        fViewModel              = (1 << 1),
-        fEntityModels           = (1 << 2),
-        fFog                    = (1 << 3),
-        fUsePortals             = (1 << 4),
-        fGL_Lights              = (1 << 5),
-        fOneRoom                = (1 << 6),
-        fRenderPonytail         = (1 << 7),
-        // fMultiTexture           = (1 << 8), //! \todo Whats up with Multitexture stuff? Where is it needed?
-        fUpdateRoomListPerFrame = (1 << 9),
-        fAnimateAllModels       = (1 << 10),
-        fAllRooms               = (1 << 11)
+        fEntityModels           = (1 << 1),
+        fFog                    = (1 << 2),
+        fGL_Lights              = (1 << 3),
+        fRenderPonytail         = (1 << 4),
+        fAnimateAllModels       = (1 << 5),
+        // fMultiTexture           = (1 << 6), //! \todo Whats up with Multitexture stuff? Where is it needed?
     } RenderFlags;
 
     /*!

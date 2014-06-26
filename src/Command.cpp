@@ -109,13 +109,9 @@ int OpenRaider::command(std::string &c) {
             getConsole().print("  fog       - BOOL - GL Fog");
             getConsole().print("  viewmodel - INT - Change Laras model");
             getConsole().print("  pos       - Print position info");
-            getConsole().print("  vmodel    - BOOL - View Model");
             getConsole().print("  ralpha    - BOOL - Room Alpha");
-            getConsole().print("  vis       - BOOL - Use Portals");
             getConsole().print("  upf       - BOOL - Update Room List Per Frame");
             getConsole().print("  entmodel  - BOOL");
-            getConsole().print("  oneroom   - BOOL");
-            getConsole().print("  allrooms  - BOOL");
             getConsole().print("  ponytail  - BOOL");
             getConsole().print("  pigtail   - BOOL");
             getConsole().print("  ponypos   - FLOAT FLOAT FLOAT FLOAT - x y z angle");
@@ -252,22 +248,6 @@ int OpenRaider::command(std::string &c) {
             getConsole().print("Invalid use of fog-command!");
             return -18;
         }
-    } else if (cmd.compare("vmodel") == 0) {
-        if (args->size() > 0) {
-            bool b;
-            if (readBool(args->at(0), &b) < 0) {
-                getConsole().print("Pass BOOL to vmodel command!");
-                return -22;
-            }
-            if (b)
-                getRender().setFlags(Render::fViewModel);
-            else
-                getRender().clearFlags(Render::fViewModel);
-            getConsole().print("Viewmodel is now %s", b ? "on" : "off");
-        } else {
-            getConsole().print("Invalid use of vmodel-command!");
-            return -23;
-        }
     } else if (cmd.compare("ralpha") == 0) {
         if (args->size() > 0) {
             bool b;
@@ -283,22 +263,6 @@ int OpenRaider::command(std::string &c) {
         } else {
             getConsole().print("Invalid use of ralpha-command!");
             return -25;
-        }
-    } else if (cmd.compare("vis") == 0) {
-        if (args->size() > 0) {
-            bool b;
-            if (readBool(args->at(0), &b) < 0) {
-                getConsole().print("Pass BOOL to vis command!");
-                return -28;
-            }
-            if (b)
-                getRender().setFlags(Render::fUsePortals);
-            else
-                getRender().clearFlags(Render::fUsePortals);
-            getConsole().print("Portals are now %s", b ? "on" : "off");
-        } else {
-            getConsole().print("Invalid use of vis-command!");
-            return -29;
         }
     } else if (cmd.compare("upf") == 0) {
         if (args->size() > 0) {
@@ -331,38 +295,6 @@ int OpenRaider::command(std::string &c) {
         } else {
             getConsole().print("Invalid use of entmodel-command!");
             return -39;
-        }
-    } else if (cmd.compare("oneroom") == 0) {
-        if (args->size() > 0) {
-            bool b;
-            if (readBool(args->at(0), &b) < 0) {
-                getConsole().print("Pass BOOL to oneroom command!");
-                return -40;
-            }
-            if (b)
-                getRender().setFlags(Render::fOneRoom);
-            else
-                getRender().clearFlags(Render::fOneRoom);
-            getConsole().print("Rendering one room is now %s", b ? "on" : "off");
-        } else {
-            getConsole().print("Invalid use of oneroom-command!");
-            return -41;
-        }
-    } else if (cmd.compare("allrooms") == 0) {
-        if (args->size() > 0) {
-            bool b;
-            if (readBool(args->at(0), &b) < 0) {
-                getConsole().print("Pass BOOL to allrooms command!");
-                return -42;
-            }
-            if (b)
-                getRender().setFlags(Render::fAllRooms);
-            else
-                getRender().clearFlags(Render::fAllRooms);
-            getConsole().print("Rendering all rooms is now %s", b ? "on" : "off");
-        } else {
-            getConsole().print("Invalid use of allrooms-command!");
-            return -43;
         }
     } else if (cmd.compare("ponytail") == 0) {
         if (args->size() > 0) {
