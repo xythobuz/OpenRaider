@@ -251,6 +251,10 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
     } else {
         for (; a < tr.getNumAnimsForMoveable(index); a++) {
             animation.push_back(new AnimationFrame(tr, index, a, &frame_offset, frame_step));
+
+            if (frame_offset > tr.NumFrames())
+                return;
+
             frame_offset = anim[a].frame_offset / 2;
             frame_step = anim[a].frame_size;
         }
