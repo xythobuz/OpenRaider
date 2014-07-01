@@ -40,16 +40,7 @@ int SoundAL::initialize() {
     if (!mEnabled)
         return 0;
 
-#ifndef __APPLE__
-    int fd = open("/dev/dsp", O_RDWR);
-    if (fd < 0) {
-        printf("Could not initialize OpenAL (/dev/dsp)\n");
-        return -1;
-    }
-    close(fd);
-#endif
-
-    ALCdevice *Device = alcOpenDevice("OSS");
+    ALCdevice *Device = alcOpenDevice(NULL);
     ALCcontext *Context = alcCreateContext(Device, NULL);
     alcMakeContextCurrent(Context);
 
