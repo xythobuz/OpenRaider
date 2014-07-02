@@ -45,7 +45,7 @@ int TextureManager::initialize() {
     delete [] image;
 
     //! \fixme Temporary
-    char *filename;// = bufferString("%s/tr2/TITLE.PCX", getOpenRaider().mPakDir);
+    char *filename = bufferString("%s/tr2/TITLE.PCX", getOpenRaider().mPakDir);
     if (loadPCX(filename) < 0) {
         delete [] filename;
         //! \fixme Error Checking. Return negative error code, check in calling place too
