@@ -70,6 +70,15 @@ add_subdirectory (src)
 
 #################################################################
 
+if (${CMAKE_GENERATOR} STREQUAL "MinGW Makefiles")
+
+	# Target for running the setup
+    add_custom_target (setup "${PROJECT_SOURCE_DIR}/cmake/setup_win.bat"
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    )
+
+endif (${CMAKE_GENERATOR} STREQUAL "MinGW Makefiles") 
+
 if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
 
     # Target for running the setup

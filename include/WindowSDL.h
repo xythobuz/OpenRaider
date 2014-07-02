@@ -9,7 +9,6 @@
 #define _WINDOW_SDL_H_
 
 #include "SDL.h"
-#include "SDL_ttf.h"
 
 #include "Window.h"
 

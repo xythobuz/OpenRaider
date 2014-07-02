@@ -12,7 +12,7 @@
 
 #if defined(unix) || defined(__APPLE__) || defined(__linux__)
 #include <wordexp.h>
-#elif defined(WIN32)
+#elif defined(_WIN32)
 #include <Windows.h>
 #include <shlobj.h>
 #ifndef va_copy
@@ -171,16 +171,18 @@ char *fullPath(const char *path, char end) {
         }
 
         wordfree(&word);
-#elif defined(WIN32)
-        WCHAR newPath[MAX_PATH];
-        if (SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, newPath) == S_OK) {
-            lenPath = strlen((const char *)newPath);
+#elif defined(_WIN32)
+        char newPath[MAX_PATH];
+        if (SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0, newPath) == S_OK) {
+            lenPath = strlen(newPath);
             unsigned int lenPath2 = strlen(path);
             dir = new char[lenPath + lenPath2 + 2]; // space for end char
-            strncpy(dir, (const char *)newPath, lenPath);
-            dir[lenPath] = '\\';
-            strncpy((dir + lenPath + 1), (path + 1), lenPath2 - 1);
-            lenPath += lenPath2;
+            strncpy(dir, newPath, lenPath);
+            strncpy((dir + lenPath), (path + 1), lenPath2 - 1);
+            lenPath += lenPath2 - 1;
+			for (unsigned int i = 0; i < lenPath; i++)
+				if(dir[i] == '\\')
+					dir[i] = '/';
         } else {
             printf("WARNING: Could not get home folder location for tilde expansion!\n");
             lenPath = strlen(path);

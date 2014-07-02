@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include <stdio.h>
+
 #include "global.h"
 #include "FontSDL.h"
 

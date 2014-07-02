@@ -102,6 +102,7 @@ KeyboardButton stringToKeyboardButton(const char *key);
 #include <windows.h>
 #endif
 #include <GL/gl.h>
+#include <GL/glext.h>
 #endif
 
 // If available, use our own assert that prints the call stack

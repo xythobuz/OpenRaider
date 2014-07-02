@@ -72,32 +72,23 @@ void FontTRLE::loadLPS(const char *f) {
 
     for (std::string line; std::getline(file, line);) {
         std::istringstream stream(line);
-        std::string tok1, tok2;
-        std::getline(stream, tok1, '=');
-        std::getline(stream, tok2);
-
-        // we are only interested in lines starting with
-        // xxx=
-        // Where xxx is a 3 digit number
-        try {
-            int index = std::stoi(tok1);
-            if ((index >= 0) && (index <= 105)) {
-                std::istringstream row(tok2);
-                std::string a, b, c, d, e;
-                std::getline(row, a, ',');
-                std::getline(row, b, ',');
-                std::getline(row, c, ',');
-                std::getline(row, d, ',');
-                std::getline(row, e);
-                offsets[index][0] = std::stoi(a);
-                offsets[index][1] = std::stoi(b);
-                offsets[index][2] = std::stoi(c);
-                offsets[index][3] = std::stoi(d);
-                offsets[index][4] = std::stoi(e);
-            }
-        } catch (std::invalid_argument) {
-
-        }
+		int index;
+		stream >> index;
+		if (stream.get() != '=')
+			return;
+		stream >> offsets[index][0];
+		if (stream.get() != ',')
+			return;
+		stream >> offsets[index][1];
+		if (stream.get() != ',')
+			return;
+		stream >> offsets[index][2];
+		if (stream.get() != ',')
+			return;
+		stream >> offsets[index][3];
+		if (stream.get() != ',')
+			return;
+		stream >> offsets[index][4];
     }
 }
 

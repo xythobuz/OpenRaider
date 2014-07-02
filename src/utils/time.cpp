@@ -26,7 +26,7 @@ void systemTimerReset() {
     gettimeofday(&system_timer_start, &system_timer_zone);
 }
 
-#elif defined(WIN32)
+#elif defined(_WIN32)
 
 #include <Windows.h>
 

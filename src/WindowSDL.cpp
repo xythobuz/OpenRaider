@@ -25,7 +25,7 @@ WindowSDL::WindowSDL() {
     mWindow = NULL;
     mGLContext = NULL;
 
-#ifdef WIN32
+#ifdef _WIN32
     setDriver("libGL32.dll");
 #elif !defined(__APPLE__)
     setDriver("/usr/lib/libGL.so.1");
@@ -84,7 +84,7 @@ int WindowSDL::initialize() {
         return -1;
     }
 
-#ifndef __APPLE__
+#if !(defined(__APPLE__) || defined(_WIN32))
     assert(mDriver != NULL);
     assert(mDriver[0] != '\0');
 

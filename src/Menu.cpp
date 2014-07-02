@@ -17,7 +17,7 @@
 #if defined(HAVE_DIRENT_H) && defined(HAVE_OPENDIR) && defined(HAVE_READDIR_R) && defined(HAVE_CLOSEDIR) && defined(HAVE_DT_DIR)
 #include <dirent.h>
 #define USE_DIRENT
-#elif defined(HAVE_WINDOWS_H) && defined(HAVE_FINDFIRSTFILE) && defined(HAVE_FINDNEXTFILE) && defined(HAVE_FINDCLOSE)
+#elif (defined(HAVE_WINDOWS_H) && defined(HAVE_FINDFIRSTFILE) && defined(HAVE_FINDNEXTFILE) && defined(HAVE_FINDCLOSE)) || defined (_WIN32)
 #include <windows.h>
 #define USE_FINDFILE
 #else

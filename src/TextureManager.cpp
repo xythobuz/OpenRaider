@@ -45,7 +45,7 @@ int TextureManager::initialize() {
     delete [] image;
 
     //! \fixme Temporary
-    char *filename = bufferString("%s/tr2/TITLE.PCX", getOpenRaider().mPakDir);
+    char *filename;// = bufferString("%s/tr2/TITLE.PCX", getOpenRaider().mPakDir);
     if (loadPCX(filename) < 0) {
         delete [] filename;
         //! \fixme Error Checking. Return negative error code, check in calling place too
@@ -72,16 +72,20 @@ int TextureManager::getTextureCount() {
 void TextureManager::disableMultiTexture() {
     mFlags &= ~fUseMultiTexture;
 
+#ifdef MULTITEXTURE
     glDisable(GL_TEXTURE_2D);
     glActiveTextureARB(GL_TEXTURE0_ARB);
+#endif
 }
 
 void TextureManager::useMultiTexture(float aU, float aV, float bU, float bV) {
     if (!(mFlags & fUseMultiTexture))
         return;
 
+#ifdef MULTITEXTURE
     glMultiTexCoord2fARB(GL_TEXTURE0_ARB, aU, aV);
     glMultiTexCoord2fARB(GL_TEXTURE1_ARB, bU, bV);
+#endif
 }
 
 void TextureManager::bindMultiTexture(int texture0, int texture1) {
@@ -92,6 +96,7 @@ void TextureManager::bindMultiTexture(int texture0, int texture1) {
 
     mFlags |= fUseMultiTexture;
 
+#ifdef MULTITEXTURE
     glActiveTextureARB(GL_TEXTURE0_ARB);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, mTextureIds.at(texture0));
@@ -99,6 +104,7 @@ void TextureManager::bindMultiTexture(int texture0, int texture1) {
     glActiveTextureARB(GL_TEXTURE1_ARB);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, mTextureIds.at(texture1));
+#endif
 }
 
 int TextureManager::loadBufferSlot(unsigned char *image,

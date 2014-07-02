@@ -9,8 +9,11 @@
 #include "utils/strings.h"
 #include "FontManager.h"
 #include "Font.h"
-#include "FontSDL.h"
 #include "FontTRLE.h"
+
+#ifdef USING_SDL_FONT
+#include "FontSDL.h"
+#endif
 
 FontManager::FontManager() {
     add(new FontTRLE(), ".pc");
