@@ -18,7 +18,6 @@
 
 ## Cmake
 
-* Windows setup script needed, moving to AppData/Roaming
 * Support SSE with other compilers than Clang (src/CMakeLists.txt)
 * Visual C++ compiler flags? (CMakeLists.txt)
 

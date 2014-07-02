@@ -72,23 +72,23 @@ void FontTRLE::loadLPS(const char *f) {
 
     for (std::string line; std::getline(file, line);) {
         std::istringstream stream(line);
-		int index;
-		stream >> index;
-		if (stream.get() != '=')
-			return;
-		stream >> offsets[index][0];
-		if (stream.get() != ',')
-			return;
-		stream >> offsets[index][1];
-		if (stream.get() != ',')
-			return;
-		stream >> offsets[index][2];
-		if (stream.get() != ',')
-			return;
-		stream >> offsets[index][3];
-		if (stream.get() != ',')
-			return;
-		stream >> offsets[index][4];
+        int index;
+        stream >> index;
+        if (stream.get() != '=')
+            continue;
+        stream >> offsets[index][0];
+        if (stream.get() != ',')
+            continue;
+        stream >> offsets[index][1];
+        if (stream.get() != ',')
+            continue;
+        stream >> offsets[index][2];
+        if (stream.get() != ',')
+            continue;
+        stream >> offsets[index][3];
+        if (stream.get() != ',')
+            continue;
+        stream >> offsets[index][4];
     }
 }
 
