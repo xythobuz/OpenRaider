@@ -37,8 +37,6 @@ public:
 
     virtual void swapBuffersGL() = 0;
 
-    virtual void setDriver(const char *driver);
-
     virtual unsigned int getWidth();
 
     virtual unsigned int getHeight();
@@ -53,7 +51,6 @@ public:
 
 protected:
     bool mInit;
-    char *mDriver;
     bool mFullscreen;
     bool mMousegrab;
     unsigned int mWidth;

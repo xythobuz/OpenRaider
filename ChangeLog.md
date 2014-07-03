@@ -2,10 +2,14 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
-	[ 20140702 ]
-	* Compiled successfully in Windows 7 using MinGW
-	* Added Windows setup script
-	* FontTRLE lps parser no longer using std::stoi
+    [ 20140703 ]
+    * Removed SDL_GL_LoadLibrary() call and corresponding
+      config file entry
+
+    [ 20140702 ]
+    * Compiled successfully in Windows 7 using MinGW
+    * Added Windows setup script
+    * FontTRLE lps parser no longer using std::stoi
 
     [ 20140626 ]
     * ColorMode enum now global

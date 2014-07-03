@@ -414,7 +414,6 @@ int OpenRaider::help(std::string &cmd) {
         getConsole().print("  audiodir   STRING");
         getConsole().print("  datadir    STRING");
         getConsole().print("  font       STRING");
-        getConsole().print("  gldriver   STRING");
         getConsole().print("  size       INT INT");
         getConsole().print("  fullscreen BOOL");
         getConsole().print("  audio      BOOL");
@@ -546,10 +545,6 @@ int OpenRaider::set(std::istream &command) {
             return -3;
         }
         getWindow().setFullscreen(fullscreen);
-    } else if (var.compare("gldriver") == 0) {
-        std::string driver;
-        command >> driver;
-        getWindow().setDriver(driver.c_str());
     } else if (var.compare("audio") == 0) {
         bool audio = false;
         if (!(command >> audio)) {

@@ -16,7 +16,6 @@
 
 WindowSDL::WindowSDL() {
     mInit = false;
-    mDriver = NULL;
     mWidth = DEFAULT_WIDTH;
     mHeight = DEFAULT_HEIGHT;
     mFullscreen = false;
@@ -83,18 +82,6 @@ int WindowSDL::initialize() {
         printf("SDL_Init Error: %s\n", SDL_GetError());
         return -1;
     }
-
-#if !(defined(__APPLE__) || defined(_WIN32))
-    assert(mDriver != NULL);
-    assert(mDriver[0] != '\0');
-
-    if (SDL_GL_LoadLibrary(mDriver) < 0) {
-        SDL_ClearError();
-        printf("Could not load OpenGL driver!\n");
-        printf("SDL_GL_LoadLibrary Error: %s\n", SDL_GetError());
-        return -2;
-    }
-#endif
 
     int flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
     if (mFullscreen)

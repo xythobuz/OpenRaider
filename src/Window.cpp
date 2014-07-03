@@ -15,8 +15,6 @@
 #include "Window.h"
 
 Window::~Window() {
-    if (mDriver)
-        delete [] mDriver;
 }
 
 unsigned int Window::getWidth() {
@@ -25,14 +23,6 @@ unsigned int Window::getWidth() {
 
 unsigned int Window::getHeight() {
     return mHeight;
-}
-
-void Window::setDriver(const char *driver) {
-    assert(driver != NULL);
-    assert(driver[0] != '\0');
-    assert(mInit == false);
-
-    mDriver = bufferString("%s", driver);
 }
 
 int Window::initializeGL() {
