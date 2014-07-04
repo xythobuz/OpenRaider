@@ -9,7 +9,6 @@
 #define _VIEWVOLUME_H_
 
 #include "math/Matrix.h"
-#include "RoomData.h"
 
 /*!
  * \brief Viewing Volume for culling use
@@ -51,7 +50,7 @@ public:
      * \param z Z coordinate of point
      * \returns true if point in view volume
      */
-    bool isPointInFrustum(vec_t x, vec_t y, vec_t z);
+    bool isPointInFrustum(float x, float y, float z);
 
     /*!
      * \brief Check if bounding sphere is in view volume
@@ -61,7 +60,7 @@ public:
      * \param radius radius of a valid abstract sphere
      * \returns true if abstract sphere in view volume
      */
-    bool isSphereInFrustum(vec_t x, vec_t y, vec_t z, vec_t radius);
+    bool isSphereInFrustum(float x, float y, float z, float radius);
 
     /*!
      * \brief Check if bounding box is in view volume
@@ -69,7 +68,7 @@ public:
      * \param max maximum point of valid abstract bounding box
      * \returns true if abstract bounding box in view volume
      */
-    bool isBboxInFrustum(vec3_t min, vec3_t max);
+    bool isBboxInFrustum(float min[3], float max[3]);
 
     /*!
      * \brief Distance to Bounding sphere
@@ -79,7 +78,7 @@ public:
      * \param radius radius of a valid abstract sphere
      * \returns distance to abstract sphere bounding volume
      */
-    vec_t getDistToSphereFromNear(vec_t x, vec_t y, vec_t z, vec_t radius);
+    float getDistToSphereFromNear(float x, float y, float z, float radius);
 
     /*!
      * \brief Distance to Bounding box
@@ -87,27 +86,27 @@ public:
      * \param max maximum point of a valid abstract bounding box
      * \returns distance to abstract box bounding volume
      */
-    vec_t getDistToBboxFromNear(const vec3_t min, const vec3_t max);
+    float getDistToBboxFromNear(const float min[3], const float max[3]);
 
     /*!
      * \brief Get a copy of the view volume
      * \param frustum where frustum will be stored
      */
-    void getFrustum(vec_t frustum[6][4]);
+    void getFrustum(float frustum[6][4]);
 
     /*!
      * \brief Get a copy of a given plane in view volume
      * \param p side
      * \param plane wher plane will be stored
      */
-    void getPlane(ViewVolumeSide p, vec4_t plane);
+    void getPlane(ViewVolumeSide p, float plane[4]);
 
     /*!
      * \brief Updates view volume for this frame.
      * \param proj new projection matrix
      * \param mdl new model matrix
      */
-    void updateFrame(matrix_t proj, matrix_t mdl);
+    void updateFrame(float proj[16], float mdl[16]);
 
     /*!
      * \brief Updates view volume for this frame.
@@ -120,13 +119,13 @@ public:
      * \brief Set this class' model matrix
      * \param mdl new model matrix
      */
-    void setModel(matrix_t mdl);
+    void setModel(float mdl[16]);
 
     /*!
      * \brief Set this class' projection matrix
      * \param proj new projection matrix
      */
-    void setProjection(matrix_t proj);
+    void setProjection(float proj[16]);
 
 private:
 
@@ -147,7 +146,7 @@ private:
     Matrix mProjection;   //!< Projection matrix
     Matrix mModel;        //!< Model matrix
     Matrix mClip;         //!< Clipping matrix
-    vec_t mFrustum[6][4]; //!< View volume
+    float mFrustum[6][4]; //!< View volume
 };
 
 #endif

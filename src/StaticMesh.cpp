@@ -12,7 +12,7 @@
 #include "utils/pixel.h"
 #include "StaticMesh.h"
 
-TexturedTriangle::TexturedTriangle(int i[3], vec_t s[6], int tex, unsigned short trans) {
+TexturedTriangle::TexturedTriangle(int i[3], float s[6], int tex, unsigned short trans) {
     index[0] = i[0];
     index[1] = i[1];
     index[2] = i[2];
@@ -26,7 +26,7 @@ TexturedTriangle::TexturedTriangle(int i[3], vec_t s[6], int tex, unsigned short
     transparency = trans;
 }
 
-void TexturedTriangle::display(vec_t *vertices, vec_t *colors, vec_t *normals) {
+void TexturedTriangle::display(float *vertices, float *colors, float *normals) {
     assert(vertices != NULL);
 
     if ((getRender().getMode() != Render::modeWireframe)
@@ -253,7 +253,7 @@ void StaticMesh::display() {
     }
 }
 
-vec_t StaticMesh::getRadius() {
+float StaticMesh::getRadius() {
     return radius;
 }
 

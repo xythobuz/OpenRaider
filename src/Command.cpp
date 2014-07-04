@@ -6,18 +6,21 @@
  */
 
 #include <fstream>
-
-#include "WindowSDL.h"
+#include <sstream>
 
 #include "global.h"
+#include "Camera.h"
 #include "Console.h"
 #include "Entity.h"
 #include "Font.h"
 #include "Game.h"
 #include "math/math.h"
 #include "Menu.h"
+#include "Render.h"
 #include "Sound.h"
 #include "TombRaider.h"
+#include "Window.h"
+#include "World.h"
 #include "utils/strings.h"
 #include "utils/time.h"
 #include "OpenRaider.h"

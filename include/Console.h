@@ -8,7 +8,6 @@
 #ifndef _CONSOLE_H_
 #define _CONSOLE_H_
 
-#include <cstring>
 #include <vector>
 
 /*!

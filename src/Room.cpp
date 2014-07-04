@@ -20,7 +20,7 @@ extern std::map<int, int> gMapTex2Bump;
 #endif
 
 Room::Room(TombRaider &tr, unsigned int index) {
-    vec3_t box[2];
+    float box[2][3];
     Matrix transform;
 
     if (!tr.isRoomValid(index)) {
@@ -90,9 +90,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
 //#define EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
 #ifdef EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
     unsigned int vertexCount, normalCount, colorCount, triCount;
-    vec_t *vertexArray;
-    vec_t *normalArray;
-    vec_t *colorArray;
+    float *vertexArray;
+    float *normalArray;
+    float *colorArray;
     unsigned int *indices, *fflags;
     float *texCoords;
     int *textures;
@@ -255,7 +255,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
                 mesh.mTris[j].num_triangles = t;
                 mesh.mTris[j].triangles = new unsigned int[t*3];
                 mesh.mTris[j].num_texcoors = t * 3;
-                mesh.mTris[j].texcoors = new vec2_t[t * 3];
+                mesh.mTris[j].texcoors = new float *[t * 3];
+                for (unsigned int tmp = 0; tmp < (t * 3); tmp++)
+                    mesh.mTris[j].texcoors[tmp] = new float[2];
             }
 
             t = triangle_counter_alpha[i];
@@ -265,7 +267,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
                 mesh.mTris[j].num_alpha_triangles = t;
                 mesh.mTris[j].alpha_triangles = new unsigned int[t*3];
                 mesh.mTris[j].num_texcoors2 = t * 3;
-                mesh.mTris[j].texcoors2 = new vec2_t[t * 3];
+                mesh.mTris[j].texcoors2 = new float *[t * 3];
+                for (unsigned int tmp = 0; tmp < (t * 3); tmp++)
+                    mesh.mTris[j].texcoors2[tmp] = new float[2];
             }
         }
 
@@ -295,7 +299,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
                 mesh.mQuads[j].num_quads = r;
                 mesh.mQuads[j].quads = new unsigned int[r*4];
                 mesh.mQuads[j].num_texcoors = r * 4;
-                mesh.mQuads[j].texcoors = new vec2_t[r * 4];
+                mesh.mQuads[j].texcoors = new float *[r * 4];
+                for (unsigned int tmp = 0; tmp < (r * 4); tmp++)
+                    mesh.mQuads[j].texcoors[tmp] = new float[2];
             }
 
             r = rectangle_counter_alpha[i];
@@ -305,7 +311,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
                 mesh.mQuads[j].num_alpha_quads = r;
                 mesh.mQuads[j].alpha_quads = new unsigned int[r*4];
                 mesh.mQuads[j].num_texcoors2 = r * 4;
-                mesh.mQuads[j].texcoors2 = new vec2_t[r * 4];
+                mesh.mQuads[j].texcoors2 = new float *[r * 4];
+                for (unsigned int tmp = 0; tmp < (r * 4); tmp++)
+                    mesh.mQuads[j].texcoors2[tmp] = new float[2];
             }
         }
     }
@@ -466,7 +474,7 @@ void Room::display(bool alpha) {
 
         for (unsigned int i = 0; i < sizePortals(); i++) {
             Portal &portal = getPortal(i);
-            vec3_t vertices[4];
+            float vertices[4][3];
             portal.getVertices(vertices);
 
             glBegin(GL_LINE_LOOP);
@@ -561,8 +569,8 @@ void Room::getHeightAtPosition(float x, float *y, float z) {
 
 int Room::getAdjoiningRoom(float x, float y, float z,
         float x2, float y2, float z2) {
-    vec3_t intersect, p1, p2;
-    vec3_t vertices[4];
+    float intersect[3], p1[3], p2[3];
+    float vertices[4][3];
 
     p1[0] = x;  p1[1] = y;  p1[2] = z;
     p2[0] = x2; p2[1] = y2; p2[2] = z2;
@@ -589,7 +597,7 @@ unsigned int Room::getNumZSectors() {
     return numZSectors;
 }
 
-void Room::getPos(vec3_t p) {
+void Room::getPos(float p[3]) {
     for (unsigned int i = 0; i < 3; i++)
         p[i] = pos[i];
 }

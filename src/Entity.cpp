@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include <cmath>
+
 #include "global.h"
 #include "Console.h"
 #include "Entity.h"
@@ -34,8 +36,8 @@ Entity::Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int 
 }
 
 bool Entity::operator<(Entity &o) {
-    vec_t distA = getRender().mViewVolume.getDistToSphereFromNear(pos[0], pos[1], pos[2], 1.0f);
-    vec_t distB = getRender().mViewVolume.getDistToSphereFromNear(o.pos[0], o.pos[1], o.pos[2], 1.0f);
+    float distA = getRender().mViewVolume.getDistToSphereFromNear(pos[0], pos[1], pos[2], 1.0f);
+    float distB = getRender().mViewVolume.getDistToSphereFromNear(o.pos[0], o.pos[1], o.pos[2], 1.0f);
     return (distA < distB);
 }
 
@@ -236,16 +238,16 @@ int Entity::getObjectId() {
     return objectId;
 }
 
-void Entity::setAngles(vec3_t a) {
+void Entity::setAngles(float a[3]) {
     for (unsigned int i = 0; i < 3; i++)
         angles[i] = a[i];
 }
 
-vec_t Entity::getPos(unsigned int i) {
+float Entity::getPos(unsigned int i) {
     return pos[i];
 }
 
-vec_t Entity::getAngle(unsigned int i) {
+float Entity::getAngle(unsigned int i) {
     return angles[i];
 }
 

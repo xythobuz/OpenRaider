@@ -12,6 +12,7 @@
 #include <stdarg.h>
 
 #include "global.h"
+#include "Console.h"
 #include "OpenRaider.h"
 #include "utils/pcx.h"
 #include "utils/pixel.h"

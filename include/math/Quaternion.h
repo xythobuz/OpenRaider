@@ -28,19 +28,19 @@ public:
      * \param y Y part of new Quaternion
      * \param z Z part of new Quaternion
      */
-    Quaternion(vec_t w, vec_t x, vec_t y, vec_t z);
+    Quaternion(float w, float x, float y, float z);
 
     /*!
      * \brief Constructs an object of Quaternion
      * \param v contents of new Quaternion
      */
-    Quaternion(vec4_t v);
+    Quaternion(float v[4]);
 
     /*!
      * \brief Get column order matrix equivalent of this quaternion
      * \param m where matrix will be stored
      */
-    void getMatrix(matrix_t m);
+    void getMatrix(float m[16]);
 
     /*!
      * \brief Multiplies this quaternion.
@@ -92,7 +92,7 @@ public:
      * \param s scaling factor
      * \returns Scaled result of this quaternion
      */
-    Quaternion scale(vec_t s);
+    Quaternion scale(float s);
 
     /*!
      * \brief Inverse this quaternion
@@ -106,13 +106,13 @@ public:
      * \param b second argument to dot product
      * \returns dot product between a and b quaternions
      */
-    static vec_t dot(Quaternion a, Quaternion b);
+    static float dot(Quaternion a, Quaternion b);
 
     /*!
      * \brief Magnitude of this quaternion
      * \returns Magnitude of this quaternion
      */
-    vec_t magnitude();
+    float magnitude();
 
     /*!
      * \brief Interpolates between a and b rotations.
@@ -125,7 +125,7 @@ public:
      * \param time time argument for slerp
      * \returns resultant quaternion
      */
-    static Quaternion slerp(Quaternion a, Quaternion b, vec_t time);
+    static Quaternion slerp(Quaternion a, Quaternion b, float time);
 
     /*!
      * \brief Sets this quaternion to identity
@@ -139,7 +139,7 @@ public:
      * \param y new Y coordinate
      * \param z new Z coordinate
      */
-    void set(vec_t angle, vec_t x, vec_t y, vec_t z);
+    void set(float angle, float x, float y, float z);
 
     /*!
      * \brief Normalize this quaternion
@@ -156,7 +156,7 @@ public:
      * \brief Sets matrix equivalent of this quaternion
      * \param m matrix in valid column order
      */
-    void setByMatrix(matrix_t m);
+    void setByMatrix(float m[16]);
 
 private:
 
@@ -192,10 +192,10 @@ private:
      */
     static Quaternion subtract(Quaternion a, Quaternion b);
 
-    vec_t mW; //!< Quaternion, W part
-    vec_t mX; //!< Quaternion, X part
-    vec_t mY; //!< Quaternion, Y part
-    vec_t mZ; //!< Quaternion, Z part
+    float mW; //!< Quaternion, W part
+    float mX; //!< Quaternion, X part
+    float mY; //!< Quaternion, Y part
+    float mZ; //!< Quaternion, Z part
 };
 
 #endif

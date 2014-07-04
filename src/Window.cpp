@@ -8,14 +8,12 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdarg>
+#include <cmath>
 
 #include "global.h"
 #include "math/math.h"
 #include "utils/strings.h"
 #include "Window.h"
-
-Window::~Window() {
-}
 
 unsigned int Window::getWidth() {
     return mWidth;

@@ -25,7 +25,7 @@ public:
      * \brief Constructs an object of Vector3d
      * \param v data to load into new Vector3d
      */
-    Vector3d(vec3_t v);
+    Vector3d(float v[3]);
 
     /*!
      * \brief Constructs an object of Vector3d
@@ -33,7 +33,7 @@ public:
      * \param y Y part of new Vector3d
      * \param z Z part of new Vector3d
      */
-    Vector3d(vec_t x, vec_t y, vec_t z);
+    Vector3d(float x, float y, float z);
 
     /*!
      * \brief Constructs an object of Vector3d
@@ -47,7 +47,7 @@ public:
      * \param v second argument
      * \returns dot product of u and v vectors
      */
-    static vec_t dot(const Vector3d &u, const Vector3d &v);
+    static float dot(const Vector3d &u, const Vector3d &v);
 
     /*!
      * \brief Calculate cross product
@@ -61,7 +61,7 @@ public:
      * \brief Get Magnitude
      * \returns magnitude of this vector
      */
-    vec_t magnitude();
+    float magnitude();
 
     /*!
      * \brief Normalize
@@ -100,21 +100,21 @@ public:
      * \param s scaling factor
      * \returns this vector multiplied with s
      */
-    Vector3d operator *(vec_t s);
+    Vector3d operator *(float s);
 
     /*!
      * \brief Scale this vactor
      * \param s inverse scaling factor
      * \returns this vector divided by s
      */
-    Vector3d operator /(vec_t s);
+    Vector3d operator /(float s);
 
     /*!
      * \brief Dot product this vector
      * \param v second vector for dot product
      * \returns dot product of V by this vector
      */
-    vec_t operator *(const Vector3d &v);
+    float operator *(const Vector3d &v);
 
     /*!
      * \brief Normalizes this vector
@@ -152,9 +152,9 @@ public:
      * \param s scaling factor
      * \returns this vactor multiplied by s
      */
-    Vector3d &operator *=(vec_t s);
+    Vector3d &operator *=(float s);
 
-    vec3_t mVec; //!< Vector data
+    float mVec[3]; //!< Vector data
 };
 
 #endif

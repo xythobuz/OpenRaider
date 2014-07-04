@@ -15,18 +15,18 @@ Matrix::Matrix() {
     setIdentity();
 }
 
-Matrix::Matrix(matrix_t m) {
+Matrix::Matrix(float m[16]) {
     setMatrix(m);
 }
 
 Matrix::Matrix(Quaternion &q) {
-    matrix_t m;
+    float m[16];
     q.getMatrix(m);
     setMatrix(m);
 }
 
-bool Matrix::getInvert(matrix_t out) {
-    matrix_t m;
+bool Matrix::getInvert(float out[16]) {
+    float m[16];
 
 #ifdef COLUMN_ORDER
     getMatrix(m);
@@ -152,11 +152,11 @@ bool Matrix::getInvert(matrix_t out) {
 #undef SWAP_ROWS
 }
 
-void Matrix::getMatrix(matrix_t mat) {
+void Matrix::getMatrix(float mat[16]) {
     copy(mMatrix, mat);
 }
 
-void Matrix::getTransposeMatrix(matrix_t m) {
+void Matrix::getTransposeMatrix(float m[16]) {
     m[ 0]= mMatrix[0]; m[ 1]= mMatrix[4]; m[ 2]= mMatrix[ 8]; m[ 3]=mMatrix[12];
     m[ 4]= mMatrix[1]; m[ 5]= mMatrix[5]; m[ 6]= mMatrix[ 9]; m[ 7]=mMatrix[13];
     m[ 8]= mMatrix[2]; m[ 9]= mMatrix[6]; m[10]= mMatrix[10]; m[11]=mMatrix[14];
@@ -174,7 +174,7 @@ Matrix Matrix::operator *(const Matrix &a) {
 }
 
 Vector3d Matrix::operator *(Vector3d v) {
-    vec_t x = v.mVec[0], y = v.mVec[1], z = v.mVec[2];
+    float x = v.mVec[0], y = v.mVec[1], z = v.mVec[2];
 
 #ifdef COLUMN_ORDER
     return Vector3d(mMatrix[0]*x + mMatrix[4]*y + mMatrix[ 8]*z + mMatrix[12],
@@ -187,16 +187,16 @@ Vector3d Matrix::operator *(Vector3d v) {
 #endif
 }
 
-void Matrix::multiply3v(vec3_t v, vec3_t result) {
-    vec_t x = v[0], y = v[1], z = v[2];
+void Matrix::multiply3v(float v[3], float result[3]) {
+    float x = v[0], y = v[1], z = v[2];
 
     result[0] = mMatrix[0]*x + mMatrix[1]*y + mMatrix[ 2]*z + mMatrix[ 3];
     result[1] = mMatrix[4]*x + mMatrix[5]*y + mMatrix[ 6]*z + mMatrix[ 7];
     result[2] = mMatrix[8]*x + mMatrix[9]*y + mMatrix[10]*z + mMatrix[11];
 }
 
-void Matrix::multiply4v(vec4_t v, vec4_t result) {
-    vec_t x = v[0], y = v[1], z = v[2], w = v[3];
+void Matrix::multiply4v(float v[4], float result[4]) {
+    float x = v[0], y = v[1], z = v[2], w = v[3];
 
     result[0] = mMatrix[ 0]*x + mMatrix[ 1]*y + mMatrix[ 2]*z + mMatrix[ 3]*w;
     result[1] = mMatrix[ 4]*x + mMatrix[ 5]*y + mMatrix[ 6]*z + mMatrix[ 7]*w;
@@ -241,7 +241,7 @@ bool Matrix::isIdentity() {
     return false;
 }
 
-void Matrix::setMatrix(matrix_t mat) {
+void Matrix::setMatrix(float mat[16]) {
     copy(mat, mMatrix);
 }
 
@@ -252,13 +252,13 @@ void Matrix::setIdentity() {
     mMatrix[12] = 0; mMatrix[13] = 0; mMatrix[14] = 0; mMatrix[15] = 1;
 }
 
-void Matrix::scale(const vec_t *xyz) {
+void Matrix::scale(const float *xyz) {
     scale(xyz[0], xyz[1], xyz[2]);
 }
 
-void Matrix::scale(vec_t sx, vec_t sy, vec_t sz) {
-    matrix_t smatrix;
-    matrix_t tmp;
+void Matrix::scale(float sx, float sy, float sz) {
+    float smatrix[16];
+    float tmp[16];
 
     smatrix[ 0] = sx; smatrix[ 1] = 0;  smatrix[ 2] = 0;  smatrix[ 3] = 0;
     smatrix[ 4] = 0;  smatrix[ 5] = sy; smatrix[ 6] = 0;  smatrix[ 7] = 0;
@@ -269,12 +269,12 @@ void Matrix::scale(vec_t sx, vec_t sy, vec_t sz) {
     multiply(tmp, smatrix, mMatrix);
 }
 
-void Matrix::rotate(const vec_t *xyz) {
+void Matrix::rotate(const float *xyz) {
     rotate(xyz[0], xyz[1], xyz[2]);
 }
 
-void Matrix::rotate(vec_t ax, vec_t ay, vec_t az) {
-    matrix_t xmat, ymat, zmat, tmp, tmp2;
+void Matrix::rotate(float ax, float ay, float az) {
+    float xmat[16], ymat[16], zmat[16], tmp[16], tmp2[16];
 
     xmat[ 0]=1;         xmat[ 1]=0;         xmat[ 2]=0;         xmat[ 3]=0;
     xmat[ 4]=0;         xmat[ 5]=cosf(ax);  xmat[ 6]=sinf(ax);  xmat[ 7]=0;
@@ -296,12 +296,12 @@ void Matrix::rotate(vec_t ax, vec_t ay, vec_t az) {
     multiply(tmp2, zmat, mMatrix);
 }
 
-void Matrix::translate(const vec_t *xyz) {
+void Matrix::translate(const float *xyz) {
     translate(xyz[0], xyz[1], xyz[2]);
 }
 
-void Matrix::translate(vec_t tx, vec_t ty, vec_t tz) {
-    matrix_t tmat, tmp;
+void Matrix::translate(float tx, float ty, float tz) {
+    float tmat[16], tmp[16];
 
     tmat[ 0]=1;  tmat[ 1]=0;  tmat[ 2]=0;  tmat[ 3]=0;
     tmat[ 4]=0;  tmat[ 5]=1;  tmat[ 6]=0;  tmat[ 7]=0;
@@ -312,12 +312,12 @@ void Matrix::translate(vec_t tx, vec_t ty, vec_t tz) {
     multiply(tmp, tmat, mMatrix);
 }
 
-void Matrix::copy(matrix_t source, matrix_t dest) {
+void Matrix::copy(float source[16], float dest[16]) {
     for (int i = 0; i < 16; i++)
         dest[i] = source[i];
 }
 
-void Matrix::multiply(const matrix_t a, const matrix_t b, matrix_t result) {
+void Matrix::multiply(const float a[16], const float b[16], float result[16]) {
     /* Generated code for matrix mult
      * Code used:
 

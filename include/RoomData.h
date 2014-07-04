@@ -10,21 +10,20 @@
 
 #include <vector>
 #include <memory>
-#include "math/math.h"
 #include "math/Matrix.h"
 #include "TombRaider.h"
 
 class BoundingBox {
 public:
     BoundingBox();
-    void getBoundingBox(vec3_t box[2]);
-    void setBoundingBox(vec3_t min, vec3_t max);
+    void getBoundingBox(float box[2][3]);
+    void setBoundingBox(float min[3], float max[3]);
     void display(bool points, const unsigned char c1[4], const unsigned char c2[4]);
-    bool inBox(vec_t x, vec_t y, vec_t z);
-    bool inBoxPlane(vec_t x, vec_t z);
+    bool inBox(float x, float y, float z);
+    bool inBoxPlane(float x, float z);
 
 private:
-    vec3_t a, b;
+    float a[3], b[3];
 };
 
 class Light {
@@ -40,19 +39,19 @@ public:
 
     Light(TombRaider &tr, unsigned int room, unsigned int index);
 
-    void getPos(vec4_t p);
-    void getDir(vec3_t d);
-    vec_t getAtt();
-    void getColor(vec4_t c);
-    vec_t getCutoff();
+    void getPos(float p[4]);
+    void getDir(float d[3]);
+    float getAtt();
+    void getColor(float c[4]);
+    float getCutoff();
     LightType getType();
 
 private:
-    vec4_t pos; //! Light position in 3 space
-    vec3_t dir; //! Light direction
-    vec_t att;
-    vec4_t color; //! Color of light
-    vec_t cutoff; //! Fade out distance
+    float pos[4]; //! Light position in 3 space
+    float dir[3]; //! Light direction
+    float att;
+    float color[4]; //! Color of light
+    float cutoff; //! Fade out distance
     LightType type; //! Type of light
 };
 
@@ -66,23 +65,23 @@ public:
 
 private:
     int index;
-    vec_t yaw;
-    vec3_t pos;
+    float yaw;
+    float pos[3];
 
     // ?
-    //vec3_t bbox[2];
+    //float bbox[2][3];
 };
 
 class Portal {
 public:
     Portal(TombRaider &tr, unsigned int room, unsigned int index, Matrix &transform);
 
-    void getVertices(vec3_t vert[4]);
+    void getVertices(float vert[4][3]);
     int getAdjoiningRoom();
 
 private:
-    vec3_t vertices[4];
-    vec3_t normal;
+    float vertices[4][3];
+    float normal[3];
     int adjoiningRoom;
 };
 
@@ -91,22 +90,19 @@ public:
     Box(TombRaider &tr, unsigned int room, unsigned int index);
 
 private:
-    vec3_t a;
-    vec3_t b;
-    vec3_t c;
-    vec3_t d;
+    float a[3], b[3], c[3], d[3];
 };
 
 class Sector {
 public:
     Sector(TombRaider &tr, unsigned int room, unsigned int index);
-    vec_t getFloor();
-    vec_t getCeiling();
+    float getFloor();
+    float getCeiling();
     bool isWall();
 
 private:
-    vec_t floor;
-    vec_t ceiling;
+    float floor;
+    float ceiling;
     bool wall;
 };
 

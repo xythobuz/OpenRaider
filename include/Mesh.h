@@ -10,8 +10,6 @@
 #ifndef _MESH_H_
 #define _MESH_H_
 
-#include "math/math.h"
-
 /*!
  * \brief OpenGL Mesh
  */
@@ -39,10 +37,10 @@ public:
         unsigned int cnum_alpha_triangles;
 
         unsigned int num_texcoors;
-        vec2_t *texcoors;
+        float **texcoors; // 2D
 
         unsigned int num_texcoors2;
-        vec2_t *texcoors2;
+        float **texcoors2; // 2D
 
         //! Arrays of triangle indices sorted by texture
         unsigned int num_triangles;
@@ -64,10 +62,10 @@ public:
         unsigned int cnum_alpha_quads;
 
         unsigned int num_texcoors;
-        vec2_t *texcoors;
+        float **texcoors; // 2D
 
         unsigned int num_texcoors2;
-        vec2_t *texcoors2;
+        float **texcoors2; // 2D
 
         //! Arrays of rectangle indices sorted by texture
         unsigned int num_quads;
@@ -103,15 +101,15 @@ public:
 
     void allocateVertices(unsigned int n);
 
-    void bufferColorArray(unsigned int colorCount, vec_t *colors);
+    void bufferColorArray(unsigned int colorCount, float *colors);
 
-    void bufferNormalArray(unsigned int normalCount, vec_t *normals);
+    void bufferNormalArray(unsigned int normalCount, float *normals);
 
     void bufferTriangles(unsigned int count,
-                            unsigned int *indices, vec_t *texCoords,
+                            unsigned int *indices, float *texCoords,
                             int *textures, unsigned int *flags);
 
-    void bufferVertexArray(unsigned int vertexCount, vec_t *vertices);
+    void bufferVertexArray(unsigned int vertexCount, float *vertices);
 
     void setColor(unsigned int index, float r, float g, float b, float a);
 
@@ -125,13 +123,13 @@ public:
     void sortFacesByTexture();
 
     void addFace(int textureIndex, int textureIndexB, unsigned int flags,
-                    unsigned int vertexIndexCount, vec_t *vertexIndices);
+                    unsigned int vertexIndexCount, float *vertexIndices);
 
     void addTexTiledFace(int textureIndex, int textureIndexB,
                             unsigned int flags, unsigned int indexCount,
-                            vec_t *vertexIndices, vec_t *texcoords);
+                            float *vertexIndices, float *texcoords);
 
-    void bufferTexcoords(unsigned int texcoordCount, vec_t *texcoords);
+    void bufferTexcoords(unsigned int texcoordCount, float *texcoords);
 
     void duplicateArraysForTexTiledTexcoords();
 #endif
@@ -141,13 +139,13 @@ public:
     MeshMode mMode;
 
     unsigned int mNumVertices;
-    vec3_t *mVertices; //!< XYZ
+    float **mVertices; //!< XYZ
 
     unsigned int mNumNormals;
-    vec3_t *mNormals; //!< IJK
+    float **mNormals; //!< IJK
 
     unsigned int mNumColors;
-    vec4_t *mColors; //!< RGBA
+    float **mColors; //!< RGBA
 
     unsigned int mNumTris;
     tris_t *mTris;
@@ -159,11 +157,11 @@ public:
     int *mTriangleTextures;
     unsigned int *mTriangleIndices;
     unsigned int *mTriangleFlags;
-    vec_t *mTriangleTexCoordArray;
+    float *mTriangleTexCoordArray;
 
-    vec_t *mVertexArray;
-    vec_t *mNormalArray;
-    vec_t *mColorArray;
+    float *mVertexArray;
+    float *mNormalArray;
+    float *mColorArray;
 };
 
 #endif

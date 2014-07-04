@@ -8,7 +8,6 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
-#include "math/math.h"
 #include "SkeletalModel.h"
 #include "TombRaider.h"
 
@@ -34,9 +33,9 @@ public:
     MoveType getMoveType();
     void setMoveType(MoveType m);
     int getObjectId();
-    void setAngles(vec3_t a);
-    vec_t getPos(unsigned int i);
-    vec_t getAngle(unsigned int i);
+    void setAngles(float a[3]);
+    float getPos(unsigned int i);
+    float getAngle(unsigned int i);
     int getRoom();
 
     // Animation State
@@ -48,8 +47,8 @@ public:
     void setIdleAnimation(unsigned int index);
 
 private:
-    vec3_t pos;
-    vec3_t angles;
+    float pos[3];
+    float angles[3];
     int room;
 
     unsigned int skeletalModel;

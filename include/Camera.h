@@ -9,7 +9,6 @@
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 
-#include "math/math.h"
 #include "math/Quaternion.h"
 
 /*!
@@ -36,29 +35,29 @@ public:
      * \brief Get the target currently looked at
      * \param target where the target will be stored
      */
-    void getTarget(vec3_t target);
+    void getTarget(float target[3]);
 
     /*!
      * \brief Get angle/yaw of camera
      * \returns theta angle/yaw of camera
      */
-    vec_t getRadianYaw();
+    float getRadianYaw();
 
     /*!
      * \brief Get angle/pitch of camera
      * \returns phi angle/pitch of camera
      */
-    vec_t getRadianPitch();
+    float getRadianPitch();
 
     /*!
      * \brief Set current position
      * \param pos new position
      */
-    void setPosition(vec3_t pos);
+    void setPosition(float pos[3]);
 
-    void setSensitivityX(vec_t sens);
+    void setSensitivityX(float sens);
 
-    void setSensitivityY(vec_t sens);
+    void setSensitivityY(float sens);
 
     /*!
      * \brief Updates view target
@@ -73,16 +72,16 @@ public:
 
 private:
 
-    void rotate(vec_t angle, vec_t x, vec_t y, vec_t z);
+    void rotate(float angle, float x, float y, float z);
 
     Quaternion mQ;         //!< Quaternion for rotation
-    vec4_t mPos;           //!< Location in 3 space (aka eye)
-    vec4_t mTarget;        //!< Postition we're looking at
-    vec_t mViewDistance;   //!< Distance from target
-    vec_t mTheta;          //!< View angle Y
-    vec_t mTheta2;         //!< View angle Z
-    vec_t mRotationDeltaX; //!< Horizontal mouse sensitivity
-    vec_t mRotationDeltaY; //!< Vertical mouse sensitivity
+    float mPos[4];         //!< Location in 3 space (aka eye)
+    float mTarget[4];      //!< Postition we're looking at
+    float mViewDistance;   //!< Distance from target
+    float mTheta;          //!< View angle Y
+    float mTheta2;         //!< View angle Z
+    float mRotationDeltaX; //!< Horizontal mouse sensitivity
+    float mRotationDeltaY; //!< Vertical mouse sensitivity
 };
 
 Camera &getCamera();

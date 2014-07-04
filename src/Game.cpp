@@ -10,12 +10,15 @@
 #include <cstdlib>
 
 #include "global.h"
+#include "Camera.h"
 #include "Console.h"
 #include "Game.h"
 #include "OpenRaider.h"
+#include "Render.h"
 #include "Sound.h"
 #include "StaticMesh.h"
 #include "TextureManager.h"
+#include "World.h"
 #include "utils/strings.h"
 
 #include "games/TombRaider1.h"
@@ -164,7 +167,7 @@ void Game::handleMouseMotion(int xrel, int yrel) {
                 getCamera().command(CAMERA_ROTATE_DOWN);
 
         // Fix Laras rotation
-        vec3_t angles = { 0.0f, getCamera().getRadianYaw(), getCamera().getRadianPitch() };
+        float angles[3] = { 0.0f, getCamera().getRadianYaw(), getCamera().getRadianPitch() };
         getLara().setAngles(angles);
     }
 }

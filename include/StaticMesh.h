@@ -9,17 +9,16 @@
 #define _STATIC_MODEL_H_
 
 #include <vector>
-#include "math/math.h"
 #include "TombRaider.h"
 
 class TexturedTriangle {
 public:
-    TexturedTriangle(int i[3], vec_t s[6], int tex, unsigned short trans);
-    void display(vec_t *vertices, vec_t *colors, vec_t *normals);
+    TexturedTriangle(int i[3], float s[6], int tex, unsigned short trans);
+    void display(float *vertices, float *colors, float *normals);
 
 private:
     int index[3];
-    vec_t st[6];
+    float st[6];
     int texture;
     unsigned short transparency;
 };
@@ -29,20 +28,20 @@ public:
     StaticMesh(TombRaider &tr, unsigned int index);
     ~StaticMesh();
     void display();
-    vec_t getRadius();
+    float getRadius();
 
 private:
     bool dontshow;
-    vec3_t center;
-    vec_t radius;
+    float center[3];
+    float radius;
 
     unsigned int vertexCount;
     unsigned int colorCount;
     unsigned int normalCount;
 
-    vec_t *vertices;
-    vec_t *colors;
-    vec_t *normals;
+    float *vertices;
+    float *colors;
+    float *normals;
 
     std::vector<TexturedTriangle *> triangles;
 };

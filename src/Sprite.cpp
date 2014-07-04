@@ -66,17 +66,17 @@ Sprite::Sprite(TombRaider &tr, unsigned int item, unsigned int sequence, unsigne
     vertex[2][2] = 0;
     vertex[3][2] = 0;
 
-    texel[3][0] = (vec_t)(x+width)/texelScale;
-    texel[3][1] = (vec_t)(y+height)/texelScale;
+    texel[3][0] = (float)(x+width)/texelScale;
+    texel[3][1] = (float)(y+height)/texelScale;
 
-    texel[2][0] = (vec_t)(x+width)/texelScale;
-    texel[2][1] = (vec_t)(y)/texelScale;
+    texel[2][0] = (float)(x+width)/texelScale;
+    texel[2][1] = (float)(y)/texelScale;
 
-    texel[1][0] = (vec_t)(x) /texelScale;
-    texel[1][1] = (vec_t)(y) /texelScale;
+    texel[1][0] = (float)(x) /texelScale;
+    texel[1][1] = (float)(y) /texelScale;
 
-    texel[0][0] = (vec_t)(x) / texelScale;
-    texel[0][1] = (vec_t)(y+height)/texelScale;
+    texel[0][0] = (float)(x) / texelScale;
+    texel[0][1] = (float)(y+height)/texelScale;
 
     texture = sprite->tile + getGame().getTextureStart();
     radius = width2 / 2.0f;

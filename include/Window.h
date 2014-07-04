@@ -8,18 +8,13 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
-#include <ctime>
-
 /*!
  * \brief Windowing interface
  */
 class Window {
 public:
 
-    /*!
-     * \brief Deconstructs an object of Window
-     */
-    virtual ~Window();
+    virtual ~Window() {}
 
     virtual void setSize(unsigned int width, unsigned int height) = 0;
 
@@ -33,7 +28,7 @@ public:
 
     virtual void setTextInput(bool on) = 0;
 
-    virtual void delay(clock_t ms) = 0;
+    virtual void delay(unsigned int ms) = 0;
 
     virtual void swapBuffersGL() = 0;
 

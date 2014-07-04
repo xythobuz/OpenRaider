@@ -16,7 +16,7 @@ BoundingBox::BoundingBox() {
     b[0] = b[1] = b[2] = 0;
 }
 
-void BoundingBox::getBoundingBox(vec3_t box[2]) {
+void BoundingBox::getBoundingBox(float box[2][3]) {
     box[0][0] = a[0];
     box[1][0] = b[0];
     box[0][1] = a[1];
@@ -25,7 +25,7 @@ void BoundingBox::getBoundingBox(vec3_t box[2]) {
     box[1][2] = b[2];
 }
 
-void BoundingBox::setBoundingBox(vec3_t min, vec3_t max) {
+void BoundingBox::setBoundingBox(float min[3], float max[3]) {
     a[0] = min[0];
     b[0] = max[0];
     a[1] = min[1];
@@ -34,11 +34,11 @@ void BoundingBox::setBoundingBox(vec3_t min, vec3_t max) {
     b[2] = max[2];
 }
 
-bool BoundingBox::inBox(vec_t x, vec_t y, vec_t z) {
+bool BoundingBox::inBox(float x, float y, float z) {
     return ((y > a[1]) && (y < b[1]) && inBoxPlane(x, z));
 }
 
-bool BoundingBox::inBoxPlane(vec_t x, vec_t z) {
+bool BoundingBox::inBoxPlane(float x, float z) {
     return ((x > a[0]) && (x < b[0])
             && (z > a[2]) && (z < b[2]));
 }
@@ -140,31 +140,31 @@ Light::Light(TombRaider &tr, unsigned int room, unsigned int index) {
     //! \todo Light flags?
 }
 
-void Light::getPos(vec4_t p) {
+void Light::getPos(float p[4]) {
     p[0] = pos[0];
     p[1] = pos[1];
     p[2] = pos[2];
     p[3] = pos[3];
 }
 
-void Light::getDir(vec3_t d) {
+void Light::getDir(float d[3]) {
     d[0] = dir[0];
     d[1] = dir[1];
     d[2] = dir[2];
 }
 
-vec_t Light::getAtt() {
+float Light::getAtt() {
     return att;
 }
 
-void Light::getColor(vec4_t c) {
+void Light::getColor(float c[4]) {
     c[0] = color[0];
     c[1] = color[1];
     c[2] = color[2];
     c[3] = color[3];
 }
 
-vec_t Light::getCutoff() {
+float Light::getCutoff() {
     return cutoff;
 }
 
@@ -192,7 +192,7 @@ void StaticModel::display() {
 }
 
 bool StaticModel::operator<(const StaticModel &other) {
-    vec_t distA, distB;
+    float distA, distB;
     distA = getRender().mViewVolume.getDistToSphereFromNear(pos[0],
             pos[1], pos[2], 128.0f);
     distB = getRender().mViewVolume.getDistToSphereFromNear(other.pos[0],
@@ -215,7 +215,7 @@ Portal::Portal(TombRaider &tr, unsigned int room, unsigned int index, Matrix &tr
     }
 }
 
-void Portal::getVertices(vec3_t vert[4]) {
+void Portal::getVertices(float vert[4][3]) {
     for (unsigned int i = 0; i < 4; i++) {
         for (unsigned int j = 0; j < 3; j++) {
             vert[i][j] = vertices[i][j];
@@ -246,11 +246,11 @@ Sector::Sector(TombRaider &tr, unsigned int room, unsigned int index) {
     wall = (sectorFlags & tombraiderSector_wall);
 }
 
-vec_t Sector::getFloor() {
+float Sector::getFloor() {
     return floor;
 }
 
-vec_t Sector::getCeiling() {
+float Sector::getCeiling() {
     return ceiling;
 }
 

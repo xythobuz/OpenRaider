@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140704 ]
+    * Removed unnecessary #include dependencies
+    * Removed vecX_t typedefs
+
     [ 20140703 ]
     * Removed SDL_GL_LoadLibrary() call and corresponding
       config file entry

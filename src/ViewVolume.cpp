@@ -21,7 +21,7 @@ ViewVolume::ViewVolume() {
     mFrustum[5][0] = mFrustum[5][1] = mFrustum[5][2] = mFrustum[5][3] = 0.0f;
 }
 
-bool ViewVolume::isPointInFrustum(vec_t x, vec_t y, vec_t z) {
+bool ViewVolume::isPointInFrustum(float x, float y, float z) {
     for (unsigned int p = 0; p < 6; ++p) {
         if (mFrustum[p][0] * x + mFrustum[p][1] * y + mFrustum[p][2] * z +
                 mFrustum[p][3] <= 0) {
@@ -31,16 +31,16 @@ bool ViewVolume::isPointInFrustum(vec_t x, vec_t y, vec_t z) {
     return true;
 }
 
-bool ViewVolume::isSphereInFrustum(vec_t x, vec_t y, vec_t z, vec_t radius) {
+bool ViewVolume::isSphereInFrustum(float x, float y, float z, float radius) {
     for (unsigned int p = 0; p < 6; ++p) {
-        vec_t d = mFrustum[p][0] * x + mFrustum[p][1] * y + mFrustum[p][2] * z + mFrustum[p][3];
+        float d = mFrustum[p][0] * x + mFrustum[p][1] * y + mFrustum[p][2] * z + mFrustum[p][3];
         if (d <= -radius)
             return false;
     }
     return true;
 }
 
-bool ViewVolume::isBboxInFrustum(vec3_t min, vec3_t max) {
+bool ViewVolume::isBboxInFrustum(float min[3], float max[3]) {
     for (unsigned int p = 0; p < 6; ++p) {
         if (mFrustum[p][0] * min[0] +
                 mFrustum[p][1] * min[1] +
@@ -87,8 +87,8 @@ bool ViewVolume::isBboxInFrustum(vec3_t min, vec3_t max) {
     return true;
 }
 
-vec_t ViewVolume::getDistToSphereFromNear(vec_t x, vec_t y, vec_t z, vec_t radius) {
-    vec_t d = 0.0;
+float ViewVolume::getDistToSphereFromNear(float x, float y, float z, float radius) {
+    float d = 0.0;
     for (unsigned int p = 0; p < 6; ++p) {
         d = mFrustum[p][0] * x + mFrustum[p][1] * y + mFrustum[p][2] * z + mFrustum[p][3];
         if (d <= -radius)
@@ -97,9 +97,9 @@ vec_t ViewVolume::getDistToSphereFromNear(vec_t x, vec_t y, vec_t z, vec_t radiu
     return d + radius;
 }
 
-vec_t ViewVolume::getDistToBboxFromNear(const vec3_t min, const vec3_t max) {
-    vec3_t center;
-    vec_t d, radius;
+float ViewVolume::getDistToBboxFromNear(const float min[3], const float max[3]) {
+    float center[3];
+    float d, radius;
 
     midpoint(min, max, center);
 
@@ -117,7 +117,7 @@ vec_t ViewVolume::getDistToBboxFromNear(const vec3_t min, const vec3_t max) {
     return d + radius;
 }
 
-void ViewVolume::getFrustum(vec_t frustum[6][4]) {
+void ViewVolume::getFrustum(float frustum[6][4]) {
     for (unsigned int p = 0; p < 6; ++p) {
         for (unsigned int i = 0; i < 4; ++i) {
             frustum[p][i] = mFrustum[p][i];
@@ -125,13 +125,13 @@ void ViewVolume::getFrustum(vec_t frustum[6][4]) {
     }
 }
 
-void ViewVolume::getPlane(ViewVolumeSide p, vec4_t plane) {
+void ViewVolume::getPlane(ViewVolumeSide p, float plane[4]) {
     for (unsigned int i = 0; i < 4; ++i) {
         plane[i] =  mFrustum[p][i];
     }
 }
 
-void ViewVolume::updateFrame(matrix_t proj, matrix_t mdl) {
+void ViewVolume::updateFrame(float proj[16], float mdl[16]) {
     setModel(mdl);
     setProjection(proj);
     updateClip();
@@ -143,11 +143,11 @@ void ViewVolume::updateFrame() {
     updateFrustum();
 }
 
-void ViewVolume::setModel(matrix_t mdl) {
+void ViewVolume::setModel(float mdl[16]) {
     mModel.setMatrix(mdl);
 }
 
-void ViewVolume::setProjection(matrix_t proj) {
+void ViewVolume::setProjection(float proj[16]) {
     mProjection.setMatrix(proj);
 }
 
@@ -156,8 +156,8 @@ void ViewVolume::updateClip() {
 }
 
 void ViewVolume::updateFrustum() {
-    matrix_t clip;
-    vec_t t;
+    float clip[16];
+    float t;
 
     mClip.getMatrix(clip);
 

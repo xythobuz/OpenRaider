@@ -7,29 +7,17 @@
  * \author xythobuz
  */
 
-#include <cmath>
-
 #ifndef _MATH_MATH_H
 #define _MATH_MATH_H
 
 #ifndef M_PI
-#define M_PI 3.14159265358979323846
+#define OR_PI (3.14159265358979323846f) //!< pi
+#else
+#define OR_PI ((float)M_PI) //!< pi
 #endif
 
-#define OR_PI           ((float)M_PI) //!< pi
-#define OR_2_PI         (OR_PI * 2.0f) //!< pi*2
-#define OR_PI_OVER_4    (OR_PI / 4.0f) //!< pi/4
-#define OR_PI_OVER_180  (OR_PI / 180.0f) //!< pi/180
-#define OR_180_OVER_PI  (180.0f / OR_PI) //!< 180/pi
-
-#define OR_RAD_TO_DEG(x) ((x) * OR_180_OVER_PI) //!< Convert radians to degrees
-#define OR_DEG_TO_RAD(x) ((x) * OR_PI_OVER_180) //!< Convert degrees to radians
-
-typedef float vec_t;        //!< 1D Vector, aka float
-typedef float vec2_t[2];    //!< 2D Vector
-typedef float vec3_t[3];    //!< 3D Vector
-typedef float vec4_t[4];    //!< 4D Vector
-typedef vec_t matrix_t[16]; //!< Used as _Column_major_ in every class now!
+#define OR_RAD_TO_DEG(x) ((x) * (180.0f / OR_PI)) //!< Convert radians to degrees
+#define OR_DEG_TO_RAD(x) ((x) * (OR_PI / 180.0f)) //!< Convert degrees to radians
 
 /*!
  * \brief Compare two floats with an Epsilon.
@@ -37,7 +25,7 @@ typedef vec_t matrix_t[16]; //!< Used as _Column_major_ in every class now!
  * \param b second float
  * \returns true if a and b are probably the same.
  */
-bool equalEpsilon(vec_t a, vec_t b);
+bool equalEpsilon(float a, float b);
 
 /*!
  * \brief Calculate Intersection of a line and a polygon
@@ -47,7 +35,7 @@ bool equalEpsilon(vec_t a, vec_t b);
  * \param polygon polygon vertex array (0 to 2 are used)
  * \returns 0 if there is no intersection
  */
-int intersectionLinePolygon(vec3_t intersect, vec3_t p1, vec3_t p2, vec3_t *polygon);
+int intersectionLinePolygon(float intersect[3], float p1[3], float p2[3], float polygon[3][3]);
 
 /*!
  * \brief Calculate the length of a line segment / the distance between two points
@@ -55,7 +43,7 @@ int intersectionLinePolygon(vec3_t intersect, vec3_t p1, vec3_t p2, vec3_t *poly
  * \param b Second point
  * \returns distance/length
  */
-vec_t distance(const vec3_t a, const vec3_t b);
+float distance(const float a[3], const float b[3]);
 
 /*!
  * \brief Calculates the midpoint between two points / of a line segment
@@ -63,7 +51,7 @@ vec_t distance(const vec3_t a, const vec3_t b);
  * \param b Second point
  * \param mid Midpoint will be stored here
  */
-void midpoint(const vec3_t a, const vec3_t b, vec3_t mid);
+void midpoint(const float a[3], const float b[3], float mid[3]);
 
 /*!
  * \brief Calculates a pseudo-random number
@@ -71,7 +59,7 @@ void midpoint(const vec3_t a, const vec3_t b, vec3_t mid);
  * \param to Upper bound
  * \returns random number
  */
-vec_t randomNum(vec_t from, vec_t to);
+float randomNum(float from, float to);
 
 #endif
 

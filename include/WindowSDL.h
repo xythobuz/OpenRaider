@@ -40,7 +40,7 @@ public:
 
     virtual void setTextInput(bool on);
 
-    virtual void delay(clock_t ms);
+    virtual void delay(unsigned int ms);
 
     virtual void swapBuffersGL();
 

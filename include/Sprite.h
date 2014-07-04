@@ -8,7 +8,6 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
-#include "math/math.h"
 #include "TombRaider.h"
 
 class Sprite {
@@ -18,10 +17,10 @@ public:
     void display();
 
 private:
-    vec3_t vertex[4];
-    vec2_t texel[4];
-    vec3_t pos;
-    vec_t radius;     //!< \fixme yeah, I know (I don't? --xythobuz)
+    float vertex[4][3];
+    float texel[4][2];
+    float pos[3];
+    float radius; //!< \fixme yeah, I know (I don't? --xythobuz)
     int texture;
 };
 

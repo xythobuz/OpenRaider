@@ -9,7 +9,6 @@
 #define _ROOM_H_
 
 #include <vector>
-#include "math/math.h"
 #include "Mesh.h"
 #include "Sprite.h"
 #include "TombRaider.h"
@@ -37,7 +36,7 @@ public:
 
     unsigned int getNumXSectors();
     unsigned int getNumZSectors();
-    void getPos(vec3_t p);
+    void getPos(float p[3]);
 
     void setFlags(unsigned int f);
     unsigned int getFlags();
@@ -69,7 +68,7 @@ private:
     unsigned int flags;
     unsigned int numXSectors;
     unsigned int numZSectors;
-    vec3_t pos;
+    float pos[3];
 
     BoundingBox bbox;
     Mesh mesh;
@@ -83,7 +82,7 @@ private:
     std::vector<Light *> lights;
 
     // Was used for "depth sorting" render list, but never assigned...?!
-    //vec_t dist; // Distance to near plane, move to room?
+    //float dist; // Distance to near plane, move to room?
 };
 
 #endif

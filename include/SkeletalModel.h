@@ -11,7 +11,6 @@
 
 #include <vector>
 
-#include "math/math.h"
 #include "TombRaider.h"
 
 class BoneTag {
@@ -19,14 +18,14 @@ public:
     BoneTag(TombRaider &tr, unsigned int index, unsigned int j, unsigned int *l, unsigned int frame_offset);
     void display();
 
-    void getOffset(vec3_t o);
-    void getRotation(vec3_t r);
+    void getOffset(float o[3]);
+    void getRotation(float r[3]);
     char getFlag();
 
 private:
     int mesh;
-    vec3_t off;
-    vec3_t rot;
+    float off[3];
+    float rot[3];
     char flag;
 };
 
@@ -35,13 +34,13 @@ public:
     BoneFrame(TombRaider &tr, unsigned int index, unsigned int frame_offset);
     ~BoneFrame();
 
-    void getPosition(vec3_t p);
+    void getPosition(float p[3]);
 
     unsigned int size();
     BoneTag &get(unsigned int i);
 
 private:
-    vec3_t pos;
+    float pos[3];
     std::vector<BoneTag *> tag;
 };
 
@@ -66,7 +65,7 @@ public:
 
     int getId();
     void setPigTail(bool b);
-    void setPonyPos(vec_t x, vec_t y, vec_t z, vec_t angle);
+    void setPonyPos(float x, float y, float z, float angle);
 
     unsigned int size();
     AnimationFrame &get(unsigned int i);
@@ -76,12 +75,12 @@ private:
     bool tr4Overlay;
     bool pigtails;
     int ponytailId;
-    vec3_t ponytail;
+    float ponytail[3];
     int ponytailMeshId;
     unsigned int ponytailNumMeshes;
-    vec_t ponytailAngle;
-    vec_t ponyOff;
-    vec_t ponyOff2;
+    float ponytailAngle;
+    float ponyOff;
+    float ponyOff2;
     std::vector<AnimationFrame *> animation;
 };
 

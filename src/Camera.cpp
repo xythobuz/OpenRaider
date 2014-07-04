@@ -7,6 +7,7 @@
  */
 
 #include "global.h"
+#include <cmath>
 #include "math/Matrix.h"
 #include "Camera.h"
 
@@ -28,31 +29,31 @@ Camera::Camera() {
     mQ.setIdentity();
 }
 
-void Camera::getTarget(vec3_t target) {
+void Camera::getTarget(float target[3]) {
     target[0] = mTarget[0];
     target[1] = mTarget[1];
     target[2] = mTarget[2];
 }
 
-vec_t Camera::getRadianYaw() {
+float Camera::getRadianYaw() {
     return mTheta;
 }
 
-vec_t Camera::getRadianPitch() {
+float Camera::getRadianPitch() {
     return mTheta2;
 }
 
-void Camera::setPosition(vec3_t pos) {
+void Camera::setPosition(float pos[3]) {
     mPos[0] = pos[0];
     mPos[1] = pos[1];
     mPos[2] = pos[2];
 }
 
-void Camera::setSensitivityX(vec_t sens) {
+void Camera::setSensitivityX(float sens) {
     mRotationDeltaX = sens;
 }
 
-void Camera::setSensitivityY(vec_t sens) {
+void Camera::setSensitivityY(float sens) {
     mRotationDeltaY = sens;
 }
 

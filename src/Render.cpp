@@ -13,6 +13,7 @@
 #include <string.h>
 
 #include "global.h"
+#include "Camera.h"
 #include "Game.h"
 #include "OpenRaider.h"
 #include "Render.h"
@@ -20,6 +21,7 @@
 #include "utils/strings.h"
 #include "utils/tga.h"
 #include "Window.h"
+#include "World.h"
 
 Render::Render() {
     mSkyMesh = -1;
@@ -109,8 +111,8 @@ void lightRoom(Room &room)
     for (unsigned int i = 0; i < room.sizeLights(); ++i)
     {
         Light &light = room.getLight(i);
-        vec4_t pos, color;
-        vec3_t dir;
+        float pos[4], color[4];
+        float dir[3];
         light.getPos(pos);
         light.getColor(color);
         light.getDir(dir);
@@ -298,14 +300,12 @@ void Render::display()
             break;
     }
 
-    vec3_t curPos;
-    vec3_t camPos;
-    vec3_t atPos;
+    float curPos[3], camPos[3], atPos[3];
 
     curPos[0] = getGame().getLara().getPos(0);
     curPos[1] = getGame().getLara().getPos(1);
     curPos[2] = getGame().getLara().getPos(2);
-    vec_t yaw = getGame().getLara().getAngle(1);
+    float yaw = getGame().getLara().getAngle(1);
 
     // Mongoose 2002.08.24, New 3rd person camera hack
     camPos[0] = curPos[0] - (1024.0f * sinf(yaw));
@@ -550,9 +550,7 @@ void Render::setSkyMesh(int index, bool rot)
 
 void Render::updateViewVolume()
 {
-    matrix_t proj;
-    matrix_t mdl;
-
+    float proj[16], mdl[16];
 
     glGetFloatv(GL_PROJECTION_MATRIX, proj);
     glGetFloatv(GL_MODELVIEW_MATRIX, mdl);
@@ -560,7 +558,7 @@ void Render::updateViewVolume()
 }
 
 bool Render::isVisible(BoundingBox &box) {
-    vec3_t bbox[2];
+    float bbox[2][3];
     box.getBoundingBox(bbox);
 
     // For debugging purposes

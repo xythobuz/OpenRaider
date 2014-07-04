@@ -8,15 +8,8 @@
 #ifndef _OPENRAIDER_H_
 #define _OPENRAIDER_H_
 
-#include <sstream>
+#include <istream>
 #include <string>
-#include <vector>
-
-#include "Console.h"
-#include "Font.h"
-#include "Game.h"
-#include "Menu.h"
-#include "Sound.h"
 
 /*!
  * \brief Main Game Singleton

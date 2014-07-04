@@ -7,8 +7,8 @@
  * \author xythobuz
  */
 
-#include <stdlib.h>
-#include <math.h>
+#include <cstdlib>
+#include <cmath>
 #include <float.h>
 #include <algorithm>
 
@@ -17,20 +17,20 @@
 #include "math/Matrix.h"
 #include "math/math.h"
 
-bool equalEpsilon(vec_t a, vec_t b) {
-    vec_t epsilon = FLT_EPSILON;
+bool equalEpsilon(float a, float b) {
+    float epsilon = FLT_EPSILON;
     if (fabs(a - b) <= (std::max(fabs(a), fabs(b)) * epsilon))
         return true;
     return false;
 }
 
-int intersectionLinePolygon(vec3_t intersect,
-        vec3_t p1, vec3_t p2, vec3_t *polygon) {
+int intersectionLinePolygon(float intersect[3],
+        float p1[3], float p2[3], float polygon[3][3]) {
     assert(polygon != NULL);
 
-    // vec3_t normal, a, b;
+    // float normal[3], a[3], b[3];
     Vector3d a, b, normal, pA, pB;
-    vec_t d, denominator, mu;
+    float d, denominator, mu;
 
 
     pA = Vector3d(p1);
@@ -76,19 +76,19 @@ int intersectionLinePolygon(vec3_t intersect,
     return 1;
 }
 
-vec_t distance(const vec3_t a, const vec3_t b) {
+float distance(const float a[3], const float b[3]) {
     return sqrtf(((b[0] - a[0]) * (b[0] - a[0])) +
                  ((b[1] - a[1]) * (b[1] - a[1])) +
                  ((b[2] - a[2]) * (b[2] - a[2])));
 }
 
-void midpoint(const vec3_t a, const vec3_t b, vec3_t mid) {
+void midpoint(const float a[3], const float b[3], float mid[3]) {
     mid[0] = (a[0] + b[0]) / 2.0f;
     mid[1] = (a[1] + b[1]) / 2.0f;
     mid[2] = (a[2] + b[2]) / 2.0f;
 }
 
-vec_t randomNum(vec_t from, vec_t to) {
+float randomNum(float from, float to) {
     return from + ((to - from) * rand() / (RAND_MAX + 1.0f));
 }
 

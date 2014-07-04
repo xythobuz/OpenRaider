@@ -17,13 +17,13 @@ BoneTag::BoneTag(TombRaider &tr, unsigned int index, unsigned int i, unsigned in
     tr2_meshtree_t *meshtree = tr.MeshTree();
     unsigned short *frame = tr.Frame();
 
-    off[0] = 0.0;
-    off[1] = 0.0;
-    off[2] = 0.0;
+    off[0] = 0.0f;
+    off[1] = 0.0f;
+    off[2] = 0.0f;
     flag = 0x00;
-    rot[0] = 0.0;
-    rot[1] = 0.0;
-    rot[2] = 0.0;
+    rot[0] = 0.0f;
+    rot[1] = 0.0f;
+    rot[2] = 0.0f;
     mesh = moveable[index].starting_mesh + i;
 
     // Setup offsets to produce skeleton
@@ -52,13 +52,13 @@ void BoneTag::display() {
     getWorld().getStaticMesh(mesh).display();
 }
 
-void BoneTag::getOffset(vec3_t o) {
+void BoneTag::getOffset(float o[3]) {
     o[0] = off[0];
     o[1] = off[1];
     o[2] = off[2];
 }
 
-void BoneTag::getRotation(vec3_t r) {
+void BoneTag::getRotation(float r[3]) {
     r[0] = rot[0];
     r[1] = rot[1];
     r[2] = rot[2];
@@ -96,7 +96,7 @@ BoneTag &BoneFrame::get(unsigned int i) {
     return *tag.at(i);
 }
 
-void BoneFrame::getPosition(vec3_t p) {
+void BoneFrame::getPosition(float p[3]) {
     p[0] = pos[0];
     p[1] = pos[1];
     p[2] = pos[2];
@@ -273,13 +273,14 @@ void SkeletalModel::display(unsigned int aframe, unsigned int bframe) {
     AnimationFrame &anim = get(aframe);
     BoneFrame &boneframe = anim.get(bframe);
 
-    vec3_t pos;
+    float pos[3];
     boneframe.getPosition(pos);
     glTranslatef(pos[0], pos[1], pos[2]);
 
     for (unsigned int a = 0; a < boneframe.size(); a++) {
         BoneTag &tag = boneframe.get(a);
-        vec3_t rot, off;
+        float rot[3], off[3];
+
         tag.getRotation(rot);
         tag.getOffset(off);
 
@@ -374,7 +375,7 @@ void SkeletalModel::setPigTail(bool b) {
     }
 }
 
-void SkeletalModel::setPonyPos(vec_t x, vec_t y, vec_t z, vec_t angle) {
+void SkeletalModel::setPonyPos(float x, float y, float z, float angle) {
     ponytail[0] = x;
     ponytail[1] = y;
     ponytail[2] = z;

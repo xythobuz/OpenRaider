@@ -95,9 +95,9 @@ void FontTRLE::loadLPS(const char *f) {
 #define SCALING 2.0f
 
 void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, FontString &s) {
-    int width = (int)(((vec_t)offsets[index][2]) * s.scale * SCALING);
-    int height = (int)(((vec_t)offsets[index][3]) * s.scale * SCALING);
-    int offset = (int)(((vec_t)offsets[index][4]) * s.scale * SCALING);
+    int width = (int)(((float)offsets[index][2]) * s.scale * SCALING);
+    int height = (int)(((float)offsets[index][3]) * s.scale * SCALING);
+    int offset = (int)(((float)offsets[index][4]) * s.scale * SCALING);
 
     // screen coordinates
     int xMin = xDraw;
@@ -106,10 +106,10 @@ void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, FontString &s) 
     int yMax = yMin + height;
 
     // texture part
-    vec_t txMin = ((vec_t)offsets[index][0]) / 256.0f;
-    vec_t txMax = ((vec_t)(offsets[index][0] + offsets[index][2])) / 256.0f;
-    vec_t tyMin = ((vec_t)offsets[index][1]) / 256.0f;
-    vec_t tyMax = ((vec_t)(offsets[index][1] + offsets[index][3])) / 256.0f;
+    float txMin = ((float)offsets[index][0]) / 256.0f;
+    float txMax = ((float)(offsets[index][0] + offsets[index][2])) / 256.0f;
+    float tyMin = ((float)offsets[index][1]) / 256.0f;
+    float tyMax = ((float)(offsets[index][1] + offsets[index][3])) / 256.0f;
 
     // draw
     glBindTexture(GL_TEXTURE_2D, mFontTexture);
@@ -144,10 +144,10 @@ void FontTRLE::writeString(FontString &s) {
             continue; // skip unprintable chars
 
         writeChar((unsigned int)index, x, s);
-        x += (int)((vec_t)(offsets[index][2] + 1) * s.scale * SCALING); // width
+        x += (int)((float)(offsets[index][2] + 1) * s.scale * SCALING); // width
 
-        if (y < (unsigned int)(((vec_t)offsets[index][3]) * s.scale * SCALING))
-            y = (unsigned int)(((vec_t)offsets[index][3]) * s.scale * SCALING);
+        if (y < (unsigned int)(((float)offsets[index][3]) * s.scale * SCALING))
+            y = (unsigned int)(((float)offsets[index][3]) * s.scale * SCALING);
     }
 
     s.w = x - s.x;

@@ -17,21 +17,21 @@ Quaternion::Quaternion() {
     mZ = 0;
 }
 
-Quaternion::Quaternion(vec_t w, vec_t x, vec_t y, vec_t z) {
+Quaternion::Quaternion(float w, float x, float y, float z) {
     mW = w;
     mX = x;
     mY = y;
     mZ = z;
 }
 
-Quaternion::Quaternion(vec4_t v) {
+Quaternion::Quaternion(float v[4]) {
     mW = v[0];
     mX = v[1];
     mY = v[2];
     mZ = v[3];
 }
 
-void Quaternion::getMatrix(matrix_t m) {
+void Quaternion::getMatrix(float m[16]) {
     m[ 0] = 1.0f - 2.0f * (mY*mY + mZ*mZ);
     m[ 1] = 2.0f * (mX*mY - mW*mZ);
     m[ 2] = 2.0f * (mX*mZ + mW*mY);
@@ -79,7 +79,7 @@ Quaternion Quaternion::conjugate() {
     return Quaternion(mW, -mX, -mY, -mZ);
 }
 
-Quaternion Quaternion::scale(vec_t s) {
+Quaternion Quaternion::scale(float s) {
     return Quaternion(mW * s, mX * s, mY * s, mZ * s);
 }
 
@@ -87,11 +87,11 @@ Quaternion Quaternion::inverse() {
     return conjugate().scale(1/magnitude());
 }
 
-vec_t Quaternion::dot(Quaternion a, Quaternion b) {
+float Quaternion::dot(Quaternion a, Quaternion b) {
     return ((a.mW * b.mW) + (a.mX * b.mX) + (a.mY * b.mY) + (a.mZ * b.mZ));
 }
 
-vec_t Quaternion::magnitude() {
+float Quaternion::magnitude() {
     return sqrtf(dot(*this, *this));
 }
 
@@ -102,8 +102,8 @@ void Quaternion::setIdentity() {
     mZ = 0.0;
 }
 
-void Quaternion::set(vec_t angle, vec_t x, vec_t y, vec_t z) {
-    vec_t temp, dist;
+void Quaternion::set(float angle, float x, float y, float z) {
+    float temp, dist;
 
     // Normalize
     temp = x*x + y*y + z*z;
@@ -122,7 +122,7 @@ void Quaternion::set(vec_t angle, vec_t x, vec_t y, vec_t z) {
 }
 
 void Quaternion::normalize() {
-    vec_t dist, square;
+    float dist, square;
 
     square = mX * mX + mY * mY + mZ * mZ + mW * mW;
 
@@ -145,7 +145,7 @@ void Quaternion::copy(Quaternion q) {
     mZ = q.mZ;
 }
 
-Quaternion Quaternion::slerp(Quaternion a, Quaternion b, vec_t time) {
+Quaternion Quaternion::slerp(Quaternion a, Quaternion b, float time) {
     /*******************************************************************
      * Spherical Linear Interpolation algorthim
      *-----------------------------------------------------------------
@@ -161,7 +161,7 @@ Quaternion Quaternion::slerp(Quaternion a, Quaternion b, vec_t time) {
      *
      *******************************************************************/
 
-    vec_t result, scaleA, scaleB;
+    float result, scaleA, scaleB;
     Quaternion i;
 
 
@@ -197,8 +197,8 @@ Quaternion Quaternion::slerp(Quaternion a, Quaternion b, vec_t time) {
     if (1 - result > 0.1f) {
         // Get the angle between the 2 quaternions, and then
         // store the sin() of that angle
-        vec_t theta = (float)acos(result);
-        vec_t sinTheta = (float)sin(theta);
+        float theta = (float)acos(result);
+        float sinTheta = (float)sin(theta);
 
         // Calculate the scale for qA and qB, according to
         // the angle and it's sine value
@@ -211,7 +211,7 @@ Quaternion Quaternion::slerp(Quaternion a, Quaternion b, vec_t time) {
     return (a.scale(scaleA) + b.scale(scaleB));
 }
 
-void Quaternion::setByMatrix(matrix_t matrix) {
+void Quaternion::setByMatrix(float matrix[16]) {
     float diagonal = matrix[0] + matrix[5] + matrix[10] + 1.0f;
     float scale = 0.0f;
     float w = 0.0f, x = 0.0f, y = 0.0f, z = 0.0f;

@@ -6,6 +6,7 @@
  */
 
 #include <cstdio>
+#include <ctime>
 
 #include "global.h"
 #include "OpenRaider.h"
@@ -452,7 +453,7 @@ void WindowSDL::setTextInput(bool on) {
         SDL_StopTextInput();
 }
 
-void WindowSDL::delay(clock_t ms) {
+void WindowSDL::delay(unsigned int ms) {
     assert(mInit == true);
 
     SDL_Delay(ms);

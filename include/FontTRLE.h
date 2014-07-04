@@ -8,7 +8,6 @@
 #ifndef _FONT_TRLE_H_
 #define _FONT_TRLE_H_
 
-#include "math/math.h"
 #include "Font.h"
 
 /*!

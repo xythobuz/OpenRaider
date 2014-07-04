@@ -10,11 +10,8 @@
 
 #include <vector>
 
-#include "Camera.h"
 #include "Entity.h"
-#include "Render.h"
 #include "TombRaider.h"
-#include "World.h"
 
 /*!
  * \brief Game abstraction

@@ -9,7 +9,6 @@
 #ifndef _WORLD_H_
 #define _WORLD_H_
 
-#include <list>
 #include <vector>
 
 #include "Entity.h"

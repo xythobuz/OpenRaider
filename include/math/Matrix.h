@@ -46,7 +46,7 @@ public:
      * \brief Constructs an object of Matrix
      * \param mat Matrix as data source
      */
-    Matrix(matrix_t mat);
+    Matrix(float mat[16]);
 
     /*!
      * \brief Constructs an object of Matrix
@@ -58,19 +58,19 @@ public:
      * \brief Returns this matrix copy
      * \param mat target
      */
-    void getMatrix(matrix_t mat);
+    void getMatrix(float mat[16]);
 
     /*!
      * \brief Returns this matrix transposed
      * \param mat target
      */
-    void getTransposeMatrix(matrix_t mat);
+    void getTransposeMatrix(float mat[16]);
 
     /*!
      * \brief Returns this matrix inverted
      * \param mat target
      */
-    bool getInvert(matrix_t mat);
+    bool getInvert(float mat[16]);
 
     /*!
      * \brief Multiplies two matrices
@@ -85,14 +85,14 @@ public:
      * \param v vector
      * \param result where the result will be stored, may be same as v
      */
-    void multiply4v(vec4_t v, vec4_t result);
+    void multiply4v(float v[4], float result[4]);
 
     /*!
      * \brief Multiplies v vector and this matrix
      * \param v vector
      * \param result where the result will be stored, may be same as v
      */
-    void multiply3v(vec3_t v, vec3_t result);
+    void multiply3v(float v[3], float result[3]);
 
     /*!
      * \brief Prints matrix values to stdout
@@ -129,7 +129,7 @@ public:
      * \fixme dangerous, scary, boo!
      * \param mat new matrix
      */
-    void setMatrix(matrix_t mat);
+    void setMatrix(float mat[16]);
 
     /*!
      * \brief Rotate object in 3D space
@@ -137,13 +137,13 @@ public:
      * \param y y rotation in radians
      * \param z z rotation in radians
      */
-    void rotate(vec_t x, vec_t y, vec_t z);
+    void rotate(float x, float y, float z);
 
     /*!
      * \brief Rotate object in 3D space
      * \param xyz rotation in radians
      */
-    void rotate(const vec_t *xyz);
+    void rotate(const float *xyz);
 
     /*!
      * \brief Scale object in 3D space
@@ -151,13 +151,13 @@ public:
      * \param y y scaling
      * \param z z scaling
      */
-    void scale(vec_t x, vec_t y, vec_t z);
+    void scale(float x, float y, float z);
 
     /*!
      * \brief Scale object in 3D space
      * \param xyz scaling factors
      */
-    void scale(const vec_t *xyz);
+    void scale(const float *xyz);
 
     /*!
      * \brief Translate (move) object in 3D space
@@ -165,20 +165,20 @@ public:
      * \param y y translation
      * \param z z translation
      */
-    void translate(vec_t x, vec_t y, vec_t z);
+    void translate(float x, float y, float z);
 
     /*!
      * \brief Translate (move) object in 3D space
      * \param xyz translations
      */
-    void translate(const vec_t *xyz);
+    void translate(const float *xyz);
 
     /*!
      * \brief Transpose this matrix
      */
     void transpose();
 
-    matrix_t mMatrix; //!< Data model, moved public for faster external renderer feedback use
+    float mMatrix[16]; //!< Data model, moved public for faster external renderer feedback use
 
 private:
 
@@ -187,7 +187,7 @@ private:
      * \param source source
      * \param dest destination
      */
-    static void copy(matrix_t source, matrix_t dest);
+    static void copy(float source[16], float dest[16]);
 
     /*!
      * \brief Multiplies matrices a and b. Neither a or b is also the result.
@@ -195,7 +195,7 @@ private:
      * \param b second matrix
      * \param result wil be set to resultant matrix value
      */
-    static void multiply(const matrix_t a, const matrix_t b, matrix_t result);
+    static void multiply(const float a[16], const float b[16], float result[16]);
 };
 
 #endif

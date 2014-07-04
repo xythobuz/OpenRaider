@@ -49,12 +49,18 @@ Mesh::Mesh()
 
 Mesh::~Mesh()
 {
+    for (unsigned int i = 0; i < mNumVertices; i++)
+        delete [] mVertices[i];
     delete [] mVertices;
     mVertices = NULL;
 
+    for (unsigned int i = 0; i < mNumNormals; i++)
+        delete [] mNormals[i];
     delete [] mNormals;
     mNormals = NULL;
 
+    for (unsigned int i = 0; i < mNumColors; i++)
+        delete [] mColors[i];
     delete [] mColors;
     mColors = NULL;
 
@@ -374,8 +380,10 @@ void Mesh::allocateColors(unsigned int n)
 {
     if (mColors)
     {
-        mNumColors = 0;
+        for (unsigned int i = 0; i < mNumColors; i++)
+            delete [] mColors[i];
         delete [] mColors;
+        mNumColors = 0;
     }
 
     if (!n)
@@ -384,7 +392,9 @@ void Mesh::allocateColors(unsigned int n)
     }
 
     mNumColors = n;
-    mColors = new vec4_t[mNumColors];
+    mColors = new float *[mNumColors];
+    for (unsigned int i = 0; i < mNumColors; i++)
+        mColors[i] = new float[4];
 }
 
 
@@ -392,8 +402,10 @@ void Mesh::allocateNormals(unsigned int n)
 {
     if (mNormals)
     {
-        mNumNormals = 0;
+        for (unsigned int i = 0; i < mNumNormals; i++)
+            delete [] mNormals[i];
         delete [] mNormals;
+        mNumNormals = 0;
     }
 
     if (!n)
@@ -402,7 +414,9 @@ void Mesh::allocateNormals(unsigned int n)
     }
 
     mNumNormals = n;
-    mNormals = new vec3_t[mNumNormals];
+    mNormals = new float *[mNumNormals];
+    for (unsigned int i = 0; i < mNumNormals; i++)
+        mNormals[i] = new float[3];
 }
 
 
@@ -446,8 +460,10 @@ void Mesh::allocateVertices(unsigned int n)
 {
     if (mVertices)
     {
-        mNumVertices = 0;
+        for (unsigned int i = 0; i < mNumVertices; i++)
+            delete [] mVertices[i];
         delete [] mVertices;
+        mNumVertices = 0;
     }
 
     if (!n)
@@ -456,16 +472,20 @@ void Mesh::allocateVertices(unsigned int n)
     }
 
     mNumVertices = n;
-    mVertices = new vec3_t[mNumVertices];
+    mVertices = new float *[mNumVertices];
+    for (unsigned int i = 0; i < mNumVertices; i++)
+        mVertices[i] = new float[3];
 }
 
 
-void Mesh::bufferColorArray(unsigned int colorCount, vec_t *colors)
+void Mesh::bufferColorArray(unsigned int colorCount, float *colors)
 {
     if (mColors)
     {
-        mNumColors = 0;
+        for (unsigned int i = 0; i < mNumColors; i++)
+            delete [] mColors[i];
         delete [] mColors;
+        mNumColors = 0;
     }
 
     if (!colorCount)
@@ -478,12 +498,14 @@ void Mesh::bufferColorArray(unsigned int colorCount, vec_t *colors)
 }
 
 
-void Mesh::bufferNormalArray(unsigned int normalCount, vec_t *normals)
+void Mesh::bufferNormalArray(unsigned int normalCount, float *normals)
 {
     if (mNormals)
     {
-        mNumNormals = 0;
+        for (unsigned int i = 0; i < mNumNormals; i++)
+            delete [] mNormals[i];
         delete [] mNormals;
+        mNumNormals = 0;
     }
 
     if (!normalCount)
@@ -497,7 +519,7 @@ void Mesh::bufferNormalArray(unsigned int normalCount, vec_t *normals)
 
 
 void Mesh::bufferTriangles(unsigned int count,
-        unsigned int *indices, vec_t *texCoords,
+        unsigned int *indices, float *texCoords,
         int *textures, unsigned int *flags)
 {
 
@@ -511,12 +533,14 @@ void Mesh::bufferTriangles(unsigned int count,
 }
 
 
-void Mesh::bufferVertexArray(unsigned int vertexCount, vec_t *vertices)
+void Mesh::bufferVertexArray(unsigned int vertexCount, float *vertices)
 {
     if (mVertices)
     {
-        mNumVertices = 0;
+        for (unsigned int i = 0; i < mNumVertices; i++)
+            delete [] mVertices[i];
         delete [] mVertices;
+        mNumVertices = 0;
     }
 
     if (!vertexCount)

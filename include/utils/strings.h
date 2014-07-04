@@ -10,7 +10,6 @@
 #define _UTILS_STRINGS_H_
 
 #include <cstdarg>
-#include <vector>
 
 char *stringRemoveQuotes(const char *s);
 

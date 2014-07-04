@@ -11,6 +11,7 @@
 #include "Console.h"
 #include "OpenRaider.h"
 #include "utils/strings.h"
+#include "TombRaider.h"
 #include "Window.h"
 #include "Menu.h"
 
