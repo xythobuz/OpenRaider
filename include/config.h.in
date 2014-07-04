@@ -24,10 +24,5 @@
 #cmakedefine HAVE_CLOSEDIR
 #cmakedefine HAVE_DT_DIR
 
-#cmakedefine HAVE_WINDOWS_H
-#cmakedefine HAVE_FINDFIRSTFILE
-#cmakedefine HAVE_FINDNEXTFILE
-#cmakedefine HAVE_FINDCLOSE
-
 #endif
 

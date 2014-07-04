@@ -120,12 +120,6 @@ check_function_exists (readdir_r HAVE_READDIR_R)
 check_function_exists (closedir HAVE_CLOSEDIR)
 check_symbol_exists (DT_DIR "dirent.h" HAVE_DT_DIR)
 
-# recursive folder traversal for Windows
-check_include_files (windows.h HAVE_WINDOWS_H)
-check_function_exists (FindFirstFile HAVE_FINDFIRSTFILE)
-check_function_exists (FindNextFile HAVE_FINDNEXTFILE)
-check_function_exists (FindClose HAVE_FINDCLOSE)
-
 #################################################################
 
 # Configuration Header file

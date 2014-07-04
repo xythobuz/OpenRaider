@@ -439,6 +439,7 @@ int OpenRaider::help(std::string &cmd) {
         getConsole().print("  crouch");
         getConsole().print("  use");
         getConsole().print("  holster");
+        getConsole().print("  walk");
         getConsole().print("Key-Format:");
         getConsole().print("  'a' or '1'    for character/number keys");
         getConsole().print("  \"leftctrl\"  for symbols and special keys");

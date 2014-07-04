@@ -1782,7 +1782,7 @@ int TombRaider::Load(char *filename)
             mFreadMode = TR_FREAD_NORMAL;
             // 0x46464952
 
-            //! \fixme (Endian) Read bitu32 / u_int32_t
+            //! \fixme (Endian) Read bitu32 / uint32_t
             Fread(&mNumTR4Samples, 4, 1, f);
             printDebug("Load", "mNumTR4Samples = %i", mNumTR4Samples);
 
@@ -4931,11 +4931,11 @@ int TombRaider::loadTR5(FILE *f)
     unsigned int level_data_sz, riffOffset, seperator0;
     unsigned int portalOffset, nextRoomOffset, thisRoomOffset;
     int i, j, k;
-    u_int16_t us;
+    uint16_t us;
 
-    u_int32_t numMeshData, numMeshPointers, u;
-    u_int32_t *meshPointers;
-    u_int8_t *meshData;
+    uint32_t numMeshData, numMeshPointers, u;
+    uint32_t *meshPointers;
+    uint8_t *meshData;
     char check[32];
 
     printDebug("Load", "mEngineVersion = 0x%x", mPakVersion);
@@ -5107,7 +5107,7 @@ int TombRaider::loadTR5(FILE *f)
 
     // Mongoose 2002.01.08, Michiel has discovered the
     //   first 4 bytes here are 2 bitu16 flags for Lara type and weather
-    u_int16_t laraType, weather;
+    uint16_t laraType, weather;
 
     Fread(&laraType, 2, 1, f);
     printDebug("LoadTR5", "laraType = 0x%x", laraType);
@@ -5850,7 +5850,7 @@ int TombRaider::loadTR5(FILE *f)
     // Use pointers array to index in meshData array for tr5_mesh_t's
     Fread(&numMeshPointers, 4, 1, f);
     printDebug("LoadTR5", "numMeshPointers = %u", numMeshPointers);
-    meshPointers = new u_int32_t[numMeshPointers];
+    meshPointers = new uint32_t[numMeshPointers];
     Fread(meshPointers, 4, numMeshPointers, f);
 
     Fread(&numAnimationsTR5, 4, 1, f);
@@ -5885,7 +5885,7 @@ int TombRaider::loadTR5(FILE *f)
     Fread(&u, 4, 1, f);
     _num_frames = u;
     printDebug("LoadTR5", "_num_frames = %u", _num_frames);
-    _frames = new u_int16_t[_num_frames];
+    _frames = new uint16_t[_num_frames];
     Fread(_frames, 2, _num_frames, f);
 
     Fread(&numMoveablesTR5, 4, 1, f);
@@ -6068,7 +6068,7 @@ int TombRaider::loadTR5(FILE *f)
         fseek(f, u, SEEK_SET);
     }
 
-    //! \fixme (Endian) Read bitu32 / u_int32_t
+    //! \fixme (Endian) Read bitu32 / uint32_t
     Fread(&mNumTR4Samples, 4, 1, f);
     printDebug("Load", "mNumTR4Samples = %i", mNumTR4Samples);
 

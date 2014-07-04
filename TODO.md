@@ -4,6 +4,7 @@
 
 * Endian dependence ugly, shouldn't dereference to different types?
     * TombRaider.h/cpp structs aren't aligned... unportable to some big endian & other archs?!
+    * Maybe replace loader with [VT](http://icculus.org/vt/), also used by OpenTomb.
 * Use more asserts
 * Don't use C-Style code, try to replace with C++ lib
     * Use std::strings
@@ -24,6 +25,6 @@
 ## Future Features
 
 * Cut TGA image reader, currently only used for menu background?!
-    * Abstract image reading/writing, like Font Engine selection
+    * Need useful, always available image writer alternative for screenshots then
 * When cutscene rendering is working, use TR4/5 style menu?
 

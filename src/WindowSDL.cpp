@@ -24,12 +24,6 @@ WindowSDL::WindowSDL() {
     mTextInput = false;
     mWindow = NULL;
     mGLContext = NULL;
-
-#ifdef _WIN32
-    setDriver("libGL32.dll");
-#elif !defined(__APPLE__)
-    setDriver("/usr/lib/libGL.so.1");
-#endif
 }
 
 WindowSDL::~WindowSDL() {
