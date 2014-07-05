@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <map>
 #include <cstdlib>
+#include <cstring>
 
 #include "global.h"
 #include "Camera.h"
