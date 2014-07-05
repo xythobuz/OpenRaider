@@ -6,6 +6,7 @@
  */
 
 #include <cctype>
+#include <cstring>
 
 #include "global.h"
 #include "Console.h"

@@ -1,7 +1,7 @@
 language: cpp
 
 compiler:
-    - gcc
+    # - gcc # Needs c++11 capabilities, gcc-4.8, not working?
     - clang
 
 before_install:
