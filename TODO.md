@@ -28,3 +28,10 @@
     * Need useful, always available image writer alternative for screenshots then
 * When cutscene rendering is working, use TR4/5 style menu?
 
+# Travis CI
+
+* Currently only building on Linux with clang, SDL, SDL_TTF, ALUT and PNG
+* Should also build with gcc, but needs newer gcc (4.8) with C++11 support
+* Should also build on Mac, but needs different before_install / install scripts,
+  that can detect the platform they’re running on
+

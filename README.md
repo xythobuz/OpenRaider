@@ -8,6 +8,8 @@ If you just want to see OpenRaider doing something on your Mac, without installi
 
 It seems as if OpenRaider will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!
 
+[![Build Status](https://travis-ci.org/xythobuz/OpenRaider.svg?branch=master)](https://travis-ci.org/xythobuz/OpenRaider)
+
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=xythobuz&url=https://github.com/xythobuz/OpenRaider&title=OpenRaider&language=&tags=github&category=software)
 
 ## Configuration

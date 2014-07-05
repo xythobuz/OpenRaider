@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140705 ]
+    * Added basic Travis CI support (Linux + clang only)
+
     [ 20140704 ]
     * Removed unnecessary #include dependencies
     * Removed vecX_t typedefs
