@@ -1,0 +1,34 @@
+language: cpp
+
+compiler:
+    - gcc
+    - clang
+
+before_install:
+    - sudo apt-get -qq -y update
+
+install:
+    - sudo apt-get -qq -y install libalut-dev libpng12-dev zlib1g-dev
+    - wget http://libsdl.org/release/SDL2-2.0.3.tar.gz -O - | tar xz
+    - (cd SDL2-2.0.3 && ./configure && make -j5 && make install)
+    - wget https://libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.12.tar.gz -O - | tar xz
+    - (cd SDL2_ttf-2.0.12 && ./configure && make -j5 && make install)
+
+script:
+    - cmake .
+    - make
+
+notifications:
+    irc:
+        channels:
+            - "chat.freenode.net#OpenRaider"
+        template:
+            - "%{repository}/%{branch} (%{commit} - %{author}): %{message}"
+
+os:
+    - linux
+#     - osx
+# 
+# matrix:
+#     allow_failures:
+#         - os: osx
