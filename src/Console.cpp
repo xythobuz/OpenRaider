@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <cstring>
 
 #include "global.h"
 #include "Font.h"

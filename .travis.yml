@@ -5,18 +5,19 @@ compiler:
     - clang
 
 before_install:
+    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
     - sudo apt-get -qq -y update
 
 install:
     - sudo apt-get -qq -y install libalut-dev libpng12-dev zlib1g-dev
+    - if [ "$CC" = "gcc" ]; then sudo apt-get install -qq gcc-4.8; fi
     - wget http://libsdl.org/release/SDL2-2.0.3.tar.gz -O - | tar xz
     - (cd SDL2-2.0.3 && ./configure && make -j5 && sudo make install)
     - wget https://libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.12.tar.gz -O - | tar xz
     - (cd SDL2_ttf-2.0.12 && ./configure && make -j5 && sudo make install)
 
 script:
-    - cmake .
-    - make
+    - (mkdir build && cd build && cmake .. && make)
 
 notifications:
     irc:
