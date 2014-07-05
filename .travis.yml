@@ -1,7 +1,7 @@
 language: cpp
 
 compiler:
-    # - gcc # Needs c++11 capabilities, gcc-4.8, not working?
+    - gcc
     - clang
 
 before_install:
@@ -15,6 +15,9 @@ install:
     - (cd SDL2-2.0.3 && ./configure && make -j5 && sudo make install)
     - wget https://libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.12.tar.gz -O - | tar xz
     - (cd SDL2_ttf-2.0.12 && ./configure && make -j5 && sudo make install)
+
+before_script:
+    - if [ "$CC" = "gcc" ]; then export CC="gcc-4.8"; fi
 
 script:
     - (mkdir build && cd build && cmake .. && make)
