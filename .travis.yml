@@ -16,6 +16,9 @@ script:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake/travis_script_linux.sh; fi
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cmake/travis_script_mac.sh; fi
 
+after_success:
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake/travis_after_success_linux.sh; fi
+
 notifications:
     irc:
         channels:
