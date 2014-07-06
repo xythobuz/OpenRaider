@@ -47,7 +47,7 @@ public:
      * \brief Get number of registered sources
      * \returns number of registered sources
      */
-    virtual int registeredSources();
+    virtual unsigned long registeredSources();
 
     /*!
      * \brief Remove all loaded sounds
@@ -66,7 +66,7 @@ public:
      * \param source valid source id
      * \param pos new position for source
      */
-    virtual void sourceAt(int source, float pos[3]);
+    virtual void sourceAt(unsigned long source, float pos[3]);
 
     /*!
      * \brief Load wav file from disk
@@ -75,7 +75,7 @@ public:
      * \param flags set options. Use SoundFlags enum bitwise OR-ed
      * \returns 0 for no error or < 0 error flag
      */
-    virtual int addFile(const char *filename, int *source, unsigned int flags);
+    virtual int addFile(const char *filename, unsigned long *source, unsigned int flags);
 
     /*!
      * \brief Load wav file from buffer
@@ -85,25 +85,25 @@ public:
      * \param flags set options. Use SoundFlags enum bitwise OR-ed
      * \returns 0 for no error or < 0 error flag
      */
-    virtual int addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags);
+    virtual int addWave(unsigned char *wav, unsigned int length, unsigned long *source, unsigned int flags);
 
     /*!
      * \brief Play sound source
      * \param source sound source to play
      */
-    virtual void play(int source);
+    virtual void play(unsigned long source);
 
     /*!
      * \brief Stop playing sound source
      * \param source sound source to stop
      */
-    virtual void stop(int source);
+    virtual void stop(unsigned long source);
 
 private:
 
     bool mEnabled;
-    bool mInit;                        //!< Guard to ensure ausio system is active
-    float mVolume;                     //!< Listener gain
+    bool mInit;                         //!< Guard to ensure ausio system is active
+    float mVolume;                      //!< Listener gain
     std::vector<unsigned int> mBuffer; //!< Audio buffer id list
     std::vector<unsigned int> mSource; //!< Audio source id list
 };

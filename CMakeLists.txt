@@ -38,7 +38,6 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     set (WARNINGS "${WARNINGS} -Wno-documentation-unknown-command -Wno-c++98-compat-pedantic")
 
     set (WARNINGS "${WARNINGS} -Wno-sign-conversion")
-    #set (WARNINGS "${WARNINGS} -Wno-shorten-64-to-32")
 
     set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11")
     set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -g -O0 -ftrapv")

@@ -78,35 +78,7 @@ unsigned int Render::getFlags() {
 }
 
 
-void setLighting(bool on)
-{
-    if (on)
-    {
-        float color[4];
-        color[0] = WHITE[0] * 256.0f;
-        color[1] = WHITE[1] * 256.0f;
-        color[2] = WHITE[2] * 256.0f;
-        color[3] = WHITE[3] * 256.0f;
-
-        glEnable(GL_LIGHTING);
-        glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 0);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, color);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, color);
-
-        color[0] = GREY[0] * 256.0f;
-        color[1] = GREY[1] * 256.0f;
-        color[2] = GREY[2] * 256.0f;
-        color[3] = GREY[3] * 256.0f;
-        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, color);
-    }
-    else
-    {
-        glDisable(GL_LIGHTING);
-    }
-}
-
-
-void lightRoom(Room &room)
+void Render::lightRoom(Room &room)
 {
     for (unsigned int i = 0; i < room.sizeLights(); ++i)
     {
@@ -157,7 +129,7 @@ void Render::clearFlags(unsigned int flags)
 
     if (flags & Render::fGL_Lights)
     {
-        setLighting(false);
+        glDisable(GL_LIGHTING);
     }
 }
 
@@ -184,7 +156,22 @@ void Render::setFlags(unsigned int flags)
 
     if (flags & Render::fGL_Lights)
     {
-        setLighting(true);
+        float color[4];
+        color[0] = WHITE[0] * 256.0f;
+        color[1] = WHITE[1] * 256.0f;
+        color[2] = WHITE[2] * 256.0f;
+        color[3] = WHITE[3] * 256.0f;
+
+        glEnable(GL_LIGHTING);
+        glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 0);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, color);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, color);
+
+        color[0] = GREY[0] * 256.0f;
+        color[1] = GREY[1] * 256.0f;
+        color[2] = GREY[2] * 256.0f;
+        color[3] = GREY[3] * 256.0f;
+        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, color);
     }
 }
 
@@ -225,45 +212,6 @@ void Render::setMode(int n)
     }
 }
 
-// Replaced the deprecated gluLookAt with slightly modified code from here:
-// http://www.khronos.org/message_boards/showthread.php/4991
-void gluLookAt(float eyeX, float eyeY, float eyeZ,
-        float lookAtX, float lookAtY, float lookAtZ,
-        float upX, float upY, float upZ) {
-    // calculating the viewing vector
-    float f[3] = {
-        lookAtX - eyeX,
-        lookAtY - eyeY,
-        lookAtZ - eyeZ
-    };
-
-    // normalizing the viewing vector
-    float fMag = sqrtf(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
-    f[0] /= fMag;
-    f[1] /= fMag;
-    f[2] /= fMag;
-
-    float s[3] = {
-        (f[1] * upZ) - (upY * f[2]),
-        (upX * f[2]) - (f[0] * upZ),
-        (f[0] * upY) - (upX * f[1])
-    };
-
-    float u[3] = {
-        (s[1] * f[2]) - (f[1] * s[2]),
-        (f[0] * s[2]) - (s[0] * f[2]),
-        (s[0] * f[1]) - (f[0] * s[1])
-    };
-
-    float m[16] = {
-        s[0], u[0], -f[0], 0,
-        s[1], u[1], -f[1], 0,
-        s[2], u[2], -f[2], 0,
-           0,    0,     0, 1
-    };
-    glMultMatrixf(m);
-    glTranslatef(-eyeX, -eyeY, -eyeZ);
-}
 
 void Render::display()
 {
@@ -312,8 +260,8 @@ void Render::display()
     camPos[1] = curPos[1] - camOffsetH; // UP is lower val
     camPos[2] = curPos[2] - (1024.0f * cosf(yaw));
 
-    int index = getGame().getLara().getRoom();
-    int sector = getWorld().getRoom(index).getSector(camPos[0], camPos[2]);
+    long index = getGame().getLara().getRoom();
+    long sector = getWorld().getRoom(index).getSector(camPos[0], camPos[2]);
 
     // Handle camera out of world
     if ((sector < 0) ||
@@ -332,7 +280,7 @@ void Render::display()
     getCamera().update();
     getCamera().getTarget(atPos);
     // Mongoose 2002.08.13, Quick fix to render OpenRaider upside down
-    gluLookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0f, -1.0f, 0.0f);
+    getWindow().lookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0f, -1.0f, 0.0f);
 
     // Update view volume for vising
     updateViewVolume();

@@ -90,7 +90,7 @@ int Game::loadLevel(const char *level) {
         char *tmp = bufferString("%sMAIN.SFX", level); // Ensure theres enough space
         size_t length = strlen(tmp);
         size_t dir = 0;
-        for (int i = length - 1; i >= 0; i--) {
+        for (long i = length - 1; i >= 0; i--) {
             if ((tmp[i] == '/') || (tmp[i] == '\\')) {
                 dir = i + 1; // Find where the filename (bla.tr2) starts
                 break;
@@ -215,7 +215,7 @@ void Game::processPakSounds()
     //tr2_sound_details_t *detail;
     //float pos[3];
     unsigned int i;
-    int id;
+    unsigned long id;
 
     /* detail
        short sample;

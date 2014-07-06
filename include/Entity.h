@@ -36,20 +36,20 @@ public:
     void setAngles(float a[3]);
     float getPos(unsigned int i);
     float getAngle(unsigned int i);
-    int getRoom();
+    long getRoom();
 
     // Animation State
-    unsigned int getAnimation();
-    void setAnimation(unsigned int index);
-    unsigned int getBoneFrame();
-    void setBoneFrame(unsigned int index);
-    unsigned int getIdleAnimation();
-    void setIdleAnimation(unsigned int index);
+    unsigned long getAnimation();
+    void setAnimation(unsigned long index);
+    unsigned long getBoneFrame();
+    void setBoneFrame(unsigned long index);
+    unsigned long getIdleAnimation();
+    void setIdleAnimation(unsigned long index);
 
 private:
     float pos[3];
     float angles[3];
-    int room;
+    long room;
 
     unsigned int skeletalModel;
     MoveType moveType;
@@ -58,9 +58,9 @@ private:
     int objectId;
 
     // Animation State
-    unsigned int boneFrame;
-    unsigned int animationFrame;
-    unsigned int idleAnimation;
+    unsigned long boneFrame;
+    unsigned long animationFrame;
+    unsigned long idleAnimation;
 };
 
 #endif

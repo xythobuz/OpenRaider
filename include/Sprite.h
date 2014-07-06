@@ -29,8 +29,8 @@ public:
     SpriteSequence(TombRaider &tr, unsigned int item, unsigned int sequence);
     ~SpriteSequence();
 
-    unsigned int size();
-    Sprite &get(unsigned int index);
+    unsigned long size();
+    Sprite &get(unsigned long index);
 
 private:
     std::vector<Sprite *> sprites;

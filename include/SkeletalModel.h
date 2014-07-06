@@ -36,8 +36,8 @@ public:
 
     void getPosition(float p[3]);
 
-    unsigned int size();
-    BoneTag &get(unsigned int i);
+    unsigned long size();
+    BoneTag &get(unsigned long i);
 
 private:
     float pos[3];
@@ -49,8 +49,8 @@ public:
     AnimationFrame(TombRaider &tr, unsigned int index, int a, unsigned int *frame_offset, int frame_step);
     ~AnimationFrame();
 
-    unsigned int size();
-    BoneFrame &get(unsigned int i);
+    unsigned long size();
+    BoneFrame &get(unsigned long i);
 
 private:
     char rate;
@@ -61,22 +61,22 @@ class SkeletalModel {
 public:
     SkeletalModel(TombRaider &tr, unsigned int index, int objectId);
     ~SkeletalModel();
-    void display(unsigned int aframe, unsigned int bframe);
+    void display(unsigned long aframe, unsigned long bframe);
 
     int getId();
     void setPigTail(bool b);
     void setPonyPos(float x, float y, float z, float angle);
 
-    unsigned int size();
-    AnimationFrame &get(unsigned int i);
+    unsigned long size();
+    AnimationFrame &get(unsigned long i);
 
 private:
     int id;
     bool tr4Overlay;
     bool pigtails;
-    int ponytailId;
+    long ponytailId;
     float ponytail[3];
-    int ponytailMeshId;
+    long ponytailMeshId;
     unsigned int ponytailNumMeshes;
     float ponytailAngle;
     float ponyOff;

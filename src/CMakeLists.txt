@@ -120,6 +120,10 @@ check_function_exists (readdir_r HAVE_READDIR_R)
 check_function_exists (closedir HAVE_CLOSEDIR)
 check_symbol_exists (DT_DIR "dirent.h" HAVE_DT_DIR)
 
+# gettimeofday() for timing
+check_include_files (sys/time.h HAVE_SYS_TIME_H)
+check_function_exists (gettimeofday HAVE_GETTIMEOFDAY)
+
 #################################################################
 
 # Configuration Header file
@@ -255,4 +259,6 @@ target_link_libraries (OpenRaider ${LIBS})
 #################################################################
 
 # Add target to run executable
-add_custom_target(run COMMAND OpenRaider DEPENDS OpenRaider WORKING_DIRECTORY ${CMAKE_PROJECT_DIR})
+if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles" OR ${CMAKE_GENERATOR} STREQUAL "MinGW Makefiles")
+    add_custom_target(run COMMAND OpenRaider DEPENDS OpenRaider WORKING_DIRECTORY ${CMAKE_PROJECT_DIR})
+endif (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles" OR ${CMAKE_GENERATOR} STREQUAL "MinGW Makefiles") 

@@ -124,7 +124,7 @@ char *bufferString(const char *string, ...) {
 }
 
 char *fullPath(const char *path, char end) {
-    unsigned int lenPath;
+    size_t lenPath;
     char *dir;
 
     assert(path != NULL);
@@ -136,7 +136,7 @@ char *fullPath(const char *path, char end) {
         wordexp_t word;
 
 #ifdef __APPLE__
-        // Workaround for Mac OS X. See:
+        // Workunsigned long systemTimerStart = 0;around for Mac OS X. See:
         // http://stackoverflow.com/questions/20534788/why-does-wordexp-fail-with-wrde-syntax-on-os-x
         signal(SIGCHLD, SIG_DFL);
 #endif
@@ -163,9 +163,9 @@ char *fullPath(const char *path, char end) {
         dir = new char[lenPath + 2]; // space for end char
 
         // Copy segments into new string
-        unsigned int offset = 0;
+        size_t offset = 0;
         for (unsigned int i = 0; i < word.we_wordc; i++) {
-            unsigned int len = strlen(word.we_wordv[i]);
+            size_t len = strlen(word.we_wordv[i]);
             strncpy(dir + offset, word.we_wordv[i], len);
             offset += len;
         }
@@ -175,14 +175,14 @@ char *fullPath(const char *path, char end) {
         char newPath[MAX_PATH];
         if (SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0, newPath) == S_OK) {
             lenPath = strlen(newPath);
-            unsigned int lenPath2 = strlen(path);
+            size_t lenPath2 = strlen(path);
             dir = new char[lenPath + lenPath2 + 2]; // space for end char
             strncpy(dir, newPath, lenPath);
             strncpy((dir + lenPath), (path + 1), lenPath2 - 1);
             lenPath += lenPath2 - 1;
-			for (unsigned int i = 0; i < lenPath; i++)
-				if(dir[i] == '\\')
-					dir[i] = '/';
+            for (unsigned int i = 0; i < lenPath; i++)
+                if(dir[i] == '\\')
+                    dir[i] = '/';
         } else {
             printf("WARNING: Could not get home folder location for tilde expansion!\n");
             lenPath = strlen(path);

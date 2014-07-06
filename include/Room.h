@@ -27,9 +27,9 @@ public:
     Mesh &getMesh();
     void display(bool alpha);
 
-    bool isWall(unsigned int sector);
-    int getSector(float x, float z, float *floor, float *ceiling);
-    int getSector(float x, float z);
+    bool isWall(unsigned long sector);
+    long getSector(float x, float z, float *floor, float *ceiling);
+    long getSector(float x, float z);
     void getHeightAtPosition(float x, float *y, float z);
     int getAdjoiningRoom(float x, float y, float z,
         float x2, float y2, float z2);
@@ -41,26 +41,26 @@ public:
     void setFlags(unsigned int f);
     unsigned int getFlags();
 
-    unsigned int sizeAdjacentRooms();
-    int getAdjacentRoom(unsigned int index);
+    unsigned long sizeAdjacentRooms();
+    long getAdjacentRoom(unsigned long index);
 
-    unsigned int sizePortals();
-    Portal &getPortal(unsigned int index);
+    unsigned long sizePortals();
+    Portal &getPortal(unsigned long index);
 
-    unsigned int sizeSectors();
-    Sector &getSector(unsigned int index);
+    unsigned long sizeSectors();
+    Sector &getSector(unsigned long index);
 
-    unsigned int sizeBox();
-    Box &getBox(unsigned int index);
+    unsigned long sizeBox();
+    Box &getBox(unsigned long index);
 
-    unsigned int sizeModels();
-    StaticModel &getModel(unsigned int index);
+    unsigned long sizeModels();
+    StaticModel &getModel(unsigned long index);
 
-    unsigned int sizeLights();
-    Light &getLight(unsigned int index);
+    unsigned long sizeLights();
+    Light &getLight(unsigned long index);
 
-    unsigned int sizeSprites();
-    Sprite &getSprite(unsigned int index);
+    unsigned long sizeSprites();
+    Sprite &getSprite(unsigned long index);
 
 private:
     void sortModels();
@@ -73,7 +73,7 @@ private:
     BoundingBox bbox;
     Mesh mesh;
 
-    std::vector<int> adjacentRooms;
+    std::vector<long> adjacentRooms;
     std::vector<Sprite *> sprites;
     std::vector<StaticModel *> models;
     std::vector<Portal *> portals;

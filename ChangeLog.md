@@ -2,6 +2,11 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140706 ]
+    * Use cmake to check for sys/time.h availability
+    * Use long nearly everywhere where STL containers are interfaced,
+      thereby fixing most 64 to 32 bit conversion warnings
+
     [ 20140705 ]
     * Added basic Travis CI support
     * Removed global object, using lazy initialization

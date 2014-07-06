@@ -34,24 +34,24 @@ public:
     void destroy();
 
     void addRoom(Room &room);
-    unsigned int sizeRoom();
-    Room &getRoom(unsigned int index);
+    unsigned long sizeRoom();
+    Room &getRoom(unsigned long index);
 
     void addSprite(SpriteSequence &sprite);
-    unsigned int sizeSprite();
-    SpriteSequence &getSprite(unsigned int index);
+    unsigned long sizeSprite();
+    SpriteSequence &getSprite(unsigned long index);
 
     void addEntity(Entity &entity);
-    unsigned int sizeEntity();
-    Entity &getEntity(unsigned int index);
+    unsigned long sizeEntity();
+    Entity &getEntity(unsigned long index);
 
     void addSkeletalModel(SkeletalModel &model);
-    unsigned int sizeSkeletalModel();
-    SkeletalModel &getSkeletalModel(unsigned int index);
+    unsigned long sizeSkeletalModel();
+    SkeletalModel &getSkeletalModel(unsigned long index);
 
     void addStaticMesh(StaticMesh &model);
-    unsigned int sizeStaticMesh();
-    StaticMesh &getStaticMesh(unsigned int index);
+    unsigned long sizeStaticMesh();
+    StaticMesh &getStaticMesh(unsigned long index);
 
     /*!
      * \brief Find room a location is in.
@@ -63,7 +63,7 @@ public:
      * \param z Z coordinate
      * \returns correct room index or -1 for unknown
      */
-    int getRoomByLocation(int index, float x, float y, float z);
+    long getRoomByLocation(long index, float x, float y, float z);
 
     /*!
      * \brief Find room a location is in.
@@ -74,7 +74,7 @@ public:
      * \param z Z coordinate
      * \returns correct room index or -1 for unknown
      */
-    int getRoomByLocation(float x, float y, float z);
+    long getRoomByLocation(float x, float y, float z);
 
 private:
     std::vector<Room *> mRooms;

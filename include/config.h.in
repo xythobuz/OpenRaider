@@ -24,5 +24,8 @@
 #cmakedefine HAVE_CLOSEDIR
 #cmakedefine HAVE_DT_DIR
 
+#cmakedefine HAVE_SYS_TIME_H
+#cmakedefine HAVE_GETTIMEOFDAY
+
 #endif
 

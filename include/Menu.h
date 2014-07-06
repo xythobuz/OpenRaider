@@ -47,8 +47,8 @@ private:
     void play();
 
     bool mVisible;
-    unsigned int mCursor;
-    unsigned int mMin;
+    unsigned long mCursor;
+    unsigned long mMin;
 
     FontString mainText;
 

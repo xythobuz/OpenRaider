@@ -24,7 +24,7 @@ void SoundNull::setEnabled(bool on) {
 void SoundNull::setVolume(float vol) {
 }
 
-int SoundNull::registeredSources() {
+unsigned long SoundNull::registeredSources() {
     return 0;
 }
 
@@ -34,20 +34,20 @@ void SoundNull::clear() {
 void SoundNull::listenAt(float pos[3], float angle[3]) {
 }
 
-void SoundNull::sourceAt(int source, float pos[3]) {
+void SoundNull::sourceAt(unsigned long source, float pos[3]) {
 }
 
-int SoundNull::addFile(const char *filename, int *source, unsigned int flags) {
+int SoundNull::addFile(const char *filename, unsigned long *source, unsigned int flags) {
     return 0;
 }
 
-int SoundNull::addWave(unsigned char *wav, unsigned int length, int *source, unsigned int flags) {
+int SoundNull::addWave(unsigned char *wav, unsigned int length, unsigned long *source, unsigned int flags) {
     return 0;
 }
 
-void SoundNull::play(int source) {
+void SoundNull::play(unsigned long source) {
 }
 
-void SoundNull::stop(int source) {
+void SoundNull::stop(unsigned long source) {
 }
 

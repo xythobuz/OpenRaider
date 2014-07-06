@@ -21,11 +21,12 @@ SpriteSequence::~SpriteSequence() {
         delete sprites.at(i);
 }
 
-unsigned int SpriteSequence::size() {
+unsigned long SpriteSequence::size() {
     return sprites.size();
 }
 
-Sprite &SpriteSequence::get(unsigned int index) {
+Sprite &SpriteSequence::get(unsigned long index) {
+    assert(index < sprites.size());
     return *sprites.at(index);
 }
 

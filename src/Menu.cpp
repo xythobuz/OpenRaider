@@ -169,8 +169,8 @@ void Menu::displayMapList() {
     int items = (getWindow().getHeight() - 110) / 25;
 
     // Select which part of the list to show
-    int min, max;
-    if (((int)mCursor - (items / 2)) > 0)
+    long min, max;
+    if (((long)mCursor - (items / 2)) > 0)
         min = mCursor - (items / 2);
     else
         min = 0;
@@ -267,13 +267,13 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
         else
             mCursor = 0;
     } else if (key == rightKey) {
-        int i = 10;
+        long i = 10;
         if (mCursor > (mMapList.size() - 11))
             i = mMapList.size() - 1 - mCursor;
         while (i-- > 0)
             handleKeyboard(downKey, true);
     } else if (key == leftKey) {
-        int i = 10;
+        long i = 10;
         if (mCursor < 10)
             i = mCursor;
         while (i-- > 0)

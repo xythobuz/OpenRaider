@@ -34,6 +34,8 @@
 #error No Windowing Library selected!
 #endif
 
+void cleanupHandler(void);
+
 Camera &getCamera() {
     static Camera gCamera;
     return gCamera;

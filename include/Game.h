@@ -58,7 +58,7 @@ private:
     unsigned int mTextureStart;
     unsigned int mTextureOffset;
 
-    int mLara;
+    long mLara;
 };
 
 Game &getGame();

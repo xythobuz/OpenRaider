@@ -151,3 +151,43 @@ void Window::glExit2D() {
     glMatrixMode(GL_MODELVIEW);
 }
 
+// Replaced the deprecated gluLookAt with slightly modified code from here:
+// http://www.khronos.org/message_boards/showthread.php/4991
+void Window::lookAt(float eyeX, float eyeY, float eyeZ,
+        float lookAtX, float lookAtY, float lookAtZ,
+        float upX, float upY, float upZ) {
+    // calculating the viewing vector
+    float f[3] = {
+        lookAtX - eyeX,
+        lookAtY - eyeY,
+        lookAtZ - eyeZ
+    };
+
+    // normalizing the viewing vector
+    float fMag = sqrtf(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    f[0] /= fMag;
+    f[1] /= fMag;
+    f[2] /= fMag;
+
+    float s[3] = {
+        (f[1] * upZ) - (upY * f[2]),
+        (upX * f[2]) - (f[0] * upZ),
+        (f[0] * upY) - (upX * f[1])
+    };
+
+    float u[3] = {
+        (s[1] * f[2]) - (f[1] * s[2]),
+        (f[0] * s[2]) - (s[0] * f[2]),
+        (s[0] * f[1]) - (f[0] * s[1])
+    };
+
+    float m[16] = {
+        s[0], u[0], -f[0], 0,
+        s[1], u[1], -f[1], 0,
+        s[2], u[2], -f[2], 0,
+           0,    0,     0, 1
+    };
+    glMultMatrixf(m);
+    glTranslatef(-eyeX, -eyeY, -eyeZ);
+}
+

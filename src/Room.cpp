@@ -529,21 +529,20 @@ void Room::display(bool alpha) {
     }
 }
 
-bool Room::isWall(unsigned int sector) {
-    assert(sector >= 0);
+bool Room::isWall(unsigned long sector) {
     assert(sector < sectors.size());
 
     //! \fixme is (sector > 0) correct??
     return ((sector > 0) && sectors.at(sector)->isWall());
 }
 
-int Room::getSector(float x, float z, float *floor, float *ceiling) {
+long Room::getSector(float x, float z, float *floor, float *ceiling) {
     assert(floor != NULL);
     assert(ceiling != NULL);
 
-    int sector = getSector(x, z);
+    long sector = getSector(x, z);
 
-    if ((sector >= 0) && (sector < (int)sectors.size())) {
+    if ((sector >= 0) && (sector < (long)sectors.size())) {
         *floor = sectors.at(sector)->getFloor();
         *ceiling = sectors.at(sector)->getCeiling();
     }
@@ -551,8 +550,8 @@ int Room::getSector(float x, float z, float *floor, float *ceiling) {
     return sector;
 }
 
-int Room::getSector(float x, float z) {
-    int sector = (((((int)x - (int)pos[0]) / 1024) *
+long Room::getSector(float x, float z) {
+    long sector = (((((int)x - (int)pos[0]) / 1024) *
         numZSectors) + (((int)z - (int)pos[2]) / 1024));
 
     if (sector < 0)
@@ -562,8 +561,8 @@ int Room::getSector(float x, float z) {
 }
 
 void Room::getHeightAtPosition(float x, float *y, float z) {
-    int sector = getSector(x, z);
-    if ((sector >= 0) && (sector < (int)sectors.size()))
+    long sector = getSector(x, z);
+    if ((sector >= 0) && (sector < (long)sectors.size()))
         *y = sectors.at(sector)->getFloor();
 }
 
@@ -575,7 +574,7 @@ int Room::getAdjoiningRoom(float x, float y, float z,
     p1[0] = x;  p1[1] = y;  p1[2] = z;
     p2[0] = x2; p2[1] = y2; p2[2] = z2;
 
-    for (unsigned int i = 0; i < portals.size(); i++) {
+    for (unsigned long i = 0; i < portals.size(); i++) {
         portals.at(i)->getVertices(vertices);
         if (intersectionLinePolygon(intersect, p1, p2, //4,
                     vertices))
@@ -602,47 +601,47 @@ void Room::getPos(float p[3]) {
         p[i] = pos[i];
 }
 
-unsigned int Room::sizeAdjacentRooms() {
+unsigned long Room::sizeAdjacentRooms() {
     return adjacentRooms.size();
 }
 
-int Room::getAdjacentRoom(unsigned int index) {
+long Room::getAdjacentRoom(unsigned long index) {
     assert(index < adjacentRooms.size());
     return adjacentRooms.at(index);
 }
 
-unsigned int Room::sizePortals() {
+unsigned long Room::sizePortals() {
     return portals.size();
 }
 
-Portal &Room::getPortal(unsigned int index) {
+Portal &Room::getPortal(unsigned long index) {
     assert(index < portals.size());
     return *portals.at(index);
 }
 
-unsigned int Room::sizeSectors() {
+unsigned long Room::sizeSectors() {
     return sectors.size();
 }
 
-Sector &Room::getSector(unsigned int index) {
+Sector &Room::getSector(unsigned long index) {
     assert(index < sectors.size());
     return *sectors.at(index);
 }
 
-unsigned int Room::sizeBox() {
+unsigned long Room::sizeBox() {
     return boxes.size();
 }
 
-Box &Room::getBox(unsigned int index) {
+Box &Room::getBox(unsigned long index) {
     assert(index < boxes.size());
     return *boxes.at(index);
 }
 
-unsigned int Room::sizeModels() {
+unsigned long Room::sizeModels() {
     return models.size();
 }
 
-StaticModel &Room::getModel(unsigned int index) {
+StaticModel &Room::getModel(unsigned long index) {
     assert(index < models.size());
     return *models.at(index);
 }
@@ -651,20 +650,20 @@ void Room::sortModels() {
     std::sort(models.begin(), models.end());
 }
 
-unsigned int Room::sizeLights() {
+unsigned long Room::sizeLights() {
     return lights.size();
 }
 
-Light &Room::getLight(unsigned int index) {
+Light &Room::getLight(unsigned long index) {
     assert(index < lights.size());
     return *lights.at(index);
 }
 
-unsigned int Room::sizeSprites() {
+unsigned long Room::sizeSprites() {
     return sprites.size();
 }
 
-Sprite &Room::getSprite(unsigned int index) {
+Sprite &Room::getSprite(unsigned long index) {
     assert(index < sprites.size());
     return *sprites.at(index);
 }

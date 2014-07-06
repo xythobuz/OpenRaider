@@ -95,7 +95,7 @@ void Console::display() {
         glRecti(0, 0, getWindow().getWidth(), getWindow().getHeight() / 2);
         glEnable(GL_TEXTURE_2D);
 
-        int scrollIndicator;
+        unsigned long scrollIndicator;
         if (mHistory.size() > lineCount) {
             scrollIndicator = (mHistory.size() - lineCount - mLineOffset) * 100 / (mHistory.size() - lineCount);
         } else {
@@ -107,9 +107,9 @@ void Console::display() {
                 "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
 
         // Draw output log
-        int end = lineCount;
-        int drawOffset = 0;
-        int historyOffset = 0;
+        long end = lineCount;
+        long drawOffset = 0;
+        long historyOffset = 0;
         if (mHistory.size() < lineCount) {
             end = mHistory.size();
             drawOffset = lineCount - mHistory.size();
@@ -117,7 +117,7 @@ void Console::display() {
             historyOffset = mHistory.size() - lineCount;
         }
         for (int i = 0; i < end; i++) {
-            getFont().drawText(10, ((i + drawOffset) * lineSteps) + firstLine,
+            getFont().drawText(10, (unsigned int)((i + drawOffset) * lineSteps) + firstLine,
                     0.75f, BLUE, "%s", mHistory[i + historyOffset - mLineOffset]);
         }
 

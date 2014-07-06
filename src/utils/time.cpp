@@ -8,41 +8,39 @@
 #include "global.h"
 #include "utils/time.h"
 
-#if defined(unix) || defined(__APPLE__) || defined (__linux__)
+unsigned long systemTimerStart = 0;
+
+#if defined(HAVE_SYS_TIME_H) && defined(HAVE_GETTIMEOFDAY)
 
 #include <sys/time.h>
 
-struct timeval system_timer_start;
-struct timeval system_timer_stop;
-struct timezone system_timer_zone;
-
 unsigned long systemTimerGet() {
-    gettimeofday(&system_timer_stop, &system_timer_zone);
-    return ((system_timer_stop.tv_sec - system_timer_start.tv_sec) * 1000)
-        + (((system_timer_stop.tv_usec - system_timer_start.tv_usec) / 1000));
+    struct timeval time;
+    struct timezone zone;
+    gettimeofday(&time, &zone);
+    return ((time.tv_sec * 1000) + (time.tv_usec / 1000)) - systemTimerStart;
 }
 
 void systemTimerReset() {
-    gettimeofday(&system_timer_start, &system_timer_zone);
+    struct timeval time;
+    struct timezone zone;
+    gettimeofday(&time, &zone);
+    systemTimerStart = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 }
 
 #elif defined(_WIN32)
 
 #include <Windows.h>
 
-DWORD system_timer_start = 0;
-
 unsigned long systemTimerGet() {
-    return GetTickCount() - system_timer_start;
+    return GetTickCount() - systemTimerStart;
 }
 
 void systemTimerReset() {
-    system_timer_start = GetTickCount();
+    systemTimerStart = GetTickCount();
 }
 
 #else
-
 #error "No support for timer on this platform!"
-
 #endif
 

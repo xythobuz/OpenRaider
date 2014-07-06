@@ -64,7 +64,7 @@ void Entity::move(char movement) {
     const float testd = 220.0f;
     const float camHeight = 8.0f;
     float x, y, z, pitch, h, floor, ceiling;
-    int roomNew, sector;
+    long roomNew, sector;
     bool wall;
     unsigned int roomFlags;
 
@@ -113,7 +113,7 @@ void Entity::move(char movement) {
                 x, y, z);
 
         if (roomNew > -1)
-            getConsole().print("Crossing from room %i to %i", room, roomNew);
+            getConsole().print("Crossing from room %li to %li", room, roomNew);
         else
             //! \fixme mRooms, sectors, ... are now std::vector, but often upper bound checks are missing
             return;
@@ -210,7 +210,7 @@ void Entity::move(char movement) {
 
 void Entity::print() {
     getConsole().print("Entity %d:", objectId);
-    getConsole().print("  Room %i (0x%X)", room, getWorld().getRoom(room).getFlags());
+    getConsole().print("  Room %li (0x%X)", room, getWorld().getRoom(room).getFlags());
     getConsole().print("  %.1fx %.1fy %.1fz", pos[0], pos[1], pos[2]);
     getConsole().print("  %.1f Yaw", OR_RAD_TO_DEG(angles[1]));
 }
@@ -251,32 +251,32 @@ float Entity::getAngle(unsigned int i) {
     return angles[i];
 }
 
-int Entity::getRoom() {
+long Entity::getRoom() {
     return room;
 }
 
-unsigned int Entity::getAnimation() {
+unsigned long Entity::getAnimation() {
     return animationFrame;
 }
 
-void Entity::setAnimation(unsigned int index) {
+void Entity::setAnimation(unsigned long index) {
     animationFrame = index;
     boneFrame = 0;
 }
 
-unsigned int Entity::getBoneFrame() {
+unsigned long Entity::getBoneFrame() {
     return boneFrame;
 }
 
-void Entity::setBoneFrame(unsigned int index) {
+void Entity::setBoneFrame(unsigned long index) {
     boneFrame = index;
 }
 
-unsigned int Entity::getIdleAnimation() {
+unsigned long Entity::getIdleAnimation() {
     return idleAnimation;
 }
 
-void Entity::setIdleAnimation(unsigned int index) {
+void Entity::setIdleAnimation(unsigned long index) {
     idleAnimation = index;
 }
 

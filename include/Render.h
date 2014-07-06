@@ -118,6 +118,8 @@ public:
 
 private:
 
+    static void lightRoom(Room &room);
+
     void drawLoadScreen();
 
     /*!

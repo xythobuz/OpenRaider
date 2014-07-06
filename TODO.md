@@ -30,7 +30,5 @@
 
 # Travis CI
 
-* Currently only building on Linux
-    * Should also build on Mac, but needs different before_install / install scripts,
-      that can detect the platform they’re running on
+* Run resulting executable, upload screenshot, post link in IRC
 

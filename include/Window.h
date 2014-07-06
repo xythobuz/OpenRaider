@@ -44,6 +44,10 @@ public:
 
     virtual void glExit2D();
 
+    virtual void lookAt(float eyeX, float eyeY, float eyeZ,
+                        float lookAtX, float lookAtY, float lookAtZ,
+                        float upX, float upY, float upZ);
+
 protected:
     bool mInit;
     bool mFullscreen;

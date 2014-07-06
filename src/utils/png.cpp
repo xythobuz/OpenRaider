@@ -117,7 +117,7 @@ int pngLoad(const char *filename, unsigned char **image,
 
     png_read_update_info(png_ptr, info_ptr);
 
-    int rowbytes = png_get_rowbytes(png_ptr, info_ptr);
+    png_size_t rowbytes = png_get_rowbytes(png_ptr, info_ptr);
 
     png_byte *image_data = new png_byte[(rowbytes * *height) + 15];
     png_bytep *row_pointers = new png_bytep[*height];

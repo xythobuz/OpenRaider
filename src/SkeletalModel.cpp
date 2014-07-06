@@ -83,15 +83,15 @@ BoneFrame::BoneFrame(TombRaider &tr, unsigned int index, unsigned int frame_offs
 }
 
 BoneFrame::~BoneFrame() {
-    for (unsigned int i = 0; i < tag.size(); i++)
+    for (unsigned long i = 0; i < tag.size(); i++)
         delete tag[i];
 }
 
-unsigned int BoneFrame::size() {
+unsigned long BoneFrame::size() {
     return tag.size();
 }
 
-BoneTag &BoneFrame::get(unsigned int i) {
+BoneTag &BoneFrame::get(unsigned long i) {
     assert(i < tag.size());
     return *tag.at(i);
 }
@@ -147,15 +147,15 @@ AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, int a, unsign
 }
 
 AnimationFrame::~AnimationFrame() {
-    for (unsigned int i = 0; i < frame.size(); i++)
+    for (unsigned long i = 0; i < frame.size(); i++)
         delete frame[i];
 }
 
-unsigned int AnimationFrame::size() {
+unsigned long AnimationFrame::size() {
     return frame.size();
 }
 
-BoneFrame &AnimationFrame::get(unsigned int i) {
+BoneFrame &AnimationFrame::get(unsigned long i) {
     assert(i < frame.size());
     return *frame.at(i);
 }
@@ -262,11 +262,11 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
 }
 
 SkeletalModel::~SkeletalModel() {
-    for (unsigned int i = 0; i < animation.size(); i++)
+    for (unsigned long i = 0; i < animation.size(); i++)
         delete animation[i];
 }
 
-void SkeletalModel::display(unsigned int aframe, unsigned int bframe) {
+void SkeletalModel::display(unsigned long aframe, unsigned long bframe) {
     assert(aframe < size());
     assert(bframe < get(aframe).size());
 
@@ -382,11 +382,11 @@ void SkeletalModel::setPonyPos(float x, float y, float z, float angle) {
     ponytailAngle = angle;
 }
 
-unsigned int SkeletalModel::size() {
+unsigned long SkeletalModel::size() {
     return animation.size();
 }
 
-AnimationFrame &SkeletalModel::get(unsigned int i) {
+AnimationFrame &SkeletalModel::get(unsigned long i) {
     assert(i < animation.size());
     return *animation.at(i);
 }
