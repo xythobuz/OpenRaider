@@ -12,12 +12,9 @@ install:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake/travis_install_linux.sh; fi
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cmake/travis_install_mac.sh; fi
 
-before_script:
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake/travis_before_script_linux.sh; fi
-    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cmake/travis_before_script_mac.sh; fi
-
 script:
-    - (mkdir build && cd build && cmake .. && make)
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake/travis_script_linux.sh; fi
+    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cmake/travis_script_mac.sh; fi
 
 notifications:
     irc:
