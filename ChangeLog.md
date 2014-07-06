@@ -3,7 +3,8 @@
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
     [ 20140705 ]
-    * Added basic Travis CI support (Linux + clang only)
+    * Added basic Travis CI support
+    * Removed global object, using lazy initialization
 
     [ 20140704 ]
     * Removed unnecessary #include dependencies

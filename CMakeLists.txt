@@ -32,12 +32,14 @@ set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
 # Compiler specific flags
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    set (WARNINGS "${WARNINGS} -Weverything -Wno-padded -Wno-packed")
+    set (WARNINGS "${WARNINGS} -Weverything")
+    set (WARNINGS "${WARNINGS} -Wno-padded -Wno-packed")
     set (WARNINGS "${WARNINGS} -Wno-global-constructors -Wno-exit-time-destructors")
     set (WARNINGS "${WARNINGS} -Wno-documentation-unknown-command -Wno-c++98-compat-pedantic")
-    set (WARNINGS "${WARNINGS} -Wno-missing-prototypes -Wno-missing-variable-declarations")
-    set (WARNINGS "${WARNINGS} -Wno-disabled-macro-expansion")
-    set (WARNINGS "${WARNINGS} -Wno-shorten-64-to-32 -Wno-sign-conversion")
+
+    set (WARNINGS "${WARNINGS} -Wno-sign-conversion")
+    #set (WARNINGS "${WARNINGS} -Wno-shorten-64-to-32")
+
     set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11")
     set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -g -O0 -ftrapv")
     set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -O2 -fomit-frame-pointer")

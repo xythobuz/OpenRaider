@@ -34,67 +34,64 @@
 #error No Windowing Library selected!
 #endif
 
-Camera gCamera;
-Console gConsole;
-FontManager gFont;
-Game gGame;
-Menu gMenu;
-OpenRaider gOpenRaider;
-Render gRender;
-TextureManager gTextureManager;
-World gWorld;
-
-#ifdef USING_AL
-SoundAL gSound;
-#else
-SoundNull gSound;
-#endif
-
-#ifdef USING_SDL
-WindowSDL gWindow;
-#endif
-
 Camera &getCamera() {
+    static Camera gCamera;
     return gCamera;
 }
 
 Console &getConsole() {
+    static Console gConsole;
     return gConsole;
 }
 
 Font &getFont() {
+    static FontManager gFont;
     return gFont;
 }
 
 Game &getGame() {
+    static Game gGame;
     return gGame;
 }
 
 Menu &getMenu() {
+    static Menu gMenu;
     return gMenu;
 }
 
 OpenRaider &getOpenRaider() {
+    static OpenRaider gOpenRaider;
     return gOpenRaider;
 }
 
 Render &getRender() {
+    static Render gRender;
     return gRender;
 }
 
 Sound &getSound() {
+#ifdef USING_AL
+    static SoundAL gSound;
+#else
+    static SoundNull gSound;
+#endif
     return gSound;
 }
 
 TextureManager &getTextureManager() {
+    static TextureManager gTextureManager;
     return gTextureManager;
 }
 
 Window &getWindow() {
+#ifdef USING_SDL
+    static WindowSDL gWindow;
+#endif
     return gWindow;
 }
 
 World &getWorld() {
+    static World gWorld;
     return gWorld;
 }
 
@@ -151,13 +148,13 @@ int main(int argc, char *argv[]) {
 
     // Try to load a configuration
     if (configArg) {
-        if (gOpenRaider.loadConfig(argv[1]) != 0) {
+        if (getOpenRaider().loadConfig(argv[1]) != 0) {
             std::cout << "Could not find the specified config file. Aborting..." << std::endl;
             return 2;
         }
     } else {
-        if (gOpenRaider.loadConfig(DEFAULT_CONFIG_FILE) != 0) {
-            if (gOpenRaider.loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE) != 0) {
+        if (getOpenRaider().loadConfig(DEFAULT_CONFIG_FILE) != 0) {
+            if (getOpenRaider().loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE) != 0) {
                 std::cout << "Could not find a config file. Aborting..." << std::endl;
                 return 3;
             }
@@ -165,15 +162,15 @@ int main(int argc, char *argv[]) {
     }
 
     // Initialize everything
-    int error = gOpenRaider.initialize();
+    int error = getOpenRaider().initialize();
     if (error != 0) {
         std::cout << "Could not initialize OpenRaider (" << error << ")!" << std::endl;
         return 4;
     }
 
     // Enter Main loop
-    gConsole.print("Starting %s", VERSION);
-    gOpenRaider.run();
+    getConsole().print("Starting %s", VERSION);
+    getOpenRaider().run();
 
     return 0;
 }
