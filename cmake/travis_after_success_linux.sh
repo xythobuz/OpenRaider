@@ -9,10 +9,12 @@ echo "set audiodir \".\"" >> OpenRaider.ini
 echo "set datadir \"../../data\"" >> OpenRaider.ini
 echo "set font \"../../data/test.ttf\"" >> OpenRaider.ini
 
-xvfb-run -a -s "+extension RANDR -screen 0 640x480x24" ./OpenRaider &
+set -o xtrace
+
+xvfb-run -n 99 -s "-screen 0 640x480x24" ./OpenRaider &
 sleep 5 # Wait for OpenRaider to start
 
-import -window root screenshot.png
+import -window root -display :99.0 screenshot.png
 
 # Find a better way for this!
 ls -la
