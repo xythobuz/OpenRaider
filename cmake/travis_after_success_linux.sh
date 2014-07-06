@@ -15,5 +15,5 @@ import -window root -display :99.0 screenshot.png
 
 wget http://imgur.com/tools/imgurbash.sh
 chmod a+x ./imgurbash.sh
-imgurbash.sh screenshot.png
+./imgurbash.sh screenshot.png
 
