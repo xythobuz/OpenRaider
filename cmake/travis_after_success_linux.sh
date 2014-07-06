@@ -9,13 +9,11 @@ echo "set audiodir \".\"" >> OpenRaider.ini
 echo "set datadir \"../../data\"" >> OpenRaider.ini
 echo "set font \"../../data/test.ttf\"" >> OpenRaider.ini
 
-set -o xtrace
-
 xvfb-run -n 99 -s "-screen 0 640x480x24" ./OpenRaider &
-sleep 5 # Wait for OpenRaider to start
-
+sleep 10 # Wait for OpenRaider to start
 import -window root -display :99.0 screenshot.png
 
-# Find a better way for this!
-ls -la
+wget http://imgur.com/tools/imgurbash.sh
+chmod a+x ./imgurbash.sh
+imgurbash.sh screenshot.png
 
