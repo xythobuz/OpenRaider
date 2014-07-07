@@ -28,7 +28,3 @@
     * Need useful, always available image writer alternative for screenshots then
 * When cutscene rendering is working, use TR4/5 style menu?
 
-# Travis CI
-
-* Run resulting executable, upload screenshot, post link in IRC
-

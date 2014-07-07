@@ -17,13 +17,9 @@ wget http://imgur.com/tools/imgurbash.sh
 chmod a+x ./imgurbash.sh
 ./imgurbash.sh screenshot.png > url
 
-echo 'USER OR-Travis-Worker OR-Travis-Worker OR-Travis-Worker OR-Travis-Worker' > msg
-echo 'NICK OR-Travis-Worker' >> msg
-echo 'JOIN #OpenRaider' >> msg
-echo "PRIVMSG #OpenRaider Travis $CXX Worker has a screenshot:" >> msg
-echo -n "PRIVMSG #OpenRaider " >> msg
-cat url >> msg
-echo 'QUIT' >> msg
+export SHIC_SCRIPT=":j #OpenRaider; New Screenshot: $(url); :q"
 
-cat msg | nc chat.freenode.net 6667
+wget https://raw.githubusercontent.com/halhen/shic/master/shic
+chmod a+x ./shic
+./shic -h chat.freenode.net -p 6667 -n OR-Travis-Worker
 
