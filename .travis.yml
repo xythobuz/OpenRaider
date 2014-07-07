@@ -20,6 +20,7 @@ after_success:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake/travis_after_success_linux.sh; fi
 
 notifications:
+    email: false
     irc:
         channels:
             - "chat.freenode.net#OpenRaider"

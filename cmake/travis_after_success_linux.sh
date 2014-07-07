@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -o xtrace
-
 cd build
 cd src
 
@@ -20,8 +18,8 @@ chmod a+x ./imgurbash.sh
 ./imgurbash.sh screenshot.png > url
 
 (
-    echo "NICK OR-Travis"
-    echo "USER OR-Travis 9 \* :OR-Travis"
+    echo "NICK OR-$(echo -n $TRAVIS_OS_NAME)-$(echo -n $CXX)"
+    echo "USER OR-$(echo -n $TRAVIS_OS_NAME)-$(echo -n $CXX) 9 \* :OR-$(echo -n $TRAVIS_OS_NAME)-$(echo -n $CXX)"
     sleep 5
     echo "JOIN #OpenRaider"
     sleep 5
