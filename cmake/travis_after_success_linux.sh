@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o xtrace
+
 cd build
 cd src
 
@@ -18,12 +20,13 @@ chmod a+x ./imgurbash.sh
 ./imgurbash.sh screenshot.png > url
 
 (
-    echo NICK OR-Travis-Worker
-    echo USER OR-Travis-Worker 8 \* : OR-Travis-Worker
-    sleep 2
-    echo 'JOIN #OpenRaider'
-    echo 'PRIVMSG #OpenRaider New Screenshot: ' $(cat url | head -n 1)
-    sleep 2
+    echo "NICK OR-Travis"
+    echo "USER OR-Travis 9 \* :OR-Travis"
+    sleep 5
+    echo "JOIN #OpenRaider"
+    sleep 5
+    echo "PRIVMSG #OpenRaider :New Screenshot $(cat url | head -n 1)"
+    sleep 5
     echo QUIT
 ) | nc chat.freenode.net 6667
 
