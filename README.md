@@ -162,6 +162,8 @@ There are some included cmake scripts:
 * [FindSDL2](https://github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake)
 * [FindSDL2TTF](https://github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake)
 * [FindSSE](https://gitorious.org/vc/vc/source/a1d8b9fc31060d870386613cc72319546c850b87:cmake/FindSSE.cmake)
+* [GetGitRevisionDescription.cmake](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake)
+* [GetGitRevisionDescription.cmake.in](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake.in)
 
 See the respective files in `cmake` for their licensing.
 

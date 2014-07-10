@@ -66,6 +66,14 @@ set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -DNDEBUG")
 
 #################################################################
 
+include (GetGitRevisionDescription)
+get_git_head_revision (GIT_REFSPEC GIT_SHA1)
+if (NOT ${GIT_SHA1} STREQUAL "GITDIR-NOTFOUND")
+    string (SUBSTRING "-${GIT_SHA1}" 0 8 OpenRaider_VERSION_RELEASE)
+endif (NOT ${GIT_SHA1} STREQUAL "GITDIR-NOTFOUND")
+
+#################################################################
+
 # Add subdirectories
 add_subdirectory (src)
 

@@ -132,6 +132,13 @@ configure_file (
     "${PROJECT_BINARY_DIR}/config.h"
 )
 
+# Configuration Source file
+configure_file (
+    "${PROJECT_SOURCE_DIR}/src/config.cpp.in"   
+    "${PROJECT_BINARY_DIR}/config.cpp"
+)
+set (SRCS ${SRCS} "${PROJECT_BINARY_DIR}/config.cpp")
+
 #################################################################
 
 # Apple specific bundling
