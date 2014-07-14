@@ -200,6 +200,10 @@ bool StaticModel::operator<(const StaticModel &other) {
     return (distA < distB);
 }
 
+bool StaticModel::compare(StaticModel *a, StaticModel *b) {
+    return (*b) < (*a);
+}
+
 // ----------------------------------------------------------------------------
 
 Portal::Portal(TombRaider &tr, unsigned int room, unsigned int index, Matrix &transform) {

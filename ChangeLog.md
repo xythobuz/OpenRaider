@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140714 ]
+    * Fixed a bug where std::sort did not use the objects operator<
+      method, but instead sorted based on the objects address in memory
+
     [ 20140706 ]
     * Use cmake to check for sys/time.h availability
     * Use long nearly everywhere where STL containers are interfaced,

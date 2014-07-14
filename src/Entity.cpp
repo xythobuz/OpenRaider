@@ -41,6 +41,10 @@ bool Entity::operator<(Entity &o) {
     return (distA < distB);
 }
 
+bool Entity::compare(Entity *a, Entity *b) {
+    return (*b) < (*a);
+}
+
 void Entity::display() {
     glPushMatrix();
     glTranslatef(pos[0], pos[1], pos[2]);

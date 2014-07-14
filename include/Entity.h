@@ -24,6 +24,7 @@ public:
     Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int model);
 
     bool operator<(Entity &o);
+    static bool compare(Entity *a, Entity *b);
     void display();
     void move(char movement);
     void print();

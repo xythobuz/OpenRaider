@@ -647,7 +647,7 @@ StaticModel &Room::getModel(unsigned long index) {
 }
 
 void Room::sortModels() {
-    std::sort(models.begin(), models.end());
+    std::sort(models.begin(), models.end(), StaticModel::compare);
 }
 
 unsigned long Room::sizeLights() {

@@ -347,7 +347,7 @@ void Render::display()
         glPopMatrix();
 
         // Depth sort entityRenderList and display each entity
-        std::sort(entityRenderList.begin(), entityRenderList.end());
+        std::sort(entityRenderList.begin(), entityRenderList.end(), Entity::compare);
         for (unsigned int i = 0; i < entityRenderList.size(); i++) {
             entityRenderList[i]->display();
         }

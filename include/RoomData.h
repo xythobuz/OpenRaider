@@ -62,6 +62,7 @@ public:
 
     // Compares distance to ViewVolume for depth sorting
     bool operator<(const StaticModel &other);
+    static bool compare(StaticModel *a, StaticModel *b);
 
 private:
     int index;
