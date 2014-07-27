@@ -2,20 +2,15 @@
 
 ## General
 
+* Move to newer OpenGL (GLES or 3.x or 4.x?)
 * Endian dependence ugly, shouldn't dereference to different types?
     * TombRaider.h/cpp structs aren't aligned... unportable to some big endian & other archs?!
     * Maybe replace loader with [VT](http://icculus.org/vt/), also used by OpenTomb.
-* Use more asserts
 * Don't use C-Style code, try to replace with C++ lib
     * Use std::strings
     * Rewrite Console and use operator << to write to the console?
-* SDL_TTF 2.0.12+ [can do line breaks](http://stackoverflow.com/questions/17847818/how-to-do-line-breaks-and-line-wrapping-with-sdl-ttf/18418688#18418688), use it
 * Mesh has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even combining Mesh and StaticMesh...
 * Don’t use float everywhere just because (eg. float colors)
-
-## Changes
-
-* Using std::vector with [] is not bound checked. Segfaults were caused because the upper bound of the argument was never checked and garbage was returned... Do consistent checks, or use .at() as it throws an exception
 
 ## Cmake
 

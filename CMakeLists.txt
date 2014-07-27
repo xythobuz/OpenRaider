@@ -36,9 +36,6 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     set (WARNINGS "${WARNINGS} -Wno-padded -Wno-packed")
     set (WARNINGS "${WARNINGS} -Wno-global-constructors -Wno-exit-time-destructors")
     set (WARNINGS "${WARNINGS} -Wno-documentation-unknown-command -Wno-c++98-compat-pedantic")
-
-    set (WARNINGS "${WARNINGS} -Wno-sign-conversion")
-
     set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -std=c++11")
     set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -g -O0 -ftrapv")
     set (OpenRaider_CXX_FLAGS_RELEASE "${OpenRaider_CXX_FLAGS_RELEASE} -O2 -fomit-frame-pointer")

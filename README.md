@@ -1,5 +1,7 @@
 # OpenRaider
 
+[![Build Status](https://travis-ci.org/xythobuz/OpenRaider.svg?branch=master)](https://travis-ci.org/xythobuz/OpenRaider)
+
 This is a fork of the [OpenRaider](http://openraider.sourceforge.net) Open Source implementation of the classic Tomb Raider Game Engine. The original project was abandoned in 2003.
 
 This fork aims to get OpenRaider in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...
@@ -7,8 +9,6 @@ This fork aims to get OpenRaider in a more usable state, maybe one day even bein
 If you just want to see OpenRaider doing something on your Mac, without installing any of the dependencies needed to build OpenRaider, grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
 
 It seems as if OpenRaider will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!
-
-[![Build Status](https://travis-ci.org/xythobuz/OpenRaider.svg?branch=master)](https://travis-ci.org/xythobuz/OpenRaider)
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=xythobuz&url=https://github.com/xythobuz/OpenRaider&title=OpenRaider&language=&tags=github&category=software)
 
@@ -30,14 +30,14 @@ A more or less recent [Doxygen documentation](http://xythobuz.github.io/OpenRaid
 
 Basically, OpenRaider depends on the following:
 
+* C++11 compiler
+* cmake
 * OpenGL
+* zlib
 * SDL2
 * SDL2-TTF (optional, needed if you want to use TTF fonts)
-* OpenAL & ALUT
-* zlib
-* cmake as build system
+* OpenAL & ALUT (optional, needed for sound output)
 * libpng (optional)
-* C++11 compiler
 
 On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 
@@ -57,7 +57,7 @@ Get, compile and install freealut like this:
 
 Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won't need to compile freealut.
 
-Sound support is optional now, however. If cmake can’t find OpenAL and ALUT, Audio will be deactivated. If you want to explicitly deactivate it, call cmake with `-DENABLE_AUDIO=NO`.
+Sound support is optional, however. If cmake can’t find OpenAL and ALUT, Audio will be deactivated. If you want to explicitly deactivate it, call cmake with `-DENABLE_AUDIO=NO`.
 
 ## Building
 
@@ -142,7 +142,7 @@ I’ve made [a small writeup on my website](http://xythobuz.de/2014_06_14_trle_f
 
 ## License
 
-OpenRaider is based on code, specs, and alogrithms from:
+OpenRaider is based on code, specs, and algorithms from:
 
 * GooseEgg/Freyja 3d Modelers by Mongoose
 * TR Rosetta Stone spec sheet by Anonymous

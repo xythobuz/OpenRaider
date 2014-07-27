@@ -1,4 +1,5 @@
 # Source files
+set (UTIL_SRCS ${UTIL_SRCS} "binary.cpp")
 set (UTIL_SRCS ${UTIL_SRCS} "pcx.cpp")
 set (UTIL_SRCS ${UTIL_SRCS} "pixel.cpp")
 set (UTIL_SRCS ${UTIL_SRCS} "strings.cpp")

@@ -31,7 +31,7 @@ Menu::Menu() {
     mCursor = 0;
     mMin = 0;
 
-    mainText.text = bufferString(VERSION);
+    mainText.text = bufferString("%s", VERSION);
     mainText.color[0] = BLUE[0];
     mainText.color[1] = BLUE[1];
     mainText.color[2] = BLUE[2];

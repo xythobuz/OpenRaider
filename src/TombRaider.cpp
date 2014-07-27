@@ -3334,7 +3334,7 @@ void TombRaider::getRoomTriangle(unsigned int roomIndex,
                 {
                     k = triangleIndex - count;
 
-                    *texture = *flags = 0; // FIXME
+                    *texture = *flags = 0; //! \fixme
 
                     // Setup per vertex
                     for (j = 0; j < 3; ++j)
@@ -3342,7 +3342,7 @@ void TombRaider::getRoomTriangle(unsigned int roomIndex,
                         // Get vertex index {(0, a), (1, b), (2, c) }
                         indices[j] = mRoomsTR5[roomIndex].faces[i].tris[k].vertices[j];
 
-                        // FIXME
+                        //! \fixme
                         //tIndex = mRoomsTR5[roomIndex].faces[i].vertices[j].texture & 0xff;
                         //computeUV(objectTexturesTR5[tIndex].vertices + i,
                         //          texCoords+i*2, texCoords+i*2+1);
