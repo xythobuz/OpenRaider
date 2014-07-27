@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140728 ]
+    * Implemented binary file reading utility in preparation of
+      TombRaider.cpp/h rewrite
+
     [ 20140714 ]
     * Fixed a bug where std::sort did not use the objects operator<
       method, but instead sorted based on the objects address in memory

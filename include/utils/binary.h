@@ -8,23 +8,32 @@
 #ifndef _UTILS_BINARY_H_
 #define _UTILS_BINARY_H_
 
-void binOpen(const char *file);
-void binClose();
+#include <fstream>
 
-unsigned long binTell();
-void binSeek(unsigned long pos);
+class BinaryFile {
+public:
 
-int8_t binRead8();
-uint8_t binReadU8();
+    BinaryFile(const char *f);
+    ~BinaryFile();
 
-int16_t binRead16();
-uint16_t binReadU16();
+    long long tell();
+    void seek(long long pos);
 
-int32_t binRead32();
-uint32_t binReadU32();
+    int8_t read8();
+    uint8_t readU8();
 
-int64_t binRead64();
-uint64_t binReadU64();
+    int16_t read16();
+    uint16_t readU16();
+
+    int32_t read32();
+    uint32_t readU32();
+
+    int64_t read64();
+    uint64_t readU64();
+
+private:
+    std::ifstream file;
+};
 
 #endif
 
