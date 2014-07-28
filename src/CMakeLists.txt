@@ -202,6 +202,7 @@ set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${OpenRaider_CXX_FLAGS} ${O
 set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS} ${OpenRaider_CXX_FLAGS_RELEASE}")
 
 # Add subdirectories
+add_subdirectory ("deps")
 add_subdirectory ("math")
 add_subdirectory ("utils")
 
@@ -257,6 +258,7 @@ if (UNIX)
 endif (UNIX)
 
 # Add utils Library
+set (LIBS ${LIBS} OpenRaider_deps)
 set (LIBS ${LIBS} OpenRaider_math)
 set (LIBS ${LIBS} OpenRaider_utils)
 
@@ -268,4 +270,5 @@ target_link_libraries (OpenRaider ${LIBS})
 # Add target to run executable
 if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles" OR ${CMAKE_GENERATOR} STREQUAL "MinGW Makefiles")
     add_custom_target(run COMMAND OpenRaider DEPENDS OpenRaider WORKING_DIRECTORY ${CMAKE_PROJECT_DIR})
-endif (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles" OR ${CMAKE_GENERATOR} STREQUAL "MinGW Makefiles") 
+endif (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles" OR ${CMAKE_GENERATOR} STREQUAL "MinGW Makefiles")
+

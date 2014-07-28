@@ -171,3 +171,5 @@ See the respective files in `cmake` for their licensing.
 * Copyright 2003-2009 Kitware, Inc.
 * Eric Wing
 
+The [clibs/commander](https://github.com/clibs/commander) dependency is Copyright (c) 2012 TJ Holowaychuk (tj@vision-media.ca) and licensed under the [MIT License](http://opensource.org/licenses/MIT).
+

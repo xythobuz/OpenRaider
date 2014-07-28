@@ -19,6 +19,7 @@
 #include "Render.h"
 #include "TextureManager.h"
 #include "World.h"
+#include "commander/commander.h"
 #include "utils/strings.h"
 #include "utils/time.h"
 
@@ -33,8 +34,6 @@
 #else
 #error No Windowing Library selected!
 #endif
-
-void cleanupHandler(void);
 
 Camera &getCamera() {
     static Camera gCamera;
@@ -97,7 +96,7 @@ World &getWorld() {
     return gWorld;
 }
 
-void cleanupHandler(void) {
+static void cleanupHandler(void) {
 #ifdef DEBUG
     std::cout << std::endl;
     std::cout << "Thanks for testing " << VERSION << std::endl;
@@ -108,38 +107,23 @@ void cleanupHandler(void) {
 #endif
 }
 
-int main(int argc, char *argv[]) {
-    bool configArg = false;
+static bool configFileWasSpecified = false;
+static void configFileCallback(command_t *self) {
+    getOpenRaider().loadConfig(self->arg);
+    configFileWasSpecified = true;
+}
 
-    // Handle arguments
-    if (argc == 2) {
-        // Check for command line switches
-        if ((strcmp("-h", argv[1]) == 0)
-                || (strcmp("--help", argv[1]) == 0)) {
-            // Display help text
-            std::cout << argv[0] << " [OPTIONS | /path/to/config]" << std::endl;
-            std::cout << "Options:" << std::endl;
-            std::cout << "\t--help" << std::endl;
-            std::cout << "\t-h\tDisplay this help text" << std::endl;
-            std::cout << "\t--version" << std::endl;
-            std::cout << "\t-v\tDisplay version information" << std::endl;
-            std::cout << "If no options are given, the default config will be loaded from:" << std::endl;
-            std::cout << "\t" << DEFAULT_CONFIG_FILE << std::endl;
-            std::cout << "or" << std::endl;
-            std::cout << "\t" << DEFAULT_CONFIG_PATH << "/" << DEFAULT_CONFIG_FILE << std::endl;
-            return 0;
-        } else if ((strcmp("-v", argv[1]) == 0)
-                || (strcmp("--version", argv[1]) == 0)) {
-            // Display version
-            std::cout << VERSION << std::endl;
-            return 0;
-        } else {
-            configArg = true;
+int main(int argc, char *argv[]) {
+    command_t cmd;
+    command_init(&cmd, argv[0], VERSION);
+    //command_option(&cmd, "-v", "--verbose", "enable verbose output", functionPointer);
+    command_option(&cmd, "-c", "--config <file>", "select config file to use", configFileCallback);
+    command_parse(&cmd, argc, argv);
+
+    if (!configFileWasSpecified) {
+        if (getOpenRaider().loadConfig(DEFAULT_CONFIG_FILE) != 0) {
+            getOpenRaider().loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE);
         }
-    } else if (argc > 2) {
-        std::cout << "Usage:" << std::endl;
-        std::cout << argv[0] << " -h" << std::endl;
-        return 1;
     }
 
 #ifdef DEBUG
@@ -148,29 +132,14 @@ int main(int argc, char *argv[]) {
 
     atexit(cleanupHandler);
 
-    // Try to load a configuration
-    if (configArg) {
-        if (getOpenRaider().loadConfig(argv[1]) != 0) {
-            std::cout << "Could not find the specified config file. Aborting..." << std::endl;
-            return 2;
-        }
-    } else {
-        if (getOpenRaider().loadConfig(DEFAULT_CONFIG_FILE) != 0) {
-            if (getOpenRaider().loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE) != 0) {
-                std::cout << "Could not find a config file. Aborting..." << std::endl;
-                return 3;
-            }
-        }
-    }
-
-    // Initialize everything
     int error = getOpenRaider().initialize();
     if (error != 0) {
         std::cout << "Could not initialize OpenRaider (" << error << ")!" << std::endl;
-        return 4;
+        return 2;
     }
 
-    // Enter Main loop
+    command_free(&cmd);
+
     getConsole().print("Starting %s", VERSION);
     getOpenRaider().run();
 

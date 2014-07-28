@@ -11,6 +11,7 @@
     * Rewrite Console and use operator << to write to the console?
 * Mesh has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even combining Mesh and StaticMesh...
 * Don’t use float everywhere just because (eg. float colors)
+* Add verbose command line flag for debug output also in release builds
 
 ## Cmake
 
