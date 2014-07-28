@@ -5,6 +5,7 @@
     [ 20140728 ]
     * Implemented binary file reading utility in preparation of
       TombRaider.cpp/h rewrite
+    * Added clibs/commander dependency used for command line argument parsing
 
     [ 20140714 ]
     * Fixed a bug where std::sort did not use the objects operator<

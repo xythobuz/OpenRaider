@@ -22,6 +22,8 @@ public:
 
     virtual void setMousegrab(bool grab) = 0;
 
+    virtual bool getMousegrab() = 0;
+
     virtual int initialize() = 0;
 
     virtual void eventHandling() = 0;

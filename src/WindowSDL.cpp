@@ -70,6 +70,10 @@ void WindowSDL::setMousegrab(bool grab) {
     }
 }
 
+bool WindowSDL::getMousegrab() {
+    return mMousegrab;
+}
+
 int WindowSDL::initialize() {
     assert(mInit == false);
 

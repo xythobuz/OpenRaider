@@ -96,21 +96,24 @@ World &getWorld() {
     return gWorld;
 }
 
-static void cleanupHandler(void) {
-#ifdef DEBUG
-    std::cout << std::endl;
-    std::cout << "Thanks for testing " << VERSION << std::endl;
-    std::cout << "Build date: " << __DATE__ << " @ " << __TIME__ << std::endl;
-    std::cout << "Build host: " << BUILD_HOST << std::endl;
-    std::cout << "Web site  : http://github.com/xythobuz/OpenRaider" << std::endl;
-    std::cout << "Contact   : xythobuz@xythobuz.de" << std::endl;
-#endif
-}
+namespace {
+    bool configFileWasSpecified = false;
 
-static bool configFileWasSpecified = false;
-static void configFileCallback(command_t *self) {
-    getOpenRaider().loadConfig(self->arg);
-    configFileWasSpecified = true;
+    void configFileCallback(command_t *self) {
+        getOpenRaider().loadConfig(self->arg);
+        configFileWasSpecified = true;
+    }
+
+    void cleanupHandler(void) {
+#ifdef DEBUG
+        std::cout << std::endl;
+        std::cout << "Thanks for testing " << VERSION << std::endl;
+        std::cout << "Build date: " << __DATE__ << " @ " << __TIME__ << std::endl;
+        std::cout << "Build host: " << BUILD_HOST << std::endl;
+        std::cout << "Web site  : http://github.com/xythobuz/OpenRaider" << std::endl;
+        std::cout << "Contact   : xythobuz@xythobuz.de" << std::endl;
+#endif
+    }
 }
 
 int main(int argc, char *argv[]) {

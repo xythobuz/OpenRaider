@@ -95,6 +95,9 @@ public:
      * \param source sound source to stop
      */
     virtual void stop(unsigned long source);
+
+private:
+    unsigned long sources;
 };
 
 #endif

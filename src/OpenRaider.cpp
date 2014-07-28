@@ -148,8 +148,8 @@ void OpenRaider::frame() {
     // Calculate FPS display value
     fpsCount++;
     fpsSum += (systemTimerGet() - startTime);
-    if (fpsSum >= 500) {
-        // Update every 500ms
+    if (fpsSum >= 250) {
+        // Update every 250ms
         fps = (int)((float)fpsCount * (1000.0f / (float)fpsSum));
         fpsCount = fpsSum = 0;
     }
@@ -177,9 +177,9 @@ void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
         getMenu().handleKeyboard(key, pressed);
     }
 
-    //! \fixme Menu/Console visibility could also change in other ways,
-    // that should still result in the correct mousegrab state
-    getWindow().setMousegrab(!(getMenu().isVisible() || getConsole().isVisible()));
+    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
+    if (mousegrab != getWindow().getMousegrab())
+        getWindow().setMousegrab(mousegrab);
 }
 
 void OpenRaider::handleText(char *text, bool notFinished) {
@@ -190,6 +190,10 @@ void OpenRaider::handleText(char *text, bool notFinished) {
     if ((getConsole().isVisible()) && (!getMenu().isVisible())) {
         getConsole().handleText(text, notFinished);
     }
+
+    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
+    if (mousegrab != getWindow().getMousegrab())
+        getWindow().setMousegrab(mousegrab);
 }
 
 void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
@@ -205,6 +209,10 @@ void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
             }
         }
     }
+
+    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
+    if (mousegrab != getWindow().getMousegrab())
+        getWindow().setMousegrab(mousegrab);
 }
 
 void OpenRaider::handleMouseMotion(int xrel, int yrel) {
@@ -214,6 +222,10 @@ void OpenRaider::handleMouseMotion(int xrel, int yrel) {
     if ((!getConsole().isVisible()) && (!getMenu().isVisible())) {
         getGame().handleMouseMotion(xrel, yrel);
     }
+
+    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
+    if (mousegrab != getWindow().getMousegrab())
+        getWindow().setMousegrab(mousegrab);
 }
 
 void OpenRaider::handleMouseScroll(int xrel, int yrel) {
@@ -223,5 +235,9 @@ void OpenRaider::handleMouseScroll(int xrel, int yrel) {
     if ((getConsole().isVisible()) && (!getMenu().isVisible())) {
         getConsole().handleMouseScroll(xrel, yrel);
     }
+
+    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
+    if (mousegrab != getWindow().getMousegrab())
+        getWindow().setMousegrab(mousegrab);
 }
 
