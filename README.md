@@ -6,6 +6,8 @@ This is a fork of the [OpenRaider](http://openraider.sourceforge.net) Open Sourc
 
 This fork aims to get OpenRaider in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...
 
+Visit the IRC Channel `#OpenRaider` on `chat.freenode.net`. [Webchat](http://webchat.freenode.net/?channels=%23OpenRaider).
+
 If you just want to see OpenRaider doing something on your Mac, without installing any of the dependencies needed to build OpenRaider, grab the Mac App Bundle from the [most recent release](https://github.com/xythobuz/OpenRaider/releases).
 
 It seems as if OpenRaider will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!
