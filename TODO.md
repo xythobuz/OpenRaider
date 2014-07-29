@@ -17,6 +17,7 @@
 
 * Support SSE with other compilers than Clang (src/CMakeLists.txt)
 * Visual C++ compiler flags? (CMakeLists.txt)
+* Better test integration
 
 ## Future Features
 

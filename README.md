@@ -71,7 +71,9 @@ Do a standard cmake out-of-source build to get a debug configuration and then ru
 
 On Mac OS X, running `make install` will produce a (more or less) distributable OpenRaider.app bundle.
 
-You can run a static analysis with cppcheck using `make check`, `make checkFull` or `make checkConfig`.
+Run `make check` to build and run the unit tests.
+
+You can run a static analysis with cppcheck using `make cppcheck`, `make cppcheckFull` or `make cppcheckConfig`.
 
 A Doxygen API documentation can be created with `make doc`.
 

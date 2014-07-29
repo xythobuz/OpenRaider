@@ -11,5 +11,5 @@ if (USING_PNG)
 endif (USING_PNG)
 
 # Add library
-add_library (OpenRaider_utils ${UTIL_SRCS})
+add_library (OpenRaider_utils OBJECT ${UTIL_SRCS})
 

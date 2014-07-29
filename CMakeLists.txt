@@ -72,6 +72,10 @@ endif (NOT ${GIT_SHA1} STREQUAL "GITDIR-NOTFOUND")
 
 #################################################################
 
+enable_testing ()
+
+#################################################################
+
 # Add subdirectories
 add_subdirectory (src)
 
@@ -101,13 +105,13 @@ if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
     set (CHECK_NORMAL "--enable=information,warning,performance,portability")
     set (CHECK_FULL "--enable=all")
     set (CHECK_CONFIG "--check-config")
-    add_custom_target (check echo "Running cppcheck..."
+    add_custom_target (cppcheck echo "Running cppcheck..."
         COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_STD} ${CHECK_NORMAL} ${PROJECT_SOURCE_DIR}
     )
-    add_custom_target (checkFull echo "Running full cppcheck..."
+    add_custom_target (cppcheckFull echo "Running full cppcheck..."
         COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_STD} ${CHECK_FULL} ${PROJECT_SOURCE_DIR}
     )
-    add_custom_target (checkConfig echo "Checking cppcheck config..."
+    add_custom_target (cppcheckConfig echo "Checking cppcheck config..."
         COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_CONFIG} ${PROJECT_SOURCE_DIR}
     )
 

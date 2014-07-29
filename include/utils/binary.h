@@ -31,6 +31,8 @@ public:
     int64_t read64();
     uint64_t readU64();
 
+    float readFloat();
+
 private:
     std::ifstream file;
 };

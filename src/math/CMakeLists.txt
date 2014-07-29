@@ -5,5 +5,5 @@ set (MATH_SRCS ${MATH_SRCS} "Quaternion.cpp")
 set (MATH_SRCS ${MATH_SRCS} "Vector3d.cpp")
 
 # Add library
-add_library (OpenRaider_math ${MATH_SRCS})
+add_library (OpenRaider_math OBJECT ${MATH_SRCS})
 

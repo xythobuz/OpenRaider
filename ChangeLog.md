@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140729 ]
+    * Unit Tests are back, currently only for the binary reader
+    * Some cmake build system improvements:
+      - deps/math/utils libs are now so-called object libraries
+      - added ctest unit testing
+
     [ 20140728 ]
     * Implemented binary file reading utility in preparation of
       TombRaider.cpp/h rewrite

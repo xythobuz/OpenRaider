@@ -156,12 +156,12 @@ if (APPLE)
     # Copy Icon
     set (MAC_ICON "../cmake/AppIcon.icns")
     set_source_files_properties (${MAC_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-    set (SRCS ${SRCS} ${MAC_ICON})
+    set (RESRCS ${RESRCS} ${MAC_ICON})
 
     # Copy Data
     set (MAC_DATA "../data/font.pc" "../data/OpenRaider.ini" "../data/test.ttf" "../data/splash.tga")
     set_source_files_properties (${MAC_DATA} PROPERTIES MACOSX_PACKAGE_LOCATION Resources/defaults)
-    set (SRCS ${SRCS} ${MAC_DATA})
+    set (RESRCS ${RESRCS} ${MAC_DATA})
 endif (APPLE)
 
 #################################################################
@@ -204,10 +204,15 @@ set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS}
 # Add subdirectories
 add_subdirectory ("deps")
 add_subdirectory ("math")
+add_subdirectory ("test")
 add_subdirectory ("utils")
 
 # Add Executable
-add_executable (OpenRaider MACOSX_BUNDLE ${SRCS})
+add_library (OpenRaider_all OBJECT ${SRCS})
+add_executable (OpenRaider MACOSX_BUNDLE ${RESRCS}
+    $<TARGET_OBJECTS:OpenRaider_all> $<TARGET_OBJECTS:OpenRaider_deps>
+    $<TARGET_OBJECTS:OpenRaider_math> $<TARGET_OBJECTS:OpenRaider_utils>
+)
 
 #################################################################
 
@@ -256,11 +261,6 @@ endif (NOT APPLE)
 if (UNIX)
     set (LIBS ${LIBS} m)
 endif (UNIX)
-
-# Add utils Library
-set (LIBS ${LIBS} OpenRaider_deps)
-set (LIBS ${LIBS} OpenRaider_math)
-set (LIBS ${LIBS} OpenRaider_utils)
 
 # Link to all found libs
 target_link_libraries (OpenRaider ${LIBS})
