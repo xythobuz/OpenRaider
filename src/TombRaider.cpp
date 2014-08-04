@@ -4534,7 +4534,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
             mMeshes[i].coloured_rectangles = 0x0;
             mMeshes[i].coloured_triangles = 0x0;
 
-            // Mongoose 2002.04.04, FIXME is this right?
+            //! \fixme is this right? Mongoose 2002.04.04
             mesh_pointer += 2;
             continue;
         }

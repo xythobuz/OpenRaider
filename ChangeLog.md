@@ -2,6 +2,11 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140804 ]
+    * Added preliminary Tomb Raider Script parser
+    * Moved Unit Test folder
+    * Compiling main.cpp into the unit tests
+
     [ 20140729 ]
     * Unit Tests are back, currently only for the binary reader
     * Some cmake build system improvements:

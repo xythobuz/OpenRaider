@@ -8,7 +8,7 @@
 #include "utils/binary.h"
 
 BinaryFile::BinaryFile(const char *f) {
-    file.open(f, std::ios_base::in | std::ios_base:: binary);
+    file.open(f, std::ios_base::in | std::ios_base::binary);
 }
 
 BinaryFile::~BinaryFile() {

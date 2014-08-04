@@ -62,6 +62,7 @@ set (SRCS ${SRCS} "OpenRaider.cpp")
 set (SRCS ${SRCS} "Render.cpp")
 set (SRCS ${SRCS} "Room.cpp")
 set (SRCS ${SRCS} "RoomData.cpp")
+set (SRCS ${SRCS} "Script.cpp")
 set (SRCS ${SRCS} "SkeletalModel.cpp")
 set (SRCS ${SRCS} "Sound.cpp")
 set (SRCS ${SRCS} "Sprite.cpp")
@@ -204,7 +205,6 @@ set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS}
 # Add subdirectories
 add_subdirectory ("deps")
 add_subdirectory ("math")
-add_subdirectory ("test")
 add_subdirectory ("utils")
 
 # Add Executable
