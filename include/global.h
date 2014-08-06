@@ -107,16 +107,62 @@ KeyboardButton stringToKeyboardButton(const char *key);
 
 // If available, use our own assert that prints the call stack
 #if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
+
 #ifndef NDEBUG
-[[noreturn]] void assertImplementation(const char *exp, const char *file, int line);
-#define assert(x) (void)((x) || (assertImplementation(#x, __FILE__, __LINE__),0))
-#else
+
+#include <iostream>
+#include <execinfo.h>
+
+template<typename T, typename U>
+[[noreturn]] void assertEqualImplementation(const char *exp, T a, U b, const char *file, int line, bool print) {
+    const unsigned int maxSize = 128;
+    void *callstack[maxSize];
+    int frames = backtrace(callstack, maxSize);
+    char **strs = backtrace_symbols(callstack, frames);
+
+    std::cout << std::endl << "assertion failed:" << std::endl;
+    std::cout << "\t" << exp << std::endl;
+    if (print)
+        std::cout << "\t (" << a << " != " << b << ")" << std::endl;
+    std::cout << "in " << file << ":" << line << std::endl << std::endl;
+
+    for (int i = 0; i < frames; i++)
+        std::cout << strs[i] << std::endl;
+
+    delete [] strs;
+    abort();
+}
+
+// Evaluating x or y could have side-effects
+// So we only do it once!
+
+#define assert(x) { \
+    auto assertEvalTemp = x; \
+    if (!assertEvalTemp) \
+        assertEqualImplementation(#x, assertEvalTemp, true, __FILE__, __LINE__, false); \
+}
+
+#define assertEqual(x, y) { \
+    auto assertEvalTemp = x; \
+    auto assertEvalTemp2 = y; \
+    if (assertEvalTemp != assertEvalTemp2) \
+        assertEqualImplementation(#x " == " #y, assertEvalTemp, assertEvalTemp2, __FILE__, __LINE__, true); \
+}
+
+#else // NDEBUG
+
 #define assert(x)
-#endif
-#else
+#define assertEqual(x, y)
+
+#endif // NDEBUG
+
+#else // EXECINFO
+
 // Fall back to the default C assert
 #include <cassert>
-#endif
+#define assertEqual(x, y) assert((x) == (y))
 
-#endif
+#endif // EXECINFO
+
+#endif // _GLOBAL_H_
 

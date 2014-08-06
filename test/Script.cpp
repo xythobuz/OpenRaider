@@ -8,7 +8,6 @@
 #include <iostream>
 
 #include "global.h"
-#include "test.h"
 #include "utils/strings.h"
 #include "Script.h"
 

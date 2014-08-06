@@ -10,7 +10,6 @@
 #include <fstream>
 
 #include "global.h"
-#include "test.h"
 #include "utils/binary.h"
 
 
@@ -57,7 +56,7 @@ namespace {
         assertEqual(file.readFloat(), f1);
         assertEqual(file.readFloat(), f2);
 
-        assert(file.tell() == 38);
+        assertEqual(file.tell(), 38);
 
         return 0;
     }

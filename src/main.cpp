@@ -23,8 +23,6 @@
 #include "utils/strings.h"
 #include "utils/time.h"
 
-#ifndef UNIT_TEST
-
 #ifdef USING_AL
 #include "SoundAL.h"
 #else
@@ -363,29 +361,4 @@ KeyboardButton stringToKeyboardButton(const char *key) {
     getConsole().print("Unknown key: %s", key);
     return unknownKey;
 }
-
-#endif // UNIT_TEST
-
-#if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS) && (!defined(NDEBUG))
-
-#include <execinfo.h>
-
-void assertImplementation(const char *exp, const char *file, int line) {
-    const unsigned int maxSize = 128;
-    void *callstack[maxSize];
-    int frames = backtrace(callstack, maxSize);
-    char **strs = backtrace_symbols(callstack, frames);
-
-    std::cout << std::endl << "assertion failed:" << std::endl;
-    std::cout << "\t" << exp << std::endl;
-    std::cout << "in " << file << ":" << line << std::endl << std::endl;
-
-    for (int i = 0; i < frames; i++)
-        std::cout << strs[i] << std::endl;
-
-    delete [] strs;
-    abort();
-}
-
-#endif
 

@@ -5,6 +5,7 @@
     [ 20140806 ]
     * Improved Script reader and its Unit Test
     * Successfully parsing the TR2 Script strings!
+    * Now using assertEqual globally
 
     [ 20140804 ]
     * Added preliminary Tomb Raider Script parser

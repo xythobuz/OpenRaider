@@ -7,7 +7,7 @@ add_custom_target (check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 #################################################################
 
 add_executable (tester_binary EXCLUDE_FROM_ALL
-    "binary.cpp" "../src/utils/binary.cpp" "../src/main.cpp"
+    "binary.cpp" "../src/utils/binary.cpp"
 )
 add_dependencies (check tester_binary)
 add_test (NAME test_binary COMMAND tester_binary)
@@ -15,7 +15,7 @@ add_test (NAME test_binary COMMAND tester_binary)
 #################################################################
 
 add_executable (tester_script EXCLUDE_FROM_ALL
-    "Script.cpp" "../src/Script.cpp" "../src/main.cpp"
+    "Script.cpp" "../src/Script.cpp"
     "../src/utils/binary.cpp" "../src/utils/strings.cpp"
 )
 
