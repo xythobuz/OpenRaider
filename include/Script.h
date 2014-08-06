@@ -58,7 +58,7 @@ public:
 
 private:
 
-    void readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n);
+    void readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n, bool tag, uint16_t off);
 
     enum ScriptFlags {
         S_DemoVersion            = (1 << 0),  //!< Don't load a MAIN.SFX

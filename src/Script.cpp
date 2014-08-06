@@ -55,6 +55,7 @@ int Script::load(const char *file) {
     f.seek(f.tell() + 32);
 
     flags = f.readU16();
+    bool tag = (flags & S_UseSecurityTag) != 0;
 
     // Filler 3 (6 bytes)
     f.seek(f.tell() + 6);
@@ -67,48 +68,50 @@ int Script::load(const char *file) {
     f.seek(f.tell() + 4);
 
     // Strings
-    readStringPackage(f, levelNames, numLevels);
-    readStringPackage(f, pictureFilenames, numPictures);
-    readStringPackage(f, titleFilenames, numTitles);
-    readStringPackage(f, fmvFilenames, numFMVs);
-    readStringPackage(f, levelFilenames, numLevels);
-    readStringPackage(f, cutsceneFilenames, numCutscenes);
-    readStringPackage(f, script, numLevels + 1);
+    readStringPackage(f, levelNames, numLevels, tag, 0);
+    readStringPackage(f, pictureFilenames, numPictures, tag, 0);
+    readStringPackage(f, titleFilenames, numTitles, tag, 0);
+    readStringPackage(f, fmvFilenames, numFMVs, tag, 0);
+    readStringPackage(f, levelFilenames, numLevels, tag, 0);
+    readStringPackage(f, cutsceneFilenames, numCutscenes, tag, 0);
+
+    // Offset definitely TR2 specific?!
+    readStringPackage(f, script, numLevels + 1, false, 6);
 
     numGameStrings = f.readU16();
-    numGameStrings = 89; // Ignored?
+    assert(numGameStrings == 89);
 
-    readStringPackage(f, gameStrings, numGameStrings);
+    readStringPackage(f, gameStrings, numGameStrings, tag, 0);
 
-    readStringPackage(f, pcStrings, 41);
+    readStringPackage(f, pcStrings, 41, tag, 0);
 
-    readStringPackage(f, puzzles[0], numLevels);
-    readStringPackage(f, puzzles[1], numLevels);
-    readStringPackage(f, puzzles[2], numLevels);
-    readStringPackage(f, puzzles[3], numLevels);
+    readStringPackage(f, puzzles[0], numLevels, tag, 0);
+    readStringPackage(f, puzzles[1], numLevels, tag, 0);
+    readStringPackage(f, puzzles[2], numLevels, tag, 0);
+    readStringPackage(f, puzzles[3], numLevels, tag, 0);
 
-    readStringPackage(f, pickups[0], numLevels);
-    readStringPackage(f, pickups[1], numLevels);
+    readStringPackage(f, pickups[0], numLevels, tag, 0);
+    readStringPackage(f, pickups[1], numLevels, tag, 0);
 
-    readStringPackage(f, keys[0], numLevels);
-    readStringPackage(f, keys[1], numLevels);
-    readStringPackage(f, keys[2], numLevels);
-    readStringPackage(f, keys[3], numLevels);
+    readStringPackage(f, keys[0], numLevels, tag, 0);
+    readStringPackage(f, keys[1], numLevels, tag, 0);
+    readStringPackage(f, keys[2], numLevels, tag, 0);
+    readStringPackage(f, keys[3], numLevels, tag, 0);
 
     return 0;
 }
 
-void Script::readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n) {
+void Script::readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n, bool tag, uint16_t off) {
     uint16_t *offset = new uint16_t[n];
     for (unsigned int i = 0; i < n; i++)
         offset[i] = f.readU16();
 
-    uint16_t numBytes = f.readU16();
+    uint16_t numBytes = f.readU16() + off;
 
     char *list = new char[numBytes];
     for (uint16_t i = 0; i < numBytes; i++) {
         list[i] = f.read8();
-        if (flags & S_UseSecurityTag) {
+        if (tag) {
             list[i] ^= cypherCode;
         }
     }

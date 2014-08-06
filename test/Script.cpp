@@ -25,34 +25,40 @@
     for (unsigned int a = 0; a < cnt; a++) { \
         std::cout << "    "; \
         for (unsigned int i = 0; i < c; i++) { \
-            std::cout << acc(i, a) << " "; \
+            std::cout << acc(i, a); \
+            if (i < (c - 1)) \
+                std::cout << " | "; \
         } \
         std::cout << std::endl; \
     } \
     std::cout << std::endl; \
 }
 
+namespace {
+    int test(const char *f) {
+        Script s;
+        assertEqual(s.load(f), 0);
+
+        printStrings(s.levelCount(), s.getLevelName, "Level Names");
+        printStrings(s.levelCount(), s.getLevelFilename, "Level Filenames");
+        printStrings(s.cutsceneCount(), s.getCutsceneFilename, "Cutscenes");
+        printStrings(s.titleCount(), s.getTitleFilename, "Titles");
+        printStrings(s.videoCount(), s.getVideoFilename, "Videos");
+        printStrings(s.gameStringCount(), s.getGameString, "Game Strings");
+        printStrings(s.pcStringCount(), s.getPCString, "PC Strings");
+
+        printStrings2D(4, s.levelCount(), s.getPuzzleString, "Puzzles");
+        printStrings2D(2, s.levelCount(), s.getPickupString, "Pickups");
+        printStrings2D(4, s.levelCount(), s.getKeyString, "Keys");
+
+        return 0;
+    }
+}
+
 int main() {
-    Script s;
     char *f = fullPath("~/.OpenRaider/paks/tr2/TOMBPC.DAT", 0);
-    assertEqual(s.load(f), 0);
+    int error = test(f);
     delete [] f;
-
-    printStrings(s.levelCount(), s.getLevelName, "Level Names");
-    printStrings(s.levelCount(), s.getLevelFilename, "Level Filenames");
-    printStrings(s.cutsceneCount(), s.getCutsceneFilename, "Cutscenes");
-    printStrings(s.titleCount(), s.getTitleFilename, "Titles");
-    printStrings(s.videoCount(), s.getVideoFilename, "Videos");
-    printStrings(s.gameStringCount(), s.getGameString, "Game Strings");
-    printStrings(s.pcStringCount(), s.getPCString, "PC Strings");
-
-    printStrings2D(4, s.levelCount(), s.getPuzzleString, "Puzzles");
-    printStrings2D(2, s.levelCount(), s.getPickupString, "Pickups");
-    printStrings2D(4, s.levelCount(), s.getKeyString, "Keys");
-
-    //std::cout << "This test always fails so you can see its output!" << std::endl;
-    //return 1;
-
-    return 0;
+    return error;
 }
 
