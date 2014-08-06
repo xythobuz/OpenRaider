@@ -11,6 +11,7 @@
 #include "utils/binary.h"
 
 #include <cstdint>
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -27,6 +28,66 @@ public:
         S_American = 3,
         S_Japanese = 4
     } ScriptLanguage;
+
+    typedef enum {
+        OP_PICTURE        = 0,  //!< Unused in TR2. Or PSX?
+        OP_PSX_TRACK      = 1,  //!< Does not compile. PSX?
+        OP_PSX_FMV        = 2,  //!< Does not compile. PSX?
+        OP_FMV            = 3,  //!< Display FMV
+        OP_GAME           = 4,  //!< Start a playable level
+        OP_CUT            = 5,  //!< Display a cutscene
+        OP_COMPLETE       = 6,  //!< Display level-completion stats
+        OP_DEMO           = 7,  //!< Display demo sequence
+        OP_PSX_DEMO       = 8,  //!< Does not compile. PSX?
+        OP_END            = 9,  //!< Closes script sequence
+        OP_TRACK          = 10, //!< Play soundtrack (precedes level opcode)
+        OP_SUNSET         = 11, //!< Unknown, nothing changes in TR2.
+        OP_LOAD_PIC       = 12, //!< Does not compile. PSX or TR3?
+        OP_DEADLY_WATER   = 13, //!< Unknown, nothing changes in TR2.
+        OP_REMOVE_WEAPONS = 14, //!< Start level without weapons
+        OP_GAMECOMPLETE   = 15, //!< End of game. Show stats, start credits sequence, music ID 52.
+        OP_CUTANGLE       = 16, //!< Match N-S orientation of Room and animated characters.
+        OP_NOFLOOR        = 17, //!< Lara dies when her feet reach given depth.
+        OP_STARTINV       = 18, //!< Items given to Lara at level start (+1000), or at all secrets found (+0)
+        OP_STARTANIM      = 19, //!< Special animation of Lara when level starts
+        OP_SECRETS        = 20, //!< If zero, level does not account for secrets
+        OP_KILLTOCOMPLETE = 21, //!< Kill all enemies to finish the level
+        OP_REMOVE_AMMO    = 22, //!< Lara starts level without ammo or medi packs
+        OP_UNKNOWN        = 23
+    } ScriptOpCode;
+
+    // Items for all-secrets-found go from 0 to 26,
+    // for start-inventory add 1000, so 1000 - 1026
+    typedef enum {
+        OP_WEAPON_PISTOLS     = 0,  //!< Add standard pistols (2)
+        OP_WEAPON_SHOTGUN     = 1,  //!< Add shotgun (1)
+        OP_WEAPON_AUTOPISTOLS = 2,  //!< Add automatic pistols (2)
+        OP_WEAPON_UZIS        = 3,  //!< Add uzis (2)
+        OP_WEAPON_HARPOON     = 4,  //!< Add harpoon gun (1)
+        OP_WEAPON_M16         = 5,  //!< Add M16 (1)
+        OP_WEAPON_ROCKET      = 6,  //!< Add grenade launcher (1)
+        OP_AMMO_PISTOLS       = 7,  //!< No effect, infinite ammo
+        OP_AMMO_SHOTGUN       = 8,  //!< Add 2 shells
+        OP_AMMO_AUTOPISTOLS   = 9,  //!< Add 2 shells
+        OP_AMMO_UZIS          = 10, //!< Add 2 shells
+        OP_AMMO_HARPOON       = 11, //!< Add 2 harpoons
+        OP_AMMO_M16           = 12, //!< Add 2 shells
+        OP_AMMO_ROCKET        = 13, //!< Add 1 grenade
+        OP_ITEM_FLARE         = 14, //!< Add 1 flare
+        OP_ITEM_MEDI          = 15, //!< Add 1 small MediPack
+        OP_ITEM_BIGMEDI       = 16, //!< Add 1 big MediPack
+        OP_ITEM_PICKUP1       = 17, //!< Add Pickup Item 1
+        OP_ITEM_PICKUP2       = 18, //!< Add Pickup Item 2
+        OP_ITEM_PUZZLE1       = 19, //!< Add Puzzle Item 1
+        OP_ITEM_PUZZLE2       = 20, //!< Add Puzzle Item 2
+        OP_ITEM_PUZZLE3       = 21, //!< Add Puzzle Item 3
+        OP_ITEM_PUZZLE4       = 22, //!< Add Puzzle Item 4
+        OP_ITEM_KEY1          = 23, //!< Add Key Item 1
+        OP_ITEM_KEY2          = 24, //!< Add Key Item 2
+        OP_ITEM_KEY3          = 25, //!< Add Key Item 3
+        OP_ITEM_KEY4          = 26, //!< Add Key Item 4
+        OP_ITEM_UNKNOWN       = 27
+    } ScriptItem;
 
     Script();
     ~Script();
@@ -56,11 +117,12 @@ public:
     std::string getPickupString(unsigned int i, unsigned int j);
     std::string getKeyString(unsigned int i, unsigned int j);
 
+    void registerScriptHandler(ScriptOpCode op, std::function<int (bool, uint16_t)> func);
+    int runScript(unsigned int level);
+
 private:
 
-    void readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n, bool tag, uint16_t off);
-
-    enum ScriptFlags {
+    typedef enum {
         S_DemoVersion            = (1 << 0),  //!< Don't load a MAIN.SFX
         S_TitleDisabled          = (1 << 1),  //!< If set, game has no title screen
         S_CheatModeCheckDisabled = (1 << 2),  //!< Disable flare/step/rotate/jump sequence
@@ -73,6 +135,15 @@ private:
         S_Unknown                = (1 << 9),  //!< Usually set, no known effect
         S_SelectAnyLevel         = (1 << 10), //!< Level selectable in Title
         S_EnableCheatCode        = (1 << 11)  //!< No known effect
+    } ScriptFlag;
+
+    void readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n);
+
+    const bool opcodeHasOperand[OP_UNKNOWN] {
+        true, true, true, true, true, true,
+        false, true, true, false, true, false,
+        true, false, false, false, true, true,
+        true, true, true, false, false
     };
 
     // Header
@@ -100,8 +171,6 @@ private:
     uint8_t language;
     uint16_t secretTrack;
 
-    uint16_t numGameStrings;
-
     // Strings
     std::vector<std::string> levelNames; // numLevels
     std::vector<std::string> pictureFilenames; // numPictures
@@ -109,12 +178,15 @@ private:
     std::vector<std::string> fmvFilenames; // numFMVs
     std::vector<std::string> levelFilenames; // numLevels
     std::vector<std::string> cutsceneFilenames; // numCutscenes
-    std::vector<std::string> script; // numLevels + 1
+    std::vector<std::vector<uint16_t>> script; // numLevels + 1
+    uint16_t numGameStrings;
     std::vector<std::string> gameStrings; // numGameStrings, 89
     std::vector<std::string> pcStrings; // 41
     std::vector<std::vector<std::string>> puzzles; // 4 * numLevels
     std::vector<std::vector<std::string>> pickups; // 2 * numLevels
     std::vector<std::vector<std::string>> keys; // 4 * numLevels
+
+    std::function<int (bool, uint16_t)> scriptHandlers[OP_UNKNOWN];
 };
 
 #endif

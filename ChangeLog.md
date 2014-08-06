@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140807 ]
+    * Script parser successfully loading level scripts
+
     [ 20140806 ]
     * Improved Script reader and its Unit Test
     * Successfully parsing the TR2 Script strings!
