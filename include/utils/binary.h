@@ -13,8 +13,9 @@
 class BinaryFile {
 public:
 
-    BinaryFile(const char *f);
     ~BinaryFile();
+
+    int open(const char *f);
 
     long long tell();
     void seek(long long pos);

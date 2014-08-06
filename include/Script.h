@@ -52,6 +52,10 @@ public:
     unsigned int pcStringCount();
     std::string getPCString(unsigned int i);
 
+    std::string getPuzzleString(unsigned int i, unsigned int j);
+    std::string getPickupString(unsigned int i, unsigned int j);
+    std::string getKeyString(unsigned int i, unsigned int j);
+
 private:
 
     void readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n);

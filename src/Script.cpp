@@ -8,8 +8,7 @@
 #include "global.h"
 #include "Script.h"
 
-Script::Script() {
-
+Script::Script() : puzzles(4), pickups(2), keys(4) {
 }
 
 Script::~Script() {
@@ -17,7 +16,10 @@ Script::~Script() {
 }
 
 int Script::load(const char *file) {
-    BinaryFile f(file);
+    BinaryFile f;
+
+    if (f.open(file) != 0)
+        return 1;
 
     version = f.readU32();
 
@@ -74,14 +76,24 @@ int Script::load(const char *file) {
     readStringPackage(f, script, numLevels + 1);
 
     numGameStrings = f.readU16();
+    numGameStrings = 89; // Ignored?
+
     readStringPackage(f, gameStrings, numGameStrings);
 
     readStringPackage(f, pcStrings, 41);
 
-    //! \todo read puzzle strings
-    //std::vector<std::vector<std::string>> puzzles; // 4 * numLevels
-    //std::vector<std::vector<std::string>> pickups; // 2 * numLevels
-    //std::vector<std::vector<std::string>> keys; // 4 * numLevels
+    readStringPackage(f, puzzles[0], numLevels);
+    readStringPackage(f, puzzles[1], numLevels);
+    readStringPackage(f, puzzles[2], numLevels);
+    readStringPackage(f, puzzles[3], numLevels);
+
+    readStringPackage(f, pickups[0], numLevels);
+    readStringPackage(f, pickups[1], numLevels);
+
+    readStringPackage(f, keys[0], numLevels);
+    readStringPackage(f, keys[1], numLevels);
+    readStringPackage(f, keys[2], numLevels);
+    readStringPackage(f, keys[3], numLevels);
 
     return 0;
 }
@@ -94,8 +106,12 @@ void Script::readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsig
     uint16_t numBytes = f.readU16();
 
     char *list = new char[numBytes];
-    for (uint16_t i = 0; i < numBytes; i++)
+    for (uint16_t i = 0; i < numBytes; i++) {
         list[i] = f.read8();
+        if (flags & S_UseSecurityTag) {
+            list[i] ^= cypherCode;
+        }
+    }
 
     for (unsigned int i = 0; i < n; i++) {
         std::string tmp(list + offset[i]);
@@ -163,5 +179,23 @@ unsigned int Script::pcStringCount() {
 std::string Script::getPCString(unsigned int i) {
     assert(i < 41);
     return pcStrings.at(i);
+}
+
+std::string Script::getPuzzleString(unsigned int i, unsigned int j) {
+    assert(i < 4);
+    assert(j < numLevels);
+    return puzzles.at(i).at(j);
+}
+
+std::string Script::getPickupString(unsigned int i, unsigned int j) {
+    assert(i < 2);
+    assert(j < numLevels);
+    return pickups.at(i).at(j);
+}
+
+std::string Script::getKeyString(unsigned int i, unsigned int j) {
+    assert(i < 4);
+    assert(j < numLevels);
+    return keys.at(i).at(j);
 }
 

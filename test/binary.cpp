@@ -10,6 +10,7 @@
 #include <fstream>
 
 #include "global.h"
+#include "test.h"
 #include "utils/binary.h"
 
 
@@ -38,14 +39,9 @@ namespace {
         file.write(reinterpret_cast<char *>(&f2), sizeof(f2));
     }
 
-#define assertEqual(x, y) if (x != y) {\
-    std::cout << "Assertion failed:" << std::endl; \
-    std::cout << #x << " == " << #y << " (" << x << ", " << y << ")" << std::endl; \
-    return 1; \
-}
-
     int test(const char *name) {
-        BinaryFile file(name);
+        BinaryFile file;
+        assertEqual(file.open(name), 0);
 
         assertEqual(file.readU8(), 255);
         assertEqual(file.readU16(), 65535);

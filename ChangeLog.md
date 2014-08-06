@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140806 ]
+    * Improved Script reader and its Unit Test
+
     [ 20140804 ]
     * Added preliminary Tomb Raider Script parser
     * Moved Unit Test folder
