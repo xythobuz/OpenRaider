@@ -1,4 +1,4 @@
 #!/bin/bash
 
-mkdir build && cd build && cmake .. && make && make check
+mkdir build && cd build && cmake .. && make -j 4 && make check
 

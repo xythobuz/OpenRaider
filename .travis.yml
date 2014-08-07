@@ -20,7 +20,11 @@ after_success:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake/travis_after_success_linux.sh; fi
 
 notifications:
-    email: false
+    email:
+        recipients:
+            - xythobuz@xythobuz.de
+        on_success: never
+        on_failure: change
     irc:
         channels:
             - "chat.freenode.net#OpenRaider"
@@ -30,3 +34,20 @@ notifications:
 os:
     - linux
     - osx
+
+env:
+    global:
+        # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+        #   via the "travis encrypt" command using the project repo's public key
+        - secure: "mZtmV3AtLWzr0NnUb6lCdRwv9Dj4AsI7NNzKFzHHr+bKavnXf8jBfDIhO9K2fBrx2h2QjDyd7BVWgIKQI8WVGpzbHTMBSrz3yPyY/X97HZMcgfClGsIqesoWldC5dIooPrfirv+/I3rQza0bvozNSXalRwMj1y1nV1lc5xO54TU="
+
+addons:
+    coverity_scan:
+        project:
+            name: "xythobuz/OpenRaider"
+            description: "Build submitted via Travis CI"
+        notification_email: taucher.bodensee@googlemail.com
+        build_command_prepend: "cmake; make clean"
+        build_command:   "make -j 4"
+        branch_pattern: coverity_scan
+
