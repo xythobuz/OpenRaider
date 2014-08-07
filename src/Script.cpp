@@ -35,7 +35,7 @@ int Script::load(const char *file) {
     titleReplace = f.read32();
     onDeathDemoMode = f.readU32();
     onDeathInGame = f.readU32();
-    noInputTime = f.readU32();
+    noInputTime = f.readU32(); // Scaled *100 in TR3
     onDemoInterrupt = f.readU32();
     onDemoEnd = f.readU32();
 
@@ -61,7 +61,7 @@ int Script::load(const char *file) {
 
     cypherCode = f.readU8();
     language = f.readU8();
-    secretTrack = f.readU16();
+    secretTrack = f.readU16(); // Zero in TR3, Part of filler or real number?
 
     // Filler 4 (4 bytes)
     f.seek(f.tell() + 4);
@@ -74,51 +74,10 @@ int Script::load(const char *file) {
     readStringPackage(f, levelFilenames, numLevels);
     readStringPackage(f, cutsceneFilenames, numCutscenes);
 
-    // Script Package
-    uint16_t *offset = new uint16_t[numLevels + 1];
-    for (unsigned int i = 0; i < (numLevels + 1); i++) {
-        offset[i] = f.readU16();
-        assertEqual(offset[i] % 2, 0);
-    }
+    // Level Scripts
+    readScriptPackage(f, script, numLevels + 1);
 
-    uint16_t numBytes = f.readU16() + 6; // Offset TR2 specific?!
-    assertEqual(numBytes % 2, 0); // 16 bit opcodes and operands
-
-    uint16_t *list = new uint16_t[numBytes / 2];
-    for (uint16_t i = 0; i < (numBytes / 2); i++) {
-        list[i] = f.readU16();
-    }
-
-    for (unsigned int i = 0; i < (numLevels + 1); i++) {
-        unsigned int end = offset[i] / 2;
-
-        bool readingOperand = false;
-        while (readingOperand || (list[end] != OP_END)) {
-            if (readingOperand) {
-                readingOperand = false;
-                end++;
-            } else {
-                if (opcodeHasOperand[list[end]]) {
-                    readingOperand = true;
-                }
-                end++;
-            }
-        }
-        end++;
-
-        std::vector<uint16_t> tmp;
-        for (unsigned int a = (offset[i] / 2); a < end; a++)
-            tmp.push_back(list[a]);
-
-        script.push_back(tmp);
-    }
-
-    delete [] list;
-    delete [] offset;
-
-    // Engine expects 89 game strings!
     numGameStrings = f.readU16();
-    assertEqual(numGameStrings, 89);
 
     // More strings...
     readStringPackage(f, gameStrings, numGameStrings);
@@ -154,6 +113,64 @@ void Script::readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsig
 
     for (unsigned int i = 0; i < n; i++) {
         std::string tmp(list + offset[i]);
+        v.push_back(tmp);
+    }
+
+    delete [] list;
+    delete [] offset;
+}
+
+void Script::readScriptPackage(BinaryFile &f, std::vector<std::vector<uint16_t>> &v, unsigned int n) {
+    uint16_t *offset = new uint16_t[n];
+    for (unsigned int i = 0; i < n; i++) {
+        offset[i] = f.readU16();
+        assertEqual(offset[i] % 2, 0);
+    }
+
+    uint16_t numBytes = f.readU16();
+    assertEqual(numBytes % 2, 0); // 16 bit opcodes and operands
+
+    // Only TR2, not TR3, has 6 "filler bytes" hex 13 00 14 00 15 00 here
+    // We need to skip these
+    uint16_t hack1 = f.readU16();
+    uint16_t hack2 = f.readU16();
+    uint16_t hack3 = f.readU16();
+    uint16_t hackStart = 0;
+    uint16_t *list = new uint16_t[(numBytes + 6) / 2];
+    if ((hack1 == 19) && (hack2 == 20) && (hack3 == 21)) {
+        numBytes += 6;
+    } else {
+        list[0] = hack1;
+        list[1] = hack2;
+        list[2] = hack3;
+        hackStart = 3;
+    }
+
+    for (uint16_t i = hackStart; i < (numBytes / 2); i++) {
+        list[i] = f.readU16();
+    }
+
+    for (unsigned int i = 0; i < n; i++) {
+        unsigned int end = offset[i] / 2;
+
+        bool readingOperand = false;
+        while (readingOperand || (list[end] != OP_END)) {
+            if (readingOperand) {
+                readingOperand = false;
+                end++;
+            } else {
+                if (opcodeHasOperand[list[end]]) {
+                    readingOperand = true;
+                }
+                end++;
+            }
+        }
+        end++;
+
+        std::vector<uint16_t> tmp;
+        for (unsigned int a = (offset[i] / 2); a < end; a++)
+            tmp.push_back(list[a]);
+
         v.push_back(tmp);
     }
 

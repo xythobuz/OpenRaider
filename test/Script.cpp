@@ -106,6 +106,13 @@ int main(int argc, char *argv[]) {
     int error = test(f, !((argc > 1) && (argv[1][0] == 's')));
     delete [] f;
 
+    if (error != 0)
+        return error;
+
+    f = fullPath("~/.OpenRaider/paks/tr3/TOMBPC.DAT", 0);
+    error = test(f, !((argc > 1) && (argv[1][0] == 's')));
+    delete [] f;
+
     return error;
 }
 

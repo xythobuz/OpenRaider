@@ -30,7 +30,7 @@ public:
     } ScriptLanguage;
 
     typedef enum {
-        OP_PICTURE        = 0,  //!< Unused in TR2. Or PSX?
+        OP_PICTURE        = 0,  //!< Unused in TR2. Or PSX? Used in TR3.
         OP_PSX_TRACK      = 1,  //!< Does not compile. PSX?
         OP_PSX_FMV        = 2,  //!< Does not compile. PSX?
         OP_FMV            = 3,  //!< Display FMV
@@ -42,10 +42,10 @@ public:
         OP_END            = 9,  //!< Closes script sequence
         OP_TRACK          = 10, //!< Play soundtrack (precedes level opcode)
         OP_SUNSET         = 11, //!< Unknown, nothing changes in TR2.
-        OP_LOAD_PIC       = 12, //!< Does not compile. PSX or TR3?
+        OP_LOAD_PIC       = 12, //!< Does not compile. PSX? Used in TR3.
         OP_DEADLY_WATER   = 13, //!< Unknown, nothing changes in TR2.
         OP_REMOVE_WEAPONS = 14, //!< Start level without weapons
-        OP_GAMECOMPLETE   = 15, //!< End of game. Show stats, start credits sequence, music ID 52.
+        OP_GAMECOMPLETE   = 15, //!< End of game. Show stats, start credits sequence, music ID 52 in TR2.
         OP_CUTANGLE       = 16, //!< Match N-S orientation of Room and animated characters.
         OP_NOFLOOR        = 17, //!< Lara dies when her feet reach given depth.
         OP_STARTINV       = 18, //!< Items given to Lara at level start (+1000), or at all secrets found (+0)
@@ -58,6 +58,7 @@ public:
 
     // Items for all-secrets-found go from 0 to 26,
     // for start-inventory add 1000, so 1000 - 1026
+    // Atleast in TR2
     typedef enum {
         OP_WEAPON_PISTOLS     = 0,  //!< Add standard pistols (2)
         OP_WEAPON_SHOTGUN     = 1,  //!< Add shotgun (1)
@@ -138,6 +139,7 @@ private:
     } ScriptFlag;
 
     void readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n);
+    void readScriptPackage(BinaryFile &f, std::vector<std::vector<uint16_t>> &v, unsigned int n);
 
     const bool opcodeHasOperand[OP_UNKNOWN] {
         true, true, true, true, true, true,
@@ -180,7 +182,7 @@ private:
     std::vector<std::string> cutsceneFilenames; // numCutscenes
     std::vector<std::vector<uint16_t>> script; // numLevels + 1
     uint16_t numGameStrings;
-    std::vector<std::string> gameStrings; // numGameStrings, 89
+    std::vector<std::string> gameStrings; // numGameStrings
     std::vector<std::string> pcStrings; // 41
     std::vector<std::vector<std::string>> puzzles; // 4 * numLevels
     std::vector<std::vector<std::string>> pickups; // 2 * numLevels
