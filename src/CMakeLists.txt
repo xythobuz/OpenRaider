@@ -121,6 +121,14 @@ check_function_exists (readdir_r HAVE_READDIR_R)
 check_function_exists (closedir HAVE_CLOSEDIR)
 check_symbol_exists (DT_DIR "dirent.h" HAVE_DT_DIR)
 
+# getcwd() for the current working directory
+check_include_files (unistd.h HAVE_UNISTD_H)
+check_function_exists (getcwd HAVE_GETCWD)
+
+# getenv() for reading environment variables
+check_include_files (stdlib.h HAVE_STDLIB_H)
+check_function_exists (getenv HAVE_GETENV)
+
 # gettimeofday() for timing
 check_include_files (sys/time.h HAVE_SYS_TIME_H)
 check_function_exists (gettimeofday HAVE_GETTIMEOFDAY)

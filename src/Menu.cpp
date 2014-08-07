@@ -94,6 +94,7 @@ void Menu::loadPakFolderRecursive(const char *dir) {
                 if (stringEndsWith(lowerPath, ".phd")
                      || stringEndsWith(lowerPath, ".tr2")
                      || stringEndsWith(lowerPath, ".tr4")
+                    // || stringEndsWith(lowerPath, ".psx")
                      || stringEndsWith(lowerPath, ".trc")) {
                     int error = TombRaider::checkMime(fullPathMap);
                     if (error == 0) {
@@ -134,6 +135,7 @@ void Menu::loadPakFolderRecursive(const char *dir) {
                 if (stringEndsWith(lowerPath, ".phd")
                      || stringEndsWith(lowerPath, ".tr2")
                      || stringEndsWith(lowerPath, ".tr4")
+                    // || stringEndsWith(lowerPath, ".psx")
                      || stringEndsWith(lowerPath, ".trc")) {
                     int error = TombRaider::checkMime(fullPathMap);
                     if (error == 0) {

@@ -133,6 +133,26 @@ template<typename T, typename U>
     abort();
 }
 
+template<typename T, typename U>
+[[noreturn]] void assertNotEqualImplementation(const char *exp, T a, U b, const char *file, int line, bool print) {
+    const unsigned int maxSize = 128;
+    void *callstack[maxSize];
+    int frames = backtrace(callstack, maxSize);
+    char **strs = backtrace_symbols(callstack, frames);
+
+    std::cout << std::endl << "assertion failed:" << std::endl;
+    std::cout << "\t" << exp << std::endl;
+    if (print)
+        std::cout << "\t (" << a << " == " << b << ")" << std::endl;
+    std::cout << "in " << file << ":" << line << std::endl << std::endl;
+
+    for (int i = 0; i < frames; i++)
+        std::cout << strs[i] << std::endl;
+
+    delete [] strs;
+    abort();
+}
+
 // Evaluating x or y could have side-effects
 // So we only do it once!
 
@@ -149,10 +169,18 @@ template<typename T, typename U>
         assertEqualImplementation(#x " == " #y, assertEvalTemp, assertEvalTemp2, __FILE__, __LINE__, true); \
 }
 
+#define assertNotEqual(x, y) { \
+    auto assertEvalTemp = x; \
+    auto assertEvalTemp2 = y; \
+    if (assertEvalTemp == assertEvalTemp2) \
+        assertNotEqualImplementation(#x " != " #y, assertEvalTemp, assertEvalTemp2, __FILE__, __LINE__, true); \
+}
+
 #else // NDEBUG
 
 #define assert(x)
 #define assertEqual(x, y)
+#define assertNotEqual(x, y)
 
 #endif // NDEBUG
 
@@ -161,6 +189,7 @@ template<typename T, typename U>
 // Fall back to the default C assert
 #include <cassert>
 #define assertEqual(x, y) assert((x) == (y))
+#define assertNotEqual(x, y) assert((x) != (y))
 
 #endif // EXECINFO
 

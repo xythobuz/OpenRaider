@@ -10,17 +10,12 @@
 #include <stdio.h>
 #include <string.h>
 
-#if defined(unix) || defined(__APPLE__) || defined(__linux__)
-#include <wordexp.h>
-#elif defined(_WIN32)
-#include <Windows.h>
-#include <shlobj.h>
-#ifndef va_copy
+#if defined(_WIN32) && (!defined(va_copy))
 #define va_copy(d,s) ((d) = (s))
-#endif
 #endif
 
 #include "global.h"
+#include "utils/filesystem.h"
 #include "utils/strings.h"
 
 char *stringRemoveQuotes(const char *s) {
@@ -131,70 +126,13 @@ char *fullPath(const char *path, char end) {
     assert(path[0] != '\0');
 
     if (path[0] == '~') {
-#if defined(unix) || defined(__APPLE__) || defined(__linux__)
-
-        wordexp_t word;
-
-#ifdef __APPLE__
-        // Workunsigned long systemTimerStart = 0;around for Mac OS X. See:
-        // http://stackoverflow.com/questions/20534788/why-does-wordexp-fail-with-wrde-syntax-on-os-x
-        signal(SIGCHLD, SIG_DFL);
-#endif
-
-        // Expand string into segments
-        int res = wordexp(path, &word, 0);
-
-#ifdef __APPLE__
-        signal(SIGCHLD, SIG_IGN);
-#endif
-
-        if (res != 0) {
-            printf("fullPath> wordexp() failed: %d\n", res);
-            return NULL;
-        }
-
-        // Get length of complete string
-        lenPath = 0;
-        for (unsigned int i = 0; i < word.we_wordc; i++) {
-            lenPath += strlen(word.we_wordv[i]);
-        }
-
-        // Allocate new string
-        dir = new char[lenPath + 2]; // space for end char
-
-        // Copy segments into new string
-        size_t offset = 0;
-        for (unsigned int i = 0; i < word.we_wordc; i++) {
-            size_t len = strlen(word.we_wordv[i]);
-            strncpy(dir + offset, word.we_wordv[i], len);
-            offset += len;
-        }
-
-        wordfree(&word);
-#elif defined(_WIN32)
-        char newPath[MAX_PATH];
-        if (SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0, newPath) == S_OK) {
-            lenPath = strlen(newPath);
-            size_t lenPath2 = strlen(path);
-            dir = new char[lenPath + lenPath2 + 2]; // space for end char
-            strncpy(dir, newPath, lenPath);
-            strncpy((dir + lenPath), (path + 1), lenPath2 - 1);
-            lenPath += lenPath2 - 1;
-            for (unsigned int i = 0; i < lenPath; i++)
-                if(dir[i] == '\\')
-                    dir[i] = '/';
-        } else {
-            printf("WARNING: Could not get home folder location for tilde expansion!\n");
-            lenPath = strlen(path);
-            dir = new char[lenPath + 2]; // space for end char
-            strncpy(dir, path, lenPath);
-        }
-#else
-        printf("WARNING: Tilde expansion not supported on this platform:\n\t%s\n", path);
+        std::string home = getHomeDirectory();
+        assert(home.length() > 0);
         lenPath = strlen(path);
-        dir = new char[lenPath + 2]; // space for end char
-        strncpy(dir, path, lenPath);
-#endif
+        dir = new char[home.length() + lenPath + 3]; // space for end char
+        strncpy(dir, home.c_str(), home.length());
+        strncpy(dir + home.length(), path + 1, lenPath - 1);
+        lenPath = home.length() + lenPath - 1;
     } else {
         lenPath = strlen(path);
         dir = new char[lenPath + 2]; // space for end char

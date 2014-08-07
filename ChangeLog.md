@@ -6,6 +6,8 @@
     * Script parser successfully loading level scripts
     * Can also read TR3 script now
     * Also working with TR2/TR3 PSX Script (TOMBPSX.DAT)
+    * Using getenv() instead of wordexp() for tilde expansion
+    * Started implementing file-system handling utilities
 
     [ 20140806 ]
     * Improved Script reader and its Unit Test

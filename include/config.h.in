@@ -24,6 +24,12 @@ extern const char *BUILD_HOST;
 #cmakedefine HAVE_CLOSEDIR
 #cmakedefine HAVE_DT_DIR
 
+#cmakedefine HAVE_UNISTD_H
+#cmakedefine HAVE_GETCWD
+
+#cmakedefine HAVE_STDLIB_H
+#cmakedefine HAVE_GETENV
+
 #cmakedefine HAVE_SYS_TIME_H
 #cmakedefine HAVE_GETTIMEOFDAY
 
