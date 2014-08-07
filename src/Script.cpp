@@ -81,7 +81,7 @@ int Script::load(const char *file) {
 
     // More strings...
     readStringPackage(f, gameStrings, numGameStrings);
-    readStringPackage(f, pcStrings, 41);
+    readStringPackage(f, pcStrings, numPCStrings);
     readStringPackage(f, puzzles[0], numLevels);
     readStringPackage(f, puzzles[1], numLevels);
     readStringPackage(f, puzzles[2], numLevels);
@@ -130,29 +130,51 @@ void Script::readScriptPackage(BinaryFile &f, std::vector<std::vector<uint16_t>>
     uint16_t numBytes = f.readU16();
     assertEqual(numBytes % 2, 0); // 16 bit opcodes and operands
 
-    // Only TR2, not TR3, has 6 "filler bytes" hex 13 00 14 00 15 00 here
-    // We need to skip these
-    uint16_t hack1 = f.readU16();
-    uint16_t hack2 = f.readU16();
-    uint16_t hack3 = f.readU16();
-    uint16_t hackStart = 0;
     uint16_t *list = new uint16_t[(numBytes + 6) / 2];
-    if ((hack1 == 19) && (hack2 == 20) && (hack3 == 21)) {
-        numBytes += 6;
-    } else {
-        list[0] = hack1;
-        list[1] = hack2;
-        list[2] = hack3;
-        hackStart = 3;
+    for (uint16_t i = 0; i < (numBytes / 2); i++) {
+        list[i] = f.readU16();
     }
 
-    for (uint16_t i = hackStart; i < (numBytes / 2); i++) {
-        list[i] = f.readU16();
+    // TR2 for PC and PSX has 6 "filler bytes" hex 13 00 14 00 15 00
+    // (for TR3 for PSX, the filler is hex 15 00 16 00 17 00 instead)
+    // at the end of the script block. We need to skip these...
+    uint16_t hack[3];
+    hack[0] = f.readU16();
+    hack[1] = f.readU16();
+    hack[2] = f.readU16();
+    if (((hack[0] == 19) && (hack[1] == 20) && (hack[2] == 21))
+            || ((hack[0] == 21) && (hack[1] == 22) && (hack[2] == 23))) {
+        list[numBytes / 2] = hack[0];
+        list[(numBytes / 2) + 1] = hack[1];
+        list[(numBytes / 2) + 2] = hack[2];
+    } else {
+        f.seek(f.tell() - 6);
+    }
+
+    // TR2 for PSX has 64 bytes with unknown content (not zero!) here,
+    // TR3 for PSX has 40 bytes. We try to identify and skip them...
+    // This is also currently used to set the platform specific string count
+    hack[0] = f.readU16();
+    hack[1] = f.readU16();
+    hack[2] = f.readU16();
+    if ((hack[0] == 1) && (hack[1] == 0) && (hack[2] == 864)) {
+        f.seek(f.tell() + 58);
+        numPCStrings = 80; // TR2 has 80 PSX Strings
+    } else if ((hack[0] == 1) && (hack[1] == 0) && (hack[2] == 817)) {
+        f.seek(f.tell() + 34);
+        numPCStrings = 80; // TR3 also has 80 PSX Strings
+    } else {
+        f.seek(f.tell() - 6);
+        numPCStrings = 41;
     }
 
     for (unsigned int i = 0; i < n; i++) {
         unsigned int end = offset[i] / 2;
 
+        // We need to detect the OP_END opcode marking the end of a
+        // script sequence (like the '\0' for the strings).
+        // However, the numerical value of OP_END could also be used
+        // as an operand for another opcode, so we have to check for this
         bool readingOperand = false;
         while (readingOperand || (list[end] != OP_END)) {
             if (readingOperand) {
@@ -192,6 +214,15 @@ std::string Script::getLevelFilename(unsigned int i) {
     return levelFilenames.at(i);
 }
 
+unsigned int Script::pictureCount() {
+    return numPictures;
+}
+
+std::string Script::getPictureFilename(unsigned int i) {
+    assert(i < numPictures);
+    return pictureFilenames.at(i);
+}
+
 unsigned int Script::cutsceneCount() {
     return numCutscenes;
 }
@@ -229,11 +260,11 @@ std::string Script::getGameString(unsigned int i) {
 }
 
 unsigned int Script::pcStringCount() {
-    return 41;
+    return numPCStrings;
 }
 
 std::string Script::getPCString(unsigned int i) {
-    assert(i < 41);
+    assert(i < numPCStrings);
     return pcStrings.at(i);
 }
 

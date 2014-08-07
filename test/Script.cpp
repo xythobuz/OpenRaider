@@ -51,6 +51,7 @@ namespace {
         if (strings) {
             printStrings(s.levelCount(), s.getLevelName, "Level Names");
             printStrings(s.levelCount(), s.getLevelFilename, "Level Filenames");
+            printStrings(s.pictureCount(), s.getPictureFilename, "Picture Filenames");
             printStrings(s.cutsceneCount(), s.getCutsceneFilename, "Cutscenes");
             printStrings(s.titleCount(), s.getTitleFilename, "Titles");
             printStrings(s.videoCount(), s.getVideoFilename, "Videos");
@@ -120,6 +121,14 @@ int main(int argc, char *argv[]) {
 
     std::cout << std::endl << "Tomb Raider 2 PSX:" << std::endl;
     f = fullPath("~/.OpenRaider/paks/tr2_psx/TOMBPSX.DAT", 0);
+    error = test(f, !((argc > 1) && (argv[1][0] == 's')));
+    delete [] f;
+
+    if (error != 0)
+        return error;
+
+    std::cout << std::endl << "Tomb Raider 3 PSX:" << std::endl;
+    f = fullPath("~/.OpenRaider/paks/tr3_psx/TOMBPSX.DAT", 0);
     error = test(f, !((argc > 1) && (argv[1][0] == 's')));
     delete [] f;
 

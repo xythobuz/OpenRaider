@@ -99,6 +99,9 @@ public:
     std::string getLevelName(unsigned int i);
     std::string getLevelFilename(unsigned int i);
 
+    unsigned int pictureCount();
+    std::string getPictureFilename(unsigned int i);
+
     unsigned int cutsceneCount();
     std::string getCutsceneFilename(unsigned int i);
 
@@ -149,7 +152,7 @@ private:
     };
 
     // Header
-    uint32_t version;
+    uint32_t version; // Always 3, for TR2/3 on PC and PSX
     std::string description;
 
     // Gameflow data
@@ -168,10 +171,13 @@ private:
     uint16_t numDemos;
     uint16_t titleTrack;
     int16_t singleLevel;
-    uint16_t flags;
+    uint16_t flags; // See ScriptFlag enum
     uint8_t cypherCode;
-    uint8_t language;
+    uint8_t language; // See ScriptLanguage enum
     uint16_t secretTrack;
+
+    uint16_t numPCStrings;
+    uint16_t numGameStrings;
 
     // Strings
     std::vector<std::string> levelNames; // numLevels
@@ -181,9 +187,8 @@ private:
     std::vector<std::string> levelFilenames; // numLevels
     std::vector<std::string> cutsceneFilenames; // numCutscenes
     std::vector<std::vector<uint16_t>> script; // numLevels + 1
-    uint16_t numGameStrings;
     std::vector<std::string> gameStrings; // numGameStrings
-    std::vector<std::string> pcStrings; // 41
+    std::vector<std::string> pcStrings; // 41 for TR2/3 on PC; 80 for TR2 on PSX
     std::vector<std::vector<std::string>> puzzles; // 4 * numLevels
     std::vector<std::vector<std::string>> pickups; // 2 * numLevels
     std::vector<std::vector<std::string>> keys; // 4 * numLevels

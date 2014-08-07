@@ -5,6 +5,7 @@
     [ 20140807 ]
     * Script parser successfully loading level scripts
     * Can also read TR3 script now
+    * Also working with TR2/TR3 PSX Script (TOMBPSX.DAT)
 
     [ 20140806 ]
     * Improved Script reader and its Unit Test
