@@ -102,6 +102,7 @@ namespace {
 }
 
 int main(int argc, char *argv[]) {
+    std::cout << "Tomb Raider 2:" << std::endl;
     char *f = fullPath("~/.OpenRaider/paks/tr2/TOMBPC.DAT", 0);
     int error = test(f, !((argc > 1) && (argv[1][0] == 's')));
     delete [] f;
@@ -109,7 +110,16 @@ int main(int argc, char *argv[]) {
     if (error != 0)
         return error;
 
+    std::cout << std::endl << "Tomb Raider 3:" << std::endl;
     f = fullPath("~/.OpenRaider/paks/tr3/TOMBPC.DAT", 0);
+    error = test(f, !((argc > 1) && (argv[1][0] == 's')));
+    delete [] f;
+
+    if (error != 0)
+        return error;
+
+    std::cout << std::endl << "Tomb Raider 2 PSX:" << std::endl;
+    f = fullPath("~/.OpenRaider/paks/tr2_psx/TOMBPSX.DAT", 0);
     error = test(f, !((argc > 1) && (argv[1][0] == 's')));
     delete [] f;
 
