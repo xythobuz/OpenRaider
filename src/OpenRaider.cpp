@@ -90,6 +90,13 @@ int OpenRaider::initialize() {
         return -6;
     }
 
+    // Initialize main menu
+    error = getMenu().initialize();
+    if (error != 0) {
+        printf("Could not initialize Menu (%d)!\n", error);
+        return -7;
+    }
+
 #ifdef DEBUG
     mFPS = true;
 #endif

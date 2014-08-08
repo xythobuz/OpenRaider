@@ -366,7 +366,7 @@ unsigned char *TombRaider::Palette8()
 }
 
 
-int TombRaider::checkMime(char *filename) {
+int TombRaider::checkMime(const char *filename) {
     FILE *f;
     unsigned int version;
 

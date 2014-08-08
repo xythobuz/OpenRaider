@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140808 ]
+    * Added unit test for file-system utils
+    * Moving Menu to Folder/File API
+
     [ 20140807 ]
     * Script parser successfully loading level scripts
     * Can also read TR3 script now

@@ -8,7 +8,10 @@
 #ifndef _MENU_H_
 #define _MENU_H_
 
+#include <memory>
+
 #include "Font.h"
+#include "utils/Folder.h"
 
 /*!
  * \brief Menu 'overlay'
@@ -26,6 +29,8 @@ public:
      */
     ~Menu();
 
+    int initialize();
+
     void setVisible(bool visible);
 
     bool isVisible();
@@ -38,12 +43,6 @@ public:
 
 private:
 
-    void loadPakFolderRecursive(const char *dir);
-
-    void fillMapList();
-
-    void displayMapList();
-
     void play();
 
     bool mVisible;
@@ -52,9 +51,7 @@ private:
 
     FontString mainText;
 
-    bool mMapListFilled;
-    bool mFirstPass;
-    std::vector<char *> mMapList;
+    Folder *mapFolder;
 };
 
 Menu &getMenu();

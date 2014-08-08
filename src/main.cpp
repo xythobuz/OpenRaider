@@ -12,6 +12,7 @@
 #include "global.h"
 #include "Camera.h"
 #include "Console.h"
+#include "Exception.h"
 #include "FontManager.h"
 #include "Game.h"
 #include "Menu.h"
@@ -22,6 +23,8 @@
 #include "commander/commander.h"
 #include "utils/strings.h"
 #include "utils/time.h"
+
+#ifndef UNIT_TEST
 
 #ifdef USING_AL
 #include "SoundAL.h"
@@ -361,4 +364,40 @@ KeyboardButton stringToKeyboardButton(const char *key) {
     getConsole().print("Unknown key: %s", key);
     return unknownKey;
 }
+
+#endif // UNIT_TEST
+
+#if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
+#ifndef NDEBUG
+
+#include <exception>
+#include <execinfo.h>
+
+namespace {
+    extern std::terminate_handler oldTerminateHandler;
+
+    [[noreturn]] void terminateHandler() {
+        const unsigned int maxSize = 128;
+        void *callstack[maxSize];
+        int frames = backtrace(callstack, maxSize);
+        char **strs = backtrace_symbols(callstack, frames);
+
+        std::cout << std::endl;
+        for (int i = 0; i < frames; i++)
+            std::cout << strs[i] << std::endl;
+
+        delete [] strs;
+
+        std::cout << std::endl << "Last custom Exception:" << std::endl;
+        std::cout << "    " << Exception::getLastException() << std::endl << std::endl;
+
+        oldTerminateHandler();
+        abort();
+    }
+
+    std::terminate_handler oldTerminateHandler = std::set_terminate(terminateHandler);
+}
+
+#endif // NDEBUG
+#endif // HAVE_EXECINFO_H && HAVE_BACKTRACE && HAVE_BACKTRACE_SYMBOLS
 

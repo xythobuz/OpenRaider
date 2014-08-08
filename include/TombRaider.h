@@ -125,7 +125,7 @@ public:
      * \param filename file to check
      * \returns 0 if it is a TombRaider pak
      */
-    static int checkMime(char *filename);
+    static int checkMime(const char *filename);
 
     /*!
      * \brief Loads TombRaider 1-5 pak into memory
