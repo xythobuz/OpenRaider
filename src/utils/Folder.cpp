@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <iostream>
 #include <sstream>
+#include <cstring>
 
 #include "global.h"
 #include "utils/filesystem.h"
