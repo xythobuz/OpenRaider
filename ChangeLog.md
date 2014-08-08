@@ -4,7 +4,7 @@
 
     [ 20140808 ]
     * Added unit test for file-system utils
-    * Moving Menu to Folder/File API
+    * Moved Menu to Folder/File API
 
     [ 20140807 ]
     * Script parser successfully loading level scripts

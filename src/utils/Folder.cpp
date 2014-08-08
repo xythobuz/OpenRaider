@@ -99,18 +99,15 @@ Folder &Folder::getFolder(unsigned long i) {
 
 unsigned long Folder::countRecursiveItems() {
     unsigned long count = fileCount();
-
-    for (unsigned long i = 0; i < folderCount(); i++) {
+    for (unsigned long i = 0; i < folderCount(); i++)
         count += getFolder(i).countRecursiveItems();
-    }
-
     return count;
 }
 
 void Folder::executeRemoveRecursiveItems(std::function<bool (File &f)> func) {
     for (unsigned long i = 0; i < fileCount(); i++) {
         if (func(getFile(i))) {
-            files.erase(files.begin() + (long)i);
+            files.erase(files.begin() + (long)i--);
         }
     }
 
@@ -124,11 +121,13 @@ std::string Folder::getRecursiveItemName(unsigned long i) {
     if (i < fileCount()) {
         return getFile(i).getName();
     } else {
+        unsigned long count = fileCount();
         for (unsigned long n = 0; n < folderCount(); n++) {
-            if ((i - fileCount()) < getFolder(n).countRecursiveItems()) {
+            if ((i - count) < getFolder(n).countRecursiveItems()) {
                 return getFolder(n).getName() + '/'
-                    + getFolder(n).getRecursiveItemName(i - fileCount());
+                    + getFolder(n).getRecursiveItemName(i - count);
             }
+            count += getFolder(n).countRecursiveItems();
         }
     }
 
@@ -142,10 +141,12 @@ File &Folder::getRecursiveItem(unsigned long i) {
     if (i < fileCount()) {
         return getFile(i);
     } else {
+        unsigned long count = fileCount();
         for (unsigned long n = 0; n < folderCount(); n++) {
-            if ((i - fileCount()) < getFolder(n).countRecursiveItems()) {
-                return getFolder(n).getRecursiveItem(i - fileCount());
+            if ((i - count) < getFolder(n).countRecursiveItems()) {
+                return getFolder(n).getRecursiveItem(i - count);
             }
+            count += getFolder(n).countRecursiveItems();
         }
     }
 

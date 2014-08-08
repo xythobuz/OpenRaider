@@ -136,7 +136,6 @@ void Menu::display() {
 
 void Menu::play() {
     char *tmp = bufferString("load %s", mapFolder->getRecursiveItemName(mCursor).c_str());
-    getConsole().print("%s", tmp);
     if (getOpenRaider().command(tmp) == 0) {
         setVisible(false);
     } else {
