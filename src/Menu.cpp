@@ -43,22 +43,28 @@ Menu::~Menu() {
 }
 
 int Menu::initialize() {
+    if (mapFolder != nullptr)
+        delete mapFolder;
     mapFolder = new Folder(getOpenRaider().mPakDir);
 
     mapFolder->executeRemoveRecursiveItems([](File &f) {
+        // Filter files based on file name
         if ((f.getName().compare(f.getName().length() - 4, 4, ".phd") != 0)
             && (f.getName().compare(f.getName().length() - 4, 4, ".tr2") != 0)
             && (f.getName().compare(f.getName().length() - 4, 4, ".tr4") != 0)
             && (f.getName().compare(f.getName().length() - 4, 4, ".trc") != 0)) {
-            return true;
+            return true; // delete file from list
         }
+
+        // Check maps for validity
         int error = TombRaider::checkMime(f.getPath().c_str());
         if (error != 0) {
             getConsole().print("Error: pak file '%s' %s",
                     f.getName().c_str(), (error == -1) ? "not found" : "invalid");
-            return true;
+            return true; // delete file from list
         }
-        return false;
+
+        return false; // keep file on list
     });
 
     return 0;
@@ -79,27 +85,20 @@ void Menu::display() {
     // Draw half-transparent *overlay*
     glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
     glDisable(GL_TEXTURE_2D);
-    glRecti(0, 0, getWindow().getWidth(), getWindow().getHeight());
+    glRecti(0, 0, (GLint)getWindow().getWidth(), (GLint)getWindow().getHeight());
     glEnable(GL_TEXTURE_2D);
 
     // Draw heading text, using FontString so we can get the
     // width of the drawn text to center it
-    mainText.x = (getWindow().getWidth() / 2) - (mainText.w / 2);
+    mainText.x = (getWindow().getWidth() / 2) - ((unsigned int)(mainText.w / 2));
     getFont().writeString(mainText);
 
     if ((mapFolder == nullptr) || (mapFolder->countRecursiveItems() == 0)) {
         getFont().drawText(25, (getWindow().getHeight() / 2) - 20, 0.75f, RED, "No maps found! See README.md");
         return;
     } else {
-        // draw *play button* above list
-        glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        glDisable(GL_TEXTURE_2D);
-        glRecti(25, 25, 100, 75);
-        glEnable(GL_TEXTURE_2D);
-        getFont().drawText(40, 35, 0.75f, BLACK, "Play");
-
         // Estimate displayable number of items
-        int items = (getWindow().getHeight() - 110) / 25;
+        int items = (getWindow().getHeight() - 60) / 25;
 
         // Select which part of the list to show
         long min, max;
@@ -108,10 +107,10 @@ void Menu::display() {
         else
             min = 0;
 
-        if ((mCursor + (items / 2)) < mapFolder->countRecursiveItems())
+        if ((mCursor + (items / 2)) < (long)mapFolder->countRecursiveItems())
             max = mCursor + (items / 2);
         else
-            max = mapFolder->countRecursiveItems();
+            max = (long)mapFolder->countRecursiveItems();
 
         while ((max - min) < items) {
             if (min > 0)
@@ -124,18 +123,16 @@ void Menu::display() {
 
         mMin = min;
 
-        for (int i = 0; i < (max - min); i++) {
-            const char *map = mapFolder->getRecursiveItemName(i + min).c_str();
-            if ((i + min) == (int)mCursor)
-                getFont().drawText(25, 100 + (25 * i), 0.75f, RED, "%s", map);
-            else
-                getFont().drawText(25, 100 + (25 * i), 0.75f, BLUE, "%s", map);
+        for (long i = 0; i < (max - min); i++) {
+            const char *map = mapFolder->getRecursiveItemName((unsigned long)(i + min)).c_str();
+            getFont().drawText(25, (unsigned int)(50 + (25 * i)), 0.75f,
+                    ((i + min) == mCursor) ? RED : BLUE, "%s", map);
         }
     }
 }
 
 void Menu::play() {
-    char *tmp = bufferString("load %s", mapFolder->getRecursiveItemName(mCursor).c_str());
+    char *tmp = bufferString("load %s", mapFolder->getRecursiveItemName((unsigned long)mCursor).c_str());
     if (getOpenRaider().command(tmp) == 0) {
         setVisible(false);
     } else {
@@ -152,16 +149,16 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
         if (mCursor > 0)
             mCursor--;
         else
-            mCursor = mapFolder->countRecursiveItems() - 1;
+            mCursor = (long)mapFolder->countRecursiveItems() - 1;
     } else if (key == downKey) {
-        if (mCursor < (mapFolder->countRecursiveItems() - 1))
+        if (mCursor < (long)(mapFolder->countRecursiveItems() - 1))
             mCursor++;
         else
             mCursor = 0;
     } else if (key == rightKey) {
         long i = 10;
-        if (mCursor > (mapFolder->countRecursiveItems() - 11))
-            i = mapFolder->countRecursiveItems() - 1 - mCursor;
+        if (mCursor > (long)(mapFolder->countRecursiveItems() - 11))
+            i = ((long)mapFolder->countRecursiveItems()) - 1 - mCursor;
         while (i-- > 0)
             handleKeyboard(downKey, true);
     } else if (key == leftKey) {
@@ -176,17 +173,17 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
 }
 
 void Menu::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
-    int items = (getWindow().getHeight() - 110) / 25;
+    int items = (getWindow().getHeight() - 60) / 25;
 
     if (released || (button != leftmouseKey))
         return;
 
-    if ((y >= 100) && (y <= (unsigned int)(100 + (25 * items)))) {
-        y -= 100;
-        mCursor = mMin + (y / 25);
-    } else if ((y >= 25) && (y <= 100) && (x >= 25) && (x <= 125)) {
-        // Play button
-        play();
+    if ((y >= 50) && (y <= (unsigned int)(50 + (25 * items)))) {
+        y -= 50;
+        if (mCursor == (mMin + (y / 25)))
+            play();
+        else
+            mCursor = mMin + (y / 25);
     }
 }
 

@@ -46,10 +46,10 @@ private:
     void play();
 
     bool mVisible;
-    unsigned long mCursor;
-    unsigned long mMin;
+    long mCursor;
+    long mMin;
 
-    FontString mainText;
+    FontString mainText; //!< Used to draw heading centered
 
     Folder *mapFolder;
 };
