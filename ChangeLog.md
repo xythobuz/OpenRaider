@@ -4,6 +4,7 @@
 
     [ 20140809 ]
     * Script Unit Test brings it’s own scripts to test
+    * Fixed binary Unit Test not deleting it’s tmp file in case of error
 
     [ 20140808 ]
     * Added unit test for file-system utils

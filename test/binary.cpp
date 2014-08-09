@@ -38,26 +38,69 @@ namespace {
         file.write(reinterpret_cast<char *>(&f2), sizeof(f2));
     }
 
-    //! \fixme Don't use assert(), as it will prevent removing the created test file!
     int test(const char *name) {
         BinaryFile file;
-        assertEqual(file.open(name), 0);
+        if (file.open(name) != 0) {
+            std::cout << "Error opening file " << name << std::endl;
+            return 1;
+        }
 
-        assertEqual(file.readU8(), 255);
-        assertEqual(file.readU16(), 65535);
-        assertEqual(file.readU32(), 707406378);
-        assertEqual(file.readU64(), 1099511627775);
+        if (file.readU8() != 255) {
+            std::cout << "Error reading U8!" << std::endl;
+            return 2;
+        }
 
-        assertEqual(file.read8(), -1);
-        assertEqual(file.read16(), -420);
-        assertEqual(file.read32(), -666);
-        assertEqual(file.read64(), 4774451407313060418);
+        if (file.readU16() != 65535) {
+            std::cout << "Error reading U16!" << std::endl;
+            return 3;
+        }
+
+        if (file.readU32() != 707406378) {
+            std::cout << "Error reading U32!" << std::endl;
+            return 4;
+        }
+
+        if (file.readU64() != 1099511627775) {
+            std::cout << "Error reading U64!" << std::endl;
+            return 5;
+        }
+
+        if (file.read8() != -1) {
+            std::cout << "Error reading 8!" << std::endl;
+            return 6;
+        }
+
+        if (file.read16() != -420) {
+            std::cout << "Error reading 16!" << std::endl;
+            return 7;
+        }
+
+        if (file.read32() != -666) {
+            std::cout << "Error reading 32!" << std::endl;
+            return 8;
+        }
+
+        if (file.read64() != 4774451407313060418) {
+            std::cout << "Error reading 64!" << std::endl;
+            return 9;
+        }
 
         std::cout << "This test will fail on big-endian machines!" << std::endl;
-        assertEqual(file.readFloat(), f1);
-        assertEqual(file.readFloat(), f2);
 
-        assertEqual(file.tell(), 38);
+        if (file.readFloat() != f1) {
+            std::cout << "Error reading float1!" << std::endl;
+            return 10;
+        }
+
+        if (file.readFloat() != f2) {
+            std::cout << "Error reading float2!" << std::endl;
+            return 11;
+        }
+
+        if (file.tell() != 38) {
+            std::cout << "Error, file position wrong!" << std::endl;
+            return 12;
+        }
 
         return 0;
     }
