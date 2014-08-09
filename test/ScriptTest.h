@@ -17,11 +17,11 @@ static const char *testDescription[testPayloadCount] = {
 };
 
 static const unsigned char *testPayloads[testPayloadCount] = {
-    tr2_pc_dat_gz, tr2_psx_dat_gz, tr3_pc_dat_gz, tr3_psx_dat_gz
+    tr2_pc_dat_z, tr2_psx_dat_z, tr3_pc_dat_z, tr3_psx_dat_z
 };
 
 static const unsigned int testSizes[testPayloadCount] = {
-    sizeof(tr2_pc_dat_gz), sizeof(tr2_psx_dat_gz), sizeof(tr3_pc_dat_gz), sizeof(tr3_psx_dat_gz)
+    sizeof(tr2_pc_dat_z), sizeof(tr2_psx_dat_z), sizeof(tr3_pc_dat_z), sizeof(tr3_psx_dat_z)
 };
 
 static const unsigned int testExpectedGameStringCount[testPayloadCount] = {

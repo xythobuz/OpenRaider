@@ -128,27 +128,38 @@ namespace {
         return 0;
     }
 
-    void readPayloadChunk(const unsigned char *data, unsigned int size, const char *file) {
+    int readPayloadChunk(const unsigned char *data, unsigned int size, const char *file) {
         static const unsigned int bufferSize = 16384; // 16K should be enough for everybody :)
         unsigned char buffer[bufferSize];
 
+        // Initialize decompression
         z_stream stream;
         stream.zalloc = Z_NULL;
         stream.zfree =  Z_NULL;
         stream.opaque = Z_NULL;
-        assertEqual(inflateInit2(&stream, 16), Z_OK); // 16 -> gzip header
+        int error = inflateInit(&stream);
+        if (error != Z_OK) {
+            std::cout << "inflateInit() Error " << error << std::endl;
+            return 1;
+        }
 
         // Inflate data in one go
         stream.avail_in = size;
         stream.next_in = const_cast<unsigned char *>(data);
         stream.avail_out = bufferSize;
         stream.next_out = buffer;
-        assertEqual(inflate(&stream, Z_FINISH), Z_STREAM_END);
+        error = inflate(&stream, Z_FINISH);
+        if (error != Z_STREAM_END) {
+            std::cout << "inflate() Error " << error << std::endl;
+            return 2;
+        }
         inflateEnd(&stream);
 
         // Write buffer to file
         std::ofstream s(file, std::ios_base::out | std::ios_base::binary);
         s.write(reinterpret_cast<const char *>(buffer), bufferSize - stream.avail_out);
+
+        return 0;
     }
 
     int runForPayload(unsigned int n, bool print, bool printData) {
@@ -158,21 +169,23 @@ namespace {
         FILE *f;
         while ((f = fopen(tmpFile, "r")) != NULL) {
             fclose(f);
-            tmpFile[25]++;
+            tmpFile[26]++;
         }
 
         std::cout << "Temporary test file: " << tmpFile << std::endl;
 
-        readPayloadChunk(testPayloads[n], testSizes[n], tmpFile);
-
-        int error = 0;
-        if (print) {
-            Script s;
-            error = s.load(tmpFile);
-            if (error == 0)
-                error = printDataScript(s, printData);
-        } else {
-            error = test(tmpFile, n);
+        int error = readPayloadChunk(testPayloads[n], testSizes[n], tmpFile);
+        if (error == 0) {
+            if (print) {
+                Script s;
+                error = s.load(tmpFile);
+                if (error == 0)
+                    error = printDataScript(s, printData);
+                else
+                    std::cout << "Error loading script!" << std::endl;
+            } else {
+                error = test(tmpFile, n);
+            }
         }
 
         remove(tmpFile);

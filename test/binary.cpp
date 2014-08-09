@@ -38,6 +38,7 @@ namespace {
         file.write(reinterpret_cast<char *>(&f2), sizeof(f2));
     }
 
+    //! \fixme Don't use assert(), as it will prevent removing the created test file!
     int test(const char *name) {
         BinaryFile file;
         assertEqual(file.open(name), 0);
@@ -67,7 +68,7 @@ int main() {
     FILE *f;
     while ((f = fopen(tmpFile, "r")) != NULL) {
         fclose(f);
-        tmpFile[25]++;
+        tmpFile[26]++;
     }
 
     fillFile(tmpFile);
