@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140809 ]
+    * Script Unit Test brings it’s own scripts to test
+
     [ 20140808 ]
     * Added unit test for file-system utils
     * Moved Menu to Folder/File API

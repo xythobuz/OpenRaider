@@ -32,8 +32,12 @@ add_executable (tester_script EXCLUDE_FROM_ALL
     "../src/Exception.cpp" "../src/main.cpp"
 )
 
+find_package (ZLIB REQUIRED)
+include_directories (SYSTEM ${ZLIB_INCLUDE_DIRS})
+target_link_libraries (tester_script ${ZLIB_LIBRARIES})
+
 add_dependencies (check tester_script)
-#add_test (NAME test_script COMMAND tester_script)
+add_test (NAME test_script COMMAND tester_script)
 
 #################################################################
 
