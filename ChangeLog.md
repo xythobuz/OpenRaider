@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140810 ]
+    * Removed recursive Folder access method implementations
+      into their own file
+    * Menu now acts like a file-manager, only showing one folder,
+      and has the ability to go to the parent folder, and do mouse scrolling
+
     [ 20140809 ]
     * Script Unit Test brings it’s own scripts to test
     * Fixed binary Unit Test not deleting it’s tmp file in case of error

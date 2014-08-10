@@ -29,10 +29,16 @@ public:
     unsigned long folderCount();
     Folder &getFolder(unsigned long i);
 
-    unsigned long countRecursiveItems();
-    void executeRemoveRecursiveItems(std::function<bool (File &f)> func);
-    std::string getRecursiveItemName(unsigned long i);
-    //File &getRecursiveItem(unsigned long i);
+    Folder getParent();
+
+    void executeRemoveFiles(std::function<bool (File &f)> func);
+
+    // Accessing a folder recursively
+    // This treats all files in all subfolders as if they were in this folder
+    unsigned long countRecursiveFiles();
+    void executeRemoveRecursiveFiles(std::function<bool (File &f)> func);
+    std::string getRecursiveFileName(unsigned long i);
+    File &getRecursiveFile(unsigned long i);
 
 private:
 

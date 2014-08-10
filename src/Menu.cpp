@@ -16,6 +16,8 @@
 #include "Window.h"
 #include "Menu.h"
 
+// TODO
+// Going up to / leads to the current working directory
 
 Menu::Menu() {
     mVisible = false;
@@ -43,11 +45,16 @@ Menu::~Menu() {
 }
 
 int Menu::initialize() {
+    return initialize(Folder(getOpenRaider().mPakDir));
+}
+
+int Menu::initialize(Folder folder) {
     if (mapFolder != nullptr)
         delete mapFolder;
-    mapFolder = new Folder(getOpenRaider().mPakDir);
+    mapFolder = new Folder(folder);
+    mMin = mCursor = 0;
 
-    mapFolder->executeRemoveRecursiveItems([](File &f) {
+    mapFolder->executeRemoveFiles([](File &f) {
         // Filter files based on file name
         if ((f.getName().compare(f.getName().length() - 4, 4, ".phd") != 0)
             && (f.getName().compare(f.getName().length() - 4, 4, ".tr2") != 0)
@@ -66,6 +73,9 @@ int Menu::initialize() {
 
         return false; // keep file on list
     });
+
+    if ((mapFolder->fileCount() + mapFolder->folderCount()) > 0)
+        mCursor = 1; // Don't select ".." by default
 
     return 0;
 }
@@ -93,82 +103,70 @@ void Menu::display() {
     mainText.x = (getWindow().getWidth() / 2) - ((unsigned int)(mainText.w / 2));
     getFont().writeString(mainText);
 
-    if ((mapFolder == nullptr) || (mapFolder->countRecursiveItems() == 0)) {
-        getFont().drawText(25, (getWindow().getHeight() / 2) - 20, 0.75f, RED, "No maps found! See README.md");
-        return;
-    } else {
-        // Estimate displayable number of items
-        int items = (getWindow().getHeight() - 60) / 25;
+    // Estimate displayable number of items
+    int items = (getWindow().getHeight() - 60) / 25;
 
-        // Select which part of the list to show
-        long min, max;
-        if (((long)mCursor - (items / 2)) > 0)
-            min = mCursor - (items / 2);
-        else
-            min = 0;
-
-        if ((mCursor + (items / 2)) < (long)mapFolder->countRecursiveItems())
-            max = mCursor + (items / 2);
-        else
-            max = (long)mapFolder->countRecursiveItems();
-
-        while ((max - min) < items) {
-            if (min > 0)
-                min--;
-            else if (max < ((int)mapFolder->countRecursiveItems()))
-                max++;
-            else
-                break;
-        }
-
-        mMin = min;
-
-        for (long i = 0; i < (max - min); i++) {
-            const char *map = mapFolder->getRecursiveItemName((unsigned long)(i + min)).c_str();
-            getFont().drawText(25, (unsigned int)(50 + (25 * i)), 0.75f,
-                    ((i + min) == mCursor) ? RED : BLUE, "%s", map);
+    // Print list of "..", folders, files
+    for (long i = mMin; (i < (mMin + items))
+                && (i < (mapFolder->folderCount() + mapFolder->fileCount() + 1)); i++) {
+        if (i == 0) {
+            getFont().drawText(25, 50, 0.75f, (mCursor == i) ? RED : BLUE, "..");
+        } else {
+            getFont().drawText(25, (unsigned int)(50 + (25 * (i - mMin))), 0.75f,
+                (mCursor == i) ? RED : BLUE, "%s",
+                ((i - 1) < mapFolder->folderCount()) ?
+                    (mapFolder->getFolder(i - 1).getName() + "/").c_str()
+                    : mapFolder->getFile(i - 1 - mapFolder->folderCount()).getName().c_str());
         }
     }
 }
 
 void Menu::play() {
-    char *tmp = bufferString("load %s", mapFolder->getRecursiveItemName((unsigned long)mCursor).c_str());
-    if (getOpenRaider().command(tmp) == 0) {
-        setVisible(false);
+    if (mCursor == 0) {
+        if (initialize(mapFolder->getParent().getPath()) != 0) {
+            //! \todo Display something if an error occurs
+        }
+    } else if ((mCursor - 1) < mapFolder->folderCount()) {
+        if (initialize(mapFolder->getFolder(mCursor - 1).getPath()) != 0) {
+            //! \todo Display something if an error occurs
+        }
     } else {
-        //! \todo Display something if an error occurs
+        char *tmp = bufferString("load %s",
+                mapFolder->getFile((unsigned long)mCursor - 1 - mapFolder->folderCount()).getPath().c_str());
+        if (getOpenRaider().command(tmp) == 0) {
+            setVisible(false);
+        } else {
+            //! \todo Display something if an error occurs
+        }
+        delete [] tmp;
     }
-    delete [] tmp;
 }
 
 void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
     if (!pressed)
         return;
 
+    assert(mapFolder != nullptr);
+    int items = (getWindow().getHeight() - 60) / 25;
+
     if (key == upKey) {
         if (mCursor > 0)
             mCursor--;
         else
-            mCursor = (long)mapFolder->countRecursiveItems() - 1;
+            mCursor = (long)(mapFolder->folderCount() + mapFolder->fileCount());
     } else if (key == downKey) {
-        if (mCursor < (long)(mapFolder->countRecursiveItems() - 1))
+        if (mCursor < (long)(mapFolder->folderCount() + mapFolder->fileCount()))
             mCursor++;
         else
             mCursor = 0;
-    } else if (key == rightKey) {
-        long i = 10;
-        if (mCursor > (long)(mapFolder->countRecursiveItems() - 11))
-            i = ((long)mapFolder->countRecursiveItems()) - 1 - mCursor;
-        while (i-- > 0)
-            handleKeyboard(downKey, true);
-    } else if (key == leftKey) {
-        long i = 10;
-        if (mCursor < 10)
-            i = mCursor;
-        while (i-- > 0)
-            handleKeyboard(upKey, true);
     } else if (key == enterKey) {
         play();
+    }
+
+    if (mCursor > (mMin + items - 1)) {
+        mMin = mCursor - items + 1;
+    } else if (mCursor < mMin) {
+        mMin = mCursor;
     }
 }
 
@@ -184,6 +182,28 @@ void Menu::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton butto
             play();
         else
             mCursor = mMin + (y / 25);
+    }
+}
+
+void Menu::handleMouseScroll(int xrel, int yrel) {
+    assert((xrel != 0) || (yrel != 0));
+    assert(mapFolder != nullptr);
+    int items = (getWindow().getHeight() - 60) / 25;
+
+    if ((mapFolder->folderCount() + mapFolder->fileCount() + 1) > items) {
+        if (yrel < 0) {
+            if (mMin < (mapFolder->folderCount() + mapFolder->fileCount() + 1 - items))
+                mMin++;
+        } else if (yrel > 0) {
+            if (mMin > 0)
+                mMin--;
+        }
+
+        if (mCursor < mMin) {
+            mCursor = mMin;
+        } else if (mCursor > (mMin + items - 1)) {
+            mCursor = mMin + items - 1;
+        }
     }
 }
 

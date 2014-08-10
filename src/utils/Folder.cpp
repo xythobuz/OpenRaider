@@ -98,63 +98,19 @@ Folder &Folder::getFolder(unsigned long i) {
     return folders.at(i);
 }
 
-unsigned long Folder::countRecursiveItems() {
-    unsigned long count = fileCount();
-    for (unsigned long i = 0; i < folderCount(); i++)
-        count += getFolder(i).countRecursiveItems();
-    return count;
+Folder Folder::getParent() {
+    size_t last = path.rfind('/', path.length() - 2);
+    return Folder(path.substr(0, last), listDot);
 }
 
-void Folder::executeRemoveRecursiveItems(std::function<bool (File &f)> func) {
+void Folder::executeRemoveFiles(std::function<bool (File &f)> func) {
+    createFolderItems();
     for (unsigned long i = 0; i < fileCount(); i++) {
         if (func(getFile(i))) {
             files.erase(files.begin() + (long)i--);
         }
     }
-
-    for (unsigned long i = 0; i < folderCount(); i++) {
-        getFolder(i).executeRemoveRecursiveItems(func);
-    }
 }
-
-std::string Folder::getRecursiveItemName(unsigned long i) {
-    assert(i < countRecursiveItems());
-    if (i < fileCount()) {
-        return getFile(i).getName();
-    } else {
-        unsigned long count = fileCount();
-        for (unsigned long n = 0; n < folderCount(); n++) {
-            if ((i - count) < getFolder(n).countRecursiveItems()) {
-                return getFolder(n).getName() + '/'
-                    + getFolder(n).getRecursiveItemName(i - count);
-            }
-            count += getFolder(n).countRecursiveItems();
-        }
-    }
-
-    assert(false);
-    return "";
-}
-
-/*
-File &Folder::getRecursiveItem(unsigned long i) {
-    assert(i < countRecursiveItems());
-    if (i < fileCount()) {
-        return getFile(i);
-    } else {
-        unsigned long count = fileCount();
-        for (unsigned long n = 0; n < folderCount(); n++) {
-            if ((i - count) < getFolder(n).countRecursiveItems()) {
-                return getFolder(n).getRecursiveItem(i - count);
-            }
-            count += getFolder(n).countRecursiveItems();
-        }
-    }
-
-    assert(false);
-    return files.at(0);
-}
-*/
 
 void Folder::createFolderItems() {
     if (hasListed)

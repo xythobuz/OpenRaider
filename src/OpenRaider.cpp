@@ -239,7 +239,9 @@ void OpenRaider::handleMouseScroll(int xrel, int yrel) {
     assert((xrel != 0) || (yrel != 0));
     assert(mRunning == true);
 
-    if ((getConsole().isVisible()) && (!getMenu().isVisible())) {
+    if (getMenu().isVisible()) {
+        getMenu().handleMouseScroll(xrel, yrel);
+    } else if (getConsole().isVisible()) {
         getConsole().handleMouseScroll(xrel, yrel);
     }
 

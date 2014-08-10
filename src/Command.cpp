@@ -91,9 +91,7 @@ int OpenRaider::command(std::string &c) {
         }
         std::string temp;
         command >> temp;
-        char *tmp = bufferString("%s/%s", mPakDir, temp.c_str());
-        int error = getGame().loadLevel(tmp);
-        delete [] tmp;
+        int error = getGame().loadLevel(temp.c_str());
         return error;
     } else if (cmd.compare("help") == 0) {
         std::string tmp;
@@ -445,7 +443,7 @@ int OpenRaider::help(std::string &cmd) {
         getConsole().print("  \"leftctrl\"  for symbols and special keys");
     } else if (cmd.compare("load") == 0) {
         getConsole().print("load-Command Usage:");
-        getConsole().print("  load levelfile.name");
+        getConsole().print("  load /path/to/level");
 /*
     } else if (cmd.compare("sshot") == 0) {
         getConsole().print("sshot-Command Usage:");

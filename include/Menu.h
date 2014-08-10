@@ -30,6 +30,7 @@ public:
     ~Menu();
 
     int initialize();
+    int initialize(Folder folder);
 
     void setVisible(bool visible);
 
@@ -40,6 +41,8 @@ public:
     void handleKeyboard(KeyboardButton key, bool pressed);
 
     void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
+
+    void handleMouseScroll(int xrel, int yrel);
 
 private:
 
