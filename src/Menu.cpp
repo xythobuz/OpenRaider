@@ -10,53 +10,44 @@
 
 #include "global.h"
 #include "Console.h"
+#include "Font.h"
 #include "OpenRaider.h"
 #include "utils/strings.h"
 #include "TombRaider.h"
 #include "Window.h"
 #include "Menu.h"
 
-// TODO
-// Going up to / leads to the current working directory
-
 Menu::Menu() {
     mVisible = false;
     mCursor = 0;
     mMin = 0;
     mapFolder = nullptr;
-
-    mainText.text = bufferString("%s", VERSION);
-    mainText.color[0] = BLUE[0];
-    mainText.color[1] = BLUE[1];
-    mainText.color[2] = BLUE[2];
-    mainText.color[3] = BLUE[3];
-    mainText.scale = 1.2f;
-    mainText.y = 10;
-    mainText.w = 0;
-    mainText.h = 0;
+    hiddenState = false;
 }
 
 Menu::~Menu() {
-    delete [] mainText.text;
-    mainText.text = nullptr;
-
     delete mapFolder;
     mapFolder = nullptr;
 }
 
 int Menu::initialize() {
-    return initialize(Folder(getOpenRaider().mPakDir));
+    return initialize(getOpenRaider().mPakDir);
 }
 
-int Menu::initialize(Folder folder) {
+int Menu::initialize(std::string folder) {
+    return initialize(new Folder(folder, hiddenState));
+}
+
+int Menu::initialize(Folder *folder) {
     if (mapFolder != nullptr)
         delete mapFolder;
-    mapFolder = new Folder(folder);
+    mapFolder = folder;
     mMin = mCursor = 0;
 
     mapFolder->executeRemoveFiles([](File &f) {
         // Filter files based on file name
-        if ((f.getName().compare(f.getName().length() - 4, 4, ".phd") != 0)
+        if ((f.getName().length() > 4)
+            && (f.getName().compare(f.getName().length() - 4, 4, ".phd") != 0)
             && (f.getName().compare(f.getName().length() - 4, 4, ".tr2") != 0)
             && (f.getName().compare(f.getName().length() - 4, 4, ".tr4") != 0)
             && (f.getName().compare(f.getName().length() - 4, 4, ".trc") != 0)) {
@@ -98,10 +89,8 @@ void Menu::display() {
     glRecti(0, 0, (GLint)getWindow().getWidth(), (GLint)getWindow().getHeight());
     glEnable(GL_TEXTURE_2D);
 
-    // Draw heading text, using FontString so we can get the
-    // width of the drawn text to center it
-    mainText.x = (getWindow().getWidth() / 2) - ((unsigned int)(mainText.w / 2));
-    getFont().writeString(mainText);
+    // Draw heading
+    getFont().drawTextCentered(0, 10, 1.2f, BLUE, getWindow().getWidth(), "%s", VERSION);
 
     // Estimate displayable number of items
     int items = (getWindow().getHeight() - 60) / 25;
@@ -161,6 +150,9 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
             mCursor = 0;
     } else if (key == enterKey) {
         play();
+    } else if (key == dotKey) {
+        hiddenState = !hiddenState;
+        initialize(mapFolder->getPath());
     }
 
     if (mCursor > (mMin + items - 1)) {

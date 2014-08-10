@@ -54,7 +54,9 @@ Folder::Folder(std::string folder, bool listDotFiles) {
         pos = path.find('\\');
     }
 
-    size_t last = path.rfind('/', path.length() - 2);
+    size_t last = 0;
+    if (path.length() > 1)
+        last = path.rfind('/', path.length() - 2);
     name = path.substr(last + 1);
     if (name.back() == '/')
         name.erase(name.length() - 1);
@@ -100,7 +102,10 @@ Folder &Folder::getFolder(unsigned long i) {
 
 Folder Folder::getParent() {
     size_t last = path.rfind('/', path.length() - 2);
-    return Folder(path.substr(0, last), listDot);
+    std::string parent = path.substr(0, last);
+    if (parent.length() == 0)
+        parent = "/";
+    return Folder(parent, listDot);
 }
 
 void Folder::executeRemoveFiles(std::function<bool (File &f)> func) {
@@ -139,6 +144,9 @@ void Folder::createFolderItems() {
                 ++it;
         }
     }
+
+    std::sort(foundFiles.begin(), foundFiles.end());
+    std::sort(foundFolders.begin(), foundFolders.end());
 
     for (unsigned long i = 0; i < foundFiles.size(); i++)
         files.emplace_back(File(foundFiles.at(i)));

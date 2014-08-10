@@ -10,6 +10,7 @@
 
 #include "global.h"
 #include "Console.h"
+#include "Font.h"
 #include "Game.h"
 #include "Menu.h"
 #include "Render.h"

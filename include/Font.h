@@ -35,8 +35,13 @@ public:
 
     virtual void writeString(FontString &s) = 0;
 
-    virtual void drawText(unsigned int x, unsigned int y, float scale, const unsigned char color[4], const char *s, ...)
-        __attribute__((format(printf, 6, 0)));
+    virtual void drawText(unsigned int x, unsigned int y, float scale,
+            const unsigned char color[4], const char *s, ...)
+            __attribute__((format(printf, 6, 0)));
+
+    virtual void drawTextCentered(unsigned int x, unsigned int y, float scale,
+            const unsigned char color[4], unsigned int width, const char *s, ...)
+            __attribute__((format(printf, 7, 0)));
 
 protected:
     bool mFontInit;

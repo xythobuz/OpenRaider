@@ -7,6 +7,9 @@
       into their own file
     * Menu now acts like a file-manager, only showing one folder,
       and has the ability to go to the parent folder, and do mouse scrolling
+    * Added API to Font to draw strings centered
+    * Folder sorts its items alphabetically
+    * Press dot key in Menu to see hidden files and folders
 
     [ 20140809 ]
     * Script Unit Test brings it’s own scripts to test

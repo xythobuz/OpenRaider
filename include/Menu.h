@@ -10,7 +10,6 @@
 
 #include <memory>
 
-#include "Font.h"
 #include "utils/Folder.h"
 
 /*!
@@ -30,7 +29,8 @@ public:
     ~Menu();
 
     int initialize();
-    int initialize(Folder folder);
+    int initialize(std::string folder);
+    int initialize(Folder *folder);
 
     void setVisible(bool visible);
 
@@ -52,9 +52,8 @@ private:
     long mCursor;
     long mMin;
 
-    FontString mainText; //!< Used to draw heading centered
-
     Folder *mapFolder;
+    bool hiddenState;
 };
 
 Menu &getMenu();
