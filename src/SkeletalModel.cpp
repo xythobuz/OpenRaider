@@ -137,8 +137,9 @@ AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, int a, unsign
         }
 
         if (*frame_offset > tr.NumFrames()) {
-            getConsole().print("WARNING: Bad animation frame %i > %i (%u.%d)",
-                    *frame_offset, tr.NumFrames(), index, a);
+            getConsole() << "WARNING: Bad animation frame " << *frame_offset
+                << " > " << tr.NumFrames() << " (" << index << "." << a << ")"
+                << Console::endl;
             return;
         }
 
@@ -200,7 +201,7 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
                 }
 
                 getRender().setFlags(Render::fRenderPonytail);
-                getConsole().print("Found known ponytail");
+                getConsole() << "Found known ponytail" << Console::endl;
             }
             break;
 
@@ -222,7 +223,7 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
                 ponyOff2 = 0;
 
                 getRender().setFlags(Render::fRenderPonytail);
-                getConsole().print("Found ponytail?");
+                getConsole() << "Found ponytail?" << Console::endl;
             }
             break;
     }
@@ -246,7 +247,7 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
         frame_offset += frame_step * (frame_cycle % a);
 
     if (a < 0) {
-        getConsole().print("Invalid animation data for model %d. Skip!", index);
+        getConsole() << "Invalid animation data for model " << index << ". Skip!" << Console::endl;
         return;
     } else {
         for (; a < tr.getNumAnimsForMoveable(index); a++) {

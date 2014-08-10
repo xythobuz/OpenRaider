@@ -9,12 +9,10 @@
  */
 
 #include <fstream>
+#include <iostream>
 
 #include "global.h"
 #include "utils/pcx.h"
-
-#include "Console.h"
-#define pcxPrint getConsole().print
 
 int pcxCheck(const char *filename) {
     assert(filename != NULL);
@@ -27,38 +25,38 @@ int pcxCheck(const char *filename) {
 
     // Basic validation
     if (!file.read((char *)(&header[0]), 128)) {
-        pcxPrint("File not big enough for valid PCX header!");
+        std::cout << "File not big enough for valid PCX header!" << std::endl;
         delete [] header;
         return -1;
     }
 
     if (header[0] != 0x0A) {
-        pcxPrint("Magic number at file start is wrong (0x%X != 0x0A)", header[0]);
+        std::cout << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" << std::endl;
         delete [] header;
         return -2;
     }
 
     if ((header[1] != 0) && ((header[1] < 2) || (header[1] > 5))) {
         // Valid: 0, 2, 3, 4, 5
-        pcxPrint("Unknown PCX file format version (%d)", header[1]);
+        std::cout << "Unknown PCX file format version (" << header[1] << ")" << std::endl;
         delete [] header;
         return -3;
     }
 
     if ((header[2] != 0) && (header[2] != 1)) {
-        pcxPrint("Unknown PCX file encoding (%d)", header[2]);
+        std::cout << "Unknown PCX file encoding (" << header[2] << ")" << std::endl;
         delete [] header;
         return -4;
     }
 
     if (header[3] != 8) {
-        pcxPrint("Only supporting 8bit (%dbit)", header[3]);
+        std::cout << "Only supporting 8bit (" << header[3] << "bit)" << std::endl;
         delete [] header;
         return -5;
     }
 
     if (header[64] != 0) {
-        pcxPrint("Reserved field is  used (%d != 0)", header[64]);
+        std::cout << "Reserved field is  used (" << header[64] << " != 0)" << std::endl;
         delete [] header;
         return -6;
     }
@@ -84,38 +82,38 @@ int pcxLoad(const char *filename, unsigned char **image,
 
     // Basic validation
     if (!file.read((char *)(&header[0]), 128)) {
-        pcxPrint("File not big enough for valid PCX header!");
+        std::cout << "File not big enough for valid PCX header!" << std::endl;
         delete [] header;
         return -1;
     }
 
     if (header[0] != 0x0A) {
-        pcxPrint("Magic number at file start is wrong (0x%X != 0x0A)", header[0]);
+        std::cout << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" << std::endl;
         delete [] header;
         return -2;
     }
 
     if ((header[1] != 0) && ((header[1] < 2) || (header[1] > 5))) {
         // Valid: 0, 2, 3, 4, 5
-        pcxPrint("Unknown PCX file format version (%d)", header[1]);
+        std::cout << "Unknown PCX file format version (" << header[1] << ")" << std::endl;
         delete [] header;
         return -3;
     }
 
     if ((header[2] != 0) && (header[2] != 1)) {
-        pcxPrint("Unknown PCX file encoding (%d)", header[2]);
+        std::cout << "Unknown PCX file encoding (" << header[2] << ")" << std::endl;
         delete [] header;
         return -4;
     }
 
     if (header[3] != 8) {
-        pcxPrint("Only supporting 8bit (%dbit)", header[3]);
+        std::cout << "Only supporting 8bit (" << header[3] << "bit)" << std::endl;
         delete [] header;
         return -5;
     }
 
     if (header[64] != 0) {
-        pcxPrint("Reserved field is  used (%d != 0)", header[64]);
+        std::cout << "Reserved field is  used (" << header[64] << " != 0)" << std::endl;
         delete [] header;
         return -6;
     }
@@ -152,7 +150,8 @@ int pcxLoad(const char *filename, unsigned char **image,
         unsigned int n = 1; // Run-length-encoding assumes 1
         int c = file.get();
         if (!file) {
-            pcxPrint("Could not read data (%lu%s)", i, (file.eof() ? " EOF" : ""));
+            std::cout << "Could not read data (" << i
+                << (file.eof() ? " EOF" : "") << ")" << std::endl;
             delete [] buffer;
             return -7;
         }
@@ -163,7 +162,8 @@ int pcxLoad(const char *filename, unsigned char **image,
                 n = c & 0x3F;
                 c = file.get();
                 if (!file) {
-                    pcxPrint("Could not read data rle (%lu%s)", i, (file.eof() ? " EOF" : ""));
+                    std::cout << "Could not read data rle (" << i
+                        << (file.eof() ? " EOF" : "") << ")" << std::endl;
                     delete [] buffer;
                     return -8;
                 }
@@ -185,7 +185,7 @@ int pcxLoad(const char *filename, unsigned char **image,
             for (unsigned int i = 0; i < 768; i++) {
                 palette[i] = (unsigned char)file.get();
                 if (!file) {
-                    pcxPrint("Could not read 256 color palette (%d)", i);
+                    std::cout << "Could not read 256 color palette (" << i << ")" << std::endl;
                     delete [] buffer;
                     delete [] palette;
                     return -9;
@@ -208,7 +208,7 @@ int pcxLoad(const char *filename, unsigned char **image,
                     green = palette[(buffer[(y * totalBytes) + x] * 3) + 1];
                     blue = palette[(buffer[(y * totalBytes) + x] * 3) + 2];
                 } else {
-                    pcxPrint("Unsupported number of planes (%d)", nPlanes);
+                    std::cout << "Unsupported number of planes (" << nPlanes << ")" << std::endl;
                     delete [] buffer;
                     delete [] palette;
                     delete [] *image;
@@ -225,7 +225,7 @@ int pcxLoad(const char *filename, unsigned char **image,
                 } else if (nPlanes == 1) {
                     red = green = blue = buffer[(y * totalBytes) + x];
                 } else {
-                    pcxPrint("Unsupported number of planes (%d)", nPlanes);
+                    std::cout << "Unsupported number of planes (" << nPlanes << ")" << std::endl;
                     delete [] buffer;
                     delete [] palette;
                     delete [] *image;

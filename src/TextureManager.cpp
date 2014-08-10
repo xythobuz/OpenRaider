@@ -198,7 +198,7 @@ int TextureManager::loadImage(const char *filename) {
     } else if (stringEndsWith(filename, ".tga") || stringEndsWith(filename, ".TGA")) {
         return loadTGA(filename);
     } else {
-        getConsole().print("No known image file type? (%s)", filename);
+        getConsole() << "No known image file type? (" << filename << ")" << Console::endl;
     }
 
     return -1;
@@ -254,7 +254,7 @@ int TextureManager::loadPNG(const char *filename) {
 
     return id;
 #else
-    getConsole().print("No PNG support available (%s)", filename);
+    getConsole() << "No PNG support available (" << filename << ")" << Console::endl;
     return -1;
 #endif
 }

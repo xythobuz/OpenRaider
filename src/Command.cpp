@@ -30,11 +30,11 @@ int OpenRaider::loadConfig(const char *config) {
     assert(config[0] != '\0');
 
     char *configFile = fullPath(config, 0);
-    getConsole().print("Loading config from \"%s\"...", configFile);
+    getConsole() << "Loading config from \"" << configFile << "\"..." << Console::endl;
 
     std::ifstream file(configFile);
     if (!file) {
-        getConsole().print("Could not open file!");
+        getConsole() << "Could not open file!" << Console::endl;
         return -1;
     }
 
@@ -44,7 +44,7 @@ int OpenRaider::loadConfig(const char *config) {
 
         int error = command(line);
         if (error != 0)
-            getConsole().print("Error Code: %d", error);
+            getConsole() << "Error Code: " << error << Console::endl;
     }
 
     file.close();
@@ -52,12 +52,7 @@ int OpenRaider::loadConfig(const char *config) {
     return 0;
 }
 
-int OpenRaider::command(const char *command) {
-    std::string tmp(command);
-    return this->command(tmp);
-}
-
-int OpenRaider::command(std::string &c) {
+int OpenRaider::command(std::string c) {
     // Remove comment, if any
     size_t comment = c.find_first_of('#');
     if (comment != std::string::npos)
@@ -77,7 +72,7 @@ int OpenRaider::command(std::string &c) {
     } else if (cmd.compare("bind") == 0) {
         std::string a, b;
         if (!(command >> a >> b)) {
-            getConsole().print("Invalid use of bind-command");
+            getConsole() << "Invalid use of bind-command" << Console::endl;
             return -1;
         } else {
             return bind(a.c_str(), b.c_str());
@@ -86,7 +81,7 @@ int OpenRaider::command(std::string &c) {
         exit(0);
     } else if (cmd.compare("load") == 0) {
         if (!mRunning) {
-            getConsole().print("Use load command interactively!");
+            getConsole() << "Use load command interactively!" << Console::endl;
             return -999;
         }
         std::string temp;
@@ -96,37 +91,37 @@ int OpenRaider::command(std::string &c) {
     } else if (cmd.compare("help") == 0) {
         std::string tmp;
         if (!(command >> tmp)) {
-            getConsole().print("Available commands:");
-            getConsole().print("  load      - load a level");
-            getConsole().print("  set       - set a parameter");
-            getConsole().print("  bind      - bind a keyboard/mouse action");
-            getConsole().print("  animate   - [BOOL|n|p] - Animate models");
-            getConsole().print("  move      - [walk|fly|noclip]");
+            getConsole() << "Available commands:" << Console::endl;
+            getConsole() << "  load      - load a level" << Console::endl;
+            getConsole() << "  set       - set a parameter" << Console::endl;
+            getConsole() << "  bind      - bind a keyboard/mouse action" << Console::endl;
+            getConsole() << "  animate   - [BOOL|n|p] - Animate models" << Console::endl;
+            getConsole() << "  move      - [walk|fly|noclip]" << Console::endl;
 /*
-            getConsole().print("  sshot     - make a screenshot");
-            getConsole().print("  sound     - INT - Test play sound");
-            getConsole().print("  mode      - MODE - Render mode");
-            getConsole().print("  light     - BOOL - GL Lights");
-            getConsole().print("  fog       - BOOL - GL Fog");
-            getConsole().print("  viewmodel - INT - Change Laras model");
-            getConsole().print("  pos       - Print position info");
-            getConsole().print("  ralpha    - BOOL - Room Alpha");
-            getConsole().print("  upf       - BOOL - Update Room List Per Frame");
-            getConsole().print("  entmodel  - BOOL");
-            getConsole().print("  ponytail  - BOOL");
-            getConsole().print("  pigtail   - BOOL");
-            getConsole().print("  ponypos   - FLOAT FLOAT FLOAT FLOAT - x y z angle");
+            getConsole() << "  sshot     - make a screenshot" << Console::endl;
+            getConsole() << "  sound     - INT - Test play sound" << Console::endl;
+            getConsole() << "  mode      - MODE - Render mode" << Console::endl;
+            getConsole() << "  light     - BOOL - GL Lights" << Console::endl;
+            getConsole() << "  fog       - BOOL - GL Fog" << Console::endl;
+            getConsole() << "  viewmodel - INT - Change Laras model" << Console::endl;
+            getConsole() << "  pos       - Print position info" << Console::endl;
+            getConsole() << "  ralpha    - BOOL - Room Alpha" << Console::endl;
+            getConsole() << "  upf       - BOOL - Update Room List Per Frame" << Console::endl;
+            getConsole() << "  entmodel  - BOOL" << Console::endl;
+            getConsole() << "  ponytail  - BOOL" << Console::endl;
+            getConsole() << "  pigtail   - BOOL" << Console::endl;
+            getConsole() << "  ponypos   - FLOAT FLOAT FLOAT FLOAT - x y z angle" << Console::endl;
 */
-            getConsole().print("  help      - print command help");
-            getConsole().print("  quit      - exit OpenRaider");
-            getConsole().print("Use help COMMAND to get additional info");
-            getConsole().print("Pass BOOLs as true or false");
+            getConsole() << "  help      - print command help" << Console::endl;
+            getConsole() << "  quit      - exit OpenRaider" << Console::endl;
+            getConsole() << "Use help COMMAND to get additional info" << Console::endl;
+            getConsole() << "Pass BOOLs as true or false" << Console::endl;
         } else {
             return help(tmp);
         }
     } else if (cmd.compare("animate") == 0) {
         if ((!mRunning) || (!getGame().isLoaded())) {
-            getConsole().print("Use animate command interactively!");
+            getConsole() << "Use animate command interactively!" << Console::endl;
             return -999;
         }
         if (command.peek() == 'n') {
@@ -141,7 +136,7 @@ int OpenRaider::command(std::string &c) {
                         e.setAnimation(0);
                 }
             } else {
-                getConsole().print("Animations need to be enabled!");
+                getConsole() << "Animations need to be enabled!" << Console::endl;
             }
         } else if (command.peek() == 'p') {
             // Step all skeletal models to their previous animation
@@ -156,24 +151,24 @@ int OpenRaider::command(std::string &c) {
                             e.setAnimation(m.size() - 1);
                 }
             } else {
-                getConsole().print("Animations need to be enabled!");
+                getConsole() << "Animations need to be enabled!" << Console::endl;
             }
         } else {
             // Enable or disable animating all skeletal models
             bool b = false;
             if (!(command >> b)) {
-                getConsole().print("Pass BOOL to animate command!");
+                getConsole() << "Pass BOOL to animate command!" << Console::endl;
                 return -2;
             }
             if (b)
                 getRender().setFlags(Render::fAnimateAllModels);
             else
                 getRender().clearFlags(Render::fAnimateAllModels);
-            getConsole().print(b ? "Animating all models" : "No longer animating all models");
+            getConsole() << (b ? "Animating all models" : "No longer animating all models") << Console::endl;
         }
     } else if (cmd.compare("move") == 0) {
         if ((!mRunning) || (!getGame().isLoaded())) {
-            getConsole().print("Use move command interactively!");
+            getConsole() << "Use move command interactively!" << Console::endl;
             return -999;
         }
         std::string temp;
@@ -185,10 +180,10 @@ int OpenRaider::command(std::string &c) {
         } else if (temp.compare("noclip") == 0) {
             getGame().getLara().setMoveType(Entity::MoveTypeNoClipping);
         } else {
-            getConsole().print("Invalid use of move command (%s)!", temp.c_str());
+            getConsole() << "Invalid use of move command (" << temp.c_str() << ")!" << Console::endl;
             return -9;
         }
-        getConsole().print("%sing", temp.c_str());
+        getConsole() << temp.c_str()  << "ing" << Console::endl;
 
 /*
     } else if (cmd.compare("mode") == 0) {
@@ -398,7 +393,7 @@ int OpenRaider::command(std::string &c) {
         }
 */
     } else {
-        getConsole().print("Unknown command: %s", cmd.c_str());
+        getConsole() << "Unknown command: " << cmd.c_str() << Console::endl;
         return -50;
     }
 
@@ -407,43 +402,43 @@ int OpenRaider::command(std::string &c) {
 
 int OpenRaider::help(std::string &cmd) {
     if (cmd.compare("set") == 0) {
-        getConsole().print("set-Command Usage:");
-        getConsole().print("  set VAR VAL");
-        getConsole().print("Available Variables:");
-        getConsole().print("  basedir    STRING");
-        getConsole().print("  pakdir     STRING");
-        getConsole().print("  audiodir   STRING");
-        getConsole().print("  datadir    STRING");
-        getConsole().print("  font       STRING");
-        getConsole().print("  size       INT INT");
-        getConsole().print("  fullscreen BOOL");
-        getConsole().print("  audio      BOOL");
-        getConsole().print("  volume     BOOL");
-        getConsole().print("  mouse_x    FLOAT");
-        getConsole().print("  mouse_y    FLOAT");
-        getConsole().print("  fps        BOOL");
-        getConsole().print("Enclose STRINGs with \"\"!");
+        getConsole() << "set-Command Usage:" << Console::endl;
+        getConsole() << "  set VAR VAL" << Console::endl;
+        getConsole() << "Available Variables:" << Console::endl;
+        getConsole() << "  basedir    STRING" << Console::endl;
+        getConsole() << "  pakdir     STRING" << Console::endl;
+        getConsole() << "  audiodir   STRING" << Console::endl;
+        getConsole() << "  datadir    STRING" << Console::endl;
+        getConsole() << "  font       STRING" << Console::endl;
+        getConsole() << "  size       INT INT" << Console::endl;
+        getConsole() << "  fullscreen BOOL" << Console::endl;
+        getConsole() << "  audio      BOOL" << Console::endl;
+        getConsole() << "  volume     BOOL" << Console::endl;
+        getConsole() << "  mouse_x    FLOAT" << Console::endl;
+        getConsole() << "  mouse_y    FLOAT" << Console::endl;
+        getConsole() << "  fps        BOOL" << Console::endl;
+        getConsole() << "Enclose STRINGs with \"\"!" << Console::endl;
     } else if (cmd.compare("bind") == 0) {
-        getConsole().print("bind-Command Usage:");
-        getConsole().print("  bind ACTION KEY");
-        getConsole().print("Available Actions:");
-        getConsole().print("  menu");
-        getConsole().print("  console");
-        getConsole().print("  forward");
-        getConsole().print("  backward");
-        getConsole().print("  left");
-        getConsole().print("  right");
-        getConsole().print("  jump");
-        getConsole().print("  crouch");
-        getConsole().print("  use");
-        getConsole().print("  holster");
-        getConsole().print("  walk");
-        getConsole().print("Key-Format:");
-        getConsole().print("  'a' or '1'    for character/number keys");
-        getConsole().print("  \"leftctrl\"  for symbols and special keys");
+        getConsole() << "bind-Command Usage:" << Console::endl;
+        getConsole() << "  bind ACTION KEY" << Console::endl;
+        getConsole() << "Available Actions:" << Console::endl;
+        getConsole() << "  menu" << Console::endl;
+        getConsole() << "  console" << Console::endl;
+        getConsole() << "  forward" << Console::endl;
+        getConsole() << "  backward" << Console::endl;
+        getConsole() << "  left" << Console::endl;
+        getConsole() << "  right" << Console::endl;
+        getConsole() << "  jump" << Console::endl;
+        getConsole() << "  crouch" << Console::endl;
+        getConsole() << "  use" << Console::endl;
+        getConsole() << "  holster" << Console::endl;
+        getConsole() << "  walk" << Console::endl;
+        getConsole() << "Key-Format:" << Console::endl;
+        getConsole() << "  'a' or '1'    for character/number keys" << Console::endl;
+        getConsole() << "  \"leftctrl\"  for symbols and special keys" << Console::endl;
     } else if (cmd.compare("load") == 0) {
-        getConsole().print("load-Command Usage:");
-        getConsole().print("  load /path/to/level");
+        getConsole() << "load-Command Usage:" << Console::endl;
+        getConsole() << "  load /path/to/level" << Console::endl;
 /*
     } else if (cmd.compare("sshot") == 0) {
         getConsole().print("sshot-Command Usage:");
@@ -471,14 +466,14 @@ int OpenRaider::help(std::string &cmd) {
         getConsole().print("  titlescreen");
 */
     } else if (cmd.compare("animate") == 0) {
-        getConsole().print("animate-Command Usage:");
-        getConsole().print("  animate [n|p|BOOL]");
-        getConsole().print("Where the commands have the following meaning:");
-        getConsole().print("  BOOL to (de)activate animating all models");
-        getConsole().print("  n to step all models to their next animation");
-        getConsole().print("  p to step all models to their previous animation");
+        getConsole() << "animate-Command Usage:" << Console::endl;
+        getConsole() << "  animate [n|p|BOOL]" << Console::endl;
+        getConsole() << "Where the commands have the following meaning:" << Console::endl;
+        getConsole() << "  BOOL to (de)activate animating all models" << Console::endl;
+        getConsole() << "  n to step all models to their next animation" << Console::endl;
+        getConsole() << "  p to step all models to their previous animation" << Console::endl;
     } else {
-        getConsole().print("No help available for %s", cmd.c_str());
+        getConsole() << "No help available for " << cmd.c_str() << Console::endl;
         return -1;
     }
 
@@ -536,49 +531,49 @@ int OpenRaider::set(std::istream &command) {
     if (var.compare("size") == 0) {
         unsigned int w = DEFAULT_WIDTH, h = DEFAULT_HEIGHT;
         if (!(command >> w >> h)) {
-            getConsole().print("set-size-Error: Invalid value(s)");
+            getConsole() << "set-size-Error: Invalid value(s)" << Console::endl;
             return -2;
         }
         getWindow().setSize(w, h);
     } else if (var.compare("fullscreen") == 0) {
         bool fullscreen = false;
         if (!(command >> fullscreen)) {
-            getConsole().print("set-fullscreen-Error: Invalid value");
+            getConsole() << "set-fullscreen-Error: Invalid value" << Console::endl;
             return -3;
         }
         getWindow().setFullscreen(fullscreen);
     } else if (var.compare("audio") == 0) {
         bool audio = false;
         if (!(command >> audio)) {
-            getConsole().print("set-audio-Error: Invalid value");
+            getConsole() << "set-audio-Error: Invalid value" << Console::endl;
             return -4;
         }
         getSound().setEnabled(audio);
     } else if (var.compare("volume") == 0) {
         float vol = 1.0f;
         if (!(command >> vol)) {
-            getConsole().print("set-volume-Error: Invalid value");
+            getConsole() << "set-volume-Error: Invalid value" << Console::endl;
             return -5;
         }
         getSound().setVolume(vol);
     } else if (var.compare("mouse_x") == 0) {
         float sense = 1.0f;
         if (!(command >> sense)) {
-            getConsole().print("set-mouse_x-Error: Invalid value");
+            getConsole() << "set-mouse_x-Error: Invalid value" << Console::endl;
             return -6;
         }
         getCamera().setSensitivityX(OR_DEG_TO_RAD(sense));
     } else if (var.compare("mouse_y") == 0) {
         float sense = 1.0f;
         if (!(command >> sense)) {
-            getConsole().print("set-mouse_y-Error: Invalid value");
+            getConsole() << "set-mouse_y-Error: Invalid value" << Console::endl;
             return -7;
         }
         getCamera().setSensitivityY(OR_DEG_TO_RAD(sense));
     } else if (var.compare("fps") == 0) {
         bool fps = false;
         if (!(command >> fps)) {
-            getConsole().print("set-fps-Error: Invalid value");
+            getConsole() << "set-fps-Error: Invalid value" << Console::endl;
             return -8;
         }
         mFPS = fps;
@@ -600,7 +595,7 @@ int OpenRaider::set(std::istream &command) {
         delete [] tmp;
         delete [] quotes;
     } else {
-        getConsole().print("set-Error: Unknown variable (%s)", var.c_str());
+        getConsole() << "set-Error: Unknown variable (" << var.c_str() << ")" << Console::endl;
         return -1;
     }
 
@@ -615,13 +610,13 @@ int OpenRaider::bind(const char *action, const char *key) {
 
     ActionEvents e = stringToActionEvent(action);
     if (e == ActionEventCount) {
-        getConsole().print("bind-Error: Unknown action (%s --> %s)", key, action);
+        getConsole() << "bind-Error: Unknown action (" << key << " --> " << action << ")" << Console::endl;
         return -1;
     }
 
     KeyboardButton c = stringToKeyboardButton(key);
     if (c == unknownKey) {
-        getConsole().print("bind-Error: Unknown key (%s)", key);
+        getConsole() << "bind-Error: Unknown key (" << key << ")" << Console::endl;
         return -2;
     }
 

@@ -133,7 +133,7 @@ int main(int argc, char *argv[]) {
     }
 
 #ifdef DEBUG
-    getConsole().print("Initializing %s", VERSION);
+    getConsole() << "Initializing " << VERSION << Console::endl;
 #endif
 
     atexit(cleanupHandler);
@@ -146,7 +146,7 @@ int main(int argc, char *argv[]) {
 
     command_free(&cmd);
 
-    getConsole().print("Starting %s", VERSION);
+    getConsole() << "Starting " << VERSION << Console::endl;
     getOpenRaider().run();
 
     return 0;
@@ -176,7 +176,6 @@ ActionEvents stringToActionEvent(const char *action) {
     } else if (strcmp(action, "walk") == 0) {
         return walkAction;
     } else {
-        getConsole().print("Unknown action: \"%s\"", action);
         return ActionEventCount;
     }
 }
@@ -361,7 +360,6 @@ KeyboardButton stringToKeyboardButton(const char *key) {
         delete [] tmp;
     }
 
-    getConsole().print("Unknown key: %s", key);
     return unknownKey;
 }
 

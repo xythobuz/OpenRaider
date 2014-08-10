@@ -28,10 +28,17 @@ public:
     bool isVisible();
 
     template<typename T>
-    Console &operator<<(T t);
-
-    // Deprecated!
-    void print(const char *s, ...) __attribute__((format(printf, 2, 3)));
+    Console &operator<<(const T t) {
+        printBuffer << t;
+        if (printBuffer.str().back() == '\n') {
+            mHistory.push_back(printBuffer.str().substr(0, printBuffer.str().length() - 1));
+#ifdef DEBUG
+            std::cout << printBuffer.str().substr(0, printBuffer.str().length() - 1) << std::endl;
+#endif
+            printBuffer.str("");
+        }
+        return (*this);
+    }
 
     void display();
 

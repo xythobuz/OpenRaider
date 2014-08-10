@@ -35,8 +35,7 @@ public:
      */
     int loadConfig(const char *config);
 
-    int command(std::string &command);
-    int command(const char *command);
+    int command(std::string command);
 
     void run();
     void frame();
@@ -70,3 +69,4 @@ private:
 OpenRaider &getOpenRaider();
 
 #endif
+

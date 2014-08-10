@@ -80,7 +80,7 @@ int Game::loadLevel(const char *level) {
 
     mName = bufferString("%s", level);
 
-    getConsole().print("Loading %s", mName);
+    getConsole() << "Loading " << mName << Console::endl;
     int error = mTombRaider.Load(mName);
     if (error != 0)
         return error;
@@ -100,7 +100,7 @@ int Game::loadLevel(const char *level) {
         tmp[dir + 8] = '\0';
         error = mTombRaider.loadSFX(tmp);
         if (error != 0)
-            getConsole().print("Could not load %s", tmp);
+            getConsole() << "Could not load " << tmp << Console::endl;
         delete [] tmp;
     }
 
@@ -115,7 +115,7 @@ int Game::loadLevel(const char *level) {
     mTombRaider.reset();
 
     if (mLara == -1) {
-        getConsole().print("Can't find Lara entity in level pak!");
+        getConsole() << "Can't find Lara entity in level pak!" << Console::endl;
         destroy();
         return -1;
     } else {
@@ -190,21 +190,21 @@ void Game::processSprites() {
         }
     }
 
-    getConsole().print("Found %d sprites.", mTombRaider.NumSpriteSequences());
+    getConsole() << "Found " << mTombRaider.NumSpriteSequences() << " sprites." << Console::endl;
 }
 
 void Game::processRooms() {
     for (int index = 0; index < mTombRaider.NumRooms(); index++)
         getWorld().addRoom(*new Room(mTombRaider, index));
 
-    getConsole().print("Found %d rooms.", mTombRaider.NumRooms());
+    getConsole() << "Found " << mTombRaider.NumRooms() << " rooms." << Console::endl;
 }
 
 void Game::processModels() {
     for (int index = 0; index < mTombRaider.getMeshCount(); index++)
         getWorld().addStaticMesh(*new StaticMesh(mTombRaider, index));
 
-    getConsole().print("Found %d meshes.", mTombRaider.getMeshCount());
+    getConsole() << "Found " << mTombRaider.getMeshCount() << " meshes." << Console::endl;
 }
 
 void Game::processPakSounds()
@@ -246,7 +246,7 @@ void Game::processPakSounds()
         //getSound().SourceAt(id, pos);
     }
 
-    getConsole().print("Found %u sound samples.", mTombRaider.getSoundSamplesCount());
+    getConsole() << "Found " << mTombRaider.getSoundSamplesCount() << " sound samples." << Console::endl;
 }
 
 void Game::processTextures()
@@ -290,7 +290,7 @@ void Game::processTextures()
 
     mTextureOffset = (mTextureStart - 1) + mTombRaider.NumTextures();
 
-    getConsole().print("Found %d textures.", mTombRaider.NumTextures());
+    getConsole() << "Found " << mTombRaider.NumTextures() << " textures." << Console::endl;
 }
 
 void Game::processMoveables()
@@ -375,7 +375,7 @@ void Game::processMoveables()
     }
     */
 
-    getConsole().print("Found %d moveables.", mTombRaider.NumMoveables() + statCount);
+    getConsole() << "Found " << mTombRaider.NumMoveables() + statCount << " moveables." << Console::endl;
 }
 
 // index moveable, i item, sometimes both moveable

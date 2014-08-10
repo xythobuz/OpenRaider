@@ -13,6 +13,7 @@
     * Console is now using std::string instead of char *
     * Added utf8-cpp dependency to allow Console to delete multi-byte chars
     * Added stream-style printing to Console
+    * Using Console like Stream everywhere, removed old print method
 
     [ 20140809 ]
     * Script Unit Test brings it’s own scripts to test

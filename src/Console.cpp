@@ -31,34 +31,6 @@ bool Console::isVisible() {
     return mVisible;
 }
 
-template<typename T>
-Console &Console::operator<<(T t) {
-    printBuffer << t;
-
-    if (printBuffer.str().back() == '\n') {
-        mHistory.push_back(printBuffer.str().substr(0, printBuffer.str().length() - 1));
-#ifdef DEBUG
-        std::cout << printBuffer.str().substr(0, printBuffer.str().length() - 1) << std::endl;
-#endif
-        printBuffer.str("");
-    }
-
-    return (*this);
-}
-
-// Deprecated!
-void Console::print(const char *s, ...) {
-    va_list args;
-    va_start(args, s);
-    char *tmp = bufferString(s, args);
-    va_end(args);
-
-    if (tmp != nullptr)
-        (*this) << tmp << endl;
-
-    delete [] tmp;
-}
-
 #define LINE_GEOMETRY(window) \
     unsigned int firstLine = 35; \
     unsigned int lastLine = (window.getHeight() / 2) - 55; \
@@ -120,14 +92,14 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
     if (pressed && (key == enterKey)) {
         // Execute entered command
         if (mInputBuffer.length() > 0) {
-            print("> %s", mInputBuffer.c_str());
+            (*this) << "> " << mInputBuffer.c_str() << endl;
             mCommandHistory.push_back(mInputBuffer.c_str());
             int error = getOpenRaider().command(mInputBuffer);
             if (error != 0) {
-                print("Error Code: %d", error);
+                (*this) << "Error Code: " << error << endl;
             }
         } else {
-            print("> ");
+            (*this) << "> " << endl;
         }
 
         // Clear partial and input buffer

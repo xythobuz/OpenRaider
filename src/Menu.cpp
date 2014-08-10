@@ -57,8 +57,8 @@ int Menu::initialize(Folder *folder) {
         // Check maps for validity
         int error = TombRaider::checkMime(f.getPath().c_str());
         if (error != 0) {
-            getConsole().print("Error: pak file '%s' %s",
-                    f.getName().c_str(), (error == -1) ? "not found" : "invalid");
+            getConsole() << "Error: pak file '" << f.getName().c_str()
+                << "' " << ((error == -1) ? "not found" : "invalid") << Console::endl;
             return true; // delete file from list
         }
 

@@ -24,9 +24,7 @@ Room::Room(TombRaider &tr, unsigned int index) {
     Matrix transform;
 
     if (!tr.isRoomValid(index)) {
-        getConsole().print("WARNING: Handling invalid vertex array in room");
-        //printf("x");
-        //fflush(stdout);
+        getConsole() << "WARNING: Handling invalid vertex array in room" << Console::endl;
         return;
     }
 
@@ -170,8 +168,8 @@ Room::Room(TombRaider &tr, unsigned int index) {
 
         if (texture > (int)TextureLimit)
         {
-            getConsole().print("Handling bad room[%i].tris[%i].texture = %i",
-                    index, t, texture);
+            getConsole() << "Handling bad room[" << index << "].tris["
+                << t << "].texture = " << texture << Console::endl;
             texture = TextureLimit - 1;
         }
 
@@ -204,8 +202,8 @@ Room::Room(TombRaider &tr, unsigned int index) {
 
         if (texture > (int)TextureLimit)
         {
-            getConsole().print("Handling bad room[%i].quad[%i].texture = %i",
-                    index, r, texture);
+            getConsole() << "Handling bad room[" << index << "].quad["
+                << r << "].texture = " << texture << Console::endl;
             texture = TextureLimit - 1;
         }
 

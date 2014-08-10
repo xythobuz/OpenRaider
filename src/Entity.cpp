@@ -117,7 +117,7 @@ void Entity::move(char movement) {
                 x, y, z);
 
         if (roomNew > -1)
-            getConsole().print("Crossing from room %li to %li", room, roomNew);
+            getConsole() << "Crossing from room " << room << " to " << roomNew << Console::endl;
         else
             //! \fixme mRooms, sectors, ... are now std::vector, but often upper bound checks are missing
             return;
@@ -213,10 +213,12 @@ void Entity::move(char movement) {
 }
 
 void Entity::print() {
-    getConsole().print("Entity %d:", objectId);
-    getConsole().print("  Room %li (0x%X)", room, getWorld().getRoom(room).getFlags());
-    getConsole().print("  %.1fx %.1fy %.1fz", pos[0], pos[1], pos[2]);
-    getConsole().print("  %.1f Yaw", OR_RAD_TO_DEG(angles[1]));
+    getConsole() << "Entity " << objectId << ":" << Console::endl
+        << "  Room " << room << " (" << getWorld().getRoom(room).getFlags()
+        << ")" << Console::endl
+        << "  " << pos[0] << "x " << pos[1] << "y " << pos[2] << "z"
+        << Console::endl
+        << "  " << OR_RAD_TO_DEG(angles[1]) << " Yaw" << Console::endl;
 }
 
 SkeletalModel &Entity::getModel() {
