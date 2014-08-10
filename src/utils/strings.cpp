@@ -80,40 +80,31 @@ bool stringEndsWith(const char *str, const char *suffix) {
     return strncmp(str + lenstr - lensuffix, suffix, lensuffix) == 0;
 }
 
-char *bufferString(const char *string, va_list args) {
+char *bufferString(const char *string, ...) {
+    va_list args, tmp;
     int sz = 60;
     int n;
     char *text;
-    va_list tmp;
 
     assert(string != NULL);
     assert(string[0] != '\0');
 
     text = new char[sz];
 
-    va_copy(tmp, args);
-    n = vsnprintf(text, sz, string, tmp);
-    va_end(tmp);
+    va_start(args, string);
+    n = vsnprintf(text, sz, string, args);
 
     if (n < 0) {
         delete [] text;
+        va_end(args);
         return NULL; // encoding error
     } else if (n >= sz) {
         sz = n + 1; // buffer too small
         delete [] text;
         text = new char[sz + 1];
-        va_copy(tmp, args);
-        vsnprintf(text, sz, string, tmp);
-        va_end(tmp);
+        vsnprintf(text, sz, string, args);
     }
 
-    return text;
-}
-
-char *bufferString(const char *string, ...) {
-    va_list args;
-    va_start(args, string);
-    char *text = bufferString(string, args);
     va_end(args);
     return text;
 }

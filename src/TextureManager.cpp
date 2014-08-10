@@ -46,14 +46,14 @@ int TextureManager::initialize() {
     delete [] image;
 
     //! \fixme Temporary
-    char *filename = bufferString("%s/tr2/TITLE.PCX", getOpenRaider().mPakDir);
-    if (loadPCX(filename) < 0) {
-        delete [] filename;
+    std::string filename(getOpenRaider().mPakDir);
+    filename += "/tr2/TITLE.PCX";
+    if (loadPCX(filename.c_str()) < 0) {
         //! \fixme Error Checking. Return negative error code, check in calling place too
-        filename = bufferString("%s/%s", getOpenRaider().mDataDir, "splash.tga");
-        loadTGA(filename);
+        filename = getOpenRaider().mDataDir;
+        filename += "/splash.tga";
+        loadTGA(filename.c_str());
     }
-    delete [] filename;
 
     return (mTextureIds.size() == 0) ? -1 : 0;
 }

@@ -120,14 +120,13 @@ void Menu::play() {
             //! \todo Display something if an error occurs
         }
     } else {
-        char *tmp = bufferString("load %s",
-                mapFolder->getFile((unsigned long)mCursor - 1 - mapFolder->folderCount()).getPath().c_str());
-        if (getOpenRaider().command(tmp) == 0) {
+        std::string tmp = "load ";
+        tmp += mapFolder->getFile((unsigned long)mCursor - 1 - mapFolder->folderCount()).getPath();
+        if (getOpenRaider().command(tmp.c_str()) == 0) {
             setVisible(false);
         } else {
             //! \todo Display something if an error occurs
         }
-        delete [] tmp;
     }
 }
 

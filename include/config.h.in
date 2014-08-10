@@ -9,6 +9,7 @@
 #define _CONFIG_H_
 
 extern const char *VERSION;
+extern const char *VERSION_SHORT;
 extern const char *BUILD_HOST;
 
 #cmakedefine USING_AL

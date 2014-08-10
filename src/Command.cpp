@@ -97,8 +97,8 @@ int OpenRaider::command(std::string c) {
             getConsole() << "  bind      - bind a keyboard/mouse action" << Console::endl;
             getConsole() << "  animate   - [BOOL|n|p] - Animate models" << Console::endl;
             getConsole() << "  move      - [walk|fly|noclip]" << Console::endl;
-/*
             getConsole() << "  sshot     - make a screenshot" << Console::endl;
+/*
             getConsole() << "  sound     - INT - Test play sound" << Console::endl;
             getConsole() << "  mode      - MODE - Render mode" << Console::endl;
             getConsole() << "  light     - BOOL - GL Lights" << Console::endl;
@@ -184,7 +184,35 @@ int OpenRaider::command(std::string c) {
             return -9;
         }
         getConsole() << temp.c_str()  << "ing" << Console::endl;
-
+    } else if (cmd.compare("sshot") == 0) {
+        if (!mRunning) {
+            getConsole() << "Use sshot command interactively!" << Console::endl;
+            return -999;
+        }
+        std::string filename(mBaseDir);
+        filename += "/sshots/";
+        filename += VERSION_SHORT;
+        bool console = false, menu = false;
+        std::string temp;
+        command >> temp;
+        if (temp.compare("console") == 0)
+            console = true;
+        if (temp.compare("menu") == 0)
+            menu = true;
+        if (!console) {
+            getConsole().setVisible(false);
+            if (menu)
+                getMenu().setVisible(true);
+            frame();
+            frame(); // Double buffered
+        }
+        getRender().screenShot(filename.c_str());
+        if (!console) {
+            getConsole().setVisible(true);
+            if (menu)
+                getMenu().setVisible(false);
+        }
+        getConsole() << "Screenshot stored..." << Console::endl;
 /*
     } else if (cmd.compare("mode") == 0) {
         std::string mode;
@@ -308,29 +336,6 @@ int OpenRaider::command(std::string c) {
             getConsole().print("Invalid use of ponytail-command!");
             return -45;
         }
-    } else if (cmd.compare("sshot") == 0) {
-        if (!mRunning) {
-            getConsole().print("Use sshot command interactively!");
-            return -999;
-        }
-        char *filename = bufferString("%s/sshots/%s", mBaseDir, VERSION);
-        bool console = (args->size() > 0) && (strcmp(args->at(0), "console") == 0);
-        bool menu = (args->size() > 0) && (strcmp(args->at(0), "menu") == 0);
-        if (!console) {
-            getConsole().setVisible(false);
-            if (menu)
-                getMenu().setVisible(true);
-            frame();
-            frame(); // Double buffered
-        }
-        getRender().screenShot(filename);
-        if (!console) {
-            getConsole().setVisible(true);
-            if (menu)
-                getMenu().setVisible(false);
-        }
-        getConsole().print("Screenshot stored...");
-        delete filename;
     } else if (cmd.compare("sound") == 0) {
         if ((!mRunning) || (!getGame().isLoaded())) {
             getConsole().print("Use sound command interactively!");
@@ -439,11 +444,11 @@ int OpenRaider::help(std::string &cmd) {
     } else if (cmd.compare("load") == 0) {
         getConsole() << "load-Command Usage:" << Console::endl;
         getConsole() << "  load /path/to/level" << Console::endl;
-/*
     } else if (cmd.compare("sshot") == 0) {
-        getConsole().print("sshot-Command Usage:");
-        getConsole().print("  sshot [console|menu]");
-        getConsole().print("Add console/menu to capture them too");
+        getConsole() << "sshot-Command Usage:" << Console::endl;
+        getConsole() << "  sshot [console|menu]" << Console::endl;
+        getConsole() << "Add console/menu to capture them too" << Console::endl;
+/*
     } else if (cmd.compare("sound") == 0) {
         getConsole().print("sound-Command Usage:");
         getConsole().print("  sound INT");

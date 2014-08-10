@@ -53,7 +53,7 @@ public:
      * \brief Makes a screenshot, writes to disk
      * \param filenameBase basename of file to be written
      */
-    void screenShot(char *filenameBase);
+    void screenShot(const char *filenameBase);
 
     /*!
      * \brief Gets current rendering mode

@@ -8,6 +8,7 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#include <string>
 #include <vector>
 
 #include "Entity.h"
@@ -50,7 +51,7 @@ private:
     void processModels();
     void processRooms();
 
-    char *mName;
+    std::string levelName;
     bool mLoaded;
 
     TombRaider mTombRaider;

@@ -134,7 +134,7 @@ public:
      * \returns 0 on success, < 0 on error
      * \sa TombRaider::loadTR5()
      */
-    int Load(char *filename);
+    int Load(const char *filename);
 
     /*!
      * \brief Makes a clamped 0.0 to 1.0 texel from coord pair
@@ -586,7 +586,7 @@ public:
      * \param filename pak to load
      * \returns < 0 on error
      */
-    int loadSFX(char *filename);
+    int loadSFX(const char *filename);
 
     void reset();
 

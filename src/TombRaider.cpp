@@ -400,7 +400,7 @@ int TombRaider::checkMime(const char *filename) {
 }
 
 
-int TombRaider::Load(char *filename)
+int TombRaider::Load(const char *filename)
 {
     FILE *f;
     int i, j, l;
@@ -4046,7 +4046,7 @@ bool TombRaider::isRoomValid(int index)
 // Public Mutators
 ////////////////////////////////////////////////////////////
 
-int TombRaider::loadSFX(char *filename)
+int TombRaider::loadSFX(const char *filename)
 {
     FILE *f = fopen(filename, "rb");
     long bytes = 0;

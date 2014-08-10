@@ -30,7 +30,6 @@ std::map<int, int> gMapTex2Bump;
 
 Game::Game() {
     mLoaded = false;
-    mName = NULL;
     mLara = -1;
     mTextureStart = 0;
     mTextureOffset = 0;
@@ -58,9 +57,6 @@ int Game::initialize() {
 }
 
 void Game::destroy() {
-    delete [] mName;
-    mName = NULL;
-
     mLoaded = false;
     mLara = -1;
     getRender().setMode(Render::modeDisabled);
@@ -78,30 +74,22 @@ int Game::loadLevel(const char *level) {
     if (mLoaded)
         destroy();
 
-    mName = bufferString("%s", level);
+    levelName = level;
 
-    getConsole() << "Loading " << mName << Console::endl;
-    int error = mTombRaider.Load(mName);
+    getConsole() << "Loading " << levelName << Console::endl;
+    int error = mTombRaider.Load(levelName.c_str());
     if (error != 0)
         return error;
 
     // If required, load the external sound effect file MAIN.SFX into TombRaider
     if ((mTombRaider.getEngine() == TR_VERSION_2) || (mTombRaider.getEngine() == TR_VERSION_3)) {
-        char *tmp = bufferString("%sMAIN.SFX", level); // Ensure theres enough space
-        size_t length = strlen(tmp);
-        size_t dir = 0;
-        for (long i = length - 1; i >= 0; i--) {
-            if ((tmp[i] == '/') || (tmp[i] == '\\')) {
-                dir = i + 1; // Find where the filename (bla.tr2) starts
-                break;
-            }
-        }
-        strcpy(tmp + dir, "MAIN.SFX"); // overwrite the name itself with MAIN.SFX
-        tmp[dir + 8] = '\0';
-        error = mTombRaider.loadSFX(tmp);
+        std::string tmp(levelName);
+        size_t pos = tmp.rfind('/');
+        tmp.erase(pos + 1);
+        tmp += "MAIN.SFX";
+        error = mTombRaider.loadSFX(tmp.c_str());
         if (error != 0)
             getConsole() << "Could not load " << tmp << Console::endl;
-        delete [] tmp;
     }
 
     // Process data
@@ -115,6 +103,7 @@ int Game::loadLevel(const char *level) {
     mTombRaider.reset();
 
     if (mLara == -1) {
+        //! \todo Cutscene support
         getConsole() << "Can't find Lara entity in level pak!" << Console::endl;
         destroy();
         return -1;

@@ -7,6 +7,7 @@
  */
 
 #include <algorithm>
+#include <sstream>
 
 #include <stdlib.h>
 #include <math.h>
@@ -41,35 +42,30 @@ void Render::ClearWorld() {
 }
 
 
-void Render::screenShot(char *filenameBase)
+void Render::screenShot(const char *filenameBase)
 {
     int sz = getWindow().getWidth() * getWindow().getHeight();
     unsigned char *image = new unsigned char[sz * 3];
-    char *filename = NULL;
     static int count = 0;
     bool done = false;
 
-    assert(filenameBase != NULL);
+    assert(filenameBase != nullptr);
 
     // Don't overwrite files
+    std::ostringstream filename;
     while (!done) {
-        filename = bufferString("%s-%04i.tga", filenameBase, count++);
+        filename << filenameBase << "-" << count++ << ".tga";
 
-        FILE *f = fopen(filename, "rb");
-
-        if (f)
+        FILE *f = fopen(filename.str().c_str(), "rb");
+        if (f) {
             fclose(f);
-        else
+        } else {
             done = true;
+        }
     }
 
-    // Capture frame buffer
     glReadPixels(0, 0, getWindow().getWidth(), getWindow().getHeight(), GL_BGR_EXT, GL_UNSIGNED_BYTE, image);
-
-    tgaSave(filename, image, getWindow().getWidth(), getWindow().getHeight(), 0);
-    printf("Took screenshot '%s'.\n", filename);
-
-    delete [] filename;
+    tgaSave(filename.str().c_str(), image, getWindow().getWidth(), getWindow().getHeight(), 0);
     delete [] image;
 }
 

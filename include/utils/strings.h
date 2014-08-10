@@ -28,14 +28,6 @@ bool stringEndsWith(const char *str, const char *suffix);
 /*!
  * \brief Generates a buffered string for the printf call
  * \param string format string like for printf
- * \param args arguments matching format string
- * \returns string in a buffer
- */
-char *bufferString(const char *string, va_list args) __attribute__((format(printf, 1, 0)));
-
-/*!
- * \brief Generates a buffered string for the printf call
- * \param string format string like for printf
  * \returns string in a buffer
  */
 char *bufferString(const char *string, ...) __attribute__((format(printf, 1, 2)));
