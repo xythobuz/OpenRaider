@@ -31,18 +31,30 @@ bool Console::isVisible() {
     return mVisible;
 }
 
+template<typename T>
+Console &Console::operator<<(T t) {
+    printBuffer << t;
+
+    if (printBuffer.str().back() == '\n') {
+        mHistory.push_back(printBuffer.str().substr(0, printBuffer.str().length() - 1));
+#ifdef DEBUG
+        std::cout << printBuffer.str().substr(0, printBuffer.str().length() - 1) << std::endl;
+#endif
+        printBuffer.str("");
+    }
+
+    return (*this);
+}
+
+// Deprecated!
 void Console::print(const char *s, ...) {
     va_list args;
     va_start(args, s);
     char *tmp = bufferString(s, args);
     va_end(args);
 
-    if (tmp != NULL) {
-        mHistory.push_back(std::string(tmp));
-#ifdef DEBUG
-        std::cout << tmp << std::endl;
-#endif
-    }
+    if (tmp != nullptr)
+        (*this) << tmp << endl;
 
     delete [] tmp;
 }
@@ -80,6 +92,7 @@ void Console::display() {
         mLineOffset = 0;
     }
 
+    // Draw status line
     getFont().drawText(10, 10, 0.70f, BLUE,
             "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
 
@@ -93,6 +106,7 @@ void Console::display() {
     } else if (lineCount < mHistory.size()) {
         historyOffset = mHistory.size() - lineCount;
     }
+
     for (int i = 0; i < end; i++) {
         getFont().drawText(10, (unsigned int)((i + drawOffset) * lineSteps) + firstLine,
                 0.75f, BLUE, "%s", mHistory[i + historyOffset - mLineOffset].c_str());
@@ -122,6 +136,7 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
         mHistoryPointer = 0;
     }
 
+    // Delete last character
     if (pressed && (key == backspaceKey)) {
         if ((mPartialInput.length() == 0)
                 && (mInputBuffer.length() > 0)) {

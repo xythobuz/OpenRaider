@@ -12,6 +12,7 @@
     * Press dot key in Menu to see hidden files and folders
     * Console is now using std::string instead of char *
     * Added utf8-cpp dependency to allow Console to delete multi-byte chars
+    * Added stream-style printing to Console
 
     [ 20140809 ]
     * Script Unit Test brings it’s own scripts to test

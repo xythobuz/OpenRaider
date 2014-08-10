@@ -9,6 +9,7 @@
 #define _CONSOLE_H_
 
 #include <string>
+#include <sstream>
 #include <vector>
 
 /*!
@@ -26,6 +27,10 @@ public:
 
     bool isVisible();
 
+    template<typename T>
+    Console &operator<<(T t);
+
+    // Deprecated!
     void print(const char *s, ...) __attribute__((format(printf, 2, 3)));
 
     void display();
@@ -35,6 +40,8 @@ public:
     void handleText(char *text, bool notFinished);
 
     void handleMouseScroll(int xrel, int yrel);
+
+    const static char endl = '\n';
 
 private:
 
@@ -50,6 +57,8 @@ private:
     std::string mUnfinishedInput;
 
     unsigned int mLineOffset;
+
+    std::ostringstream printBuffer;
 };
 
 Console &getConsole();
