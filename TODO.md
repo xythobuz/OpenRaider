@@ -21,9 +21,7 @@
 
 ## Future Features
 
-* File system utility layer, so mixed-case on case-sensitive filesystems is working transparently
 * Add ability to play the FMVs. Format? VLC can play them!
 * Cut TGA image reader, currently only used for menu background?!
     * Need useful, always available image writer alternative for screenshots then
-* When cutscene rendering is working, use TR4/5 style menu?
 

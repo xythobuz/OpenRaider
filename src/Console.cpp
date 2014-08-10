@@ -6,48 +6,20 @@
  */
 
 #include <iostream>
-#include <cstring>
 
 #include "global.h"
 #include "Font.h"
 #include "OpenRaider.h"
+#include "utf8-cpp/utf8.h"
 #include "utils/strings.h"
 #include "utils/time.h"
 #include "Window.h"
 #include "Console.h"
 
-#define INPUT_BUFFER_SIZE 255
-
 Console::Console() {
     mVisible = false;
-    mInputBuffer = new char[INPUT_BUFFER_SIZE + 1];
-    mInputBuffer[INPUT_BUFFER_SIZE] = '\0';
-    mInputBufferPointer = 0;
-    mPartialInput = NULL;
     mHistoryPointer = 0;
-    mUnfinishedInput = NULL;
     mLineOffset = 0;
-}
-
-Console::~Console() {
-    delete [] mInputBuffer;
-    mInputBuffer = NULL;
-
-    delete [] mPartialInput;
-    mPartialInput = NULL;
-
-    delete [] mUnfinishedInput;
-    mUnfinishedInput = NULL;
-
-    while (mHistory.size() > 0) {
-        delete [] mHistory.back();
-        mHistory.pop_back();
-    }
-
-    while (mCommandHistory.size() > 0) {
-        delete [] mCommandHistory.back();
-        mCommandHistory.pop_back();
-    }
 }
 
 void Console::setVisible(bool visible) {
@@ -66,78 +38,76 @@ void Console::print(const char *s, ...) {
     va_end(args);
 
     if (tmp != NULL) {
-        mHistory.push_back(tmp);
+        mHistory.push_back(std::string(tmp));
 #ifdef DEBUG
         std::cout << tmp << std::endl;
 #endif
     }
+
+    delete [] tmp;
 }
 
-#define LINE_GEOMETRY(window) unsigned int firstLine = 35; \
-        unsigned int lastLine = (window.getHeight() / 2) - 55; \
-        unsigned int inputLine = (window.getHeight() / 2) - 30; \
-        unsigned int lineSteps = 20; \
-        unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
-        while (((lineCount * lineSteps) + firstLine) < inputLine) { \
-            lineSteps++; \
-            lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
-        }
+#define LINE_GEOMETRY(window) \
+    unsigned int firstLine = 35; \
+    unsigned int lastLine = (window.getHeight() / 2) - 55; \
+    unsigned int inputLine = (window.getHeight() / 2) - 30; \
+    unsigned int lineSteps = 20; \
+    unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
+    while (((lineCount * lineSteps) + firstLine) < inputLine) { \
+        lineSteps++; \
+        lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
+    }
 
 void Console::display() {
-    if (mVisible) {
-        // Calculate line drawing geometry
-        // Depends on window height, so recalculate every time
-        LINE_GEOMETRY(getWindow());
+    if (!mVisible)
+        return;
 
-        // Draw half-transparent *overlay*
-        glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
-        glDisable(GL_TEXTURE_2D);
-        glRecti(0, 0, getWindow().getWidth(), getWindow().getHeight() / 2);
-        glEnable(GL_TEXTURE_2D);
+    // Calculate line drawing geometry
+    // Depends on window height, so recalculate every time
+    LINE_GEOMETRY(getWindow());
 
-        unsigned long scrollIndicator;
-        if (mHistory.size() > lineCount) {
-            scrollIndicator = (mHistory.size() - lineCount - mLineOffset) * 100 / (mHistory.size() - lineCount);
-        } else {
-            scrollIndicator = 100;
-            mLineOffset = 0;
-        }
+    // Draw half-transparent *overlay*
+    glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
+    glDisable(GL_TEXTURE_2D);
+    glRecti(0, 0, getWindow().getWidth(), getWindow().getHeight() / 2);
+    glEnable(GL_TEXTURE_2D);
 
-        getFont().drawText(10, 10, 0.70f, BLUE,
-                "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
-
-        // Draw output log
-        long end = lineCount;
-        long drawOffset = 0;
-        long historyOffset = 0;
-        if (mHistory.size() < lineCount) {
-            end = mHistory.size();
-            drawOffset = lineCount - mHistory.size();
-        } else if (lineCount < mHistory.size()) {
-            historyOffset = mHistory.size() - lineCount;
-        }
-        for (int i = 0; i < end; i++) {
-            getFont().drawText(10, (unsigned int)((i + drawOffset) * lineSteps) + firstLine,
-                    0.75f, BLUE, "%s", mHistory[i + historyOffset - mLineOffset]);
-        }
-
-        // Draw current input
-        if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
-            getFont().drawText(10, inputLine, 0.75f, BLUE, "> %s", mInputBuffer);
-        } else {
-            getFont().drawText(10, inputLine, 0.75f, BLUE, ">");
-        }
-
-        //! \todo display the current mPartialInput. The UTF-8 segfaults SDL-TTF, somehow?
+    unsigned long scrollIndicator;
+    if (mHistory.size() > lineCount) {
+        scrollIndicator = (mHistory.size() - lineCount - mLineOffset) * 100 / (mHistory.size() - lineCount);
+    } else {
+        scrollIndicator = 100;
+        mLineOffset = 0;
     }
+
+    getFont().drawText(10, 10, 0.70f, BLUE,
+            "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
+
+    // Draw output log
+    long end = lineCount;
+    long drawOffset = 0;
+    long historyOffset = 0;
+    if (mHistory.size() < lineCount) {
+        end = mHistory.size();
+        drawOffset = lineCount - mHistory.size();
+    } else if (lineCount < mHistory.size()) {
+        historyOffset = mHistory.size() - lineCount;
+    }
+    for (int i = 0; i < end; i++) {
+        getFont().drawText(10, (unsigned int)((i + drawOffset) * lineSteps) + firstLine,
+                0.75f, BLUE, "%s", mHistory[i + historyOffset - mLineOffset].c_str());
+    }
+
+    // Draw current input
+    getFont().drawText(10, inputLine, 0.75f, BLUE, "> %s", (mInputBuffer + mPartialInput).c_str());
 }
 
 void Console::handleKeyboard(KeyboardButton key, bool pressed) {
     if (pressed && (key == enterKey)) {
         // Execute entered command
-        if ((mInputBufferPointer > 0) && (mInputBuffer[0] != '\0')) {
-            print("> %s", mInputBuffer);
-            mCommandHistory.push_back(bufferString("%s", mInputBuffer));
+        if (mInputBuffer.length() > 0) {
+            print("> %s", mInputBuffer.c_str());
+            mCommandHistory.push_back(mInputBuffer.c_str());
             int error = getOpenRaider().command(mInputBuffer);
             if (error != 0) {
                 print("Error Code: %d", error);
@@ -147,21 +117,16 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
         }
 
         // Clear partial and input buffer
-        mInputBufferPointer = 0;
-        mInputBuffer[0] = '\0';
-        if (mPartialInput != NULL) {
-            delete [] mPartialInput;
-            mPartialInput = NULL;
-        }
-
+        mInputBuffer = "";
+        mPartialInput = "";
         mHistoryPointer = 0;
     }
 
-    //! \fixme only deleting the last byte is not valid for non-ASCII UTF-8 strings
     if (pressed && (key == backspaceKey)) {
-        if (mInputBufferPointer > 0) {
-            mInputBufferPointer--;
-            mInputBuffer[mInputBufferPointer] = '\0';
+        if ((mPartialInput.length() == 0)
+                && (mInputBuffer.length() > 0)) {
+            utf8::iterator<std::string::iterator> it(mInputBuffer.end(), mInputBuffer.begin(), mInputBuffer.end());
+            mInputBuffer.erase((--it).base(), mInputBuffer.end());
         }
     }
 
@@ -178,7 +143,7 @@ void Console::moveInHistory(bool up) {
         if (mHistoryPointer < mCommandHistory.size()) {
             mHistoryPointer++;
             if (mHistoryPointer == 1) {
-                mUnfinishedInput = bufferString("%s", mInputBuffer);
+                mUnfinishedInput = mInputBuffer;
             }
         } else {
             return;
@@ -191,17 +156,13 @@ void Console::moveInHistory(bool up) {
     }
 
     if ((mHistoryPointer > 0) && (mHistoryPointer <= mCommandHistory.size())) {
-        strcpy(mInputBuffer, mCommandHistory[mCommandHistory.size() - mHistoryPointer]);
-        mInputBufferPointer = strlen(mInputBuffer);
+        mInputBuffer = mCommandHistory[mCommandHistory.size() - mHistoryPointer];
     } else {
-        if (mUnfinishedInput != NULL) {
-            strcpy(mInputBuffer, mUnfinishedInput);
-            mInputBufferPointer = strlen(mInputBuffer);
-            delete [] mUnfinishedInput;
-            mUnfinishedInput = NULL;
+        if (mUnfinishedInput.length() > 0) {
+            mInputBuffer = mUnfinishedInput;
+            mUnfinishedInput = "";
         } else {
-            mInputBuffer[0] = '\0';
-            mInputBufferPointer = 0;
+            mInputBuffer = "";
         }
     }
 }
@@ -213,28 +174,17 @@ void Console::handleText(char *text, bool notFinished) {
     if (!notFinished) {
         // Finished entering character
         // delete previous partial character, if present
-        if (mPartialInput != NULL) {
-            delete [] mPartialInput;
-        }
+        mPartialInput = "";
 
         //! \fixme Temporary hack filtering the console activation key
         if (text[0] == '`')
             return;
 
         // Append new input to buffer
-        size_t length = strlen(text);
-        if (length > 0) {
-            if (((INPUT_BUFFER_SIZE - mInputBufferPointer) < length)) {
-                print("Console input buffer overflowed! (> %d)", INPUT_BUFFER_SIZE);
-                return;
-            }
-            strcpy((mInputBuffer + mInputBufferPointer), text);
-            mInputBufferPointer += length;
-            mInputBuffer[mInputBufferPointer] = '\0';
-        }
+        mInputBuffer += text;
     } else {
         // Partial character received
-        mPartialInput = bufferString("%s", text);
+        mPartialInput = text;
     }
 }
 

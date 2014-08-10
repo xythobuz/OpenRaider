@@ -10,6 +10,8 @@
     * Added API to Font to draw strings centered
     * Folder sorts its items alphabetically
     * Press dot key in Menu to see hidden files and folders
+    * Console is now using std::string instead of char *
+    * Added utf8-cpp dependency to allow Console to delete multi-byte chars
 
     [ 20140809 ]
     * Script Unit Test brings it’s own scripts to test

@@ -177,3 +177,5 @@ See the respective files in `cmake` for their licensing.
 
 The [clibs/commander](https://github.com/clibs/commander) dependency is Copyright (c) 2012 TJ Holowaychuk (tj@vision-media.ca) and licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
+The included [utf8-cpp](http://utfcpp.sourceforge.net) headers are Copyright (c) 2006 Nemanja Trifunovic. See the files in src/deps/utf8-cpp/ for informations about the license used.
+

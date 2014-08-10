@@ -23,7 +23,7 @@ endif()
 
 # Include directories
 include_directories ("${PROJECT_SOURCE_DIR}/include")
-include_directories ("${PROJECT_SOURCE_DIR}/src/deps")
+include_directories (SYSTEM "${PROJECT_SOURCE_DIR}/src/deps")
 include_directories ("${PROJECT_BINARY_DIR}")
 
 # Include External Modules

@@ -8,6 +8,7 @@
 #ifndef _CONSOLE_H_
 #define _CONSOLE_H_
 
+#include <string>
 #include <vector>
 
 /*!
@@ -20,11 +21,6 @@ public:
      * \brief Constructs an object of Console
      */
     Console();
-
-    /*!
-     * \brief Deconstructs an object of Console
-     */
-    ~Console();
 
     void setVisible(bool visible);
 
@@ -45,14 +41,13 @@ private:
     void moveInHistory(bool up);
 
     bool mVisible;
-    char *mInputBuffer;
-    size_t mInputBufferPointer;
-    char *mPartialInput;
-    std::vector<char *> mHistory;
+    std::string mInputBuffer;
+    std::string mPartialInput;
+    std::vector<std::string> mHistory;
 
     size_t mHistoryPointer;
-    std::vector<char *> mCommandHistory;
-    char *mUnfinishedInput;
+    std::vector<std::string> mCommandHistory;
+    std::string mUnfinishedInput;
 
     unsigned int mLineOffset;
 };
