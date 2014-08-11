@@ -5,6 +5,8 @@
     [ 20140811 ]
     * New Font API, allows drawing strings with line-wrapping
     * Added ability to Menu to show info dialogs
+    * Split Menu into interface and implementations, like Sound/Window/Font
+    * Menu now interface and dialog code, MenuFolder is file browser
 
     [ 20140810 ]
     * Removed recursive Folder access method implementations

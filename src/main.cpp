@@ -15,7 +15,7 @@
 #include "Exception.h"
 #include "FontManager.h"
 #include "Game.h"
-#include "Menu.h"
+#include "MenuFolder.h"
 #include "OpenRaider.h"
 #include "Render.h"
 #include "TextureManager.h"
@@ -59,7 +59,7 @@ Game &getGame() {
 }
 
 Menu &getMenu() {
-    static Menu gMenu;
+    static MenuFolder gMenu;
     return gMenu;
 }
 

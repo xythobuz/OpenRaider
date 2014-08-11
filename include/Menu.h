@@ -1,6 +1,6 @@
 /*!
  * \file include/Menu.h
- * \brief Menu 'overlay'
+ * \brief Menu 'overlay' interface
  *
  * \author xythobuz
  */
@@ -9,9 +9,6 @@
 #define _MENU_H_
 
 #include <functional>
-#include <memory>
-
-#include "utils/Folder.h"
 
 /*!
  * \brief Menu 'overlay'
@@ -19,54 +16,47 @@
 class Menu {
 public:
 
-    /*!
-     * \brief Constructs an object of Menu
-     */
-    Menu();
+    virtual ~Menu() { }
 
-    /*!
-     * \brief Deconstructs an object of Menu
-     */
-    ~Menu();
+    virtual void setVisible(bool visible);
 
-    int initialize();
-    int initialize(std::string folder);
-    int initialize(Folder *folder);
+    virtual bool isVisible();
 
-    void setVisible(bool visible);
+    virtual int initialize() = 0;
 
-    bool isVisible();
+    virtual void display() = 0;
 
-    void display();
+    virtual void handleKeyboard(KeyboardButton key, bool pressed) = 0;
 
-    void handleKeyboard(KeyboardButton key, bool pressed);
+    virtual void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) = 0;
 
-    void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
+    virtual void handleMouseScroll(int xrel, int yrel) = 0;
 
-    void handleMouseScroll(int xrel, int yrel);
+protected:
 
-private:
-
-    void loadOrOpen();
-    void showDialog(std::string msg, std::string btn1, std::string btn2,
+    virtual void showDialog(std::string msg, std::string btn1, std::string btn2,
             std::function<int (bool state)> callback = std::function<int (bool)>());
-    void ackDialog();
-    void displayDialog();
+
+    virtual void ackDialog();
+
+    virtual bool handleKeyboardDialog(KeyboardButton key, bool pressed);
+
+    virtual bool handleMouseClickDialog(unsigned int x, unsigned int y,
+            KeyboardButton button, bool released);
+
+    virtual bool handleMouseScrollDialog(int xrel, int yrel);
+
+    virtual void displayDialog();
 
     bool mVisible;
-    long mCursor;
-    long mMin;
-
-    Folder *mapFolder;
-    bool hiddenState;
-
+    bool dialogState;
     std::string dialogText;
     std::string dialogButton1;
     std::string dialogButton2;
-    bool dialogState;
     std::function<int (bool state)> dialogFunction;
 };
 
 Menu &getMenu();
 
 #endif
+
