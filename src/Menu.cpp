@@ -23,6 +23,7 @@ Menu::Menu() {
     mMin = 0;
     mapFolder = nullptr;
     hiddenState = false;
+    dialogState = false;
 }
 
 Menu::~Menu() {
@@ -83,14 +84,14 @@ void Menu::display() {
     if (!mVisible)
         return;
 
-    // Draw half-transparent *overlay*
+    // Draw half-transparent overlay
     glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
     glDisable(GL_TEXTURE_2D);
     glRecti(0, 0, (GLint)getWindow().getWidth(), (GLint)getWindow().getHeight());
     glEnable(GL_TEXTURE_2D);
 
     // Draw heading
-    getFont().drawTextCentered(0, 10, 1.2f, BLUE, getWindow().getWidth(), "%s", VERSION);
+    getFont().drawTextCentered(0, 10, 1.2f, BLUE, getWindow().getWidth(), VERSION);
 
     // Estimate displayable number of items
     int items = (getWindow().getHeight() - 60) / 25;
@@ -102,22 +103,24 @@ void Menu::display() {
             getFont().drawText(25, 50, 0.75f, (mCursor == i) ? RED : BLUE, "..");
         } else {
             getFont().drawText(25, (unsigned int)(50 + (25 * (i - mMin))), 0.75f,
-                (mCursor == i) ? RED : BLUE, "%s",
+                (mCursor == i) ? RED : BLUE,
                 ((i - 1) < mapFolder->folderCount()) ?
-                    (mapFolder->getFolder(i - 1).getName() + "/").c_str()
-                    : mapFolder->getFile(i - 1 - mapFolder->folderCount()).getName().c_str());
+                    (mapFolder->getFolder(i - 1).getName() + "/")
+                    : mapFolder->getFile(i - 1 - mapFolder->folderCount()).getName());
         }
     }
+
+    displayDialog();
 }
 
-void Menu::play() {
+void Menu::loadOrOpen() {
     if (mCursor == 0) {
         if (initialize(mapFolder->getParent().getPath()) != 0) {
-            //! \todo Display something if an error occurs
+            showDialog("Error reading parent folder!", "OK", "");
         }
     } else if ((mCursor - 1) < mapFolder->folderCount()) {
         if (initialize(mapFolder->getFolder(mCursor - 1).getPath()) != 0) {
-            //! \todo Display something if an error occurs
+            showDialog("Error reading subfolder!", "OK", "");
         }
     } else {
         std::string tmp = "load ";
@@ -125,7 +128,7 @@ void Menu::play() {
         if (getOpenRaider().command(tmp.c_str()) == 0) {
             setVisible(false);
         } else {
-            //! \todo Display something if an error occurs
+            showDialog("Error loading map!", "OK", "");
         }
     }
 }
@@ -133,6 +136,27 @@ void Menu::play() {
 void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
     if (!pressed)
         return;
+
+    if (dialogText.length() > 0) {
+        if (dialogButton2.length() == 0) {
+            if (key == enterKey) {
+                ackDialog();
+            }
+        } else {
+            if (key == enterKey) {
+                ackDialog();
+            } else if (key == leftKey) {
+                dialogState = !dialogState;
+            } else if (key == rightKey) {
+                dialogState = !dialogState;
+            } else if (key == upKey) {
+                dialogState = !dialogState;
+            } else if (key == downKey) {
+                dialogState = !dialogState;
+            }
+        }
+        return;
+    }
 
     assert(mapFolder != nullptr);
     int items = (getWindow().getHeight() - 60) / 25;
@@ -148,7 +172,7 @@ void Menu::handleKeyboard(KeyboardButton key, bool pressed) {
         else
             mCursor = 0;
     } else if (key == enterKey) {
-        play();
+        loadOrOpen();
     } else if (key == dotKey) {
         hiddenState = !hiddenState;
         initialize(mapFolder->getPath());
@@ -167,16 +191,25 @@ void Menu::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton butto
     if (released || (button != leftmouseKey))
         return;
 
-    if ((y >= 50) && (y <= (unsigned int)(50 + (25 * items)))) {
+    if (dialogText.length() > 0) {
+        //!< \todo Allow mouse usage of Menu dialogs!
+        return;
+    }
+
+    if ((y >= 50) && (y <= (unsigned int)(50 + (25 * items)))
+            && ((mMin + (y / 25)) <= (mapFolder->folderCount() + mapFolder->fileCount() + 2))) {
         y -= 50;
         if (mCursor == (mMin + (y / 25)))
-            play();
+            loadOrOpen();
         else
             mCursor = mMin + (y / 25);
     }
 }
 
 void Menu::handleMouseScroll(int xrel, int yrel) {
+    if (dialogText.length() > 0)
+        return;
+
     assert((xrel != 0) || (yrel != 0));
     assert(mapFolder != nullptr);
     int items = (getWindow().getHeight() - 60) / 25;
@@ -194,6 +227,122 @@ void Menu::handleMouseScroll(int xrel, int yrel) {
             mCursor = mMin;
         } else if (mCursor > (mMin + items - 1)) {
             mCursor = mMin + items - 1;
+        }
+    }
+}
+
+void Menu::showDialog(std::string msg, std::string btn1, std::string btn2,
+        std::function<int (bool state)> callback) {
+    // Only show one dialog at a time
+    assert(dialogText.length() == 0);
+    assert(dialogButton1.length() == 0);
+    assert(dialogButton2.length() == 0);
+
+    assert(msg.length() > 0);
+    assert(btn1.length() > 0);
+
+    dialogText = msg;
+    dialogButton1 = btn1;
+    dialogButton2 = btn2;
+    dialogState = false;
+    dialogFunction = callback;
+
+    getConsole() << dialogText << Console::endl;
+}
+
+void Menu::ackDialog() {
+    dialogText = "";
+    dialogButton1 = "";
+    dialogButton2 = "";
+
+    if (dialogFunction) {
+        int error = dialogFunction(dialogState);
+        if (error != 0) {
+            showDialog("Error processing dialog callback!", "OK", "");
+        }
+    }
+
+    dialogState = false;
+}
+
+void Menu::displayDialog() {
+    if (dialogText.length() > 0) {
+        unsigned int wMax = ((unsigned int)(getWindow().getWidth() * 0.66f));
+
+        unsigned int w0 = getFont().widthText(1.0f, dialogText) + 20;
+        if (w0 > wMax)
+            w0 = wMax;
+        unsigned int h0 =  getFont().heightText(1.0f, w0, dialogText) + 10;
+
+        assert(dialogButton1.length() > 0);
+        unsigned int w1 = getFont().widthText(1.0f, dialogButton1) + 20;
+        if (w1 > wMax)
+            w1 = wMax;
+        unsigned int h1 = getFont().heightText(1.0f, w1, dialogButton1) + 10;
+
+        unsigned int wOverlay = wMax, hOverlay, w2 = 0, h2 = 0;
+
+        if (dialogButton2.length() > 0) {
+            // Show text and two buttons
+            w2 = getFont().widthText(1.0f, dialogButton2) + 20;
+            if (w2 > wMax)
+                w2 = wMax;
+            h2 = getFont().heightText(1.0f, w2, dialogButton2) + 10;
+
+            if (w0 > (w1 + w2)) {
+                if (w0 < wMax) {
+                    wOverlay = w0;
+                }
+            } else if (w0 < (w1 + w2)) {
+                if ((w1 + w2) < wMax) {
+                    wOverlay = (w1 + w2);
+                }
+            }
+
+            if ((w1 + w2) <= wMax) {
+                hOverlay = h0 + ((h1 + h2) / 2);
+            } else {
+                hOverlay = h0 + h1 + h2;
+            }
+        } else {
+            // Show text and one button
+            if (w0 > w1) {
+                if (w0 < wMax) {
+                    wOverlay = w0;
+                }
+            } else if (w0 < w1) {
+                if (w1 < wMax) {
+                    wOverlay = w1;
+                }
+            }
+
+            hOverlay = h0 + h1;
+        }
+
+        unsigned int xOverlay = (getWindow().getWidth() - wOverlay) / 2;
+        unsigned int yOverlay = (getWindow().getHeight() - hOverlay) / 2;
+
+        glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
+        glDisable(GL_TEXTURE_2D);
+        glRecti(xOverlay, yOverlay, xOverlay + wOverlay, yOverlay + hOverlay);
+        glEnable(GL_TEXTURE_2D);
+
+        getFont().drawTextWrapped(xOverlay + 10, yOverlay + 5, 1.0f, BLUE, w0, dialogText);
+        if (dialogButton2.length() > 0) {
+            if ((w1 + w2) <= wMax) {
+                getFont().drawTextWrapped(xOverlay + 10, yOverlay + 10 + h0, 1.0f,
+                    dialogState ? BLUE : RED, w1, dialogButton1);
+                getFont().drawTextWrapped(xOverlay + 10 + w1, yOverlay + 10 + h0,
+                    1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
+            } else {
+                getFont().drawTextWrapped((getWindow().getWidth() - w1) / 2,
+                    yOverlay + 10 + h0, 1.0f, dialogState ? BLUE : RED, w1, dialogButton1);
+                getFont().drawTextWrapped((getWindow().getWidth() - w2) / 2,
+                    yOverlay + 10 + h0 + h1, 1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
+            }
+        } else {
+            getFont().drawTextWrapped((getWindow().getWidth() - w1) / 2,
+                    yOverlay + 10 + h0, 1.0f, RED, w1, dialogButton1);
         }
     }
 }

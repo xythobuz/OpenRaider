@@ -52,8 +52,25 @@ int FontManager::initialize() {
     return fonts.at(font)->initialize();
 }
 
-void FontManager::writeString(FontString &s) {
+unsigned int FontManager::widthText(float scale, std::string s) {
     assert(font != -1);
-    fonts.at(font)->writeString(s);
+    return fonts.at(font)->widthText(scale, s);
+}
+
+void FontManager::drawText(unsigned int x, unsigned int y, float scale,
+        const unsigned char color[4], std::string s) {
+    assert(font != -1);
+    fonts.at(font)->drawText(x, y, scale, color, s);
+}
+
+unsigned int FontManager::heightText(float scale, unsigned int maxWidth, std::string s) {
+    assert(font != -1);
+    return fonts.at(font)->heightText(scale, maxWidth, s);
+}
+
+void FontManager::drawTextWrapped(unsigned int x, unsigned int y, float scale,
+        const unsigned char color[4], unsigned int maxWidth, std::string s) {
+    assert(font != -1);
+    fonts.at(font)->drawTextWrapped(x, y, scale, color, maxWidth, s);
 }
 

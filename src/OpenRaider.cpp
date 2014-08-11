@@ -7,6 +7,7 @@
 
 #include <cstdio>
 #include <cstring>
+#include <sstream>
 
 #include "global.h"
 #include "Console.h"
@@ -135,15 +136,19 @@ void OpenRaider::frame() {
     getMenu().display();
 
     // Draw FPS counter
-    if (mFPS)
-        getFont().drawText(10, getWindow().getHeight() - 20, 0.5f, BLUE, "%dFPS", fps);
+    if (mFPS) {
+        std::ostringstream fpsText;
+        fpsText << fps << "FPS";
+        getFont().drawText(10, getWindow().getHeight() - 20, 0.5f, BLUE, fpsText.str());
+    }
 
 #ifdef DEBUG
     // Draw debug infos
     if (getGame().isLoaded() && (!getMenu().isVisible())) {
         for (int i = 0; i < 3; i++) {
-            getFont().drawText(10, getWindow().getHeight() - ((4 - i) * 20), 0.5f, BLUE, "%.2f (%.2f)",
-                getGame().getLara().getPos(i) / 256.0f, getGame().getLara().getAngle(i));
+            std::ostringstream axis;
+            axis << getGame().getLara().getPos(i) / 256.0f << " (" << getGame().getLara().getAngle(i) << ")";
+            getFont().drawText(10, getWindow().getHeight() - ((4 - i) * 20), 0.5f, BLUE, axis.str());
         }
     }
 #endif

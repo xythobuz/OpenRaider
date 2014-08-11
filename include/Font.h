@@ -8,15 +8,7 @@
 #ifndef _FONT_H_
 #define _FONT_H_
 
-typedef struct {
-    char *text;
-    unsigned int x;
-    unsigned int y;
-    int w;
-    int h;
-    float scale;
-    unsigned char color[4];
-} FontString;
+#include  <string>
 
 /*!
  * \brief Font interface
@@ -33,15 +25,19 @@ public:
 
     virtual int initialize() = 0;
 
-    virtual void writeString(FontString &s) = 0;
+    virtual unsigned int widthText(float scale, std::string s) = 0;
 
     virtual void drawText(unsigned int x, unsigned int y, float scale,
-            const unsigned char color[4], const char *s, ...)
-            __attribute__((format(printf, 6, 0)));
+            const unsigned char color[4], std::string s) = 0;
 
+    virtual unsigned int heightText(float scale, unsigned int maxWidth, std::string s) = 0;
+
+    virtual void drawTextWrapped(unsigned int x, unsigned int y, float scale,
+            const unsigned char color[4], unsigned int maxWidth, std::string s) = 0;
+
+    // Implemented in Font.cpp using widthText & drawText
     virtual void drawTextCentered(unsigned int x, unsigned int y, float scale,
-            const unsigned char color[4], unsigned int width, const char *s, ...)
-            __attribute__((format(printf, 7, 0)));
+            const unsigned char color[4], unsigned int width, std::string s);
 
 protected:
     bool mFontInit;

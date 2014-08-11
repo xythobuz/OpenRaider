@@ -8,6 +8,7 @@
 #ifndef _MENU_H_
 #define _MENU_H_
 
+#include <functional>
 #include <memory>
 
 #include "utils/Folder.h"
@@ -46,7 +47,11 @@ public:
 
 private:
 
-    void play();
+    void loadOrOpen();
+    void showDialog(std::string msg, std::string btn1, std::string btn2,
+            std::function<int (bool state)> callback = std::function<int (bool)>());
+    void ackDialog();
+    void displayDialog();
 
     bool mVisible;
     long mCursor;
@@ -54,6 +59,12 @@ private:
 
     Folder *mapFolder;
     bool hiddenState;
+
+    std::string dialogText;
+    std::string dialogButton1;
+    std::string dialogButton2;
+    bool dialogState;
+    std::function<int (bool state)> dialogFunction;
 };
 
 Menu &getMenu();

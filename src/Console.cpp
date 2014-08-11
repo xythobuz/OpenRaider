@@ -65,8 +65,9 @@ void Console::display() {
     }
 
     // Draw status line
-    getFont().drawText(10, 10, 0.70f, BLUE,
-            "%s uptime %lus scroll %d%%", VERSION, systemTimerGet() / 1000, scrollIndicator);
+    std::ostringstream status;
+    status << VERSION << " uptime " << (systemTimerGet() / 1000) << "s scroll " << scrollIndicator << "%";
+    getFont().drawText(10, 10, 0.70f, BLUE, status.str());
 
     // Draw output log
     long end = lineCount;
@@ -81,11 +82,11 @@ void Console::display() {
 
     for (int i = 0; i < end; i++) {
         getFont().drawText(10, (unsigned int)((i + drawOffset) * lineSteps) + firstLine,
-                0.75f, BLUE, "%s", mHistory[i + historyOffset - mLineOffset].c_str());
+                0.75f, BLUE, mHistory.at(i + historyOffset - mLineOffset));
     }
 
     // Draw current input
-    getFont().drawText(10, inputLine, 0.75f, BLUE, "> %s", (mInputBuffer + mPartialInput).c_str());
+    getFont().drawText(10, inputLine, 0.75f, BLUE, "> " + mInputBuffer + mPartialInput);
 }
 
 void Console::handleKeyboard(KeyboardButton key, bool pressed) {

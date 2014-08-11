@@ -94,14 +94,17 @@ void FontTRLE::loadLPS(const char *f) {
 
 #define SCALING 2.0f
 
-void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, FontString &s) {
-    int width = (int)(((float)offsets[index][2]) * s.scale * SCALING);
-    int height = (int)(((float)offsets[index][3]) * s.scale * SCALING);
-    int offset = (int)(((float)offsets[index][4]) * s.scale * SCALING);
+void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, unsigned int yDraw,
+        float scale, const unsigned char color[4]) {
+    assert(mFontInit == true);
+
+    int width = (int)(((float)offsets[index][2]) * scale * SCALING);
+    int height = (int)(((float)offsets[index][3]) * scale * SCALING);
+    int offset = (int)(((float)offsets[index][4]) * scale * SCALING);
 
     // screen coordinates
     int xMin = xDraw;
-    int yMin = s.y + offset + (int)(10.0f * s.scale * SCALING);
+    int yMin = ((int)yDraw) + offset + (int)(10.0f * scale * SCALING);
     int xMax = xMin + width;
     int yMax = yMin + height;
 
@@ -113,7 +116,7 @@ void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, FontString &s) 
 
     // draw
     glBindTexture(GL_TEXTURE_2D, mFontTexture);
-    glColor4f(s.color[0] * 256.0f, s.color[1] * 256.0f, s.color[2] * 256.0f, s.color[3] * 256.0f);
+    glColor4f(color[0] * 256.0f, color[1] * 256.0f, color[2] * 256.0f, color[3] * 256.0f);
     glBegin(GL_QUADS);
     glTexCoord2f(txMin, tyMin);
     glVertex2i(xMin, yMin);
@@ -126,31 +129,113 @@ void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, FontString &s) 
     glEnd();
 }
 
-void FontTRLE::writeString(FontString &s) {
+unsigned int FontTRLE::widthText(float scale, std::string s) {
     assert(mFontInit == true);
-    assert(s.text != NULL);
+    assert(s.length() > 0);
 
-    unsigned int x = s.x;
-    unsigned int y = 0;
-
-    for (unsigned int i = 0; s.text[i] != '\0'; i++) {
+    unsigned int width = 0;
+    for (unsigned int i = 0; i < s.length(); i++) {
         // index into offset table
-        int index = s.text[i] - '!';
+        int index = s[i] - '!';
 
         if (index == -1) // space
-            x += (unsigned int)(14.0f * s.scale * SCALING);
+            width += (unsigned int)(14.0f * scale * SCALING);
 
         if ((index < 0) || (index > 105))
             continue; // skip unprintable chars
 
-        writeChar((unsigned int)index, x, s);
-        x += (int)((float)(offsets[index][2] + 1) * s.scale * SCALING); // width
-
-        if (y < (unsigned int)(((float)offsets[index][3]) * s.scale * SCALING))
-            y = (unsigned int)(((float)offsets[index][3]) * s.scale * SCALING);
+        width += (float)(offsets[index][2] + 1) * scale * SCALING; // glyph width
     }
 
-    s.w = x - s.x;
-    s.h = y;
+    return width;
+}
+
+void FontTRLE::drawText(unsigned int x, unsigned int y, float scale,
+        const unsigned char color[4], std::string s) {
+    assert(mFontInit == true);
+    assert(s.length() > 0);
+
+    for (unsigned int i = 0; i < s.length(); i++) {
+        // index into offset table
+        int index = s[i] - '!';
+
+        if (index == -1) // space
+            x += (unsigned int)(14.0f * scale * SCALING);
+
+        if ((index < 0) || (index > 105))
+            continue; // skip unprintable chars
+
+        writeChar((unsigned int)index, x, y, scale, color);
+        x += (int)((float)(offsets[index][2] + 1) * scale * SCALING); // width
+    }
+}
+
+unsigned int FontTRLE::heightText(float scale, unsigned int maxWidth, std::string s) {
+    assert(mFontInit == true);
+    assert(s.length() > 0);
+
+    unsigned int x = 0;
+    unsigned int yMax = 0;
+    unsigned int yReturn = 0;
+
+    for (unsigned int i = 0; i < s.length(); i++) {
+        // index into offset table
+        int index = s[i] - '!';
+
+        if (index == -1) // space
+            x += (unsigned int)(14.0f * scale * SCALING);
+
+        if ((index < 0) || (index > 105))
+            continue; // skip unprintable chars
+
+        if (yMax < (unsigned int)(((float)offsets[index][3]) * scale * SCALING))
+            yMax = (unsigned int)(((float)offsets[index][3]) * scale * SCALING);
+
+        x += (int)((float)(offsets[index][2] + 1) * scale * SCALING); // width
+        if (x > maxWidth) {
+            // go to the next line
+            yReturn += yMax + 2;
+            yMax = 0;
+            x = (int)((float)(offsets[index][2] + 1) * scale * SCALING);
+        }
+    }
+
+    return yReturn + yMax + 2;
+}
+
+void FontTRLE::drawTextWrapped(unsigned int x, unsigned int y, float scale,
+        const unsigned char color[4], unsigned int maxWidth, std::string s) {
+    assert(mFontInit == true);
+    assert(s.length() > 0);
+
+    unsigned int xStart = x;
+    unsigned int yMax = 0;
+
+    for (unsigned int i = 0; i < s.length(); i++) {
+        // index into offset table
+        int index = s[i] - '!';
+
+        if (index == -1) // space
+            x += (unsigned int)(14.0f * scale * SCALING);
+
+        if ((index < 0) || (index > 105))
+            continue; // skip unprintable chars
+
+        if (yMax < (unsigned int)(((float)offsets[index][3]) * scale * SCALING))
+            yMax = (unsigned int)(((float)offsets[index][3]) * scale * SCALING);
+
+        x += (int)((float)(offsets[index][2] + 1) * scale * SCALING); // width
+        if ((x - xStart) > maxWidth) {
+            // go to the next line
+            y += yMax + 2;
+            yMax = 0;
+            x = xStart;
+        } else {
+            x -= (int)((float)(offsets[index][2] + 1) * scale * SCALING);
+        }
+
+        writeChar((unsigned int)index, x, y, scale, color);
+        x += (int)((float)(offsets[index][2] + 1) * scale * SCALING); // width
+    }
 }
 

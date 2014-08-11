@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140811 ]
+    * New Font API, allows drawing strings with line-wrapping
+    * Added ability to Menu to show info dialogs
+
     [ 20140810 ]
     * Removed recursive Folder access method implementations
       into their own file
