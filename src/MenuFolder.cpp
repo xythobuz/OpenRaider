@@ -8,8 +8,8 @@
 #include "global.h"
 #include "Console.h"
 #include "Font.h"
+#include "loader/Loader.h"
 #include "OpenRaider.h"
-#include "TombRaider.h"
 #include "Window.h"
 #include "MenuFolder.h"
 
@@ -53,10 +53,10 @@ int MenuFolder::initialize(Folder *folder, bool filter) {
             }
 
             // Check maps for validity
-            int error = TombRaider::checkMime(f.getPath().c_str());
-            if (error != 0) {
+            Loader::LoaderVersion version = Loader::checkFile(f.getPath());
+            if (version == Loader::TR_UNKNOWN) {
                 getConsole() << "Error: pak file '" << f.getName().c_str()
-                    << "' " << ((error == -1) ? "not found" : "invalid") << Console::endl;
+                    << "' invalid" << Console::endl;
                 return true; // delete file from list
             }
 
@@ -115,10 +115,13 @@ void MenuFolder::loadOrOpen() {
     } else {
         std::string tmp = "load ";
         tmp += mapFolder->getFile((unsigned long)mCursor - 1 - mapFolder->folderCount()).getPath();
-        if (getOpenRaider().command(tmp.c_str()) == 0) {
+        int error = getOpenRaider().command(tmp.c_str());
+        if (error == 0) {
             setVisible(false);
         } else {
-            showDialog("Error loading map!", "OK", "");
+            std::ostringstream err;
+            err << "Error loading map: " << error << "!";
+            showDialog(err.str(), "OK", "");
         }
     }
 }

@@ -214,6 +214,7 @@ set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS}
 
 # Add subdirectories
 add_subdirectory ("deps")
+add_subdirectory ("loader")
 add_subdirectory ("math")
 add_subdirectory ("utils")
 
@@ -222,6 +223,7 @@ add_library (OpenRaider_all OBJECT ${SRCS})
 add_executable (OpenRaider MACOSX_BUNDLE ${RESRCS}
     $<TARGET_OBJECTS:OpenRaider_all> $<TARGET_OBJECTS:OpenRaider_deps>
     $<TARGET_OBJECTS:OpenRaider_math> $<TARGET_OBJECTS:OpenRaider_utils>
+    $<TARGET_OBJECTS:OpenRaider_loader>
 )
 
 #################################################################

@@ -2,7 +2,7 @@
 
 ## General
 
-* Move to newer OpenGL (GLES or 3.x or 4.x?)
+* Move to newer OpenGL (GL ES or 2.1 or 3.x or 4.x?)
 * Endian dependence ugly, shouldn't dereference to different types?
     * TombRaider.h/cpp structs aren't aligned... unportable to some big endian & other archs?!
     * Maybe replace loader with [VT](http://icculus.org/vt/), also used by OpenTomb.
@@ -20,6 +20,8 @@
 
 ## Future Features
 
+* Depend on libcdio, use it to read original CDs or CUE/TOC/ISO images
+* Depend on imgui for nicer GUIs?
 * Add ability to play the FMVs. Format? VLC can play them!
 * Cut TGA image reader, currently only used for menu background?!
     * Need useful, always available image writer alternative for screenshots then

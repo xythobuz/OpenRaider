@@ -119,7 +119,7 @@ public:
 
     void setVertex(unsigned int index, float x, float y, float z);
 
-#ifdef NOT_IMPLEMENTED
+#if 0
     void sortFacesByTexture();
 
     void addFace(int textureIndex, int textureIndexB, unsigned int flags,

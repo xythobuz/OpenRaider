@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140812 ]
+    * Started implementing new level file loader, currently TR2 only
+
     [ 20140811 ]
     * New Font API, allows drawing strings with line-wrapping
     * Added ability to Menu to show info dialogs

@@ -41,7 +41,7 @@ public:
         OP_PSX_DEMO       = 8,  //!< Does not compile. PSX?
         OP_END            = 9,  //!< Closes script sequence
         OP_TRACK          = 10, //!< Play soundtrack (precedes level opcode)
-        OP_SUNSET         = 11, //!< Unknown, nothing changes in TR2.
+        OP_SUNSET         = 11, //!< Unknown, nothing changes in TR2. Start in Motorboat?
         OP_LOAD_PIC       = 12, //!< Does not compile. PSX? Used in TR3.
         OP_DEADLY_WATER   = 13, //!< Unknown, nothing changes in TR2.
         OP_REMOVE_WEAPONS = 14, //!< Start level without weapons
