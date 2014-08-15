@@ -5,6 +5,7 @@
  * \author xythobuz
  */
 
+#include "global.h"
 #include "loader/LoaderTR2.h"
 
 LoaderTR2::LoaderTR2() {
@@ -15,7 +16,6 @@ LoaderTR2::LoaderTR2() {
 
 LoaderTR2::~LoaderTR2() {
     delete [] palette;
-    palette = nullptr;
 
     if (textiles != nullptr) {
         for (unsigned int i = 0; i < numTextiles; i++)

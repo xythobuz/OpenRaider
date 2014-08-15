@@ -2,8 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140813 ]
+    * Added LoaderTR1, LoaderTR3 stubs
+
     [ 20140812 ]
     * Started implementing new level file loader, currently TR2 only
+    * Trigger new Loader when possible, but fallback to old TombRaider
 
     [ 20140811 ]
     * New Font API, allows drawing strings with line-wrapping

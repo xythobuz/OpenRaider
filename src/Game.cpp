@@ -14,6 +14,7 @@
 #include "Camera.h"
 #include "Console.h"
 #include "Game.h"
+#include "loader/Loader.h"
 #include "OpenRaider.h"
 #include "Render.h"
 #include "Sound.h"
@@ -77,40 +78,60 @@ int Game::loadLevel(const char *level) {
     levelName = level;
 
     getConsole() << "Loading " << levelName << Console::endl;
-    int error = mTombRaider.Load(levelName.c_str());
-    if (error != 0)
-        return error;
 
-    // If required, load the external sound effect file MAIN.SFX into TombRaider
-    if ((mTombRaider.getEngine() == TR_VERSION_2) || (mTombRaider.getEngine() == TR_VERSION_3)) {
-        std::string tmp(levelName);
-        size_t pos = tmp.rfind('/');
-        tmp.erase(pos + 1);
-        tmp += "MAIN.SFX";
-        error = mTombRaider.loadSFX(tmp.c_str());
-        if (error != 0)
-            getConsole() << "Could not load " << tmp << Console::endl;
+    Loader *loader = Loader::createLoader(level);
+    int error = 0;
+    if (loader != NULL) {
+        // First Loader test
+        error = loader->load(level);
+        if (error != 0) {
+            delete loader;
+            return error;
+        }
+
+        // And now...?
+
+        delete loader;
+        getConsole() << "Tried Loader..." << Console::endl;
     }
 
-    // Process data
-    processTextures();
-    processRooms();
-    processModels();
-    processSprites();
-    processMoveables();
-    processPakSounds();
+    if ((loader == NULL) || (error == 0)) {
+        // Old TombRaider level loader
+        error = mTombRaider.Load(levelName.c_str());
+        if (error != 0)
+            return error;
 
-    mTombRaider.reset();
+        // If required, load the external sound effect file MAIN.SFX into TombRaider
+        if ((mTombRaider.getEngine() == TR_VERSION_2) || (mTombRaider.getEngine() == TR_VERSION_3)) {
+            std::string tmp(levelName);
+            size_t pos = tmp.rfind('/');
+            tmp.erase(pos + 1);
+            tmp += "MAIN.SFX";
+            error = mTombRaider.loadSFX(tmp.c_str());
+            if (error != 0)
+                getConsole() << "Could not load " << tmp << Console::endl;
+        }
 
-    if (mLara == -1) {
-        //! \todo Cutscene support
-        getConsole() << "Can't find Lara entity in level pak!" << Console::endl;
-        destroy();
-        return -1;
-    } else {
-        mLoaded = true;
-        getRender().setMode(Render::modeVertexLight);
-        return 0;
+        // Process data
+        processTextures();
+        processRooms();
+        processModels();
+        processSprites();
+        processMoveables();
+        processPakSounds();
+
+        mTombRaider.reset();
+
+        if (mLara == -1) {
+            //! \todo Cutscene support
+            getConsole() << "Can't find Lara entity in level pak!" << Console::endl;
+            destroy();
+            return -1;
+        } else {
+            mLoaded = true;
+            getRender().setMode(Render::modeVertexLight);
+            return 0;
+        }
     }
 }
 
