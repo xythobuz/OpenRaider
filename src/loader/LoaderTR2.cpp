@@ -12,22 +12,17 @@
 #include "loader/LoaderTR2.h"
 
 LoaderTR2::LoaderTR2() {
-    palette = new uint32_t[256];
     numTextiles = 0;
     textiles = nullptr;
 }
 
 LoaderTR2::~LoaderTR2() {
-    delete [] palette;
-
     if (textiles != nullptr) {
         for (unsigned int i = 0; i < numTextiles; i++)
             delete [] textiles[i];
         delete [] textiles;
     }
 }
-
-#define HEISENBUG
 
 int LoaderTR2::load(std::string f) {
     if (file.open(f.c_str()) != 0) {
@@ -39,101 +34,62 @@ int LoaderTR2::load(std::string f) {
     }
 
     loadPaletteTextiles();
-#ifdef HEISENBUG
     getConsole() << "->loaded palette" << Console::endl;
-#endif
 
     file.seek(file.tell() + 4); // Unused value?
 
     loadRooms();
-#ifdef HEISENBUG
     getConsole() << "->loaded rooms" << Console::endl;
-#endif
 
     loadFloorData();
-#ifdef HEISENBUG
     getConsole() << "->loaded floor data" << Console::endl;
-#endif
 
     loadMeshes();
-#ifdef HEISENBUG
     getConsole() << "->loaded meshes" << Console::endl;
-#endif
 
     loadMoveables();
-#ifdef HEISENBUG
     getConsole() << "->loaded moveables" << Console::endl;
-#endif
 
     loadStaticMeshes();
-#ifdef HEISENBUG
     getConsole() << "->loaded static meshes" << Console::endl;
-#endif
 
     loadTextures();
-#ifdef HEISENBUG
     getConsole() << "->loaded textures" << Console::endl;
-#endif
 
     loadSprites();
-#ifdef HEISENBUG
     getConsole() << "->loaded sprites" << Console::endl;
-#endif
 
     loadCameras();
-#ifdef HEISENBUG
     getConsole() << "->loaded cameras" << Console::endl;
-#endif
 
     loadSoundSources();
-#ifdef HEISENBUG
     getConsole() << "->loaded sound sources" << Console::endl;
-#endif
 
     loadBoxesOverlapsZones();
-#ifdef HEISENBUG
     getConsole() << "->loaded boxes overlaps zones" << Console::endl;
-#endif
 
     loadAnimatedTextures();
-#ifdef HEISENBUG
     getConsole() << "->loaded animated textures" << Console::endl;
-#endif
 
     loadItems();
-#ifdef HEISENBUG
     getConsole() << "->loaded items" << Console::endl;
-#endif
 
-    loadLightMap();
-#ifdef HEISENBUG
-    getConsole() << "->loaded light map" << Console::endl;
-#endif
+    file.seek(file.tell() + 8192); // Skip Light map, only for 8bit coloring
 
     loadCinematicFrames();
-#ifdef HEISENBUG
     getConsole() << "->loaded cinematic frames" << Console::endl;
-#endif
 
     loadDemoData();
-#ifdef HEISENBUG
     getConsole() << "->loaded demo data" << Console::endl;
-#endif
 
     loadSoundMap();
-#ifdef HEISENBUG
     getConsole() << "->loaded sound map" << Console::endl;
-#endif
 
     loadSoundDetails();
-#ifdef HEISENBUG
     getConsole() << "->loaded sound details" << Console::endl;
-#endif
 
     loadSampleIndices();
-#ifdef HEISENBUG
     getConsole() << "->loaded sample indices" << Console::endl;
-#endif
 
     return 0;
 }
@@ -142,8 +98,8 @@ void LoaderTR2::loadPaletteTextiles() {
     file.seek(file.tell() + 768); // Skip 8bit palette, 256 * 3 bytes
 
     // Read the 16bit palette, 256 * 4 bytes, RGBA, A unused
-    for (unsigned int i = 0; i < 256; i++)
-        palette[i] = file.readU32();
+    for (auto &x : palette)
+        x = file.readU32();
 
     numTextiles = file.readU32();
 
@@ -160,7 +116,7 @@ void LoaderTR2::loadPaletteTextiles() {
 }
 
 void LoaderTR2::loadRooms() {
-    numRooms = file.readU16();
+    uint16_t numRooms = file.readU16();
     for (unsigned int i = 0; i < numRooms; i++) {
         // Room Header
         int32_t xOffset = file.read32();
@@ -564,42 +520,150 @@ void LoaderTR2::loadCameras() {
 }
 
 void LoaderTR2::loadSoundSources() {
+    uint32_t numSoundSources = file.readU32();
+    for (unsigned int s = 0; s < numSoundSources; s++) {
+        // Absolute world coordinate positions of sound source
+        int32_t x = file.read32();
+        int32_t y = file.read32();
+        int32_t z = file.read32();
 
+        // Internal sound index
+        uint16_t soundID = file.readU16();
+
+        // Unknown, 0x40, 0x80 or 0xC0
+        uint16_t flags = file.readU16();
+
+        // TODO store sound sources somewhere
+    }
 }
 
 void LoaderTR2::loadBoxesOverlapsZones() {
+    uint32_t numBoxes = file.readU32();
+    for (unsigned int b = 0; b < numBoxes; b++) {
+        // Sectors (* 1024 units)
+        uint8_t zMin = file.readU8();
+        uint8_t zMax = file.readU8();
+        uint8_t xMin = file.readU8();
+        uint8_t xMax = file.readU8();
 
+        int16_t trueFloor = file.read16(); // Y value (no scaling)
+
+        // Index into overlaps[]. The high bit is sometimes set
+        // this occurs in front of swinging doors and the like
+        int16_t overlapIndex = file.read16();
+
+        // TODO store boxes somewhere
+    }
+
+    uint32_t numOverlaps = file.readU32();
+    std::vector<uint16_t> overlaps;
+    for (unsigned int o = 0; o < numOverlaps; o++) {
+        overlaps.push_back(file.readU16());
+    }
+
+    // TODO store overlaps somewhere
+
+    std::vector<int16_t> zones;
+    for (unsigned int z = 0; z < numBoxes; z++) {
+        for (unsigned int i = 0; i < 10; i++) {
+            zones.push_back(file.read16());
+        }
+    }
+
+    // TODO store zones somewhere
 }
 
 void LoaderTR2::loadAnimatedTextures() {
+    uint32_t numAnimatedTextures = file.readU32();
+    std::vector<uint16_t> animatedTextures;
+    for (unsigned int a = 0; a < numAnimatedTextures; a++) {
+        animatedTextures.push_back(file.readU16());
+    }
 
+    // TODO store animated textures somewhere. Format?
 }
 
 void LoaderTR2::loadItems() {
+    uint32_t numItems = file.readU32();
+    for (unsigned int i = 0; i < numItems; i++) {
+        int16_t objectID = file.read16();
+        int16_t room = file.read16();
 
-}
+        // Item position in world coordinates
+        int32_t x = file.read32();
+        int32_t y = file.read32();
+        int32_t z = file.read32();
 
-void LoaderTR2::loadLightMap() {
+        int16_t angle = file.read16(); // (0xC000 >> 14) * 90deg
+        int16_t intensity1 = file.read16(); // Constant lighting; -1 means mesh lighting
+        int16_t intensity2 = file.read16(); // Almost always like intensity1
 
+        // 0x0100 - Initially visible
+        // 0x3E00 - Activation mask, open, can be XORed with related FloorData list fields.
+        uint16_t flags = file.readU16();
+
+        // TODO store items somewhere
+    }
 }
 
 void LoaderTR2::loadCinematicFrames() {
+    uint16_t numCinematicFrames = file.readU16();
+    for (unsigned int c = 0; c < numCinematicFrames; c++) {
+        int16_t rotY = file.read16(); // Y rotation, +-32767 = +-180deg
+        int16_t rotZ = file.read16(); // Z rotation, like rotY
+        int16_t rotZ2 = file.read16(); // Like rotZ?
+        int16_t posZ = file.read16(); // Camera pos relative to what?
+        int16_t posY = file.read16();
+        int16_t posX = file.read16();
+        int16_t unknown = file.read16(); // Changing this can cause runtime error
+        int16_t rotX = file.read16(); // X rotation, like rotY
 
+        // TODO store cinematic frames somewhere
+    }
 }
 
 void LoaderTR2::loadDemoData() {
+    uint16_t numDemoData = file.readU16();
+    for (unsigned int d = 0; d < numDemoData; d++)
+        file.readU8();
 
+    // TODO store demo data somewhere, find out meaning
 }
 
 void LoaderTR2::loadSoundMap() {
+    std::array<int16_t, 370> soundMap;
+    for (auto &x : soundMap) {
+        x = file.read16();
+    }
 
+    // TODO store sound map somewhere
 }
 
 void LoaderTR2::loadSoundDetails() {
+    uint32_t numSoundDetails = file.readU32();
+    for (unsigned int s = 0; s < numSoundDetails; s++) {
+        int16_t sample = file.read16(); // Index into SampleIndices[]
+        int16_t volume = file.read16();
 
+        // sound range? distance at which this sound can be heard?
+        int16_t unknown1 = file.read16();
+
+        // Bits 8-15: priority?
+        // Bits 2-7: number of samples in this group
+        // Bits 0-1: channel number?
+        int16_t unknown2 = file.read16();
+
+        // TODO store sound details somewhere
+    }
 }
 
 void LoaderTR2::loadSampleIndices() {
+    uint32_t numSampleIndices = file.readU32();
+    std::vector<uint32_t> sampleIndices;
+    for (unsigned int i = 0; i < numSampleIndices; i++) {
+        sampleIndices.push_back(file.readU32());
+    }
 
+    // TODO store sample indices somewhere
 }
 

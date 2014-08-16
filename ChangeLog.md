@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140817 ]
+    * Completed the file reading part of the new TR2 level loader
+
     [ 20140816 ]
     * Greatly extended LoaderTR2s reading code, but now seeing very
       strange behavior in new Loader...
