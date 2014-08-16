@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140816 ]
+    * Greatly extended LoaderTR2s reading code, but now seeing very
+      strange behavior in new Loader...
+
     [ 20140813 ]
     * Added LoaderTR1, LoaderTR3 stubs
 

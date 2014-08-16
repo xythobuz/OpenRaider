@@ -23,8 +23,24 @@ public:
 private:
 
     void loadPaletteTextiles();
-
     void loadRooms();
+    void loadFloorData();
+    void loadMeshes();
+    void loadMoveables();
+    void loadStaticMeshes();
+    void loadTextures();
+    void loadSprites();
+    void loadCameras();
+    void loadSoundSources();
+    void loadBoxesOverlapsZones();
+    void loadAnimatedTextures();
+    void loadItems();
+    void loadLightMap();
+    void loadCinematicFrames();
+    void loadDemoData();
+    void loadSoundMap();
+    void loadSoundDetails();
+    void loadSampleIndices();
 
     uint32_t *palette; //!< 256 * 4 bytes, RGBA, A unused
     uint32_t numTextiles;
