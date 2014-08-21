@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include <array>
+#include <cstdint>
 #include <vector>
 
 #include "global.h"
@@ -12,16 +14,9 @@
 #include "loader/LoaderTR2.h"
 
 LoaderTR2::LoaderTR2() {
-    numTextiles = 0;
-    textiles = nullptr;
 }
 
 LoaderTR2::~LoaderTR2() {
-    if (textiles != nullptr) {
-        for (unsigned int i = 0; i < numTextiles; i++)
-            delete [] textiles[i];
-        delete [] textiles;
-    }
 }
 
 int LoaderTR2::load(std::string f) {
@@ -98,21 +93,25 @@ void LoaderTR2::loadPaletteTextiles() {
     file.seek(file.tell() + 768); // Skip 8bit palette, 256 * 3 bytes
 
     // Read the 16bit palette, 256 * 4 bytes, RGBA, A unused
+    std::array<uint32_t, 256> palette; //!< RGBA, A unused
     for (auto &x : palette)
         x = file.readU32();
 
-    numTextiles = file.readU32();
+    uint32_t numTextiles = file.readU32();
 
     file.seek(file.tell() + (numTextiles * 256 * 256)); // Skip 8bit textiles
 
     // Read the 16bit textiles, numTextiles * 256 * 256 * 2 bytes
-    textiles = new uint16_t *[numTextiles];
+    std::vector<std::array<uint16_t, 256 * 256>> textiles;
     for (unsigned int i = 0; i < numTextiles; i++) {
-        textiles[i] = new uint16_t[256 * 256];
-        for (unsigned int j = 0; j < (256 * 256); j++) {
-            textiles[i][j] = file.readU16();
+        std::array<uint16_t, 256 * 256> arr;
+        for (auto &x : arr) {
+            x = file.readU16();
         }
+        textiles.push_back(arr);
     }
+
+    // TODO store palette and textiles somewhere
 }
 
 void LoaderTR2::loadRooms() {

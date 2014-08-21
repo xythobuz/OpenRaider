@@ -8,7 +8,9 @@
 #ifndef _LOADER_LOADER_H_
 #define _LOADER_LOADER_H_
 
+#include <memory>
 #include <string>
+
 #include "utils/binary.h"
 
 class Loader {
@@ -25,7 +27,7 @@ public:
 
     static LoaderVersion checkFile(std::string f);
 
-    static Loader *createLoader(std::string f);
+    static std::unique_ptr<Loader> createLoader(std::string f);
 
     virtual ~Loader();
 

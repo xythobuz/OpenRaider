@@ -34,7 +34,7 @@ Loader::LoaderVersion Loader::checkFile(std::string f) {
     return TR_UNKNOWN;
 }
 
-Loader *Loader::createLoader(std::string f) {
+std::unique_ptr<Loader> Loader::createLoader(std::string f) {
     LoaderVersion v = checkFile(f);
     switch (v) {
         case TR_1:
@@ -45,7 +45,7 @@ Loader *Loader::createLoader(std::string f) {
             return NULL;
 
         case TR_2:
-            return new LoaderTR2();
+            return std::unique_ptr<Loader>(new LoaderTR2());
     }
 }
 

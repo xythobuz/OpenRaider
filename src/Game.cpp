@@ -79,23 +79,21 @@ int Game::loadLevel(const char *level) {
 
     getConsole() << "Loading " << levelName << Console::endl;
 
-    Loader *loader = Loader::createLoader(level);
     int error = 0;
-    if (loader != NULL) {
+    auto loader = Loader::createLoader(level);
+    if (loader) {
         // First Loader test
         error = loader->load(level);
         if (error != 0) {
-            delete loader;
             return error;
         }
 
         // And now...?
 
-        delete loader;
         getConsole() << "Tried Loader..." << Console::endl;
     }
 
-    if ((loader == NULL) || (error == 0)) {
+    if ((!loader) || (error == 0)) {
         // Old TombRaider level loader
         error = mTombRaider.Load(levelName.c_str());
         if (error != 0)

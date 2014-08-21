@@ -8,8 +8,6 @@
 #ifndef _LOADER_LOADER_TR3_H_
 #define _LOADER_LOADER_TR3_H_
 
-#include <cstdint>
-
 #include "loader/Loader.h"
 
 class LoaderTR3 : public Loader {
@@ -19,9 +17,7 @@ public:
 
     virtual int load(std::string f);
 
-
 private:
-
 
 };
 
