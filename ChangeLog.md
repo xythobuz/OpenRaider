@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140827 ]
+    * Rewrote command system. Each command is now a unique class.
+
     [ 20140817 ]
     * Completed the file reading part of the new TR2 level loader
 

@@ -48,7 +48,6 @@ endif (PNG_FOUND)
 
 # Set Source files
 set (SRCS ${SRCS} "Camera.cpp")
-set (SRCS ${SRCS} "Command.cpp")
 set (SRCS ${SRCS} "Console.cpp")
 set (SRCS ${SRCS} "Entity.cpp")
 set (SRCS ${SRCS} "Exception.cpp")
@@ -213,6 +212,7 @@ set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${OpenRaider_CXX_FLAGS} ${O
 set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS} ${OpenRaider_CXX_FLAGS_RELEASE}")
 
 # Add subdirectories
+add_subdirectory ("commands")
 add_subdirectory ("deps")
 add_subdirectory ("loader")
 add_subdirectory ("math")
@@ -221,9 +221,9 @@ add_subdirectory ("utils")
 # Add Executable
 add_library (OpenRaider_all OBJECT ${SRCS})
 add_executable (OpenRaider MACOSX_BUNDLE ${RESRCS}
-    $<TARGET_OBJECTS:OpenRaider_all> $<TARGET_OBJECTS:OpenRaider_deps>
-    $<TARGET_OBJECTS:OpenRaider_math> $<TARGET_OBJECTS:OpenRaider_utils>
-    $<TARGET_OBJECTS:OpenRaider_loader>
+    $<TARGET_OBJECTS:OpenRaider_all> $<TARGET_OBJECTS:OpenRaider_commands>
+    $<TARGET_OBJECTS:OpenRaider_deps> $<TARGET_OBJECTS:OpenRaider_math>
+    $<TARGET_OBJECTS:OpenRaider_utils> $<TARGET_OBJECTS:OpenRaider_loader>
 )
 
 #################################################################

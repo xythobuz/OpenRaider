@@ -8,8 +8,11 @@
 #ifndef _OPENRAIDER_H_
 #define _OPENRAIDER_H_
 
-#include <istream>
+#include <memory>
 #include <string>
+#include <vector>
+
+#include "commands/Command.h"
 
 /*!
  * \brief Main Game Singleton
@@ -51,19 +54,12 @@ public:
     char *mPakDir;
     char *mAudioDir;
     char *mDataDir;
-
-private:
-
-    char *expandDirectoryNames(const char *s);
-    int set(std::istream &command);
-    int bind(const char *action, const char *key);
-
-    static int help(std::string &cmd);
-
+    KeyboardButton keyBindings[ActionEventCount];
     bool mRunning;
     bool mFPS;
 
-    KeyboardButton keyBindings[ActionEventCount];
+private:
+    std::vector<std::shared_ptr<Command>> commands;
 };
 
 OpenRaider &getOpenRaider();

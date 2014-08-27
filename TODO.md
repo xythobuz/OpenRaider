@@ -9,6 +9,10 @@
 * Don’t use float everywhere just because (eg. float colors)
 * Add verbose command line flag for debug output also in release builds
 
+## Bugs
+
+* Screenshots are sometimes not written, sometimes distorted?
+
 ## Cmake
 
 * Support SSE with other compilers than Clang (src/CMakeLists.txt)
