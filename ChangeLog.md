@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140829 ]
+    * Moved key/action/string comparison functions into CommandBind
+    * Added Renderflag command to toggle all flags in Render
+    * Reimplemented pigtail and ponypos commands. Now all commands
+      that were commented-out are back.
+
     [ 20140827 ]
     * Rewrote command system. Each command is now a unique class.
 

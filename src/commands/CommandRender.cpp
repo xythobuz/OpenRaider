@@ -8,6 +8,7 @@
 #include "global.h"
 #include "Console.h"
 #include "Game.h"
+#include "OpenRaider.h"
 #include "Render.h"
 #include "commands/CommandRender.h"
 
@@ -65,55 +66,67 @@ int CommandMode::execute(std::istream& args) {
 
 // --------------------------------------
 
-std::string CommandFog::name() {
-    return "fog";
+std::string CommandRenderflag::name() {
+    return "renderflag";
 }
 
-std::string CommandFog::brief() {
-    return "BOOL - GL Fog";
+std::string CommandRenderflag::brief() {
+    return "STRING BOOL - Toggle Render flag";
 }
 
-int CommandFog::execute(std::istream& args) {
-    bool b;
-    args >> b;
-    if (!args) {
-        getConsole() << "Pass BOOL to fog command!" << Console::endl;
+void CommandRenderflag::printHelp() {
+    getConsole() << "renderflag-Command Usage:" << Console::endl;
+    getConsole() << "  renderflag STRING BOOL" << Console::endl;
+    getConsole() << "Where STRING is one of the following:" << Console::endl;
+    getConsole() << "  ralpha" << Console::endl;
+    getConsole() << "  entmodel" << Console::endl;
+    getConsole() << "  fog" << Console::endl;
+    getConsole() << "  light" << Console::endl;
+    getConsole() << "  ponytail" << Console::endl;
+}
+
+int CommandRenderflag::execute(std::istream& args) {
+    if (!getOpenRaider().mRunning) {
+        getConsole() << "Use renderflag-Command interactively!" << Console::endl;
         return -1;
     }
 
-    if (b)
-        getRender().setFlags(Render::fFog);
-    else
-        getRender().clearFlags(Render::fFog);
-
-    getConsole() << "Fog is now " << (b ? "on" : "off") << Console::endl;
-    return 0;
-}
-
-// --------------------------------------
-
-std::string CommandLight::name() {
-    return "light";
-}
-
-std::string CommandLight::brief() {
-    return "BOOL - GL Lights";
-}
-
-int CommandLight::execute(std::istream& args) {
+    std::string flag;
     bool b;
-    args >> b;
+    args >> flag >> b;
     if (!args) {
-        getConsole() << "Pass BOOL to light command!" << Console::endl;
-        return -1;
+        getConsole() << "Pass STRING and BOOL to renderflag command!" << Console::endl;
+        return -2;
     }
 
-    if (b)
-        getRender().setFlags(Render::fGL_Lights);
-    else
-        getRender().clearFlags(Render::fGL_Lights);
+    int f = stringToFlag(flag);
+    if (f == -1) {
+        getConsole() << "Unknown flag \"" << flag << "\"!" << Console::endl;
+        return -3;
+    }
 
-    getConsole() << "GL-Lights are now " << (b ? "on" : "off") << Console::endl;
+    if (b) {
+        getRender().setFlags((unsigned int)f);
+    } else {
+        getRender().clearFlags((unsigned int)f);
+    }
+
     return 0;
+}
+
+int CommandRenderflag::stringToFlag(std::string flag) {
+    if (flag == "ralpha") {
+        return Render::fRoomAlpha;
+    } else if (flag == "entmodel") {
+        return Render::fEntityModels;
+    } else if (flag == "fog") {
+        return Render::fFog;
+    } else if (flag == "light") {
+        return Render::fGL_Lights;
+    } else if (flag == "ponytail") {
+        return Render::fRenderPonytail;
+    } else {
+        return -1;
+    }
 }
 

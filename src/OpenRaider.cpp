@@ -51,11 +51,12 @@ OpenRaider::OpenRaider() {
     commands.push_back(std::shared_ptr<Command>(new CommandAnimate()));
     commands.push_back(std::shared_ptr<Command>(new CommandMove()));
     commands.push_back(std::shared_ptr<Command>(new CommandMode()));
-    commands.push_back(std::shared_ptr<Command>(new CommandFog()));
-    commands.push_back(std::shared_ptr<Command>(new CommandLight()));
+    commands.push_back(std::shared_ptr<Command>(new CommandRenderflag()));
     commands.push_back(std::shared_ptr<Command>(new CommandSound()));
     commands.push_back(std::shared_ptr<Command>(new CommandPos()));
     commands.push_back(std::shared_ptr<Command>(new CommandViewmodel()));
+    commands.push_back(std::shared_ptr<Command>(new CommandPigtail()));
+    commands.push_back(std::shared_ptr<Command>(new CommandPonypos()));
     commands.push_back(std::shared_ptr<Command>(new CommandQuit()));
 }
 

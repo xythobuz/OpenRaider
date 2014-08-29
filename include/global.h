@@ -80,10 +80,6 @@ typedef enum {
     unknownKey // Should always be at the end
 } KeyboardButton;
 
-ActionEvents stringToActionEvent(const char *action);
-
-KeyboardButton stringToKeyboardButton(const char *key);
-
 // Visual C++ does not understand __attribute__
 #ifdef _MSC_VER
 #define __attribute__(x)

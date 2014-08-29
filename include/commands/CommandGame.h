@@ -14,5 +14,9 @@ DECLARE_SIMPLE_CMD_NO_HELP(CommandPos);
 
 DECLARE_SIMPLE_CMD_NO_HELP(CommandViewmodel);
 
+DECLARE_SIMPLE_CMD_NO_HELP(CommandPigtail);
+
+DECLARE_SIMPLE_CMD_NO_HELP(CommandPonypos);
+
 #endif
 

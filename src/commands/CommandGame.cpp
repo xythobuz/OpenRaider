@@ -61,3 +61,58 @@ int CommandViewmodel::execute(std::istream& args) {
     }
 }
 
+// --------------------------------------
+
+std::string CommandPigtail::name() {
+    return "pigtail";
+}
+
+std::string CommandPigtail::brief() {
+    return "BOOL";
+}
+
+int CommandPigtail::execute(std::istream& args) {
+    if ((!getOpenRaider().mRunning) || (!getGame().isLoaded())) {
+        getConsole() << "Use pigtail command interactively!" << Console::endl;
+        return -1;
+    }
+
+    bool b;
+    args >> b;
+    if (!args) {
+        getConsole() << "Pass BOOL to pigtail command!" << Console::endl;
+        return -2;
+    }
+
+    getGame().getLara().getModel().setPigTail(b);
+    getConsole() << "Pigtail is now " << (b ? "on" : "off") << Console::endl;
+    return 0;
+}
+
+// --------------------------------------
+
+std::string CommandPonypos::name() {
+    return "ponypos";
+}
+
+std::string CommandPonypos::brief() {
+    return "FLOAT FLOAT FLOAT FLOAT - x y z angle";
+}
+
+int CommandPonypos::execute(std::istream& args) {
+    if ((!getOpenRaider().mRunning) || (!getGame().isLoaded())) {
+        getConsole() << "Use ponypos command interactively!" << Console::endl;
+        return -1;
+    }
+
+    float a, b, c, d;
+    args >> a >> b >> c >> d;
+    if (!args) {
+        getConsole() << "Pass four FLOATs to ponypos command!" << Console::endl;
+        return -2;
+    }
+
+    getGame().getLara().getModel().setPonyPos(a, b, c, d);
+    return 0;
+}
+

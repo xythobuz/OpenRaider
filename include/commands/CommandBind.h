@@ -10,7 +10,17 @@
 
 #include "commands/Command.h"
 
-DECLARE_SIMPLE_CMD(CommandBind);
+class CommandBind : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual void printHelp();
+    virtual int execute(std::istream& args);
+
+private:
+    ActionEvents stringToActionEvent(std::string action);
+    KeyboardButton stringToKeyboardButton(std::string key);
+};
 
 #endif
 
