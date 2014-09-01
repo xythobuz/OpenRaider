@@ -4,7 +4,6 @@
 
 * Move to newer OpenGL (GL ES or 2.1 or 3.x or 4.x?)
 * Don't use C-Style code, try to replace with C++ lib
-    * Use std::strings
 * Mesh has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even combining Mesh and StaticMesh...
 * Don’t use float everywhere just because (eg. float colors)
 * Add verbose command line flag for debug output also in release builds
@@ -30,8 +29,4 @@
 * Add ability to play the FMVs. Format? VLC can play them!
 * Cut TGA image reader, currently only used for menu background?!
     * Need useful, always available image writer alternative for screenshots then
-
-* Create abstract interface from Game/Menu/Console, use this to do real “windows” that can be layered independently and can receive keyboard/mouse input
-* Put keyboard/mouse/windowing logic into UI or UIManager class
-* Move small rest of OpenRaider into main or a config class or something, remove OpenRaider class
 

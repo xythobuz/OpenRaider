@@ -26,10 +26,6 @@
 OpenRaider::OpenRaider() {
     mRunning = false;
     mFPS = false;
-    mBaseDir = NULL;
-    mPakDir = NULL;
-    mAudioDir = NULL;
-    mDataDir = NULL;
 
     for (int i = 0; i < ActionEventCount; i++)
         keyBindings[i] = unknownKey;
@@ -37,25 +33,40 @@ OpenRaider::OpenRaider() {
     Command::fillCommandList();
 }
 
-OpenRaider::~OpenRaider() {
-    delete mBaseDir;
-    mBaseDir = NULL;
-
-    delete mPakDir;
-    mPakDir = NULL;
-
-    delete mAudioDir;
-    mAudioDir = NULL;
-
-    delete mDataDir;
-    mDataDir = NULL;
+std::string OpenRaider::getBaseDir() {
+    return baseDir;
 }
 
-int OpenRaider::loadConfig(const char *config) {
-    assert(config != NULL);
-    assert(config[0] != '\0');
+void OpenRaider::setBaseDir(std::string dir) {
+    baseDir = dir;
+}
 
-    char *configFile = fullPath(config, 0);
+std::string OpenRaider::getPakDir() {
+    return pakDir;
+}
+
+void OpenRaider::setPakDir(std::string dir) {
+    pakDir = dir;
+}
+
+std::string OpenRaider::getAudioDir() {
+    return audioDir;
+}
+
+void OpenRaider::setAudioDir(std::string dir) {
+    audioDir = dir;
+}
+
+std::string OpenRaider::getDataDir() {
+    return dataDir;
+}
+
+void OpenRaider::setDataDir(std::string dir) {
+    dataDir = dir;
+}
+
+int OpenRaider::loadConfig(std::string config) {
+    std::string configFile = expandHomeDirectory(config);
     getConsole() << "Loading config from \"" << configFile << "\"..." << Console::endl;
 
     std::ifstream file(configFile);
@@ -68,7 +79,7 @@ int OpenRaider::loadConfig(const char *config) {
         if (line.length() == 0)
             continue;
 
-        int error = command(line);
+        int error = Command::command(line);
         if (error != 0)
             getConsole() << "Error Code: " << error << Console::endl;
     }
@@ -76,10 +87,6 @@ int OpenRaider::loadConfig(const char *config) {
     file.close();
 
     return 0;
-}
-
-int OpenRaider::command(std::string c) {
-    return Command::command(c);
 }
 
 int OpenRaider::initialize() {

@@ -21,7 +21,7 @@ public:
      */
     virtual ~Font();
 
-    virtual void setFont(const char *font);
+    virtual void setFont(std::string font);
 
     virtual int initialize() = 0;
 
@@ -41,7 +41,7 @@ public:
 
 protected:
     bool mFontInit;
-    char *mFontName;
+    std::string mFontName;
 };
 
 Font &getFont();

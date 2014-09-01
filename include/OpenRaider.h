@@ -16,15 +16,7 @@
 class OpenRaider {
 public:
 
-    /*!
-     * \brief Constructs an object of OpenRaider
-     */
     OpenRaider();
-
-    /*!
-     * \brief Deconstructs an object of OpenRaider
-     */
-    ~OpenRaider();
 
     int initialize();
 
@@ -32,21 +24,30 @@ public:
      * \brief Load the configuration file
      * \returns 0 on success
      */
-    int loadConfig(const char *config);
+    int loadConfig(std::string config);
 
-    int command(std::string command);
+    std::string getBaseDir();
+    void setBaseDir(std::string dir);
+    std::string getPakDir();
+    void setPakDir(std::string dir);
+    std::string getAudioDir();
+    void setAudioDir(std::string dir);
+    std::string getDataDir();
+    void setDataDir(std::string dir);
 
     void run();
     void frame();
 
     //! \fixme should be private
-    char *mBaseDir;
-    char *mPakDir;
-    char *mAudioDir;
-    char *mDataDir;
     KeyboardButton keyBindings[ActionEventCount];
     bool mRunning;
     bool mFPS;
+
+private:
+    std::string baseDir;
+    std::string pakDir;
+    std::string audioDir;
+    std::string dataDir;
 };
 
 OpenRaider &getOpenRaider();

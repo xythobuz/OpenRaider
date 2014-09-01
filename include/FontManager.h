@@ -39,11 +39,11 @@ public:
 
 private:
 
-    void add(Font *f, const char *e);
+    void add(Font *f, std::string e);
 
     int font;
     std::vector<Font *> fonts;
-    std::vector<const char *> extensions;
+    std::vector<std::string> extensions;
 };
 
 #endif

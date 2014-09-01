@@ -8,8 +8,8 @@
 #include <iostream>
 
 #include "global.h"
+#include "commands/Command.h"
 #include "Font.h"
-#include "OpenRaider.h"
 #include "utf8-cpp/utf8.h"
 #include "utils/strings.h"
 #include "utils/time.h"
@@ -104,7 +104,7 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
         if (mInputBuffer.length() > 0) {
             (*this) << "> " << mInputBuffer.c_str() << endl;
             mCommandHistory.push_back(mInputBuffer.c_str());
-            int error = getOpenRaider().command(mInputBuffer);
+            int error = Command::command(mInputBuffer);
             if (error != 0) {
                 (*this) << "Error Code: " << error << endl;
             }

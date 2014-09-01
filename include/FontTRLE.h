@@ -40,7 +40,7 @@ public:
 
 private:
 
-    void loadLPS(const char *f);
+    void loadLPS(std::string f);
     void writeChar(unsigned int index, unsigned int xDraw, unsigned int yDraw,
             float scale, const unsigned char color[4]);
 

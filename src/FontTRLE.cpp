@@ -15,7 +15,6 @@
 
 FontTRLE::FontTRLE() {
     mFontInit = false;
-    mFontName = NULL;
     mFontTexture = 0;
 }
 
@@ -24,8 +23,6 @@ FontTRLE::~FontTRLE() {
 
 int FontTRLE::initialize() {
     assert(mFontInit == false);
-    assert(mFontName != NULL);
-    assert(mFontName[0] != '\0');
     assert(stringEndsWith(mFontName, ".pc") == true);
 
     // Load .pc file...
@@ -53,15 +50,14 @@ int FontTRLE::initialize() {
     delete [] pixels;
 
     // Try to load .lps file, overwriting default glyph positions
-    char *lpsFile = stringReplace(mFontName, ".pc", ".lps");
+    std::string lpsFile = findAndReplace(mFontName, ".pc", ".lps");
     loadLPS(lpsFile);
-    delete [] lpsFile;
 
     mFontInit = true;
     return 0;
 }
 
-void FontTRLE::loadLPS(const char *f) {
+void FontTRLE::loadLPS(std::string f) {
     std::ifstream file(f);
     if (!file)
         return;

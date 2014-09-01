@@ -13,7 +13,6 @@
 FontSDL::FontSDL() {
     mFont = NULL;
     mFontInit = false;
-    mFontName = NULL;
     mFontTexture = 0;
 }
 
@@ -29,15 +28,13 @@ FontSDL::~FontSDL() {
 
 int FontSDL::initialize() {
     assert(mFontInit == false);
-    assert(mFontName != NULL);
-    assert(mFontName[0] != '\0');
 
     if (TTF_Init() != 0) {
         printf("Could not initialize SDL-TTF!\n");
         return -1;
     }
 
-    mFont = TTF_OpenFont(mFontName, 24);
+    mFont = TTF_OpenFont(mFontName.c_str(), 24);
     if (mFont == NULL) {
         printf("TTF_OpenFont Error: %s\n", TTF_GetError());
         return -2;

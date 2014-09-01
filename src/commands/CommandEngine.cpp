@@ -60,7 +60,7 @@ int CommandScreenshot::execute(std::istream& args) {
         return -1;
     }
 
-    std::string filename(getOpenRaider().mBaseDir);
+    std::string filename(getOpenRaider().getBaseDir());
     filename += "/sshots/";
     filename += VERSION_SHORT;
 

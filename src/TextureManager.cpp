@@ -46,11 +46,11 @@ int TextureManager::initialize() {
     delete [] image;
 
     //! \fixme Temporary
-    std::string filename(getOpenRaider().mPakDir);
+    std::string filename(getOpenRaider().getPakDir());
     filename += "/tr2/TITLE.PCX";
     if (loadPCX(filename.c_str()) < 0) {
         //! \fixme Error Checking. Return negative error code, check in calling place too
-        filename = getOpenRaider().mDataDir;
+        filename = getOpenRaider().getDataDir();
         filename += "/splash.tga";
         loadTGA(filename.c_str());
     }

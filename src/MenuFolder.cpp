@@ -8,6 +8,7 @@
 #include "global.h"
 #include "Console.h"
 #include "Font.h"
+#include "Game.h"
 #include "loader/Loader.h"
 #include "OpenRaider.h"
 #include "Window.h"
@@ -32,7 +33,7 @@ MenuFolder::~MenuFolder() {
 }
 
 int MenuFolder::initialize() {
-    return initialize(getOpenRaider().mPakDir);
+    return initialize(getOpenRaider().getPakDir());
 }
 
 int MenuFolder::initialize(std::string s) {
@@ -118,9 +119,8 @@ void MenuFolder::loadOrOpen() {
             showDialog("Error reading subfolder!", "OK", "");
         }
     } else {
-        std::string tmp = "load ";
-        tmp += mapFolder->getFile((unsigned long)mCursor - 1 - mapFolder->folderCount()).getPath();
-        int error = getOpenRaider().command(tmp.c_str());
+        int error = getGame().loadLevel(mapFolder->getFile((unsigned long)mCursor
+                    - 1 - mapFolder->folderCount()).getPath().c_str());
         if (error == 0) {
             makeInvisible();
         } else {

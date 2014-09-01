@@ -11,16 +11,11 @@
 #include "Font.h"
 
 Font::~Font() {
-    delete [] mFontName;
-    mFontName = NULL;
 }
 
-void Font::setFont(const char *font) {
-    assert(font != NULL);
-    assert(font[0] != '\0');
+void Font::setFont(std::string font) {
     assert(mFontInit == false);
-
-    mFontName = fullPath(font, 0);
+    mFontName = font;
 }
 
 void Font::drawTextCentered(unsigned int x, unsigned int y, float scale,

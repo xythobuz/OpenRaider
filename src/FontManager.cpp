@@ -32,7 +32,7 @@ FontManager::~FontManager() {
     }
 }
 
-void FontManager::add(Font *f, const char *e) {
+void FontManager::add(Font *f, std::string e) {
     fonts.push_back(f);
     extensions.push_back(e);
 }
