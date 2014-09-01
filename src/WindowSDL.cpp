@@ -439,6 +439,8 @@ void WindowSDL::eventHandling() {
                 exit(0);
         }
     }
+
+    UI::eventsFinished();
 }
 
 void WindowSDL::setTextInput(bool on) {

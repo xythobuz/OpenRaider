@@ -144,6 +144,12 @@ int OpenRaider::initialize() {
         return -7;
     }
 
+    error = UI::initialize();
+    if (error != 0) {
+        printf("Could not Initialize UI (%d)!\n", error);
+        return -8;
+    }
+
 #ifdef DEBUG
     mFPS = true;
 #endif

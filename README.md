@@ -179,3 +179,5 @@ The [clibs/commander](https://github.com/clibs/commander) dependency is Copyrigh
 
 The included [utf8-cpp](http://utfcpp.sourceforge.net) headers are Copyright (c) 2006 Nemanja Trifunovic. See the files in src/deps/utf8-cpp/ for informations about the license used.
 
+The included GUI lib, [imgui](https://github.com/ocornut/imgui/) is Copyright (c) 2014 Omar Cornut. See src/deps/imgui/LICENSE for more informations about the MIT license used.
+

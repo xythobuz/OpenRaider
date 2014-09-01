@@ -185,7 +185,7 @@ void MenuFolder::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
 }
 
 void MenuFolder::handleMouseScroll(int xrel, int yrel) {
-    if (handleMouseScrollDialog(xrel, yrel));
+    if (handleMouseScrollDialog(xrel, yrel))
         return;
 
     assert((xrel != 0) || (yrel != 0));
