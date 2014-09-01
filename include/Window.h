@@ -30,6 +30,8 @@ public:
 
     virtual void setTextInput(bool on) = 0;
 
+    virtual bool getTextInput() = 0;
+
     virtual void delay(unsigned int ms) = 0;
 
     virtual void swapBuffersGL() = 0;
@@ -54,6 +56,7 @@ protected:
     bool mInit;
     bool mFullscreen;
     bool mMousegrab;
+    bool mTextInput;
     unsigned int mWidth;
     unsigned int mHeight;
 };

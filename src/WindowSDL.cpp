@@ -9,7 +9,7 @@
 #include <ctime>
 
 #include "global.h"
-#include "OpenRaider.h"
+#include "UI.h"
 #include "utils/strings.h"
 #include "WindowSDL.h"
 
@@ -127,7 +127,7 @@ void WindowSDL::eventHandling() {
     while(SDL_PollEvent(&event)) {
         switch (event.type) {
             case SDL_MOUSEMOTION:
-                getOpenRaider().handleMouseMotion(event.motion.xrel, event.motion.yrel);
+                UI::passMouseMotion(event.motion.xrel, event.motion.yrel);
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
@@ -145,18 +145,18 @@ void WindowSDL::eventHandling() {
                     button = fifthmouseKey;
                 else
                     button = unknownKey;
-                getOpenRaider().handleMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
+                UI::passMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
                 break;
 
             case SDL_MOUSEWHEEL:
                 if ((event.wheel.x != 0) || (event.wheel.y != 0))
-                    getOpenRaider().handleMouseScroll(event.wheel.x, event.wheel.y);
+                    UI::passMouseScroll(event.wheel.x, event.wheel.y);
                 break;
 
             case SDL_TEXTINPUT:
             case SDL_TEXTEDITING:
                 if (event.text.text != NULL)
-                    getOpenRaider().handleText(event.text.text, (event.type == SDL_TEXTEDITING));
+                    UI::passText(event.text.text, (event.type == SDL_TEXTEDITING));
                 break;
 
             case SDL_KEYDOWN:
@@ -427,7 +427,7 @@ void WindowSDL::eventHandling() {
                         break;
 
                 }
-                getOpenRaider().handleKeyboard(key, (event.type == SDL_KEYDOWN));
+                UI::passKeyboard(key, (event.type == SDL_KEYDOWN));
                 break;
 
             case SDL_WINDOWEVENT:
@@ -449,6 +449,11 @@ void WindowSDL::setTextInput(bool on) {
         SDL_StartTextInput();
     else
         SDL_StopTextInput();
+}
+
+bool WindowSDL::getTextInput() {
+    assert(mInit == true);
+    return mTextInput;
 }
 
 void WindowSDL::delay(unsigned int ms) {

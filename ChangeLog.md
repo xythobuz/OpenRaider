@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140901 ]
+    * Created abstract UI class handling “windows” like menu and console. Windows
+      can be stacked arbitrarily. The top most gets keyboard/mouse/action events.
+
     [ 20140831 ]
     * Moved command specific code from OpenRaider to static Command methods
 

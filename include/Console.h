@@ -12,20 +12,16 @@
 #include <sstream>
 #include <vector>
 
+#include "UI.h"
+
 /*!
  * \brief Console 'overlay'
  */
-class Console {
+class Console : public UI {
 public:
 
-    /*!
-     * \brief Constructs an object of Console
-     */
     Console();
-
-    void setVisible(bool visible);
-
-    bool isVisible();
+    ~Console();
 
     template<typename T>
     Console &operator<<(const T t) {
@@ -40,13 +36,12 @@ public:
         return (*this);
     }
 
-    void display();
-
-    void handleKeyboard(KeyboardButton key, bool pressed);
-
-    void handleText(char *text, bool notFinished);
-
-    void handleMouseScroll(int xrel, int yrel);
+    virtual void moveToTop();
+    virtual void makeInvisible();
+    virtual void display();
+    virtual void handleKeyboard(KeyboardButton key, bool pressed);
+    virtual void handleText(char *text, bool notFinished);
+    virtual void handleMouseScroll(int xrel, int yrel);
 
     const static char endl = '\n';
 
@@ -54,7 +49,6 @@ private:
 
     void moveInHistory(bool up);
 
-    bool mVisible;
     std::string mInputBuffer;
     std::string mPartialInput;
     std::vector<std::string> mHistory;

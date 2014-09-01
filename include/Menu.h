@@ -10,27 +10,17 @@
 
 #include <functional>
 
+#include "UI.h"
+
 /*!
  * \brief Menu 'overlay'
  */
-class Menu {
+class Menu : public UI {
 public:
 
     virtual ~Menu() { }
 
-    virtual void setVisible(bool visible);
-
-    virtual bool isVisible();
-
     virtual int initialize() = 0;
-
-    virtual void display() = 0;
-
-    virtual void handleKeyboard(KeyboardButton key, bool pressed) = 0;
-
-    virtual void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) = 0;
-
-    virtual void handleMouseScroll(int xrel, int yrel) = 0;
 
 protected:
 
@@ -48,7 +38,6 @@ protected:
 
     virtual void displayDialog();
 
-    bool mVisible;
     bool dialogState;
     std::string dialogText;
     std::string dialogButton1;

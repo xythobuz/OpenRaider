@@ -39,12 +39,6 @@ public:
     void run();
     void frame();
 
-    void handleKeyboard(KeyboardButton key, bool pressed);
-    void handleText(char *text, bool notFinished);
-    void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
-    void handleMouseMotion(int xrel, int yrel);
-    void handleMouseScroll(int xrel, int yrel);
-
     //! \fixme should be private
     char *mBaseDir;
     char *mPakDir;

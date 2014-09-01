@@ -50,7 +50,7 @@ std::string CommandScreenshot::brief() {
 
 void CommandScreenshot::printHelp() {
     getConsole() << "sshot-Command Usage:" << Console::endl;
-    getConsole() << "  sshot [console|menu]" << Console::endl;
+    getConsole() << "  sshot [console|menu] [console|menu]" << Console::endl;
     getConsole() << "Add console/menu to capture them too" << Console::endl;
 }
 
@@ -65,28 +65,28 @@ int CommandScreenshot::execute(std::istream& args) {
     filename += VERSION_SHORT;
 
     bool console = false, menu = false;
-    std::string temp;
-    args >> temp;
-    if (temp.compare("console") == 0)
-        console = true;
-    if (temp.compare("menu") == 0)
-        menu = true;
+    std::string temp, temp2;
+    args >> temp >> temp2;
 
-    if (!console) {
-        getConsole().setVisible(false);
-        if (menu)
-            getMenu().setVisible(true);
-        getOpenRaider().frame();
-        getOpenRaider().frame(); // Double buffered
-    }
+    getConsole().makeInvisible();
+    getMenu().makeInvisible();
 
+    if (temp == "console")
+        getConsole().moveToTop();
+    else if (temp == "menu")
+        getMenu().moveToTop();
+
+    if (temp2 == "console")
+        getConsole().moveToTop();
+    else if (temp2 == "menu")
+        getMenu().moveToTop();
+
+    getOpenRaider().frame();
+    getOpenRaider().frame(); // Double buffered
     getRender().screenShot(filename.c_str());
 
-    if (!console) {
-        getConsole().setVisible(true);
-        if (menu)
-            getMenu().setVisible(false);
-    }
+    getMenu().makeInvisible();
+    getConsole().moveToTop();
 
     getConsole() << "Screenshot stored..." << Console::endl;
     return 0;

@@ -17,43 +17,50 @@
 #include "Console.h"
 
 Console::Console() {
-    mVisible = false;
+    zPos = -1;
     mHistoryPointer = 0;
     mLineOffset = 0;
+
+    UI::addWindow(this);
 }
 
-void Console::setVisible(bool visible) {
-    mVisible = visible;
-    getWindow().setTextInput(mVisible);
+Console::~Console() {
+    UI::removeWindow(this);
 }
 
-bool Console::isVisible() {
-    return mVisible;
+void Console::moveToTop() {
+    if (!getWindow().getTextInput())
+        getWindow().setTextInput(true);
+
+    UI::moveToTop();
 }
 
-#define LINE_GEOMETRY(window) \
-    unsigned int firstLine = 35; \
-    unsigned int lastLine = (window.getHeight() / 2) - 55; \
-    unsigned int inputLine = (window.getHeight() / 2) - 30; \
-    unsigned int lineSteps = 20; \
-    unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
-    while (((lineCount * lineSteps) + firstLine) < inputLine) { \
-        lineSteps++; \
-        lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \
-    }
+void Console::makeInvisible() {
+    if (getWindow().getTextInput())
+        getWindow().setTextInput(false);
+
+    UI::makeInvisible();
+}
 
 void Console::display() {
-    if (!mVisible)
-        return;
-
     // Calculate line drawing geometry
     // Depends on window height, so recalculate every time
-    LINE_GEOMETRY(getWindow());
+    unsigned int firstLine = 35;
+    unsigned int lastLine = (::getWindow().getHeight() / 2) - 55;
+    unsigned int inputLine = (::getWindow().getHeight() / 2) - 30;
+    unsigned int lineSteps = 20;
+    unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps;
+    while (((lineCount * lineSteps) + firstLine) < inputLine) {
+        lineSteps++;
+        lineCount = (lastLine - firstLine + lineSteps) / lineSteps;
+    }
+
+    ::getWindow().glEnter2D();
 
     // Draw half-transparent *overlay*
     glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
     glDisable(GL_TEXTURE_2D);
-    glRecti(0, 0, getWindow().getWidth(), getWindow().getHeight() / 2);
+    glRecti(0, 0, ::getWindow().getWidth(), ::getWindow().getHeight() / 2);
     glEnable(GL_TEXTURE_2D);
 
     unsigned long scrollIndicator;
@@ -87,6 +94,8 @@ void Console::display() {
 
     // Draw current input
     getFont().drawText(10, inputLine, 0.75f, BLUE, "> " + mInputBuffer + mPartialInput);
+
+    ::getWindow().glExit2D();
 }
 
 void Console::handleKeyboard(KeyboardButton key, bool pressed) {
@@ -178,7 +187,18 @@ void Console::handleText(char *text, bool notFinished) {
 
 void Console::handleMouseScroll(int xrel, int yrel) {
     assert((xrel != 0) || (yrel != 0));
-    LINE_GEOMETRY(getWindow());
+
+    // Calculate line drawing geometry
+    // Depends on window height, so recalculate every time
+    unsigned int firstLine = 35;
+    unsigned int lastLine = (::getWindow().getHeight() / 2) - 55;
+    unsigned int inputLine = (::getWindow().getHeight() / 2) - 30;
+    unsigned int lineSteps = 20;
+    unsigned int lineCount = (lastLine - firstLine + lineSteps) / lineSteps;
+    while (((lineCount * lineSteps) + firstLine) < inputLine) {
+        lineSteps++;
+        lineCount = (lastLine - firstLine + lineSteps) / lineSteps;
+    }
 
     if (mHistory.size() > lineCount) {
         if (yrel > 0) {

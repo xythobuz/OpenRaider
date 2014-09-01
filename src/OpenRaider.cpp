@@ -136,7 +136,7 @@ int OpenRaider::initialize() {
     mFPS = true;
 #endif
 
-    getMenu().setVisible(true);
+    getMenu().moveToTop();
     systemTimerReset();
 
     return 0;
@@ -159,14 +159,9 @@ void OpenRaider::frame() {
     // Get keyboard and mouse input
     getWindow().eventHandling();
 
-    // Draw game scene
-    getRender().display();
+    UI::displayInOrder();
 
-    // Draw 2D overlays (console and menu)
     getWindow().glEnter2D();
-
-    getConsole().display();
-    getMenu().display();
 
     // Draw FPS counter
     if (mFPS) {
@@ -177,7 +172,7 @@ void OpenRaider::frame() {
 
 #ifdef DEBUG
     // Draw debug infos
-    if (getGame().isLoaded() && (!getMenu().isVisible())) {
+    if (getGame().isLoaded() && (!getMenu().isOnTop())) {
         for (int i = 0; i < 3; i++) {
             std::ostringstream axis;
             axis << getGame().getLara().getPos(i) / 256.0f << " (" << getGame().getLara().getAngle(i) << ")";
@@ -199,93 +194,5 @@ void OpenRaider::frame() {
         fps = (int)((float)fpsCount * (1000.0f / (float)fpsSum));
         fpsCount = fpsSum = 0;
     }
-}
-
-void OpenRaider::handleKeyboard(KeyboardButton key, bool pressed) {
-    assert(key < unknownKey);
-    assert(mRunning == true);
-
-    if ((keyBindings[menuAction] == key) && pressed) {
-        getMenu().setVisible(!getMenu().isVisible());
-    } else if (!getMenu().isVisible()) {
-        if ((keyBindings[consoleAction] == key) && pressed) {
-            getConsole().setVisible(!getConsole().isVisible());
-        } else if (!getConsole().isVisible()) {
-            for (int i = forwardAction; i < ActionEventCount; i++) {
-                if (keyBindings[i] == key) {
-                    getGame().handleAction((ActionEvents)i, !pressed);
-                }
-            }
-        } else {
-            getConsole().handleKeyboard(key, pressed);
-        }
-    } else {
-        getMenu().handleKeyboard(key, pressed);
-    }
-
-    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
-    if (mousegrab != getWindow().getMousegrab())
-        getWindow().setMousegrab(mousegrab);
-}
-
-void OpenRaider::handleText(char *text, bool notFinished) {
-    assert(text != NULL);
-    assert(text[0] != '\0');
-    assert(mRunning == true);
-
-    if ((getConsole().isVisible()) && (!getMenu().isVisible())) {
-        getConsole().handleText(text, notFinished);
-    }
-
-    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
-    if (mousegrab != getWindow().getMousegrab())
-        getWindow().setMousegrab(mousegrab);
-}
-
-void OpenRaider::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
-    assert(button < unknownKey);
-    assert(mRunning == true);
-
-    if (getMenu().isVisible()) {
-        getMenu().handleMouseClick(x, y, button, released);
-    } else if (!getConsole().isVisible()) {
-        for (int i = forwardAction; i < ActionEventCount; i++) {
-            if (keyBindings[i] == button) {
-                getGame().handleAction((ActionEvents)i, released);
-            }
-        }
-    }
-
-    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
-    if (mousegrab != getWindow().getMousegrab())
-        getWindow().setMousegrab(mousegrab);
-}
-
-void OpenRaider::handleMouseMotion(int xrel, int yrel) {
-    assert((xrel != 0) || (yrel != 0));
-    assert(mRunning == true);
-
-    if ((!getConsole().isVisible()) && (!getMenu().isVisible())) {
-        getGame().handleMouseMotion(xrel, yrel);
-    }
-
-    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
-    if (mousegrab != getWindow().getMousegrab())
-        getWindow().setMousegrab(mousegrab);
-}
-
-void OpenRaider::handleMouseScroll(int xrel, int yrel) {
-    assert((xrel != 0) || (yrel != 0));
-    assert(mRunning == true);
-
-    if (getMenu().isVisible()) {
-        getMenu().handleMouseScroll(xrel, yrel);
-    } else if (getConsole().isVisible()) {
-        getConsole().handleMouseScroll(xrel, yrel);
-    }
-
-    bool mousegrab = !(getMenu().isVisible() || getConsole().isVisible());
-    if (mousegrab != getWindow().getMousegrab())
-        getWindow().setMousegrab(mousegrab);
 }
 

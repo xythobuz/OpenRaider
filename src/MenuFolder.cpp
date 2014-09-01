@@ -14,17 +14,21 @@
 #include "MenuFolder.h"
 
 MenuFolder::MenuFolder() {
-    mVisible = false;
+    zPos = -1;
     mCursor = 0;
     mMin = 0;
     mapFolder = nullptr;
     hiddenState = false;
     dialogState = false;
+
+    UI::addWindow(this);
 }
 
 MenuFolder::~MenuFolder() {
     delete mapFolder;
     mapFolder = nullptr;
+
+    UI::removeWindow(this);
 }
 
 int MenuFolder::initialize() {
@@ -71,20 +75,19 @@ int MenuFolder::initialize(Folder *folder, bool filter) {
 }
 
 void MenuFolder::display() {
-    if (!mVisible)
-        return;
+    ::getWindow().glEnter2D();
 
     // Draw half-transparent overlay
     glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
     glDisable(GL_TEXTURE_2D);
-    glRecti(0, 0, (GLint)getWindow().getWidth(), (GLint)getWindow().getHeight());
+    glRecti(0, 0, (GLint)::getWindow().getWidth(), (GLint)::getWindow().getHeight());
     glEnable(GL_TEXTURE_2D);
 
     // Draw heading
-    getFont().drawTextCentered(0, 10, 1.2f, BLUE, getWindow().getWidth(), VERSION);
+    getFont().drawTextCentered(0, 10, 1.2f, BLUE, ::getWindow().getWidth(), VERSION);
 
     // Estimate displayable number of items
-    int items = (getWindow().getHeight() - 60) / 25;
+    int items = (::getWindow().getHeight() - 60) / 25;
 
     // Print list of "..", folders, files
     for (long i = mMin; (i < (mMin + items))
@@ -101,6 +104,8 @@ void MenuFolder::display() {
     }
 
     displayDialog();
+
+    ::getWindow().glExit2D();
 }
 
 void MenuFolder::loadOrOpen() {
@@ -117,7 +122,7 @@ void MenuFolder::loadOrOpen() {
         tmp += mapFolder->getFile((unsigned long)mCursor - 1 - mapFolder->folderCount()).getPath();
         int error = getOpenRaider().command(tmp.c_str());
         if (error == 0) {
-            setVisible(false);
+            makeInvisible();
         } else {
             std::ostringstream err;
             err << "Error loading map: " << error << "!";
@@ -134,7 +139,7 @@ void MenuFolder::handleKeyboard(KeyboardButton key, bool pressed) {
         return;
 
     assert(mapFolder != nullptr);
-    int items = (getWindow().getHeight() - 60) / 25;
+    int items = (::getWindow().getHeight() - 60) / 25;
 
     if (key == upKey) {
         if (mCursor > 0)
@@ -164,7 +169,7 @@ void MenuFolder::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
     if (handleMouseClickDialog(x, y, button, released))
         return;
 
-    int items = (getWindow().getHeight() - 60) / 25;
+    int items = (::getWindow().getHeight() - 60) / 25;
 
     if (released || (button != leftmouseKey))
         return;
@@ -185,7 +190,7 @@ void MenuFolder::handleMouseScroll(int xrel, int yrel) {
 
     assert((xrel != 0) || (yrel != 0));
     assert(mapFolder != nullptr);
-    int items = (getWindow().getHeight() - 60) / 25;
+    int items = (::getWindow().getHeight() - 60) / 25;
 
     if ((mapFolder->folderCount() + mapFolder->fileCount() + 1) > items) {
         if (yrel < 0) {

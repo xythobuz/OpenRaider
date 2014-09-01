@@ -42,6 +42,8 @@ public:
 
     virtual void setTextInput(bool on);
 
+    virtual bool getTextInput();
+
     virtual void delay(unsigned int ms);
 
     virtual void swapBuffersGL();
@@ -49,8 +51,6 @@ public:
 private:
     SDL_Window *mWindow;      //!< This is the pointer to the SDL surface
     SDL_GLContext mGLContext; //!< The OpenGL Context
-
-    bool mTextInput;
 };
 
 #endif
