@@ -6,12 +6,10 @@
  */
 
 #include <iostream>
-#include <cstring>
 #include <cstdlib>
 #include <zlib.h>
 
 #include "global.h"
-#include "utils/strings.h"
 #include "Script.h"
 #include "ScriptTest.h"
 

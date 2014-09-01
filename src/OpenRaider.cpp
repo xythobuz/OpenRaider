@@ -23,6 +23,11 @@
 #include "Window.h"
 #include "OpenRaider.h"
 
+OpenRaider &getOpenRaider() {
+    static OpenRaider gOpenRaider;
+    return gOpenRaider;
+}
+
 OpenRaider::OpenRaider() {
     mRunning = false;
     mFPS = false;

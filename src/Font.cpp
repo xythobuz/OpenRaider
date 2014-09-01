@@ -9,6 +9,12 @@
 #include "utils/strings.h"
 #include "Window.h"
 #include "Font.h"
+#include "FontManager.h"
+
+Font &getFont() {
+    static FontManager gFont;
+    return gFont;
+}
 
 Font::~Font() {
 }

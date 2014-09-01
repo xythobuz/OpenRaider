@@ -24,6 +24,11 @@
 #include "Window.h"
 #include "World.h"
 
+Render &getRender() {
+    static Render gRender;
+    return gRender;
+}
+
 Render::Render() {
     mSkyMesh = -1;
     mSkyMeshRotation = false;

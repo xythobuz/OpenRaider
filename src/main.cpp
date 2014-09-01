@@ -6,98 +6,14 @@
  */
 
 #include <iostream>
-#include <cstdlib>
-#include <cstring>
 
 #include "global.h"
-#include "Camera.h"
 #include "Console.h"
 #include "Exception.h"
-#include "FontManager.h"
-#include "Game.h"
-#include "MenuFolder.h"
 #include "OpenRaider.h"
-#include "Render.h"
-#include "TextureManager.h"
-#include "World.h"
 #include "commander/commander.h"
-#include "utils/strings.h"
-#include "utils/time.h"
 
 #ifndef UNIT_TEST
-
-#ifdef USING_AL
-#include "SoundAL.h"
-#else
-#include "SoundNull.h"
-#endif
-
-#ifdef USING_SDL
-#include "WindowSDL.h"
-#else
-#error No Windowing Library selected!
-#endif
-
-Camera &getCamera() {
-    static Camera gCamera;
-    return gCamera;
-}
-
-Console &getConsole() {
-    static Console gConsole;
-    return gConsole;
-}
-
-Font &getFont() {
-    static FontManager gFont;
-    return gFont;
-}
-
-Game &getGame() {
-    static Game gGame;
-    return gGame;
-}
-
-Menu &getMenu() {
-    static MenuFolder gMenu;
-    return gMenu;
-}
-
-OpenRaider &getOpenRaider() {
-    static OpenRaider gOpenRaider;
-    return gOpenRaider;
-}
-
-Render &getRender() {
-    static Render gRender;
-    return gRender;
-}
-
-Sound &getSound() {
-#ifdef USING_AL
-    static SoundAL gSound;
-#else
-    static SoundNull gSound;
-#endif
-    return gSound;
-}
-
-TextureManager &getTextureManager() {
-    static TextureManager gTextureManager;
-    return gTextureManager;
-}
-
-Window &getWindow() {
-#ifdef USING_SDL
-    static WindowSDL gWindow;
-#endif
-    return gWindow;
-}
-
-World &getWorld() {
-    static World gWorld;
-    return gWorld;
-}
 
 namespace {
     bool configFileWasSpecified = false;
@@ -119,7 +35,7 @@ namespace {
     }
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     command_t cmd;
     command_init(&cmd, argv[0], VERSION);
     //command_option(&cmd, "-v", "--verbose", "enable verbose output", functionPointer);
@@ -141,7 +57,7 @@ int main(int argc, char *argv[]) {
     int error = getOpenRaider().initialize();
     if (error != 0) {
         std::cout << "Could not initialize OpenRaider (" << error << ")!" << std::endl;
-        return 2;
+        return -1;
     }
 
     command_free(&cmd);

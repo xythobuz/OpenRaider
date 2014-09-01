@@ -11,6 +11,11 @@
 #include "math/Matrix.h"
 #include "Camera.h"
 
+Camera &getCamera() {
+    static Camera gCamera;
+    return gCamera;
+}
+
 Camera::Camera() {
     mViewDistance = 14.0f;
     mRotationDeltaX = 1.0f;

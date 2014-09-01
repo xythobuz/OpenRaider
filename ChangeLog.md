@@ -6,6 +6,7 @@
     * Created abstract UI class handling “windows” like menu and console. Windows
       can be stacked arbitrarily. The top most gets keyboard/mouse/action events.
     * Removed old C-String handling utility methods, now using std::string
+    * Moved getX() methods from main into their respective cpp file
 
     [ 20140831 ]
     * Moved command specific code from OpenRaider to static Command methods

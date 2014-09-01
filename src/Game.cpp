@@ -29,6 +29,11 @@
 std::map<int, int> gMapTex2Bump;
 #endif
 
+Game &getGame() {
+    static Game gGame;
+    return gGame;
+}
+
 Game::Game() {
     zPos = 0;
     mLoaded = false;

@@ -27,9 +27,8 @@ add_dependencies (check tester_folder)
 #################################################################
 
 add_executable (tester_script EXCLUDE_FROM_ALL
-    "Script.cpp" "../src/Script.cpp" "../src/utils/strings.cpp"
-    "../src/utils/binary.cpp" "../src/utils/filesystem.cpp"
-    "../src/Exception.cpp" "../src/main.cpp"
+    "Script.cpp" "../src/Script.cpp" "../src/main.cpp"
+    "../src/utils/binary.cpp" "../src/Exception.cpp"
 )
 
 find_package (ZLIB REQUIRED)
