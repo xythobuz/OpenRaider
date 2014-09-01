@@ -10,11 +10,28 @@
 
 #include "commands/Command.h"
 
-DECLARE_SIMPLE_CMD(CommandLoad);
+class CommandLoad : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual void printHelp();
+    virtual int execute(std::istream& args);
+};
 
-DECLARE_SIMPLE_CMD(CommandScreenshot);
+class CommandScreenshot : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual void printHelp();
+    virtual int execute(std::istream& args);
+};
 
-DECLARE_SIMPLE_CMD_NO_HELP(CommandQuit);
+class CommandQuit : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual int execute(std::istream& args);
+};
 
 #endif
 

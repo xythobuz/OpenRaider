@@ -10,13 +10,33 @@
 
 #include "commands/Command.h"
 
-DECLARE_SIMPLE_CMD_NO_HELP(CommandPos);
+class CommandPos : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual int execute(std::istream& args);
+};
 
-DECLARE_SIMPLE_CMD_NO_HELP(CommandViewmodel);
+class CommandViewmodel : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual int execute(std::istream& args);
+};
 
-DECLARE_SIMPLE_CMD_NO_HELP(CommandPigtail);
+class CommandPigtail : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual int execute(std::istream& args);
+};
 
-DECLARE_SIMPLE_CMD_NO_HELP(CommandPonypos);
+class CommandPonypos : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual int execute(std::istream& args);
+};
 
 #endif
 

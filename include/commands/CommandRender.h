@@ -10,7 +10,13 @@
 
 #include "commands/Command.h"
 
-DECLARE_SIMPLE_CMD(CommandMode);
+class CommandMode : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual void printHelp();
+    virtual int execute(std::istream& args);
+};
 
 class CommandRenderflag : public Command {
 public:

@@ -20,24 +20,13 @@ public:
     virtual std::string brief() = 0;
     virtual void printHelp();
     virtual int execute(std::istream& args) = 0;
+
+    static void fillCommandList();
+    static int command(std::string c);
+
+private:
+    static std::vector<std::shared_ptr<Command>> commands;
 };
-
-#define DECLARE_SIMPLE_CMD(x) \
-    class x : public Command { \
-    public: \
-        virtual std::string name(); \
-        virtual std::string brief(); \
-        virtual void printHelp(); \
-        virtual int execute(std::istream& args); \
-    }
-
-#define DECLARE_SIMPLE_CMD_NO_HELP(x) \
-    class x : public Command { \
-    public: \
-        virtual std::string name(); \
-        virtual std::string brief(); \
-        virtual int execute(std::istream& args); \
-    }
 
 #endif
 

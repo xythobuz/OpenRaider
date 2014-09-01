@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140831 ]
+    * Moved command specific code from OpenRaider to static Command methods
+
     [ 20140829 ]
     * Moved key/action/string comparison functions into CommandBind
     * Added Renderflag command to toggle all flags in Render

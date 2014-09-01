@@ -10,7 +10,13 @@
 
 #include "commands/Command.h"
 
-DECLARE_SIMPLE_CMD(CommandMove);
+class CommandMove : public Command {
+public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual void printHelp();
+    virtual int execute(std::istream& args);
+};
 
 #endif
 

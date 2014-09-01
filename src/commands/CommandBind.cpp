@@ -44,13 +44,13 @@ int CommandBind::execute(std::istream& args) {
         getConsole() << "Invalid use of bind-command" << Console::endl;
         return -1;
     } else {
-        ActionEvents e = stringToActionEvent(a.c_str());
+        ActionEvents e = stringToActionEvent(a);
         if (e == ActionEventCount) {
             getConsole() << "bind-Error: Unknown action (" << a << ")" << Console::endl;
             return -2;
         }
 
-        KeyboardButton c = stringToKeyboardButton(b.c_str());
+        KeyboardButton c = stringToKeyboardButton(b);
         if (c == unknownKey) {
             getConsole() << "bind-Error: Unknown key (" << b << ")" << Console::endl;
             return -3;

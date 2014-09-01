@@ -8,6 +8,9 @@
 * Mesh has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even combining Mesh and StaticMesh...
 * Don’t use float everywhere just because (eg. float colors)
 * Add verbose command line flag for debug output also in release builds
+* Don’t depend on setup: no data or config files should be necessary
+* Be able to change configuration from within OpenRaider
+* Put log functionality outside of Console
 
 ## Bugs
 
@@ -21,9 +24,14 @@
 
 ## Future Features
 
+* Depend on physfs for easier file location management
 * Depend on libcdio, use it to read original CDs or CUE/TOC/ISO images
 * Depend on imgui for nicer GUIs?
 * Add ability to play the FMVs. Format? VLC can play them!
 * Cut TGA image reader, currently only used for menu background?!
     * Need useful, always available image writer alternative for screenshots then
+
+* Create abstract interface from Game/Menu/Console, use this to do real “windows” that can be layered independently and can receive keyboard/mouse input
+* Put keyboard/mouse/windowing logic into UI or UIManager class
+* Move small rest of OpenRaider into main or a config class or something, remove OpenRaider class
 

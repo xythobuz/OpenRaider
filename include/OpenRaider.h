@@ -8,11 +8,7 @@
 #ifndef _OPENRAIDER_H_
 #define _OPENRAIDER_H_
 
-#include <memory>
 #include <string>
-#include <vector>
-
-#include "commands/Command.h"
 
 /*!
  * \brief Main Game Singleton
@@ -57,9 +53,6 @@ public:
     KeyboardButton keyBindings[ActionEventCount];
     bool mRunning;
     bool mFPS;
-
-private:
-    std::vector<std::shared_ptr<Command>> commands;
 };
 
 OpenRaider &getOpenRaider();
