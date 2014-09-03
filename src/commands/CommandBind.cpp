@@ -24,6 +24,7 @@ void CommandBind::printHelp() {
     getConsole() << "Available Actions:" << Console::endl;
     getConsole() << "  menu" << Console::endl;
     getConsole() << "  console" << Console::endl;
+    getConsole() << "  debug" << Console::endl;
     getConsole() << "  forward" << Console::endl;
     getConsole() << "  backward" << Console::endl;
     getConsole() << "  left" << Console::endl;
@@ -66,6 +67,8 @@ ActionEvents CommandBind::stringToActionEvent(std::string action) {
         return menuAction;
     } else if (action == "console") {
         return consoleAction;
+    } else if (action == "debug") {
+        return debugAction;
     } else if (action == "forward") {
         return forwardAction;
     } else if (action == "backward") {

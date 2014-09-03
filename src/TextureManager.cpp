@@ -24,11 +24,6 @@
 #include "utils/png.h"
 #endif
 
-TextureManager &getTextureManager() {
-    static TextureManager gTextureManager;
-    return gTextureManager;
-}
-
 TextureManager::TextureManager() {
     mFlags = 0;
 }

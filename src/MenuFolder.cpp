@@ -33,16 +33,17 @@ MenuFolder::~MenuFolder() {
 }
 
 int MenuFolder::initialize() {
-    return initialize(getOpenRaider().getPakDir());
+    return init(getOpenRaider().getPakDir());
 }
 
-int MenuFolder::initialize(std::string s) {
-    return initialize(new Folder(s));
+int MenuFolder::init(std::string s) {
+    return init(new Folder(s));
 }
 
-int MenuFolder::initialize(Folder *folder, bool filter) {
+int MenuFolder::init(Folder *folder, bool filter) {
     if (mapFolder != nullptr)
         delete mapFolder;
+
     mapFolder = folder;
     mMin = mCursor = 0;
 
@@ -111,11 +112,11 @@ void MenuFolder::display() {
 
 void MenuFolder::loadOrOpen() {
     if (mCursor == 0) {
-        if (initialize(mapFolder->getParent().getPath()) != 0) {
+        if (init(mapFolder->getParent().getPath()) != 0) {
             showDialog("Error reading parent folder!", "OK", "");
         }
     } else if ((mCursor - 1) < mapFolder->folderCount()) {
-        if (initialize(mapFolder->getFolder(mCursor - 1).getPath()) != 0) {
+        if (init(mapFolder->getFolder(mCursor - 1).getPath()) != 0) {
             showDialog("Error reading subfolder!", "OK", "");
         }
     } else {
@@ -155,7 +156,7 @@ void MenuFolder::handleKeyboard(KeyboardButton key, bool pressed) {
         loadOrOpen();
     } else if (key == dotKey) {
         hiddenState = !hiddenState;
-        initialize(mapFolder->getPath());
+        init(mapFolder->getPath());
     }
 
     if (mCursor > (mMin + items - 1)) {

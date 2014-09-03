@@ -11,11 +11,6 @@
 #include "global.h"
 #include "World.h"
 
-World &getWorld() {
-    static World gWorld;
-    return gWorld;
-}
-
 World::~World() {
     destroy();
 }

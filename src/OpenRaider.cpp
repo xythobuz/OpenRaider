@@ -23,19 +23,12 @@
 #include "Window.h"
 #include "OpenRaider.h"
 
-OpenRaider &getOpenRaider() {
-    static OpenRaider gOpenRaider;
-    return gOpenRaider;
-}
-
 OpenRaider::OpenRaider() {
     mRunning = false;
     mFPS = false;
 
     for (int i = 0; i < ActionEventCount; i++)
         keyBindings[i] = unknownKey;
-
-    Command::fillCommandList();
 }
 
 std::string OpenRaider::getBaseDir() {
@@ -130,24 +123,11 @@ int OpenRaider::initialize() {
         return -5;
     }
 
-    // Initialize game engine
-    error = getGame().initialize();
+    // Initialize UIs
+    error = UI::passInitialize();
     if (error != 0) {
-        printf("Could not initialize Game (%d)!\n", error);
+        printf("Could not initialize UIs (%d)!\n", error);
         return -6;
-    }
-
-    // Initialize main menu
-    error = getMenu().initialize();
-    if (error != 0) {
-        printf("Could not initialize Menu (%d)!\n", error);
-        return -7;
-    }
-
-    error = UI::initialize();
-    if (error != 0) {
-        printf("Could not Initialize UI (%d)!\n", error);
-        return -8;
     }
 
 #ifdef DEBUG
@@ -177,7 +157,11 @@ void OpenRaider::frame() {
     // Get keyboard and mouse input
     getWindow().eventHandling();
 
-    UI::displayInOrder();
+    ImGui::SetNewWindowDefaultPos(ImVec2(50, 50));
+    bool show_test_window = true;
+    ImGui::ShowTestWindow(&show_test_window);
+
+    UI::passDisplay();
 
     getWindow().glEnter2D();
 

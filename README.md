@@ -109,6 +109,7 @@ OpenRaider tries to load a `MAIN.SFX` from the same folder as the selected level
 | -----------------:|:--------------------- |
 | &lt;Esc&gt;       | Toggle menu           |
 | &lt;backquote&gt; | Console toggle on/off |
+| q                 | Toggle debug windows  |
 | w                 | Move forward          |
 | s                 | Move back             |
 | a                 | Move left             |

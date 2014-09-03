@@ -29,11 +29,6 @@
 std::map<int, int> gMapTex2Bump;
 #endif
 
-Game &getGame() {
-    static Game gGame;
-    return gGame;
-}
-
 Game::Game() {
     zPos = 0;
     mLoaded = false;
@@ -171,7 +166,7 @@ void Game::handleAction(ActionEvents action, bool isFinished) {
     }
 }
 
-void Game::handleMouseMotion(int xrel, int yrel) {
+void Game::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) {
     if (mLoaded) {
         // Move Camera on X Axis
         if (xrel > 0)

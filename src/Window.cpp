@@ -15,19 +15,6 @@
 #include "utils/strings.h"
 #include "Window.h"
 
-#ifdef USING_SDL
-#include "WindowSDL.h"
-#else
-#error No Windowing Library selected!
-#endif
-
-Window &getWindow() {
-#ifdef USING_SDL
-    static WindowSDL gWindow;
-#endif
-    return gWindow;
-}
-
 unsigned int Window::getWidth() {
     return mWidth;
 }

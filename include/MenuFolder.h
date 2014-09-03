@@ -36,10 +36,8 @@ public:
 
 private:
 
-    virtual int initialize(std::string s);
-
-    virtual int initialize(Folder *folder, bool filter = true);
-
+    int init(std::string s);
+    int init(Folder *folder, bool filter = true);
     virtual void loadOrOpen();
 
     long mCursor;

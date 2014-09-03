@@ -24,7 +24,7 @@ public:
     Game();
     ~Game();
 
-    int initialize();
+    virtual int initialize();
 
     bool isLoaded();
 
@@ -34,7 +34,7 @@ public:
 
     virtual void display();
     virtual void handleAction(ActionEvents action, bool isFinished);
-    virtual void handleMouseMotion(int xrel, int yrel);
+    virtual void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
     virtual void moveToTop() { }
     virtual void makeInvisible() { }
 

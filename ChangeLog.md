@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140903 ]
+    * Finishing imgui integration, but now as UI layer and not on top of everything
+    * All global objects are now explicitly allocated in main
+
     [ 20140901 ]
     * Created abstract UI class handling “windows” like menu and console. Windows
       can be stacked arbitrarily. The top most gets keyboard/mouse/action events.

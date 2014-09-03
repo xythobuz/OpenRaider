@@ -152,7 +152,7 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
         fread(&comment, 1, header.comment_lenght, f);
         for (i = 0; i < 255; ++i) {
             if (!(comment[i] > 32 && comment[i] < 127))
-                comment[i] = 183; // print a dot for invalid text
+                comment[i] = '.'; // print a dot for invalid text
         }
         comment[255] = 0;
         printf("Comment: '%s'\n", comment);

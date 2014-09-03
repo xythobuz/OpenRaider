@@ -127,7 +127,7 @@ void WindowSDL::eventHandling() {
     while(SDL_PollEvent(&event)) {
         switch (event.type) {
             case SDL_MOUSEMOTION:
-                UI::passMouseMotion(event.motion.xrel, event.motion.yrel);
+                UI::passMouseMotion(event.motion.xrel, event.motion.yrel, event.motion.x, event.motion.y);
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
@@ -440,7 +440,7 @@ void WindowSDL::eventHandling() {
         }
     }
 
-    UI::eventsFinished();
+    UI::passEvents();
 }
 
 void WindowSDL::setTextInput(bool on) {

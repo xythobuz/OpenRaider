@@ -12,11 +12,6 @@
 #include "Menu.h"
 #include "MenuFolder.h"
 
-Menu &getMenu() {
-    static MenuFolder gMenu;
-    return gMenu;
-}
-
 void Menu::showDialog(std::string msg, std::string btn1, std::string btn2,
         std::function<int (bool state)> callback) {
     // Only show one dialog at a time

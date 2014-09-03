@@ -16,11 +16,6 @@
 #include "Window.h"
 #include "Console.h"
 
-Console &getConsole() {
-    static Console gConsole;
-    return gConsole;
-}
-
 Console::Console() {
     zPos = -1;
     mHistoryPointer = 0;
