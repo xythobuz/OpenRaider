@@ -6,13 +6,16 @@
  */
 
 #include <iostream>
+#include <memory>
 
 #include "global.h"
 #include "Console.h"
 #include "Exception.h"
-#include "OpenRaider.h"
 #include "commander/commander.h"
 #include "commands/Command.h"
+#include "utils/time.h"
+
+#ifndef UNIT_TEST
 
 #include "Camera.h"
 #include "Debug.h"
@@ -20,7 +23,10 @@
 #include "Game.h"
 #include "MenuFolder.h"
 #include "Render.h"
+#include "RunTime.h"
 #include "TextureManager.h"
+#include "UI.h"
+#include "Window.h"
 #include "World.h"
 
 #ifdef USING_AL
@@ -35,78 +41,30 @@
 #error No Windowing Library selected!
 #endif
 
-#ifndef UNIT_TEST
+static std::string configFileToUse;
 
-namespace {
-    Camera* gCamera;
-    Console* gConsole;
-    Debug* gDebug;
-    FontManager* gFont;
-    Game* gGame;
-    MenuFolder* gMenu;
-    OpenRaider* gOpenRaider;
-    Render* gRender;
-    Sound* gSound;
-    TextureManager* gTextureManager;
-    Window* gWindow;
-    World* gWorld;
+static std::shared_ptr<Camera> gCamera;
+static std::shared_ptr<Console> gConsole;
+static std::shared_ptr<Debug> gDebug;
+static std::shared_ptr<FontManager> gFont;
+static std::shared_ptr<Game> gGame;
+static std::shared_ptr<MenuFolder> gMenu;
+static std::shared_ptr<Render> gRender;
+static std::shared_ptr<RunTime> gRunTime;
+static std::shared_ptr<Sound> gSound;
+static std::shared_ptr<TextureManager> gTextureManager;
+static std::shared_ptr<Window> gWindow;
+static std::shared_ptr<World> gWorld;
 
-    void createGlobals() {
-        gOpenRaider = new OpenRaider();
-        gCamera = new Camera();
-        gConsole = new Console();
-        gDebug = new Debug();
-        gFont = new FontManager();
-        gGame = new Game();
-        gMenu = new MenuFolder();
-        gRender = new Render();
-        gTextureManager = new TextureManager();
-        gWorld = new World();
-
-#ifdef USING_AL
-        gSound = new SoundAL();
-#else
-        gSound = new SoundNull();
-#endif
-
-#ifdef USING_SDL
-        gWindow = new WindowSDL();
-#endif
-    }
-
-    void deleteGlobals() {
-        delete gCamera;
-        delete gConsole;
-        delete gFont;
-        delete gGame;
-        delete gMenu;
-        delete gOpenRaider;
-        delete gRender;
-        delete gSound;
-        delete gTextureManager;
-        delete gWindow;
-        delete gWorld;
-    }
-
-    bool configFileWasSpecified = false;
-
-    void configFileCallback(command_t *self) {
-        getOpenRaider().loadConfig(self->arg);
-        configFileWasSpecified = true;
-    }
-
-    void cleanupHandler(void) {
+static void cleanupHandler(void) {
 #ifdef DEBUG
-        std::cout << std::endl;
-        std::cout << "Thanks for testing " << VERSION << std::endl;
-        std::cout << "Build date: " << __DATE__ << " @ " << __TIME__ << std::endl;
-        std::cout << "Build host: " << BUILD_HOST << std::endl;
-        std::cout << "Web site  : http://github.com/xythobuz/OpenRaider" << std::endl;
-        std::cout << "Contact   : xythobuz@xythobuz.de" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Thanks for testing " << VERSION << std::endl;
+    std::cout << "Build date: " << __DATE__ << " @ " << __TIME__ << std::endl;
+    std::cout << "Build host: " << BUILD_HOST << std::endl;
+    std::cout << "Web site  : http://github.com/xythobuz/OpenRaider" << std::endl;
+    std::cout << "Contact   : xythobuz@xythobuz.de" << std::endl;
 #endif
-
-        deleteGlobals();
-    }
 }
 
 Camera &getCamera() {
@@ -133,12 +91,12 @@ Menu &getMenu() {
     return *gMenu;
 }
 
-OpenRaider &getOpenRaider() {
-    return *gOpenRaider;
-}
-
 Render &getRender() {
     return *gRender;
+}
+
+RunTime &getRunTime() {
+    return *gRunTime;
 }
 
 Sound &getSound() {
@@ -158,38 +116,116 @@ World &getWorld() {
 }
 
 int main(int argc, char* argv[]) {
-    createGlobals();
+    command_t cmd;
+    command_init(&cmd, argv[0], VERSION);
+    command_option(&cmd, "-c", "--config <file>", "select config file to use",
+            [](command_t *self) {
+        configFileToUse = self->arg;
+    });
+    command_parse(&cmd, argc, argv);
+    command_free(&cmd);
+
+    gCamera.reset(new Camera());
+    gConsole.reset(new Console());
+    gDebug.reset(new Debug());
+    gFont.reset(new FontManager());
+    gGame.reset(new Game());
+    gMenu.reset(new MenuFolder());
+    gRender.reset(new Render());
+    gRunTime.reset(new RunTime());
+    gTextureManager.reset(new TextureManager());
+    gWorld.reset(new World());
+
+#ifdef USING_AL
+    gSound.reset(new SoundAL());
+#else
+    gSound.reset(new SoundNull());
+#endif
+
+#ifdef USING_SDL
+    gWindow.reset(new WindowSDL());
+#endif
+
     atexit(cleanupHandler);
     Command::fillCommandList();
 
-    command_t cmd;
-    command_init(&cmd, argv[0], VERSION);
-    //command_option(&cmd, "-v", "--verbose", "enable verbose output", functionPointer);
-    command_option(&cmd, "-c", "--config <file>", "select config file to use", configFileCallback);
-    command_parse(&cmd, argc, argv);
-
-    if (!configFileWasSpecified) {
-        if (getOpenRaider().loadConfig(DEFAULT_CONFIG_FILE) != 0) {
-            getOpenRaider().loadConfig(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE);
+    if (configFileToUse == "") {
+        if (Command::executeFile(DEFAULT_CONFIG_FILE) != 0) {
+            Command::executeFile(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE);
         }
+    } else {
+        Command::executeFile(configFileToUse);
     }
 
-#ifdef DEBUG
     getConsole() << "Initializing " << VERSION << Console::endl;
-#endif
 
-    int error = getOpenRaider().initialize();
+    // Initialize Windowing
+    int error = getWindow().initialize();
     if (error != 0) {
-        std::cout << "Could not initialize OpenRaider (" << error << ")!" << std::endl;
+        std::cout << "Could not initialize Window (" << error << ")!" << std::endl;
         return -1;
     }
 
-    command_free(&cmd);
+    // Initialize OpenGL
+    error = getWindow().initializeGL();
+    if (error != 0) {
+        std::cout << "Could not initialize OpenGL (" << error << ")!" << std::endl;
+        return -2;
+    }
+
+    // Initialize Font
+    error = getFont().initialize();
+    if (error != 0) {
+        std::cout << "Could not initialize Font (" << error << ")!" << std::endl;
+        return -3;
+    }
+
+    // Initialize Sound
+    error = getSound().initialize();
+    if (error != 0) {
+        std::cout << "Could not initialize Sound (" << error << ")!" << std::endl;
+        return -4;
+    }
+
+    // Initialize Texture Manager
+    error = getTextureManager().initialize();
+    if (error != 0) {
+        std::cout << "Could not initialize TextureManager (" << error << ")!" << std::endl;
+        return -5;
+    }
+
+    // Initialize UIs
+    error = UI::passInitialize();
+    if (error != 0) {
+        std::cout << "Could not initialize UIs (" << error << ")!" << std::endl;
+        return -6;
+    }
 
     getConsole() << "Starting " << VERSION << Console::endl;
-    getOpenRaider().run();
+    getMenu().moveToTop();
+    systemTimerReset();
+    getRunTime().start();
+
+    while (getRunTime().isRunning()) {
+        renderFrame();
+    }
 
     return 0;
+}
+
+void renderFrame() {
+    // Get keyboard and mouse input
+    getWindow().eventHandling();
+
+    ImGui::SetNewWindowDefaultPos(ImVec2(50, 50));
+    bool show_test_window = false;
+    ImGui::ShowTestWindow(&show_test_window);
+
+    // Render everything
+    UI::passDisplay();
+
+    // Put new frame on screen
+    getWindow().swapBuffersGL();
 }
 
 #endif // UNIT_TEST

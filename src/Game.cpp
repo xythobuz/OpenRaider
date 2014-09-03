@@ -15,7 +15,6 @@
 #include "Console.h"
 #include "Game.h"
 #include "loader/Loader.h"
-#include "OpenRaider.h"
 #include "Render.h"
 #include "Sound.h"
 #include "StaticMesh.h"
@@ -40,8 +39,6 @@ Game::Game() {
 }
 
 Game::~Game() {
-    destroy();
-
     UI::removeWindow(this);
 }
 

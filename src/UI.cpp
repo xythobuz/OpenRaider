@@ -11,7 +11,7 @@
 #include "Console.h"
 #include "Debug.h"
 #include "Menu.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "TextureManager.h"
 #include "Window.h"
 
@@ -32,19 +32,19 @@ void UI::handleMouseScroll(int xrel, int yrel) { }
 
 void UI::passKeyboard(KeyboardButton key, bool pressed) {
     if (pressed) {
-        if (getOpenRaider().keyBindings[menuAction] == key) {
+        if (getRunTime().getKeyBinding(menuAction) == key) {
             if (getMenu().isOnTop()) {
                 getMenu().makeInvisible();
             } else {
                 getMenu().moveToTop();
             }
-        } else if (getOpenRaider().keyBindings[consoleAction] == key) {
+        } else if (getRunTime().getKeyBinding(consoleAction) == key) {
             if (getConsole().isOnTop()) {
                 getConsole().makeInvisible();
             } else {
                 getConsole().moveToTop();
             }
-        } else if (getOpenRaider().keyBindings[debugAction] == key) {
+        } else if (getRunTime().getKeyBinding(debugAction) == key) {
             if (getDebug().isOnTop()) {
                 getDebug().makeInvisible();
             } else {
@@ -57,7 +57,7 @@ void UI::passKeyboard(KeyboardButton key, bool pressed) {
     (*maxIterator)->handleKeyboard(key, pressed);
 
     for (int i = forwardAction; i < ActionEventCount; i++) {
-        if (getOpenRaider().keyBindings[i] == key) {
+        if (getRunTime().getKeyBinding((ActionEvents)i) == key) {
             (*maxIterator)->handleAction((ActionEvents)i, !pressed);
         }
     }
@@ -77,7 +77,7 @@ void UI::passMouseClick(unsigned int x, unsigned int y, KeyboardButton button, b
     (*maxIterator)->handleMouseClick(x, y, button, released);
 
     for (int i = forwardAction; i < ActionEventCount; i++) {
-        if (getOpenRaider().keyBindings[i] == button) {
+        if (getRunTime().getKeyBinding((ActionEvents)i) == button) {
             (*maxIterator)->handleAction((ActionEvents)i, released);
         }
     }
@@ -98,6 +98,11 @@ void UI::addWindow(UI* window) {
 }
 
 void UI::removeWindow(UI *window) {
+    if (windows.size() == 0) {
+        // It seems as if our list was destroyed before the UIs
+        return;
+    }
+
     findInList(window, [](unsigned long i){
         windows.erase(windows.begin() + i);
     });

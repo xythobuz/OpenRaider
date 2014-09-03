@@ -16,7 +16,6 @@
 #include "global.h"
 #include "Camera.h"
 #include "Game.h"
-#include "OpenRaider.h"
 #include "Render.h"
 #include "TextureManager.h"
 #include "utils/strings.h"
@@ -32,7 +31,6 @@ Render::Render() {
     mFlags = (fRoomAlpha | fEntityModels | fRenderPonytail);
 }
 
-
 Render::~Render() {
     ClearWorld();
 }
@@ -40,7 +38,6 @@ Render::~Render() {
 void Render::ClearWorld() {
     mRoomRenderList.clear();
 }
-
 
 void Render::screenShot(const char *filenameBase)
 {
@@ -72,7 +69,6 @@ void Render::screenShot(const char *filenameBase)
 unsigned int Render::getFlags() {
     return mFlags;
 }
-
 
 void Render::lightRoom(Room &room)
 {
@@ -110,7 +106,6 @@ void Render::lightRoom(Room &room)
     }
 }
 
-
 void Render::clearFlags(unsigned int flags)
 {
     mFlags &= ~flags;
@@ -128,7 +123,6 @@ void Render::clearFlags(unsigned int flags)
         glDisable(GL_LIGHTING);
     }
 }
-
 
 void Render::setFlags(unsigned int flags)
 {
@@ -171,12 +165,10 @@ void Render::setFlags(unsigned int flags)
     }
 }
 
-
 int Render::getMode()
 {
     return mMode;
 }
-
 
 void Render::setMode(int n)
 {
@@ -207,7 +199,6 @@ void Render::setMode(int n)
             glEnable(GL_TEXTURE_2D);
     }
 }
-
 
 void Render::display()
 {
@@ -427,7 +418,6 @@ void Render::newRoomRenderList(int index)
     currentRoomId = index;
 }
 
-
 void Render::buildRoomRenderList(Room &room)
 {
 
@@ -463,7 +453,6 @@ void Render::buildRoomRenderList(Room &room)
     }
 }
 
-
 void Render::drawSkyMesh(float scale)
 {
     //skeletal_model_t *model = getWorld().getModel(mSkyMesh);
@@ -484,13 +473,11 @@ void Render::drawSkyMesh(float scale)
     glEnable(GL_DEPTH_TEST);
 }
 
-
 void Render::setSkyMesh(int index, bool rot)
 {
     mSkyMesh = index;
     mSkyMeshRotation = rot;
 }
-
 
 void Render::updateViewVolume()
 {
@@ -512,7 +499,6 @@ bool Render::isVisible(BoundingBox &box) {
     return mViewVolume.isBboxInFrustum(bbox[0], bbox[1]);
 }
 
-
 bool Render::isVisible(float x, float y, float z)
 {
     // For debugging purposes
@@ -528,7 +514,6 @@ bool Render::isVisible(float x, float y, float z)
     return (mViewVolume.isPointInFrustum(x, y, z));
 }
 
-
 bool Render::isVisible(float x, float y, float z, float radius)
 {
     // For debugging purposes
@@ -543,3 +528,4 @@ bool Render::isVisible(float x, float y, float z, float radius)
 
     return (mViewVolume.isSphereInFrustum(x, y, z, radius));
 }
+

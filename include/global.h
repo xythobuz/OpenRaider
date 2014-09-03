@@ -15,6 +15,8 @@
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
 
+void renderFrame();
+
 // Supported pixelmap color formats
 enum ColorMode {
     GREYSCALE,

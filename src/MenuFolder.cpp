@@ -10,7 +10,7 @@
 #include "Font.h"
 #include "Game.h"
 #include "loader/Loader.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "Window.h"
 #include "MenuFolder.h"
 
@@ -33,7 +33,7 @@ MenuFolder::~MenuFolder() {
 }
 
 int MenuFolder::initialize() {
-    return init(getOpenRaider().getPakDir());
+    return init(getRunTime().getPakDir());
 }
 
 int MenuFolder::init(std::string s) {

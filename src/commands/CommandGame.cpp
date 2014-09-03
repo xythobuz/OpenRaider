@@ -8,7 +8,7 @@
 #include "global.h"
 #include "Console.h"
 #include "Game.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "World.h"
 #include "commands/CommandGame.h"
 
@@ -21,7 +21,7 @@ std::string CommandPos::brief() {
 }
 
 int CommandPos::execute(std::istream& args) {
-    if ((!getOpenRaider().mRunning) || (!getGame().isLoaded())) {
+    if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
         getConsole() << "Use pos command interactively!" << Console::endl;
         return -1;
     }
@@ -41,7 +41,7 @@ std::string CommandViewmodel::brief() {
 }
 
 int CommandViewmodel::execute(std::istream& args) {
-    if ((!getOpenRaider().mRunning) || (!getGame().isLoaded())) {
+    if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
         getConsole() << "Use viewmodel command interactively!" << Console::endl;
         return -1;
     }
@@ -72,7 +72,7 @@ std::string CommandPigtail::brief() {
 }
 
 int CommandPigtail::execute(std::istream& args) {
-    if ((!getOpenRaider().mRunning) || (!getGame().isLoaded())) {
+    if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
         getConsole() << "Use pigtail command interactively!" << Console::endl;
         return -1;
     }
@@ -100,7 +100,7 @@ std::string CommandPonypos::brief() {
 }
 
 int CommandPonypos::execute(std::istream& args) {
-    if ((!getOpenRaider().mRunning) || (!getGame().isLoaded())) {
+    if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
         getConsole() << "Use ponypos command interactively!" << Console::endl;
         return -1;
     }

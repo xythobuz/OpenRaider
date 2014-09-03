@@ -4,7 +4,9 @@
 
     [ 20140903 ]
     * Finishing imgui integration, but now as UI layer and not on top of everything
-    * All global objects are now explicitly allocated in main
+    * All global objects are now explicitly allocated in main and stored in shared_ptrs
+    * Created RunTime class for run time settings/options storage
+    * Completely removed OpenRaider class
 
     [ 20140901 ]
     * Created abstract UI class handling “windows” like menu and console. Windows

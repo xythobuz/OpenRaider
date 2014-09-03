@@ -5,10 +5,12 @@
  * \author xythobuz
  */
 
+#include <fstream>
 #include <iomanip>
 
 #include "global.h"
 #include "Console.h"
+#include "utils/strings.h"
 #include "commands/Command.h"
 #include "commands/CommandAnimate.h"
 #include "commands/CommandBind.h"
@@ -107,5 +109,28 @@ int Command::command(std::string c) {
 
     getConsole() << "Unknown command: \"" << cmd << "\"" << Console::endl;
     return -1;
+}
+
+int Command::executeFile(std::string file) {
+    std::string configFile = expandHomeDirectory(file);
+    getConsole() << "Loading config from \"" << configFile << "\"..." << Console::endl;
+
+    std::ifstream f(configFile);
+    if (!f) {
+        getConsole() << "Could not open file!" << Console::endl;
+        return -1;
+    }
+
+    for (std::string line; std::getline(f, line);) {
+        if (line.length() == 0)
+            continue;
+
+        int error = Command::command(line);
+        if (error != 0)
+            getConsole() << "Error Code: " << error << Console::endl;
+    }
+
+    f.close();
+    return 0;
 }
 

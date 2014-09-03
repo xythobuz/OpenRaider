@@ -7,7 +7,7 @@
 
 #include "global.h"
 #include "Console.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "commands/CommandBind.h"
 
 std::string CommandBind::name() {
@@ -57,7 +57,7 @@ int CommandBind::execute(std::istream& args) {
             return -3;
         }
 
-        getOpenRaider().keyBindings[e] = c;
+        getRunTime().setKeyBinding(e, c);
         return 0;
     }
 }

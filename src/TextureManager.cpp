@@ -13,7 +13,7 @@
 
 #include "global.h"
 #include "Console.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "utils/pcx.h"
 #include "utils/pixel.h"
 #include "utils/strings.h"
@@ -46,11 +46,11 @@ int TextureManager::initialize() {
     delete [] image;
 
     //! \fixme Temporary
-    std::string filename(getOpenRaider().getPakDir());
+    std::string filename(getRunTime().getPakDir());
     filename += "/tr2/TITLE.PCX";
     if (loadPCX(filename.c_str()) < 0) {
         //! \fixme Error Checking. Return negative error code, check in calling place too
-        filename = getOpenRaider().getDataDir();
+        filename = getRunTime().getDataDir();
         filename += "/splash.tga";
         loadTGA(filename.c_str());
     }

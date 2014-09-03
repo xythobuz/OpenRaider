@@ -8,7 +8,7 @@
 #include "global.h"
 #include "Console.h"
 #include "Game.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "Sound.h"
 #include "commands/CommandSound.h"
 
@@ -28,7 +28,7 @@ void CommandSound::printHelp() {
 }
 
 int CommandSound::execute(std::istream& args) {
-    if ((!getOpenRaider().mRunning) || (!getGame().isLoaded())) {
+    if (!getGame().isLoaded()) {
         getConsole() << "Use sound command interactively!" << Console::endl;
         return -1;
     }

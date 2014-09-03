@@ -8,7 +8,6 @@
 #include "global.h"
 #include "Console.h"
 #include "Game.h"
-#include "OpenRaider.h"
 #include "Render.h"
 #include "World.h"
 #include "commands/CommandAnimate.h"
@@ -31,7 +30,7 @@ void CommandAnimate::printHelp() {
 }
 
 int CommandAnimate::execute(std::istream& args) {
-    if ((!getOpenRaider().mRunning) || (!getGame().isLoaded())) {
+    if (!getGame().isLoaded()) {
         getConsole() << "Use animate command interactively!" << Console::endl;
         return -1;
     }

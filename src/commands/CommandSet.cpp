@@ -9,7 +9,7 @@
 #include "Camera.h"
 #include "Console.h"
 #include "Font.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "Sound.h"
 #include "Window.h"
 #include "utils/strings.h"
@@ -53,10 +53,10 @@ namespace {
         }
 
         // Expand Names
-        s = findAndReplace(s, "$(pakdir)", getOpenRaider().getPakDir());
-        s = findAndReplace(s, "$(audiodir)", getOpenRaider().getAudioDir());
-        s = findAndReplace(s, "$(datadir)", getOpenRaider().getDataDir());
-        s = findAndReplace(s, "$(basedir)", getOpenRaider().getBaseDir());
+        s = findAndReplace(s, "$(pakdir)", getRunTime().getPakDir());
+        s = findAndReplace(s, "$(audiodir)", getRunTime().getAudioDir());
+        s = findAndReplace(s, "$(datadir)", getRunTime().getDataDir());
+        s = findAndReplace(s, "$(basedir)", getRunTime().getBaseDir());
 
         // Full path
         s = expandHomeDirectory(s);
@@ -117,23 +117,23 @@ int CommandSet::execute(std::istream& args) {
             getConsole() << "set-fps-Error: Invalid value" << Console::endl;
             return -8;
         }
-        getOpenRaider().mFPS = fps;
+        getRunTime().setFPS(fps);
     } else if (var.compare("basedir") == 0) {
         std::string temp;
         args >> temp;
-        getOpenRaider().setBaseDir(expandNames(temp));
+        getRunTime().setBaseDir(expandNames(temp));
     } else if (var.compare("pakdir") == 0) {
         std::string temp;
         args >> temp;
-        getOpenRaider().setPakDir(expandNames(temp));
+        getRunTime().setPakDir(expandNames(temp));
     } else if (var.compare("audiodir") == 0) {
         std::string temp;
         args >> temp;
-        getOpenRaider().setAudioDir(expandNames(temp));
+        getRunTime().setAudioDir(expandNames(temp));
     } else if (var.compare("datadir") == 0) {
         std::string temp;
         args >> temp;
-        getOpenRaider().setDataDir(expandNames(temp));
+        getRunTime().setDataDir(expandNames(temp));
     } else if (var.compare("font") == 0) {
         std::string temp;
         args >> temp;

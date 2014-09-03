@@ -8,7 +8,7 @@
 #include "global.h"
 #include "Console.h"
 #include "Game.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "Render.h"
 #include "commands/CommandRender.h"
 
@@ -86,7 +86,7 @@ void CommandRenderflag::printHelp() {
 }
 
 int CommandRenderflag::execute(std::istream& args) {
-    if (!getOpenRaider().mRunning) {
+    if (!getRunTime().isRunning()) {
         getConsole() << "Use renderflag-Command interactively!" << Console::endl;
         return -1;
     }

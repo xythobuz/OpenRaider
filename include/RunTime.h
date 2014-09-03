@@ -1,30 +1,22 @@
 /*!
- * \file include/OpenRaider.h
- * \brief Main Game Object
+ * \file include/RunTime.h
+ * \brief run time configuration storage
  *
  * \author xythobuz
  */
 
-#ifndef _OPENRAIDER_H_
-#define _OPENRAIDER_H_
+#ifndef _RUNTIME_H_
+#define _RUNTIME_H_
 
 #include <string>
 
 /*!
  * \brief Main Game Singleton
  */
-class OpenRaider {
+class RunTime {
 public:
 
-    OpenRaider();
-
-    int initialize();
-
-    /*!
-     * \brief Load the configuration file
-     * \returns 0 on success
-     */
-    int loadConfig(std::string config);
+    RunTime();
 
     std::string getBaseDir();
     void setBaseDir(std::string dir);
@@ -35,22 +27,27 @@ public:
     std::string getDataDir();
     void setDataDir(std::string dir);
 
-    void run();
-    void frame();
+    KeyboardButton getKeyBinding(ActionEvents event);
+    void setKeyBinding(ActionEvents event, KeyboardButton button);
 
-    //! \fixme should be private
-    KeyboardButton keyBindings[ActionEventCount];
-    bool mRunning;
-    bool mFPS;
+    bool isRunning();
+    void start();
+
+    bool getFPS();
+    void setFPS(bool fps);
 
 private:
     std::string baseDir;
     std::string pakDir;
     std::string audioDir;
     std::string dataDir;
+
+    KeyboardButton keyBindings[ActionEventCount];
+    bool gameIsRunning;
+    bool showFPS;
 };
 
-OpenRaider &getOpenRaider();
+RunTime &getRunTime();
 
 #endif
 

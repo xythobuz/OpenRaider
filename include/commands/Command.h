@@ -23,6 +23,7 @@ public:
 
     static void fillCommandList();
     static int command(std::string c);
+    static int executeFile(std::string file);
 
 private:
     static std::vector<std::shared_ptr<Command>> commands;

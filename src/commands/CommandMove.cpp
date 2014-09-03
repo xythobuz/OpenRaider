@@ -8,7 +8,7 @@
 #include "global.h"
 #include "Console.h"
 #include "Game.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "commands/CommandMove.h"
 
 std::string CommandMove::name() {
@@ -29,7 +29,7 @@ void CommandMove::printHelp() {
 }
 
 int CommandMove::execute(std::istream& args) {
-    if ((!getOpenRaider().mRunning) || (!getGame().isLoaded())) {
+    if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
         getConsole() << "Use move command interactively!" << Console::endl;
         return -1;
     }

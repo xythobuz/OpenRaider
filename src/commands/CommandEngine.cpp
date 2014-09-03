@@ -9,7 +9,7 @@
 #include "Console.h"
 #include "Game.h"
 #include "Menu.h"
-#include "OpenRaider.h"
+#include "RunTime.h"
 #include "Render.h"
 #include "commands/CommandEngine.h"
 
@@ -27,7 +27,7 @@ void CommandLoad::printHelp() {
 }
 
 int CommandLoad::execute(std::istream& args) {
-    if (!getOpenRaider().mRunning) {
+    if (!getRunTime().isRunning()) {
         getConsole() << "Use load command interactively!" << Console::endl;
         return -1;
     }
@@ -55,12 +55,12 @@ void CommandScreenshot::printHelp() {
 }
 
 int CommandScreenshot::execute(std::istream& args) {
-    if (!getOpenRaider().mRunning) {
+    if (!getRunTime().isRunning()) {
         getConsole() << "Use sshot command interactively!" << Console::endl;
         return -1;
     }
 
-    std::string filename(getOpenRaider().getBaseDir());
+    std::string filename(getRunTime().getBaseDir());
     filename += "/sshots/";
     filename += VERSION_SHORT;
 
@@ -81,8 +81,8 @@ int CommandScreenshot::execute(std::istream& args) {
     else if (temp2 == "menu")
         getMenu().moveToTop();
 
-    getOpenRaider().frame();
-    getOpenRaider().frame(); // Double buffered
+    renderFrame();
+    renderFrame(); // Double buffered
     getRender().screenShot(filename.c_str());
 
     getMenu().makeInvisible();
