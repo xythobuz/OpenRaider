@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <cstring>
 #include <zlib.h>
 
 #include "global.h"
