@@ -5,10 +5,9 @@
  * \author xythobuz
  */
 
-#include <algorithm>
-
 #include "global.h"
 #include "Debug.h"
+#include "RunTime.h"
 #include "TextureManager.h"
 #include "Window.h"
 
@@ -24,14 +23,22 @@ Debug::Debug() {
 }
 
 Debug::~Debug() {
+    // TODO Segfaults...?
+    //ImGui::Shutdown();
+
     UI::removeWindow(this);
 }
 
 int Debug::initialize() {
+    iniFilename = getRunTime().getBaseDir() + "/imgui.ini";
+    logFilename = getRunTime().getBaseDir() + "/imgui_log.txt";
+
     ImGuiIO& io = ImGui::GetIO();
     io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
     io.DeltaTime = 1.0f/60.0f;
-    io.PixelCenterOffset = 0.0f;
+
+    io.IniFilename = iniFilename.c_str();
+    io.LogFilename = logFilename.c_str();
 
     io.KeyMap[ImGuiKey_Tab] = tabKey;
     io.KeyMap[ImGuiKey_LeftArrow] = leftKey;
@@ -75,6 +82,10 @@ void Debug::display() {
 }
 
 void Debug::eventsFinished() {
+    ImGuiIO& io = ImGui::GetIO();
+    io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
+    io.DeltaTime = 1.0f / 60.0f; // TODO proper timing
+
     ImGui::NewFrame();
 }
 
@@ -125,18 +136,15 @@ void Debug::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
 
     getWindow().glEnter2D();
 
-    glDisable(GL_CULL_FACE);
     glDisable(GL_DEPTH_TEST);
     glEnable(GL_SCISSOR_TEST);
-    //glEnableClientState(GL_VERTEX_ARRAY);
+
+    glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
 
     // Setup texture
     getTextureManager().bindTextureId(fontTex);
-
-    const float width = ImGui::GetIO().DisplaySize.x;
-    const float height = ImGui::GetIO().DisplaySize.y;
 
     // Render command lists
     for (int n = 0; n < cmd_lists_count; n++) {
@@ -149,7 +157,7 @@ void Debug::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
         int vtx_offset = 0;
         const ImDrawCmd* pcmd_end = cmd_list->commands.end();
         for (const ImDrawCmd* pcmd = cmd_list->commands.begin(); pcmd != pcmd_end; pcmd++) {
-            glScissor((int)pcmd->clip_rect.x, (int)(height - pcmd->clip_rect.w),
+            glScissor((int)pcmd->clip_rect.x, (int)(ImGui::GetIO().DisplaySize.y - pcmd->clip_rect.w),
                     (int)(pcmd->clip_rect.z - pcmd->clip_rect.x),
                     (int)(pcmd->clip_rect.w - pcmd->clip_rect.y));
             glDrawArrays(GL_TRIANGLES, vtx_offset, pcmd->vtx_count);
@@ -157,12 +165,12 @@ void Debug::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
         }
     }
 
-    glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_SCISSOR_TEST);
-    glDisableClientState(GL_COLOR_ARRAY);
+
+    glDisableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    //glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_COLOR_ARRAY);
 
     getWindow().glExit2D();
 }

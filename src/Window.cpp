@@ -30,12 +30,12 @@ int Window::initializeGL() {
     //printf("GL Version : %s\n", glGetString(GL_VERSION));
 
     // Testing for goodies
-    const char *s = (const char *)glGetString(GL_EXTENSIONS);
-    if ((s != NULL) && (s[0] != '\0')) {
+    //const char *s = (const char *)glGetString(GL_EXTENSIONS);
+    //if ((s != NULL) && (s[0] != '\0')) {
         //! \todo MultiTexture flag
         //if (strstr(s, "GL_ARB_multitexture"))
             //mFlags |= Render::fMultiTexture;
-    }
+    //}
 
     // Set up Z buffer
     glEnable(GL_DEPTH_TEST);
@@ -84,10 +84,10 @@ int Window::initializeGL() {
 
     glDisable(GL_NORMALIZE);
 
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_EDGE_FLAG_ARRAY);
-    glDisableClientState(GL_COLOR_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
+    //glEnableClientState(GL_VERTEX_ARRAY);
+    //glDisableClientState(GL_EDGE_FLAG_ARRAY);
+    //glDisableClientState(GL_COLOR_ARRAY);
+    //glDisableClientState(GL_NORMAL_ARRAY);
 
     glPolygonMode(GL_FRONT, GL_FILL);
 

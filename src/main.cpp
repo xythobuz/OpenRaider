@@ -217,9 +217,9 @@ void renderFrame() {
     // Get keyboard and mouse input
     getWindow().eventHandling();
 
-    ImGui::SetNewWindowDefaultPos(ImVec2(50, 50));
-    bool show_test_window = false;
-    ImGui::ShowTestWindow(&show_test_window);
+    ImGui::ShowTestWindow();
+    ImGui::ShowStyleEditor();
+    //ImGui::ShowUserGuide();
 
     // Render everything
     UI::passDisplay();

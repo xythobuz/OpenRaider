@@ -29,6 +29,8 @@ private:
     static void renderImGui(ImDrawList** const draw_lists, int count);
 
     static unsigned int fontTex;
+    std::string iniFilename;
+    std::string logFilename;
 };
 
 Debug &getDebug();
