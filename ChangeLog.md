@@ -7,6 +7,7 @@
     * World now using smart pointers
     * Removed atexit handler, now breaking out of main loop on quit
     * Added calculate and shutdown calls to UI interface, properly shutting down imgui
+    * Created Log class holding logging infos, used by others instead of Console.
 
     [ 20140903 ]
     * Finishing imgui integration, but now as UI layer and not on top of everything

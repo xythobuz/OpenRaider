@@ -8,6 +8,7 @@
 #include "global.h"
 #include "Console.h"
 #include "Game.h"
+#include "Log.h"
 #include "Menu.h"
 #include "RunTime.h"
 #include "Render.h"
@@ -22,13 +23,13 @@ std::string CommandLoad::brief() {
 }
 
 void CommandLoad::printHelp() {
-    getConsole() << "load-Command Usage:" << Console::endl;
-    getConsole() << "  load /path/to/level" << Console::endl;
+    getLog() << "load-Command Usage:" << Log::endl;
+    getLog() << "  load /path/to/level" << Log::endl;
 }
 
 int CommandLoad::execute(std::istream& args) {
     if (!getRunTime().isRunning()) {
-        getConsole() << "Use load command interactively!" << Console::endl;
+        getLog() << "Use load command interactively!" << Log::endl;
         return -1;
     }
 
@@ -49,14 +50,14 @@ std::string CommandScreenshot::brief() {
 }
 
 void CommandScreenshot::printHelp() {
-    getConsole() << "sshot-Command Usage:" << Console::endl;
-    getConsole() << "  sshot [console|menu] [console|menu]" << Console::endl;
-    getConsole() << "Add console/menu to capture them too" << Console::endl;
+    getLog() << "sshot-Command Usage:" << Log::endl;
+    getLog() << "  sshot [console|menu] [console|menu]" << Log::endl;
+    getLog() << "Add console/menu to capture them too" << Log::endl;
 }
 
 int CommandScreenshot::execute(std::istream& args) {
     if (!getRunTime().isRunning()) {
-        getConsole() << "Use sshot command interactively!" << Console::endl;
+        getLog() << "Use sshot command interactively!" << Log::endl;
         return -1;
     }
 
@@ -64,7 +65,6 @@ int CommandScreenshot::execute(std::istream& args) {
     filename += "/sshots/";
     filename += VERSION_SHORT;
 
-    bool console = false, menu = false;
     std::string temp, temp2;
     args >> temp >> temp2;
 
@@ -88,7 +88,7 @@ int CommandScreenshot::execute(std::istream& args) {
     getMenu().makeInvisible();
     getConsole().moveToTop();
 
-    getConsole() << "Screenshot stored..." << Console::endl;
+    getLog() << "Screenshot stored..." << Log::endl;
     return 0;
 }
 

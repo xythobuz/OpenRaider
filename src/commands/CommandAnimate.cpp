@@ -6,7 +6,7 @@
  */
 
 #include "global.h"
-#include "Console.h"
+#include "Log.h"
 #include "Game.h"
 #include "Render.h"
 #include "World.h"
@@ -21,17 +21,17 @@ std::string CommandAnimate::brief() {
 }
 
 void CommandAnimate::printHelp() {
-    getConsole() << "animate-Command Usage:" << Console::endl;
-    getConsole() << "  animate [n|p|BOOL]" << Console::endl;
-    getConsole() << "Where the commands have the following meaning:" << Console::endl;
-    getConsole() << "  BOOL to (de)activate animating all models" << Console::endl;
-    getConsole() << "  n to step all models to their next animation" << Console::endl;
-    getConsole() << "  p to step all models to their previous animation" << Console::endl;
+    getLog() << "animate-Command Usage:" << Log::endl;
+    getLog() << "  animate [n|p|BOOL]" << Log::endl;
+    getLog() << "Where the commands have the following meaning:" << Log::endl;
+    getLog() << "  BOOL to (de)activate animating all models" << Log::endl;
+    getLog() << "  n to step all models to their next animation" << Log::endl;
+    getLog() << "  p to step all models to their previous animation" << Log::endl;
 }
 
 int CommandAnimate::execute(std::istream& args) {
     if (!getGame().isLoaded()) {
-        getConsole() << "Use animate command interactively!" << Console::endl;
+        getLog() << "Use animate command interactively!" << Log::endl;
         return -1;
     }
 
@@ -47,7 +47,7 @@ int CommandAnimate::execute(std::istream& args) {
                     e.setAnimation(0);
             }
         } else {
-            getConsole() << "Animations need to be enabled!" << Console::endl;
+            getLog() << "Animations need to be enabled!" << Log::endl;
         }
     } else if (args.peek() == 'p') {
         // Step all skeletal models to their previous animation
@@ -62,20 +62,20 @@ int CommandAnimate::execute(std::istream& args) {
                         e.setAnimation(m.size() - 1);
             }
         } else {
-            getConsole() << "Animations need to be enabled!" << Console::endl;
+            getLog() << "Animations need to be enabled!" << Log::endl;
         }
     } else {
         // Enable or disable animating all skeletal models
         bool b = false;
         if (!(args >> b)) {
-            getConsole() << "Pass BOOL to animate command!" << Console::endl;
+            getLog() << "Pass BOOL to animate command!" << Log::endl;
             return -2;
         }
         if (b)
             getRender().setFlags(Render::fAnimateAllModels);
         else
             getRender().clearFlags(Render::fAnimateAllModels);
-        getConsole() << (b ? "Animating all models" : "No longer animating all models") << Console::endl;
+        getLog() << (b ? "Animating all models" : "No longer animating all models") << Log::endl;
     }
 
     return 0;

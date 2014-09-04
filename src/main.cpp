@@ -21,6 +21,7 @@
 #include "Debug.h"
 #include "FontManager.h"
 #include "Game.h"
+#include "Log.h"
 #include "MenuFolder.h"
 #include "Render.h"
 #include "RunTime.h"
@@ -48,6 +49,7 @@ static std::shared_ptr<Console> gConsole;
 static std::shared_ptr<Debug> gDebug;
 static std::shared_ptr<FontManager> gFont;
 static std::shared_ptr<Game> gGame;
+static std::shared_ptr<Log> gLog;
 static std::shared_ptr<MenuFolder> gMenu;
 static std::shared_ptr<Render> gRender;
 static std::shared_ptr<RunTime> gRunTime;
@@ -74,6 +76,10 @@ Font &getFont() {
 
 Game &getGame() {
     return *gGame;
+}
+
+Log &getLog() {
+    return *gLog;
 }
 
 Menu &getMenu() {
@@ -119,6 +125,7 @@ int main(int argc, char* argv[]) {
     gDebug.reset(new Debug());
     gFont.reset(new FontManager());
     gGame.reset(new Game());
+    gLog.reset(new Log());
     gMenu.reset(new MenuFolder());
     gRender.reset(new Render());
     gRunTime.reset(new RunTime());
@@ -145,7 +152,7 @@ int main(int argc, char* argv[]) {
         Command::executeFile(configFileToUse);
     }
 
-    getConsole() << "Initializing " << VERSION << Console::endl;
+    getLog() << "Initializing " << VERSION << Log::endl;
 
     // Initialize Windowing
     int error = getWindow().initialize();
@@ -189,7 +196,7 @@ int main(int argc, char* argv[]) {
         return -6;
     }
 
-    getConsole() << "Starting " << VERSION << Console::endl;
+    getLog() << "Starting " << VERSION << Log::endl;
     getMenu().moveToTop();
     systemTimerReset();
     getRunTime().setRunning(true);

@@ -6,8 +6,8 @@
  */
 
 #include "global.h"
-#include "Console.h"
 #include "Game.h"
+#include "Log.h"
 #include "RunTime.h"
 #include "Render.h"
 #include "commands/CommandRender.h"
@@ -21,20 +21,20 @@ std::string CommandMode::brief() {
 }
 
 void CommandMode::printHelp() {
-    getConsole() << "mode-Command Usage:" << Console::endl;
-    getConsole() << "  mode MODE" << Console::endl;
-    getConsole() << "Where MODE is one of the following:" << Console::endl;
-    getConsole() << "  wireframe" << Console::endl;
-    getConsole() << "  solid" << Console::endl;
-    getConsole() << "  texture" << Console::endl;
-    getConsole() << "  vertexlight" << Console::endl;
-    getConsole() << "  titlescreen" << Console::endl;
+    getLog() << "mode-Command Usage:" << Log::endl;
+    getLog() << "  mode MODE" << Log::endl;
+    getLog() << "Where MODE is one of the following:" << Log::endl;
+    getLog() << "  wireframe" << Log::endl;
+    getLog() << "  solid" << Log::endl;
+    getLog() << "  texture" << Log::endl;
+    getLog() << "  vertexlight" << Log::endl;
+    getLog() << "  titlescreen" << Log::endl;
 
 }
 
 int CommandMode::execute(std::istream& args) {
     if (!getGame().isLoaded()) {
-        getConsole() << "Load a level to set the mode!" << Console::endl;
+        getLog() << "Load a level to set the mode!" << Log::endl;
         return -1;
     }
 
@@ -43,21 +43,21 @@ int CommandMode::execute(std::istream& args) {
 
     if (s.compare("wireframe") == 0) {
         getRender().setMode(Render::modeWireframe);
-        getConsole() << "Wireframe mode" << Console::endl;
+        getLog() << "Wireframe mode" << Log::endl;
     } else if (s.compare("solid") == 0) {
         getRender().setMode(Render::modeSolid);
-        getConsole() << "Solid mode" << Console::endl;
+        getLog() << "Solid mode" << Log::endl;
     } else if (s.compare("texture") == 0) {
         getRender().setMode(Render::modeTexture);
-        getConsole() << "Texture mode" << Console::endl;
+        getLog() << "Texture mode" << Log::endl;
     } else if (s.compare("vertexlight") == 0) {
         getRender().setMode(Render::modeVertexLight);
-        getConsole() << "Vertexlight mode" << Console::endl;
+        getLog() << "Vertexlight mode" << Log::endl;
     } else if (s.compare("titlescreen") == 0) {
         getRender().setMode(Render::modeLoadScreen);
-        getConsole() << "Titlescreen mode" << Console::endl;
+        getLog() << "Titlescreen mode" << Log::endl;
     } else {
-        getConsole() << "Invalid use of mode command (" << s << ")!" << Console::endl;
+        getLog() << "Invalid use of mode command (" << s << ")!" << Log::endl;
         return -2;
     }
 
@@ -75,19 +75,19 @@ std::string CommandRenderflag::brief() {
 }
 
 void CommandRenderflag::printHelp() {
-    getConsole() << "renderflag-Command Usage:" << Console::endl;
-    getConsole() << "  renderflag STRING BOOL" << Console::endl;
-    getConsole() << "Where STRING is one of the following:" << Console::endl;
-    getConsole() << "  ralpha" << Console::endl;
-    getConsole() << "  entmodel" << Console::endl;
-    getConsole() << "  fog" << Console::endl;
-    getConsole() << "  light" << Console::endl;
-    getConsole() << "  ponytail" << Console::endl;
+    getLog() << "renderflag-Command Usage:" << Log::endl;
+    getLog() << "  renderflag STRING BOOL" << Log::endl;
+    getLog() << "Where STRING is one of the following:" << Log::endl;
+    getLog() << "  ralpha" << Log::endl;
+    getLog() << "  entmodel" << Log::endl;
+    getLog() << "  fog" << Log::endl;
+    getLog() << "  light" << Log::endl;
+    getLog() << "  ponytail" << Log::endl;
 }
 
 int CommandRenderflag::execute(std::istream& args) {
     if (!getRunTime().isRunning()) {
-        getConsole() << "Use renderflag-Command interactively!" << Console::endl;
+        getLog() << "Use renderflag-Command interactively!" << Log::endl;
         return -1;
     }
 
@@ -95,13 +95,13 @@ int CommandRenderflag::execute(std::istream& args) {
     bool b;
     args >> flag >> b;
     if (!args) {
-        getConsole() << "Pass STRING and BOOL to renderflag command!" << Console::endl;
+        getLog() << "Pass STRING and BOOL to renderflag command!" << Log::endl;
         return -2;
     }
 
     int f = stringToFlag(flag);
     if (f == -1) {
-        getConsole() << "Unknown flag \"" << flag << "\"!" << Console::endl;
+        getLog() << "Unknown flag \"" << flag << "\"!" << Log::endl;
         return -3;
     }
 

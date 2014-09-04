@@ -6,8 +6,8 @@
  */
 
 #include "global.h"
-#include "Console.h"
 #include "Game.h"
+#include "Log.h"
 #include "RunTime.h"
 #include "World.h"
 #include "commands/CommandGame.h"
@@ -22,7 +22,7 @@ std::string CommandPos::brief() {
 
 int CommandPos::execute(std::istream& args) {
     if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
-        getConsole() << "Use pos command interactively!" << Console::endl;
+        getLog() << "Use pos command interactively!" << Log::endl;
         return -1;
     }
 
@@ -42,7 +42,7 @@ std::string CommandViewmodel::brief() {
 
 int CommandViewmodel::execute(std::istream& args) {
     if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
-        getConsole() << "Use viewmodel command interactively!" << Console::endl;
+        getLog() << "Use viewmodel command interactively!" << Log::endl;
         return -1;
     }
 
@@ -56,7 +56,7 @@ int CommandViewmodel::execute(std::istream& args) {
         getGame().getLara().setSkeletalModel(n);
         return 0;
     } else {
-        getConsole() << "Invalid SkeletalModel index!" << Console::endl;
+        getLog() << "Invalid SkeletalModel index!" << Log::endl;
         return -2;
     }
 }
@@ -73,19 +73,19 @@ std::string CommandPigtail::brief() {
 
 int CommandPigtail::execute(std::istream& args) {
     if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
-        getConsole() << "Use pigtail command interactively!" << Console::endl;
+        getLog() << "Use pigtail command interactively!" << Log::endl;
         return -1;
     }
 
     bool b;
     args >> b;
     if (!args) {
-        getConsole() << "Pass BOOL to pigtail command!" << Console::endl;
+        getLog() << "Pass BOOL to pigtail command!" << Log::endl;
         return -2;
     }
 
     getGame().getLara().getModel().setPigTail(b);
-    getConsole() << "Pigtail is now " << (b ? "on" : "off") << Console::endl;
+    getLog() << "Pigtail is now " << (b ? "on" : "off") << Log::endl;
     return 0;
 }
 
@@ -101,14 +101,14 @@ std::string CommandPonypos::brief() {
 
 int CommandPonypos::execute(std::istream& args) {
     if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
-        getConsole() << "Use ponypos command interactively!" << Console::endl;
+        getLog() << "Use ponypos command interactively!" << Log::endl;
         return -1;
     }
 
     float a, b, c, d;
     args >> a >> b >> c >> d;
     if (!args) {
-        getConsole() << "Pass four FLOATs to ponypos command!" << Console::endl;
+        getLog() << "Pass four FLOATs to ponypos command!" << Log::endl;
         return -2;
     }
 

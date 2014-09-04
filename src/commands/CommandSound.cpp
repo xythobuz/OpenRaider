@@ -6,8 +6,8 @@
  */
 
 #include "global.h"
-#include "Console.h"
 #include "Game.h"
+#include "Log.h"
 #include "RunTime.h"
 #include "Sound.h"
 #include "commands/CommandSound.h"
@@ -21,15 +21,15 @@ std::string CommandSound::brief() {
 }
 
 void CommandSound::printHelp() {
-    getConsole() << "sound-Command Usage:" << Console::endl;
-    getConsole() << "sound-Command Usage:" << Console::endl;
-    getConsole() << "  sound INT" << Console::endl;
-    getConsole() << "Where INT is a valid sound ID integer" << Console::endl;
+    getLog() << "sound-Command Usage:" << Log::endl;
+    getLog() << "sound-Command Usage:" << Log::endl;
+    getLog() << "  sound INT" << Log::endl;
+    getLog() << "Where INT is a valid sound ID integer" << Log::endl;
 }
 
 int CommandSound::execute(std::istream& args) {
     if (!getGame().isLoaded()) {
-        getConsole() << "Use sound command interactively!" << Console::endl;
+        getLog() << "Use sound command interactively!" << Log::endl;
         return -1;
     }
 

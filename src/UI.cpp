@@ -84,9 +84,7 @@ void UI::passKeyboard(KeyboardButton key, bool pressed) {
                 getConsole().moveToTop();
             }
         } else if (getRunTime().getKeyBinding(debugAction) == key) {
-            if (getDebug().isOnTop()) {
-                getDebug().makeInvisible();
-            } else {
+            if (!getDebug().isOnTop()) {
                 getDebug().moveToTop();
             }
         }

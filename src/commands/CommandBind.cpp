@@ -6,7 +6,7 @@
  */
 
 #include "global.h"
-#include "Console.h"
+#include "Log.h"
 #include "RunTime.h"
 #include "commands/CommandBind.h"
 
@@ -19,41 +19,41 @@ std::string CommandBind::brief() {
 }
 
 void CommandBind::printHelp() {
-    getConsole() << "bind-Command Usage:" << Console::endl;
-    getConsole() << "  bind ACTION KEY" << Console::endl;
-    getConsole() << "Available Actions:" << Console::endl;
-    getConsole() << "  menu" << Console::endl;
-    getConsole() << "  console" << Console::endl;
-    getConsole() << "  debug" << Console::endl;
-    getConsole() << "  forward" << Console::endl;
-    getConsole() << "  backward" << Console::endl;
-    getConsole() << "  left" << Console::endl;
-    getConsole() << "  right" << Console::endl;
-    getConsole() << "  jump" << Console::endl;
-    getConsole() << "  crouch" << Console::endl;
-    getConsole() << "  use" << Console::endl;
-    getConsole() << "  holster" << Console::endl;
-    getConsole() << "  walk" << Console::endl;
-    getConsole() << "Key-Format:" << Console::endl;
-    getConsole() << "  'a' or '1'    for character/number keys" << Console::endl;
-    getConsole() << "  \"leftctrl\"  for symbols and special keys" << Console::endl;
+    getLog() << "bind-Command Usage:" << Log::endl;
+    getLog() << "  bind ACTION KEY" << Log::endl;
+    getLog() << "Available Actions:" << Log::endl;
+    getLog() << "  menu" << Log::endl;
+    getLog() << "  console" << Log::endl;
+    getLog() << "  debug" << Log::endl;
+    getLog() << "  forward" << Log::endl;
+    getLog() << "  backward" << Log::endl;
+    getLog() << "  left" << Log::endl;
+    getLog() << "  right" << Log::endl;
+    getLog() << "  jump" << Log::endl;
+    getLog() << "  crouch" << Log::endl;
+    getLog() << "  use" << Log::endl;
+    getLog() << "  holster" << Log::endl;
+    getLog() << "  walk" << Log::endl;
+    getLog() << "Key-Format:" << Log::endl;
+    getLog() << "  'a' or '1'    for character/number keys" << Log::endl;
+    getLog() << "  \"leftctrl\"  for symbols and special keys" << Log::endl;
 }
 
 int CommandBind::execute(std::istream& args) {
     std::string a, b;
     if (!(args >> a >> b)) {
-        getConsole() << "Invalid use of bind-command" << Console::endl;
+        getLog() << "Invalid use of bind-command" << Log::endl;
         return -1;
     } else {
         ActionEvents e = stringToActionEvent(a);
         if (e == ActionEventCount) {
-            getConsole() << "bind-Error: Unknown action (" << a << ")" << Console::endl;
+            getLog() << "bind-Error: Unknown action (" << a << ")" << Log::endl;
             return -2;
         }
 
         KeyboardButton c = stringToKeyboardButton(b);
         if (c == unknownKey) {
-            getConsole() << "bind-Error: Unknown key (" << b << ")" << Console::endl;
+            getLog() << "bind-Error: Unknown key (" << b << ")" << Log::endl;
             return -3;
         }
 

@@ -8,10 +8,10 @@
 #include <cmath>
 
 #include "global.h"
-#include "Console.h"
-#include "Entity.h"
+#include "Log.h"
 #include "Render.h"
 #include "World.h"
+#include "Entity.h"
 
 #include "games/TombRaider1.h"
 
@@ -117,7 +117,7 @@ void Entity::move(char movement) {
                 x, y, z);
 
         if (roomNew > -1)
-            getConsole() << "Crossing from room " << room << " to " << roomNew << Console::endl;
+            getLog() << "Crossing from room " << room << " to " << roomNew << Log::endl;
         else
             //! \fixme mRooms, sectors, ... are now std::vector, but often upper bound checks are missing
             return;
@@ -213,12 +213,12 @@ void Entity::move(char movement) {
 }
 
 void Entity::print() {
-    getConsole() << "Entity " << objectId << ":" << Console::endl
+    getLog() << "Entity " << objectId << ":" << Log::endl
         << "  Room " << room << " (" << getWorld().getRoom(room).getFlags()
-        << ")" << Console::endl
+        << ")" << Log::endl
         << "  " << pos[0] << "x " << pos[1] << "y " << pos[2] << "z"
-        << Console::endl
-        << "  " << OR_RAD_TO_DEG(angles[1]) << " Yaw" << Console::endl;
+        << Log::endl
+        << "  " << OR_RAD_TO_DEG(angles[1]) << " Yaw" << Log::endl;
 }
 
 SkeletalModel &Entity::getModel() {

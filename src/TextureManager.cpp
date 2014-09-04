@@ -12,7 +12,7 @@
 #include <stdarg.h>
 
 #include "global.h"
-#include "Console.h"
+#include "Log.h"
 #include "RunTime.h"
 #include "utils/pcx.h"
 #include "utils/pixel.h"
@@ -200,7 +200,7 @@ int TextureManager::loadImage(const char *filename) {
     } else if (stringEndsWith(filename, ".tga") || stringEndsWith(filename, ".TGA")) {
         return loadTGA(filename);
     } else {
-        getConsole() << "No known image file type? (" << filename << ")" << Console::endl;
+        getLog() << "No known image file type? (" << filename << ")" << Log::endl;
     }
 
     return -1;
@@ -256,7 +256,7 @@ int TextureManager::loadPNG(const char *filename) {
 
     return id;
 #else
-    getConsole() << "No PNG support available (" << filename << ")" << Console::endl;
+    getLog() << "No PNG support available (" << filename << ")" << Log::endl;
     return -1;
 #endif
 }

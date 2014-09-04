@@ -6,10 +6,10 @@
  */
 
 #include "global.h"
-#include "Console.h"
 #include "Font.h"
 #include "Game.h"
 #include "loader/Loader.h"
+#include "Log.h"
 #include "RunTime.h"
 #include "Window.h"
 #include "MenuFolder.h"
@@ -61,8 +61,8 @@ int MenuFolder::init(Folder *folder, bool filter) {
             // Check maps for validity
             Loader::LoaderVersion version = Loader::checkFile(f.getPath());
             if (version == Loader::TR_UNKNOWN) {
-                getConsole() << "Error: pak file '" << f.getName().c_str()
-                    << "' invalid" << Console::endl;
+                getLog() << "Error: pak file '" << f.getName().c_str()
+                    << "' invalid" << Log::endl;
                 return true; // delete file from list
             }
 

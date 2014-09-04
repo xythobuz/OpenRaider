@@ -6,8 +6,8 @@
  */
 
 #include "global.h"
-#include "Console.h"
 #include "Font.h"
+#include "Log.h"
 #include "Window.h"
 #include "Menu.h"
 #include "MenuFolder.h"
@@ -28,7 +28,7 @@ void Menu::showDialog(std::string msg, std::string btn1, std::string btn2,
     dialogState = false;
     dialogFunction = callback;
 
-    getConsole() << dialogText << Console::endl;
+    getLog() << dialogText << Log::endl;
 }
 
 void Menu::ackDialog() {

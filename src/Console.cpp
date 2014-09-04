@@ -10,6 +10,7 @@
 #include "global.h"
 #include "commands/Command.h"
 #include "Font.h"
+#include "Log.h"
 #include "utf8-cpp/utf8.h"
 #include "utils/strings.h"
 #include "utils/time.h"
@@ -64,8 +65,8 @@ void Console::display() {
     glEnable(GL_TEXTURE_2D);
 
     unsigned long scrollIndicator;
-    if (mHistory.size() > lineCount) {
-        scrollIndicator = (mHistory.size() - lineCount - mLineOffset) * 100 / (mHistory.size() - lineCount);
+    if (getLog().size() > lineCount) {
+        scrollIndicator = (getLog().size() - lineCount - mLineOffset) * 100 / (getLog().size() - lineCount);
     } else {
         scrollIndicator = 100;
         mLineOffset = 0;
@@ -80,16 +81,16 @@ void Console::display() {
     long end = lineCount;
     long drawOffset = 0;
     long historyOffset = 0;
-    if (mHistory.size() < lineCount) {
-        end = mHistory.size();
-        drawOffset = lineCount - mHistory.size();
-    } else if (lineCount < mHistory.size()) {
-        historyOffset = mHistory.size() - lineCount;
+    if (getLog().size() < lineCount) {
+        end = getLog().size();
+        drawOffset = lineCount - getLog().size();
+    } else if (lineCount < getLog().size()) {
+        historyOffset = getLog().size() - lineCount;
     }
 
     for (int i = 0; i < end; i++) {
         getFont().drawText(10, (unsigned int)((i + drawOffset) * lineSteps) + firstLine,
-                0.75f, BLUE, mHistory.at(i + historyOffset - mLineOffset));
+                0.75f, BLUE, getLog().get(i + historyOffset - mLineOffset));
     }
 
     // Draw current input
@@ -102,14 +103,14 @@ void Console::handleKeyboard(KeyboardButton key, bool pressed) {
     if (pressed && (key == enterKey)) {
         // Execute entered command
         if (mInputBuffer.length() > 0) {
-            (*this) << "> " << mInputBuffer.c_str() << endl;
+            getLog() << "> " << mInputBuffer.c_str() << Log::endl;
             mCommandHistory.push_back(mInputBuffer.c_str());
             int error = Command::command(mInputBuffer);
             if (error != 0) {
-                (*this) << "Error Code: " << error << endl;
+                getLog() << "Error Code: " << error << Log::endl;
             }
         } else {
-            (*this) << "> " << endl;
+            getLog() << "> " << Log::endl;
         }
 
         // Clear partial and input buffer
@@ -200,9 +201,9 @@ void Console::handleMouseScroll(int xrel, int yrel) {
         lineCount = (lastLine - firstLine + lineSteps) / lineSteps;
     }
 
-    if (mHistory.size() > lineCount) {
+    if (getLog().size() > lineCount) {
         if (yrel > 0) {
-            if (mLineOffset < (mHistory.size() - lineCount)) {
+            if (mLineOffset < (getLog().size() - lineCount)) {
                 mLineOffset++;
             }
         } else if (yrel < 0) {

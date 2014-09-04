@@ -7,8 +7,8 @@
 
 #include "global.h"
 #include "Camera.h"
-#include "Console.h"
 #include "Font.h"
+#include "Log.h"
 #include "RunTime.h"
 #include "Sound.h"
 #include "Window.h"
@@ -24,22 +24,22 @@ std::string CommandSet::brief() {
 }
 
 void CommandSet::printHelp() {
-    getConsole() << "set-Command Usage:" << Console::endl;
-    getConsole() << "  set VAR VAL" << Console::endl;
-    getConsole() << "Available Variables:" << Console::endl;
-    getConsole() << "  basedir    STRING" << Console::endl;
-    getConsole() << "  pakdir     STRING" << Console::endl;
-    getConsole() << "  audiodir   STRING" << Console::endl;
-    getConsole() << "  datadir    STRING" << Console::endl;
-    getConsole() << "  font       STRING" << Console::endl;
-    getConsole() << "  size       INT INT" << Console::endl;
-    getConsole() << "  fullscreen BOOL" << Console::endl;
-    getConsole() << "  audio      BOOL" << Console::endl;
-    getConsole() << "  volume     BOOL" << Console::endl;
-    getConsole() << "  mouse_x    FLOAT" << Console::endl;
-    getConsole() << "  mouse_y    FLOAT" << Console::endl;
-    getConsole() << "  fps        BOOL" << Console::endl;
-    getConsole() << "Enclose STRINGs with \"\"!" << Console::endl;
+    getLog() << "set-Command Usage:" << Log::endl;
+    getLog() << "  set VAR VAL" << Log::endl;
+    getLog() << "Available Variables:" << Log::endl;
+    getLog() << "  basedir    STRING" << Log::endl;
+    getLog() << "  pakdir     STRING" << Log::endl;
+    getLog() << "  audiodir   STRING" << Log::endl;
+    getLog() << "  datadir    STRING" << Log::endl;
+    getLog() << "  font       STRING" << Log::endl;
+    getLog() << "  size       INT INT" << Log::endl;
+    getLog() << "  fullscreen BOOL" << Log::endl;
+    getLog() << "  audio      BOOL" << Log::endl;
+    getLog() << "  volume     BOOL" << Log::endl;
+    getLog() << "  mouse_x    FLOAT" << Log::endl;
+    getLog() << "  mouse_y    FLOAT" << Log::endl;
+    getLog() << "  fps        BOOL" << Log::endl;
+    getLog() << "Enclose STRINGs with \"\"!" << Log::endl;
 }
 
 namespace {
@@ -72,49 +72,49 @@ int CommandSet::execute(std::istream& args) {
     if (var.compare("size") == 0) {
         unsigned int w = DEFAULT_WIDTH, h = DEFAULT_HEIGHT;
         if (!(args >> w >> h)) {
-            getConsole() << "set-size-Error: Invalid value(s)" << Console::endl;
+            getLog() << "set-size-Error: Invalid value(s)" << Log::endl;
             return -2;
         }
         getWindow().setSize(w, h);
     } else if (var.compare("fullscreen") == 0) {
         bool fullscreen = false;
         if (!(args >> fullscreen)) {
-            getConsole() << "set-fullscreen-Error: Invalid value" << Console::endl;
+            getLog() << "set-fullscreen-Error: Invalid value" << Log::endl;
             return -3;
         }
         getWindow().setFullscreen(fullscreen);
     } else if (var.compare("audio") == 0) {
         bool audio = false;
         if (!(args >> audio)) {
-            getConsole() << "set-audio-Error: Invalid value" << Console::endl;
+            getLog() << "set-audio-Error: Invalid value" << Log::endl;
             return -4;
         }
         getSound().setEnabled(audio);
     } else if (var.compare("volume") == 0) {
         float vol = 1.0f;
         if (!(args >> vol)) {
-            getConsole() << "set-volume-Error: Invalid value" << Console::endl;
+            getLog() << "set-volume-Error: Invalid value" << Log::endl;
             return -5;
         }
         getSound().setVolume(vol);
     } else if (var.compare("mouse_x") == 0) {
         float sense = 1.0f;
         if (!(args >> sense)) {
-            getConsole() << "set-mouse_x-Error: Invalid value" << Console::endl;
+            getLog() << "set-mouse_x-Error: Invalid value" << Log::endl;
             return -6;
         }
         getCamera().setSensitivityX(OR_DEG_TO_RAD(sense));
     } else if (var.compare("mouse_y") == 0) {
         float sense = 1.0f;
         if (!(args >> sense)) {
-            getConsole() << "set-mouse_y-Error: Invalid value" << Console::endl;
+            getLog() << "set-mouse_y-Error: Invalid value" << Log::endl;
             return -7;
         }
         getCamera().setSensitivityY(OR_DEG_TO_RAD(sense));
     } else if (var.compare("fps") == 0) {
         bool fps = false;
         if (!(args >> fps)) {
-            getConsole() << "set-fps-Error: Invalid value" << Console::endl;
+            getLog() << "set-fps-Error: Invalid value" << Log::endl;
             return -8;
         }
         getRunTime().setFPS(fps);
@@ -139,7 +139,7 @@ int CommandSet::execute(std::istream& args) {
         args >> temp;
         getFont().setFont(expandNames(temp).c_str());
     } else {
-        getConsole() << "set-Error: Unknown variable (" << var.c_str() << ")" << Console::endl;
+        getLog() << "set-Error: Unknown variable (" << var.c_str() << ")" << Log::endl;
         return -1;
     }
 

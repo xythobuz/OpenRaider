@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "global.h"
-#include "Console.h"
+#include "Log.h"
 #include "loader/LoaderTR2.h"
 
 LoaderTR2::LoaderTR2() {
@@ -29,62 +29,62 @@ int LoaderTR2::load(std::string f) {
     }
 
     loadPaletteTextiles();
-    getConsole() << "->loaded palette" << Console::endl;
+    getLog() << "->loaded palette" << Log::endl;
 
     file.seek(file.tell() + 4); // Unused value?
 
     loadRooms();
-    getConsole() << "->loaded rooms" << Console::endl;
+    getLog() << "->loaded rooms" << Log::endl;
 
     loadFloorData();
-    getConsole() << "->loaded floor data" << Console::endl;
+    getLog() << "->loaded floor data" << Log::endl;
 
     loadMeshes();
-    getConsole() << "->loaded meshes" << Console::endl;
+    getLog() << "->loaded meshes" << Log::endl;
 
     loadMoveables();
-    getConsole() << "->loaded moveables" << Console::endl;
+    getLog() << "->loaded moveables" << Log::endl;
 
     loadStaticMeshes();
-    getConsole() << "->loaded static meshes" << Console::endl;
+    getLog() << "->loaded static meshes" << Log::endl;
 
     loadTextures();
-    getConsole() << "->loaded textures" << Console::endl;
+    getLog() << "->loaded textures" << Log::endl;
 
     loadSprites();
-    getConsole() << "->loaded sprites" << Console::endl;
+    getLog() << "->loaded sprites" << Log::endl;
 
     loadCameras();
-    getConsole() << "->loaded cameras" << Console::endl;
+    getLog() << "->loaded cameras" << Log::endl;
 
     loadSoundSources();
-    getConsole() << "->loaded sound sources" << Console::endl;
+    getLog() << "->loaded sound sources" << Log::endl;
 
     loadBoxesOverlapsZones();
-    getConsole() << "->loaded boxes overlaps zones" << Console::endl;
+    getLog() << "->loaded boxes overlaps zones" << Log::endl;
 
     loadAnimatedTextures();
-    getConsole() << "->loaded animated textures" << Console::endl;
+    getLog() << "->loaded animated textures" << Log::endl;
 
     loadItems();
-    getConsole() << "->loaded items" << Console::endl;
+    getLog() << "->loaded items" << Log::endl;
 
     file.seek(file.tell() + 8192); // Skip Light map, only for 8bit coloring
 
     loadCinematicFrames();
-    getConsole() << "->loaded cinematic frames" << Console::endl;
+    getLog() << "->loaded cinematic frames" << Log::endl;
 
     loadDemoData();
-    getConsole() << "->loaded demo data" << Console::endl;
+    getLog() << "->loaded demo data" << Log::endl;
 
     loadSoundMap();
-    getConsole() << "->loaded sound map" << Console::endl;
+    getLog() << "->loaded sound map" << Log::endl;
 
     loadSoundDetails();
-    getConsole() << "->loaded sound details" << Console::endl;
+    getLog() << "->loaded sound details" << Log::endl;
 
     loadSampleIndices();
-    getConsole() << "->loaded sample indices" << Console::endl;
+    getLog() << "->loaded sample indices" << Log::endl;
 
     return 0;
 }

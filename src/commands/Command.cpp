@@ -9,7 +9,7 @@
 #include <iomanip>
 
 #include "global.h"
-#include "Console.h"
+#include "Log.h"
 #include "utils/strings.h"
 #include "commands/Command.h"
 #include "commands/CommandAnimate.h"
@@ -27,7 +27,7 @@ Command::~Command() {
 }
 
 void Command::printHelp() {
-    getConsole() << "No help available!" << Console::endl;
+    getLog() << "No help available!" << Log::endl;
 }
 
 void Command::fillCommandList() {
@@ -71,17 +71,17 @@ int Command::command(std::string c) {
         command >> arg;
         if (arg.length() == 0) {
             // List all available commands
-            getConsole() << "Available commands:" << Console::endl;
-            getConsole() << std::right << std::setw(11);
-            getConsole() << "help" << " - print command help" << Console::endl;
+            getLog() << "Available commands:" << Log::endl;
+            getLog() << std::right << std::setw(11);
+            getLog() << "help" << " - print command help" << Log::endl;
             for (auto &x : commands) {
                 if (x) {
-                    getConsole() << std::right << std::setw(11);
-                    getConsole() << x->name() << " - " << x->brief() << Console::endl;
+                    getLog() << std::right << std::setw(11);
+                    getLog() << x->name() << " - " << x->brief() << Log::endl;
                 }
             }
-            getConsole() << "Use help COMMAND to get additional info" << Console::endl;
-            getConsole() << "Pass BOOLs as true or false" << Console::endl;
+            getLog() << "Use help COMMAND to get additional info" << Log::endl;
+            getLog() << "Pass BOOLs as true or false" << Log::endl;
             return 0;
         } else {
             // Show help for a specific command
@@ -93,7 +93,7 @@ int Command::command(std::string c) {
                     }
                 }
             }
-            getConsole() << "Unknown command: \"" << arg << "\"" << Console::endl;
+            getLog() << "Unknown command: \"" << arg << "\"" << Log::endl;
             return -1;
         }
     }
@@ -107,17 +107,17 @@ int Command::command(std::string c) {
         }
     }
 
-    getConsole() << "Unknown command: \"" << cmd << "\"" << Console::endl;
+    getLog() << "Unknown command: \"" << cmd << "\"" << Log::endl;
     return -1;
 }
 
 int Command::executeFile(std::string file) {
     std::string configFile = expandHomeDirectory(file);
-    getConsole() << "Loading config from \"" << configFile << "\"..." << Console::endl;
+    getLog() << "Loading config from \"" << configFile << "\"..." << Log::endl;
 
     std::ifstream f(configFile);
     if (!f) {
-        getConsole() << "Could not open file!" << Console::endl;
+        getLog() << "Could not open file!" << Log::endl;
         return -1;
     }
 
@@ -127,7 +127,7 @@ int Command::executeFile(std::string file) {
 
         int error = Command::command(line);
         if (error != 0)
-            getConsole() << "Error Code: " << error << Console::endl;
+            getLog() << "Error Code: " << error << Log::endl;
     }
 
     f.close();

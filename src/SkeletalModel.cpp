@@ -7,7 +7,7 @@
  */
 
 #include "global.h"
-#include "Console.h"
+#include "Log.h"
 #include "Render.h"
 #include "SkeletalModel.h"
 #include "World.h"
@@ -137,9 +137,9 @@ AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, int a, unsign
         }
 
         if (*frame_offset > tr.NumFrames()) {
-            getConsole() << "WARNING: Bad animation frame " << *frame_offset
+            getLog() << "WARNING: Bad animation frame " << *frame_offset
                 << " > " << tr.NumFrames() << " (" << index << "." << a << ")"
-                << Console::endl;
+                << Log::endl;
             return;
         }
 
@@ -201,7 +201,7 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
                 }
 
                 getRender().setFlags(Render::fRenderPonytail);
-                getConsole() << "Found known ponytail" << Console::endl;
+                getLog() << "Found known ponytail" << Log::endl;
             }
             break;
 
@@ -223,7 +223,7 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
                 ponyOff2 = 0;
 
                 getRender().setFlags(Render::fRenderPonytail);
-                getConsole() << "Found ponytail?" << Console::endl;
+                getLog() << "Found ponytail?" << Log::endl;
             }
             break;
     }
@@ -247,7 +247,7 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
         frame_offset += frame_step * (frame_cycle % a);
 
     if (a < 0) {
-        getConsole() << "Invalid animation data for model " << index << ". Skip!" << Console::endl;
+        getLog() << "Invalid animation data for model " << index << ". Skip!" << Log::endl;
         return;
     } else {
         for (; a < tr.getNumAnimsForMoveable(index); a++) {

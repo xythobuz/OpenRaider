@@ -6,8 +6,8 @@
  */
 
 #include "global.h"
-#include "Console.h"
 #include "Game.h"
+#include "Log.h"
 #include "RunTime.h"
 #include "commands/CommandMove.h"
 
@@ -20,17 +20,17 @@ std::string CommandMove::brief() {
 }
 
 void CommandMove::printHelp() {
-    getConsole() << "move-Command Usage:" << Console::endl;
-    getConsole() << "  move COMMAND" << Console::endl;
-    getConsole() << "Where COMMAND is one of the following:" << Console::endl;
-    getConsole() << "  walk" << Console::endl;
-    getConsole() << "  fly" << Console::endl;
-    getConsole() << "  noclip" << Console::endl;
+    getLog() << "move-Command Usage:" << Log::endl;
+    getLog() << "  move COMMAND" << Log::endl;
+    getLog() << "Where COMMAND is one of the following:" << Log::endl;
+    getLog() << "  walk" << Log::endl;
+    getLog() << "  fly" << Log::endl;
+    getLog() << "  noclip" << Log::endl;
 }
 
 int CommandMove::execute(std::istream& args) {
     if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
-        getConsole() << "Use move command interactively!" << Console::endl;
+        getLog() << "Use move command interactively!" << Log::endl;
         return -1;
     }
 
@@ -43,11 +43,11 @@ int CommandMove::execute(std::istream& args) {
     } else if (s.compare("noclip") == 0) {
         getGame().getLara().setMoveType(Entity::MoveTypeNoClipping);
     } else {
-        getConsole() << "Invalid use of move command (" << s << ")!" << Console::endl;
+        getLog() << "Invalid use of move command (" << s << ")!" << Log::endl;
         return -2;
     }
 
-    getConsole() << s  << "ing" << Console::endl;
+    getLog() << s  << "ing" << Log::endl;
     return 0;
 }
 

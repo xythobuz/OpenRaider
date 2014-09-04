@@ -9,7 +9,6 @@
 * Add verbose command line flag for debug output also in release builds
 * Don’t depend on setup: no data or config files should be necessary
 * Be able to change configuration from within OpenRaider
-* Put log functionality outside of Console
 
 ## Bugs
 
