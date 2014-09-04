@@ -75,8 +75,8 @@ bool RunTime::isRunning() {
     return gameIsRunning;
 }
 
-void RunTime::start() {
-    gameIsRunning = true;
+void RunTime::setRunning(bool run) {
+    gameIsRunning = run;
 }
 
 bool RunTime::getFPS() {

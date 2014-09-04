@@ -21,6 +21,8 @@ public:
     virtual int initialize();
     virtual void eventsFinished();
     virtual void display();
+    virtual void calculate();
+    virtual void shutdown();
 
     virtual void handleKeyboard(KeyboardButton key, bool pressed);
     virtual void handleText(char *text, bool notFinished);
@@ -38,6 +40,8 @@ public:
     static int passInitialize();
     static void passEvents();
     static void passDisplay();
+    static void passCalculate();
+    static void passShutdown();
     static void passKeyboard(KeyboardButton key, bool pressed);
     static void passText(char *text, bool notFinished);
     static void passMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);

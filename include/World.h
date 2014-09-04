@@ -9,6 +9,7 @@
 #ifndef _WORLD_H_
 #define _WORLD_H_
 
+#include <memory>
 #include <vector>
 
 #include "Entity.h"
@@ -77,11 +78,11 @@ public:
     long getRoomByLocation(float x, float y, float z);
 
 private:
-    std::vector<Room *> mRooms;
-    std::vector<SpriteSequence *> mSprites;
-    std::vector<Entity *> mEntities;
-    std::vector<SkeletalModel *> mModels;
-    std::vector<StaticMesh *> mMeshes;
+    std::vector<std::unique_ptr<Room>> mRooms;
+    std::vector<std::unique_ptr<SpriteSequence>> mSprites;
+    std::vector<std::unique_ptr<Entity>> mEntities;
+    std::vector<std::unique_ptr<SkeletalModel>> mModels;
+    std::vector<std::unique_ptr<StaticMesh>> mMeshes;
 };
 
 World &getWorld();

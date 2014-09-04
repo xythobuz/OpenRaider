@@ -18,6 +18,8 @@ public:
     virtual int initialize();
     virtual void eventsFinished();
     virtual void display();
+    virtual void calculate();
+    virtual void shutdown();
 
     virtual void handleKeyboard(KeyboardButton key, bool pressed);
     virtual void handleText(char *text, bool notFinished);

@@ -31,7 +31,7 @@ public:
     void setKeyBinding(ActionEvents event, KeyboardButton button);
 
     bool isRunning();
-    void start();
+    void setRunning(bool run);
 
     bool getFPS();
     void setFPS(bool fps);

@@ -16,7 +16,7 @@ World::~World() {
 }
 
 void World::addRoom(Room &room) {
-    mRooms.push_back(&room);
+    mRooms.push_back(std::unique_ptr<Room>(&room));
 }
 
 unsigned long World::sizeRoom() {
@@ -29,7 +29,7 @@ Room &World::getRoom(unsigned long index) {
 }
 
 void World::addSprite(SpriteSequence &sprite) {
-    mSprites.push_back(&sprite);
+    mSprites.push_back(std::unique_ptr<SpriteSequence>(&sprite));
 }
 
 unsigned long World::sizeSprite() {
@@ -42,7 +42,7 @@ SpriteSequence &World::getSprite(unsigned long index) {
 }
 
 void World::addEntity(Entity &entity) {
-    mEntities.push_back(&entity);
+    mEntities.push_back(std::unique_ptr<Entity>(&entity));
 }
 
 unsigned long World::sizeEntity() {
@@ -55,7 +55,7 @@ Entity &World::getEntity(unsigned long index) {
 }
 
 void World::addSkeletalModel(SkeletalModel &model) {
-    mModels.push_back(&model);
+    mModels.push_back(std::unique_ptr<SkeletalModel>(&model));
 }
 
 unsigned long World::sizeSkeletalModel() {
@@ -68,7 +68,7 @@ SkeletalModel &World::getSkeletalModel(unsigned long index) {
 }
 
 void World::addStaticMesh(StaticMesh &model) {
-    mMeshes.push_back(&model);
+    mMeshes.push_back(std::unique_ptr<StaticMesh>(&model));
 }
 
 unsigned long World::sizeStaticMesh() {
@@ -111,24 +111,10 @@ long World::getRoomByLocation(float x, float y, float z) {
 
 
 void World::destroy() {
-    for (unsigned long i = 0; i < mRooms.size(); i++)
-        delete mRooms[i];
     mRooms.clear();
-
-    for (unsigned long i = 0; i < mSprites.size(); i++)
-        delete mSprites[i];
     mSprites.clear();
-
-    for (unsigned long i = 0; i < mEntities.size(); i++)
-        delete mEntities[i];
     mEntities.clear();
-
-    for (unsigned long i = 0; i < mModels.size(); i++)
-        delete mModels[i];
     mModels.clear();
-
-    for (unsigned long i = 0; i < mMeshes.size(); i++)
-        delete mMeshes[i];
     mMeshes.clear();
 }
 

@@ -23,12 +23,51 @@ UI::~UI() {
 int UI::initialize() { return 0; }
 void UI::eventsFinished() { }
 void UI::display() { }
+void UI::calculate() { }
+void UI::shutdown() { }
 void UI::handleKeyboard(KeyboardButton key, bool pressed) { }
 void UI::handleText(char *text, bool notFinished) { }
 void UI::handleAction(ActionEvents action, bool isFinished) { }
 void UI::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) { }
 void UI::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) { }
 void UI::handleMouseScroll(int xrel, int yrel) { }
+
+int UI::passInitialize() {
+    for (auto &x : windows) {
+        int error = x->initialize();
+        if (error != 0)
+            return error;
+    }
+
+    return 0;
+}
+
+void UI::passEvents() {
+    for (auto &x : windows) {
+        x->eventsFinished();
+    }
+}
+
+void UI::passDisplay() {
+    std::sort(windows.begin(), windows.end(), compareUIs);
+    for (auto &x : windows) {
+        if (x->zPos >= 0) {
+            x->display();
+        }
+    }
+}
+
+void UI::passCalculate() {
+    for (auto &x : windows) {
+        x->calculate();
+    }
+}
+
+void UI::passShutdown() {
+    for (auto &x : windows) {
+        x->shutdown();
+    }
+}
 
 void UI::passKeyboard(KeyboardButton key, bool pressed) {
     if (pressed) {
@@ -166,30 +205,5 @@ void UI::makeInvisible() {
     findInList(this, [](unsigned long i) {
         UI::makeInvisible(i);
     });
-}
-
-int UI::passInitialize() {
-    for (auto &x : windows) {
-        int error = x->initialize();
-        if (error != 0)
-            return error;
-    }
-
-    return 0;
-}
-
-void UI::passEvents() {
-    for (auto &x : windows) {
-        x->eventsFinished();
-    }
-}
-
-void UI::passDisplay() {
-    std::sort(windows.begin(), windows.end(), compareUIs);
-    for (auto &x : windows) {
-        if (x->zPos >= 0) {
-            x->display();
-        }
-    }
 }
 

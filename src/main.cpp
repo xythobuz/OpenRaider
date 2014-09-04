@@ -56,17 +56,6 @@ static std::shared_ptr<TextureManager> gTextureManager;
 static std::shared_ptr<Window> gWindow;
 static std::shared_ptr<World> gWorld;
 
-static void cleanupHandler(void) {
-#ifdef DEBUG
-    std::cout << std::endl;
-    std::cout << "Thanks for testing " << VERSION << std::endl;
-    std::cout << "Build date: " << __DATE__ << " @ " << __TIME__ << std::endl;
-    std::cout << "Build host: " << BUILD_HOST << std::endl;
-    std::cout << "Web site  : http://github.com/xythobuz/OpenRaider" << std::endl;
-    std::cout << "Contact   : xythobuz@xythobuz.de" << std::endl;
-#endif
-}
-
 Camera &getCamera() {
     return *gCamera;
 }
@@ -146,7 +135,6 @@ int main(int argc, char* argv[]) {
     gWindow.reset(new WindowSDL());
 #endif
 
-    atexit(cleanupHandler);
     Command::fillCommandList();
 
     if (configFileToUse == "") {
@@ -204,27 +192,30 @@ int main(int argc, char* argv[]) {
     getConsole() << "Starting " << VERSION << Console::endl;
     getMenu().moveToTop();
     systemTimerReset();
-    getRunTime().start();
+    getRunTime().setRunning(true);
 
     while (getRunTime().isRunning()) {
+        getWindow().eventHandling();
+        UI::passCalculate();
         renderFrame();
     }
+
+    UI::passShutdown();
+
+#ifdef DEBUG
+    std::cout << std::endl;
+    std::cout << "Thanks for testing " << VERSION << std::endl;
+    std::cout << "Build date: " << __DATE__ << " @ " << __TIME__ << std::endl;
+    std::cout << "Build host: " << BUILD_HOST << std::endl;
+    std::cout << "Web site  : http://github.com/xythobuz/OpenRaider" << std::endl;
+    std::cout << "Contact   : xythobuz@xythobuz.de" << std::endl;
+#endif
 
     return 0;
 }
 
 void renderFrame() {
-    // Get keyboard and mouse input
-    getWindow().eventHandling();
-
-    ImGui::ShowTestWindow();
-    ImGui::ShowStyleEditor();
-    //ImGui::ShowUserGuide();
-
-    // Render everything
     UI::passDisplay();
-
-    // Put new frame on screen
     getWindow().swapBuffersGL();
 }
 

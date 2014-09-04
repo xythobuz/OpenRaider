@@ -9,6 +9,7 @@
 #include "Debug.h"
 #include "RunTime.h"
 #include "TextureManager.h"
+#include "utils/time.h"
 #include "Window.h"
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -23,9 +24,6 @@ Debug::Debug() {
 }
 
 Debug::~Debug() {
-    // TODO Segfaults...?
-    //ImGui::Shutdown();
-
     UI::removeWindow(this);
 }
 
@@ -35,7 +33,7 @@ int Debug::initialize() {
 
     ImGuiIO& io = ImGui::GetIO();
     io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
-    io.DeltaTime = 1.0f/60.0f;
+    io.DeltaTime = 1.0f / 60.0f;
 
     io.IniFilename = iniFilename.c_str();
     io.LogFilename = logFilename.c_str();
@@ -61,29 +59,46 @@ int Debug::initialize() {
     io.RenderDrawListsFn = Debug::renderImGui;
 
     // Load font texture
+    //! \todo Use our own font subsystem instead of this?
     const void* png_data;
     unsigned int png_size;
     ImGui::GetDefaultFontData(NULL, NULL, &png_data, &png_size);
     int tex_x, tex_y, tex_comp;
     void* tex_data = stbi_load_from_memory((const unsigned char*)png_data,
             (int)png_size, &tex_x, &tex_y, &tex_comp, 0);
+
+     //! \fixme TODO use proper slot
     fontTex = getTextureManager().loadBufferSlot((unsigned char *)tex_data,
-            tex_x, tex_y, RGBA, 32, 0, false); // TODO use proper slot!
+            tex_x, tex_y, RGBA, 32, 0, false);
+
     stbi_image_free(tex_data);
 
     return 0;
+}
+
+void Debug::eventsFinished() {
+    ImGuiIO& io = ImGui::GetIO();
+    io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
+
+    static long lastTime = 0;
+    io.DeltaTime = ((float)(systemTimerGet() - lastTime)) / 1000.0f;
+    lastTime = systemTimerGet();
+
+    ImGui::NewFrame();
 }
 
 void Debug::display() {
     ImGui::Render();
 }
 
-void Debug::eventsFinished() {
-    ImGuiIO& io = ImGui::GetIO();
-    io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
-    io.DeltaTime = 1.0f / 60.0f; // TODO proper timing
+void Debug::calculate() {
+    //ImGui::ShowTestWindow();
+    //ImGui::ShowStyleEditor();
+    ImGui::ShowUserGuide();
+}
 
-    ImGui::NewFrame();
+void Debug::shutdown() {
+    ImGui::Shutdown();
 }
 
 void Debug::handleKeyboard(KeyboardButton key, bool pressed) {

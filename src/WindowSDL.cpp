@@ -9,6 +9,7 @@
 #include <ctime>
 
 #include "global.h"
+#include "RunTime.h"
 #include "UI.h"
 #include "utils/strings.h"
 #include "WindowSDL.h"
@@ -436,7 +437,8 @@ void WindowSDL::eventHandling() {
                 break;
 
             case SDL_QUIT:
-                exit(0);
+                getRunTime().setRunning(false);
+                break;
         }
     }
 

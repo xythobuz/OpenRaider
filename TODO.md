@@ -17,7 +17,6 @@
 * imgui integration still very much unfinished
     * toggling with ‘q’ means one can’t use input ‘q’ into a text field
     * clicking outside of the debug window does nothing
-    * it seems as if colors aren’t rendering properly
 
 ## Cmake
 
