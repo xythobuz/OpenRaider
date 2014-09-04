@@ -73,12 +73,13 @@ public:
      * \param mode mode of image
      * \param bpp bits per pixel of image
      * \param slot slot (ID) of image
+     * \param filter if the texture should be mipmap filtered
      * \returns texture ID or < 0 on error
      */
     int loadBufferSlot(unsigned char *image,
                         unsigned int width, unsigned int height,
                         ColorMode mode, unsigned int bpp,
-                        unsigned int slot);
+                        unsigned int slot, bool filter = true);
 
     int loadImage(const char *filename);
 

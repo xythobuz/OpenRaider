@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140904 ]
+    * Fixed imgui colors
+
     [ 20140903 ]
     * Finishing imgui integration, but now as UI layer and not on top of everything
     * All global objects are now explicitly allocated in main and stored in shared_ptrs
