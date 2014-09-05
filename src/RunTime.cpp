@@ -22,7 +22,7 @@ RunTime::RunTime() {
 
     // Default key bindings
     keyBindings[menuAction] = escapeKey;
-    keyBindings[consoleAction] = backquoteKey;
+    keyBindings[debugAction] = qKey;
     keyBindings[forwardAction] = wKey;
     keyBindings[backwardAction] = sKey;
     keyBindings[leftAction] = aKey;

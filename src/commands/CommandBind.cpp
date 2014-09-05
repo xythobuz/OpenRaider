@@ -23,7 +23,6 @@ void CommandBind::printHelp() {
     getLog() << "  bind ACTION KEY" << Log::endl;
     getLog() << "Available Actions:" << Log::endl;
     getLog() << "  menu" << Log::endl;
-    getLog() << "  console" << Log::endl;
     getLog() << "  debug" << Log::endl;
     getLog() << "  forward" << Log::endl;
     getLog() << "  backward" << Log::endl;
@@ -65,8 +64,6 @@ int CommandBind::execute(std::istream& args) {
 ActionEvents CommandBind::stringToActionEvent(std::string action) {
     if (action == "menu") {
         return menuAction;
-    } else if (action == "console") {
-        return consoleAction;
     } else if (action == "debug") {
         return debugAction;
     } else if (action == "forward") {

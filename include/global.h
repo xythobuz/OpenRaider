@@ -42,7 +42,6 @@ const unsigned char CYAN[]   = {   0, 255, 255, 255 };
 // Actions that can be bound to a key and sent to the game engine
 typedef enum {
     menuAction = 0,
-    consoleAction,
     debugAction,
 
     forwardAction,

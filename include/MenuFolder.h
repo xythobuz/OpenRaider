@@ -31,7 +31,8 @@ public:
 
     virtual void display();
     virtual void handleKeyboard(KeyboardButton key, bool pressed);
-    virtual void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
+    virtual void handleMouseClick(unsigned int x, unsigned int y,
+            KeyboardButton button, bool released);
     virtual void handleMouseScroll(int xrel, int yrel);
 
 private:

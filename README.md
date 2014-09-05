@@ -108,7 +108,6 @@ OpenRaider tries to load a `MAIN.SFX` from the same folder as the selected level
 | Key               | Action                |
 | -----------------:|:--------------------- |
 | &lt;Esc&gt;       | Toggle menu           |
-| &lt;backquote&gt; | Console toggle on/off |
 | q                 | Toggle debug windows  |
 | w                 | Move forward          |
 | s                 | Move back             |
@@ -177,8 +176,6 @@ See the respective files in `cmake` for their licensing.
 * Eric Wing
 
 The [clibs/commander](https://github.com/clibs/commander) dependency is Copyright (c) 2012 TJ Holowaychuk (tj@vision-media.ca) and licensed under the [MIT License](http://opensource.org/licenses/MIT).
-
-The included [utf8-cpp](http://utfcpp.sourceforge.net) headers are Copyright (c) 2006 Nemanja Trifunovic. See the files in src/deps/utf8-cpp/ for informations about the license used.
 
 The included GUI lib, [imgui](https://github.com/ocornut/imgui/) is Copyright (c) 2014 Omar Cornut. See src/deps/imgui/LICENSE for more informations about the MIT license used.
 

@@ -29,17 +29,13 @@ std::map<int, int> gMapTex2Bump;
 #endif
 
 Game::Game() {
-    zPos = 0;
     mLoaded = false;
     mLara = -1;
     mTextureStart = 0;
     mTextureOffset = 0;
-
-    UI::addWindow(this);
 }
 
 Game::~Game() {
-    UI::removeWindow(this);
 }
 
 unsigned int Game::getTextureStart() {

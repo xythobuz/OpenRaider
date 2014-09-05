@@ -9,59 +9,41 @@
 #define _UI_H_
 
 #include <functional>
+#include <list>
 #include <memory>
-#include <vector>
+#include <tuple>
 
 #include "imgui/imgui.h"
 
 class UI {
 public:
-    virtual ~UI();
+    static int initialize();
+    static void eventsFinished();
+    static void display();
+    static void calculate();
+    static void shutdown();
 
-    virtual int initialize();
-    virtual void eventsFinished();
-    virtual void display();
-    virtual void calculate();
-    virtual void shutdown();
+    static void setVisible(bool v);
+    static bool isVisible();
 
-    virtual void handleKeyboard(KeyboardButton key, bool pressed);
-    virtual void handleText(char *text, bool notFinished);
-    virtual void handleAction(ActionEvents action, bool isFinished);
-    virtual void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
-    virtual void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
-    virtual void handleMouseScroll(int xrel, int yrel);
-
-    virtual bool isOnTop();
-    virtual void moveToTop();
-    virtual void makeInvisible();
-
-    // ----------------------------------
-
-    static int passInitialize();
-    static void passEvents();
-    static void passDisplay();
-    static void passCalculate();
-    static void passShutdown();
-    static void passKeyboard(KeyboardButton key, bool pressed);
-    static void passText(char *text, bool notFinished);
-    static void passMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
-    static void passMouseMotion(int xrel, int yrel, int xabs, int yabs);
-    static void passMouseScroll(int xrel, int yrel);
-
-protected:
-    static void addWindow(UI* window);
-    static void removeWindow(UI *window);
-
-    long zPos;
+    static void handleKeyboard(KeyboardButton key, bool pressed);
+    static void handleText(char *text, bool notFinished);
+    static void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
+    static void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
+    static void handleMouseScroll(int xrel, int yrel);
 
 private:
-    static void findInList(UI *w, std::function<void (unsigned long i)> func);
-    static bool isOnTop(unsigned long windowID);
-    static void moveToTop(unsigned long windowID);
-    static void makeInvisible(unsigned long windowID);
-    static bool compareUIs(UI* a, UI* b);
+    static void renderImGui(ImDrawList** const draw_lists, int count);
 
-    static std::vector<UI*> windows;
+    static bool visible;
+    static unsigned int fontTex;
+    static std::string iniFilename;
+    static std::string logFilename;
+
+    static std::list<std::tuple<KeyboardButton, bool>> keyboardEvents;
+    static std::list<std::tuple<unsigned int, unsigned int, KeyboardButton, bool>> clickEvents;
+    static std::list<std::tuple<int, int, int, int>> motionEvents;
+    static std::list<std::tuple<int, int>> scrollEvents;
 };
 
 #endif

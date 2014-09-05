@@ -8,200 +8,307 @@
 #include <algorithm>
 
 #include "global.h"
-#include "Console.h"
-#include "Debug.h"
+#include "Game.h"
+#include "Log.h"
 #include "Menu.h"
 #include "RunTime.h"
 #include "TextureManager.h"
 #include "Window.h"
+#include "commands/Command.h"
+#include "utils/time.h"
+#include "UI.h"
 
-std::vector<UI*> UI::windows;
+#define STB_IMAGE_IMPLEMENTATION
+#include "imgui/stb_image.h"
 
-UI::~UI() {
-}
+bool UI::visible = false;
+unsigned int UI::fontTex;
+std::string UI::iniFilename;
+std::string UI::logFilename;
 
-int UI::initialize() { return 0; }
-void UI::eventsFinished() { }
-void UI::display() { }
-void UI::calculate() { }
-void UI::shutdown() { }
-void UI::handleKeyboard(KeyboardButton key, bool pressed) { }
-void UI::handleText(char *text, bool notFinished) { }
-void UI::handleAction(ActionEvents action, bool isFinished) { }
-void UI::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) { }
-void UI::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) { }
-void UI::handleMouseScroll(int xrel, int yrel) { }
+std::list<std::tuple<KeyboardButton, bool>> UI::keyboardEvents;
+std::list<std::tuple<unsigned int, unsigned int, KeyboardButton, bool>> UI::clickEvents;
+std::list<std::tuple<int, int, int, int>> UI::motionEvents;
+std::list<std::tuple<int, int>> UI::scrollEvents;
 
-int UI::passInitialize() {
-    for (auto &x : windows) {
-        int error = x->initialize();
-        if (error != 0)
-            return error;
-    }
+int UI::initialize() {
+    iniFilename = getRunTime().getBaseDir() + "/imgui.ini";
+    logFilename = getRunTime().getBaseDir() + "/imgui_log.txt";
+
+    ImGuiIO& io = ImGui::GetIO();
+    io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
+    io.DeltaTime = 1.0f / 60.0f;
+
+    io.IniFilename = iniFilename.c_str();
+    io.LogFilename = logFilename.c_str();
+
+    io.KeyMap[ImGuiKey_Tab] = tabKey;
+    io.KeyMap[ImGuiKey_LeftArrow] = leftKey;
+    io.KeyMap[ImGuiKey_RightArrow] = rightKey;
+    io.KeyMap[ImGuiKey_UpArrow] = upKey;
+    io.KeyMap[ImGuiKey_DownArrow] = downKey;
+    io.KeyMap[ImGuiKey_Home] = homeKey;
+    io.KeyMap[ImGuiKey_End] = endKey;
+    io.KeyMap[ImGuiKey_Delete] = delKey;
+    io.KeyMap[ImGuiKey_Backspace] = backspaceKey;
+    io.KeyMap[ImGuiKey_Enter] = enterKey;
+    io.KeyMap[ImGuiKey_Escape] = escapeKey;
+    io.KeyMap[ImGuiKey_A] = aKey;
+    io.KeyMap[ImGuiKey_C] = cKey;
+    io.KeyMap[ImGuiKey_V] = vKey;
+    io.KeyMap[ImGuiKey_X] = xKey;
+    io.KeyMap[ImGuiKey_Y] = yKey;
+    io.KeyMap[ImGuiKey_Z] = zKey;
+
+    io.RenderDrawListsFn = UI::renderImGui;
+
+    // Load font texture
+    //! \todo Use our own font subsystem instead of this?
+    const void* png_data;
+    unsigned int png_size;
+    ImGui::GetDefaultFontData(NULL, NULL, &png_data, &png_size);
+    int tex_x, tex_y, tex_comp;
+    void* tex_data = stbi_load_from_memory((const unsigned char*)png_data,
+            (int)png_size, &tex_x, &tex_y, &tex_comp, 0);
+
+     //! \fixme TODO use proper slot
+    fontTex = getTextureManager().loadBufferSlot((unsigned char *)tex_data,
+            tex_x, tex_y, RGBA, 32, 0, false);
+
+    stbi_image_free(tex_data);
 
     return 0;
 }
 
-void UI::passEvents() {
-    for (auto &x : windows) {
-        x->eventsFinished();
-    }
-}
+void UI::eventsFinished() {
+    ImGuiIO& io = ImGui::GetIO();
+    io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
 
-void UI::passDisplay() {
-    std::sort(windows.begin(), windows.end(), compareUIs);
-    for (auto &x : windows) {
-        if (x->zPos >= 0) {
-            x->display();
+    static long lastTime = 0;
+    io.DeltaTime = ((float)(systemTimerGet() - lastTime)) / 1000.0f;
+    lastTime = systemTimerGet();
+
+    ImGui::NewFrame();
+
+    bool clicked = !clickEvents.empty();
+
+    if (!visible) {
+        while (!clickEvents.empty()) {
+            auto i = clickEvents.front();
+            if (getMenu().isVisible()) {
+                getMenu().handleMouseClick(std::get<0>(i), std::get<1>(i),
+                        std::get<2>(i), std::get<3>(i));
+            }
+            clickEvents.pop_front();
+        }
+
+        while (!motionEvents.empty()) {
+            auto i = motionEvents.front();
+            if (!getMenu().isVisible()) {
+                getGame().handleMouseMotion(std::get<0>(i), std::get<1>(i),
+                        std::get<2>(i), std::get<3>(i));
+            }
+            motionEvents.pop_front();
+        }
+
+        while (!scrollEvents.empty()) {
+            auto i = scrollEvents.front();
+            if (getMenu().isVisible()) {
+                getMenu().handleMouseScroll(std::get<0>(i), std::get<1>(i));
+            }
+            scrollEvents.pop_front();
         }
     }
-}
 
-void UI::passCalculate() {
-    for (auto &x : windows) {
-        x->calculate();
-    }
-}
+    if ((!io.WantCaptureKeyboard) || (!visible)) {
+        while (!keyboardEvents.empty()) {
+            auto i = keyboardEvents.front();
 
-void UI::passShutdown() {
-    for (auto &x : windows) {
-        x->shutdown();
-    }
-}
-
-void UI::passKeyboard(KeyboardButton key, bool pressed) {
-    if (pressed) {
-        if (getRunTime().getKeyBinding(menuAction) == key) {
-            if (getMenu().isOnTop()) {
-                getMenu().makeInvisible();
+            if (getMenu().isVisible()) {
+                getMenu().handleKeyboard(std::get<0>(i), std::get<1>(i));
             } else {
-                getMenu().moveToTop();
+                for (int n = forwardAction; n < ActionEventCount; n++) {
+                    if (getRunTime().getKeyBinding((ActionEvents)n) == std::get<0>(i))
+                        getGame().handleAction((ActionEvents)n, !std::get<1>(i));
+                }
             }
-        } else if (getRunTime().getKeyBinding(consoleAction) == key) {
-            if (getConsole().isOnTop()) {
-                getConsole().makeInvisible();
-            } else {
-                getConsole().moveToTop();
+
+            if (std::get<1>(i)) {
+                if (getRunTime().getKeyBinding(menuAction) == std::get<0>(i)) {
+                    getMenu().setVisible(!getMenu().isVisible());
+                } else if (getRunTime().getKeyBinding(debugAction) == std::get<0>(i)) {
+                    visible = !visible;
+                }
             }
-        } else if (getRunTime().getKeyBinding(debugAction) == key) {
-            if (!getDebug().isOnTop()) {
-                getDebug().moveToTop();
-            }
+
+            keyboardEvents.pop_front();
         }
     }
 
-    auto maxIterator = std::max_element(windows.begin(), windows.end(), compareUIs);
-    (*maxIterator)->handleKeyboard(key, pressed);
-
-    for (int i = forwardAction; i < ActionEventCount; i++) {
-        if (getRunTime().getKeyBinding((ActionEvents)i) == key) {
-            (*maxIterator)->handleAction((ActionEvents)i, !pressed);
-        }
+    if ((!io.WantCaptureKeyboard) && (!io.WantCaptureMouse) && visible && clicked) {
+        visible = false;
     }
 
-    bool mousegrab = (*maxIterator)->zPos == 0;
-    if (mousegrab != getWindow().getMousegrab())
-        getWindow().setMousegrab(mousegrab);
+    keyboardEvents.clear();
+    clickEvents.clear();
+    motionEvents.clear();
+    scrollEvents.clear();
+
+    if (getWindow().getTextInput() != visible)
+        getWindow().setTextInput(visible);
+
+    bool input = !(visible || getMenu().isVisible());
+    if (getWindow().getMousegrab() != input)
+        getWindow().setMousegrab(input);
 }
 
-void UI::passText(char *text, bool notFinished) {
-    auto maxIterator = std::max_element(windows.begin(), windows.end(), compareUIs);
-    (*maxIterator)->handleText(text, notFinished);
+void UI::display() {
+    if (visible)
+        ImGui::Render();
 }
 
-void UI::passMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
-    auto maxIterator = std::max_element(windows.begin(), windows.end(), compareUIs);
-    (*maxIterator)->handleMouseClick(x, y, button, released);
+void UI::calculate() {
+    static char buffer[256];
+    static bool scrollToBottom = false;
 
-    for (int i = forwardAction; i < ActionEventCount; i++) {
-        if (getRunTime().getKeyBinding((ActionEvents)i) == button) {
-            (*maxIterator)->handleAction((ActionEvents)i, released);
+    ImGui::Begin("Console", NULL, ImVec2(600, 400), -1.0f);
+        ImGui::BeginChild("ConsoleText", ImVec2(ImGui::GetWindowWidth(), ImGui::GetWindowSize().y - 70));
+            for (int i = 0; i < getLog().size(); i++) {
+                ImGui::Text("%s", getLog().get(i).c_str());
+            }
+            if (scrollToBottom) {
+                ImGui::SetScrollPosHere();
+                scrollToBottom = false;
+            }
+        ImGui::EndChild();
+
+        bool enter = false;
+        ImGui::InputText("Command", buffer, 256, ImGuiInputTextFlags_AutoSelectAll, &enter);
+        if (enter) {
+            getLog() << "> " << buffer << Log::endl;
+            int error = Command::command(buffer);
+            if (error != 0) {
+                getLog() << "Error code: " << error << Log::endl;
+            }
+            buffer[0] = '\0';
+            scrollToBottom = true;
         }
+    ImGui::End();
+
+    //ImGui::Begin("UI Style");
+    //    ImGui::ShowStyleEditor();
+    //ImGui::End();
+
+    //ImGui::Begin("Help");
+    //    ImGui::ShowUserGuide();
+    //ImGui::End();
+
+    //ImGui::ShowTestWindow();
+}
+
+void UI::shutdown() {
+    ImGui::Shutdown();
+}
+
+void UI::handleKeyboard(KeyboardButton key, bool pressed) {
+    ImGuiIO& io = ImGui::GetIO();
+    io.KeysDown[key] = pressed;
+    io.KeyCtrl = io.KeysDown[leftctrlKey] | io.KeysDown[rightctrlKey];
+    io.KeyShift = io.KeysDown[leftshiftKey] | io.KeysDown[rightshiftKey];
+
+    keyboardEvents.push_back(std::make_tuple(key, pressed));
+}
+
+void UI::handleText(char *text, bool notFinished) {
+    ImGuiIO& io = ImGui::GetIO();
+    while (*text != '\0') {
+        io.AddInputCharacter(*text);
+        text++;
     }
 }
 
-void UI::passMouseMotion(int xrel, int yrel, int xabs, int yabs) {
-    auto maxIterator = std::max_element(windows.begin(), windows.end(), compareUIs);
-    (*maxIterator)->handleMouseMotion(xrel, yrel, xabs, yabs);
+void UI::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
+    ImGuiIO& io = ImGui::GetIO();
+    io.MousePos = ImVec2((float)x, (float)y);
+    if (button == leftmouseKey) {
+        io.MouseDown[0] = !released;
+    } else if (button == rightmouseKey) {
+        io.MouseDown[1] = !released;
+    } else if (button == middlemouseKey) {
+        io.MouseDown[2] = !released;
+    } else if (button == fourthmouseKey) {
+        io.MouseDown[3] = !released;
+    } else if (button == fifthmouseKey) {
+        io.MouseDown[4] = !released;
+    }
+
+    clickEvents.push_back(std::make_tuple(x, y, button, released));
 }
 
-void UI::passMouseScroll(int xrel, int yrel) {
-    auto maxIterator = std::max_element(windows.begin(), windows.end(), compareUIs);
-    (*maxIterator)->handleMouseScroll(xrel, yrel);
+void UI::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) {
+    ImGuiIO& io = ImGui::GetIO();
+    io.MousePos = ImVec2((float)xabs, (float)yabs);
+
+    motionEvents.push_back(std::make_tuple(xrel, yrel, xabs, yabs));
 }
 
-void UI::addWindow(UI* window) {
-    windows.push_back(window);
+void UI::handleMouseScroll(int xrel, int yrel) {
+    ImGuiIO& io = ImGui::GetIO();
+    io.MouseWheel = (yrel != 0) ? yrel > 0 ? 1 : -1 : 0;
+
+    scrollEvents.push_back(std::make_tuple(xrel, yrel));
 }
 
-void UI::removeWindow(UI *window) {
-    if (windows.size() == 0) {
-        // It seems as if our list was destroyed before the UIs
+void UI::setVisible(bool v) {
+    visible = v;
+}
+
+bool UI::isVisible() {
+    return visible;
+}
+
+void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
+    if (cmd_lists_count == 0)
         return;
-    }
 
-    findInList(window, [](unsigned long i){
-        windows.erase(windows.begin() + i);
-    });
-}
+    getWindow().glEnter2D();
 
-bool UI::compareUIs(UI* a, UI* b) {
-    return a->zPos < b->zPos;
-}
+    glDisable(GL_DEPTH_TEST);
+    glEnable(GL_SCISSOR_TEST);
 
-bool UI::isOnTop(unsigned long windowID) {
-    assert(windowID < windows.size());
-    auto maxIterator = std::max_element(windows.begin(), windows.end(), compareUIs);
-    unsigned long maxPos = (unsigned long)(maxIterator - windows.begin());
-    return (maxPos == windowID);
-}
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
 
-void UI::moveToTop(unsigned long windowID) {
-    assert(windowID < windows.size());
+    // Setup texture
+    getTextureManager().bindTextureId(fontTex);
 
-    auto maxIterator = std::max_element(windows.begin(), windows.end(), compareUIs);
-    long max = (*maxIterator)->zPos;
-    unsigned long maxPos = (unsigned long)(maxIterator - windows.begin());
+    // Render command lists
+    for (int n = 0; n < cmd_lists_count; n++) {
+        const ImDrawList* cmd_list = cmd_lists[n];
+        const unsigned char* vtx_buffer = (const unsigned char*)cmd_list->vtx_buffer.begin();
+        glVertexPointer(2, GL_FLOAT, sizeof(ImDrawVert), (void*)(vtx_buffer));
+        glTexCoordPointer(2, GL_FLOAT, sizeof(ImDrawVert), (void*)(vtx_buffer+8));
+        glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(ImDrawVert), (void*)(vtx_buffer+16));
 
-    if (maxPos != windowID) {
-        windows.at(windowID)->zPos = max + 1;
-    }
-}
-
-void UI::makeInvisible(unsigned long windowID) {
-    assert(windowID < windows.size());
-    windows.at(windowID)->zPos = -1;
-}
-
-void UI::findInList(UI *w, std::function<void (unsigned long i)> func) {
-    for (unsigned long i = 0; i < windows.size(); i++) {
-        auto UIptr = &(*windows.at(i));
-        if (w == UIptr) {
-            func(i);
-            return;
+        int vtx_offset = 0;
+        const ImDrawCmd* pcmd_end = cmd_list->commands.end();
+        for (const ImDrawCmd* pcmd = cmd_list->commands.begin(); pcmd != pcmd_end; pcmd++) {
+            glScissor((int)pcmd->clip_rect.x, (int)(ImGui::GetIO().DisplaySize.y - pcmd->clip_rect.w),
+                    (int)(pcmd->clip_rect.z - pcmd->clip_rect.x),
+                    (int)(pcmd->clip_rect.w - pcmd->clip_rect.y));
+            glDrawArrays(GL_TRIANGLES, vtx_offset, pcmd->vtx_count);
+            vtx_offset += pcmd->vtx_count;
         }
     }
 
-    assert(false); // called UI was not registered
-}
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_SCISSOR_TEST);
 
-bool UI::isOnTop() {
-    bool top = false;
-    findInList(this, [&](unsigned long i) {
-        top = UI::isOnTop(i);
-    });
-    return top;
-}
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_COLOR_ARRAY);
 
-void UI::moveToTop() {
-    findInList(this, [](unsigned long i) {
-        UI::moveToTop(i);
-    });
-}
-
-void UI::makeInvisible() {
-    findInList(this, [](unsigned long i) {
-        UI::makeInvisible(i);
-    });
+    getWindow().glExit2D();
 }
 

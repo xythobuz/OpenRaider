@@ -2,12 +2,18 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140905 ]
+    * Recreated working console using imgui
+
     [ 20140904 ]
     * Fixed imgui colors
     * World now using smart pointers
     * Removed atexit handler, now breaking out of main loop on quit
     * Added calculate and shutdown calls to UI interface, properly shutting down imgui
     * Created Log class holding logging infos, used by others instead of Console.
+    * Removed Console, Debug
+    * Removed new fancy UI handling system
+    * Properly integrated imgui into UI system
 
     [ 20140903 ]
     * Finishing imgui integration, but now as UI layer and not on top of everything

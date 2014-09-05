@@ -9,7 +9,6 @@
 #include <memory>
 
 #include "global.h"
-#include "Console.h"
 #include "Exception.h"
 #include "commander/commander.h"
 #include "commands/Command.h"
@@ -18,7 +17,6 @@
 #ifndef UNIT_TEST
 
 #include "Camera.h"
-#include "Debug.h"
 #include "FontManager.h"
 #include "Game.h"
 #include "Log.h"
@@ -45,8 +43,6 @@
 static std::string configFileToUse;
 
 static std::shared_ptr<Camera> gCamera;
-static std::shared_ptr<Console> gConsole;
-static std::shared_ptr<Debug> gDebug;
 static std::shared_ptr<FontManager> gFont;
 static std::shared_ptr<Game> gGame;
 static std::shared_ptr<Log> gLog;
@@ -60,14 +56,6 @@ static std::shared_ptr<World> gWorld;
 
 Camera &getCamera() {
     return *gCamera;
-}
-
-Console &getConsole() {
-    return *gConsole;
-}
-
-Debug& getDebug() {
-    return *gDebug;
 }
 
 Font &getFont() {
@@ -121,8 +109,6 @@ int main(int argc, char* argv[]) {
     command_free(&cmd);
 
     gCamera.reset(new Camera());
-    gConsole.reset(new Console());
-    gDebug.reset(new Debug());
     gFont.reset(new FontManager());
     gGame.reset(new Game());
     gLog.reset(new Log());
@@ -189,25 +175,39 @@ int main(int argc, char* argv[]) {
         return -5;
     }
 
-    // Initialize UIs
-    error = UI::passInitialize();
+    // Initialize Menu
+    error = getMenu().initialize();
     if (error != 0) {
-        std::cout << "Could not initialize UIs (" << error << ")!" << std::endl;
+        std::cout << "Could not initialize Menu (" << error << ")!" << std::endl;
         return -6;
     }
 
+    // Initialize Debug UI
+    error = UI::initialize();
+    if (error != 0) {
+        std::cout << "Could not initialize Debug UI (" << error << ")!" << std::endl;
+        return -7;
+    }
+
+    // Initialize Game Engine
+    error = getGame().initialize();
+    if (error != 0) {
+        std::cout << "Could not initialize Game (" << error << ")!" << std::endl;
+        return -8;
+    }
+
     getLog() << "Starting " << VERSION << Log::endl;
-    getMenu().moveToTop();
+    getMenu().setVisible(true);
     systemTimerReset();
     getRunTime().setRunning(true);
 
     while (getRunTime().isRunning()) {
         getWindow().eventHandling();
-        UI::passCalculate();
+        UI::calculate();
         renderFrame();
     }
 
-    UI::passShutdown();
+    UI::shutdown();
 
 #ifdef DEBUG
     std::cout << std::endl;
@@ -222,7 +222,9 @@ int main(int argc, char* argv[]) {
 }
 
 void renderFrame() {
-    UI::passDisplay();
+    getGame().display();
+    getMenu().display();
+    UI::display();
     getWindow().swapBuffersGL();
 }
 

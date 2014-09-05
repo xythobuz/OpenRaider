@@ -12,19 +12,15 @@
 #include <vector>
 
 #include "Entity.h"
-#include "UI.h"
 #include "TombRaider.h"
 
-/*!
- * \brief Game abstraction
- */
-class Game : public UI {
+class Game {
 public:
 
     Game();
     ~Game();
 
-    virtual int initialize();
+    int initialize();
 
     bool isLoaded();
 
@@ -32,11 +28,9 @@ public:
 
     void destroy();
 
-    virtual void display();
-    virtual void handleAction(ActionEvents action, bool isFinished);
-    virtual void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
-    virtual void moveToTop() { }
-    virtual void makeInvisible() { }
+    void display();
+    void handleAction(ActionEvents action, bool isFinished);
+    void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
 
     unsigned int getTextureStart();
     unsigned int getTextureOffset();

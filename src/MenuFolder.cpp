@@ -15,21 +15,17 @@
 #include "MenuFolder.h"
 
 MenuFolder::MenuFolder() {
-    zPos = -1;
     mCursor = 0;
     mMin = 0;
     mapFolder = nullptr;
     hiddenState = false;
     dialogState = false;
-
-    UI::addWindow(this);
+    visible = false;
 }
 
 MenuFolder::~MenuFolder() {
     delete mapFolder;
     mapFolder = nullptr;
-
-    UI::removeWindow(this);
 }
 
 int MenuFolder::initialize() {
@@ -77,6 +73,9 @@ int MenuFolder::init(Folder *folder, bool filter) {
 }
 
 void MenuFolder::display() {
+    if (!visible)
+        return;
+
     ::getWindow().glEnter2D();
 
     // Draw half-transparent overlay
@@ -123,7 +122,7 @@ void MenuFolder::loadOrOpen() {
         int error = getGame().loadLevel(mapFolder->getFile((unsigned long)mCursor
                     - 1 - mapFolder->folderCount()).getPath().c_str());
         if (error == 0) {
-            makeInvisible();
+            visible = false;
         } else {
             std::ostringstream err;
             err << "Error loading map: " << error << "!";

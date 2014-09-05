@@ -128,7 +128,7 @@ void WindowSDL::eventHandling() {
     while(SDL_PollEvent(&event)) {
         switch (event.type) {
             case SDL_MOUSEMOTION:
-                UI::passMouseMotion(event.motion.xrel, event.motion.yrel, event.motion.x, event.motion.y);
+                UI::handleMouseMotion(event.motion.xrel, event.motion.yrel, event.motion.x, event.motion.y);
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
@@ -146,18 +146,18 @@ void WindowSDL::eventHandling() {
                     button = fifthmouseKey;
                 else
                     button = unknownKey;
-                UI::passMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
+                UI::handleMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
                 break;
 
             case SDL_MOUSEWHEEL:
                 if ((event.wheel.x != 0) || (event.wheel.y != 0))
-                    UI::passMouseScroll(event.wheel.x, event.wheel.y);
+                    UI::handleMouseScroll(event.wheel.x, event.wheel.y);
                 break;
 
             case SDL_TEXTINPUT:
             case SDL_TEXTEDITING:
                 if (event.text.text != NULL)
-                    UI::passText(event.text.text, (event.type == SDL_TEXTEDITING));
+                    UI::handleText(event.text.text, (event.type == SDL_TEXTEDITING));
                 break;
 
             case SDL_KEYDOWN:
@@ -428,7 +428,7 @@ void WindowSDL::eventHandling() {
                         break;
 
                 }
-                UI::passKeyboard(key, (event.type == SDL_KEYDOWN));
+                UI::handleKeyboard(key, (event.type == SDL_KEYDOWN));
                 break;
 
             case SDL_WINDOWEVENT:
@@ -442,7 +442,7 @@ void WindowSDL::eventHandling() {
         }
     }
 
-    UI::passEvents();
+    UI::eventsFinished();
 }
 
 void WindowSDL::setTextInput(bool on) {

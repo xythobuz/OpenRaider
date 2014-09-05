@@ -6,12 +6,12 @@
  */
 
 #include "global.h"
-#include "Console.h"
 #include "Game.h"
 #include "Log.h"
 #include "Menu.h"
 #include "RunTime.h"
 #include "Render.h"
+#include "UI.h"
 #include "commands/CommandEngine.h"
 
 std::string CommandLoad::name() {
@@ -51,7 +51,7 @@ std::string CommandScreenshot::brief() {
 
 void CommandScreenshot::printHelp() {
     getLog() << "sshot-Command Usage:" << Log::endl;
-    getLog() << "  sshot [console|menu] [console|menu]" << Log::endl;
+    getLog() << "  sshot [debug|menu] [debug|menu]" << Log::endl;
     getLog() << "Add console/menu to capture them too" << Log::endl;
 }
 
@@ -68,25 +68,25 @@ int CommandScreenshot::execute(std::istream& args) {
     std::string temp, temp2;
     args >> temp >> temp2;
 
-    getConsole().makeInvisible();
-    getMenu().makeInvisible();
+    UI::setVisible(false);
+    getMenu().setVisible(false);
 
-    if (temp == "console")
-        getConsole().moveToTop();
+    if (temp == "debug")
+        UI::setVisible(true);
     else if (temp == "menu")
-        getMenu().moveToTop();
+        getMenu().setVisible(true);
 
-    if (temp2 == "console")
-        getConsole().moveToTop();
+    if (temp2 == "debug")
+        UI::setVisible(true);
     else if (temp2 == "menu")
-        getMenu().moveToTop();
+        getMenu().setVisible(true);
 
     renderFrame();
     renderFrame(); // Double buffered
     getRender().screenShot(filename.c_str());
 
-    getMenu().makeInvisible();
-    getConsole().moveToTop();
+    getMenu().setVisible(false);
+    UI::setVisible(true);
 
     getLog() << "Screenshot stored..." << Log::endl;
     return 0;
