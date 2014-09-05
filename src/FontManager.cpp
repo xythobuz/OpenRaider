@@ -22,6 +22,7 @@ FontManager::FontManager() {
     add(new FontSDL(), ".ttf");
 #endif
 
+    mFontInit = false;
     font = -1;
 }
 
@@ -48,6 +49,7 @@ int FontManager::initialize() {
     if (font == -1)
         return -1;
 
+    mFontInit = true;
     fonts.at(font)->setFont(mFontName);
     return fonts.at(font)->initialize();
 }

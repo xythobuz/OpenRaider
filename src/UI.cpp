@@ -84,9 +84,11 @@ void UI::eventsFinished() {
     ImGuiIO& io = ImGui::GetIO();
     io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
 
-    static long lastTime = 0;
+    static unsigned long lastTime = 0;
     io.DeltaTime = ((float)(systemTimerGet() - lastTime)) / 1000.0f;
     lastTime = systemTimerGet();
+    if (io.DeltaTime <= 0.0f)
+        io.DeltaTime = 1.0f / 60.0f;
 
     ImGui::NewFrame();
 
@@ -220,6 +222,9 @@ void UI::handleKeyboard(KeyboardButton key, bool pressed) {
 }
 
 void UI::handleText(char *text, bool notFinished) {
+    if (notFinished)
+        return;
+
     ImGuiIO& io = ImGui::GetIO();
     while (*text != '\0') {
         io.AddInputCharacter(*text);
