@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140908 ]
+    * Moved imgui Console into own (static) class
+    * Added FPS display
+
     [ 20140905 ]
     * Recreated working console using imgui
 

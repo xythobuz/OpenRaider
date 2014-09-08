@@ -8,6 +8,7 @@
 #include <algorithm>
 
 #include "global.h"
+#include "Console.h"
 #include "Game.h"
 #include "Log.h"
 #include "Menu.h"
@@ -138,6 +139,7 @@ void UI::eventsFinished() {
             if (std::get<1>(i)) {
                 if (getRunTime().getKeyBinding(menuAction) == std::get<0>(i)) {
                     getMenu().setVisible(!getMenu().isVisible());
+                    visible = false;
                 } else if (getRunTime().getKeyBinding(debugAction) == std::get<0>(i)) {
                     visible = !visible;
                 }
@@ -165,47 +167,23 @@ void UI::eventsFinished() {
 }
 
 void UI::display() {
-    if (visible)
-        ImGui::Render();
-}
+    if (!visible)
+        return;
 
-void UI::calculate() {
-    static char buffer[256];
-    static bool scrollToBottom = false;
+    Console::display();
 
-    ImGui::Begin("Console", NULL, ImVec2(600, 400), -1.0f);
-        ImGui::BeginChild("ConsoleText", ImVec2(ImGui::GetWindowWidth(), ImGui::GetWindowSize().y - 70));
-            for (int i = 0; i < getLog().size(); i++) {
-                ImGui::Text("%s", getLog().get(i).c_str());
-            }
-            if (scrollToBottom) {
-                ImGui::SetScrollPosHere();
-                scrollToBottom = false;
-            }
-        ImGui::EndChild();
+    if (ImGui::Begin("Engine")) {
+        if (ImGui::CollapsingHeader("Debug", NULL, true, true)) {
 
-        bool enter = false;
-        ImGui::InputText("Command", buffer, 256, ImGuiInputTextFlags_AutoSelectAll, &enter);
-        if (enter) {
-            getLog() << "> " << buffer << Log::endl;
-            int error = Command::command(buffer);
-            if (error != 0) {
-                getLog() << "Error code: " << error << Log::endl;
-            }
-            buffer[0] = '\0';
-            scrollToBottom = true;
         }
+
+        if (ImGui::CollapsingHeader("UI Help")) {
+            ImGui::ShowUserGuide();
+        }
+    }
     ImGui::End();
 
-    //ImGui::Begin("UI Style");
-    //    ImGui::ShowStyleEditor();
-    //ImGui::End();
-
-    //ImGui::Begin("Help");
-    //    ImGui::ShowUserGuide();
-    //ImGui::End();
-
-    //ImGui::ShowTestWindow();
+    ImGui::Render();
 }
 
 void UI::shutdown() {

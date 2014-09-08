@@ -13,6 +13,7 @@
 ## Bugs
 
 * Screenshots are sometimes not written, sometimes distorted?
+    * Seems to happen if OpenRaider.ini sets a resolution larger than the window can be
 
 ## Cmake
 

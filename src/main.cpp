@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <memory>
+#include <sstream>
 
 #include "global.h"
 #include "Exception.h"
@@ -203,7 +204,6 @@ int main(int argc, char* argv[]) {
 
     while (getRunTime().isRunning()) {
         getWindow().eventHandling();
-        UI::calculate();
         renderFrame();
     }
 
@@ -225,7 +225,30 @@ void renderFrame() {
     getGame().display();
     getMenu().display();
     UI::display();
+
+    const static unsigned long fpsUpdate = 250;
+    static unsigned long frameCount = 0;
+    static unsigned long lastTime = 0;
+    static unsigned long frameTimeSum = 0;
+    static unsigned long fps = 0;
+
+    if (getRunTime().getFPS()) {
+        std::ostringstream s;
+        s << fps << "FPS";
+        getWindow().glEnter2D();
+        getFont().drawText(10, getWindow().getHeight() - 25, 0.6f, BLUE, s.str());
+        getWindow().glExit2D();
+    }
+
     getWindow().swapBuffersGL();
+
+    frameCount++;
+    frameTimeSum += (systemTimerGet() - lastTime);
+    if (frameTimeSum >= fpsUpdate) {
+        fps = frameCount * (1000 / frameTimeSum);
+        frameCount = frameTimeSum = 0;
+    }
+    lastTime = systemTimerGet();
 }
 
 #endif // UNIT_TEST

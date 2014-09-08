@@ -20,7 +20,6 @@ public:
     static int initialize();
     static void eventsFinished();
     static void display();
-    static void calculate();
     static void shutdown();
 
     static void setVisible(bool v);

@@ -48,6 +48,7 @@ endif (PNG_FOUND)
 
 # Set Source files
 set (SRCS ${SRCS} "Camera.cpp")
+set (SRCS ${SRCS} "Console.cpp")
 set (SRCS ${SRCS} "Entity.cpp")
 set (SRCS ${SRCS} "Exception.cpp")
 set (SRCS ${SRCS} "Font.cpp")
