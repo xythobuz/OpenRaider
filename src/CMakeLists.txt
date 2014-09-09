@@ -132,10 +132,6 @@ check_function_exists (getcwd HAVE_GETCWD)
 check_include_files (stdlib.h HAVE_STDLIB_H)
 check_function_exists (getenv HAVE_GETENV)
 
-# gettimeofday() for timing
-check_include_files (sys/time.h HAVE_SYS_TIME_H)
-check_function_exists (gettimeofday HAVE_GETTIMEOFDAY)
-
 #################################################################
 
 # Configuration Header file

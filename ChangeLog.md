@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140909 ]
+    * utils/time now using std::chrono (C++11) for single cross-plattform implementation
+    * Updated imgui (my pull request was merged)
+
     [ 20140908 ]
     * Moved imgui Console into own (static) class
     * Added FPS display

@@ -172,8 +172,12 @@ void UI::display() {
 
     Console::display();
 
-    if (ImGui::Begin("Engine")) {
-        if (ImGui::CollapsingHeader("Debug", NULL, true, true)) {
+    if (ImGui::Begin("Engine/RT")) {
+        if (ImGui::CollapsingHeader("Engine", NULL, true, true)) {
+            ImGui::Text("Uptime: %lums", systemTimerGet());
+        }
+
+        if (ImGui::CollapsingHeader("Debug")) {
 
         }
 

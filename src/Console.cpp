@@ -32,9 +32,8 @@ void Console::display() {
         }
         ImGui::EndChild();
 
-        bool enter = false;
-        ImGui::InputText("Command", buffer, bufferLength, ImGuiInputTextFlags_AutoSelectAll, &enter);
-        if (enter) {
+        if (ImGui::InputText("Command", buffer, bufferLength,
+                    ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue)) {
             getLog() << "> " << buffer << Log::endl;
             int error = Command::command(buffer);
             if (error != 0) {

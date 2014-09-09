@@ -162,7 +162,6 @@
  - text edit: flag to disable live update of the user buffer. 
  - text edit: field resize behaviour - field could stretch when being edited? hover tooltip shows more text?
  - text edit: pasting text into a number box should filter the characters the same way direct input does
- - text edit: allow code to catch user pressing Return (perhaps through disable live edit? so only Return apply the final value, also allow catching Return if value didn't changed)
  - settings: write more decent code to allow saving/loading new fields
  - settings: api for per-tool simple persistant data (bool,int,float) in .ini file
  - log: be able to right-click and log a window or tree-node into tty/file/clipboard?
@@ -3280,7 +3279,7 @@ bool SliderFloat(const char* label, float* v, float v_min, float v_max, const ch
         g.ActiveId = g.SliderAsInputTextId;
         g.HoveredId = 0;
         window->FocusItemUnregister();      // Our replacement slider will override the focus ID (that we needed to declare previously to allow for a TAB focus to happen before we got selected)
-        value_changed = ImGui::InputText(label, text_buf, IM_ARRAYSIZE(text_buf), ImGuiInputTextFlags_CharsDecimal | ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_AlignCenter);
+        value_changed = ImGui::InputText(label, text_buf, IM_ARRAYSIZE(text_buf), ImGuiInputTextFlags_CharsDecimal | ImGuiInputTextFlags_AutoSelectAll);
         if (g.SliderAsInputTextId == 0)
         {
             // First frame
@@ -3835,7 +3834,7 @@ void ImGuiTextEditState::RenderTextScrolledClipped(ImFont font, float font_size,
 namespace ImGui
 {
 
-bool InputFloat(const char* label, float *v, float step, float step_fast, int decimal_precision)
+bool InputFloat(const char* label, float *v, float step, float step_fast, int decimal_precision, ImGuiInputTextFlags extra_flags)
 {
     ImGuiState& g = GImGui;
     ImGuiWindow* window = GetCurrentWindow();
@@ -3858,7 +3857,8 @@ bool InputFloat(const char* label, float *v, float step, float step_fast, int de
     else
         ImFormatString(buf, IM_ARRAYSIZE(buf), "%.*f", decimal_precision, *v);
     bool value_changed = false;
-    if (ImGui::InputText("", buf, IM_ARRAYSIZE(buf), ImGuiInputTextFlags_CharsDecimal|ImGuiInputTextFlags_AlignCenter|ImGuiInputTextFlags_AutoSelectAll))
+	const ImGuiInputTextFlags flags = extra_flags | (ImGuiInputTextFlags_CharsDecimal|ImGuiInputTextFlags_AutoSelectAll);
+    if (ImGui::InputText("", buf, IM_ARRAYSIZE(buf), flags))
     {
         ApplyNumericalTextInput(buf, v);
         value_changed = true;
@@ -3892,19 +3892,16 @@ bool InputFloat(const char* label, float *v, float step, float step_fast, int de
     return value_changed;
 }
 
-bool InputInt(const char* label, int *v, int step, int step_fast)
+bool InputInt(const char* label, int *v, int step, int step_fast, ImGuiInputTextFlags extra_flags)
 {
     float f = (float)*v;
-    const bool value_changed = ImGui::InputFloat(label, &f, (float)step, (float)step_fast, 0);
+    const bool value_changed = ImGui::InputFloat(label, &f, (float)step, (float)step_fast, 0, extra_flags);
     *v = (int)f;
     return value_changed;
 }
 
-bool InputText(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlags flags, bool *enter)
+bool InputText(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlags flags)
 {
-    if (enter != NULL)
-        *enter = false;
-
     ImGuiState& g = GImGui;
     ImGuiWindow* window = GetCurrentWindow();
     if (window->SkipItems)
@@ -3965,6 +3962,7 @@ bool InputText(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlag
 
     bool value_changed = false;
     bool cancel_edit = false;
+    bool enter_pressed = false;
     if (g.ActiveId == id)
     {
 		// Edit in progress
@@ -4004,7 +4002,7 @@ bool InputText(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlag
         else if (IsKeyPressedMap(ImGuiKey_End))                 edit_state.OnKeyboardPressed(is_ctrl_down ? STB_TEXTEDIT_K_TEXTEND | k_mask : STB_TEXTEDIT_K_LINEEND | k_mask);
         else if (IsKeyPressedMap(ImGuiKey_Delete))              edit_state.OnKeyboardPressed(STB_TEXTEDIT_K_DELETE | k_mask);
         else if (IsKeyPressedMap(ImGuiKey_Backspace))           edit_state.OnKeyboardPressed(STB_TEXTEDIT_K_BACKSPACE | k_mask);
-        else if (IsKeyPressedMap(ImGuiKey_Enter))               { g.ActiveId = 0; if (enter != NULL) *enter = true; }
+        else if (IsKeyPressedMap(ImGuiKey_Enter))               { g.ActiveId = 0; enter_pressed = true; }
         else if (IsKeyPressedMap(ImGuiKey_Escape))              { g.ActiveId = 0; cancel_edit = true; }
         else if (is_ctrl_down && IsKeyPressedMap(ImGuiKey_Z))   edit_state.OnKeyboardPressed(STB_TEXTEDIT_K_UNDO);      // I don't want to use shortcuts but we should probably have an Input-catch stack
         else if (is_ctrl_down && IsKeyPressedMap(ImGuiKey_Y))   edit_state.OnKeyboardPressed(STB_TEXTEDIT_K_REDO);
@@ -4125,7 +4123,10 @@ bool InputText(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlag
 
     RenderText(ImVec2(frame_bb.Max.x + style.ItemInnerSpacing.x, frame_bb.Min.y + style.FramePadding.y), label);
 
-    return value_changed;
+    if ((flags & ImGuiInputTextFlags_EnterReturnsTrue) != 0)
+        return enter_pressed;
+    else
+        return value_changed;
 }
 
 static bool InputFloatN(const char* label, float* v, int components, int decimal_precision)
@@ -5871,7 +5872,7 @@ void ShowTestWindow(bool* open)
         bool goto_line = ImGui::Button("Goto");
         ImGui::SameLine(); 
         ImGui::PushItemWidth(100);
-        ImGui::InputInt("##Line", &line, 0); 
+        goto_line |= ImGui::InputInt("##Line", &line, 0, 0, ImGuiInputTextFlags_EnterReturnsTrue);
         ImGui::PopItemWidth();
         ImGui::BeginChild("Sub1", ImVec2(ImGui::GetWindowWidth()*0.5f,300));
         for (int i = 0; i < 100; i++)
