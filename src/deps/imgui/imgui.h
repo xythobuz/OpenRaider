@@ -1,4 +1,4 @@
-// ImGui library
+// ImGui library v1.13
 // See .cpp file for commentary.
 // See ImGui::ShowTestWindow() for sample code.
 // Read 'Programmer guide' in .cpp for notes on how to setup ImGui in your codebase.
@@ -17,19 +17,8 @@ struct ImGuiWindow;
 #include "imconfig.h"
 #include <float.h>          // FLT_MAX
 #include <stdarg.h>         // va_list
+#include <stddef.h>         // ptrdiff_t
 #include <stdlib.h>         // NULL, malloc
-
-#ifndef IM_MALLOC
-#define IM_MALLOC(_SIZE) malloc((_SIZE))
-#endif
-
-#ifndef IM_FREE
-#define IM_FREE(_PTR) free((_PTR))
-#endif
-
-#ifndef IM_REALLOC
-#define IM_REALLOC(_PTR, _SIZE) realloc((_PTR), (_SIZE))
-#endif
 
 #ifndef IM_ASSERT
 #include <assert.h>
@@ -37,6 +26,7 @@ struct ImGuiWindow;
 #endif
 
 typedef unsigned int ImU32;
+typedef unsigned short ImWchar;
 typedef ImU32 ImGuiID;
 typedef int ImGuiCol;               // enum ImGuiCol_
 typedef int ImGuiKey;               // enum ImGuiKey_
@@ -67,8 +57,17 @@ struct ImVec4
 #endif
 };
 
+namespace ImGui
+{
+    // Proxy functions to access the MemAllocFn/MemFreeFn/MemReallocFn pointers in ImGui::GetIO(). The only reason they exist here is to allow ImVector<> to compile inline.
+    void*       MemAlloc(size_t sz);
+    void        MemFree(void* ptr);
+    void*       MemRealloc(void* ptr, size_t sz);
+};
+
 // std::vector<> like class to avoid dragging dependencies (also: windows implementation of STL with debug enabled is absurdly slow, so let's bypass it so our code runs fast in debug). 
-// this implementation does NOT call c++ constructors! we don't need them! also only provide the minimum functionalities we need.
+// Use '#define ImVector std::vector' if you want to use the STL type or your own type.
+// Our implementation does NOT call c++ constructors! because the data types we use don't need them (but that could be added as well). Only provide the minimum functionalities we need.
 #ifndef ImVector
 template<typename T>
 class ImVector
@@ -84,7 +83,7 @@ public:
     typedef const value_type*   const_iterator;
 
     ImVector()                  { Size = Capacity = 0; Data = NULL; }
-    ~ImVector()                 { if (Data) IM_FREE(Data); }
+    ~ImVector()                 { if (Data) ImGui::MemFree(Data); }
 
     inline bool                 empty() const                   { return Size == 0; }
     inline size_t               size() const                    { return Size; }
@@ -95,7 +94,7 @@ public:
     inline value_type&          operator[](size_t i)            { IM_ASSERT(i < Size); return Data[i]; }
     inline const value_type&    operator[](size_t i) const      { IM_ASSERT(i < Size); return Data[i]; }
 
-    inline void                 clear()                         { if (Data) { Size = Capacity = 0; IM_FREE(Data); Data = NULL; } }
+    inline void                 clear()                         { if (Data) { Size = Capacity = 0; ImGui::MemFree(Data); Data = NULL; } }
     inline iterator             begin()                         { return Data; }
     inline const_iterator       begin() const                   { return Data; }
     inline iterator             end()                           { return Data + Size; }
@@ -106,14 +105,14 @@ public:
     inline const value_type&    back() const                    { IM_ASSERT(Size > 0); return at(Size-1); }
     inline void                 swap(ImVector<T>& rhs)          { const size_t rhs_size = rhs.Size; rhs.Size = Size; Size = rhs_size; const size_t rhs_cap = rhs.Capacity; rhs.Capacity = Capacity; Capacity = rhs_cap; value_type* rhs_data = rhs.Data; rhs.Data = Data; Data = rhs_data; }
 
-    inline void                 reserve(size_t new_capacity)    { Data = (value_type*)IM_REALLOC(Data, new_capacity * sizeof(value_type)); Capacity = new_capacity; }
+    inline void                 reserve(size_t new_capacity)    { Data = (value_type*)ImGui::MemRealloc(Data, new_capacity * sizeof(value_type)); Capacity = new_capacity; }
     inline void                 resize(size_t new_size)         { if (new_size > Capacity) reserve(new_size); Size = new_size; }
 
     inline void                 push_back(const value_type& v)  { if (Size == Capacity) reserve(Capacity ? Capacity * 2 : 4); Data[Size++] = v; }
     inline void                 pop_back()                      { IM_ASSERT(Size > 0); Size--; }
 
-    inline iterator             erase(const_iterator it)        { IM_ASSERT(it >= begin() && it < end()); const int off = it - begin(); memmove(Data + off, Data + off + 1, (Size - off - 1) * sizeof(value_type)); Size--; return Data + off; }
-    inline void                 insert(const_iterator it, const value_type& v)  { IM_ASSERT(it >= begin() && it <= end()); const int off = it - begin(); if (Size == Capacity) reserve(Capacity ? Capacity * 2 : 4); if (off < (int)Size) memmove(Data + off + 1, Data + off, (Size - off) * sizeof(value_type)); Data[off] = v; Size++; }
+    inline iterator             erase(const_iterator it)        { IM_ASSERT(it >= begin() && it < end()); const ptrdiff_t off = it - begin(); memmove(Data + off, Data + off + 1, (Size - off - 1) * sizeof(value_type)); Size--; return Data + off; }
+    inline void                 insert(const_iterator it, const value_type& v)  { IM_ASSERT(it >= begin() && it <= end()); const ptrdiff_t off = it - begin(); if (Size == Capacity) reserve(Capacity ? Capacity * 2 : 4); if (off < (int)Size) memmove(Data + off + 1, Data + off, (Size - off) * sizeof(value_type)); Data[off] = v; Size++; }
 };
 #endif // #ifndef ImVector
 
@@ -152,7 +151,7 @@ namespace ImGui
     ImVec2      GetWindowContentRegionMin();
     ImVec2      GetWindowContentRegionMax();
     ImDrawList* GetWindowDrawList();                                                // get rendering command-list if you want to append your own draw primitives.
-    void        SetFontScale(float scale);
+    void        SetWindowFontScale(float scale);                                    // per-window font scale. Adjust IO.FontBaseScale if you want to scale all windows together.
     void        SetScrollPosHere();                                                 // adjust scrolling position to center into the current cursor position.
     void        SetTreeStateStorage(ImGuiStorage* tree);                            // replace tree state storage with our own (if you want to manipulate it yourself, typically clear subsection of it).
     ImGuiStorage* GetTreeStateStorage();
@@ -166,6 +165,7 @@ namespace ImGui
 
     // Tooltip
     void        SetTooltip(const char* fmt, ...);                                   // set tooltip under mouse-cursor, typically use with ImGui::IsHovered(). last call wins.
+    void        SetTooltipV(const char* fmt, va_list args);
     void        BeginTooltip();                                                     // use to create full-featured tooltip windows that aren't just text.
     void        EndTooltip();
 
@@ -178,11 +178,11 @@ namespace ImGui
     float       GetColumnOffset(int column_index = -1);
     void        SetColumnOffset(int column_index, float offset);
     float       GetColumnWidth(int column_index = -1);
-    ImVec2      GetCursorPos();                                                     // cursor position relative to window position
+    ImVec2      GetCursorPos();                                                     // cursor position is relative to window position
     void        SetCursorPos(const ImVec2& pos);                                    // "
     void        SetCursorPosX(float x);                                             // "
     void        SetCursorPosY(float y);                                             // "
-    ImVec2      GetCursorScreenPos();												// cursor position in screen space
+    ImVec2      GetCursorScreenPos();                                               // cursor position in screen space
     void        AlignFirstTextHeightToWidgets();                                    // call once if the first item on the line is a Text() item and you want to vertically lower it to match subsequent (bigger) widgets.
     float       GetTextLineSpacing();
     float       GetTextLineHeight();
@@ -197,16 +197,19 @@ namespace ImGui
     void        Text(const char* fmt, ...);
     void        TextV(const char* fmt, va_list args);
     void        TextColored(const ImVec4& col, const char* fmt, ...);               // shortcut to doing PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();
+    void        TextColoredV(const ImVec4& col, const char* fmt, va_list args);
     void        TextUnformatted(const char* text, const char* text_end = NULL);     // doesn't require null terminated string if 'text_end' is specified. no copy done to any bounded stack buffer, better for long chunks of text.
     void        LabelText(const char* label, const char* fmt, ...);
+    void        LabelTextV(const char* label, const char* fmt, va_list args);
     void        BulletText(const char* fmt, ...);
+    void        BulletTextV(const char* fmt, va_list args);
     bool        Button(const char* label, ImVec2 size = ImVec2(0,0), bool repeat_when_held = false);
     bool        SmallButton(const char* label);
     bool        CollapsingHeader(const char* label, const char* str_id = NULL, const bool display_frame = true, const bool default_open = false);
     bool        SliderFloat(const char* label, float* v, float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);     // adjust display_format to decorate the value with a prefix or a suffix. Use power!=1.0 for logarithmic sliders.
     bool        SliderFloat2(const char* label, float v[2], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
     bool        SliderFloat3(const char* label, float v[3], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
-    bool        SliderFloat4(const char* label, float v[3], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
+    bool        SliderFloat4(const char* label, float v[4], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
     bool        SliderAngle(const char* label, float* v, float v_degrees_min = -360.0f, float v_degrees_max = +360.0f);     // *v in radians
     bool        SliderInt(const char* label, int* v, int v_min, int v_max, const char* display_format = "%.0f");
     void        PlotLines(const char* label, const float* values, int values_count, int values_offset = 0, const char* overlay_text = NULL, float scale_min = FLT_MAX, float scale_max = FLT_MAX, ImVec2 graph_size = ImVec2(0,0), size_t stride = sizeof(float));
@@ -231,6 +234,8 @@ namespace ImGui
     bool        TreeNode(const char* str_label_id);                                 // if returning 'true' the node is open and the user is responsible for calling TreePop
     bool        TreeNode(const char* str_id, const char* fmt, ...);                 // "
     bool        TreeNode(const void* ptr_id, const char* fmt, ...);                 // "
+    bool        TreeNodeV(const char* str_id, const char* fmt, va_list args);       // "
+    bool        TreeNodeV(const void* ptr_id, const char* fmt, va_list args);       // "
     void        TreePush(const char* str_id = NULL);                                // already called by TreeNode(), but you can call Push/Pop yourself for layouting purpose
     void        TreePush(const void* ptr_id = NULL);                                // "
     void        TreePop();
@@ -260,8 +265,11 @@ namespace ImGui
     bool        IsKeyPressed(int key_index, bool repeat = true);                    // key_index into the keys_down[512] array, imgui doesn't know the semantic of each entry
     bool        IsMouseClicked(int button, bool repeat = false);
     bool        IsMouseDoubleClicked(int button);
-    bool        IsMouseHoveringBox(const ImVec2& box_min, const ImVec2& box_max);
-    ImVec2      GetMousePos();
+    bool        IsMouseHoveringWindow();                                            // is mouse hovering current window ("window" in API names always refer to current window)
+    bool        IsMouseHoveringAnyWindow();                                         // is mouse hovering any active imgui window
+    bool        IsMouseHoveringBox(const ImVec2& box_min, const ImVec2& box_max);   // is mouse hovering given bounding box
+    bool        IsPosHoveringAnyWindow(const ImVec2& pos);                          // is given position hovering any active imgui window
+    ImVec2      GetMousePos();                                                      // shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls
     float       GetTime();
     int         GetFrameCount();
     const char* GetStyleColorName(ImGuiCol idx);
@@ -394,7 +402,10 @@ struct ImGuiStyle
 // Read 'Programmer guide' section in .cpp file for general usage.
 struct ImGuiIO
 {
+    //------------------------------------------------------------------
     // Settings (fill once)                 // Default value:
+    //------------------------------------------------------------------
+
     ImVec2      DisplaySize;                // <unset>                  // Display size, in pixels. For clamping windows positions.
     float       DeltaTime;                  // = 1.0f/60.0f             // Time elapsed since last frame, in seconds.
     float       IniSavingRate;              // = 5.0f                   // Maximum time between saving .ini file, in seconds. Set to a negative value to disable .ini saving.
@@ -404,39 +415,60 @@ struct ImGuiIO
     float       MouseDoubleClickMaxDist;    // = 6.0f                   // Distance threshold to stay in to validate a double-click, in pixels.
     int         KeyMap[ImGuiKey_COUNT];     // <unset>                  // Map of indices into the KeysDown[512] entries array
     ImFont      Font;                       // <auto>                   // Gets passed to text functions. Typedef ImFont to the type you want (ImBitmapFont* or your own font).
-	float		FontYOffset;				// = 0.0f					// Offset font rendering by xx pixels in Y axis.
+    float       FontYOffset;                // = 0.0f                   // Offset font rendering by xx pixels in Y axis.
     ImVec2      FontTexUvForWhite;          // = (0.0f,0.0f)            // Font texture must have a white pixel at this UV coordinate. Adjust if you are using custom texture.
-    bool        FontAllowScaling;           // = false                  // Set to allow scaling text with CTRL+Wheel.
+    float       FontBaseScale;              // = 1.0f                   // Base font scale, multiplied by the per-window font scale which you can adjust with SetFontScale()
+    bool        FontAllowUserScaling;       // = false                  // Set to allow scaling text with CTRL+Wheel.
+	ImWchar     FontFallbackGlyph;          // = '?'                    // Replacement glyph is one isn't found.
     float       PixelCenterOffset;          // = 0.0f                   // Try to set to 0.5f or 0.375f if rendering is blurry
 
-    // Settings - Rendering function (REQUIRED)
+    //------------------------------------------------------------------
+    // User Functions
+    //------------------------------------------------------------------
+
+    // REQUIRED: rendering function. 
     // See example code if you are unsure of how to implement this.
-    void        (*RenderDrawListsFn)(ImDrawList** const draw_lists, int count);
+    void        (*RenderDrawListsFn)(ImDrawList** const draw_lists, int count);      
 
-    // Settings - Clipboard Support
-    // Override to provide your clipboard handlers.
-    // On Windows architecture, defaults to use the native Win32 clipboard, otherwise default to use a ImGui private clipboard. 
-    // NB- for SetClipboardTextFn, the string is *NOT* zero-terminated at 'text_end'
-    const char* (*GetClipboardTextFn)();                                        
-    void        (*SetClipboardTextFn)(const char* text, const char* text_end);
+    // Optional: access OS clipboard (default to use native Win32 clipboard on Windows, otherwise use a ImGui private clipboard)
+    // Override to access OS clipboard on other architectures.
+    const char* (*GetClipboardTextFn)();
+    void        (*SetClipboardTextFn)(const char* text);
 
+    // Optional: override memory allocations (default to posix malloc/realloc/free)
+    void*       (*MemAllocFn)(size_t sz);
+    void*       (*MemReallocFn)(void* ptr, size_t sz);
+    void        (*MemFreeFn)(void* ptr);
+
+    // Optional: notify OS Input Method Editor of text input position (e.g. when using Japanese/Chinese inputs, otherwise this isn't needed)
+    void        (*ImeSetInputScreenPosFn)(int x, int y);
+
+    //------------------------------------------------------------------
     // Input - Fill before calling NewFrame()
+    //------------------------------------------------------------------
+
     ImVec2      MousePos;                   // Mouse position, in pixels (set to -1,-1 if no mouse / on another screen, etc.)
     bool        MouseDown[5];               // Mouse buttons. ImGui itself only uses button 0 (left button) but you can use others as storage for convenience.
     int         MouseWheel;                 // Mouse wheel: -1,0,+1
     bool        KeyCtrl;                    // Keyboard modifier pressed: Control
     bool        KeyShift;                   // Keyboard modifier pressed: Shift
     bool        KeysDown[512];              // Keyboard keys that are pressed (in whatever order user naturally has access to keyboard data)
-    char        InputCharacters[16];        // List of characters input (translated by user from keypress+keyboard state). Fill using AddInputCharacter() helper.
-
-    // Output - Retrieve after calling NewFrame(), you can use them to discard inputs or hide them from the rest of your application
-    bool        WantCaptureMouse;           // ImGui is using your mouse input (= window is being hovered or widget is active).
-    bool        WantCaptureKeyboard;        // imGui is using your keyboard input (= widget is active).
+    ImWchar     InputCharacters[16];        // List of characters input (translated by user from keypress+keyboard state). Fill using AddInputCharacter() helper.
 
     // Function
-    void        AddInputCharacter(char c);  // Helper to add a new character into InputCharacters[]
+    void        AddInputCharacter(ImWchar); // Helper to add a new character into InputCharacters[]
 
+    //------------------------------------------------------------------
+    // Output - Retrieve after calling NewFrame(), you can use them to discard inputs or hide them from the rest of your application
+    //------------------------------------------------------------------
+
+    bool        WantCaptureMouse;           // Mouse is hovering a window or widget is active (= ImGui will use your mouse input)
+    bool        WantCaptureKeyboard;        // Widget is active (= ImGui will use your keyboard input)
+
+    //------------------------------------------------------------------
     // [Internal] ImGui will maintain those fields for you
+    //------------------------------------------------------------------
+
     ImVec2      MousePosPrev;
     ImVec2      MouseDelta;
     bool        MouseClicked[5];
@@ -468,9 +500,9 @@ private:
 // Helper: Parse and apply text filters. In format "aaaaa[,bbbb][,ccccc]"
 struct ImGuiTextFilter
 {
-    struct TextRange 
-    { 
-        const char* b; 
+    struct TextRange
+    {
+        const char* b;
         const char* e;
 
         TextRange() { b = e = NULL; }
@@ -479,7 +511,7 @@ struct ImGuiTextFilter
         const char* end() const { return e; }
         bool empty() const { return b == e; }
         char front() const { return *b; }
-        static bool isblank(char c) { return c == ' ' || c == '\t'; } 
+        static bool isblank(char c) { return c == ' ' || c == '\t'; }
         void trim_blanks() { while (b < e && isblank(*b)) b++; while (e > b && isblank(*(e-1))) e--; }
         void split(char separator, ImVector<TextRange>& out);
     };
@@ -655,8 +687,9 @@ struct ImBitmapFont
     void                    BuildLookupTable();
     const FntGlyph *        FindGlyph(unsigned short c) const;
     float                   GetFontSize() const { return (float)Info->FontSize; }
-	bool					IsLoaded() const { return Info != NULL && Common != NULL && Glyphs != NULL; }
+    bool                    IsLoaded() const { return Info != NULL && Common != NULL && Glyphs != NULL; }
 
-    ImVec2                  CalcTextSize(float size, float max_width, const char* text_begin, const char* text_end, const char** remaining = NULL) const;
+    ImVec2                  CalcTextSizeA(float size, float max_width, const char* text_begin, const char* text_end, const char** remaining = NULL) const;            // utf8
+    ImVec2                  CalcTextSizeW(float size, float max_width, const ImWchar* text_begin, const ImWchar* text_end, const ImWchar** remaining = NULL) const;  // wchar
     void                    RenderText(float size, ImVec2 pos, ImU32 col, const ImVec4& clip_rect, const char* text_begin, const char* text_end, ImDrawVert*& out_vertices) const;
 };

@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140930 ]
+    * Updated imgui to version 1.13
+
+    [ 20140920 ]
+    * Updated imgui (fix for resource leak)
+
     [ 20140909 ]
     * utils/time now using std::chrono (C++11) for single cross-plattform implementation
     * Updated imgui (my pull request was merged)

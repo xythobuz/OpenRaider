@@ -1,5 +1,7 @@
 # To-Do List
 
+* Console no longer has command history (arrow up, down)
+
 ## General
 
 * Move to newer OpenGL (GL ES or 2.1 or 3.x or 4.x?)
