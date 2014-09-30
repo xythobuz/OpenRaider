@@ -16,6 +16,7 @@ private:
     const static int bufferLength = 256;
     static char buffer[bufferLength];
     static bool scrollToBottom;
+    static bool focusInput;
     static unsigned long lastLogLength;
 };
 

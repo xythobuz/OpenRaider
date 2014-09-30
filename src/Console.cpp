@@ -13,6 +13,7 @@
 
 char Console::buffer[bufferLength] = "";
 bool Console::scrollToBottom = false;
+bool Console::focusInput = false;
 unsigned long Console::lastLogLength = 0;
 
 void Console::display() {
@@ -32,6 +33,11 @@ void Console::display() {
         }
         ImGui::EndChild();
 
+        if (focusInput) {
+            ImGui::SetKeyboardFocusHere();
+            focusInput = false;
+        }
+
         if (ImGui::InputText("Command", buffer, bufferLength,
                     ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue)) {
             getLog() << "> " << buffer << Log::endl;
@@ -41,6 +47,7 @@ void Console::display() {
             }
             buffer[0] = '\0';
             scrollToBottom = true;
+            focusInput = true;
         }
     }
     ImGui::End();

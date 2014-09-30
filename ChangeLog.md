@@ -3,7 +3,8 @@
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
     [ 20140930 ]
-    * Updated imgui to version 1.13
+    * Updated imgui to version 1.14 wip
+    * Console input keeps keyboard focus after command input
 
     [ 20140920 ]
     * Updated imgui (fix for resource leak)
