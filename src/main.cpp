@@ -109,13 +109,15 @@ int main(int argc, char* argv[]) {
     command_parse(&cmd, argc, argv);
     command_free(&cmd);
 
+    // RunTime is required by other constructors
+    gRunTime.reset(new RunTime());
+
     gCamera.reset(new Camera());
     gFont.reset(new FontManager());
     gGame.reset(new Game());
     gLog.reset(new Log());
     gMenu.reset(new MenuFolder());
     gRender.reset(new Render());
-    gRunTime.reset(new RunTime());
     gTextureManager.reset(new TextureManager());
     gWorld.reset(new World());
 

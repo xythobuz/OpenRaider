@@ -7,6 +7,7 @@
 
 #include "global.h"
 #include "utils/strings.h"
+#include "RunTime.h"
 #include "FontManager.h"
 #include "Font.h"
 #include "FontTRLE.h"
@@ -24,6 +25,13 @@ FontManager::FontManager() {
 
     mFontInit = false;
     font = -1;
+
+    // Default font path
+#ifdef USING_SDL_FONT
+    setFont(getRunTime().getDataDir() + "/test.ttf");
+#else
+    setFont(getRunTime().getDataDir() + "/font.pc");
+#endif
 }
 
 FontManager::~FontManager() {
