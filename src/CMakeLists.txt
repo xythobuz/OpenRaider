@@ -1,3 +1,7 @@
+# Options
+option (ENABLE_AUDIO "Enable Sound Output" YES)
+option (FORCE_GLUT "Use freeGLUT even if SDL2 was found" NO)
+
 # Add OpenGL Library
 find_package (OpenGL REQUIRED)
 include_directories (SYSTEM ${OPENGL_INCLUDE_DIRS})
@@ -10,7 +14,7 @@ set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
 
 # Add SDL2 Library
 find_package (SDL2)
-if (SDL2_FOUND)
+if (SDL2_FOUND AND NOT FORCE_GLUT)
     include_directories (SYSTEM ${SDL2_INCLUDE_DIR})
     set (LIBS ${LIBS} ${SDL2_LIBRARY})
 
@@ -20,7 +24,14 @@ if (SDL2_FOUND)
         include_directories (SYSTEM ${SDL2TTF_INCLUDE_DIR})
         set (LIBS ${LIBS} ${SDL2TTF_LIBRARY})
     endif (SDL2TTF_FOUND)
-endif (SDL2_FOUND)
+else (SDL2_FOUND AND NOT FORCE_GLUT)
+    # Add freeglut Library
+    find_package (GLUT)
+    if (GLUT_FOUND)
+        include_directories (SYSTEM ${GLUT_INCLUDE_DIR})
+        set (LIBS ${LIBS} ${GLUT_LIBRARY})
+    endif (GLUT_FOUND)
+endif (SDL2_FOUND AND NOT FORCE_GLUT)
 
 # Add OpenAL Library
 find_package (OpenAL)
@@ -77,7 +88,6 @@ set (SRCS ${SRCS} "Window.cpp")
 set (SRCS ${SRCS} "World.cpp")
 
 # Select available Sound library
-option (ENABLE_AUDIO "Enable Sound Output" YES)
 if (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
     set (SRCS ${SRCS} "SoundAL.cpp")
     set (USING_AL TRUE)
@@ -88,16 +98,21 @@ else (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
 endif (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
 
 # Select available Windowing library
-if (SDL2_FOUND)
+if (SDL2_FOUND AND NOT FORCE_GLUT)
     set (SRCS ${SRCS} "WindowSDL.cpp")
     set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_SDL")
     if (SDL2TTF_FOUND)
         set (SRCS ${SRCS} "FontSDL.cpp")
         set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_SDL_FONT")
     endif (SDL2TTF_FOUND)
-else (SDL2_FOUND)
-    message (FATAL_ERROR "SDL2 is required at the moment!")
-endif (SDL2_FOUND)
+else (SDL2_FOUND AND NOT FORCE_GLUT)
+    if (GLUT_FOUND)
+        set (SRCS ${SRCS} "WindowGLUT.cpp")
+        set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_GLUT")
+    else (GLUT_FOUND)
+        message (FATAL_ERROR "SDL2 or freeGLUT are required!")
+    endif (GLUT_FOUND)
+endif (SDL2_FOUND AND NOT FORCE_GLUT)
 
 if (PNG_FOUND)
     set (USING_PNG TRUE)
