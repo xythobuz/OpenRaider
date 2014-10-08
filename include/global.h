@@ -9,12 +9,6 @@
 
 #include "config.h"
 
-// Defaults
-#define DEFAULT_CONFIG_PATH "~/.OpenRaider"
-#define DEFAULT_CONFIG_FILE "OpenRaider.ini"
-#define DEFAULT_WIDTH 640
-#define DEFAULT_HEIGHT 480
-
 void renderFrame();
 
 // Supported pixelmap color formats

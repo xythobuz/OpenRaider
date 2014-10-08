@@ -206,7 +206,8 @@ int main(int argc, char *argv[]) {
                 printData = false;
             }
             assert(testPayloadCount < 10);
-            if ((argv[2][0] >= '0') && ((unsigned int)argv[2][0] <= (testPayloadCount + '0'))) {
+            if ((argv[2][0] >= '0')
+                    && (static_cast<unsigned int>(argv[2][0]) <= (testPayloadCount + '0'))) {
                 whichFile = argv[2][0] - '0';
             }
         } else {
@@ -231,7 +232,7 @@ int main(int argc, char *argv[]) {
             return printDataScript(s, printData);
         } else {
             // From payload
-            return runForPayload((unsigned int)whichFile, true, printData);
+            return runForPayload(static_cast<unsigned int>(whichFile), true, printData);
         }
     } else {
         // Run test on all scripts in payload

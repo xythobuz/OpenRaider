@@ -10,39 +10,29 @@
 
 #include "SDL_ttf.h"
 
-#include "Font.h"
-
 /*!
  * \brief SDL Font implementation
  */
-class FontSDL : public Font {
+class FontSDL {
 public:
+    static void shutdown();
 
-    /*!
-     * \brief Constructs an object of FontSDL
-     */
-    FontSDL();
+    static int initialize(std::string font);
 
-    /*!
-     * \brief Deconstructs an object of FontSDL
-     */
-    virtual ~FontSDL();
+    static unsigned int widthText(float scale, std::string s);
 
-    virtual int initialize();
+    static unsigned int heightText(float scale, unsigned int maxWidth, std::string s);
 
-    virtual unsigned int widthText(float scale, std::string s);
-
-    virtual void drawText(unsigned int x, unsigned int y, float scale,
+    static void drawText(unsigned int x, unsigned int y, float scale,
             const unsigned char color[4], std::string s);
 
-    virtual unsigned int heightText(float scale, unsigned int maxWidth, std::string s);
-
-    virtual void drawTextWrapped(unsigned int x, unsigned int y, float scale,
+    static void drawTextWrapped(unsigned int x, unsigned int y, float scale,
             const unsigned char color[4], unsigned int maxWidth, std::string s);
 
 private:
-    TTF_Font *mFont;
-    unsigned int mFontTexture;
+    static bool mFontInit;
+    static TTF_Font *mFont;
+    static unsigned int mFontTexture;
 };
 
 #endif

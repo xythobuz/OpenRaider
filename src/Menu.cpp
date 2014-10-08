@@ -89,25 +89,25 @@ void Menu::displayDialog() {
     if (dialogText.length() > 0) {
         unsigned int wMax = ((unsigned int)(::getWindow().getWidth() * 0.66f));
 
-        unsigned int w0 = getFont().widthText(1.0f, dialogText) + 20;
+        unsigned int w0 = Font::widthText(1.0f, dialogText) + 20;
         if (w0 > wMax)
             w0 = wMax;
-        unsigned int h0 =  getFont().heightText(1.0f, w0, dialogText) + 10;
+        unsigned int h0 =  Font::heightText(1.0f, w0, dialogText) + 10;
 
         assert(dialogButton1.length() > 0);
-        unsigned int w1 = getFont().widthText(1.0f, dialogButton1) + 20;
+        unsigned int w1 = Font::widthText(1.0f, dialogButton1) + 20;
         if (w1 > wMax)
             w1 = wMax;
-        unsigned int h1 = getFont().heightText(1.0f, w1, dialogButton1) + 10;
+        unsigned int h1 = Font::heightText(1.0f, w1, dialogButton1) + 10;
 
         unsigned int wOverlay = wMax, hOverlay, w2 = 0, h2 = 0;
 
         if (dialogButton2.length() > 0) {
             // Show text and two buttons
-            w2 = getFont().widthText(1.0f, dialogButton2) + 20;
+            w2 = Font::widthText(1.0f, dialogButton2) + 20;
             if (w2 > wMax)
                 w2 = wMax;
-            h2 = getFont().heightText(1.0f, w2, dialogButton2) + 10;
+            h2 = Font::heightText(1.0f, w2, dialogButton2) + 10;
 
             if (w0 > (w1 + w2)) {
                 if (w0 < wMax) {
@@ -147,21 +147,21 @@ void Menu::displayDialog() {
         glRecti(xOverlay, yOverlay, xOverlay + wOverlay, yOverlay + hOverlay);
         glEnable(GL_TEXTURE_2D);
 
-        getFont().drawTextWrapped(xOverlay + 10, yOverlay + 5, 1.0f, BLUE, w0, dialogText);
+        Font::drawTextWrapped(xOverlay + 10, yOverlay + 5, 1.0f, BLUE, w0, dialogText);
         if (dialogButton2.length() > 0) {
             if ((w1 + w2) <= wMax) {
-                getFont().drawTextWrapped(xOverlay + 10, yOverlay + 10 + h0, 1.0f,
+                Font::drawTextWrapped(xOverlay + 10, yOverlay + 10 + h0, 1.0f,
                     dialogState ? BLUE : RED, w1, dialogButton1);
-                getFont().drawTextWrapped(xOverlay + 10 + w1, yOverlay + 10 + h0,
+                Font::drawTextWrapped(xOverlay + 10 + w1, yOverlay + 10 + h0,
                     1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
             } else {
-                getFont().drawTextWrapped((::getWindow().getWidth() - w1) / 2,
+                Font::drawTextWrapped((::getWindow().getWidth() - w1) / 2,
                     yOverlay + 10 + h0, 1.0f, dialogState ? BLUE : RED, w1, dialogButton1);
-                getFont().drawTextWrapped((::getWindow().getWidth() - w2) / 2,
+                Font::drawTextWrapped((::getWindow().getWidth() - w2) / 2,
                     yOverlay + 10 + h0 + h1, 1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
             }
         } else {
-            getFont().drawTextWrapped((::getWindow().getWidth() - w1) / 2,
+            Font::drawTextWrapped((::getWindow().getWidth() - w1) / 2,
                     yOverlay + 10 + h0, 1.0f, RED, w1, dialogButton1);
         }
     }

@@ -18,7 +18,7 @@
 #ifndef UNIT_TEST
 
 #include "Camera.h"
-#include "FontManager.h"
+#include "Font.h"
 #include "Game.h"
 #include "Log.h"
 #include "MenuFolder.h"
@@ -46,7 +46,6 @@
 static std::string configFileToUse;
 
 static std::shared_ptr<Camera> gCamera;
-static std::shared_ptr<FontManager> gFont;
 static std::shared_ptr<Game> gGame;
 static std::shared_ptr<Log> gLog;
 static std::shared_ptr<MenuFolder> gMenu;
@@ -59,10 +58,6 @@ static std::shared_ptr<World> gWorld;
 
 Camera &getCamera() {
     return *gCamera;
-}
-
-Font &getFont() {
-    return *gFont;
 }
 
 Game &getGame() {
@@ -115,7 +110,6 @@ int main(int argc, char* argv[]) {
     gRunTime.reset(new RunTime());
 
     gCamera.reset(new Camera());
-    gFont.reset(new FontManager());
     gGame.reset(new Game());
     gLog.reset(new Log());
     gMenu.reset(new MenuFolder());
@@ -137,14 +131,6 @@ int main(int argc, char* argv[]) {
 
     Command::fillCommandList();
 
-    if (configFileToUse == "") {
-        if (Command::executeFile(DEFAULT_CONFIG_FILE) != 0) {
-            Command::executeFile(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE);
-        }
-    } else {
-        Command::executeFile(configFileToUse);
-    }
-
     getLog() << "Initializing " << VERSION << Log::endl;
 
     // Initialize Windowing
@@ -161,8 +147,22 @@ int main(int argc, char* argv[]) {
         return -2;
     }
 
+    // Font initialization requires GL context, but is called from config file
+    // So we need to initialize some things before executing the config
+    if (configFileToUse == "") {
+        if (Command::executeFile(DEFAULT_CONFIG_FILE) != 0) {
+            Command::executeFile(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE);
+        }
+    } else {
+        Command::executeFile(configFileToUse);
+    }
+
     // Initialize Font
-    error = getFont().initialize();
+#ifdef USING_SDL_FONT
+    error = Font::initialize(getRunTime().getDataDir() + "/test.ttf");
+#else
+    error = Font::initialize(getRunTime().getDataDir() + "/font.pc");
+#endif
     if (error != 0) {
         std::cout << "Could not initialize Font (" << error << ")!" << std::endl;
         return -3;
@@ -214,6 +214,7 @@ int main(int argc, char* argv[]) {
     }
 
     UI::shutdown();
+    Font::shutdown();
 
 #ifdef DEBUG
     std::cout << std::endl;
@@ -242,7 +243,7 @@ void renderFrame() {
         std::ostringstream s;
         s << fps << "FPS";
         getWindow().glEnter2D();
-        getFont().drawText(10, getWindow().getHeight() - 25, 0.6f, BLUE, s.str());
+        Font::drawText(10, getWindow().getHeight() - 25, 0.6f, BLUE, s.str());
         getWindow().glExit2D();
     }
 

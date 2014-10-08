@@ -137,7 +137,9 @@ int CommandSet::execute(std::istream& args) {
     } else if (var.compare("font") == 0) {
         std::string temp;
         args >> temp;
-        getFont().setFont(expandNames(temp).c_str());
+        int error = Font::initialize(expandNames(temp));
+        if (error != 0)
+            getLog() << "Error initializing font: " << expandNames(temp) << "(" << error << ")" << Log::endl;
     } else {
         getLog() << "set-Error: Unknown variable (" << var.c_str() << ")" << Log::endl;
         return -1;

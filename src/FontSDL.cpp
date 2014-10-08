@@ -5,53 +5,57 @@
  * \author xythobuz
  */
 
-#include <stdio.h>
+#include <iostream>
 
 #include "global.h"
 #include "FontSDL.h"
 
-FontSDL::FontSDL() {
-    mFont = NULL;
-    mFontInit = false;
-    mFontTexture = 0;
-}
+bool FontSDL::mFontInit = false;
+TTF_Font* FontSDL::mFont = nullptr;
+unsigned int FontSDL::mFontTexture = 0;
 
-FontSDL::~FontSDL() {
-    if (mFont)
+void FontSDL::shutdown() {
+    if (mFont != nullptr)
         TTF_CloseFont(mFont);
+    mFont = nullptr;
 
     if (mFontInit) {
         TTF_Quit();
         glDeleteTextures(1, &mFontTexture);
+        mFontInit = false;
     }
 }
 
-int FontSDL::initialize() {
-    assert(mFontInit == false);
+int FontSDL::initialize(std::string font) {
+    if (!mFontInit) {
+        if (TTF_Init() != 0) {
+            std::cout << "Could not initialize SDL-TTF!" << std::endl;
+            return -1;
+        }
 
-    if (TTF_Init() != 0) {
-        printf("Could not initialize SDL-TTF!\n");
-        return -1;
+        glGenTextures(1, &mFontTexture);
+        mFontInit = true;
     }
 
-    mFont = TTF_OpenFont(mFontName.c_str(), 24);
-    if (mFont == NULL) {
-        printf("TTF_OpenFont Error: %s\n", TTF_GetError());
+    if (mFont != nullptr)
+        TTF_CloseFont(mFont);
+
+    mFont = TTF_OpenFont(font.c_str(), 24);
+    if (mFont == nullptr) {
+        std::cout << "TTF_OpenFont Error: " << TTF_GetError() << std::endl;
         return -2;
     }
 
-    glGenTextures(1, &mFontTexture);
-
-    mFontInit = true;
     return 0;
 }
 
 unsigned int FontSDL::widthText(float scale, std::string s) {
     assert(mFontInit == true);
+    assert(mFont != nullptr);
 
     int w;
-    if (TTF_SizeUTF8(mFont, s.c_str(), &w, NULL) != 0) {
-        printf("TTF_SizeUTF8 Error: %s\n", TTF_GetError());
+    if (TTF_SizeUTF8(mFont, s.c_str(), &w, nullptr) != 0) {
+        std::cout << "TTF_SizeUTF8 Error: " << TTF_GetError() << std::endl;
         return s.length() * 15 * scale;
     }
     return w * scale;
@@ -60,6 +64,7 @@ unsigned int FontSDL::widthText(float scale, std::string s) {
 void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
         const unsigned char color[4], std::string s) {
     assert(mFontInit == true);
+    assert(mFont != nullptr);
     assert(s.length() > 0);
 
     SDL_Color col;
@@ -69,8 +74,8 @@ void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
     col.a = color[3];
 
     SDL_Surface *surface = TTF_RenderUTF8_Blended(mFont, s.c_str(), col);
-    if (surface == NULL) {
-        printf("TTF_RenderUTF8_Blended Error: %s\n", TTF_GetError());
+    if (surface == nullptr) {
+        std::cout << "TTF_RenderUTF8_Blended Error: " << TTF_GetError() << std::endl;
         return;
     }
 
@@ -120,13 +125,14 @@ void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
 
 unsigned int FontSDL::heightText(float scale, unsigned int maxWidth, std::string s) {
     assert(mFontInit == true);
+    assert(mFont != nullptr);
     assert(s.length() > 0);
     assert(maxWidth > 0);
 
     SDL_Color col;
     SDL_Surface *surface = TTF_RenderUTF8_Blended_Wrapped(mFont, s.c_str(), col, maxWidth);
-    if (surface == NULL) {
-        printf("TTF_RenderUTF8_Blended_Wrapped Error: %s\n", TTF_GetError());
+    if (surface == nullptr) {
+        std::cout << "TTF_RenderUTF8_Blended_Wrapped Error: " << TTF_GetError() << std::endl;
         return 0;
     }
     int h = surface->h * scale;
@@ -137,6 +143,7 @@ unsigned int FontSDL::heightText(float scale, unsigned int maxWidth, std::string
 void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
         const unsigned char color[4], unsigned int maxWidth, std::string s) {
     assert(mFontInit == true);
+    assert(mFont != nullptr);
     assert(s.length() > 0);
     assert(maxWidth > 0);
 
@@ -147,8 +154,8 @@ void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     col.a = color[3];
 
     SDL_Surface *surface = TTF_RenderUTF8_Blended_Wrapped(mFont, s.c_str(), col, maxWidth);
-    if (surface == NULL) {
-        printf("TTF_RenderUTF8_Blended_Wrapped Error: %s\n", TTF_GetError());
+    if (surface == nullptr) {
+        std::cout << "TTF_RenderUTF8_Blended_Wrapped Error: " << TTF_GetError() << std::endl;
         return;
     }
 

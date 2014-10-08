@@ -85,7 +85,7 @@ void MenuFolder::display() {
     glEnable(GL_TEXTURE_2D);
 
     // Draw heading
-    getFont().drawTextCentered(0, 10, 1.2f, BLUE, ::getWindow().getWidth(), VERSION);
+    Font::drawTextCentered(0, 10, 1.2f, BLUE, ::getWindow().getWidth(), VERSION);
 
     // Estimate displayable number of items
     int items = (::getWindow().getHeight() - 60) / 25;
@@ -94,9 +94,9 @@ void MenuFolder::display() {
     for (long i = mMin; (i < (mMin + items))
                 && (i < (mapFolder->folderCount() + mapFolder->fileCount() + 1)); i++) {
         if (i == 0) {
-            getFont().drawText(25, 50, 0.75f, (mCursor == i) ? RED : BLUE, "..");
+            Font::drawText(25, 50, 0.75f, (mCursor == i) ? RED : BLUE, "..");
         } else {
-            getFont().drawText(25, (unsigned int)(50 + (25 * (i - mMin))), 0.75f,
+            Font::drawText(25, (unsigned int)(50 + (25 * (i - mMin))), 0.75f,
                 (mCursor == i) ? RED : BLUE,
                 ((i - 1) < mapFolder->folderCount()) ?
                     (mapFolder->getFolder(i - 1).getName() + "/")
