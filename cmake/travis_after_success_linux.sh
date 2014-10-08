@@ -9,7 +9,7 @@ echo "set audiodir \".\"" >> OpenRaider.ini
 echo "set datadir \"../../data\"" >> OpenRaider.ini
 echo "set font \"../../data/test.ttf\"" >> OpenRaider.ini
 
-xvfb-run -n 99 -s "-screen 0 640x480x24" ./OpenRaider &
+xvfb-run -n 99 -s "-screen 0 1280x1024x24" ./OpenRaider &
 
 # Wait for OpenRaider to start
 wget http://imgur.com/tools/imgurbash.sh
