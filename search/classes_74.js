@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['textrange',['TextRange',['../struct_im_gui_text_filter_1_1_text_range.html',1,'ImGuiTextFilter']]],
   ['texturedtriangle',['TexturedTriangle',['../class_textured_triangle.html',1,'']]],
   ['texturemanager',['TextureManager',['../class_texture_manager.html',1,'']]],
   ['tga_5ft',['tga_t',['../tga_8cpp.html#structtga__t',1,'']]],

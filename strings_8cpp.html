@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -95,15 +96,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>String handling utilities.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;cstdlib&gt;</code><br/>
-<code>#include &lt;stdio.h&gt;</code><br/>
-<code>#include &lt;string.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="filesystem_8h_source.html">utils/filesystem.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="strings_8h_source.html">utils/strings.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for strings.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="strings_8cpp__incl.svg" width="503" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="strings_8cpp__incl.svg" width="560" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -111,250 +110,57 @@ Include dependency graph for strings.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a146e6329df145a070a4eaf3183d6375f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#a146e6329df145a070a4eaf3183d6375f">stringRemoveQuotes</a> (const char *s)</td></tr>
-<tr class="separator:a146e6329df145a070a4eaf3183d6375f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af47e4fd1b1ce1b6f89d264233ce80cc9"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#af47e4fd1b1ce1b6f89d264233ce80cc9">stringReplace</a> (const char *s, const char *search, const char *replace)</td></tr>
-<tr class="separator:af47e4fd1b1ce1b6f89d264233ce80cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7fc1b2349de88a4bff333b202c96915"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#ae7fc1b2349de88a4bff333b202c96915">readBool</a> (const char *value, bool *var)</td></tr>
-<tr class="separator:ae7fc1b2349de88a4bff333b202c96915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa9c7d7624d39a3e9130eeeae1b78fa5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#aaa9c7d7624d39a3e9130eeeae1b78fa5">stringEndsWith</a> (const char *str, const char *suffix)</td></tr>
-<tr class="memdesc:aaa9c7d7624d39a3e9130eeeae1b78fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a string ends with another string.  <a href="#aaa9c7d7624d39a3e9130eeeae1b78fa5">More...</a><br/></td></tr>
-<tr class="separator:aaa9c7d7624d39a3e9130eeeae1b78fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11e08e8c6f441ee8074ec5266d7ace8a"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#a11e08e8c6f441ee8074ec5266d7ace8a">bufferString</a> (const char *string, va_list args)</td></tr>
-<tr class="memdesc:a11e08e8c6f441ee8074ec5266d7ace8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a buffered string for the printf call.  <a href="#a11e08e8c6f441ee8074ec5266d7ace8a">More...</a><br/></td></tr>
-<tr class="separator:a11e08e8c6f441ee8074ec5266d7ace8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac64afe7233d622301ec5a9f25b559590"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#ac64afe7233d622301ec5a9f25b559590">bufferString</a> (const char *string,...)</td></tr>
-<tr class="memdesc:ac64afe7233d622301ec5a9f25b559590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a buffered string for the printf call.  <a href="#ac64afe7233d622301ec5a9f25b559590">More...</a><br/></td></tr>
-<tr class="separator:ac64afe7233d622301ec5a9f25b559590"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a449382aef1af389360262a56c6d49f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#a6a449382aef1af389360262a56c6d49f">fullPath</a> (const char *path, char end)</td></tr>
-<tr class="memdesc:a6a449382aef1af389360262a56c6d49f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expansion of unix home enviroment char. Also makes sure string ends in "end" char.  <a href="#a6a449382aef1af389360262a56c6d49f">More...</a><br/></td></tr>
-<tr class="separator:a6a449382aef1af389360262a56c6d49f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfae96935e33e20a56f8fc3012ffabcb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#adfae96935e33e20a56f8fc3012ffabcb">findAndReplace</a> (std::string s, std::string find, std::string replace)</td></tr>
+<tr class="separator:adfae96935e33e20a56f8fc3012ffabcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae694ceab20f0d8b5d480d2badb055cbe"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#ae694ceab20f0d8b5d480d2badb055cbe">expandHomeDirectory</a> (std::string s)</td></tr>
+<tr class="separator:ae694ceab20f0d8b5d480d2badb055cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f9845081feff3b703811b27e058da25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strings_8cpp.html#a9f9845081feff3b703811b27e058da25">stringEndsWith</a> (std::string s, std::string suffix)</td></tr>
+<tr class="separator:a9f9845081feff3b703811b27e058da25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>String handling utilities. </p>
-<dl class="section author"><dt>Author</dt><dd>xythobuz </dd>
-<dd>
-Mongoose </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a11e08e8c6f441ee8074ec5266d7ace8a"></a>
+<a class="anchor" id="ae694ceab20f0d8b5d480d2badb055cbe"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* bufferString </td>
+          <td class="memname">std::string expandHomeDirectory </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>string</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">va_list&#160;</td>
-          <td class="paramname"><em>args</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Generates a buffered string for the printf call. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">string</td><td>format string like for printf </td></tr>
-    <tr><td class="paramname">args</td><td>arguments matching format string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>string in a buffer </dd></dl>
-
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00088">88</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac64afe7233d622301ec5a9f25b559590"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* bufferString </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>string</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Generates a buffered string for the printf call. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">string</td><td>format string like for printf </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>string in a buffer </dd></dl>
-
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00118">118</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6a449382aef1af389360262a56c6d49f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* fullPath </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>path</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>end</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Expansion of unix home enviroment char. Also makes sure string ends in "end" char. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>path string </td></tr>
-    <tr><td class="paramname">end</td><td>end character. 0 appends no additional char </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>allocated string of path with expansions </dd></dl>
-
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00126">126</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae7fc1b2349de88a4bff333b202c96915"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int readBool </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool *&#160;</td>
-          <td class="paramname"><em>var</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00063">63</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aaa9c7d7624d39a3e9130eeeae1b78fa5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool stringEndsWith </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>suffix</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Check if a string ends with another string. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">str</td><td>string to check </td></tr>
-    <tr><td class="paramname">suffix</td><td>suffix for which to check </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if str ends with suffix </dd></dl>
-
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00075">75</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a146e6329df145a070a4eaf3183d6375f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* stringRemoveQuotes </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>s</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00026">26</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00022">22</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af47e4fd1b1ce1b6f89d264233ce80cc9"></a>
+<a class="anchor" id="adfae96935e33e20a56f8fc3012ffabcb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* stringReplace </td>
+          <td class="memname">std::string findAndReplace </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>s</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>search</em>, </td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>find</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>replace</em>&#160;</td>
         </tr>
         <tr>
@@ -365,7 +171,35 @@ Mongoose </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00039">39</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00012">12</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f9845081feff3b703811b27e058da25"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool stringEndsWith </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>suffix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="strings_8cpp_source.html#l00030">30</a> of file <a class="el" href="strings_8cpp_source.html">strings.cpp</a>.</p>
 
 </div>
 </div>

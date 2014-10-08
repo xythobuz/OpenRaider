@@ -1,31 +1,14 @@
-<map id="src/Command.cpp" name="src/Command.cpp">
-<area shape="rect" id="node3" href="$_window_s_d_l_8h.html" title="SDL windowing implementation. " alt="" coords="185,80,290,107"/>
-<area shape="rect" id="node8" href="$global_8h.html" title="Global typedefs. " alt="" coords="376,80,443,107"/>
-<area shape="rect" id="node11" href="$_console_8h.html" title="Console &#39;overlay&#39;. " alt="" coords="865,155,943,181"/>
-<area shape="rect" id="node14" href="$_entity_8h.html" title="World Entities. " alt="" coords="622,304,685,331"/>
-<area shape="rect" id="node15" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="1334,603,1426,629"/>
-<area shape="rect" id="node18" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="453,453,555,480"/>
-<area shape="rect" id="node22" href="$_font_8h.html" title="Font interface. " alt="" coords="1653,229,1709,256"/>
-<area shape="rect" id="node23" href="$_game_8h.html" title="Game abstraction. " alt="" coords="967,155,1035,181"/>
-<area shape="rect" id="node39" href="$_menu_8h.html" title="Menu &#39;overlay&#39;. " alt="" coords="1327,155,1391,181"/>
-<area shape="rect" id="node40" href="$_sound_8h.html" title="This is the audio manager Header. " alt="" coords="1415,155,1484,181"/>
-<area shape="rect" id="node41" href="$strings_8h.html" title="String handling utilities. " alt="" coords="780,80,873,107"/>
-<area shape="rect" id="node43" href="$time_8h.html" title="Time handling utilities. " alt="" coords="1885,80,1963,107"/>
-<area shape="rect" id="node44" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="1125,80,1227,107"/>
-<area shape="rect" id="node6" href="$_window_8h.html" title="Windowing interface. " alt="" coords="105,155,183,181"/>
-<area shape="rect" id="node17" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="718,379,829,405"/>
-<area shape="rect" id="node21" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="293,528,424,555"/>
-<area shape="rect" id="node24" href="$_camera_8h.html" title="Camera class. " alt="" coords="1657,453,1735,480"/>
-<area shape="rect" id="node26" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="1273,229,1346,256"/>
-<area shape="rect" id="node36" href="$_world_8h.html" title="The game world (model) " alt="" coords="885,229,949,256"/>
-<area shape="rect" id="node25" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="1631,528,1758,555"/>
-<area shape="rect" id="node27" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="1276,304,1343,331"/>
-<area shape="rect" id="node34" href="$_texture_manager_8h.html" title="Texture registry. " alt="" coords="1367,304,1491,331"/>
-<area shape="rect" id="node35" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="1515,304,1618,331"/>
-<area shape="rect" id="node28" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="1253,528,1317,555"/>
-<area shape="rect" id="node29" href="$_sprite_8h.html" title="World Sprite. " alt="" coords="629,379,693,405"/>
-<area shape="rect" id="node30" href="$_room_data_8h.html" title="World Room Mesh. " alt="" coords="1429,379,1523,405"/>
-<area shape="rect" id="node32" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="1533,453,1632,480"/>
-<area shape="rect" id="node33" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="1494,528,1607,555"/>
-<area shape="rect" id="node38" href="$_static_mesh_8h.html" title="Static Model Meshes. " alt="" coords="853,379,947,405"/>
+<map id="src/commands/Command.cpp" name="src/commands/Command.cpp">
+<area shape="rect" id="node4" href="$global_8h.html" title="Global typedefs. " alt="" coords="195,80,262,107"/>
+<area shape="rect" id="node10" href="$_log_8h.html" title="Log. " alt="" coords="698,155,751,181"/>
+<area shape="rect" id="node14" href="$strings_8h.html" title="String handling utilities. " alt="" coords="565,155,658,181"/>
+<area shape="rect" id="node15" href="$_command_8h.html" title="Command interface. " alt="" coords="965,155,1122,181"/>
+<area shape="rect" id="node18" href="$_command_animate_8h.html" title="Animate Command interface. " alt="" coords="1081,80,1283,107"/>
+<area shape="rect" id="node19" href="$_command_bind_8h.html" title="Bind Command interface. " alt="" coords="1308,80,1491,107"/>
+<area shape="rect" id="node20" href="$_command_engine_8h.html" title="Engine Command interface. " alt="" coords="1515,80,1711,107"/>
+<area shape="rect" id="node21" href="$_command_game_8h.html" title="Game Command interface. " alt="" coords="1735,80,1928,107"/>
+<area shape="rect" id="node22" href="$_command_move_8h.html" title="Move Command interface. " alt="" coords="1953,80,2142,107"/>
+<area shape="rect" id="node23" href="$_command_render_8h.html" title="Render Command interface. " alt="" coords="388,80,587,107"/>
+<area shape="rect" id="node24" href="$_command_set_8h.html" title="Set Command interface. " alt="" coords="611,80,787,107"/>
+<area shape="rect" id="node25" href="$_command_sound_8h.html" title="Sound Command interface. " alt="" coords="811,80,1006,107"/>
 </map>

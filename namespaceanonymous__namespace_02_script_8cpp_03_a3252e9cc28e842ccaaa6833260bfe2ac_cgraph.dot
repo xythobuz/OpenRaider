@@ -1,0 +1,46 @@
+digraph "anonymous_namespace{Script::cpp}::test"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="anonymous_namespace\l\{Script::cpp\}::test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Script::load",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_script.html#a008d4a677b9ef330b14df63e2d0d0c7f"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="BinaryFile::open",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#a04c6be604a7542dc24628052e6c56a5d"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="BinaryFile::readU32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#a638019e1dadd19e4d7f497c2f16afaa2"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="BinaryFile::readU16",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#abec3c5045cd871082f3baa214ac33fe3"];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="BinaryFile::readU8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#aa57a21e8c1d8310c9d66f119d49733f4"];
+  Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="BinaryFile::read8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#ab4c09b8072f111077305f81c619a0285"];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="BinaryFile::read32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#abf381a76de9bfd187c655d84c3c106cc"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="anonymous_namespace\l\{binary::cpp\}::swapByteOrder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespaceanonymous__namespace_02binary_8cpp_03.html#a24a38a0266e56d9bae0d04ef3d1c70b3"];
+  Node2 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="BinaryFile::seek",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#a7429fa2e23eabb73762ae47d3b36178a"];
+  Node2 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="BinaryFile::tell",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#abf714d8c7561654b9b935871bf482582"];
+  Node2 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="BinaryFile::read16",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#a63aa0ceaf0ed5b60d2b39ba428bd9998"];
+  Node12 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="Script::readStringPackage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_script.html#aed570f216717b6a06aaac457cece3db3"];
+  Node13 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="Script::readScriptPackage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_script.html#ae20bac4c257f46831c88b3533f43039e"];
+  Node14 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="Script::gameStringCount",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_script.html#ac45955d253eb8b1f57c1633adab148f7"];
+  Node1 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="Script::pcStringCount",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_script.html#a82d849498c3a1f12ddb965c42f05d5b4"];
+}

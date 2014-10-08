@@ -1,0 +1,13 @@
+digraph "Folder::executeRemoveFiles"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Folder::executeRemoveFiles",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MenuFolder::init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_menu_folder.html#ab2d53f767f624da749960118f4007bb8"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Folder::executeRemoveRecursive\lFiles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_folder.html#ac5782272dd06ef335c9042754671f280"];
+  Node3 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

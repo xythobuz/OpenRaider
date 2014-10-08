@@ -1,0 +1,10 @@
+<map id="src/WindowGLUT.cpp" name="src/WindowGLUT.cpp">
+<area shape="rect" id="node4" href="$global_8h.html" title="Global typedefs. " alt="" coords="287,80,353,107"/>
+<area shape="rect" id="node10" href="$_run_time_8h.html" title="run time configuration storage " alt="" coords="377,80,460,107"/>
+<area shape="rect" id="node12" href="$_u_i_8h.html" title="Abstract UI interface. " alt="" coords="693,80,737,107"/>
+<area shape="rect" id="node24" href="$strings_8h.html" title="String handling utilities. " alt="" coords="484,80,577,107"/>
+<area shape="rect" id="node25" href="$_window_g_l_u_t_8h.html" title="GLUT windowing implementation. " alt="" coords="891,80,1005,107"/>
+<area shape="rect" id="node17" href="$imgui_8h.html" title="imgui/imgui.h" alt="" coords="885,155,977,181"/>
+<area shape="rect" id="node18" href="$imconfig_8h.html" title="imconfig.h" alt="" coords="673,229,749,256"/>
+<area shape="rect" id="node26" href="$_window_8h.html" title="Windowing interface. " alt="" coords="1001,155,1079,181"/>
+</map>

@@ -1,0 +1,12 @@
+digraph "tgaSave"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="tgaSave",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Render::screenShot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_render.html#a9f39e9af83d85d4c17ba0ee828f1e9de",tooltip="Makes a screenshot, writes to disk. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="CommandScreenshot::\lexecute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_command_screenshot.html#aea047cbfc0c1bdfc8d72d1633070bbdf"];
+}

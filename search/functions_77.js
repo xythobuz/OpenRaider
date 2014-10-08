@@ -1,6 +1,8 @@
 var searchData=
 [
+  ['widthtext',['widthText',['../class_font.html#a07e4c95082fd67057a747e85c4157080',1,'Font::widthText()'],['../class_font_manager.html#a914bb6a7304d14a783ea1fa01327c4bf',1,'FontManager::widthText()'],['../class_font_s_d_l.html#aaf902cecb8f63ecad56e7e70d49563e4',1,'FontSDL::widthText()'],['../class_font_t_r_l_e.html#a1aad867f1dec81d51604e6cc098f5506',1,'FontTRLE::widthText()']]],
+  ['windowglut',['WindowGLUT',['../class_window_g_l_u_t.html#af618844c05c13175f7bbce08007584fb',1,'WindowGLUT']]],
+  ['windowpadding',['WindowPadding',['../struct_im_gui_window.html#acc623891f86112d2fef71bf89e796297',1,'ImGuiWindow']]],
   ['windowsdl',['WindowSDL',['../class_window_s_d_l.html#ae992458bd6df21482d7bbec9a6a48f88',1,'WindowSDL']]],
-  ['writechar',['writeChar',['../class_font_t_r_l_e.html#aa6fc0563706873a1150b6b4c86d90e84',1,'FontTRLE']]],
-  ['writestring',['writeString',['../class_font.html#ab8ce87d1f2f3c1e0068ba7066998c9e5',1,'Font::writeString()'],['../class_font_manager.html#a3f517c54fc6a3a6bde205f548e675faa',1,'FontManager::writeString()'],['../class_font_s_d_l.html#a8143f31e5b5a5bab3ea31fe54ac3e5f5',1,'FontSDL::writeString()'],['../class_font_t_r_l_e.html#aaa2bfc4942965a26411cd29c267cbb66',1,'FontTRLE::writeString()']]]
+  ['writechar',['writeChar',['../class_font_t_r_l_e.html#a402b01287739131316344858357085a4',1,'FontTRLE']]]
 ];

@@ -1,0 +1,39 @@
+digraph "TextureManager::initialize"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TextureManager::initialize",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="generateColorTexture",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pixel_8h.html#ab941cb6aeef9d1fe9271a7e01a2834c3"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TextureManager::loadBufferSlot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#ad479756ff08f61f6dde8679601ddae67",tooltip="Loads Buffer as texture. "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="bgr2rgb24",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pixel_8h.html#aa98f7e7677a832bed8ba09abf6a03964"];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="argb2rgba32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pixel_8h.html#a2b55c8aba433a2d911448cd58c0b5e03"];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="bgra2rgba32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pixel_8h.html#a637f5d0173bb783c18d438f32f0a7d83"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="getRunTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_run_time_8h.html#a5725e2249d7e2af1a5c46bbd31084a85"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TextureManager::loadPCX",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#aaecdd8e792f87f575ebce8c7f6175514"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$commander_8c.html#a9a17d0c19f2fb4ee55752f4b6840331e"];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="pcxLoad",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pcx_8h.html#af6e3360d84e3417d90b4d6b5fc459b02",tooltip="Load a PCX image file into a buffer. "];
+  Node8 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="scaleBuffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pixel_8h.html#aa6c4e2e84e8737bc7af1ee25cce899c5"];
+  Node8 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="RunTime::getDataDir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_run_time.html#a337f454b25be2310828da47369767fc1"];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="TextureManager::loadTGA",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#a2397216f8a31f900690555ec003ab32a"];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="tgaCheck",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tga_8h.html#a029f055518ded232051e3c64c2d22517",tooltip="Check if a file is a valid TGA image. "];
+  Node13 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="tgaLoad",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tga_8h.html#a9214f51a3daad66aae81d1fb6447cd22",tooltip="Load a TGA image from file. "];
+  Node13 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

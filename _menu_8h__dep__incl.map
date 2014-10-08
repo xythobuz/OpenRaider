@@ -1,11 +1,8 @@
 <map id="include/Menu.h" name="include/Menu.h">
-<area shape="rect" id="node2" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="445,80,589,107"/>
-<area shape="rect" id="node3" href="$_command_8cpp.html" title="OpenRaider command implementation. " alt="" coords="5,155,132,181"/>
-<area shape="rect" id="node6" href="$main_8cpp.html" title="Where main() is. " alt="" coords="156,155,251,181"/>
-<area shape="rect" id="node7" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="838,155,937,181"/>
-<area shape="rect" id="node8" href="$_open_raider_8cpp.html" title="Main Game Object. " alt="" coords="961,155,1099,181"/>
-<area shape="rect" id="node4" href="$_console_8cpp.html" title="Console &#39;overlay&#39;. " alt="" coords="275,155,390,181"/>
-<area shape="rect" id="node5" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="415,155,517,181"/>
-<area shape="rect" id="node9" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="541,155,649,181"/>
-<area shape="rect" id="node10" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="673,155,813,181"/>
+<area shape="rect" id="node2" href="$_menu_folder_8h.html" title="File&#45;Explorer like Menu. " alt="" coords="129,80,267,107"/>
+<area shape="rect" id="node4" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="281,155,379,181"/>
+<area shape="rect" id="node6" href="$_command_engine_8cpp.html" title="Engine commands. " alt="" coords="359,80,589,107"/>
+<area shape="rect" id="node7" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="613,80,692,107"/>
+<area shape="rect" id="node3" href="$main_8cpp.html" title="Where main() is. " alt="" coords="5,155,100,181"/>
+<area shape="rect" id="node5" href="$_menu_folder_8cpp.html" title="File&#45;Explorer like menu. " alt="" coords="124,155,256,181"/>
 </map>

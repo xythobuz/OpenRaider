@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,6 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_static_model-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -104,18 +106,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeeb56a201ae3b885c549e2948538e70c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#aeeb56a201ae3b885c549e2948538e70c">operator&lt;</a> (const <a class="el" href="class_static_model.html">StaticModel</a> &amp;other)</td></tr>
 <tr class="separator:aeeb56a201ae3b885c549e2948538e70c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aaa63ab9d47d60fc429ea433c31623d89"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#aaa63ab9d47d60fc429ea433c31623d89">compare</a> (<a class="el" href="class_static_model.html">StaticModel</a> *a, <a class="el" href="class_static_model.html">StaticModel</a> *b)</td></tr>
+<tr class="separator:aaa63ab9d47d60fc429ea433c31623d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac34c1c76749cacf30120929f5950dc78"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#ac34c1c76749cacf30120929f5950dc78">index</a></td></tr>
 <tr class="separator:ac34c1c76749cacf30120929f5950dc78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac76f86cc5a240308dfe210e07e0ffdb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#ac76f86cc5a240308dfe210e07e0ffdb5">yaw</a></td></tr>
-<tr class="separator:ac76f86cc5a240308dfe210e07e0ffdb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaba94527945f63639b5195e63fae2e72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#aaba94527945f63639b5195e63fae2e72">pos</a></td></tr>
-<tr class="separator:aaba94527945f63639b5195e63fae2e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab65abaa0fb4641a9c36d128f72e2a395"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#ab65abaa0fb4641a9c36d128f72e2a395">yaw</a></td></tr>
+<tr class="separator:ab65abaa0fb4641a9c36d128f72e2a395"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07dab460d7c0f0815dd1d87da199afdf"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_static_model.html#a07dab460d7c0f0815dd1d87da199afdf">pos</a> [3]</td></tr>
+<tr class="separator:a07dab460d7c0f0815dd1d87da199afdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00059">59</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
+<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00058">58</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="adbc006c5b4d1483e9d99c2a004a22d6c"></a>
 <div class="memitem">
@@ -152,6 +159,42 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aaa63ab9d47d60fc429ea433c31623d89"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool StaticModel::compare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_static_model.html">StaticModel</a> *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_static_model.html">StaticModel</a> *&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_room_data_8cpp_source.html#l00203">203</a> of file <a class="el" href="_room_data_8cpp_source.html">RoomData.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ac8bfdda62df3121d51901eacff79e08b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -210,7 +253,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aaba94527945f63639b5195e63fae2e72"></a>
+<a class="anchor" id="a07dab460d7c0f0815dd1d87da199afdf"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -218,7 +261,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> StaticModel::pos</td>
+          <td class="memname">float StaticModel::pos[3]</td>
         </tr>
       </table>
   </td>
@@ -232,7 +275,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac76f86cc5a240308dfe210e07e0ffdb5"></a>
+<a class="anchor" id="ab65abaa0fb4641a9c36d128f72e2a395"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -240,7 +283,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> StaticModel::yaw</td>
+          <td class="memname">float StaticModel::yaw</td>
         </tr>
       </table>
   </td>

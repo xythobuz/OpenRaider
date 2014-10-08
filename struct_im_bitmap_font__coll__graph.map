@@ -1,0 +1,8 @@
+<map id="ImBitmapFont" name="ImBitmapFont">
+<area shape="rect" id="node2" href="$struct_im_bitmap_font.html#struct_im_bitmap_font_1_1_fnt_common" title="ImBitmapFont::FntCommon" alt="" coords="5,5,179,32"/>
+<area shape="rect" id="node3" href="$struct_im_bitmap_font.html#struct_im_bitmap_font_1_1_fnt_info" title="ImBitmapFont::FntInfo" alt="" coords="21,56,163,83"/>
+<area shape="rect" id="node4" href="$struct_im_bitmap_font.html#struct_im_bitmap_font_1_1_fnt_glyph" title="ImBitmapFont::FntGlyph" alt="" coords="13,107,171,133"/>
+<area shape="rect" id="node5" href="$class_im_vector.html" title="ImVector\&lt; const char * \&gt;" alt="" coords="12,157,172,184"/>
+<area shape="rect" id="node6" href="$struct_im_bitmap_font.html#struct_im_bitmap_font_1_1_fnt_kerning" title="ImBitmapFont::FntKerning" alt="" coords="10,208,174,235"/>
+<area shape="rect" id="node7" href="$class_im_vector.html" title="ImVector\&lt; int \&gt;" alt="" coords="40,259,144,285"/>
+</map>

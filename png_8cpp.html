@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,7 +88,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">png.cpp File Reference</div>  </div>
@@ -98,34 +98,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="png_8h_source.html">png.h</a>&gt;</code><br/>
 <code>#include &lt;cstdio&gt;</code><br/>
+<code>#include &lt;iostream&gt;</code><br/>
 <code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="pixel_8h_source.html">utils/pixel.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_console_8h_source.html">Console.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for png.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="png_8cpp__incl.svg" width="520" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="png_8cpp__incl.svg" width="536" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
 <p><a href="png_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a7d994740a936dcb3be1e227a361083cf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="png_8cpp.html#a7d994740a936dcb3be1e227a361083cf">pngPrint</a>&#160;&#160;&#160;<a class="el" href="main_8cpp.html#a42daf3f66ef8157f19a95a61c04bb0ae">getConsole</a>().print</td></tr>
-<tr class="separator:a7d994740a936dcb3be1e227a361083cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a44380543f99b1337a7fed05081087408"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="png_8cpp.html#a44380543f99b1337a7fed05081087408">pngCheck</a> (const char *filename)</td></tr>
 <tr class="memdesc:a44380543f99b1337a7fed05081087408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a file is a valid PNG image.  <a href="#a44380543f99b1337a7fed05081087408">More...</a><br/></td></tr>
 <tr class="separator:a44380543f99b1337a7fed05081087408"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a23a79e6366d70adb34cd8eedecd990"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="png_8cpp.html#a3a23a79e6366d70adb34cd8eedecd990">pngLoad</a> (const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, <a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">TextureManager::ColorMode</a> *mode, unsigned int *bpp)</td></tr>
-<tr class="memdesc:a3a23a79e6366d70adb34cd8eedecd990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a PNG image file into an RGBA buffer.  <a href="#a3a23a79e6366d70adb34cd8eedecd990">More...</a><br/></td></tr>
-<tr class="separator:a3a23a79e6366d70adb34cd8eedecd990"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a237ca4f1097d2a4fc821058352f21f83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="png_8cpp.html#a237ca4f1097d2a4fc821058352f21f83">pngSave</a> (const char *filename, unsigned char *image, unsigned int width, unsigned int height, <a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">TextureManager::ColorMode</a> mode, unsigned int bpp)</td></tr>
-<tr class="memdesc:a237ca4f1097d2a4fc821058352f21f83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PNG image file from an RGBA buffer.  <a href="#a237ca4f1097d2a4fc821058352f21f83">More...</a><br/></td></tr>
-<tr class="separator:a237ca4f1097d2a4fc821058352f21f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f63613400457c8692f60b7f8ff9e82c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="png_8cpp.html#a4f63613400457c8692f60b7f8ff9e82c">pngLoad</a> (const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, <a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443f">ColorMode</a> *mode, unsigned int *bpp)</td></tr>
+<tr class="memdesc:a4f63613400457c8692f60b7f8ff9e82c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a PNG image file into an RGBA buffer.  <a href="#a4f63613400457c8692f60b7f8ff9e82c">More...</a><br/></td></tr>
+<tr class="separator:a4f63613400457c8692f60b7f8ff9e82c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a721dfdd7dca6b8d1d4da099447cdc608"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="png_8cpp.html#a721dfdd7dca6b8d1d4da099447cdc608">pngSave</a> (const char *filename, unsigned char *image, unsigned int width, unsigned int height, <a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443f">ColorMode</a> mode, unsigned int bpp)</td></tr>
+<tr class="memdesc:a721dfdd7dca6b8d1d4da099447cdc608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PNG image file from an RGBA buffer.  <a href="#a721dfdd7dca6b8d1d4da099447cdc608">More...</a><br/></td></tr>
+<tr class="separator:a721dfdd7dca6b8d1d4da099447cdc608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>PNG image reader. </p>
@@ -133,22 +128,7 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="png_8cpp_source.html">png.cpp</a>.</p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a7d994740a936dcb3be1e227a361083cf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define pngPrint&#160;&#160;&#160;<a class="el" href="main_8cpp.html#a42daf3f66ef8157f19a95a61c04bb0ae">getConsole</a>().print</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="png_8cpp_source.html#l00019">19</a> of file <a class="el" href="png_8cpp_source.html">png.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a44380543f99b1337a7fed05081087408"></a>
 <div class="memitem">
 <div class="memproto">
@@ -172,11 +152,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success </dd></dl>
 
-<p>Definition at line <a class="el" href="png_8cpp_source.html#l00021">21</a> of file <a class="el" href="png_8cpp_source.html">png.cpp</a>.</p>
+<p>Definition at line <a class="el" href="png_8cpp_source.html#l00019">19</a> of file <a class="el" href="png_8cpp_source.html">png.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3a23a79e6366d70adb34cd8eedecd990"></a>
+<a class="anchor" id="a4f63613400457c8692f60b7f8ff9e82c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -207,7 +187,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">TextureManager::ColorMode</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443f">ColorMode</a> *&#160;</td>
           <td class="paramname"><em>mode</em>, </td>
         </tr>
         <tr>
@@ -238,11 +218,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success </dd></dl>
 
-<p>Definition at line <a class="el" href="png_8cpp_source.html#l00044">44</a> of file <a class="el" href="png_8cpp_source.html">png.cpp</a>.</p>
+<p>Definition at line <a class="el" href="png_8cpp_source.html#l00042">42</a> of file <a class="el" href="png_8cpp_source.html">png.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a237ca4f1097d2a4fc821058352f21f83"></a>
+<a class="anchor" id="a721dfdd7dca6b8d1d4da099447cdc608"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -273,7 +253,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">TextureManager::ColorMode</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443f">ColorMode</a>&#160;</td>
           <td class="paramname"><em>mode</em>, </td>
         </tr>
         <tr>
@@ -304,7 +284,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success </dd></dl>
 
-<p>Definition at line <a class="el" href="png_8cpp_source.html#l00163">163</a> of file <a class="el" href="png_8cpp_source.html">png.cpp</a>.</p>
+<p>Definition at line <a class="el" href="png_8cpp_source.html#l00166">166</a> of file <a class="el" href="png_8cpp_source.html">png.cpp</a>.</p>
 
 </div>
 </div>

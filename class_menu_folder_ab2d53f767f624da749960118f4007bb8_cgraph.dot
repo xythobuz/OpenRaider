@@ -1,0 +1,40 @@
+digraph "MenuFolder::init"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MenuFolder::init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Folder::executeRemoveFiles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_folder.html#af345c3934208755fc13feeb5965ade99"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Folder::createFolderItems",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_folder.html#abcdee2467da92304e3d10ccee5975e6b"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Folder::readFolderItems",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_folder.html#acd8e34c42420c89a5c10885e1958b5c3"];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Folder::fileCount",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_folder.html#ab288a3491266b0eef56c4131c3e605a4"];
+  Node5 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Folder::getFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_folder.html#aaccf5e0a0e73dcada66aae1d555f8084"];
+  Node6 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="File::getName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_file.html#a4c3d42a17d4c9e53bbd5482cc7e5f3dd"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Loader::checkFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_loader.html#a446e74237994f200e445b5905f42ad32"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="BinaryFile::open",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#a04c6be604a7542dc24628052e6c56a5d"];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="BinaryFile::readU32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#a638019e1dadd19e4d7f497c2f16afaa2"];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="BinaryFile::readU16",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#abec3c5045cd871082f3baa214ac33fe3"];
+  Node11 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="BinaryFile::readU8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_file.html#aa57a21e8c1d8310c9d66f119d49733f4"];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="File::getPath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_file.html#a49084f73093cbbe6057e3d8a02d93dff"];
+  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="getLog",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_log_8h.html#aa2f604b13755d77658307017af86624a"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="Folder::folderCount",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_folder.html#a266debeb40c59598c4f518b906484f0e"];
+  Node15 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,14 +94,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="_font_t_r_l_e_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="global_8h.html">global.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="strings_8h.html">utils/strings.h</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_font_t_r_l_e_8h.html">FontTRLE.h</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#ab99e5018502e03ec53d06e41274d0f5a">   15</a></span>&#160;<a class="code" href="class_font_t_r_l_e.html#ab99e5018502e03ec53d06e41274d0f5a">FontTRLE::FontTRLE</a>() {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_font.html#a5cc21841a017a8de60426d77d41ae3bf">mFontName</a> = <a class="code" href="global_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="global_8h.html">global.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="strings_8h.html">utils/strings.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_font_t_r_l_e_8h.html">FontTRLE.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#ab99e5018502e03ec53d06e41274d0f5a">   16</a></span>&#160;<a class="code" href="class_font_t_r_l_e.html#ab99e5018502e03ec53d06e41274d0f5a">FontTRLE::FontTRLE</a>() {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_font_t_r_l_e.html#a0da2bc15b1c75cae740499647d703896">mFontTexture</a> = 0;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
@@ -108,170 +109,235 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
 <div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#aa1df23740878c4e5f863ddc1ebfcd642">   24</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_font_t_r_l_e.html#aa1df23740878c4e5f863ddc1ebfcd642">FontTRLE::initialize</a>() {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#a5cc21841a017a8de60426d77d41ae3bf">mFontName</a> != <a class="code" href="global_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#a5cc21841a017a8de60426d77d41ae3bf">mFontName</a>[0] != <span class="charliteral">&#39;\0&#39;</span>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="strings_8h.html#aaa9c7d7624d39a3e9130eeeae1b78fa5">stringEndsWith</a>(<a class="code" href="class_font.html#a5cc21841a017a8de60426d77d41ae3bf">mFontName</a>, <span class="stringliteral">&quot;.pc&quot;</span>) == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// Load .pc file...</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::ifstream file(<a class="code" href="class_font.html#a5cc21841a017a8de60426d77d41ae3bf">mFontName</a>, std::ios::in | std::ios::binary);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *pixels = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>[256 * 256 * 4];</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span> (!file.read((<span class="keywordtype">char</span> *)pixels, 256 * 256 * 4)) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">delete</span> [] pixels;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">// Fix coloring</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; (256 * 256 * 4); i += 4) {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">float</span> y = (0.2126f * pixels[i + 2]);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        y += (0.7152f * pixels[i + 1]);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        y += (0.0722f * pixels[i]);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        pixels[i] = pixels[i + 1] = pixels[i + 2] = (<span class="keywordtype">unsigned</span> char)y;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// ...into GL texture</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    glGenTextures(1, &amp;<a class="code" href="class_font_t_r_l_e.html#a0da2bc15b1c75cae740499647d703896">mFontTexture</a>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    glBindTexture(GL_TEXTURE_2D, <a class="code" href="class_font_t_r_l_e.html#a0da2bc15b1c75cae740499647d703896">mFontTexture</a>);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 256, 256, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pixels);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">delete</span> [] pixels;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="strings_8h.html#a9f9845081feff3b703811b27e058da25">stringEndsWith</a>(<a class="code" href="class_font.html#a1c77446ad2624aa163436d900ae421e1">mFontName</a>, <span class="stringliteral">&quot;.pc&quot;</span>) == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// Load .pc file...</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::ifstream file(<a class="code" href="class_font.html#a1c77446ad2624aa163436d900ae421e1">mFontName</a>, std::ios::in | std::ios::binary);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *pixels = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>[256 * 256 * 4];</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">if</span> (!file.read((<span class="keywordtype">char</span> *)pixels, 256 * 256 * 4)) {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">delete</span> [] pixels;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Fix coloring</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; (256 * 256 * 4); i += 4) {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">float</span> y = (0.2126f * pixels[i + 2]);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        y += (0.7152f * pixels[i + 1]);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        y += (0.0722f * pixels[i]);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        pixels[i] = pixels[i + 1] = pixels[i + 2] = (<span class="keywordtype">unsigned</span> char)y;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// ...into GL texture</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    glGenTextures(1, &amp;<a class="code" href="class_font_t_r_l_e.html#a0da2bc15b1c75cae740499647d703896">mFontTexture</a>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    glBindTexture(GL_TEXTURE_2D, <a class="code" href="class_font_t_r_l_e.html#a0da2bc15b1c75cae740499647d703896">mFontTexture</a>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 256, 256, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pixels);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">delete</span> [] pixels;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Try to load .lps file, overwriting default glyph positions</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::string lpsFile = <a class="code" href="strings_8h.html#adfae96935e33e20a56f8fc3012ffabcb">findAndReplace</a>(<a class="code" href="class_font.html#a1c77446ad2624aa163436d900ae421e1">mFontName</a>, <span class="stringliteral">&quot;.pc&quot;</span>, <span class="stringliteral">&quot;.lps&quot;</span>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_font_t_r_l_e.html#a6462a36ba8a3f4338a225372803e3db1">loadLPS</a>(lpsFile);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Try to load .lps file, overwriting default glyph positions</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">char</span> *lpsFile = <a class="code" href="strings_8h.html#af47e4fd1b1ce1b6f89d264233ce80cc9">stringReplace</a>(<a class="code" href="class_font.html#a5cc21841a017a8de60426d77d41ae3bf">mFontName</a>, <span class="stringliteral">&quot;.pc&quot;</span>, <span class="stringliteral">&quot;.lps&quot;</span>);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_font_t_r_l_e.html#a26354f0a4649332e9e97a40c6fcc1fe7">loadLPS</a>(lpsFile);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">delete</span> [] lpsFile;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#a6462a36ba8a3f4338a225372803e3db1">   60</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_font_t_r_l_e.html#a6462a36ba8a3f4338a225372803e3db1">FontTRLE::loadLPS</a>(std::string f) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::ifstream file(f);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">if</span> (!file)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#a26354f0a4649332e9e97a40c6fcc1fe7">   65</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_font_t_r_l_e.html#a26354f0a4649332e9e97a40c6fcc1fe7">FontTRLE::loadLPS</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *f) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    std::ifstream file(f);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> (!file)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">for</span> (std::string line; std::getline(file, line);) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        std::istringstream stream(line);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        std::string tok1, tok2;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        std::getline(stream, tok1, <span class="charliteral">&#39;=&#39;</span>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        std::getline(stream, tok2);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">// we are only interested in lines starting with</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// xxx=</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">// Where xxx is a 3 digit number</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordtype">int</span> index = std::stoi(tok1);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">if</span> ((index &gt;= 0) &amp;&amp; (index &lt;= 105)) {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                std::istringstream row(tok2);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                std::string a, b, c, d, e;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                std::getline(row, a, <span class="charliteral">&#39;,&#39;</span>);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                std::getline(row, b, <span class="charliteral">&#39;,&#39;</span>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                std::getline(row, c, <span class="charliteral">&#39;,&#39;</span>);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                std::getline(row, d, <span class="charliteral">&#39;,&#39;</span>);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                std::getline(row, e);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][0] = std::stoi(a);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][1] = std::stoi(b);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2] = std::stoi(c);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3] = std::stoi(d);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][4] = std::stoi(e);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        } <span class="keywordflow">catch</span> (std::invalid_argument) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">for</span> (std::string line; std::getline(file, line);) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        std::istringstream stream(line);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">int</span> index;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        stream &gt;&gt; index;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> (stream.get() != <span class="charliteral">&#39;=&#39;</span>)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        stream &gt;&gt; <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][0];</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">if</span> (stream.get() != <span class="charliteral">&#39;,&#39;</span>)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        stream &gt;&gt; offsets[index][1];</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">if</span> (stream.get() != <span class="charliteral">&#39;,&#39;</span>)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        stream &gt;&gt; offsets[index][2];</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">if</span> (stream.get() != <span class="charliteral">&#39;,&#39;</span>)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        stream &gt;&gt; offsets[index][3];</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">if</span> (stream.get() != <span class="charliteral">&#39;,&#39;</span>)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        stream &gt;&gt; offsets[index][4];</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">   91</a></span>&#160;<span class="preprocessor">#define SCALING 2.0f</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#a402b01287739131316344858357085a4">   93</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_font_t_r_l_e.html#a402b01287739131316344858357085a4">FontTRLE::writeChar</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> xDraw, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> yDraw,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">float</span> scale, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> color[4]) {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">int</span> width = (int)(((<span class="keywordtype">float</span>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2]) * scale * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">int</span> height = (int)(((<span class="keywordtype">float</span>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3]) * scale * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">int</span> offset = (int)(((<span class="keywordtype">float</span>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][4]) * scale * SCALING);</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">  105</a></span>&#160;<span class="preprocessor">#define SCALING 2.0f</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#aa6fc0563706873a1150b6b4c86d90e84">  107</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_font_t_r_l_e.html#aa6fc0563706873a1150b6b4c86d90e84">FontTRLE::writeChar</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> xDraw, <a class="code" href="_font_8h.html#struct_font_string">FontString</a> &amp;s) {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">int</span> width = (int)(((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2]) * s.<a class="code" href="_font_8h.html#a4265e96a635614a34744735f29b6b0fd">scale</a> * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">int</span> height = (int)(((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3]) * s.<a class="code" href="_font_8h.html#a4265e96a635614a34744735f29b6b0fd">scale</a> * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">int</span> offset = (int)(((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][4]) * s.<a class="code" href="_font_8h.html#a4265e96a635614a34744735f29b6b0fd">scale</a> * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">// screen coordinates</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">int</span> xMin = xDraw;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">int</span> yMin = s.<a class="code" href="_font_8h.html#a0a6964952a6f366e0e204e4fba59aba9">y</a> + offset + (int)(10.0f * s.<a class="code" href="_font_8h.html#a4265e96a635614a34744735f29b6b0fd">scale</a> * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">int</span> xMax = xMin + width;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">int</span> yMax = yMin + height;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="comment">// texture part</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> txMin = ((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][0]) / 256.0f;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> txMax = ((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][0] + <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2])) / 256.0f;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> tyMin = ((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][1]) / 256.0f;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> tyMax = ((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][1] + <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3])) / 256.0f;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="comment">// draw</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    glBindTexture(GL_TEXTURE_2D, <a class="code" href="class_font_t_r_l_e.html#a0da2bc15b1c75cae740499647d703896">mFontTexture</a>);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    glColor4f(s.<a class="code" href="_font_8h.html#aab33b3515a063020cbbf09081a2a55a9">color</a>[0] * 256.0f, s.<a class="code" href="_font_8h.html#aab33b3515a063020cbbf09081a2a55a9">color</a>[1] * 256.0f, s.<a class="code" href="_font_8h.html#aab33b3515a063020cbbf09081a2a55a9">color</a>[2] * 256.0f, s.<a class="code" href="_font_8h.html#aab33b3515a063020cbbf09081a2a55a9">color</a>[3] * 256.0f);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    glBegin(GL_QUADS);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    glTexCoord2f(txMin, tyMin);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    glVertex2i(xMin, yMin);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    glTexCoord2f(txMin, tyMax);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    glVertex2i(xMin, yMax);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    glTexCoord2f(txMax, tyMax);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    glVertex2i(xMax, yMax);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    glTexCoord2f(txMax, tyMin);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    glVertex2i(xMax, yMin);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    glEnd();</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#aaa2bfc4942965a26411cd29c267cbb66">  139</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_font_t_r_l_e.html#aaa2bfc4942965a26411cd29c267cbb66">FontTRLE::writeString</a>(<a class="code" href="_font_8h.html#struct_font_string">FontString</a> &amp;s) {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(s.<a class="code" href="_font_8h.html#ad5ead54b27b75c416b24a5ae9e168f65">text</a> != <a class="code" href="global_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="comment">// screen coordinates</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">int</span> xMin = xDraw;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">int</span> yMin = ((int)yDraw) + offset + (int)(10.0f * scale * SCALING);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">int</span> xMax = xMin + width;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordtype">int</span> yMax = yMin + height;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">// texture part</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">float</span> txMin = ((float)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][0]) / 256.0f;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">float</span> txMax = ((float)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][0] + <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2])) / 256.0f;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">float</span> tyMin = ((float)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][1]) / 256.0f;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">float</span> tyMax = ((float)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][1] + <a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3])) / 256.0f;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">// draw</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    glBindTexture(GL_TEXTURE_2D, <a class="code" href="class_font_t_r_l_e.html#a0da2bc15b1c75cae740499647d703896">mFontTexture</a>);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    glColor4f(color[0] * 256.0f, color[1] * 256.0f, color[2] * 256.0f, color[3] * 256.0f);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    glBegin(GL_QUADS);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    glTexCoord2f(txMin, tyMin);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    glVertex2i(xMin, yMin);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    glTexCoord2f(txMin, tyMax);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    glVertex2i(xMin, yMax);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    glTexCoord2f(txMax, tyMax);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    glVertex2i(xMax, yMax);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    glTexCoord2f(txMax, tyMin);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    glVertex2i(xMax, yMin);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    glEnd();</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#a1aad867f1dec81d51604e6cc098f5506">  128</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_font_t_r_l_e.html#a1aad867f1dec81d51604e6cc098f5506">FontTRLE::widthText</a>(<span class="keywordtype">float</span> scale, std::string s) {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(s.length() &gt; 0);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> width = 0;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; s.length(); i++) {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="comment">// index into offset table</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordtype">int</span> index = s[i] - <span class="charliteral">&#39;!&#39;</span>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">if</span> (index == -1) <span class="comment">// space</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            width += (<span class="keywordtype">unsigned</span> int)(14.0f * scale * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="keywordflow">if</span> ((index &lt; 0) || (index &gt; 105))</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            <span class="keywordflow">continue</span>; <span class="comment">// skip unprintable chars</span></div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x = s.<a class="code" href="_font_8h.html#a781c9c7a27a63fb4f504a2e74a543e6c">x</a>;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y = 0;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        width += (float)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2] + 1) * scale * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>; <span class="comment">// glyph width</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    }</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; s.<a class="code" href="_font_8h.html#ad5ead54b27b75c416b24a5ae9e168f65">text</a>[i] != <span class="charliteral">&#39;\0&#39;</span>; i++) {</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="comment">// index into offset table</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <span class="keywordtype">int</span> index = s.<a class="code" href="_font_8h.html#ad5ead54b27b75c416b24a5ae9e168f65">text</a>[i] - <span class="charliteral">&#39;!&#39;</span>;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">if</span> (index == -1) <span class="comment">// space</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            x += (<span class="keywordtype">unsigned</span> int)(14.0f * s.<a class="code" href="_font_8h.html#a4265e96a635614a34744735f29b6b0fd">scale</a> * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">if</span> ((index &lt; 0) || (index &gt; 105))</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="keywordflow">continue</span>; <span class="comment">// skip unprintable chars</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <a class="code" href="class_font_t_r_l_e.html#aa6fc0563706873a1150b6b4c86d90e84">writeChar</a>((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)index, x, s);</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        x += (int)((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2] + 1) * s.<a class="code" href="_font_8h.html#a4265e96a635614a34744735f29b6b0fd">scale</a> * SCALING); <span class="comment">// width</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">if</span> (y &lt; (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)(((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3]) * s.<a class="code" href="_font_8h.html#a4265e96a635614a34744735f29b6b0fd">scale</a> * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>))</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            y = (<span class="keywordtype">unsigned</span> int)(((<a class="code" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3]) * s.<a class="code" href="_font_8h.html#a4265e96a635614a34744735f29b6b0fd">scale</a> * SCALING);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    s.<a class="code" href="_font_8h.html#a374922f2c76c1e1d30e41ca5e00219ff">w</a> = x - s.<a class="code" href="_font_8h.html#a781c9c7a27a63fb4f504a2e74a543e6c">x</a>;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    s.<a class="code" href="_font_8h.html#adf3492ed3a88d0bea0fe14e6286fe2b0">h</a> = y;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;}</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="ttc" id="global_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="global_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="global_8h_source.html#l00025">global.h:25</a></div></div>
-<div class="ttc" id="_font_t_r_l_e_8cpp_html_a10ff10afd2a3179ae42e67a12fd8d7fd"><div class="ttname"><a href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a></div><div class="ttdeci">#define SCALING</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00105">FontTRLE.cpp:105</a></div></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">return</span> width;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#aca963ec3cbf9b672cb9b6751c1488297">  149</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_font_t_r_l_e.html#aca963ec3cbf9b672cb9b6751c1488297">FontTRLE::drawText</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y, <span class="keywordtype">float</span> scale,</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> color[4], std::string s) {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(s.length() &gt; 0);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; s.length(); i++) {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="comment">// index into offset table</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordtype">int</span> index = s[i] - <span class="charliteral">&#39;!&#39;</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">if</span> (index == -1) <span class="comment">// space</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            x += (<span class="keywordtype">unsigned</span> int)(14.0f * scale * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">if</span> ((index &lt; 0) || (index &gt; 105))</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="keywordflow">continue</span>; <span class="comment">// skip unprintable chars</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <a class="code" href="class_font_t_r_l_e.html#a402b01287739131316344858357085a4">writeChar</a>((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)index, x, y, scale, color);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        x += (int)((<span class="keywordtype">float</span>)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2] + 1) * scale * SCALING); <span class="comment">// width</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;}</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#a2c17a45f1b6fc1a0b8839b1a72d07371">  169</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_font_t_r_l_e.html#a2c17a45f1b6fc1a0b8839b1a72d07371">FontTRLE::heightText</a>(<span class="keywordtype">float</span> scale, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> maxWidth, std::string s) {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(s.length() &gt; 0);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x = 0;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> yMax = 0;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> yReturn = 0;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; s.length(); i++) {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="comment">// index into offset table</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keywordtype">int</span> index = s[i] - <span class="charliteral">&#39;!&#39;</span>;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">if</span> (index == -1) <span class="comment">// space</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            x += (<span class="keywordtype">unsigned</span> int)(14.0f * scale * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">if</span> ((index &lt; 0) || (index &gt; 105))</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            <span class="keywordflow">continue</span>; <span class="comment">// skip unprintable chars</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">if</span> (yMax &lt; (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)(((float)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3]) * scale * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>))</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            yMax = (<span class="keywordtype">unsigned</span> int)(((<span class="keywordtype">float</span>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3]) * scale * SCALING);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        x += (int)((<span class="keywordtype">float</span>)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2] + 1) * scale * SCALING); <span class="comment">// width</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordflow">if</span> (x &gt; maxWidth) {</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="comment">// go to the next line</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            yReturn += yMax + 2;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            yMax = 0;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            x = (int)((<span class="keywordtype">float</span>)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2] + 1) * scale * SCALING);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    }</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">return</span> yReturn + yMax + 2;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;}</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="class_font_t_r_l_e.html#a2e45ba59e0d5964ec94116fb0f0ac06a">  202</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_font_t_r_l_e.html#a2e45ba59e0d5964ec94116fb0f0ac06a">FontTRLE::drawTextWrapped</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y, <span class="keywordtype">float</span> scale,</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> color[4], <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> maxWidth, std::string s) {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(<a class="code" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a> == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <a class="code" href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a>(s.length() &gt; 0);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> xStart = x;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> yMax = 0;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; s.length(); i++) {</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="comment">// index into offset table</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <span class="keywordtype">int</span> index = s[i] - <span class="charliteral">&#39;!&#39;</span>;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <span class="keywordflow">if</span> (index == -1) <span class="comment">// space</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            x += (<span class="keywordtype">unsigned</span> int)(14.0f * scale * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keywordflow">if</span> ((index &lt; 0) || (index &gt; 105))</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="keywordflow">continue</span>; <span class="comment">// skip unprintable chars</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="keywordflow">if</span> (yMax &lt; (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)(((float)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3]) * scale * <a class="code" href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a>))</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            yMax = (<span class="keywordtype">unsigned</span> int)(((<span class="keywordtype">float</span>)<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][3]) * scale * SCALING);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        x += (int)((<span class="keywordtype">float</span>)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2] + 1) * scale * SCALING); <span class="comment">// width</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keywordflow">if</span> ((x - xStart) &gt; maxWidth) {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="comment">// go to the next line</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            y += yMax + 2;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            yMax = 0;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            x = xStart;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            x -= (int)((<span class="keywordtype">float</span>)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2] + 1) * scale * SCALING);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        }</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <a class="code" href="class_font_t_r_l_e.html#a402b01287739131316344858357085a4">writeChar</a>((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)index, x, y, scale, color);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        x += (int)((<span class="keywordtype">float</span>)(<a class="code" href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">offsets</a>[index][2] + 1) * scale * SCALING); <span class="comment">// width</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    }</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;}</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="ttc" id="_font_t_r_l_e_8cpp_html_a10ff10afd2a3179ae42e67a12fd8d7fd"><div class="ttname"><a href="_font_t_r_l_e_8cpp.html#a10ff10afd2a3179ae42e67a12fd8d7fd">SCALING</a></div><div class="ttdeci">#define SCALING</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00091">FontTRLE.cpp:91</a></div></div>
 <div class="ttc" id="strings_8h_html"><div class="ttname"><a href="strings_8h.html">strings.h</a></div><div class="ttdoc">String handling utilities. </div></div>
-<div class="ttc" id="_font_8h_html_struct_font_string"><div class="ttname"><a href="_font_8h.html#struct_font_string">FontString</a></div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00011">Font.h:11</a></div></div>
-<div class="ttc" id="_font_8h_html_a374922f2c76c1e1d30e41ca5e00219ff"><div class="ttname"><a href="_font_8h.html#a374922f2c76c1e1d30e41ca5e00219ff">FontString::w</a></div><div class="ttdeci">int w</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00015">Font.h:15</a></div></div>
-<div class="ttc" id="class_font_t_r_l_e_html_a26354f0a4649332e9e97a40c6fcc1fe7"><div class="ttname"><a href="class_font_t_r_l_e.html#a26354f0a4649332e9e97a40c6fcc1fe7">FontTRLE::loadLPS</a></div><div class="ttdeci">void loadLPS(const char *f)</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00065">FontTRLE.cpp:65</a></div></div>
+<div class="ttc" id="class_font_t_r_l_e_html_a402b01287739131316344858357085a4"><div class="ttname"><a href="class_font_t_r_l_e.html#a402b01287739131316344858357085a4">FontTRLE::writeChar</a></div><div class="ttdeci">void writeChar(unsigned int index, unsigned int xDraw, unsigned int yDraw, float scale, const unsigned char color[4])</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00093">FontTRLE.cpp:93</a></div></div>
+<div class="ttc" id="class_font_t_r_l_e_html_a1aad867f1dec81d51604e6cc098f5506"><div class="ttname"><a href="class_font_t_r_l_e.html#a1aad867f1dec81d51604e6cc098f5506">FontTRLE::widthText</a></div><div class="ttdeci">virtual unsigned int widthText(float scale, std::string s)</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00128">FontTRLE.cpp:128</a></div></div>
+<div class="ttc" id="class_font_t_r_l_e_html_a2c17a45f1b6fc1a0b8839b1a72d07371"><div class="ttname"><a href="class_font_t_r_l_e.html#a2c17a45f1b6fc1a0b8839b1a72d07371">FontTRLE::heightText</a></div><div class="ttdeci">virtual unsigned int heightText(float scale, unsigned int maxWidth, std::string s)</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00169">FontTRLE.cpp:169</a></div></div>
+<div class="ttc" id="class_font_t_r_l_e_html_a6462a36ba8a3f4338a225372803e3db1"><div class="ttname"><a href="class_font_t_r_l_e.html#a6462a36ba8a3f4338a225372803e3db1">FontTRLE::loadLPS</a></div><div class="ttdeci">void loadLPS(std::string f)</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00060">FontTRLE.cpp:60</a></div></div>
 <div class="ttc" id="global_8h_html"><div class="ttname"><a href="global_8h.html">global.h</a></div><div class="ttdoc">Global typedefs. </div></div>
-<div class="ttc" id="class_font_html_a5cc21841a017a8de60426d77d41ae3bf"><div class="ttname"><a href="class_font.html#a5cc21841a017a8de60426d77d41ae3bf">Font::mFontName</a></div><div class="ttdeci">char * mFontName</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00043">Font.h:43</a></div></div>
-<div class="ttc" id="class_font_t_r_l_e_html_a009993434d51e62cd9a6dce77e04943e"><div class="ttname"><a href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">FontTRLE::offsets</a></div><div class="ttdeci">int offsets[106][5]</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8h_source.html#l00042">FontTRLE.h:42</a></div></div>
-<div class="ttc" id="class_font_t_r_l_e_html_aaa2bfc4942965a26411cd29c267cbb66"><div class="ttname"><a href="class_font_t_r_l_e.html#aaa2bfc4942965a26411cd29c267cbb66">FontTRLE::writeString</a></div><div class="ttdeci">virtual void writeString(FontString &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00139">FontTRLE.cpp:139</a></div></div>
-<div class="ttc" id="strings_8h_html_aaa9c7d7624d39a3e9130eeeae1b78fa5"><div class="ttname"><a href="strings_8h.html#aaa9c7d7624d39a3e9130eeeae1b78fa5">stringEndsWith</a></div><div class="ttdeci">bool stringEndsWith(const char *str, const char *suffix)</div><div class="ttdoc">Check if a string ends with another string. </div><div class="ttdef"><b>Definition:</b> <a href="strings_8cpp_source.html#l00075">strings.cpp:75</a></div></div>
-<div class="ttc" id="global_8h_html_af576bf8ffa22a44e53018c67095ffbf0"><div class="ttname"><a href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a></div><div class="ttdeci">#define assert(x)</div><div class="ttdef"><b>Definition:</b> <a href="global_8h_source.html#l00042">global.h:42</a></div></div>
-<div class="ttc" id="_font_8h_html_a4265e96a635614a34744735f29b6b0fd"><div class="ttname"><a href="_font_8h.html#a4265e96a635614a34744735f29b6b0fd">FontString::scale</a></div><div class="ttdeci">float scale</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00017">Font.h:17</a></div></div>
-<div class="ttc" id="class_font_t_r_l_e_html_a0da2bc15b1c75cae740499647d703896"><div class="ttname"><a href="class_font_t_r_l_e.html#a0da2bc15b1c75cae740499647d703896">FontTRLE::mFontTexture</a></div><div class="ttdeci">unsigned int mFontTexture</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8h_source.html#l00039">FontTRLE.h:39</a></div></div>
+<div class="ttc" id="class_font_html_a1c77446ad2624aa163436d900ae421e1"><div class="ttname"><a href="class_font.html#a1c77446ad2624aa163436d900ae421e1">Font::mFontName</a></div><div class="ttdeci">std::string mFontName</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00044">Font.h:44</a></div></div>
+<div class="ttc" id="class_font_t_r_l_e_html_a009993434d51e62cd9a6dce77e04943e"><div class="ttname"><a href="class_font_t_r_l_e.html#a009993434d51e62cd9a6dce77e04943e">FontTRLE::offsets</a></div><div class="ttdeci">int offsets[106][5]</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8h_source.html#l00050">FontTRLE.h:50</a></div></div>
+<div class="ttc" id="global_8h_html_af576bf8ffa22a44e53018c67095ffbf0"><div class="ttname"><a href="global_8h.html#af576bf8ffa22a44e53018c67095ffbf0">assert</a></div><div class="ttdeci">#define assert(x)</div><div class="ttdef"><b>Definition:</b> <a href="global_8h_source.html#l00158">global.h:158</a></div></div>
+<div class="ttc" id="class_font_t_r_l_e_html_a0da2bc15b1c75cae740499647d703896"><div class="ttname"><a href="class_font_t_r_l_e.html#a0da2bc15b1c75cae740499647d703896">FontTRLE::mFontTexture</a></div><div class="ttdeci">unsigned int mFontTexture</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8h_source.html#l00047">FontTRLE.h:47</a></div></div>
 <div class="ttc" id="class_font_t_r_l_e_html_a185bda7bb0549ce2984ca77ef8661505"><div class="ttname"><a href="class_font_t_r_l_e.html#a185bda7bb0549ce2984ca77ef8661505">FontTRLE::~FontTRLE</a></div><div class="ttdeci">virtual ~FontTRLE()</div><div class="ttdoc">Deconstructs an object of FontTRLE. </div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00021">FontTRLE.cpp:21</a></div></div>
-<div class="ttc" id="_font_8h_html_a781c9c7a27a63fb4f504a2e74a543e6c"><div class="ttname"><a href="_font_8h.html#a781c9c7a27a63fb4f504a2e74a543e6c">FontString::x</a></div><div class="ttdeci">unsigned int x</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00013">Font.h:13</a></div></div>
+<div class="ttc" id="strings_8h_html_a9f9845081feff3b703811b27e058da25"><div class="ttname"><a href="strings_8h.html#a9f9845081feff3b703811b27e058da25">stringEndsWith</a></div><div class="ttdeci">bool stringEndsWith(std::string s, std::string suffix)</div><div class="ttdef"><b>Definition:</b> <a href="strings_8cpp_source.html#l00030">strings.cpp:30</a></div></div>
+<div class="ttc" id="class_font_t_r_l_e_html_aca963ec3cbf9b672cb9b6751c1488297"><div class="ttname"><a href="class_font_t_r_l_e.html#aca963ec3cbf9b672cb9b6751c1488297">FontTRLE::drawText</a></div><div class="ttdeci">virtual void drawText(unsigned int x, unsigned int y, float scale, const unsigned char color[4], std::string s)</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00149">FontTRLE.cpp:149</a></div></div>
 <div class="ttc" id="class_font_t_r_l_e_html_aa1df23740878c4e5f863ddc1ebfcd642"><div class="ttname"><a href="class_font_t_r_l_e.html#aa1df23740878c4e5f863ddc1ebfcd642">FontTRLE::initialize</a></div><div class="ttdeci">virtual int initialize()</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00024">FontTRLE.cpp:24</a></div></div>
-<div class="ttc" id="_font_8h_html_adf3492ed3a88d0bea0fe14e6286fe2b0"><div class="ttname"><a href="_font_8h.html#adf3492ed3a88d0bea0fe14e6286fe2b0">FontString::h</a></div><div class="ttdeci">int h</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00016">Font.h:16</a></div></div>
-<div class="ttc" id="math_8h_html_a34b8d82aced6931bd3a572041e59aa7d"><div class="ttname"><a href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a></div><div class="ttdeci">float vec_t</div><div class="ttdoc">1D Vector, aka float </div><div class="ttdef"><b>Definition:</b> <a href="math_8h_source.html#l00028">math.h:28</a></div></div>
-<div class="ttc" id="_font_8h_html_aab33b3515a063020cbbf09081a2a55a9"><div class="ttname"><a href="_font_8h.html#aab33b3515a063020cbbf09081a2a55a9">FontString::color</a></div><div class="ttdeci">unsigned char color[4]</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00018">Font.h:18</a></div></div>
-<div class="ttc" id="class_font_html_ab13e51b8ef7de93faa2bd8e16d44e145"><div class="ttname"><a href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">Font::mFontInit</a></div><div class="ttdeci">bool mFontInit</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00042">Font.h:42</a></div></div>
-<div class="ttc" id="strings_8h_html_af47e4fd1b1ce1b6f89d264233ce80cc9"><div class="ttname"><a href="strings_8h.html#af47e4fd1b1ce1b6f89d264233ce80cc9">stringReplace</a></div><div class="ttdeci">char * stringReplace(const char *s, const char *search, const char *replace)</div><div class="ttdef"><b>Definition:</b> <a href="strings_8cpp_source.html#l00039">strings.cpp:39</a></div></div>
-<div class="ttc" id="class_font_t_r_l_e_html_aa6fc0563706873a1150b6b4c86d90e84"><div class="ttname"><a href="class_font_t_r_l_e.html#aa6fc0563706873a1150b6b4c86d90e84">FontTRLE::writeChar</a></div><div class="ttdeci">void writeChar(unsigned int index, unsigned int xDraw, FontString &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00107">FontTRLE.cpp:107</a></div></div>
-<div class="ttc" id="class_font_t_r_l_e_html_ab99e5018502e03ec53d06e41274d0f5a"><div class="ttname"><a href="class_font_t_r_l_e.html#ab99e5018502e03ec53d06e41274d0f5a">FontTRLE::FontTRLE</a></div><div class="ttdeci">FontTRLE()</div><div class="ttdoc">Constructs an object of FontTRLE. </div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00015">FontTRLE.cpp:15</a></div></div>
+<div class="ttc" id="strings_8h_html_adfae96935e33e20a56f8fc3012ffabcb"><div class="ttname"><a href="strings_8h.html#adfae96935e33e20a56f8fc3012ffabcb">findAndReplace</a></div><div class="ttdeci">std::string findAndReplace(std::string s, std::string find, std::string replace)</div><div class="ttdef"><b>Definition:</b> <a href="strings_8cpp_source.html#l00012">strings.cpp:12</a></div></div>
+<div class="ttc" id="class_font_html_ab13e51b8ef7de93faa2bd8e16d44e145"><div class="ttname"><a href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">Font::mFontInit</a></div><div class="ttdeci">bool mFontInit</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00043">Font.h:43</a></div></div>
+<div class="ttc" id="class_font_t_r_l_e_html_ab99e5018502e03ec53d06e41274d0f5a"><div class="ttname"><a href="class_font_t_r_l_e.html#ab99e5018502e03ec53d06e41274d0f5a">FontTRLE::FontTRLE</a></div><div class="ttdeci">FontTRLE()</div><div class="ttdoc">Constructs an object of FontTRLE. </div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00016">FontTRLE.cpp:16</a></div></div>
 <div class="ttc" id="_font_t_r_l_e_8h_html"><div class="ttname"><a href="_font_t_r_l_e_8h.html">FontTRLE.h</a></div><div class="ttdoc">Tomb Raider Level Editor Font loader. </div></div>
-<div class="ttc" id="_font_8h_html_ad5ead54b27b75c416b24a5ae9e168f65"><div class="ttname"><a href="_font_8h.html#ad5ead54b27b75c416b24a5ae9e168f65">FontString::text</a></div><div class="ttdeci">char * text</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00012">Font.h:12</a></div></div>
-<div class="ttc" id="_font_8h_html_a0a6964952a6f366e0e204e4fba59aba9"><div class="ttname"><a href="_font_8h.html#a0a6964952a6f366e0e204e4fba59aba9">FontString::y</a></div><div class="ttdeci">unsigned int y</div><div class="ttdef"><b>Definition:</b> <a href="_font_8h_source.html#l00014">Font.h:14</a></div></div>
+<div class="ttc" id="class_font_t_r_l_e_html_a2e45ba59e0d5964ec94116fb0f0ac06a"><div class="ttname"><a href="class_font_t_r_l_e.html#a2e45ba59e0d5964ec94116fb0f0ac06a">FontTRLE::drawTextWrapped</a></div><div class="ttdeci">virtual void drawTextWrapped(unsigned int x, unsigned int y, float scale, const unsigned char color[4], unsigned int maxWidth, std::string s)</div><div class="ttdef"><b>Definition:</b> <a href="_font_t_r_l_e_8cpp_source.html#l00202">FontTRLE.cpp:202</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

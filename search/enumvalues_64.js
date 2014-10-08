@@ -4,6 +4,7 @@ var searchData=
   ['dartgun',['DartGun',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eac7d2b7cae2397be7c878eeb6ecf0c8de',1,'TombRaider1']]],
   ['dartgunstate_5ffiring',['DartGunState_Firing',['../_tomb_raider1_8h.html#abf6897556b160d3522e6b8a24ac5da38a82c66dadc7a3b6a0f377e473803100fb',1,'TombRaider1']]],
   ['dartgunstate_5fidle',['DartGunState_Idle',['../_tomb_raider1_8h.html#abf6897556b160d3522e6b8a24ac5da38ad2e7d812e95b5a965df915dc2100b0bf',1,'TombRaider1']]],
+  ['debugaction',['debugAction',['../global_8h.html#a8657944732f2ddabce60de26e809df8ca42fe7aabe03c8124c48f42be17aa1e25',1,'global.h']]],
   ['delkey',['delKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aaedc387cefb6f3092663da167fcd28b13',1,'global.h']]],
   ['directionkeys',['DirectionKeys',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eadb9ce399794e25005a63782449142b43',1,'TombRaider1']]],
   ['dkey',['dKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa4d8edd1fb86c57119012653332acee89',1,'global.h']]],

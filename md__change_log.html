@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -65,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,11 +78,187 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> Developer Branch ChangeLog </div>  </div>
+<div class="title">OpenRaider Developer Branch ChangeLog </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.3) xythobuz <a href="#" onclick="location.href='mai'+'lto:'+'xyt'+'ho'+'buz'+'@x'+'yth'+'ob'+'uz.'+'de'; return false;">xytho<span style="display: none;">.nosp@m.</span>buz@<span style="display: none;">.nosp@m.</span>xytho<span style="display: none;">.nosp@m.</span>buz.<span style="display: none;">.nosp@m.</span>de</a></h2>
-<pre class="fragment">[ 20140623 ]
+<div class="textblock"><h2>OpenRaider (0.1.3) xythobuz <a href="#" onclick="location.href='mai'+'lto:'+'xyt'+'ho'+'buz'+'@x'+'yth'+'ob'+'uz.'+'de'; return false;">xytho<span style="display: none;">.nosp@m.</span>buz@<span style="display: none;">.nosp@m.</span>xytho<span style="display: none;">.nosp@m.</span>buz.<span style="display: none;">.nosp@m.</span>de</a></h2>
+<pre class="fragment">[ 20141008 ]
+* Added freeGLUT windowing system to use if SDL2 is not available. Not yet working 100%.
+
+[ 20141007 ]
+* Set all RunTime vars to sensible defaults, so OpenRaider can try to start
+  without a config file (a font is still required!)
+
+[ 20140930 ]
+* Updated imgui to version 1.14 wip
+* Console input keeps keyboard focus after command input
+
+[ 20140920 ]
+* Updated imgui (fix for resource leak)
+
+[ 20140909 ]
+* utils/time now using std::chrono (C++11) for single cross-plattform implementation
+* Updated imgui (my pull request was merged)
+
+[ 20140908 ]
+* Moved imgui Console into own (static) class
+* Added FPS display
+
+[ 20140905 ]
+* Recreated working console using imgui
+
+[ 20140904 ]
+* Fixed imgui colors
+* World now using smart pointers
+* Removed atexit handler, now breaking out of main loop on quit
+* Added calculate and shutdown calls to UI interface, properly shutting down imgui
+* Created Log class holding logging infos, used by others instead of Console.
+* Removed Console, Debug
+* Removed new fancy UI handling system
+* Properly integrated imgui into UI system
+
+[ 20140903 ]
+* Finishing imgui integration, but now as UI layer and not on top of everything
+* All global objects are now explicitly allocated in main and stored in shared_ptrs
+* Created RunTime class for run time settings/options storage
+* Completely removed OpenRaider class
+
+[ 20140901 ]
+* Created abstract UI class handling “windows” like menu and console. Windows
+  can be stacked arbitrarily. The top most gets keyboard/mouse/action events.
+* Removed old C-String handling utility methods, now using std::string
+* Moved getX() methods from main into their respective cpp file
+* Started work on integrating imgui
+
+[ 20140831 ]
+* Moved command specific code from OpenRaider to static Command methods
+
+[ 20140829 ]
+* Moved key/action/string comparison functions into CommandBind
+* Added Renderflag command to toggle all flags in Render
+* Reimplemented pigtail and ponypos commands. Now all commands
+  that were commented-out are back.
+
+[ 20140827 ]
+* Rewrote command system. Each command is now a unique class.
+
+[ 20140817 ]
+* Completed the file reading part of the new TR2 level loader
+
+[ 20140816 ]
+* Greatly extended LoaderTR2s reading code, but now seeing very
+  strange behavior in new Loader...
+
+[ 20140813 ]
+* Added LoaderTR1, LoaderTR3 stubs
+
+[ 20140812 ]
+* Started implementing new level file loader, currently TR2 only
+* Trigger new Loader when possible, but fallback to old TombRaider
+
+[ 20140811 ]
+* New Font API, allows drawing strings with line-wrapping
+* Added ability to Menu to show info dialogs
+* Split Menu into interface and implementations, like Sound/Window/Font
+* Menu now interface and dialog code, MenuFolder is file browser
+
+[ 20140810 ]
+* Removed recursive Folder access method implementations
+  into their own file
+* Menu now acts like a file-manager, only showing one folder,
+  and has the ability to go to the parent folder, and do mouse scrolling
+* Added API to Font to draw strings centered
+* Folder sorts its items alphabetically
+* Press dot key in Menu to see hidden files and folders
+* Console is now using std::string instead of char *
+* Added utf8-cpp dependency to allow Console to delete multi-byte chars
+* Added stream-style printing to Console
+* Using Console like Stream everywhere, removed old print method
+* Added Screenshot command back
+
+[ 20140809 ]
+* Script Unit Test brings it’s own scripts to test
+* Fixed binary Unit Test not deleting it’s tmp file in case of error
+* Removed Menu play button
+
+[ 20140808 ]
+* Added unit test for file-system utils
+* Moved Menu to Folder/File API
+
+[ 20140807 ]
+* Script parser successfully loading level scripts
+* Can also read TR3 script now
+* Also working with TR2/TR3 PSX Script (TOMBPSX.DAT)
+* Using getenv() instead of wordexp() for tilde expansion
+* Started implementing file-system handling utilities
+
+[ 20140806 ]
+* Improved Script reader and its Unit Test
+* Successfully parsing the TR2 Script strings!
+* Now using assertEqual globally
+
+[ 20140804 ]
+* Added preliminary Tomb Raider Script parser
+* Moved Unit Test folder
+* Compiling main.cpp into the unit tests
+
+[ 20140729 ]
+* Unit Tests are back, currently only for the binary reader
+* Some cmake build system improvements:
+  - deps/math/utils libs are now so-called object libraries
+  - added ctest unit testing
+
+[ 20140728 ]
+* Implemented binary file reading utility in preparation of
+  TombRaider.cpp/h rewrite
+* Added clibs/commander dependency used for command line argument parsing
+
+[ 20140714 ]
+* Fixed a bug where std::sort did not use the objects operator&lt;
+  method, but instead sorted based on the objects address in memory
+
+[ 20140706 ]
+* Use cmake to check for sys/time.h availability
+* Use long nearly everywhere where STL containers are interfaced,
+  thereby fixing most 64 to 32 bit conversion warnings
+
+[ 20140705 ]
+* Added basic Travis CI support
+* Removed global object, using lazy initialization
+
+[ 20140704 ]
+* Removed unnecessary #include dependencies
+* Removed vecX_t typedefs
+
+[ 20140703 ]
+* Removed SDL_GL_LoadLibrary() call and corresponding
+  config file entry
+
+[ 20140702 ]
+* Compiled successfully in Windows 7 using MinGW
+* Added Windows setup script
+* FontTRLE lps parser no longer using std::stoi
+
+[ 20140626 ]
+* ColorMode enum now global
+* Entities setAngles now sets all three angles
+* Added loadPNG to TextureManager
+* Added loadImage to TextureManager, _detecting_ the file type
+* Re-Implemented the move command
+* Prevent crash (segfault) when resizing window while console is
+  not fully scrolled to the bottom
+* Removed Render flags fUsePortals, fAllRooms, fOneRoom,
+  fViewModel and fUpdateRoomListPerFrame
+
+[ 20140624 ]
+* Some changes to allow compilation with Ubuntu 14.04 / gcc
+* Modified utils/png to allow compilation with different integer sizes
+  Thanks to Christian for his help and his Linux machine :)
+* Removed TextureManagers fUseMipmaps flag, now always used
+* TextureManager now using vector for GL texture IDs
+* TextureManager now global object, no longer part of Render
+
+[ 20140623 ]
 * Use unsigned char instead of float for colors
 
 [ 20140622 ]
@@ -272,7 +449,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Moved math, Matrix, Quaternion and Vector3d into new math lib
 * Added main.h/cpp with OpenRaider global
 * Rewrote time lib using ctime
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.2) xythobuz <a href="#" onclick="location.href='mai'+'lto:'+'xyt'+'ho'+'buz'+'@x'+'yth'+'ob'+'uz.'+'de'; return false;">xytho<span style="display: none;">.nosp@m.</span>buz@<span style="display: none;">.nosp@m.</span>xytho<span style="display: none;">.nosp@m.</span>buz.<span style="display: none;">.nosp@m.</span>de</a></h2>
+</pre><h2>OpenRaider (0.1.2) xythobuz <a href="#" onclick="location.href='mai'+'lto:'+'xyt'+'ho'+'buz'+'@x'+'yth'+'ob'+'uz.'+'de'; return false;">xytho<span style="display: none;">.nosp@m.</span>buz@<span style="display: none;">.nosp@m.</span>xytho<span style="display: none;">.nosp@m.</span>buz.<span style="display: none;">.nosp@m.</span>de</a></h2>
 <pre class="fragment">[ 20140313 ]
 * Removed unit tests. No unit tests are better then some half-assed
   non working ones...
@@ -498,7 +675,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 [ 20131215 ]
 * Wrote new README file
 * Added stub for missing hel/CollisionObject
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.1) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.1) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">[ 20030713 ]
 * UTPackage class forked from PSKModel class
 * System class gets download, dir backports
@@ -678,7 +855,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Skeletal model refactoring
 * Seperating entity and animation states and it's ugly
 * Finer animation control starts    
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">[ 20021228 ]
 * Md3 refactoring
 * Many Md3 fixes and features out of unit test work
@@ -701,7 +878,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Removed some dupilcate console commands out documented
 * Depth sorted particles
 * Lots of minor depth sorting and vising work
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre11) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre11) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Entity vis no longer considers rooms agian
 * New Vector replaces List as renderable container
   for a great deal of memory savings
@@ -719,7 +896,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * New wireframe mode color codes for renderable type
 * Entity sprites back
 * Time to move to beta versioning
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre10) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre10) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* New sshot upload script for my conv ;)
 * New entity rendering vising starts, primative depth sort
 * Static ( room models ) using sphere bounding volumes now
@@ -738,27 +915,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Emitter use moved into Render class
 * Seperation of physical and rendered world starts
 * Hel clean up, unit testing fixes
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre9-20021215) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre9-20021215) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* New Camera API, clean up starting
 * Quaternion ( class ) in cvs
 * Toggle for hel use
 * Fix port reporting is expected host order agian
 * libHel starts creeping into cvs build starting with some vising
 * Netcode fix
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre7-20021109) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre7-20021109) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Inactive text no longer rendered
 * More libhel work
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre7-20021109) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre7-20021109) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Little manual route chaining test for the fun of it
 * Trace tests
 * Merged (all?) GCC 3.2.x minor patches from my knoppix tests
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre6-20020913) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre6-20020913) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fix for console use before level load crash
 * TR4 hack to play footsteps when running
 * TR4 pak sounds loaded and playable - just not sourced yet
 * New play command
 * Improved sound support
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre6-20020907) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre6-20020907) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* TR4 pak sound reading and dumping 
   ( I couldn't find any paks using compression - however
     my algorithm can handle those that may )
@@ -773,7 +950,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Fixed crash related to invalid rooms?  Just allowing NULL rooms
   in list and handling
 * TR4 GL light support ( pretty )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre6-20020906) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre6-20020906) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* One room render command and changes for other old commands
 * Fix for crash using new room -&gt;adJRoom vector
 * Fixed room vertex lighting
@@ -783,20 +960,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Thanks dan for tesing multiplayer - lots of bugs found
 * Started moving room struct into more of a class type of
   collections and what not
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre6-20020905) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre6-20020905) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Hack to handle camera out of world - moves to like a FPS
   viewpoint -- needs quats and 'dragging' to make it smoother
 * Entities drawn in different order to handle large alpha 
   polygon in rooms ( Hack until sorting algorithm is in place )
 * Little hack to force exit of threads w/o calling back
 * Lowered network traffic rate and disabled debugging to stdout
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre5-20020904) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre5-20020904) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Code to handle bad texture ids, like in Nasa.tr2
 * Network multiplayer test Client/Server can now connect
   and pass data and generate clients on each end of game
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre5-20020903) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre5-20020903) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Network code starts
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre5-20020902) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre5-20020902) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Speed boost for entity room clipping
 * Fixed color lighting - still some polygons can go all white
 * Console commands for clipping and new fly mode
@@ -809,31 +986,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Found then fixed several memory leaks
 * Makefile rule just for memory profiling build ( make memory )
 * Vectors replacing Lists for most collection implementations in Render
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre5-20020830) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre5-20020830) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Turn animation for fun
 * Room vertex lighting back in
 * Vertex color/normal support changes for model meshes
 * Skeletal model/mesh model collision _support_
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre5-20020824) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre5-20020824) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Hop up/down to rooms when in void
 * Primative 3rd person camera
 * GL light support for TR1-TR3
 * New OpenGLMesh fixes black texture bug ( tris texture index was off )
 * Removed room mesh rendering from Render
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre5-20020823) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre5-20020823) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* OpenGLMesh and Light classes start
 * OpenRaider becomes singleton ( Trying to reduce Gobal deps )
 * Ah, a little free time -- cleaning up Render class a little
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre5-20020818) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre5-20020818) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Auto depends generation for certian people  =p
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre5-20020817) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre5-20020817) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Time based animation tracer
 * Rounded out mtk3d a little more with common func from
   other projects
 * New pathing subsystem
 * Relocatable data dir ( thanks joshua for idea )
   Set by using init var 'HomeDir'
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre4-20020816) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre4-20020816) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixed room mesh cache tris texcoors
 * Changed room tracking code
 * Replaced old room cache mesh texcoor system for tris
@@ -842,7 +1019,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Major OpenRaider class clean up, reducing, reformatting for
   use with picky compilers, etc
 * BUGS update, all maps retested -- should load all TR1-TR4 maps
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre3-20020815) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre3-20020815) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Debugging bad texture coor/vertex layout in some TR1/TR3/TR4 quads
 * Removed strict dummy quad insertion in OpenRaider::ProcessMoveables
 * Wall detection ( no clipping yet )
@@ -853,14 +1030,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   values ( seems to make TR4 and other levels loadable agian )
 * Stopped flickering idle lara by only drawing 1 frame of idle
 * Better bad cache quad handling?
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre2-20020814) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre2-20020814) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fix for room quad's texture bug
 * Console print system prototype
 * Misc clean ups
 * Level load menu prototype active by default
 * New debug info in game room/sector/pos
 * Floor player clipping by sector ( yay )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.1.0pre1-20020813) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.1.0pre1-20020813) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Floor player clipping by box ( hhmmm... )
 * Backport of Camera
 * Backport of SDLSystem prototype to replace SDL wrapper
@@ -868,37 +1045,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Hacky fix for texture ids for room polygons
   ( Caused by new fast cache room polygon builder )
 * Backport of UnRaider Texture handler
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.5-20020615) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.5-20020615) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Todo new texcoors for alpha quads, tris, and alpha tris not done
 * Bug found Texture ids broken on new room mesh translation
 * Texcoord fix for quads
 * Removed damned vertex arrays
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.5-20020609) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.5-20020609) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Partially fixed new renderer/translator
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.5-20020608) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.5-20020608) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* New Makefile optional memeory_test.cpp OBJ injection
 * "Commit of Doom" to break cvs source, yay!
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.5-20020607) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.5-20020607) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Render cleaned up a little more
 * New room mesh system using arrays
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020405) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020405) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixed TR4 bone layering
 * Worked on finiding/rendering ponytail some more
 * Moved angle clac for tags back into TombRaider class
 * Screenshot TGA file fix
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020405) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020405) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Ponytail hack
 * Better UV generation
 * Broke TR2 with the new animation framing 
 * Animation frame 'safety valve' to prevent overflows
   until it can be fixed correctly
 * Animation translation fixes
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020404) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020404) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* More TR format notes
 * TR4 object header
 * Minor changes to OpenRaider for speed/calarity
 * Idle aframe test code in
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020403) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020403) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fix for Lara model picking in TR4
 * Fix for TR4 loading ( tr4_light )
 * Fix for TR4 loading ( tr4_ai_data )
@@ -906,7 +1083,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Fix for world geo ( room bbox adjust )
 * Fix for bad mem usage reporting for overhead
 * Fix for HUGE memory leaks in TombRaider class
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020401) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020401) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fix for memfile size reporting
 * Fix for GLString truncation
 * New audio dir support back in
@@ -915,7 +1092,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   at compile time
 * Fix for m-string max accounting
 * RBTree fix for memeory ( must stop coding after 0200 )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020330) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020330) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Stability has degraded with aggressive feature prototyping
 * More information for zero allocs
 * Fix for some 0 byte allocatations found in project
@@ -930,9 +1107,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * More verbose fatal error reporting
 * Reworked memeory prototype into better code
 * Removed working list tracker from memeory
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020329) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020329) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Memeory memory overhead reduction for filename storage
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020328) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020328) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* You may want to disable USE_TREE_MEMINFO until RB is fixed
 * Back to dynamic C-strings to save 'memeory memory'
 * Wrote a RBTree implementation directly into Memeory util
@@ -948,7 +1125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * New delete accounting hack
 * New Memeory unit test features/fixes
 * Printing addr with hexadecimal for obvious reasons
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020327) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020327) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixed overlapped vars/data members
 * Dumps memeory report filename fix
 * Dumps memeory report for unfreed on exit now?
@@ -957,7 +1134,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Memeory profiling system starting
 * Font data fixes
 * Fixed sourceforge cvs tree
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020325) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020325) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixed bug where ent draw didn't account for viewmodel
   in same room
 * New texture binding method for strict checking and
@@ -965,7 +1142,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * More rendering toggles for more testing
 * Draw room bbox with r_portal
 * Moved more commands to console only ( See README )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020323) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020323) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fix rendering bug with r_portal
 * RC uses pakdir for strict path enforcement now
 * New RC commands for Map/Music that represent backend correctly
@@ -975,7 +1152,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   ( less memory, faster normal case, easier to add new commands )
 * Hack to try to unload level shows it's time to start a
   rewrite  =)
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020322) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020322) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Screenshot console command
 * View model render toggle console command
 * View model index fix for entity use
@@ -988,31 +1165,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Portal visual debugging
 * Console fix for prompt display after command given
 * Fix for bad cvs sync
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.4-20020321) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.4-20020321) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Portal (precompiled) use starts
 * Very basic console prototype in place
 * Render control flags ( Not same as mode flags )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020119) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020119) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Compile w/ -DEXPERIMENTAL_EMITTER_TEST to run snow test in game
 * Fix for RC loader
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020111) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020111) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Temp resource redundency pruning solution
 * More string safety auditing and fixes
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020109) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020109) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Hack to fix texture dumping
 * More string clean up
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020108) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020108) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Minor TR support work
 * Texture dumping fix for new mtk_tga
 * New tristrip rendering sprites
 * Changed to snprint in all objects now
 * Clean up in texture use
 * Clean up in screenshot code
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020107) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020107) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Animation frame testing hack back  keys '[' and ']' 
 * Reduction of room rendering top levels ( consistent speed? )
 * Improvments to texture handling and loading
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020106) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020106) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Updated mtk_tga from my current mtk_image source
   fixes tga save bug and more stuff
 * New more correct FPS counter for alpha testers amusement
@@ -1021,13 +1198,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * TombRaider getting ready for testing new class based system
 * Got new specs for TR4 and TR5
 * Readying class based system for new physics and rendering
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020104) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020104) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixes for fast texture cache for older tombraider data
 * Fixes for TombRaider unit test
 * Makefile changes for gcc 3.0
 * GLString use fix, forgot to disable culling - thanks dan
 * Keyboard turning ( On keys 1 and 4 for now ) by request  =)
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020103) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020103) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Tune up of Sound
 * Disable cusor show on switch to fullscreen also
 * GLString scaling
@@ -1035,7 +1212,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * New Sound flags ( allows for easier expansion )
 * Start loadscreen before caching sound now
 * NOTE audio support is fine - just low memory condition kill
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020102) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020102) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Broke audio support by switching around 
   OpenRaider, LoadLevel/SetupAudio
 * README update
@@ -1044,7 +1221,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Fix for Tombraider multiple Clear() bug
 * New load ordering, might break some things
 * More work on GLString use in OR
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20020101) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20020101) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Speed set on Camera
 * Played with some refactoring in OpenRaider class
   and thread hacks for external texture use
@@ -1057,34 +1234,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Emitter partial resync with freyja_particle tree
 * Render minor reduction/refactoring, breaking up some code
 * New GL font system for OpenRaider ( GLString )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20011231-2) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20011231-2) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* GlGetString use 'correct' fix
 * Music list reimplemented for CVS
 * Emitter commited to CVS ( oopsie )
 * Changlog reformated
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20011231) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20011231) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* New Changlog format
 * Minor GL string use 'temp fix' in Render
 * ModelDebug option to RC to disable model load debugging
 * TODO update
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010813) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010813) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Minor rendering changes
 * Particle test fix
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010813) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010813) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Particle testing ( Using one of my freyja prototypes )
 * Fullscreen toggle - '9' key
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010810) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010810) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Timer prototype starts, just using a time delay for now
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010624) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010624) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* New reference specs, moved to G400 MGA DRI on X 4.1.0
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010621) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010621) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Set up new box just for windows TR compatibility tests
   ( got old ppro out, bought a hdd for it - weee )
 * Testing exported meshes with Freyja
 * Freyja plug-in for TRMESH ( TombRaider mesh export )
 * Mesh export test for TombRaider
 * Texel adjustment method rolled back into TombRaider
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010620) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010620) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* TR4 sky mesh?
 * Texture changes
 * Freyja work with ponytail graphing
@@ -1093,7 +1270,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Splash screen for threaded loads (shakes for fullscreen feedback)
 * Particle engine research ( no code )
 * Threading testing
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010619) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010619) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Might wait to install X 4.0.1 to work on bump map rendering
 * Render check for multitexture
 * Fixed OpenRaider to use new TombRaider::Texture API
@@ -1103,7 +1280,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Special texture loading default use in TR4/TR5
 * Zero padding on dumped textures - yes, it is about time
 * Fixed special texture loading/dumping
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010618) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010618) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* 32bit texture default use in TR4/TR5
 * 32bit texture testing in TR5
 * Make rule regression testing in cvs tree
@@ -1112,37 +1289,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * TombRaider fixes for compression use and dellocation
 * New TombRaider::LoadTR5
 * Worked on TombRaider agent
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010617) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010617) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Added *some of the TR5 spec to regression test build
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010616) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010616) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Some minor checks for bad allocation of meshes?
 * Changed moveable code to assume nonanimated entity
 * Entity drawing tied to room drawing 
   (For vising, later use an entity cache per room to avoid full cycle)
 * Screenshot name now based on VERSION string (better bugs reports)
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010615) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010615) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixed Freyja tree's colored polygons
 * More debug output on animation building
 * Fixed Freyja's tree too
 * Fixed TR4 decompress bug 
   ( silly me, it only worked because of opt, didn't clear a var )
 * Animation grouping prototype
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010614) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010614) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixes for mesh rendering ambient light level
 * Fixes for animtion rendering
 * Fixes for animation loading 
   (TR2+ lara has some animation problems still, with junk frames)
   (TR1 lara works because all the right indices = 0)
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010613) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010613) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixed animations using steping fix I wrote for libfreyja_egg
   this breaks the old TR aniamtion hacks though  =)
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010612) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010612) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Back porting to Freyja to help figure out TR animation problems
 * Worked on TR5 and TR4 texture alpha flags
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010611) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010611) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixed skeletal/moveable loading and animation 
 * Starting entity mapping tracer
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010610) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010610) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* NOTE make enities list so dup models won't draw to same position
 * Caching caused segfault - so now emulate dumb smart pointers
 * Removed Free TR data, it caused to many segfaults,
@@ -1159,7 +1336,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Looking for moveable object drawing problems ( werid )
 * Fixed item positioning set on load
 * Fixed sprite/room amb lighting back to white ( heh, oops )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010609) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010609) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Void color only when outside world
 * Various minor renderer changes
 * Static mesh rendering fix (pad bad meshes with NULL meshes)
@@ -1172,28 +1349,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * No quaterions generated in current skeletal loader
   It'll be easy to add bone lerping later, but first I want
   correct behavior ( ie animation and placement )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010608) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010608) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Planning rendering engine #3 
 * Once skeletal models are in rendering engine #2 
   physics code can start
 * EXPERIMENTAL moveable code starts
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010607) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010607) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Moveable code finaling coming back in ( now with quats )
 * Bug fix to ignore bad meshes in some TR4 levels?
 * TombRaider class test
 * Some TR5 specs fell in my lap today  =)
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010606) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010606) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Mouse motion control fixes
 * Item sprite rendering ( TR1, TR2, and should work for others )
 * Item sprite loading ( TR1, TR2, and should work for others )
 * Fixed room sprite loading
 * Hack temp fixes for camera ( broke it bad last night )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010605) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010605) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Baisc strafing and better forward/backward movement on camera 
 * More user documentation and bug tracking
 * Portal toggle
 * Fixed TR4 crash on -1 mesh light flag; can't alloc -1 objects  =)
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010604) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010604) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Mouse look code
 * The portal code is hindered by the old XZ vis check  =(
   once it's replaced it should be 100% correct
@@ -1206,13 +1383,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Started on quaternion camera and quaternion support in mtk3d
 * TR4 sound fx postioning loader starts
 * GL driver string from resource
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010603) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010603) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* OpenGL fixes ( hopefully fixes radeon 'lineloop' bug )
 * SDL key code fixes
 * More SDL fixes for rendering
 * More SDL work, fixes
 * FPS counter prints to console every 100 frames
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010602) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010602) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* SDL is very slow atm ( drag ass )
   You can edit Makefile to set it to use it if you want
 * Finished basic test SDL interface
@@ -1226,11 +1403,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Cleaned code, fixed some documentation
 * Started work on Resource agent, not ready to replace old code yet
 * No longer dump textures, unless explictly set in rc file
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010531) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010531) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Fixed XEmacs modes should have been 'Mode: C++'
 * Looked at portal design guide, was useless
 * Added texel adjust fix to meshes ( fixes 1 pixel off alignment )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010530) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010530) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* SDL support starts back
 * Added my old linux joystick code
 * Basic sorted alpha poly render second pass with very small penalty
@@ -1240,7 +1417,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Static mesh rendering back ( doesn't use room lighting 
   intensity for now )
 * Texel alignment
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010529) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010529) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Static meshes
 * Model meshes
 * Mipmaps in Texture as option
@@ -1248,7 +1425,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Item sprite and room sprite loader code about finished
 * Finished adding my screenshot code from Freyja, and
   made it produce TGAs instead of PPMs ( cmd 'S' )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010528) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010528) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* POublic CVS Release 
 * Vertex lighting now functional and stable in new engine
 * Fix for TR4 water alpha via textile generator, but
@@ -1261,30 +1438,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * New textile loading by moving new code into Freyja's
   TombRaider module to handle *all pixmap generation
 * User documentation
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010527) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010527) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Testing
 * Resource system back in
 * AL init threaded off
 * Switched order of AL and GL inits 
   ( so you can have in game progess loader for loading )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010526) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010526) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Should have all the best of the engines merged by Monday!
 * Started model rendering code for engine #2
 * New mode control for WIREFRAME, SOLID, TEXTURE
 * Fixed texel index bug for rooms
 * New Camera methods for visibility and more accessors
 * Render engine #2 feature upgrade by merging with engine #1
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010525) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010525) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Rendering engine #2 fixes
 * New Camera method for positioning
 * Rendering engine #2 update
 * Added documentation to Sound agent
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.3-20010524) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.3-20010524) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Texture manager fixes
 * Tesselated quads
 * Removed dependence on libmtk_gl ( my GL tool kit for my 3d modeler ) 
 * Moved 16bit ARGB -&gt; 32bit RGBA texture util to TombRaider loader
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.2-20010523) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.2-20010523) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Render fixes
 * OpenAL fixes for /dev/dsp in use and _init guard
 * Added Sound manager, OpenAL support for groovy 3d audio  =)
@@ -1294,11 +1471,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Fixed segfault on texture handling
 * Removed splash screen code completely
   ( Will later use loader screens just like TR )
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.2-20010522) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.2-20010522) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Splash screen as compile time support
 * PThread support as compile time option
 * TR4 texel loading fixes
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.2-20010521) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.2-20010521) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* OpenRaider request for sourceforge hosting
 * New Render class is now the new renderer
 * GLUT use abstracted and placed into openraider.cpp
@@ -1310,7 +1487,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 * Freyja loader replaces yuri loader in test build
 * Splash screen
 * New engine starts
-</pre><h2><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> (0.0.2-20010520) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
+</pre><h2>OpenRaider (0.0.2-20010520) Mongoose <a href="#" onclick="location.href='mai'+'lto:'+'mon'+'go'+'ose'+'@u'+'ser'+'s.'+'sou'+'rc'+'efo'+'rg'+'e.n'+'et'; return false;">mongo<span style="display: none;">.nosp@m.</span>ose@<span style="display: none;">.nosp@m.</span>users<span style="display: none;">.nosp@m.</span>.sou<span style="display: none;">.nosp@m.</span>rcefo<span style="display: none;">.nosp@m.</span>rge.<span style="display: none;">.nosp@m.</span>net</a></h2>
 <pre class="fragment">* Removed drawing another lara as an error marker for movables
 * Removed level dumping and saving
 * Split up mesh rendering

@@ -1,13 +1,25 @@
 var searchData=
 [
-  ['w',['w',['../_font_8h.html#a374922f2c76c1e1d30e41ca5e00219ff',1,'FontString']]],
+  ['w',['w',['../struct_im_vec4.html#afeed5acd9f0d2043175f4da229d12a38',1,'ImVec4']]],
   ['walkaction',['walkAction',['../global_8h.html#a8657944732f2ddabce60de26e809df8ca329e638ac1e3595f7a442d2e364e4c79',1,'global.h']]],
   ['wall',['wall',['../class_sector.html#a0ac66158196de5b8ebcbc111ecac8a7d',1,'Sector']]],
+  ['wantcapturekeyboard',['WantCaptureKeyboard',['../struct_im_gui_i_o.html#a458e4ca98d896adb16e3a41ec6d2b811',1,'ImGuiIO']]],
+  ['wantcapturemouse',['WantCaptureMouse',['../struct_im_gui_i_o.html#af5b8add76c5d833a65df19b5456acd7e',1,'ImGuiIO']]],
+  ['where',['where',['../stb__textedit_8h.html#a49e87adbb75a18ffba1f853ac974b31d',1,'StbUndoRecord']]],
   ['white',['WHITE',['../global_8h.html#a950d786ca3096df00211e10504c3a8c1',1,'global.h']]],
-  ['width',['width',['../_tomb_raider_data_8h.html#a6ed2879a3fb337aefe0aa7e91ab68d41',1,'tr2_sprite_texture_t::width()'],['../tga_8cpp.html#a0729364da9ce763f51554511eda6fc1a',1,'tga_t::width()']]],
+  ['width',['Width',['../struct_im_gui_text_edit_state.html#aca9713fe1e099e4c713a03159131ffc5',1,'ImGuiTextEditState::Width()'],['../struct_im_bitmap_font.html#a83b53505348ad68a5e84aed5359e1f7a',1,'ImBitmapFont::FntGlyph::Width()'],['../_tomb_raider_data_8h.html#a6ed2879a3fb337aefe0aa7e91ab68d41',1,'tr2_sprite_texture_t::width()'],['../tga_8cpp.html#a0729364da9ce763f51554511eda6fc1a',1,'tga_t::width()']]],
+  ['widthtext',['widthText',['../class_font.html#a07e4c95082fd67057a747e85c4157080',1,'Font::widthText()'],['../class_font_manager.html#a914bb6a7304d14a783ea1fa01327c4bf',1,'FontManager::widthText()'],['../class_font_s_d_l.html#aaf902cecb8f63ecad56e7e70d49563e4',1,'FontSDL::widthText()'],['../class_font_t_r_l_e.html#a1aad867f1dec81d51604e6cc098f5506',1,'FontTRLE::widthText()']]],
   ['window',['Window',['../class_window.html',1,'']]],
   ['window_2ecpp',['Window.cpp',['../_window_8cpp.html',1,'']]],
   ['window_2eh',['Window.h',['../_window_8h.html',1,'']]],
+  ['windowfillalphadefault',['WindowFillAlphaDefault',['../struct_im_gui_style.html#a5adada4ad1dfd452a62ed26052d313cb',1,'ImGuiStyle']]],
+  ['windowglut',['WindowGLUT',['../class_window_g_l_u_t.html',1,'WindowGLUT'],['../class_window_g_l_u_t.html#af618844c05c13175f7bbce08007584fb',1,'WindowGLUT::WindowGLUT()']]],
+  ['windowglut_2ecpp',['WindowGLUT.cpp',['../_window_g_l_u_t_8cpp.html',1,'']]],
+  ['windowglut_2eh',['WindowGLUT.h',['../_window_g_l_u_t_8h.html',1,'']]],
+  ['windowminsize',['WindowMinSize',['../struct_im_gui_style.html#a060b2f743a086d0f0fee4cd5b3f372d4',1,'ImGuiStyle']]],
+  ['windowpadding',['WindowPadding',['../struct_im_gui_style.html#a37f156b53e6dcc99ff57366ceafe8b50',1,'ImGuiStyle::WindowPadding()'],['../struct_im_gui_window.html#acc623891f86112d2fef71bf89e796297',1,'ImGuiWindow::WindowPadding()']]],
+  ['windowrounding',['WindowRounding',['../struct_im_gui_style.html#acd902c2ab4b53d4bb0f64da608320894',1,'ImGuiStyle']]],
+  ['windows',['Windows',['../struct_im_gui_state.html#a19411a02ae0df2b751efc5a4cbf0fe45',1,'ImGuiState']]],
   ['windowsdl',['WindowSDL',['../class_window_s_d_l.html',1,'WindowSDL'],['../class_window_s_d_l.html#ae992458bd6df21482d7bbec9a6a48f88',1,'WindowSDL::WindowSDL()']]],
   ['windowsdl_2ecpp',['WindowSDL.cpp',['../_window_s_d_l_8cpp.html',1,'']]],
   ['windowsdl_2eh',['WindowSDL.h',['../_window_s_d_l_8h.html',1,'']]],
@@ -53,6 +65,5 @@ var searchData=
   ['world',['World',['../class_world.html',1,'']]],
   ['world_2ecpp',['World.cpp',['../_world_8cpp.html',1,'']]],
   ['world_2eh',['World.h',['../_world_8h.html',1,'']]],
-  ['writechar',['writeChar',['../class_font_t_r_l_e.html#aa6fc0563706873a1150b6b4c86d90e84',1,'FontTRLE']]],
-  ['writestring',['writeString',['../class_font.html#ab8ce87d1f2f3c1e0068ba7066998c9e5',1,'Font::writeString()'],['../class_font_manager.html#a3f517c54fc6a3a6bde205f548e675faa',1,'FontManager::writeString()'],['../class_font_s_d_l.html#a8143f31e5b5a5bab3ea31fe54ac3e5f5',1,'FontSDL::writeString()'],['../class_font_t_r_l_e.html#aaa2bfc4942965a26411cd29c267cbb66',1,'FontTRLE::writeString()']]]
+  ['writechar',['writeChar',['../class_font_t_r_l_e.html#a402b01287739131316344858357085a4',1,'FontTRLE']]]
 ];

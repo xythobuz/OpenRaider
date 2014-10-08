@@ -1,6 +1,6 @@
 <map id="src/Window.cpp" name="src/Window.cpp">
-<area shape="rect" id="node5" href="$global_8h.html" title="Global typedefs. " alt="" coords="166,80,233,107"/>
-<area shape="rect" id="node8" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="425,80,517,107"/>
-<area shape="rect" id="node10" href="$strings_8h.html" title="String handling utilities. " alt="" coords="307,80,401,107"/>
-<area shape="rect" id="node12" href="$_window_8h.html" title="Windowing interface. " alt="" coords="541,80,620,107"/>
+<area shape="rect" id="node6" href="$global_8h.html" title="Global typedefs. " alt="" coords="333,80,399,107"/>
+<area shape="rect" id="node12" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="424,80,516,107"/>
+<area shape="rect" id="node13" href="$strings_8h.html" title="String handling utilities. " alt="" coords="541,80,634,107"/>
+<area shape="rect" id="node15" href="$_window_8h.html" title="Windowing interface. " alt="" coords="659,80,737,107"/>
 </map>

@@ -1,15 +1,23 @@
 var searchData=
 [
   ['g',['g',['../_tomb_raider_data_8h.html#a389525b4a233456542fb0070bf2ad765',1,'tr2_colour_t']]],
-  ['gcamera',['gCamera',['../main_8cpp.html#a1dfc8527218f1e47af8c1dc10e2a1ae4',1,'main.cpp']]],
-  ['gconsole',['gConsole',['../main_8cpp.html#a81d9d9d65190e292f6f2a8525c8186e0',1,'main.cpp']]],
-  ['gfont',['gFont',['../main_8cpp.html#a73e4e150ad25f34c461704d946aa7ffa',1,'main.cpp']]],
-  ['ggame',['gGame',['../main_8cpp.html#a9c736eeacb33e9a726d7f3d9e23a65aa',1,'main.cpp']]],
-  ['gmenu',['gMenu',['../main_8cpp.html#a661a4df2486963a7bebcafcd5a93f074',1,'main.cpp']]],
-  ['gopenraider',['gOpenRaider',['../main_8cpp.html#a4df056baa1d70b811aba0df4fa966262',1,'main.cpp']]],
+  ['gameisrunning',['gameIsRunning',['../class_run_time.html#af006ec82eaa471e969fc8dcb7b3538eb',1,'RunTime']]],
+  ['gamestrings',['gameStrings',['../class_script.html#a28f3407b5265a9363819dd1500b88cac',1,'Script']]],
+  ['gcamera',['gCamera',['../main_8cpp.html#af49908479ac7d578b355b65f7b858651',1,'main.cpp']]],
+  ['getclipboardtextfn',['GetClipboardTextFn',['../struct_im_gui_i_o.html#a67295270e0a2ab910b7da3078274a444',1,'ImGuiIO']]],
+  ['gfont',['gFont',['../main_8cpp.html#ab54b1273870eae95f61566dfc637863f',1,'main.cpp']]],
+  ['ggame',['gGame',['../main_8cpp.html#ac0e4c017c6ab3f86c7c438cee4fd909a',1,'main.cpp']]],
+  ['gimgui',['GImGui',['../imgui_8cpp.html#a9265359c0009bc201348e9aecf14cb6f',1,'imgui.cpp']]],
+  ['glog',['gLog',['../main_8cpp.html#a3c76805b21ac90b50409571a38e658d7',1,'main.cpp']]],
+  ['glyphs',['Glyphs',['../struct_im_bitmap_font.html#aaa3faea270c4d1894ed26750bf8104b9',1,'ImBitmapFont']]],
+  ['glyphscount',['GlyphsCount',['../struct_im_bitmap_font.html#a828d5c9e7266b8efd6f533ea5d37ca70',1,'ImBitmapFont']]],
+  ['gmenu',['gMenu',['../main_8cpp.html#ae37941a2660d5f7f477d58681d04394a',1,'main.cpp']]],
   ['green',['green',['../_tomb_raider_data_8h.html#a9147049f74c370df6d1984c9dcfe4758',1,'tr5_light_t::green()'],['../global_8h.html#a12ba9d60deeae060caa7041f42aac451',1,'GREEN():&#160;global.h']]],
-  ['grender',['gRender',['../main_8cpp.html#a365f6342bca615b49d550417aea532b1',1,'main.cpp']]],
+  ['grender',['gRender',['../main_8cpp.html#ace6f1715f614f01729fa398db58bf761',1,'main.cpp']]],
   ['grey',['GREY',['../global_8h.html#a13e719c024e4277496bf35f3e2194b63',1,'global.h']]],
-  ['gsound',['gSound',['../main_8cpp.html#acf23028e770c203555c74d23a5e1c874',1,'main.cpp']]],
-  ['gworld',['gWorld',['../main_8cpp.html#aac2a078bd15bb08f36417cf55d9ce512',1,'main.cpp']]]
+  ['gruntime',['gRunTime',['../main_8cpp.html#ac633cdfb6fc68c4600048ebbf8a917cd',1,'main.cpp']]],
+  ['gsound',['gSound',['../main_8cpp.html#a9fb186cd432c5843f153e3c52e607baf',1,'main.cpp']]],
+  ['gtexturemanager',['gTextureManager',['../main_8cpp.html#a46554c05eb6b68ca3e7977b2cd028f1e',1,'main.cpp']]],
+  ['gwindow',['gWindow',['../main_8cpp.html#a2644207891b5f7354ff4ecceb9b8a6c9',1,'main.cpp']]],
+  ['gworld',['gWorld',['../main_8cpp.html#a76aafacf3912a1bf3b090c5597cdf3a9',1,'main.cpp']]]
 ];

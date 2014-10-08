@@ -1,0 +1,27 @@
+digraph "Game::processPakSounds"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Game::processPakSounds",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TombRaider::getSoundSamples\lCount",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#adc75cf7e49ba1b02cec58e769c81ed6b",tooltip="Get number of loaded sound samples. "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TombRaider::Engine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#aa020667e2394f5c3a8173ee0231ef0fb"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TombRaider::getSoundSample",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#a0b3a626ab515ed4ec77941f31053b5a7",tooltip="Get a copy of a sound sample and its byte size. "];
+  Node4 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TombRaider::getRiffData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#ac7e89473a3cdf38475ef59148cb9cbda",tooltip="Get a copy of the sound samples. "];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TombRaider::print",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#a0789f85ca23981025700c29214cfa8f3"];
+  Node4 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TombRaider::getRiffDataTR4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#abd935e1e7fb62bf6438fdeb7c11abd26",tooltip="Get a copy of a TR4 sound sample. "];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="getSound",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_sound_8h.html#a0aafbf3a7424dbaa94d85640abc6c25e"];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Sound::addWave",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sound.html#a2aad7480366f3e37b37cd96726d2bf86",tooltip="Load wav file from buffer. "];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="getLog",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_log_8h.html#aa2f604b13755d77658307017af86624a"];
+}

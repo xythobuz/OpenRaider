@@ -1,0 +1,31 @@
+digraph "ImGui::ClipAdvance"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="ImGui::ClipAdvance",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="GetCurrentWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$imgui_8cpp.html#adf96ede6decde2f532a9cfd91deff1b7"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ImGui::IsClipped",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#ae07644eac32544b2e923020dbc3d45f8"];
+  Node3 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ImGuiAabb::Overlaps",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_im_gui_aabb.html#a3b20085387cb51fe48f870023cf5b64b"];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ImVector::back",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_im_vector.html#a3e4424d3fca190894598a6575f9d2401"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ImGui::IsMouseHoveringBox",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#aef0394b7afa4c5f743bd7a9a204b8a08"];
+  Node6 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="ImVector::empty",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_im_vector.html#a0605d0ed312e7fad24e3602f6b1b9310"];
+  Node6 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="ImGuiAabb::Clip",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_im_gui_aabb.html#a2fb689f41fa136f0d0230d3915d7309d"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="ImMax",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$imgui_8cpp.html#a6fb8dd1bd2fa0e1c6065dc7123cb7f3e"];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="ImMin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$imgui_8cpp.html#ac3ad7e7626cd6b46456b3f4c35025d74"];
+  Node6 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="ImGuiAabb::Contains",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_im_gui_aabb.html#abaaac47a27f3fcc4b8e4c7051b2a70c3"];
+}

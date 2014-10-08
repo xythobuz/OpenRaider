@@ -1,0 +1,36 @@
+digraph "Vector3d::Vector3d"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Vector3d::Vector3d",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Vector3d::cross",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector3d.html#aebae00da2def3b4d107a195aff5cc1f9",tooltip="Calculate cross product. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="intersectionLinePolygon",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$math_8cpp.html#a9073c91a02ab1180e64e7ddf76991a94",tooltip="Calculate Intersection of a line and a polygon. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Room::getAdjoiningRoom",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_room.html#ade5b7644ff5720f1251097f9110148b9"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Entity::move",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_entity.html#ac081c2b4fd1ee2a737db44a306ec466d"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Game::handleAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#a2159fe214fb67768f3a0d6d887206c31"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="UI::eventsFinished",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_u_i.html#a2436dbc9c0678fd729b983b9475bc0f4"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="WindowGLUT::eventHandling",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_window_g_l_u_t.html#af16462cbccb831e8395012383b69b365"];
+  Node7 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="WindowSDL::eventHandling",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_window_s_d_l.html#a77e59286d958d1be56b9dc53108e58b0"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Vector3d::unit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector3d.html#aa9d21f3f1f93088b2a508f83387b897e",tooltip="Normalize. "];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="Vector3d::zeroVector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector3d.html#aac7a3caa673946406b2ea5d1c5ebf4e9",tooltip="Get the Zero vector. "];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="Vector3d::operator+",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector3d.html#a1112fb342cf36606ea95f30e0fda8597",tooltip="Add to this vector. "];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="Vector3d::operator-",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector3d.html#af3f86bf0da9ad989f3b7529c7de4af4d",tooltip="Subtract from this vector. "];
+  Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="Vector3d::operator*",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector3d.html#addfed9e72f26382d77726af3047cb566",tooltip="Scale this vector. "];
+  Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="Vector3d::operator/",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector3d.html#accf74833a41c55efb9f0ae155ce05185",tooltip="Scale this vactor. "];
+}

@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -65,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -80,39 +81,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">To-Do List </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2>General</h2>
+<div class="textblock"><ul>
+<li><a class="el" href="class_console.html">Console</a> no longer has command history (arrow up, down)</li>
+</ul>
+<h2>General</h2>
 <ul>
-<li>Endian dependence ugly, shouldn't dereference to different types?<ul>
-<li><a class="el" href="_tomb_raider_8h.html" title="Loads maps, meshes, textures... ">TombRaider.h</a>/cpp structs aren't aligned... unportable to some big endian &amp; other archs?!</li>
-</ul>
-</li>
-<li>Use more asserts</li>
-<li>Don't use C-Style code, try to replace with C++ lib<ul>
-<li>Use std::strings</li>
-<li>Rewrite <a class="el" href="class_console.html" title="Console &#39;overlay&#39;. ">Console</a> and use operator &lt;&lt; to write to the console?</li>
-</ul>
-</li>
-<li>SDL_TTF 2.0.12+ <a href="http://stackoverflow.com/questions/17847818/how-to-do-line-breaks-and-line-wrapping-with-sdl-ttf/18418688#18418688">can do line breaks</a>, use it</li>
+<li>Move to newer OpenGL (GL ES or 2.1 or 3.x or 4.x?)</li>
+<li>Don't use C-Style code, try to replace with C++ lib</li>
 <li><a class="el" href="class_mesh.html" title="OpenGL Mesh. ">Mesh</a> has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even combining <a class="el" href="class_mesh.html" title="OpenGL Mesh. ">Mesh</a> and <a class="el" href="class_static_mesh.html">StaticMesh</a>...</li>
 <li>Don’t use float everywhere just because (eg. float colors)</li>
+<li>Add verbose command line flag for debug output also in release builds</li>
+<li>Don’t depend on setup: no data or config files should be necessary</li>
+<li>Be able to change configuration from within OpenRaider</li>
 </ul>
-<h2>Changes</h2>
+<h2>Bugs</h2>
 <ul>
-<li>Using std::vector with [] is not bound checked. Segfaults were caused because the upper bound of the argument was never checked and garbage was returned... Do consistent checks, or use .at() as it throws an exception</li>
+<li>Screenshots are sometimes not written, sometimes distorted?<ul>
+<li>Seems to happen if OpenRaider.ini sets a resolution larger than the window can be</li>
+</ul>
+</li>
 </ul>
 <h2>Cmake</h2>
 <ul>
-<li>Windows setup script needed, moving to AppData/Roaming</li>
 <li>Support SSE with other compilers than Clang (src/CMakeLists.txt)</li>
 <li>Visual C++ compiler flags? (CMakeLists.txt)</li>
+<li>Better test integration</li>
 </ul>
 <h2>Future Features</h2>
 <ul>
+<li>Depend on physfs for easier file location management</li>
+<li>Depend on libcdio, use it to read original CDs or CUE/TOC/ISO images</li>
+<li>Add ability to play the FMVs. Format? VLC can play them!</li>
 <li>Cut TGA image reader, currently only used for menu background?!<ul>
-<li>Abstract image reading/writing, like <a class="el" href="class_font.html" title="Font interface. ">Font</a> Engine selection</li>
+<li>Need useful, always available image writer alternative for screenshots then </li>
 </ul>
 </li>
-<li>When cutscene rendering is working, use TR4/5 style menu? </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->

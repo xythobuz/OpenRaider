@@ -1,46 +1,36 @@
 <map id="include/math/math.h" name="include/math/math.h">
-<area shape="rect" id="node2" href="$_camera_8h.html" title="Camera class. " alt="" coords="457,155,577,181"/>
-<area shape="rect" id="node5" href="$_command_8cpp.html" title="OpenRaider command implementation. " alt="" coords="1630,603,1757,629"/>
-<area shape="rect" id="node10" href="$_open_raider_8cpp.html" title="Main Game Object. " alt="" coords="1469,603,1606,629"/>
-<area shape="rect" id="node11" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="481,603,589,629"/>
-<area shape="rect" id="node17" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="605,80,773,107"/>
-<area shape="rect" id="node18" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="839,155,979,181"/>
-<area shape="rect" id="node19" href="$_room_data_8h.html" title="World Room Mesh. " alt="" coords="637,229,774,256"/>
-<area shape="rect" id="node20" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="434,304,542,331"/>
-<area shape="rect" id="node26" href="$_world_8cpp.html" title="The game world (model) " alt="" coords="1363,453,1461,480"/>
-<area shape="rect" id="node28" href="$_view_volume_8cpp.html" title="src/ViewVolume.cpp" alt="" coords="756,379,895,405"/>
-<area shape="rect" id="node29" href="$math_8cpp.html" title="Vector and Matrix math. " alt="" coords="1386,229,1513,256"/>
-<area shape="rect" id="node30" href="$_matrix_8cpp.html" title="3D Matrix " alt="" coords="849,229,983,256"/>
-<area shape="rect" id="node31" href="$_quaternion_8cpp.html" title="Quaternion. " alt="" coords="602,155,763,181"/>
-<area shape="rect" id="node32" href="$_entity_8h.html" title="World Entities. " alt="" coords="1310,304,1415,331"/>
-<area shape="rect" id="node33" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="1057,229,1209,256"/>
-<area shape="rect" id="node34" href="$_font_t_r_l_e_8h.html" title="Tomb Raider Level Editor Font loader. " alt="" coords="1689,80,1820,107"/>
-<area shape="rect" id="node37" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="125,80,232,107"/>
-<area shape="rect" id="node39" href="$_sprite_8h.html" title="World Sprite. " alt="" coords="368,229,475,256"/>
-<area shape="rect" id="node40" href="$_static_mesh_8h.html" title="Static Model Meshes. " alt="" coords="1149,304,1286,331"/>
-<area shape="rect" id="node41" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="1257,80,1412,107"/>
-<area shape="rect" id="node42" href="$_vector3d_8cpp.html" title="3D Math vector " alt="" coords="1314,155,1462,181"/>
-<area shape="rect" id="node43" href="$_sound_a_l_8cpp.html" title="This is the OpenAL audio manager Implementation. " alt="" coords="1844,80,1964,107"/>
-<area shape="rect" id="node44" href="$_tomb_raider_8cpp.html" title="Loads maps, meshes, textures... " alt="" coords="1988,80,2124,107"/>
-<area shape="rect" id="node45" href="$_window_8cpp.html" title="windowing implementation " alt="" coords="2148,80,2263,107"/>
-<area shape="rect" id="node3" href="$_game_8h.html" title="Game abstraction. " alt="" coords="1227,453,1338,480"/>
-<area shape="rect" id="node8" href="$main_8cpp.html" title="Where main() is. " alt="" coords="797,603,891,629"/>
-<area shape="rect" id="node14" href="$_sprite_8cpp.html" title="World Sprite. " alt="" coords="388,528,487,555"/>
-<area shape="rect" id="node16" href="$_camera_8cpp.html" title="Camera class. " alt="" coords="499,229,613,256"/>
-<area shape="rect" id="node4" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="1211,528,1355,555"/>
-<area shape="rect" id="node7" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="1342,603,1445,629"/>
-<area shape="rect" id="node13" href="$_room_8cpp.html" title="World Room Mesh. " alt="" coords="511,528,612,555"/>
-<area shape="rect" id="node15" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="955,528,1085,555"/>
-<area shape="rect" id="node6" href="$_console_8cpp.html" title="Console &#39;overlay&#39;. " alt="" coords="1080,603,1195,629"/>
-<area shape="rect" id="node9" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="1219,603,1317,629"/>
-<area shape="rect" id="node12" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="915,603,1055,629"/>
-<area shape="rect" id="node27" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="725,304,870,331"/>
-<area shape="rect" id="node23" href="$_room_data_8cpp.html" title="World Room Mesh. " alt="" coords="677,453,808,480"/>
-<area shape="rect" id="node21" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="535,379,649,405"/>
-<area shape="rect" id="node25" href="$_world_8h.html" title="The game world (model) " alt="" coords="1049,379,1156,405"/>
-<area shape="rect" id="node22" href="$_entity_8cpp.html" title="World Entities. " alt="" coords="1053,453,1152,480"/>
-<area shape="rect" id="node24" href="$_skeletal_model_8cpp.html" title="This is the factored out skeletal model class. " alt="" coords="833,453,978,480"/>
-<area shape="rect" id="node35" href="$_font_manager_8cpp.html" title="Font Manager. " alt="" coords="1690,155,1833,181"/>
-<area shape="rect" id="node36" href="$_font_t_r_l_e_8cpp.html" title="SDL Font implementation. " alt="" coords="1857,155,1981,181"/>
-<area shape="rect" id="node38" href="$_mesh_8cpp.html" title="OpenGL Mesh. " alt="" coords="43,155,141,181"/>
+<area shape="rect" id="node2" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="831,80,999,107"/>
+<area shape="rect" id="node8" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="501,453,609,480"/>
+<area shape="rect" id="node10" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="1365,155,1505,181"/>
+<area shape="rect" id="node24" href="$_world_8cpp.html" title="The game world (model) " alt="" coords="2637,453,2735,480"/>
+<area shape="rect" id="node26" href="$_view_volume_8cpp.html" title="src/ViewVolume.cpp" alt="" coords="1078,304,1217,331"/>
+<area shape="rect" id="node27" href="$math_8cpp.html" title="Vector and Matrix math. " alt="" coords="1717,229,1844,256"/>
+<area shape="rect" id="node28" href="$_matrix_8cpp.html" title="3D Matrix " alt="" coords="1509,229,1642,256"/>
+<area shape="rect" id="node29" href="$_quaternion_8cpp.html" title="Quaternion. " alt="" coords="715,155,876,181"/>
+<area shape="rect" id="node30" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="1703,80,1858,107"/>
+<area shape="rect" id="node31" href="$_vector3d_8cpp.html" title="3D Math vector " alt="" coords="1820,155,1968,181"/>
+<area shape="rect" id="node32" href="$imgui_8cpp.html" title="src/deps/imgui/imgui.cpp" alt="" coords="1933,80,2093,107"/>
+<area shape="rect" id="node33" href="$_sound_a_l_8cpp.html" title="This is the OpenAL audio manager Implementation. " alt="" coords="2117,80,2237,107"/>
+<area shape="rect" id="node34" href="$_tomb_raider_8cpp.html" title="Loads maps, meshes, textures... " alt="" coords="2261,80,2397,107"/>
+<area shape="rect" id="node35" href="$_window_8cpp.html" title="windowing implementation " alt="" coords="2421,80,2535,107"/>
+<area shape="rect" id="node3" href="$_camera_8h.html" title="Camera class. " alt="" coords="682,379,802,405"/>
+<area shape="rect" id="node4" href="$_camera_8cpp.html" title="Camera class. " alt="" coords="5,453,119,480"/>
+<area shape="rect" id="node5" href="$_command_set_8cpp.html" title="Set command. " alt="" coords="143,453,354,480"/>
+<area shape="rect" id="node6" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="752,453,855,480"/>
+<area shape="rect" id="node7" href="$main_8cpp.html" title="Where main() is. " alt="" coords="633,453,728,480"/>
+<area shape="rect" id="node9" href="$_sprite_8cpp.html" title="World Sprite. " alt="" coords="378,453,477,480"/>
+<area shape="rect" id="node11" href="$_room_data_8h.html" title="World Room Mesh. " alt="" coords="1347,229,1484,256"/>
+<area shape="rect" id="node25" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="1125,229,1271,256"/>
+<area shape="rect" id="node12" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="1397,304,1505,331"/>
+<area shape="rect" id="node19" href="$_room_data_8cpp.html" title="World Room Mesh. " alt="" coords="2229,453,2359,480"/>
+<area shape="rect" id="node13" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="1247,379,1362,405"/>
+<area shape="rect" id="node18" href="$_room_8cpp.html" title="World Room Mesh. " alt="" coords="2103,453,2205,480"/>
+<area shape="rect" id="node22" href="$_world_8h.html" title="The game world (model) " alt="" coords="1434,379,1541,405"/>
+<area shape="rect" id="node14" href="$_command_animate_8cpp.html" title="Animate command. " alt="" coords="1547,453,1785,480"/>
+<area shape="rect" id="node15" href="$_command_engine_8cpp.html" title="Engine commands. " alt="" coords="1292,453,1523,480"/>
+<area shape="rect" id="node16" href="$_command_render_8cpp.html" title="Renderer commands. " alt="" coords="879,453,1112,480"/>
+<area shape="rect" id="node17" href="$_entity_8cpp.html" title="World Entities. " alt="" coords="1810,453,1909,480"/>
+<area shape="rect" id="node20" href="$_skeletal_model_8cpp.html" title="This is the factored out skeletal model class. " alt="" coords="1933,453,2079,480"/>
+<area shape="rect" id="node21" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="1137,453,1267,480"/>
+<area shape="rect" id="node23" href="$_command_game_8cpp.html" title="Game meta&#45;commands. " alt="" coords="2384,453,2612,480"/>
 </map>

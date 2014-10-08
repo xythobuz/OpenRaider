@@ -1,10 +1,14 @@
 <map id="include/Window.h" name="include/Window.h">
-<area shape="rect" id="node2" href="$_window_s_d_l_8h.html" title="SDL windowing implementation. " alt="" coords="74,80,221,107"/>
-<area shape="rect" id="node5" href="$_console_8cpp.html" title="Console &#39;overlay&#39;. " alt="" coords="245,80,359,107"/>
-<area shape="rect" id="node6" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="383,80,482,107"/>
-<area shape="rect" id="node7" href="$_open_raider_8cpp.html" title="Main Game Object. " alt="" coords="507,80,644,107"/>
-<area shape="rect" id="node8" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="668,80,776,107"/>
-<area shape="rect" id="node9" href="$_window_8cpp.html" title="windowing implementation " alt="" coords="801,80,915,107"/>
-<area shape="rect" id="node3" href="$_command_8cpp.html" title="OpenRaider command implementation. " alt="" coords="5,155,132,181"/>
-<area shape="rect" id="node4" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="156,155,296,181"/>
+<area shape="rect" id="node2" href="$_window_g_l_u_t_8h.html" title="GLUT windowing implementation. " alt="" coords="5,80,160,107"/>
+<area shape="rect" id="node4" href="$_window_s_d_l_8h.html" title="SDL windowing implementation. " alt="" coords="184,80,331,107"/>
+<area shape="rect" id="node6" href="$_command_set_8cpp.html" title="Set command. " alt="" coords="355,80,565,107"/>
+<area shape="rect" id="node7" href="$_font_8cpp.html" title="Font implementation. " alt="" coords="589,80,680,107"/>
+<area shape="rect" id="node8" href="$main_8cpp.html" title="Where main() is. " alt="" coords="705,80,799,107"/>
+<area shape="rect" id="node9" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="824,80,923,107"/>
+<area shape="rect" id="node10" href="$_menu_folder_8cpp.html" title="File&#45;Explorer like menu. " alt="" coords="947,80,1079,107"/>
+<area shape="rect" id="node11" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="1103,80,1211,107"/>
+<area shape="rect" id="node12" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="1235,80,1314,107"/>
+<area shape="rect" id="node13" href="$_window_8cpp.html" title="windowing implementation " alt="" coords="1339,80,1453,107"/>
+<area shape="rect" id="node3" href="$_window_g_l_u_t_8cpp.html" title="GLUT windowing implementation. " alt="" coords="9,155,157,181"/>
+<area shape="rect" id="node5" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="187,155,327,181"/>
 </map>

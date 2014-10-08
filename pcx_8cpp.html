@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,7 +88,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">pcx.cpp File Reference</div>  </div>
@@ -97,31 +97,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>PCX image reader.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;fstream&gt;</code><br/>
+<code>#include &lt;iostream&gt;</code><br/>
 <code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="pcx_8h_source.html">utils/pcx.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_console_8h_source.html">Console.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for pcx.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pcx_8cpp__incl.svg" width="471" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="pcx_8cpp__incl.svg" width="466" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
 <p><a href="pcx_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ad60289d8112239d33352413a337345a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcx_8cpp.html#ad60289d8112239d33352413a337345a5">pcxPrint</a>&#160;&#160;&#160;<a class="el" href="main_8cpp.html#a42daf3f66ef8157f19a95a61c04bb0ae">getConsole</a>().print</td></tr>
-<tr class="separator:ad60289d8112239d33352413a337345a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a9c7d84dde832d639e28aae229611a6b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcx_8cpp.html#a9c7d84dde832d639e28aae229611a6b0">pcxCheck</a> (const char *filename)</td></tr>
 <tr class="memdesc:a9c7d84dde832d639e28aae229611a6b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a file is a valid PCX image.  <a href="#a9c7d84dde832d639e28aae229611a6b0">More...</a><br/></td></tr>
 <tr class="separator:a9c7d84dde832d639e28aae229611a6b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3ea4ea51a6fe0900e0845d798b41810"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcx_8cpp.html#ae3ea4ea51a6fe0900e0845d798b41810">pcxLoad</a> (const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, <a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">TextureManager::ColorMode</a> *mode, unsigned int *bpp)</td></tr>
-<tr class="memdesc:ae3ea4ea51a6fe0900e0845d798b41810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a PCX image file into a buffer.  <a href="#ae3ea4ea51a6fe0900e0845d798b41810">More...</a><br/></td></tr>
-<tr class="separator:ae3ea4ea51a6fe0900e0845d798b41810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6e3360d84e3417d90b4d6b5fc459b02"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcx_8cpp.html#af6e3360d84e3417d90b4d6b5fc459b02">pcxLoad</a> (const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, <a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443f">ColorMode</a> *mode, unsigned int *bpp)</td></tr>
+<tr class="memdesc:af6e3360d84e3417d90b4d6b5fc459b02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a PCX image file into a buffer.  <a href="#af6e3360d84e3417d90b4d6b5fc459b02">More...</a><br/></td></tr>
+<tr class="separator:af6e3360d84e3417d90b4d6b5fc459b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>PCX image reader. </p>
@@ -129,22 +124,7 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="pcx_8cpp_source.html">pcx.cpp</a>.</p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="ad60289d8112239d33352413a337345a5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define pcxPrint&#160;&#160;&#160;<a class="el" href="main_8cpp.html#a42daf3f66ef8157f19a95a61c04bb0ae">getConsole</a>().print</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="pcx_8cpp_source.html#l00017">17</a> of file <a class="el" href="pcx_8cpp_source.html">pcx.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a9c7d84dde832d639e28aae229611a6b0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -168,11 +148,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success </dd></dl>
 
-<p>Definition at line <a class="el" href="pcx_8cpp_source.html#l00019">19</a> of file <a class="el" href="pcx_8cpp_source.html">pcx.cpp</a>.</p>
+<p>Definition at line <a class="el" href="pcx_8cpp_source.html#l00017">17</a> of file <a class="el" href="pcx_8cpp_source.html">pcx.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae3ea4ea51a6fe0900e0845d798b41810"></a>
+<a class="anchor" id="af6e3360d84e3417d90b4d6b5fc459b02"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -203,7 +183,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">TextureManager::ColorMode</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443f">ColorMode</a> *&#160;</td>
           <td class="paramname"><em>mode</em>, </td>
         </tr>
         <tr>
@@ -234,7 +214,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success </dd></dl>
 
-<p>Definition at line <a class="el" href="pcx_8cpp_source.html#l00070">70</a> of file <a class="el" href="pcx_8cpp_source.html">pcx.cpp</a>.</p>
+<p>Definition at line <a class="el" href="pcx_8cpp_source.html#l00068">68</a> of file <a class="el" href="pcx_8cpp_source.html">pcx.cpp</a>.</p>
 
 </div>
 </div>

@@ -1,15 +1,29 @@
 var searchData=
 [
-  ['d',['d',['../class_box.html#a4f2d202c36d732922142e983514044a8',1,'Box']]],
-  ['data',['data',['../_tomb_raider_data_8h.html#a1ab9a481f5912b237106d95755191426',1,'tr2_room_t']]],
+  ['d',['d',['../class_box.html#a0cc20531af329636625447eb9057ddfe',1,'Box']]],
+  ['data',['Data',['../class_im_vector.html#ac0e46e8b30cb079d93c8f0aad7d7cbd0',1,'ImVector::Data()'],['../struct_im_gui_storage.html#aab0b9789fac598a34c500459259fde42',1,'ImGuiStorage::Data()'],['../struct_im_bitmap_font.html#aa44f084b089831afef3b17dc33d4a204',1,'ImBitmapFont::Data()'],['../_tomb_raider_data_8h.html#a1ab9a481f5912b237106d95755191426',1,'tr2_room_t::data()'],['../commander_8h.html#ac3ddde8b7bc46b5deda371036176daa6',1,'command_t::data()']]],
+  ['datadir',['dataDir',['../class_run_time.html#a8252b1d74e526edd8561b91e98a5cefa',1,'RunTime']]],
+  ['dataowned',['DataOwned',['../struct_im_bitmap_font.html#a8ff48e424f087a3e96fbe6434b5d808d',1,'ImBitmapFont']]],
+  ['datasize',['DataSize',['../struct_im_bitmap_font.html#a76fab1737377902fa80d307578f80fc3',1,'ImBitmapFont']]],
+  ['dc',['DC',['../struct_im_gui_window.html#a3a20c68996093058481ae8e174258a04',1,'ImGuiWindow']]],
+  ['delete_5flength',['delete_length',['../stb__textedit_8h.html#ad81789175cef417a0fe58204277fd735',1,'StbUndoRecord']]],
+  ['deltatime',['DeltaTime',['../struct_im_gui_i_o.html#a5068d5414a19c2a1bf58029bd732a7c7',1,'ImGuiIO']]],
   ['desc_5fflags',['desc_flags',['../tga_8cpp.html#a712a92c2a1d01d3ba881216b7ea8cebc',1,'tga_t']]],
-  ['dir',['dir',['../class_light.html#a7510db6ac351f52d7c44ad0ef8cc8c38',1,'Light']]],
+  ['description',['description',['../class_script.html#a78d48b4ed3fd5ae623ba3e77e264da42',1,'Script::description()'],['../commander_8h.html#a12f4fab228fe49c7b1e0c2bc8d47051a',1,'command_option_t::description()']]],
+  ['dialogbutton1',['dialogButton1',['../class_menu.html#aa6bd16dba79fbace9f128823e401a4b1',1,'Menu']]],
+  ['dialogbutton2',['dialogButton2',['../class_menu.html#a55e789a67e81b794bed086c3aaea1cb3',1,'Menu']]],
+  ['dialogfunction',['dialogFunction',['../class_menu.html#a26885b1b7bf1da0f5e81ffe9e3033051',1,'Menu']]],
+  ['dialogstate',['dialogState',['../class_menu.html#a228d0e999c2f2d17de8fccf308a437b3',1,'Menu']]],
+  ['dialogtext',['dialogText',['../class_menu.html#aacf8719b09236ddffe6b711094d2f0aa',1,'Menu']]],
+  ['dir',['dir',['../class_light.html#a063de7f96804d2f875e01ff123f0db29',1,'Light']]],
   ['directionvectorx',['directionVectorX',['../_tomb_raider_data_8h.html#ada03dbe185e8f121479953a259455766',1,'tr5_light_t']]],
   ['directionvectorx2',['directionVectorX2',['../_tomb_raider_data_8h.html#a6aef8a2f07fdece489c59e59ccc8e576',1,'tr5_light_t']]],
   ['directionvectory',['directionVectorY',['../_tomb_raider_data_8h.html#a25535be3c8958159ce141cc8273f3008',1,'tr5_light_t']]],
   ['directionvectory2',['directionVectorY2',['../_tomb_raider_data_8h.html#a32f89bc85c4347183bdc37fa478d0673',1,'tr5_light_t']]],
   ['directionvectorz',['directionVectorZ',['../_tomb_raider_data_8h.html#a3cfc3f6f12e2e270581b14e4bec17bc2',1,'tr5_light_t']]],
   ['directionvectorz2',['directionVectorZ2',['../_tomb_raider_data_8h.html#abbfd947c66f57dfad2b956dac3dddc99',1,'tr5_light_t']]],
+  ['displaysize',['DisplaySize',['../struct_im_gui_i_o.html#a042cfb90bdc9ccfe37f86b92ade759fd',1,'ImGuiIO']]],
   ['dontshow',['dontshow',['../class_static_mesh.html#a69a835ee596a53bc0ec82c74591df9c6',1,'StaticMesh']]],
-  ['doors',['doors',['../_tomb_raider_data_8h.html#ab7ebd93dc6eceb807f20c92c1a1459e8',1,'tr5_room_t']]]
+  ['doors',['doors',['../_tomb_raider_data_8h.html#ab7ebd93dc6eceb807f20c92c1a1459e8',1,'tr5_room_t']]],
+  ['drawlist',['DrawList',['../struct_im_gui_window.html#a39de4668b09754136c6fd7ab89ab674a',1,'ImGuiWindow']]]
 ];

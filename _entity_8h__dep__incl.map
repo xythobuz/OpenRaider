@@ -1,20 +1,22 @@
 <map id="include/Entity.h" name="include/Entity.h">
-<area shape="rect" id="node2" href="$_game_8h.html" title="Game abstraction. " alt="" coords="961,155,1072,181"/>
-<area shape="rect" id="node4" href="$_command_8cpp.html" title="OpenRaider command implementation. " alt="" coords="573,304,700,331"/>
-<area shape="rect" id="node15" href="$_world_8h.html" title="The game world (model) " alt="" coords="329,80,435,107"/>
-<area shape="rect" id="node16" href="$_entity_8cpp.html" title="World Entities. " alt="" coords="31,155,130,181"/>
-<area shape="rect" id="node3" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="1157,229,1301,256"/>
-<area shape="rect" id="node6" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="1563,304,1665,331"/>
-<area shape="rect" id="node7" href="$main_8cpp.html" title="Where main() is. " alt="" coords="724,304,819,331"/>
-<area shape="rect" id="node9" href="$_open_raider_8cpp.html" title="Main Game Object. " alt="" coords="1269,304,1407,331"/>
-<area shape="rect" id="node10" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="1431,304,1539,331"/>
-<area shape="rect" id="node12" href="$_room_8cpp.html" title="World Room Mesh. " alt="" coords="703,229,805,256"/>
-<area shape="rect" id="node13" href="$_sprite_8cpp.html" title="World Sprite. " alt="" coords="829,229,927,256"/>
-<area shape="rect" id="node14" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="951,229,1082,256"/>
-<area shape="rect" id="node5" href="$_console_8cpp.html" title="Console &#39;overlay&#39;. " alt="" coords="843,304,958,331"/>
-<area shape="rect" id="node8" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="982,304,1081,331"/>
-<area shape="rect" id="node11" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="1105,304,1245,331"/>
-<area shape="rect" id="node17" href="$_room_data_8cpp.html" title="World Room Mesh. " alt="" coords="154,155,285,181"/>
-<area shape="rect" id="node18" href="$_skeletal_model_8cpp.html" title="This is the factored out skeletal model class. " alt="" coords="309,155,455,181"/>
-<area shape="rect" id="node19" href="$_world_8cpp.html" title="The game world (model) " alt="" coords="479,155,578,181"/>
+<area shape="rect" id="node2" href="$_game_8h.html" title="Game abstraction. " alt="" coords="1781,80,1891,107"/>
+<area shape="rect" id="node17" href="$_world_8h.html" title="The game world (model) " alt="" coords="643,80,749,107"/>
+<area shape="rect" id="node18" href="$_entity_8cpp.html" title="World Entities. " alt="" coords="5,155,104,181"/>
+<area shape="rect" id="node3" href="$_command_animate_8cpp.html" title="Animate command. " alt="" coords="577,155,815,181"/>
+<area shape="rect" id="node4" href="$_command_engine_8cpp.html" title="Engine commands. " alt="" coords="1469,155,1699,181"/>
+<area shape="rect" id="node5" href="$_command_game_8cpp.html" title="Game meta&#45;commands. " alt="" coords="839,155,1067,181"/>
+<area shape="rect" id="node6" href="$_command_move_8cpp.html" title="Move command. " alt="" coords="1724,155,1948,181"/>
+<area shape="rect" id="node7" href="$_command_render_8cpp.html" title="Renderer commands. " alt="" coords="1973,155,2206,181"/>
+<area shape="rect" id="node8" href="$_command_sound_8cpp.html" title="Sound command. " alt="" coords="2231,155,2460,181"/>
+<area shape="rect" id="node9" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="1091,155,1194,181"/>
+<area shape="rect" id="node10" href="$main_8cpp.html" title="Where main() is. " alt="" coords="1218,155,1313,181"/>
+<area shape="rect" id="node11" href="$_menu_folder_8cpp.html" title="File&#45;Explorer like menu. " alt="" coords="2485,155,2617,181"/>
+<area shape="rect" id="node12" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="1337,155,1445,181"/>
+<area shape="rect" id="node13" href="$_room_8cpp.html" title="World Room Mesh. " alt="" coords="2641,155,2743,181"/>
+<area shape="rect" id="node14" href="$_sprite_8cpp.html" title="World Sprite. " alt="" coords="2767,155,2865,181"/>
+<area shape="rect" id="node15" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="2889,155,3020,181"/>
+<area shape="rect" id="node16" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="3045,155,3123,181"/>
+<area shape="rect" id="node19" href="$_room_data_8cpp.html" title="World Room Mesh. " alt="" coords="128,155,259,181"/>
+<area shape="rect" id="node20" href="$_skeletal_model_8cpp.html" title="This is the factored out skeletal model class. " alt="" coords="283,155,429,181"/>
+<area shape="rect" id="node21" href="$_world_8cpp.html" title="The game world (model) " alt="" coords="453,155,552,181"/>
 </map>

@@ -1,0 +1,18 @@
+digraph "Sprite::Sprite"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Sprite::Sprite",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TombRaider::Item",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#a658c818d556c4f8fe0a5214d1b95eacf"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TombRaider::Sprite",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#ade913f489ccda5176ef0e645fdac57c8",tooltip="Get the sprites. "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TombRaider::SpriteSequence",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#ad20a248ea66fba4ce10454a41bc2a17a"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="getGame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_game_8h.html#a37da78d5bcf85296a978f23c73c49320"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Game::getTextureStart",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#a8a2522dc61112cfc5f5f9fe0975cbc17"];
+}

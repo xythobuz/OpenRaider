@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_texture_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -102,19 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a4c3a5827d80649bfc75cd7b8240a0cbc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">ColorMode</a> { <br/>
-&#160;&#160;<a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbcac51372ac302b39d51df83b8ec12c779c">GREYSCALE</a>, 
-<a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbcaf887e80213df37af3d3b640338acf90c">RGB</a>, 
-<a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbca1d8b050d00eef9c10ce08ed272e27a5f">RGBA</a>, 
-<a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbcaaa96bc4ac409f630f56fca8c677a552b">ARGB</a>, 
-<br/>
-&#160;&#160;<a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbcacf519d6f538840256948b71a91c5e5a3">BGR</a>, 
-<a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbca7cad995906cf9e4db73257bfd3c2e5e7">BGRA</a>
-<br/>
- }</td></tr>
-<tr class="separator:a4c3a5827d80649bfc75cd7b8240a0cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ce1c871a3e651fe8de81e88c435a2eb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eb">TextureFlag</a> { <a class="el" href="class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eba880a9f309aef3831346fd546900f1ec6">fUseMipmaps</a> = (1 &lt;&lt; 0), 
-<a class="el" href="class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eba81596554eb493178ea0f28221de3a916">fUseMultiTexture</a> = (1 &lt;&lt; 1)
+<tr class="memitem:a0ce1c871a3e651fe8de81e88c435a2eb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eb">TextureFlag</a> { <a class="el" href="class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eba81596554eb493178ea0f28221de3a916">fUseMultiTexture</a> = (1 &lt;&lt; 0)
  }</td></tr>
 <tr class="separator:a0ce1c871a3e651fe8de81e88c435a2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -129,6 +118,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a717a0413611eacfc1fbbffb60d56670d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a717a0413611eacfc1fbbffb60d56670d">reset</a> ()</td></tr>
 <tr class="memdesc:a717a0413611eacfc1fbbffb60d56670d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all texture data.  <a href="#a717a0413611eacfc1fbbffb60d56670d">More...</a><br/></td></tr>
 <tr class="separator:a717a0413611eacfc1fbbffb60d56670d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa59af21dc339ee6e6eda50a1afa61fbe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#aa59af21dc339ee6e6eda50a1afa61fbe">initialize</a> ()</td></tr>
+<tr class="separator:aa59af21dc339ee6e6eda50a1afa61fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44d156856817c75b88999df89e47a4d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a44d156856817c75b88999df89e47a4d9">getTextureCount</a> ()</td></tr>
 <tr class="memdesc:a44d156856817c75b88999df89e47a4d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of textures in use.  <a href="#a44d156856817c75b88999df89e47a4d9">More...</a><br/></td></tr>
 <tr class="separator:a44d156856817c75b88999df89e47a4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,85 +134,38 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab47417e283756ca8b514c18a89271e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02c060833743ea0f498c23d02806c257"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a02c060833743ea0f498c23d02806c257">disableMultiTexture</a> ()</td></tr>
 <tr class="separator:a02c060833743ea0f498c23d02806c257"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9d8698e037f611dd77d3047e5620fe6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#ae9d8698e037f611dd77d3047e5620fe6">loadBuffer</a> (unsigned char *image, unsigned int width, unsigned int height, <a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">ColorMode</a> mode, unsigned int bpp)</td></tr>
-<tr class="memdesc:ae9d8698e037f611dd77d3047e5620fe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads Buffer as texture.  <a href="#ae9d8698e037f611dd77d3047e5620fe6">More...</a><br/></td></tr>
-<tr class="separator:ae9d8698e037f611dd77d3047e5620fe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ef6554e38925268a65a520195096315"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a8ef6554e38925268a65a520195096315">loadBufferSlot</a> (unsigned char *image, unsigned int width, unsigned int height, <a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">ColorMode</a> mode, unsigned int bpp, unsigned int slot)</td></tr>
-<tr class="memdesc:a8ef6554e38925268a65a520195096315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads Buffer as texture.  <a href="#a8ef6554e38925268a65a520195096315">More...</a><br/></td></tr>
-<tr class="separator:a8ef6554e38925268a65a520195096315"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98d1f9b00667a093c140d7978cd83c4d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a98d1f9b00667a093c140d7978cd83c4d">loadColorTexture</a> (unsigned char rgba[4], unsigned int width, unsigned int height)</td></tr>
-<tr class="memdesc:a98d1f9b00667a093c140d7978cd83c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates and loads a solid color texture.  <a href="#a98d1f9b00667a093c140d7978cd83c4d">More...</a><br/></td></tr>
-<tr class="separator:a98d1f9b00667a093c140d7978cd83c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2397216f8a31f900690555ec003ab32a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a2397216f8a31f900690555ec003ab32a">loadTGA</a> (const char *filename)</td></tr>
-<tr class="memdesc:a2397216f8a31f900690555ec003ab32a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads TGA file as texture.  <a href="#a2397216f8a31f900690555ec003ab32a">More...</a><br/></td></tr>
-<tr class="separator:a2397216f8a31f900690555ec003ab32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaecdd8e792f87f575ebce8c7f6175514"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#aaecdd8e792f87f575ebce8c7f6175514">loadPCX</a> (const char *filename)</td></tr>
-<tr class="separator:aaecdd8e792f87f575ebce8c7f6175514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad479756ff08f61f6dde8679601ddae67"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#ad479756ff08f61f6dde8679601ddae67">loadBufferSlot</a> (unsigned char *image, unsigned int width, unsigned int height, <a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443f">ColorMode</a> mode, unsigned int bpp, unsigned int slot, bool filter=true)</td></tr>
+<tr class="memdesc:ad479756ff08f61f6dde8679601ddae67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads Buffer as texture.  <a href="#ad479756ff08f61f6dde8679601ddae67">More...</a><br/></td></tr>
+<tr class="separator:ad479756ff08f61f6dde8679601ddae67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdce801d0f81975f244be5bc0123020c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#afdce801d0f81975f244be5bc0123020c">loadImage</a> (const char *filename)</td></tr>
+<tr class="separator:afdce801d0f81975f244be5bc0123020c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb6c3e6de159fc4f8eae5ae8708b882f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#aeb6c3e6de159fc4f8eae5ae8708b882f">setFlag</a> (<a class="el" href="class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eb">TextureFlag</a> flag)</td></tr>
 <tr class="memdesc:aeb6c3e6de159fc4f8eae5ae8708b882f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an option flag.  <a href="#aeb6c3e6de159fc4f8eae5ae8708b882f">More...</a><br/></td></tr>
 <tr class="separator:aeb6c3e6de159fc4f8eae5ae8708b882f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3078ecdd0a0610bb2845ba05be66990a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a3078ecdd0a0610bb2845ba05be66990a">setMaxTextureCount</a> (unsigned int n)</td></tr>
-<tr class="memdesc:a3078ecdd0a0610bb2845ba05be66990a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up GL texturing.  <a href="#a3078ecdd0a0610bb2845ba05be66990a">More...</a><br/></td></tr>
-<tr class="separator:a3078ecdd0a0610bb2845ba05be66990a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ba7f0c4f7385f3c1c8d91b7c6da7fec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a0ba7f0c4f7385f3c1c8d91b7c6da7fec">useMultiTexture</a> (float u, float v)</td></tr>
-<tr class="separator:a0ba7f0c4f7385f3c1c8d91b7c6da7fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00ae165f28863e6332910c3b9874b8bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a00ae165f28863e6332910c3b9874b8bb">useMultiTexture</a> (float aU, float aV, float bU, float bV)</td></tr>
 <tr class="separator:a00ae165f28863e6332910c3b9874b8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a1491dc994ec21200260697486fb36148"><td class="memItemLeft" align="right" valign="top">static unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a1491dc994ec21200260697486fb36148">generateColorTexture</a> (unsigned char rgba[4], unsigned int width, unsigned int height)</td></tr>
-<tr class="memdesc:a1491dc994ec21200260697486fb36148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a texture buffer with (width * height * 4) bytes.  <a href="#a1491dc994ec21200260697486fb36148">More...</a><br/></td></tr>
-<tr class="separator:a1491dc994ec21200260697486fb36148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a2397216f8a31f900690555ec003ab32a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a2397216f8a31f900690555ec003ab32a">loadTGA</a> (const char *filename)</td></tr>
+<tr class="separator:a2397216f8a31f900690555ec003ab32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaecdd8e792f87f575ebce8c7f6175514"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#aaecdd8e792f87f575ebce8c7f6175514">loadPCX</a> (const char *filename)</td></tr>
+<tr class="separator:aaecdd8e792f87f575ebce8c7f6175514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa25dcc9301574c6ddb24140034b1f014"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#aa25dcc9301574c6ddb24140034b1f014">loadPNG</a> (const char *filename)</td></tr>
+<tr class="separator:aa25dcc9301574c6ddb24140034b1f014"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a5d5892bdff055335b45f17b8c4a4fd98"><td class="memItemLeft" align="right" valign="top">unsigned int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a5d5892bdff055335b45f17b8c4a4fd98">mTextureIds</a></td></tr>
-<tr class="memdesc:a5d5892bdff055335b45f17b8c4a4fd98"><td class="mdescLeft">&#160;</td><td class="mdescRight">GL texture list.  <a href="#a5d5892bdff055335b45f17b8c4a4fd98">More...</a><br/></td></tr>
-<tr class="separator:a5d5892bdff055335b45f17b8c4a4fd98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd749a5e185d3d0b4cf5e9d17fac7c14"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#afd749a5e185d3d0b4cf5e9d17fac7c14">mTextureCount</a></td></tr>
-<tr class="memdesc:afd749a5e185d3d0b4cf5e9d17fac7c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture counter.  <a href="#afd749a5e185d3d0b4cf5e9d17fac7c14">More...</a><br/></td></tr>
-<tr class="separator:afd749a5e185d3d0b4cf5e9d17fac7c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1b6ac5c4eacbe43872cc95346a55063"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#ad1b6ac5c4eacbe43872cc95346a55063">mTextureLimit</a></td></tr>
-<tr class="memdesc:ad1b6ac5c4eacbe43872cc95346a55063"><td class="mdescLeft">&#160;</td><td class="mdescRight">The texture limit.  <a href="#ad1b6ac5c4eacbe43872cc95346a55063">More...</a><br/></td></tr>
-<tr class="separator:ad1b6ac5c4eacbe43872cc95346a55063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a875ec3309106892d5b3531cdb3600ea1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#a875ec3309106892d5b3531cdb3600ea1">mTextureIds</a></td></tr>
+<tr class="separator:a875ec3309106892d5b3531cdb3600ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf8c4f3a49238d038ee24ee8ecd9e381"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_manager.html#adf8c4f3a49238d038ee24ee8ecd9e381">mFlags</a></td></tr>
-<tr class="memdesc:adf8c4f3a49238d038ee24ee8ecd9e381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class options.  <a href="#adf8c4f3a49238d038ee24ee8ecd9e381">More...</a><br/></td></tr>
 <tr class="separator:adf8c4f3a49238d038ee24ee8ecd9e381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Texture registry. </p>
 
-<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00015">15</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00017">17</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a class="anchor" id="a4c3a5827d80649bfc75cd7b8240a0cbc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">TextureManager::ColorMode</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a4c3a5827d80649bfc75cd7b8240a0cbcac51372ac302b39d51df83b8ec12c779c"></a>GREYSCALE</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a4c3a5827d80649bfc75cd7b8240a0cbcaf887e80213df37af3d3b640338acf90c"></a>RGB</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a4c3a5827d80649bfc75cd7b8240a0cbca1d8b050d00eef9c10ce08ed272e27a5f"></a>RGBA</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a4c3a5827d80649bfc75cd7b8240a0cbcaaa96bc4ac409f630f56fca8c677a552b"></a>ARGB</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a4c3a5827d80649bfc75cd7b8240a0cbcacf519d6f538840256948b71a91c5e5a3"></a>BGR</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a4c3a5827d80649bfc75cd7b8240a0cbca7cad995906cf9e4db73257bfd3c2e5e7"></a>BGRA</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00018">18</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a0ce1c871a3e651fe8de81e88c435a2eb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -232,13 +176,11 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a0ce1c871a3e651fe8de81e88c435a2eba880a9f309aef3831346fd546900f1ec6"></a>fUseMipmaps</em>&nbsp;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a0ce1c871a3e651fe8de81e88c435a2eba81596554eb493178ea0f28221de3a916"></a>fUseMultiTexture</em>&nbsp;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a0ce1c871a3e651fe8de81e88c435a2eba81596554eb493178ea0f28221de3a916"></a>fUseMultiTexture</em>&nbsp;</td><td class="fielddoc">
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00027">27</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00020">20</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +200,7 @@ Private Attributes</h2></td></tr>
 
 <p>Constructs an object of Texture. </p>
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00021">21</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00027">27</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,7 +219,7 @@ Private Attributes</h2></td></tr>
 
 <p>Deconstructs an object of Texture. </p>
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00028">28</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00031">31</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,7 +257,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00101">101</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00092">92</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -341,7 +283,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00252">252</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00186">186</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -367,7 +309,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00067">67</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00065">65</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -384,60 +326,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00082">82</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1491dc994ec21200260697486fb36148"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char * TextureManager::generateColorTexture </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>rgba</em>[4], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Generates a texture buffer with (width * height * 4) bytes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">rgba</td><td>32bpp RGBA color to fill into buffer </td></tr>
-    <tr><td class="paramname">width</td><td>width of newly allocated buffer, power of 2, pref same as height </td></tr>
-    <tr><td class="paramname">height</td><td>height of newly allocated buffer, power of 2, pref same as width </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>newly allocated texture buffer filled with specified color </dd></dl>
-
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00032">32</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00073">73</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,70 +346,30 @@ Private Attributes</h2></td></tr>
 <p>Get number of textures in use. </p>
 <dl class="section return"><dt>Returns</dt><dd>used texture count, or -1 on error (uninitialized) </dd></dl>
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00125">125</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00069">69</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae9d8698e037f611dd77d3047e5620fe6"></a>
+<a class="anchor" id="aa59af21dc339ee6e6eda50a1afa61fbe"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int TextureManager::loadBuffer </td>
+          <td class="memname">int TextureManager::initialize </td>
           <td>(</td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>image</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>height</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">ColorMode</a>&#160;</td>
-          <td class="paramname"><em>mode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>bpp</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000036">FIXME:</a></b></dt><dd>Temporary </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000037">FIXME:</a></b></dt><dd>Error Checking. Return negative error code, check in calling place too </dd></dl>
 
-<p>Loads Buffer as texture. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">image</td><td>pixmap matching other params </td></tr>
-    <tr><td class="paramname">width</td><td>width of image </td></tr>
-    <tr><td class="paramname">height</td><td>height of image </td></tr>
-    <tr><td class="paramname">mode</td><td>mode of image </td></tr>
-    <tr><td class="paramname">bpp</td><td>bits per pixel of image </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>texture ID or &lt; 0 on error </dd></dl>
-
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00129">129</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00043">43</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8ef6554e38925268a65a520195096315"></a>
+<a class="anchor" id="ad479756ff08f61f6dde8679601ddae67"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -545,7 +394,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_texture_manager.html#a4c3a5827d80649bfc75cd7b8240a0cbc">ColorMode</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443f">ColorMode</a>&#160;</td>
           <td class="paramname"><em>mode</em>, </td>
         </tr>
         <tr>
@@ -558,7 +407,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>slot</em>&#160;</td>
+          <td class="paramname"><em>slot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>filter</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -577,63 +432,40 @@ Private Attributes</h2></td></tr>
     <tr><td class="paramname">mode</td><td>mode of image </td></tr>
     <tr><td class="paramname">bpp</td><td>bits per pixel of image </td></tr>
     <tr><td class="paramname">slot</td><td>slot (ID) of image </td></tr>
+    <tr><td class="paramname">filter</td><td>if the texture should be mipmap filtered </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>texture ID or &lt; 0 on error </dd></dl>
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00147">147</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00111">111</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a98d1f9b00667a093c140d7978cd83c4d"></a>
+<a class="anchor" id="afdce801d0f81975f244be5bc0123020c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int TextureManager::loadColorTexture </td>
+          <td class="memname">int TextureManager::loadImage </td>
           <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>rgba</em>[4], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Generates and loads a solid color texture. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">rgba</td><td>color for new texture </td></tr>
-    <tr><td class="paramname">width</td><td>width of new texture </td></tr>
-    <tr><td class="paramname">height</td><td>height of new texture </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>texture ID or -1 on error </dd></dl>
-
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00050">50</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00195">195</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="aaecdd8e792f87f575ebce8c7f6175514"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int TextureManager::loadPCX </td>
@@ -643,15 +475,49 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00262">262</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00209">209</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa25dcc9301574c6ddb24140034b1f014"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int TextureManager::loadPNG </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00232">232</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a2397216f8a31f900690555ec003ab32a"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int TextureManager::loadTGA </td>
@@ -661,18 +527,14 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Loads TGA file as texture. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filename</td><td>Existing TGA file </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>ID of new texture or -1 on error </dd></dl>
-
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00285">285</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00264">264</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -691,7 +553,7 @@ Private Attributes</h2></td></tr>
 
 <p>Resets all texture data. </p>
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00071">71</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00035">35</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -717,62 +579,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00063">63</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3078ecdd0a0610bb2845ba05be66990a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TextureManager::setMaxTextureCount </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>n</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets up GL texturing. </p>
-<p>Must be called as first setup step! </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">n</td><td>maximum number of textures you wish to allow </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00119">119</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0ba7f0c4f7385f3c1c8d91b7c6da7fec"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TextureManager::useMultiTexture </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>u</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>v</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00097">97</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00061">61</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -812,7 +619,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00089">89</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8cpp_source.html#l00082">82</a> of file <a class="el" href="_texture_manager_8cpp_source.html">TextureManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -835,13 +642,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Class options. </p>
-
-<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00154">154</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00100">100</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afd749a5e185d3d0b4cf5e9d17fac7c14"></a>
+<a class="anchor" id="a875ec3309106892d5b3531cdb3600ea1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -849,7 +654,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int TextureManager::mTextureCount</td>
+          <td class="memname">std::vector&lt;unsigned int&gt; TextureManager::mTextureIds</td>
         </tr>
       </table>
   </td>
@@ -859,57 +664,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Texture counter. </p>
-
-<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00152">152</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5d5892bdff055335b45f17b8c4a4fd98"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int* TextureManager::mTextureIds</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>GL texture list. </p>
-
-<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00151">151</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad1b6ac5c4eacbe43872cc95346a55063"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int TextureManager::mTextureLimit</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The texture limit. </p>
-
-<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00153">153</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_texture_manager_8h_source.html#l00099">99</a> of file <a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>.</p>
 
 </div>
 </div>

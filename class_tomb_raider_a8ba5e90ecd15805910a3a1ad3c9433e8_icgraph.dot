@@ -1,0 +1,10 @@
+digraph "TombRaider::getRoomPortal"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TombRaider::getRoomPortal",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Portal::Portal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_portal.html#ab76cedb9d89eebd6ad174fc393371282"];
+}

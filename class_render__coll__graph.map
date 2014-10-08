@@ -1,5 +1,4 @@
 <map id="Render" name="Render">
-<area shape="rect" id="node2" href="$class_texture_manager.html" title="Texture registry. " alt="" coords="5,124,120,151"/>
-<area shape="rect" id="node3" href="$class_view_volume.html" title="Viewing Volume for culling use. " alt="" coords="144,124,237,151"/>
-<area shape="rect" id="node4" href="$class_matrix.html" title="3D Matrix " alt="" coords="163,5,219,32"/>
+<area shape="rect" id="node2" href="$class_view_volume.html" title="Viewing Volume for culling use. " alt="" coords="5,124,99,151"/>
+<area shape="rect" id="node3" href="$class_matrix.html" title="3D Matrix " alt="" coords="24,5,80,32"/>
 </map>

@@ -1,0 +1,26 @@
+digraph "Vector3d::magnitude"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Vector3d::magnitude",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Vector3d::unit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector3d.html#aa9d21f3f1f93088b2a508f83387b897e",tooltip="Normalize. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Vector3d::normalize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector3d.html#a3b031247cf3fba0d1370359702e97bd8",tooltip="Normalizes this vector. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="intersectionLinePolygon",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$math_8cpp.html#a9073c91a02ab1180e64e7ddf76991a94",tooltip="Calculate Intersection of a line and a polygon. "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Room::getAdjoiningRoom",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_room.html#ade5b7644ff5720f1251097f9110148b9"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Entity::move",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_entity.html#ac081c2b4fd1ee2a737db44a306ec466d"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Game::handleAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#a2159fe214fb67768f3a0d6d887206c31"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="UI::eventsFinished",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_u_i.html#a2436dbc9c0678fd729b983b9475bc0f4"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="WindowGLUT::eventHandling",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_window_g_l_u_t.html#af16462cbccb831e8395012383b69b365"];
+  Node8 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="WindowSDL::eventHandling",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_window_s_d_l.html#a77e59286d958d1be56b9dc53108e58b0"];
+}

@@ -1,0 +1,17 @@
+<map id="include/utils/binary.h" name="include/utils/binary.h">
+<area shape="rect" id="node2" href="$_loader_8h.html" title="Level file loader. " alt="" coords="518,80,669,107"/>
+<area shape="rect" id="node12" href="$_script_8h.html" title="Game script loader. " alt="" coords="985,80,1090,107"/>
+<area shape="rect" id="node15" href="$src_2utils_2binary_8cpp.html" title="Binary file reading utilities. " alt="" coords="1114,80,1241,107"/>
+<area shape="rect" id="node16" href="$test_2binary_8cpp.html" title="Binary Unit Test. " alt="" coords="1265,80,1372,107"/>
+<area shape="rect" id="node3" href="$_loader_t_r1_8h.html" title="TR1 level file loader. " alt="" coords="29,155,203,181"/>
+<area shape="rect" id="node5" href="$_loader_t_r2_8h.html" title="TR2 level file loader. " alt="" coords="307,155,482,181"/>
+<area shape="rect" id="node6" href="$_loader_8cpp.html" title="Level file loader. " alt="" coords="197,229,341,256"/>
+<area shape="rect" id="node8" href="$_loader_t_r3_8h.html" title="TR3 level file loader. " alt="" coords="506,155,681,181"/>
+<area shape="rect" id="node10" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="705,155,807,181"/>
+<area shape="rect" id="node11" href="$_menu_folder_8cpp.html" title="File&#45;Explorer like menu. " alt="" coords="831,155,963,181"/>
+<area shape="rect" id="node4" href="$_loader_t_r1_8cpp.html" title="TR1 level file loader. " alt="" coords="5,229,173,256"/>
+<area shape="rect" id="node7" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="365,229,533,256"/>
+<area shape="rect" id="node9" href="$_loader_t_r3_8cpp.html" title="TR3 level file loader. " alt="" coords="557,229,725,256"/>
+<area shape="rect" id="node13" href="$src_2_script_8cpp.html" title="Game script loader. " alt="" coords="988,155,1087,181"/>
+<area shape="rect" id="node14" href="$test_2_script_8cpp.html" title="Game script loader unit test. " alt="" coords="1111,155,1214,181"/>
+</map>

@@ -1,0 +1,39 @@
+digraph "ImGui::SliderFloat"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="ImGui::SliderFloat",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ImGui::SliderAngle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a9f5d085f6f34d8985c93e4ba7d4a1d0b"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ImGui::ShowTestWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a0c68c05a17d1f5f25f99213cfa722b8d"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ImGui::SliderInt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a3db1584ea249035911661f1f95fb6224"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ImGui::LogButtons",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a7bd295da4be19bab98262c76fcaeb4fb"];
+  Node5 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ImGui::ColorEdit4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a9d5e29190c1f556244cc089bb2fbe11b"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="ImGui::ColorEdit3",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a048adf7864d5c10a051cbd0ea3f00f98"];
+  Node7 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="ImGui::ShowStyleEditor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#ad49282dd3b7128f1c55c365f68bc0246"];
+  Node8 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="ImGui::SliderFloatN",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#aedc90d902fad009849392580608b9411"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="ImGui::SliderFloat2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a936aeaa804e9cf25559e2bce6149f76d"];
+  Node10 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="ImGui::SliderFloat3",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#af5b4ec5a2765906d51f975dc761f383d"];
+  Node11 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="ImGui::SliderFloat4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#ada619e9f233a1dc2f3d5e4bfac61eb47"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

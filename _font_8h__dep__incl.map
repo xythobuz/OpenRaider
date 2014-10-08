@@ -1,19 +1,13 @@
 <map id="include/Font.h" name="include/Font.h">
-<area shape="rect" id="node2" href="$_font_manager_8h.html" title="Font manager. " alt="" coords="408,80,557,107"/>
-<area shape="rect" id="node3" href="$_font_manager_8cpp.html" title="Font Manager. " alt="" coords="147,155,290,181"/>
-<area shape="rect" id="node5" href="$_font_s_d_l_8h.html" title="SDL Font implementation. " alt="" coords="54,80,178,107"/>
-<area shape="rect" id="node7" href="$_font_t_r_l_e_8h.html" title="Tomb Raider Level Editor Font loader. " alt="" coords="253,80,384,107"/>
-<area shape="rect" id="node9" href="$_menu_8h.html" title="Menu &#39;overlay&#39;. " alt="" coords="721,80,828,107"/>
-<area shape="rect" id="node10" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="632,155,776,181"/>
-<area shape="rect" id="node11" href="$_command_8cpp.html" title="OpenRaider command implementation. " alt="" coords="1065,229,1191,256"/>
-<area shape="rect" id="node12" href="$_console_8cpp.html" title="Console &#39;overlay&#39;. " alt="" coords="217,229,332,256"/>
-<area shape="rect" id="node18" href="$_font_8cpp.html" title="Font implementation. " alt="" coords="1003,80,1093,107"/>
-<area shape="rect" id="node4" href="$main_8cpp.html" title="Where main() is. " alt="" coords="98,229,193,256"/>
-<area shape="rect" id="node6" href="$_font_s_d_l_8cpp.html" title="SDL Font implementation. " alt="" coords="5,155,123,181"/>
-<area shape="rect" id="node8" href="$_font_t_r_l_e_8cpp.html" title="SDL Font implementation. " alt="" coords="314,155,438,181"/>
-<area shape="rect" id="node14" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="941,229,1040,256"/>
-<area shape="rect" id="node15" href="$_open_raider_8cpp.html" title="Main Game Object. " alt="" coords="779,229,917,256"/>
-<area shape="rect" id="node13" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="653,229,755,256"/>
-<area shape="rect" id="node16" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="357,229,465,256"/>
-<area shape="rect" id="node17" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="489,229,629,256"/>
+<area shape="rect" id="node2" href="$_font_manager_8h.html" title="Font manager. " alt="" coords="33,80,182,107"/>
+<area shape="rect" id="node3" href="$_font_manager_8cpp.html" title="Font Manager. " alt="" coords="124,155,267,181"/>
+<area shape="rect" id="node5" href="$_font_s_d_l_8h.html" title="SDL Font implementation. " alt="" coords="412,80,536,107"/>
+<area shape="rect" id="node7" href="$_font_t_r_l_e_8h.html" title="Tomb Raider Level Editor Font loader. " alt="" coords="257,80,387,107"/>
+<area shape="rect" id="node9" href="$_command_set_8cpp.html" title="Set command. " alt="" coords="561,80,771,107"/>
+<area shape="rect" id="node10" href="$_font_8cpp.html" title="Font implementation. " alt="" coords="795,80,886,107"/>
+<area shape="rect" id="node11" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="910,80,1009,107"/>
+<area shape="rect" id="node12" href="$_menu_folder_8cpp.html" title="File&#45;Explorer like menu. " alt="" coords="1033,80,1165,107"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="Where main() is. " alt="" coords="5,155,100,181"/>
+<area shape="rect" id="node6" href="$_font_s_d_l_8cpp.html" title="SDL Font implementation. " alt="" coords="439,155,557,181"/>
+<area shape="rect" id="node8" href="$_font_t_r_l_e_8cpp.html" title="SDL Font implementation. " alt="" coords="291,155,415,181"/>
 </map>

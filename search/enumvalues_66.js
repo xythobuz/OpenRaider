@@ -16,7 +16,6 @@ var searchData=
   ['fallingpiecesstate_5ffalling',['FallingPiecesState_Falling',['../_tomb_raider1_8h.html#a1100b414141983626d276f49c0a8f7eca765a5098d502b4735c319924a9c457ce',1,'TombRaider1']]],
   ['fallingpiecesstate_5fsettling',['FallingPiecesState_Settling',['../_tomb_raider1_8h.html#a1100b414141983626d276f49c0a8f7ecaf147b8b3b3c2f4e9dacfa3db48e3c30f',1,'TombRaider1']]],
   ['fallingpiecesstate_5fstationary',['FallingPiecesState_Stationary',['../_tomb_raider1_8h.html#a1100b414141983626d276f49c0a8f7eca9c46d0b8f2384ae82e2b10a6cdb905bd',1,'TombRaider1']]],
-  ['fallrooms',['fAllRooms',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a57ce95eef774317385ace0e4dbac62b0',1,'Render']]],
   ['fanimateallmodels',['fAnimateAllModels',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a1493fe88ead33204bf4bc81ffb60f809',1,'Render']]],
   ['farside',['farSide',['../class_view_volume.html#a0a38e3c6a94e6e1137ce46d1e4fd305aa121f0f04a582b598f4cee366415cce97',1,'ViewVolume']]],
   ['fentitymodels',['fEntityModels',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7ab260e241f81d4cb295f9c49b99e4c292',1,'Render']]],
@@ -27,15 +26,10 @@ var searchData=
   ['fkey',['fKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa15e0db9e8618be11f8192ddede70067d',1,'global.h']]],
   ['flowinglava',['FlowingLava',['../_tomb_raider1_8h.html#a2fd897104943884bc73ef0a04ce4905eace342037afddbf37531af96f204bbafb',1,'TombRaider1']]],
   ['fmesh_5fusevertexarray',['fMesh_UseVertexArray',['../class_mesh.html#af31ed7ed8871a1742b8e5378e123581fae20829d18a5e722b52e25c496725c626',1,'Mesh']]],
-  ['foneroom',['fOneRoom',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a643fcb93cebc7924adfc7f7f6fd8ee03',1,'Render']]],
   ['forwardaction',['forwardAction',['../global_8h.html#a8657944732f2ddabce60de26e809df8cae89ef1233063436e8341887650695546',1,'global.h']]],
   ['fourkey',['fourKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa9547ba438289329282bfa4e471fa958f',1,'global.h']]],
   ['fourthmousekey',['fourthmouseKey',['../global_8h.html#a5f79a3b11da4b6155b05b48129ae065aab41d2b0eac7517ffe9b6046de339859e',1,'global.h']]],
   ['frenderponytail',['fRenderPonytail',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a235e9bb779dc9541d82d9c40cc889459',1,'Render']]],
   ['froomalpha',['fRoomAlpha',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a8800206d7b81728a3f9b3ca98034cb3c',1,'Render']]],
-  ['fupdateroomlistperframe',['fUpdateRoomListPerFrame',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a20c5d7bc8e4fa7a9f1865f703f353f34',1,'Render']]],
-  ['fusemipmaps',['fUseMipmaps',['../class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eba880a9f309aef3831346fd546900f1ec6',1,'TextureManager']]],
-  ['fusemultitexture',['fUseMultiTexture',['../class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eba81596554eb493178ea0f28221de3a916',1,'TextureManager']]],
-  ['fuseportals',['fUsePortals',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7af57c07ef1432466fe58cc434ab63fea5',1,'Render']]],
-  ['fviewmodel',['fViewModel',['../class_render.html#ad86ae8e22847d773eae6342ad65109b7a4858b87f84e6fc6068776110de3d486a',1,'Render']]]
+  ['fusemultitexture',['fUseMultiTexture',['../class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eba81596554eb493178ea0f28221de3a916',1,'TextureManager']]]
 ];

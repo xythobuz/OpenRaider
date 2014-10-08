@@ -1,0 +1,24 @@
+digraph "TombRaider::getSprites"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TombRaider::getSprites",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TombRaider::Mesh",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#a7d108ab7210eb1dd3d1239980565b407"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TombRaider::Item",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#a658c818d556c4f8fe0a5214d1b95eacf"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TombRaider::Sprite",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#ade913f489ccda5176ef0e645fdac57c8",tooltip="Get the sprites. "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TombRaider::SpriteSequence",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#ad20a248ea66fba4ce10454a41bc2a17a"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TombRaider::NumItems",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#a0cac42cf9c0c64165728f3d397d1fd14"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TombRaider::print",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#a0789f85ca23981025700c29214cfa8f3"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TombRaider::Engine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#aa020667e2394f5c3a8173ee0231ef0fb"];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="TombRaider::NumSpriteSequences",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#a6ea5c5a13f452cfbeb12c1d7a3dd6684"];
+}

@@ -1,0 +1,47 @@
+digraph "UI::initialize"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="UI::initialize",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="getRunTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_run_time_8h.html#a5725e2249d7e2af1a5c46bbd31084a85"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="RunTime::getBaseDir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_run_time.html#a787394814c73166c63be64169704971f"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ImGui::GetIO",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a3179e560812f878f3961ce803a5d9302"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="getWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_window_8h.html#a569be9f3eab26d2ba994a32b75dc9896"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="UI::renderImGui",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_u_i.html#ac00fc9b3139e05972fe5b138a9454b92"];
+  Node6 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Window::glEnter2D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_window.html#a21e2c2c52367bcb4c6293e3573c88b9a"];
+  Node6 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="getTextureManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_texture_manager_8h.html#aee30c1bb50e324175753719cc70c7281"];
+  Node6 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="TextureManager::bindTextureId",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#afdefa5565d45476aa4eac12679ac449b",tooltip="Binds the texture for use in GL. "];
+  Node6 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="ImVector::begin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_im_vector.html#a300a8b559cd87a78063046ef81151bce"];
+  Node6 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="ImVector::end",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_im_vector.html#a947fbc3b1d8c1997e51ae6caab440379"];
+  Node6 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="Window::glExit2D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_window.html#a6c5982c43fc9d8d36e092965ac8cf940"];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="ImGui::GetDefaultFontData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a10677ac25e62dcb375f0bc5c5e69397b"];
+  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="stbi_load_from_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stb__image_8h.html#a0f85436e559b7ca9c9cfe6779f84c391"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="TextureManager::loadBufferSlot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#ad479756ff08f61f6dde8679601ddae67",tooltip="Loads Buffer as texture. "];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="bgr2rgb24",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pixel_8h.html#aa98f7e7677a832bed8ba09abf6a03964"];
+  Node15 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="argb2rgba32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pixel_8h.html#a2b55c8aba433a2d911448cd58c0b5e03"];
+  Node15 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="bgra2rgba32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pixel_8h.html#a637f5d0173bb783c18d438f32f0a7d83"];
+  Node1 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="stbi_image_free",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stb__image_8h.html#ad3e11bb44412a7ba348acfbad09caacb"];
+}

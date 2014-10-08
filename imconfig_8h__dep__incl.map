@@ -1,0 +1,11 @@
+<map id="src/deps/imgui/imconfig.h" name="src/deps/imgui/imconfig.h">
+<area shape="rect" id="node2" href="$imgui_8h.html" title="src/deps/imgui/imgui.h" alt="" coords="503,80,648,107"/>
+<area shape="rect" id="node3" href="$_u_i_8h.html" title="Abstract UI interface. " alt="" coords="459,155,545,181"/>
+<area shape="rect" id="node10" href="$imgui_8cpp.html" title="src/deps/imgui/imgui.cpp" alt="" coords="570,155,730,181"/>
+<area shape="rect" id="node4" href="$_command_engine_8cpp.html" title="Engine commands. " alt="" coords="5,229,236,256"/>
+<area shape="rect" id="node5" href="$_console_8cpp.html" title="Console class. " alt="" coords="261,229,375,256"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="Where main() is. " alt="" coords="400,229,495,256"/>
+<area shape="rect" id="node7" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="519,229,597,256"/>
+<area shape="rect" id="node8" href="$_window_g_l_u_t_8cpp.html" title="GLUT windowing implementation. " alt="" coords="621,229,769,256"/>
+<area shape="rect" id="node9" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="793,229,933,256"/>
+</map>

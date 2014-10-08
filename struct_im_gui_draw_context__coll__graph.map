@@ -1,0 +1,21 @@
+<map id="ImGuiDrawContext" name="ImGuiDrawContext">
+<area shape="rect" id="node11" href="$struct_im_gui_window.html" title="ImGuiWindow" alt="" coords="1196,377,1299,403"/>
+<area shape="rect" id="node2" href="$class_im_vector.html" title="ImVector\&lt; bool \&gt;" alt="" coords="637,215,753,242"/>
+<area shape="rect" id="node3" href="$struct_im_gui_storage.html" title="ImGuiStorage" alt="" coords="646,23,745,50"/>
+<area shape="rect" id="node4" href="$class_im_vector.html" title="ImVector\&lt; ImGuiStorage\l::Pair \&gt;" alt="" coords="267,5,425,47"/>
+<area shape="rect" id="node5" href="$struct_im_gui_storage.html#struct_im_gui_storage_1_1_pair" title="ImGuiStorage::Pair" alt="" coords="5,13,132,39"/>
+<area shape="rect" id="node6" href="$struct_im_vec2.html" title="ImVec2" alt="" coords="37,330,101,357"/>
+<area shape="rect" id="node16" href="$imgui_8h.html#struct_im_draw_vert" title="ImDrawVert" alt="" coords="301,498,391,525"/>
+<area shape="rect" id="node20" href="$struct_im_gui_aabb.html" title="ImGuiAabb" alt="" coords="474,239,562,266"/>
+<area shape="rect" id="node7" href="$class_im_vector.html" title="ImVector\&lt; ImGuiColMod \&gt;" alt="" coords="611,438,780,465"/>
+<area shape="rect" id="node8" href="$imgui_8cpp.html#struct_im_gui_col_mod" title="ImGuiColMod" alt="" coords="297,438,395,465"/>
+<area shape="rect" id="node9" href="$struct_im_vec4.html" title="ImVec4" alt="" coords="37,591,101,618"/>
+<area shape="rect" id="node12" href="$class_im_vector.html" title="ImVector\&lt; ImVec4 \&gt;" alt="" coords="628,602,763,629"/>
+<area shape="rect" id="node18" href="$imgui_8h.html#struct_im_draw_cmd" title="ImDrawCmd" alt="" coords="299,653,393,679"/>
+<area shape="rect" id="node10" href="$class_im_vector.html" title="ImVector\&lt; ImGuiWindow * \&gt;" alt="" coords="1380,294,1563,321"/>
+<area shape="rect" id="node14" href="$struct_im_draw_list.html" title="ImDrawList" alt="" coords="979,525,1066,551"/>
+<area shape="rect" id="node13" href="$class_im_vector.html" title="ImVector\&lt; ImGuiID \&gt;" alt="" coords="953,427,1092,454"/>
+<area shape="rect" id="node15" href="$class_im_vector.html" title="ImVector\&lt; ImDrawVert \&gt;" alt="" coords="616,551,775,578"/>
+<area shape="rect" id="node17" href="$class_im_vector.html" title="ImVector\&lt; ImDrawCmd \&gt;" alt="" coords="613,653,777,679"/>
+<area shape="rect" id="node19" href="$class_im_vector.html" title="ImVector\&lt; float \&gt;" alt="" coords="638,266,753,293"/>
+</map>

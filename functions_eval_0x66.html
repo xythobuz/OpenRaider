@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -73,6 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_type.html"><span>Typedefs</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li class="current"><a href="functions_eval.html"><span>Enumerator</span></a></li>
     </ul>
@@ -91,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_eval_0x6c.html#index_l"><span>l</span></a></li>
       <li><a href="functions_eval_0x6d.html#index_m"><span>m</span></a></li>
       <li><a href="functions_eval_0x6e.html#index_n"><span>n</span></a></li>
+      <li><a href="functions_eval_0x6f.html#index_o"><span>o</span></a></li>
       <li><a href="functions_eval_0x70.html#index_p"><span>p</span></a></li>
       <li><a href="functions_eval_0x72.html#index_r"><span>r</span></a></li>
       <li><a href="functions_eval_0x73.html#index_s"><span>s</span></a></li>
@@ -105,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -130,9 +133,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>FallingPiecesState_Stationary
 : <a class="el" href="_tomb_raider1_8h.html#a1100b414141983626d276f49c0a8f7eca9c46d0b8f2384ae82e2b10a6cdb905bd">TombRaider1</a>
 </li>
-<li>fAllRooms
-: <a class="el" href="class_render.html#ad86ae8e22847d773eae6342ad65109b7a57ce95eef774317385ace0e4dbac62b0">Render</a>
-</li>
 <li>fAnimateAllModels
 : <a class="el" href="class_render.html#ad86ae8e22847d773eae6342ad65109b7a1493fe88ead33204bf4bc81ffb60f809">Render</a>
 </li>
@@ -154,29 +154,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>fMesh_UseVertexArray
 : <a class="el" href="class_mesh.html#af31ed7ed8871a1742b8e5378e123581fae20829d18a5e722b52e25c496725c626">Mesh</a>
 </li>
-<li>fOneRoom
-: <a class="el" href="class_render.html#ad86ae8e22847d773eae6342ad65109b7a643fcb93cebc7924adfc7f7f6fd8ee03">Render</a>
-</li>
 <li>fRenderPonytail
 : <a class="el" href="class_render.html#ad86ae8e22847d773eae6342ad65109b7a235e9bb779dc9541d82d9c40cc889459">Render</a>
 </li>
 <li>fRoomAlpha
 : <a class="el" href="class_render.html#ad86ae8e22847d773eae6342ad65109b7a8800206d7b81728a3f9b3ca98034cb3c">Render</a>
 </li>
-<li>fUpdateRoomListPerFrame
-: <a class="el" href="class_render.html#ad86ae8e22847d773eae6342ad65109b7a20c5d7bc8e4fa7a9f1865f703f353f34">Render</a>
-</li>
-<li>fUseMipmaps
-: <a class="el" href="class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eba880a9f309aef3831346fd546900f1ec6">TextureManager</a>
-</li>
 <li>fUseMultiTexture
 : <a class="el" href="class_texture_manager.html#a0ce1c871a3e651fe8de81e88c435a2eba81596554eb493178ea0f28221de3a916">TextureManager</a>
-</li>
-<li>fUsePortals
-: <a class="el" href="class_render.html#ad86ae8e22847d773eae6342ad65109b7af57c07ef1432466fe58cc434ab63fea5">Render</a>
-</li>
-<li>fViewModel
-: <a class="el" href="class_render.html#ad86ae8e22847d773eae6342ad65109b7a4858b87f84e6fc6068776110de3d486a">Render</a>
 </li>
 </ul>
 </div><!-- contents -->

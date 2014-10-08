@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,9 +94,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Game Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><a class="el" href="class_game.html" title="Game abstraction. ">Game</a> abstraction.  
- <a href="class_game.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_game_8h_source.html">Game.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -119,10 +117,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a864d3ae5a554c8857118c48253ef7646"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9896347cdc3da739d0099fbd7645b796"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a9896347cdc3da739d0099fbd7645b796">destroy</a> ()</td></tr>
 <tr class="separator:a9896347cdc3da739d0099fbd7645b796"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d0223a84926cbabea95ed7e0392690a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a4d0223a84926cbabea95ed7e0392690a">display</a> ()</td></tr>
+<tr class="separator:a4d0223a84926cbabea95ed7e0392690a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2159fe214fb67768f3a0d6d887206c31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a2159fe214fb67768f3a0d6d887206c31">handleAction</a> (<a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8c">ActionEvents</a> action, bool isFinished)</td></tr>
 <tr class="separator:a2159fe214fb67768f3a0d6d887206c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33278ee8fca21f4a4ec00afd399b12f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a33278ee8fca21f4a4ec00afd399b12f4">handleMouseMotion</a> (int xrel, int yrel)</td></tr>
-<tr class="separator:a33278ee8fca21f4a4ec00afd399b12f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f23c2acdcf925343fb67032a5454fca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a5f23c2acdcf925343fb67032a5454fca">handleMouseMotion</a> (int xrel, int yrel, int xabs, int yabs)</td></tr>
+<tr class="separator:a5f23c2acdcf925343fb67032a5454fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a2522dc61112cfc5f5f9fe0975cbc17"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a8a2522dc61112cfc5f5f9fe0975cbc17">getTextureStart</a> ()</td></tr>
 <tr class="separator:a8a2522dc61112cfc5f5f9fe0975cbc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a656c6d80cb08a48661f347711caab446"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a656c6d80cb08a48661f347711caab446">getTextureOffset</a> ()</td></tr>
@@ -149,8 +149,8 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a98835c2ff416a53eb2ca94357fcba0eb"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a98835c2ff416a53eb2ca94357fcba0eb">mName</a></td></tr>
-<tr class="separator:a98835c2ff416a53eb2ca94357fcba0eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ad29ddbd53612ac00c9c6770297a050"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a6ad29ddbd53612ac00c9c6770297a050">levelName</a></td></tr>
+<tr class="separator:a6ad29ddbd53612ac00c9c6770297a050"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e97a3d5030780950c8084ae56843fbc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a7e97a3d5030780950c8084ae56843fbc">mLoaded</a></td></tr>
 <tr class="separator:a7e97a3d5030780950c8084ae56843fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3edf3c408ae1199021029997219f25ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tomb_raider.html">TombRaider</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a3edf3c408ae1199021029997219f25ed">mTombRaider</a></td></tr>
@@ -159,13 +159,12 @@ Private Attributes</h2></td></tr>
 <tr class="separator:afb5e4e530654e46bee3172f27ad8cc96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ace0c352fa5c6826d098bf013bc3af4"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a5ace0c352fa5c6826d098bf013bc3af4">mTextureOffset</a></td></tr>
 <tr class="separator:a5ace0c352fa5c6826d098bf013bc3af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cb3410ca1c93c7b61ca3d281cc4db8c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a1cb3410ca1c93c7b61ca3d281cc4db8c">mLara</a></td></tr>
-<tr class="separator:a1cb3410ca1c93c7b61ca3d281cc4db8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76167bae7f55c91a61dbfcc990634c1c"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a76167bae7f55c91a61dbfcc990634c1c">mLara</a></td></tr>
+<tr class="separator:a76167bae7f55c91a61dbfcc990634c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_game.html" title="Game abstraction. ">Game</a> abstraction. </p>
-
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00022">22</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00017">17</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad59df6562a58a614fda24622d3715b65"></a>
 <div class="memitem">
@@ -180,7 +179,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00026">26</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00031">31</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -197,7 +196,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00034">34</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00038">38</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -215,7 +214,24 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00054">54</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00062">62</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4d0223a84926cbabea95ed7e0392690a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::display </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00058">58</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -232,7 +248,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00169">169</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00186">186</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -249,7 +265,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00042">42</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00045">45</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -266,7 +282,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00038">38</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00041">41</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -294,11 +310,11 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00122">122</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00138">138</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a33278ee8fca21f4a4ec00afd399b12f4"></a>
+<a class="anchor" id="a5f23c2acdcf925343fb67032a5454fca"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -312,7 +328,19 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>yrel</em>&#160;</td>
+          <td class="paramname"><em>yrel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xabs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>yabs</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -322,7 +350,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00146">146</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00162">162</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -339,7 +367,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00046">46</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00049">49</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -356,7 +384,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00067">67</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00072">72</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -373,8 +401,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Cutscene support </dd></dl>
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00071">71</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00076">76</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -399,7 +428,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00196">196</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00213">213</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -441,7 +470,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00374">374</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00393">393</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -466,7 +495,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00287">287</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00306">306</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -491,7 +520,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00203">203</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00220">220</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -516,7 +545,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00189">189</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00206">206</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -541,7 +570,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00175">175</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00192">192</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
@@ -566,12 +595,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00245">245</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_game_8cpp_source.html#l00262">262</a> of file <a class="el" href="_game_8cpp_source.html">Game.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a1cb3410ca1c93c7b61ca3d281cc4db8c"></a>
+<a class="anchor" id="a6ad29ddbd53612ac00c9c6770297a050"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -579,7 +608,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Game::mLara</td>
+          <td class="memname">std::string Game::levelName</td>
         </tr>
       </table>
   </td>
@@ -589,7 +618,29 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00064">64</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00050">50</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a76167bae7f55c91a61dbfcc990634c1c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long Game::mLara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00058">58</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>
@@ -611,29 +662,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00057">57</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a98835c2ff416a53eb2ca94357fcba0eb"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* Game::mName</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00056">56</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00051">51</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>
@@ -655,7 +684,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00062">62</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00056">56</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>
@@ -677,7 +706,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00061">61</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00055">55</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>
@@ -699,7 +728,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_game_8h_source.html#l00059">59</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
+<p>Definition at line <a class="el" href="_game_8h_source.html#l00053">53</a> of file <a class="el" href="_game_8h_source.html">Game.h</a>.</p>
 
 </div>
 </div>

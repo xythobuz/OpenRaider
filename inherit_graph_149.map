@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_window.html" title="Windowing interface. " alt="" coords="5,31,75,57"/>
+<area shape="rect" id="node2" href="$class_window_g_l_u_t.html" title="GLUT windowing implementation. " alt="" coords="123,5,225,32"/>
+<area shape="rect" id="node3" href="$class_window_s_d_l.html" title="SDL windowing implementation. " alt="" coords="127,56,221,83"/>
+</map>

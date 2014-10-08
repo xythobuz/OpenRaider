@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,26 +110,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a134aaa2f78af0c12d3ce504957169768"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#a134aaa2f78af0c12d3ce504957169768">~Font</a> ()</td></tr>
 <tr class="memdesc:a134aaa2f78af0c12d3ce504957169768"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs an object of <a class="el" href="class_font.html" title="Font interface. ">Font</a>.  <a href="#a134aaa2f78af0c12d3ce504957169768">More...</a><br/></td></tr>
 <tr class="separator:a134aaa2f78af0c12d3ce504957169768"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7246774d22d06594686205835359fec2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#a7246774d22d06594686205835359fec2">setFont</a> (const char *font)</td></tr>
-<tr class="separator:a7246774d22d06594686205835359fec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01cb323e69bfa1a3fe4acb39aa81973e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#a01cb323e69bfa1a3fe4acb39aa81973e">setFont</a> (std::string font)</td></tr>
+<tr class="separator:a01cb323e69bfa1a3fe4acb39aa81973e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad2ecf4d13ddad7b5c7af0b018046361"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#aad2ecf4d13ddad7b5c7af0b018046361">initialize</a> ()=0</td></tr>
 <tr class="separator:aad2ecf4d13ddad7b5c7af0b018046361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8ce87d1f2f3c1e0068ba7066998c9e5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#ab8ce87d1f2f3c1e0068ba7066998c9e5">writeString</a> (<a class="el" href="_font_8h.html#struct_font_string">FontString</a> &amp;s)=0</td></tr>
-<tr class="separator:ab8ce87d1f2f3c1e0068ba7066998c9e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3c6780f989695d47dacbb1405192731"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#ac3c6780f989695d47dacbb1405192731">drawText</a> (unsigned int x, unsigned int y, float scale, const unsigned char color[4], const char *s,...)</td></tr>
-<tr class="separator:ac3c6780f989695d47dacbb1405192731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07e4c95082fd67057a747e85c4157080"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#a07e4c95082fd67057a747e85c4157080">widthText</a> (float scale, std::string s)=0</td></tr>
+<tr class="separator:a07e4c95082fd67057a747e85c4157080"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e77391538a5915cdb1c14d1c78c11c7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#a8e77391538a5915cdb1c14d1c78c11c7">drawText</a> (unsigned int x, unsigned int y, float scale, const unsigned char color[4], std::string s)=0</td></tr>
+<tr class="separator:a8e77391538a5915cdb1c14d1c78c11c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf54226722e44ad61733bb9224c079e2"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#aaf54226722e44ad61733bb9224c079e2">heightText</a> (float scale, unsigned int maxWidth, std::string s)=0</td></tr>
+<tr class="separator:aaf54226722e44ad61733bb9224c079e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c0ad731a39e14aa58fd075018502dc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#a14c0ad731a39e14aa58fd075018502dc">drawTextWrapped</a> (unsigned int x, unsigned int y, float scale, const unsigned char color[4], unsigned int maxWidth, std::string s)=0</td></tr>
+<tr class="separator:a14c0ad731a39e14aa58fd075018502dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3bd9b3896befad2b2962b4cbc56b2a7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#ab3bd9b3896befad2b2962b4cbc56b2a7">drawTextCentered</a> (unsigned int x, unsigned int y, float scale, const unsigned char color[4], unsigned int width, std::string s)</td></tr>
+<tr class="separator:ab3bd9b3896befad2b2962b4cbc56b2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ab13e51b8ef7de93faa2bd8e16d44e145"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#ab13e51b8ef7de93faa2bd8e16d44e145">mFontInit</a></td></tr>
 <tr class="separator:ab13e51b8ef7de93faa2bd8e16d44e145"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cc21841a017a8de60426d77d41ae3bf"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#a5cc21841a017a8de60426d77d41ae3bf">mFontName</a></td></tr>
-<tr class="separator:a5cc21841a017a8de60426d77d41ae3bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c77446ad2624aa163436d900ae421e1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_font.html#a1c77446ad2624aa163436d900ae421e1">mFontName</a></td></tr>
+<tr class="separator:a1c77446ad2624aa163436d900ae421e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_font.html" title="Font interface. ">Font</a> interface. </p>
 
-<p>Definition at line <a class="el" href="_font_8h_source.html#l00024">24</a> of file <a class="el" href="_font_8h_source.html">Font.h</a>.</p>
+<p>Definition at line <a class="el" href="_font_8h_source.html#l00016">16</a> of file <a class="el" href="_font_8h_source.html">Font.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a134aaa2f78af0c12d3ce504957169768"></a>
 <div class="memitem">
@@ -153,12 +160,12 @@ Protected Attributes</h2></td></tr>
 
 <p>Deconstructs an object of <a class="el" href="class_font.html" title="Font interface. ">Font</a>. </p>
 
-<p>Definition at line <a class="el" href="_font_8cpp_source.html#l00012">12</a> of file <a class="el" href="_font_8cpp_source.html">Font.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_font_8cpp_source.html#l00013">13</a> of file <a class="el" href="_font_8cpp_source.html">Font.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac3c6780f989695d47dacbb1405192731"></a>
+<a class="anchor" id="a8e77391538a5915cdb1c14d1c78c11c7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -166,7 +173,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Font::drawText </td>
+          <td class="memname">virtual void Font::drawText </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -192,14 +199,68 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_font_s_d_l.html#a5423eceed5f7f8e1511fc91f59549adf">FontSDL</a>, <a class="el" href="class_font_t_r_l_e.html#aca963ec3cbf9b672cb9b6751c1488297">FontTRLE</a>, and <a class="el" href="class_font_manager.html#a5aa03b35ac7ddd48284212841932e11b">FontManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab3bd9b3896befad2b2962b4cbc56b2a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Font::drawTextCentered </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char&#160;</td>
+          <td class="paramname"><em>color</em>[4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -214,7 +275,109 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_font_8cpp_source.html#l00025">25</a> of file <a class="el" href="_font_8cpp_source.html">Font.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_font_8cpp_source.html#l00021">21</a> of file <a class="el" href="_font_8cpp_source.html">Font.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a14c0ad731a39e14aa58fd075018502dc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Font::drawTextWrapped </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char&#160;</td>
+          <td class="paramname"><em>color</em>[4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>maxWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_font_s_d_l.html#a0da2067c5e55900d9b62320e80864f16">FontSDL</a>, <a class="el" href="class_font_t_r_l_e.html#a2e45ba59e0d5964ec94116fb0f0ac06a">FontTRLE</a>, and <a class="el" href="class_font_manager.html#a83d9956d55a85866f9ac352ce019c2a5">FontManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaf54226722e44ad61733bb9224c079e2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual unsigned int Font::heightText </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>maxWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_font_s_d_l.html#a32a8ebe551606a6799dbd673f0113084">FontSDL</a>, <a class="el" href="class_font_t_r_l_e.html#a2c17a45f1b6fc1a0b8839b1a72d07371">FontTRLE</a>, and <a class="el" href="class_font_manager.html#aff7b3da1100f253e9bf3d7109f49c755">FontManager</a>.</p>
 
 </div>
 </div>
@@ -243,7 +406,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7246774d22d06594686205835359fec2"></a>
+<a class="anchor" id="a01cb323e69bfa1a3fe4acb39aa81973e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -253,7 +416,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Font::setFont </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>font</em></td><td>)</td>
           <td></td>
         </tr>
@@ -265,11 +428,11 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_font_8cpp_source.html#l00017">17</a> of file <a class="el" href="_font_8cpp_source.html">Font.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_font_8cpp_source.html#l00016">16</a> of file <a class="el" href="_font_8cpp_source.html">Font.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab8ce87d1f2f3c1e0068ba7066998c9e5"></a>
+<a class="anchor" id="a07e4c95082fd67057a747e85c4157080"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -277,11 +440,21 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Font::writeString </td>
+          <td class="memname">virtual unsigned int Font::widthText </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_font_8h.html#struct_font_string">FontString</a> &amp;&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -291,7 +464,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_font_s_d_l.html#a8143f31e5b5a5bab3ea31fe54ac3e5f5">FontSDL</a>, <a class="el" href="class_font_t_r_l_e.html#aaa2bfc4942965a26411cd29c267cbb66">FontTRLE</a>, and <a class="el" href="class_font_manager.html#a3f517c54fc6a3a6bde205f548e675faa">FontManager</a>.</p>
+<p>Implemented in <a class="el" href="class_font_s_d_l.html#aaf902cecb8f63ecad56e7e70d49563e4">FontSDL</a>, <a class="el" href="class_font_t_r_l_e.html#a1aad867f1dec81d51604e6cc098f5506">FontTRLE</a>, and <a class="el" href="class_font_manager.html#a914bb6a7304d14a783ea1fa01327c4bf">FontManager</a>.</p>
 
 </div>
 </div>
@@ -314,11 +487,11 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_font_8h_source.html#l00042">42</a> of file <a class="el" href="_font_8h_source.html">Font.h</a>.</p>
+<p>Definition at line <a class="el" href="_font_8h_source.html#l00043">43</a> of file <a class="el" href="_font_8h_source.html">Font.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5cc21841a017a8de60426d77d41ae3bf"></a>
+<a class="anchor" id="a1c77446ad2624aa163436d900ae421e1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -326,7 +499,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">char* Font::mFontName</td>
+          <td class="memname">std::string Font::mFontName</td>
         </tr>
       </table>
   </td>
@@ -336,7 +509,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_font_8h_source.html#l00043">43</a> of file <a class="el" href="_font_8h_source.html">Font.h</a>.</p>
+<p>Definition at line <a class="el" href="_font_8h_source.html#l00044">44</a> of file <a class="el" href="_font_8h_source.html">Font.h</a>.</p>
 
 </div>
 </div>

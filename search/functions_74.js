@@ -1,12 +1,29 @@
 var searchData=
 [
+  ['tell',['tell',['../class_binary_file.html#abf714d8c7561654b9b935871bf482582',1,'BinaryFile']]],
+  ['test',['test',['../namespaceanonymous__namespace_02binary_8cpp_03.html#ae674d3b6a6efa7cefd0a3dec07c2867f',1,'anonymous_namespace{binary.cpp}::test()'],['../namespaceanonymous__namespace_02_script_8cpp_03.html#a3252e9cc28e842ccaaa6833260bfe2ac',1,'anonymous_namespace{Script.cpp}::test()']]],
+  ['text',['Text',['../namespace_im_gui.html#a67d6ffc227038ddb8670513d85eb53fd',1,'ImGui']]],
+  ['textcolored',['TextColored',['../namespace_im_gui.html#aff9ebf123e85c9cec235a428d897d2bc',1,'ImGui']]],
+  ['textcoloredv',['TextColoredV',['../namespace_im_gui.html#a565ffca15447b3fbe600170a314fdc8d',1,'ImGui']]],
+  ['textrange',['TextRange',['../struct_im_gui_text_filter_1_1_text_range.html#a5a6548fd40884ef5837e6a1ffa33af61',1,'ImGuiTextFilter::TextRange::TextRange()'],['../struct_im_gui_text_filter_1_1_text_range.html#a4a2b377d4fd141fc3664378041f9f007',1,'ImGuiTextFilter::TextRange::TextRange(const char *_b, const char *_e)']]],
+  ['textunformatted',['TextUnformatted',['../namespace_im_gui.html#ae3e233be79afe818d9eb5fe8a8abf9cf',1,'ImGui']]],
   ['texture',['Texture',['../class_tomb_raider.html#a26d2dc7e32ee92ac70c28d66a112fd72',1,'TombRaider']]],
-  ['texturedtriangle',['TexturedTriangle',['../class_textured_triangle.html#a52f1cc00c2b36e3ad3fc1bc1f93cd2c7',1,'TexturedTriangle']]],
+  ['texturedtriangle',['TexturedTriangle',['../class_textured_triangle.html#a1fe6232f657150289bfc77ca9afbab2a',1,'TexturedTriangle']]],
   ['texturemanager',['TextureManager',['../class_texture_manager.html#ad76abb178b37cedf4514eb0154349935',1,'TextureManager']]],
+  ['textv',['TextV',['../namespace_im_gui.html#ae013d7008b6dd18179b99ff3407419c0',1,'ImGui']]],
   ['tgacheck',['tgaCheck',['../tga_8h.html#a029f055518ded232051e3c64c2d22517',1,'tgaCheck(const char *filename):&#160;tga.cpp'],['../tga_8cpp.html#a029f055518ded232051e3c64c2d22517',1,'tgaCheck(const char *filename):&#160;tga.cpp']]],
   ['tgaload',['tgaLoad',['../tga_8h.html#a9214f51a3daad66aae81d1fb6447cd22',1,'tgaLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, char *type):&#160;tga.cpp'],['../tga_8cpp.html#a9214f51a3daad66aae81d1fb6447cd22',1,'tgaLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, char *type):&#160;tga.cpp']]],
   ['tgasave',['tgaSave',['../tga_8h.html#a47a99fdedd0dc2088251929de3e22670',1,'tgaSave(const char *filename, unsigned char *image, unsigned int width, unsigned int height, char type):&#160;tga.cpp'],['../tga_8cpp.html#a47a99fdedd0dc2088251929de3e22670',1,'tgaSave(const char *filename, unsigned char *image, unsigned int width, unsigned int height, char type):&#160;tga.cpp']]],
+  ['titlebaraabb',['TitleBarAabb',['../struct_im_gui_window.html#aca42213cd4d4ac2e51834ea6095be765',1,'ImGuiWindow']]],
+  ['titlebarheight',['TitleBarHeight',['../struct_im_gui_window.html#aa0fd5081f3673347f2e27f7344d7a6b4',1,'ImGuiWindow']]],
+  ['titlecount',['titleCount',['../class_script.html#a1a460883ece1acb1fb2271ae85120805',1,'Script']]],
   ['tombraider',['TombRaider',['../class_tomb_raider.html#a2cd451dc244348ecc629b15fe0c041be',1,'TombRaider']]],
-  ['translate',['translate',['../class_matrix.html#a214b7e4f6ec101d2a22ddd05215b9afc',1,'Matrix::translate(vec_t x, vec_t y, vec_t z)'],['../class_matrix.html#abe83d3fe49361b7c64f87af1d1fa03f5',1,'Matrix::translate(const vec_t *xyz)']]],
-  ['transpose',['transpose',['../class_matrix.html#aa753de1a2ed37c8eb934e06823fee179',1,'Matrix']]]
+  ['translate',['translate',['../class_matrix.html#a7b58a6bea6204880ff1bb2cdfc8f8cd4',1,'Matrix::translate(float x, float y, float z)'],['../class_matrix.html#a0391b735146b22f8861461c9408d9dfb',1,'Matrix::translate(const float *xyz)']]],
+  ['transpose',['transpose',['../class_matrix.html#aa753de1a2ed37c8eb934e06823fee179',1,'Matrix']]],
+  ['treenode',['TreeNode',['../namespace_im_gui.html#afc058e02b4baab2df1ab1db814e24ecb',1,'ImGui::TreeNode(const char *str_id, const char *fmt,...)'],['../namespace_im_gui.html#a7d59ec50d632e2399d5a3fc53b82fab4',1,'ImGui::TreeNode(const void *ptr_id, const char *fmt,...)'],['../namespace_im_gui.html#ad4f6290a3cb7005eca318b910e315a9b',1,'ImGui::TreeNode(const char *str_label_id)']]],
+  ['treenodev',['TreeNodeV',['../namespace_im_gui.html#a715d811bdc2537f14192501a48be1284',1,'ImGui::TreeNodeV(const char *str_id, const char *fmt, va_list args)'],['../namespace_im_gui.html#a6d2cd1d0462624278963e17dfab652e4',1,'ImGui::TreeNodeV(const void *ptr_id, const char *fmt, va_list args)']]],
+  ['treepop',['TreePop',['../namespace_im_gui.html#a41ecf265e5f678c78fc9c30b3cf2077f',1,'ImGui']]],
+  ['treepush',['TreePush',['../namespace_im_gui.html#a30b5df3be04a6e712985612bbdea6656',1,'ImGui::TreePush(const char *str_id)'],['../namespace_im_gui.html#aaaedbc7778152061af89f542f3e3402e',1,'ImGui::TreePush(const void *ptr_id)']]],
+  ['trim_5fblanks',['trim_blanks',['../struct_im_gui_text_filter_1_1_text_range.html#aa3bbd8b17b528f548d73c0936228dc85',1,'ImGuiTextFilter::TextRange']]],
+  ['tryisnewframe',['TryIsNewFrame',['../struct_im_gui_once_per_frame.html#ac1696f8c3b31e0abff178a0b2497a1fa',1,'ImGuiOncePerFrame']]]
 ];

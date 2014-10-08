@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -99,27 +100,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6e401c4da5839950f1f30c8b8c4d1208"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#a6e401c4da5839950f1f30c8b8c4d1208">BoundingBox</a> ()</td></tr>
 <tr class="separator:a6e401c4da5839950f1f30c8b8c4d1208"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af38fdb00588ba206b92ca772b56b41c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#af38fdb00588ba206b92ca772b56b41c0">getBoundingBox</a> (<a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> box[2])</td></tr>
-<tr class="separator:af38fdb00588ba206b92ca772b56b41c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad69e8916de27a4c33f6176c2bc943ece"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#ad69e8916de27a4c33f6176c2bc943ece">setBoundingBox</a> (<a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> min, <a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> max)</td></tr>
-<tr class="separator:ad69e8916de27a4c33f6176c2bc943ece"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebb922741d5f7f363772af8187a83142"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#aebb922741d5f7f363772af8187a83142">getBoundingBox</a> (float box[2][3])</td></tr>
+<tr class="separator:aebb922741d5f7f363772af8187a83142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38e35aab69e89ab2ea076815787ad4be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#a38e35aab69e89ab2ea076815787ad4be">setBoundingBox</a> (float min[3], float max[3])</td></tr>
+<tr class="separator:a38e35aab69e89ab2ea076815787ad4be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac754923be405ebe7f27adf445346fa0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#ac754923be405ebe7f27adf445346fa0d">display</a> (bool points, const unsigned char c1[4], const unsigned char c2[4])</td></tr>
 <tr class="separator:ac754923be405ebe7f27adf445346fa0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b4ca371821bf57be54e20529da84c5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#a6b4ca371821bf57be54e20529da84c5e">inBox</a> (<a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> x, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> y, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> z)</td></tr>
-<tr class="separator:a6b4ca371821bf57be54e20529da84c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9e05999fe3e98f291446442576e7b5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#ae9e05999fe3e98f291446442576e7b5e">inBoxPlane</a> (<a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> x, <a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a> z)</td></tr>
-<tr class="separator:ae9e05999fe3e98f291446442576e7b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee135280f94e54bdf726d0608b46b48a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#aee135280f94e54bdf726d0608b46b48a">inBox</a> (float x, float y, float z)</td></tr>
+<tr class="separator:aee135280f94e54bdf726d0608b46b48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bba02f78ad49edb3b3caf972777735b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#a2bba02f78ad49edb3b3caf972777735b">inBoxPlane</a> (float x, float z)</td></tr>
+<tr class="separator:a2bba02f78ad49edb3b3caf972777735b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ada3e67d7cc66333d50413fc7e8b29bd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#ada3e67d7cc66333d50413fc7e8b29bd3">a</a></td></tr>
-<tr class="separator:ada3e67d7cc66333d50413fc7e8b29bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4663ec947f18c5ec4f2c6237ae92758e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#a4663ec947f18c5ec4f2c6237ae92758e">b</a></td></tr>
-<tr class="separator:a4663ec947f18c5ec4f2c6237ae92758e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b00982b7f673f2882df96adf906af41"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#a2b00982b7f673f2882df96adf906af41">a</a> [3]</td></tr>
+<tr class="separator:a2b00982b7f673f2882df96adf906af41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91ba2f4e5dc2e3cb7a93290ba591c97"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bounding_box.html#ad91ba2f4e5dc2e3cb7a93290ba591c97">b</a> [3]</td></tr>
+<tr class="separator:ad91ba2f4e5dc2e3cb7a93290ba591c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00017">17</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
+<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00016">16</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6e401c4da5839950f1f30c8b8c4d1208"></a>
 <div class="memitem">
@@ -168,21 +169,21 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000027">FIXME:</a></b></dt><dd>Need to make custom color key for this </dd></dl>
+<dl class="fixme"><dt><b><a class="el" href="fixme.html#_fixme000024">FIXME:</a></b></dt><dd>Need to make custom color key for this </dd></dl>
 
 <p>Definition at line <a class="el" href="_room_data_8cpp_source.html#l00046">46</a> of file <a class="el" href="_room_data_8cpp_source.html">RoomData.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af38fdb00588ba206b92ca772b56b41c0"></a>
+<a class="anchor" id="aebb922741d5f7f363772af8187a83142"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void BoundingBox::getBoundingBox </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>box</em>[2]</td><td>)</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>box</em>[2][3]</td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -192,26 +193,26 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6b4ca371821bf57be54e20529da84c5e"></a>
+<a class="anchor" id="aee135280f94e54bdf726d0608b46b48a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool BoundingBox::inBox </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td>
+          <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td>
+          <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>y</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td>
+          <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>z</em>&#160;</td>
         </tr>
         <tr>
@@ -226,20 +227,20 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae9e05999fe3e98f291446442576e7b5e"></a>
+<a class="anchor" id="a2bba02f78ad49edb3b3caf972777735b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool BoundingBox::inBoxPlane </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td>
+          <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a34b8d82aced6931bd3a572041e59aa7d">vec_t</a>&#160;</td>
+          <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>z</em>&#160;</td>
         </tr>
         <tr>
@@ -254,21 +255,21 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad69e8916de27a4c33f6176c2bc943ece"></a>
+<a class="anchor" id="a38e35aab69e89ab2ea076815787ad4be"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void BoundingBox::setBoundingBox </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>min</em>, </td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>min</em>[3], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a>&#160;</td>
-          <td class="paramname"><em>max</em>&#160;</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>max</em>[3]&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -283,7 +284,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="ada3e67d7cc66333d50413fc7e8b29bd3"></a>
+<a class="anchor" id="a2b00982b7f673f2882df96adf906af41"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -291,7 +292,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> BoundingBox::a</td>
+          <td class="memname">float BoundingBox::a[3]</td>
         </tr>
       </table>
   </td>
@@ -301,11 +302,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00027">27</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
+<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00026">26</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4663ec947f18c5ec4f2c6237ae92758e"></a>
+<a class="anchor" id="ad91ba2f4e5dc2e3cb7a93290ba591c97"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -313,7 +314,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="math_8h.html#a54109d17b44e074abb1d39f7aa02584b">vec3_t</a> BoundingBox::b</td>
+          <td class="memname">float BoundingBox::b[3]</td>
         </tr>
       </table>
   </td>
@@ -323,7 +324,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00027">27</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
+<p>Definition at line <a class="el" href="_room_data_8h_source.html#l00026">26</a> of file <a class="el" href="_room_data_8h_source.html">RoomData.h</a>.</p>
 
 </div>
 </div>

@@ -1,0 +1,14 @@
+digraph "Folder::getParent"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Folder::getParent",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Folder::Folder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_folder.html#ad4dd0ee29bcd30a2bf58bf0973c6cd0a"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="getCurrentWorkingDirectory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$filesystem_8h.html#ad2f3c316eb187af1c143ef064e9803de"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="getHomeDirectory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$filesystem_8h.html#a7007c1e439369ac599ebe014de249392"];
+}

@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -113,7 +114,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -138,13 +139,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>backwardAction
 : <a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8ca59704c9c26b81f81e0ca8a6f2c28b5f7">global.h</a>
 </li>
+<li>BGR
+: <a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443fa4a19a93c929964c201e01c8352dc8b9c">global.h</a>
+</li>
 <li>bgr2rgb24()
 : <a class="el" href="pixel_8h.html#aa98f7e7677a832bed8ba09abf6a03964">pixel.h</a>
 , <a class="el" href="pixel_8cpp.html#aa98f7e7677a832bed8ba09abf6a03964">pixel.cpp</a>
 </li>
+<li>BGRA
+: <a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443fae806f2c292a965ab4230bf7086d5ba54">global.h</a>
+</li>
 <li>bgra2rgba32()
-: <a class="el" href="pixel_8cpp.html#a637f5d0173bb783c18d438f32f0a7d83">pixel.cpp</a>
-, <a class="el" href="pixel_8h.html#a637f5d0173bb783c18d438f32f0a7d83">pixel.h</a>
+: <a class="el" href="pixel_8h.html#a637f5d0173bb783c18d438f32f0a7d83">pixel.h</a>
+, <a class="el" href="pixel_8cpp.html#a637f5d0173bb783c18d438f32f0a7d83">pixel.cpp</a>
 </li>
 <li>bKey
 : <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aab123352b9e69101eef7c282c69d9dca4">global.h</a>
@@ -154,12 +161,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>BLUE
 : <a class="el" href="global_8h.html#af81d2c4d18c6120ba15ac53709f70043">global.h</a>
-</li>
-<li>bufferString()
-: <a class="el" href="strings_8cpp.html#ac64afe7233d622301ec5a9f25b559590">strings.cpp</a>
-, <a class="el" href="strings_8h.html#ac64afe7233d622301ec5a9f25b559590">strings.h</a>
-, <a class="el" href="strings_8cpp.html#a11e08e8c6f441ee8074ec5266d7ace8a">strings.cpp</a>
-, <a class="el" href="strings_8h.html#a11e08e8c6f441ee8074ec5266d7ace8a">strings.h</a>
 </li>
 </ul>
 </div><!-- contents -->

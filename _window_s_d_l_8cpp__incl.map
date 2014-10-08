@@ -1,30 +1,10 @@
 <map id="src/WindowSDL.cpp" name="src/WindowSDL.cpp">
-<area shape="rect" id="node3" href="$global_8h.html" title="Global typedefs. " alt="" coords="1227,80,1293,107"/>
-<area shape="rect" id="node6" href="$_open_raider_8h.html" title="Main Game Object. " alt="" coords="638,80,741,107"/>
-<area shape="rect" id="node38" href="$strings_8h.html" title="String handling utilities. " alt="" coords="1083,80,1176,107"/>
-<area shape="rect" id="node40" href="$_window_s_d_l_8h.html" title="SDL windowing implementation. " alt="" coords="1426,80,1531,107"/>
-<area shape="rect" id="node10" href="$_console_8h.html" title="Console &#39;overlay&#39;. " alt="" coords="386,155,465,181"/>
-<area shape="rect" id="node12" href="$_font_8h.html" title="Font interface. " alt="" coords="1009,229,1065,256"/>
-<area shape="rect" id="node13" href="$_game_8h.html" title="Game abstraction. " alt="" coords="655,155,723,181"/>
-<area shape="rect" id="node36" href="$_menu_8h.html" title="Menu &#39;overlay&#39;. " alt="" coords="964,155,1028,181"/>
-<area shape="rect" id="node37" href="$_sound_8h.html" title="This is the audio manager Header. " alt="" coords="292,155,361,181"/>
-<area shape="rect" id="node14" href="$_camera_8h.html" title="Camera class. " alt="" coords="1317,453,1395,480"/>
-<area shape="rect" id="node18" href="$_entity_8h.html" title="World Entities. " alt="" coords="293,304,355,331"/>
-<area shape="rect" id="node20" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="205,453,307,480"/>
-<area shape="rect" id="node23" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="846,229,919,256"/>
-<area shape="rect" id="node33" href="$_world_8h.html" title="The game world (model) " alt="" coords="492,229,556,256"/>
-<area shape="rect" id="node15" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="950,603,1042,629"/>
-<area shape="rect" id="node17" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="1291,528,1418,555"/>
-<area shape="rect" id="node19" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="373,379,483,405"/>
-<area shape="rect" id="node22" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="277,528,408,555"/>
-<area shape="rect" id="node24" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="849,304,916,331"/>
-<area shape="rect" id="node31" href="$_texture_manager_8h.html" title="Texture registry. " alt="" coords="941,304,1065,331"/>
-<area shape="rect" id="node32" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="1141,304,1243,331"/>
-<area shape="rect" id="node25" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="964,528,1028,555"/>
-<area shape="rect" id="node26" href="$_sprite_8h.html" title="World Sprite. " alt="" coords="508,379,572,405"/>
-<area shape="rect" id="node27" href="$_room_data_8h.html" title="World Room Mesh. " alt="" coords="1053,379,1147,405"/>
-<area shape="rect" id="node29" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="1193,453,1292,480"/>
-<area shape="rect" id="node30" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="1154,528,1267,555"/>
-<area shape="rect" id="node35" href="$_static_mesh_8h.html" title="Static Model Meshes. " alt="" coords="254,379,349,405"/>
-<area shape="rect" id="node43" href="$_window_8h.html" title="Windowing interface. " alt="" coords="1586,155,1665,181"/>
+<area shape="rect" id="node4" href="$global_8h.html" title="Global typedefs. " alt="" coords="287,80,353,107"/>
+<area shape="rect" id="node10" href="$_run_time_8h.html" title="run time configuration storage " alt="" coords="377,80,460,107"/>
+<area shape="rect" id="node12" href="$_u_i_8h.html" title="Abstract UI interface. " alt="" coords="693,80,737,107"/>
+<area shape="rect" id="node24" href="$strings_8h.html" title="String handling utilities. " alt="" coords="484,80,577,107"/>
+<area shape="rect" id="node25" href="$_window_s_d_l_8h.html" title="SDL windowing implementation. " alt="" coords="978,80,1083,107"/>
+<area shape="rect" id="node17" href="$imgui_8h.html" title="imgui/imgui.h" alt="" coords="885,155,977,181"/>
+<area shape="rect" id="node18" href="$imconfig_8h.html" title="imconfig.h" alt="" coords="673,229,749,256"/>
+<area shape="rect" id="node27" href="$_window_8h.html" title="Windowing interface. " alt="" coords="1085,155,1163,181"/>
 </map>

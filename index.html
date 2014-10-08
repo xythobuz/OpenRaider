@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -66,7 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -80,28 +81,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">OpenRaider Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This is a fork of the <a href="http://openraider.sourceforge.net">OpenRaider</a> Open Source implementation of the classic Tomb Raider <a class="el" href="class_game.html" title="Game abstraction. ">Game</a> Engine. The original project was abandoned in 2003.</p>
-<p>This fork aims to get <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly...</p>
-<p>If you just want to see <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> doing something on your Mac, without installing any of the dependencies needed to build <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>, grab the Mac App Bundle from the <a href="https://github.com/xythobuz/OpenRaider/releases">most recent release</a>.</p>
-<p>It seems as if <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!</p>
+<div class="textblock"><p><a href="https://travis-ci.org/xythobuz/OpenRaider">![Build Status](https://travis-ci.org/xythobuz/OpenRaider.svg?branch=master)</a></p>
+<p>This is a fork of the <a href="http://openraider.sourceforge.net">OpenRaider</a> Open Source implementation of the classic Tomb Raider <a class="el" href="class_game.html">Game</a> Engine. The original project was abandoned in 2003.</p>
+<p>This fork aims to get OpenRaider in a more usable state, maybe one day even being able to play the old Tomb Raider games flawlessly, while bringing the code to modern standards.</p>
+<p>Visit the IRC Channel <code>#OpenRaider</code> on <code>chat.freenode.net</code>. <a href="http://webchat.freenode.net/?channels=%23OpenRaider">Webchat</a>.</p>
+<p>It seems as if OpenRaider will currently only work on Little-Endian platforms. This is not nice and will hopefully be fixed in the future!</p>
 <p><a href="https://flattr.com/submit/auto?user_id=xythobuz&amp;url=https://github.com/xythobuz/OpenRaider&amp;title=OpenRaider&amp;language=&amp;tags=github&amp;category=software">![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)</a></p>
 <h2>Configuration</h2>
-<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> needs some configuration files, and level data and assets from custom levels or the Tomb Raider games. These are stored in <code>~/.<a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a></code>. Running <code>make setup</code> will create/copy the necessary files and directories.</p>
+<p>OpenRaider needs some configuration files, and level data and assets from custom levels or the Tomb Raider games. These are stored in <code>~/.OpenRaider</code>. Running <code>make setup</code> will create/copy the necessary files and directories.</p>
 <p>You still need to add level files in <code>~/.OpenRaider/paks/</code>. Dust off your old Tomb Raider CDs or grab some <a href="http://www.aspidetr.com/levels/yvel-woods-v1-5/">custom levels</a> from the interwebs.</p>
 <h2>Documentation</h2>
 <p>All previously included documentation was moved into the <a href="https://github.com/xythobuz/OpenRaider/wiki/_pages">OpenRaider Repo Wiki</a>.</p>
-<p>A more or less recent <a href="http://xythobuz.github.io/OpenRaider/">Doxygen documentation</a> of <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> should be on the Github Pages for <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>.</p>
+<p>A more or less recent <a href="http://xythobuz.github.io/OpenRaider/">Doxygen documentation</a> of OpenRaider should be on the Github Pages for OpenRaider.</p>
 <h2>Dependencies</h2>
-<p>Basically, <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> depends on the following:</p>
+<p>Basically, OpenRaider depends on the following:</p>
 <ul>
+<li>C++11 compiler</li>
+<li>cmake</li>
 <li>OpenGL</li>
+<li>zlib</li>
 <li>SDL2</li>
 <li>SDL2-TTF (optional, needed if you want to use TTF fonts)</li>
-<li>OpenAL &amp; ALUT</li>
-<li>zlib</li>
-<li>cmake as build system</li>
+<li>OpenAL &amp; ALUT (optional, needed for sound output)</li>
 <li>libpng (optional)</li>
-<li>C++11 compiler</li>
 </ul>
 <p>On Mac OS X 10.9 with <a href="https://developer.apple.com/xcode/">XCode</a> and <a href="http://www.macports.org">MacPorts</a> installed, the following should be enough to get all dependencies that are available as port: </p>
 <pre class="fragment">sudo port install cmake zlib libsdl2 libsdl2_ttf
@@ -114,30 +116,32 @@ cmake .. -DCMAKE_INSTALL_PREFIX:STRING="/usr/local" -DCMAKE_C_FLAGS:STRING="-O2"
 make
 sudo make install
 </pre><p>Linux Distributions will probably provide an ALUT library ready to install with their package manager, so you won't need to compile freealut.</p>
-<p><a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a> support is optional now, however. If cmake can’t find OpenAL and ALUT, Audio will be deactivated. If you want to explicitly deactivate it, call cmake with <code>-DENABLE_AUDIO=NO</code>.</p>
+<p><a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a> support is optional, however. If cmake can’t find OpenAL and ALUT, Audio will be deactivated. If you want to explicitly deactivate it, call cmake with <code>-DENABLE_AUDIO=NO</code>.</p>
+<p>There is also a rudimentary windowing implementation using freeGLUT. It will be used if GLUT is found instead of SDL2, or if you call cmake with <code>-DFORCE_GLUT=YES</code>. Be aware that your experience will not be as nice as with SDL2...</p>
 <h2>Building</h2>
 <p>Do a standard cmake out-of-source build to get a debug configuration and then run the resulting executable: </p>
 <pre class="fragment">mkdir build &amp;&amp; cd build
 cmake ..
 make run
 </pre><p>On Mac OS X, running <code>make install</code> will produce a (more or less) distributable OpenRaider.app bundle.</p>
-<p>You can run a static analysis with cppcheck using <code>make check</code>, <code>make checkFull</code> or <code>make checkConfig</code>.</p>
+<p>Run <code>make check</code> to build and run the unit tests.</p>
+<p>You can run a static analysis with cppcheck using <code>make cppcheck</code>, <code>make cppcheckFull</code> or <code>make cppcheckConfig</code>.</p>
 <p>A Doxygen API documentation can be created with <code>make doc</code>.</p>
 <p><code>make clean</code> should remove all intermediary files. <code>make run</code> will run the binary.</p>
 <p>You can also generate working XCode Project files with <code>cmake -G Xcode ..</code>.</p>
 <h2>Usage</h2>
 <h3>Configuration file</h3>
-<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> will try to load <code>~/.OpenRaider/OpenRaider.ini</code> or, if it doesn't exist, <code>OpenRaider.ini</code> from the current directory. Running <code>make setup</code> will create a minimal configuration in your home directory.</p>
+<p>OpenRaider will try to load <code>~/.OpenRaider/OpenRaider.ini</code> or, if it doesn't exist, <code>OpenRaider.ini</code> from the current directory. Running <code>make setup</code> will create a minimal configuration in your home directory.</p>
 <p>The configuration file format is very simple:</p>
 <ul>
 <li>Every line will be executed as in-game console command</li>
 <li>The # character marks the beginning of a single-line comment</li>
 </ul>
 <h3>Level PAKs</h3>
-<p>You can use paks from any classic Tomb Raider <a class="el" href="class_game.html" title="Game abstraction. ">Game</a> (1 - 5) and most user made paks for Tomb Raider. Tomb Raider 5 support is however still very limited.</p>
+<p>You can use paks from any classic Tomb Raider <a class="el" href="class_game.html">Game</a> (1 - 5) and most user made paks for Tomb Raider. Tomb Raider 5 support is however still very limited.</p>
 <h3><a class="el" href="class_sound.html" title="This is the audio manager for OpenRaider. ">Sound</a> FXs</h3>
 <p>TR2 and TR3 paks (both have file extension <code>.tr2</code>) don't have sound data contained in the pak itself, but instead they share a common SFX file (often MAIN.SFX) for each pak from a given Tomb Raider version.</p>
-<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> tries to load a <code>MAIN.SFX</code> from the same folder as the selected level file.</p>
+<p>OpenRaider tries to load a <code>MAIN.SFX</code> from the same folder as the selected level file.</p>
 <h3>Default Key Bindings</h3>
 <table class="doxtable">
 <tr>
@@ -145,7 +149,7 @@ make run
 <tr>
 <td align="right">&lt;Esc&gt; </td><td align="left">Toggle menu </td></tr>
 <tr>
-<td align="right">&lt;backquote&gt; </td><td align="left"><a class="el" href="class_console.html" title="Console &#39;overlay&#39;. ">Console</a> toggle on/off </td></tr>
+<td align="right">q </td><td align="left">Toggle debug windows </td></tr>
 <tr>
 <td align="right">w </td><td align="left">Move forward </td></tr>
 <tr>
@@ -166,9 +170,9 @@ make run
 <td align="right">MouseBtn Right </td><td align="left">Holster/Equip weapons </td></tr>
 </table>
 <h3>Console/Config Commands</h3>
-<p>Every available command should be listed in the in-game help. Just type <code>help</code> in the <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> console, which can be activated by default with the backquote key.</p>
+<p>Every available command should be listed in the in-game help. Just type <code>help</code> in the OpenRaider console, which can be activated by default with the backquote key.</p>
 <h3>Tomb Raider Level Editor <a class="el" href="class_font.html" title="Font interface. ">Font</a> support</h3>
-<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> can read Font.pc files used by the TRLE. If the fonts glyph positions match the TR4 defaults, only a Font.pc file is required. If the positions differ, you also need a <a href="http://trep.trlevel.de/en/downloads.html">Leikkuri/Cutter</a> preset file (<code>.lps</code>).</p>
+<p>OpenRaider can read Font.pc files used by the TRLE. If the fonts glyph positions match the TR4 defaults, only a Font.pc file is required. If the positions differ, you also need a <a href="http://trep.trlevel.de/en/downloads.html">Leikkuri/Cutter</a> preset file (<code>.lps</code>).</p>
 <p>TRLE <a class="el" href="class_font.html" title="Font interface. ">Font</a> support will automatically be built and used when selecting a font in your config file ending with <code>.pc</code>.</p>
 <p>If a <code>.lps</code> is required, give it the same name as your font file.</p>
 <p>I’ve made <a href="http://xythobuz.de/2014_06_14_trle_font.html">a small writeup on my website</a> about this.</p>
@@ -184,7 +188,7 @@ make run
 <li>Pink dots are visibility checks</li>
 </ul>
 <h2>License</h2>
-<p><a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a> is based on code, specs, and alogrithms from:</p>
+<p>OpenRaider is based on code, specs, and algorithms from:</p>
 <ul>
 <li>GooseEgg/Freyja 3d Modelers by Mongoose</li>
 <li>TR Rosetta Stone spec sheet by Anonymous</li>
@@ -200,13 +204,18 @@ make run
 <li><a href="https://github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake">FindSDL2</a></li>
 <li><a href="https://github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake">FindSDL2TTF</a></li>
 <li><a href="https://gitorious.org/vc/vc/source/a1d8b9fc31060d870386613cc72319546c850b87:cmake/FindSSE.cmake">FindSSE</a></li>
+<li><a href="https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake">GetGitRevisionDescription.cmake</a></li>
+<li><a href="https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake.in">GetGitRevisionDescription.cmake.in</a></li>
+<li><a href="https://github.com/PDAL/PDAL/blob/master/cmake/modules/FindFreeGLUT.cmake">FindFreeGLUT</a></li>
 </ul>
 <p>See the respective files in <code>cmake</code> for their licensing.</p>
 <ul>
 <li>Copyright 2009-2010 Ryan Pavlik <a href="#" onclick="location.href='mai'+'lto:'+'rpa'+'vl'+'ik@'+'ia'+'sta'+'te'+'.ed'+'u'; return false;">rpavl<span style="display: none;">.nosp@m.</span>ik@i<span style="display: none;">.nosp@m.</span>astat<span style="display: none;">.nosp@m.</span>e.ed<span style="display: none;">.nosp@m.</span>u</a> <a href="#" onclick="location.href='mai'+'lto:'+'abi'+'ry'+'an@'+'ry'+'and'+'.n'+'et'; return false;">abiry<span style="display: none;">.nosp@m.</span>an@r<span style="display: none;">.nosp@m.</span>yand.<span style="display: none;">.nosp@m.</span>net</a>, Iowa State University, Distributed under the Boost Software License.</li>
 <li>Copyright 2003-2009 Kitware, Inc.</li>
-<li>Eric Wing </li>
+<li>Eric Wing</li>
 </ul>
+<p>The <a href="https://github.com/clibs/commander">clibs/commander</a> dependency is Copyright (c) 2012 TJ Holowaychuk (<a href="#" onclick="location.href='mai'+'lto:'+'tj@'+'vi'+'sio'+'n-'+'med'+'ia'+'.ca'; return false;">tj@vi<span style="display: none;">.nosp@m.</span>sion<span style="display: none;">.nosp@m.</span>-medi<span style="display: none;">.nosp@m.</span>a.ca</a>) and licensed under the <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
+<p>The included GUI lib, <a href="https://github.com/ocornut/imgui/">imgui</a> is Copyright (c) 2014 Omar Cornut. See src/deps/imgui/LICENSE for more informations about the MIT license used. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

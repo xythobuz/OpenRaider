@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -65,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,27 +82,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="class_console.html#aa392bbf2aeecd5e86a4e624bcf9b087a">Console::display</a>  ()</dt>
-<dd>display the current mPartialInput. The UTF-8 segfaults SDL-TTF, somehow?  </dd>
-<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="class_font_t_r_l_e.html#aa1df23740878c4e5f863ddc1ebfcd642">FontTRLE::initialize</a>  ()</dt>
-<dd><a class="el" href="class_font.html" title="Font interface. ">Font</a> coloring not working when .pc has color?!?!  </dd>
-<dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="class_font_t_r_l_e.html#a26354f0a4649332e9e97a40c6fcc1fe7">FontTRLE::loadLPS</a>  (const char *f)</dt>
+<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="class_font_t_r_l_e.html#a6462a36ba8a3f4338a225372803e3db1">FontTRLE::loadLPS</a>  (std::string f)</dt>
 <dd>This is probably the worlds most unreliable parser...  </dd>
+<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="class_game.html#a864d3ae5a554c8857118c48253ef7646">Game::loadLevel</a>  (const char *level)</dt>
+<dd>Cutscene support  </dd>
 <dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="class_light.html#aa8d943f0be883ca2079f36c296938ba3">Light::Light</a>  (<a class="el" href="class_tomb_raider.html" title="Loads maps, meshes, textures... ">TombRaider</a> &amp;tr, unsigned int room, unsigned int index)</dt>
 <dd><a class="el" href="class_light.html">Light</a> flags?  </dd>
-<dt><a class="anchor" id="_todo000008"></a>Member <a class="el" href="class_menu.html#a775dac67309a7e3e1b33e91755ffebc8">Menu::play</a>  ()</dt>
-<dd>Display something if an error occurs  </dd>
-<dt><a class="anchor" id="_todo000002"></a>File <a class="el" href="_mesh_8h.html">Mesh.h</a>  </dt>
+<dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="class_menu.html#a76e78c8bc38e7e870f19f656cc64c5dc">Menu::handleMouseClickDialog</a>  (unsigned int x, unsigned int y, KeyboardButton button, bool released)</dt>
+<dd>Allow mouse usage of <a class="el" href="class_menu.html">Menu</a> dialogs!  </dd>
+<dt><a class="anchor" id="_todo000008"></a>Member <a class="el" href="class_menu.html#a903345a9112a7315f52a6033221ecaf2">Menu::handleMouseScrollDialog</a>  (int xrel, int yrel)</dt>
+<dd>Allow mouse usage of <a class="el" href="class_menu.html">Menu</a> dialogs!  </dd>
+<dt><a class="anchor" id="_todo000002"></a><a class="el" href="class_file.html">File</a> <a class="el" href="_mesh_8h.html">Mesh.h</a>  </dt>
 <dd>Unify the parallel systems here, arrays and the allocate/set  </dd>
 <dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="global_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>  </dt>
 <dd>Replace NULL usage with nullptr  </dd>
-<dt><a class="anchor" id="_todo000010"></a>File <a class="el" href="tga_8cpp.html">tga.cpp</a>  </dt>
+<dt><a class="anchor" id="_todo000011"></a><a class="el" href="class_file.html">File</a> <a class="el" href="tga_8cpp.html">tga.cpp</a>  </dt>
 <dd>type should pass more info (2 bits for RGBA|RGB|GREY; val for depth) </dd>
-<dt><a class="anchor" id="_todo000003"></a>File <a class="el" href="_tomb_raider_8h.html">TombRaider.h</a>  </dt>
+<dt><a class="anchor" id="_todo000003"></a><a class="el" href="class_file.html">File</a> <a class="el" href="_tomb_raider_8h.html">TombRaider.h</a>  </dt>
 <dd>WARNING: No endian routines as of yet  </dd>
 <dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="class_tomb_raider.html#a41c1512d12170b7a9aad0a0bc6e1cefc">TombRaider::getMeshTexturedTriangleCount</a>  (unsigned int meshIndex)</dt>
 <dd>This method interface may change later...  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="class_window.html#a3fd6d468af769ced9b67cd94843f7ee6">Window::initializeGL</a>  ()</dt>
+<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="class_u_i.html#a26fe2104bfed9855474c9c2835fc7a2d">UI::initialize</a>  ()</dt>
+<dd>Use our own font subsystem instead of this?  </dd>
+<dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="class_window.html#a3fd6d468af769ced9b67cd94843f7ee6">Window::initializeGL</a>  ()</dt>
 <dd>MultiTexture flag </dd>
 </dl>
 </div></div><!-- contents -->

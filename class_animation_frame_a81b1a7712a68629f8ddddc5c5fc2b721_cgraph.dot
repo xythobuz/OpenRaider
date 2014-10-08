@@ -1,0 +1,20 @@
+digraph "AnimationFrame::AnimationFrame"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="AnimationFrame::Animation\lFrame",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TombRaider::Moveable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#ad5961d00ab45a7d92c79062a0e4fff35"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TombRaider::Animation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#ad0e41f69400de5f2f532d63527caf4be"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TombRaider::Engine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#aa020667e2394f5c3a8173ee0231ef0fb"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TombRaider::NumMoveables",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#aeffdfa521d80639f427e3ceea395c9c3"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TombRaider::NumFrames",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_tomb_raider.html#a9cc5d7e3f812377207747ea03d97f07c"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="getLog",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_log_8h.html#aa2f604b13755d77658307017af86624a"];
+}

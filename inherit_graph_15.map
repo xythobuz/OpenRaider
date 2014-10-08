@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_mesh.html#struct_mesh_1_1rect__t" title="Mesh::rect_t" alt="" coords="5,5,95,32"/>
+<area shape="rect" id="node1" href="$class_font.html" title="Font interface. " alt="" coords="5,56,52,83"/>
+<area shape="rect" id="node2" href="$class_font_manager.html" title="FontManager" alt="" coords="100,5,197,32"/>
+<area shape="rect" id="node3" href="$class_font_s_d_l.html" title="SDL Font implementation. " alt="" coords="113,56,185,83"/>
+<area shape="rect" id="node4" href="$class_font_t_r_l_e.html" title="Tomb Raider Level Editor Font loader. " alt="" coords="109,107,188,133"/>
 </map>

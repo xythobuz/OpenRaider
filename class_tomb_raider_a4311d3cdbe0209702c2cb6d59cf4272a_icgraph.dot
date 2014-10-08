@@ -1,0 +1,10 @@
+digraph "TombRaider::MeshTree"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TombRaider::MeshTree",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="BoneTag::BoneTag",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_bone_tag.html#acffc46d14d55e7a02a99c303ccea8612"];
+}

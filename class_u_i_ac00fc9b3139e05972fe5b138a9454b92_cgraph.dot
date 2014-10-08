@@ -1,0 +1,24 @@
+digraph "UI::renderImGui"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="UI::renderImGui",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="getWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_window_8h.html#a569be9f3eab26d2ba994a32b75dc9896"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Window::glEnter2D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_window.html#a21e2c2c52367bcb4c6293e3573c88b9a"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="getTextureManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_texture_manager_8h.html#aee30c1bb50e324175753719cc70c7281"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TextureManager::bindTextureId",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#afdefa5565d45476aa4eac12679ac449b",tooltip="Binds the texture for use in GL. "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ImVector::begin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_im_vector.html#a300a8b559cd87a78063046ef81151bce"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="ImVector::end",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_im_vector.html#a947fbc3b1d8c1997e51ae6caab440379"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="ImGui::GetIO",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_im_gui.html#a3179e560812f878f3961ce803a5d9302"];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Window::glExit2D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_window.html#a6c5982c43fc9d8d36e092965ac8cf940"];
+}

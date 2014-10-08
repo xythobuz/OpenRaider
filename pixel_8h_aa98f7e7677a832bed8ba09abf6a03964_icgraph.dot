@@ -1,0 +1,43 @@
+digraph "bgr2rgb24"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="bgr2rgb24",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TextureManager::loadBufferSlot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#ad479756ff08f61f6dde8679601ddae67",tooltip="Loads Buffer as texture. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Game::processTextures",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#ac81ed6d8c4859473065b36375a9d12ca"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Game::loadLevel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#a864d3ae5a554c8857118c48253ef7646"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="CommandLoad::execute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_command_load.html#adedad35b259d83967ad67940c0dd984c"];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="MenuFolder::loadOrOpen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_menu_folder.html#ad4ecbd0af8832a0f1de508de38bd1cb9"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="MenuFolder::handleKeyboard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_menu_folder.html#a17dce032179efbe86de9d4f780f0b08b"];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="MenuFolder::handleMouseClick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_menu_folder.html#a7c48183312d473b42100e0f5ca4be4d5"];
+  Node2 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="TextureManager::initialize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#aa59af21dc339ee6e6eda50a1afa61fbe"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97"];
+  Node2 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="TextureManager::loadPCX",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#aaecdd8e792f87f575ebce8c7f6175514"];
+  Node11 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="TextureManager::loadImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#afdce801d0f81975f244be5bc0123020c"];
+  Node2 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="TextureManager::loadPNG",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#aa25dcc9301574c6ddb24140034b1f014"];
+  Node13 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="TextureManager::loadTGA",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_texture_manager.html#a2397216f8a31f900690555ec003ab32a"];
+  Node14 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="UI::initialize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_u_i.html#a26fe2104bfed9855474c9c2835fc7a2d"];
+  Node15 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="pngSave",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$png_8cpp.html#a721dfdd7dca6b8d1d4da099447cdc608",tooltip="Create a PNG image file from an RGBA buffer. "];
+}

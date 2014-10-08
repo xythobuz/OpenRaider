@@ -1,0 +1,48 @@
+digraph "Matrix::copy"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Matrix::copy",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Matrix::getMatrix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_matrix.html#a9cdf7f2f793394ce217e5bf6fc1d4afa",tooltip="Returns this matrix copy. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Matrix::getInvert",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_matrix.html#a962316f659352e40169615932cd7dbe2",tooltip="Returns this matrix inverted. "];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ViewVolume::updateFrustum",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_view_volume.html#a243eda64c5e38f2afe6fc4eaa2476a8f",tooltip="Computes planes of frustum. "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ViewVolume::updateFrame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_view_volume.html#ac0760eed60360f791078cc6b57343afb",tooltip="Updates view volume for this frame. "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Render::updateViewVolume",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_render.html#a3cee96657b2d590cc392c7b4f48d96c4",tooltip="Updates View Volume. Call once per render frame. "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Render::display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_render.html#ab7facb0873c6f266b8849c5ce6f223da",tooltip="Renders a single game frame. "];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Game::display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#a4d0223a84926cbabea95ed7e0392690a"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="renderFrame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html#a00df6d86f86c2004b5c421980456d3f7"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="CommandScreenshot::\lexecute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_command_screenshot.html#aea047cbfc0c1bdfc8d72d1633070bbdf"];
+  Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="Matrix::setMatrix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_matrix.html#a621e259acfbfd7e52affc7ad2fd1285e",tooltip="S et the matrix. "];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="Matrix::Matrix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_matrix.html#a6e7bfac115b34e944ad1333cbb85ca4e",tooltip="Constructs an object of Matrix. "];
+  Node12 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="ViewVolume::setModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_view_volume.html#af0db20ff2ce8622ffdc16196f2ce88b5",tooltip="Set this class&#39; model matrix. "];
+  Node14 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="ViewVolume::setProjection",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_view_volume.html#a0d1280d672c87f523b330260134d2a95",tooltip="Set this class&#39; projection matrix. "];
+  Node15 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="Matrix::scale",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_matrix.html#a2491ca972f9c22865c74424a103a9759",tooltip="Scale object in 3D space. "];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="Matrix::scale",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_matrix.html#a99e4e864b4292697269c7b774e49bff9",tooltip="Scale object in 3D space. "];
+  Node1 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="Matrix::translate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_matrix.html#a7b58a6bea6204880ff1bb2cdfc8f8cd4",tooltip="Translate (move) object in 3D space. "];
+  Node18 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="Matrix::translate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_matrix.html#a0391b735146b22f8861461c9408d9dfb",tooltip="Translate (move) object in 3D space. "];
+  Node18 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="Room::Room",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_room.html#a8a01c39d831d08c12bc38ecb3730b1c3"];
+}

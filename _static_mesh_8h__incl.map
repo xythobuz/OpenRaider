@@ -1,5 +1,4 @@
 <map id="include/StaticMesh.h" name="include/StaticMesh.h">
-<area shape="rect" id="node3" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="84,80,176,107"/>
-<area shape="rect" id="node5" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="205,80,306,107"/>
-<area shape="rect" id="node8" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="310,155,441,181"/>
+<area shape="rect" id="node3" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="85,80,186,107"/>
+<area shape="rect" id="node6" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="187,155,318,181"/>
 </map>

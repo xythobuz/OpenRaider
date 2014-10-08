@@ -1,0 +1,18 @@
+digraph "ImGuiTextFilter::PassFilter"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="ImGuiTextFilter::PassFilter",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ImGuiTextFilter::TextRange\l::empty",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_im_gui_text_filter_1_1_text_range.html#a067d8b7cb8515796bd271e8c9dc87d08"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ImGuiTextFilter::TextRange\l::front",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_im_gui_text_filter_1_1_text_range.html#a5e315256010969ee6492c4e2eac915ef"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ImStristr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$imgui_8cpp.html#afeac21e7bde292999740b84f63cedb9a"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ImGuiTextFilter::TextRange\l::begin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_im_gui_text_filter_1_1_text_range.html#a19332b170087c8c66a2cc28a6878259d"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ImGuiTextFilter::TextRange::end",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_im_gui_text_filter_1_1_text_range.html#aa8fb3190dc7063acbc86ea51ad98bb08"];
+}

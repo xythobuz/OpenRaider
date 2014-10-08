@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -73,6 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_type.html"><span>Typedefs</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
     </ul>
@@ -114,7 +116,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -128,18 +130,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_y"></a>- y -</h3><ul>
 <li>y
-: <a class="el" href="_font_8h.html#a0a6964952a6f366e0e204e4fba59aba9">FontString</a>
-, <a class="el" href="_tomb_raider_data_8h.html#a0fafa1a2b693aa9324667c5697bc02d6">tr2_vertex_t</a>
-, <a class="el" href="_tomb_raider_data_8h.html#a643ffeadca5c7e6b7c9b7b849c6e0dbf">tr2_room_staticmesh_t</a>
-, <a class="el" href="_tomb_raider_data_8h.html#a5b6a8a1c376919e004ba360027996a7c">tr2_sound_source_t</a>
-, <a class="el" href="_tomb_raider_data_8h.html#ace24e7faf353b450496241ca23048356">tr2_camera_t</a>
-, <a class="el" href="_tomb_raider_data_8h.html#a3129ceeb250d7aeb6137b12ad3c49b52">tr2_meshtree_t</a>
-, <a class="el" href="_tomb_raider_data_8h.html#a459452b4b68594a16c80be4431abc11b">tr4_ai_object_t</a>
-, <a class="el" href="_tomb_raider_data_8h.html#a80080aae5284e18b251ccff49e04dd61">tr5_vertex_t</a>
+: <a class="el" href="_tomb_raider_data_8h.html#a0fafa1a2b693aa9324667c5697bc02d6">tr2_vertex_t</a>
 , <a class="el" href="_tomb_raider_data_8h.html#a8d594c4aa658a53f339e68b48b09a7ba">tr2_room_light_t</a>
+, <a class="el" href="_tomb_raider_data_8h.html#a3129ceeb250d7aeb6137b12ad3c49b52">tr2_meshtree_t</a>
+, <a class="el" href="_tomb_raider_data_8h.html#ace24e7faf353b450496241ca23048356">tr2_camera_t</a>
+, <a class="el" href="_tomb_raider_data_8h.html#a459452b4b68594a16c80be4431abc11b">tr4_ai_object_t</a>
 , <a class="el" href="_tomb_raider_data_8h.html#a7944de9be7187503a10c18ef57c332f8">tr2_sprite_texture_t</a>
+, <a class="el" href="_tomb_raider_data_8h.html#a80080aae5284e18b251ccff49e04dd61">tr5_vertex_t</a>
 , <a class="el" href="_tomb_raider_data_8h.html#ab00746375ae81e1eee4c4ba5895d34c9">tr5_light_t</a>
+, <a class="el" href="_tomb_raider_data_8h.html#a643ffeadca5c7e6b7c9b7b849c6e0dbf">tr2_room_staticmesh_t</a>
 , <a class="el" href="_tomb_raider_data_8h.html#a06dcdbb053d4a08f1a960f7792c978b8">tr2_item_t</a>
+, <a class="el" href="struct_im_vec2.html#a1f9d136ca837e147b793b19d25a3a618">ImVec2</a>
+, <a class="el" href="struct_im_vec4.html#a6b4d00ae261be4fe54353c759c561fe7">ImVec4</a>
+, <a class="el" href="_tomb_raider_data_8h.html#a5b6a8a1c376919e004ba360027996a7c">tr2_sound_source_t</a>
+</li>
+<li>Y
+: <a class="el" href="struct_im_bitmap_font.html#af45164750e134f0f06746dce23c37c87">ImBitmapFont::FntGlyph</a>
 </li>
 <li>y2
 : <a class="el" href="_tomb_raider_data_8h.html#a4bfa4390b9eb8f11e9712e0ed639973b">tr5_light_t</a>
@@ -151,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="_tomb_raider_data_8h.html#a7ea1f2ee81e700a67085ea3e697f4443">tr2_room_info_t</a>
 </li>
 <li>yaw
-: <a class="el" href="class_static_model.html#ac76f86cc5a240308dfe210e07e0ffdb5">StaticModel</a>
+: <a class="el" href="class_static_model.html#ab65abaa0fb4641a9c36d128f72e2a395">StaticModel</a>
 </li>
 <li>yBottom
 : <a class="el" href="_tomb_raider_data_8h.html#ac64117c3ee4a043392a2f9f3efacaf50">tr5_room_t</a>
@@ -165,11 +171,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>yDir
 : <a class="el" href="_tomb_raider_data_8h.html#a868db542a7e7ac21c5bce6e7176c513e">tr4_room_light_t</a>
 </li>
-<li>yPixel
-: <a class="el" href="_tomb_raider_data_8h.html#a56c13307ba49967a8acbc9196b34ed2e">tr5_object_texture_vertex_t</a>
+<li>ymax
+: <a class="el" href="stb__textedit_8h.html#aab290e15f6a3b4a96ab2c2472cc8a7a5">StbTexteditRow</a>
+</li>
+<li>ymin
+: <a class="el" href="stb__textedit_8h.html#a707d331bd9dc99d64c81f71106b75eed">StbTexteditRow</a>
+</li>
+<li>YOffset
+: <a class="el" href="struct_im_bitmap_font.html#a6ca4ef83ab1865cf9465c941de04c1cf">ImBitmapFont::FntGlyph</a>
 </li>
 <li>ypixel
 : <a class="el" href="_tomb_raider_data_8h.html#ada3873bf35a7ced1b174e1c11528ab5e">tr2_object_texture_vert_t</a>
+</li>
+<li>yPixel
+: <a class="el" href="_tomb_raider_data_8h.html#a56c13307ba49967a8acbc9196b34ed2e">tr5_object_texture_vertex_t</a>
 </li>
 <li>yPosition
 : <a class="el" href="_tomb_raider_data_8h.html#a33a06004ad20ae970955f4f07a08b967">tr4_room_light_t</a>

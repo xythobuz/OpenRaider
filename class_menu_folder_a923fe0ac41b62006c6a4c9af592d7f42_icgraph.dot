@@ -1,0 +1,17 @@
+digraph "MenuFolder::init"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MenuFolder::init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MenuFolder::initialize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_menu_folder.html#a17e136032633981d317765d01b7da2bd"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="MenuFolder::loadOrOpen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_menu_folder.html#ad4ecbd0af8832a0f1de508de38bd1cb9"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="MenuFolder::handleKeyboard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_menu_folder.html#a17dce032179efbe86de9d4f780f0b08b"];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="MenuFolder::handleMouseClick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_menu_folder.html#a7c48183312d473b42100e0f5ca4be4d5"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

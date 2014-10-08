@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>This is the audio manager for <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>.  
+<p>This is the audio manager for OpenRaider.  
  <a href="class_sound.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_sound_8h_source.html">Sound.h</a>&gt;</code></p>
@@ -124,33 +125,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a95c7a8ba64fb3a5eb2eca74767529f6a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a95c7a8ba64fb3a5eb2eca74767529f6a">setVolume</a> (float vol)=0</td></tr>
 <tr class="memdesc:a95c7a8ba64fb3a5eb2eca74767529f6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the volume.  <a href="#a95c7a8ba64fb3a5eb2eca74767529f6a">More...</a><br/></td></tr>
 <tr class="separator:a95c7a8ba64fb3a5eb2eca74767529f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a079a9cad4aaff2e7ffc4e4fa3f18104e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a079a9cad4aaff2e7ffc4e4fa3f18104e">registeredSources</a> ()=0</td></tr>
-<tr class="memdesc:a079a9cad4aaff2e7ffc4e4fa3f18104e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of registered sources.  <a href="#a079a9cad4aaff2e7ffc4e4fa3f18104e">More...</a><br/></td></tr>
-<tr class="separator:a079a9cad4aaff2e7ffc4e4fa3f18104e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fda707fd22cf0ced5d22178c53c05a7"><td class="memItemLeft" align="right" valign="top">virtual unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a7fda707fd22cf0ced5d22178c53c05a7">registeredSources</a> ()=0</td></tr>
+<tr class="memdesc:a7fda707fd22cf0ced5d22178c53c05a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of registered sources.  <a href="#a7fda707fd22cf0ced5d22178c53c05a7">More...</a><br/></td></tr>
+<tr class="separator:a7fda707fd22cf0ced5d22178c53c05a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3703ca3354dec4de922240455987aff3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a3703ca3354dec4de922240455987aff3">clear</a> ()=0</td></tr>
 <tr class="memdesc:a3703ca3354dec4de922240455987aff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all loaded sounds.  <a href="#a3703ca3354dec4de922240455987aff3">More...</a><br/></td></tr>
 <tr class="separator:a3703ca3354dec4de922240455987aff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a808def7ad968ec06c474548da11a5ab8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a808def7ad968ec06c474548da11a5ab8">listenAt</a> (float pos[3], float angle[3])=0</td></tr>
 <tr class="memdesc:a808def7ad968ec06c474548da11a5ab8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move listener and repositions them.  <a href="#a808def7ad968ec06c474548da11a5ab8">More...</a><br/></td></tr>
 <tr class="separator:a808def7ad968ec06c474548da11a5ab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78a573fc2277f9348646578e7c16102b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a78a573fc2277f9348646578e7c16102b">sourceAt</a> (int source, float pos[3])=0</td></tr>
-<tr class="memdesc:a78a573fc2277f9348646578e7c16102b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move sound source to position.  <a href="#a78a573fc2277f9348646578e7c16102b">More...</a><br/></td></tr>
-<tr class="separator:a78a573fc2277f9348646578e7c16102b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e1664661a76dac36872cf135908094e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a1e1664661a76dac36872cf135908094e">addFile</a> (const char *filename, int *source, unsigned int flags)=0</td></tr>
-<tr class="memdesc:a1e1664661a76dac36872cf135908094e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load wav file from disk.  <a href="#a1e1664661a76dac36872cf135908094e">More...</a><br/></td></tr>
-<tr class="separator:a1e1664661a76dac36872cf135908094e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47df6f5d1945d575ac30c52ecd6f4e3d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a47df6f5d1945d575ac30c52ecd6f4e3d">addWave</a> (unsigned char *wav, unsigned int length, int *source, unsigned int flags)=0</td></tr>
-<tr class="memdesc:a47df6f5d1945d575ac30c52ecd6f4e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load wav file from buffer.  <a href="#a47df6f5d1945d575ac30c52ecd6f4e3d">More...</a><br/></td></tr>
-<tr class="separator:a47df6f5d1945d575ac30c52ecd6f4e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7218a1b42a188d42c6935380626925b3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a7218a1b42a188d42c6935380626925b3">play</a> (int source)=0</td></tr>
-<tr class="memdesc:a7218a1b42a188d42c6935380626925b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Play sound source.  <a href="#a7218a1b42a188d42c6935380626925b3">More...</a><br/></td></tr>
-<tr class="separator:a7218a1b42a188d42c6935380626925b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa02ce6fd0454671422f90314e0c5123d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#aa02ce6fd0454671422f90314e0c5123d">stop</a> (int source)=0</td></tr>
-<tr class="memdesc:aa02ce6fd0454671422f90314e0c5123d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop playing sound source.  <a href="#aa02ce6fd0454671422f90314e0c5123d">More...</a><br/></td></tr>
-<tr class="separator:aa02ce6fd0454671422f90314e0c5123d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5144b9e1b0aff9631cd36f88f5bfd6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a6d5144b9e1b0aff9631cd36f88f5bfd6">sourceAt</a> (unsigned long source, float pos[3])=0</td></tr>
+<tr class="memdesc:a6d5144b9e1b0aff9631cd36f88f5bfd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move sound source to position.  <a href="#a6d5144b9e1b0aff9631cd36f88f5bfd6">More...</a><br/></td></tr>
+<tr class="separator:a6d5144b9e1b0aff9631cd36f88f5bfd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0fb09f15c4f69c5b908c1990d2564e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a0b0fb09f15c4f69c5b908c1990d2564e">addFile</a> (const char *filename, unsigned long *source, unsigned int flags)=0</td></tr>
+<tr class="memdesc:a0b0fb09f15c4f69c5b908c1990d2564e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load wav file from disk.  <a href="#a0b0fb09f15c4f69c5b908c1990d2564e">More...</a><br/></td></tr>
+<tr class="separator:a0b0fb09f15c4f69c5b908c1990d2564e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aad7480366f3e37b37cd96726d2bf86"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a2aad7480366f3e37b37cd96726d2bf86">addWave</a> (unsigned char *wav, unsigned int length, unsigned long *source, unsigned int flags)=0</td></tr>
+<tr class="memdesc:a2aad7480366f3e37b37cd96726d2bf86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load wav file from buffer.  <a href="#a2aad7480366f3e37b37cd96726d2bf86">More...</a><br/></td></tr>
+<tr class="separator:a2aad7480366f3e37b37cd96726d2bf86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af228b0cabcb34be975b043ce4da2628d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#af228b0cabcb34be975b043ce4da2628d">play</a> (unsigned long source)=0</td></tr>
+<tr class="memdesc:af228b0cabcb34be975b043ce4da2628d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Play sound source.  <a href="#af228b0cabcb34be975b043ce4da2628d">More...</a><br/></td></tr>
+<tr class="separator:af228b0cabcb34be975b043ce4da2628d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a934dec21eeb82f51cbf037141419305c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a934dec21eeb82f51cbf037141419305c">stop</a> (unsigned long source)=0</td></tr>
+<tr class="memdesc:a934dec21eeb82f51cbf037141419305c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop playing sound source.  <a href="#a934dec21eeb82f51cbf037141419305c">More...</a><br/></td></tr>
+<tr class="separator:a934dec21eeb82f51cbf037141419305c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This is the audio manager for <a class="el" href="class_open_raider.html" title="Main Game Singleton. ">OpenRaider</a>. </p>
+<div class="textblock"><p>This is the audio manager for OpenRaider. </p>
 
 <p>Definition at line <a class="el" href="_sound_8h_source.html#l00015">15</a> of file <a class="el" href="_sound_8h_source.html">Sound.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
@@ -205,7 +206,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1e1664661a76dac36872cf135908094e"></a>
+<a class="anchor" id="a0b0fb09f15c4f69c5b908c1990d2564e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -221,7 +222,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">unsigned long *&#160;</td>
           <td class="paramname"><em>source</em>, </td>
         </tr>
         <tr>
@@ -254,11 +255,11 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag </dd></dl>
 
-<p>Implemented in <a class="el" href="class_sound_a_l.html#a8af2e80ad81608cec87be060c43911f4">SoundAL</a>, and <a class="el" href="class_sound_null.html#ab91cd4490081123baada54f7dc76704d">SoundNull</a>.</p>
+<p>Implemented in <a class="el" href="class_sound_a_l.html#a6e24ddf46ddc4bbb15cd0f6855364376">SoundAL</a>, and <a class="el" href="class_sound_null.html#a047e3c5c32c8b59a1650213a9280955d">SoundNull</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a47df6f5d1945d575ac30c52ecd6f4e3d"></a>
+<a class="anchor" id="a2aad7480366f3e37b37cd96726d2bf86"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -280,7 +281,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">unsigned long *&#160;</td>
           <td class="paramname"><em>source</em>, </td>
         </tr>
         <tr>
@@ -314,7 +315,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 for no error or &lt; 0 error flag </dd></dl>
 
-<p>Implemented in <a class="el" href="class_sound_a_l.html#a503070d93b241ce48a362f27c15c9941">SoundAL</a>, and <a class="el" href="class_sound_null.html#a50a650d85bcf6cf4abcd424ac35b94eb">SoundNull</a>.</p>
+<p>Implemented in <a class="el" href="class_sound_a_l.html#a384293d027e3bc223dae084ab0f6f365">SoundAL</a>, and <a class="el" href="class_sound_null.html#ac43a70ab405f4156acb8a4c3cbd93657">SoundNull</a>.</p>
 
 </div>
 </div>
@@ -418,7 +419,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7218a1b42a188d42c6935380626925b3"></a>
+<a class="anchor" id="af228b0cabcb34be975b043ce4da2628d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -428,7 +429,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void Sound::play </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>source</em></td><td>)</td>
           <td></td>
         </tr>
@@ -448,11 +449,11 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_sound_a_l.html#a0a9473889763175e3af36dadb6a2455f">SoundAL</a>, and <a class="el" href="class_sound_null.html#a00987c9ffdc6f4eea50c867613e64884">SoundNull</a>.</p>
+<p>Implemented in <a class="el" href="class_sound_a_l.html#a4020a6876cd053f4d28c327c001c8b51">SoundAL</a>, and <a class="el" href="class_sound_null.html#ab6e995154b29758a0c32123b97e8a4c3">SoundNull</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a079a9cad4aaff2e7ffc4e4fa3f18104e"></a>
+<a class="anchor" id="a7fda707fd22cf0ced5d22178c53c05a7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -460,7 +461,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual int Sound::registeredSources </td>
+          <td class="memname">virtual unsigned long Sound::registeredSources </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -476,7 +477,7 @@ Public Member Functions</h2></td></tr>
 <p>Get number of registered sources. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of registered sources </dd></dl>
 
-<p>Implemented in <a class="el" href="class_sound_a_l.html#af8d01e6f1976b0045d460889e60892ed">SoundAL</a>, and <a class="el" href="class_sound_null.html#acc4cd09d1a73754d13c4410c6ccc8f34">SoundNull</a>.</p>
+<p>Implemented in <a class="el" href="class_sound_a_l.html#ac82daf7eac5e1695278b391414946b34">SoundAL</a>, and <a class="el" href="class_sound_null.html#ae09826d5a5d72ca21597f8fcfdd7f548">SoundNull</a>.</p>
 
 </div>
 </div>
@@ -540,7 +541,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a78a573fc2277f9348646578e7c16102b"></a>
+<a class="anchor" id="a6d5144b9e1b0aff9631cd36f88f5bfd6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -550,7 +551,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void Sound::sourceAt </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>source</em>, </td>
         </tr>
         <tr>
@@ -581,11 +582,11 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_sound_a_l.html#a6c58d97a92e65350fdd01c20653ea9de">SoundAL</a>, and <a class="el" href="class_sound_null.html#ad11ccffc9f6b7dc5ea7b0e02f75300a5">SoundNull</a>.</p>
+<p>Implemented in <a class="el" href="class_sound_a_l.html#aa82f5594c34699ca921855704cef36c9">SoundAL</a>, and <a class="el" href="class_sound_null.html#a95f6c52c5656ecb5a0395af6ab1c9c61">SoundNull</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa02ce6fd0454671422f90314e0c5123d"></a>
+<a class="anchor" id="a934dec21eeb82f51cbf037141419305c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -595,7 +596,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void Sound::stop </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>source</em></td><td>)</td>
           <td></td>
         </tr>
@@ -615,7 +616,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_sound_a_l.html#ad1f0f4e8892f894146f0b3d9ad0d4db1">SoundAL</a>, and <a class="el" href="class_sound_null.html#a7c963a4cfa50e5cfcc0aa058ac6d3b0b">SoundNull</a>.</p>
+<p>Implemented in <a class="el" href="class_sound_a_l.html#a6cd15f5aa1b0db8bd601c63193a3f887">SoundAL</a>, and <a class="el" href="class_sound_null.html#a54c1500771fef4aac1fb56c928e42298">SoundNull</a>.</p>
 
 </div>
 </div>

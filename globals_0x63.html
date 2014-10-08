@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -113,7 +114,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -144,20 +145,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>capslockKey
 : <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa0980bca81feb92243259bf439e01da80">global.h</a>
 </li>
-<li>CHANGE_DIR_WITH_EXPANSION
-: <a class="el" href="_command_8cpp.html#a54c6740c32204d29e7ec771c8c8f33bb">Command.cpp</a>
-</li>
 <li>cKey
 : <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa0193432e3c4d2c18c53c30a802581e91">global.h</a>
 </li>
-<li>cleanupHandler()
-: <a class="el" href="main_8cpp.html#aeb5a6296aa4b62da2290d908b65a9641">main.cpp</a>
+<li>ColorMode
+: <a class="el" href="global_8h.html#a0e887cb85702e0dccbf34d7dbe40443f">global.h</a>
 </li>
 <li>commaKey
 : <a class="el" href="global_8h.html#a5f79a3b11da4b6155b05b48129ae065aa21bf7a562ba3a65d495439124868c2f3">global.h</a>
 </li>
-<li>consoleAction
-: <a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8ca4d831dc3a68592bc453df6562ad46feb">global.h</a>
+<li>command_callback_t
+: <a class="el" href="commander_8h.html#a682238ff6e4a1a3a93ba2907b335f574">commander.h</a>
+</li>
+<li>command_free()
+: <a class="el" href="commander_8c.html#adf86163b994b51d781fe3522eff78381">commander.c</a>
+, <a class="el" href="commander_8h.html#adf86163b994b51d781fe3522eff78381">commander.h</a>
+</li>
+<li>command_help()
+: <a class="el" href="commander_8c.html#ad6fd5e1e0c39ee07821b38b951b3c6b4">commander.c</a>
+, <a class="el" href="commander_8h.html#ad6fd5e1e0c39ee07821b38b951b3c6b4">commander.h</a>
+</li>
+<li>command_init()
+: <a class="el" href="commander_8h.html#ac2b0413942927df22c77edcfb63adf92">commander.h</a>
+, <a class="el" href="commander_8c.html#ac2b0413942927df22c77edcfb63adf92">commander.c</a>
+</li>
+<li>command_option()
+: <a class="el" href="commander_8c.html#ac64bb44a6e37c6448213d5c7d0775d01">commander.c</a>
+, <a class="el" href="commander_8h.html#ac64bb44a6e37c6448213d5c7d0775d01">commander.h</a>
+</li>
+<li>command_parse()
+: <a class="el" href="commander_8c.html#a8e43b145f69b0970026b31b13a6285a7">commander.c</a>
+, <a class="el" href="commander_8h.html#a8e43b145f69b0970026b31b13a6285a7">commander.h</a>
+</li>
+<li>command_parse_args()
+: <a class="el" href="commander_8c.html#ac23a59734d93655cf974382b024b575c">commander.c</a>
+</li>
+<li>command_version()
+: <a class="el" href="commander_8c.html#ad8dac43a03c9fa51cccfa42e92996a5d">commander.c</a>
+</li>
+<li>COMMANDER_MAX_ARGS
+: <a class="el" href="commander_8h.html#a6028ef8b1953bf82a53a8aa54c4bf075">commander.h</a>
+</li>
+<li>COMMANDER_MAX_OPTIONS
+: <a class="el" href="commander_8h.html#aa331c32db06b1bdd12d08678dcd72b08">commander.h</a>
+</li>
+<li>configFileToUse
+: <a class="el" href="main_8cpp.html#a797885d3c933a1c64a5b6c3a5e0137e3">main.cpp</a>
+</li>
+<li>crc32()
+: <a class="el" href="imgui_8cpp.html#ae65a896a0b6059ef55a873c36294292b">imgui.cpp</a>
 </li>
 <li>crouchAction
 : <a class="el" href="global_8h.html#a8657944732f2ddabce60de26e809df8ca3671cc32b11dc2187c8103b2d2c9f41d">global.h</a>

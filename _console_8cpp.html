@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,87 +87,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">Console.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_console.html" title="Console &#39;overlay&#39;. ">Console</a> 'overlay'.  
+<p><a class="el" href="class_console.html">Console</a> class.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
-<code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_font_8h_source.html">Font.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_open_raider_8h_source.html">OpenRaider.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="strings_8h_source.html">utils/strings.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="time_8h_source.html">utils/time.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_window_8h_source.html">Window.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="global_8h_source.html">global.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_log_8h_source.html">Log.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_u_i_8h_source.html">UI.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_command_8h_source.html">commands/Command.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_console_8h_source.html">Console.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Console.cpp:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="_console_8cpp__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="_console_8cpp__incl.svg" width="100%" height="496"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div>
 <p><a href="_console_8cpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:aa9b8dcc02cea15aab8e3d0b7860327a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_console_8cpp.html#aa9b8dcc02cea15aab8e3d0b7860327a7">INPUT_BUFFER_SIZE</a>&#160;&#160;&#160;255</td></tr>
-<tr class="separator:aa9b8dcc02cea15aab8e3d0b7860327a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b3450809e8553c635602c5a7442873d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_console_8cpp.html#a4b3450809e8553c635602c5a7442873d">LINE_GEOMETRY</a>(window)</td></tr>
-<tr class="separator:a4b3450809e8553c635602c5a7442873d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_console.html" title="Console &#39;overlay&#39;. ">Console</a> 'overlay'. </p>
+<div class="textblock"><p><a class="el" href="class_console.html">Console</a> class. </p>
 <dl class="section author"><dt>Author</dt><dd>xythobuz </dd></dl>
 
 <p>Definition in file <a class="el" href="_console_8cpp_source.html">Console.cpp</a>.</p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="aa9b8dcc02cea15aab8e3d0b7860327a7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INPUT_BUFFER_SIZE&#160;&#160;&#160;255</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_console_8cpp_source.html#l00018">18</a> of file <a class="el" href="_console_8cpp_source.html">Console.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4b3450809e8553c635602c5a7442873d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LINE_GEOMETRY</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">window</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> firstLine = 35; \</div>
-<div class="line">        unsigned <span class="keywordtype">int</span> lastLine = (window.getHeight() / 2) - 55; \</div>
-<div class="line">        unsigned <span class="keywordtype">int</span> inputLine = (window.getHeight() / 2) - 30; \</div>
-<div class="line">        unsigned <span class="keywordtype">int</span> lineSteps = 20; \</div>
-<div class="line">        unsigned <span class="keywordtype">int</span> lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \</div>
-<div class="line">        while (((lineCount * lineSteps) + firstLine) &lt; inputLine) { \</div>
-<div class="line">            lineSteps++; \</div>
-<div class="line">            lineCount = (lastLine - firstLine + lineSteps) / lineSteps; \</div>
-<div class="line">        }</div>
-</div><!-- fragment -->
-<p>Definition at line <a class="el" href="_console_8cpp_source.html#l00075">75</a> of file <a class="el" href="_console_8cpp_source.html">Console.cpp</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

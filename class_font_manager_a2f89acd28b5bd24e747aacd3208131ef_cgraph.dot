@@ -1,0 +1,14 @@
+digraph "FontManager::FontManager"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="FontManager::FontManager",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="FontManager::add",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_font_manager.html#a8d2fbdc7c1794ffe9a5910815316d850"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Font::setFont",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_font.html#a01cb323e69bfa1a3fe4acb39aa81973e"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="getRunTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_run_time_8h.html#a5725e2249d7e2af1a5c46bbd31084a85"];
+}
