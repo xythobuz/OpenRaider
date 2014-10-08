@@ -4,6 +4,10 @@
 
     [ 20141008 ]
     * Added freeGLUT windowing system to use if SDL2 is not available. Not yet working 100%.
+    * Moved unnecessarily duplicated code to Window base class
+    * Fixed Bug in new GLUT implementation: Console now working properly
+    * Fixed Bug where the debug overlay was flashing for a frame if it’s key is used in
+      combination with a modifier (in this case CMD + Q to quit)
 
     [ 20141007 ]
     * Set all RunTime vars to sensible defaults, so OpenRaider can try to start

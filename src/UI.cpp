@@ -26,6 +26,7 @@ bool UI::visible = false;
 unsigned int UI::fontTex;
 std::string UI::iniFilename;
 std::string UI::logFilename;
+bool UI::metaKeyIsActive = false;
 
 std::list<std::tuple<KeyboardButton, bool>> UI::keyboardEvents;
 std::list<std::tuple<unsigned int, unsigned int, KeyboardButton, bool>> UI::clickEvents;
@@ -72,7 +73,7 @@ int UI::initialize() {
     void* tex_data = stbi_load_from_memory((const unsigned char*)png_data,
             (int)png_size, &tex_x, &tex_y, &tex_comp, 0);
 
-     //! \fixme TODO use proper slot
+     //! \fixme TODO use proper texture slot
     fontTex = getTextureManager().loadBufferSlot((unsigned char *)tex_data,
             tex_x, tex_y, RGBA, 32, 0, false);
 
@@ -141,7 +142,8 @@ void UI::eventsFinished() {
                     getMenu().setVisible(!getMenu().isVisible());
                     visible = false;
                 } else if (getRunTime().getKeyBinding(debugAction) == std::get<0>(i)) {
-                    visible = !visible;
+                    if (!metaKeyIsActive)
+                        visible = !visible;
                 }
             }
 
@@ -201,6 +203,9 @@ void UI::handleKeyboard(KeyboardButton key, bool pressed) {
     io.KeyShift = io.KeysDown[leftshiftKey] | io.KeysDown[rightshiftKey];
 
     keyboardEvents.push_back(std::make_tuple(key, pressed));
+
+    if ((key == leftguiKey) || (key == rightguiKey))
+        metaKeyIsActive = pressed;
 }
 
 void UI::handleText(char *text, bool notFinished) {

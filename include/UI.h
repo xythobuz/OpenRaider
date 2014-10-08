@@ -38,6 +38,7 @@ private:
     static unsigned int fontTex;
     static std::string iniFilename;
     static std::string logFilename;
+    static bool metaKeyIsActive;
 
     static std::list<std::tuple<KeyboardButton, bool>> keyboardEvents;
     static std::list<std::tuple<unsigned int, unsigned int, KeyboardButton, bool>> clickEvents;

@@ -267,7 +267,7 @@ void Render::display()
     getCamera().update();
     getCamera().getTarget(atPos);
     // Mongoose 2002.08.13, Quick fix to render OpenRaider upside down
-    getWindow().lookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0f, -1.0f, 0.0f);
+    Window::lookAt(camPos[0], camPos[1], camPos[2], atPos[0], atPos[1], atPos[2], 0.0f, -1.0f, 0.0f);
 
     // Update view volume for vising
     updateViewVolume();

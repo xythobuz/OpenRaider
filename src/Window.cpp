@@ -15,14 +15,6 @@
 #include "utils/strings.h"
 #include "Window.h"
 
-unsigned int Window::getWidth() {
-    return mWidth;
-}
-
-unsigned int Window::getHeight() {
-    return mHeight;
-}
-
 int Window::initializeGL() {
     // Print driver support information
     //printf("GL Vendor  : %s\n", glGetString(GL_VENDOR));

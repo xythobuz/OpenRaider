@@ -22,7 +22,7 @@ public:
 
     virtual void setMousegrab(bool grab) = 0;
 
-    virtual bool getMousegrab() = 0;
+    virtual bool getMousegrab() { return mMousegrab; }
 
     virtual int initialize() = 0;
 
@@ -30,13 +30,13 @@ public:
 
     virtual void setTextInput(bool on) = 0;
 
-    virtual bool getTextInput() = 0;
+    virtual bool getTextInput() { return mTextInput; }
 
     virtual void swapBuffersGL() = 0;
 
-    virtual unsigned int getWidth();
+    virtual unsigned int getWidth() { return mWidth; }
 
-    virtual unsigned int getHeight();
+    virtual unsigned int getHeight() { return mHeight; }
 
     virtual int initializeGL();
 
@@ -46,7 +46,7 @@ public:
 
     virtual void glExit2D();
 
-    virtual void lookAt(float eyeX, float eyeY, float eyeZ,
+    static void lookAt(float eyeX, float eyeY, float eyeZ,
                         float lookAtX, float lookAtY, float lookAtZ,
                         float upX, float upY, float upZ);
 

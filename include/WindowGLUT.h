@@ -24,15 +24,11 @@ public:
 
     virtual void setMousegrab(bool grab);
 
-    virtual bool getMousegrab();
-
     virtual int initialize();
 
     virtual void eventHandling();
 
     virtual void setTextInput(bool on);
-
-    virtual bool getTextInput();
 
     virtual void swapBuffersGL();
 

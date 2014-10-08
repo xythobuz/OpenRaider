@@ -16,6 +16,7 @@
 
 * Screenshots are sometimes not written, sometimes distorted?
     * Seems to happen if OpenRaider.ini sets a resolution larger than the window can be
+* When the freeGLUT windowing interface is used, the first pressed button seems to be repeated
 
 ## Cmake
 

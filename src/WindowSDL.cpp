@@ -5,8 +5,7 @@
  * \author xythobuz
  */
 
-#include <cstdio>
-#include <ctime>
+#include <iostream>
 
 #include "global.h"
 #include "RunTime.h"
@@ -71,15 +70,11 @@ void WindowSDL::setMousegrab(bool grab) {
     }
 }
 
-bool WindowSDL::getMousegrab() {
-    return mMousegrab;
-}
-
 int WindowSDL::initialize() {
     assert(mInit == false);
 
     if (SDL_Init(SUBSYSTEMS_USED) != 0) {
-        printf("SDL_Init Error: %s\n", SDL_GetError());
+        std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
         return -1;
     }
 
@@ -87,35 +82,31 @@ int WindowSDL::initialize() {
     if (mFullscreen)
         flags |= SDL_WINDOW_FULLSCREEN;
 
-    mInit = true;
-    setMousegrab(mMousegrab);
-
     if ((SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1) != 0)) {
-        printf("SDL_GL_SetAttribute Error: %s\n", SDL_GetError());
-        mInit = false;
-        return -3;
+        std::cout << "SDL_GL_SetAttribute Error: " << SDL_GetError() << std::endl;
+        return -2;
     }
 
     mWindow = SDL_CreateWindow(VERSION, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                 mWidth, mHeight, flags);
     if (mWindow == NULL) {
-        printf("SDL_CreateWindow Error: %s\n", SDL_GetError());
-        mInit = false;
-        return -4;
+        std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+        return -3;
     }
 
     mGLContext = SDL_GL_CreateContext(mWindow);
     if (mGLContext == NULL) {
-        printf("SDL_GL_CreateContext Error: %s\n", SDL_GetError());
-        mInit = false;
-        return -5;
+        std::cout << "SDL_GL_CreateContext Error: " << SDL_GetError() << std::endl;
+        return -4;
     }
 
+    mInit = true;
     setSize(mWidth, mHeight);
+    setMousegrab(mMousegrab);
 
     return 0;
 }
@@ -455,14 +446,8 @@ void WindowSDL::setTextInput(bool on) {
         SDL_StopTextInput();
 }
 
-bool WindowSDL::getTextInput() {
-    assert(mInit == true);
-    return mTextInput;
-}
-
 void WindowSDL::swapBuffersGL() {
     assert(mInit == true);
-
     SDL_GL_SwapWindow(mWindow);
 }
 

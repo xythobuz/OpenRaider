@@ -15,6 +15,8 @@
 #include "utils/strings.h"
 #include "WindowGLUT.h"
 
+//! \todo Modifier keys currently don't create keyboard events...
+
 static int lastMouseX = 0;
 static int lastMouseY = 0;
 
@@ -61,10 +63,6 @@ void WindowGLUT::setMousegrab(bool grab) {
     }
 }
 
-bool WindowGLUT::getMousegrab() {
-    return mMousegrab;
-}
-
 int WindowGLUT::initialize() {
     assert(mInit == false);
 
@@ -105,11 +103,6 @@ void WindowGLUT::setTextInput(bool on) {
     mTextInput = on;
 }
 
-bool WindowGLUT::getTextInput() {
-    assert(mInit == true);
-    return mTextInput;
-}
-
 void WindowGLUT::swapBuffersGL() {
     assert(mInit == true);
     glutSwapBuffers();
@@ -126,17 +119,15 @@ void WindowGLUT::keyboardCallback(unsigned char key, int x, int y) {
             char s[2] = { static_cast<char>(key), '\0' };
             UI::handleText(s, false);
         }
-    } else {
-        KeyboardButton b = convertAsciiButton(key);
-        UI::handleKeyboard(b, true);
     }
+
+    KeyboardButton b = convertAsciiButton(key);
+    UI::handleKeyboard(b, true);
 }
 
 void WindowGLUT::keyboardUpCallback(unsigned char key, int x, int y) {
-    if (!getWindow().getTextInput()) {
-        KeyboardButton b = convertAsciiButton(key);
-        UI::handleKeyboard(b, false);
-    }
+    KeyboardButton b = convertAsciiButton(key);
+    UI::handleKeyboard(b, false);
 }
 
 void WindowGLUT::specialCallback(int key, int x, int y) {
