@@ -32,8 +32,6 @@ public:
 
     virtual bool getTextInput() = 0;
 
-    virtual void delay(unsigned int ms) = 0;
-
     virtual void swapBuffersGL() = 0;
 
     virtual unsigned int getWidth();

@@ -44,8 +44,6 @@ public:
 
     virtual bool getTextInput();
 
-    virtual void delay(unsigned int ms);
-
     virtual void swapBuffersGL();
 
 private:

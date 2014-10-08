@@ -460,12 +460,6 @@ bool WindowSDL::getTextInput() {
     return mTextInput;
 }
 
-void WindowSDL::delay(unsigned int ms) {
-    assert(mInit == true);
-
-    SDL_Delay(ms);
-}
-
 void WindowSDL::swapBuffersGL() {
     assert(mInit == true);
 

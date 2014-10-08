@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141008 ]
+    * Added freeGLUT windowing system to use if SDL2 is not available. Not yet working 100%.
+
     [ 20141007 ]
     * Set all RunTime vars to sensible defaults, so OpenRaider can try to start
       without a config file (a font is still required!)

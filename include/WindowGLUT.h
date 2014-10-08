@@ -16,15 +16,7 @@
 class WindowGLUT : public Window {
 public:
 
-    /*!
-     * \brief Constructs an object of WindowGLUT
-     */
     WindowGLUT();
-
-    /*!
-     * \brief Deconstructs an object of WindowGLUT
-     */
-    virtual ~WindowGLUT();
 
     virtual void setSize(unsigned int width, unsigned int height);
 
@@ -42,11 +34,20 @@ public:
 
     virtual bool getTextInput();
 
-    virtual void delay(unsigned int ms);
-
     virtual void swapBuffersGL();
 
 private:
+    static void reshapeCallback(int width, int height);
+    static void keyboardCallback(unsigned char key, int x, int y);
+    static void keyboardUpCallback(unsigned char key, int x, int y);
+    static void specialCallback(int key, int x, int y);
+    static void specialUpCallback(int key, int x, int y);
+    static void mouseCallback(int button, int state, int x, int y);
+    static void motionCallback(int x, int y);
+    static void mouseWheelCallback(int wheel, int direction, int x, int y);
+
+    static KeyboardButton convertAsciiButton(unsigned char key);
+    static KeyboardButton convertKeyCode(int key);
 };
 
 #endif
