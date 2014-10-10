@@ -12,6 +12,12 @@ It seems as if OpenRaider will currently only work on Little-Endian platforms. T
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=xythobuz&url=https://github.com/xythobuz/OpenRaider&title=OpenRaider&language=&tags=github&category=software)
 
+## Installation
+
+You can get some not-so-recent Mac releases [on the GitHub page](https://github.com/xythobuz/OpenRaider/releases).
+
+The most recent OpenRaider version can be found on the [Arch Linux User Repos](https://aur.archlinux.org/packages/openraider-git/). Install it with your favorite aur-helper like this: `yaourt -S openraider-git`.
+
 ## Configuration
 
 OpenRaider needs some configuration files, and level data and assets from custom levels or the Tomb Raider games.
