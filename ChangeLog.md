@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141010 ]
+    * Added CPack packaging to the CMake script
+    * Added suitable install target for the Mac App Bundle
+    * Now also trying to load config from ${DESTDIR}/etc/OpenRaider.ini if all else fails
+    * Added suitable install target for Linux that does not need a setup script
+
     [ 20141008 ]
     * Added freeGLUT windowing system to use if SDL2 is not available. Not yet working 100%.
     * Moved unnecessarily duplicated code to Window base class

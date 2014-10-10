@@ -69,7 +69,9 @@ Do a standard cmake out-of-source build to get a debug configuration and then ru
     cmake ..
     make run
 
-On Mac OS X, running `make install` will produce a (more or less) distributable OpenRaider.app bundle.
+On Mac OS X, running `make install` will produce a (more or less) distributable OpenRaider.app bundle, which will be put into /Applications.
+
+On Linux, running `make install` will install OpenRaider to /usr/local/... (the executable in bin, the config in etc, the data files in share). You can change this path with `make install DESTDIR=”/some/where”`
 
 Run `make check` to build and run the unit tests.
 
@@ -86,6 +88,7 @@ You can also generate working XCode Project files with `cmake -G Xcode ..`.
 ### Configuration file
 
 OpenRaider will try to load `~/.OpenRaider/OpenRaider.ini` or, if it doesn't exist, `OpenRaider.ini` from the current directory.
+
 Running `make setup` will create a minimal configuration in your home directory.
 
 The configuration file format is very simple:

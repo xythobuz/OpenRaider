@@ -151,7 +151,14 @@ int main(int argc, char* argv[]) {
     // So we need to initialize some things before executing the config
     if (configFileToUse == "") {
         if (Command::executeFile(DEFAULT_CONFIG_FILE) != 0) {
-            Command::executeFile(DEFAULT_CONFIG_PATH "/" DEFAULT_CONFIG_FILE);
+            if (Command::executeFile(std::string(DEFAULT_CONFIG_PATH) + "/" + DEFAULT_CONFIG_FILE) != 0) {
+                std::string p = INSTALL_PREFIX;
+                if (p == "/")
+                    p += "etc/";
+                else
+                    p += "/etc/";
+                Command::executeFile(p + DEFAULT_CONFIG_FILE);
+            }
         }
     } else {
         Command::executeFile(configFileToUse);

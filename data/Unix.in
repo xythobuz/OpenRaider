@@ -1,0 +1,33 @@
+# OpenRaider configuration file
+
+# File locations
+set basedir    "@CMAKE_INSTALL_PREFIX@"
+set datadir    "$(basedir)/share/OpenRaider"
+set pakdir     "$(datadir)"
+set audiodir   "$(datadir)"
+set font       "$(datadir)/test.ttf"
+# set font       "$(datadir)/font.pc"
+
+# Windowing
+set size       1280 720
+set fullscreen false
+
+# Audio
+set audio      true # Enable Audio Output
+set volume     0.5
+
+# Input
+set mouse_x    0.75
+set mouse_y    0.75
+
+bind menu     "escape"
+bind debug    'q'
+bind forward  'w'
+bind backward 's'
+bind left     'a'
+bind right    'd'
+bind jump     "space"
+bind crouch   "leftctrl"
+bind use      "leftmouse"
+bind holster  "rightmouse"
+bind walk     "leftshift"

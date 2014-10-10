@@ -8,9 +8,15 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-extern const char *VERSION;
-extern const char *VERSION_SHORT;
-extern const char *BUILD_HOST;
+extern const unsigned int DEFAULT_WIDTH;
+extern const unsigned int DEFAULT_HEIGHT;
+
+extern const char* VERSION;
+extern const char* VERSION_SHORT;
+extern const char* BUILD_HOST;
+extern const char* DEFAULT_CONFIG_PATH;
+extern const char* DEFAULT_CONFIG_FILE;
+extern const char* INSTALL_PREFIX;
 
 #cmakedefine USING_AL
 #cmakedefine USING_PNG

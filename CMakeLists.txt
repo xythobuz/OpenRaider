@@ -82,6 +82,15 @@ add_subdirectory (test)
 
 #################################################################
 
+# CPack packaging
+include (InstallRequiredSystemLibraries)
+set (CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
+set (CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/COPYING")
+set (CPACK_MONOLITHIC_INSTALL YES)
+include (CPack)
+
+#################################################################
+
 if (${CMAKE_GENERATOR} STREQUAL "MinGW Makefiles")
 
 	# Target for running the setup

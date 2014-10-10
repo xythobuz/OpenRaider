@@ -10,12 +10,6 @@
 
 #include <string>
 
-// Defaults
-#define DEFAULT_CONFIG_PATH "~/.OpenRaider"
-#define DEFAULT_CONFIG_FILE "OpenRaider.ini"
-#define DEFAULT_WIDTH 1280
-#define DEFAULT_HEIGHT 720
-
 /*!
  * \brief Main Game Singleton
  */

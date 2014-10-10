@@ -3,11 +3,11 @@ cd `dirname $0`
 if [ ! -d "${HOME}/.OpenRaider" ]; then
     echo "Setting up OpenRaider for user $USER..."
     mkdir -p ~/.OpenRaider
-    cp ../Resources/defaults/OpenRaider.ini ~/.OpenRaider/
     mkdir -p ~/.OpenRaider/paks
     mkdir -p ~/.OpenRaider/music
     mkdir -p ~/.OpenRaider/data
     mkdir -p ~/.OpenRaider/sshots
+    cp ../Resources/defaults/OpenRaider.ini ~/.OpenRaider/
     cp ../Resources/defaults/*.tga ~/.OpenRaider/data
     cp ../Resources/defaults/*.ttf ~/.OpenRaider/data
     cp ../Resources/defaults/*.pc ~/.OpenRaider/data

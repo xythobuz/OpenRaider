@@ -7,9 +7,18 @@
 
 #include "global.h"
 
-const char *VERSION = "OpenRaider-@OpenRaider_VERSION_MAJOR@.@OpenRaider_VERSION_MINOR@.@OpenRaider_VERSION_MICRO@@OpenRaider_VERSION_RELEASE@ (@CMAKE_BUILD_TYPE@)";
+const unsigned int DEFAULT_WIDTH = 1280;
+const unsigned int DEFAULT_HEIGHT = 720;
 
-const char *VERSION_SHORT = "OpenRaider-@OpenRaider_VERSION_MAJOR@.@OpenRaider_VERSION_MINOR@.@OpenRaider_VERSION_MICRO@@OpenRaider_VERSION_RELEASE@";
+const char* VERSION = "OpenRaider-@OpenRaider_VERSION_MAJOR@.@OpenRaider_VERSION_MINOR@.@OpenRaider_VERSION_MICRO@@OpenRaider_VERSION_RELEASE@ (@CMAKE_BUILD_TYPE@)";
 
-const char *BUILD_HOST = "@OpenRaider_BUILD_HOST@ @OpenRaider_HOSTNAME@";
+const char* VERSION_SHORT = "OpenRaider-@OpenRaider_VERSION_MAJOR@.@OpenRaider_VERSION_MINOR@.@OpenRaider_VERSION_MICRO@@OpenRaider_VERSION_RELEASE@";
+
+const char* BUILD_HOST = "@OpenRaider_BUILD_HOST@ @OpenRaider_HOSTNAME@";
+
+const char* DEFAULT_CONFIG_PATH = "~/.OpenRaider";
+
+const char* DEFAULT_CONFIG_FILE = "OpenRaider.ini";
+
+const char* INSTALL_PREFIX = "@CMAKE_INSTALL_PREFIX@";
 

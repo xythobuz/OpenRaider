@@ -272,12 +272,37 @@ endif (APPLE)
 
 #################################################################
 
-if (NOT APPLE)
-    # Install binary
-    install (TARGETS OpenRaider
-        RUNTIME DESTINATION bin
+# Install rules
+if (APPLE)
+    # We want to install to /Applications by default, not /usr
+    set (OR_INSTALL_PREFIX "/" CACHE PATH "Prefix prepended to
+install directories")
+    set (CMAKE_INSTALL_PREFIX "${OR_INSTALL_PREFIX}" CACHE INTERNAL "Prefix
+prepended to install directories" FORCE)
+
+    # Only the App Bundle is required on OS X
+    install (TARGETS OpenRaider BUNDLE DESTINATION Applications)
+elseif (NOT WIN32)
+    # We need a special config file for this install method
+    configure_file (
+        "${PROJECT_SOURCE_DIR}/data/Unix.in"   
+        "${PROJECT_BINARY_DIR}/Unix.ini"
     )
-endif (NOT APPLE)
+
+    # Executable
+    install (TARGETS OpenRaider RUNTIME DESTINATION bin)
+
+    # Config file
+    install (FILES "${PROJECT_BINARY_DIR}/Unix.ini"
+        DESTINATION etc
+        RENAME "OpenRaider.ini")
+
+    # Data files
+    install (FILES "${PROJECT_SOURCE_DIR}/data/font.pc"
+                    "${PROJECT_SOURCE_DIR}/data/splash.tga"
+                    "${PROJECT_SOURCE_DIR}/data/test.ttf"
+        DESTINATION "share/OpenRaider")
+endif (APPLE)
 
 #################################################################
 
