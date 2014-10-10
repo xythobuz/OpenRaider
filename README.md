@@ -71,7 +71,7 @@ Do a standard cmake out-of-source build to get a debug configuration and then ru
 
 On Mac OS X, running `make install` will produce a (more or less) distributable OpenRaider.app bundle, which will be put into /Applications.
 
-On Linux, running `make install` will install OpenRaider to /usr/local/... (the executable in bin, the config in etc, the data files in share). You can change this path with `make install DESTDIR=”/some/where”`
+On Linux, running `make install` will install OpenRaider to /usr/local/... (the executable in bin, the data files in share). You can change this path with `cmake -DCMAKE_INSTALL_PREFIX=”/some/where” ..`
 
 Run `make check` to build and run the unit tests.
 

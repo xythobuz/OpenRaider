@@ -153,10 +153,9 @@ int main(int argc, char* argv[]) {
         if (Command::executeFile(DEFAULT_CONFIG_FILE) != 0) {
             if (Command::executeFile(std::string(DEFAULT_CONFIG_PATH) + "/" + DEFAULT_CONFIG_FILE) != 0) {
                 std::string p = INSTALL_PREFIX;
-                if (p == "/")
-                    p += "etc/";
-                else
-                    p += "/etc/";
+                if (p != "/")
+                    p += "/";
+                p += "share/OpenRaider/";
                 Command::executeFile(p + DEFAULT_CONFIG_FILE);
             }
         }

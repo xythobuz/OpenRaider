@@ -294,7 +294,7 @@ elseif (NOT WIN32)
 
     # Config file
     install (FILES "${PROJECT_BINARY_DIR}/Unix.ini"
-        DESTINATION etc
+        DESTINATION "share/OpenRaider"
         RENAME "OpenRaider.ini")
 
     # Data files
