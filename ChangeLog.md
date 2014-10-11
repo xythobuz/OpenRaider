@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141011 ]
+    * Added simple level loader unit test driver
+    * Fixed the parsing bug in the new loader that sometimes caused strange hangs on level load
+
     [ 20141010 ]
     * Added CPack packaging to the CMake script
     * Added suitable install target for the Mac App Bundle

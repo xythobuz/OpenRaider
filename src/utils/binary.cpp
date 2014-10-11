@@ -34,6 +34,7 @@ void BinaryFile::seek(long long pos) {
 
 uint8_t BinaryFile::readU8() {
     assert(file.is_open());
+    assert(file.good());
     uint8_t ret;
     char *c = reinterpret_cast<char *>(&ret);
     file.read(c, 1);
@@ -42,6 +43,7 @@ uint8_t BinaryFile::readU8() {
 
 uint16_t BinaryFile::readU16() {
     assert(file.is_open());
+    assert(file.good());
     uint8_t a = readU8();
     uint8_t b = readU8();
     return ((uint16_t)a | (uint16_t)(b << 8));
@@ -49,6 +51,7 @@ uint16_t BinaryFile::readU16() {
 
 uint32_t BinaryFile::readU32() {
     assert(file.is_open());
+    assert(file.good());
     uint16_t a = readU16();
     uint16_t b = readU16();
     return ((uint32_t)a | (uint32_t)(b << 16));
@@ -56,6 +59,7 @@ uint32_t BinaryFile::readU32() {
 
 uint64_t BinaryFile::readU64() {
     assert(file.is_open());
+    assert(file.good());
     uint32_t a = readU32();
     uint32_t b = readU32();
     return ((uint64_t)a | ((uint64_t)b << 32));
@@ -63,6 +67,7 @@ uint64_t BinaryFile::readU64() {
 
 float BinaryFile::readFloat() {
     assert(file.is_open());
+    assert(file.good());
     uint32_t val = readU32();
     char *a = reinterpret_cast<char *>(&val);
 
@@ -97,6 +102,7 @@ namespace {
 
 int8_t BinaryFile::read8() {
     assert(file.is_open());
+    assert(file.good());
     int8_t ret;
     char *p = reinterpret_cast<char *>(&ret);
     file.read(p, sizeof(ret));
@@ -105,6 +111,7 @@ int8_t BinaryFile::read8() {
 
 int16_t BinaryFile::read16() {
     assert(file.is_open());
+    assert(file.good());
     int16_t ret;
     char *p = reinterpret_cast<char *>(&ret);
     file.read(p, sizeof(ret));
@@ -114,6 +121,7 @@ int16_t BinaryFile::read16() {
 
 int32_t BinaryFile::read32() {
     assert(file.is_open());
+    assert(file.good());
     int32_t ret;
     char *p = reinterpret_cast<char *>(&ret);
     file.read(p, sizeof(ret));
@@ -123,6 +131,7 @@ int32_t BinaryFile::read32() {
 
 int64_t BinaryFile::read64() {
     assert(file.is_open());
+    assert(file.good());
     int64_t ret;
     char *p = reinterpret_cast<char *>(&ret);
     file.read(p, sizeof(ret));

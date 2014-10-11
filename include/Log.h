@@ -43,3 +43,4 @@ private:
 Log &getLog();
 
 #endif
+

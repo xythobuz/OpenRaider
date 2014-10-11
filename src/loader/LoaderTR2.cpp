@@ -29,62 +29,29 @@ int LoaderTR2::load(std::string f) {
     }
 
     loadPaletteTextiles();
-    getLog() << "->loaded palette" << Log::endl;
 
     file.seek(file.tell() + 4); // Unused value?
 
     loadRooms();
-    getLog() << "->loaded rooms" << Log::endl;
-
     loadFloorData();
-    getLog() << "->loaded floor data" << Log::endl;
-
     loadMeshes();
-    getLog() << "->loaded meshes" << Log::endl;
-
     loadMoveables();
-    getLog() << "->loaded moveables" << Log::endl;
-
     loadStaticMeshes();
-    getLog() << "->loaded static meshes" << Log::endl;
-
     loadTextures();
-    getLog() << "->loaded textures" << Log::endl;
-
     loadSprites();
-    getLog() << "->loaded sprites" << Log::endl;
-
     loadCameras();
-    getLog() << "->loaded cameras" << Log::endl;
-
     loadSoundSources();
-    getLog() << "->loaded sound sources" << Log::endl;
-
     loadBoxesOverlapsZones();
-    getLog() << "->loaded boxes overlaps zones" << Log::endl;
-
     loadAnimatedTextures();
-    getLog() << "->loaded animated textures" << Log::endl;
-
     loadItems();
-    getLog() << "->loaded items" << Log::endl;
 
     file.seek(file.tell() + 8192); // Skip Light map, only for 8bit coloring
 
     loadCinematicFrames();
-    getLog() << "->loaded cinematic frames" << Log::endl;
-
     loadDemoData();
-    getLog() << "->loaded demo data" << Log::endl;
-
     loadSoundMap();
-    getLog() << "->loaded sound map" << Log::endl;
-
     loadSoundDetails();
-    getLog() << "->loaded sound details" << Log::endl;
-
     loadSampleIndices();
-    getLog() << "->loaded sample indices" << Log::endl;
 
     return 0;
 }
@@ -116,6 +83,7 @@ void LoaderTR2::loadPaletteTextiles() {
 
 void LoaderTR2::loadRooms() {
     uint16_t numRooms = file.readU16();
+
     for (unsigned int i = 0; i < numRooms; i++) {
         // Room Header
         int32_t xOffset = file.read32();
@@ -142,7 +110,7 @@ void LoaderTR2::loadRooms() {
             // 0x0010 - Normal?
             uint16_t attributes = file.readU16();
 
-            int16_t lighting2; // Almost always equal to lighting1
+            int16_t lighting2 = file.read16(); // Almost always equal to lighting1
 
             // TODO store vertex somewhere
         }
@@ -205,6 +173,9 @@ void LoaderTR2::loadRooms() {
             int16_t xCorner3 = file.read16();
             int16_t yCorner3 = file.read16();
             int16_t zCorner3 = file.read16();
+            int16_t xCorner4 = file.read16();
+            int16_t yCorner4 = file.read16();
+            int16_t zCorner4 = file.read16();
 
             // TODO store portals somewhere
         }
@@ -293,7 +264,6 @@ void LoaderTR2::loadMeshes() {
     // only afterward we can read the number of meshes
     // in this data block
     uint32_t numMeshData = file.readU32();
-
     std::vector<uint16_t> buffer;
     for (unsigned int i = 0; i < numMeshData; i++) {
         buffer.push_back(file.readU16());
@@ -332,8 +302,8 @@ void LoaderTR2::loadMoveables() {
         uint16_t nextFrame = file.readU16();
         uint16_t numStateChanges = file.readU16();
         uint16_t stateChangeOffset = file.readU16(); // Index into StateChanges[]
-        uint16_t numAnimCommands; // How many animation commands to use
-        uint16_t animCommandOffset; // Index into AnimCommand[]
+        uint16_t numAnimCommands = file.readU16(); // How many animation commands to use
+        uint16_t animCommandOffset = file.readU16(); // Index into AnimCommand[]
 
         // TODO store animations somewhere
     }
@@ -372,10 +342,14 @@ void LoaderTR2::loadMoveables() {
         // reading the stack but not changing it
         uint32_t flags = file.readU32();
 
+
         // Offset of mesh origin from the parent mesh origin
+
+        /* Where the hell does this come from?!
         int32_t x = file.read32();
         int32_t y = file.read32();
         int32_t z = file.read32();
+        */
 
         // TODO store mesh trees somewhere
     }
