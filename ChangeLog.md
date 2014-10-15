@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141015 ]
+    * Added rudimentary command history support for Console
+
     [ 20141011 ]
     * Added simple level loader unit test driver
     * Fixed the parsing bug in the new loader that sometimes caused strange hangs on level load

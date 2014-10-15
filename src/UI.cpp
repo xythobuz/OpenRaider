@@ -94,8 +94,6 @@ void UI::eventsFinished() {
 
     ImGui::NewFrame();
 
-    bool clicked = !clickEvents.empty();
-
     if (!visible) {
         while (!clickEvents.empty()) {
             auto i = clickEvents.front();
@@ -124,10 +122,10 @@ void UI::eventsFinished() {
         }
     }
 
-    if ((!io.WantCaptureKeyboard) || (!visible)) {
-        while (!keyboardEvents.empty()) {
-            auto i = keyboardEvents.front();
+    while (!keyboardEvents.empty()) {
+        auto i = keyboardEvents.front();
 
+        if (!visible) {
             if (getMenu().isVisible()) {
                 getMenu().handleKeyboard(std::get<0>(i), std::get<1>(i));
             } else {
@@ -136,29 +134,42 @@ void UI::eventsFinished() {
                         getGame().handleAction((ActionEvents)n, !std::get<1>(i));
                 }
             }
+        }
 
-            if (std::get<1>(i)) {
+        if (std::get<1>(i)) {
+            if (!visible) {
                 if (getRunTime().getKeyBinding(menuAction) == std::get<0>(i)) {
                     getMenu().setVisible(!getMenu().isVisible());
-                    visible = false;
-                } else if (getRunTime().getKeyBinding(debugAction) == std::get<0>(i)) {
+                }
+            }
+
+            if ((!io.WantCaptureKeyboard) || (!visible)) {
+                if (getRunTime().getKeyBinding(debugAction) == std::get<0>(i)) {
                     if (!metaKeyIsActive)
                         visible = !visible;
                 }
             }
-
-            keyboardEvents.pop_front();
         }
+
+        keyboardEvents.pop_front();
     }
 
-    if ((!io.WantCaptureKeyboard) && (!io.WantCaptureMouse) && visible && clicked) {
+    bool clicked = !clickEvents.empty();
+    // Only already empty when !visible
+    if (visible) {
+        clickEvents.clear();
+        motionEvents.clear();
+        scrollEvents.clear();
+    }
+
+    if (visible && (
+                ((!io.WantCaptureKeyboard) && io.KeysDown[escapeKey])
+                || ((!io.WantCaptureMouse) && clicked)
+            )) {
         visible = false;
-    }
 
-    keyboardEvents.clear();
-    clickEvents.clear();
-    motionEvents.clear();
-    scrollEvents.clear();
+        getLog() << io.WantCaptureKeyboard << io.WantCaptureMouse << io.KeysDown[escapeKey] << Log::endl;
+    }
 
     if (getWindow().getTextInput() != visible)
         getWindow().setTextInput(visible);
