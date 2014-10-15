@@ -138,6 +138,7 @@
  API BREAKING CHANGES
  ====================
 
+  - 2014/10/02 (1.14) renamed IMGUI_INCLUDE_IMGUI_USER_CPP to IMGUI_INCLUDE_IMGUI_USER_INL and imgui_user.cpp to imgui_user.inl (more IDE friendly)
   - 2014/09/25 (1.13) removed 'text_end' parameter from IO.SetClipboardTextFn (the string is now always zero-terminated for simplicity)
   - 2014/09/24 (1.12) renamed SetFontScale() to SetWindowFontScale()
   - 2014/09/24 (1.12) moved IM_MALLOC/IM_REALLOC/IM_FREE preprocessor defines to IO.MemAllocFn/IO.MemReallocFn/IO.MemFreeFn
@@ -148,10 +149,10 @@
  ISSUES & TODO-LIST
  ==================
 
- - misc: merge ImVec4 / ImGuiAabb, they are essentially duplicate containers
+ - misc: merge or clarify ImVec4 / ImGuiAabb, they are essentially duplicate containers
  - window: autofit is losing its purpose when user relies on any dynamic layout (window width multiplier, column). maybe just discard autofit?
- - window: support horizontal scroll
- - window: fix resize grip scaling along with Rounding style setting
+ - window: add horizontal scroll
+ - window: fix resize grip rendering scaling along with Rounding style setting
  - widgets: switching from "widget-label" to "label-widget" would make it more convenient to integrate widgets in trees
  - widgets: clip text? hover clipped text shows it in a tooltip or in-place overlay
  - main: make IsHovered() more consistent for various type of widgets, widgets with multiple components, etc. also effectively IsHovered() region sometimes differs from hot region, e.g tree nodes
@@ -187,6 +188,7 @@
  - shortcuts: add a shortcut api, e.g. parse "&Save" and/or "Save (CTRL+S)", pass in to widgets or provide simple ways to use (button=activate, input=focus)
  ! keyboard: tooltip & combo boxes are messing up / not honoring keyboard tabbing
  - keyboard: full keyboard navigation and focus.
+ - input: reowrk IO to be able to pass actual events to fix temporal aliasing issues.
  - input: support trackpad style scrolling & slider edit.
  - tooltip: move to fit within screen (e.g. when mouse cursor is right of the screen).
  - misc: not thread-safe
@@ -327,6 +329,7 @@ ImGuiIO::ImGuiIO()
     MousePosPrev = ImVec2(-1,-1);
     MouseDoubleClickTime = 0.30f;
     MouseDoubleClickMaxDist = 6.0f;
+    UserData = NULL;
 
     // User functions
     RenderDrawListsFn = NULL;
@@ -345,7 +348,7 @@ static size_t ImStrlenW(const ImWchar* str);
 void ImGuiIO::AddInputCharacter(ImWchar c)
 {
     const size_t n = ImStrlenW(InputCharacters);
-    if (n < sizeof(InputCharacters) / sizeof(InputCharacters[0]))
+    if (n + 1 < sizeof(InputCharacters) / sizeof(InputCharacters[0]))
     {
         InputCharacters[n] = c;
         InputCharacters[n+1] = 0;
@@ -395,9 +398,9 @@ static inline ImVec2 ImLerp(const ImVec2& a, const ImVec2& b, const ImVec2& t)  
 static inline float  ImLength(const ImVec2& lhs)                                { return sqrt(lhs.x*lhs.x + lhs.y*lhs.y); }
 
 static int ImTextCharToUtf8(char* buf, size_t buf_size, unsigned int in_char);                                // return output UTF-8 bytes count
-static int ImTextStrToUtf8(char* buf, size_t buf_size, const ImWchar* in_text, const ImWchar* in_text_end);   // return output UTF-8 bytes count
+static ptrdiff_t ImTextStrToUtf8(char* buf, size_t buf_size, const ImWchar* in_text, const ImWchar* in_text_end);   // return output UTF-8 bytes count
 static int ImTextCharFromUtf8(unsigned int* out_char, const char* in_text, const char* in_text_end);          // return input UTF-8 bytes count
-static int ImTextStrFromUtf8(ImWchar* buf, size_t buf_size, const char* in_text, const char* in_text_end);    // return input UTF-8 bytes count
+static ptrdiff_t ImTextStrFromUtf8(ImWchar* buf, size_t buf_size, const char* in_text, const char* in_text_end);    // return input UTF-8 bytes count
 
 static int ImStricmp(const char* str1, const char* str2)
 {
@@ -5513,7 +5516,7 @@ static int ImTextCharFromUtf8(unsigned int* out_char, const char* in_text, const
     return 0;
 }
 
-static int ImTextStrFromUtf8(ImWchar* buf, size_t buf_size, const char* in_text, const char* in_text_end)
+static ptrdiff_t ImTextStrFromUtf8(ImWchar* buf, size_t buf_size, const char* in_text, const char* in_text_end)
 {
     ImWchar* buf_out = buf;
     ImWchar* buf_end = buf + buf_size;
@@ -5533,8 +5536,8 @@ static int ImTextCharToUtf8(char* buf, size_t buf_size, unsigned int c)
 {
     if (c)
     {
-        int i = 0;
-        int n = (size_t)buf_size;
+        size_t i = 0;
+        size_t n = buf_size;
         if (c < 0x80) 
         {
             if (i+1 > n) return 0;
@@ -5573,7 +5576,7 @@ static int ImTextCharToUtf8(char* buf, size_t buf_size, unsigned int c)
     return 0;
 }
 
-static int ImTextStrToUtf8(char* buf, size_t buf_size, const ImWchar* in_text, const ImWchar* in_text_end)
+static ptrdiff_t ImTextStrToUtf8(char* buf, size_t buf_size, const ImWchar* in_text, const ImWchar* in_text_end)
 {
     char* buf_out = buf;
     const char* buf_end = buf + buf_size;
@@ -6662,9 +6665,9 @@ void GetDefaultFontData(const void** fnt_data, unsigned int* fnt_size, const voi
 
 //-----------------------------------------------------------------------------
 
-//---- Include imgui_user.cpp at the end of imgui.cpp so you can include code that extends ImGui using its private data/functions.
-#ifdef IMGUI_INCLUDE_IMGUI_USER_CPP
-#include "imgui_user.cpp"
+//---- Include imgui_user.inl at the end of imgui.cpp so you can include code that extends ImGui using its private data/functions.
+#ifdef IMGUI_INCLUDE_IMGUI_USER_INL
+#include "imgui_user.inl"
 #endif
 
 //-----------------------------------------------------------------------------

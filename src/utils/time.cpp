@@ -10,19 +10,17 @@
 #include "global.h"
 #include "utils/time.h"
 
-static unsigned long systemTimerStart = 0;
+static auto systemTimerStart = std::chrono::steady_clock::now();
 
-unsigned long systemTimerGet() {
+or_time_t systemTimerGet() {
     auto tp = std::chrono::steady_clock::now();
-    auto dtn = tp.time_since_epoch();
-    return (dtn.count() * 1000 * std::chrono::steady_clock::period::num
-            / std::chrono::steady_clock::period::den) - systemTimerStart;
+
+    return static_cast<or_time_t>(
+            std::chrono::duration_cast<std::chrono::milliseconds>
+            (tp - systemTimerStart).count());
 }
 
 void systemTimerReset() {
-    auto tp = std::chrono::steady_clock::now();
-    auto dtn = tp.time_since_epoch();
-    systemTimerStart = dtn.count() * 1000 * std::chrono::steady_clock::period::num
-            / std::chrono::steady_clock::period::den;
+    systemTimerStart = std::chrono::steady_clock::now();
 }
 

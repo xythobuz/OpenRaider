@@ -423,6 +423,8 @@ struct ImGuiIO
     ImWchar     FontFallbackGlyph;          // = '?'                    // Replacement glyph is one isn't found.
     float       PixelCenterOffset;          // = 0.0f                   // Try to set to 0.5f or 0.375f if rendering is blurry
 
+    void*       UserData;                   // = NULL                   // Store your own data for retrieval by callbacks.
+
     //------------------------------------------------------------------
     // User Functions
     //------------------------------------------------------------------
@@ -454,7 +456,7 @@ struct ImGuiIO
     bool        KeyCtrl;                    // Keyboard modifier pressed: Control
     bool        KeyShift;                   // Keyboard modifier pressed: Shift
     bool        KeysDown[512];              // Keyboard keys that are pressed (in whatever order user naturally has access to keyboard data)
-    ImWchar     InputCharacters[16];        // List of characters input (translated by user from keypress+keyboard state). Fill using AddInputCharacter() helper.
+    ImWchar     InputCharacters[16+1];      // List of characters input (translated by user from keypress+keyboard state). Fill using AddInputCharacter() helper.
 
     // Function
     void        AddInputCharacter(ImWchar); // Helper to add a new character into InputCharacters[]
