@@ -167,8 +167,6 @@ void UI::eventsFinished() {
                 || ((!io.WantCaptureMouse) && clicked)
             )) {
         visible = false;
-
-        getLog() << io.WantCaptureKeyboard << io.WantCaptureMouse << io.KeysDown[escapeKey] << Log::endl;
     }
 
     if (getWindow().getTextInput() != visible)

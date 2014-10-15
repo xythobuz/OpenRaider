@@ -31,9 +31,9 @@ public:
     static void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
     static void handleMouseScroll(int xrel, int yrel);
 
-private:
     static void renderImGui(ImDrawList** const draw_lists, int count);
 
+private:
     static bool visible;
     static unsigned int fontTex;
     static std::string iniFilename;

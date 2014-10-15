@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141016 ]
+    * ImGuis Font can now be used if no other is available
+
     [ 20141015 ]
     * Added rudimentary command history support for Console
 

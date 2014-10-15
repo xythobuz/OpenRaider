@@ -1,24 +1,18 @@
 /*!
- * \file include/Font.h
- * \brief Font interface
+ * \file include/FontImGui.h
+ * \brief Default Font implementation
  *
  * \author xythobuz
  */
 
-#ifndef _FONT_H_
-#define _FONT_H_
-
-#include <string>
+#ifndef _FONT_IMGUI_H_
+#define _FONT_IMGUI_H_
 
 /*!
- * \brief Font interface
+ * \brief Default Font implementation
  */
-class Font {
+class FontImGui {
 public:
-    static void shutdown();
-
-    static int initialize(std::string font = "");
-
     static unsigned int widthText(float scale, std::string s);
 
     static unsigned int heightText(float scale, unsigned int maxWidth, std::string s);
@@ -28,13 +22,6 @@ public:
 
     static void drawTextWrapped(unsigned int x, unsigned int y, float scale,
             const unsigned char color[4], unsigned int maxWidth, std::string s);
-
-    static void drawTextCentered(unsigned int x, unsigned int y, float scale,
-            const unsigned char color[4], unsigned int width, std::string s);
-
-private:
-    static bool isInit;
-    static std::string fontName;
 };
 
 #endif

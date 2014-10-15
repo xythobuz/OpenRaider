@@ -147,8 +147,13 @@ int main(int argc, char* argv[]) {
         return -2;
     }
 
-    // Font initialization requires GL context, but is called from config file
-    // So we need to initialize some things before executing the config
+    // Initialize Font
+    error = Font::initialize();
+    if (error != 0) {
+        std::cout << "Could not initialize Font (" << error << ")!" << std::endl;
+        return -3;
+    }
+
     if (configFileToUse == "") {
         if (Command::executeFile(DEFAULT_CONFIG_FILE) != 0) {
             if (Command::executeFile(std::string(DEFAULT_CONFIG_PATH) + "/" + DEFAULT_CONFIG_FILE) != 0) {
@@ -161,17 +166,6 @@ int main(int argc, char* argv[]) {
         }
     } else {
         Command::executeFile(configFileToUse);
-    }
-
-    // Initialize Font
-#ifdef USING_SDL_FONT
-    error = Font::initialize(getRunTime().getDataDir() + "/test.ttf");
-#else
-    error = Font::initialize(getRunTime().getDataDir() + "/font.pc");
-#endif
-    if (error != 0) {
-        std::cout << "Could not initialize Font (" << error << ")!" << std::endl;
-        return -3;
     }
 
     // Initialize Sound
