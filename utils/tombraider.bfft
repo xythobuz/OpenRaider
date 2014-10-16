@@ -1,0 +1,443 @@
+/*
+ * tombraider.bfft - Tomb Raider 1 - 3 Level File Format Description
+ * 2014, Thomas Buck <xythobuz@xythobuz.de>
+ *
+ * Based on the TR Rosetta Stone (http://www.tnlc.com/eep/tr/TRosettaStone.html)
+ * Developed for Binspector (https://github.com/binspector/binspector)
+ */
+
+struct face4_t {
+    unsigned 16 little vertices[4];
+    unsigned 16 little texture;
+}
+
+struct face3_t {
+    unsigned 16 little vertices[3];
+    unsigned 16 little texture;
+}
+
+struct vertex_t {
+    signed 16 little x;
+    signed 16 little y;
+    signed 16 little z;
+
+    summary "X: ", x, " Y: ", y, " Z: ", z;
+}
+
+struct room_vertex_t {
+    vertex_t vertex;
+    signed 16 little lighting1;
+
+    if (TRversion > 1) {
+        unsigned 16 little attributes;
+        signed 16 little lighting2;
+    }
+}
+
+struct room_sprite_t {
+    signed 16 little vertex;
+    signed 16 little texture;
+}
+
+struct room_door_t {
+    unsigned 16 little adjoiningRoom;
+    vertex_t normal;
+    vertex_t vertices[4];
+
+    summary "To: ", adjoiningRoom;
+}
+
+struct room_sector_t {
+    unsigned 16 little floorDataIndex;
+    unsigned 16 little boxIndex;
+    unsigned 8 little roomBelow;
+    signed 8 little floor;
+    unsigned 8 little roomAbove;
+    signed 8 little ceiling;
+
+    summary "Be.: ", roomBelow, " Ab.: ", roomAbove;
+}
+
+struct room_light_t {
+    signed 32 little x;
+    signed 32 little y;
+    signed 32 little z;
+    unsigned 16 little intensity1;
+
+    if (TRversion > 1)
+        unsigned 16 little intensity2;
+
+    unsigned 32 little fade1;
+
+    if (TRversion > 1)
+        unsigned 32 little fade2;
+
+    summary "X: ", x, " Y: ", y, " Z: ", z;
+}
+
+struct room_mesh_t {
+    unsigned 32 little x;
+    unsigned 32 little y;
+    unsigned 32 little z;
+    unsigned 16 little rotation;
+    unsigned 16 little intensity1;
+    
+    if (TRversion > 1)
+        unsigned 16 little intensity2;
+
+    unsigned 16 little objectID;
+
+    summary "ID: ", objectID, " X: ", x, " Y: ", y, " Z: ", z;
+}
+
+struct room_t {
+    // Room Header
+    signed 32 little x;
+    signed 32 little z;
+    signed 32 little yBottom;
+    signed 32 little yTop;
+
+    unsigned 32 little numDataToFollow;
+
+    unsigned 16 little numVertices;
+    room_vertex_t vertices[numVertices];
+
+    unsigned 16 little numRectangles;
+    face4_t rectangles[numRectangles];
+
+    unsigned 16 little numTriangles;
+    face3_t triangles[numTriangles];
+
+    unsigned 16 little numSprites;
+    room_sprite_t sprites[numSprites];
+
+    unsigned 16 little numDoors;
+    room_door_t doors[numDoors];
+
+    unsigned 16 little numZSector;
+    unsigned 16 little numXSector;
+    room_sector_t sectorData[numZSector * numXSector];
+
+    signed 16 little intensity1;
+
+    if (TRversion > 1)
+        signed 16 little intensity2;
+
+    if (TRversion == 2)
+        signed 16 little lightMode;
+
+    unsigned 16 little numLights;
+    room_light_t lights[numLights];
+
+    unsigned 16 little numStaticMeshes;
+    room_mesh_t staticMeshes[numStaticMeshes];
+
+    signed 16 little alternateRoom;
+    unsigned 16 little flags;
+
+    if (TRversion == 3)
+        unsigned 24 little roomLightColor;
+
+    summary "X: ", x, " Ybot: ", yBottom, " Ytop: ", yTop, " Z: ", z;
+}
+
+struct animation_t {
+    unsigned 32 little frameOffset;
+    unsigned 8 little frameRate;
+    unsigned 8 little frameSize;
+    unsigned 16 little stateID;
+    skip unknown[8];
+    unsigned 16 little frameStart;
+    unsigned 16 little frameEnd;
+    unsigned 16 little nextAnimation;
+    unsigned 16 little nextFrame;
+    unsigned 16 little numStateChanges;
+    unsigned 16 little stateChangeOffset;
+    unsigned 16 little numAnimCommands;
+    unsigned 16 little animCommandOffset;
+
+    summary "State: ", stateID, " To: ", nextAnimation, "-", nextFrame;
+}
+
+struct state_change_t {
+    unsigned 16 little stateID;
+    unsigned 16 little numAnimDispatches;
+    unsigned 16 little animDispatchOffset;
+
+    summary "State: ", stateID;
+}
+
+struct anim_dispatch_t {
+    signed 16 little low;
+    signed 16 little high;
+    signed 16 little nextAnimation;
+    signed 16 little nextFrame;
+
+    summary low, "-", high, " To: ", nextAnimation, "-", nextFrame;
+}
+
+struct moveable_t {
+    unsigned 32 little objectID;
+    unsigned 16 little numMeshes;
+    unsigned 16 little startingMesh;
+    unsigned 32 little meshTree;
+    unsigned 32 little frameOffset;
+    unsigned 16 little animation;
+
+    summary "ID: ", objectID, " Anim: ", animation;
+}
+
+struct static_mesh_t {
+    unsigned 32 little objectID;
+    unsigned 16 little mesh;
+    vertex_t boundingBox[4];
+    unsigned 16 little flags;
+
+    summary "ID: ", objectID;
+}
+
+struct object_texture_vert_t {
+    unsigned 8 little xCoordinate;
+    unsigned 8 little xPixel;
+    unsigned 8 little yCoordinate;
+    unsigned 8 little yPixel;
+
+    summary xCoordinate, "-", yCoordinate, ", ", xPixel, "-", yPixel;
+}
+
+struct object_texture_t {
+    unsigned 16 little attribute;
+    unsigned 16 little tile;
+    object_texture_vert_t vertices[4];
+
+    summary "Tile: ", tile;
+}
+
+struct sprite_texture_t {
+    unsigned 16 little tile;
+    unsigned 8 little x;
+    unsigned 8 little y;
+    unsigned 16 little width;
+    unsigned 16 little height;
+    signed 16 little leftSide;
+    signed 16 little topSide;
+    signed 16 little rightSide;
+    signed 16 little bottomSide;
+
+    summary x, "-", y, ", ", width, "-", height;
+}
+
+struct sprite_sequence_t {
+    signed 32 little objectID;
+    signed 16 little negativeLength;
+    signed 16 little offset;
+
+    summary "ID: ", objectID;
+}
+
+struct camera_t {
+    signed 32 little x;
+    signed 32 little y;
+    signed 32 little z;
+    signed 16 little room;
+    unsigned 16 little unknown;
+
+    summary "X: ", x, " Y: ", y, " Z: ", z;
+}
+
+struct sound_source_t {
+    signed 32 little x;
+    signed 32 little y;
+    signed 32 little z;
+    unsigned 16 little soundID;
+    unsigned 16 little flags;
+
+    summary "X: ", x, " Y: ", y, " Z: ", z;
+}
+
+struct box_t {
+    if (TRversion > 1) {
+        unsigned 8 little zMin;
+        unsigned 8 little zMax;
+        unsigned 8 little xMin;
+        unsigned 8 little xMax;
+    } else {
+        signed 32 little zMin;
+        signed 32 little zMax;
+        signed 32 little xMin;
+        signed 32 little xMax;
+    }
+    signed 16 little trueFloor;
+    signed 16 little overlapIndex;
+
+    summary "X: ", xMin, "-", xMax, " Z: ", zMin, "-", zMax;
+}
+
+struct item_t {
+    signed 16 little objectID;
+    signed 16 little room;
+    signed 32 little x;
+    signed 32 little y;
+    signed 32 little z;
+    signed 16 little angle;
+    signed 16 little intensity1;
+
+    if (TRversion > 1)
+        signed 16 little intensity2;
+
+    unsigned 16 little flags;
+
+    summary "ID: ", objectID, " X: ", x, " Y: ", y, " Z: ", z;
+}
+
+struct cinematic_frame_t {
+    signed 16 little rotY;
+    signed 16 little rotZ;
+    signed 16 little rotZ2;
+    signed 16 little posZ;
+    signed 16 little posY;
+    signed 16 little posX;
+    signed 16 little unknown;
+    signed 16 little rotX;
+}
+
+struct sound_details_t {
+    signed 16 little sample;
+    signed 16 little volume;
+    signed 16 little unknown1;
+    signed 16 little unknown2;
+
+    summary sample, " - ", volume;
+}
+
+struct main {
+    unsigned 32 little version;
+
+    if (version == 0x20) {
+        notify "Tomb Raider 1 file detected...";
+        const TRversion = 1;
+    } else if (version == 0x2D) {
+        notify "Tomb Raider 2 file detected...";
+        const TRversion = 2;
+    } else if ((version == 0xFF080038) || (version == 0xFF180038)) {
+        notify "Tomb Raider 3 file detected...";
+        const TRversion = 3;
+    } else if ((version == 0xFFFFFFF0) || (version == 0x00345254)) {
+        die "Tomb Raider 4 file detected but not supported!";
+    } else {
+        die "Unknown version number found!";
+    }
+
+    if (TRversion > 1)
+        skip palettes[256 * 7];
+
+    unsigned 32 little numTextiles;
+    skip textiles[256 * 256 * numTextiles];
+
+    if (TRversion > 1)
+        skip textiles16[256 * 256 * numTextiles * 2];
+
+    unsigned 32 little unused;
+
+    unsigned 16 little numRooms;
+    room_t rooms[numRooms];
+
+    unsigned 32 little numFloorData;
+    skip floorData[numFloorData * 2];
+
+    unsigned 32 little numMeshData;
+    skip meshData[numMeshData * 2];
+    unsigned 32 little numMeshPointers;
+    unsigned 32 little meshPointers[numMeshPointers];
+
+    unsigned 32 little numAnimations;
+    animation_t animations[numAnimations];
+
+    unsigned 32 little numStateChanges;
+    state_change_t stateChanges[numStateChanges];
+
+    unsigned 32 little numAnimDispatches;
+    anim_dispatch_t animDispatches[numAnimDispatches];
+
+    unsigned 32 little numAnimCommands;
+    signed 16 little animCommands[numAnimCommands];
+
+    unsigned 32 little numMeshTrees;
+    signed 32 little meshTrees[numMeshTrees];
+
+    unsigned 32 little numFrames;
+    skip frames[numFrames * 2];
+
+    unsigned 32 little numMoveables;
+    moveable_t moveables[numMoveables];
+
+    unsigned 32 little numStaticMeshes;
+    static_mesh_t staticMeshes[numStaticMeshes];
+
+    if (TRversion < 3) {
+        unsigned 32 little numObjectTextures;
+        object_texture_t objectTextures[numObjectTextures];
+    }
+
+    unsigned 32 little numSpriteTextures;
+    sprite_texture_t spriteTextures[numSpriteTextures];
+
+    unsigned 32 little numSpriteSequences;
+    sprite_sequence_t spriteSequences[numSpriteSequences];
+
+    unsigned 32 little numCameras;
+    camera_t cameras[numCameras];
+
+    unsigned 32 little numSoundSources;
+    sound_source_t soundSources[numSoundSources];
+
+    unsigned 32 little numBoxes;
+    box_t boxes[numBoxes];
+
+    unsigned 32 little numOverlaps;
+    skip overlaps[numOverlaps * 2];
+
+    if (TRversion > 1)
+        skip zones[numBoxes * 10 * 2];
+    else
+        skip zones[numBoxes * 6 * 2];
+
+    unsigned 32 little numAnimatedTextures;
+    skip animatedTextures[numAnimatedTextures * 2];
+
+    if (TRversion == 3) {
+        unsigned 32 little numObjectTextures;
+        object_texture_t objectTextures[numObjectTextures];
+    }
+
+    unsigned 32 little numItems;
+    item_t items[numItems];
+
+    skip lightMap[32 * 256];
+
+    if (TRversion == 1)
+        skip palette[256 * 3];
+
+    unsigned 16 little numCinematicFrames;
+    cinematic_frame_t cinematicFrames[numCinematicFrames];
+
+    unsigned 16 little numDemoData;
+    skip demoData[numDemoData];
+
+    if (TRversion > 1)
+        skip soundMap[370 * 2];
+    else
+        skip soundMap[256 * 2];
+
+    unsigned 32 little numSoundDetails;
+    sound_details_t soundDetails[numSoundDetails];
+
+    if (TRversion == 1) {
+        unsigned 32 little numSamples;
+        skip samples[numSamples];
+    }
+
+    unsigned 32 little numSampleIndices;
+    skip sampleIndices[numSampleIndices * 4];
+}
+

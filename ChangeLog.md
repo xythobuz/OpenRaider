@@ -4,6 +4,8 @@
 
     [ 20141016 ]
     * ImGuis Font can now be used if no other is available
+    * Added [Binspector](https://github.com/binspector/binspector) binary file format template
+      that can be used to parse and analyze TR1-TR3 level files.
 
     [ 20141015 ]
     * Added rudimentary command history support for Console
