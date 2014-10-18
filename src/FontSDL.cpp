@@ -62,7 +62,7 @@ unsigned int FontSDL::widthText(float scale, std::string s) {
 }
 
 void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
-        const unsigned char color[4], std::string s) {
+                       const unsigned char color[4], std::string s) {
     assert(mFontInit == true);
     assert(mFont != nullptr);
     assert(s.length() > 0);
@@ -73,7 +73,7 @@ void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
     col.b = color[2];
     col.a = color[3];
 
-    SDL_Surface *surface = TTF_RenderUTF8_Blended(mFont, s.c_str(), col);
+    SDL_Surface* surface = TTF_RenderUTF8_Blended(mFont, s.c_str(), col);
     if (surface == nullptr) {
         std::cout << "TTF_RenderUTF8_Blended Error: " << TTF_GetError() << std::endl;
         return;
@@ -98,7 +98,8 @@ void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
     glBindTexture(GL_TEXTURE_2D, mFontTexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0, textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
+    glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0,
+                 textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
     SDL_FreeSurface(surface);
 
     GLuint xMin = x;
@@ -130,7 +131,7 @@ unsigned int FontSDL::heightText(float scale, unsigned int maxWidth, std::string
     assert(maxWidth > 0);
 
     SDL_Color col;
-    SDL_Surface *surface = TTF_RenderUTF8_Blended_Wrapped(mFont, s.c_str(), col, maxWidth);
+    SDL_Surface* surface = TTF_RenderUTF8_Blended_Wrapped(mFont, s.c_str(), col, maxWidth);
     if (surface == nullptr) {
         std::cout << "TTF_RenderUTF8_Blended_Wrapped Error: " << TTF_GetError() << std::endl;
         return 0;
@@ -141,7 +142,7 @@ unsigned int FontSDL::heightText(float scale, unsigned int maxWidth, std::string
 }
 
 void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
-        const unsigned char color[4], unsigned int maxWidth, std::string s) {
+                              const unsigned char color[4], unsigned int maxWidth, std::string s) {
     assert(mFontInit == true);
     assert(mFont != nullptr);
     assert(s.length() > 0);
@@ -153,7 +154,7 @@ void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     col.b = color[2];
     col.a = color[3];
 
-    SDL_Surface *surface = TTF_RenderUTF8_Blended_Wrapped(mFont, s.c_str(), col, maxWidth);
+    SDL_Surface* surface = TTF_RenderUTF8_Blended_Wrapped(mFont, s.c_str(), col, maxWidth);
     if (surface == nullptr) {
         std::cout << "TTF_RenderUTF8_Blended_Wrapped Error: " << TTF_GetError() << std::endl;
         return;
@@ -178,7 +179,8 @@ void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     glBindTexture(GL_TEXTURE_2D, mFontTexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0, textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
+    glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0,
+                 textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
     SDL_FreeSurface(surface);
 
     GLuint xMin = x;

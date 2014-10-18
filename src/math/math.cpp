@@ -25,7 +25,7 @@ bool equalEpsilon(float a, float b) {
 }
 
 int intersectionLinePolygon(float intersect[3],
-        float p1[3], float p2[3], float polygon[3][3]) {
+                            float p1[3], float p2[3], float polygon[3][3]) {
     assert(polygon != NULL);
 
     // float normal[3], a[3], b[3];

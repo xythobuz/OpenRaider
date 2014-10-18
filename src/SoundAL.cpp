@@ -40,8 +40,8 @@ int SoundAL::initialize() {
     if (!mEnabled)
         return 0;
 
-    ALCdevice *Device = alcOpenDevice(NULL);
-    ALCcontext *Context = alcCreateContext(Device, NULL);
+    ALCdevice* Device = alcOpenDevice(NULL);
+    ALCcontext* Context = alcCreateContext(Device, NULL);
     alcMakeContextCurrent(Context);
 
     if (alutInitWithoutContext(NULL, NULL) == AL_FALSE) {
@@ -120,11 +120,11 @@ void SoundAL::sourceAt(unsigned long source, float pos[3]) {
 }
 
 //! \fixme Seperate sourcing and buffering, Mongoose 2002.01.04
-int SoundAL::addFile(const char *filename, unsigned long *source, unsigned int flags) {
+int SoundAL::addFile(const char* filename, unsigned long* source, unsigned int flags) {
     ALsizei size;
     ALfloat freq;
     ALenum format;
-    ALvoid *data;
+    ALvoid* data;
     unsigned long id;
 
     assert(mSource.size() == mBuffer.size());
@@ -176,11 +176,12 @@ int SoundAL::addFile(const char *filename, unsigned long *source, unsigned int f
     return 0;
 }
 
-int SoundAL::addWave(unsigned char *wav, unsigned int length, unsigned long *source, unsigned int flags) {
+int SoundAL::addWave(unsigned char* wav, unsigned int length, unsigned long* source,
+                     unsigned int flags) {
     ALsizei size;
     ALfloat freq;
     ALenum format;
-    ALvoid *data;
+    ALvoid* data;
     int error = 0;
     unsigned long id;
 

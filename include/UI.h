@@ -16,7 +16,7 @@
 #include "imgui/imgui.h"
 
 class UI {
-public:
+  public:
     static int initialize();
     static void eventsFinished();
     static void display();
@@ -26,14 +26,14 @@ public:
     static bool isVisible();
 
     static void handleKeyboard(KeyboardButton key, bool pressed);
-    static void handleText(char *text, bool notFinished);
+    static void handleText(char* text, bool notFinished);
     static void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
     static void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
     static void handleMouseScroll(int xrel, int yrel);
 
     static void renderImGui(ImDrawList** const draw_lists, int count);
 
-private:
+  private:
     static bool visible;
     static unsigned int fontTex;
     static std::string iniFilename;

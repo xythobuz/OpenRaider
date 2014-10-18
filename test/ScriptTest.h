@@ -12,11 +12,11 @@
 
 static const unsigned int testPayloadCount = 4; // 4 gzipped files in data block
 
-static const char *testDescription[testPayloadCount] = {
+static const char* testDescription[testPayloadCount] = {
     "TR2 PC", "TR2 PSX", "TR3 PC", "TR3 PSX"
 };
 
-static const unsigned char *testPayloads[testPayloadCount] = {
+static const unsigned char* testPayloads[testPayloadCount] = {
     tr2_pc_dat_z, tr2_psx_dat_z, tr3_pc_dat_z, tr3_psx_dat_z
 };
 

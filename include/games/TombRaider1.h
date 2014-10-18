@@ -14,7 +14,7 @@
  * \brief Tomb Raider 1 items and states
  */
 class TombRaider1 {
-public:
+  public:
 
     /*!
      * \brief States of a Wolf (Item 7)

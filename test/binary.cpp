@@ -31,14 +31,14 @@ namespace {
     float f1 = 3.1415926f;
     float f2 = 42.23f;
 
-    void fillFile(const char *name) {
+    void fillFile(const char* name) {
         std::ofstream file(name, std::ios_base::out | std::ios_base::binary);
         file.write(testData, sizeof(testData) / sizeof(testData[0]));
-        file.write(reinterpret_cast<char *>(&f1), sizeof(f1));
-        file.write(reinterpret_cast<char *>(&f2), sizeof(f2));
+        file.write(reinterpret_cast<char*>(&f1), sizeof(f1));
+        file.write(reinterpret_cast<char*>(&f2), sizeof(f2));
     }
 
-    int test(const char *name) {
+    int test(const char* name) {
         BinaryFile file;
         if (file.open(name) != 0) {
             std::cout << "Error opening file " << name << std::endl;
@@ -108,7 +108,7 @@ namespace {
 
 int main() {
     char tmpFile[] = "/tmp/openraider_unit_test_0";
-    FILE *f;
+    FILE* f;
     while ((f = fopen(tmpFile, "r")) != NULL) {
         fclose(f);
         tmpFile[26]++;

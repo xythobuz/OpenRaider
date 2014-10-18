@@ -11,11 +11,11 @@
 #include <fstream>
 
 class BinaryFile {
-public:
+  public:
 
     ~BinaryFile();
 
-    int open(const char *f);
+    int open(const char* f);
 
     long long tell();
     void seek(long long pos);
@@ -34,7 +34,7 @@ public:
 
     float readFloat();
 
-private:
+  private:
     std::ifstream file;
 };
 

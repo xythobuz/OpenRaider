@@ -61,7 +61,7 @@ void LoaderTR2::loadPaletteTextiles() {
 
     // Read the 16bit palette, 256 * 4 bytes, RGBA, A unused
     std::array<uint32_t, 256> palette; //!< RGBA, A unused
-    for (auto &x : palette)
+    for (auto& x : palette)
         x = file.readU32();
 
     uint32_t numTextiles = file.readU32();
@@ -72,7 +72,7 @@ void LoaderTR2::loadPaletteTextiles() {
     std::vector<std::array<uint16_t, 256 * 256>> textiles;
     for (unsigned int i = 0; i < numTextiles; i++) {
         std::array<uint16_t, 256 * 256> arr;
-        for (auto &x : arr) {
+        for (auto& x : arr) {
             x = file.readU16();
         }
         textiles.push_back(arr);
@@ -605,7 +605,7 @@ void LoaderTR2::loadDemoData() {
 
 void LoaderTR2::loadSoundMap() {
     std::array<int16_t, 370> soundMap;
-    for (auto &x : soundMap) {
+    for (auto& x : soundMap) {
         x = file.read16();
     }
 

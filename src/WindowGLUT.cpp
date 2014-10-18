@@ -67,7 +67,7 @@ int WindowGLUT::initialize() {
     assert(mInit == false);
 
     int argc = 1;
-    char *argv[] = { new char[11], nullptr };
+    char* argv[] = { new char[11], nullptr };
     strcpy(argv[0], "OpenRaider");
     glutInit(&argc, argv);
     glutInitWindowSize(mWidth, mHeight);
@@ -197,7 +197,7 @@ KeyboardButton WindowGLUT::convertAsciiButton(unsigned char key) {
 
     // Alphanumerics can be returned as is
     if (((key >= '0') && (key <= '9'))
-            || ((key >= 'a') && (key <= 'z'))) {
+        || ((key >= 'a') && (key <= 'z'))) {
         return static_cast<KeyboardButton>(key);
     }
 

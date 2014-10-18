@@ -15,9 +15,9 @@
 
 #include "games/TombRaider1.h"
 
-Entity::Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int model) {
-    tr2_moveable_t *moveable = tr.Moveable();
-    tr2_item_t *item = tr.Item();
+Entity::Entity(TombRaider& tr, unsigned int index, unsigned int i, unsigned int model) {
+    tr2_moveable_t* moveable = tr.Moveable();
+    tr2_item_t* item = tr.Item();
 
     pos[0] = item[i].x;
     pos[1] = item[i].y;
@@ -35,13 +35,13 @@ Entity::Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int 
     state = 0;
 }
 
-bool Entity::operator<(Entity &o) {
+bool Entity::operator<(Entity& o) {
     float distA = getRender().mViewVolume.getDistToSphereFromNear(pos[0], pos[1], pos[2], 1.0f);
     float distB = getRender().mViewVolume.getDistToSphereFromNear(o.pos[0], o.pos[1], o.pos[2], 1.0f);
     return (distA < distB);
 }
 
-bool Entity::compare(Entity *a, Entity *b) {
+bool Entity::compare(Entity* a, Entity* b) {
     return (*b) < (*a);
 }
 
@@ -114,7 +114,7 @@ void Entity::move(char movement) {
 
     if (roomNew == -1) { // Will we hit a portal?
         roomNew = getWorld().getRoom(room).getAdjoiningRoom(pos[0], pos[1], pos[2],
-                x, y, z);
+                  x, y, z);
 
         if (roomNew > -1)
             getLog() << "Crossing from room " << room << " to " << roomNew << Log::endl;
@@ -139,9 +139,9 @@ void Entity::move(char movement) {
     // Mongoose 2002.09.02, Add check for room -> room transition
     // (Only allow by movement between rooms by using portals)
     if (((moveType == MoveTypeNoClipping) ||
-                (moveType == MoveTypeFly) ||
-                (moveType == MoveTypeSwim)) ||
-            ((roomNew > -1) && (!wall))) {
+         (moveType == MoveTypeFly) ||
+         (moveType == MoveTypeSwim)) ||
+        ((roomNew > -1) && (!wall))) {
         room = roomNew;
 
         switch (movement) {
@@ -214,14 +214,14 @@ void Entity::move(char movement) {
 
 void Entity::print() {
     getLog() << "Entity " << objectId << ":" << Log::endl
-        << "  Room " << room << " (" << getWorld().getRoom(room).getFlags()
-        << ")" << Log::endl
-        << "  " << pos[0] << "x " << pos[1] << "y " << pos[2] << "z"
-        << Log::endl
-        << "  " << OR_RAD_TO_DEG(angles[1]) << " Yaw" << Log::endl;
+             << "  Room " << room << " (" << getWorld().getRoom(room).getFlags()
+             << ")" << Log::endl
+             << "  " << pos[0] << "x " << pos[1] << "y " << pos[2] << "z"
+             << Log::endl
+             << "  " << OR_RAD_TO_DEG(angles[1]) << " Yaw" << Log::endl;
 }
 
-SkeletalModel &Entity::getModel() {
+SkeletalModel& Entity::getModel() {
     return getWorld().getSkeletalModel(skeletalModel);
 }
 

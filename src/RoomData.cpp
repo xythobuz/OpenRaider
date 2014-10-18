@@ -56,8 +56,7 @@ void BoundingBox::display(bool points, const unsigned char c1[4], const unsigned
     glVertex3f(b[0], b[1], b[2]);
     glVertex3f(a[0], a[1], a[2]);
 
-    if (points)
-    {
+    if (points) {
         glVertex3f(b[0], a[1], b[2]);
         glVertex3f(a[0], b[1], b[2]);
         glVertex3f(b[0], b[1], a[2]);
@@ -119,11 +118,11 @@ void BoundingBox::display(bool points, const unsigned char c1[4], const unsigned
 
 // ----------------------------------------------------------------------------
 
-Light::Light(TombRaider &tr, unsigned int room, unsigned int index) {
+Light::Light(TombRaider& tr, unsigned int room, unsigned int index) {
     unsigned int lightFlags, lightType;
 
     tr.getRoomLight(room, index, pos, color,
-            dir, &att, &cutoff, &lightType, &lightFlags);
+                    dir, &att, &cutoff, &lightType, &lightFlags);
 
     switch (lightType) {
         case tombraiderLight_typeDirectional:
@@ -174,12 +173,12 @@ Light::LightType Light::getType() {
 
 // ----------------------------------------------------------------------------
 
-StaticModel::StaticModel(TombRaider &tr, unsigned int room, unsigned int i) {
+StaticModel::StaticModel(TombRaider& tr, unsigned int room, unsigned int i) {
     tr.getRoomModel(room, i, &index, pos, &yaw);
 }
 
 void StaticModel::display() {
-    StaticMesh &mesh = getWorld().getStaticMesh(index);
+    StaticMesh& mesh = getWorld().getStaticMesh(index);
 
     if (!getRender().isVisible(pos[0], pos[1], pos[2], mesh.getRadius()))
         return;
@@ -191,7 +190,7 @@ void StaticModel::display() {
     glPopMatrix();
 }
 
-bool StaticModel::operator<(const StaticModel &other) {
+bool StaticModel::operator<(const StaticModel& other) {
     float distA, distB;
     distA = getRender().mViewVolume.getDistToSphereFromNear(pos[0],
             pos[1], pos[2], 128.0f);
@@ -200,19 +199,19 @@ bool StaticModel::operator<(const StaticModel &other) {
     return (distA < distB);
 }
 
-bool StaticModel::compare(StaticModel *a, StaticModel *b) {
+bool StaticModel::compare(StaticModel* a, StaticModel* b) {
     return (*b) < (*a);
 }
 
 // ----------------------------------------------------------------------------
 
-Portal::Portal(TombRaider &tr, unsigned int room, unsigned int index, Matrix &transform) {
+Portal::Portal(TombRaider& tr, unsigned int room, unsigned int index, Matrix& transform) {
     float portalVertices[12];
     tr.getRoomPortal(room, index, &adjoiningRoom, normal, portalVertices);
     for (unsigned int j = 0; j < 4; ++j) {
-        vertices[j][0] = portalVertices[j*3];
-        vertices[j][1] = portalVertices[j*3+1];
-        vertices[j][2] = portalVertices[j*3+2];
+        vertices[j][0] = portalVertices[j * 3];
+        vertices[j][1] = portalVertices[j * 3 + 1];
+        vertices[j][2] = portalVertices[j * 3 + 2];
 
         // Relative coors in vis portals
         transform.multiply3v(vertices[j], vertices[j]);
@@ -233,19 +232,19 @@ int Portal::getAdjoiningRoom() {
 
 // ----------------------------------------------------------------------------
 
-Box::Box(TombRaider &tr, unsigned int room, unsigned int index) {
+Box::Box(TombRaider& tr, unsigned int room, unsigned int index) {
     tr.getRoomBox(room, index, a, b, c, d);
 }
 
 // ----------------------------------------------------------------------------
 
-Sector::Sector(TombRaider &tr, unsigned int room, unsigned int index) {
+Sector::Sector(TombRaider& tr, unsigned int room, unsigned int index) {
     unsigned int sectorFlags;
     int floorDataIndex, boxIndex, roomBelow, roomAbove;
 
     tr.getRoomSector(room, index, &sectorFlags,
-            &ceiling, &floor, &floorDataIndex, &boxIndex,
-            &roomBelow, &roomAbove);
+                     &ceiling, &floor, &floorDataIndex, &boxIndex,
+                     &roomBelow, &roomAbove);
 
     wall = (sectorFlags & tombraiderSector_wall);
 }

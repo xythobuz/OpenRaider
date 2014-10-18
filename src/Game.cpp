@@ -73,7 +73,7 @@ bool Game::isLoaded() {
     return mLoaded;
 }
 
-int Game::loadLevel(const char *level) {
+int Game::loadLevel(const char* level) {
     if (mLoaded)
         destroy();
 
@@ -183,7 +183,7 @@ void Game::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) {
     }
 }
 
-Entity &Game::getLara() {
+Entity& Game::getLara() {
     assert(mLara >= 0);
     assert(mLara < (int)getWorld().sizeEntity());
     return getWorld().getEntity(mLara);
@@ -217,9 +217,8 @@ void Game::processModels() {
     getLog() << "Found " << mTombRaider.getMeshCount() << " meshes." << Log::endl;
 }
 
-void Game::processPakSounds()
-{
-    unsigned char *riff;
+void Game::processPakSounds() {
+    unsigned char* riff;
     unsigned int riffSz;
     //tr2_sound_source_t *sound;
     //tr2_sound_details_t *detail;
@@ -235,15 +234,14 @@ void Game::processPakSounds()
     // in this group, bits 0-1: channel number
     */
 
-    for (i = 0; i < mTombRaider.getSoundSamplesCount(); ++i)
-    {
+    for (i = 0; i < mTombRaider.getSoundSamplesCount(); ++i) {
         mTombRaider.getSoundSample(i, &riffSz, &riff);
 
         getSound().addWave(riff, riffSz, &id, Sound::SoundFlagsNone);
 
         //if (((i + 1) == TR_SOUND_F_PISTOL) && (id > 0))
         //{
-            //m_testSFX = id;
+        //m_testSFX = id;
         //}
 
         delete [] riff;
@@ -259,36 +257,33 @@ void Game::processPakSounds()
     getLog() << "Found " << mTombRaider.getSoundSamplesCount() << " sound samples." << Log::endl;
 }
 
-void Game::processTextures()
-{
-    unsigned char *image;
-    unsigned char *bumpmap;
+void Game::processTextures() {
+    unsigned char* image;
+    unsigned char* bumpmap;
     int i;
 
     //if ( mTombRaider.getNumBumpMaps())
     //  gBumpMapStart = mTombRaider.NumTextures();
 
-    for (i = 0; i < mTombRaider.NumTextures(); ++i)
-    {
+    for (i = 0; i < mTombRaider.NumTextures(); ++i) {
         mTombRaider.Texture(i, &image, &bumpmap);
 
         // Overwrite any previous level textures on load
         getTextureManager().loadBufferSlot(image, 256, 256,
-                RGBA, 32, (mTextureStart - 1) + i);
+                                           RGBA, 32, (mTextureStart - 1) + i);
 
 #ifdef MULTITEXTURE
         gMapTex2Bump[(mTextureStart - 1) + i] = -1;
 #endif
 
-        if (bumpmap)
-        {
+        if (bumpmap) {
 #ifdef MULTITEXTURE
             gMapTex2Bump[(mTextureStart - 1) + i] = (mTextureStart - 1) + i +
-                    mTombRaider.NumTextures();
+                                                    mTombRaider.NumTextures();
 #endif
             getTextureManager().loadBufferSlot(bumpmap, 256, 256,
-                    RGBA, 32,
-                    (mTextureStart - 1) + i + mTombRaider.NumTextures());
+                                               RGBA, 32,
+                                               (mTextureStart - 1) + i + mTombRaider.NumTextures());
         }
 
         if (image)
@@ -303,16 +298,14 @@ void Game::processTextures()
     getLog() << "Found " << mTombRaider.NumTextures() << " textures." << Log::endl;
 }
 
-void Game::processMoveables()
-{
+void Game::processMoveables() {
     unsigned int statCount = 0;
 
-    tr2_moveable_t *moveable = mTombRaider.Moveable();
-    tr2_item_t *item = mTombRaider.Item();
-    tr2_sprite_sequence_t *sprite_sequence = mTombRaider.SpriteSequence();
+    tr2_moveable_t* moveable = mTombRaider.Moveable();
+    tr2_item_t* item = mTombRaider.Item();
+    tr2_sprite_sequence_t* sprite_sequence = mTombRaider.SpriteSequence();
 
-    for (int i = 0; i < mTombRaider.NumItems(); ++i)
-    {
+    for (int i = 0; i < mTombRaider.NumItems(); ++i) {
         int j;
         int object_id = item[i].object_id;
 
@@ -406,7 +399,7 @@ void Game::processMoveable(int index, int i, int object_id) {
         getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider, index, object_id));
 
     // Create a new Entity, using the cached or the new SkeletalModel
-    Entity &entity = *new Entity(mTombRaider, index, i, model);
+    Entity& entity = *new Entity(mTombRaider, index, i, model);
     getWorld().addEntity(entity);
 
     // Store reference to Lara
@@ -416,6 +409,6 @@ void Game::processMoveable(int index, int i, int object_id) {
     // Store reference to the SkyMesh
     if (i == mTombRaider.getSkyModelId())
         getRender().setSkyMesh(i, //moveable[i].starting_mesh,
-                (mTombRaider.Engine() == TR_VERSION_2));
+                               (mTombRaider.Engine() == TR_VERSION_2));
 }
 

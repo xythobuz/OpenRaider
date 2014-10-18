@@ -18,7 +18,7 @@
  * \brief OpenRaider Renderer class
  */
 class Render {
-public:
+  public:
 
     typedef enum {
         modeDisabled,
@@ -53,7 +53,7 @@ public:
      * \brief Makes a screenshot, writes to disk
      * \param filenameBase basename of file to be written
      */
-    void screenShot(const char *filenameBase);
+    void screenShot(const char* filenameBase);
 
     /*!
      * \brief Gets current rendering mode
@@ -111,14 +111,14 @@ public:
      */
     bool isVisible(float x, float y, float z, float radius);
 
-    bool isVisible(BoundingBox &box);
+    bool isVisible(BoundingBox& box);
 
     //! \fixme should be private
     ViewVolume mViewVolume; //!< View Volume for frustum culling
 
-private:
+  private:
 
-    static void lightRoom(Room &room);
+    static void lightRoom(Room& room);
 
     void drawLoadScreen();
 
@@ -133,7 +133,7 @@ private:
      * only considers its linked rooms and their linked rooms.
      * \param room First room in list
      */
-    void buildRoomRenderList(Room &room);
+    void buildRoomRenderList(Room& room);
 
     /*!
      * \brief Renders Sky domes/boxes/etc by scaling factor.
@@ -148,7 +148,7 @@ private:
      */
     void updateViewVolume();
 
-    std::vector<Room *> mRoomRenderList;
+    std::vector<Room*> mRoomRenderList;
 
     unsigned int mFlags;                  //!< Rendering flags
     unsigned int mMode;                   //!< Rendering mode
@@ -157,6 +157,6 @@ private:
     bool mSkyMeshRotation;                //!< Should Skymesh be rotated?
 };
 
-Render &getRender();
+Render& getRender();
 
 #endif

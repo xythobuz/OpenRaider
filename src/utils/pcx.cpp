@@ -14,17 +14,17 @@
 #include "global.h"
 #include "utils/pcx.h"
 
-int pcxCheck(const char *filename) {
+int pcxCheck(const char* filename) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
 
     std::ifstream file(filename, std::ios::in | std::ios::binary);
 
     // Read raw PCX header, 128 bytes
-    unsigned char *header = new unsigned char[128];
+    unsigned char* header = new unsigned char[128];
 
     // Basic validation
-    if (!file.read((char *)(&header[0]), 128)) {
+    if (!file.read((char*)(&header[0]), 128)) {
         std::cout << "File not big enough for valid PCX header!" << std::endl;
         delete [] header;
         return -1;
@@ -65,8 +65,8 @@ int pcxCheck(const char *filename) {
     return 0;
 }
 
-int pcxLoad(const char *filename, unsigned char **image,
-        unsigned int *width, unsigned int *height, ColorMode *mode, unsigned int *bpp) {
+int pcxLoad(const char* filename, unsigned char** image,
+            unsigned int* width, unsigned int* height, ColorMode* mode, unsigned int* bpp) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
     assert(image != NULL);
@@ -78,10 +78,10 @@ int pcxLoad(const char *filename, unsigned char **image,
     std::ifstream file(filename, std::ios::in | std::ios::binary);
 
     // Read raw PCX header, 128 bytes
-    unsigned char *header = new unsigned char[128];
+    unsigned char* header = new unsigned char[128];
 
     // Basic validation
-    if (!file.read((char *)(&header[0]), 128)) {
+    if (!file.read((char*)(&header[0]), 128)) {
         std::cout << "File not big enough for valid PCX header!" << std::endl;
         delete [] header;
         return -1;
@@ -141,8 +141,8 @@ int pcxLoad(const char *filename, unsigned char **image,
     *width = xMax - xMin + 1;
     *height = yMax - yMin + 1;
     unsigned long totalBytes = nPlanes * bytesPerLine; // total bytes per scan line
-    unsigned long imageSize = totalBytes * *height;
-    unsigned char *buffer = new unsigned char[imageSize];
+    unsigned long imageSize = totalBytes** height;
+    unsigned char* buffer = new unsigned char[imageSize];
     unsigned long b = 0;
 
     // Read encoded pixel data
@@ -151,7 +151,7 @@ int pcxLoad(const char *filename, unsigned char **image,
         int c = file.get();
         if (!file) {
             std::cout << "Could not read data (" << i
-                << (file.eof() ? " EOF" : "") << ")" << std::endl;
+                      << (file.eof() ? " EOF" : "") << ")" << std::endl;
             delete [] buffer;
             return -7;
         }
@@ -163,7 +163,7 @@ int pcxLoad(const char *filename, unsigned char **image,
                 c = file.get();
                 if (!file) {
                     std::cout << "Could not read data rle (" << i
-                        << (file.eof() ? " EOF" : "") << ")" << std::endl;
+                              << (file.eof() ? " EOF" : "") << ")" << std::endl;
                     delete [] buffer;
                     return -8;
                 }
@@ -177,7 +177,7 @@ int pcxLoad(const char *filename, unsigned char **image,
     }
 
     // Read color palette
-    unsigned char *palette = NULL;
+    unsigned char* palette = NULL;
     if (versionFive) {
         int c = file.get();
         if ((c == 12) && file) {
@@ -195,11 +195,11 @@ int pcxLoad(const char *filename, unsigned char **image,
     }
 
     // Bring buffer into preferred format
-    unsigned long size = *width * *height * 4;
+    unsigned long size = *width** height * 4;
     *image = new unsigned char[size];
     for (unsigned int y = 0; y < *height; y++) {
         for (unsigned int x = 0; x < *width; x++) {
-            unsigned long baseIndex = (x + (y * *width)) * 4;
+            unsigned long baseIndex = (x + (y** width)) * 4;
             unsigned char alpha = 255, red = 0, green = 0, blue = 0;
 
             if (palette != NULL) {

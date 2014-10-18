@@ -16,13 +16,13 @@
 #include "utils/pixel.h"
 #include "utils/png.h"
 
-int pngCheck(const char *filename) {
+int pngCheck(const char* filename) {
     png_byte header[8];
 
     assert(filename != NULL);
     assert(filename[0] != '\0');
 
-    FILE *fp = fopen(filename, "rb");
+    FILE* fp = fopen(filename, "rb");
     if (fp == NULL) {
         std::cout << "Could not open " << filename << std::endl;
         return -1;
@@ -39,8 +39,8 @@ int pngCheck(const char *filename) {
     return 0;
 }
 
-int pngLoad(const char *filename, unsigned char **image,
-        unsigned int *width, unsigned int *height, ColorMode *mode, unsigned int *bpp) {
+int pngLoad(const char* filename, unsigned char** image,
+            unsigned int* width, unsigned int* height, ColorMode* mode, unsigned int* bpp) {
     png_byte header[8];
 
     assert(filename != NULL);
@@ -51,7 +51,7 @@ int pngLoad(const char *filename, unsigned char **image,
     assert(mode != NULL);
     assert(bpp != NULL);
 
-    FILE *fp = fopen(filename, "rb");
+    FILE* fp = fopen(filename, "rb");
     if (fp == NULL) {
         std::cout << "Could not open " << filename << std::endl;
         return -1;
@@ -103,7 +103,7 @@ int pngLoad(const char *filename, unsigned char **image,
     png_uint_32 tmpWidth, tmpHeight;
 
     png_get_IHDR(png_ptr, info_ptr, &tmpWidth, &tmpHeight, &bit_depth, &color_type,
-            NULL, NULL, NULL);
+                 NULL, NULL, NULL);
 
     *width = tmpWidth;
     *height = tmpHeight;
@@ -117,8 +117,8 @@ int pngLoad(const char *filename, unsigned char **image,
 
     png_size_t rowbytes = png_get_rowbytes(png_ptr, info_ptr);
 
-    png_byte *image_data = new png_byte[(rowbytes * *height) + 15];
-    png_bytep *row_pointers = new png_bytep[*height];
+    png_byte* image_data = new png_byte[(rowbytes** height) + 15];
+    png_bytep* row_pointers = new png_bytep[*height];
 
     for (unsigned int i = 0; i < *height; i++)
         row_pointers[*height - 1 - i] = image_data + i * rowbytes;
@@ -145,17 +145,17 @@ int pngLoad(const char *filename, unsigned char **image,
     }
 
     // Flip
-    *image = new unsigned char[*width * *height * (*bpp / 8)];
+    *image = new unsigned char[*width** height * (*bpp / 8)];
     for (unsigned int y = 0; y < (*height); y++) {
         for (unsigned int x = 0; x < (*width); x++) {
-            (*image)[((y * *width) + x) * (*bpp / 8)]
-                = image_data[(((*height - y - 1) * *width) + x) * (*bpp / 8)];
-            (*image)[(((y * *width) + x) * (*bpp / 8)) + 1]
-                = image_data[((((*height - y - 1) * *width) + x) * (*bpp / 8)) + 1];
-            (*image)[(((y * *width) + x) * (*bpp / 8)) + 2]
-                = image_data[((((*height - y - 1) * *width) + x) * (*bpp / 8)) + 2];
-            (*image)[(((y * *width) + x) * (*bpp / 8)) + 3]
-                = image_data[((((*height - y - 1) * *width) + x) * (*bpp / 8)) + 3];
+            (*image)[((y** width) + x) * (*bpp / 8)]
+                = image_data[(((*height - y - 1)** width) + x) * (*bpp / 8)];
+            (*image)[(((y** width) + x) * (*bpp / 8)) + 1]
+                = image_data[((((*height - y - 1)** width) + x) * (*bpp / 8)) + 1];
+            (*image)[(((y** width) + x) * (*bpp / 8)) + 2]
+                = image_data[((((*height - y - 1)** width) + x) * (*bpp / 8)) + 2];
+            (*image)[(((y** width) + x) * (*bpp / 8)) + 3]
+                = image_data[((((*height - y - 1)** width) + x) * (*bpp / 8)) + 3];
         }
     }
 
@@ -163,15 +163,15 @@ int pngLoad(const char *filename, unsigned char **image,
     return 0;
 }
 
-int pngSave(const char *filename, unsigned char *image,
-        unsigned int width, unsigned int height, ColorMode mode, unsigned int bpp) {
+int pngSave(const char* filename, unsigned char* image,
+            unsigned int width, unsigned int height, ColorMode mode, unsigned int bpp) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
     assert(image != NULL);
     assert(width > 0);
     assert(height > 0);
 
-    FILE *fp = fopen(filename, "wb");
+    FILE* fp = fopen(filename, "wb");
     if (!fp) {
         std::cout << "File " << filename << " could not be opened for writing" << std::endl;
         return -1;
@@ -226,12 +226,12 @@ int pngSave(const char *filename, unsigned char *image,
     }
 
     png_set_IHDR(png_ptr, info_ptr, width, height,
-            8, color_type, PNG_INTERLACE_NONE,
-            PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+                 8, color_type, PNG_INTERLACE_NONE,
+                 PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
     png_write_info(png_ptr, info_ptr);
 
-    png_bytep *row_pointers = new png_bytep[height];
+    png_bytep* row_pointers = new png_bytep[height];
 
     for (unsigned int i = 0; i < height; i++)
         row_pointers[height - 1 - i] = image + (i * width * 4);

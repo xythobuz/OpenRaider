@@ -18,7 +18,7 @@
  * \brief Loads maps, meshes, textures...
  */
 class TombRaider {
-public:
+  public:
 
     /*!
      * \brief Constructs an object of TombRaider
@@ -60,13 +60,13 @@ public:
 
     tr2_version_type Engine();
 
-    unsigned short *Frame();
+    unsigned short* Frame();
 
-    tr2_animation_t *Animation();
+    tr2_animation_t* Animation();
 
-    tr2_item_t *Item();
+    tr2_item_t* Item();
 
-    tr2_object_texture_t *ObjectTextures();
+    tr2_object_texture_t* ObjectTextures();
 
     /*!
      * \brief Get number of boxes
@@ -74,9 +74,9 @@ public:
      */
     unsigned int getNumBoxes();
 
-    tr2_box_t *Box();
+    tr2_box_t* Box();
 
-    tr2_mesh_t *Mesh();
+    tr2_mesh_t* Mesh();
 
     /*!
      * \brief Get number of animations for a moveable
@@ -85,26 +85,26 @@ public:
      */
     int getNumAnimsForMoveable(int moveable_index);
 
-    tr2_staticmesh_t *StaticMesh();
+    tr2_staticmesh_t* StaticMesh();
 
-    tr2_moveable_t *Moveable();
+    tr2_moveable_t* Moveable();
 
-    tr2_meshtree_t *MeshTree();
+    tr2_meshtree_t* MeshTree();
 
     /*!
      * \brief Get the sprites
      * \returns the sprite array
      */
-    tr2_sprite_texture_t *Sprite();
+    tr2_sprite_texture_t* Sprite();
 
-    tr2_sprite_sequence_t *SpriteSequence();
+    tr2_sprite_sequence_t* SpriteSequence();
 
     /*!
      * \brief Makes a 32bit RGBA image from a stexture/bmap
      * \param texture valid index into tex_special list
      * \returns 32bit RGBA image or NULL on error
      */
-    unsigned char *SpecialTexTile(int texture);
+    unsigned char* SpecialTexTile(int texture);
 
     /*!
      * \brief Get copies of texture and it's bumpmap
@@ -112,20 +112,20 @@ public:
      * \param image will be set to texture if found, or NULL
      * \param bumpmap will be set to bumpmap if found, or NULL
      */
-    void Texture(int texture, unsigned char **image, unsigned char **bumpmap);
+    void Texture(int texture, unsigned char** image, unsigned char** bumpmap);
 
-    unsigned int *Palette16();
+    unsigned int* Palette16();
 
-    unsigned char *Palette8();
+    unsigned char* Palette8();
 
-    tr2_room_t *Room();
+    tr2_room_t* Room();
 
     /*!
      * \brief Check if a file is a TombRaider pak
      * \param filename file to check
      * \returns 0 if it is a TombRaider pak
      */
-    static int checkMime(const char *filename);
+    static int checkMime(const char* filename);
 
     /*!
      * \brief Loads TombRaider 1-5 pak into memory
@@ -134,7 +134,7 @@ public:
      * \returns 0 on success, < 0 on error
      * \sa TombRaider::loadTR5()
      */
-    int Load(const char *filename);
+    int Load(const char* filename);
 
     /*!
      * \brief Makes a clamped 0.0 to 1.0 texel from coord pair
@@ -153,10 +153,10 @@ public:
      * \param y will be set to computed angle
      * \param z will be set to computed angle
      */
-    void computeRotationAngles(unsigned short **frame,
-                                unsigned int *frame_offset,
-                                unsigned int *angle_offset,
-                                float *x, float *y, float *z);
+    void computeRotationAngles(unsigned short** frame,
+                               unsigned int* frame_offset,
+                               unsigned int* angle_offset,
+                               float* x, float* y, float* z);
 
     /*!
      * \brief Returns computed UV in u and v
@@ -164,7 +164,7 @@ public:
      * \param u will contain calculated x value
      * \param v will contain calculated y value
      */
-    void computeUV(tr2_object_texture_vert_t *st, float *u, float *v);
+    void computeUV(tr2_object_texture_vert_t* st, float* u, float* v);
 
     /*!
      * \brief Get number of bump maps in loaded pak
@@ -183,7 +183,7 @@ public:
      * \param radius will be filled with radius, not NULL
      */
     void getMeshCollisionInfo(unsigned int meshIndex,
-                                float center[3], float *radius);
+                              float center[3], float* radius);
 
     /*!
      * \brief Get SIGNED mesh count (TR encoded < 0 errors)
@@ -204,8 +204,8 @@ public:
      * \fixme This method interface may change later
      */
     void getMeshColoredRectangle(unsigned int meshIndex,
-                                    unsigned int faceIndex,
-                                    int index[6], float color[4]);
+                                 unsigned int faceIndex,
+                                 int index[6], float color[4]);
 
     /*!
      * \brief This method is made to let you fill arrays or
@@ -236,9 +236,9 @@ public:
      * \fixme This method interface may change later
      */
     void getMeshTexturedRectangle(unsigned int meshIndex,
-                                    unsigned int faceIndex,
-                                    int index[6], float st[12], int *texture,
-                                    unsigned short *transparency);
+                                  unsigned int faceIndex,
+                                  int index[6], float st[12], int* texture,
+                                  unsigned short* transparency);
 
     /*!
      * \brief This method is made to let you fill arrays or
@@ -253,9 +253,9 @@ public:
      * \fixme This method interface may change later
      */
     void getMeshTexturedTriangle(unsigned int meshIndex,
-                                    unsigned int faceIndex,
-                                    int index[3], float st[6], int *texture,
-                                    unsigned short *transparency);
+                                 unsigned int faceIndex,
+                                 int index[3], float st[6], int* texture,
+                                 unsigned short* transparency);
 
     /*!
      * \brief Get face counts for a given mesh.
@@ -297,9 +297,9 @@ public:
      * \param colors will be set to allocated color array (I)
      */
     void getMeshVertexArrays(unsigned int meshIndex,
-                                unsigned int *vertexCount, float **verts,
-                                unsigned int *normalCount, float **norms,
-                                unsigned int *colorCount, float **colors);
+                             unsigned int* vertexCount, float** verts,
+                             unsigned int* normalCount, float** norms,
+                             unsigned int* colorCount, float** colors);
 
     /*!
      * \brief Get a single collision box from room (unified)
@@ -312,7 +312,7 @@ public:
      * \returns 0 on success, < 0 on error
      */
     int getRoomBox(unsigned int roomIndex, unsigned int index,
-                    float *xyzA, float *xyzB, float *xyzC, float *xyzD);
+                   float* xyzA, float* xyzB, float* xyzC, float* xyzD);
 
     /*!
      * \brief Get number of collision boxes in room (unified)
@@ -322,8 +322,8 @@ public:
     unsigned int getRoomBoxCount(unsigned int roomIndex);
 
     void getRoomInfo(unsigned int index,
-                        unsigned int *flags, float pos[3],
-                        float bboxMin[3], float bboxMax[3]);
+                     unsigned int* flags, float pos[3],
+                     float bboxMin[3], float bboxMax[3]);
 
     /*!
      * \brief Get a single light from a room (unified)
@@ -339,9 +339,9 @@ public:
      * \returns 0 on success, < 0 on error
      */
     int getRoomLight(unsigned int roomIndex, unsigned int index,
-                        float pos[4], float color[4], float dir[3],
-                        float *attenuation, float *cutoffAngle,
-                        unsigned int *type, unsigned int *flags);
+                     float pos[4], float color[4], float dir[3],
+                     float* attenuation, float* cutoffAngle,
+                     unsigned int* type, unsigned int* flags);
 
     /*!
      * \brief Get number of lights in room (unified)
@@ -360,7 +360,7 @@ public:
      * \returns 0 on success, < 0 on error
      */
     int getRoomModel(unsigned int roomIndex, unsigned int index,
-                        int *modelIndex, float pos[3], float *yaw);
+                     int* modelIndex, float pos[3], float* yaw);
 
     /*!
      * \brief Get number of room models in room (unified)
@@ -379,7 +379,7 @@ public:
      * \returns 0 on success, < 0 on error
      */
     int getRoomPortal(unsigned int roomIndex, unsigned int index,
-                        int *adjoiningRoom, float normal[3], float vertices[12]);
+                      int* adjoiningRoom, float normal[3], float vertices[12]);
 
     /*!
      * \brief Get number of portals from room (unified)
@@ -399,8 +399,8 @@ public:
      * \param flags will contain flags
      */
     void getRoomRectangle(unsigned int roomIndex, unsigned int rectangleIndex,
-                            unsigned int *indices, float *texCoords, int *texture,
-                            unsigned int *flags);
+                          unsigned int* indices, float* texCoords, int* texture,
+                          unsigned int* flags);
 
     /*!
      * \brief Get number of rectangles from room (unified)
@@ -423,9 +423,9 @@ public:
      * \return 0 on success, < 0 on error
      */
     int getRoomSector(unsigned int roomIndex, unsigned int index,
-                        unsigned int *flags, float *ceiling, float *floor,
-                        int *floorDataIndex, int *boxIndex,
-                        int *roomBelow, int *roomAbove);
+                      unsigned int* flags, float* ceiling, float* floor,
+                      int* floorDataIndex, int* boxIndex,
+                      int* roomBelow, int* roomAbove);
 
     /*!
      * \brief Get number of sectors in room (unified)
@@ -435,12 +435,12 @@ public:
      * \returns number of sectors in room
      */
     unsigned int getRoomSectorCount(unsigned int roomIndex,
-                                    unsigned int *zSectorsCount,
-                                    unsigned int *xSectorsCount);
+                                    unsigned int* zSectorsCount,
+                                    unsigned int* xSectorsCount);
 
     void getRoomSprite(unsigned int roomIndex, unsigned int index,
-                        float scale, int *texture,
-                        float *pos, float *vertices, float *texcoords);
+                       float scale, int* texture,
+                       float* pos, float* vertices, float* texcoords);
 
     /*!
      * \brief Get number of sprites in room (unified)
@@ -460,8 +460,8 @@ public:
      * \param flags will contain flags
      */
     void getRoomTriangle(unsigned int roomIndex, unsigned int triangleIndex,
-                            unsigned int *indices, float *texCoords, int *texture,
-                            unsigned int *flags);
+                         unsigned int* indices, float* texCoords, int* texture,
+                         unsigned int* flags);
 
     /*!
      * \brief Gets triangle data with texCoords for non-matching
@@ -479,9 +479,9 @@ public:
      * \param flags will contain flags
      */
     void getRoomTriangles(unsigned int index, int textureOffset,
-                            unsigned int *count, unsigned int **indices,
-                            float **texCoords, int **textures,
-                            unsigned int **flags);
+                          unsigned int* count, unsigned int** indices,
+                          float** texCoords, int** textures,
+                          unsigned int** flags);
 
     /*!
      * \brief Gets triangle data with duplicated vertex/color/normal
@@ -500,10 +500,10 @@ public:
      * \param flags will contain flags
      */
     void getRoomTriangles(unsigned int roomIndex, int textureOffset,
-                            unsigned int *count,
-                            unsigned int **indices, float **vertices,
-                            float **texCoords, float **colors,
-                            int **textures, unsigned int **flags);
+                          unsigned int* count,
+                          unsigned int** indices, float** vertices,
+                          float** texCoords, float** colors,
+                          int** textures, unsigned int** flags);
 
     /*!
      * \brief Get number of triangles from room (unified)
@@ -520,7 +520,7 @@ public:
      * \param rgba will contain vertex color, has to be allocated
      */
     void getRoomVertex(unsigned int roomIndex, unsigned int vertexIndex,
-                        float *xyz, float *rgba);
+                       float* xyz, float* rgba);
 
     /*!
      * \brief Get allocated vertex and color arrays and their element counts (unified)
@@ -533,9 +533,9 @@ public:
      * \param colors will contain color array
      */
     void getRoomVertexArrays(unsigned int roomIndex,
-                                unsigned int *vertexCount, float **vertices,
-                                unsigned int *normalCount, float **normals,
-                                unsigned int *colorCount, float **colors);
+                             unsigned int* vertexCount, float** vertices,
+                             unsigned int* normalCount, float** normals,
+                             unsigned int* colorCount, float** colors);
 
     /*!
      * \brief Get number of lights in room (unified)
@@ -559,7 +559,7 @@ public:
      * \param data will contain sound sample
      */
     void getSoundSample(unsigned int index,
-                        unsigned int *bytes, unsigned char **data);
+                        unsigned int* bytes, unsigned char** data);
 
     /*!
      * \brief Get number of loaded sound samples
@@ -586,7 +586,7 @@ public:
      * \param filename pak to load
      * \returns < 0 on error
      */
-    int loadSFX(const char *filename);
+    int loadSFX(const char* filename);
 
     void reset();
 
@@ -604,20 +604,20 @@ public:
      */
     void setTexelScalingFactor(float f);
 
-private:
+  private:
 
-    void extractMeshes(unsigned char *mesh_data,
-                        unsigned int num_mesh_pointers,
-                        unsigned int *mesh_pointers);
+    void extractMeshes(unsigned char* mesh_data,
+                       unsigned int num_mesh_pointers,
+                       unsigned int* mesh_pointers);
 
-    int Fread(void *buffer, size_t size, size_t count, FILE *f);
+    int Fread(void* buffer, size_t size, size_t count, FILE* f);
 
     /*!
      * \brief Get a copy of the sound samples
      * \param bytes will contain size of sound samples
      * \param data will contain sound samples themselves
      */
-    void getRiffData(unsigned int *bytes, unsigned char **data);
+    void getRiffData(unsigned int* bytes, unsigned char** data);
 
     /*!
      * \brief Get a copy of a TR4 sound sample
@@ -626,7 +626,7 @@ private:
      * \param data will contain sound sample itself
      */
     void getRiffDataTR4(unsigned int index,
-                        unsigned int *bytes, unsigned char **data);
+                        unsigned int* bytes, unsigned char** data);
 
     /*!
      * \brief Get an array of offsets for a contiguous RIFF data stream in chunks.
@@ -640,8 +640,8 @@ private:
      * \param numOffsets known number
      * \returns number of RIFFs found
      */
-    int getRiffOffsets(unsigned char *riffData, unsigned int riffDataBytes,
-                        unsigned int **offsets, unsigned int numOffsets);
+    int getRiffOffsets(unsigned char* riffData, unsigned int riffDataBytes,
+                       unsigned int** offsets, unsigned int numOffsets);
 
     /*!
      * \brief Makes a 32bit RGBA image from a textile.
@@ -651,18 +651,18 @@ private:
      * \param texture valid index into textile list
      * \returns 32bit RGBA image or NULL on error
      */
-    unsigned char *getTexTile(int texture);
+    unsigned char* getTexTile(int texture);
 
     /*!
      * \brief Loads a TR5 pak into memory.
      * \param f valid FILE
      * \returns 0 on success, < 0 on error
      */
-    int loadTR5(FILE *f);
+    int loadTR5(FILE* f);
 
-    static void print(const char *methodName, const char *s, ...) __attribute__((format(printf, 2, 3)));
+    static void print(const char* methodName, const char* s, ...) __attribute__((format(printf, 2, 3)));
 
-    void printDebug(const char *methodName, const char *s, ...) __attribute__((format(printf, 3, 4)));
+    void printDebug(const char* methodName, const char* s, ...) __attribute__((format(printf, 3, 4)));
 
     bool mDebug;                           //!< Debug output toggle
     unsigned int mPakVersion;              //!< TombRaider pak file header version
@@ -673,106 +673,107 @@ private:
     unsigned short  _num_room_textures;    //!< Num textures only for room use?
     unsigned short _num_misc_textures;     //!< Num of textures for misc use?
     unsigned short _num_bump_map_textures; //!< Num of textures that are bump map, texture pairs
-    tr2_textile8_t *_textile8;             //!< 8-bit (palettised) textiles
-    tr2_textile16_t *_textile16;           //!< 16-bit (ARGB) textiles
-    tr2_textile32_t *_textile32;           //!< 32-bit (BGRA) textiles
+    tr2_textile8_t* _textile8;             //!< 8-bit (palettised) textiles
+    tr2_textile16_t* _textile16;           //!< 16-bit (ARGB) textiles
+    tr2_textile32_t* _textile32;           //!< 32-bit (BGRA) textiles
     unsigned int _num_tex_special;         //!< Special textures and bump maps count
-    unsigned char *_tex_special;           //!< Special textures and bump maps
+    unsigned char* _tex_special;           //!< Special textures and bump maps
     unsigned int _unknown_t;               //!< 32-bit unknown (always 0 in real TR2 levels)
     unsigned short _num_rooms;             //!< Number of rooms in this level
-    tr2_room_t *_rooms;                    //!< List of rooms (TR1,TR2,TR3,TR4)
-    tr5_room_t *mRoomsTR5;                 //!< Rooms ( TR5 / TRC ) Only
+    tr2_room_t* _rooms;                    //!< List of rooms (TR1,TR2,TR3,TR4)
+    tr5_room_t* mRoomsTR5;                 //!< Rooms ( TR5 / TRC ) Only
     unsigned int _num_floor_data;          //!< Num of words of floor data this level
-    unsigned short *_floor_data;           //!< Floor data
+    unsigned short* _floor_data;           //!< Floor data
     int mMeshCount;                        //!< Number of meshes this level
-    tr2_mesh_t *mMeshes;                   //!< list of meshes
+    tr2_mesh_t* mMeshes;                   //!< list of meshes
     unsigned int _num_animations;          //!< number of animations this level
-    tr2_animation_t *_animations;          //!< list of animations
+    tr2_animation_t* _animations;          //!< list of animations
     unsigned int _num_state_changes;       //!< number of structures(?) this level
-    tr2_state_change_t *_state_changes;    //!< list of structures
+    tr2_state_change_t* _state_changes;    //!< list of structures
     unsigned int _num_anim_dispatches;     //!< number of ranges(?) this level
-    tr2_anim_dispatch_t *_anim_dispatches; //!< list of ranges
+    tr2_anim_dispatch_t* _anim_dispatches; //!< list of ranges
     unsigned int _num_anim_commands;       //!< number of Bone1s this level
-    tr2_anim_command_t *_anim_commands;    //!< list of Bone1s
+    tr2_anim_command_t* _anim_commands;    //!< list of Bone1s
     unsigned int _num_mesh_trees;          //!< number of Bone2s this level
-    tr2_meshtree_t *_mesh_trees;           //!< list of Bone2s
+    tr2_meshtree_t* _mesh_trees;           //!< list of Bone2s
     unsigned int _num_frames;              //!< num of words of frame data this level
-    unsigned short *_frames;               //!< frame data
+    unsigned short* _frames;               //!< frame data
     unsigned int _num_moveables;           //!< number of moveables this level
-    tr2_moveable_t *_moveables;            //!< list of moveables
+    tr2_moveable_t* _moveables;            //!< list of moveables
 
     uint32_t numMoveablesTR5;
-    tr5_moveable_t *moveablesTR5;
+    tr5_moveable_t* moveablesTR5;
 
     uint32_t numAnimationsTR5;
-    tr5_animation_t *animationsTR5;
+    tr5_animation_t* animationsTR5;
 
     uint32_t numObjectTexturesTR5;
-    tr5_object_texture_t *objectTexturesTR5;
+    tr5_object_texture_t* objectTexturesTR5;
 
     uint32_t numCinematicFramesTR5;
-    tr5_cinematic_frame_t *cinematicFramesTR5;
+    tr5_cinematic_frame_t* cinematicFramesTR5;
 
     uint32_t numFlyByCamerasTR5;
-    tr5_flyby_camera_t *flyByCamerasTR5;
+    tr5_flyby_camera_t* flyByCamerasTR5;
 
     unsigned int _num_static_meshes;        //!< number of static meshes this level
-    tr2_staticmesh_t *_static_meshes;       //!< static meshes
+    tr2_staticmesh_t* _static_meshes;       //!< static meshes
     unsigned int _num_object_textures;      //!< number of object textures this level
-    tr2_object_texture_t *_object_textures; //!< list of object textures
+    tr2_object_texture_t* _object_textures; //!< list of object textures
 
     unsigned int _num_sprite_textures;        //!< num of sprite textures this level
-    tr2_sprite_texture_t *_sprite_textures;   //!< list of sprite textures
+    tr2_sprite_texture_t* _sprite_textures;   //!< list of sprite textures
     unsigned int _num_sprite_sequences;       //!< num of sprite sequences this level
-    tr2_sprite_sequence_t *_sprite_sequences; //!< sprite sequence data
+    tr2_sprite_sequence_t* _sprite_sequences; //!< sprite sequence data
     int  _num_cameras;                        //!< Number of Cameras
-    tr2_camera_t  *_cameras;                  //!< cameras
+    tr2_camera_t*  _cameras;                  //!< cameras
     int  _num_sound_sources;                  //!< Number of Sounds
-    tr2_sound_source_t *_sound_sources;       //!< sounds
+    tr2_sound_source_t* _sound_sources;       //!< sounds
     int  _num_boxes;                          //!< Number of Boxes
-    tr2_box_t *_boxes;                        /*!< boxes - looks like
+    tr2_box_t* _boxes;                        /*!< boxes - looks like
                                                * struct { unsigned short value[4]; }
                                                * - value[0..2] might be a vector;
                                                * value[3] seems to be index into
                                                * Overlaps[] */
     int  _num_overlaps;                       //!< Number of Overlaps
-    short  *_overlaps;                        /*!< Overlaps -
+    short*  _overlaps;                        /*!< Overlaps -
                                                * looks like ushort; 0x8000 is flag
                                                * of some sort appears to be an
                                                * offset into Boxes[] and/or
                                                * Boxes2[] */
-    short  *_zones;                           //!< Boxes2
+    short*  _zones;                           //!< Boxes2
     int  _num_animated_textures;              //!< Number of AnimTextures
-    short  *_animated_textures;               //!< Animtextures
+    short*  _animated_textures;               //!< Animtextures
     int  _num_items;                          //!< Number of Items
-    tr2_item_t *_items;                       //!< Items
-    unsigned char  *_light_map;               //!< Colour-light maps
+    tr2_item_t* _items;                       //!< Items
+    unsigned char*  _light_map;               //!< Colour-light maps
     unsigned int _num_cinematic_frames;       //!< Number of cut-scene frames
-    tr2_cinematic_frame_t *_cinematic_frames; //!< Cut-scene frames
+    tr2_cinematic_frame_t* _cinematic_frames; //!< Cut-scene frames
     short  _num_demo_data;                    //!< Number of Demo Data
-    unsigned char  *_demo_data;               //!< Demo data
+    unsigned char*  _demo_data;               //!< Demo data
     float mRoomVertexLightingFactor;
     float mTexelScale;
 
     // Sound data
-    short  *mSoundMap;                   //!< Sound map
+    short*  mSoundMap;                   //!< Sound map
     int  mNumSoundDetails;               //!< Number of SampleModifiers
-    tr2_sound_details_t *mSoundDetails;  //!< Sample modifiers
+    tr2_sound_details_t* mSoundDetails;  //!< Sample modifiers
     int  mNumSampleIndices;              //!< Number of Sample Indices
-    int  *mSampleIndices;                //!< Sample indices
-    unsigned int *mSampleIndicesTR5;
+    int*  mSampleIndices;                //!< Sample indices
+    unsigned int* mSampleIndicesTR5;
     bool mRiffAlternateLoaded;           //!< Is a TR2,TR3 SFX loaded?
-    unsigned int *mRiffAlternateOffsets; //!< After parsing this will
-                                         //!< hold byte offsets for TR2,TR3
-                                         //!< RIFFs in the buffered SFX
+    unsigned int* mRiffAlternateOffsets; //!< After parsing this will
+    //!< hold byte offsets for TR2,TR3
+    //!< RIFFs in the buffered SFX
     int mRiffDataSz;                     //!< Byte size of a loaded SFX
-    unsigned char *mRiffData;            //!< SFX RIFF data in chunks
+    unsigned char* mRiffData;            //!< SFX RIFF data in chunks
     unsigned int mNumTR4Samples;
-    unsigned char **mTR4Samples;
-    unsigned int *mTR4SamplesSz;
+    unsigned char** mTR4Samples;
+    unsigned int* mTR4SamplesSz;
 
     // For packed Fread emu/wrapper
-    unsigned char *mCompressedLevelData;     //!< Buffer used to emulate fread with uncompressed libz data
+    unsigned char*
+    mCompressedLevelData;     //!< Buffer used to emulate fread with uncompressed libz data
     unsigned int mCompressedLevelDataOffset; //!< Offset into buffer
     unsigned int mCompressedLevelSize;       //!< Size of buffer
     tr_fread_mode_t mFreadMode;              //!< Fread mode file|buffer

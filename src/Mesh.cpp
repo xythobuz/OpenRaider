@@ -15,8 +15,7 @@
 // Constructors
 ////////////////////////////////////////////////////////////
 
-Mesh::Mesh()
-{
+Mesh::Mesh() {
     mNumVertices = 0;
     mVertices = 0x0;
 
@@ -47,8 +46,7 @@ Mesh::Mesh()
 }
 
 
-Mesh::~Mesh()
-{
+Mesh::~Mesh() {
     for (unsigned int i = 0; i < mNumVertices; i++)
         delete [] mVertices[i];
     delete [] mVertices;
@@ -64,10 +62,8 @@ Mesh::~Mesh()
     delete [] mColors;
     mColors = NULL;
 
-    if (mTris)
-    {
-        for (unsigned int i = 0; i < mNumTris; ++i)
-        {
+    if (mTris) {
+        for (unsigned int i = 0; i < mNumTris; ++i) {
             delete [] mTris[i].triangles;
             delete [] mTris[i].alpha_triangles;
             delete [] mTris[i].texcoors;
@@ -78,10 +74,8 @@ Mesh::~Mesh()
         mTris = NULL;
     }
 
-    if (mQuads)
-    {
-        for (unsigned int i = 0; i < mNumQuads; ++i)
-        {
+    if (mQuads) {
+        for (unsigned int i = 0; i < mNumQuads; ++i) {
             delete [] mQuads[i].quads;
             delete [] mQuads[i].alpha_quads;
             delete [] mQuads[i].texcoors;
@@ -119,16 +113,13 @@ Mesh::~Mesh()
 // Public Accessors
 ////////////////////////////////////////////////////////////
 
-void Mesh::drawAlpha()
-{
+void Mesh::drawAlpha() {
     unsigned int i, j, k, index;
 
 
     // Render quadralaterals
-    for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i)
-    {
-        switch (mMode)
-        {
+    for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i) {
+        switch (mMode) {
             case MeshModeWireframe:
                 glColor3f(0.0, 0.0, 1.0);
                 glBindTexture(GL_TEXTURE_2D, 0);
@@ -140,19 +131,17 @@ void Mesh::drawAlpha()
             case MeshModeTexture:
             case MeshModeMultiTexture:
                 // Bind texture id for textures
-                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
+                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture + 1);
                 break;
         }
 
         glBegin(GL_QUADS);
 
-        for (j = 0; j < mQuads[i].num_alpha_quads; ++j)
-        {
-            for (k = 0; k < 4; ++k)
-            {
-                index = mQuads[i].alpha_quads[j*4+k];
+        for (j = 0; j < mQuads[i].num_alpha_quads; ++j) {
+            for (k = 0; k < 4; ++k) {
+                index = mQuads[i].alpha_quads[j * 4 + k];
 
-                glTexCoord2fv(mQuads[i].texcoors2[j*4+k]);
+                glTexCoord2fv(mQuads[i].texcoors2[j * 4 + k]);
                 glColor4fv(mColors[index]);
                 glVertex3fv(mVertices[index]);
             }
@@ -162,10 +151,8 @@ void Mesh::drawAlpha()
     }
 
     // Render triangles
-    for (mTris ? i = 0 : i = mNumTris; i < mNumTris; ++i)
-    {
-        switch (mMode)
-        {
+    for (mTris ? i = 0 : i = mNumTris; i < mNumTris; ++i) {
+        switch (mMode) {
             case MeshModeWireframe:
                 glColor3f(0.0, 1.0, 0.0);
                 glBindTexture(GL_TEXTURE_2D, 0);
@@ -177,19 +164,17 @@ void Mesh::drawAlpha()
             case MeshModeTexture:
             case MeshModeMultiTexture:
                 // Bind texture id for textures
-                glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
+                glBindTexture(GL_TEXTURE_2D, mTris[i].texture + 1);
                 break;
         }
 
         glBegin(GL_TRIANGLES);
 
-        for (j = 0; j < mTris[i].num_alpha_triangles; ++j)
-        {
-            for (k = 0; k < 3; ++k)
-            {
-                index = mTris[i].alpha_triangles[j*3+k];
+        for (j = 0; j < mTris[i].num_alpha_triangles; ++j) {
+            for (k = 0; k < 3; ++k) {
+                index = mTris[i].alpha_triangles[j * 3 + k];
 
-                glTexCoord2fv(mTris[i].texcoors2[j*3+k]);
+                glTexCoord2fv(mTris[i].texcoors2[j * 3 + k]);
                 glColor4fv(mColors[index]);
                 glVertex3fv(mVertices[index]);
             }
@@ -200,13 +185,11 @@ void Mesh::drawAlpha()
 }
 
 
-void Mesh::drawSolid()
-{
+void Mesh::drawSolid() {
     unsigned int i, j, k, index;
 
 
-    if (mFlags & fMesh_UseVertexArray)
-    {
+    if (mFlags & fMesh_UseVertexArray) {
         //glEnableClientState(GL_VERTEX_ARRAY);
         //glVertexPointer(3, GL_FLOAT, 0, mVertexArray);
 
@@ -214,10 +197,9 @@ void Mesh::drawSolid()
         glColor3f(1.0f, 1.0f, 1.0f);
         glBegin(GL_TRIANGLES);
 
-        for (i = 0; i < mTriangleCount*3; ++i)
-        {
+        for (i = 0; i < mTriangleCount * 3; ++i) {
             //glArrayElement(mTriangleIndices[i]);
-            glVertex3fv(mVertexArray+mTriangleIndices[i]);
+            glVertex3fv(mVertexArray + mTriangleIndices[i]);
         }
 
         glEnd();
@@ -242,10 +224,8 @@ void Mesh::drawSolid()
     }
 
     // Render quadralaterals
-    for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i)
-    {
-        switch (mMode)
-        {
+    for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i) {
+        switch (mMode) {
             case MeshModeSolid:
                 glColor3f(0.0, 0.0, 0.0);
                 break;
@@ -257,11 +237,11 @@ void Mesh::drawSolid()
             case MeshModeMultiTexture:
                 glActiveTextureARB(GL_TEXTURE0_ARB);
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
+                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture + 1);
 
                 glActiveTextureARB(GL_TEXTURE1_ARB);
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, mQuads[i].bumpmap+1);
+                glBindTexture(GL_TEXTURE_2D, mQuads[i].bumpmap + 1);
                 break;
 #else
             case MeshModeMultiTexture:
@@ -269,31 +249,27 @@ void Mesh::drawSolid()
             case MeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture+1);
+                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture + 1);
                 break;
         }
 
         glBegin(GL_QUADS);
 
-        for (j = 0; j < mQuads[i].num_quads; ++j)
-        {
-            for (k = 0; k < 4; ++k)
-            {
-                index = mQuads[i].quads[j*4+k];
+        for (j = 0; j < mQuads[i].num_quads; ++j) {
+            for (k = 0; k < 4; ++k) {
+                index = mQuads[i].quads[j * 4 + k];
 
                 glColor4fv(mColors[index]);
 
 #ifdef MULTITEXTURE
-                if (mMode == MeshModeMultiTexture)
-                {
+                if (mMode == MeshModeMultiTexture) {
                     glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
-                            mQuads[i].texcoors[j*4+k]);
+                                          mQuads[i].texcoors[j * 4 + k]);
                     glMultiTexCoord2fvARB(GL_TEXTURE1_ARB,
-                            mQuads[i].texcoors[j*4+k]);
-                }
-                else
+                                          mQuads[i].texcoors[j * 4 + k]);
+                } else
 #endif
-                    glTexCoord2fv(mQuads[i].texcoors[j*4+k]);
+                    glTexCoord2fv(mQuads[i].texcoors[j * 4 + k]);
 
                 glVertex3fv(mVertices[index]);
             }
@@ -303,10 +279,8 @@ void Mesh::drawSolid()
     }
 
     // Render triangles
-    for (mTris ? i = 0 : i = mNumTris; i < mNumTris; ++i)
-    {
-        switch (mMode)
-        {
+    for (mTris ? i = 0 : i = mNumTris; i < mNumTris; ++i) {
+        switch (mMode) {
             case MeshModeSolid:
                 glColor3f(1.0, 0.0, 0.0);
                 break;
@@ -318,11 +292,11 @@ void Mesh::drawSolid()
             case MeshModeMultiTexture:
                 glActiveTextureARB(GL_TEXTURE0_ARB);
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
+                glBindTexture(GL_TEXTURE_2D, mTris[i].texture + 1);
 
                 glActiveTextureARB(GL_TEXTURE1_ARB);
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, mTris[i].bumpmap+1);
+                glBindTexture(GL_TEXTURE_2D, mTris[i].bumpmap + 1);
                 break;
 #else
             case MeshModeMultiTexture:
@@ -330,29 +304,25 @@ void Mesh::drawSolid()
             case MeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-                glBindTexture(GL_TEXTURE_2D, mTris[i].texture+1);
+                glBindTexture(GL_TEXTURE_2D, mTris[i].texture + 1);
                 break;
         }
 
         glBegin(GL_TRIANGLES);
 
-        for (j = 0; j < mTris[i].num_triangles; ++j)
-        {
-            for (k = 0; k < 3; ++k)
-            {
-                index = mTris[i].triangles[j*3+k];
+        for (j = 0; j < mTris[i].num_triangles; ++j) {
+            for (k = 0; k < 3; ++k) {
+                index = mTris[i].triangles[j * 3 + k];
 
 #ifdef MULTITEXTURE
-                if (mMode == MeshModeMultiTexture)
-                {
+                if (mMode == MeshModeMultiTexture) {
                     glMultiTexCoord2fvARB(GL_TEXTURE0_ARB,
-                            mTris[i].texcoors[j*3+k]);
+                                          mTris[i].texcoors[j * 3 + k]);
                     glMultiTexCoord2fvARB(GL_TEXTURE1_ARB,
-                            mTris[i].texcoors[j*3+k]);
-                }
-                else
+                                          mTris[i].texcoors[j * 3 + k]);
+                } else
 #endif
-                    glTexCoord2fv(mTris[i].texcoors[j*3+k]);
+                    glTexCoord2fv(mTris[i].texcoors[j * 3 + k]);
 
                 glColor4fv(mColors[index]);
                 glVertex3fv(mVertices[index]);
@@ -363,8 +333,7 @@ void Mesh::drawSolid()
     }
 
 #ifdef MULTITEXTURE
-    if (mMode == MeshModeMultiTexture)
-    {
+    if (mMode == MeshModeMultiTexture) {
         glDisable(GL_TEXTURE_2D);
         glActiveTextureARB(GL_TEXTURE0_ARB);
     }
@@ -376,18 +345,15 @@ void Mesh::drawSolid()
 // Public Mutators
 ////////////////////////////////////////////////////////////
 
-void Mesh::allocateColors(unsigned int n)
-{
-    if (mColors)
-    {
+void Mesh::allocateColors(unsigned int n) {
+    if (mColors) {
         for (unsigned int i = 0; i < mNumColors; i++)
             delete [] mColors[i];
         delete [] mColors;
         mNumColors = 0;
     }
 
-    if (!n)
-    {
+    if (!n) {
         return;
     }
 
@@ -398,18 +364,15 @@ void Mesh::allocateColors(unsigned int n)
 }
 
 
-void Mesh::allocateNormals(unsigned int n)
-{
-    if (mNormals)
-    {
+void Mesh::allocateNormals(unsigned int n) {
+    if (mNormals) {
         for (unsigned int i = 0; i < mNumNormals; i++)
             delete [] mNormals[i];
         delete [] mNormals;
         mNumNormals = 0;
     }
 
-    if (!n)
-    {
+    if (!n) {
         return;
     }
 
@@ -420,16 +383,13 @@ void Mesh::allocateNormals(unsigned int n)
 }
 
 
-void Mesh::allocateRectangles(unsigned int n)
-{
-    if (mQuads)
-    {
+void Mesh::allocateRectangles(unsigned int n) {
+    if (mQuads) {
         mNumQuads = 0;
         delete [] mQuads;
     }
 
-    if (!n)
-    {
+    if (!n) {
         return;
     }
 
@@ -438,16 +398,13 @@ void Mesh::allocateRectangles(unsigned int n)
 }
 
 
-void Mesh::allocateTriangles(unsigned int n)
-{
-    if (mTris)
-    {
+void Mesh::allocateTriangles(unsigned int n) {
+    if (mTris) {
         mNumTris = 0;
         delete [] mTris;
     }
 
-    if (!n)
-    {
+    if (!n) {
         return;
     }
 
@@ -456,18 +413,15 @@ void Mesh::allocateTriangles(unsigned int n)
 }
 
 
-void Mesh::allocateVertices(unsigned int n)
-{
-    if (mVertices)
-    {
+void Mesh::allocateVertices(unsigned int n) {
+    if (mVertices) {
         for (unsigned int i = 0; i < mNumVertices; i++)
             delete [] mVertices[i];
         delete [] mVertices;
         mNumVertices = 0;
     }
 
-    if (!n)
-    {
+    if (!n) {
         return;
     }
 
@@ -478,18 +432,15 @@ void Mesh::allocateVertices(unsigned int n)
 }
 
 
-void Mesh::bufferColorArray(unsigned int colorCount, float *colors)
-{
-    if (mColors)
-    {
+void Mesh::bufferColorArray(unsigned int colorCount, float* colors) {
+    if (mColors) {
         for (unsigned int i = 0; i < mNumColors; i++)
             delete [] mColors[i];
         delete [] mColors;
         mNumColors = 0;
     }
 
-    if (!colorCount)
-    {
+    if (!colorCount) {
         return;
     }
 
@@ -498,18 +449,15 @@ void Mesh::bufferColorArray(unsigned int colorCount, float *colors)
 }
 
 
-void Mesh::bufferNormalArray(unsigned int normalCount, float *normals)
-{
-    if (mNormals)
-    {
+void Mesh::bufferNormalArray(unsigned int normalCount, float* normals) {
+    if (mNormals) {
         for (unsigned int i = 0; i < mNumNormals; i++)
             delete [] mNormals[i];
         delete [] mNormals;
         mNumNormals = 0;
     }
 
-    if (!normalCount)
-    {
+    if (!normalCount) {
         return;
     }
 
@@ -519,9 +467,8 @@ void Mesh::bufferNormalArray(unsigned int normalCount, float *normals)
 
 
 void Mesh::bufferTriangles(unsigned int count,
-        unsigned int *indices, float *texCoords,
-        int *textures, unsigned int *flags)
-{
+                           unsigned int* indices, float* texCoords,
+                           int* textures, unsigned int* flags) {
 
     mTriangleCount = count;
     mTriangleTextures = textures;
@@ -533,18 +480,15 @@ void Mesh::bufferTriangles(unsigned int count,
 }
 
 
-void Mesh::bufferVertexArray(unsigned int vertexCount, float *vertices)
-{
-    if (mVertices)
-    {
+void Mesh::bufferVertexArray(unsigned int vertexCount, float* vertices) {
+    if (mVertices) {
         for (unsigned int i = 0; i < mNumVertices; i++)
             delete [] mVertices[i];
         delete [] mVertices;
         mNumVertices = 0;
     }
 
-    if (!vertexCount)
-    {
+    if (!vertexCount) {
         return;
     }
 
@@ -555,8 +499,7 @@ void Mesh::bufferVertexArray(unsigned int vertexCount, float *vertices)
 
 
 void Mesh::setColor(unsigned int index,
-        float r, float g, float b, float a)
-{
+                    float r, float g, float b, float a) {
     assert(index < mNumColors);
 
     mColors[index][0] = r;
@@ -566,8 +509,7 @@ void Mesh::setColor(unsigned int index,
 }
 
 
-void Mesh::setColor(unsigned int index, float rgba[4])
-{
+void Mesh::setColor(unsigned int index, float rgba[4]) {
     assert(index < mNumColors);
 
     mColors[index][0] = rgba[0];
@@ -577,8 +519,7 @@ void Mesh::setColor(unsigned int index, float rgba[4])
 }
 
 
-void Mesh::setNormal(unsigned int index, float i, float j, float k)
-{
+void Mesh::setNormal(unsigned int index, float i, float j, float k) {
     assert(index < mNumNormals);
 
     mNormals[index][0] = i;
@@ -587,8 +528,7 @@ void Mesh::setNormal(unsigned int index, float i, float j, float k)
 }
 
 
-void Mesh::setVertex(unsigned int index, float x, float y, float z)
-{
+void Mesh::setVertex(unsigned int index, float x, float y, float z) {
     assert(index < mNumVertices);
 
     mVertices[index][0] = x;

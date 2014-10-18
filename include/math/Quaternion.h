@@ -14,7 +14,7 @@
  * \brief Quaternion
  */
 class Quaternion {
-public:
+  public:
 
     /*!
      * \brief Constructs an object of Quaternion
@@ -51,35 +51,35 @@ public:
      * \returns resultant quaternion
      * \sa Quaternion::normalize()
      */
-    Quaternion operator *(const Quaternion &q);
+    Quaternion operator *(const Quaternion& q);
 
     /*!
      * \brief Divide from this quaternion
      * \param q what to divide from this quaternion
      * \returns resultant quaternion
      */
-    Quaternion operator /(const Quaternion &q);
+    Quaternion operator /(const Quaternion& q);
 
     /*!
      * \brief Add to this quaternion
      * \param q what to add to this quaternion
      * \returns resultant quaternion
      */
-    Quaternion operator +(const Quaternion &q);
+    Quaternion operator +(const Quaternion& q);
 
     /*!
      * \brief Subtract from this quaternion
      * \param q what to subtract from this quaternion
      * \returns resultant quaternion
      */
-    Quaternion operator -(const Quaternion &q);
+    Quaternion operator -(const Quaternion& q);
 
     /*!
      * \brief Compares q to this quaternion
      * \param q what to compare this quaternion to
      * \returns true if equal, false otherwise
      */
-    bool operator ==(const Quaternion &q);
+    bool operator ==(const Quaternion& q);
 
     /*!
      * \brief Conjugate this quaternion
@@ -158,7 +158,7 @@ public:
      */
     void setByMatrix(float m[16]);
 
-private:
+  private:
 
     /*!
      * \brief Multiplies two quaternions

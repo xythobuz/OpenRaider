@@ -8,7 +8,7 @@
 #include "global.h"
 #include "loader/Loader.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     if (argc != 2) {
         std::cout << "Usage:" << std::endl;
         std::cout << "\t" << argv[0] << " /path/to/level.tr2" << std::endl;

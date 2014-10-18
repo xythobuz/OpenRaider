@@ -78,7 +78,7 @@ void Console::display() {
         }
 
         if (ImGui::InputText("Command", buffer, bufferLength,
-                    ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue)) {
+                             ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue)) {
             getLog() << "> " << buffer << Log::endl;
             int error = Command::command(buffer);
             if (error != 0) {

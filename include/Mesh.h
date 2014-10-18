@@ -14,7 +14,7 @@
  * \brief OpenGL Mesh
  */
 class Mesh {
-public:
+  public:
 
     typedef enum {
         MeshModeSolid,
@@ -37,18 +37,18 @@ public:
         unsigned int cnum_alpha_triangles;
 
         unsigned int num_texcoors;
-        float **texcoors; // 2D
+        float** texcoors; // 2D
 
         unsigned int num_texcoors2;
-        float **texcoors2; // 2D
+        float** texcoors2; // 2D
 
         //! Arrays of triangle indices sorted by texture
         unsigned int num_triangles;
-        unsigned int *triangles; //!< ABCABCABC...
+        unsigned int* triangles; //!< ABCABCABC...
 
         //! Arrays of alpha triangle indices sorted by texture
         unsigned int num_alpha_triangles;
-        unsigned int *alpha_triangles; //!< ABCABCABC...
+        unsigned int* alpha_triangles; //!< ABCABCABC...
     } tris_t;
 
     typedef struct {
@@ -62,18 +62,18 @@ public:
         unsigned int cnum_alpha_quads;
 
         unsigned int num_texcoors;
-        float **texcoors; // 2D
+        float** texcoors; // 2D
 
         unsigned int num_texcoors2;
-        float **texcoors2; // 2D
+        float** texcoors2; // 2D
 
         //! Arrays of rectangle indices sorted by texture
         unsigned int num_quads;
-        unsigned int *quads; //!< ABCDABCDABCD...
+        unsigned int* quads; //!< ABCDABCDABCD...
 
         //! Arrays of alpha rectangle indices sorted by texture
         unsigned int num_alpha_quads;
-        unsigned int *alpha_quads; //!< ABCDABCDABCD...
+        unsigned int* alpha_quads; //!< ABCDABCDABCD...
 
     } rect_t;
 
@@ -101,15 +101,15 @@ public:
 
     void allocateVertices(unsigned int n);
 
-    void bufferColorArray(unsigned int colorCount, float *colors);
+    void bufferColorArray(unsigned int colorCount, float* colors);
 
-    void bufferNormalArray(unsigned int normalCount, float *normals);
+    void bufferNormalArray(unsigned int normalCount, float* normals);
 
     void bufferTriangles(unsigned int count,
-                            unsigned int *indices, float *texCoords,
-                            int *textures, unsigned int *flags);
+                         unsigned int* indices, float* texCoords,
+                         int* textures, unsigned int* flags);
 
-    void bufferVertexArray(unsigned int vertexCount, float *vertices);
+    void bufferVertexArray(unsigned int vertexCount, float* vertices);
 
     void setColor(unsigned int index, float r, float g, float b, float a);
 
@@ -123,13 +123,13 @@ public:
     void sortFacesByTexture();
 
     void addFace(int textureIndex, int textureIndexB, unsigned int flags,
-                    unsigned int vertexIndexCount, float *vertexIndices);
+                 unsigned int vertexIndexCount, float* vertexIndices);
 
     void addTexTiledFace(int textureIndex, int textureIndexB,
-                            unsigned int flags, unsigned int indexCount,
-                            float *vertexIndices, float *texcoords);
+                         unsigned int flags, unsigned int indexCount,
+                         float* vertexIndices, float* texcoords);
 
-    void bufferTexcoords(unsigned int texcoordCount, float *texcoords);
+    void bufferTexcoords(unsigned int texcoordCount, float* texcoords);
 
     void duplicateArraysForTexTiledTexcoords();
 #endif
@@ -139,29 +139,29 @@ public:
     MeshMode mMode;
 
     unsigned int mNumVertices;
-    float **mVertices; //!< XYZ
+    float** mVertices; //!< XYZ
 
     unsigned int mNumNormals;
-    float **mNormals; //!< IJK
+    float** mNormals; //!< IJK
 
     unsigned int mNumColors;
-    float **mColors; //!< RGBA
+    float** mColors; //!< RGBA
 
     unsigned int mNumTris;
-    tris_t *mTris;
+    tris_t* mTris;
 
     unsigned int mNumQuads;
-    rect_t *mQuads;
+    rect_t* mQuads;
 
     unsigned int mTriangleCount;
-    int *mTriangleTextures;
-    unsigned int *mTriangleIndices;
-    unsigned int *mTriangleFlags;
-    float *mTriangleTexCoordArray;
+    int* mTriangleTextures;
+    unsigned int* mTriangleIndices;
+    unsigned int* mTriangleFlags;
+    float* mTriangleTexCoordArray;
 
-    float *mVertexArray;
-    float *mNormalArray;
-    float *mColorArray;
+    float* mVertexArray;
+    float* mNormalArray;
+    float* mColorArray;
 };
 
 #endif

@@ -13,13 +13,13 @@
 class Folder;
 
 class File {
-public:
+  public:
     File(std::string file);
 
-    std::string &getName();
-    std::string &getPath();
+    std::string& getName();
+    std::string& getPath();
 
-private:
+  private:
     std::string name;
     std::string path;
 };

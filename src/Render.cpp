@@ -39,10 +39,9 @@ void Render::ClearWorld() {
     mRoomRenderList.clear();
 }
 
-void Render::screenShot(const char *filenameBase)
-{
+void Render::screenShot(const char* filenameBase) {
     int sz = getWindow().getWidth() * getWindow().getHeight();
-    unsigned char *image = new unsigned char[sz * 3];
+    unsigned char* image = new unsigned char[sz * 3];
     static int count = 0;
     bool done = false;
 
@@ -53,7 +52,7 @@ void Render::screenShot(const char *filenameBase)
     while (!done) {
         filename << filenameBase << "-" << count++ << ".tga";
 
-        FILE *f = fopen(filename.str().c_str(), "rb");
+        FILE* f = fopen(filename.str().c_str(), "rb");
         if (f) {
             fclose(f);
         } else {
@@ -61,7 +60,8 @@ void Render::screenShot(const char *filenameBase)
         }
     }
 
-    glReadPixels(0, 0, getWindow().getWidth(), getWindow().getHeight(), GL_BGR_EXT, GL_UNSIGNED_BYTE, image);
+    glReadPixels(0, 0, getWindow().getWidth(), getWindow().getHeight(), GL_BGR_EXT, GL_UNSIGNED_BYTE,
+                 image);
     tgaSave(filename.str().c_str(), image, getWindow().getWidth(), getWindow().getHeight(), 0);
     delete [] image;
 }
@@ -70,11 +70,9 @@ unsigned int Render::getFlags() {
     return mFlags;
 }
 
-void Render::lightRoom(Room &room)
-{
-    for (unsigned int i = 0; i < room.sizeLights(); ++i)
-    {
-        Light &light = room.getLight(i);
+void Render::lightRoom(Room& room) {
+    for (unsigned int i = 0; i < room.sizeLights(); ++i) {
+        Light& light = room.getLight(i);
         float pos[4], color[4];
         float dir[3];
         light.getPos(pos);
@@ -83,8 +81,7 @@ void Render::lightRoom(Room &room)
 
         glEnable(GL_LIGHT0 + i);
 
-        switch (light.getType())
-        {
+        switch (light.getType()) {
             case Light::typeSpot:
                 glLightf(GL_LIGHT0 + i,  GL_SPOT_CUTOFF,    light.getCutoff());
                 glLightfv(GL_LIGHT0 + i, GL_POSITION,       pos);
@@ -106,30 +103,24 @@ void Render::lightRoom(Room &room)
     }
 }
 
-void Render::clearFlags(unsigned int flags)
-{
+void Render::clearFlags(unsigned int flags) {
     mFlags &= ~flags;
 
-    if (flags & Render::fFog)
-    {
-        if (glIsEnabled(GL_FOG))
-        {
+    if (flags & Render::fFog) {
+        if (glIsEnabled(GL_FOG)) {
             glDisable(GL_FOG);
         }
     }
 
-    if (flags & Render::fGL_Lights)
-    {
+    if (flags & Render::fGL_Lights) {
         glDisable(GL_LIGHTING);
     }
 }
 
-void Render::setFlags(unsigned int flags)
-{
+void Render::setFlags(unsigned int flags) {
     mFlags |= flags;
 
-    if (flags & Render::fFog)
-    {
+    if (flags & Render::fFog) {
         glEnable(GL_FOG);
         glFogf(GL_FOG_MODE, GL_EXP2);
         glFogf(GL_FOG_DENSITY, 0.00008f);
@@ -144,8 +135,7 @@ void Render::setFlags(unsigned int flags)
         glFogfv(GL_FOG_COLOR, color);
     }
 
-    if (flags & Render::fGL_Lights)
-    {
+    if (flags & Render::fGL_Lights) {
         float color[4];
         color[0] = WHITE[0] * 256.0f;
         color[1] = WHITE[1] * 256.0f;
@@ -165,32 +155,26 @@ void Render::setFlags(unsigned int flags)
     }
 }
 
-int Render::getMode()
-{
+int Render::getMode() {
     return mMode;
 }
 
-void Render::setMode(int n)
-{
+void Render::setMode(int n) {
     mMode = n;
 
-    switch (mMode)
-    {
+    switch (mMode) {
         case Render::modeDisabled:
             break;
         case Render::modeSolid:
         case Render::modeWireframe:
             glClearColor(PURPLE[0] * 256.0f, PURPLE[1] * 256.0f,
-                    PURPLE[2] * 256.0f, PURPLE[3] * 256.0f);
+                         PURPLE[2] * 256.0f, PURPLE[3] * 256.0f);
             glDisable(GL_TEXTURE_2D);
             break;
         default:
-            if (mMode == Render::modeLoadScreen)
-            {
+            if (mMode == Render::modeLoadScreen) {
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-            }
-            else
-            {
+            } else {
                 glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
             }
 
@@ -200,10 +184,8 @@ void Render::setMode(int n)
     }
 }
 
-void Render::display()
-{
-    switch (mMode)
-    {
+void Render::display() {
+    switch (mMode) {
         case Render::modeDisabled:
             return;
         case Render::modeLoadScreen:
@@ -221,8 +203,7 @@ void Render::display()
 
     float camOffsetH = 0.0f;
 
-    switch (getGame().getLara().getMoveType())
-    {
+    switch (getGame().getLara().getMoveType()) {
         case Entity::MoveTypeFly:
         case Entity::MoveTypeNoClipping:
         case Entity::MoveTypeSwim:
@@ -252,8 +233,8 @@ void Render::display()
 
     // Handle camera out of world
     if ((sector < 0) ||
-            ((unsigned int)sector >= getWorld().getRoom(index).sizeSectors()) ||
-            getWorld().getRoom(index).isWall(sector)) {
+        ((unsigned int)sector >= getWorld().getRoom(index).sizeSectors()) ||
+        getWorld().getRoom(index).isWall(sector)) {
         camPos[0] = curPos[0] + (64.0f * sinf(yaw));
         camPos[1] -= 64.0f;
         camPos[2] = curPos[2] + (64.0f * cosf(yaw));
@@ -281,7 +262,7 @@ void Render::display()
 
     // Room solid pass, need to do depth sorting to avoid 2 pass render
     for (unsigned int i = 0; i < mRoomRenderList.size(); i++) {
-        Room &room = *mRoomRenderList[i];
+        Room& room = *mRoomRenderList[i];
 
         if (mFlags & Render::fGL_Lights)
             lightRoom(room);
@@ -291,10 +272,10 @@ void Render::display()
 
     // Draw all visible enities
     if (mFlags & Render::fEntityModels) {
-        std::vector<Entity *> entityRenderList;
+        std::vector<Entity*> entityRenderList;
 
         for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
-            Entity &e = getWorld().getEntity(i);
+            Entity& e = getWorld().getEntity(i);
 
             // Don't show Lara to the player
             if (&e == &getGame().getLara())
@@ -303,7 +284,7 @@ void Render::display()
             // Mongoose 2002.08.15, Nothing to draw, skip
             // Mongoose 2002.12.24, Some entities have no animation =p
             if (e.getModel().size() == 0)
-                    continue;
+                continue;
 
             // Is it in view volume? ( Hack to use sphere )
             if (!isVisible(e.getPos(0), e.getPos(1), e.getPos(2), 512.0f))
@@ -326,7 +307,7 @@ void Render::display()
 
         // Draw sprites after player to handle alpha
         for (unsigned int i = 0; i < getWorld().sizeSprite(); i++) {
-            SpriteSequence &sprite = getWorld().getSprite(i);
+            SpriteSequence& sprite = getWorld().getSprite(i);
             for (unsigned int j = 0; j < sprite.size(); j++)
                 sprite.get(j).display();
         }
@@ -353,8 +334,7 @@ void Render::display()
     glFlush();
 }
 
-void Render::drawLoadScreen()
-{
+void Render::drawLoadScreen() {
     float x = 0.0f, y = 0.0f, z = 0.0f;
     float w = getWindow().getWidth(), h = getWindow().getHeight();
 
@@ -397,20 +377,15 @@ void Render::drawLoadScreen()
     glFlush();
 }
 
-void Render::newRoomRenderList(int index)
-{
+void Render::newRoomRenderList(int index) {
     static int currentRoomId = -1;
 
-    if (index == -1) // -1 is error, so draw room 0, for the hell of it
-    {
+    if (index == -1) { // -1 is error, so draw room 0, for the hell of it
         mRoomRenderList.clear();
         mRoomRenderList.push_back(&getWorld().getRoom(0));
-    }
-    else
-    {
+    } else {
         // Update room render list if needed
-        if (currentRoomId != index)
-        {
+        if (currentRoomId != index) {
             buildRoomRenderList(getWorld().getRoom(index));
         }
     }
@@ -418,8 +393,7 @@ void Render::newRoomRenderList(int index)
     currentRoomId = index;
 }
 
-void Render::buildRoomRenderList(Room &room)
-{
+void Render::buildRoomRenderList(Room& room) {
 
     // Must be visible
     //! \fixme Add depth sorting here - remove multipass
@@ -427,9 +401,8 @@ void Render::buildRoomRenderList(Room &room)
         return;
 
     // Must not already be cached
-    for (unsigned int i = 0; i < mRoomRenderList.size(); i++)
-    {
-        Room *room2 = mRoomRenderList[i];
+    for (unsigned int i = 0; i < mRoomRenderList.size(); i++) {
+        Room* room2 = mRoomRenderList[i];
 
         if (room2 == &room)
             return;
@@ -439,12 +412,11 @@ void Render::buildRoomRenderList(Room &room)
     mRoomRenderList.push_back(&room);
 
     // Try to add adj rooms and their adj rooms, skip this room
-    for (unsigned int i = 1; i < room.sizeAdjacentRooms(); i++)
-    {
+    for (unsigned int i = 1; i < room.sizeAdjacentRooms(); i++) {
         if (room.getAdjacentRoom(i) < 0)
             continue;
 
-        Room &room2 = getWorld().getRoom(room.getAdjacentRoom(i));
+        Room& room2 = getWorld().getRoom(room.getAdjacentRoom(i));
 
         //! \fixme Add portal visibility check here
 
@@ -453,8 +425,7 @@ void Render::buildRoomRenderList(Room &room)
     }
 }
 
-void Render::drawSkyMesh(float scale)
-{
+void Render::drawSkyMesh(float scale) {
     //skeletal_model_t *model = getWorld().getModel(mSkyMesh);
     //if (!model)
     //    return;
@@ -473,14 +444,12 @@ void Render::drawSkyMesh(float scale)
     glEnable(GL_DEPTH_TEST);
 }
 
-void Render::setSkyMesh(int index, bool rot)
-{
+void Render::setSkyMesh(int index, bool rot) {
     mSkyMesh = index;
     mSkyMeshRotation = rot;
 }
 
-void Render::updateViewVolume()
-{
+void Render::updateViewVolume() {
     float proj[16], mdl[16];
 
     glGetFloatv(GL_PROJECTION_MATRIX, proj);
@@ -488,7 +457,7 @@ void Render::updateViewVolume()
     mViewVolume.updateFrame(proj, mdl);
 }
 
-bool Render::isVisible(BoundingBox &box) {
+bool Render::isVisible(BoundingBox& box) {
     float bbox[2][3];
     box.getBoundingBox(bbox);
 
@@ -499,11 +468,9 @@ bool Render::isVisible(BoundingBox &box) {
     return mViewVolume.isBboxInFrustum(bbox[0], bbox[1]);
 }
 
-bool Render::isVisible(float x, float y, float z)
-{
+bool Render::isVisible(float x, float y, float z) {
     // For debugging purposes
-    if (mMode == Render::modeWireframe)
-    {
+    if (mMode == Render::modeWireframe) {
         glPointSize(5.0);
         glColor3ubv(PINK);
         glBegin(GL_POINTS);
@@ -514,11 +481,9 @@ bool Render::isVisible(float x, float y, float z)
     return (mViewVolume.isPointInFrustum(x, y, z));
 }
 
-bool Render::isVisible(float x, float y, float z, float radius)
-{
+bool Render::isVisible(float x, float y, float z, float radius) {
     // For debugging purposes
-    if (mMode == Render::modeWireframe)
-    {
+    if (mMode == Render::modeWireframe) {
         glPointSize(5.0);
         glColor3ubv(PINK);
         glBegin(GL_POINTS);

@@ -15,7 +15,7 @@
  * \brief Menu 'overlay'
  */
 class MenuFolder : public Menu {
-public:
+  public:
 
     /*!
      * \brief Constructs an object of MenuFolder
@@ -32,19 +32,19 @@ public:
     virtual void display();
     virtual void handleKeyboard(KeyboardButton key, bool pressed);
     virtual void handleMouseClick(unsigned int x, unsigned int y,
-            KeyboardButton button, bool released);
+                                  KeyboardButton button, bool released);
     virtual void handleMouseScroll(int xrel, int yrel);
 
-private:
+  private:
 
     int init(std::string s);
-    int init(Folder *folder, bool filter = true);
+    int init(Folder* folder, bool filter = true);
     virtual void loadOrOpen();
 
     long mCursor;
     long mMin;
 
-    Folder *mapFolder;
+    Folder* mapFolder;
     bool hiddenState;
 };
 

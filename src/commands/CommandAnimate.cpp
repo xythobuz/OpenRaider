@@ -39,8 +39,8 @@ int CommandAnimate::execute(std::istream& args) {
         // Step all skeletal models to their next animation
         if (getRender().getFlags() & Render::fAnimateAllModels) {
             for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
-                Entity &e = getWorld().getEntity(i);
-                SkeletalModel &m = e.getModel();
+                Entity& e = getWorld().getEntity(i);
+                SkeletalModel& m = e.getModel();
                 if (e.getAnimation() < (m.size() - 1))
                     e.setAnimation(e.getAnimation() + 1);
                 else
@@ -53,13 +53,12 @@ int CommandAnimate::execute(std::istream& args) {
         // Step all skeletal models to their previous animation
         if (getRender().getFlags() & Render::fAnimateAllModels) {
             for (unsigned int i = 0; i < getWorld().sizeEntity(); i++) {
-                Entity &e = getWorld().getEntity(i);
-                SkeletalModel &m = e.getModel();
+                Entity& e = getWorld().getEntity(i);
+                SkeletalModel& m = e.getModel();
                 if (e.getAnimation() > 0)
                     e.setAnimation(e.getAnimation() - 1);
-                else
-                    if (m.size() > 0)
-                        e.setAnimation(m.size() - 1);
+                else if (m.size() > 0)
+                    e.setAnimation(m.size() - 1);
             }
         } else {
             getLog() << "Animations need to be enabled!" << Log::endl;

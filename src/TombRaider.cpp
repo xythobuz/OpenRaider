@@ -20,8 +20,7 @@
 #include "utils/tga.h"
 #endif
 
-TombRaider::TombRaider()
-{
+TombRaider::TombRaider() {
     _textile8 = NULL;
     _textile16 = NULL;
     _textile32 = NULL;
@@ -85,99 +84,83 @@ TombRaider::TombRaider()
 }
 
 
-TombRaider::~TombRaider()
-{
+TombRaider::~TombRaider() {
     reset();
 }
 
 
-int TombRaider::NumMoveables()
-{
+int TombRaider::NumMoveables() {
     return _num_moveables;
 }
 
 
-int TombRaider::NumRooms()
-{
+int TombRaider::NumRooms() {
     return _num_rooms;
 }
 
 
-int TombRaider::NumAnimations()
-{
+int TombRaider::NumAnimations() {
     return _num_animations;
 }
 
 
-unsigned int TombRaider::NumFrames()
-{
+unsigned int TombRaider::NumFrames() {
     return _num_frames;
 }
 
 
-int TombRaider::NumStaticMeshes()
-{
+int TombRaider::NumStaticMeshes() {
     return _num_static_meshes;
 }
 
 
-int TombRaider::NumSprites()
-{
+int TombRaider::NumSprites() {
     return _num_sprite_textures;
 }
 
 
-int TombRaider::NumSpriteSequences()
-{
+int TombRaider::NumSpriteSequences() {
     return _num_sprite_sequences;
 }
 
 
-int TombRaider::NumItems()
-{
+int TombRaider::NumItems() {
     return _num_items;
 }
 
 
-int TombRaider::NumTextures()
-{
+int TombRaider::NumTextures() {
     //return _num_room_textures + _num_misc_textures + _num_bump_map_textures / 2;
     return _num_textiles - _num_bump_map_textures / 2;
 }
 
 
-tr2_room_t *TombRaider::Room()
-{
+tr2_room_t* TombRaider::Room() {
     return _rooms;
 }
 
 
-tr2_item_t *TombRaider::Item()
-{
+tr2_item_t* TombRaider::Item() {
     return _items;
 }
 
 
-tr2_object_texture_t *TombRaider::ObjectTextures()
-{
+tr2_object_texture_t* TombRaider::ObjectTextures() {
     return _object_textures;
 }
 
 
-unsigned int TombRaider::getNumBoxes()
-{
+unsigned int TombRaider::getNumBoxes() {
     return _num_boxes;
 }
 
 
-tr2_box_t *TombRaider::Box()
-{
+tr2_box_t* TombRaider::Box() {
     return _boxes;
 }
 
 
-tr2_mesh_t *TombRaider::Mesh()
-{
+tr2_mesh_t* TombRaider::Mesh() {
     /*
        if (n > 0 || n > mMeshCount)
        return NULL;
@@ -189,8 +172,7 @@ tr2_mesh_t *TombRaider::Mesh()
 }
 
 
-int TombRaider::getNumAnimsForMoveable(int moveable_index)
-{
+int TombRaider::getNumAnimsForMoveable(int moveable_index) {
     /***************************************************************************
      * It seems the number of animations isn't available in the moveable,
      * so we have to calculate it:
@@ -212,28 +194,25 @@ int TombRaider::getNumAnimsForMoveable(int moveable_index)
 
     int start_anim;
     int next_start_anim = 0xFFFF;
-    tr2_moveable_t *last_moveable = 0x0;
-    tr2_moveable_t *moveable = 0x0;
-    tr2_moveable_t *next_moveable = 0x0;
+    tr2_moveable_t* last_moveable = 0x0;
+    tr2_moveable_t* moveable = 0x0;
+    tr2_moveable_t* next_moveable = 0x0;
 
 
     if ((moveable_index >= 0 &&
-                moveable_index <= (int)_num_moveables) || _num_moveables < 1)
-    {
+         moveable_index <= (int)_num_moveables) || _num_moveables < 1) {
         moveable = &_moveables[moveable_index];
     }
 
-    if (!moveable)
-    {
+    if (!moveable) {
         return -1; // Was 0
     }
 
-    last_moveable = &_moveables[moveable_index-1];
+    last_moveable = &_moveables[moveable_index - 1];
 
     start_anim = moveable->animation;
 
-    while (moveable != last_moveable)
-    {
+    while (moveable != last_moveable) {
         next_moveable = moveable + 1;
         next_start_anim = next_moveable->animation;
 
@@ -243,8 +222,7 @@ int TombRaider::getNumAnimsForMoveable(int moveable_index)
         moveable = next_moveable++;
     }
 
-    if (moveable == last_moveable)
-    {
+    if (moveable == last_moveable) {
         next_start_anim = _num_animations;
     }
 
@@ -252,32 +230,27 @@ int TombRaider::getNumAnimsForMoveable(int moveable_index)
 }
 
 
-tr2_staticmesh_t *TombRaider::StaticMesh()
-{
+tr2_staticmesh_t* TombRaider::StaticMesh() {
     return _static_meshes;
 }
 
 
-tr2_version_type TombRaider::Engine()
-{
+tr2_version_type TombRaider::Engine() {
     return mEngineVersion;
 }
 
 
-tr2_animation_t *TombRaider::Animation()
-{
+tr2_animation_t* TombRaider::Animation() {
     return _animations;
 }
 
 
-unsigned short *TombRaider::Frame()
-{
+unsigned short* TombRaider::Frame() {
     return _frames;
 }
 
 
-tr2_moveable_t *TombRaider::Moveable()
-{
+tr2_moveable_t* TombRaider::Moveable() {
     /*
        if (n > 0 || n > (int)_num_moveables)
        return NULL;
@@ -287,8 +260,7 @@ tr2_moveable_t *TombRaider::Moveable()
 }
 
 
-tr2_meshtree_t *TombRaider::MeshTree()
-{
+tr2_meshtree_t* TombRaider::MeshTree() {
     /*
        if (n > 0 || n > (int)_num_mesh_trees)
        return NULL;
@@ -298,76 +270,67 @@ tr2_meshtree_t *TombRaider::MeshTree()
 }
 
 
-tr2_sprite_texture_t *TombRaider::Sprite()
-{
+tr2_sprite_texture_t* TombRaider::Sprite() {
     return _sprite_textures;
 }
 
 
-tr2_sprite_sequence_t *TombRaider::SpriteSequence()
-{
+tr2_sprite_sequence_t* TombRaider::SpriteSequence() {
     return _sprite_sequences;
 }
 
-unsigned char *TombRaider::SpecialTexTile(int texture)
-{
-    unsigned char *image;
-    unsigned char *ptr;
+unsigned char* TombRaider::SpecialTexTile(int texture) {
+    unsigned char* image;
+    unsigned char* ptr;
 
 
     image = NULL;
 
-    if (texture >=0 && texture < NumSpecialTextures())
-    {
+    if (texture >= 0 && texture < NumSpecialTextures()) {
         // Get base and offset into 32bit special textures/bump maps
         ptr = _tex_special;
-        ptr += 256*256*4*texture;
+        ptr += 256 * 256 * 4 * texture;
 
         // Clone it as a single 256x256 @ 32bpp image
-        image = new unsigned char[256*256*4];
-        memcpy(image, ptr, 256*256*4);
+        image = new unsigned char[256 * 256 * 4];
+        memcpy(image, ptr, 256 * 256 * 4);
     }
 
     return image;
 }
 
 
-int TombRaider::NumSpecialTextures()
-{
+int TombRaider::NumSpecialTextures() {
     return _num_tex_special;
 }
 
 
-void TombRaider::Texture(int texture, unsigned char **image,
-        unsigned char **bumpmap)
-{
+void TombRaider::Texture(int texture, unsigned char** image,
+                         unsigned char** bumpmap) {
     int bumpmap_base = _num_room_textures + _num_misc_textures;
 
 
     *image = getTexTile(texture);
     *bumpmap = NULL;
 
-    if (_num_bump_map_textures && texture >= bumpmap_base)
-    {
-        *bumpmap = getTexTile(texture + _num_bump_map_textures/2);
+    if (_num_bump_map_textures && texture >= bumpmap_base) {
+        *bumpmap = getTexTile(texture + _num_bump_map_textures / 2);
     }
 }
 
 
-unsigned int *TombRaider::Palette16()
-{
+unsigned int* TombRaider::Palette16() {
     return _palette16;
 }
 
 
-unsigned char *TombRaider::Palette8()
-{
-    return (unsigned char *)_palette8;
+unsigned char* TombRaider::Palette8() {
+    return (unsigned char*)_palette8;
 }
 
 
-int TombRaider::checkMime(const char *filename) {
-    FILE *f;
+int TombRaider::checkMime(const char* filename) {
+    FILE* f;
     unsigned int version;
 
     if (!filename || !filename[0]) {
@@ -400,21 +363,19 @@ int TombRaider::checkMime(const char *filename) {
 }
 
 
-int TombRaider::Load(const char *filename)
-{
-    FILE *f;
+int TombRaider::Load(const char* filename) {
+    FILE* f;
     int i, j, l;
     unsigned int num_mesh_data_words, num_mesh_pointers, data_size, data_offset;
-    unsigned int *mesh_pointer_list;
-    unsigned char *raw_mesh_data;
+    unsigned int* mesh_pointer_list;
+    unsigned char* raw_mesh_data;
     bool tr5;
     long debugf;
 
 
     f = fopen(filename, "rb");
 
-    if (!f)
-    {
+    if (!f) {
         perror(filename);
         return -1;
     }
@@ -427,8 +388,7 @@ int TombRaider::Load(const char *filename)
 
     tr5 = false;
 
-    switch (mPakVersion)
-    {
+    switch (mPakVersion) {
         case 0x00000020:
             mEngineVersion = TR_VERSION_1;
             break;
@@ -447,10 +407,9 @@ int TombRaider::Load(const char *filename)
             l = strlen(filename);
 
             // Looking for pattern "filename.trc"
-            if ((filename[l-1] == 'c' || filename[l-1] == 'C') &&
-                    (filename[l-2] == 'r' || filename[l-2] == 'R') &&
-                    (filename[l-3] == 't' || filename[l-3] == 'T'))
-            {
+            if ((filename[l - 1] == 'c' || filename[l - 1] == 'C') &&
+                (filename[l - 2] == 'r' || filename[l - 2] == 'R') &&
+                (filename[l - 3] == 't' || filename[l - 3] == 'T')) {
                 printDebug("Load", "This is really a TR5 pak");
                 mEngineVersion = TR_VERSION_5;
                 return loadTR5(f);
@@ -466,10 +425,9 @@ int TombRaider::Load(const char *filename)
     if (mEngineVersion == TR_VERSION_UNKNOWN)
         return -1;
 
-    if (mEngineVersion == TR_VERSION_4)
-    {
+    if (mEngineVersion == TR_VERSION_4) {
         unsigned int sz, usz; // compressed and uncompressed size
-        unsigned char *compressed_data = NULL;
+        unsigned char* compressed_data = NULL;
         int zerr;
         uLongf foo;
 
@@ -492,7 +450,7 @@ int TombRaider::Load(const char *filename)
         _num_textiles = usz / sizeof(tr2_textile32_t);
 
         printDebug("LoadTR4", "_num_textiles = %i/%lu = %i",
-                usz, sizeof(tr2_textile32_t), _num_textiles);
+                   usz, sizeof(tr2_textile32_t), _num_textiles);
 
         _textile32 = new tr2_textile32_t[_num_textiles];
 
@@ -502,17 +460,16 @@ int TombRaider::Load(const char *filename)
 
         // Decompress the textures
         foo = usz;
-        zerr = uncompress((unsigned char *)_textile32,
-                &foo,
-                compressed_data,
-                sz);
+        zerr = uncompress((unsigned char*)_textile32,
+                          &foo,
+                          compressed_data,
+                          sz);
         usz = foo;
 
         printDebug("LoadTR4", "textile decompress  [%s]",
-                (zerr == Z_OK) ? "OK" : "ERROR");
+                   (zerr == Z_OK) ? "OK" : "ERROR");
 
-        switch (zerr)
-        {
+        switch (zerr) {
             case Z_MEM_ERROR:
                 printDebug("LoadTR4", "There was not enough memory");
                 break;
@@ -539,7 +496,7 @@ int TombRaider::Load(const char *filename)
         _num_textiles = usz / sizeof(tr2_textile16_t);
 
         printDebug("Load", "TR4 _num_textiles = %i/%lu = %i",
-                usz, sizeof(tr2_textile16_t), _num_textiles);
+                   usz, sizeof(tr2_textile16_t), _num_textiles);
 
         _textile16 = new tr2_textile16_t[_num_textiles];
 
@@ -549,17 +506,16 @@ int TombRaider::Load(const char *filename)
 
         // Decompress the textures
         foo = usz;
-        zerr = uncompress((unsigned char *)_textile16,
-                &foo,
-                compressed_data,
-                sz);
+        zerr = uncompress((unsigned char*)_textile16,
+                          &foo,
+                          compressed_data,
+                          sz);
         usz = foo;
 
         //     printDebug("Load", "TR4 textile decompress  [%s]",
         //    (zerr == Z_OK) ? "OK" : "ERROR");
 
-        switch (zerr)
-        {
+        switch (zerr) {
             case Z_MEM_ERROR:
                 printDebug("Load", "TR4 textile decompress [ERROR]");
                 printDebug("Load", "TR4 There was not enough memory");
@@ -590,15 +546,14 @@ int TombRaider::Load(const char *filename)
         printDebug("Load", "TR4 sprite textures uncompressed size = %u bytes", usz);
 
         // Load sprite/bump map/gui/etc textures also
-        _num_tex_special = usz/(256*256*4);
+        _num_tex_special = usz / (256 * 256 * 4);
 
         printDebug("LoadTR5", "_num_tex_special = %i/%i = %i",
-                usz, 256*256*4, _num_tex_special);
+                   usz, 256 * 256 * 4, _num_tex_special);
 
         printDebug("LoadTR5", "Reading %ibytes of sprite textures", usz);
 
-        if (usz)
-        {
+        if (usz) {
             _tex_special = new unsigned char[usz];
 
             // Allocate a temporary buffer for decompression
@@ -608,16 +563,15 @@ int TombRaider::Load(const char *filename)
             // Decompress the textures
             foo = usz;
             zerr = uncompress(_tex_special,
-                    &foo,
-                    compressed_data,
-                    sz);
+                              &foo,
+                              compressed_data,
+                              sz);
             usz = foo;
 
             printDebug("LoadTR5", "special texture decompress  [%s]",
-                    (zerr == Z_OK) ? "OK" : "ERROR");
+                       (zerr == Z_OK) ? "OK" : "ERROR");
 
-            switch (zerr)
-            {
+            switch (zerr) {
                 case Z_MEM_ERROR:
                     printDebug("LoadTR5", "There was not enough memory");
                     break;
@@ -654,10 +608,9 @@ int TombRaider::Load(const char *filename)
         usz = foo;
 
         printDebug("Load", "TR4 level data decompress  [%s]",
-                (zerr == Z_OK) ? "OK" : "ERROR");
+                   (zerr == Z_OK) ? "OK" : "ERROR");
 
-        switch (zerr)
-        {
+        switch (zerr) {
             case Z_MEM_ERROR:
                 printDebug("Load", "TR4 There was not enough memory");
                 break;
@@ -678,8 +631,7 @@ int TombRaider::Load(const char *filename)
         mFreadMode = TR_FREAD_COMPRESSED;
     }
 
-    if (mEngineVersion == TR_VERSION_2 || mEngineVersion == TR_VERSION_3)
-    {
+    if (mEngineVersion == TR_VERSION_2 || mEngineVersion == TR_VERSION_3) {
         /* Read the 8-bit palette */
         Fread(_palette8, sizeof(tr2_colour_t), 256, f);
 
@@ -689,8 +641,7 @@ int TombRaider::Load(const char *filename)
         printDebug("Load", "Read TR 2|3 8bit and 16bit palettes");
     }
 
-    if (mEngineVersion != TR_VERSION_4)
-    {
+    if (mEngineVersion != TR_VERSION_4) {
         /* Read the textiles */
         Fread(&_num_textiles, sizeof(_num_textiles), 1, f);
 
@@ -703,8 +654,7 @@ int TombRaider::Load(const char *filename)
         /* 16-bit textiles come second */
         _textile16 = new tr2_textile16_t[_num_textiles];
 
-        if (mEngineVersion != TR_VERSION_1)
-        {
+        if (mEngineVersion != TR_VERSION_1) {
             //! \fixme need endian checking here
             Fread(_textile16, sizeof(tr2_textile16_t), _num_textiles, f);
             printDebug("Load", "Read in 16bit texture tiles");
@@ -724,66 +674,60 @@ int TombRaider::Load(const char *filename)
     _rooms = new tr2_room_t[_num_rooms];
 
     /* Extract room details */
-    for (i = 0; i < _num_rooms; ++i)
-    {
+    for (i = 0; i < _num_rooms; ++i) {
         /* Read RoomInfo */
         //! \fixme endian check needed
         Fread(&_rooms[i].info, sizeof(tr2_room_info_t), 1, f);
 
         printDebug("Load", "_rooms[%i].info =\n { x=%i, z=%i, yt=%i, yb=%i}",
-                i,
-                _rooms[i].info.x, _rooms[i].info.z,
-                _rooms[i].info.y_top, _rooms[i].info.y_bottom);
+                   i,
+                   _rooms[i].info.x, _rooms[i].info.z,
+                   _rooms[i].info.y_top, _rooms[i].info.y_bottom);
 
         /* Read raw data for rest of room */
         Fread(&_rooms[i].num_data_words, sizeof(_rooms[i].num_data_words), 1, f);
 
         printDebug("Load", "_rooms[%i].num_data_words = %u",
-                i, _rooms[i].num_data_words);
+                   i, _rooms[i].num_data_words);
 
-        _rooms[i].data = new unsigned char[_rooms[i].num_data_words*2];
+        _rooms[i].data = new unsigned char[_rooms[i].num_data_words * 2];
         Fread(_rooms[i].data, 2, _rooms[i].num_data_words, f);
 
         /* Identify vertices */
         data_offset = 0;
         //! \fixme endian
-        _rooms[i].room_data.num_vertices = *(short *)(void *)(_rooms[i].data);
+        _rooms[i].room_data.num_vertices = *(short*)(void*)(_rooms[i].data);
 
         data_offset += sizeof(_rooms[0].room_data.num_vertices);
         data_size = _rooms[i].room_data.num_vertices * sizeof(tr2_vertex_room_t);
 
         printDebug("Load", "_rooms[%i].room_data.num_vertices = %u",
-                i, _rooms[i].room_data.num_vertices);
+                   i, _rooms[i].room_data.num_vertices);
 
         _rooms[i].room_data.vertices = 0x0;
 
-        if (_rooms[i].room_data.num_vertices > 0)
-        {
+        if (_rooms[i].room_data.num_vertices > 0) {
             _rooms[i].room_data.vertices =
                 new tr2_vertex_room_t[_rooms[i].room_data.num_vertices];
 
-            if (mEngineVersion == TR_VERSION_1)
-            {
+            if (mEngineVersion == TR_VERSION_1) {
                 data_size = _rooms[i].room_data.num_vertices *
-                    (sizeof(tr2_vertex_room_t) - 4);
+                            (sizeof(tr2_vertex_room_t) - 4);
 
-                for (j = 0; j < _rooms[i].room_data.num_vertices; ++j)
-                {
+                for (j = 0; j < _rooms[i].room_data.num_vertices; ++j) {
                     memcpy(&_rooms[i].room_data.vertices[j],
-                            _rooms[i].data + data_offset +
-                            (j * (sizeof(tr2_vertex_room_t) - 4)),
-                            sizeof(tr2_vertex_room_t) - 4);
+                           _rooms[i].data + data_offset +
+                           (j * (sizeof(tr2_vertex_room_t) - 4)),
+                           sizeof(tr2_vertex_room_t) - 4);
 
                     // ??? Adjust for what's missing?
                     _rooms[i].room_data.vertices[j].lighting2 =
                         _rooms[i].room_data.vertices[j].lighting1;
                     _rooms[i].room_data.vertices[j].attributes = 0;
                 }
-            }
-            else
-            {
+            } else {
                 memcpy(_rooms[i].room_data.vertices,
-                        _rooms[i].data + data_offset, data_size);
+                       _rooms[i].data + data_offset, data_size);
             }
 
             //! \fixme endian conversions for verts needed
@@ -794,27 +738,24 @@ int TombRaider::Load(const char *filename)
         /* identify rectangles */
         //! \fixme endian conversion
         _rooms[i].room_data.num_rectangles =
-            *(short *)(void *)(_rooms[i].data + data_offset);
+            *(short*)(void*)(_rooms[i].data + data_offset);
 
         data_offset += sizeof(_rooms[0].room_data.num_rectangles);
         data_size = _rooms[i].room_data.num_rectangles * sizeof(tr2_quad_t);
 
         printDebug("Load", "_rooms[%i].room_data.num_rectangles = %i",
-                i, _rooms[i].room_data.num_rectangles);
+                   i, _rooms[i].room_data.num_rectangles);
 
         _rooms[i].room_data.rectangles = 0x0;
 
-        if (_rooms[i].room_data.num_rectangles > 0)
-        {
+        if (_rooms[i].room_data.num_rectangles > 0) {
             _rooms[i].room_data.rectangles =
                 new tr2_quad_t[_rooms[i].room_data.num_rectangles];
             memcpy(_rooms[i].room_data.rectangles,
-                    _rooms[i].data + data_offset, data_size);
+                   _rooms[i].data + data_offset, data_size);
 
-            if (mEngineVersion >= TR_VERSION_3)
-            {
-                for (j = 0; j < _rooms[i].room_data.num_rectangles; ++j)
-                {
+            if (mEngineVersion >= TR_VERSION_3) {
+                for (j = 0; j < _rooms[i].room_data.num_rectangles; ++j) {
                     _rooms[i].room_data.rectangles[j].texture &= 0x7fff;
                 }
             }
@@ -825,29 +766,26 @@ int TombRaider::Load(const char *filename)
 
         /* Identify triangles */
         _rooms[i].room_data.num_triangles =
-            *(short *)(void *)(_rooms[i].data + data_offset);
+            *(short*)(void*)(_rooms[i].data + data_offset);
         //! \fixme endian
 
         data_offset += sizeof(_rooms[0].room_data.num_triangles);
         data_size = _rooms[i].room_data.num_triangles * sizeof(tr2_tri_t);
 
         printDebug("Load", "_rooms[%i].room_data.num_triangles = %i",
-                i, _rooms[i].room_data.num_triangles);
+                   i, _rooms[i].room_data.num_triangles);
 
         _rooms[i].room_data.triangles = 0x0;
 
-        if (_rooms[i].room_data.num_triangles > 0)
-        {
+        if (_rooms[i].room_data.num_triangles > 0) {
             _rooms[i].room_data.triangles =
                 new tr2_tri_t[_rooms[i].room_data.num_triangles];
 
             memcpy(_rooms[i].room_data.triangles,
-                    _rooms[i].data + data_offset, data_size);
+                   _rooms[i].data + data_offset, data_size);
 
-            if (mEngineVersion >= TR_VERSION_3)
-            {
-                for (j = 0; j < _rooms[i].room_data.num_triangles; ++j)
-                {
+            if (mEngineVersion >= TR_VERSION_3) {
+                for (j = 0; j < _rooms[i].room_data.num_triangles; ++j) {
                     _rooms[i].room_data.triangles[j].texture &= 0x7fff;
                 }
                 //! \fixme endian
@@ -858,28 +796,25 @@ int TombRaider::Load(const char *filename)
 
         /* Identify sprites */
         _rooms[i].room_data.num_sprites =
-            *(short *)(void *)(_rooms[i].data + data_offset);
+            *(short*)(void*)(_rooms[i].data + data_offset);
         //! \fixme endian
 
         data_offset += sizeof(_rooms[0].room_data.num_sprites);
         data_size = _rooms[i].room_data.num_sprites * sizeof(tr2_room_sprite_t);
 
         printDebug("Load", "_rooms[%i].room_data.num_sprites = %i",
-                i, _rooms[i].room_data.num_sprites);
+                   i, _rooms[i].room_data.num_sprites);
 
         _rooms[i].room_data.sprites = 0x0;
 
-        if (_rooms[i].room_data.num_sprites > 0)
-        {
+        if (_rooms[i].room_data.num_sprites > 0) {
             _rooms[i].room_data.sprites =
                 new tr2_room_sprite_t[_rooms[i].room_data.num_sprites];
             memcpy(_rooms[i].room_data.sprites,
-                    _rooms[i].data + data_offset, data_size);
+                   _rooms[i].data + data_offset, data_size);
 
-            if (mEngineVersion >= TR_VERSION_3)
-            {
-                for (j = 0; j < _rooms[i].room_data.num_sprites; j++)
-                {
+            if (mEngineVersion >= TR_VERSION_3) {
+                for (j = 0; j < _rooms[i].room_data.num_sprites; j++) {
                     _rooms[i].room_data.sprites[j].texture &= 0x7fff;
                 }
             }
@@ -896,7 +831,7 @@ int TombRaider::Load(const char *filename)
         Fread(&_rooms[i].num_portals, sizeof(_rooms[0].num_portals), 1, f);
 
         printDebug("Load", "_rooms[%i].num_portals = %i",
-                i, _rooms[i].num_portals);
+                   i, _rooms[i].num_portals);
 
         if (_rooms[i].num_portals > 0)
             _rooms[i].portals = new tr2_room_portal_t[_rooms[i].num_portals];
@@ -904,7 +839,7 @@ int TombRaider::Load(const char *filename)
             _rooms[i].portals = 0;
 
         Fread(_rooms[i].portals, sizeof(tr2_room_portal_t),
-                _rooms[i].num_portals, f);
+              _rooms[i].num_portals, f);
         //! \fixme endian
 
         /* Read sector info */
@@ -913,50 +848,43 @@ int TombRaider::Load(const char *filename)
         Fread(&_rooms[i].num_xsectors, sizeof(_rooms[0].num_xsectors), 1, f);
 
         printDebug("Load", "_rooms[%i].num_zsectors = %i",
-                i, _rooms[i].num_zsectors);
+                   i, _rooms[i].num_zsectors);
         printDebug("Load", "_rooms[%i].num_xsectors = %i",
-                i, _rooms[i].num_xsectors);
+                   i, _rooms[i].num_xsectors);
 
-        if (_rooms[i].num_zsectors > 0 && _rooms[i].num_xsectors > 0)
-        {
+        if (_rooms[i].num_zsectors > 0 && _rooms[i].num_xsectors > 0) {
             _rooms[i].sector_list =
                 new tr2_room_sector_t[_rooms[i].num_zsectors * _rooms[i].num_xsectors];
-        }
-        else
-        {
+        } else {
             _rooms[i].sector_list = 0x0;
         }
 
         Fread(_rooms[i].sector_list, sizeof(tr2_room_sector_t),
-                _rooms[i].num_zsectors * _rooms[i].num_xsectors, f);
+              _rooms[i].num_zsectors * _rooms[i].num_xsectors, f);
         //! \fixme endian
 
         printDebug("Load", "Read %u room sectors",
-                _rooms[i].num_zsectors * _rooms[i].num_xsectors);
+                   _rooms[i].num_zsectors * _rooms[i].num_xsectors);
 
         /* Read room lighting & mode */
-        if (mEngineVersion >= TR_VERSION_3)
-        {
+        if (mEngineVersion >= TR_VERSION_3) {
             Fread(&_rooms[i].intensity1, 4, 1, f);
             // Fake TR2 record:
             _rooms[i].light_mode = 0;
-        }
-        else if (mEngineVersion == TR_VERSION_1)
-        {
+        } else if (mEngineVersion == TR_VERSION_1) {
             Fread(&_rooms[i].intensity1, 2, 1, f);
             // Is this intensity or LightMode?
 
             printDebug("Load", "_rooms[%i].intensity1 = %u",
-                    i, _rooms[i].intensity1);
+                       i, _rooms[i].intensity1);
 
             _rooms[i].intensity2 = _rooms[i].intensity1;
             _rooms[i].light_mode = 0;
-        }
-        else
-        {   // TR2
+        } else {
+            // TR2
             Fread(&_rooms[i].intensity1, 6, 1, f);
             printDebug("Load", "TR2 _rooms[%i].intensity1 = %u",
-                    i, _rooms[i].intensity1);
+                       i, _rooms[i].intensity1);
         }
 
         /* Read room lighting info */
@@ -964,61 +892,54 @@ int TombRaider::Load(const char *filename)
         Fread(&_rooms[i].num_lights, sizeof(_rooms[i].num_lights), 1, f);
 
         printDebug("Load", "_rooms[%i].num_lights = %u",
-                i, _rooms[i].num_lights);
+                   i, _rooms[i].num_lights);
 
         _rooms[i].lights = 0x0;
         _rooms[i].tr4Lights = 0x0;
 
         // Mongoose 2002.04.03, New TR4 light struct, removed old
         //   double size for others
-        if (_rooms[i].num_lights > 0)
-        {
-            if (mEngineVersion == TR_VERSION_1)
-            {
+        if (_rooms[i].num_lights > 0) {
+            if (mEngineVersion == TR_VERSION_1) {
                 _rooms[i].lights = new tr2_room_light_t[_rooms[i].num_lights];
 
-                for (j = 0; j < _rooms[i].num_lights; ++j)
-                {
-                    Fread(&_rooms[i].lights[j].x, sizeof(_rooms[0].lights[0].x), 3,f);
+                for (j = 0; j < _rooms[i].num_lights; ++j) {
+                    Fread(&_rooms[i].lights[j].x, sizeof(_rooms[0].lights[0].x), 3, f);
                     // x, y, z
 
                     printDebug("Load", "_rooms[%i].lights[%i] = <%i %i %i>",
-                            i, j,
-                            _rooms[i].lights[j].x,
-                            _rooms[i].lights[j].y,
-                            _rooms[i].lights[j].z);
+                               i, j,
+                               _rooms[i].lights[j].x,
+                               _rooms[i].lights[j].y,
+                               _rooms[i].lights[j].z);
 
                     Fread(&_rooms[i].lights[j].intensity1, sizeof(short), 1, f);
                     // Intensity1
 
                     printDebug("Load", "_rooms[%i].lights[%i].intensity1 = %u",
-                            i, j,
-                            _rooms[i].lights[j].intensity1);
+                               i, j,
+                               _rooms[i].lights[j].intensity1);
 
                     _rooms[i].lights[j].intensity2 = _rooms[i].lights[j].intensity1;
                     Fread(&_rooms[i].lights[j].fade1, sizeof(unsigned int), 1, f);
                     // Fade1
 
                     printDebug("Load", "_rooms[%i].lights[%i].fade1 = %u",
-                            i, j,
-                            _rooms[i].lights[j].fade1);
+                               i, j,
+                               _rooms[i].lights[j].fade1);
 
                     _rooms[i].lights[j].fade2 = _rooms[i].lights[j].fade1;
                 }
-            }
-            else if (mEngineVersion == TR_VERSION_4)
-            {
+            } else if (mEngineVersion == TR_VERSION_4) {
                 _rooms[i].tr4Lights = new tr4_room_light_t[_rooms[i].num_lights];
 
                 Fread(_rooms[i].tr4Lights, sizeof(tr4_room_light_t),
-                        _rooms[i].num_lights, f);
-            }
-            else
-            {
+                      _rooms[i].num_lights, f);
+            } else {
                 _rooms[i].lights = new tr2_room_light_t[_rooms[i].num_lights];
 
                 Fread(_rooms[i].lights, sizeof(tr2_room_light_t),
-                        _rooms[i].num_lights, f);
+                      _rooms[i].num_lights, f);
             }
         }
         //! \fixme endian
@@ -1028,19 +949,16 @@ int TombRaider::Load(const char *filename)
         //! \fixme endian
 
         printDebug("Load", "_rooms[%i].num_static_meshes = %u",
-                i, _rooms[i].num_static_meshes);
+                   i, _rooms[i].num_static_meshes);
 
         _rooms[i].static_meshes = 0x0;
 
-        if (_rooms[i].num_static_meshes > 0)
-        {
+        if (_rooms[i].num_static_meshes > 0) {
             _rooms[i].static_meshes =
                 new tr2_room_staticmesh_t[_rooms[i].num_static_meshes];
 
-            if (mEngineVersion == TR_VERSION_1)
-            {
-                for (j = 0; j < _rooms[i].num_static_meshes; j++)
-                {
+            if (mEngineVersion == TR_VERSION_1) {
+                for (j = 0; j < _rooms[i].num_static_meshes; j++) {
                     Fread(&_rooms[i].static_meshes[j], 18, 1, f);
                     // Account for the missing .intensity2
 
@@ -1050,11 +968,9 @@ int TombRaider::Load(const char *filename)
                     _rooms[i].static_meshes[j].intensity2 =
                         _rooms[i].static_meshes[j].intensity1;
                 }
-            }
-            else
-            {
+            } else {
                 Fread(_rooms[i].static_meshes, sizeof(tr2_room_staticmesh_t),
-                        _rooms[i].num_static_meshes, f);
+                      _rooms[i].num_static_meshes, f);
             }
         }
         //! \fixme endian
@@ -1063,27 +979,26 @@ int TombRaider::Load(const char *filename)
         //! \fixme endian
 
         printDebug("Load", "_rooms[%i].alternate_room = %i",
-                i, _rooms[i].alternate_room);
+                   i, _rooms[i].alternate_room);
 
         Fread(&_rooms[i].flags, sizeof(short), 1, f);
         //! \fixme endian
 
         printDebug("Load", "_rooms[%i].flags = 0x%x",
-                i, _rooms[i].flags);
+                   i, _rooms[i].flags);
 
         /* Read TR3 room light colour */
-        if (mEngineVersion >= TR_VERSION_3)
-        {
+        if (mEngineVersion >= TR_VERSION_3) {
             /* we force this to be 3 bytes
                (instead of just sizeof(room_light_colour))
                for Macs and others that can't handle odd-length structures...
                */
             Fread(&_rooms[i].room_light_colour, 3, 1, f);
             printDebug("Load", "TR3 _rooms[%i].room_light_colour {%i %i %i}",
-                    i,
-                    _rooms[i].room_light_colour.r,
-                    _rooms[i].room_light_colour.g,
-                    _rooms[i].room_light_colour.b);
+                       i,
+                       _rooms[i].room_light_colour.r,
+                       _rooms[i].room_light_colour.g,
+                       _rooms[i].room_light_colour.b);
         }
     }
 
@@ -1099,8 +1014,7 @@ int TombRaider::Load(const char *filename)
 
     _floor_data = 0x0;
 
-    if (_num_floor_data > 0)
-    {
+    if (_num_floor_data > 0) {
         _floor_data = new unsigned short[_num_floor_data];
         Fread(_floor_data, sizeof(short), _num_floor_data, f);
         //! \fixme endian
@@ -1112,7 +1026,7 @@ int TombRaider::Load(const char *filename)
 
     printDebug("Load", "num_mesh_data_words = %u", num_mesh_data_words);
 
-    raw_mesh_data = new unsigned char[num_mesh_data_words*2];
+    raw_mesh_data = new unsigned char[num_mesh_data_words * 2];
     Fread(raw_mesh_data, 2, num_mesh_data_words, f);
     // Endian-conversion of this data occurs in ExtractMeshes()
 
@@ -1143,16 +1057,13 @@ int TombRaider::Load(const char *filename)
 
     _animations = 0x0;
 
-    if (_num_animations > 0)
-    {
+    if (_num_animations > 0) {
         _animations = new tr2_animation_t[_num_animations];
 
-        if (mEngineVersion == TR_VERSION_4)
-        {
+        if (mEngineVersion == TR_VERSION_4) {
             tr4_animation_t tr4_anim;
 
-            for (i = 0; i < (int)_num_animations; ++i)
-            {
+            for (i = 0; i < (int)_num_animations; ++i) {
                 Fread(&tr4_anim, 40, 1, f);
 
                 _animations[i].frame_offset = tr4_anim.frame_offset;
@@ -1170,12 +1081,10 @@ int TombRaider::Load(const char *filename)
                 _animations[i].num_state_changes = tr4_anim.num_state_changes;
                 _animations[i].state_change_offset = tr4_anim.state_change_offset;
                 _animations[i].num_anim_commands = (tr4_anim.num_anim_commands > 256)
-                    ? 0 : tr4_anim.num_anim_commands;
+                                                   ? 0 : tr4_anim.num_anim_commands;
                 _animations[i].anim_command = tr4_anim.anim_command;
             }
-        }
-        else
-        {
+        } else {
             Fread(_animations, sizeof(tr2_animation_t), _num_animations, f);
         }
     }
@@ -1188,8 +1097,7 @@ int TombRaider::Load(const char *filename)
 
     printDebug("Load", "_num_state_changes = %u", _num_state_changes);
 
-    if (_num_state_changes > 0)
-    {
+    if (_num_state_changes > 0) {
         _state_changes = new tr2_state_change_t[_num_state_changes];
 
         Fread(_state_changes, sizeof(tr2_state_change_t), _num_state_changes, f);
@@ -1204,11 +1112,10 @@ int TombRaider::Load(const char *filename)
 
     _anim_dispatches = 0x0;
 
-    if (_num_anim_dispatches > 0)
-    {
+    if (_num_anim_dispatches > 0) {
         _anim_dispatches = new tr2_anim_dispatch_t[_num_anim_dispatches];
         Fread(_anim_dispatches, sizeof(tr2_anim_dispatch_t),
-                _num_anim_dispatches, f);
+              _num_anim_dispatches, f);
     }
     //! \fixme endian
 
@@ -1220,8 +1127,7 @@ int TombRaider::Load(const char *filename)
 
     _anim_commands = 0x0;
 
-    if (_num_anim_commands > 0)
-    {
+    if (_num_anim_commands > 0) {
         _anim_commands = new tr2_anim_command_t[_num_anim_commands];
         Fread(_anim_commands, sizeof(tr2_anim_command_t), _num_anim_commands, f);
     }
@@ -1235,8 +1141,7 @@ int TombRaider::Load(const char *filename)
 
     _mesh_trees = 0x0;
 
-    if (_num_mesh_trees > 0)
-    {
+    if (_num_mesh_trees > 0) {
         _mesh_trees = new tr2_meshtree_t[_num_mesh_trees];
         Fread(_mesh_trees, sizeof(int), _num_mesh_trees, f);
     }
@@ -1250,31 +1155,26 @@ int TombRaider::Load(const char *filename)
 
     _frames = 0x0;
 
-    if (_num_frames > 0)
-    {
+    if (_num_frames > 0) {
         _frames = new unsigned short[_num_frames];
         Fread(_frames, 2, _num_frames, f);
         //! \fixme endian
 
-        if (mEngineVersion == TR_VERSION_1)
-        {
+        if (mEngineVersion == TR_VERSION_1) {
             // re-format the frames[] to look like TR2 frames
             int num_frames;
 
-            for (j = 0; j < (int)_num_animations; ++j)
-            {
+            for (j = 0; j < (int)_num_animations; ++j) {
                 int fo = _animations[j].frame_offset / 2;
                 _animations[j].frame_size = (unsigned char)(_frames[fo + 9] * 2) + 10;
             }
 
-            for (i = 0; i < (int)_num_frames; )
-            {
+            for (i = 0; i < (int)_num_frames;) {
                 i += 9;  // point to num_frames;
                 j = i;   // get rid of (overwrite) num_frames
                 num_frames = _frames[i++];
 
-                while (num_frames--)
-                {
+                while (num_frames--) {
                     _frames[j++] = _frames[i + 1];   // reverse the words as we go
                     _frames[j++] = _frames[i];
                     i += 2;
@@ -1290,8 +1190,7 @@ int TombRaider::Load(const char *filename)
 
     _moveables = 0x0;
 
-    if (_num_moveables > 0)
-    {
+    if (_num_moveables > 0) {
         debugf = ftell(f);
         _moveables = new tr2_moveable_t[_num_moveables];
         Fread(_moveables, 18, _num_moveables, f);
@@ -1306,36 +1205,32 @@ int TombRaider::Load(const char *filename)
 
     _static_meshes = 0x0;
 
-    if (_num_static_meshes > 0)
-    {
+    if (_num_static_meshes > 0) {
         _static_meshes = new tr2_staticmesh_t[_num_static_meshes];
         Fread(_static_meshes, sizeof(tr2_staticmesh_t),
-                _num_static_meshes, f);
+              _num_static_meshes, f);
         //! \fixme endian
     }
 
     _object_textures = 0x0;
 
-    if (mEngineVersion < TR_VERSION_3)
-    {
+    if (mEngineVersion < TR_VERSION_3) {
         /* Read object textures */
         Fread(&_num_object_textures, sizeof(int), 1, f);
         printDebug("Load", "_num_object_textures = %u", _num_object_textures);
         //! \fixme endian
 
-        if (_num_object_textures > 0)
-        {
+        if (_num_object_textures > 0) {
             _object_textures = new tr2_object_texture_t[_num_object_textures];
 
             Fread(_object_textures, sizeof(tr2_object_texture_t),
-                    _num_object_textures, f);
+                  _num_object_textures, f);
         }
         //! \fixme endian
     }
 
 
-    if (mEngineVersion == TR_VERSION_4)
-    {
+    if (mEngineVersion == TR_VERSION_4) {
         unsigned char zzbuf[4];
         Fread(zzbuf, 1, 3, f); // skip "SPR"
         zzbuf[3] = 0;
@@ -1350,11 +1245,10 @@ int TombRaider::Load(const char *filename)
 
     _sprite_textures = 0x0;
 
-    if (_num_sprite_textures > 0)
-    {
+    if (_num_sprite_textures > 0) {
         _sprite_textures = new tr2_sprite_texture_t[_num_sprite_textures];
         Fread(_sprite_textures, sizeof(tr2_sprite_texture_t),
-                _num_sprite_textures, f);
+              _num_sprite_textures, f);
     }
     //! \fixme endian
 
@@ -1365,11 +1259,10 @@ int TombRaider::Load(const char *filename)
 
     _sprite_sequences = 0x0;
 
-    if (_num_sprite_sequences > 0)
-    {
+    if (_num_sprite_sequences > 0) {
         _sprite_sequences = new tr2_sprite_sequence_t[_num_sprite_sequences];
         Fread(_sprite_sequences, sizeof(tr2_sprite_sequence_t),
-                _num_sprite_sequences, f);
+              _num_sprite_sequences, f);
     }
     //! \fixme endian
 
@@ -1380,24 +1273,21 @@ int TombRaider::Load(const char *filename)
 
     _cameras = 0x0;
 
-    if (_num_cameras > 0)
-    {
+    if (_num_cameras > 0) {
         _cameras = new tr2_camera_t[_num_cameras];
         Fread(_cameras, sizeof(tr2_camera_t), _num_cameras, f);
         //! \fixme endian
     }
 
-    if (mEngineVersion == TR_VERSION_4)
-    {
+    if (mEngineVersion == TR_VERSION_4) {
         int num_ex_cam;
-        tr4_extra_camera_t *ex_cam;
+        tr4_extra_camera_t* ex_cam;
 
         Fread(&num_ex_cam, 4, 1, f);
 
         printDebug("Load", "num_extra_cam = %i", num_ex_cam);
 
-        if (num_ex_cam > 0)
-        {
+        if (num_ex_cam > 0) {
             ex_cam = new tr4_extra_camera_t[num_ex_cam];
             Fread(ex_cam, sizeof(tr4_extra_camera_t), num_ex_cam, f);
             delete [] ex_cam;
@@ -1411,25 +1301,22 @@ int TombRaider::Load(const char *filename)
 
     _sound_sources = 0x0;
 
-    if (_num_sound_sources > 0)
-    {
+    if (_num_sound_sources > 0) {
         _sound_sources =
-            (tr2_sound_source_t*) new unsigned char[_num_sound_sources*40];
+            (tr2_sound_source_t*) new unsigned char[_num_sound_sources * 40];
 
         Fread(_sound_sources, sizeof(tr2_sound_source_t),
-                _num_sound_sources, f);
+              _num_sound_sources, f);
         //! \fixme endian
     }
 
 #ifdef OBSOLETE
-    if (mEngineVersion == TR_VERSION_4)
-    {
+    if (mEngineVersion == TR_VERSION_4) {
         unsigned int num_ZZ;
         unsigned char  zzbuf[17];
         Fread(&num_ZZ, 1, sizeof(num_ZZ), f);
 
-        while (num_ZZ--)
-        {
+        while (num_ZZ--) {
             Fread(zzbuf, 1, 16, f);
             zzbuf[16] = 0;
             printDebug("Load", "TR4 zz dump '%s'", zzbuf);
@@ -1444,25 +1331,21 @@ int TombRaider::Load(const char *filename)
 
     _boxes = 0x0;
 
-    if (_num_boxes > 0)
-    {
+    if (_num_boxes > 0) {
         _boxes = new tr2_box_t[_num_boxes];
 
-        if (mEngineVersion == TR_VERSION_1)
-        {
-            struct tr1_box
-            {
+        if (mEngineVersion == TR_VERSION_1) {
+            struct tr1_box {
                 int zmin, zmax, xmin, xmax;
                 short true_floor, overlap_index;
-            }  __attribute__ ((packed)) *tr1box;
+            }  __attribute__((packed)) *tr1box;
 
             tr1box = new tr1_box[_num_boxes];
 
             Fread(tr1box, sizeof(struct tr1_box), _num_boxes, f);
             //! \fixme endian
 
-            for (j = 0; j < _num_boxes; ++j)
-            {
+            for (j = 0; j < _num_boxes; ++j) {
                 _boxes[j].zmin = (unsigned char)(tr1box[j].zmin / 1024);
                 _boxes[j].zmax = (unsigned char)(tr1box[j].zmax / 1024);
                 _boxes[j].xmin = (unsigned char)(tr1box[j].xmin / 1024);
@@ -1472,9 +1355,7 @@ int TombRaider::Load(const char *filename)
             }
 
             delete [] tr1box;
-        }
-        else
-        {
+        } else {
             Fread(_boxes, sizeof(tr2_box_t), _num_boxes, f);
         }
         //! \fixme endian
@@ -1487,8 +1368,7 @@ int TombRaider::Load(const char *filename)
 
     _overlaps = 0x0;
 
-    if (_num_overlaps > 0)
-    {
+    if (_num_overlaps > 0) {
         _overlaps = new short[_num_overlaps];
         Fread(_overlaps, 2, _num_overlaps, f);
         //! \fixme endian
@@ -1497,16 +1377,12 @@ int TombRaider::Load(const char *filename)
     _zones = 0x0;
 
     /* Read Zones */
-    if (_num_boxes > 0)
-    {
-        _zones = new short[_num_boxes*10];
+    if (_num_boxes > 0) {
+        _zones = new short[_num_boxes * 10];
 
-        if (mEngineVersion == TR_VERSION_1)
-        {
+        if (mEngineVersion == TR_VERSION_1) {
             Fread(_zones, 12, _num_boxes, f);
-        }
-        else
-        {
+        } else {
             Fread(_zones, 20, _num_boxes, f);
         }
         //! \fixme endian
@@ -1519,18 +1395,15 @@ int TombRaider::Load(const char *filename)
 
     _animated_textures = 0x0;
 
-    if (_num_animated_textures > 0)
-    {
+    if (_num_animated_textures > 0) {
         _animated_textures = new short[_num_animated_textures];
         Fread(_animated_textures, 2, _num_animated_textures, f);
         //! \fixme endian
     }
 
-    if (mEngineVersion >= TR_VERSION_3)
-    {
+    if (mEngineVersion >= TR_VERSION_3) {
         /* Read object textures */
-        if (mEngineVersion == TR_VERSION_4)
-        {
+        if (mEngineVersion == TR_VERSION_4) {
             unsigned char zzbuf[5];
             Fread(zzbuf, 1, 4, f); // skip "TEX"
             //!! this should be 3, but we have a bug...
@@ -1545,32 +1418,28 @@ int TombRaider::Load(const char *filename)
 
         _object_textures = 0x0;
 
-        if (_num_object_textures > 0)
-        {
+        if (_num_object_textures > 0) {
             // Used to be 2 * num, and I forgot why...
             _object_textures = new tr2_object_texture_t[_num_object_textures];
 
             //! \fixme This is fu fu fu fu fu fu
-            if (mEngineVersion == TR_VERSION_4)
-            {
+            if (mEngineVersion == TR_VERSION_4) {
                 int jjj, kkk;
-                tr4_object_texture_t *tr4_tex;
+                tr4_object_texture_t* tr4_tex;
 
 
                 tr4_tex = new tr4_object_texture_t[_num_object_textures];
 
                 Fread(tr4_tex, 38, _num_object_textures, f);
 
-                for (jjj = 0; jjj < (int)_num_object_textures; ++jjj)
-                {
+                for (jjj = 0; jjj < (int)_num_object_textures; ++jjj) {
                     _object_textures[jjj].transparency_flags =
                         tr4_tex[jjj].attribute;
 
                     _object_textures[jjj].tile =
                         (unsigned short)tr4_tex[jjj].tile & 0x7fff;
 
-                    for (kkk = 0; kkk < 4; ++kkk)
-                    {
+                    for (kkk = 0; kkk < 4; ++kkk) {
                         _object_textures[jjj].vertices[kkk].xcoordinate =
                             tr4_tex[jjj].vertices[kkk].xcoordinate;
                         _object_textures[jjj].vertices[kkk].xpixel =
@@ -1583,11 +1452,9 @@ int TombRaider::Load(const char *filename)
                 }
 
                 delete [] tr4_tex;
-            }
-            else
-            {
+            } else {
                 Fread(_object_textures, sizeof(tr2_object_texture_t),
-                        _num_object_textures, f);
+                      _num_object_textures, f);
             }
         }
         //! \fixme endian
@@ -1600,21 +1467,16 @@ int TombRaider::Load(const char *filename)
 
     _items = 0x0;
 
-    if (_num_items > 0)
-    {
+    if (_num_items > 0) {
         _items = new tr2_item_t[_num_items];
 
-        if (mEngineVersion == TR_VERSION_1)
-        {
-            for (i = 0; i < _num_items; ++i)
-            {
+        if (mEngineVersion == TR_VERSION_1) {
+            for (i = 0; i < _num_items; ++i) {
                 Fread(&_items[i], sizeof(tr2_item_t) - 2, 1, f);
                 _items[i].flags = _items[i].intensity2;
                 _items[i].intensity2 = _items[i].intensity1;
             }
-        }
-        else
-        {
+        } else {
             Fread(_items, sizeof(tr2_item_t), _num_items, f);
         }
     }
@@ -1623,26 +1485,22 @@ int TombRaider::Load(const char *filename)
     /* Read LightMaps */
     _light_map = new unsigned char[32 * 256];
 
-    if (mEngineVersion != TR_VERSION_4)
-    {
+    if (mEngineVersion != TR_VERSION_4) {
         Fread(_light_map, 32, 256, f);
     }
 
-    if (mEngineVersion == TR_VERSION_1)
-    {
+    if (mEngineVersion == TR_VERSION_1) {
         /* read the 8-bit palette */
         Fread(_palette8, sizeof(tr2_colour_t), 256, f);
         printDebug("Load", "Read TR 1 palette");
 
         // build 16-bit textiles from 8-bit
         // (no extra colours, but creates consistent .TR2 file)
-        for (i = 0; i < (int)_num_textiles; ++i)
-        {
+        for (i = 0; i < (int)_num_textiles; ++i) {
             unsigned short argb;
             double colour_tmp;
 
-            for (j = 0; j < (256 * 256); ++j)
-            {
+            for (j = 0; j < (256 * 256); ++j) {
                 colour_tmp = _palette8[_textile8[i].tile[j]].r & 0x3f;
                 colour_tmp = colour_tmp * 31.0 / 63.0;
                 argb = (unsigned short)(((int)colour_tmp) << 10);
@@ -1663,26 +1521,22 @@ int TombRaider::Load(const char *filename)
     }
 
     /* Read cinematic frames */
-    if (mEngineVersion == TR_VERSION_4)
-    {
+    if (mEngineVersion == TR_VERSION_4) {
         unsigned int num_ai_data;
 
 
         Fread(&num_ai_data, 4, 1, f);
         printDebug("Load", "num_ai_data = %i", num_ai_data);
 
-        tr4_ai_object_t *ai_obj = 0x0;
+        tr4_ai_object_t* ai_obj = 0x0;
 
-        if (num_ai_data > 0)
-        {
+        if (num_ai_data > 0) {
             ai_obj = new tr4_ai_object_t[num_ai_data];
             Fread(ai_obj, sizeof(tr4_ai_object_t), num_ai_data, f);
 
             delete [] ai_obj;
         }
-    }
-    else
-    {
+    } else {
         unsigned short num_cinematic_frames;
 
         Fread(&num_cinematic_frames, sizeof(num_cinematic_frames), 1, f);
@@ -1694,12 +1548,11 @@ int TombRaider::Load(const char *filename)
 
         _cinematic_frames = 0x0;
 
-        if (_num_cinematic_frames > 0)
-        {
+        if (_num_cinematic_frames > 0) {
             _cinematic_frames = new tr2_cinematic_frame_t[_num_cinematic_frames];
 
             Fread(_cinematic_frames, sizeof(tr2_cinematic_frame_t),
-                    _num_cinematic_frames, f);
+                  _num_cinematic_frames, f);
             // There may or may not be endian conversion required here - I have
             // no idea what this data is.
         }
@@ -1712,8 +1565,7 @@ int TombRaider::Load(const char *filename)
 
     _demo_data = 0x0;
 
-    if (_num_demo_data > 0)
-    {
+    if (_num_demo_data > 0) {
         _demo_data = new unsigned char[_num_demo_data];
         Fread(_demo_data, 1, _num_demo_data, f);
         // There may or may not be endian conversion required here - I have
@@ -1723,13 +1575,10 @@ int TombRaider::Load(const char *filename)
     /* Read SoundMap */
     mSoundMap = new short[370];
 
-    if (mEngineVersion == TR_VERSION_1)
-    {
+    if (mEngineVersion == TR_VERSION_1) {
         Fread(mSoundMap, sizeof(short), 256, f);
         //memset(_sound_map, 0, 370 * sizeof(short));   //! \fixme KLUDGE!!!
-    }
-    else
-    {
+    } else {
         Fread(mSoundMap, sizeof(short), 370, f);
     }
     //! \fixme endian
@@ -1741,8 +1590,7 @@ int TombRaider::Load(const char *filename)
 
     mSoundDetails = 0x0;
 
-    if (mNumSoundDetails > 0)
-    {
+    if (mNumSoundDetails > 0) {
         mSoundDetails = new tr2_sound_details_t[mNumSoundDetails];
         Fread(mSoundDetails, sizeof(tr2_sound_details_t), mNumSoundDetails, f);
     }
@@ -1756,14 +1604,12 @@ int TombRaider::Load(const char *filename)
     mNumTR4Samples = 0;
     mTR4Samples = 0x0;
 
-    switch (mEngineVersion)
-    {
+    switch (mEngineVersion) {
         case TR_VERSION_1:
             Fread(&mRiffDataSz, 4, 1, f);
             printDebug("Load", "mRiffDataSz = %ibytes", mRiffDataSz);
 
-            if (mRiffDataSz > 0)
-            {
+            if (mRiffDataSz > 0) {
                 mRiffData = new unsigned char[mRiffDataSz];
                 Fread(mRiffData, 1, mRiffDataSz, f);
             }
@@ -1771,8 +1617,7 @@ int TombRaider::Load(const char *filename)
             Fread(&mNumSampleIndices, 4, 1, f);
             printDebug("Load", "mNumSampleIndices = %i", mNumSampleIndices);
 
-            if (mNumSampleIndices > 0)
-            {
+            if (mNumSampleIndices > 0) {
                 mSampleIndices = new int[mNumSampleIndices];
                 //! \fixme (Endian)
                 Fread(mSampleIndices, 4, mNumSampleIndices, f);
@@ -1787,17 +1632,16 @@ int TombRaider::Load(const char *filename)
             printDebug("Load", "mNumTR4Samples = %i", mNumTR4Samples);
 
             mRiffDataSz = 0;
-            mTR4Samples = new unsigned char *[mNumTR4Samples];
+            mTR4Samples = new unsigned char* [mNumTR4Samples];
             mTR4SamplesSz = new unsigned int[mNumTR4Samples];
 
-            memset(mTR4SamplesSz, 0, mNumTR4Samples*4);
+            memset(mTR4SamplesSz, 0, mNumTR4Samples * 4);
 
-            for (i = 0; i < (int)mNumTR4Samples; ++i)
-            {
+            for (i = 0; i < (int)mNumTR4Samples; ++i) {
                 unsigned int sizeCompressed;
                 unsigned int sizeUncompressed;
-                unsigned char *compressedSoundSample;
-                unsigned char *unCompressedSoundSample;
+                unsigned char* compressedSoundSample;
+                unsigned char* unCompressedSoundSample;
                 int zErr;
                 uLongf libzUncompressedSize;
 
@@ -1814,10 +1658,10 @@ int TombRaider::Load(const char *filename)
                 Fread(compressedSoundSample, sizeCompressed, 1, f);
 
                 printDebug("Load", " %c%c%c%c should be RIFF",
-                        compressedSoundSample[0],
-                        compressedSoundSample[1],
-                        compressedSoundSample[2],
-                        compressedSoundSample[3]);
+                           compressedSoundSample[0],
+                           compressedSoundSample[1],
+                           compressedSoundSample[2],
+                           compressedSoundSample[3]);
 
                 //#define NEVER_DECOMPRESS
 #ifdef NEVER_DECOMPRESS
@@ -1830,14 +1674,13 @@ int TombRaider::Load(const char *filename)
                 libzUncompressedSize = sizeUncompressed;
 
                 zErr = uncompress(unCompressedSoundSample,
-                        &libzUncompressedSize,
-                        compressedSoundSample,
-                        sizeCompressed);
+                                  &libzUncompressedSize,
+                                  compressedSoundSample,
+                                  sizeCompressed);
 
                 sizeUncompressed = libzUncompressedSize;
 
-                switch (zErr)
-                {
+                switch (zErr) {
                     case Z_MEM_ERROR:
                         printDebug("Load", "   Decompress Error: not enough memory");
                         break;
@@ -1855,14 +1698,11 @@ int TombRaider::Load(const char *filename)
                 }
 
                 // Hhhmm... handle uncompressed RIFFs too?
-                if (zErr == Z_OK)
-                {
+                if (zErr == Z_OK) {
                     mTR4Samples[i] = unCompressedSoundSample;
                     mTR4SamplesSz[i] = sizeUncompressed;
                     delete [] compressedSoundSample;
-                }
-                else
-                {
+                } else {
                     printDebug("Load", "   %lubytes read from file", ftell(f));
                     mTR4Samples[i] = compressedSoundSample;
                     mTR4SamplesSz[i] = sizeCompressed;
@@ -1878,8 +1718,7 @@ int TombRaider::Load(const char *filename)
             //! \fixme (Endian) Read bit32 / int32_t
             Fread(&mNumSampleIndices, 4, 1, f);
             printDebug("Load", "mNumSampleIndices = %i", mNumSampleIndices);
-            if (mNumSampleIndices > 0)
-            {
+            if (mNumSampleIndices > 0) {
                 mSampleIndices = new int[mNumSampleIndices];
                 //! \fixme (Endian)
                 Fread(mSampleIndices, 4, mNumSampleIndices, f);
@@ -1887,8 +1726,7 @@ int TombRaider::Load(const char *filename)
             break;
     }
 
-    if (mCompressedLevelData)
-    {
+    if (mCompressedLevelData) {
         printDebug("Load", "Freeing uncompressed TR4 data");
         delete [] mCompressedLevelData;
     }
@@ -1906,8 +1744,7 @@ int TombRaider::Load(const char *filename)
 // Public Accessors
 ////////////////////////////////////////////////////////////
 
-float TombRaider::adjustTexel(unsigned char texel, char offset)
-{
+float TombRaider::adjustTexel(unsigned char texel, char offset) {
     if (offset >= 0)
         texel++;
     else
@@ -1917,19 +1754,17 @@ float TombRaider::adjustTexel(unsigned char texel, char offset)
 }
 
 
-void TombRaider::computeRotationAngles(unsigned short **frame,
-        unsigned int *frame_offset,
-        unsigned int *angle_offset,
-        float *x, float *y, float *z)
-{
+void TombRaider::computeRotationAngles(unsigned short** frame,
+                                       unsigned int* frame_offset,
+                                       unsigned int* angle_offset,
+                                       float* x, float* y, float* z) {
     unsigned short itmp, itmp2;
     float angle;
 
 
     itmp = (*frame)[(*frame_offset) + (*angle_offset)++];
 
-    if (Engine() == TR_VERSION_1)
-    {
+    if (Engine() == TR_VERSION_1) {
         // All angles are three-axis
         angle = (itmp >> 4) & 0x03ff;
         angle *= 360.0 / 1024.0;
@@ -1949,25 +1784,19 @@ void TombRaider::computeRotationAngles(unsigned short **frame,
         angle = itmp & 0x3ff;
         angle *= 360.0 / 1024.0;
         *z = angle;
-    }
-    else if (itmp & 0xc000)
-    {
+    } else if (itmp & 0xc000) {
         // TR2, TR3, TR4 - single axis of rotation
-        if (Engine() == TR_VERSION_4)
-        {
+        if (Engine() == TR_VERSION_4) {
             angle = itmp & 0x0fff;
             angle /= 4096.0;
             angle *= 360.0;
-        }
-        else
-        {
+        } else {
             angle = itmp & 0x3ff;
             angle /= 1024.0;
             angle *= 360.0;
         }
 
-        switch (itmp & 0xc000)
-        {
+        switch (itmp & 0xc000) {
             case 0x4000:
                 *x = angle;
                 break;
@@ -1978,9 +1807,7 @@ void TombRaider::computeRotationAngles(unsigned short **frame,
                 *z = angle;
                 break;
         }
-    }
-    else    // TR2, TR3, TR4 - three axes
-    {
+    } else { // TR2, TR3, TR4 - three axes
         angle = (itmp >> 4) & 0x03ff;
         angle *= 360.0 / 1024.0;
         *x = angle;
@@ -2000,8 +1827,7 @@ void TombRaider::computeRotationAngles(unsigned short **frame,
 }
 
 
-void TombRaider::computeUV(tr2_object_texture_vert_t *st, float *u, float *v)
-{
+void TombRaider::computeUV(tr2_object_texture_vert_t* st, float* u, float* v) {
     unsigned char x, y;
 
 
@@ -2022,16 +1848,13 @@ void TombRaider::computeUV(tr2_object_texture_vert_t *st, float *u, float *v)
 }
 
 
-int TombRaider::getBumpMapCount()
-{
+int TombRaider::getBumpMapCount() {
     return _num_bump_map_textures / 2;
 }
 
 
-void TombRaider::getColor(int index, float color[4])
-{
-    switch (getEngine())
-    {
+void TombRaider::getColor(int index, float color[4]) {
+    switch (getEngine()) {
         case TR_VERSION_1:
             color[0] = _palette8[index].r / 64.0f;
             color[1] = _palette8[index].g / 64.0f;
@@ -2055,17 +1878,14 @@ void TombRaider::getColor(int index, float color[4])
 }
 
 
-tr2_version_type TombRaider::getEngine()
-{
+tr2_version_type TombRaider::getEngine() {
     return mEngineVersion;
 }
 
 
 void TombRaider::getMeshCollisionInfo(unsigned int meshIndex,
-        float center[3], float *radius)
-{
-    if ((int)meshIndex > mMeshCount)
-    {
+                                      float center[3], float* radius) {
+    if ((int)meshIndex > mMeshCount) {
         print("getMeshCollisionInfo", "Assertion error: invalid mesh index\n");
         return;
     }
@@ -2077,8 +1897,7 @@ void TombRaider::getMeshCollisionInfo(unsigned int meshIndex,
 }
 
 
-int TombRaider::getMeshCount()
-{
+int TombRaider::getMeshCount() {
     return mMeshCount;
 }
 
@@ -2090,13 +1909,11 @@ int TombRaider::getMeshCount()
  */
 void TombRaider::getMeshColoredRectangle(unsigned int meshIndex,
         unsigned int faceIndex,
-        int *index, float *color)
-{
+        int* index, float* color) {
     unsigned int t1_1, t1_2, t1_3, t2_1, t2_2, t2_3;
 
 
-    if ((int)meshIndex > mMeshCount)
-    {
+    if ((int)meshIndex > mMeshCount) {
         print("getMeshColoredRectangle", "Assertion error: invalid mesh index\n");
         return;
     }
@@ -2117,8 +1934,7 @@ void TombRaider::getMeshColoredRectangle(unsigned int meshIndex,
     index[4] = mMeshes[meshIndex].coloured_rectangles[faceIndex].vertices[t2_2];
     index[5] = mMeshes[meshIndex].coloured_rectangles[faceIndex].vertices[t2_3];
 
-    switch (Engine())
-    {
+    switch (Engine()) {
         case TR_VERSION_1:
             getColor(mMeshes[meshIndex].coloured_rectangles[faceIndex].texture & 0xff, color);
             break;
@@ -2127,18 +1943,16 @@ void TombRaider::getMeshColoredRectangle(unsigned int meshIndex,
         case TR_VERSION_4:
         case TR_VERSION_5:
         case TR_VERSION_UNKNOWN:
-            getColor((mMeshes[meshIndex].coloured_rectangles[faceIndex].texture>>8) & 0xff, color);
+            getColor((mMeshes[meshIndex].coloured_rectangles[faceIndex].texture >> 8) & 0xff, color);
             break;
     }
 }
 
 
 void TombRaider::getMeshColoredTriangle(unsigned int meshIndex,
-        unsigned int faceIndex,
-        int *index, float *color)
-{
-    if ((int)meshIndex > mMeshCount)
-    {
+                                        unsigned int faceIndex,
+                                        int* index, float* color) {
+    if ((int)meshIndex > mMeshCount) {
         print("getMeshColoredTriangle", "Assertion error: invalid mesh index\n");
         return;
     }
@@ -2147,19 +1961,18 @@ void TombRaider::getMeshColoredTriangle(unsigned int meshIndex,
     index[1] = mMeshes[meshIndex].coloured_triangles[faceIndex].vertices[1];
     index[2] = mMeshes[meshIndex].coloured_triangles[faceIndex].vertices[2];
 
-    switch (Engine())
-    {
+    switch (Engine()) {
         case TR_VERSION_1:
             getColor(mMeshes[meshIndex].coloured_triangles[faceIndex].texture & 0xff,
-                    color);
+                     color);
             break;
         case TR_VERSION_2:
         case TR_VERSION_3:
         case TR_VERSION_4:
         case TR_VERSION_5:
         case TR_VERSION_UNKNOWN:
-            getColor((mMeshes[meshIndex].coloured_triangles[faceIndex].texture>>8) & 0xff,
-                    color);
+            getColor((mMeshes[meshIndex].coloured_triangles[faceIndex].texture >> 8) & 0xff,
+                     color);
             break;
     }
 }
@@ -2167,19 +1980,17 @@ void TombRaider::getMeshColoredTriangle(unsigned int meshIndex,
 
 void TombRaider::getMeshTexturedRectangle(unsigned int meshIndex,
         unsigned int faceIndex,
-        int *index, float *st, int *texture,
-        unsigned short *transparency)
-{
+        int* index, float* st, int* texture,
+        unsigned short* transparency) {
     unsigned int t1_1, t1_2, t1_3, t2_1, t2_2, t2_3;
     static bool givenWarning = false; // hahaha... okay less spewing
-    tr2_mesh_t *meshes;
-    tr2_object_texture_t *object_texture;
+    tr2_mesh_t* meshes;
+    tr2_object_texture_t* object_texture;
     int t_index;
     unsigned int i, m;
 
 
-    if ((int)meshIndex > mMeshCount)
-    {
+    if ((int)meshIndex > mMeshCount) {
         print("getMeshTexturedRectangle", "Assertion error: invalid mesh index\n");
         return;
     }
@@ -2207,44 +2018,41 @@ void TombRaider::getMeshTexturedRectangle(unsigned int meshIndex,
     index[4] = meshes[m].textured_rectangles[i].vertices[t2_2];
     index[5] = meshes[m].textured_rectangles[i].vertices[t2_3];
 
-    computeUV(object_texture[t_index].vertices+t1_1, (st),   (st)+1);
-    computeUV(object_texture[t_index].vertices+t1_2, (st)+2, (st)+3);
-    computeUV(object_texture[t_index].vertices+t1_3, (st)+4, (st)+5);
-    computeUV(object_texture[t_index].vertices+t2_1, (st)+6, (st)+7);
-    computeUV(object_texture[t_index].vertices+t2_2, (st)+8, (st)+9);
-    computeUV(object_texture[t_index].vertices+t2_3, (st)+10, (st)+11);
+    computeUV(object_texture[t_index].vertices + t1_1, (st), (st) + 1);
+    computeUV(object_texture[t_index].vertices + t1_2, (st) + 2, (st) + 3);
+    computeUV(object_texture[t_index].vertices + t1_3, (st) + 4, (st) + 5);
+    computeUV(object_texture[t_index].vertices + t2_1, (st) + 6, (st) + 7);
+    computeUV(object_texture[t_index].vertices + t2_2, (st) + 8, (st) + 9);
+    computeUV(object_texture[t_index].vertices + t2_3, (st) + 10, (st) + 11);
 
     *texture = object_texture[t_index].tile;
     *transparency = object_texture[t_index].transparency_flags;
 
     // TR3+ alpha Textured polygons
-    if (!givenWarning && *transparency == 2)
-    {
+    if (!givenWarning && *transparency == 2) {
         givenWarning = true;
 
         //! \fixme Use Material class to handle greyscale alpha intensity
         //        (partial alpha)
         print("getMeshTexturedRectangle",
-                "TR3+ greyscale alpha intensity not implmented, %s:%i",
-                __FILE__, __LINE__);
+              "TR3+ greyscale alpha intensity not implmented, %s:%i",
+              __FILE__, __LINE__);
     }
 }
 
 
 void TombRaider::getMeshTexturedTriangle(unsigned int meshIndex,
         unsigned int faceIndex,
-        int *index, float *st, int *texture,
-        unsigned short *transparency)
-{
+        int* index, float* st, int* texture,
+        unsigned short* transparency) {
     static bool givenWarning = false; // hahaha... okay less spewing
-    tr2_mesh_t *meshes;
-    tr2_object_texture_t *object_texture;
+    tr2_mesh_t* meshes;
+    tr2_object_texture_t* object_texture;
     int t_index;
     unsigned int i;
 
 
-    if ((int)meshIndex > mMeshCount)
-    {
+    if ((int)meshIndex > mMeshCount) {
         print("getMeshTexturedTriangle", "Assertion error: invalid mesh index\n");
         return;
     }
@@ -2259,31 +2067,28 @@ void TombRaider::getMeshTexturedTriangle(unsigned int meshIndex,
     index[1] = meshes[meshIndex].textured_triangles[i].vertices[1];
     index[2] = meshes[meshIndex].textured_triangles[i].vertices[2];
 
-    computeUV(object_texture[t_index].vertices,   (st),   (st)+1);
-    computeUV(object_texture[t_index].vertices+1, (st)+2, (st)+3);
-    computeUV(object_texture[t_index].vertices+2, (st)+4, (st)+5);
+    computeUV(object_texture[t_index].vertices, (st), (st) + 1);
+    computeUV(object_texture[t_index].vertices + 1, (st) + 2, (st) + 3);
+    computeUV(object_texture[t_index].vertices + 2, (st) + 4, (st) + 5);
 
     *texture = object_texture[t_index].tile;
     *transparency = object_texture[t_index].transparency_flags;
 
     // TR3+ alpha Textured polygons
-    if (!givenWarning && *transparency == 2)
-    {
+    if (!givenWarning && *transparency == 2) {
         givenWarning = true;
 
         //! \fixme Use Material class to handle greyscale alpha intensity
         //        (partial alpha)
         print("getMeshTexturedTriangle",
-                "TR3+ greyscale alpha intensity not implmented, %s:%i",
-                __FILE__, __LINE__);
+              "TR3+ greyscale alpha intensity not implmented, %s:%i",
+              __FILE__, __LINE__);
     }
 }
 
 
-int TombRaider::getMeshTexturedTriangleCount(unsigned int meshIndex)
-{
-    if ((int)meshIndex > mMeshCount)
-    {
+int TombRaider::getMeshTexturedTriangleCount(unsigned int meshIndex) {
+    if ((int)meshIndex > mMeshCount) {
         print("getMeshTexturedTriangleCount", "Assertion error: invalid mesh index\n");
         return 0;
     }
@@ -2293,10 +2098,8 @@ int TombRaider::getMeshTexturedTriangleCount(unsigned int meshIndex)
 }
 
 
-int TombRaider::getMeshColoredTriangleCount(unsigned int meshIndex)
-{
-    if ((int)meshIndex > mMeshCount)
-    {
+int TombRaider::getMeshColoredTriangleCount(unsigned int meshIndex) {
+    if ((int)meshIndex > mMeshCount) {
         print("getMeshColoredTriangleCount", "Assertion error: invalid mesh index\n");
         return 0;
     }
@@ -2306,10 +2109,8 @@ int TombRaider::getMeshColoredTriangleCount(unsigned int meshIndex)
 }
 
 
-int TombRaider::getMeshTexturedRectangleCount(unsigned int meshIndex)
-{
-    if ((int)meshIndex > mMeshCount)
-    {
+int TombRaider::getMeshTexturedRectangleCount(unsigned int meshIndex) {
+    if ((int)meshIndex > mMeshCount) {
         print("getMeshTexturedRectangleCount", "Assertion error: invalid mesh index\n");
         return 0;
     }
@@ -2319,25 +2120,22 @@ int TombRaider::getMeshTexturedRectangleCount(unsigned int meshIndex)
 }
 
 
-int TombRaider::getMeshColoredRectangleCount(unsigned int meshIndex)
-{
-    if ((int)meshIndex > mMeshCount)
-    {
+int TombRaider::getMeshColoredRectangleCount(unsigned int meshIndex) {
+    if ((int)meshIndex > mMeshCount) {
         print("getMeshColoredRectangleCount", "Assertion error: invalid mesh index\n");
         return 0;
     }
 
-    return ((mMeshes[meshIndex].num_coloured_rectangles <= 0) ? 0:
+    return ((mMeshes[meshIndex].num_coloured_rectangles <= 0) ? 0 :
             mMeshes[meshIndex].num_coloured_rectangles);
 }
 
 
 //! \fixme Perhaps making color an 8bit intensity would be a better idea
 void TombRaider::getMeshVertexArrays(unsigned int meshIndex,
-        unsigned int *vertexCount, float **verts,
-        unsigned int *normalCount, float **norms,
-        unsigned int *colorCount, float **colors)
-{
+                                     unsigned int* vertexCount, float** verts,
+                                     unsigned int* normalCount, float** norms,
+                                     unsigned int* colorCount, float** colors) {
     unsigned int i;
     float colorValue;
 
@@ -2356,33 +2154,29 @@ void TombRaider::getMeshVertexArrays(unsigned int meshIndex,
     *vertexCount = mMeshes[meshIndex].num_vertices;
     *verts = new float[*vertexCount * 3];
 
-    for (i = 0; i < *vertexCount; ++i)
-    {
-        (*verts)[i*3]   = mMeshes[meshIndex].vertices[i].x;
-        (*verts)[i*3+1] = mMeshes[meshIndex].vertices[i].y;
-        (*verts)[i*3+2] = mMeshes[meshIndex].vertices[i].z;
+    for (i = 0; i < *vertexCount; ++i) {
+        (*verts)[i * 3]   = mMeshes[meshIndex].vertices[i].x;
+        (*verts)[i * 3 + 1] = mMeshes[meshIndex].vertices[i].y;
+        (*verts)[i * 3 + 2] = mMeshes[meshIndex].vertices[i].z;
     }
 
 
     // Normals, if any
     if (mMeshes[meshIndex].num_normals > 0 &&
-            mMeshes[meshIndex].normals &&
-            mMeshes[meshIndex].num_normals == mMeshes[meshIndex].num_vertices)
-    {
+        mMeshes[meshIndex].normals &&
+        mMeshes[meshIndex].num_normals == mMeshes[meshIndex].num_vertices) {
         *normalCount = mMeshes[meshIndex].num_vertices;
         *norms = new float[*normalCount * 3];
 
-        for (i = 0; i < *normalCount; ++i)
-        {
-            (*norms)[i*3]   = mMeshes[meshIndex].normals[i].x;
-            (*norms)[i*3+1] = mMeshes[meshIndex].normals[i].y;
-            (*norms)[i*3+2] = mMeshes[meshIndex].normals[i].z;
+        for (i = 0; i < *normalCount; ++i) {
+            (*norms)[i * 3]   = mMeshes[meshIndex].normals[i].x;
+            (*norms)[i * 3 + 1] = mMeshes[meshIndex].normals[i].y;
+            (*norms)[i * 3 + 2] = mMeshes[meshIndex].normals[i].z;
         }
     }
     // Vertex lighting/colors, if any
     else if (mMeshes[meshIndex].num_vertices > 0 &&
-            mMeshes[meshIndex].mesh_lights)
-    {
+             mMeshes[meshIndex].mesh_lights) {
         *colorCount = mMeshes[meshIndex].num_vertices;
 
 #ifdef MESH_COLORS_SHOULD_BR_RGBA
@@ -2391,12 +2185,10 @@ void TombRaider::getMeshVertexArrays(unsigned int meshIndex,
         *colors = new float[*colorCount];
 #endif
 
-        for (i = 0; i < *colorCount; ++i)
-        {
+        for (i = 0; i < *colorCount; ++i) {
             colorValue = mMeshes[meshIndex].mesh_lights[i];
 
-            switch (Engine())
-            {
+            switch (Engine()) {
                 case TR_VERSION_4:
                 case TR_VERSION_3:
                     colorValue /= 16384.0;
@@ -2412,10 +2204,10 @@ void TombRaider::getMeshVertexArrays(unsigned int meshIndex,
             }
 
 #ifdef MESH_COLORS_SHOULD_BR_RGBA
-            (*colors)[i*4+0] = colorValue;
-            (*colors)[i*4+1] = colorValue;
-            (*colors)[i*4+2] = colorValue;
-            (*colors)[i*4+3] = 1.0;
+            (*colors)[i * 4 + 0] = colorValue;
+            (*colors)[i * 4 + 1] = colorValue;
+            (*colors)[i * 4 + 2] = colorValue;
+            (*colors)[i * 4 + 3] = 1.0;
 #else
             (*colors)[i] = colorValue;
 #endif
@@ -2425,15 +2217,13 @@ void TombRaider::getMeshVertexArrays(unsigned int meshIndex,
 
 
 int TombRaider::getRoomBox(unsigned int roomIndex, unsigned int index,
-        float *xyzA, float *xyzB,
-        float *xyzC, float *xyzD)
-{
+                           float* xyzA, float* xyzB,
+                           float* xyzC, float* xyzD) {
 
     if (!getRoomBoxCount(roomIndex) || index > getRoomBoxCount(roomIndex))
         return -1;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
 
@@ -2463,13 +2253,11 @@ int TombRaider::getRoomBox(unsigned int roomIndex, unsigned int index,
 }
 
 
-unsigned int TombRaider::getRoomBoxCount(unsigned int roomIndex)
-{
+unsigned int TombRaider::getRoomBoxCount(unsigned int roomIndex) {
     if (!isRoomValid(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_1:
@@ -2485,9 +2273,8 @@ unsigned int TombRaider::getRoomBoxCount(unsigned int roomIndex)
 
 
 void TombRaider::getRoomInfo(unsigned int index,
-        unsigned int *flags, float pos[3],
-        float bboxMin[3], float bboxMax[3])
-{
+                             unsigned int* flags, float pos[3],
+                             float bboxMin[3], float bboxMax[3]) {
     unsigned int i, n;
     float f;
 
@@ -2495,8 +2282,7 @@ void TombRaider::getRoomInfo(unsigned int index,
     if (!isRoomValid(index))
         return;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
@@ -2517,12 +2303,10 @@ void TombRaider::getRoomInfo(unsigned int index,
             bboxMax[2] = 0.0;
 
             // Bounding Box setup
-            for (i = 0; i < mRoomsTR5[index].numLayers; ++i)
-            {
+            for (i = 0; i < mRoomsTR5[index].numLayers; ++i) {
                 //! \fixme check the boxes are in min, max order in TRC
 
-                if (i == 0)
-                {
+                if (i == 0) {
                     bboxMin[0] = mRoomsTR5[index].layers[i].layerBoundingBoxX1;
                     bboxMin[1] = mRoomsTR5[index].layers[i].layerBoundingBoxY1;
                     bboxMin[2] = mRoomsTR5[index].layers[i].layerBoundingBoxZ1;
@@ -2575,12 +2359,10 @@ void TombRaider::getRoomInfo(unsigned int index,
 
             // Bounding Box setup
             n = ((_rooms[index].room_data.num_vertices < 0) ? 0 :
-                    _rooms[index].room_data.num_vertices);
+                 _rooms[index].room_data.num_vertices);
 
-            for (i = 0; i < n; ++i)
-            {
-                if (i == 0)
-                {
+            for (i = 0; i < n; ++i) {
+                if (i == 0) {
                     bboxMin[0] = _rooms[index].room_data.vertices[i].vertex.x;
                     bboxMin[1] = _rooms[index].room_data.vertices[i].vertex.y;
                     bboxMin[2] = _rooms[index].room_data.vertices[i].vertex.z;
@@ -2620,35 +2402,29 @@ void TombRaider::getRoomInfo(unsigned int index,
 
 
 int TombRaider::getRoomLight(unsigned int roomIndex, unsigned int index,
-        float pos[4], float color[4], float dir[3],
-        float *attenuation, float *cutoffAngle,
-        unsigned int *type, unsigned int *flags)
-{
+                             float pos[4], float color[4], float dir[3],
+                             float* attenuation, float* cutoffAngle,
+                             unsigned int* type, unsigned int* flags) {
     const float dd = 10000.0; // 4095.0;
     float f;
 
 
     *flags = 0; // reset
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             return -1;
         case TR_VERSION_1:
         case TR_VERSION_2:
         case TR_VERSION_3:
             if (_rooms[roomIndex].num_lights <= 0 ||
-                    (int)index > _rooms[roomIndex].num_lights)
-            {
+                (int)index > _rooms[roomIndex].num_lights) {
                 return -1;
             }
 
-            if (_rooms[roomIndex].lights[index].fade1 == 100730731)
-            {
+            if (_rooms[roomIndex].lights[index].fade1 == 100730731) {
                 f = 1.0;
-            }
-            else
-            {
+            } else {
                 f = _rooms[roomIndex].lights[index].fade1;
                 f /= dd;
             }
@@ -2666,8 +2442,7 @@ int TombRaider::getRoomLight(unsigned int roomIndex, unsigned int index,
             color[2] = color[0];
             color[3] = 1.0f;
 
-            if (Engine() == TR_VERSION_3)
-            {
+            if (Engine() == TR_VERSION_3) {
                 color[0] = _rooms[roomIndex].room_light_colour.r;
                 color[1] = _rooms[roomIndex].room_light_colour.g;
                 color[2] = _rooms[roomIndex].room_light_colour.b;
@@ -2677,8 +2452,7 @@ int TombRaider::getRoomLight(unsigned int roomIndex, unsigned int index,
             break;
         case TR_VERSION_4:
             if (_rooms[roomIndex].num_lights <= 0 ||
-                    (int)index > _rooms[roomIndex].num_lights)
-            {
+                (int)index > _rooms[roomIndex].num_lights) {
                 return -1;
             }
 
@@ -2698,8 +2472,7 @@ int TombRaider::getRoomLight(unsigned int roomIndex, unsigned int index,
             *cutoffAngle = _rooms[roomIndex].tr4Lights[index].cutoff;
             *flags |= tombraiderLight_useCutoff;
 
-            switch (_rooms[roomIndex].tr4Lights[index].lightType)
-            {
+            switch (_rooms[roomIndex].tr4Lights[index].lightType) {
                 case 1:
                     *type = tombraiderLight_typeDirectional;
                     break;
@@ -2712,8 +2485,7 @@ int TombRaider::getRoomLight(unsigned int roomIndex, unsigned int index,
             break;
         case TR_VERSION_5:
             if (mRoomsTR5[roomIndex].numRoomLights <= 0 ||
-                    (int)index > mRoomsTR5[roomIndex].numRoomLights)
-            {
+                (int)index > mRoomsTR5[roomIndex].numRoomLights) {
                 return -1;
             }
 
@@ -2730,8 +2502,7 @@ int TombRaider::getRoomLight(unsigned int roomIndex, unsigned int index,
             dir[1] = mRoomsTR5[roomIndex].lights[index].directionVectorY;
             dir[2] = mRoomsTR5[roomIndex].lights[index].directionVectorZ;
 
-            switch (mRoomsTR5[roomIndex].lights[index].lightType)
-            {
+            switch (mRoomsTR5[roomIndex].lights[index].lightType) {
                 case 2:
                     *type = tombraiderLight_typeSpot;
                     break;
@@ -2748,13 +2519,11 @@ int TombRaider::getRoomLight(unsigned int roomIndex, unsigned int index,
 }
 
 
-unsigned int TombRaider::getRoomLightCount(unsigned int roomIndex)
-{
+unsigned int TombRaider::getRoomLightCount(unsigned int roomIndex) {
     if (!isRoomValid(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
@@ -2771,26 +2540,22 @@ unsigned int TombRaider::getRoomLightCount(unsigned int roomIndex)
 
 
 int TombRaider::getRoomModel(unsigned int roomIndex, unsigned int index,
-        int *modelIndex, float pos[3], float *yaw)
-{
+                             int* modelIndex, float pos[3], float* yaw) {
     unsigned int i, count;
 
 
     if (!getRoomModelCount(roomIndex) || index > getRoomModelCount(roomIndex))
         return -1;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             return -1;
         case TR_VERSION_5:
             count = NumStaticMeshes();
 
-            for (i = 0; i < count; ++i)
-            {
+            for (i = 0; i < count; ++i) {
                 if (mRoomsTR5[roomIndex].meshes[index].object_id ==
-                        _static_meshes[i].object_id)
-                {
+                    _static_meshes[i].object_id) {
                     *modelIndex = _static_meshes[i].starting_mesh;
 
                     pos[0] = mRoomsTR5[roomIndex].meshes[index].x;
@@ -2808,11 +2573,9 @@ int TombRaider::getRoomModel(unsigned int roomIndex, unsigned int index,
         case TR_VERSION_4:
             count = NumStaticMeshes();
 
-            for (i = 0; i < count; ++i)
-            {
+            for (i = 0; i < count; ++i) {
                 if (_rooms[roomIndex].static_meshes[index].object_id ==
-                        _static_meshes[i].object_id)
-                {
+                    _static_meshes[i].object_id) {
                     *modelIndex = _static_meshes[i].starting_mesh;
 
                     pos[0] = _rooms[roomIndex].static_meshes[index].x;
@@ -2829,13 +2592,11 @@ int TombRaider::getRoomModel(unsigned int roomIndex, unsigned int index,
 }
 
 
-unsigned int TombRaider::getRoomModelCount(unsigned int roomIndex)
-{
+unsigned int TombRaider::getRoomModelCount(unsigned int roomIndex) {
     if (!isRoomValid(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
@@ -2852,14 +2613,12 @@ unsigned int TombRaider::getRoomModelCount(unsigned int roomIndex)
 
 
 int TombRaider::getRoomPortal(unsigned int roomIndex, unsigned int index,
-        int *adjoiningRoom,
-        float normal[3], float vertices[12])
-{
+                              int* adjoiningRoom,
+                              float normal[3], float vertices[12]) {
     if (!getRoomPortalCount(roomIndex) || index > getRoomPortalCount(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
@@ -2910,13 +2669,11 @@ int TombRaider::getRoomPortal(unsigned int roomIndex, unsigned int index,
 }
 
 
-unsigned int TombRaider::getRoomPortalCount(unsigned int roomIndex)
-{
+unsigned int TombRaider::getRoomPortalCount(unsigned int roomIndex) {
     if (!isRoomValid(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
@@ -2934,31 +2691,26 @@ unsigned int TombRaider::getRoomPortalCount(unsigned int roomIndex)
 
 //! \fixme No TRC support
 void TombRaider::getRoomRectangle(unsigned int roomIndex,
-        unsigned int rectangleIndex,
-        unsigned int *indices, float *texCoords,
-        int *texture, unsigned int *flags)
-{
+                                  unsigned int rectangleIndex,
+                                  unsigned int* indices, float* texCoords,
+                                  int* texture, unsigned int* flags) {
     int tIndex;
     unsigned int count, i, j, k;
 
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
-            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
-            {
+            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i) {
                 if (count + mRoomsTR5[roomIndex].layers[i].numLayerRectangles >
-                        rectangleIndex)
-                {
+                    rectangleIndex) {
                     k = rectangleIndex - count;
 
                     *texture = *flags = 0; // FIXME
 
                     // Setup per vertex
-                    for (j = 0; j < 3; ++j)
-                    {
+                    for (j = 0; j < 3; ++j) {
                         // Get vertex index { (0, a), (1, b), (2, c), (3, d) }
                         indices[j] = mRoomsTR5[roomIndex].faces[i].quads[k].vertices[j];
 
@@ -2981,8 +2733,7 @@ void TombRaider::getRoomRectangle(unsigned int roomIndex,
             *texture = _object_textures[tIndex].tile;
             *flags = 0;
 
-            switch (_object_textures[tIndex].transparency_flags)
-            {
+            switch (_object_textures[tIndex].transparency_flags) {
                 case 0:
                     break;
                 case 2:
@@ -2994,33 +2745,29 @@ void TombRaider::getRoomRectangle(unsigned int roomIndex,
             }
 
             // Setup per vertex
-            for (i = 0; i < 4; ++i)
-            {
+            for (i = 0; i < 4; ++i) {
                 // Get vertex index {(0, a), (1, b), (2, c), (3, d)}
                 indices[i] = _rooms[roomIndex].room_data.rectangles[rectangleIndex].vertices[i];
 
                 computeUV(_object_textures[tIndex].vertices + i,
-                        texCoords+i*2, texCoords+i*2+1);
+                          texCoords + i * 2, texCoords + i * 2 + 1);
             }
     }
 }
 
 
-unsigned int TombRaider::getRoomRectangleCount(unsigned int roomIndex)
-{
+unsigned int TombRaider::getRoomRectangleCount(unsigned int roomIndex) {
     unsigned int i, count;
 
 
     if (!isRoomValid(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
-            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
-            {
+            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i) {
                 count += mRoomsTR5[roomIndex].layers[i].numLayerRectangles;
             }
 
@@ -3037,11 +2784,10 @@ unsigned int TombRaider::getRoomRectangleCount(unsigned int roomIndex)
 }
 
 int TombRaider::getRoomSector(unsigned int roomIndex, unsigned int index,
-        unsigned int *flags,
-        float *ceiling, float *floor,
-        int *floorDataIndex, int *boxIndex,
-        int *roomBelow, int *roomAbove)
-{
+                              unsigned int* flags,
+                              float* ceiling, float* floor,
+                              int* floorDataIndex, int* boxIndex,
+                              int* roomBelow, int* roomAbove) {
     unsigned int count;
     unsigned int zSectorsCount;
     unsigned int xSectorsCount;
@@ -3053,8 +2799,7 @@ int TombRaider::getRoomSector(unsigned int roomIndex, unsigned int index,
 
     *flags = 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
@@ -3064,8 +2809,7 @@ int TombRaider::getRoomSector(unsigned int roomIndex, unsigned int index,
             *roomAbove = mRoomsTR5[roomIndex].sectors[index].room_above;
 
             if ((unsigned char)mRoomsTR5[roomIndex].sectors[index].floor == 0x81 ||
-                    (unsigned char)mRoomsTR5[roomIndex].sectors[index].ceiling == 0x81)
-            {
+                (unsigned char)mRoomsTR5[roomIndex].sectors[index].ceiling == 0x81) {
                 *flags |= tombraiderSector_wall;
             }
 
@@ -3082,8 +2826,7 @@ int TombRaider::getRoomSector(unsigned int roomIndex, unsigned int index,
             *roomAbove = _rooms[roomIndex].sector_list[index].room_above;
 
             if ((unsigned char)_rooms[roomIndex].sector_list[index].floor == 0x81 ||
-                    (unsigned char)_rooms[roomIndex].sector_list[index].ceiling == 0x81)
-            {
+                (unsigned char)_rooms[roomIndex].sector_list[index].ceiling == 0x81) {
                 *flags |= tombraiderSector_wall;
             }
 
@@ -3091,18 +2834,15 @@ int TombRaider::getRoomSector(unsigned int roomIndex, unsigned int index,
             *ceiling = _rooms[roomIndex].sector_list[index].ceiling * 256.0f;
     }
 
-    if (*boxIndex == 65536)
-    {
+    if (*boxIndex == 65536) {
         *boxIndex = -1;
     }
 
-    if (*roomBelow == 255)
-    {
+    if (*roomBelow == 255) {
         *roomBelow = -1;
     }
 
-    if (*roomAbove == 255)
-    {
+    if (*roomAbove == 255) {
         *roomAbove = -1;
     }
 
@@ -3111,17 +2851,15 @@ int TombRaider::getRoomSector(unsigned int roomIndex, unsigned int index,
 
 
 unsigned int TombRaider::getRoomSectorCount(unsigned int roomIndex,
-        unsigned int *zSectorsCount,
-        unsigned int *xSectorsCount)
-{
+        unsigned int* zSectorsCount,
+        unsigned int* xSectorsCount) {
     unsigned int count;
 
 
     if (!isRoomValid(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
@@ -3153,11 +2891,10 @@ unsigned int TombRaider::getRoomSectorCount(unsigned int roomIndex,
 
 
 void TombRaider::getRoomSprite(unsigned int roomIndex, unsigned int index,
-        float scale, int *texture,
-        float *pos, float *vertices, float *texcoords)
-{
-    tr2_sprite_texture_t *sprite;
-    tr2_vertex_t *vertex;
+                               float scale, int* texture,
+                               float* pos, float* vertices, float* texcoords) {
+    tr2_sprite_texture_t* sprite;
+    tr2_vertex_t* vertex;
     int t_index, width, height, x, y;
     float width2, height2;
     unsigned int spriteCount;
@@ -3218,17 +2955,16 @@ void TombRaider::getRoomSprite(unsigned int roomIndex, unsigned int index,
 
 #ifdef OPTIONAL_ARRAY_INTERFACE
 void TombRaider::getRoomSpriteArray(unsigned int index, float scale,
-        unsigned int *spriteCount, int *textures,
-        float *pos, float *vertices, float *texcoords)
-{
+                                    unsigned int* spriteCount, int* textures,
+                                    float* pos, float* vertices, float* texcoords) {
     int i, t_index;
-    tr2_vertex_t *vertex;
+    tr2_vertex_t* vertex;
     int width, height, x, y;
     float width2, height2;
 
 
     *spriteCount = ((room[index].room_data.num_sprites < 0) ?
-            0 : room[index].room_data.num_sprites);
+                    0 : room[index].room_data.num_sprites);
 
     if (*spriteCount == 0)
         return;
@@ -3241,8 +2977,7 @@ void TombRaider::getRoomSpriteArray(unsigned int index, float scale,
     if (scale == 0.0)
         scale = 10.0;
 
-    for (i = 0; i < *spriteCount; ++i)
-    {
+    for (i = 0; i < *spriteCount; ++i) {
         t_index = room[index].room_data.sprites[i].texture;
 
         vertex =
@@ -3251,9 +2986,9 @@ void TombRaider::getRoomSpriteArray(unsigned int index, float scale,
         sprite = &sprite_textures[t_index];
 
         // Info, offset in room added to position
-        pos[0+i*3] = room[index].info.x + vertex->x;
-        pos[1+i*3] = vertex->y;
-        pos[2+i*3] = room[index].info.z + vertex->z;
+        pos[0 + i * 3] = room[index].info.x + vertex->x;
+        pos[1 + i * 3] = vertex->y;
+        pos[2 + i * 3] = room[index].info.z + vertex->z;
         textures[i] = sprite->tile;
 
         width = sprite->width >> 8;
@@ -3264,39 +2999,37 @@ void TombRaider::getRoomSpriteArray(unsigned int index, float scale,
         height2 = height * scale;
 
         // Quad
-        vertices[0+i*12] = -width2 / 2.0;
-        vertices[1+i*12] = 0;
-        vertices[2+i*12] = 0;
-        vertices[3+i*12] = -width2 / 2.0;
-        vertices[4+i*12] = -height2;
-        vertices[5+i*12] = 0;
-        vertices[6+i*12] = width2 / 2.0;
-        vertices[7+i*12] = -height2;
-        vertices[8+i*12] = 0;
-        vertices[9+i*12] = width2 / 2.0;
-        vertices[10+i*12] = 0;
-        vertices[11+i*12] = 0;
+        vertices[0 + i * 12] = -width2 / 2.0;
+        vertices[1 + i * 12] = 0;
+        vertices[2 + i * 12] = 0;
+        vertices[3 + i * 12] = -width2 / 2.0;
+        vertices[4 + i * 12] = -height2;
+        vertices[5 + i * 12] = 0;
+        vertices[6 + i * 12] = width2 / 2.0;
+        vertices[7 + i * 12] = -height2;
+        vertices[8 + i * 12] = 0;
+        vertices[9 + i * 12] = width2 / 2.0;
+        vertices[10 + i * 12] = 0;
+        vertices[11 + i * 12] = 0;
 
-        texcoords[0+i*8] = ((float)y + height) / mTexelScale;
-        texcoords[1+i*8] = (float)(x) / mTexelScale;
-        texcoords[2+i*8] = (float)(y) / mTexelScale;
-        texcoords[3+i*8] = (float)(x) / mTexelScale;
-        texcoords[4+i*8] = (float)(y) / mTexelScale;
-        texcoords[5+i*8] = ((float)x + width) / mTexelScale;
-        texcoords[6+i*8] = ((float)y + height) / mTexelScale;
-        texcoords[7+i*8] = ((float)x + width) / mTexelScale;
+        texcoords[0 + i * 8] = ((float)y + height) / mTexelScale;
+        texcoords[1 + i * 8] = (float)(x) / mTexelScale;
+        texcoords[2 + i * 8] = (float)(y) / mTexelScale;
+        texcoords[3 + i * 8] = (float)(x) / mTexelScale;
+        texcoords[4 + i * 8] = (float)(y) / mTexelScale;
+        texcoords[5 + i * 8] = ((float)x + width) / mTexelScale;
+        texcoords[6 + i * 8] = ((float)y + height) / mTexelScale;
+        texcoords[7 + i * 8] = ((float)x + width) / mTexelScale;
     }
 }
 #endif
 
 
-unsigned int TombRaider::getRoomSpriteCount(unsigned int roomIndex)
-{
+unsigned int TombRaider::getRoomSpriteCount(unsigned int roomIndex) {
     if (!isRoomValid(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
@@ -3314,31 +3047,26 @@ unsigned int TombRaider::getRoomSpriteCount(unsigned int roomIndex)
 
 
 void TombRaider::getRoomTriangle(unsigned int roomIndex,
-        unsigned int triangleIndex,
-        unsigned int *indices, float *texCoords,
-        int *texture, unsigned int *flags)
-{
+                                 unsigned int triangleIndex,
+                                 unsigned int* indices, float* texCoords,
+                                 int* texture, unsigned int* flags) {
     int tIndex;
     unsigned int count, i, j, k;
 
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
-            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
-            {
+            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i) {
                 if (count + mRoomsTR5[roomIndex].layers[i].numLayerTriangles >
-                        triangleIndex)
-                {
+                    triangleIndex) {
                     k = triangleIndex - count;
 
                     *texture = *flags = 0; //! \fixme
 
                     // Setup per vertex
-                    for (j = 0; j < 3; ++j)
-                    {
+                    for (j = 0; j < 3; ++j) {
                         // Get vertex index {(0, a), (1, b), (2, c) }
                         indices[j] = mRoomsTR5[roomIndex].faces[i].tris[k].vertices[j];
 
@@ -3361,8 +3089,7 @@ void TombRaider::getRoomTriangle(unsigned int roomIndex,
             *texture = _object_textures[tIndex].tile;
             *flags = 0;
 
-            switch (_object_textures[tIndex].transparency_flags)
-            {
+            switch (_object_textures[tIndex].transparency_flags) {
                 case 0:
                     break;
                 case 2:
@@ -3374,24 +3101,22 @@ void TombRaider::getRoomTriangle(unsigned int roomIndex,
             }
 
             // Setup per vertex
-            for (i = 0; i < 3; ++i)
-            {
+            for (i = 0; i < 3; ++i) {
                 // Get vertex index {(0, a), (1, b), (2, c) }
                 indices[i] = _rooms[roomIndex].room_data.triangles[triangleIndex].vertices[i];
 
                 computeUV(_object_textures[tIndex].vertices + i,
-                        texCoords+i*2, texCoords+i*2+1);
+                          texCoords + i * 2, texCoords + i * 2 + 1);
             }
     }
 }
 
 
 void TombRaider::getRoomTriangles(unsigned int index, int textureOffset,
-        unsigned int *triangleCount,
-        unsigned int **indices,
-        float **texCoords, int **textures,
-        unsigned int **flags)
-{
+                                  unsigned int* triangleCount,
+                                  unsigned int** indices,
+                                  float** texCoords, int** textures,
+                                  unsigned int** flags) {
     unsigned int count, i, j;
     int texture;
 
@@ -3399,13 +3124,11 @@ void TombRaider::getRoomTriangles(unsigned int index, int textureOffset,
     if (!isRoomValid(index))
         return;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
-            for (i = 0, count = 0; i < mRoomsTR5[index].numLayers; ++i)
-            {
+            for (i = 0, count = 0; i < mRoomsTR5[index].numLayers; ++i) {
                 count += mRoomsTR5[index].layers[i].numLayerTriangles;
             }
 
@@ -3417,7 +3140,7 @@ void TombRaider::getRoomTriangles(unsigned int index, int textureOffset,
         case TR_VERSION_4:
             // Generate textured triangles
             count = ((_rooms[index].room_data.num_triangles < 0) ? 0 :
-                    _rooms[index].room_data.num_triangles);
+                     _rooms[index].room_data.num_triangles);
 
             *triangleCount = count;
 
@@ -3426,8 +3149,7 @@ void TombRaider::getRoomTriangles(unsigned int index, int textureOffset,
             *textures = new int[count];
             *flags = new unsigned int[count];
 
-            for (i = 0; i < count; ++i)
-            {
+            for (i = 0; i < count; ++i) {
                 texture = _rooms[index].room_data.triangles[i].texture;
 
                 // Adjust texture id using m_texOffset to map into
@@ -3435,8 +3157,7 @@ void TombRaider::getRoomTriangles(unsigned int index, int textureOffset,
                 (*textures)[i] = _object_textures[texture].tile + textureOffset;
                 (*flags)[i] = 0;
 
-                switch (_object_textures[texture].transparency_flags)
-                {
+                switch (_object_textures[texture].transparency_flags) {
                     case 0:
                         break;
                     case 2:
@@ -3448,34 +3169,30 @@ void TombRaider::getRoomTriangles(unsigned int index, int textureOffset,
                 }
 
                 // Setup per vertex
-                for (j = 0; j < 3; ++j)
-                {
+                for (j = 0; j < 3; ++j) {
                     // Get vertex index {(0, a), (1, b), (2, c)}
-                    (*indices)[i*3+j] = _rooms[index].room_data.triangles[i].vertices[j];
+                    (*indices)[i * 3 + j] = _rooms[index].room_data.triangles[i].vertices[j];
 
-                    computeUV(_object_textures[texture].vertices+j,
-                            (*texCoords)+i*3+j*2, (*texCoords)+i*3+j*2+1);
+                    computeUV(_object_textures[texture].vertices + j,
+                              (*texCoords) + i * 3 + j * 2, (*texCoords) + i * 3 + j * 2 + 1);
                 }
             }
     }
 }
 
 
-unsigned int TombRaider::getRoomTriangleCount(unsigned int roomIndex)
-{
+unsigned int TombRaider::getRoomTriangleCount(unsigned int roomIndex) {
     unsigned int i, count;
 
 
     if (!isRoomValid(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
-            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
-            {
+            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i) {
                 count += mRoomsTR5[roomIndex].layers[i].numLayerTriangles;
             }
 
@@ -3493,16 +3210,14 @@ unsigned int TombRaider::getRoomTriangleCount(unsigned int roomIndex)
 
 
 //! \fixme No TR5 support
-void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
-        float *xyz, float *rgba)
-{
+void TombRaider::getRoomVertex(unsigned int roomIndex, unsigned int vertexIndex,
+                               float* xyz, float* rgba) {
     float color_value;
     unsigned int index = roomIndex, i = vertexIndex;
-    tr2_vertex_t *vertex = 0x0;
+    tr2_vertex_t* vertex = 0x0;
 
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_5:
             //! \fixme !!!
             print("getRoomVertex", "Error: No TRC implementation is the answer");
@@ -3518,8 +3233,7 @@ void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
             xyz[1] = vertex->y;
             xyz[2] = vertex->z;
 
-            switch (getEngine())
-            {
+            switch (getEngine()) {
                 case TR_VERSION_1:
                     color_value = _rooms[index].room_data.vertices[i].attributes;
                     color_value = (1.1f - (color_value / 8192.0f));
@@ -3534,13 +3248,13 @@ void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
                     color_value /= 16384.0;
 
                     rgba[0] = color_value + ((float)_rooms[index].room_light_colour.r /
-                            mRoomVertexLightingFactor);
+                                             mRoomVertexLightingFactor);
 
                     rgba[1] = color_value + ((float)_rooms[index].room_light_colour.g /
-                            mRoomVertexLightingFactor);
+                                             mRoomVertexLightingFactor);
 
                     rgba[2] = color_value + ((float)_rooms[index].room_light_colour.b /
-                            mRoomVertexLightingFactor);
+                                             mRoomVertexLightingFactor);
                     break;
                 case TR_VERSION_2:
                 case TR_VERSION_5: // Not really...
@@ -3554,8 +3268,7 @@ void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
             }
 
             // Underwater rooms have an ambient color with a shade of blue
-            if (_rooms[index].flags & 0x0001)
-            {
+            if (_rooms[index].flags & 0x0001) {
                 rgba[0] *= 0.6;
                 rgba[2] *= 1.2;
             }
@@ -3567,15 +3280,14 @@ void TombRaider::getRoomVertex(unsigned int roomIndex,unsigned int vertexIndex,
 
 
 void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
-        unsigned int *vertexCount, float **vertices,
-        unsigned int *normalCount, float **normals,
-        unsigned int *colorCount, float **colors)
-{
+                                     unsigned int* vertexCount, float** vertices,
+                                     unsigned int* normalCount, float** normals,
+                                     unsigned int* colorCount, float** colors) {
     float color_value;
     float rgba[4];
     unsigned int i, j, k, count;
     unsigned char c;
-    tr2_vertex_t *vertex = 0x0;
+    tr2_vertex_t* vertex = 0x0;
 
 
     count = getRoomVertexCount(roomIndex);
@@ -3590,39 +3302,36 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
     if (count == 0)
         return;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
             *vertexCount = count;
-            *vertices = new float[count*3];
+            *vertices = new float[count * 3];
             *normalCount = count;
-            *normals = new float[count*3];
+            *normals = new float[count * 3];
             *colorCount = count;
-            *colors = new float[count*4];
+            *colors = new float[count * 4];
 
-            for (i = 0, k = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
-            {
-                for (j = 0; j < mRoomsTR5[roomIndex].layers[i].numLayerVertices; ++j)
-                {
-                    (*vertices)[k*3] = mRoomsTR5[roomIndex].faces[i].verts[j].x;
-                    (*vertices)[k*3+1] = mRoomsTR5[roomIndex].faces[i].verts[j].y;
-                    (*vertices)[k*3+2] = mRoomsTR5[roomIndex].faces[i].verts[j].z;
+            for (i = 0, k = 0; i < mRoomsTR5[roomIndex].numLayers; ++i) {
+                for (j = 0; j < mRoomsTR5[roomIndex].layers[i].numLayerVertices; ++j) {
+                    (*vertices)[k * 3] = mRoomsTR5[roomIndex].faces[i].verts[j].x;
+                    (*vertices)[k * 3 + 1] = mRoomsTR5[roomIndex].faces[i].verts[j].y;
+                    (*vertices)[k * 3 + 2] = mRoomsTR5[roomIndex].faces[i].verts[j].z;
 
-                    (*normals)[k*3] = mRoomsTR5[roomIndex].faces[i].verts[j].nx;
-                    (*normals)[k*3+1] = mRoomsTR5[roomIndex].faces[i].verts[j].ny;
-                    (*normals)[k*3+2] = mRoomsTR5[roomIndex].faces[i].verts[j].nz;
+                    (*normals)[k * 3] = mRoomsTR5[roomIndex].faces[i].verts[j].nx;
+                    (*normals)[k * 3 + 1] = mRoomsTR5[roomIndex].faces[i].verts[j].ny;
+                    (*normals)[k * 3 + 2] = mRoomsTR5[roomIndex].faces[i].verts[j].nz;
 
                     //! \fixme Ah, yeah this may be wrong
-                    c = ((unsigned char *)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[1];
-                    (*colors)[k*4] = (float)c / 255.0f;
-                    c = ((unsigned char *)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[2];
-                    (*colors)[k*4+1] = (float)c / 255.0f;
-                    c = ((unsigned char *)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[3];
-                    (*colors)[k*4+2] = (float)c / 255.0f;
-                    c = ((unsigned char *)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[0];
-                    (*colors)[k*4+3] = (float)c / 255.0f;
+                    c = ((unsigned char*)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[1];
+                    (*colors)[k * 4] = (float)c / 255.0f;
+                    c = ((unsigned char*)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[2];
+                    (*colors)[k * 4 + 1] = (float)c / 255.0f;
+                    c = ((unsigned char*)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[3];
+                    (*colors)[k * 4 + 2] = (float)c / 255.0f;
+                    c = ((unsigned char*)&mRoomsTR5[roomIndex].faces[i].verts[j].vColor)[0];
+                    (*colors)[k * 4 + 3] = (float)c / 255.0f;
                 }
             }
             break;
@@ -3631,23 +3340,21 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
         case TR_VERSION_3:
         case TR_VERSION_4:
             *vertexCount = count;
-            *vertices = new float[count*3];
+            *vertices = new float[count * 3];
             *normalCount = 0;  //! \fixme Do some TR1-TR4 levels support normals here?
             *normals = 0x0;
             *colorCount = count;
-            *colors = new float[count*4];
+            *colors = new float[count * 4];
 
             // Setup vertex coloring and vertices
-            for (i = 0; i < count; ++i)
-            {
+            for (i = 0; i < count; ++i) {
                 vertex = &_rooms[roomIndex].room_data.vertices[i].vertex;
 
-                (*vertices)[i*3] = vertex->x;
-                (*vertices)[i*3+1] = vertex->y;
-                (*vertices)[i*3+2] = vertex->z;
+                (*vertices)[i * 3] = vertex->x;
+                (*vertices)[i * 3 + 1] = vertex->y;
+                (*vertices)[i * 3 + 2] = vertex->z;
 
-                switch (getEngine())
-                {
+                switch (getEngine()) {
                     case TR_VERSION_1:
                         color_value = _rooms[roomIndex].room_data.vertices[i].attributes;
                         color_value = (1.1f - (color_value / 8192.0f));
@@ -3664,21 +3371,20 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
                         color_value = (1.1f - (color_value / 8192.0f));
                 }
 
-                switch (getEngine())
-                {
+                switch (getEngine()) {
                     case TR_VERSION_4:
                     case TR_VERSION_3:
                         rgba[0] = (color_value +
-                                ((float)_rooms[roomIndex].room_light_colour.r /
-                                 mRoomVertexLightingFactor));
+                                   ((float)_rooms[roomIndex].room_light_colour.r /
+                                    mRoomVertexLightingFactor));
 
                         rgba[1] = (color_value +
-                                ((float)_rooms[roomIndex].room_light_colour.g /
-                                 mRoomVertexLightingFactor));
+                                   ((float)_rooms[roomIndex].room_light_colour.g /
+                                    mRoomVertexLightingFactor));
 
                         rgba[2] = (color_value +
-                                ((float)_rooms[roomIndex].room_light_colour.b /
-                                 mRoomVertexLightingFactor));
+                                   ((float)_rooms[roomIndex].room_light_colour.b /
+                                    mRoomVertexLightingFactor));
                         break;
                     case TR_VERSION_1:
                     case TR_VERSION_2:
@@ -3690,8 +3396,7 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
                 }
 
                 // Underwater rooms have an ambient color with a shade of blue
-                if (_rooms[roomIndex].flags & 0x0001)
-                {
+                if (_rooms[roomIndex].flags & 0x0001) {
                     rgba[0] *= 0.6;
                     rgba[2] *= 1.2;
                 }
@@ -3699,30 +3404,27 @@ void TombRaider::getRoomVertexArrays(unsigned int roomIndex,
                 // Alpha color
                 rgba[3] = 1.0;
 
-                (*colors)[i*4] = rgba[0];
-                (*colors)[i*4+1] = rgba[1];
-                (*colors)[i*4+2] = rgba[2];
-                (*colors)[i*4+3] = rgba[3];
+                (*colors)[i * 4] = rgba[0];
+                (*colors)[i * 4 + 1] = rgba[1];
+                (*colors)[i * 4 + 2] = rgba[2];
+                (*colors)[i * 4 + 3] = rgba[3];
             }
     }
 }
 
 
-unsigned int TombRaider::getRoomVertexCount(unsigned int roomIndex)
-{
+unsigned int TombRaider::getRoomVertexCount(unsigned int roomIndex) {
     unsigned int i, count;
 
 
     if (!isRoomValid(roomIndex))
         return 0;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
-            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i)
-            {
+            for (i = 0, count = 0; i < mRoomsTR5[roomIndex].numLayers; ++i) {
                 count += mRoomsTR5[roomIndex].layers[i].numLayerVertices;
             }
 
@@ -3739,18 +3441,16 @@ unsigned int TombRaider::getRoomVertexCount(unsigned int roomIndex)
 }
 
 
-int TombRaider::getSkyModelId()
-{
+int TombRaider::getSkyModelId() {
     int skyMesh = -1;
     //bool rot = false;
-    tr2_moveable_t *moveable;
+    tr2_moveable_t* moveable;
     unsigned int i, id;
 
 
     moveable = Moveable();
 
-    switch (Engine())
-    {
+    switch (Engine()) {
         case TR_VERSION_2:
             //rot = true;
             id = 254;
@@ -3767,12 +3467,9 @@ int TombRaider::getSkyModelId()
             return -1;
     }
 
-    if (id > 0)
-    {
-        for (i = 0; (int)i < NumMoveables(); ++i)
-        {
-            if (moveable[i].object_id == id)
-            {
+    if (id > 0) {
+        for (i = 0; (int)i < NumMoveables(); ++i) {
+            if (moveable[i].object_id == id) {
                 //sky_mesh = moveable[i].starting_mesh;
                 skyMesh = i;
                 break;
@@ -3784,16 +3481,15 @@ int TombRaider::getSkyModelId()
 }
 
 
-void TombRaider::getSprites()
-{
+void TombRaider::getSprites() {
 #ifdef FIXME
     int i, j, k, l, x, y, s_index, width, height;
     float scale, width2, height2;
-    tr2_sprite_texture_t *sprite;
-    tr2_sprite_texture_t *sprite_textures;
-    tr2_sprite_sequence_t *sprite_sequence;
-    sprite_seq_t *r_mesh;
-    tr2_item_t *item;
+    tr2_sprite_texture_t* sprite;
+    tr2_sprite_texture_t* sprite_textures;
+    tr2_sprite_sequence_t* sprite_sequence;
+    sprite_seq_t* r_mesh;
+    tr2_item_t* item;
 
     r_mesh = Mesh();
     item = Item();
@@ -3803,10 +3499,9 @@ void TombRaider::getSprites()
 
     printf("Processing sprites: ");
 
-    for (i = 0; i < NumItems() - 1; ++i)
-    {
+    for (i = 0; i < NumItems() - 1; ++i) {
         print(false, "Processing sprites in Items: %i/%i",
-                i, NumItems());
+              i, NumItems());
 
         // It's a mesh, skip it
         if (Engine() == TR_VERSION_1 && item[i].intensity1 == -1)
@@ -3816,10 +3511,8 @@ void TombRaider::getSprites()
 
         // Search the SpriteSequence list
         //  (if we didn't already decide that it's a mesh)
-        for (j = 0; j < (int)NumSpriteSequences(); ++j)
-        {
-            if (sprite_sequence[j].object_id == k)
-            {
+        for (j = 0; j < (int)NumSpriteSequences(); ++j) {
+            if (sprite_sequence[j].object_id == k) {
                 k = item[i].object_id;
 
                 s_index = sprite_sequence[j].offset;
@@ -3831,8 +3524,7 @@ void TombRaider::getSprites()
 
                 callbackAddSpriteSequence(spriteSequence);
 
-                for (l = 0; l < r_mesh->num_sprites; ++l)
-                {
+                for (l = 0; l < r_mesh->num_sprites; ++l) {
                     sprite = &sprite_textures[s_index];
 
                     width = sprite->width >> 8;
@@ -3865,17 +3557,17 @@ void TombRaider::getSprites()
                     sprite[l].vertex[2].pos[2] = 0;
                     sprite[l].vertex[3].pos[2] = 0;
 
-                    sprite[l].texel[3].st[0] = (double)(x+width) / mTexelScale;
-                    sprite[l].texel[3].st[1] = (double)(y+height) / mTexelScale;
+                    sprite[l].texel[3].st[0] = (double)(x + width) / mTexelScale;
+                    sprite[l].texel[3].st[1] = (double)(y + height) / mTexelScale;
 
-                    sprite[l].texel[2].st[0] = (double)(x+width) / mTexelScale;
+                    sprite[l].texel[2].st[0] = (double)(x + width) / mTexelScale;
                     sprite[l].texel[2].st[1] = (double)(y) / mTexelScale;
 
                     sprite[l].texel[1].st[0] = (double)(x) / mTexelScale;
                     sprite[l].texel[1].st[1] = (double)(y) / mTexelScale;
 
                     sprite[l].texel[0].st[0] = (double)(x) / mTexelScale;
-                    sprite[l].texel[0].st[1] = (double)(y+height) / mTexelScale;
+                    sprite[l].texel[0].st[1] = (double)(y + height) / mTexelScale;
 
                     printf(".");
                     fflush(stdout);
@@ -3890,70 +3582,59 @@ void TombRaider::getSprites()
 
 
 void TombRaider::getSoundSample(unsigned int index,
-        unsigned int *bytes, unsigned char **data)
-{
-    unsigned char *riff;
+                                unsigned int* bytes, unsigned char** data) {
+    unsigned char* riff;
     unsigned int offset, altIndex;
 
     *bytes = 0;
     *data = 0x0;
 
-    switch (Engine())
-    {
+    switch (Engine()) {
         case TR_VERSION_1:
             //! \fixme This implies higher tmp memory cost ( copy safety )
             getRiffData(bytes, &riff);
 
-            if (riff && (int)index < mNumSampleIndices)
-            {
+            if (riff && (int)index < mNumSampleIndices) {
                 offset = mSampleIndices[index];
 
-                if ((int)index < mNumSampleIndices - 1)
-                {
-                    *bytes = mSampleIndices[index+1] - mSampleIndices[index];
-                }
-                else
-                {
+                if ((int)index < mNumSampleIndices - 1) {
+                    *bytes = mSampleIndices[index + 1] - mSampleIndices[index];
+                } else {
                     *bytes = *bytes - mSampleIndices[index];
                 }
 
                 *data = new unsigned char[*bytes];
 
-                memcpy(*data, riff+offset, *bytes);
+                memcpy(*data, riff + offset, *bytes);
             }
 
-            if (riff)
-            {
+            if (riff) {
                 delete [] riff;
             }
             break;
         case TR_VERSION_2:
         case TR_VERSION_3:
             if (mRiffAlternateLoaded &&
-                    mRiffData && mRiffAlternateOffsets && (int)index < mNumSampleIndices)
-            {
+                mRiffData && mRiffAlternateOffsets && (int)index < mNumSampleIndices) {
                 altIndex = mSampleIndices[index];
 
                 offset = mRiffAlternateOffsets[altIndex];
 
-                if ((int)offset > mRiffDataSz)
-                {
-                    print("getSoundSample", "WARNING: offset too large, may be mismatched SFX and game pak, handling...\n");
+                if ((int)offset > mRiffDataSz) {
+                    print("getSoundSample",
+                          "WARNING: offset too large, may be mismatched SFX and game pak, handling...\n");
                     return;
                 }
 
-                if (altIndex < mNumTR4Samples - 1)
-                {
-                    *bytes = mRiffAlternateOffsets[altIndex+1] - offset;
-                }
-                else
-                {
+                if (altIndex < mNumTR4Samples - 1) {
+                    *bytes = mRiffAlternateOffsets[altIndex + 1] - offset;
+                } else {
                     *bytes = mRiffDataSz - offset;
                 }
 
                 *data = new unsigned char[*bytes];
 
-                memcpy(*data, mRiffData+offset, *bytes);
+                memcpy(*data, mRiffData + offset, *bytes);
             }
             break;
         case TR_VERSION_4:
@@ -3966,20 +3647,17 @@ void TombRaider::getSoundSample(unsigned int index,
 }
 
 
-unsigned int TombRaider::getSoundSamplesCount()
-{
+unsigned int TombRaider::getSoundSamplesCount() {
     unsigned int count = 0;
 
 
-    switch (Engine())
-    {
+    switch (Engine()) {
         case TR_VERSION_1:
             count = mNumSampleIndices;
             break;
         case TR_VERSION_2:
         case TR_VERSION_3:
-            if (mRiffAlternateLoaded)
-            {
+            if (mRiffAlternateLoaded) {
                 count = mNumSampleIndices;
             }
             break;
@@ -3996,33 +3674,30 @@ unsigned int TombRaider::getSoundSamplesCount()
 }
 
 
-bool TombRaider::isMeshValid(int index)
-{
+bool TombRaider::isMeshValid(int index) {
     return !(index < 0 ||
-            index > mMeshCount ||
-            ((mMeshes[index].num_vertices < 0 ||
-              mMeshes[index].vertices == NULL)));
+             index > mMeshCount ||
+             ((mMeshes[index].num_vertices < 0 ||
+               mMeshes[index].vertices == NULL)));
 }
 
 
-bool TombRaider::isRoomValid(int index)
-{
+bool TombRaider::isRoomValid(int index) {
     // Yes, you MUST support signed indices due to legacy engines
     if (index < 0)
         return false;
 
-    switch (getEngine())
-    {
+    switch (getEngine()) {
         case TR_VERSION_UNKNOWN:
             break;
         case TR_VERSION_5:
             if (index < _num_rooms &&
-                    //mRoomsTR5[index].roomX != 0xcdcdcd &&
-                    //mRoomsTR5[index].roomZ != 0xcdcdcd)
-                    *((int *)&mRoomsTR5[index].roomX) != 0xcdcdcd &&
-                    *((int *)&mRoomsTR5[index].roomZ) != 0xcdcdcd)
-                    // Cast to int * as it was comparing with float 0xcdcdcd before
-                    // -- xythobuz
+                //mRoomsTR5[index].roomX != 0xcdcdcd &&
+                //mRoomsTR5[index].roomZ != 0xcdcdcd)
+                * ((int*)&mRoomsTR5[index].roomX) != 0xcdcdcd &&
+                *((int*)&mRoomsTR5[index].roomZ) != 0xcdcdcd)
+                // Cast to int * as it was comparing with float 0xcdcdcd before
+                // -- xythobuz
             {
                 return true;
             }
@@ -4032,8 +3707,7 @@ bool TombRaider::isRoomValid(int index)
         case TR_VERSION_3:
         case TR_VERSION_4:
             if (index < _num_rooms &&
-                    _rooms[index].room_data.num_vertices > 0)
-            {
+                _rooms[index].room_data.num_vertices > 0) {
                 return true;
             }
     }
@@ -4046,14 +3720,12 @@ bool TombRaider::isRoomValid(int index)
 // Public Mutators
 ////////////////////////////////////////////////////////////
 
-int TombRaider::loadSFX(const char *filename)
-{
-    FILE *f = fopen(filename, "rb");
+int TombRaider::loadSFX(const char* filename) {
+    FILE* f = fopen(filename, "rb");
     long bytes = 0;
-    unsigned char *data;
+    unsigned char* data;
 
-    if (!f)
-    {
+    if (!f) {
         perror("Couldn't load SFX file");
         return -1;
     }
@@ -4062,18 +3734,16 @@ int TombRaider::loadSFX(const char *filename)
     bytes = ftell(f);
     fseek(f, 0L, SEEK_SET);
 
-    if (bytes > 8)
-    {
+    if (bytes > 8) {
         data = new unsigned char[bytes];
         fread(data, bytes, 1, f);
 
         mNumTR4Samples = getRiffOffsets(data, bytes,
-                &mRiffAlternateOffsets,
-                mNumSampleIndices);
+                                        &mRiffAlternateOffsets,
+                                        mNumSampleIndices);
 
         // This SFX must not come close to matching this game pak
-        if ((int)mNumTR4Samples < mNumSampleIndices)
-        {
+        if ((int)mNumTR4Samples < mNumSampleIndices) {
             delete [] data;
             fclose(f);
 
@@ -4082,13 +3752,12 @@ int TombRaider::loadSFX(const char *filename)
         }
 
         // If you ran out of room, then reallocate and parse agian  =(
-        if (mNumSampleIndices < (int)mNumTR4Samples)
-        {
+        if (mNumSampleIndices < (int)mNumTR4Samples) {
             delete [] mRiffAlternateOffsets;
 
             mNumTR4Samples = getRiffOffsets(data, bytes,
-                    &mRiffAlternateOffsets,
-                    mNumTR4Samples);
+                                            &mRiffAlternateOffsets,
+                                            mNumTR4Samples);
         }
 
         mRiffDataSz = bytes;
@@ -4102,8 +3771,7 @@ int TombRaider::loadSFX(const char *filename)
 }
 
 
-void TombRaider::reset()
-{
+void TombRaider::reset() {
     delete [] _anim_dispatches;
     _anim_dispatches = NULL;
 
@@ -4319,19 +3987,16 @@ void TombRaider::reset()
 }
 
 
-void TombRaider::setDebug(bool toggle)
-{
+void TombRaider::setDebug(bool toggle) {
     mDebug = toggle;
 }
 
 
-void TombRaider::setRoomVertexLightingFactor(float f)
-{
+void TombRaider::setRoomVertexLightingFactor(float f) {
     mRoomVertexLightingFactor = f;
 }
 
-void TombRaider::setTexelScalingFactor(float f)
-{
+void TombRaider::setTexelScalingFactor(float f) {
     mTexelScale = f;
 }
 
@@ -4339,12 +4004,11 @@ void TombRaider::setTexelScalingFactor(float f)
 // Private Accessors
 ////////////////////////////////////////////////////////////
 
-void TombRaider::extractMeshes(unsigned char *mesh_data,
-        unsigned int num_mesh_pointers,
-        unsigned int *mesh_pointers)
-{
+void TombRaider::extractMeshes(unsigned char* mesh_data,
+                               unsigned int num_mesh_pointers,
+                               unsigned int* mesh_pointers) {
     unsigned int size, i;
-    unsigned char *mesh_pointer;
+    unsigned char* mesh_pointer;
     int negative_size;
 
 
@@ -4357,8 +4021,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
     printDebug("ExtractMeshes", "num_mesh_pointers = %u", num_mesh_pointers);
 
-    for (i = 0; i < num_mesh_pointers; ++i)
-    {
+    for (i = 0; i < num_mesh_pointers; ++i) {
         /* Get mesh start */
         mesh_pointer = &mesh_data[mesh_pointers[i]];
 
@@ -4375,7 +4038,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
         //! \fixme endian
 
         printDebug("ExtractMeshes", "mMeshes[%i].num_vertices = %u",
-                i, mMeshes[i].num_vertices);
+                   i, mMeshes[i].num_vertices);
 
         mesh_pointer += sizeof(unsigned short);
         mMeshes[i].num_vertices = (short)abs(mMeshes[i].num_vertices);
@@ -4406,8 +4069,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
         mMeshes[i].normals = 0x0;
 
         /* Get normal list */
-        if (negative_size)
-        {
+        if (negative_size) {
             negative_size = 0;
 
             size = mMeshes[i].num_normals * sizeof(unsigned short);
@@ -4418,9 +4080,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
                 mMeshes[i].mesh_lights = new short[mMeshes[i].num_normals];
 
             memcpy(mMeshes[i].mesh_lights, mesh_pointer, size);
-        }
-        else
-        {
+        } else {
             size = sizeof(tr2_vertex_t) * mMeshes[i].num_normals;
 
             mMeshes[i].normals = 0x0;
@@ -4436,7 +4096,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
         /* Get number of textured rectangles */
         memcpy(&mMeshes[i].num_textured_rectangles,
-                mesh_pointer, sizeof(unsigned short));
+               mesh_pointer, sizeof(unsigned short));
         //! \fixme endian
 
         mesh_pointer += sizeof(unsigned short);
@@ -4452,24 +4112,19 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
                 new tr2_quad_t[mMeshes[i].num_textured_rectangles];
 
         printDebug("ExtractMeshes", "mMeshes[%i].num_textured_rectangles = %u",
-                i, mMeshes[i].num_textured_rectangles);
+                   i, mMeshes[i].num_textured_rectangles);
 
         /* Get list of textured rectangles */
-        if (mMeshes[i].num_textured_rectangles > 0)
-        {
-            if (mEngineVersion == TR_VERSION_4)
-            {
+        if (mMeshes[i].num_textured_rectangles > 0) {
+            if (mEngineVersion == TR_VERSION_4) {
                 int j;
 
-                for (j = 0; j < mMeshes[i].num_textured_rectangles; ++j)
-                {
+                for (j = 0; j < mMeshes[i].num_textured_rectangles; ++j) {
                     memcpy(&mMeshes[i].textured_rectangles[j],
-                            mesh_pointer, sizeof(tr2_quad_t));
+                           mesh_pointer, sizeof(tr2_quad_t));
                     mesh_pointer += sizeof(tr2_quad_t) + sizeof(unsigned short);
                 }
-            }
-            else
-            {
+            } else {
                 memcpy(mMeshes[i].textured_rectangles, mesh_pointer, size);
             }
             //! \fixme endian
@@ -4480,7 +4135,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
         /* Get number of textured triangles */
         memcpy(&mMeshes[i].num_textured_triangles,
-                mesh_pointer, sizeof(unsigned short));
+               mesh_pointer, sizeof(unsigned short));
         //! \fixme endian
 
         mesh_pointer += sizeof(unsigned short);
@@ -4494,31 +4149,25 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
         mMeshes[i].textured_triangles = 0x0;
 
-        if (mMeshes[i].num_textured_triangles > 0)
-        {
+        if (mMeshes[i].num_textured_triangles > 0) {
             mMeshes[i].textured_triangles =
                 new tr2_tri_t[mMeshes[i].num_textured_triangles];
         }
 
         printDebug("ExtractMeshes", " mMeshes[%i].num_textured_triangles = %u",
-                i, mMeshes[i].num_textured_triangles);
+                   i, mMeshes[i].num_textured_triangles);
 
         /* Get list of textured triangles */
-        if (mMeshes[i].num_textured_triangles > 0)
-        {
-            if (mEngineVersion == TR_VERSION_4)
-            {
+        if (mMeshes[i].num_textured_triangles > 0) {
+            if (mEngineVersion == TR_VERSION_4) {
                 int j;
 
-                for (j = 0; j < mMeshes[i].num_textured_triangles; ++j)
-                {
+                for (j = 0; j < mMeshes[i].num_textured_triangles; ++j) {
                     memcpy(&mMeshes[i].textured_triangles[j],
-                            mesh_pointer, sizeof(tr2_tri_t));
+                           mesh_pointer, sizeof(tr2_tri_t));
                     mesh_pointer += sizeof(tr2_tri_t) + sizeof(unsigned short);
                 }
-            }
-            else
-            {
+            } else {
                 memcpy(mMeshes[i].textured_triangles, mesh_pointer, size);
             }
             //! \fixme endian
@@ -4527,8 +4176,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
                 mesh_pointer += size;
         }
 
-        if (mEngineVersion == TR_VERSION_4)
-        {
+        if (mEngineVersion == TR_VERSION_4) {
             mMeshes[i].num_coloured_rectangles = 0;
             mMeshes[i].num_coloured_triangles = 0;
             mMeshes[i].coloured_rectangles = 0x0;
@@ -4541,7 +4189,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
         /* Get number of coloured rectangles */
         memcpy(&mMeshes[i].num_coloured_rectangles, mesh_pointer,
-                sizeof(unsigned short));
+               sizeof(unsigned short));
         //! \fixme endian
         mesh_pointer += sizeof(unsigned short);
         mMeshes[i].num_coloured_rectangles =
@@ -4556,11 +4204,10 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
                 new tr2_quad_t[mMeshes[i].num_coloured_rectangles];
 
         printDebug("ExtractMeshes", "mMeshes[%i].num_coloured_rectangles = %u",
-                i, mMeshes[i].num_coloured_rectangles);
+                   i, mMeshes[i].num_coloured_rectangles);
 
         /* Get list of coloured rectangles */
-        if (mMeshes[i].num_coloured_rectangles > 0)
-        {
+        if (mMeshes[i].num_coloured_rectangles > 0) {
             memcpy(mMeshes[i].coloured_rectangles, mesh_pointer, size);
             //! \fixme endian
             mesh_pointer += size;
@@ -4568,7 +4215,7 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 
         /* Get number of coloured triangles */
         memcpy(&mMeshes[i].num_coloured_triangles, mesh_pointer,
-                sizeof(unsigned short));
+               sizeof(unsigned short));
         //! \fixme endian
 
         mesh_pointer += sizeof(unsigned short);
@@ -4584,11 +4231,10 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
                 new tr2_tri_t[mMeshes[i].num_coloured_triangles];
 
         printDebug("ExtractMeshes", "mMeshes[%i].num_coloured_triangles = %u",
-                i, mMeshes[i].num_coloured_triangles);
+                   i, mMeshes[i].num_coloured_triangles);
 
         /* Get list of coloured triangles */
-        if (mMeshes[i].num_coloured_triangles > 0)
-        {
+        if (mMeshes[i].num_coloured_triangles > 0) {
             memcpy(mMeshes[i].coloured_triangles, mesh_pointer, size);
             //! \fixme endian
 
@@ -4598,28 +4244,23 @@ void TombRaider::extractMeshes(unsigned char *mesh_data,
 }
 
 
-int TombRaider::Fread(void *buffer, size_t size, size_t count, FILE *f)
-{
+int TombRaider::Fread(void* buffer, size_t size, size_t count, FILE* f) {
     int num_read;
 
-    if (mFreadMode == TR_FREAD_COMPRESSED)
-    {
+    if (mFreadMode == TR_FREAD_COMPRESSED) {
         num_read = count;
         num_read *= size;
 
-        if ((mCompressedLevelDataOffset + num_read) <= mCompressedLevelSize)
-        {
+        if ((mCompressedLevelDataOffset + num_read) <= mCompressedLevelSize) {
             memcpy(buffer, &mCompressedLevelData[mCompressedLevelDataOffset],
-                    num_read);
+                   num_read);
 
             mCompressedLevelDataOffset += num_read;
 
             return count;
-        }
-        else
-        {
+        } else {
             print("Fread", "(%p, %lu, %lu, %p) ERROR: Returned %d bytes too far",
-                    buffer, size, count, f, num_read);
+                  buffer, size, count, f, num_read);
             reset();
             exit(2);
         }
@@ -4628,8 +4269,7 @@ int TombRaider::Fread(void *buffer, size_t size, size_t count, FILE *f)
 
     unsigned int offset = ftell(f);
 
-    if (fread(buffer, size, count, f) != count)
-    {
+    if (fread(buffer, size, count, f) != count) {
         print("Fread", "ERROR: Failed fread. Should Abort. @ 0x%x", offset);
         reset();
         exit(2);
@@ -4640,13 +4280,11 @@ int TombRaider::Fread(void *buffer, size_t size, size_t count, FILE *f)
 }
 
 
-void TombRaider::getRiffData(unsigned int *bytes, unsigned char **data)
-{
+void TombRaider::getRiffData(unsigned int* bytes, unsigned char** data) {
     *bytes = 0;
     *data = 0x0;
 
-    if (mRiffDataSz)
-    {
+    if (mRiffDataSz) {
         *bytes = mRiffDataSz;
         *data = new unsigned char[mRiffDataSz];
 
@@ -4656,13 +4294,11 @@ void TombRaider::getRiffData(unsigned int *bytes, unsigned char **data)
 
 
 void TombRaider::getRiffDataTR4(unsigned int index,
-        unsigned int *bytes, unsigned char **data)
-{
+                                unsigned int* bytes, unsigned char** data) {
     *bytes = 0;
     *data = 0x0;
 
-    if (index < mNumTR4Samples)
-    {
+    if (index < mNumTR4Samples) {
         *bytes = mTR4SamplesSz[index];
         *data = new unsigned char[*bytes];
 
@@ -4671,48 +4307,39 @@ void TombRaider::getRiffDataTR4(unsigned int index,
 }
 
 
-int TombRaider::getRiffOffsets(unsigned char *riffData,
-        unsigned int riffDataBytes,
-        unsigned int **offsets,
-        unsigned int numOffsets)
-{
+int TombRaider::getRiffOffsets(unsigned char* riffData,
+                               unsigned int riffDataBytes,
+                               unsigned int** offsets,
+                               unsigned int numOffsets) {
     unsigned int i, j = 0, riffCount, state;
 
     *offsets = new unsigned int[numOffsets];
 
-    for (i = 0, riffCount = 0, state = 4; i < riffDataBytes; ++i)
-    {
-        switch (riffData[i])
-        {
+    for (i = 0, riffCount = 0, state = 4; i < riffDataBytes; ++i) {
+        switch (riffData[i]) {
             case 'R':
-                if (state == 4)
-                {
+                if (state == 4) {
                     j = i; // tmp offset guess
                     state = 0;
                     continue;
                 }
                 break;
             case 'I':
-                if (state == 0)
-                {
+                if (state == 0) {
                     state = 1;
                     continue;
                 }
                 break;
             case 'F':
-                if (state == 1)
-                {
+                if (state == 1) {
                     state = 2;
                     continue;
-                }
-                else if (state == 2)
-                {
+                } else if (state == 2) {
                     state = 3;
 
                     // Found RIFF header, but we can only report
                     //  riffCount offsets ( buffer size limits )
-                    if (riffCount < numOffsets)
-                    {
+                    if (riffCount < numOffsets) {
                         (*offsets)[riffCount] = j;
                     }
 
@@ -4729,9 +4356,8 @@ int TombRaider::getRiffOffsets(unsigned char *riffData,
 }
 
 
-unsigned char *TombRaider::getTexTile(int texture)
-{
-    unsigned char *image;
+unsigned char* TombRaider::getTexTile(int texture) {
+    unsigned char* image;
     unsigned int color;
     int j, k, index, offset;
     int xmin, xmax, ymin, ymax, x, y;
@@ -4739,36 +4365,28 @@ unsigned char *TombRaider::getTexTile(int texture)
 
     image = NULL;
 
-    if (texture >=0 && texture < (int)_num_textiles)
-    {
-        image = new unsigned char[256*256*4];
-        memset(image, 0, 256*256*4);
+    if (texture >= 0 && texture < (int)_num_textiles) {
+        image = new unsigned char[256 * 256 * 4];
+        memset(image, 0, 256 * 256 * 4);
 
-        if (_textile32)
-        {
+        if (_textile32) {
             // Convert 32bit BGRA image format to 32bit RGBA
-            for (j = 0; j < 256; j++)
-            {
-                for (k = 0; k < 256; k++)
-                {
+            for (j = 0; j < 256; j++) {
+                for (k = 0; k < 256; k++) {
                     index = (j * 256) + k;
                     color = _textile32[texture].tile[index];
                     index = (j * 1024) + (k * 4);
 
-                    image[index + 2] = *((unsigned char *)(&color));
-                    image[index + 1] = *((unsigned char *)(&color)+1);
-                    image[index + 0] = *((unsigned char *)(&color)+2);
-                    image[index + 3] = *((unsigned char *)(&color)+3);
+                    image[index + 2] = *((unsigned char*)(&color));
+                    image[index + 1] = *((unsigned char*)(&color) + 1);
+                    image[index + 0] = *((unsigned char*)(&color) + 2);
+                    image[index + 3] = *((unsigned char*)(&color) + 3);
                 }
             }
-        }
-        else
-        {
+        } else {
             // Convert 16bit ARGB image format to 32bit RGBA
-            for (j = 0; j < 256; j++)
-            {
-                for (k = 0; k < 256; k++)
-                {
+            for (j = 0; j < 256; j++) {
+                for (k = 0; k < 256; k++) {
                     index = (j * 256) + k;
                     offset = _textile16[texture].tile[index];
                     index = (j * 1024) + (k * 4);
@@ -4781,17 +4399,14 @@ unsigned char *TombRaider::getTexTile(int texture)
             }
         }
 
-        switch (Engine())
-        {
+        switch (Engine()) {
             case TR_VERSION_4:
             case TR_VERSION_3: // Account for alpha flags
-                for (j = 0; j < (int)_num_object_textures; j++)
-                {
+                for (j = 0; j < (int)_num_object_textures; j++) {
                     //! \fixme This kind of works for lighting - but messes up lara
 #ifdef FIXME
                     if (_object_textures[j].tile == texture &&
-                            _object_textures[j].transparency_flags == 1)
-                    {
+                        _object_textures[j].transparency_flags == 1) {
                         xmin = 999;
                         xmax = 0;
                         ymin = 999;
@@ -4800,11 +4415,10 @@ unsigned char *TombRaider::getTexTile(int texture)
 
                         // Account for triangles
                         if (_object_textures[j].vertices[3].xpixel == 0 &&
-                                _object_textures[j].vertices[3].ypixel == 0)
+                            _object_textures[j].vertices[3].ypixel == 0)
                             y = 3;
 
-                        for (k = 0; k < y; k++)
-                        {
+                        for (k = 0; k < y; k++) {
                             if (_object_textures[j].vertices[k].xpixel > xmax)
                                 xmax = _object_textures[j].vertices[k].xpixel;
 
@@ -4818,10 +4432,8 @@ unsigned char *TombRaider::getTexTile(int texture)
                                 ymin = _object_textures[j].vertices[k].ypixel;
                         }
 
-                        for (x = xmin; x <= xmax; x++)
-                        {
-                            for (y = ymin; y <= ymax; y++)
-                            {
+                        for (x = xmin; x <= xmax; x++) {
+                            for (y = ymin; y <= ymax; y++) {
                                 index = (y * 256) + x;
                                 offset = _textile16[texture].tile[index];
                                 index = (y * 1024) + (x * 4);
@@ -4831,18 +4443,15 @@ unsigned char *TombRaider::getTexTile(int texture)
                                 image[index + 2] = (offset & 0x1f) * 8;
 
                                 // Set transparency to full
-                                if (offset & 0x8000)
-                                {
+                                if (offset & 0x8000) {
                                     image[index + 3] = 0x00;
                                 }
                             }
                         }
-                    }
-                    else
+                    } else
 #endif
                         if (_object_textures[j].tile == texture &&
-                                _object_textures[j].transparency_flags == 2)
-                        {
+                            _object_textures[j].transparency_flags == 2) {
                             xmin = 999;
                             xmax = 0;
                             ymin = 999;
@@ -4851,11 +4460,10 @@ unsigned char *TombRaider::getTexTile(int texture)
 
                             // Account for triangles
                             if (_object_textures[j].vertices[3].xpixel == 0 &&
-                                    _object_textures[j].vertices[3].ypixel == 0)
+                                _object_textures[j].vertices[3].ypixel == 0)
                                 y = 3;
 
-                            for (k = 0; k < y; k++)
-                            {
+                            for (k = 0; k < y; k++) {
                                 if (_object_textures[j].vertices[k].xpixel > xmax)
                                     xmax = _object_textures[j].vertices[k].xpixel;
 
@@ -4869,28 +4477,23 @@ unsigned char *TombRaider::getTexTile(int texture)
                                     ymin = _object_textures[j].vertices[k].ypixel;
                             }
 
-                            for (x = xmin; x <= xmax; x++)
-                            {
-                                for (y = ymin; y <= ymax; y++)
-                                {
-                                    if (_textile32)
-                                    {
+                            for (x = xmin; x <= xmax; x++) {
+                                for (y = ymin; y <= ymax; y++) {
+                                    if (_textile32) {
                                         index = (y * 256) + x;
                                         color = _textile32[texture].tile[index];
                                         index = (y * 1024) + (x * 4);
 
-                                        image[index + 2] = *((unsigned char *)(&color));
-                                        image[index + 1] = *((unsigned char *)(&color)+1);
-                                        image[index + 0] = *((unsigned char *)(&color)+2);
-                                        image[index + 3] = *((unsigned char *)(&color)+3);
+                                        image[index + 2] = *((unsigned char*)(&color));
+                                        image[index + 1] = *((unsigned char*)(&color) + 1);
+                                        image[index + 0] = *((unsigned char*)(&color) + 2);
+                                        image[index + 3] = *((unsigned char*)(&color) + 3);
 
                                         k = image[index] + image[index + 1] + image[index + 2];
 
                                         // Set transparency based upon intensity
                                         image[index + 3] = (unsigned char)(k / 3);
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         index = (y * 256) + x;
                                         offset = _textile16[texture].tile[index];
                                         index = (y * 1024) + (x * 4);
@@ -4926,16 +4529,15 @@ unsigned char *TombRaider::getTexTile(int texture)
 
 
 //! \fixme Move these data about to make full use in the class  ;)
-int TombRaider::loadTR5(FILE *f)
-{
+int TombRaider::loadTR5(FILE* f) {
     unsigned int level_data_sz, riffOffset, seperator0;
     unsigned int portalOffset, nextRoomOffset, thisRoomOffset;
     int i, j, k;
     uint16_t us;
 
     uint32_t numMeshData, numMeshPointers, u;
-    uint32_t *meshPointers;
-    uint8_t *meshData;
+    uint32_t* meshPointers;
+    uint8_t* meshData;
     char check[32];
 
     printDebug("Load", "mEngineVersion = 0x%x", mPakVersion);
@@ -4944,7 +4546,7 @@ int TombRaider::loadTR5(FILE *f)
         return -1;
 
     unsigned int sz, usz; // compressed and uncompressed size
-    unsigned char *compressed_data = NULL;
+    unsigned char* compressed_data = NULL;
     int zerr;
     uLongf foo;
 
@@ -4968,7 +4570,7 @@ int TombRaider::loadTR5(FILE *f)
     _num_textiles = usz / sizeof(tr2_textile32_t);
 
     printDebug("LoadTR5", "_num_textiles = %i/%lu = %i",
-            usz, sizeof(tr2_textile32_t), _num_textiles);
+               usz, sizeof(tr2_textile32_t), _num_textiles);
 
     _textile32 = new tr2_textile32_t[_num_textiles];
 
@@ -4978,17 +4580,16 @@ int TombRaider::loadTR5(FILE *f)
 
     // Decompress the textures
     foo = usz;
-    zerr = uncompress((unsigned char *)_textile32,
-            &foo,
-            compressed_data,
-            sz);
+    zerr = uncompress((unsigned char*)_textile32,
+                      &foo,
+                      compressed_data,
+                      sz);
     usz = foo;
 
     printDebug("LoadTR5", "textile decompress  [%s]",
-            (zerr == Z_OK) ? "OK" : "ERROR");
+               (zerr == Z_OK) ? "OK" : "ERROR");
 
-    switch (zerr)
-    {
+    switch (zerr) {
         case Z_MEM_ERROR:
             printDebug("LoadTR5", "There was not enough memory");
             break;
@@ -5015,7 +4616,7 @@ int TombRaider::loadTR5(FILE *f)
     _num_textiles = usz / sizeof(tr2_textile16_t);
 
     printDebug("LoadTR5", "_num_textiles = %i/%lu = %i",
-            usz, sizeof(tr2_textile16_t), _num_textiles);
+               usz, sizeof(tr2_textile16_t), _num_textiles);
 
     _textile16 = new tr2_textile16_t[_num_textiles];
 
@@ -5025,17 +4626,16 @@ int TombRaider::loadTR5(FILE *f)
 
     // Decompress the textures
     foo = usz;
-    zerr = uncompress((unsigned char *)_textile16,
-            &foo,
-            compressed_data,
-            sz);
+    zerr = uncompress((unsigned char*)_textile16,
+                      &foo,
+                      compressed_data,
+                      sz);
     usz = foo;
 
     printDebug("LoadTR5", "textile decompress  [%s]",
-            (zerr == Z_OK) ? "OK" : "ERROR");
+               (zerr == Z_OK) ? "OK" : "ERROR");
 
-    switch (zerr)
-    {
+    switch (zerr) {
         case Z_MEM_ERROR:
             printDebug("LoadTR5", "There was not enough memory");
             break;
@@ -5060,15 +4660,14 @@ int TombRaider::loadTR5(FILE *f)
     printDebug("LoadTR5", "sprite textures uncompressed size = %u bytes", usz);
 
     // Load sprite/bump map/gui/etc textures also
-    _num_tex_special = usz/(256*256*4);
+    _num_tex_special = usz / (256 * 256 * 4);
 
     printDebug("LoadTR5", "_num_tex_special = %i/%i = %i",
-            usz, 256*256*4, _num_tex_special);
+               usz, 256 * 256 * 4, _num_tex_special);
 
     printDebug("LoadTR5", "Reading %ibytes of sprite textures", usz);
 
-    if (usz)
-    {
+    if (usz) {
         _tex_special = new unsigned char[usz];
 
         // Allocate a temporary buffer for decompression
@@ -5078,16 +4677,15 @@ int TombRaider::loadTR5(FILE *f)
         // Decompress the textures
         foo = usz;
         zerr = uncompress(_tex_special,
-                &foo,
-                compressed_data,
-                sz);
+                          &foo,
+                          compressed_data,
+                          sz);
         usz = foo;
 
         printDebug("LoadTR5", "special texture decompress  [%s]",
-                (zerr == Z_OK) ? "OK" : "ERROR");
+                   (zerr == Z_OK) ? "OK" : "ERROR");
 
-        switch (zerr)
-        {
+        switch (zerr) {
             case Z_MEM_ERROR:
                 printDebug("LoadTR5", "There was not enough memory");
                 break;
@@ -5135,7 +4733,7 @@ int TombRaider::loadTR5(FILE *f)
 
     Fread(&riffOffset, 4, 1, f);
     printDebug("LoadTR5", "Same as last, also offset to RIFFs = %u",
-            riffOffset);
+               riffOffset);
 
     Fread(&seperator0, 4, 1, f);
     printDebug("LoadTR5", "Seperator, always 0x00? = %u", seperator0);
@@ -5145,35 +4743,32 @@ int TombRaider::loadTR5(FILE *f)
 
     mRoomsTR5 = new tr5_room_t[_num_rooms];
 
-    for (i = 0; i < _num_rooms; ++i)
-    {
+    for (i = 0; i < _num_rooms; ++i) {
         thisRoomOffset = ftell(f);
 
         Fread(&mRoomsTR5[i].checkXELA, 4, 1, f);
         printDebug("LoadTR5", "room[%i].checkXELA (0x414c4558)? = 0x%x",
-                i, mRoomsTR5[i].checkXELA);
+                   i, mRoomsTR5[i].checkXELA);
 
-        if (mRoomsTR5[i].checkXELA != 0x414c4558)
-        {
+        if (mRoomsTR5[i].checkXELA != 0x414c4558) {
             print("LoadTR5", "Error #1 room[%i].checkXELA (0x414c4558) != 0x%x",
-                    i, mRoomsTR5[i].checkXELA);
+                  i, mRoomsTR5[i].checkXELA);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].roomDataSize, 4, 1, f);
         printDebug("LoadTR5", "offset to next room = %u",
-                mRoomsTR5[i].roomDataSize);
+                   mRoomsTR5[i].roomDataSize);
 
         nextRoomOffset = ftell(f) + mRoomsTR5[i].roomDataSize;
 
         Fread(&mRoomsTR5[i].seperator, 4, 1, f);
         printDebug("LoadTR5", "room[%i].seperator, CDCDCDCD = %X?",
-                i, mRoomsTR5[i].seperator);
+                   i, mRoomsTR5[i].seperator);
 
-        if (mRoomsTR5[i].seperator != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator != 0xcdcdcdcd) {
             print("LoadTR5", "Error #2 room[%i].seperator, CDCDCDCD != 0x%X",
-                    i, mRoomsTR5[i].seperator);
+                  i, mRoomsTR5[i].seperator);
             return -3;
         }
 
@@ -5185,28 +4780,27 @@ int TombRaider::loadTR5(FILE *f)
         // and compute FD size the old way of X*Z*8
         Fread(&mRoomsTR5[i].endSDOffset, 4, 1, f);
         printDebug("LoadTR5", "%u + 216 + XELA start = FD end",
-                mRoomsTR5[i].endSDOffset);
+                   mRoomsTR5[i].endSDOffset);
 
         // Start of "XELA" + 216 + ublock2 = FD start
         Fread(&mRoomsTR5[i].startSDOffset, 4, 1, f);
         printDebug("LoadTR5", "%u + 216 + XELA start = FD start",
-                mRoomsTR5[i].startSDOffset);
+                   mRoomsTR5[i].startSDOffset);
 
         Fread(&mRoomsTR5[i].seperator2, 4, 1, f);
         printDebug("LoadTR5", "seperator2 = %u", mRoomsTR5[i].seperator2);
 
         if (mRoomsTR5[i].seperator2 != 0xcdcdcdcd &&
-                mRoomsTR5[i].seperator2 != 0x00000000)
-        {
+            mRoomsTR5[i].seperator2 != 0x00000000) {
             print("LoadTR5", "Error #3 CDCDCDCD | 0x0 != 0x%x",
-                    mRoomsTR5[i].seperator2);
+                  mRoomsTR5[i].seperator2);
             return -3;
         }
 
         // Possibly start of "XELA" + 216 + ublock4 = end portals
         Fread(&mRoomsTR5[i].endPortalOffset, 4, 1, f);
         printDebug("LoadTR5", "%u + 216 + XELA start = end portals",
-                mRoomsTR5[i].endPortalOffset);
+                   mRoomsTR5[i].endPortalOffset);
 
         Fread(&mRoomsTR5[i].x, 4, 1, f);
         printDebug("LoadTR5", "room.x = %u", mRoomsTR5[i].x);
@@ -5226,13 +4820,13 @@ int TombRaider::loadTR5(FILE *f)
 
         Fread(&mRoomsTR5[i].roomAmbientColor, 4, 1, f);
         printDebug("LoadTR5", "room_ambient_color = 0x%x",
-                mRoomsTR5[i].roomAmbientColor);
+                   mRoomsTR5[i].roomAmbientColor);
 
         Fread(&mRoomsTR5[i].numRoomLights, 2, 1, f);
         printDebug("LoadTR5", "num_lights = %i", mRoomsTR5[i].numRoomLights);
         Fread(&mRoomsTR5[i].numStaticMeshes, 2, 1, f);
         printDebug("LoadTR5", "num_static_meshes = %i",
-                mRoomsTR5[i].numStaticMeshes);
+                   mRoomsTR5[i].numStaticMeshes);
 
         Fread(&mRoomsTR5[i].unknownR1, 2, 1, f);
         printDebug("LoadTR5", "unknown 0x0001? = 0x%x", mRoomsTR5[i].unknownR1);
@@ -5248,23 +4842,21 @@ int TombRaider::loadTR5(FILE *f)
 
         Fread(&mRoomsTR5[i].seperator4, 4, 1, f);
         printDebug("LoadTR5", "seperator4 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator4);
+                   mRoomsTR5[i].seperator4);
 
-        if (mRoomsTR5[i].seperator4 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator4 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #5 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator4);
+                  mRoomsTR5[i].seperator4);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].seperator5, 4, 1, f);
         printDebug("LoadTR5", "seperator5 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator5);
+                   mRoomsTR5[i].seperator5);
 
-        if (mRoomsTR5[i].seperator5 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator5 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #6 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator5);
+                  mRoomsTR5[i].seperator5);
             return -3;
         }
 
@@ -5272,31 +4864,30 @@ int TombRaider::loadTR5(FILE *f)
         printDebug("LoadTR5", "20byte struct {");
         Fread(mRoomsTR5[i].seperator6, 6, 1, f);
         printDebug("LoadTR5", "6 bytes 0xFF = 0x%x%x%x%x%x%x",
-                mRoomsTR5[i].seperator6[0], mRoomsTR5[i].seperator6[1],
-                mRoomsTR5[i].seperator6[2], mRoomsTR5[i].seperator6[3],
-                mRoomsTR5[i].seperator6[4], mRoomsTR5[i].seperator6[5]);
+                   mRoomsTR5[i].seperator6[0], mRoomsTR5[i].seperator6[1],
+                   mRoomsTR5[i].seperator6[2], mRoomsTR5[i].seperator6[3],
+                   mRoomsTR5[i].seperator6[4], mRoomsTR5[i].seperator6[5]);
         Fread(&mRoomsTR5[i].roomFlag, 2, 1, f);
         printDebug("LoadTR5", "room_flag = %i", mRoomsTR5[i].roomFlag);
         Fread(&mRoomsTR5[i].unknownR5, 2, 1, f);
         printDebug("LoadTR5", "unknown = %i", mRoomsTR5[i].unknownR5);
         Fread(mRoomsTR5[i].seperator7, 10, 1, f);
         printDebug("LoadTR5", "10 bytes 0x00 = 0x%x%x%x%x%x%x%x%x%x%x",
-                mRoomsTR5[i].seperator7[0], mRoomsTR5[i].seperator7[1],
-                mRoomsTR5[i].seperator7[2], mRoomsTR5[i].seperator7[3],
-                mRoomsTR5[i].seperator7[4], mRoomsTR5[i].seperator7[5],
-                mRoomsTR5[i].seperator7[6], mRoomsTR5[i].seperator7[7],
-                mRoomsTR5[i].seperator7[8], mRoomsTR5[i].seperator7[9]);
+                   mRoomsTR5[i].seperator7[0], mRoomsTR5[i].seperator7[1],
+                   mRoomsTR5[i].seperator7[2], mRoomsTR5[i].seperator7[3],
+                   mRoomsTR5[i].seperator7[4], mRoomsTR5[i].seperator7[5],
+                   mRoomsTR5[i].seperator7[6], mRoomsTR5[i].seperator7[7],
+                   mRoomsTR5[i].seperator7[8], mRoomsTR5[i].seperator7[9]);
         printDebug("LoadTR5", "}");
         // End 20byte structure /////////////////
 
         Fread(&mRoomsTR5[i].seperator8, 4, 1, f);
         printDebug("LoadTR5", "seperator8 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator8);
+                   mRoomsTR5[i].seperator8);
 
-        if (mRoomsTR5[i].seperator8 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator8 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #9 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator8);
+                  mRoomsTR5[i].seperator8);
             return -3;
         }
 
@@ -5308,13 +4899,12 @@ int TombRaider::loadTR5(FILE *f)
 
         Fread(&mRoomsTR5[i].seperator9, 4, 1, f);
         printDebug("LoadTR5", "seperator9 CDCDCDCD | 0x0 = 0x%x",
-                mRoomsTR5[i].seperator9);
+                   mRoomsTR5[i].seperator9);
 
         if (mRoomsTR5[i].seperator9 != 0xcdcdcdcd &&
-                mRoomsTR5[i].seperator9 != 0x0)
-        {
+            mRoomsTR5[i].seperator9 != 0x0) {
             print("LoadTR5", "Error #10 CDCDCDCD | 0x0 != 0x%x",
-                    mRoomsTR5[i].seperator9);
+                  mRoomsTR5[i].seperator9);
             return -3;
         }
 
@@ -5325,68 +4915,62 @@ int TombRaider::loadTR5(FILE *f)
 
         Fread(&mRoomsTR5[i].seperator10, 4, 1, f);
         printDebug("LoadTR5", "seperator10 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator10);
+                   mRoomsTR5[i].seperator10);
 
-        if (mRoomsTR5[i].seperator10 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator10 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #11 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator10);
+                  mRoomsTR5[i].seperator10);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].seperator11, 4, 1, f);
         printDebug("LoadTR5", "seperator11 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator11);
+                   mRoomsTR5[i].seperator11);
 
-        if (mRoomsTR5[i].seperator11 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator11 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #12 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator11);
+                  mRoomsTR5[i].seperator11);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].seperator12, 4, 1, f);
         printDebug("LoadTR5", "seperator12 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator12);
+                   mRoomsTR5[i].seperator12);
 
-        if (mRoomsTR5[i].seperator12 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator12 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #13 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator12);
+                  mRoomsTR5[i].seperator12);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].seperator13, 4, 1, f);
         printDebug("LoadTR5", "seperator13 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator13);
+                   mRoomsTR5[i].seperator13);
 
-        if (mRoomsTR5[i].seperator13 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator13 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #14 CDCDCDCD | 0x0 != 0x%x",
-                    mRoomsTR5[i].seperator13);
+                  mRoomsTR5[i].seperator13);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].seperator14, 4, 1, f);
         printDebug("LoadTR5", "seperator14 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator14);
+                   mRoomsTR5[i].seperator14);
 
         if (mRoomsTR5[i].seperator14 != 0xcdcdcdcd &&
-                mRoomsTR5[i].seperator14 != 0x00000000)
-        {
+            mRoomsTR5[i].seperator14 != 0x00000000) {
             print("LoadTR5", "Error #15 CDCDCDCD | 0x0 != 0x%x",
-                    mRoomsTR5[i].seperator14);
+                  mRoomsTR5[i].seperator14);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].seperator15, 4, 1, f);
         printDebug("LoadTR5", "seperator15 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator15);
+                   mRoomsTR5[i].seperator15);
 
-        if (mRoomsTR5[i].seperator15 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator15 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #16 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator15);
+                  mRoomsTR5[i].seperator15);
             return -3;
         }
 
@@ -5395,20 +4979,20 @@ int TombRaider::loadTR5(FILE *f)
         printDebug("LoadTR5", "56byte struct {");
         Fread(&mRoomsTR5[i].numRoomTriangles, 4, 1, f);
         printDebug("LoadTR5", "num_triangles = %u",
-                mRoomsTR5[i].numRoomTriangles);
+                   mRoomsTR5[i].numRoomTriangles);
         Fread(&mRoomsTR5[i].numRoomRectangles, 4, 1, f);
         printDebug("LoadTR5", "num_rectangles = %u",
-                mRoomsTR5[i].numRoomRectangles);
+                   mRoomsTR5[i].numRoomRectangles);
         Fread(&mRoomsTR5[i].seperator16, 4, 1, f);
         printDebug("LoadTR5", "seperator16, 0x00? = 0x%x",
-                mRoomsTR5[i].seperator16);
+                   mRoomsTR5[i].seperator16);
 
         // Num lights * 88bytes
         Fread(&mRoomsTR5[i].lightSize, 4, 1, f);
         printDebug("LoadTR5", "light_size = %u", mRoomsTR5[i].lightSize);
         Fread(&mRoomsTR5[i].numTotalRoomLights, 4, 1, f);
         printDebug("LoadTR5", "num_lights = %u",
-                mRoomsTR5[i].numTotalRoomLights);
+                   mRoomsTR5[i].numTotalRoomLights);
 
         Fread(&mRoomsTR5[i].unknownR7, 4, 1, f); // was num_unknown_36byte structs to read
         printDebug("LoadTR5", "unknownR7 structs = %u", mRoomsTR5[i].unknownR7);
@@ -5438,242 +5022,229 @@ int TombRaider::loadTR5(FILE *f)
 
         Fread(&mRoomsTR5[i].seperator17, 4, 1, f);
         printDebug("LoadTR5", "seperator17 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator17);
+                   mRoomsTR5[i].seperator17);
 
-        if (mRoomsTR5[i].seperator17 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator17 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #18 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator17);
+                  mRoomsTR5[i].seperator17);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].seperator18, 4, 1, f);
         printDebug("LoadTR5", "seperator18 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator18);
+                   mRoomsTR5[i].seperator18);
 
-        if (mRoomsTR5[i].seperator18 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator18 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #19 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator18);
+                  mRoomsTR5[i].seperator18);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].seperator19, 4, 1, f);
         printDebug("LoadTR5", "seperator19 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator19);
+                   mRoomsTR5[i].seperator19);
 
-        if (mRoomsTR5[i].seperator19 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator19 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #20 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator19);
+                  mRoomsTR5[i].seperator19);
             return -3;
         }
 
         Fread(&mRoomsTR5[i].seperator20, 4, 1, f);
         printDebug("LoadTR5", "seperator20 CDCDCDCD = 0x%x",
-                mRoomsTR5[i].seperator20);
+                   mRoomsTR5[i].seperator20);
 
-        if (mRoomsTR5[i].seperator20 != 0xcdcdcdcd)
-        {
+        if (mRoomsTR5[i].seperator20 != 0xcdcdcdcd) {
             print("LoadTR5", "Error #21 CDCDCDCD != 0x%x",
-                    mRoomsTR5[i].seperator20);
+                  mRoomsTR5[i].seperator20);
             return -3;
         }
 
         // Lights
         printDebug("LoadTR5", "Reading %u lights @ 88bytes each",
-                mRoomsTR5[i].numRoomLights);
+                   mRoomsTR5[i].numRoomLights);
 
-        if (mRoomsTR5[i].numRoomLights)
-        {
+        if (mRoomsTR5[i].numRoomLights) {
             mRoomsTR5[i].lights = new tr5_light_t[mRoomsTR5[i].numRoomLights];
         }
 
-        for (j = 0; j < (int)mRoomsTR5[i].numRoomLights; ++j)
-        {
+        for (j = 0; j < (int)mRoomsTR5[i].numRoomLights; ++j) {
             Fread(&mRoomsTR5[i].lights[j], 88, 1, f);
 
             //Fread(&mRoomsTR5[i].lights[j].x, 4, 1, f);
             printDebug("LoadTR5", "light[%i].x? = %f", j,
-                    mRoomsTR5[i].lights[j].x);
+                       mRoomsTR5[i].lights[j].x);
 
             //Fread(&mRoomsTR5[i].lights[j].y, 4, 1, f);
             printDebug("LoadTR5", "light[%i].y? = %f", j,
-                    mRoomsTR5[i].lights[j].y);
+                       mRoomsTR5[i].lights[j].y);
 
             //Fread(&mRoomsTR5[i].lights[j].z, 4, 1, f);
             printDebug("LoadTR5", "light[%i].z? = %f", j,
-                    mRoomsTR5[i].lights[j].z);
+                       mRoomsTR5[i].lights[j].z);
 
             //Fread(&mRoomsTR5[i].lights[j].red, 4, 1, f);
             printDebug("LoadTR5", "light[%i].r? = %f",
-                    j, mRoomsTR5[i].lights[j].red);
+                       j, mRoomsTR5[i].lights[j].red);
 
             //Fread(&mRoomsTR5[i].lights[j].green, 4, 1, f);
             printDebug("LoadTR5", "light[%i].g? = %f",
-                    j, mRoomsTR5[i].lights[j].green);
+                       j, mRoomsTR5[i].lights[j].green);
 
             //Fread(&mRoomsTR5[i].lights[j].blue, 4, 1, f);
             printDebug("LoadTR5", "light[%i].b? = %f",
-                    j, mRoomsTR5[i].lights[j].blue);
+                       j, mRoomsTR5[i].lights[j].blue);
 
             // 24bytes from start of light
             //Fread(&mRoomsTR5[i].lights[j].seperator, 4, 1, f);
             printDebug("LoadTR5", "CDCDCDCD for some maps? = 0x%8x\t\t[%s]",
-                    mRoomsTR5[i].lights[j].seperator,
-                    (mRoomsTR5[i].lights[j].seperator == 0xcdcdcdcd)
-                    ? "OK" : "ERROR");
+                       mRoomsTR5[i].lights[j].seperator,
+                       (mRoomsTR5[i].lights[j].seperator == 0xcdcdcdcd)
+                       ? "OK" : "ERROR");
 
             //Fread(&mRoomsTR5[i].lights[j].input, 4, 1, f);
             printDebug("LoadTR5", "light[%i].input = %f",
-                    j, mRoomsTR5[i].lights[j].input);
+                       j, mRoomsTR5[i].lights[j].input);
 
             //Fread(&mRoomsTR5[i].lights[j].output, 4, 1, f);
             printDebug("LoadTR5", "light[%i].output = %f",
-                    j, mRoomsTR5[i].lights[j].output);
+                       j, mRoomsTR5[i].lights[j].output);
 
             //Fread(&mRoomsTR5[i].lights[j].range, 4, 1, f);
             printDebug("LoadTR5", "light[%i].range = %f",
-                    j, mRoomsTR5[i].lights[j].range);
+                       j, mRoomsTR5[i].lights[j].range);
 
             //Fread(&mRoomsTR5[i].lights[j].directionVectorX, 4, 1, f);
             printDebug("LoadTR5", "light[%i].directionVectorX = %f",
-                    j, mRoomsTR5[i].lights[j].directionVectorX);
+                       j, mRoomsTR5[i].lights[j].directionVectorX);
             //Fread(&mRoomsTR5[i].lights[j].directionVectorY, 4, 1, f);
             printDebug("LoadTR5", "light[%i].directionVectorY = %f",
-                    j, mRoomsTR5[i].lights[j].directionVectorY);
+                       j, mRoomsTR5[i].lights[j].directionVectorY);
             //Fread(&mRoomsTR5[i].lights[j].directionVectorZ, 4, 1, f);
             printDebug("LoadTR5", "light[%i].directionVectorZ = %f",
-                    j, mRoomsTR5[i].lights[j].directionVectorZ);
+                       j, mRoomsTR5[i].lights[j].directionVectorZ);
 
             //Fread(&mRoomsTR5[i].lights[j].x2, 4, 1, f);
             printDebug("LoadTR5", "light[%i].x2 = %u",
-                    j, mRoomsTR5[i].lights[j].x2);
+                       j, mRoomsTR5[i].lights[j].x2);
             //Fread(&mRoomsTR5[i].lights[j].y2, 4, 1, f);
             printDebug("LoadTR5", "light[%i].y2 = %u",
-                    j, mRoomsTR5[i].lights[j].y2);
+                       j, mRoomsTR5[i].lights[j].y2);
             //Fread(&mRoomsTR5[i].lights[j].z2, 4, 1, f);
             printDebug("LoadTR5", "light[%i].z2 = %u",
-                    j, mRoomsTR5[i].lights[j].z2);
+                       j, mRoomsTR5[i].lights[j].z2);
 
 
             //Fread(&mRoomsTR5[i].lights[j].directionVectorX2, 4, 1, f);
             printDebug("LoadTR5", "light[%i].directionVectorX2 = %u",
-                    j, mRoomsTR5[i].lights[j].directionVectorX2);
+                       j, mRoomsTR5[i].lights[j].directionVectorX2);
             //Fread(&mRoomsTR5[i].lights[j].directionVectorY2, 4, 1, f);
             printDebug("LoadTR5", "light[%i].directionVectorY2 = %u",
-                    j, mRoomsTR5[i].lights[j].directionVectorY2);
+                       j, mRoomsTR5[i].lights[j].directionVectorY2);
             //Fread(&mRoomsTR5[i].lights[j].directionVectorZ2, 4, 1, f);
             printDebug("LoadTR5", "light[%i].directionVectorZ2 = %u",
-                    j, mRoomsTR5[i].lights[j].directionVectorZ2);
+                       j, mRoomsTR5[i].lights[j].directionVectorZ2);
 
             //Fread(&mRoomsTR5[i].lights[j].lightType, 1, 1, f);
             printDebug("LoadTR5", "light[%i].d3d_flag = 0x%x (%s)",
-                    j, mRoomsTR5[i].lights[j].lightType,
-                    (mRoomsTR5[i].lights[j].lightType == 1) ? "Point" :
-                    (mRoomsTR5[i].lights[j].lightType == 2) ? "Spot" :
-                    (mRoomsTR5[i].lights[j].lightType == 3) ? "Directional" : "Unknown");
+                       j, mRoomsTR5[i].lights[j].lightType,
+                       (mRoomsTR5[i].lights[j].lightType == 1) ? "Point" :
+                       (mRoomsTR5[i].lights[j].lightType == 2) ? "Spot" :
+                       (mRoomsTR5[i].lights[j].lightType == 3) ? "Directional" : "Unknown");
 
             //Fread(&mRoomsTR5[i].lights[j].seperator2, 3, 1, f);
             printDebug("LoadTR5", "CDCDCD = %c%c%c",
-                    mRoomsTR5[i].lights[j].seperator2[0],
-                    mRoomsTR5[i].lights[j].seperator2[1],
-                    mRoomsTR5[i].lights[j].seperator2[2]);
+                       mRoomsTR5[i].lights[j].seperator2[0],
+                       mRoomsTR5[i].lights[j].seperator2[1],
+                       mRoomsTR5[i].lights[j].seperator2[2]);
         }
 
         int numSectors = mRoomsTR5[i].numXSectors * mRoomsTR5[i].numZSectors;
 
-        if (numSectors)
-        {
+        if (numSectors) {
             mRoomsTR5[i].sectors = new tr2_room_sector_t[numSectors];
         }
 
         // Sectors
         printDebug("LoadTR5", "Reading %u sectors @ 8bytes each",
-                numSectors);
+                   numSectors);
 
-        for (j = 0; j < numSectors; ++j)
-        {
+        for (j = 0; j < numSectors; ++j) {
             Fread(&mRoomsTR5[i].sectors[j].fd_index, 2, 1, f);
             printDebug("LoadTR5", "sector[%i].fd_index = %u", j,
-                    mRoomsTR5[i].sectors[j].fd_index);
+                       mRoomsTR5[i].sectors[j].fd_index);
             Fread(&mRoomsTR5[i].sectors[j].box_index, 2, 1, f);
             printDebug("LoadTR5", "sector[%i].box_index = %u", j,
-                    mRoomsTR5[i].sectors[j].box_index);
+                       mRoomsTR5[i].sectors[j].box_index);
             Fread(&mRoomsTR5[i].sectors[j].room_below, 1, 1, f);
             printDebug("LoadTR5", "sector[%i].room_below = %u", j,
-                    mRoomsTR5[i].sectors[j].room_below);
+                       mRoomsTR5[i].sectors[j].room_below);
             Fread(&mRoomsTR5[i].sectors[j].floor, 1, 1, f);
             printDebug("LoadTR5", "sector[%i].floor = %i", j,
-                    (*(char*)(&mRoomsTR5[i].sectors[j].floor)));
+                       (*(char*)(&mRoomsTR5[i].sectors[j].floor)));
             Fread(&mRoomsTR5[i].sectors[j].room_above, 1, 1, f);
             printDebug("LoadTR5", "sector[%i].room_above = %u", j,
-                    mRoomsTR5[i].sectors[j].room_above);
+                       mRoomsTR5[i].sectors[j].room_above);
             Fread(&mRoomsTR5[i].sectors[j].ceiling, 1, 1, f);
             printDebug("LoadTR5", "sector[%i].ceiling = %i", j,
-                    (*(char*)(&mRoomsTR5[i].sectors[j].ceiling)));
+                       (*(char*)(&mRoomsTR5[i].sectors[j].ceiling)));
         }
 
         portalOffset = (thisRoomOffset + mRoomsTR5[i].startSDOffset + 216 +
-                numSectors * 8);
+                        numSectors * 8);
 
         u = ftell(f);
 
-        if (u != portalOffset)
-        {
+        if (u != portalOffset) {
             printDebug("LoadTR5", "*** Skipping %i bytes to start of portals ***",
-                    portalOffset - u);
+                       portalOffset - u);
             fseek(f, portalOffset, SEEK_SET);
         }
 
         // Portals //////////////////////
         Fread(&mRoomsTR5[i].numDoors, 2, 1, f);
         printDebug("LoadTR5", "room[%i].tr5_num_portals = %u",
-                i, mRoomsTR5[i].numDoors);
+                   i, mRoomsTR5[i].numDoors);
 
         printDebug("LoadTR5", "Reading %u portals @ 32bytes each",
-                mRoomsTR5[i].numDoors);
+                   mRoomsTR5[i].numDoors);
 
-        if (mRoomsTR5[i].numDoors)
-        {
+        if (mRoomsTR5[i].numDoors) {
             mRoomsTR5[i].doors = new tr2_room_portal_t[mRoomsTR5[i].numDoors];
         }
 
-        for (j = 0; j < (int)mRoomsTR5[i].numDoors; ++j)
-        {
+        for (j = 0; j < (int)mRoomsTR5[i].numDoors; ++j) {
             Fread(&mRoomsTR5[i].doors[j].adjoining_room, 2, 1, f);
             printDebug("LoadTR5", "room[%i].portal[%i].adjoining_room = %u",
-                    i, j, mRoomsTR5[i].doors[j].adjoining_room);
+                       i, j, mRoomsTR5[i].doors[j].adjoining_room);
 
             Fread(&mRoomsTR5[i].doors[j].normal.x, 2, 1, f);
             Fread(&mRoomsTR5[i].doors[j].normal.y, 2, 1, f);
             Fread(&mRoomsTR5[i].doors[j].normal.z, 2, 1, f);
             printDebug("LoadTR5", "portal[%i].normal = ( %i, %i, %i )", j,
-                    mRoomsTR5[i].doors[j].normal.x,
-                    mRoomsTR5[i].doors[j].normal.y,
-                    mRoomsTR5[i].doors[j].normal.z);
+                       mRoomsTR5[i].doors[j].normal.x,
+                       mRoomsTR5[i].doors[j].normal.y,
+                       mRoomsTR5[i].doors[j].normal.z);
 
-            for (k = 0; k < 4; ++k)
-            {
+            for (k = 0; k < 4; ++k) {
                 Fread(&mRoomsTR5[i].doors[j].vertices[k].x, 2, 1, f);
                 Fread(&mRoomsTR5[i].doors[j].vertices[k].y, 2, 1, f);
                 Fread(&mRoomsTR5[i].doors[j].vertices[k].z, 2, 1, f);
                 printDebug("LoadTR5", "portal[%i].vertices[%i] = ( %i, %i, %i )",
-                        j, k,
-                        mRoomsTR5[i].doors[j].vertices[k].x,
-                        mRoomsTR5[i].doors[j].vertices[k].y,
-                        mRoomsTR5[i].doors[j].vertices[k].z);
+                           j, k,
+                           mRoomsTR5[i].doors[j].vertices[k].x,
+                           mRoomsTR5[i].doors[j].vertices[k].y,
+                           mRoomsTR5[i].doors[j].vertices[k].z);
             }
         }
 
         Fread(&mRoomsTR5[i].seperator21, 2, 1, f);
         printDebug("LoadTR5", "seperator21, CDCD = 0x%x",
-                mRoomsTR5[i].seperator21);
+                   mRoomsTR5[i].seperator21);
 
-        if (mRoomsTR5[i].seperator21 != 0xcdcd)
-        {
+        if (mRoomsTR5[i].seperator21 != 0xcdcd) {
             print("LoadTR5", "Error #22 CDCD != 0x%x",
-                    mRoomsTR5[i].seperator21);
+                  mRoomsTR5[i].seperator21);
             return -3;
         }
 
@@ -5681,106 +5252,98 @@ int TombRaider::loadTR5(FILE *f)
 
         u = ftell(f);
 
-        if (u != portalOffset)
-        {
+        if (u != portalOffset) {
             printDebug("LoadTR5", "*** Skipping %i bytes to end of portals ***",
-                    portalOffset - u);
+                       portalOffset - u);
             fseek(f, portalOffset, SEEK_SET);
         }
 
-        if (mRoomsTR5[i].numStaticMeshes)
-        {
+        if (mRoomsTR5[i].numStaticMeshes) {
             mRoomsTR5[i].meshes = new tr2_room_staticmesh_t[mRoomsTR5[i].numStaticMeshes];
         }
 
         // Static meshes
-        for (j = 0; j < (int)mRoomsTR5[i].numStaticMeshes; ++j)
-        {
+        for (j = 0; j < (int)mRoomsTR5[i].numStaticMeshes; ++j) {
             Fread(&mRoomsTR5[i].meshes[j].x, 4, 1, f);
             printDebug("LoadTR5", "static_mesh[%i].x = %i", j,
-                    mRoomsTR5[i].meshes[j].x);
+                       mRoomsTR5[i].meshes[j].x);
             Fread(&mRoomsTR5[i].meshes[j].y, 4, 1, f);
             printDebug("LoadTR5", "static_mesh[%i].y = %i", j,
-                    mRoomsTR5[i].meshes[j].y);
+                       mRoomsTR5[i].meshes[j].y);
             Fread(&mRoomsTR5[i].meshes[j].z, 4, 1, f);
             printDebug("LoadTR5", "static_mesh[%i].z = %i", j,
-                    mRoomsTR5[i].meshes[j].z);
+                       mRoomsTR5[i].meshes[j].z);
 
             Fread(&mRoomsTR5[i].meshes[j].rotation, 2, 1, f);
             printDebug("LoadTR5", "static_mesh[%i].rotation = %i", j,
-                    mRoomsTR5[i].meshes[j].rotation);
+                       mRoomsTR5[i].meshes[j].rotation);
 
             Fread(&mRoomsTR5[i].meshes[j].intensity1, 2, 1, f);
             printDebug("LoadTR5", "static_mesh[%i].intensity1 = %i", j,
-                    mRoomsTR5[i].meshes[j].intensity1);
+                       mRoomsTR5[i].meshes[j].intensity1);
             Fread(&mRoomsTR5[i].meshes[j].intensity2, 2, 1, f);
             printDebug("LoadTR5", "static_mesh[%i].intensity2 = %i", j,
-                    mRoomsTR5[i].meshes[j].intensity2);
+                       mRoomsTR5[i].meshes[j].intensity2);
 
             Fread(&mRoomsTR5[i].meshes[j].object_id, 2, 1, f);
             printDebug("LoadTR5", "static_mesh[%i].object_id = %i", j,
-                    mRoomsTR5[i].meshes[j].object_id);
+                       mRoomsTR5[i].meshes[j].object_id);
         }
 
         // Layers /////////////////
-        if (mRoomsTR5[i].numLayers)
-        {
+        if (mRoomsTR5[i].numLayers) {
             mRoomsTR5[i].layers = new tr5_room_layer_t[mRoomsTR5[i].numLayers];
         }
 
         printDebug("LoadTR5", "Reading %i layers",
-                mRoomsTR5[i].numLayers);
+                   mRoomsTR5[i].numLayers);
 
-        for (j = 0; j < (int)mRoomsTR5[i].numLayers; ++j)
-        {
+        for (j = 0; j < (int)mRoomsTR5[i].numLayers; ++j) {
             Fread(&mRoomsTR5[i].layers[j], 56, 1, f);
 
             printDebug("LoadTR5", "layer[%i].num_vertices = %i", j,
-                    mRoomsTR5[i].layers[j].numLayerVertices);
+                       mRoomsTR5[i].layers[j].numLayerVertices);
             printDebug("LoadTR5", "layer[%i].unknown1 = %i", j,
-                    mRoomsTR5[i].layers[j].unknownL1);
+                       mRoomsTR5[i].layers[j].unknownL1);
             printDebug("LoadTR5", "layer[%i].num_rectangles = %i", j,
-                    mRoomsTR5[i].layers[j].numLayerRectangles);
+                       mRoomsTR5[i].layers[j].numLayerRectangles);
             printDebug("LoadTR5", "layer[%i].num_triangles = %i", j,
-                    mRoomsTR5[i].layers[j].numLayerTriangles);
+                       mRoomsTR5[i].layers[j].numLayerTriangles);
             printDebug("LoadTR5", "layer[%i].num_2side_textures? = %i", j,
-                    mRoomsTR5[i].layers[j].unknownL2);
+                       mRoomsTR5[i].layers[j].unknownL2);
             printDebug("LoadTR5", "layer[%i].filler, 0? = %i", j,
-                    mRoomsTR5[i].layers[j].filler);
+                       mRoomsTR5[i].layers[j].filler);
             printDebug("LoadTR5", "layer[%i].filler2, 0? = %i", j,
-                    mRoomsTR5[i].layers[j].filler2);
+                       mRoomsTR5[i].layers[j].filler2);
             printDebug("LoadTR5", "layer[%i].bbox[0] = {%.2f %.2f %.2f}", j,
-                    mRoomsTR5[i].layers[j].layerBoundingBoxX1,
-                    mRoomsTR5[i].layers[j].layerBoundingBoxX1,
-                    mRoomsTR5[i].layers[j].layerBoundingBoxX1);
+                       mRoomsTR5[i].layers[j].layerBoundingBoxX1,
+                       mRoomsTR5[i].layers[j].layerBoundingBoxX1,
+                       mRoomsTR5[i].layers[j].layerBoundingBoxX1);
             printDebug("LoadTR5", "layer[%i].bbox[1] = {%.2f %.2f %.2f}", j,
-                    mRoomsTR5[i].layers[j].layerBoundingBoxX2,
-                    mRoomsTR5[i].layers[j].layerBoundingBoxX2,
-                    mRoomsTR5[i].layers[j].layerBoundingBoxX2);
+                       mRoomsTR5[i].layers[j].layerBoundingBoxX2,
+                       mRoomsTR5[i].layers[j].layerBoundingBoxX2,
+                       mRoomsTR5[i].layers[j].layerBoundingBoxX2);
             printDebug("LoadTR5", "layer[%i].filler3, 0? = %i", j,
-                    mRoomsTR5[i].layers[j].filler3);
+                       mRoomsTR5[i].layers[j].filler3);
             printDebug("LoadTR5", "layer[%i].unknown6 = %i", j,
-                    mRoomsTR5[i].layers[j].unknownL6);
+                       mRoomsTR5[i].layers[j].unknownL6);
             printDebug("LoadTR5", "layer[%i].unknown7 = %i", j,
-                    mRoomsTR5[i].layers[j].unknownL7);
+                       mRoomsTR5[i].layers[j].unknownL7);
             printDebug("LoadTR5", "layer[%i].unknown8 = %i", j,
-                    mRoomsTR5[i].layers[j].unknownL8);
+                       mRoomsTR5[i].layers[j].unknownL8);
         }
 
-        if (mRoomsTR5[i].numLayers)
-        {
+        if (mRoomsTR5[i].numLayers) {
             mRoomsTR5[i].faces = new tr5_room_geometry_t[mRoomsTR5[i].numLayers];
         }
 
-        for (j = 0; j < (int)mRoomsTR5[i].numLayers; ++j)
-        {
+        for (j = 0; j < (int)mRoomsTR5[i].numLayers; ++j) {
             mRoomsTR5[i].faces[j].quads = 0x0;
             mRoomsTR5[i].faces[j].tris = 0x0;
 
             k = mRoomsTR5[i].layers[j].numLayerRectangles;
 
-            if (k)
-            {
+            if (k) {
                 printDebug("LoadTR5", "Reading %i layer quads", k);
                 mRoomsTR5[i].faces[j].quads = new tr5_face4_t[k];
                 Fread(mRoomsTR5[i].faces[j].quads, 12, k, f);
@@ -5788,22 +5351,19 @@ int TombRaider::loadTR5(FILE *f)
 
             k = mRoomsTR5[i].layers[j].numLayerTriangles;
 
-            if (k)
-            {
+            if (k) {
                 printDebug("LoadTR5", "Reading %i layer tris", k);
                 mRoomsTR5[i].faces[j].tris = new tr5_face3_t[k];
                 Fread(mRoomsTR5[i].faces[j].tris, 10, k, f);
             }
         }
 
-        for (j = 0; j < (int)mRoomsTR5[i].numLayers; ++j)
-        {
+        for (j = 0; j < (int)mRoomsTR5[i].numLayers; ++j) {
             mRoomsTR5[i].faces[j].verts = 0x0;
 
             k = mRoomsTR5[i].layers[j].numLayerVertices;
 
-            if (k)
-            {
+            if (k) {
                 printDebug("LoadTR5", "Reading %i layer vertices", k);
                 mRoomsTR5[i].faces[j].verts = new tr5_vertex_t[k];
                 Fread(mRoomsTR5[i].faces[j].verts, 28, k, f);
@@ -5815,18 +5375,16 @@ int TombRaider::loadTR5(FILE *f)
         unsigned int hack = ftell(f);
 
 
-        if (hack < nextRoomOffset)
-        {
+        if (hack < nextRoomOffset) {
             printDebug("LoadTR5", "Skipping %i bytes at end of room[%i]",
-                    nextRoomOffset - hack, i);
+                       nextRoomOffset - hack, i);
             fseek(f, nextRoomOffset, SEEK_SET);
         }
 #else
         long hack = 0;
 
         // This peels padding off the end of TRCs like ANDREA1.TRC
-        while (hack != 0xcdcd)
-        {
+        while (hack != 0xcdcd) {
             Fread(&hack, 2, 1, f);
             printDebug("LoadTR5", "hack[%i] = 0x%x", i, hack);
         }
@@ -5844,7 +5402,7 @@ int TombRaider::loadTR5(FILE *f)
     Fread(&numMeshData, 4, 1, f);
     printDebug("LoadTR5", "numMeshData = %u", numMeshData);
 
-    meshData = new unsigned char[2*numMeshData];
+    meshData = new unsigned char[2 * numMeshData];
     Fread(meshData, 2, numMeshData, f);
 
     // Use pointers array to index in meshData array for tr5_mesh_t's
@@ -5901,10 +5459,9 @@ int TombRaider::loadTR5(FILE *f)
 
     Fread(check, 4, 1, f);
     printDebug("LoadTR5", "Check: SPR = '%c%c%c'?",
-            check[0], check[1], check[2]);
+               check[0], check[1], check[2]);
 
-    if (check[0] != 'S' || check[1] != 'P' || check[2] != 'R')
-    {
+    if (check[0] != 'S' || check[1] != 'P' || check[2] != 'R') {
         print("LoadTR5", "Error: SPR != '%c%c%c'", check[0], check[1], check[2]);
         return -4;
     }
@@ -5925,26 +5482,20 @@ int TombRaider::loadTR5(FILE *f)
     _num_cameras = u;
     printDebug("LoadTR5", "_num_cameras = %u", _num_cameras);
 
-    if (_num_cameras > 0)
-    {
+    if (_num_cameras > 0) {
         _cameras = new tr2_camera_t[_num_cameras];
         Fread(_cameras, 16, _num_cameras, f);
-    }
-    else
-    {
+    } else {
         _cameras = 0x0;
     }
 
     Fread(&numFlyByCamerasTR5, 4, 1, f);
     printDebug("LoadTR5", "numFlyByCameras = %u", numFlyByCamerasTR5);
 
-    if (numFlyByCamerasTR5 > 0)
-    {
+    if (numFlyByCamerasTR5 > 0) {
         flyByCamerasTR5 = new tr5_flyby_camera_t[numFlyByCamerasTR5];
         Fread(flyByCamerasTR5, 40, numFlyByCamerasTR5, f);
-    }
-    else
-    {
+    } else {
         flyByCamerasTR5 = 0x0;
     }
 
@@ -5952,13 +5503,10 @@ int TombRaider::loadTR5(FILE *f)
     _num_sound_sources = u;
     printDebug("LoadTR5", "_num_sound_sources = %u", _num_sound_sources);
 
-    if (_num_sound_sources > 0)
-    {
+    if (_num_sound_sources > 0) {
         _sound_sources = new tr2_sound_source_t[_num_sound_sources];
         Fread(_sound_sources, 16, _num_sound_sources, f);
-    }
-    else
-    {
+    } else {
         _sound_sources = 0x0;
     }
 
@@ -5974,7 +5522,7 @@ int TombRaider::loadTR5(FILE *f)
     _overlaps = new short[_num_overlaps];
     Fread(_overlaps, 2, _num_overlaps, f);
 
-    _zones = new short[_num_boxes*10];
+    _zones = new short[_num_boxes * 10];
     Fread(_zones, 20, _num_boxes, f);
 
     Fread(&u, 4, 1, f);
@@ -5985,13 +5533,12 @@ int TombRaider::loadTR5(FILE *f)
 
     Fread(check, 1, 5, f);
     printDebug("LoadTR5", "Check: TEX = '%c%c%c'?",
-            check[1], check[2], check[3]);
+               check[1], check[2], check[3]);
 
     // check[0] is '^D'
-    if (check[1] != 'T' || check[2] != 'E' || check[3] != 'X')
-    {
+    if (check[1] != 'T' || check[2] != 'E' || check[3] != 'X') {
         print("LoadTR5", "Error: TEX != '%c%c%c' @ %lu",
-                check[1], check[2], check[3], ftell(f));
+              check[1], check[2], check[3], ftell(f));
         return -4;
     }
 
@@ -6009,13 +5556,10 @@ int TombRaider::loadTR5(FILE *f)
     Fread(&numCinematicFramesTR5, 4, 1, f);
     printDebug("LoadTR5", "numCinematicFrames = %u", numCinematicFramesTR5);
 
-    if (numCinematicFramesTR5 > 0)
-    {
+    if (numCinematicFramesTR5 > 0) {
         cinematicFramesTR5 = new tr5_cinematic_frame_t[numCinematicFramesTR5];
         Fread(cinematicFramesTR5, 24, numCinematicFramesTR5, f);
-    }
-    else
-    {
+    } else {
         cinematicFramesTR5 = 0x0;
     }
 
@@ -6023,13 +5567,10 @@ int TombRaider::loadTR5(FILE *f)
     _num_demo_data = us; // Could overflow?  not sure
     printDebug("LoadTR5", "_num_demo_data = %u", _num_demo_data);
 
-    if (_num_demo_data > 0)
-    {
+    if (_num_demo_data > 0) {
         _demo_data = new unsigned char[_num_demo_data];
         Fread(_demo_data, 1, _num_demo_data, f);
-    }
-    else
-    {
+    } else {
         _demo_data = 0x0;
     }
 
@@ -6052,8 +5593,7 @@ int TombRaider::loadTR5(FILE *f)
     Fread(&u, 4, 1, f);
     printDebug("LoadTR5", "Check 0xCDCDCDCD = 0x%X?", u);
 
-    if (u != 0xcdcdcdcd)
-    {
+    if (u != 0xcdcdcdcd) {
         print("LoadTR5", "Check 0xCDCDCDCD != 0x%X @ %ld", u, ftell(f));
         return -5;
     }
@@ -6063,8 +5603,7 @@ int TombRaider::loadTR5(FILE *f)
     u = ftell(f);
     Fread(&us, 2, 1, f);
 
-    if (us != 0xcdcd)
-    {
+    if (us != 0xcdcd) {
         fseek(f, u, SEEK_SET);
     }
 
@@ -6073,17 +5612,16 @@ int TombRaider::loadTR5(FILE *f)
     printDebug("Load", "mNumTR4Samples = %i", mNumTR4Samples);
 
     mRiffDataSz = 0;
-    mTR4Samples = new unsigned char *[mNumTR4Samples];
+    mTR4Samples = new unsigned char* [mNumTR4Samples];
     mTR4SamplesSz = new unsigned int[mNumTR4Samples];
 
-    memset(mTR4SamplesSz, 0, mNumTR4Samples*4);
+    memset(mTR4SamplesSz, 0, mNumTR4Samples * 4);
 
-    for (i = 0; i < (int)mNumTR4Samples; ++i)
-    {
+    for (i = 0; i < (int)mNumTR4Samples; ++i) {
         unsigned int sizeCompressed;
         unsigned int sizeUncompressed;
-        unsigned char *compressedSoundSample;
-        unsigned char *unCompressedSoundSample;
+        unsigned char* compressedSoundSample;
+        unsigned char* unCompressedSoundSample;
         int zErr;
         uLongf libzUncompressedSize;
 
@@ -6100,23 +5638,22 @@ int TombRaider::loadTR5(FILE *f)
         Fread(compressedSoundSample, sizeCompressed, 1, f);
 
         printDebug("Load", " %c%c%c%c should be RIFF",
-                compressedSoundSample[0],
-                compressedSoundSample[1],
-                compressedSoundSample[2],
-                compressedSoundSample[3]);
+                   compressedSoundSample[0],
+                   compressedSoundSample[1],
+                   compressedSoundSample[2],
+                   compressedSoundSample[3]);
 
         // Decompress the sample
         libzUncompressedSize = sizeUncompressed;
 
         zErr = uncompress(unCompressedSoundSample,
-                &libzUncompressedSize,
-                compressedSoundSample,
-                sizeCompressed);
+                          &libzUncompressedSize,
+                          compressedSoundSample,
+                          sizeCompressed);
 
         sizeUncompressed = libzUncompressedSize;
 
-        switch (zErr)
-        {
+        switch (zErr) {
             case Z_MEM_ERROR:
                 printDebug("Load", "   Decompress Error: not enough memory");
                 break;
@@ -6134,14 +5671,11 @@ int TombRaider::loadTR5(FILE *f)
         }
 
         // Hhhmm... handle uncompressed RIFFs too?
-        if (zErr == Z_OK)
-        {
+        if (zErr == Z_OK) {
             mTR4Samples[i] = unCompressedSoundSample;
             mTR4SamplesSz[i] = sizeUncompressed;
             delete [] compressedSoundSample;
-        }
-        else
-        {
+        } else {
             printDebug("Load", "   %lubytes read from file", ftell(f));
             mTR4Samples[i] = compressedSoundSample;
             mTR4SamplesSz[i] = sizeCompressed;
@@ -6154,8 +5688,7 @@ int TombRaider::loadTR5(FILE *f)
     return 0;
 }
 
-void TombRaider::print(const char *methodName, const char *s, ...)
-{
+void TombRaider::print(const char* methodName, const char* s, ...) {
     va_list args;
 
     va_start(args, s);
@@ -6166,8 +5699,7 @@ void TombRaider::print(const char *methodName, const char *s, ...)
 }
 
 
-void TombRaider::printDebug(const char *methodName, const char *s, ...)
-{
+void TombRaider::printDebug(const char* methodName, const char* s, ...) {
     va_list args;
 
     if (!mDebug)

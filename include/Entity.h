@@ -12,7 +12,7 @@
 #include "TombRaider.h"
 
 class Entity {
-public:
+  public:
     typedef enum {
         MoveTypeWalkNoSwim = -1,
         MoveTypeWalk       = 0,
@@ -21,15 +21,15 @@ public:
         MoveTypeSwim       = 3
     } MoveType;
 
-    Entity(TombRaider &tr, unsigned int index, unsigned int i, unsigned int model);
+    Entity(TombRaider& tr, unsigned int index, unsigned int i, unsigned int model);
 
-    bool operator<(Entity &o);
-    static bool compare(Entity *a, Entity *b);
+    bool operator<(Entity& o);
+    static bool compare(Entity* a, Entity* b);
     void display();
     void move(char movement);
     void print();
 
-    SkeletalModel &getModel();
+    SkeletalModel& getModel();
     void setSkeletalModel(unsigned int model);
     MoveType getMoveType();
     void setMoveType(MoveType m);
@@ -47,7 +47,7 @@ public:
     unsigned long getIdleAnimation();
     void setIdleAnimation(unsigned long index);
 
-private:
+  private:
     float pos[3];
     float angles[3];
     long room;

@@ -36,7 +36,7 @@ int MenuFolder::init(std::string s) {
     return init(new Folder(s));
 }
 
-int MenuFolder::init(Folder *folder, bool filter) {
+int MenuFolder::init(Folder* folder, bool filter) {
     if (mapFolder != nullptr)
         delete mapFolder;
 
@@ -44,7 +44,7 @@ int MenuFolder::init(Folder *folder, bool filter) {
     mMin = mCursor = 0;
 
     if (filter) {
-        mapFolder->executeRemoveFiles([](File &f) {
+        mapFolder->executeRemoveFiles([](File & f) {
             // Filter files based on file name
             if ((f.getName().length() > 4)
                 && (f.getName().compare(f.getName().length() - 4, 4, ".phd") != 0)
@@ -58,7 +58,7 @@ int MenuFolder::init(Folder *folder, bool filter) {
             Loader::LoaderVersion version = Loader::checkFile(f.getPath());
             if (version == Loader::TR_UNKNOWN) {
                 getLog() << "Error: pak file '" << f.getName().c_str()
-                    << "' invalid" << Log::endl;
+                         << "' invalid" << Log::endl;
                 return true; // delete file from list
             }
 
@@ -92,15 +92,15 @@ void MenuFolder::display() {
 
     // Print list of "..", folders, files
     for (long i = mMin; (i < (mMin + items))
-                && (i < (mapFolder->folderCount() + mapFolder->fileCount() + 1)); i++) {
+         && (i < (mapFolder->folderCount() + mapFolder->fileCount() + 1)); i++) {
         if (i == 0) {
             Font::drawText(25, 50, 0.75f, (mCursor == i) ? RED : BLUE, "..");
         } else {
             Font::drawText(25, (unsigned int)(50 + (25 * (i - mMin))), 0.75f,
-                (mCursor == i) ? RED : BLUE,
-                ((i - 1) < mapFolder->folderCount()) ?
-                    (mapFolder->getFolder(i - 1).getName() + "/")
-                    : mapFolder->getFile(i - 1 - mapFolder->folderCount()).getName());
+                           (mCursor == i) ? RED : BLUE,
+                           ((i - 1) < mapFolder->folderCount()) ?
+                           (mapFolder->getFolder(i - 1).getName() + "/")
+                           : mapFolder->getFile(i - 1 - mapFolder->folderCount()).getName());
         }
     }
 
@@ -120,7 +120,7 @@ void MenuFolder::loadOrOpen() {
         }
     } else {
         int error = getGame().loadLevel(mapFolder->getFile((unsigned long)mCursor
-                    - 1 - mapFolder->folderCount()).getPath().c_str());
+                                        - 1 - mapFolder->folderCount()).getPath().c_str());
         if (error == 0) {
             visible = false;
         } else {
@@ -165,7 +165,8 @@ void MenuFolder::handleKeyboard(KeyboardButton key, bool pressed) {
     }
 }
 
-void MenuFolder::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
+void MenuFolder::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button,
+                                  bool released) {
     if (handleMouseClickDialog(x, y, button, released))
         return;
 
@@ -175,7 +176,7 @@ void MenuFolder::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
         return;
 
     if ((y >= 50) && (y <= (unsigned int)(50 + (25 * items)))
-            && ((mMin + (y / 25)) <= (mapFolder->folderCount() + mapFolder->fileCount() + 2))) {
+        && ((mMin + (y / 25)) <= (mapFolder->folderCount() + mapFolder->fileCount() + 2))) {
         y -= 50;
         if (mCursor == (mMin + (y / 25)))
             loadOrOpen();

@@ -14,12 +14,13 @@
 
 unsigned int FontImGui::widthText(float scale, std::string s) {
     ImGuiIO& io = ImGui::GetIO();
-    ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, io.DisplaySize.y, s.c_str(), s.c_str() + s.length());
+    ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, io.DisplaySize.y, s.c_str(),
+                                         s.c_str() + s.length());
     return size.y;
 }
 
 void FontImGui::drawText(unsigned int x, unsigned int y, float scale,
-        const unsigned char color[4], std::string s) {
+                         const unsigned char color[4], std::string s) {
     ImGuiIO& io = ImGui::GetIO();
     ImVec2 pos = ImVec2(x, y);
     ImU32 col = color[0] | (color[1] << 8) | (color[2] << 16) | (color[3] << 24);
@@ -34,12 +35,13 @@ void FontImGui::drawText(unsigned int x, unsigned int y, float scale,
 
 unsigned int FontImGui::heightText(float scale, unsigned int maxWidth, std::string s) {
     ImGuiIO& io = ImGui::GetIO();
-    ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, maxWidth, s.c_str(), s.c_str() + s.length());
+    ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, maxWidth, s.c_str(),
+                                         s.c_str() + s.length());
     return size.x;
 }
 
 void FontImGui::drawTextWrapped(unsigned int x, unsigned int y, float scale,
-        const unsigned char color[4], unsigned int maxWidth, std::string s) {
+                                const unsigned char color[4], unsigned int maxWidth, std::string s) {
     drawText(x, y, scale, color, s);
 }
 

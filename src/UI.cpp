@@ -71,11 +71,11 @@ int UI::initialize() {
     ImGui::GetDefaultFontData(NULL, NULL, &png_data, &png_size);
     int tex_x, tex_y, tex_comp;
     void* tex_data = stbi_load_from_memory((const unsigned char*)png_data,
-            (int)png_size, &tex_x, &tex_y, &tex_comp, 0);
+                                           (int)png_size, &tex_x, &tex_y, &tex_comp, 0);
 
-     //! \fixme TODO use proper texture slot
-    fontTex = getTextureManager().loadBufferSlot((unsigned char *)tex_data,
-            tex_x, tex_y, RGBA, 32, 0, false);
+    //! \fixme TODO use proper texture slot
+    fontTex = getTextureManager().loadBufferSlot((unsigned char*)tex_data,
+              tex_x, tex_y, RGBA, 32, 0, false);
 
     stbi_image_free(tex_data);
 
@@ -99,7 +99,7 @@ void UI::eventsFinished() {
             auto i = clickEvents.front();
             if (getMenu().isVisible()) {
                 getMenu().handleMouseClick(std::get<0>(i), std::get<1>(i),
-                        std::get<2>(i), std::get<3>(i));
+                                           std::get<2>(i), std::get<3>(i));
             }
             clickEvents.pop_front();
         }
@@ -108,7 +108,7 @@ void UI::eventsFinished() {
             auto i = motionEvents.front();
             if (!getMenu().isVisible()) {
                 getGame().handleMouseMotion(std::get<0>(i), std::get<1>(i),
-                        std::get<2>(i), std::get<3>(i));
+                                            std::get<2>(i), std::get<3>(i));
             }
             motionEvents.pop_front();
         }
@@ -163,9 +163,9 @@ void UI::eventsFinished() {
     }
 
     if (visible && (
-                ((!io.WantCaptureKeyboard) && io.KeysDown[escapeKey])
-                || ((!io.WantCaptureMouse) && clicked)
-            )) {
+            ((!io.WantCaptureKeyboard) && io.KeysDown[escapeKey])
+            || ((!io.WantCaptureMouse) && clicked)
+        )) {
         visible = false;
     }
 
@@ -217,7 +217,7 @@ void UI::handleKeyboard(KeyboardButton key, bool pressed) {
         metaKeyIsActive = pressed;
 }
 
-void UI::handleText(char *text, bool notFinished) {
+void UI::handleText(char* text, bool notFinished) {
     if (notFinished)
         return;
 
@@ -289,15 +289,15 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
         const ImDrawList* cmd_list = cmd_lists[n];
         const unsigned char* vtx_buffer = (const unsigned char*)cmd_list->vtx_buffer.begin();
         glVertexPointer(2, GL_FLOAT, sizeof(ImDrawVert), (void*)(vtx_buffer));
-        glTexCoordPointer(2, GL_FLOAT, sizeof(ImDrawVert), (void*)(vtx_buffer+8));
-        glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(ImDrawVert), (void*)(vtx_buffer+16));
+        glTexCoordPointer(2, GL_FLOAT, sizeof(ImDrawVert), (void*)(vtx_buffer + 8));
+        glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(ImDrawVert), (void*)(vtx_buffer + 16));
 
         int vtx_offset = 0;
         const ImDrawCmd* pcmd_end = cmd_list->commands.end();
         for (const ImDrawCmd* pcmd = cmd_list->commands.begin(); pcmd != pcmd_end; pcmd++) {
             glScissor((int)pcmd->clip_rect.x, (int)(ImGui::GetIO().DisplaySize.y - pcmd->clip_rect.w),
-                    (int)(pcmd->clip_rect.z - pcmd->clip_rect.x),
-                    (int)(pcmd->clip_rect.w - pcmd->clip_rect.y));
+                      (int)(pcmd->clip_rect.z - pcmd->clip_rect.x),
+                      (int)(pcmd->clip_rect.w - pcmd->clip_rect.y));
             glDrawArrays(GL_TRIANGLES, vtx_offset, pcmd->vtx_count);
             vtx_offset += pcmd->vtx_count;
         }

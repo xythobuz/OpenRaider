@@ -56,43 +56,43 @@ static std::shared_ptr<TextureManager> gTextureManager;
 static std::shared_ptr<Window> gWindow;
 static std::shared_ptr<World> gWorld;
 
-Camera &getCamera() {
+Camera& getCamera() {
     return *gCamera;
 }
 
-Game &getGame() {
+Game& getGame() {
     return *gGame;
 }
 
-Log &getLog() {
+Log& getLog() {
     return *gLog;
 }
 
-Menu &getMenu() {
+Menu& getMenu() {
     return *gMenu;
 }
 
-Render &getRender() {
+Render& getRender() {
     return *gRender;
 }
 
-RunTime &getRunTime() {
+RunTime& getRunTime() {
     return *gRunTime;
 }
 
-Sound &getSound() {
+Sound& getSound() {
     return *gSound;
 }
 
-TextureManager &getTextureManager() {
+TextureManager& getTextureManager() {
     return *gTextureManager;
 }
 
-Window &getWindow() {
+Window& getWindow() {
     return *gWindow;
 }
 
-World &getWorld() {
+World& getWorld() {
     return *gWorld;
 }
 
@@ -100,7 +100,7 @@ int main(int argc, char* argv[]) {
     command_t cmd;
     command_init(&cmd, argv[0], VERSION);
     command_option(&cmd, "-c", "--config <file>", "select config file to use",
-            [](command_t *self) {
+    [](command_t* self) {
         configFileToUse = self->arg;
     });
     command_parse(&cmd, argc, argv);
@@ -271,9 +271,9 @@ namespace {
 
     [[noreturn]] void terminateHandler() {
         const unsigned int maxSize = 128;
-        void *callstack[maxSize];
+        void* callstack[maxSize];
         int frames = backtrace(callstack, maxSize);
-        char **strs = backtrace_symbols(callstack, frames);
+        char** strs = backtrace_symbols(callstack, frames);
 
         std::cout << std::endl;
         for (int i = 0; i < frames; i++)

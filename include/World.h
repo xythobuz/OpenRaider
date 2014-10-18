@@ -22,7 +22,7 @@
  * \brief The game world (model)
  */
 class World {
-public:
+  public:
 
     /*!
      * \brief Deconstructs an object of World
@@ -34,25 +34,25 @@ public:
      */
     void destroy();
 
-    void addRoom(Room &room);
+    void addRoom(Room& room);
     unsigned long sizeRoom();
-    Room &getRoom(unsigned long index);
+    Room& getRoom(unsigned long index);
 
-    void addSprite(SpriteSequence &sprite);
+    void addSprite(SpriteSequence& sprite);
     unsigned long sizeSprite();
-    SpriteSequence &getSprite(unsigned long index);
+    SpriteSequence& getSprite(unsigned long index);
 
-    void addEntity(Entity &entity);
+    void addEntity(Entity& entity);
     unsigned long sizeEntity();
-    Entity &getEntity(unsigned long index);
+    Entity& getEntity(unsigned long index);
 
-    void addSkeletalModel(SkeletalModel &model);
+    void addSkeletalModel(SkeletalModel& model);
     unsigned long sizeSkeletalModel();
-    SkeletalModel &getSkeletalModel(unsigned long index);
+    SkeletalModel& getSkeletalModel(unsigned long index);
 
-    void addStaticMesh(StaticMesh &model);
+    void addStaticMesh(StaticMesh& model);
     unsigned long sizeStaticMesh();
-    StaticMesh &getStaticMesh(unsigned long index);
+    StaticMesh& getStaticMesh(unsigned long index);
 
     /*!
      * \brief Find room a location is in.
@@ -77,7 +77,7 @@ public:
      */
     long getRoomByLocation(float x, float y, float z);
 
-private:
+  private:
     std::vector<std::unique_ptr<Room>> mRooms;
     std::vector<std::unique_ptr<SpriteSequence>> mSprites;
     std::vector<std::unique_ptr<Entity>> mEntities;
@@ -85,6 +85,6 @@ private:
     std::vector<std::unique_ptr<StaticMesh>> mMeshes;
 };
 
-World &getWorld();
+World& getWorld();
 
 #endif

@@ -14,7 +14,7 @@
 #include "TombRaider.h"
 
 class BoundingBox {
-public:
+  public:
     BoundingBox();
     void getBoundingBox(float box[2][3]);
     void setBoundingBox(float min[3], float max[3]);
@@ -22,12 +22,12 @@ public:
     bool inBox(float x, float y, float z);
     bool inBoxPlane(float x, float z);
 
-private:
+  private:
     float a[3], b[3];
 };
 
 class Light {
-public:
+  public:
     /*!
      * \brief Type a light can be of
      */
@@ -37,7 +37,7 @@ public:
         typeDirectional = 3  //!< Directional light
     } LightType;
 
-    Light(TombRaider &tr, unsigned int room, unsigned int index);
+    Light(TombRaider& tr, unsigned int room, unsigned int index);
 
     void getPos(float p[4]);
     void getDir(float d[3]);
@@ -46,7 +46,7 @@ public:
     float getCutoff();
     LightType getType();
 
-private:
+  private:
     float pos[4]; //! Light position in 3 space
     float dir[3]; //! Light direction
     float att;
@@ -56,15 +56,15 @@ private:
 };
 
 class StaticModel {
-public:
-    StaticModel(TombRaider &tr, unsigned int room, unsigned int i);
+  public:
+    StaticModel(TombRaider& tr, unsigned int room, unsigned int i);
     void display();
 
     // Compares distance to ViewVolume for depth sorting
-    bool operator<(const StaticModel &other);
-    static bool compare(StaticModel *a, StaticModel *b);
+    bool operator<(const StaticModel& other);
+    static bool compare(StaticModel* a, StaticModel* b);
 
-private:
+  private:
     int index;
     float yaw;
     float pos[3];
@@ -74,34 +74,34 @@ private:
 };
 
 class Portal {
-public:
-    Portal(TombRaider &tr, unsigned int room, unsigned int index, Matrix &transform);
+  public:
+    Portal(TombRaider& tr, unsigned int room, unsigned int index, Matrix& transform);
 
     void getVertices(float vert[4][3]);
     int getAdjoiningRoom();
 
-private:
+  private:
     float vertices[4][3];
     float normal[3];
     int adjoiningRoom;
 };
 
 class Box {
-public:
-    Box(TombRaider &tr, unsigned int room, unsigned int index);
+  public:
+    Box(TombRaider& tr, unsigned int room, unsigned int index);
 
-private:
+  private:
     float a[3], b[3], c[3], d[3];
 };
 
 class Sector {
-public:
-    Sector(TombRaider &tr, unsigned int room, unsigned int index);
+  public:
+    Sector(TombRaider& tr, unsigned int room, unsigned int index);
     float getFloor();
     float getCeiling();
     bool isWall();
 
-private:
+  private:
     float floor;
     float ceiling;
     bool wall;

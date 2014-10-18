@@ -14,7 +14,7 @@
 #include "utils/binary.h"
 
 class Loader {
-public:
+  public:
 
     typedef enum {
         TR_UNKNOWN = 0,
@@ -33,7 +33,7 @@ public:
 
     virtual int load(std::string f) = 0;
 
-protected:
+  protected:
     BinaryFile file;
 };
 

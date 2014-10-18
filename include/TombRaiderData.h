@@ -102,7 +102,7 @@ typedef struct {
     unsigned char r; //!< Red part
     unsigned char g; //!< Green part
     unsigned char b; //!< Blue part
-} __attribute__ ((packed)) tr2_colour_t;
+} __attribute__((packed)) tr2_colour_t;
 
 /*!
  * \brief Basic vertex structure.
@@ -115,7 +115,7 @@ typedef struct {
     short x;
     short y;
     short z;
-} __attribute__ ((packed)) tr2_vertex_t;
+} __attribute__((packed)) tr2_vertex_t;
 
 /*!
  * \brief A rectangular (quad) face definition.
@@ -131,7 +131,7 @@ typedef struct {
 typedef struct {
     unsigned short vertices[4];
     unsigned short texture;
-} __attribute__ ((packed)) tr2_quad_t; // was tr2_face4
+} __attribute__((packed)) tr2_quad_t;  // was tr2_face4
 
 typedef struct {
     unsigned short vertices[4]; //!< The 4 vertices of a quad
@@ -146,7 +146,7 @@ typedef struct {
      * the strength of this effect:
      * the more bigger the value is, the more visible is the effect.
      */
-} __attribute__ ((packed)) tr4_quad_t;
+} __attribute__((packed)) tr4_quad_t;
 
 /*!
  * \brief A triangular face definition.
@@ -162,13 +162,13 @@ typedef struct {
 typedef struct {
     unsigned short vertices[3];
     unsigned short texture;
-} __attribute__ ((packed)) tr2_tri_t; // was tr2_face3
+} __attribute__((packed)) tr2_tri_t;  // was tr2_face3
 
 typedef struct {
     unsigned short vertices[3]; //!< The 3 vertices of a tri
     unsigned short texture;     //!< Object-texture index
     unsigned short lighting;    //!< Transparency flag & strength of the highlight
-} __attribute__ ((packed)) tr4_tri_t;
+} __attribute__((packed)) tr4_tri_t;
 
 /*!
  * \brief An 8-bit texture tile (65536 bytes).
@@ -178,7 +178,7 @@ typedef struct {
  */
 typedef struct {
     unsigned char tile[256 * 256];
-} __attribute__ ((packed)) tr2_textile8_t;
+} __attribute__((packed)) tr2_textile8_t;
 
 /*!
  * \brief A 16-bit texture tile (131072 bytes).
@@ -193,7 +193,7 @@ typedef struct {
  */
 typedef struct {
     unsigned short tile[256 * 256];
-} __attribute__ ((packed)) tr2_textile16_t;
+} __attribute__((packed)) tr2_textile16_t;
 
 /*!
  * \brief A 32-bit texture tile (262144 bytes).
@@ -202,7 +202,7 @@ typedef struct {
  */
 typedef struct {
     unsigned int tile[256 * 256];
-} __attribute__ ((packed)) tr2_textile32_t;
+} __attribute__((packed)) tr2_textile32_t;
 
 /*!
  * \brief The "header" of a room.
@@ -221,7 +221,7 @@ typedef struct {
     int z;        //!< Z-offset of room (world coordinates)
     int y_bottom; //!< Y-offset of lowest point in room (world coordinates, actually highest value)
     int y_top;    //!< Y-offset of highest point in room (world coordinates, actually lowest value)
-} __attribute__ ((packed)) tr2_room_info_t;
+} __attribute__((packed)) tr2_room_info_t;
 
 /*!
  * \brief Portal structure.
@@ -237,7 +237,7 @@ typedef struct {
     unsigned short adjoining_room; //!< Which room this "door" leads to
     tr2_vertex_t normal;           //!< Which way the "door" faces
     tr2_vertex_t vertices[4];      //!< The corners of the "door"
-} __attribute__ ((packed)) tr2_room_portal_t;
+} __attribute__((packed)) tr2_room_portal_t;
 
 /*!
  * \brief Room sector structure.
@@ -277,7 +277,7 @@ typedef struct {
     char floor;                //!< Absolute height of floor (Multiply by 256 for world coordinates)
     unsigned char  room_above; //!< The number of the room above this one (-1 or 255 if none)
     char ceiling;              //!< Absolute height of ceiling (multiply by 256 for world coordinates)
-} __attribute__ ((packed)) tr2_room_sector_t;
+} __attribute__((packed)) tr2_room_sector_t;
 
 /*!
  * \brief Room lighting structure.
@@ -294,7 +294,7 @@ typedef struct {
     unsigned short intensity2;
     unsigned int fade1;
     unsigned int fade2;
-} __attribute__ ((packed)) tr2_room_light_t;
+} __attribute__((packed)) tr2_room_light_t;
 
 typedef struct {
     int xPosition;           //!< World coords
@@ -309,7 +309,7 @@ typedef struct {
     float length;
     float cutoff;
     float xDir, yDir, zDir;  //!< Direction?
-} __attribute__ ((packed)) tr4_room_light_t;
+} __attribute__((packed)) tr4_room_light_t;
 
 /*!
  * \brief Room vertex structure.
@@ -319,8 +319,8 @@ typedef struct {
 typedef struct {
     tr2_vertex_t vertex;
     short lighting1;           //!< Values range from 0 to 32767 in TR3, 0=dark.
-                               /*!< I think the values ranged from 0 to 8192
-                                * in TR1/2, 0=bright.  */
+    /*!< I think the values ranged from 0 to 8192
+     * in TR1/2, 0=bright.  */
     unsigned short attributes; /*!<
                                 * * 0x8000 Something to do with water surface
                                 * * 0x4000 Under water lighting modulation
@@ -332,7 +332,7 @@ typedef struct {
                                 */
 
     short lighting2;           //!< Seems to be the same as lighting1
-} __attribute__ ((packed)) tr2_vertex_room_t;
+} __attribute__((packed)) tr2_vertex_room_t;
 
 /*!
  * \brief Sprite structure
@@ -340,7 +340,7 @@ typedef struct {
 typedef struct {
     short vertex;  //!< Offset into vertex list
     short texture; //!< Offset into texture list
-} __attribute__ ((packed)) tr2_room_sprite_t;
+} __attribute__((packed)) tr2_room_sprite_t;
 
 /*!
  * \brief Room mesh structure.
@@ -352,14 +352,14 @@ typedef struct {
  */
 typedef struct tr2_room_data_s {
     short num_vertices;          //!< Number of vertices in the following list
-    tr2_vertex_room_t *vertices; //!< List of vertices (relative coordinates)
+    tr2_vertex_room_t* vertices; //!< List of vertices (relative coordinates)
     short num_rectangles;        //!< Number of textured rectangles
-    tr2_quad_t *rectangles;      //!< List of textured rectangles
+    tr2_quad_t* rectangles;      //!< List of textured rectangles
     short num_triangles;         //!< Number of textured triangles
-    tr2_tri_t *triangles;        //!< List of textured triangles
+    tr2_tri_t* triangles;        //!< List of textured triangles
     short num_sprites;           //!< Number of sprites
-    tr2_room_sprite_t *sprites;  //!< List of sprites
-} __attribute__ ((packed)) tr2_room_data_t;
+    tr2_room_sprite_t* sprites;  //!< List of sprites
+} __attribute__((packed)) tr2_room_data_t;
 
 /*!
  * \brief Room static mesh data.
@@ -375,7 +375,7 @@ typedef struct {
     unsigned short intensity1;
     unsigned short intensity2;
     unsigned short object_id;  //!< Which StaticMesh item to draw
-} __attribute__ ((packed)) tr2_room_staticmesh_t;
+} __attribute__((packed)) tr2_room_staticmesh_t;
 
 
 /*!
@@ -386,26 +386,26 @@ typedef struct {
 typedef struct {
     tr2_room_info_t info;                 //!< where the room exists, in world coordinates
     unsigned int num_data_words;          //!< number of data words (bitu16)
-    unsigned char *data;                  //!< the raw data from which the rest of this is derived
+    unsigned char* data;                  //!< the raw data from which the rest of this is derived
     tr2_room_data_t room_data;            //!< the room mesh
     unsigned short num_portals;           //!< number of visibility portals that leave this room
-    tr2_room_portal_t *portals;           //!< list of visibility portals
+    tr2_room_portal_t* portals;           //!< list of visibility portals
     unsigned short num_zsectors;          //!< width of sector list
     unsigned short num_xsectors;          //!< height of sector list
-    tr2_room_sector_t *sector_list;       //!< list of sectors in this room
+    tr2_room_sector_t* sector_list;       //!< list of sectors in this room
     short intensity1;
     short intensity2;
     short light_mode;
     unsigned short num_lights;            //!< number of lights in this room
-    tr2_room_light_t *lights;             //!< list of lights
+    tr2_room_light_t* lights;             //!< list of lights
     unsigned short num_static_meshes;     //!< number of static meshes
-    tr2_room_staticmesh_t *static_meshes; //!< static meshes
+    tr2_room_staticmesh_t* static_meshes; //!< static meshes
     short  alternate_room;
     short  flags;                         /*!< * 0x0001 - room is filled with water
                                            *   * 0x0020 - Lara's ponytail gets blown by the wind */
     tr2_colour_t room_light_colour;       //!< TR3 ONLY!
-    tr4_room_light_t *tr4Lights;          //!< TR4 ONLY!
-} __attribute__ ((packed)) tr2_room_t;
+    tr4_room_light_t* tr4Lights;          //!< TR4 ONLY!
+} __attribute__((packed)) tr2_room_t;
 
 /*!
  * \brief Animation structure up to TR3.
@@ -420,14 +420,15 @@ typedef struct {
     short unknown3;
     short unknown4;
     unsigned short frame_start;         //!< first frame in this animation
-    unsigned short frame_end;           //!< last frame in this animation (numframes = (End - Start) + 1)
+    unsigned short
+    frame_end;           //!< last frame in this animation (numframes = (End - Start) + 1)
     unsigned short next_animation;
     unsigned short next_frame;
     unsigned short num_state_changes;
     unsigned short state_change_offset; //!< offset into StateChanges[]
     unsigned short num_anim_commands;
     unsigned short anim_command;        //!< offset into AnimCommands[]
-} __attribute__ ((packed)) tr2_animation_t;
+} __attribute__((packed)) tr2_animation_t;
 
 /*!
  * \brief Data for an animation structure (40 bytes in TR4 vice 32 in TR1/2/3)
@@ -450,7 +451,7 @@ typedef struct {
     unsigned short state_change_offset; //!< same meaning as in TR3
     unsigned short num_anim_commands;   //!< same meaning as in TR3
     unsigned short anim_command;        //!< same meaning as in TR3
-} __attribute__ ((packed)) tr4_animation_t;
+} __attribute__((packed)) tr4_animation_t;
 
 /*!
  * \brief State Change structure
@@ -459,7 +460,7 @@ typedef struct {
     unsigned short state_id;
     unsigned short num_anim_dispatches; //!< Number of dispatches (seems to always be 1..5)
     unsigned short anim_dispatch;       //!< Offset into AnimDispatches[]
-} __attribute__ ((packed)) tr2_state_change_t;
+} __attribute__((packed)) tr2_state_change_t;
 
 /*!
  * \brief Animation Dispatch structure
@@ -469,14 +470,14 @@ typedef struct {
     short high;
     short next_animation;
     short next_frame;
-} __attribute__ ((packed)) tr2_anim_dispatch_t;
+} __attribute__((packed)) tr2_anim_dispatch_t;
 
 /*!
  * \brief AnimCommand structure
  */
 typedef struct {
     short value;
-} __attribute__ ((packed)) tr2_anim_command_t;
+} __attribute__((packed)) tr2_anim_command_t;
 
 /*!
  * \brief MeshTree structure.
@@ -492,7 +493,7 @@ typedef struct {
     int x;
     int y;
     int z;
-} __attribute__ ((packed)) tr2_meshtree_t;
+} __attribute__((packed)) tr2_meshtree_t;
 
 /*!
  * \brief Moveable structure.
@@ -513,7 +514,7 @@ typedef struct {
     unsigned int mesh_tree;       //!< offset into MeshTree[]
     unsigned int frame_offset;    //!< byte offset into Frames[] (divide by 2 for Frames[i])
     unsigned short animation;     //!< offset into Animations[]
-} __attribute__ ((packed)) tr2_moveable_t;
+} __attribute__((packed)) tr2_moveable_t;
 
 /*!
  * \brief StaticMesh structure.
@@ -526,7 +527,7 @@ typedef struct {
     unsigned short starting_mesh;    //!< first mesh
     tr2_vertex_t bounding_box[2][2];
     unsigned short flags;
-} __attribute__ ((packed)) tr2_staticmesh_t;
+} __attribute__((packed)) tr2_staticmesh_t;
 
 /*!
  * \brief Object texture vertex structure.
@@ -538,7 +539,7 @@ typedef struct {
     unsigned char xpixel;
     unsigned char ycoordinate;
     unsigned char ypixel;
-} __attribute__ ((packed)) tr2_object_texture_vert_t;
+} __attribute__((packed)) tr2_object_texture_vert_t;
 
 /*!
  * \brief Object texture structure.
@@ -551,7 +552,7 @@ typedef struct {
                                             */
     unsigned short tile;                   //!< index into textile list
     tr2_object_texture_vert_t vertices[4]; //!< the four corners of the texture
-} __attribute__ ((packed)) tr2_object_texture_t;
+} __attribute__((packed)) tr2_object_texture_t;
 
 /*!
  * \brief Sprite texture structure.
@@ -566,7 +567,7 @@ typedef struct {
     short top_side;
     short right_side;
     short bottom_side;
-} __attribute__ ((packed)) tr2_sprite_texture_t;
+} __attribute__((packed)) tr2_sprite_texture_t;
 
 /*!
  * \brief Sprite Sequence structure
@@ -575,7 +576,7 @@ typedef struct {
     int object_id;         //!< Item identifier (same numbering as in tr2_moveable)
     short negative_length; //!< Negative of "how many sprites are in this sequence"
     short offset;          //!< Where (in sprite texture list) this sequence starts
-} __attribute__ ((packed)) tr2_sprite_sequence_t;
+} __attribute__((packed)) tr2_sprite_sequence_t;
 
 /*!
  * \brief Mesh structure.
@@ -595,19 +596,19 @@ typedef struct {
                                       * (relative coordinates, just like the vertices) */
     int collision_size;              //!< radius of collisional sphere
     short num_vertices;              //!< number of vertices in this mesh
-    tr2_vertex_t *vertices;          //!< list of vertices (relative coordinates)
+    tr2_vertex_t* vertices;          //!< list of vertices (relative coordinates)
     short num_normals;               //!< number of normals in this mesh (should always equal NumVertices)
-    tr2_vertex_t *normals;           //!< list of normals (NULL if NumNormals < 0)
-    short *mesh_lights;              //!< if NumNormals < 0
+    tr2_vertex_t* normals;           //!< list of normals (NULL if NumNormals < 0)
+    short* mesh_lights;              //!< if NumNormals < 0
     short num_textured_rectangles;   //!< number of textured rectangles
-    tr2_quad_t *textured_rectangles; //!< list of textured rectangles
+    tr2_quad_t* textured_rectangles; //!< list of textured rectangles
     short num_textured_triangles;    //!< number of textured triangles in this mesh
-    tr2_tri_t *textured_triangles;   //!< list of textured triangles
+    tr2_tri_t* textured_triangles;   //!< list of textured triangles
     short num_coloured_rectangles;   //!< number of coloured rectangles
-    tr2_quad_t *coloured_rectangles; //!< list of coloured rectangles
+    tr2_quad_t* coloured_rectangles; //!< list of coloured rectangles
     short num_coloured_triangles;    //!< number of coloured triangles in this mesh
-    tr2_tri_t *coloured_triangles;   //!< list of coloured triangles
-} __attribute__ ((packed)) tr2_mesh_t;
+    tr2_tri_t* coloured_triangles;   //!< list of coloured triangles
+} __attribute__((packed)) tr2_mesh_t;
 
 /*!
  * \brief Frame structure.
@@ -649,8 +650,8 @@ typedef struct {
 typedef struct {
     tr2_vertex_t vector[3];
     int num_words;
-    unsigned short *words;
-} __attribute__ ((packed)) tr2_frame_t;
+    unsigned short* words;
+} __attribute__((packed)) tr2_frame_t;
 
 /*!
  * \brief Item structure
@@ -665,7 +666,7 @@ typedef struct {
     short intensity1;
     short intensity2;
     short flags;      //!< 0x0100 indicates "inactive" or "invisible"
-} __attribute__ ((packed)) tr2_item_t;
+} __attribute__((packed)) tr2_item_t;
 
 /*!
  * \brief SoundSource structure
@@ -676,7 +677,7 @@ typedef struct {
     int z;
     unsigned short sound_id; //!< internal sound index
     unsigned short flags;    //!< 0x40, 0x80, or 0xc0
-} __attribute__ ((packed)) tr2_sound_source_t;
+} __attribute__((packed)) tr2_sound_source_t;
 
 /*!
  * \brief Boxes structure
@@ -688,7 +689,7 @@ typedef struct {
     unsigned char xmax;
     short true_floor;    //!< Y value (no scaling)
     short overlap_index; //!< index into Overlaps[]
-} __attribute__ ((packed)) tr2_box_t;
+} __attribute__((packed)) tr2_box_t;
 
 /*!
  * \brief AnimatedTexture structure.
@@ -697,8 +698,8 @@ typedef struct {
  */
 typedef struct {
     short num_texture_ids; //!< Number of Texture IDs - 1
-    short *texture_list;   //!< list of textures to cycle through
-} __attribute__ ((packed)) tr2_animated_texture_t;
+    short* texture_list;   //!< list of textures to cycle through
+} __attribute__((packed)) tr2_animated_texture_t;
 
 /*!
  * \brief Camera structure
@@ -709,7 +710,7 @@ typedef struct {
     int z;
     short room;
     unsigned short unknown1; //!< correlates to Boxes[]?
-} __attribute__ ((packed)) tr2_camera_t;
+} __attribute__((packed)) tr2_camera_t;
 
 /*
  * \brief Data for a flyby camera (40 bytes)
@@ -719,7 +720,7 @@ typedef struct {
     unsigned char index[2];    //!< A pair of indices
     unsigned short unknown[5]; //!< ??
     int id;                    //!< Index of something
-} __attribute__ ((packed)) tr4_extra_camera_t;
+} __attribute__((packed)) tr4_extra_camera_t;
 
 /*!
  * \brief Sound sample structure
@@ -730,7 +731,7 @@ typedef struct {
     short sound_range;
     short flags;       /*!< \ brief bits 8-15: priority?, 2-7: number of sound samples
                         * in this group, bits 0-1: channel number */
-} __attribute__ ((packed)) tr2_sound_details_t;
+} __attribute__((packed)) tr2_sound_details_t;
 
 /*!
  * \brief Cutscene Camera structure
@@ -744,7 +745,7 @@ typedef struct {
     short posx;     //!< X position of camera, relative to something
     short unknown1;
     short rotx;     //!< Rotation about X axis, +/-32767 ::= +/- 180 degrees
-} __attribute__ ((packed)) tr2_cinematic_frame_t;
+} __attribute__((packed)) tr2_cinematic_frame_t;
 
 /*!
  * \brief Data for a AI object (24 bytes).
@@ -755,14 +756,14 @@ typedef struct {
  */
 typedef struct {
     unsigned short int object_id; //!< the objectID from the AI object
-                                  //!< (AI_FOLLOW is 402)
+    //!< (AI_FOLLOW is 402)
     unsigned short int room;
     int x, y, a;
     unsigned short int ocb;
     unsigned short int flags;     //!< The trigger flags
-                                  //!< (button 1-5, first button has value 2)
+    //!< (button 1-5, first button has value 2)
     int angle;                    //!< rotation
-} __attribute__ ((packed)) tr4_ai_object_t;
+} __attribute__((packed)) tr4_ai_object_t;
 
 /*!
  * \brief Used to read packed TR4 texels
@@ -774,7 +775,7 @@ typedef struct {
     tr2_object_texture_vert_t vertices[4]; //!< same meaning as in TR3
     unsigned int unknown1, unknown2;       //!< new in TR4: x & y offset in something
     unsigned int xsize, ysize;             //!< new in TR4: width-1 & height-1 of the object texture
-} __attribute__ ((packed)) tr4_object_texture_t;
+} __attribute__((packed)) tr4_object_texture_t;
 
 /*!
  * \brief TR5 Room Layer (56 bytes)
@@ -785,7 +786,7 @@ typedef struct {
     uint16_t numLayerRectangles; //!< number of rectangles in this layer (2 bytes)
     uint16_t numLayerTriangles;  //!< number of triangles in this layer (2 bytes)
     uint16_t unknownL2;          //!< appears to be the number of 2 sided textures
-                                  //!< in this layer, however is sometimes 1 off (2 bytes)
+    //!< in this layer, however is sometimes 1 off (2 bytes)
     uint16_t filler;             //!< always 0 (2 bytes)
     uint16_t filler2;            //!< always 0 (2 bytes)
 
@@ -806,9 +807,9 @@ typedef struct {
  */
 typedef struct {
     uint16_t vertices[4]; //!< the values are the indices into the
-                           //!< appropriate layer vertice list. (2 bytes each)
+    //!< appropriate layer vertice list. (2 bytes each)
     uint16_t texture;     //!< the texture number for this face. Needs to be masked
-                           //!< with 0xFFF as the high 4 bits are flags (2 bytes)
+    //!< with 0xFFF as the high 4 bits are flags (2 bytes)
     uint16_t unknownF4;   //!< unknown (2 bytes)
 } tr5_face4_t;
 
@@ -817,9 +818,9 @@ typedef struct {
  */
 typedef struct {
     uint16_t vertices[3]; //!< the values are the indices into the
-                           //!< appropriate layer vertice list (2 bytes each)
+    //!< appropriate layer vertice list (2 bytes each)
     uint16_t texture;     //!< the texture number for this face. Needs to be masked
-                           //!< with 0xFFF as the high 4 bits are flags (2 bytes)
+    //!< with 0xFFF as the high 4 bits are flags (2 bytes)
     uint16_t unknownF3;   //!< unknown (2 bytes)
 } tr5_face3_t;
 
@@ -840,9 +841,9 @@ typedef struct {
  * \brief This is to help store and manage TR5 layer based polgons for rooms
  */
 typedef struct {
-    tr5_face4_t *quads;
-    tr5_face3_t *tris;
-    tr5_vertex_t *verts;
+    tr5_face4_t* quads;
+    tr5_face3_t* tris;
+    tr5_vertex_t* verts;
 } tr5_room_geometry_t;
 
 /*!
@@ -964,10 +965,10 @@ typedef struct {
     uint32_t seperator8;          //!< 0xCDCDCDCD (4 bytes)
     uint32_t unknownR6;           //!< unknown (4 bytes)
     float roomX;                   //!< X position of room in world coordinates
-                                   //!< If  null room then this data will be 0xCDCDCDCD (4 bytes)
+    //!< If  null room then this data will be 0xCDCDCDCD (4 bytes)
     uint32_t seperator9;          //!< 0x00000000 or 0xCDCDCDCD if null room. (4 bytes)
     float roomZ;                   //!< Z position of room in world coordinates
-                                   //!< If null room then will be bitu32 0xCDCDCDCD (4 bytes)
+    //!< If null room then will be bitu32 0xCDCDCDCD (4 bytes)
     uint32_t seperator10;         //!< 0xCDCDCDCD (4 bytes)
     uint32_t seperator11;         //!< 0xCDCDCDCD (4 bytes)
     uint32_t seperator12;         //!< 0xCDCDCDCD (4 bytes)
@@ -981,48 +982,48 @@ typedef struct {
     uint32_t numTotalRoomLights;  //!< total number of lights this room (4 bytes)
     uint32_t unknownR7;           //!< unknown, usually equals 0, 1, 2, or 3 (4 bytes)
     int32_t unknownR8;             //!< usually equals room yTop. Sometimes a few blocks off.
-                                   //!< If null room then 0xCDCDCDCD
+    //!< If null room then 0xCDCDCDCD
     int32_t lyBottom;              //!< equals room yBottom. If null room then 0xCDCDCDCD (4 bytes)
     uint32_t numLayers;           //!< number of layers (pieces) this room (4 bytes)
     uint32_t layerOffset;         //!< this number + 216 will give you an offset from the start
-                                   //!< of the room data to the start of the layer data (4 bytes)
+    //!< of the room data to the start of the layer data (4 bytes)
     uint32_t verticesOffset;      //!< this number + 216 will give you an offset from the start
-                                   //!< of the room data to the start of the verex data (4 bytes)
+    //!< of the room data to the start of the verex data (4 bytes)
     uint32_t polyOffset;          //!< this number + 216 will give you an offset from the start
-                                   //!< of the room data to the start of the rectangle/triangle data (4 bytes)
+    //!< of the room data to the start of the rectangle/triangle data (4 bytes)
     uint32_t polyOffset2;         //!< same as above ? (4 bytes)
     uint32_t verticesSize;        //!< size of vertices data block (4 bytes)
     uint32_t seperator17;         //!< 0xCDCDCDCD (4 bytes)
     uint32_t seperator18;         //!< 0xCDCDCDCD (4 bytes)
     uint32_t seperator19;         //!< 0xCDCDCDCD (4 bytes)
     uint32_t seperator20;         //!< 0xCDCDCDCD (4 bytes)
-    tr5_light_t *lights;           //!< [LightSize];
-                                   //!< data for the lights (88 bytes * NumRoomLights)
-    tr2_room_sector_t *sectors;    //!< Data[(NumXSectors * NumZSectors) * 8];
-                                   //!< normal sector data structure
+    tr5_light_t* lights;           //!< [LightSize];
+    //!< data for the lights (88 bytes * NumRoomLights)
+    tr2_room_sector_t* sectors;    //!< Data[(NumXSectors * NumZSectors) * 8];
+    //!< normal sector data structure
     uint16_t numDoors;            //!< number of portals (2 bytes)
-    tr2_room_portal_t *doors;      //!< [NumDoors];
-                                   //!< normal portal structure (32 bytes * NumDoors)
+    tr2_room_portal_t* doors;      //!< [NumDoors];
+    //!< normal portal structure (32 bytes * NumDoors)
     uint16_t seperator21;         //!< 0xCDCD (2 bytes)
-    tr2_room_staticmesh_t *meshes; //!< [NumStaticMeshes];
-                                   //!< normal room static mesh structure (20 bytes * NumRoomStaticMeshes)
-    tr5_room_layer_t *layers;      //!< [NumLayers];
-                                   //!< data for the room layers (pieces) (56 bytes * NumLayers)
-    tr5_room_geometry_t *faces;    //!< [NumRoomRectangles + NumRoomTriangles];
-                                   /* Data for the room polys (face4 and face3).
-                                    * Structured as first layers rectangles
-                                    * then triangles, followed by the
-                                    * next layers rectangles and triangles, etc.,
-                                    * until all layers are done.
-                                    * (12 bytes each rectangle. 10 bytes each triangle)
-                                    */
-    tr5_vertex_t *vertices;        //!< [VerticesSize];
-                                   /*!< Data for the room vertices.
-                                    * Structured as vertices for the first layer,
-                                    * then vertices for the second layer, etc.,
-                                    * until all layers are done.
-                                    * (28 bytes each vertex.
-                                    */
+    tr2_room_staticmesh_t* meshes; //!< [NumStaticMeshes];
+    //!< normal room static mesh structure (20 bytes * NumRoomStaticMeshes)
+    tr5_room_layer_t* layers;      //!< [NumLayers];
+    //!< data for the room layers (pieces) (56 bytes * NumLayers)
+    tr5_room_geometry_t* faces;    //!< [NumRoomRectangles + NumRoomTriangles];
+    /* Data for the room polys (face4 and face3).
+     * Structured as first layers rectangles
+     * then triangles, followed by the
+     * next layers rectangles and triangles, etc.,
+     * until all layers are done.
+     * (12 bytes each rectangle. 10 bytes each triangle)
+     */
+    tr5_vertex_t* vertices;        //!< [VerticesSize];
+    /*!< Data for the room vertices.
+     * Structured as vertices for the first layer,
+     * then vertices for the second layer, etc.,
+     * until all layers are done.
+     * (28 bytes each vertex.
+     */
 } tr5_room_t;
 
 /*!
@@ -1030,10 +1031,10 @@ typedef struct {
  */
 typedef struct {
     uint8_t xCoordinate; //!< 0 if Xpixel is the low value,
-                          //!< 255 if Xpixel is the high value in the object texture (1 byte)
+    //!< 255 if Xpixel is the high value in the object texture (1 byte)
     uint8_t xPixel;      //!< (1 byte)
     uint8_t yCoordinate; //!< 0 if Ypixel is the low value,
-                          //!< 255 if Ypixel is the high value in the object texture (1 byte)
+    //!< 255 if Ypixel is the high value in the object texture (1 byte)
     uint8_t yPixel;      //!< (1 byte)
 } tr5_object_texture_vertex_t;
 
@@ -1043,7 +1044,7 @@ typedef struct {
 typedef struct {
     uint16_t attribute;                     //!< 0, 1, or 2 (2 means 2 sided) (2 bytes)
     uint32_t tile;                          //!< need to mask with 0xFF as other bits are flags.
-                                             //!< ie int15_t seems to indicate triangle (4 bytes)
+    //!< ie int15_t seems to indicate triangle (4 bytes)
     tr5_object_texture_vertex_t vertices[4]; //!< Vertices[4] (16 bytes)
     uint32_t uv1;                           //!< unknown how used (4 bytes)
     uint32_t uv2;                           //!< unknown how used (4 bytes)
@@ -1091,14 +1092,14 @@ typedef struct {
     tr2_vertex_t center;             //!< relative coordinates of mesh centre (6 bytes)
     uint8_t unknown1[4];            //!< unknown (4 bytes)
     int16_t numVertices;             //!< number of vertices to follow (2 bytes)
-    tr2_vertex_t *vertices;          //!< list of vertices (NumVertices * 6 bytes)
+    tr2_vertex_t* vertices;          //!< list of vertices (NumVertices * 6 bytes)
     int16_t numNormals;              //!< number of normals to follow (2 bytes)
-    tr2_vertex_t *normals;           //!< list of normals (NumNormals * 6 bytes)
-                                     //!< (becomes Lights if NumNormals < 0; 2 bytes)
+    tr2_vertex_t* normals;           //!< list of normals (NumNormals * 6 bytes)
+    //!< (becomes Lights if NumNormals < 0; 2 bytes)
     int16_t numTexturedRectangles;   //!< number of textured rectangles to follow (2 bytes)
-    tr5_face4_t *texturedRectangles; //!< list of textured rectangles (NumTexturedRectangles * 12 bytes)
+    tr5_face4_t* texturedRectangles; //!< list of textured rectangles (NumTexturedRectangles * 12 bytes)
     int16_t numTexturedTriangles;    //!< number of textured triangles to follow (2 bytes)
-    tr5_face3_t *texturedTriangles;  //!< list of textured triangles (NumTexturedTriangles * 10 bytes)
+    tr5_face3_t* texturedTriangles;  //!< list of textured triangles (NumTexturedTriangles * 10 bytes)
 } tr5_mesh_t;
 
 /*!

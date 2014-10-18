@@ -14,7 +14,7 @@
 #include <vector>
 
 class Command {
-public:
+  public:
     virtual ~Command();
     virtual std::string name() = 0;
     virtual std::string brief() = 0;
@@ -25,7 +25,7 @@ public:
     static int command(std::string c);
     static int executeFile(std::string file);
 
-private:
+  private:
     static std::vector<std::shared_ptr<Command>> commands;
 };
 

@@ -15,7 +15,7 @@ Script::~Script() {
 
 }
 
-int Script::load(const char *file) {
+int Script::load(const char* file) {
     BinaryFile f;
 
     if (f.open(file) != 0)
@@ -96,14 +96,14 @@ int Script::load(const char *file) {
     return 0;
 }
 
-void Script::readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n) {
-    uint16_t *offset = new uint16_t[n];
+void Script::readStringPackage(BinaryFile& f, std::vector<std::string>& v, unsigned int n) {
+    uint16_t* offset = new uint16_t[n];
     for (unsigned int i = 0; i < n; i++)
         offset[i] = f.readU16();
 
     uint16_t numBytes = f.readU16();
 
-    char *list = new char[numBytes];
+    char* list = new char[numBytes];
     for (uint16_t i = 0; i < numBytes; i++) {
         list[i] = f.read8();
         if (flags & S_UseSecurityTag) {
@@ -120,8 +120,9 @@ void Script::readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsig
     delete [] offset;
 }
 
-void Script::readScriptPackage(BinaryFile &f, std::vector<std::vector<uint16_t>> &v, unsigned int n) {
-    uint16_t *offset = new uint16_t[n];
+void Script::readScriptPackage(BinaryFile& f, std::vector<std::vector<uint16_t>>& v,
+                               unsigned int n) {
+    uint16_t* offset = new uint16_t[n];
     for (unsigned int i = 0; i < n; i++) {
         offset[i] = f.readU16();
         assertEqual(offset[i] % 2, 0);
@@ -130,7 +131,7 @@ void Script::readScriptPackage(BinaryFile &f, std::vector<std::vector<uint16_t>>
     uint16_t numBytes = f.readU16();
     assertEqual(numBytes % 2, 0); // 16 bit opcodes and operands
 
-    uint16_t *list = new uint16_t[(numBytes + 6) / 2];
+    uint16_t* list = new uint16_t[(numBytes + 6) / 2];
     for (uint16_t i = 0; i < (numBytes / 2); i++) {
         list[i] = f.readU16();
     }
@@ -143,7 +144,7 @@ void Script::readScriptPackage(BinaryFile &f, std::vector<std::vector<uint16_t>>
     hack[1] = f.readU16();
     hack[2] = f.readU16();
     if (((hack[0] == 19) && (hack[1] == 20) && (hack[2] == 21))
-            || ((hack[0] == 21) && (hack[1] == 22) && (hack[2] == 23))) {
+        || ((hack[0] == 21) && (hack[1] == 22) && (hack[2] == 23))) {
         list[numBytes / 2] = hack[0];
         list[(numBytes / 2) + 1] = hack[1];
         list[(numBytes / 2) + 2] = hack[2];

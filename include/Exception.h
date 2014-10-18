@@ -13,13 +13,13 @@
 #include <string>
 
 class Exception : std::runtime_error {
-public:
-    Exception(const char *what);
-    Exception(const std::string &what);
+  public:
+    Exception(const char* what);
+    Exception(const std::string& what);
 
     static std::string getLastException();
 
-private:
+  private:
     static std::string lastException;
 
     virtual void foo(); //!< We don't want to emit a vtable in every translation unit

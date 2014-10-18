@@ -41,7 +41,7 @@ void TextureManager::reset() {
 }
 
 int TextureManager::initialize() {
-    unsigned char *image = generateColorTexture(WHITE, 32, 32, 32);
+    unsigned char* image = generateColorTexture(WHITE, 32, 32, 32);
     loadBufferSlot(image, 32, 32, RGBA, 32, mTextureIds.size());
     delete [] image;
 
@@ -108,16 +108,16 @@ void TextureManager::bindMultiTexture(int texture0, int texture1) {
 #endif
 }
 
-int TextureManager::loadBufferSlot(unsigned char *image,
-        unsigned int width, unsigned int height,
-        ColorMode mode, unsigned int bpp,
-        unsigned int slot, bool filter) {
+int TextureManager::loadBufferSlot(unsigned char* image,
+                                   unsigned int width, unsigned int height,
+                                   ColorMode mode, unsigned int bpp,
+                                   unsigned int slot, bool filter) {
     assert(image != NULL);
     assert(width > 0);
     assert(height > 0);
     assert((mode == GREYSCALE) || (mode == RGB)
-            || (mode == BGR) || (mode == ARGB)
-            || (mode == RGBA) || (mode ==  BGRA));
+           || (mode == BGR) || (mode == ARGB)
+           || (mode == RGBA) || (mode ==  BGRA));
     assert((bpp == 8) || (bpp == 24) || (bpp == 32));
 
     while (mTextureIds.size() <= slot) {
@@ -192,7 +192,7 @@ void TextureManager::bindTextureId(unsigned int n) {
     glBindTexture(GL_TEXTURE_2D, mTextureIds.at(n));
 }
 
-int TextureManager::loadImage(const char *filename) {
+int TextureManager::loadImage(const char* filename) {
     if (stringEndsWith(filename, ".pcx") || stringEndsWith(filename, ".PCX")) {
         return loadPCX(filename);
     } else if (stringEndsWith(filename, ".png") || stringEndsWith(filename, ".PNG")) {
@@ -206,18 +206,18 @@ int TextureManager::loadImage(const char *filename) {
     return -1;
 }
 
-int TextureManager::loadPCX(const char *filename) {
+int TextureManager::loadPCX(const char* filename) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
 
-    unsigned char *image;
+    unsigned char* image;
     unsigned int w, h, bpp;
     ColorMode c;
     int id = -1;
     int error = pcxLoad(filename, &image, &w, &h, &c, &bpp);
 
     if (error == 0) {
-        unsigned char *image2 = scaleBuffer(image, &w, &h, bpp);
+        unsigned char* image2 = scaleBuffer(image, &w, &h, bpp);
         if (image2) {
             delete [] image;
             image = image2;
@@ -229,7 +229,7 @@ int TextureManager::loadPCX(const char *filename) {
     return id;
 }
 
-int TextureManager::loadPNG(const char *filename) {
+int TextureManager::loadPNG(const char* filename) {
 #ifdef USING_PNG
     assert(filename != NULL);
     assert(filename[0] != '\0');
@@ -238,14 +238,14 @@ int TextureManager::loadPNG(const char *filename) {
         return -1;
     }
 
-    unsigned char *image;
+    unsigned char* image;
     unsigned int w, h, bpp;
     ColorMode c;
     int id = -1;
     int error = pngLoad(filename, &image, &w, &h, &c, &bpp);
 
     if (error == 0) {
-        unsigned char *image2 = scaleBuffer(image, &w, &h, bpp);
+        unsigned char* image2 = scaleBuffer(image, &w, &h, bpp);
         if (image2) {
             delete [] image;
             image = image2;
@@ -261,11 +261,11 @@ int TextureManager::loadPNG(const char *filename) {
 #endif
 }
 
-int TextureManager::loadTGA(const char *filename) {
+int TextureManager::loadTGA(const char* filename) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
 
-    unsigned char *image;
+    unsigned char* image;
     unsigned int w, h;
     char type;
     int id = -1;
@@ -273,16 +273,16 @@ int TextureManager::loadTGA(const char *filename) {
     if (!tgaCheck(filename)) {
         tgaLoad(filename, &image, &w, &h, &type);
 
-        unsigned char *image2 = scaleBuffer(image, &w, &h, (type == 2) ? 32 : 24);
+        unsigned char* image2 = scaleBuffer(image, &w, &h, (type == 2) ? 32 : 24);
         if (image2) {
             delete [] image;
             image = image2;
         }
         if (image) {
             id = loadBufferSlot(image, w, h,
-                    (type == 2) ? RGBA : RGB,
-                    (type == 2) ? 32 : 24,
-                    mTextureIds.size());
+                                (type == 2) ? RGBA : RGB,
+                                (type == 2) ? 32 : 24,
+                                mTextureIds.size());
             delete [] image;
         }
     }

@@ -19,7 +19,7 @@
 extern std::map<int, int> gMapTex2Bump;
 #endif
 
-Room::Room(TombRaider &tr, unsigned int index) {
+Room::Room(TombRaider& tr, unsigned int index) {
     float box[2][3];
     Matrix transform;
 
@@ -88,25 +88,25 @@ Room::Room(TombRaider &tr, unsigned int index) {
 //#define EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
 #ifdef EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
     unsigned int vertexCount, normalCount, colorCount, triCount;
-    float *vertexArray;
-    float *normalArray;
-    float *colorArray;
-    unsigned int *indices, *fflags;
-    float *texCoords;
-    int *textures;
+    float* vertexArray;
+    float* normalArray;
+    float* colorArray;
+    unsigned int* indices, *fflags;
+    float* texCoords;
+    int* textures;
 
     tr.getRoomVertexArrays(index,
-            &vertexCount, &vertexArray,
-            &normalCount, &normalArray,
-            &colorCount, &colorArray);
+                           &vertexCount, &vertexArray,
+                           &normalCount, &normalArray,
+                           &colorCount, &colorArray);
 
     mesh.bufferVertexArray(vertexCount, vertexArray);
     mesh.bufferNormalArray(normalCount, normalArray);
     mesh.bufferColorArray(vertexCount, colorArray);
 
     tr.getRoomTriangles(index, getGame().getTextureStart(),
-            &triCount, &indices, &texCoords, &textures,
-            &fflags);
+                        &triCount, &indices, &texCoords, &textures,
+                        &fflags);
 
     mesh.bufferTriangles(triCount, indices, texCoords, textures, fflags);
 #else
@@ -119,8 +119,7 @@ Room::Room(TombRaider &tr, unsigned int index) {
     mesh.allocateNormals(0); // count
     mesh.allocateColors(count);
 
-    for (unsigned int i = 0; i < count; ++i)
-    {
+    for (unsigned int i = 0; i < count; ++i) {
         tr.getRoomVertex(index, i, xyz, rgba);
 
         mesh.setVertex(i, xyz[0], xyz[1], xyz[2]);
@@ -137,8 +136,7 @@ Room::Room(TombRaider &tr, unsigned int index) {
     int tris_mesh_map[TextureLimit];
     int rect_mesh_map[TextureLimit];
 
-    for (unsigned int i = 0; i < TextureLimit; ++i)
-    {
+    for (unsigned int i = 0; i < TextureLimit; ++i) {
         triangle_counter[i]        = 0;
         triangle_counter_alpha[i]  = 0;
         rectangle_counter[i]       = 0;
@@ -159,66 +157,54 @@ Room::Room(TombRaider &tr, unsigned int index) {
     count = tr.getRoomTriangleCount(index);
 
     // Mongoose 2002.08.15, Presort by alpha and texture and setup mapping
-    for (t = 0; t < count; ++t)
-    {
+    for (t = 0; t < count; ++t) {
         tr.getRoomTriangle(index, t,
-                indices, texCoords, &texture, &flags);
+                           indices, texCoords, &texture, &flags);
 
         texture += getGame().getTextureStart();
 
-        if (texture > (int)TextureLimit)
-        {
+        if (texture > (int)TextureLimit) {
             getLog() << "Handling bad room[" << index << "].tris["
-                << t << "].texture = " << texture << Log::endl;
+                     << t << "].texture = " << texture << Log::endl;
             texture = TextureLimit - 1;
         }
 
         // Counters set up polygon allocation
         if (flags & tombraiderFace_Alpha ||
-                flags & tombraiderFace_PartialAlpha)
-        {
+            flags & tombraiderFace_PartialAlpha) {
             triangle_counter_alpha[texture] += 1;
-        }
-        else
-        {
+        } else {
             triangle_counter[texture] += 1;
         }
 
         // Counter sets up texture id to mesh id mapping
-        if (tris_mesh_map[texture] == -1)
-        {
+        if (tris_mesh_map[texture] == -1) {
             tris_mesh_map[texture] = ++numTris;
         }
     }
 
     count = tr.getRoomRectangleCount(index);
 
-    for (r = 0; r < count; ++r)
-    {
+    for (r = 0; r < count; ++r) {
         tr.getRoomRectangle(index, r,
-                indices, texCoords, &texture, &flags);
+                            indices, texCoords, &texture, &flags);
 
         texture += getGame().getTextureStart();
 
-        if (texture > (int)TextureLimit)
-        {
+        if (texture > (int)TextureLimit) {
             getLog() << "Handling bad room[" << index << "].quad["
-                << r << "].texture = " << texture << Log::endl;
+                     << r << "].texture = " << texture << Log::endl;
             texture = TextureLimit - 1;
         }
 
         if (flags & tombraiderFace_Alpha ||
-                flags & tombraiderFace_PartialAlpha)
-        {
+            flags & tombraiderFace_PartialAlpha) {
             rectangle_counter_alpha[texture] += 1;
-        }
-        else
-        {
+        } else {
             rectangle_counter[texture] += 1;
         }
 
-        if (rect_mesh_map[texture] == -1)
-        {
+        if (rect_mesh_map[texture] == -1) {
             rect_mesh_map[texture] = ++numQuads;
         }
     }
@@ -227,10 +213,8 @@ Room::Room(TombRaider &tr, unsigned int index) {
     mesh.allocateTriangles(numTris);
     mesh.allocateRectangles(numQuads);
 
-    for (unsigned int i = 0, j = 0; i < TextureLimit; ++i)
-    {
-        if (tris_mesh_map[i] > 0)
-        {
+    for (unsigned int i = 0, j = 0; i < TextureLimit; ++i) {
+        if (tris_mesh_map[i] > 0) {
             j = tris_mesh_map[i] - 1;
 
             t = triangle_counter[i];
@@ -248,10 +232,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
             mesh.mTris[j].texcoors = 0x0;
             mesh.mTris[j].texcoors2 = 0x0;
 
-            if (t > 0)
-            {
+            if (t > 0) {
                 mesh.mTris[j].num_triangles = t;
-                mesh.mTris[j].triangles = new unsigned int[t*3];
+                mesh.mTris[j].triangles = new unsigned int[t * 3];
                 mesh.mTris[j].num_texcoors = t * 3;
                 mesh.mTris[j].texcoors = new float *[t * 3];
                 for (unsigned int tmp = 0; tmp < (t * 3); tmp++)
@@ -260,10 +243,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
 
             t = triangle_counter_alpha[i];
 
-            if (t > 0)
-            {
+            if (t > 0) {
                 mesh.mTris[j].num_alpha_triangles = t;
-                mesh.mTris[j].alpha_triangles = new unsigned int[t*3];
+                mesh.mTris[j].alpha_triangles = new unsigned int[t * 3];
                 mesh.mTris[j].num_texcoors2 = t * 3;
                 mesh.mTris[j].texcoors2 = new float *[t * 3];
                 for (unsigned int tmp = 0; tmp < (t * 3); tmp++)
@@ -273,8 +255,7 @@ Room::Room(TombRaider &tr, unsigned int index) {
 
         ///////////////////////////////////////////
 
-        if (rect_mesh_map[i] > 0)
-        {
+        if (rect_mesh_map[i] > 0) {
             j = rect_mesh_map[i] - 1;
 
             r = rectangle_counter[i];
@@ -292,10 +273,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
             mesh.mQuads[j].texcoors = 0x0;
             mesh.mQuads[j].texcoors2 = 0x0;
 
-            if (r > 0)
-            {
+            if (r > 0) {
                 mesh.mQuads[j].num_quads = r;
-                mesh.mQuads[j].quads = new unsigned int[r*4];
+                mesh.mQuads[j].quads = new unsigned int[r * 4];
                 mesh.mQuads[j].num_texcoors = r * 4;
                 mesh.mQuads[j].texcoors = new float *[r * 4];
                 for (unsigned int tmp = 0; tmp < (r * 4); tmp++)
@@ -304,10 +284,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
 
             r = rectangle_counter_alpha[i];
 
-            if (r > 0)
-            {
+            if (r > 0) {
                 mesh.mQuads[j].num_alpha_quads = r;
-                mesh.mQuads[j].alpha_quads = new unsigned int[r*4];
+                mesh.mQuads[j].alpha_quads = new unsigned int[r * 4];
                 mesh.mQuads[j].num_texcoors2 = r * 4;
                 mesh.mQuads[j].texcoors2 = new float *[r * 4];
                 for (unsigned int tmp = 0; tmp < (r * 4); tmp++)
@@ -319,10 +298,9 @@ Room::Room(TombRaider &tr, unsigned int index) {
     // Generate textured triangles
     count = tr.getRoomTriangleCount(index);
 
-    for (t = 0; t < count; ++t)
-    {
+    for (t = 0; t < count; ++t) {
         tr.getRoomTriangle(index, t,
-                indices, texCoords, &texture, &flags);
+                           indices, texCoords, &texture, &flags);
 
         // Adjust texture id using getGame().getTextureStart() to map into
         // correct textures
@@ -331,46 +309,38 @@ Room::Room(TombRaider &tr, unsigned int index) {
         unsigned int j = tris_mesh_map[texture] - 1;
 
         // Setup per vertex
-        for (unsigned int i = 0; i < 3; ++i)
-        {
+        for (unsigned int i = 0; i < 3; ++i) {
             // Get vertex index {(0, a), (1, b), (2, c)}
             v = indices[i];
 
             if ((flags & tombraiderFace_Alpha ||
-                        flags & tombraiderFace_PartialAlpha) &&
-                    mesh.mTris[j].num_alpha_triangles > 0)
-            {
-                q = mesh.mTris[j].cnum_alpha_triangles*3+i;
+                 flags & tombraiderFace_PartialAlpha) &&
+                mesh.mTris[j].num_alpha_triangles > 0) {
+                q = mesh.mTris[j].cnum_alpha_triangles * 3 + i;
 
                 mesh.mTris[j].alpha_triangles[q] = v;
 
-                mesh.mTris[j].texcoors2[q][0] = texCoords[i*2];
-                mesh.mTris[j].texcoors2[q][1] = texCoords[i*2+1];
-            }
-            else if (mesh.mTris[j].num_triangles > 0)
-            {
-                q = mesh.mTris[j].cnum_triangles*3+i;
+                mesh.mTris[j].texcoors2[q][0] = texCoords[i * 2];
+                mesh.mTris[j].texcoors2[q][1] = texCoords[i * 2 + 1];
+            } else if (mesh.mTris[j].num_triangles > 0) {
+                q = mesh.mTris[j].cnum_triangles * 3 + i;
 
                 mesh.mTris[j].triangles[q] = v;
 
-                mesh.mTris[j].texcoors[q][0] = texCoords[i*2];
-                mesh.mTris[j].texcoors[q][1] = texCoords[i*2+1];
+                mesh.mTris[j].texcoors[q][0] = texCoords[i * 2];
+                mesh.mTris[j].texcoors[q][1] = texCoords[i * 2 + 1];
             }
 
             // Partial alpha hack
-            if (flags & tombraiderFace_PartialAlpha)
-            {
+            if (flags & tombraiderFace_PartialAlpha) {
                 //mesh.colors[v].rgba[3] = 0.45;
             }
         }
 
         if (flags & tombraiderFace_Alpha ||
-                flags & tombraiderFace_PartialAlpha)
-        {
+            flags & tombraiderFace_PartialAlpha) {
             mesh.mTris[j].cnum_alpha_triangles++;
-        }
-        else
-        {
+        } else {
             mesh.mTris[j].cnum_triangles++;
         }
     }
@@ -378,67 +348,57 @@ Room::Room(TombRaider &tr, unsigned int index) {
     // Generate textured quads
     count = tr.getRoomRectangleCount(index);
 
-    for (r = 0; r < count; ++r)
-    {
+    for (r = 0; r < count; ++r) {
         tr.getRoomRectangle(index, r,
-                indices, texCoords, &texture, &flags);
+                            indices, texCoords, &texture, &flags);
 
         // Adjust texture id using getGame().getTextureStart() to map into
         // correct textures
         texture += getGame().getTextureStart();
 
-        if (texture > (int)TextureLimit)
-        {
+        if (texture > (int)TextureLimit) {
             texture = TextureLimit - 1;
         }
 
         unsigned int j = rect_mesh_map[texture] - 1;
 
         if (mesh.mQuads[j].num_quads <= 0 &&
-                mesh.mQuads[j].num_alpha_quads <= 0)
+            mesh.mQuads[j].num_alpha_quads <= 0)
             continue;
 
         // Setup per vertex
-        for (unsigned int i = 0; i < 4; ++i)
-        {
+        for (unsigned int i = 0; i < 4; ++i) {
             // Get vertex index {(0, a), (1, b), (2, c), (3, d)}
             v = indices[i];
 
             if ((flags & tombraiderFace_Alpha ||
-                        flags & tombraiderFace_PartialAlpha) &&
-                    mesh.mQuads[j].num_alpha_quads > 0)
-            {
-                q = mesh.mQuads[j].cnum_alpha_quads*4+i;
+                 flags & tombraiderFace_PartialAlpha) &&
+                mesh.mQuads[j].num_alpha_quads > 0) {
+                q = mesh.mQuads[j].cnum_alpha_quads * 4 + i;
 
                 mesh.mQuads[j].alpha_quads[q] = v;
 
-                mesh.mQuads[j].texcoors2[q][0] = texCoords[i*2];
-                mesh.mQuads[j].texcoors2[q][1] = texCoords[i*2+1];
-            }
-            else if (mesh.mQuads[j].num_quads > 0)
-            {
-                q = mesh.mQuads[j].cnum_quads*4+i;
+                mesh.mQuads[j].texcoors2[q][0] = texCoords[i * 2];
+                mesh.mQuads[j].texcoors2[q][1] = texCoords[i * 2 + 1];
+            } else if (mesh.mQuads[j].num_quads > 0) {
+                q = mesh.mQuads[j].cnum_quads * 4 + i;
 
                 mesh.mQuads[j].quads[q] = v;
 
-                mesh.mQuads[j].texcoors[q][0] = texCoords[i*2];
-                mesh.mQuads[j].texcoors[q][1] = texCoords[i*2+1];
+                mesh.mQuads[j].texcoors[q][0] = texCoords[i * 2];
+                mesh.mQuads[j].texcoors[q][1] = texCoords[i * 2 + 1];
             }
 
             // Partial alpha hack
-            if (flags & tombraiderFace_PartialAlpha)
-            {
+            if (flags & tombraiderFace_PartialAlpha) {
                 //rRoom->mesh.colors[v].rgba[3] = 0.45;
             }
         }
 
         if (flags & tombraiderFace_Alpha ||
-                flags & tombraiderFace_PartialAlpha)
-        {
+            flags & tombraiderFace_PartialAlpha) {
             mesh.mQuads[j].cnum_alpha_quads++;
-        }
-        else
-        {
+        } else {
             mesh.mQuads[j].cnum_quads++;
         }
     }
@@ -471,7 +431,7 @@ void Room::display(bool alpha) {
         glColor3ubv(RED);
 
         for (unsigned int i = 0; i < sizePortals(); i++) {
-            Portal &portal = getPortal(i);
+            Portal& portal = getPortal(i);
             float vertices[4][3];
             portal.getVertices(vertices);
 
@@ -495,8 +455,7 @@ void Room::display(bool alpha) {
     // Reset since GL_MODULATE used, reset to WHITE
     glColor3ubv(WHITE);
 
-    switch (getRender().getMode())
-    {
+    switch (getRender().getMode()) {
         case Render::modeWireframe:
             getMesh().mMode = Mesh::MeshModeWireframe;
             break;
@@ -517,7 +476,7 @@ void Room::display(bool alpha) {
 
     // Draw other room meshes and sprites
     if (alpha || (getRender().getMode() == Render::modeWireframe)
-            || (getRender().getMode() == Render::modeSolid)) {
+        || (getRender().getMode() == Render::modeSolid)) {
         sortModels();
         for (unsigned int i = 0; i < sizeModels(); i++)
             getModel(i).display();
@@ -534,7 +493,7 @@ bool Room::isWall(unsigned long sector) {
     return ((sector > 0) && sectors.at(sector)->isWall());
 }
 
-long Room::getSector(float x, float z, float *floor, float *ceiling) {
+long Room::getSector(float x, float z, float* floor, float* ceiling) {
     assert(floor != NULL);
     assert(ceiling != NULL);
 
@@ -550,7 +509,7 @@ long Room::getSector(float x, float z, float *floor, float *ceiling) {
 
 long Room::getSector(float x, float z) {
     long sector = (((((int)x - (int)pos[0]) / 1024) *
-        numZSectors) + (((int)z - (int)pos[2]) / 1024));
+                    numZSectors) + (((int)z - (int)pos[2]) / 1024));
 
     if (sector < 0)
         return -1;
@@ -558,14 +517,14 @@ long Room::getSector(float x, float z) {
     return sector;
 }
 
-void Room::getHeightAtPosition(float x, float *y, float z) {
+void Room::getHeightAtPosition(float x, float* y, float z) {
     long sector = getSector(x, z);
     if ((sector >= 0) && (sector < (long)sectors.size()))
         *y = sectors.at(sector)->getFloor();
 }
 
 int Room::getAdjoiningRoom(float x, float y, float z,
-        float x2, float y2, float z2) {
+                           float x2, float y2, float z2) {
     float intersect[3], p1[3], p2[3];
     float vertices[4][3];
 
@@ -575,7 +534,7 @@ int Room::getAdjoiningRoom(float x, float y, float z,
     for (unsigned long i = 0; i < portals.size(); i++) {
         portals.at(i)->getVertices(vertices);
         if (intersectionLinePolygon(intersect, p1, p2, //4,
-                    vertices))
+                                    vertices))
             return portals.at(i)->getAdjoiningRoom();
     }
 
@@ -612,7 +571,7 @@ unsigned long Room::sizePortals() {
     return portals.size();
 }
 
-Portal &Room::getPortal(unsigned long index) {
+Portal& Room::getPortal(unsigned long index) {
     assert(index < portals.size());
     return *portals.at(index);
 }
@@ -621,7 +580,7 @@ unsigned long Room::sizeSectors() {
     return sectors.size();
 }
 
-Sector &Room::getSector(unsigned long index) {
+Sector& Room::getSector(unsigned long index) {
     assert(index < sectors.size());
     return *sectors.at(index);
 }
@@ -630,7 +589,7 @@ unsigned long Room::sizeBox() {
     return boxes.size();
 }
 
-Box &Room::getBox(unsigned long index) {
+Box& Room::getBox(unsigned long index) {
     assert(index < boxes.size());
     return *boxes.at(index);
 }
@@ -639,7 +598,7 @@ unsigned long Room::sizeModels() {
     return models.size();
 }
 
-StaticModel &Room::getModel(unsigned long index) {
+StaticModel& Room::getModel(unsigned long index) {
     assert(index < models.size());
     return *models.at(index);
 }
@@ -652,7 +611,7 @@ unsigned long Room::sizeLights() {
     return lights.size();
 }
 
-Light &Room::getLight(unsigned long index) {
+Light& Room::getLight(unsigned long index) {
     assert(index < lights.size());
     return *lights.at(index);
 }
@@ -661,16 +620,16 @@ unsigned long Room::sizeSprites() {
     return sprites.size();
 }
 
-Sprite &Room::getSprite(unsigned long index) {
+Sprite& Room::getSprite(unsigned long index) {
     assert(index < sprites.size());
     return *sprites.at(index);
 }
 
-BoundingBox &Room::getBoundingBox() {
+BoundingBox& Room::getBoundingBox() {
     return bbox;
 }
 
-Mesh &Room::getMesh() {
+Mesh& Room::getMesh() {
     return mesh;
 }
 

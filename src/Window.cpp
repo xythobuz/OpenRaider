@@ -24,9 +24,9 @@ int Window::initializeGL() {
     // Testing for goodies
     //const char *s = (const char *)glGetString(GL_EXTENSIONS);
     //if ((s != NULL) && (s[0] != '\0')) {
-        //! \todo MultiTexture flag
-        //if (strstr(s, "GL_ARB_multitexture"))
-            //mFlags |= Render::fMultiTexture;
+    //! \todo MultiTexture flag
+    //if (strstr(s, "GL_ARB_multitexture"))
+    //mFlags |= Render::fMultiTexture;
     //}
 
     // Set up Z buffer
@@ -146,8 +146,8 @@ void Window::glExit2D() {
 // Replaced the deprecated gluLookAt with slightly modified code from here:
 // http://www.khronos.org/message_boards/showthread.php/4991
 void Window::lookAt(float eyeX, float eyeY, float eyeZ,
-        float lookAtX, float lookAtY, float lookAtZ,
-        float upX, float upY, float upZ) {
+                    float lookAtX, float lookAtY, float lookAtZ,
+                    float upX, float upY, float upZ) {
     // calculating the viewing vector
     float f[3] = {
         lookAtX - eyeX,
@@ -162,9 +162,9 @@ void Window::lookAt(float eyeX, float eyeY, float eyeZ,
     f[2] /= fMag;
 
     float s[3] = {
-        (f[1] * upZ) - (upY * f[2]),
-        (upX * f[2]) - (f[0] * upZ),
-        (f[0] * upY) - (upX * f[1])
+        (f[1] * upZ) - (upY* f[2]),
+        (upX* f[2]) - (f[0] * upZ),
+        (f[0] * upY) - (upX* f[1])
     };
 
     float u[3] = {
@@ -177,7 +177,7 @@ void Window::lookAt(float eyeX, float eyeY, float eyeZ,
         s[0], u[0], -f[0], 0,
         s[1], u[1], -f[1], 0,
         s[2], u[2], -f[2], 0,
-           0,    0,     0, 1
+        0,    0,     0, 1
     };
     glMultMatrixf(m);
     glTranslatef(-eyeX, -eyeY, -eyeZ);

@@ -12,10 +12,11 @@
 #include "SkeletalModel.h"
 #include "World.h"
 
-BoneTag::BoneTag(TombRaider &tr, unsigned int index, unsigned int i, unsigned int *l, unsigned int frame_offset) {
-    tr2_moveable_t *moveable = tr.Moveable();
-    tr2_meshtree_t *meshtree = tr.MeshTree();
-    unsigned short *frame = tr.Frame();
+BoneTag::BoneTag(TombRaider& tr, unsigned int index, unsigned int i, unsigned int* l,
+                 unsigned int frame_offset) {
+    tr2_moveable_t* moveable = tr.Moveable();
+    tr2_meshtree_t* meshtree = tr.MeshTree();
+    unsigned short* frame = tr.Frame();
 
     off[0] = 0.0f;
     off[1] = 0.0f;
@@ -34,9 +35,9 @@ BoneTag::BoneTag(TombRaider &tr, unsigned int index, unsigned int i, unsigned in
 
         // Hack: moveable[index].mesh_tree is a byte offset
         //       into mesh_tree[], so we have to convert to index
-        int *tree = (int *)(void *)meshtree;
-        tr2_meshtree_t *mesh_tree = (tr2_meshtree_t *)(tree
-                + moveable[index].mesh_tree + ((i - 1) * 4));
+        int* tree = (int*)(void*)meshtree;
+        tr2_meshtree_t* mesh_tree = (tr2_meshtree_t*)(tree
+                                    + moveable[index].mesh_tree + ((i - 1) * 4));
 
         off[0] = mesh_tree->x;
         off[1] = mesh_tree->y;
@@ -68,9 +69,9 @@ char BoneTag::getFlag() {
     return flag;
 }
 
-BoneFrame::BoneFrame(TombRaider &tr, unsigned int index, unsigned int frame_offset) {
-    tr2_moveable_t *moveable = tr.Moveable();
-    unsigned short *frame = tr.Frame();
+BoneFrame::BoneFrame(TombRaider& tr, unsigned int index, unsigned int frame_offset) {
+    tr2_moveable_t* moveable = tr.Moveable();
+    unsigned short* frame = tr.Frame();
 
     pos[0] = (short)frame[frame_offset + 6];
     pos[1] = (short)frame[frame_offset + 7];
@@ -91,7 +92,7 @@ unsigned long BoneFrame::size() {
     return tag.size();
 }
 
-BoneTag &BoneFrame::get(unsigned long i) {
+BoneTag& BoneFrame::get(unsigned long i) {
     assert(i < tag.size());
     return *tag.at(i);
 }
@@ -102,9 +103,10 @@ void BoneFrame::getPosition(float p[3]) {
     p[2] = pos[2];
 }
 
-AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, int a, unsigned int *frame_offset, int frame_step) {
-    tr2_moveable_t *moveable = tr.Moveable();
-    tr2_animation_t *animation = tr.Animation();
+AnimationFrame::AnimationFrame(TombRaider& tr, unsigned int index, int a,
+                               unsigned int* frame_offset, int frame_step) {
+    tr2_moveable_t* moveable = tr.Moveable();
+    tr2_animation_t* animation = tr.Animation();
 
     unsigned int frame_count = (animation[a].frame_end - animation[a].frame_start) + 1;
     rate = animation[a].frame_rate;
@@ -138,8 +140,8 @@ AnimationFrame::AnimationFrame(TombRaider &tr, unsigned int index, int a, unsign
 
         if (*frame_offset > tr.NumFrames()) {
             getLog() << "WARNING: Bad animation frame " << *frame_offset
-                << " > " << tr.NumFrames() << " (" << index << "." << a << ")"
-                << Log::endl;
+                     << " > " << tr.NumFrames() << " (" << index << "." << a << ")"
+                     << Log::endl;
             return;
         }
 
@@ -156,15 +158,15 @@ unsigned long AnimationFrame::size() {
     return frame.size();
 }
 
-BoneFrame &AnimationFrame::get(unsigned long i) {
+BoneFrame& AnimationFrame::get(unsigned long i) {
     assert(i < frame.size());
     return *frame.at(i);
 }
 
-SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
-    tr2_moveable_t *moveable = tr.Moveable();
-    tr2_animation_t *anim = tr.Animation();
-    tr2_mesh_t *mesh = tr.Mesh();
+SkeletalModel::SkeletalModel(TombRaider& tr, unsigned int index, int objectId) {
+    tr2_moveable_t* moveable = tr.Moveable();
+    tr2_animation_t* anim = tr.Animation();
+    tr2_mesh_t* mesh = tr.Mesh();
 
     id = objectId;
 
@@ -184,7 +186,7 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
                 ponytailId = getWorld().sizeSkeletalModel(); //! \fixme Why is this even needed?
                 ponytailMeshId = moveable[index].starting_mesh;
                 ponytailNumMeshes = ((moveable[index].num_meshes > 0) ?
-                        moveable[index].num_meshes : 0);
+                                     moveable[index].num_meshes : 0);
                 ponytailAngle = -90.0f;
                 ponytail[0] = -3;
                 ponytail[1] = -22;
@@ -214,7 +216,7 @@ SkeletalModel::SkeletalModel(TombRaider &tr, unsigned int index, int objectId) {
                 ponytailId = getWorld().sizeSkeletalModel(); //! \fixme Why is this even needed?
                 ponytailMeshId = moveable[index].starting_mesh;
                 ponytailNumMeshes = ((moveable[index].num_meshes > 0) ?
-                        moveable[index].num_meshes : 0);
+                                     moveable[index].num_meshes : 0);
                 ponytailAngle = -90.0f;
                 ponytail[0] = 0;
                 ponytail[1] = -20;
@@ -271,15 +273,15 @@ void SkeletalModel::display(unsigned long aframe, unsigned long bframe) {
     assert(aframe < size());
     assert(bframe < get(aframe).size());
 
-    AnimationFrame &anim = get(aframe);
-    BoneFrame &boneframe = anim.get(bframe);
+    AnimationFrame& anim = get(aframe);
+    BoneFrame& boneframe = anim.get(bframe);
 
     float pos[3];
     boneframe.getPosition(pos);
     glTranslatef(pos[0], pos[1], pos[2]);
 
     for (unsigned int a = 0; a < boneframe.size(); a++) {
-        BoneTag &tag = boneframe.get(a);
+        BoneTag& tag = boneframe.get(a);
         float rot[3], off[3];
 
         tag.getRotation(rot);
@@ -304,7 +306,7 @@ void SkeletalModel::display(unsigned long aframe, unsigned long bframe) {
 
         // Draw layered lara in TR4 (2 meshes per tag)
         if (tr4Overlay) {
-            BoneFrame &boneframe2 = get(0).get(0); //! \fixme Woot?
+            BoneFrame& boneframe2 = get(0).get(0); //! \fixme Woot?
             if (a < boneframe2.size())
                 boneframe2.get(a).display();
         }
@@ -387,7 +389,7 @@ unsigned long SkeletalModel::size() {
     return animation.size();
 }
 
-AnimationFrame &SkeletalModel::get(unsigned long i) {
+AnimationFrame& SkeletalModel::get(unsigned long i) {
     assert(i < animation.size());
     return *animation.at(i);
 }

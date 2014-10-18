@@ -25,7 +25,7 @@ enum camera_command {
  * \brief Camera class
  */
 class Camera {
-public:
+  public:
     /*!
      * \brief Constructs an object of Camera
      */
@@ -70,7 +70,7 @@ public:
      */
     void command(enum camera_command cmd);
 
-private:
+  private:
 
     void rotate(float angle, float x, float y, float z);
 
@@ -84,6 +84,6 @@ private:
     float mRotationDeltaY; //!< Vertical mouse sensitivity
 };
 
-Camera &getCamera();
+Camera& getCamera();
 
 #endif

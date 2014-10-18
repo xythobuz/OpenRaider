@@ -11,7 +11,7 @@
 #include "commands/Command.h"
 
 class CommandAnimate : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual void printHelp();

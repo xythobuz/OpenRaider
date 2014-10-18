@@ -11,7 +11,7 @@
 #include <functional>
 
 class Menu {
-public:
+  public:
 
     virtual ~Menu() { }
 
@@ -22,7 +22,7 @@ public:
     virtual void handleKeyboard(KeyboardButton key, bool pressed) = 0;
 
     virtual void handleMouseClick(unsigned int x, unsigned int y,
-            KeyboardButton button, bool released) = 0;
+                                  KeyboardButton button, bool released) = 0;
 
     virtual void handleMouseScroll(int xrel, int yrel) = 0;
 
@@ -30,17 +30,17 @@ public:
 
     void setVisible(bool v) { visible = v; }
 
-protected:
+  protected:
 
     virtual void showDialog(std::string msg, std::string btn1, std::string btn2,
-            std::function<int (bool state)> callback = std::function<int (bool)>());
+                            std::function<int (bool state)> callback = std::function<int (bool)>());
 
     virtual void ackDialog();
 
     virtual bool handleKeyboardDialog(KeyboardButton key, bool pressed);
 
     virtual bool handleMouseClickDialog(unsigned int x, unsigned int y,
-            KeyboardButton button, bool released);
+                                        KeyboardButton button, bool released);
 
     virtual bool handleMouseScrollDialog(int xrel, int yrel);
 
@@ -55,7 +55,7 @@ protected:
     bool visible;
 };
 
-Menu &getMenu();
+Menu& getMenu();
 
 #endif
 

@@ -14,7 +14,7 @@
  * \brief GLUT windowing implementation
  */
 class WindowGLUT : public Window {
-public:
+  public:
 
     WindowGLUT();
 
@@ -32,7 +32,7 @@ public:
 
     virtual void swapBuffersGL();
 
-private:
+  private:
     static void reshapeCallback(int width, int height);
     static void keyboardCallback(unsigned char key, int x, int y);
     static void keyboardUpCallback(unsigned char key, int x, int y);

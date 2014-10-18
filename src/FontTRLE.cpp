@@ -32,8 +32,8 @@ int FontTRLE::initialize(std::string font) {
 
     // Load .pc file...
     std::ifstream file(font, std::ios::in | std::ios::binary);
-    unsigned char *pixels = new unsigned char[256 * 256 * 4];
-    if (!file.read((char *)pixels, 256 * 256 * 4)) {
+    unsigned char* pixels = new unsigned char[256 * 256 * 4];
+    if (!file.read((char*)pixels, 256 * 256 * 4)) {
         delete [] pixels;
         return -1;
     }
@@ -94,7 +94,7 @@ void FontTRLE::loadLPS(std::string f) {
 }
 
 void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, unsigned int yDraw,
-        float scale, const unsigned char color[4]) {
+                         float scale, const unsigned char color[4]) {
     assert(mFontInit == true);
 
     int width = (int)(((float)offsets[index][2]) * scale * SCALING);
@@ -150,7 +150,7 @@ unsigned int FontTRLE::widthText(float scale, std::string s) {
 }
 
 void FontTRLE::drawText(unsigned int x, unsigned int y, float scale,
-        const unsigned char color[4], std::string s) {
+                        const unsigned char color[4], std::string s) {
     assert(mFontInit == true);
     assert(s.length() > 0);
 
@@ -203,7 +203,7 @@ unsigned int FontTRLE::heightText(float scale, unsigned int maxWidth, std::strin
 }
 
 void FontTRLE::drawTextWrapped(unsigned int x, unsigned int y, float scale,
-        const unsigned char color[4], unsigned int maxWidth, std::string s) {
+                               const unsigned char color[4], unsigned int maxWidth, std::string s) {
     assert(mFontInit == true);
     assert(s.length() > 0);
 

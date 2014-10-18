@@ -13,7 +13,7 @@
  * \param filename path of file to read
  * \returns 0 on success
  */
-int pngCheck(const char *filename);
+int pngCheck(const char* filename);
 
 /*!
  * \brief Load a PNG image file into an RGBA buffer
@@ -25,8 +25,8 @@ int pngCheck(const char *filename);
  * \param bpp place where pixel width will be stored (8, 24, 32)
  * \returns 0 on success
  */
-int pngLoad(const char *filename, unsigned char **image,
-        unsigned int *width, unsigned int *height, ColorMode *mode, unsigned int *bpp);
+int pngLoad(const char* filename, unsigned char** image,
+            unsigned int* width, unsigned int* height, ColorMode* mode, unsigned int* bpp);
 
 /*!
  * \brief Create a PNG image file from an RGBA buffer
@@ -38,8 +38,8 @@ int pngLoad(const char *filename, unsigned char **image,
  * \param bpp bits per pixel (8, 24, 32)
  * \returns 0 on success
  */
-int pngSave(const char *filename, unsigned char *image,
-        unsigned int width, unsigned int height, ColorMode mode, unsigned int bpp);
+int pngSave(const char* filename, unsigned char* image,
+            unsigned int width, unsigned int height, ColorMode mode, unsigned int bpp);
 
 #endif
 

@@ -8,14 +8,14 @@
 #include "global.h"
 #include "utils/pixel.h"
 
-unsigned char *generateColorTexture(const unsigned char *rgba, unsigned int width,
-        unsigned int height, unsigned int bpp) {
+unsigned char* generateColorTexture(const unsigned char* rgba, unsigned int width,
+                                    unsigned int height, unsigned int bpp) {
     assert(rgba != NULL);
     assert(width > 0);
     assert(height > 0);
     assert((bpp % 8) == 0);
 
-    unsigned char *image = new unsigned char[height * width * (bpp / 8)];
+    unsigned char* image = new unsigned char[height * width * (bpp / 8)];
     for (unsigned int i = 0; i < (width * height); i++) {
         for (unsigned int a = 0; a < (bpp / 8); a++) {
             image[(i * (bpp / 8)) + a] = rgba[a];
@@ -24,7 +24,7 @@ unsigned char *generateColorTexture(const unsigned char *rgba, unsigned int widt
     return image;
 }
 
-void bgr2rgb24(unsigned char *image, unsigned int w, unsigned int h) {
+void bgr2rgb24(unsigned char* image, unsigned int w, unsigned int h) {
     assert(image != nullptr);
     assert(w > 0);
     assert(h > 0);
@@ -37,7 +37,7 @@ void bgr2rgb24(unsigned char *image, unsigned int w, unsigned int h) {
     }
 }
 
-void bgra2rgba32(unsigned char *image, unsigned int w, unsigned int h) {
+void bgra2rgba32(unsigned char* image, unsigned int w, unsigned int h) {
     assert(image != nullptr);
     assert(w > 0);
     assert(h > 0);
@@ -50,7 +50,7 @@ void bgra2rgba32(unsigned char *image, unsigned int w, unsigned int h) {
     }
 }
 
-void argb2rgba32(unsigned char *image, unsigned int w, unsigned int h) {
+void argb2rgba32(unsigned char* image, unsigned int w, unsigned int h) {
     assert(image != nullptr);
     assert(w > 0);
     assert(h > 0);
@@ -72,7 +72,8 @@ void argb2rgba32(unsigned char *image, unsigned int w, unsigned int h) {
 } while (false);
 
 // This code based off on gluScaleImage()
-unsigned char *scaleBuffer(unsigned char *image, unsigned int *w, unsigned int *h, unsigned int bpp) {
+unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* h,
+                           unsigned int bpp) {
     unsigned int width = *w;
     unsigned int height = *h;
     assert(image != NULL);
@@ -94,9 +95,9 @@ unsigned char *scaleBuffer(unsigned char *image, unsigned int *w, unsigned int *
     *w = width;
     *h = height;
 
-    unsigned char *timage = new unsigned char[height * width * components];
-    float *tempin = new float[original_width * original_height * components];
-    float *tempout = new float[width * height * components];
+    unsigned char* timage = new unsigned char[height * width * components];
+    float* tempin = new float[original_width * original_height * components];
+    float* tempout = new float[width * height * components];
 
     // Copy user data to float format.
     for (unsigned int i = 0; i < original_height * original_width * components; ++i) {
@@ -113,7 +114,7 @@ unsigned char *scaleBuffer(unsigned char *image, unsigned int *w, unsigned int *
 
     float sy;
     if (height > 1) {
-        sy = (float)(original_height - 1) / (float) (height - 1);
+        sy = (float)(original_height - 1) / (float)(height - 1);
     } else {
         sy = (float)(original_height - 1);
     }
@@ -130,7 +131,7 @@ unsigned char *scaleBuffer(unsigned char *image, unsigned int *w, unsigned int *
             float alpha = i * sy - i0;
 
             for (unsigned int j = 0; j < width; ++j) {
-                unsigned int j0 = (unsigned int) (j * sx);
+                unsigned int j0 = (unsigned int)(j * sx);
                 unsigned int j1 = j0 + 1;
 
                 if (j1 >= original_width) {
@@ -140,12 +141,12 @@ unsigned char *scaleBuffer(unsigned char *image, unsigned int *w, unsigned int *
                 float beta = j * sx - j0;
 
                 // Compute weighted average of pixels in rect (i0,j0)-(i1,j1)
-                float *src00 = tempin + (i0 * original_width + j0) * components;
-                float *src01 = tempin + (i0 * original_width + j1) * components;
-                float *src10 = tempin + (i1 * original_width + j0) * components;
-                float *src11 = tempin + (i1 * original_width + j1) * components;
+                float* src00 = tempin + (i0 * original_width + j0) * components;
+                float* src01 = tempin + (i0 * original_width + j1) * components;
+                float* src10 = tempin + (i1 * original_width + j0) * components;
+                float* src11 = tempin + (i1 * original_width + j1) * components;
 
-                float *dst = tempout + (i * width + j) * components;
+                float* dst = tempout + (i * width + j) * components;
 
                 for (unsigned int k = 0; k < components; ++k) {
                     float s1 = *src00++ * (1.0f - beta) + *src01++ * beta;
@@ -156,7 +157,7 @@ unsigned char *scaleBuffer(unsigned char *image, unsigned int *w, unsigned int *
         }
     } else { // Shrink width and/or height: use an unweighted box filter
         for (unsigned int i = 0; i < height; ++i) {
-            unsigned int i0 = (unsigned int) (i * sy);
+            unsigned int i0 = (unsigned int)(i * sy);
             unsigned int i1 = i0 + 1;
 
             if (i1 >= original_height) {
@@ -164,14 +165,14 @@ unsigned char *scaleBuffer(unsigned char *image, unsigned int *w, unsigned int *
             }
 
             for (unsigned int j = 0; j < width; ++j) {
-                unsigned int j0 = (unsigned int) (j * sx);
+                unsigned int j0 = (unsigned int)(j * sx);
                 unsigned int j1 = j0 + 1;
 
                 if (j1 >= original_width) {
                     j1 = original_width - 1;
                 }
 
-                float *dst = tempout + (i * width + j) * components;
+                float* dst = tempout + (i * width + j) * components;
 
                 // Compute average of pixels in the rectangle (i0,j0)-(i1,j1)
                 for (unsigned int k = 0; k < components; ++k) {
@@ -180,7 +181,7 @@ unsigned char *scaleBuffer(unsigned char *image, unsigned int *w, unsigned int *
                     for (unsigned int ii = i0; ii <= i1; ++ii) {
                         for (unsigned int jj = j0; jj <= j1; ++jj) {
                             sum += *(tempin + (ii * original_width + jj)
-                                    * components + k);
+                                     * components + k);
                         }
                     }
 

@@ -19,7 +19,7 @@
  * \brief Game script loader
  */
 class Script {
-public:
+  public:
 
     typedef enum {
         S_English  = 0,
@@ -93,7 +93,7 @@ public:
     Script();
     ~Script();
 
-    int load(const char *file);
+    int load(const char* file);
 
     unsigned int levelCount();
     std::string getLevelName(unsigned int i);
@@ -124,7 +124,7 @@ public:
     void registerScriptHandler(ScriptOpCode op, std::function<int (bool, uint16_t)> func);
     int runScript(unsigned int level);
 
-private:
+  private:
 
     typedef enum {
         S_DemoVersion            = (1 << 0),  //!< Don't load a MAIN.SFX
@@ -141,8 +141,8 @@ private:
         S_EnableCheatCode        = (1 << 11)  //!< No known effect
     } ScriptFlag;
 
-    void readStringPackage(BinaryFile &f, std::vector<std::string> &v, unsigned int n);
-    void readScriptPackage(BinaryFile &f, std::vector<std::vector<uint16_t>> &v, unsigned int n);
+    void readStringPackage(BinaryFile& f, std::vector<std::string>& v, unsigned int n);
+    void readScriptPackage(BinaryFile& f, std::vector<std::vector<uint16_t>>& v, unsigned int n);
 
     const bool opcodeHasOperand[OP_UNKNOWN] {
         true, true, true, true, true, true,

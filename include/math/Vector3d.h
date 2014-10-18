@@ -14,7 +14,7 @@
  * \brief 3D Math Vector
  */
 class Vector3d {
-public:
+  public:
 
     /*!
      * \brief Constructs an object of Vector3d
@@ -39,7 +39,7 @@ public:
      * \brief Constructs an object of Vector3d
      * \param v contents of new Vector3d
      */
-    Vector3d(const Vector3d &v);
+    Vector3d(const Vector3d& v);
 
     /*!
      * \brief Calculate dot product
@@ -47,7 +47,7 @@ public:
      * \param v second argument
      * \returns dot product of u and v vectors
      */
-    static float dot(const Vector3d &u, const Vector3d &v);
+    static float dot(const Vector3d& u, const Vector3d& v);
 
     /*!
      * \brief Calculate cross product
@@ -55,7 +55,7 @@ public:
      * \param v second argument
      * \returns cross product of u and v vectors
      */
-    static Vector3d cross(const Vector3d &u, const Vector3d &v);
+    static Vector3d cross(const Vector3d& u, const Vector3d& v);
 
     /*!
      * \brief Get Magnitude
@@ -80,14 +80,14 @@ public:
      * \param v addend
      * \returns a vector = this vector + v
      */
-    Vector3d operator +(const Vector3d &v);
+    Vector3d operator +(const Vector3d& v);
 
     /*!
      * \brief Subtract from this vector
      * \param v subtrahend
      * \returns a vector = this vector - v
      */
-    Vector3d operator -(const Vector3d &v);
+    Vector3d operator -(const Vector3d& v);
 
     /*!
      * \brief Negate this vector
@@ -114,7 +114,7 @@ public:
      * \param v second vector for dot product
      * \returns dot product of V by this vector
      */
-    float operator *(const Vector3d &v);
+    float operator *(const Vector3d& v);
 
     /*!
      * \brief Normalizes this vector
@@ -131,28 +131,28 @@ public:
      * \param v what this vector will be set to
      * \returns this vector, now equal to v
      */
-    Vector3d &operator =(const Vector3d &v);
+    Vector3d& operator =(const Vector3d& v);
 
     /*!
      * \brief Add to this vector, in place
      * \param v what will be added to this vector
      * \returns this vector, with v added
      */
-    Vector3d &operator +=(const Vector3d &v);
+    Vector3d& operator +=(const Vector3d& v);
 
     /*!
      * \brief Subtract from this vector, in place
      * \param v what will be subtracted from this vector
      * \returns this vector, with v subtracted
      */
-    Vector3d &operator -=(const Vector3d &v);
+    Vector3d& operator -=(const Vector3d& v);
 
     /*!
      * \brief Scale this vector, in place
      * \param s scaling factor
      * \returns this vactor multiplied by s
      */
-    Vector3d &operator *=(float s);
+    Vector3d& operator *=(float s);
 
     float mVec[3]; //!< Vector data
 };

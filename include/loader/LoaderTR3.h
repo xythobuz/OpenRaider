@@ -11,13 +11,13 @@
 #include "loader/Loader.h"
 
 class LoaderTR3 : public Loader {
-public:
+  public:
     LoaderTR3();
     virtual ~LoaderTR3();
 
     virtual int load(std::string f);
 
-private:
+  private:
 
 };
 

@@ -13,7 +13,7 @@
 #include "MenuFolder.h"
 
 void Menu::showDialog(std::string msg, std::string btn1, std::string btn2,
-        std::function<int (bool state)> callback) {
+                      std::function<int (bool state)> callback) {
     // Only show one dialog at a time
     assert(dialogText.length() == 0);
     assert(dialogButton1.length() == 0);
@@ -75,7 +75,7 @@ bool Menu::handleKeyboardDialog(KeyboardButton key, bool pressed) {
 }
 
 bool Menu::handleMouseClickDialog(unsigned int x, unsigned int y,
-            KeyboardButton button, bool released) {
+                                  KeyboardButton button, bool released) {
     //! \todo Allow mouse usage of Menu dialogs!
     return (dialogText.length() > 0);
 }
@@ -151,18 +151,18 @@ void Menu::displayDialog() {
         if (dialogButton2.length() > 0) {
             if ((w1 + w2) <= wMax) {
                 Font::drawTextWrapped(xOverlay + 10, yOverlay + 10 + h0, 1.0f,
-                    dialogState ? BLUE : RED, w1, dialogButton1);
+                                      dialogState ? BLUE : RED, w1, dialogButton1);
                 Font::drawTextWrapped(xOverlay + 10 + w1, yOverlay + 10 + h0,
-                    1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
+                                      1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
             } else {
                 Font::drawTextWrapped((::getWindow().getWidth() - w1) / 2,
-                    yOverlay + 10 + h0, 1.0f, dialogState ? BLUE : RED, w1, dialogButton1);
+                                      yOverlay + 10 + h0, 1.0f, dialogState ? BLUE : RED, w1, dialogButton1);
                 Font::drawTextWrapped((::getWindow().getWidth() - w2) / 2,
-                    yOverlay + 10 + h0 + h1, 1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
+                                      yOverlay + 10 + h0 + h1, 1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
             }
         } else {
             Font::drawTextWrapped((::getWindow().getWidth() - w1) / 2,
-                    yOverlay + 10 + h0, 1.0f, RED, w1, dialogButton1);
+                                  yOverlay + 10 + h0, 1.0f, RED, w1, dialogButton1);
         }
     }
 }

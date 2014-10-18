@@ -24,7 +24,7 @@ ViewVolume::ViewVolume() {
 bool ViewVolume::isPointInFrustum(float x, float y, float z) {
     for (unsigned int p = 0; p < 6; ++p) {
         if (mFrustum[p][0] * x + mFrustum[p][1] * y + mFrustum[p][2] * z +
-                mFrustum[p][3] <= 0) {
+            mFrustum[p][3] <= 0) {
             return false;
         }
     }
@@ -43,43 +43,43 @@ bool ViewVolume::isSphereInFrustum(float x, float y, float z, float radius) {
 bool ViewVolume::isBboxInFrustum(float min[3], float max[3]) {
     for (unsigned int p = 0; p < 6; ++p) {
         if (mFrustum[p][0] * min[0] +
-                mFrustum[p][1] * min[1] +
-                mFrustum[p][2] * min[2] + mFrustum[p][3] > 0)
+            mFrustum[p][1] * min[1] +
+            mFrustum[p][2] * min[2] + mFrustum[p][3] > 0)
             continue;
 
         if (mFrustum[p][0] * max[0] +
-                mFrustum[p][1] * max[1] +
-                mFrustum[p][2] * max[2] + mFrustum[p][3] > 0)
+            mFrustum[p][1] * max[1] +
+            mFrustum[p][2] * max[2] + mFrustum[p][3] > 0)
             continue;
 
         if (mFrustum[p][0] * min[0] +
-                mFrustum[p][1] * max[1] +
-                mFrustum[p][2] * max[2] + mFrustum[p][3] > 0)
+            mFrustum[p][1] * max[1] +
+            mFrustum[p][2] * max[2] + mFrustum[p][3] > 0)
             continue;
 
         if (mFrustum[p][0] * min[0] +
-                mFrustum[p][1] * min[1] +
-                mFrustum[p][2] * max[2] + mFrustum[p][3] > 0)
+            mFrustum[p][1] * min[1] +
+            mFrustum[p][2] * max[2] + mFrustum[p][3] > 0)
             continue;
 
         if (mFrustum[p][0] * min[0] +
-                mFrustum[p][1] * max[1] +
-                mFrustum[p][2] * min[2] + mFrustum[p][3] > 0)
+            mFrustum[p][1] * max[1] +
+            mFrustum[p][2] * min[2] + mFrustum[p][3] > 0)
             continue;
 
         if (mFrustum[p][0] * max[0] +
-                mFrustum[p][1] * min[1] +
-                mFrustum[p][2] * min[2] + mFrustum[p][3] > 0)
+            mFrustum[p][1] * min[1] +
+            mFrustum[p][2] * min[2] + mFrustum[p][3] > 0)
             continue;
 
         if (mFrustum[p][0] * max[0] +
-                mFrustum[p][1] * max[1] +
-                mFrustum[p][2] * min[2] + mFrustum[p][3] > 0)
+            mFrustum[p][1] * max[1] +
+            mFrustum[p][2] * min[2] + mFrustum[p][3] > 0)
             continue;
 
         if (mFrustum[p][0] * max[0] +
-                mFrustum[p][1] * min[1] +
-                mFrustum[p][2] * max[2] + mFrustum[p][3] > 0)
+            mFrustum[p][1] * min[1] +
+            mFrustum[p][2] * max[2] + mFrustum[p][3] > 0)
             continue;
 
         return false;
@@ -105,9 +105,9 @@ float ViewVolume::getDistToBboxFromNear(const float min[3], const float max[3]) 
 
     // 5 should be near plane
     d = (mFrustum[5][0] * center[0] +
-            mFrustum[5][1] * center[1] +
-            mFrustum[5][2] * center[2] +
-            mFrustum[5][3]);
+         mFrustum[5][1] * center[1] +
+         mFrustum[5][2] * center[2] +
+         mFrustum[5][3]);
 
     radius = distance(max, center);
 
@@ -169,8 +169,8 @@ void ViewVolume::updateFrustum() {
 
     /* Normalize the result */
     t = sqrtf(mFrustum[0][0] * mFrustum[0][0] +
-            mFrustum[0][1] * mFrustum[0][1] +
-            mFrustum[0][2] * mFrustum[0][2]);
+              mFrustum[0][1] * mFrustum[0][1] +
+              mFrustum[0][2] * mFrustum[0][2]);
     mFrustum[0][0] /= t;
     mFrustum[0][1] /= t;
     mFrustum[0][2] /= t;
@@ -184,8 +184,8 @@ void ViewVolume::updateFrustum() {
 
     /* Normalize the result */
     t = sqrtf(mFrustum[1][0] * mFrustum[1][0] +
-            mFrustum[1][1] * mFrustum[1][1] +
-            mFrustum[1][2] * mFrustum[1][2]);
+              mFrustum[1][1] * mFrustum[1][1] +
+              mFrustum[1][2] * mFrustum[1][2]);
     mFrustum[1][0] /= t;
     mFrustum[1][1] /= t;
     mFrustum[1][2] /= t;
@@ -199,8 +199,8 @@ void ViewVolume::updateFrustum() {
 
     /* Normalize the result */
     t = sqrtf(mFrustum[2][0] * mFrustum[2][0] +
-            mFrustum[2][1] * mFrustum[2][1] +
-            mFrustum[2][2] * mFrustum[2][2]);
+              mFrustum[2][1] * mFrustum[2][1] +
+              mFrustum[2][2] * mFrustum[2][2]);
     mFrustum[2][0] /= t;
     mFrustum[2][1] /= t;
     mFrustum[2][2] /= t;
@@ -214,8 +214,8 @@ void ViewVolume::updateFrustum() {
 
     /* Normalize the result */
     t = sqrtf(mFrustum[3][0] * mFrustum[3][0] +
-            mFrustum[3][1] * mFrustum[3][1] +
-            mFrustum[3][2] * mFrustum[3][2]);
+              mFrustum[3][1] * mFrustum[3][1] +
+              mFrustum[3][2] * mFrustum[3][2]);
     mFrustum[3][0] /= t;
     mFrustum[3][1] /= t;
     mFrustum[3][2] /= t;
@@ -229,8 +229,8 @@ void ViewVolume::updateFrustum() {
 
     /* Normalize the result */
     t = sqrtf(mFrustum[4][0] * mFrustum[4][0] +
-            mFrustum[4][1] * mFrustum[4][1] +
-            mFrustum[4][2] * mFrustum[4][2]);
+              mFrustum[4][1] * mFrustum[4][1] +
+              mFrustum[4][2] * mFrustum[4][2]);
     mFrustum[4][0] /= t;
     mFrustum[4][1] /= t;
     mFrustum[4][2] /= t;
@@ -244,8 +244,8 @@ void ViewVolume::updateFrustum() {
 
     /* Normalize the result */
     t = sqrtf(mFrustum[5][0] * mFrustum[5][0] +
-            mFrustum[5][1] * mFrustum[5][1] +
-            mFrustum[5][2] * mFrustum[5][2]);
+              mFrustum[5][1] * mFrustum[5][1] +
+              mFrustum[5][2] * mFrustum[5][2]);
     mFrustum[5][0] /= t;
     mFrustum[5][1] /= t;
     mFrustum[5][2] /= t;

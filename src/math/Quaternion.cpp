@@ -32,19 +32,19 @@ Quaternion::Quaternion(float v[4]) {
 }
 
 void Quaternion::getMatrix(float m[16]) {
-    m[ 0] = 1.0f - 2.0f * (mY*mY + mZ*mZ);
-    m[ 1] = 2.0f * (mX*mY - mW*mZ);
-    m[ 2] = 2.0f * (mX*mZ + mW*mY);
+    m[ 0] = 1.0f - 2.0f * (mY * mY + mZ * mZ);
+    m[ 1] = 2.0f * (mX * mY - mW * mZ);
+    m[ 2] = 2.0f * (mX * mZ + mW * mY);
     m[ 3] = 0.0f;
 
-    m[ 4] = 2.0f * (mX*mY + mW*mZ);
-    m[ 5] = 1.0f - 2.0f * (mX*mX + mZ*mZ);
-    m[ 6] = 2.0f * (mY*mZ - mW*mX);
+    m[ 4] = 2.0f * (mX * mY + mW * mZ);
+    m[ 5] = 1.0f - 2.0f * (mX * mX + mZ * mZ);
+    m[ 6] = 2.0f * (mY * mZ - mW * mX);
     m[ 7] = 0.0f;
 
-    m[ 8] = 2.0f * (mX*mZ - mW*mY);
-    m[ 9] = 2.0f * (mY*mZ + mW*mX);
-    m[10] = 1.0f - 2.0f * (mX*mX + mY*mY);
+    m[ 8] = 2.0f * (mX * mZ - mW * mY);
+    m[ 9] = 2.0f * (mY * mZ + mW * mX);
+    m[10] = 1.0f - 2.0f * (mX * mX + mY * mY);
     m[11] = 0.0f;
 
     m[12] = 0.0f;
@@ -53,23 +53,23 @@ void Quaternion::getMatrix(float m[16]) {
     m[15] = 1.0f;
 }
 
-Quaternion Quaternion::operator *(const Quaternion &q) {
+Quaternion Quaternion::operator *(const Quaternion& q) {
     return multiply(*this, q);
 }
 
-Quaternion Quaternion::operator /(const Quaternion &q) {
+Quaternion Quaternion::operator /(const Quaternion& q) {
     return divide(*this, q);
 }
 
-Quaternion Quaternion::operator +(const Quaternion &q) {
+Quaternion Quaternion::operator +(const Quaternion& q) {
     return add(*this, q);
 }
 
-Quaternion Quaternion::operator -(const Quaternion &q) {
+Quaternion Quaternion::operator -(const Quaternion& q) {
     return subtract(*this, q);
 }
 
-bool Quaternion::operator ==(const Quaternion &q) {
+bool Quaternion::operator ==(const Quaternion& q) {
     //return (mX == q.mX && mY == q.mY && mZ == q.mZ && mW == q.mW);
     return (equalEpsilon(mX, q.mX) && equalEpsilon(mY, q.mY) &&
             equalEpsilon(mZ, q.mZ) && equalEpsilon(mW, q.mW));
@@ -84,7 +84,7 @@ Quaternion Quaternion::scale(float s) {
 }
 
 Quaternion Quaternion::inverse() {
-    return conjugate().scale(1/magnitude());
+    return conjugate().scale(1 / magnitude());
 }
 
 float Quaternion::dot(Quaternion a, Quaternion b) {
@@ -106,7 +106,7 @@ void Quaternion::set(float angle, float x, float y, float z) {
     float temp, dist;
 
     // Normalize
-    temp = x*x + y*y + z*z;
+    temp = x * x + y * y + z * z;
 
     dist = 1.0f / sqrtf(temp);
 
@@ -228,7 +228,7 @@ void Quaternion::setByMatrix(float matrix[16]) {
         // If the first element of the diagonal is the greatest value
         if (matrix[0] > matrix[5] && matrix[0] > matrix[10]) {
             // Find the scale according to the first element, and double it
-            scale = (float)sqrt(1.0f + matrix[0] - matrix[5] - matrix[10])*2.0f;
+            scale = (float)sqrt(1.0f + matrix[0] - matrix[5] - matrix[10]) * 2.0f;
 
             // Calculate the quaternion
             w = (matrix[9] - matrix[6]) / scale;
@@ -238,7 +238,7 @@ void Quaternion::setByMatrix(float matrix[16]) {
         } else if (matrix[5] > matrix[10]) {
             // The second element of the diagonal is the greatest value
             // Find the scale according to the second element, and double it
-            scale = (float)sqrt(1.0f + matrix[5] - matrix[0] - matrix[10])*2.0f;
+            scale = (float)sqrt(1.0f + matrix[5] - matrix[0] - matrix[10]) * 2.0f;
 
             // Calculate the quaternion
             w = (matrix[2] - matrix[8]) / scale;
@@ -247,7 +247,7 @@ void Quaternion::setByMatrix(float matrix[16]) {
             z = (matrix[9] + matrix[6]) / scale;
         } else { // The third element of the diagonal is the greatest value
             // Find the scale according to the third element, and double it
-            scale = (float)sqrt(1.0f + matrix[10] - matrix[0] - matrix[5])*2.0f;
+            scale = (float)sqrt(1.0f + matrix[10] - matrix[0] - matrix[5]) * 2.0f;
 
             // Calculate the quaternion
             w = (matrix[4] - matrix[1]) / scale;
@@ -265,9 +265,9 @@ void Quaternion::setByMatrix(float matrix[16]) {
 
 Quaternion Quaternion::multiply(Quaternion a, Quaternion b) {
     return Quaternion(a.mW * b.mW - a.mX * b.mX - a.mY * b.mY - a.mZ * b.mZ,
-            a.mW * b.mX + a.mX * b.mW + a.mY * b.mZ - a.mZ * b.mY,
-            a.mW * b.mY + a.mY * b.mW + a.mZ * b.mX - a.mX * b.mZ,
-            a.mW * b.mZ + a.mZ * b.mW + a.mX * b.mY - a.mY * b.mX);
+                      a.mW * b.mX + a.mX * b.mW + a.mY * b.mZ - a.mZ * b.mY,
+                      a.mW * b.mY + a.mY * b.mW + a.mZ * b.mX - a.mX * b.mZ,
+                      a.mW * b.mZ + a.mZ * b.mW + a.mX * b.mY - a.mY * b.mX);
 }
 
 Quaternion Quaternion::divide(Quaternion a, Quaternion b) {
@@ -276,15 +276,15 @@ Quaternion Quaternion::divide(Quaternion a, Quaternion b) {
 
 Quaternion Quaternion::add(Quaternion a, Quaternion b) {
     return Quaternion(a.mW + b.mW,
-            a.mX + b.mX,
-            a.mY + b.mY,
-            a.mZ + b.mZ);
+                      a.mX + b.mX,
+                      a.mY + b.mY,
+                      a.mZ + b.mZ);
 }
 
 Quaternion Quaternion::subtract(Quaternion a, Quaternion b) {
     return Quaternion(a.mW - b.mW,
-            a.mX - b.mX,
-            a.mY - b.mY,
-            a.mZ - b.mZ);
+                      a.mX - b.mX,
+                      a.mY - b.mY,
+                      a.mZ - b.mZ);
 }
 

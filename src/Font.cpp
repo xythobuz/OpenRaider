@@ -70,7 +70,7 @@ unsigned int Font::heightText(float scale, unsigned int maxWidth, std::string s)
 }
 
 void Font::drawText(unsigned int x, unsigned int y, float scale,
-        const unsigned char color[4], std::string s) {
+                    const unsigned char color[4], std::string s) {
     if (stringEndsWith(fontName, ".pc")) {
         FontTRLE::drawText(x, y, scale, color, s);
 #ifdef USING_SDL_FONT
@@ -83,7 +83,7 @@ void Font::drawText(unsigned int x, unsigned int y, float scale,
 }
 
 void Font::drawTextWrapped(unsigned int x, unsigned int y, float scale,
-        const unsigned char color[4], unsigned int maxWidth, std::string s) {
+                           const unsigned char color[4], unsigned int maxWidth, std::string s) {
     if (stringEndsWith(fontName, ".pc")) {
         FontTRLE::drawTextWrapped(x, y, scale, color, maxWidth, s);
 #ifdef USING_SDL_FONT
@@ -96,7 +96,7 @@ void Font::drawTextWrapped(unsigned int x, unsigned int y, float scale,
 }
 
 void Font::drawTextCentered(unsigned int x, unsigned int y, float scale,
-        const unsigned char color[4], unsigned int width, std::string s) {
+                            const unsigned char color[4], unsigned int width, std::string s) {
     drawText(x + ((width / 2) - (widthText(scale, s) / 2)), y, scale, color, s);
 }
 

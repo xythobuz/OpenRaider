@@ -35,7 +35,7 @@
  *     ///////////////////////////////////////////////
  */
 class Matrix {
-public:
+  public:
 
     /*!
      * \brief Constructs an object of Matrix
@@ -52,7 +52,7 @@ public:
      * \brief Constructs an object of Matrix
      * \param q Converts and assigns the Quaternion to the Matrix
      */
-    Matrix(Quaternion &q);
+    Matrix(Quaternion& q);
 
     /*!
      * \brief Returns this matrix copy
@@ -78,7 +78,7 @@ public:
      * \param b second matrix
      * \returns resultant matrix
      */
-    static Matrix multiply(const Matrix &a, const Matrix &b);
+    static Matrix multiply(const Matrix& a, const Matrix& b);
 
     /*!
      * \brief Multiplies v vector and this matrix
@@ -110,7 +110,7 @@ public:
      * \param a matrix to multiply with
      * \returns resultant matrix
      */
-    Matrix operator *(const Matrix &a);
+    Matrix operator *(const Matrix& a);
 
     /*!
      * \brief Multiply vector by this matrix
@@ -143,7 +143,7 @@ public:
      * \brief Rotate object in 3D space
      * \param xyz rotation in radians
      */
-    void rotate(const float *xyz);
+    void rotate(const float* xyz);
 
     /*!
      * \brief Scale object in 3D space
@@ -157,7 +157,7 @@ public:
      * \brief Scale object in 3D space
      * \param xyz scaling factors
      */
-    void scale(const float *xyz);
+    void scale(const float* xyz);
 
     /*!
      * \brief Translate (move) object in 3D space
@@ -171,7 +171,7 @@ public:
      * \brief Translate (move) object in 3D space
      * \param xyz translations
      */
-    void translate(const float *xyz);
+    void translate(const float* xyz);
 
     /*!
      * \brief Transpose this matrix
@@ -180,7 +180,7 @@ public:
 
     float mMatrix[16]; //!< Data model, moved public for faster external renderer feedback use
 
-private:
+  private:
 
     /*!
      * \brief Copys value from source to dest

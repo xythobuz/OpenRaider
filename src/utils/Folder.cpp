@@ -28,11 +28,11 @@
 Folder::Folder(std::string folder, bool listDotFiles) {
     if (((folder.length() == 0) || (folder.compare(".") == 0))
 #ifdef _WIN32
-            || ((folder.compare(1, 2, std::string(":\\")) != 0) && (folder.at(0) != '~'))
+        || ((folder.compare(1, 2, std::string(":\\")) != 0) && (folder.at(0) != '~'))
 #else
-            || ((folder.at(0) != '/') && (folder.at(0) != '~'))
+        || ((folder.at(0) != '/') && (folder.at(0) != '~'))
 #endif
-            ) {
+       ) {
         // Prepend current working directory
         path = getCurrentWorkingDirectory();
         if (folder.length() > 1)
@@ -70,11 +70,11 @@ Folder::Folder(std::string folder, bool listDotFiles) {
     listDot = listDotFiles;
 }
 
-std::string &Folder::getName() {
+std::string& Folder::getName() {
     return name;
 }
 
-std::string &Folder::getPath() {
+std::string& Folder::getPath() {
     return path;
 }
 
@@ -83,7 +83,7 @@ unsigned long Folder::fileCount() {
     return files.size();
 }
 
-File &Folder::getFile(unsigned long i) {
+File& Folder::getFile(unsigned long i) {
     createFolderItems();
     assert(i < files.size());
     return files.at(i);
@@ -94,7 +94,7 @@ unsigned long Folder::folderCount() {
     return folders.size();
 }
 
-Folder &Folder::getFolder(unsigned long i) {
+Folder& Folder::getFolder(unsigned long i) {
     createFolderItems();
     assert(i < folders.size());
     return folders.at(i);
@@ -108,7 +108,7 @@ Folder Folder::getParent() {
     return Folder(parent, listDot);
 }
 
-void Folder::executeRemoveFiles(std::function<bool (File &f)> func) {
+void Folder::executeRemoveFiles(std::function<bool (File& f)> func) {
     createFolderItems();
     for (unsigned long i = 0; i < fileCount(); i++) {
         if (func(getFile(i))) {
@@ -159,17 +159,18 @@ void Folder::createFolderItems() {
 
 #ifdef USE_DIRENT
 
-int Folder::readFolderItems(std::vector<std::string> &foundFiles, std::vector<std::string> &foundFolders) {
+int Folder::readFolderItems(std::vector<std::string>& foundFiles,
+                            std::vector<std::string>& foundFolders) {
     struct dirent entry;
-    struct dirent *ep = nullptr;
-    DIR *pakDir;
+    struct dirent* ep = nullptr;
+    DIR* pakDir;
 
     pakDir = opendir(path.c_str());
     if (pakDir != nullptr) {
         readdir_r(pakDir, &entry, &ep);
         while (ep != nullptr) {
             if ((strcmp(".", ep->d_name) != 0)
-                     && (strcmp("..", ep->d_name) != 0)) {
+                && (strcmp("..", ep->d_name) != 0)) {
                 std::string tmp(path);
                 if (tmp.back() != '/')
                     tmp += '/';
@@ -194,7 +195,8 @@ int Folder::readFolderItems(std::vector<std::string> &foundFiles, std::vector<st
 
 #elif defined(USE_FINDFILE)
 
-int Folder::readFolderItems(std::vector<std::string> &foundFiles, std::vector<std::string> &foundFolders) {
+int Folder::readFolderItems(std::vector<std::string>& foundFiles,
+                            std::vector<std::string>& foundFolders) {
     std::string tmp(path);
     tmp += "/*";
 

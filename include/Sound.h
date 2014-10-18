@@ -13,7 +13,7 @@
  * \brief This is the audio manager for OpenRaider
  */
 class Sound {
-public:
+  public:
 
     typedef enum {
         SoundFlagsNone = 0,       //!< No effect
@@ -71,7 +71,7 @@ public:
      * \param flags set options. Use SoundFlags enum bitwise OR-ed
      * \returns 0 for no error or < 0 error flag
      */
-    virtual int addFile(const char *filename, unsigned long *source, unsigned int flags) = 0;
+    virtual int addFile(const char* filename, unsigned long* source, unsigned int flags) = 0;
 
     /*!
      * \brief Load wav file from buffer
@@ -81,7 +81,8 @@ public:
      * \param flags set options. Use SoundFlags enum bitwise OR-ed
      * \returns 0 for no error or < 0 error flag
      */
-    virtual int addWave(unsigned char *wav, unsigned int length, unsigned long *source, unsigned int flags) = 0;
+    virtual int addWave(unsigned char* wav, unsigned int length, unsigned long* source,
+                        unsigned int flags) = 0;
 
     /*!
      * \brief Play sound source
@@ -96,7 +97,7 @@ public:
     virtual void stop(unsigned long source) = 0;
 };
 
-Sound &getSound();
+Sound& getSound();
 
 #endif
 

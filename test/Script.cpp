@@ -47,7 +47,7 @@
 }
 
 namespace {
-    int printDataScript(Script &s, bool strings) {
+    int printDataScript(Script& s, bool strings) {
         if (strings) {
             printStrings(s.levelCount(), s.getLevelName, "Level Names");
             printStrings(s.levelCount(), s.getLevelFilename, "Level Filenames");
@@ -103,7 +103,7 @@ namespace {
         return 0;
     }
 
-    int test(const char *file, unsigned int n) {
+    int test(const char* file, unsigned int n) {
         Script s;
 
         std::cout << "Testing " << testDescription[n] << std::endl;
@@ -114,12 +114,14 @@ namespace {
         }
 
         if (s.gameStringCount() != testExpectedGameStringCount[n]) {
-            std::cout << "Game String Count " << s.gameStringCount() << " != " << testExpectedGameStringCount[n] << std::endl;
+            std::cout << "Game String Count " << s.gameStringCount() << " != " << testExpectedGameStringCount[n]
+                      << std::endl;
             return 2;
         }
 
         if (s.pcStringCount() != testExpectedPlatformStringCount[n]) {
-            std::cout << "Platform String Count " << s.pcStringCount() << " != " << testExpectedPlatformStringCount[n] << std::endl;
+            std::cout << "Platform String Count " << s.pcStringCount() << " != " <<
+                      testExpectedPlatformStringCount[n] << std::endl;
             return 3;
         }
 
@@ -127,7 +129,7 @@ namespace {
         return 0;
     }
 
-    int readPayloadChunk(const unsigned char *data, unsigned int size, const char *file) {
+    int readPayloadChunk(const unsigned char* data, unsigned int size, const char* file) {
         static const unsigned int bufferSize = 16384; // 16K should be enough for everybody :)
         unsigned char buffer[bufferSize];
 
@@ -144,7 +146,7 @@ namespace {
 
         // Inflate data in one go
         stream.avail_in = size;
-        stream.next_in = const_cast<unsigned char *>(data);
+        stream.next_in = const_cast<unsigned char*>(data);
         stream.avail_out = bufferSize;
         stream.next_out = buffer;
         error = inflate(&stream, Z_FINISH);
@@ -156,7 +158,7 @@ namespace {
 
         // Write buffer to file
         std::ofstream s(file, std::ios_base::out | std::ios_base::binary);
-        s.write(reinterpret_cast<const char *>(buffer), bufferSize - stream.avail_out);
+        s.write(reinterpret_cast<const char*>(buffer), bufferSize - stream.avail_out);
 
         return 0;
     }
@@ -165,7 +167,7 @@ namespace {
         assert(n < testPayloadCount);
         // Get temp file name
         char tmpFile[] = "/tmp/openraider_unit_test_0";
-        FILE *f;
+        FILE* f;
         while ((f = fopen(tmpFile, "r")) != NULL) {
             fclose(f);
             tmpFile[26]++;
@@ -192,7 +194,7 @@ namespace {
     }
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     bool printHelp = false;
     bool print = false;
     bool printData = true;
@@ -200,14 +202,14 @@ int main(int argc, char *argv[]) {
 
     if (argc == 3) {
         if ((strcmp(argv[1], "--printData") == 0)
-                || (strcmp(argv[1], "--printScript") == 0)) {
+            || (strcmp(argv[1], "--printScript") == 0)) {
             print = true;
             if (strcmp(argv[1], "--printScript") == 0) {
                 printData = false;
             }
             assert(testPayloadCount < 10);
             if ((argv[2][0] >= '0')
-                    && (static_cast<unsigned int>(argv[2][0]) <= (testPayloadCount + '0'))) {
+                && (static_cast<unsigned int>(argv[2][0]) <= (testPayloadCount + '0'))) {
                 whichFile = argv[2][0] - '0';
             }
         } else {

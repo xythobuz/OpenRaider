@@ -16,8 +16,8 @@ or_time_t systemTimerGet() {
     auto tp = std::chrono::steady_clock::now();
 
     return static_cast<or_time_t>(
-            std::chrono::duration_cast<std::chrono::milliseconds>
-            (tp - systemTimerStart).count());
+               std::chrono::duration_cast<std::chrono::milliseconds>
+               (tp - systemTimerStart).count());
 }
 
 void systemTimerReset() {

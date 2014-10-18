@@ -13,7 +13,7 @@ BinaryFile::~BinaryFile() {
         file.close();
 }
 
-int BinaryFile::open(const char *f) {
+int BinaryFile::open(const char* f) {
     if (file.is_open()) {
         return 1;
     } else {
@@ -36,7 +36,7 @@ uint8_t BinaryFile::readU8() {
     assert(file.is_open());
     assert(file.good());
     uint8_t ret;
-    char *c = reinterpret_cast<char *>(&ret);
+    char* c = reinterpret_cast<char*>(&ret);
     file.read(c, 1);
     return ret;
 }
@@ -69,10 +69,10 @@ float BinaryFile::readFloat() {
     assert(file.is_open());
     assert(file.good());
     uint32_t val = readU32();
-    char *a = reinterpret_cast<char *>(&val);
+    char* a = reinterpret_cast<char*>(&val);
 
     float ret;
-    char *b = reinterpret_cast<char *>(&ret);
+    char* b = reinterpret_cast<char*>(&ret);
 
     for (int i = 0; i < 4; i++)
         b[i] = a[i];
@@ -89,7 +89,7 @@ namespace {
     const int bigendiandetection = 1;
 #define ISBIGENDIAN() ((*(char *)&bigendiandetection) == 0)
 
-    void swapByteOrder(char *d, unsigned int n) {
+    void swapByteOrder(char* d, unsigned int n) {
         if (ISBIGENDIAN()) {
             for (unsigned int i = 0; i < (n / 2); i++) {
                 char tmp = d[i];
@@ -104,7 +104,7 @@ int8_t BinaryFile::read8() {
     assert(file.is_open());
     assert(file.good());
     int8_t ret;
-    char *p = reinterpret_cast<char *>(&ret);
+    char* p = reinterpret_cast<char*>(&ret);
     file.read(p, sizeof(ret));
     return ret;
 }
@@ -113,7 +113,7 @@ int16_t BinaryFile::read16() {
     assert(file.is_open());
     assert(file.good());
     int16_t ret;
-    char *p = reinterpret_cast<char *>(&ret);
+    char* p = reinterpret_cast<char*>(&ret);
     file.read(p, sizeof(ret));
     swapByteOrder(p, 2);
     return ret;
@@ -123,7 +123,7 @@ int32_t BinaryFile::read32() {
     assert(file.is_open());
     assert(file.good());
     int32_t ret;
-    char *p = reinterpret_cast<char *>(&ret);
+    char* p = reinterpret_cast<char*>(&ret);
     file.read(p, sizeof(ret));
     swapByteOrder(p, 4);
     return ret;
@@ -133,7 +133,7 @@ int64_t BinaryFile::read64() {
     assert(file.is_open());
     assert(file.good());
     int64_t ret;
-    char *p = reinterpret_cast<char *>(&ret);
+    char* p = reinterpret_cast<char*>(&ret);
     file.read(p, sizeof(ret));
     swapByteOrder(p, 8);
     return ret;

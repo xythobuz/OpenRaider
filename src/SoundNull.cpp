@@ -40,13 +40,14 @@ void SoundNull::sourceAt(unsigned long source, float pos[3]) {
     assert(source < sources);
 }
 
-int SoundNull::addFile(const char *filename, unsigned long *source, unsigned int flags) {
+int SoundNull::addFile(const char* filename, unsigned long* source, unsigned int flags) {
     *source = sources;
     sources++;
     return 0;
 }
 
-int SoundNull::addWave(unsigned char *wav, unsigned int length, unsigned long *source, unsigned int flags) {
+int SoundNull::addWave(unsigned char* wav, unsigned int length, unsigned long* source,
+                       unsigned int flags) {
     *source = sources;
     sources++;
     return 0;

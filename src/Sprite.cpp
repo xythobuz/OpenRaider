@@ -11,7 +11,7 @@
 #include "Render.h"
 #include "Sprite.h"
 
-SpriteSequence::SpriteSequence(TombRaider &tr, unsigned int item, unsigned int sequence) {
+SpriteSequence::SpriteSequence(TombRaider& tr, unsigned int item, unsigned int sequence) {
     for (int i = 0; i < (-tr.SpriteSequence()[sequence].negative_length); i++)
         sprites.push_back(new Sprite(tr, item, sequence, i));
 }
@@ -25,18 +25,18 @@ unsigned long SpriteSequence::size() {
     return sprites.size();
 }
 
-Sprite &SpriteSequence::get(unsigned long index) {
+Sprite& SpriteSequence::get(unsigned long index) {
     assert(index < sprites.size());
     return *sprites.at(index);
 }
 
-Sprite::Sprite(TombRaider &tr, unsigned int item, unsigned int sequence, unsigned int index) {
-    tr2_item_t *i = tr.Item();
-    tr2_sprite_texture_t *spriteTextures = tr.Sprite();
-    tr2_sprite_sequence_t *spriteSequence = tr.SpriteSequence();
+Sprite::Sprite(TombRaider& tr, unsigned int item, unsigned int sequence, unsigned int index) {
+    tr2_item_t* i = tr.Item();
+    tr2_sprite_texture_t* spriteTextures = tr.Sprite();
+    tr2_sprite_sequence_t* spriteSequence = tr.SpriteSequence();
 
     //! \fixme index was unused?!
-    tr2_sprite_texture_t *sprite = &spriteTextures[spriteSequence[sequence].offset + index];
+    tr2_sprite_texture_t* sprite = &spriteTextures[spriteSequence[sequence].offset + index];
 
     int width = sprite->width >> 8;
     int height = sprite->height >> 8;
@@ -67,28 +67,28 @@ Sprite::Sprite(TombRaider &tr, unsigned int item, unsigned int sequence, unsigne
     vertex[2][2] = 0;
     vertex[3][2] = 0;
 
-    texel[3][0] = (float)(x+width)/texelScale;
-    texel[3][1] = (float)(y+height)/texelScale;
+    texel[3][0] = (float)(x + width) / texelScale;
+    texel[3][1] = (float)(y + height) / texelScale;
 
-    texel[2][0] = (float)(x+width)/texelScale;
-    texel[2][1] = (float)(y)/texelScale;
+    texel[2][0] = (float)(x + width) / texelScale;
+    texel[2][1] = (float)(y) / texelScale;
 
-    texel[1][0] = (float)(x) /texelScale;
-    texel[1][1] = (float)(y) /texelScale;
+    texel[1][0] = (float)(x) / texelScale;
+    texel[1][1] = (float)(y) / texelScale;
 
     texel[0][0] = (float)(x) / texelScale;
-    texel[0][1] = (float)(y+height)/texelScale;
+    texel[0][1] = (float)(y + height) / texelScale;
 
     texture = sprite->tile + getGame().getTextureStart();
     radius = width2 / 2.0f;
 }
 
-Sprite::Sprite(TombRaider &tr, unsigned int room, unsigned int index) {
+Sprite::Sprite(TombRaider& tr, unsigned int room, unsigned int index) {
     float spriteVertices[12];
     float spriteTexCoords[8];
 
     tr.getRoomSprite(room, index,
-            10.0f, &texture, pos, spriteVertices, spriteTexCoords);
+                     10.0f, &texture, pos, spriteVertices, spriteTexCoords);
 
     texture += getGame().getTextureStart(); // OpenRaider preloads some textures
 
@@ -140,7 +140,7 @@ void Sprite::display() {
             glColor3ubv(WHITE);
             break;
         default:
-            glBindTexture(GL_TEXTURE_2D, texture+1);
+            glBindTexture(GL_TEXTURE_2D, texture + 1);
 
             glBegin(GL_TRIANGLE_STRIP);
             glTexCoord2fv(texel[0]);

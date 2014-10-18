@@ -12,7 +12,7 @@
  * \brief Windowing interface
  */
 class Window {
-public:
+  public:
 
     virtual ~Window() {}
 
@@ -47,10 +47,10 @@ public:
     virtual void glExit2D();
 
     static void lookAt(float eyeX, float eyeY, float eyeZ,
-                        float lookAtX, float lookAtY, float lookAtZ,
-                        float upX, float upY, float upZ);
+                       float lookAtX, float lookAtY, float lookAtZ,
+                       float upX, float upY, float upZ);
 
-protected:
+  protected:
     bool mInit;
     bool mFullscreen;
     bool mMousegrab;
@@ -59,7 +59,7 @@ protected:
     unsigned int mHeight;
 };
 
-Window &getWindow();
+Window& getWindow();
 
 #endif
 

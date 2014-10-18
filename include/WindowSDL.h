@@ -16,7 +16,7 @@
  * \brief SDL windowing implementation
  */
 class WindowSDL : public Window {
-public:
+  public:
 
     /*!
      * \brief Constructs an object of WindowSDL
@@ -42,8 +42,8 @@ public:
 
     virtual void swapBuffersGL();
 
-private:
-    SDL_Window *mWindow;      //!< This is the pointer to the SDL surface
+  private:
+    SDL_Window* mWindow;      //!< This is the pointer to the SDL surface
     SDL_GLContext mGLContext; //!< The OpenGL Context
 };
 

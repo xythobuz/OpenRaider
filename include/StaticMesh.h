@@ -12,11 +12,11 @@
 #include "TombRaider.h"
 
 class TexturedTriangle {
-public:
+  public:
     TexturedTriangle(int i[3], float s[6], int tex, unsigned short trans);
-    void display(float *vertices, float *colors, float *normals);
+    void display(float* vertices, float* colors, float* normals);
 
-private:
+  private:
     int index[3];
     float st[6];
     int texture;
@@ -24,13 +24,13 @@ private:
 };
 
 class StaticMesh {
-public:
-    StaticMesh(TombRaider &tr, unsigned int index);
+  public:
+    StaticMesh(TombRaider& tr, unsigned int index);
     ~StaticMesh();
     void display();
     float getRadius();
 
-private:
+  private:
     bool dontshow;
     float center[3];
     float radius;
@@ -39,11 +39,11 @@ private:
     unsigned int colorCount;
     unsigned int normalCount;
 
-    float *vertices;
-    float *colors;
-    float *normals;
+    float* vertices;
+    float* colors;
+    float* normals;
 
-    std::vector<TexturedTriangle *> triangles;
+    std::vector<TexturedTriangle*> triangles;
 };
 
 #endif

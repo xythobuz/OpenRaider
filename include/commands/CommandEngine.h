@@ -11,7 +11,7 @@
 #include "commands/Command.h"
 
 class CommandLoad : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual void printHelp();
@@ -19,7 +19,7 @@ public:
 };
 
 class CommandScreenshot : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual void printHelp();
@@ -27,7 +27,7 @@ public:
 };
 
 class CommandQuit : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual int execute(std::istream& args);

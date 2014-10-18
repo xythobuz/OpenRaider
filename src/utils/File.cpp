@@ -17,11 +17,11 @@ File::File(std::string file) : path(file) {
     std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 }
 
-std::string &File::getName() {
+std::string& File::getName() {
     return name;
 }
 
-std::string &File::getPath() {
+std::string& File::getPath() {
     return path;
 }
 

@@ -11,7 +11,7 @@
 #include "commands/Command.h"
 
 class CommandMove : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual void printHelp();

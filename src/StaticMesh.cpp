@@ -26,11 +26,11 @@ TexturedTriangle::TexturedTriangle(int i[3], float s[6], int tex, unsigned short
     transparency = trans;
 }
 
-void TexturedTriangle::display(float *vertices, float *colors, float *normals) {
+void TexturedTriangle::display(float* vertices, float* colors, float* normals) {
     assert(vertices != NULL);
 
     if ((getRender().getMode() != Render::modeWireframe)
-            && (getRender().getMode() != Render::modeSolid)) {
+        && (getRender().getMode() != Render::modeSolid)) {
         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
         glBindTexture(GL_TEXTURE_2D, texture + 1);
     }
@@ -97,27 +97,27 @@ void TexturedTriangle::display(float *vertices, float *colors, float *normals) {
 #include <map>
 std::map<unsigned int, unsigned int> gColorTextureHACK;
 
-int setupTextureColor(float *colorf) {
+int setupTextureColor(float* colorf) {
     unsigned char color[4];
     unsigned int colorI;
     unsigned int texture;
 
-    color[0] = (unsigned char)(colorf[0]*255.0f);
-    color[1] = (unsigned char)(colorf[1]*255.0f);
-    color[2] = (unsigned char)(colorf[2]*255.0f);
-    color[3] = (unsigned char)(colorf[3]*255.0f);
+    color[0] = (unsigned char)(colorf[0] * 255.0f);
+    color[1] = (unsigned char)(colorf[1] * 255.0f);
+    color[2] = (unsigned char)(colorf[2] * 255.0f);
+    color[3] = (unsigned char)(colorf[3] * 255.0f);
 
-    ((unsigned char *)(&colorI))[3] = color[0];
-    ((unsigned char *)(&colorI))[2] = color[1];
-    ((unsigned char *)(&colorI))[1] = color[2];
-    ((unsigned char *)(&colorI))[0] = color[3];
+    ((unsigned char*)(&colorI))[3] = color[0];
+    ((unsigned char*)(&colorI))[2] = color[1];
+    ((unsigned char*)(&colorI))[1] = color[2];
+    ((unsigned char*)(&colorI))[0] = color[3];
 
     try {
         texture = gColorTextureHACK.at(colorI);
     } catch (...) {
-        unsigned char *image = generateColorTexture(color, 32, 32, 32);
+        unsigned char* image = generateColorTexture(color, 32, 32, 32);
         texture = getTextureManager().loadBufferSlot(image, 32, 32,
-                RGBA, 32, getTextureManager().getTextureCount());
+                  RGBA, 32, getTextureManager().getTextureCount());
         delete [] image;
     }
 
@@ -126,7 +126,7 @@ int setupTextureColor(float *colorf) {
 
 #endif
 
-StaticMesh::StaticMesh(TombRaider &tr, unsigned int index) {
+StaticMesh::StaticMesh(TombRaider& tr, unsigned int index) {
     int count, texture;
     int vertexIndices[6];
     float st[12];
@@ -146,25 +146,25 @@ StaticMesh::StaticMesh(TombRaider &tr, unsigned int index) {
     //! \fixme Arrays don't work either  =)
     // Mesh geometery, colors, etc
     tr.getMeshVertexArrays(index,
-            &vertexCount, &vertices,
-            &normalCount, &normals,
-            &colorCount,  &colors);
+                           &vertexCount, &vertices,
+                           &normalCount, &normals,
+                           &colorCount,  &colors);
 
     // Textured Triangles
     count = tr.getMeshTexturedTriangleCount(index);
     for (int i = 0; i < count; i++) {
         tr.getMeshTexturedTriangle(index, i,
-                vertexIndices, st,
-                &texture, &transparency);
+                                   vertexIndices, st,
+                                   &texture, &transparency);
         triangles.push_back(
-                new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
     }
 
     // Coloured Triangles
     count = tr.getMeshColoredTriangleCount(index);
     for (int i = 0; i < count; i++) {
         tr.getMeshColoredTriangle(index, i,
-                vertexIndices, color);
+                                  vertexIndices, color);
         st[0] = color[0];
         st[1] = color[1];
         st[2] = color[2];
@@ -180,26 +180,27 @@ StaticMesh::StaticMesh(TombRaider &tr, unsigned int index) {
         transparency = 0;
 
         triangles.push_back(
-                new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
     }
 
     // Textured Rectangles
     count = tr.getMeshTexturedRectangleCount(index);
     for (int i = 0; i < count; i++) {
         tr.getMeshTexturedRectangle(index, i,
-                vertexIndices, st,
-                &texture, &transparency);
+                                    vertexIndices, st,
+                                    &texture, &transparency);
         triangles.push_back(
-                new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
         triangles.push_back(
-                new TexturedTriangle(vertexIndices + 3, st + 6, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices + 3, st + 6, texture + getGame().getTextureStart(),
+                                 transparency));
     }
 
     // Coloured Rectangles
     count = tr.getMeshColoredRectangleCount(index);
     for (int i = 0; i < count; i++) {
         tr.getMeshColoredRectangle(index, i,
-                vertexIndices, color);
+                                   vertexIndices, color);
 
         st[0] = color[0];
         st[1] = color[1];
@@ -216,9 +217,9 @@ StaticMesh::StaticMesh(TombRaider &tr, unsigned int index) {
         transparency = 0;
 
         triangles.push_back(
-                new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
         triangles.push_back(
-                new TexturedTriangle(vertexIndices + 3, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices + 3, st, texture + getGame().getTextureStart(), transparency));
     }
 }
 

@@ -39,7 +39,7 @@ std::string getCurrentWorkingDirectory() {
 std::string getHomeDirectory() {
 #if defined(HAVE_STDLIB_H) && defined(HAVE_GETENV)
 
-    char *path = getenv("HOME");
+    char* path = getenv("HOME");
     assert(path != nullptr);
     return path;
 

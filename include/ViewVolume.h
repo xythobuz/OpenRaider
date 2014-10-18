@@ -14,7 +14,7 @@
  * \brief Viewing Volume for culling use
  */
 class ViewVolume {
-public:
+  public:
 
     /*!
      * \brief Sides of the view volume
@@ -127,7 +127,7 @@ public:
      */
     void setProjection(float proj[16]);
 
-private:
+  private:
 
     /*!
      * \brief Computes clipping matrix.

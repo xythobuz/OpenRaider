@@ -46,8 +46,8 @@ namespace {
     std::string expandNames(std::string s) {
         // Remove quotes
         if ((s.length() >= 3) &&
-                (((s[0] == '"') && (s[s.length() - 1] == '"'))
-                || ((s[0] == '\'') && (s[s.length() - 1] == '\'')))) {
+            (((s[0] == '"') && (s[s.length() - 1] == '"'))
+             || ((s[0] == '\'') && (s[s.length() - 1] == '\'')))) {
             s.erase(0, 1);
             s.erase(s.length() - 1, 1);
         }

@@ -19,20 +19,20 @@ typedef enum {
 } RoomFlags;
 
 class Room {
-public:
-    Room(TombRaider &tr, unsigned int index);
+  public:
+    Room(TombRaider& tr, unsigned int index);
     ~Room();
 
-    BoundingBox &getBoundingBox();
-    Mesh &getMesh();
+    BoundingBox& getBoundingBox();
+    Mesh& getMesh();
     void display(bool alpha);
 
     bool isWall(unsigned long sector);
-    long getSector(float x, float z, float *floor, float *ceiling);
+    long getSector(float x, float z, float* floor, float* ceiling);
     long getSector(float x, float z);
-    void getHeightAtPosition(float x, float *y, float z);
+    void getHeightAtPosition(float x, float* y, float z);
     int getAdjoiningRoom(float x, float y, float z,
-        float x2, float y2, float z2);
+                         float x2, float y2, float z2);
 
     unsigned int getNumXSectors();
     unsigned int getNumZSectors();
@@ -45,24 +45,24 @@ public:
     long getAdjacentRoom(unsigned long index);
 
     unsigned long sizePortals();
-    Portal &getPortal(unsigned long index);
+    Portal& getPortal(unsigned long index);
 
     unsigned long sizeSectors();
-    Sector &getSector(unsigned long index);
+    Sector& getSector(unsigned long index);
 
     unsigned long sizeBox();
-    Box &getBox(unsigned long index);
+    Box& getBox(unsigned long index);
 
     unsigned long sizeModels();
-    StaticModel &getModel(unsigned long index);
+    StaticModel& getModel(unsigned long index);
 
     unsigned long sizeLights();
-    Light &getLight(unsigned long index);
+    Light& getLight(unsigned long index);
 
     unsigned long sizeSprites();
-    Sprite &getSprite(unsigned long index);
+    Sprite& getSprite(unsigned long index);
 
-private:
+  private:
     void sortModels();
 
     unsigned int flags;
@@ -74,12 +74,12 @@ private:
     Mesh mesh;
 
     std::vector<long> adjacentRooms;
-    std::vector<Sprite *> sprites;
-    std::vector<StaticModel *> models;
-    std::vector<Portal *> portals;
-    std::vector<Box *> boxes;
-    std::vector<Sector *> sectors;
-    std::vector<Light *> lights;
+    std::vector<Sprite*> sprites;
+    std::vector<StaticModel*> models;
+    std::vector<Portal*> portals;
+    std::vector<Box*> boxes;
+    std::vector<Sector*> sectors;
+    std::vector<Light*> lights;
 
     // Was used for "depth sorting" render list, but never assigned...?!
     //float dist; // Distance to near plane, move to room?

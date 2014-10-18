@@ -92,7 +92,7 @@ int WindowSDL::initialize() {
     }
 
     mWindow = SDL_CreateWindow(VERSION, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                mWidth, mHeight, flags);
+                               mWidth, mHeight, flags);
     if (mWindow == NULL) {
         std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
         return -3;
@@ -116,7 +116,7 @@ void WindowSDL::eventHandling() {
 
     assert(mInit == true);
 
-    while(SDL_PollEvent(&event)) {
+    while (SDL_PollEvent(&event)) {
         switch (event.type) {
             case SDL_MOUSEMOTION:
                 UI::handleMouseMotion(event.motion.xrel, event.motion.yrel, event.motion.x, event.motion.y);

@@ -39,13 +39,13 @@ typedef struct {
     unsigned char desc_flags;       //!< Various magic bits
 } tga_t;
 
-int tgaCheck(const char *filename) {
+int tgaCheck(const char* filename) {
     char buffer[10];
 
     assert(filename != NULL);
     assert(filename[0] != '\0');
 
-    FILE *f = fopen(filename, "rb");
+    FILE* f = fopen(filename, "rb");
     if (!f) {
         printf("tgaCheck> File not found\n");
         return -1;
@@ -57,8 +57,8 @@ int tgaCheck(const char *filename) {
 
     // buffer[1] = 0 - Means not color mapped (1 would mean mapped)
     if (!(buffer[1] == 0 && (buffer[2] == TGA_TYPE__COLOR ||
-                    //buffer[2] == TGA_TYPE__GREYSCALE ||
-                    buffer[2] == TGA_TYPE__COLOR_RLE))) {
+                             //buffer[2] == TGA_TYPE__GREYSCALE ||
+                             buffer[2] == TGA_TYPE__COLOR_RLE))) {
         printf("tgaCheck> Inavlid or unknown TGA format.\n");
         fclose(f);
         return -2;
@@ -68,11 +68,12 @@ int tgaCheck(const char *filename) {
     return 0;
 }
 
-int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, unsigned int *height, char *type) {
+int tgaLoad(const char* filename, unsigned char** image, unsigned int* width, unsigned int* height,
+            char* type) {
     tga_t header;
     char comment[256];
     unsigned char pixel[4];
-    unsigned char *swap_row = NULL;
+    unsigned char* swap_row = NULL;
     unsigned char tmp, packet;
     bool must_flip = 0;
     unsigned int size;
@@ -85,7 +86,7 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
     assert(height != NULL);
     assert(type != NULL);
 
-    FILE *f = fopen(filename, "rb");
+    FILE* f = fopen(filename, "rb");
     if (!f) {
         printf("tgaLoad> File not found\n");
         return -1;
@@ -142,9 +143,9 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
 
 #ifdef DEBUG_TGA
     printf("TGA [%ix%i@%ibpp, %it, %ix, %iy, %uf]\n",
-            header.width, header.height, header.bpp, header.image_type,
-            header.origin_x, header.origin_y,
-            header.desc_flags);
+           header.width, header.height, header.bpp, header.image_type,
+           header.origin_x, header.origin_y,
+           header.desc_flags);
 #endif
 
     // Comments can be 0 - 255
@@ -161,7 +162,8 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
     *image = NULL;
     size = header.width * header.height;
 
-    if (!size || (!(header.colormap_type == 0 && (header.image_type == 2 || header.image_type == 10)))) {
+    if (!size || (!(header.colormap_type == 0 && (header.image_type == 2
+                    || header.image_type == 10)))) {
         fprintf(stderr, "tgaLoad> Unknown image format.\n");
         fclose(f);
         return -2;
@@ -181,7 +183,7 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
                     for (i = 0; i < size;) {
                         fread(&packet, 1, 1, f);
                         if (packet & 0x80) { // Run Length
-                            packet = (packet &0x7F) + 1;
+                            packet = (packet & 0x7F) + 1;
                             fread(&pixel, 4, 1, f);
                             for (j = 0; j < packet; j++) {
                                 (*image)[i++] = pixel[2];
@@ -190,7 +192,7 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
                                 (*image)[i++] = pixel[3];
                             }
                         } else { // RAW
-                            packet = (packet &0x7F) + 1;
+                            packet = (packet & 0x7F) + 1;
                             for (j = 0; j < packet; j++) {
                                 fread(&pixel, 4, 1, f);
                                 (*image)[i++] = pixel[2];
@@ -219,11 +221,11 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
             }
             if (must_flip) {
                 swap_row = new unsigned char [header.width * 4];
-                for (i = 0, j = header.height-1; (int)i < header.height/2; i++, j--) {
-                    memcpy(swap_row, &(*image)[i*header.width*4], header.width*4);
-                    memcpy(&(*image)[i*header.width*4], &(*image)[j*header.width*4],
-                            header.width*4);
-                    memcpy(&(*image)[j*header.width*4], swap_row, header.width*4);
+                for (i = 0, j = header.height - 1; (int)i < header.height / 2; i++, j--) {
+                    memcpy(swap_row, &(*image)[i * header.width * 4], header.width * 4);
+                    memcpy(&(*image)[i * header.width * 4], &(*image)[j * header.width * 4],
+                           header.width * 4);
+                    memcpy(&(*image)[j * header.width * 4], swap_row, header.width * 4);
                 }
                 delete [] swap_row;
             }
@@ -236,7 +238,7 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
                     for (i = 0; i < size;) {
                         fread(&packet, 1, 1, f);
                         if (packet & 0x80) { // Run Length
-                            packet = (packet &0x7F) + 1;
+                            packet = (packet & 0x7F) + 1;
                             fread(&pixel, 3, 1, f);
                             for (j = 0; j < packet; j++) {
                                 (*image)[i++] = pixel[2];
@@ -244,7 +246,7 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
                                 (*image)[i++] = pixel[0];
                             }
                         } else { // RAW
-                            packet = (packet &0x7F) + 1;
+                            packet = (packet & 0x7F) + 1;
                             for (j = 0; j < packet; j++) {
                                 fread(&pixel, 3, 1, f);
                                 (*image)[i++] = pixel[2];
@@ -273,10 +275,10 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
             if (must_flip) {
                 swap_row = new unsigned char [header.width * 3];
                 for (i = 0, j = header.height - 1; (int)i < header.height / 2; i++, j--) {
-                    memcpy(swap_row, &(*image)[i*header.width*3], header.width*3);
-                    memcpy(&(*image)[i*header.width*3], &(*image)[j*header.width*3],
-                            header.width*3);
-                    memcpy(&(*image)[j*header.width*3], swap_row, header.width*3);
+                    memcpy(swap_row, &(*image)[i * header.width * 3], header.width * 3);
+                    memcpy(&(*image)[i * header.width * 3], &(*image)[j * header.width * 3],
+                           header.width * 3);
+                    memcpy(&(*image)[j * header.width * 3], swap_row, header.width * 3);
                 }
                 delete [] swap_row;
             }
@@ -301,7 +303,8 @@ int tgaLoad(const char *filename, unsigned char **image, unsigned int *width, un
     return 0;
 }
 
-int tgaSave(const char *filename, unsigned char *image, unsigned int width, unsigned int height, char type) {
+int tgaSave(const char* filename, unsigned char* image, unsigned int width, unsigned int height,
+            char type) {
     tga_t header;
     unsigned int size;
     char comment[64];
@@ -314,7 +317,7 @@ int tgaSave(const char *filename, unsigned char *image, unsigned int width, unsi
     assert(width > 0);
     assert(height > 0);
 
-    FILE *f = fopen(filename, "wb");
+    FILE* f = fopen(filename, "wb");
     if (!f) {
         printf("tgaSave> File not found\n");
         return -1;

@@ -12,10 +12,10 @@
 #include <vector>
 
 class Console {
-public:
+  public:
     static void display();
 
-private:
+  private:
     const static int bufferLength = 256;
     static char buffer[bufferLength + 1];
     static bool scrollToBottom;

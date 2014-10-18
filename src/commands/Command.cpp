@@ -74,7 +74,7 @@ int Command::command(std::string c) {
             getLog() << "Available commands:" << Log::endl;
             getLog() << std::right << std::setw(11);
             getLog() << "help" << " - print command help" << Log::endl;
-            for (auto &x : commands) {
+            for (auto& x : commands) {
                 if (x) {
                     getLog() << std::right << std::setw(11);
                     getLog() << x->name() << " - " << x->brief() << Log::endl;
@@ -85,7 +85,7 @@ int Command::command(std::string c) {
             return 0;
         } else {
             // Show help for a specific command
-            for (auto &x : commands) {
+            for (auto& x : commands) {
                 if (x) {
                     if (x->name().compare(arg) == 0) {
                         x->printHelp();
@@ -99,7 +99,7 @@ int Command::command(std::string c) {
     }
 
     // Execute command
-    for (auto &x : commands) {
+    for (auto& x : commands) {
         if (x) {
             if (x->name().compare(cmd) == 0) {
                 return x->execute(command);

@@ -15,7 +15,7 @@
 #include "TombRaider.h"
 
 class Game {
-public:
+  public:
 
     Game();
     ~Game();
@@ -24,7 +24,7 @@ public:
 
     bool isLoaded();
 
-    int loadLevel(const char *level);
+    int loadLevel(const char* level);
 
     void destroy();
 
@@ -35,9 +35,9 @@ public:
     unsigned int getTextureStart();
     unsigned int getTextureOffset();
 
-    Entity &getLara();
+    Entity& getLara();
 
-private:
+  private:
 
     void processPakSounds();
     void processTextures();
@@ -58,6 +58,6 @@ private:
     long mLara;
 };
 
-Game &getGame();
+Game& getGame();
 
 #endif

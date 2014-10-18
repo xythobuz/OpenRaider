@@ -11,28 +11,28 @@
 #include "commands/Command.h"
 
 class CommandPos : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual int execute(std::istream& args);
 };
 
 class CommandViewmodel : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual int execute(std::istream& args);
 };
 
 class CommandPigtail : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual int execute(std::istream& args);
 };
 
 class CommandPonypos : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual int execute(std::istream& args);

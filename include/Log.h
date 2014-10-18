@@ -13,7 +13,7 @@
 #include <vector>
 
 class Log {
-public:
+  public:
 
     const static char endl = '\n';
 
@@ -35,12 +35,12 @@ public:
         return (*this);
     }
 
-private:
+  private:
     std::vector<std::string> mHistory;
     std::ostringstream printBuffer;
 };
 
-Log &getLog();
+Log& getLog();
 
 #endif
 

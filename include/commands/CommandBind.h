@@ -11,13 +11,13 @@
 #include "commands/Command.h"
 
 class CommandBind : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual void printHelp();
     virtual int execute(std::istream& args);
 
-private:
+  private:
     ActionEvents stringToActionEvent(std::string action);
     KeyboardButton stringToKeyboardButton(std::string key);
 };

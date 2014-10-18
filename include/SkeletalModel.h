@@ -14,15 +14,16 @@
 #include "TombRaider.h"
 
 class BoneTag {
-public:
-    BoneTag(TombRaider &tr, unsigned int index, unsigned int j, unsigned int *l, unsigned int frame_offset);
+  public:
+    BoneTag(TombRaider& tr, unsigned int index, unsigned int j, unsigned int* l,
+            unsigned int frame_offset);
     void display();
 
     void getOffset(float o[3]);
     void getRotation(float r[3]);
     char getFlag();
 
-private:
+  private:
     int mesh;
     float off[3];
     float rot[3];
@@ -30,36 +31,37 @@ private:
 };
 
 class BoneFrame {
-public:
-    BoneFrame(TombRaider &tr, unsigned int index, unsigned int frame_offset);
+  public:
+    BoneFrame(TombRaider& tr, unsigned int index, unsigned int frame_offset);
     ~BoneFrame();
 
     void getPosition(float p[3]);
 
     unsigned long size();
-    BoneTag &get(unsigned long i);
+    BoneTag& get(unsigned long i);
 
-private:
+  private:
     float pos[3];
-    std::vector<BoneTag *> tag;
+    std::vector<BoneTag*> tag;
 };
 
 class AnimationFrame {
-public:
-    AnimationFrame(TombRaider &tr, unsigned int index, int a, unsigned int *frame_offset, int frame_step);
+  public:
+    AnimationFrame(TombRaider& tr, unsigned int index, int a, unsigned int* frame_offset,
+                   int frame_step);
     ~AnimationFrame();
 
     unsigned long size();
-    BoneFrame &get(unsigned long i);
+    BoneFrame& get(unsigned long i);
 
-private:
+  private:
     char rate;
-    std::vector<BoneFrame *> frame;
+    std::vector<BoneFrame*> frame;
 };
 
 class SkeletalModel {
-public:
-    SkeletalModel(TombRaider &tr, unsigned int index, int objectId);
+  public:
+    SkeletalModel(TombRaider& tr, unsigned int index, int objectId);
     ~SkeletalModel();
     void display(unsigned long aframe, unsigned long bframe);
 
@@ -68,9 +70,9 @@ public:
     void setPonyPos(float x, float y, float z, float angle);
 
     unsigned long size();
-    AnimationFrame &get(unsigned long i);
+    AnimationFrame& get(unsigned long i);
 
-private:
+  private:
     int id;
     bool tr4Overlay;
     bool pigtails;
@@ -81,7 +83,7 @@ private:
     float ponytailAngle;
     float ponyOff;
     float ponyOff2;
-    std::vector<AnimationFrame *> animation;
+    std::vector<AnimationFrame*> animation;
 };
 
 #endif

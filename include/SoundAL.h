@@ -17,7 +17,7 @@
  * \brief This is the OpenAL audio manager
  */
 class SoundAL : public Sound {
-public:
+  public:
 
     /*!
      * \brief Constructs an object of SoundAL
@@ -75,7 +75,7 @@ public:
      * \param flags set options. Use SoundFlags enum bitwise OR-ed
      * \returns 0 for no error or < 0 error flag
      */
-    virtual int addFile(const char *filename, unsigned long *source, unsigned int flags);
+    virtual int addFile(const char* filename, unsigned long* source, unsigned int flags);
 
     /*!
      * \brief Load wav file from buffer
@@ -85,7 +85,8 @@ public:
      * \param flags set options. Use SoundFlags enum bitwise OR-ed
      * \returns 0 for no error or < 0 error flag
      */
-    virtual int addWave(unsigned char *wav, unsigned int length, unsigned long *source, unsigned int flags);
+    virtual int addWave(unsigned char* wav, unsigned int length, unsigned long* source,
+                        unsigned int flags);
 
     /*!
      * \brief Play sound source
@@ -99,7 +100,7 @@ public:
      */
     virtual void stop(unsigned long source);
 
-private:
+  private:
 
     bool mEnabled;
     bool mInit;                         //!< Guard to ensure ausio system is active

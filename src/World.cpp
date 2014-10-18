@@ -15,7 +15,7 @@ World::~World() {
     destroy();
 }
 
-void World::addRoom(Room &room) {
+void World::addRoom(Room& room) {
     mRooms.push_back(std::unique_ptr<Room>(&room));
 }
 
@@ -23,12 +23,12 @@ unsigned long World::sizeRoom() {
     return mRooms.size();
 }
 
-Room &World::getRoom(unsigned long index) {
+Room& World::getRoom(unsigned long index) {
     assert(index < mRooms.size());
     return *mRooms.at(index);
 }
 
-void World::addSprite(SpriteSequence &sprite) {
+void World::addSprite(SpriteSequence& sprite) {
     mSprites.push_back(std::unique_ptr<SpriteSequence>(&sprite));
 }
 
@@ -36,12 +36,12 @@ unsigned long World::sizeSprite() {
     return mSprites.size();
 }
 
-SpriteSequence &World::getSprite(unsigned long index) {
+SpriteSequence& World::getSprite(unsigned long index) {
     assert(index < mSprites.size());
     return *mSprites.at(index);
 }
 
-void World::addEntity(Entity &entity) {
+void World::addEntity(Entity& entity) {
     mEntities.push_back(std::unique_ptr<Entity>(&entity));
 }
 
@@ -49,12 +49,12 @@ unsigned long World::sizeEntity() {
     return mEntities.size();
 }
 
-Entity &World::getEntity(unsigned long index) {
+Entity& World::getEntity(unsigned long index) {
     assert(index < mEntities.size());
     return *mEntities.at(index);
 }
 
-void World::addSkeletalModel(SkeletalModel &model) {
+void World::addSkeletalModel(SkeletalModel& model) {
     mModels.push_back(std::unique_ptr<SkeletalModel>(&model));
 }
 
@@ -62,12 +62,12 @@ unsigned long World::sizeSkeletalModel() {
     return mModels.size();
 }
 
-SkeletalModel &World::getSkeletalModel(unsigned long index) {
+SkeletalModel& World::getSkeletalModel(unsigned long index) {
     assert(index < mModels.size());
     return *mModels.at(index);
 }
 
-void World::addStaticMesh(StaticMesh &model) {
+void World::addStaticMesh(StaticMesh& model) {
     mMeshes.push_back(std::unique_ptr<StaticMesh>(&model));
 }
 
@@ -75,17 +75,16 @@ unsigned long World::sizeStaticMesh() {
     return mMeshes.size();
 }
 
-StaticMesh &World::getStaticMesh(unsigned long index) {
+StaticMesh& World::getStaticMesh(unsigned long index) {
     assert(index < mMeshes.size());
     return *mMeshes.at(index);
 }
 
 
-long World::getRoomByLocation(long index, float x, float y, float z)
-{
+long World::getRoomByLocation(long index, float x, float y, float z) {
     assert(index >= 0);
     assert(index < (long)mRooms.size());
-    Room &room = *mRooms.at(index);
+    Room& room = *mRooms.at(index);
 
     if (room.getBoundingBox().inBox(x, y, z))
         return index;

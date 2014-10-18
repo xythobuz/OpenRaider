@@ -11,7 +11,7 @@
 #include "commands/Command.h"
 
 class CommandMode : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual void printHelp();
@@ -19,13 +19,13 @@ public:
 };
 
 class CommandRenderflag : public Command {
-public:
+  public:
     virtual std::string name();
     virtual std::string brief();
     virtual void printHelp();
     virtual int execute(std::istream& args);
 
-private:
+  private:
     int stringToFlag(std::string flag);
 };
 

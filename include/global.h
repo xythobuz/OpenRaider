@@ -107,11 +107,12 @@ typedef enum {
 #include <execinfo.h>
 
 template<typename T, typename U>
-[[noreturn]] void assertEqualImplementation(const char *exp, T a, U b, const char *file, int line, bool print) {
+[[noreturn]] void assertEqualImplementation(const char* exp, T a, U b, const char* file, int line,
+        bool print) {
     const unsigned int maxSize = 128;
-    void *callstack[maxSize];
+    void* callstack[maxSize];
     int frames = backtrace(callstack, maxSize);
-    char **strs = backtrace_symbols(callstack, frames);
+    char** strs = backtrace_symbols(callstack, frames);
 
     std::cout << std::endl << "assertion failed:" << std::endl;
     std::cout << "\t" << exp << std::endl;
@@ -127,11 +128,12 @@ template<typename T, typename U>
 }
 
 template<typename T, typename U>
-[[noreturn]] void assertNotEqualImplementation(const char *exp, T a, U b, const char *file, int line, bool print) {
+[[noreturn]] void assertNotEqualImplementation(const char* exp, T a, U b, const char* file,
+        int line, bool print) {
     const unsigned int maxSize = 128;
-    void *callstack[maxSize];
+    void* callstack[maxSize];
     int frames = backtrace(callstack, maxSize);
-    char **strs = backtrace_symbols(callstack, frames);
+    char** strs = backtrace_symbols(callstack, frames);
 
     std::cout << std::endl << "assertion failed:" << std::endl;
     std::cout << "\t" << exp << std::endl;

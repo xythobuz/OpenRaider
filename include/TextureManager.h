@@ -15,7 +15,7 @@
  * \brief Texture registry
  */
 class TextureManager {
-public:
+  public:
 
     enum TextureFlag {
         fUseMultiTexture = (1 << 0),
@@ -26,9 +26,9 @@ public:
     */
     TextureManager();
 
-   /*!
-    * \brief Deconstructs an object of Texture
-    */
+    /*!
+     * \brief Deconstructs an object of Texture
+     */
     ~TextureManager();
 
     /*!
@@ -76,12 +76,12 @@ public:
      * \param filter if the texture should be mipmap filtered
      * \returns texture ID or < 0 on error
      */
-    int loadBufferSlot(unsigned char *image,
-                        unsigned int width, unsigned int height,
-                        ColorMode mode, unsigned int bpp,
-                        unsigned int slot, bool filter = true);
+    int loadBufferSlot(unsigned char* image,
+                       unsigned int width, unsigned int height,
+                       ColorMode mode, unsigned int bpp,
+                       unsigned int slot, bool filter = true);
 
-    int loadImage(const char *filename);
+    int loadImage(const char* filename);
 
     /*!
      * \brief Sets an option flag
@@ -91,16 +91,16 @@ public:
 
     void useMultiTexture(float aU, float aV, float bU, float bV);
 
-private:
-    int loadTGA(const char *filename);
-    int loadPCX(const char *filename);
-    int loadPNG(const char *filename);
+  private:
+    int loadTGA(const char* filename);
+    int loadPCX(const char* filename);
+    int loadPNG(const char* filename);
 
     std::vector<unsigned int> mTextureIds;
     unsigned int mFlags;
 };
 
-TextureManager &getTextureManager();
+TextureManager& getTextureManager();
 
 #endif
 

@@ -13,7 +13,7 @@
  * \param filename path to file
  * \returns 0 if valid, else error condition
  */
-int tgaCheck(const char *filename);
+int tgaCheck(const char* filename);
 
 /*!
  * \brief Load a TGA image from file
@@ -24,8 +24,8 @@ int tgaCheck(const char *filename);
  * \param type where the type will be stored (tga_type_t)
  * \returns 0 on success, else error condition
  */
-int tgaLoad(const char *filename, unsigned char **image,
-                unsigned int *width, unsigned int *height, char *type);
+int tgaLoad(const char* filename, unsigned char** image,
+            unsigned int* width, unsigned int* height, char* type);
 
 /*!
  * \brief Save a pixel buffer into a file on disk
@@ -36,8 +36,8 @@ int tgaLoad(const char *filename, unsigned char **image,
  * \param type tga type to use
  * \returns 0 on success, else error condition
  */
-int tgaSave(const char *filename, unsigned char *image,
-                unsigned int width, unsigned int height, char type);
+int tgaSave(const char* filename, unsigned char* image,
+            unsigned int width, unsigned int height, char type);
 
 #endif
 

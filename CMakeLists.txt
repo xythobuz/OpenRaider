@@ -160,5 +160,16 @@ if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
         # Clean doc files
         set_directory_properties (PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "doc")
     endif (DOXYGEN_FOUND)
+
+    #################################################################
+
+    # Auto-format code
+    add_custom_target (format
+        COMMAND astyle -A14s4pHUk1OocxC100z2SKNLm1Qxynr "include/*.h"
+        COMMAND astyle -A14s4pHUk1OocxC100z2SKNLm1Qxynr "src/*.cpp" --exclude=src/deps
+        COMMAND astyle -A14s4pHUk1OocxC100z2SKNLm1Qxynr "test/*.cpp" "test/*.h"
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+        COMMENT "Auto-Formatting code..." VERBATIM
+    )
 endif (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
 

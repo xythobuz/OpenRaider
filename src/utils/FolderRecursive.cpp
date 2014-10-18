@@ -17,7 +17,7 @@ unsigned long Folder::countRecursiveFiles() {
     return count;
 }
 
-void Folder::executeRemoveRecursiveFiles(std::function<bool (File &f)> func) {
+void Folder::executeRemoveRecursiveFiles(std::function<bool (File& f)> func) {
     executeRemoveFiles(func);
     for (unsigned long i = 0; i < folderCount(); i++) {
         getFolder(i).executeRemoveRecursiveFiles(func);
@@ -34,7 +34,7 @@ std::string Folder::getRecursiveFileName(unsigned long i) {
         for (unsigned long n = 0; n < folderCount(); n++) {
             if ((i - count) < getFolder(n).countRecursiveFiles()) {
                 return getFolder(n).getName() + '/'
-                    + getFolder(n).getRecursiveFileName(i - count);
+                       + getFolder(n).getRecursiveFileName(i - count);
             }
             count += getFolder(n).countRecursiveFiles();
         }
@@ -44,7 +44,7 @@ std::string Folder::getRecursiveFileName(unsigned long i) {
     return "";
 }
 
-File &Folder::getRecursiveFile(unsigned long i) {
+File& Folder::getRecursiveFile(unsigned long i) {
     createFolderItems();
     assert(i < countRecursiveFiles());
     if (i < fileCount()) {

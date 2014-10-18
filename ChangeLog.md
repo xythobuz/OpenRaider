@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141018 ]
+    * Added target to auto-indent code using astyle and used it.
+
     [ 20141016 ]
     * ImGuis Font can now be used if no other is available
     * Added [Binspector](https://github.com/binspector/binspector) binary file format template

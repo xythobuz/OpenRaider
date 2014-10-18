@@ -14,7 +14,7 @@
  * \brief Main Game Singleton
  */
 class RunTime {
-public:
+  public:
 
     RunTime();
 
@@ -36,7 +36,7 @@ public:
     bool getFPS();
     void setFPS(bool fps);
 
-private:
+  private:
     std::string baseDir;
     std::string pakDir;
     std::string audioDir;
@@ -47,7 +47,7 @@ private:
     bool showFPS;
 };
 
-RunTime &getRunTime();
+RunTime& getRunTime();
 
 #endif
 
