@@ -6,17 +6,36 @@
  * Developed for Binspector (https://github.com/binspector/binspector)
  */
 
+// ########## General data structures ##########
+
+// Rectangular faces
 struct face4_t {
+    // These are indices into the appropriate vertex list
     unsigned 16 little vertices[4];
+
+    /*
+     * Index into the object texture list (for textured objects)
+     * or into the 8 or 16bit palette (for colored object).
+     * When coloring is used, texture contains two indices:
+     *   (texture & 0x00FF) = index into 8bit palette
+     *   ((texture & 0xFF00) >> 8) = index into 16bit palette
+     */
     unsigned 16 little texture;
+
+    summary vertices[0], " - ", vertices[1], " - ", vertices[2], " - ", vertices[4];
 }
 
+// Triangular faces
 struct face3_t {
+    // See face4_t for a description of the elements
     unsigned 16 little vertices[3];
     unsigned 16 little texture;
+
+    summary vertices[0], " - ", vertices[1], " - ", vertices[2];
 }
 
 struct vertex_t {
+    // These coordinates are relative!
     signed 16 little x;
     signed 16 little y;
     signed 16 little z;
@@ -24,24 +43,62 @@ struct vertex_t {
     summary "X: ", x, " Y: ", y, " Z: ", z;
 }
 
+// ########## Room data structures ##########
+
 struct room_vertex_t {
+    /* 
+     * Position of this vertex, relative to the x/z coordinates
+     * of the room this vertex is a part of.
+     */
     vertex_t vertex;
+
+    /*
+     * Room lighting is internal vertex lighting, except for except
+     * for necessarily external sources like flares.
+     * Room ambient lights and point sources are ignored.
+     */
     signed 16 little lighting1;
 
+    // TR1 lacks these attributes
     if (TRversion > 1) {
+        /*
+         * A set of flags for special rendering effects:
+         *   0x8000 - Has something to do with water surfaces
+         *   0x4000 - Underwater lighting modulation and movement,
+         *            if viewed from above the water surface.
+         *   0x2000 - Water/Quicksand surface movement
+         *   0x0010 - Normal
+         */
         unsigned 16 little attributes;
+
+        // Almost always equal to lighting1
         signed 16 little lighting2;
     }
+
+    summary summaryof(vertex);
 }
 
 struct room_sprite_t {
+    // Index into the vertex list of the current room
     signed 16 little vertex;
+
+    // Index into the sprite texture list
     signed 16 little texture;
+
+    summary vertex, "-", texture;
 }
 
 struct room_door_t {
+    // Which room this portal leads to
     unsigned 16 little adjoiningRoom;
+
+    /*
+     * Which way the portal faces (points away from adjacent room,
+     * to be seen though it must point toward the viewpoint)
+     */
     vertex_t normal;
+
+    // The corners of this portal (right-hand rule applies wrt normal)
     vertex_t vertices[4];
 
     summary "To: ", adjoiningRoom;
@@ -141,6 +198,8 @@ struct room_t {
     summary "X: ", x, " Ybot: ", yBottom, " Ytop: ", yTop, " Z: ", z;
 }
 
+// ########## Actor data structures ##########
+
 struct animation_t {
     unsigned 32 little frameOffset;
     unsigned 8 little frameRate;
@@ -186,6 +245,8 @@ struct moveable_t {
 
     summary "ID: ", objectID, " Anim: ", animation;
 }
+
+// ########## Other data structures ##########
 
 struct static_mesh_t {
     unsigned 32 little objectID;
@@ -257,17 +318,29 @@ struct sound_source_t {
 
 struct box_t {
     if (TRversion > 1) {
+        /*
+         * In TR2 & TR3, these values are based on sectors,
+         * so they need to be scaled (* 1024 units)
+         */
         unsigned 8 little zMin;
         unsigned 8 little zMax;
         unsigned 8 little xMin;
         unsigned 8 little xMax;
     } else {
+        // In TR1 there is no scaling
         signed 32 little zMin;
         signed 32 little zMax;
         signed 32 little xMin;
         signed 32 little xMax;
     }
+
+    // Y value (no scaling)
     signed 16 little trueFloor;
+
+    /*
+     * Index into overlaps. The high bit is sometimes set,
+     * this occurs in front of swinging doors and the like
+     */
     signed 16 little overlapIndex;
 
     summary "X: ", xMin, "-", xMax, " Z: ", zMin, "-", zMax;
@@ -310,6 +383,8 @@ struct sound_details_t {
     summary sample, " - ", volume;
 }
 
+// ########## Main file layout ##########
+
 struct main {
     unsigned 32 little version;
 
@@ -328,12 +403,15 @@ struct main {
         die "Unknown version number found!";
     }
 
+    // TR2 & TR3 have their 8 & 16bit palettes here
     if (TRversion > 1)
         skip palettes[256 * 7];
 
+    // 8bit textures
     unsigned 32 little numTextiles;
     skip textiles[256 * 256 * numTextiles];
 
+    // TR1 does not have any 16bit textures
     if (TRversion > 1)
         skip textiles16[256 * 256 * numTextiles * 2];
 
@@ -374,6 +452,7 @@ struct main {
     unsigned 32 little numStaticMeshes;
     static_mesh_t staticMeshes[numStaticMeshes];
 
+    // TR1 & TR2 have their object textures placed here
     if (TRversion < 3) {
         unsigned 32 little numObjectTextures;
         object_texture_t objectTextures[numObjectTextures];
@@ -397,6 +476,7 @@ struct main {
     unsigned 32 little numOverlaps;
     skip overlaps[numOverlaps * 2];
 
+    // TR1 has 6 bytes per zone entry, TR2 & TR3 have 10
     if (TRversion > 1)
         skip zones[numBoxes * 10 * 2];
     else
@@ -405,6 +485,7 @@ struct main {
     unsigned 32 little numAnimatedTextures;
     skip animatedTextures[numAnimatedTextures * 2];
 
+    // TR3 has its object textures placed here
     if (TRversion == 3) {
         unsigned 32 little numObjectTextures;
         object_texture_t objectTextures[numObjectTextures];
@@ -415,6 +496,7 @@ struct main {
 
     skip lightMap[32 * 256];
 
+    // TR1 places its 8bit palette here
     if (TRversion == 1)
         skip palette[256 * 3];
 
@@ -424,6 +506,7 @@ struct main {
     unsigned 16 little numDemoData;
     skip demoData[numDemoData];
 
+    // TR1s sound map has 256 entries, TR2 & TR3 have 370
     if (TRversion > 1)
         skip soundMap[370 * 2];
     else
@@ -432,6 +515,7 @@ struct main {
     unsigned 32 little numSoundDetails;
     sound_details_t soundDetails[numSoundDetails];
 
+    // TR1 has the sample data embedded here (WAV files)
     if (TRversion == 1) {
         unsigned 32 little numSamples;
         skip samples[numSamples];
