@@ -19,6 +19,8 @@ class Font {
 
     static int initialize(std::string font = "");
 
+    static std::string getFontName() { return fontName; }
+
     static unsigned int widthText(float scale, std::string s);
 
     static unsigned int heightText(float scale, unsigned int maxWidth, std::string s);

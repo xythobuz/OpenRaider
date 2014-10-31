@@ -34,11 +34,15 @@ class SoundNull : public Sound {
 
     virtual void setEnabled(bool on);
 
+    virtual bool getEnabled() { return false; }
+
     /*!
      * \brief Set the volume
      * \param vol new source gain
      */
     virtual void setVolume(float vol);
+
+    virtual float getVolume() { return 0.0f; }
 
     /*!
      * \brief Get number of registered sources

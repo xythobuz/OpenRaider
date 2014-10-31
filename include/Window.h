@@ -20,6 +20,8 @@ class Window {
 
     virtual void setFullscreen(bool fullscreen) = 0;
 
+    virtual bool getFullscreen() { return mFullscreen; }
+
     virtual void setMousegrab(bool grab) = 0;
 
     virtual bool getMousegrab() { return mMousegrab; }

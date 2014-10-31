@@ -41,13 +41,13 @@ class Camera {
      * \brief Get angle/yaw of camera
      * \returns theta angle/yaw of camera
      */
-    float getRadianYaw();
+    float getRadianYaw() { return mTheta; }
 
     /*!
      * \brief Get angle/pitch of camera
      * \returns phi angle/pitch of camera
      */
-    float getRadianPitch();
+    float getRadianPitch() { return mTheta2; }
 
     /*!
      * \brief Set current position
@@ -55,9 +55,13 @@ class Camera {
      */
     void setPosition(float pos[3]);
 
-    void setSensitivityX(float sens);
+    void setSensitivityX(float sens) { mRotationDeltaX = sens; }
 
-    void setSensitivityY(float sens);
+    float getSensitivityX() { return mRotationDeltaX; }
+
+    void setSensitivityY(float sens) { mRotationDeltaY = sens; }
+
+    float getSensitivityY() { return mRotationDeltaY; }
 
     /*!
      * \brief Updates view target

@@ -8,7 +8,8 @@
 #include "global.h"
 #include "Log.h"
 
-Log::~Log() {
+Log::Log() {
+    printBuffer << std::boolalpha;
 }
 
 unsigned long Log::size() {

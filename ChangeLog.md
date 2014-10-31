@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141031 ]
+    * Added get command
+
     [ 20141018 ]
     * Added target to auto-indent code using astyle and used it.
 

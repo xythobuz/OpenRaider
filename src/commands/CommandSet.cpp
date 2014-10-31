@@ -148,3 +148,65 @@ int CommandSet::execute(std::istream& args) {
     return 0;
 }
 
+std::string CommandGet::name() {
+    return "get";
+}
+
+std::string CommandGet::brief() {
+    return "get a parameter";
+}
+
+void CommandGet::printHelp() {
+    getLog() << "get-Command Usage:" << Log::endl;
+    getLog() << "  get VAR" << Log::endl;
+    getLog() << "Available Variables:" << Log::endl;
+    getLog() << "  basedir" << Log::endl;
+    getLog() << "  pakdir" << Log::endl;
+    getLog() << "  audiodir" << Log::endl;
+    getLog() << "  datadir" << Log::endl;
+    getLog() << "  font" << Log::endl;
+    getLog() << "  size" << Log::endl;
+    getLog() << "  fullscreen" << Log::endl;
+    getLog() << "  audio" << Log::endl;
+    getLog() << "  volume" << Log::endl;
+    getLog() << "  mouse_x" << Log::endl;
+    getLog() << "  mouse_y" << Log::endl;
+    getLog() << "  fps" << Log::endl;
+}
+
+int CommandGet::execute(std::istream& args) {
+    std::string var;
+    args >> var;
+
+    if (var.compare("size") == 0) {
+        getLog() << getWindow().getWidth() << " " << getWindow().getHeight() << Log::endl;
+    } else if (var.compare("fullscreen") == 0) {
+        getLog() << getWindow().getFullscreen() << Log::endl;
+    } else if (var.compare("audio") == 0) {
+        getLog() << getSound().getEnabled() << Log::endl;
+    } else if (var.compare("volume") == 0) {
+        getLog() << getSound().getVolume() << Log::endl;
+    } else if (var.compare("mouse_x") == 0) {
+        getLog() << OR_RAD_TO_DEG(getCamera().getSensitivityX()) << Log::endl;
+    } else if (var.compare("mouse_y") == 0) {
+        getLog() << OR_RAD_TO_DEG(getCamera().getSensitivityY()) << Log::endl;
+    } else if (var.compare("fps") == 0) {
+        getLog() << getRunTime().getFPS() << Log::endl;
+    } else if (var.compare("basedir") == 0) {
+        getLog() << getRunTime().getBaseDir() << Log::endl;
+    } else if (var.compare("pakdir") == 0) {
+        getLog() << getRunTime().getPakDir() << Log::endl;
+    } else if (var.compare("audiodir") == 0) {
+        getLog() << getRunTime().getAudioDir() << Log::endl;
+    } else if (var.compare("datadir") == 0) {
+        getLog() << getRunTime().getDataDir() << Log::endl;
+    } else if (var.compare("font") == 0) {
+        getLog() << Font::getFontName() << Log::endl;
+    } else {
+        getLog() << "get-Error: Unknown variable (" << var << ")" << Log::endl;
+        return -1;
+    }
+
+    return 0;
+}
+

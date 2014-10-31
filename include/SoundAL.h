@@ -37,11 +37,15 @@ class SoundAL : public Sound {
 
     virtual void setEnabled(bool on);
 
+    virtual bool getEnabled() { return mEnabled; }
+
     /*!
      * \brief Set the volume
      * \param vol new source gain
      */
     virtual void setVolume(float vol);
+
+    virtual float getVolume() { return mVolume; }
 
     /*!
      * \brief Get number of registered sources

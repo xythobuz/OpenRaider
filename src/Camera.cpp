@@ -35,26 +35,10 @@ void Camera::getTarget(float target[3]) {
     target[2] = mTarget[2];
 }
 
-float Camera::getRadianYaw() {
-    return mTheta;
-}
-
-float Camera::getRadianPitch() {
-    return mTheta2;
-}
-
 void Camera::setPosition(float pos[3]) {
     mPos[0] = pos[0];
     mPos[1] = pos[1];
     mPos[2] = pos[2];
-}
-
-void Camera::setSensitivityX(float sens) {
-    mRotationDeltaX = sens;
-}
-
-void Camera::setSensitivityY(float sens) {
-    mRotationDeltaY = sens;
 }
 
 void Camera::update() {

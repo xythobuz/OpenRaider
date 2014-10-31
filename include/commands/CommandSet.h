@@ -18,5 +18,13 @@ class CommandSet : public Command {
     virtual int execute(std::istream& args);
 };
 
+class CommandGet : public Command {
+  public:
+    virtual std::string name();
+    virtual std::string brief();
+    virtual void printHelp();
+    virtual int execute(std::istream& args);
+};
+
 #endif
 

@@ -35,6 +35,7 @@ void Command::fillCommandList() {
     commands.push_back(std::shared_ptr<Command>(new CommandLoad()));
     commands.push_back(std::shared_ptr<Command>(new CommandBind()));
     commands.push_back(std::shared_ptr<Command>(new CommandSet()));
+    commands.push_back(std::shared_ptr<Command>(new CommandGet()));
     commands.push_back(std::shared_ptr<Command>(new CommandScreenshot()));
     commands.push_back(std::shared_ptr<Command>(new CommandAnimate()));
     commands.push_back(std::shared_ptr<Command>(new CommandMove()));

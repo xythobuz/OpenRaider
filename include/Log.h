@@ -17,7 +17,7 @@ class Log {
 
     const static char endl = '\n';
 
-    ~Log();
+    Log();
 
     unsigned long size();
     std::string get(unsigned long i);
