@@ -1,8 +1,8 @@
-// ImGui library v1.14 wip
+// ImGui library v1.15 wip
 // See ImGui::ShowTestWindow() for sample code.
 // Read 'Programmer guide' below for notes on how to setup ImGui in your codebase.
 // Get latest version at https://github.com/ocornut/imgui
-// Developped by Omar Cornut and contributors.
+// Developed by Omar Cornut and contributors.
 
 /*
  
@@ -10,13 +10,13 @@
  =================
 
  - easy to use to create code-driven and data-driven tools
- - easy to use to create adhoc short-lived tools and long-lived, more elaborate tools
+ - easy to use to create ad hoc short-lived tools and long-lived, more elaborate tools
  - easy to hack and improve
  - minimize screen real-estate usage
  - minimize setup and maintainance
  - minimize state storage on user side
  - portable, minimize dependencies, run on target (consoles, etc.)
- - efficient runtime (nb- we do allocate when "growing" content - creating a window / opening a tree node for the first time, etc. - but a typical frame won't allocate anything)
+ - efficient runtime (NB- we do allocate when "growing" content - creating a window / opening a tree node for the first time, etc. - but a typical frame won't allocate anything)
  - read about immediate-mode GUI principles @ http://mollyrocket.com/861, http://mollyrocket.com/forums/index.html
 
  Designed for developers and content-creators, not the typical end-user! Some of the weaknesses includes:
@@ -72,7 +72,7 @@
         io.DeltaTime = 1.0f/60.0f;
         io.IniFilename = "imgui.ini";
 
-        // Application mainloop
+        // Application main loop
         while (true)
         {
             // 1/ get low-level input
@@ -170,37 +170,37 @@
  - combo: turn child handling code into popup helper
  - list selection, concept of a selectable "block" (that can be multiple widgets)
  - menubar, menus
- - plot: make it easier for user to draw into the graph (e.g: draw basis, highlight certain pointsm, 2d plots, multiple plots)
+ - plot: make it easier for user to draw into the graph (e.g: draw basis, highlight certain points, 2d plots, multiple plots)
  - plot: "smooth" automatic scale, user give an input 0.0(full user scale) 1.0(full derived from value)
  - plot: add a helper e.g. Plot(char* label, float value, float time_span=2.0f) that stores values and Plot them for you - probably another function name. and/or automatically allow to plot ANY displayed value (more reliance on stable ID)
  - file selection widget -> build the tool in our codebase to improve model-dialog idioms (may or not lead to ImGui changes)
  - slider: allow using the [-]/[+] buttons used by InputFloat()/InputInt()
- - slider: initial absolute click is unprecise. change to relative movement slider? hide mouse cursor, allow more precise input using less screen-space.
- - text edit: centered text for slider or input text to it matches typical positionning.
+ - slider: initial absolute click is imprecise. change to relative movement slider? hide mouse cursor, allow more precise input using less screen-space.
+ - text edit: centered text for slider or input text to it matches typical positioning.
  - text edit: flag to disable live update of the user buffer. 
- - text edit: field resize behaviour - field could stretch when being edited? hover tooltip shows more text?
+ - text edit: field resize behavior - field could stretch when being edited? hover tooltip shows more text?
  - text edit: pasting text into a number box should filter the characters the same way direct input does
  - settings: write more decent code to allow saving/loading new fields
- - settings: api for per-tool simple persistant data (bool,int,float) in .ini file
+ - settings: api for per-tool simple persistent data (bool,int,float) in .ini file
  - log: be able to right-click and log a window or tree-node into tty/file/clipboard?
  - filters: set a current filter that tree node can automatically query to hide themselves
  - filters: handle wildcards (with implicit leading/trailing *), regexps
  - shortcuts: add a shortcut api, e.g. parse "&Save" and/or "Save (CTRL+S)", pass in to widgets or provide simple ways to use (button=activate, input=focus)
  ! keyboard: tooltip & combo boxes are messing up / not honoring keyboard tabbing
  - keyboard: full keyboard navigation and focus.
- - input: reowrk IO to be able to pass actual events to fix temporal aliasing issues.
- - input: support trackpad style scrolling & slider edit.
+ - input: rework IO to be able to pass actual events to fix temporal aliasing issues.
+ - input: support track pad style scrolling & slider edit.
  - tooltip: move to fit within screen (e.g. when mouse cursor is right of the screen).
  - misc: not thread-safe
  - misc: double-clicking on title bar to minimize isn't consistent, perhaps move to single-click on left-most collapse icon?
  - style editor: add a button to output C code.
- - optimisation/render: use indexed rendering
- - optimisation/render: move clip-rect to vertex data? would allow merging all commands
- - optimisation/render: merge command-lists with same clip-rect into one even if they aren't sequential? (as long as in-between clip rectangle don't overlap)?
- - optimisation/render: font exported by bmfont is not tight fit on vertical axis, incur unneeded pixel-shading cost.
- - optimisation: turn some the various stack vectors into statically-sized arrays
- - optimisation: better clipping for multi-component widgets
- - optimisation: specialize for height based clipping first (assume widgets never go up + height tests before width tests?)
+ - optimization/render: use indexed rendering
+ - optimization/render: move clip-rect to vertex data? would allow merging all commands
+ - optimization/render: merge command-lists with same clip-rect into one even if they aren't sequential? (as long as in-between clip rectangle don't overlap)?
+ - optimization/render: font exported by bmfont is not tight fit on vertical axis, incur unneeded pixel-shading cost.
+ - optimization: turn some the various stack vectors into statically-sized arrays
+ - optimization: better clipping for multi-component widgets
+ - optimization: specialize for height based clipping first (assume widgets never go up + height tests before width tests?)
 */
 
 #include "imgui.h"
@@ -243,7 +243,7 @@ static void         FocusWindow(ImGuiWindow* window);
 static ImGuiWindow* FindWindow(const char* name);
 static ImGuiWindow* FindHoveredWindow(ImVec2 pos, bool excluding_childs);
 
-}; // namespace ImGui
+} // namespace ImGui
 
 //-----------------------------------------------------------------------------
 // Platform dependant default implementations
@@ -1023,7 +1023,7 @@ ImGuiWindow::ImGuiWindow(const char* name, ImVec2 default_pos, ImVec2 default_si
     FontWindowScale = 1.0f;
 
     if (ImLength(Size) < 0.001f)
-        AutoFitFrames = 3;
+        AutoFitFrames = 2;
 
     DrawList = (ImDrawList*)ImGui::MemAlloc(sizeof(ImDrawList));
     new(DrawList) ImDrawList();
@@ -2001,6 +2001,7 @@ bool Begin(const char* name, bool* open, ImVec2 size, float fill_alpha, ImGuiWin
         }
         else
         {
+            // Normal windows store settings in .ini file
             ImGuiIniData* settings = FindWindowSettings(name);
             if (settings && ImLength(settings->Size) > 0.0f && !(flags & ImGuiWindowFlags_NoResize))// && ImLengthsize) == 0.0f)
                 size = settings->Size;
@@ -2170,15 +2171,8 @@ bool Begin(const char* name, bool* open, ImVec2 size, float fill_alpha, ImGuiWin
                     window->SizeFull = window->SizeContentsFit + g.Style.WindowPadding - ImVec2(0.0f, g.Style.ItemSpacing.y);
                 }
             }
-            else if (!(window->Flags & ImGuiWindowFlags_NoResize))
+            else
             {
-                // Draw resize grip
-                const ImGuiAabb resize_aabb(window->Aabb().GetBR()-ImVec2(18,18), window->Aabb().GetBR());
-                const ImGuiID resize_id = window->GetID("#RESIZE");
-                bool hovered, held;
-                ButtonBehaviour(resize_aabb, resize_id, &hovered, &held, true);
-                resize_col = window->Color(held ? ImGuiCol_ResizeGripActive : hovered ? ImGuiCol_ResizeGripHovered : ImGuiCol_ResizeGrip);
-
                 ImVec2 size_auto_fit = ImClamp(window->SizeContentsFit + style.AutoFitPadding, style.WindowMinSize, g.IO.DisplaySize - style.AutoFitPadding);
                 if (window->AutoFitFrames > 0)
                 {
@@ -2186,19 +2180,29 @@ bool Begin(const char* name, bool* open, ImVec2 size, float fill_alpha, ImGuiWin
                     window->SizeFull = ImMax(window->SizeFull, size_auto_fit);
                     MarkSettingsDirty();
                 }
-                else if (g.HoveredWindow == window && held && g.IO.MouseDoubleClicked[0])
+                else if (!(window->Flags & ImGuiWindowFlags_NoResize))
                 {
-                    // Manual auto-fit
-                    window->SizeFull = size_auto_fit;
-                    window->Size = window->SizeFull;
-                    MarkSettingsDirty();
-                }
-                else if (held)
-                {
-                    // Resize
-                    window->SizeFull = ImMax(window->SizeFull + g.IO.MouseDelta, style.WindowMinSize);
-                    window->Size = window->SizeFull;
-                    MarkSettingsDirty();
+                    // Resize grip
+                    const ImGuiAabb resize_aabb(window->Aabb().GetBR()-ImVec2(18,18), window->Aabb().GetBR());
+                    const ImGuiID resize_id = window->GetID("#RESIZE");
+                    bool hovered, held;
+                    ButtonBehaviour(resize_aabb, resize_id, &hovered, &held, true);
+                    resize_col = window->Color(held ? ImGuiCol_ResizeGripActive : hovered ? ImGuiCol_ResizeGripHovered : ImGuiCol_ResizeGrip);
+
+                    if (g.HoveredWindow == window && held && g.IO.MouseDoubleClicked[0])
+                    {
+                        // Manual auto-fit
+                        window->SizeFull = size_auto_fit;
+                        window->Size = window->SizeFull;
+                        MarkSettingsDirty();
+                    }
+                    else if (held)
+                    {
+                        // Resize
+                        window->SizeFull = ImMax(window->SizeFull + g.IO.MouseDelta, style.WindowMinSize);
+                        window->Size = window->SizeFull;
+                        MarkSettingsDirty();
+                    }
                 }
 
                 // Update aabb immediately so that the rendering below isn't one frame late
@@ -2565,6 +2569,14 @@ ImVec2 GetWindowSize()
     return window->Size;
 }
 
+void SetWindowSize(const ImVec2& size)
+{
+    ImGuiWindow* window = GetCurrentWindow();
+    window->SizeFull = size;
+    if (ImLength(size) < 0.001f)
+        window->AutoFitFrames = 3;
+}
+
 ImVec2 GetWindowContentRegionMin()
 {
     ImGuiWindow* window = GetCurrentWindow();
@@ -2597,6 +2609,18 @@ ImDrawList* GetWindowDrawList()
 {
     ImGuiWindow* window = GetCurrentWindow();
     return window->DrawList;
+}
+
+ImFont GetWindowFont()
+{
+    ImGuiWindow* window = GetCurrentWindow();
+    return window->Font();
+}
+
+float GetWindowFontSize()
+{
+    ImGuiWindow* window = GetCurrentWindow();
+    return window->FontSize();
 }
 
 void SetWindowFontScale(float scale)
@@ -3600,13 +3624,7 @@ enum ImGuiPlotType
     ImGuiPlotType_Histogram,
 };
 
-static float PlotGetValue(const float* values, size_t stride, int idx)
-{
-    const float v = *(float*)((unsigned char*)values + (size_t)idx * stride);
-    return v;
-}
-
-static void Plot(ImGuiPlotType plot_type, const char* label, const float* values, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 graph_size, size_t stride)
+static void Plot(ImGuiPlotType plot_type, const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 graph_size)
 {
     ImGuiState& g = GImGui;
     ImGuiWindow* window = GetCurrentWindow();
@@ -3636,7 +3654,7 @@ static void Plot(ImGuiPlotType plot_type, const char* label, const float* values
         float v_max = -FLT_MAX;
         for (int i = 0; i < values_count; i++)
         {
-            const float v = PlotGetValue(values, stride, i);
+            const float v = values_getter(data, i);
             v_min = ImMin(v_min, v);
             v_max = ImMax(v_max, v);
         }
@@ -3660,8 +3678,8 @@ static void Plot(ImGuiPlotType plot_type, const char* label, const float* values
         const int v_idx = (int)(t * (values_count + ((plot_type == ImGuiPlotType_Lines) ? -1 : 0)));
         IM_ASSERT(v_idx >= 0 && v_idx < values_count);
         
-        const float v0 = PlotGetValue(values, stride, (v_idx + values_offset) % values_count);
-        const float v1 = PlotGetValue(values, stride, (v_idx + 1 + values_offset) % values_count);
+        const float v0 = values_getter(data, (v_idx + values_offset) % values_count);
+        const float v1 = values_getter(data, (v_idx + 1 + values_offset) % values_count);
         if (plot_type == ImGuiPlotType_Lines)
             ImGui::SetTooltip("%d: %8.4g\n%d: %8.4g", v_idx, v0, v_idx+1, v1);
         else if (plot_type == ImGuiPlotType_Histogram)
@@ -3671,7 +3689,7 @@ static void Plot(ImGuiPlotType plot_type, const char* label, const float* values
 
     const float t_step = 1.0f / (float)res_w;
 
-    float v0 = PlotGetValue(values, stride, (0 + values_offset) % values_count);
+    float v0 = values_getter(data, (0 + values_offset) % values_count);
     float t0 = 0.0f;
     ImVec2 p0 = ImVec2( t0, 1.0f - ImSaturate((v0 - scale_min) / (scale_max - scale_min)) );
 
@@ -3683,7 +3701,7 @@ static void Plot(ImGuiPlotType plot_type, const char* label, const float* values
         const float t1 = t0 + t_step;
         const int v_idx = (int)(t0 * values_count);
         IM_ASSERT(v_idx >= 0 && v_idx < values_count);
-        const float v1 = PlotGetValue(values, stride, (v_idx + values_offset + 1) % values_count);
+        const float v1 = values_getter(data, (v_idx + values_offset + 1) % values_count);
         const ImVec2 p1 = ImVec2( t1, 1.0f - ImSaturate((v1 - scale_min) / (scale_max - scale_min)) );
 
         // NB- Draw calls are merged together by the DrawList system.
@@ -3703,16 +3721,42 @@ static void Plot(ImGuiPlotType plot_type, const char* label, const float* values
     RenderText(ImVec2(frame_bb.Max.x + style.ItemInnerSpacing.x, graph_bb.Min.y), label);
 }
 
+struct ImGuiPlotArrayGetterData
+{
+    const float* Values;
+    size_t Stride;
+
+    ImGuiPlotArrayGetterData(const float* values, size_t stride) { Values = values; Stride = stride; }
+};
+
+static float Plot_ArrayGetter(void* data, int idx)
+{
+    ImGuiPlotArrayGetterData* plot_data = (ImGuiPlotArrayGetterData*)data;
+    const float v = *(float*)((unsigned char*)plot_data->Values + (size_t)idx * plot_data->Stride);
+    return v;
+}
+
 void PlotLines(const char* label, const float* values, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 graph_size, size_t stride)
 {
-    ImGui::Plot(ImGuiPlotType_Lines, label, values, values_count, values_offset, overlay_text, scale_min, scale_max, graph_size, stride);
+    ImGuiPlotArrayGetterData data(values, stride);
+    ImGui::Plot(ImGuiPlotType_Lines, label, &Plot_ArrayGetter, (void*)&data, values_count, values_offset, overlay_text, scale_min, scale_max, graph_size);
+}
+
+void PlotLines(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 graph_size)
+{
+    ImGui::Plot(ImGuiPlotType_Lines, label, values_getter, data, values_count, values_offset, overlay_text, scale_min, scale_max, graph_size);
 }
 
 void PlotHistogram(const char* label, const float* values, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 graph_size, size_t stride)
 {
-    ImGui::Plot(ImGuiPlotType_Histogram, label, values, values_count, values_offset, overlay_text, scale_min, scale_max, graph_size, stride);
+    ImGuiPlotArrayGetterData data(values, stride);
+    ImGui::Plot(ImGuiPlotType_Histogram, label, &Plot_ArrayGetter, (void*)&data, values_count, values_offset, overlay_text, scale_min, scale_max, graph_size);
 }
 
+void PlotHistogram(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 graph_size)
+{
+    ImGui::Plot(ImGuiPlotType_Histogram, label, values_getter, data, values_count, values_offset, overlay_text, scale_min, scale_max, graph_size);
+}
 bool Checkbox(const char* label, bool* v)
 {
     ImGuiState& g = GImGui;
@@ -3830,7 +3874,7 @@ bool RadioButton(const char* label, int* v, int v_button)
     return pressed;
 }
 
-}; // namespace ImGui
+} // namespace ImGui
 
 // Wrapper for stb_textedit.h to edit text (our wrapper is for: statically sized buffer, single-line, ASCII, fixed-width font)
 int     STB_TEXTEDIT_STRINGLEN(const STB_TEXTEDIT_STRING* obj)                                  { return (int)ImStrlenW(obj->Text); }
@@ -4633,11 +4677,13 @@ bool ColorEdit4(const char* label, float col[4], bool alpha)
             char* p = buf;
             while (*p == '#' || *p == ' ' || *p == '\t') 
                 p++;
+
+            // Treat at unsigned (%X is unsigned)
             ix = iy = iz = iw = 0;
             if (alpha)
-                sscanf(p, "%02X%02X%02X%02X", &ix, &iy, &iz, &iw);
+                sscanf(p, "%02X%02X%02X%02X", (unsigned int*)&ix, (unsigned int*)&iy, (unsigned int*)&iz, (unsigned int*)&iw);
             else
-                sscanf(p, "%02X%02X%02X", &ix, &iy, &iz);
+                sscanf(p, "%02X%02X%02X", (unsigned int*)&ix, (unsigned int*)&iy, (unsigned int*)&iz);
         }
         break;
     }
@@ -4837,7 +4883,7 @@ float GetColumnOffset(int column_index)
     const ImGuiID column_id = window->DC.ColumnsSetID + ImGuiID(column_index);
     RegisterAliveId(column_id);
     const float default_t = column_index / (float)window->DC.ColumnsCount;
-    const float t = (float)window->StateStorage.GetInt(column_id, (int)(default_t * 8096)) / 8096;      // Cheaply store our floating point value inside the integer (could store an union into the map?)
+    const float t = (float)window->StateStorage.GetInt(column_id, (int)(default_t * 8192)) / 8192;      // Cheaply store our floating point value inside the integer (could store an union into the map?)
 
     const float offset = window->DC.ColumnStartX + t * (window->Size.x - g.Style.ScrollBarWidth - window->DC.ColumnStartX);
     return offset;
@@ -4852,7 +4898,7 @@ void SetColumnOffset(int column_index, float offset)
 
     const ImGuiID column_id = window->DC.ColumnsSetID + ImGuiID(column_index);
     const float t = (offset - window->DC.ColumnStartX) / (window->Size.x - g.Style.ScrollBarWidth - window->DC.ColumnStartX);
-    window->StateStorage.SetInt(column_id, (int)(t*8096));
+    window->StateStorage.SetInt(column_id, (int)(t*8192));
 }
 
 float GetColumnWidth(int column_index)
@@ -5016,7 +5062,7 @@ void Color(const char* prefix, unsigned int v)
     ImGui::ColorButton(col, true);
 }
 
-}; // namespace ImGui
+} // namespace ImGui
 
 //-----------------------------------------------------------------------------
 // ImDrawList
@@ -6452,7 +6498,7 @@ void ShowTestWindow(bool* open)
 }
 // End of Sample code
 
-}; // namespace ImGui
+} // namespace ImGui
 
 //-----------------------------------------------------------------------------
 // Font data
@@ -6661,7 +6707,7 @@ void GetDefaultFontData(const void** fnt_data, unsigned int* fnt_size, const voi
     if (png_size) *png_size = proggy_clean_13_png_size;
 }
 
-};
+} // namespace ImGui
 
 //-----------------------------------------------------------------------------
 

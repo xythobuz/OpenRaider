@@ -1,4 +1,4 @@
-// ImGui library v1.14 wip
+// ImGui library v1.15 wip
 // See .cpp file for commentary.
 // See ImGui::ShowTestWindow() for sample code.
 // Read 'Programmer guide' in .cpp for notes on how to setup ImGui in your codebase.
@@ -63,7 +63,7 @@ namespace ImGui
     void*       MemAlloc(size_t sz);
     void        MemFree(void* ptr);
     void*       MemRealloc(void* ptr, size_t sz);
-};
+}
 
 // std::vector<> like class to avoid dragging dependencies (also: windows implementation of STL with debug enabled is absurdly slow, so let's bypass it so our code runs fast in debug). 
 // Use '#define ImVector std::vector' if you want to use the STL type or your own type.
@@ -139,18 +139,21 @@ namespace ImGui
     void        ShowTestWindow(bool* open = NULL);
 
     // Window
-    bool        Begin(const char* name = "Debug", bool* open = NULL, ImVec2 size = ImVec2(0,0), float fill_alpha = -1.0f, ImGuiWindowFlags flags = 0);
+    bool        Begin(const char* name = "Debug", bool* open = NULL, ImVec2 size = ImVec2(0,0), float fill_alpha = -1.0f, ImGuiWindowFlags flags = 0);    // return false when window is collapsed, so you can early out in your code.
     void        End();
     void        BeginChild(const char* str_id, ImVec2 size = ImVec2(0,0), bool border = false, ImGuiWindowFlags extra_flags = 0);
     void        EndChild();
     bool        GetWindowIsFocused();
     ImVec2      GetWindowSize();
     float       GetWindowWidth();
+    void		SetWindowSize(const ImVec2& size);                                  // set to ImVec2(0,0) to force an auto-fit
     ImVec2      GetWindowPos();                                                     // you should rarely need/care about the window position, but it can be useful if you want to use your own drawing.
     void        SetWindowPos(const ImVec2& pos);                                    // set current window pos.
     ImVec2      GetWindowContentRegionMin();
     ImVec2      GetWindowContentRegionMax();
     ImDrawList* GetWindowDrawList();                                                // get rendering command-list if you want to append your own draw primitives.
+    ImFont      GetWindowFont();
+    float       GetWindowFontSize();
     void        SetWindowFontScale(float scale);                                    // per-window font scale. Adjust IO.FontBaseScale if you want to scale all windows together.
     void        SetScrollPosHere();                                                 // adjust scrolling position to center into the current cursor position.
     void        SetKeyboardFocusHere(int offset = 0);                               // focus keyboard on the next widget. Use 'offset' to access sub components of a multiple component widget.
@@ -214,7 +217,9 @@ namespace ImGui
     bool        SliderAngle(const char* label, float* v, float v_degrees_min = -360.0f, float v_degrees_max = +360.0f);     // *v in radians
     bool        SliderInt(const char* label, int* v, int v_min, int v_max, const char* display_format = "%.0f");
     void        PlotLines(const char* label, const float* values, int values_count, int values_offset = 0, const char* overlay_text = NULL, float scale_min = FLT_MAX, float scale_max = FLT_MAX, ImVec2 graph_size = ImVec2(0,0), size_t stride = sizeof(float));
+    void        PlotLines(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset = 0, const char* overlay_text = NULL, float scale_min = FLT_MAX, float scale_max = FLT_MAX, ImVec2 graph_size = ImVec2(0,0));
     void        PlotHistogram(const char* label, const float* values, int values_count, int values_offset = 0, const char* overlay_text = NULL, float scale_min = FLT_MAX, float scale_max = FLT_MAX, ImVec2 graph_size = ImVec2(0,0), size_t stride = sizeof(float));
+    void        PlotHistogram(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset = 0, const char* overlay_text = NULL, float scale_min = FLT_MAX, float scale_max = FLT_MAX, ImVec2 graph_size = ImVec2(0,0));
     bool        Checkbox(const char* label, bool* v);
     bool        CheckboxFlags(const char* label, unsigned int* flags, unsigned int flags_value);
     bool        RadioButton(const char* label, bool active);
@@ -277,7 +282,7 @@ namespace ImGui
     void        GetDefaultFontData(const void** fnt_data, unsigned int* fnt_size, const void** png_data, unsigned int* png_size);
     ImVec2      CalcTextSize(const char* text, const char* text_end = NULL, const bool hide_text_after_hash = true);
 
-}; // namespace ImGui
+} // namespace ImGui
 
 // Flags for ImGui::Begin()
 enum ImGuiWindowFlags_
@@ -575,7 +580,6 @@ struct ImDrawCmd
     ImVec4          clip_rect;
 };
 
-// sizeof() == 20
 struct ImDrawVert
 {
     ImVec2  pos;
@@ -584,7 +588,11 @@ struct ImDrawVert
 };
 
 // Draw command list
-// User is responsible for providing a renderer for this in ImGuiIO::RenderDrawListFn
+// This is the low-level list of polygon that ImGui:: functions are filling. At the end of the frame, all command lists are passed to your ImGuiIO::RenderDrawListFn function for rendering.
+// Each ImGui window contains its own ImDrawList.
+// If you want to add custom rendering within a window, you can use ImGui::GetWindowDrawList() to access the current draw list and add your own primitives.
+// You can interleave normal ImGui:: calls and adding primitives to the current draw list.
+// Note that this only gives you access to rendering polygons. If your intent is to create custom widgets and the publicly exposed functions/data aren't sufficient, you can add code in imgui_user.inl
 struct ImDrawList
 {
     // This is what you have to render
