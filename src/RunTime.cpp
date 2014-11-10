@@ -9,8 +9,8 @@
 #include "utils/strings.h"
 #include "RunTime.h"
 
-RunTime::RunTime() {
-    baseDir = expandHomeDirectory("~/.OpenRaider");
+RunTime::RunTime()
+    : baseDir(expandHomeDirectory("~/.OpenRaider")) {
     pakDir = baseDir + "/paks";
     audioDir = baseDir + "/music";
     dataDir = baseDir + "/data";

@@ -9,6 +9,28 @@
 #include "Script.h"
 
 Script::Script() : puzzles(4), pickups(2), keys(4) {
+    version = 0;
+    firstOption = 0;
+    titleReplace = 0;
+    onDeathDemoMode = 0;
+    onDeathInGame = 0;
+    noInputTime = 0;
+    onDemoInterrupt = 0;
+    onDemoEnd = 0;
+    numLevels = 0;
+    numPictures = 0;
+    numTitles = 0;
+    numFMVs = 0;
+    numCutscenes = 0;
+    numDemos = 0;
+    titleTrack = 0;
+    singleLevel = 0;
+    flags = 0;
+    cypherCode = 0;
+    language = 0;
+    secretTrack = 0;
+    numPCStrings = 41;
+    numGameStrings = 0;
 }
 
 Script::~Script() {

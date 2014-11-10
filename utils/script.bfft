@@ -1,0 +1,160 @@
+/*
+ * script.bfft - Tomb Raider 1 - 3 Engine Script Format Description
+ * 2014, Thomas Buck <xythobuz@xythobuz.de>
+ *
+ * Based on the TR Rosetta Stone (http://www.tnlc.com/eep/tr/TRosettaStone.html),
+ * this document (http://xythobuz.de/tr_docs/TombPC_TR2.pdf),
+ * and my own reverse-engineering efforts.
+ * Developed for Binspector (https://github.com/binspector/binspector)
+ */
+
+// ########## General data structures ##########
+
+struct strings_t {
+    unsigned 16 little stringOffsets[stringsInPackage];
+    unsigned 16 little stringDataSize;
+    unsigned 8 little stringData[stringDataSize];
+}
+
+struct script_t {
+    unsigned 16 little sciprOffsets[stringsInPackage];
+    unsigned 16 little scriptDataSize;
+    unsigned 16 little scriptData[scriptDataSize / 2];
+}
+
+struct hack_t {
+    signal isTR2 = 0;
+    signal isPCVersion = 1;
+
+    if ((peek() == 0x13) || (peek() == 0x15)) {
+        // TR2 for PC and PSX has 6 "filler bytes" hex 13 00 14 00 15 00
+        // (for TR3 for PSX, the filler is hex 15 00 16 00 17 00 instead)
+        // at the end of the script block. We need to skip these...
+        if (peek() == 0x13) {
+            signal isTR2 = 1;
+        } else {
+            signal isTR2 = 0;
+            signal isPCVersion = 0;
+        }
+
+        skip hack[6];
+    }
+    
+    if (peek() == 0x01) {
+        // TR2 for PSX has 64 bytes with unknown content (not zero!) here,
+        // TR3 for PSX has 40 bytes. We try to identify and skip them (both start with 1)...
+        // This is also currently used to set the platform specific string count
+        if (isTR2 == 1) {
+            signal isPCVersion = 0;
+            skip hackPSX[64];
+        } else {
+            skip hackPSX[40];
+        }
+    }
+
+    if (isTR2 == 1) {
+        if (isPCVersion == 1) {
+            notify "TR2 PC Version detected!";
+            signal numPCStrings = 41;
+        } else {
+            notify "TR2 PSX Version detected!";
+            signal numPCStrings = 80;
+        }
+    } else {
+        if (isPCVersion == 1) {
+            notify "TR3 PC Version detected!";
+            signal numPCStrings = 41;
+        } else {
+            notify "TR3 PSX Version detected!";
+            signal numPCStrings = 80;
+        }
+    }
+}
+
+// ########## Main file layout ##########
+
+struct main {
+    unsigned 32 little version;
+
+    unsigned 8 little description[256];
+
+    unsigned 16 little gameflowSize;
+    if (gameflowSize != 128)
+        die "Invalid gameflow size!";
+
+    unsigned 32 little firstOption;
+    signed 32 little titleReplace;
+    unsigned 32 little onDeathDemoMode;
+    unsigned 32 little onDeathInGame;
+
+    // Scaled * 100 in TR3
+    unsigned 32 little noInputTime;
+
+    unsigned 32 little onDemoInterrupt;
+    unsigned 32 little onDemoEnd;
+
+    skip filler1[36];
+
+    unsigned 16 little numLevels;
+    unsigned 16 little numPictures;
+    unsigned 16 little numTitles;
+    unsigned 16 little numFMVs;
+    unsigned 16 little numCutscenes;
+    unsigned 16 little numDemos;
+    unsigned 16 little titleTrack;
+    signed 16 little singleLevel;
+
+    skip filler2[32];
+
+    unsigned 16 little flags;
+
+    skip filler3[6];
+
+    unsigned 8 little cypherCode;
+    unsigned 8 little language;
+
+    // Zero in TR3, Part of filler or real number?
+    unsigned 16 little secretTrack;
+
+    skip filler4[4];
+
+    slot stringsInPackage = numLevels;
+    strings_t levelDisplayNames;
+
+    signal stringsInPackage = numPictures;
+    strings_t pictures;
+
+    signal stringsInPackage = numTitles;
+    strings_t titleFilenames;
+
+    signal stringsInPackage = numFMVs;
+    strings_t fmvFilenames;
+
+    signal stringsInPackage = numLevels;
+    strings_t levelFilenames;
+
+    signal stringsInPackage = numCutscenes;
+    strings_t cutsceneFilenames;
+
+    signal stringsInPackage = numLevels + 1;
+    script_t script;
+
+    slot numPCStrings = 41; // PC Version has 41 pcStrings
+    slot isPCVersion = 1;
+    slot isTR2 = 1;
+    hack_t hack;
+
+    unsigned 16 little numGameStrings;
+
+    signal stringsInPackage = numGameStrings;
+    strings_t gameStrings;
+
+    signal stringsInPackage = numPCStrings;
+    strings_t pcStrings;
+
+    signal stringsInPackage = numLevels;
+    strings_t puzzles[4];
+    strings_t pickups[2];
+    strings_t keys[4];
+}
+
