@@ -13,10 +13,11 @@
 #define SCALE_DRAW 20.0f
 
 unsigned int FontImGui::widthText(float scale, std::string s) {
-    ImGuiIO& io = ImGui::GetIO();
-    ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, io.DisplaySize.y, s.c_str(),
-                                         s.c_str() + s.length());
-    return size.y;
+    //ImGuiIO& io = ImGui::GetIO();
+    //ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, io.DisplaySize.y, s.c_str(),
+    //                                     s.c_str() + s.length());
+    //return size.y;
+    return s.length() * 15;
 }
 
 void FontImGui::drawText(unsigned int x, unsigned int y, float scale,
@@ -34,10 +35,11 @@ void FontImGui::drawText(unsigned int x, unsigned int y, float scale,
 }
 
 unsigned int FontImGui::heightText(float scale, unsigned int maxWidth, std::string s) {
-    ImGuiIO& io = ImGui::GetIO();
-    ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, maxWidth, s.c_str(),
-                                         s.c_str() + s.length());
-    return size.x;
+    //ImGuiIO& io = ImGui::GetIO();
+    //ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, maxWidth, s.c_str(),
+    //                                     s.c_str() + s.length());
+    //return size.x;
+    return 15;
 }
 
 void FontImGui::drawTextWrapped(unsigned int x, unsigned int y, float scale,
