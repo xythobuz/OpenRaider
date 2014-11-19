@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141116 ]
+    * Fixed background color of wireframe mode
+
     [ 20141110 ]
     * Added [Binspector](https://github.com/binspector/binspector) binary file format template
       that can be used to parse and analyze TR2 and TR3 script files.

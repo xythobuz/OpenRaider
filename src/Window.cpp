@@ -40,7 +40,7 @@ int Window::initializeGL() {
     //glCullFace(GL_FRONT);
 
     // Set background to black
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f, BLACK[2] / 256.0f, BLACK[3] / 256.0f);
 
     // Disable lighting
     glDisable(GL_LIGHTING);

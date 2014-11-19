@@ -387,7 +387,7 @@ void LoaderTR2::loadStaticMeshes() {
         uint16_t mesh = file.readU16(); // Offset into MeshPointers[]
 
         // tr2_vertex BoundingBox[2][2];
-        // // First index is which one, second index is opposite corners
+        // First index is which one, second index is opposite corners
         int16_t x11 = file.read16();
         int16_t y11 = file.read16();
         int16_t z11 = file.read16();

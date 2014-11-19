@@ -157,7 +157,6 @@ int TextureManager::loadBufferSlot(unsigned char* image,
     }
 
     glColor3ubv(WHITE);
-    glClearColor(0.0, 0.0, 0.0, 0.0);
     glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_SMOOTH);
 

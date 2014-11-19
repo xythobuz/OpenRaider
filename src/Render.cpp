@@ -167,8 +167,8 @@ void Render::setMode(int n) {
             break;
         case Render::modeSolid:
         case Render::modeWireframe:
-            glClearColor(PURPLE[0] * 256.0f, PURPLE[1] * 256.0f,
-                         PURPLE[2] * 256.0f, PURPLE[3] * 256.0f);
+            glClearColor(PURPLE[0] / 256.0f, PURPLE[1] / 256.0f,
+                    PURPLE[2] / 256.0f, PURPLE[3] / 256.0f);
             glDisable(GL_TEXTURE_2D);
             break;
         default:
@@ -178,7 +178,8 @@ void Render::setMode(int n) {
                 glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
             }
 
-            glClearColor(BLACK[0], BLACK[1], BLACK[2], BLACK[3]);
+            glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f,
+                    BLACK[2] / 256.0f, BLACK[3] / 256.0f);
 
             glEnable(GL_TEXTURE_2D);
     }
@@ -378,16 +379,13 @@ void Render::drawLoadScreen() {
 }
 
 void Render::newRoomRenderList(int index) {
+    assert(index >= 0);
+
     static int currentRoomId = -1;
 
-    if (index == -1) { // -1 is error, so draw room 0, for the hell of it
-        mRoomRenderList.clear();
-        mRoomRenderList.push_back(&getWorld().getRoom(0));
-    } else {
-        // Update room render list if needed
-        if (currentRoomId != index) {
-            buildRoomRenderList(getWorld().getRoom(index));
-        }
+    // Update room render list if needed
+    if (currentRoomId != index) {
+        buildRoomRenderList(getWorld().getRoom(index));
     }
 
     currentRoomId = index;
