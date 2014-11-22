@@ -32,9 +32,6 @@ class Game {
     void handleAction(ActionEvents action, bool isFinished);
     void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
 
-    unsigned int getTextureStart();
-    unsigned int getTextureOffset();
-
     Entity& getLara();
 
   private:
@@ -51,9 +48,6 @@ class Game {
     bool mLoaded;
 
     TombRaider mTombRaider;
-
-    unsigned int mTextureStart;
-    unsigned int mTextureOffset;
 
     long mLara;
 };

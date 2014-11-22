@@ -75,7 +75,7 @@ int UI::initialize() {
 
     //! \fixme TODO use proper texture slot
     fontTex = getTextureManager().loadBufferSlot((unsigned char*)tex_data,
-              tex_x, tex_y, RGBA, 32, 0, false);
+              tex_x, tex_y, RGBA, 32, TextureManager::TextureStorage::SYSTEM, -1, false);
 
     stbi_image_free(tex_data);
 
@@ -282,7 +282,7 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
     glEnableClientState(GL_COLOR_ARRAY);
 
     // Setup texture
-    getTextureManager().bindTextureId(fontTex);
+    getTextureManager().bindTextureId(fontTex, TextureManager::TextureStorage::SYSTEM);
 
     // Render command lists
     for (int n = 0; n < cmd_lists_count; n++) {

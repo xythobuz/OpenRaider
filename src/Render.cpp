@@ -339,9 +339,6 @@ void Render::drawLoadScreen() {
     float x = 0.0f, y = 0.0f, z = 0.0f;
     float w = getWindow().getWidth(), h = getWindow().getHeight();
 
-    if (getTextureManager().getTextureCount() <= 0)
-        return;
-
     // Mongoose 2002.01.01, Rendered while game is loading...
     //! \fixme seperate logo/particle coor later
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -356,10 +353,7 @@ void Render::drawLoadScreen() {
     glTranslatef(0.0f, 0.0f, -2000.0f);
     glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
 
-    if (getTextureManager().getTextureCount() < 2)
-        getTextureManager().bindTextureId(0); //! \fixme store texture id somewhere
-    else
-        getTextureManager().bindTextureId(1);
+    getTextureManager().bindTextureId(TEXTURE_SPLASH, TextureManager::TextureStorage::SYSTEM);
 
     glBegin(GL_TRIANGLE_STRIP);
     glTexCoord2f(1.0, 1.0);

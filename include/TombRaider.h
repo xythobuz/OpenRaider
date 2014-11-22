@@ -52,8 +52,6 @@ class TombRaider {
 
     int NumStaticMeshes();
 
-    int NumSprites();
-
     int NumSpriteSequences();
 
     int NumItems();
@@ -65,14 +63,6 @@ class TombRaider {
     tr2_animation_t* Animation();
 
     tr2_item_t* Item();
-
-    tr2_object_texture_t* ObjectTextures();
-
-    /*!
-     * \brief Get number of boxes
-     * \returns number of boxes
-     */
-    unsigned int getNumBoxes();
 
     tr2_box_t* Box();
 
@@ -100,13 +90,6 @@ class TombRaider {
     tr2_sprite_sequence_t* SpriteSequence();
 
     /*!
-     * \brief Makes a 32bit RGBA image from a stexture/bmap
-     * \param texture valid index into tex_special list
-     * \returns 32bit RGBA image or NULL on error
-     */
-    unsigned char* SpecialTexTile(int texture);
-
-    /*!
      * \brief Get copies of texture and it's bumpmap
      * \param texture valid textile index
      * \param image will be set to texture if found, or NULL
@@ -114,18 +97,10 @@ class TombRaider {
      */
     void Texture(int texture, unsigned char** image, unsigned char** bumpmap);
 
-    unsigned int* Palette16();
-
-    unsigned char* Palette8();
+    //unsigned int* Palette16();
+    //unsigned char* Palette8();
 
     tr2_room_t* Room();
-
-    /*!
-     * \brief Check if a file is a TombRaider pak
-     * \param filename file to check
-     * \returns 0 if it is a TombRaider pak
-     */
-    static int checkMime(const char* filename);
 
     /*!
      * \brief Loads TombRaider 1-5 pak into memory
@@ -135,14 +110,6 @@ class TombRaider {
      * \sa TombRaider::loadTR5()
      */
     int Load(const char* filename);
-
-    /*!
-     * \brief Makes a clamped 0.0 to 1.0 texel from coord pair
-     * \param texel texel value, is modified, divided by 255.0 and returned
-     * \param offset if offset is negative, texel is decreased by one, else increased
-     * \returns modified texel divided by 255.0
-     */
-    float adjustTexel(unsigned char texel, char offset);
 
     /*!
      * \brief Compute rotation angles from moveable animation data
@@ -165,12 +132,6 @@ class TombRaider {
      * \param v will contain calculated y value
      */
     void computeUV(tr2_object_texture_vert_t* st, float* u, float* v);
-
-    /*!
-     * \brief Get number of bump maps in loaded pak
-     * \returns number of bump maps
-     */
-    int getBumpMapCount();
 
     void getColor(int index, float color[4]);
 
@@ -550,8 +511,6 @@ class TombRaider {
      */
     int getSkyModelId();
 
-    void getSprites();
-
     /*!
      * \brief Get a copy of a sound sample and its byte size
      * \param index sound sample index
@@ -589,20 +548,6 @@ class TombRaider {
     int loadSFX(const char* filename);
 
     void reset();
-
-    void setDebug(bool toggle);
-
-    /*!
-     * \brief Sets lighting factor for each vertex color per room in TR3 paks
-     * \param f new lighting factor
-     */
-    void setRoomVertexLightingFactor(float f);
-
-    /*!
-     * \brief Set scaling for sprite texel alignment, etc.
-     * \param f new scaling factor
-     */
-    void setTexelScalingFactor(float f);
 
   private:
 

@@ -104,9 +104,7 @@ Room::Room(TombRaider& tr, unsigned int index) {
     mesh.bufferNormalArray(normalCount, normalArray);
     mesh.bufferColorArray(vertexCount, colorArray);
 
-    tr.getRoomTriangles(index, getGame().getTextureStart(),
-                        &triCount, &indices, &texCoords, &textures,
-                        &fflags);
+    tr.getRoomTriangles(index, 0, &triCount, &indices, &texCoords, &textures, &fflags);
 
     mesh.bufferTriangles(triCount, indices, texCoords, textures, fflags);
 #else
@@ -161,8 +159,6 @@ Room::Room(TombRaider& tr, unsigned int index) {
         tr.getRoomTriangle(index, t,
                            indices, texCoords, &texture, &flags);
 
-        texture += getGame().getTextureStart();
-
         if (texture > (int)TextureLimit) {
             getLog() << "Handling bad room[" << index << "].tris["
                      << t << "].texture = " << texture << Log::endl;
@@ -188,8 +184,6 @@ Room::Room(TombRaider& tr, unsigned int index) {
     for (r = 0; r < count; ++r) {
         tr.getRoomRectangle(index, r,
                             indices, texCoords, &texture, &flags);
-
-        texture += getGame().getTextureStart();
 
         if (texture > (int)TextureLimit) {
             getLog() << "Handling bad room[" << index << "].quad["
@@ -302,10 +296,6 @@ Room::Room(TombRaider& tr, unsigned int index) {
         tr.getRoomTriangle(index, t,
                            indices, texCoords, &texture, &flags);
 
-        // Adjust texture id using getGame().getTextureStart() to map into
-        // correct textures
-        texture += getGame().getTextureStart();
-
         unsigned int j = tris_mesh_map[texture] - 1;
 
         // Setup per vertex
@@ -351,10 +341,6 @@ Room::Room(TombRaider& tr, unsigned int index) {
     for (r = 0; r < count; ++r) {
         tr.getRoomRectangle(index, r,
                             indices, texCoords, &texture, &flags);
-
-        // Adjust texture id using getGame().getTextureStart() to map into
-        // correct textures
-        texture += getGame().getTextureStart();
 
         if (texture > (int)TextureLimit) {
             texture = TextureLimit - 1;
@@ -424,7 +410,7 @@ void Room::display(bool alpha) {
     glPushMatrix();
     //LightingSetup();
 
-    getTextureManager().bindTextureId(0); // \fixme WHITE texture
+    getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
 
     if ((!alpha) && getRender().getMode() == Render::modeWireframe) {
         glLineWidth(2.0);

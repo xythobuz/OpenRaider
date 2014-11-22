@@ -31,26 +31,14 @@ std::map<int, int> gMapTex2Bump;
 Game::Game() {
     mLoaded = false;
     mLara = -1;
-    mTextureStart = 0;
-    mTextureOffset = 0;
 }
 
 Game::~Game() {
 }
 
-unsigned int Game::getTextureStart() {
-    return mTextureStart;
-}
-
-unsigned int Game::getTextureOffset() {
-    return mTextureOffset;
-}
-
 int Game::initialize() {
     // Enable Renderer
     getRender().setMode(Render::modeLoadScreen);
-
-    mTextureStart = getTextureManager().getTextureCount();
 
     return 0;
 }
@@ -270,20 +258,19 @@ void Game::processTextures() {
 
         // Overwrite any previous level textures on load
         getTextureManager().loadBufferSlot(image, 256, 256,
-                                           RGBA, 32, (mTextureStart - 1) + i);
+                                           RGBA, 32, TextureManager::TextureStorage::GAME, i);
 
 #ifdef MULTITEXTURE
-        gMapTex2Bump[(mTextureStart - 1) + i] = -1;
+        gMapTex2Bump[i] = -1;
 #endif
 
         if (bumpmap) {
 #ifdef MULTITEXTURE
-            gMapTex2Bump[(mTextureStart - 1) + i] = (mTextureStart - 1) + i +
-                                                    mTombRaider.NumTextures();
+            gMapTex2Bump[i] = i + mTombRaider.NumTextures();
 #endif
             getTextureManager().loadBufferSlot(bumpmap, 256, 256,
-                                               RGBA, 32,
-                                               (mTextureStart - 1) + i + mTombRaider.NumTextures());
+                                               RGBA, 32, TextureManager::TextureStorage::GAME,
+                                               i + mTombRaider.NumTextures());
         }
 
         if (image)
@@ -292,8 +279,6 @@ void Game::processTextures() {
         if (bumpmap)
             delete [] bumpmap;
     }
-
-    mTextureOffset = (mTextureStart - 1) + mTombRaider.NumTextures();
 
     getLog() << "Found " << mTombRaider.NumTextures() << " textures." << Log::endl;
 }

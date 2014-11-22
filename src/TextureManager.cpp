@@ -24,94 +24,51 @@
 #include "utils/png.h"
 #endif
 
-TextureManager::TextureManager() {
-    mFlags = 0;
+std::vector<unsigned int>& TextureManager::getIds(TextureStorage s) {
+    if (s == TextureStorage::GAME)
+        return mTextureIdsGame;
+    else
+        return mTextureIdsSystem;
 }
 
 TextureManager::~TextureManager() {
-    reset();
-}
-
-void TextureManager::reset() {
-    while (mTextureIds.size() > 0) {
-        unsigned int id = mTextureIds.at(mTextureIds.size() - 1);
+    while (mTextureIdsSystem.size() > 0) {
+        unsigned int id = mTextureIdsSystem.at(mTextureIdsSystem.size() - 1);
         glDeleteTextures(1, &id);
-        mTextureIds.pop_back();
+        mTextureIdsSystem.pop_back();
+    }
+
+    while (mTextureIdsGame.size() > 0) {
+        unsigned int id = mTextureIdsGame.at(mTextureIdsGame.size() - 1);
+        glDeleteTextures(1, &id);
+        mTextureIdsGame.pop_back();
     }
 }
 
 int TextureManager::initialize() {
     unsigned char* image = generateColorTexture(WHITE, 32, 32, 32);
-    loadBufferSlot(image, 32, 32, RGBA, 32, mTextureIds.size());
+    int res = loadBufferSlot(image, 32, 32, RGBA, 32, TextureStorage::SYSTEM, TEXTURE_WHITE);
     delete [] image;
-
-    //! \fixme Temporary
-    std::string filename(getRunTime().getPakDir());
-    filename += "/tr2/TITLE.PCX";
-    if (loadPCX(filename.c_str()) < 0) {
-        //! \fixme Error Checking. Return negative error code, check in calling place too
-        filename = getRunTime().getDataDir();
-        filename += "/splash.tga";
-        loadTGA(filename.c_str());
+    if (res < 0) {
+        return -1;
     }
 
-    return (mTextureIds.size() == 0) ? -1 : 0;
-}
+    //! \fixme Temporary?
+    std::string filename = getRunTime().getPakDir() + "/tr2/TITLE.PCX";
+    if (loadPCX(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
+        filename = getRunTime().getDataDir() + "/splash.tga";
+        if (loadTGA(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
+            return -2;
+        }
+    }
 
-void TextureManager::setFlag(TextureFlag flag) {
-    mFlags |= flag;
-}
-
-void TextureManager::clearFlag(TextureFlag flag) {
-    mFlags &= ~flag;
-}
-
-int TextureManager::getTextureCount() {
-    return mTextureIds.size();
-}
-
-void TextureManager::disableMultiTexture() {
-    mFlags &= ~fUseMultiTexture;
-
-#ifdef MULTITEXTURE
-    glDisable(GL_TEXTURE_2D);
-    glActiveTextureARB(GL_TEXTURE0_ARB);
-#endif
-}
-
-void TextureManager::useMultiTexture(float aU, float aV, float bU, float bV) {
-    if (!(mFlags & fUseMultiTexture))
-        return;
-
-#ifdef MULTITEXTURE
-    glMultiTexCoord2fARB(GL_TEXTURE0_ARB, aU, aV);
-    glMultiTexCoord2fARB(GL_TEXTURE1_ARB, bU, bV);
-#endif
-}
-
-void TextureManager::bindMultiTexture(int texture0, int texture1) {
-    assert(texture0 >= 0);
-    assert(texture1 >= 0);
-    assert((unsigned int)texture0 < mTextureIds.size());
-    assert((unsigned int)texture1 < mTextureIds.size());
-
-    mFlags |= fUseMultiTexture;
-
-#ifdef MULTITEXTURE
-    glActiveTextureARB(GL_TEXTURE0_ARB);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, mTextureIds.at(texture0));
-
-    glActiveTextureARB(GL_TEXTURE1_ARB);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, mTextureIds.at(texture1));
-#endif
+    return 0;
 }
 
 int TextureManager::loadBufferSlot(unsigned char* image,
                                    unsigned int width, unsigned int height,
                                    ColorMode mode, unsigned int bpp,
-                                   unsigned int slot, bool filter) {
+                                   TextureStorage s, int slot, bool filter) {
     assert(image != NULL);
     assert(width > 0);
     assert(height > 0);
@@ -120,10 +77,13 @@ int TextureManager::loadBufferSlot(unsigned char* image,
            || (mode == RGBA) || (mode ==  BGRA));
     assert((bpp == 8) || (bpp == 24) || (bpp == 32));
 
-    while (mTextureIds.size() <= slot) {
+    if (slot == -1)
+        slot = getIds(s).size();
+
+    while (getIds(s).size() <= slot) {
         unsigned int id;
         glGenTextures(1, &id);
-        mTextureIds.push_back(id);
+        getIds(s).push_back(id);
     }
 
     unsigned int glcMode;
@@ -159,10 +119,8 @@ int TextureManager::loadBufferSlot(unsigned char* image,
     glColor3ubv(WHITE);
     glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_SMOOTH);
-
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-    glBindTexture(GL_TEXTURE_2D, mTextureIds.at(slot));
+    glBindTexture(GL_TEXTURE_2D, getIds(s).at(slot));
 
     if (filter) {
         glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
@@ -177,27 +135,25 @@ int TextureManager::loadBufferSlot(unsigned char* image,
 
     glTexImage2D(GL_TEXTURE_2D, 0, bpp / 8, width, height, 0, glcMode, GL_UNSIGNED_BYTE, image);
 
-    //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
     return slot;
 }
 
-void TextureManager::bindTextureId(unsigned int n) {
-    assert(n < mTextureIds.size());
+void TextureManager::bindTextureId(unsigned int n, TextureStorage s) {
+    assert(n < getIds(s).size());
 
     glEnable(GL_TEXTURE_2D);
-    //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-    glBindTexture(GL_TEXTURE_2D, mTextureIds.at(n));
+    glBindTexture(GL_TEXTURE_2D, getIds(s).at(n));
 }
 
-int TextureManager::loadImage(const char* filename) {
+int TextureManager::loadImage(const char* filename, TextureStorage s, int slot) {
     if (stringEndsWith(filename, ".pcx") || stringEndsWith(filename, ".PCX")) {
-        return loadPCX(filename);
+        return loadPCX(filename, s, slot);
     } else if (stringEndsWith(filename, ".png") || stringEndsWith(filename, ".PNG")) {
-        return loadPNG(filename);
+        return loadPNG(filename, s, slot);
     } else if (stringEndsWith(filename, ".tga") || stringEndsWith(filename, ".TGA")) {
-        return loadTGA(filename);
+        return loadTGA(filename, s, slot);
     } else {
         getLog() << "No known image file type? (" << filename << ")" << Log::endl;
     }
@@ -205,7 +161,7 @@ int TextureManager::loadImage(const char* filename) {
     return -1;
 }
 
-int TextureManager::loadPCX(const char* filename) {
+int TextureManager::loadPCX(const char* filename, TextureStorage s, int slot) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
 
@@ -221,14 +177,14 @@ int TextureManager::loadPCX(const char* filename) {
             delete [] image;
             image = image2;
         }
-        id = loadBufferSlot(image, w, h, c, bpp, mTextureIds.size());
+        id = loadBufferSlot(image, w, h, c, bpp, s, slot);
         delete [] image;
     }
 
     return id;
 }
 
-int TextureManager::loadPNG(const char* filename) {
+int TextureManager::loadPNG(const char* filename, TextureStorage s, int slot) {
 #ifdef USING_PNG
     assert(filename != NULL);
     assert(filename[0] != '\0');
@@ -249,7 +205,7 @@ int TextureManager::loadPNG(const char* filename) {
             delete [] image;
             image = image2;
         }
-        id = loadBufferSlot(image, w, h, c, bpp, mTextureIds.size());
+        id = loadBufferSlot(image, w, h, c, bpp, s, slot);
         delete [] image;
     }
 
@@ -260,7 +216,7 @@ int TextureManager::loadPNG(const char* filename) {
 #endif
 }
 
-int TextureManager::loadTGA(const char* filename) {
+int TextureManager::loadTGA(const char* filename, TextureStorage s, int slot) {
     assert(filename != NULL);
     assert(filename[0] != '\0');
 
@@ -281,7 +237,7 @@ int TextureManager::loadTGA(const char* filename) {
             id = loadBufferSlot(image, w, h,
                                 (type == 2) ? RGBA : RGB,
                                 (type == 2) ? 32 : 24,
-                                mTextureIds.size());
+                                s, slot);
             delete [] image;
         }
     }

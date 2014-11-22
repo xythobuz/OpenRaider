@@ -113,11 +113,11 @@ int TombRaider::NumStaticMeshes() {
     return _num_static_meshes;
 }
 
-
+/*
 int TombRaider::NumSprites() {
     return _num_sprite_textures;
 }
-
+*/
 
 int TombRaider::NumSpriteSequences() {
     return _num_sprite_sequences;
@@ -144,16 +144,15 @@ tr2_item_t* TombRaider::Item() {
     return _items;
 }
 
-
+/*
 tr2_object_texture_t* TombRaider::ObjectTextures() {
     return _object_textures;
 }
 
-
 unsigned int TombRaider::getNumBoxes() {
     return _num_boxes;
 }
-
+*/
 
 tr2_box_t* TombRaider::Box() {
     return _boxes;
@@ -251,21 +250,11 @@ unsigned short* TombRaider::Frame() {
 
 
 tr2_moveable_t* TombRaider::Moveable() {
-    /*
-       if (n > 0 || n > (int)_num_moveables)
-       return NULL;
-       */
-
     return _moveables;
 }
 
 
 tr2_meshtree_t* TombRaider::MeshTree() {
-    /*
-       if (n > 0 || n > (int)_num_mesh_trees)
-       return NULL;
-       */
-
     return _mesh_trees;
 }
 
@@ -277,26 +266,6 @@ tr2_sprite_texture_t* TombRaider::Sprite() {
 
 tr2_sprite_sequence_t* TombRaider::SpriteSequence() {
     return _sprite_sequences;
-}
-
-unsigned char* TombRaider::SpecialTexTile(int texture) {
-    unsigned char* image;
-    unsigned char* ptr;
-
-
-    image = NULL;
-
-    if (texture >= 0 && texture < NumSpecialTextures()) {
-        // Get base and offset into 32bit special textures/bump maps
-        ptr = _tex_special;
-        ptr += 256 * 256 * 4 * texture;
-
-        // Clone it as a single 256x256 @ 32bpp image
-        image = new unsigned char[256 * 256 * 4];
-        memcpy(image, ptr, 256 * 256 * 4);
-    }
-
-    return image;
 }
 
 
@@ -319,57 +288,12 @@ void TombRaider::Texture(int texture, unsigned char** image,
 }
 
 
-unsigned int* TombRaider::Palette16() {
-    return _palette16;
-}
-
-
-unsigned char* TombRaider::Palette8() {
-    return (unsigned char*)_palette8;
-}
-
-
-int TombRaider::checkMime(const char* filename) {
-    FILE* f;
-    unsigned int version;
-
-    if (!filename || !filename[0]) {
-        print("checkFile", "Given filename was empty string or NULL");
-        return -1;
-    }
-
-    f = fopen(filename, "rb");
-
-    if (!f) {
-        perror(filename);
-        return -1;
-    }
-
-    //! \fixme Endianess
-    fread(&version, sizeof(version), 1, f);
-    fclose(f);
-
-    switch (version) {
-        case 0x00000020:
-        case 0x0000002d:
-        case 0xff080038:
-        case 0xff180038:
-        case 0xfffffff0: // bogus
-        case 0x00345254: // "TR4\0"
-            return 0;
-        default:
-            return 1;
-    }
-}
-
-
 int TombRaider::Load(const char* filename) {
     FILE* f;
     int i, j, l;
     unsigned int num_mesh_data_words, num_mesh_pointers, data_size, data_offset;
     unsigned int* mesh_pointer_list;
     unsigned char* raw_mesh_data;
-    bool tr5;
     long debugf;
 
 
@@ -385,8 +309,6 @@ int TombRaider::Load(const char* filename) {
     //! \fixme endian
 
     printDebug("Load", "mPakVersion = %u", mPakVersion);
-
-    tr5 = false;
 
     switch (mPakVersion) {
         case 0x00000020:
@@ -1744,15 +1666,6 @@ int TombRaider::Load(const char* filename) {
 // Public Accessors
 ////////////////////////////////////////////////////////////
 
-float TombRaider::adjustTexel(unsigned char texel, char offset) {
-    if (offset >= 0)
-        texel++;
-    else
-        texel--;
-
-    return ((float)texel / 255.0f);
-}
-
 
 void TombRaider::computeRotationAngles(unsigned short** frame,
                                        unsigned int* frame_offset,
@@ -1847,11 +1760,11 @@ void TombRaider::computeUV(tr2_object_texture_vert_t* st, float* u, float* v) {
     *v = (float)y / 255.0f;
 }
 
-
+/*
 int TombRaider::getBumpMapCount() {
     return _num_bump_map_textures / 2;
 }
-
+*/
 
 void TombRaider::getColor(int index, float color[4]) {
     switch (getEngine()) {
@@ -3480,9 +3393,8 @@ int TombRaider::getSkyModelId() {
     return skyMesh;
 }
 
-
+#if 0
 void TombRaider::getSprites() {
-#ifdef FIXME
     int i, j, k, l, x, y, s_index, width, height;
     float scale, width2, height2;
     tr2_sprite_texture_t* sprite;
@@ -3577,9 +3489,8 @@ void TombRaider::getSprites() {
     }
 
     printf("\n");
-#endif
 }
-
+#endif
 
 void TombRaider::getSoundSample(unsigned int index,
                                 unsigned int* bytes, unsigned char** data) {
@@ -3986,11 +3897,10 @@ void TombRaider::reset() {
     _num_overlaps = 0;
 }
 
-
+/*
 void TombRaider::setDebug(bool toggle) {
     mDebug = toggle;
 }
-
 
 void TombRaider::setRoomVertexLightingFactor(float f) {
     mRoomVertexLightingFactor = f;
@@ -3999,6 +3909,7 @@ void TombRaider::setRoomVertexLightingFactor(float f) {
 void TombRaider::setTexelScalingFactor(float f) {
     mTexelScale = f;
 }
+*/
 
 ////////////////////////////////////////////////////////////
 // Private Accessors

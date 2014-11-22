@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "Game.h"
 #include "Render.h"
+#include "TextureManager.h"
 #include "Sprite.h"
 
 SpriteSequence::SpriteSequence(TombRaider& tr, unsigned int item, unsigned int sequence) {
@@ -79,7 +80,7 @@ Sprite::Sprite(TombRaider& tr, unsigned int item, unsigned int sequence, unsigne
     texel[0][0] = (float)(x) / texelScale;
     texel[0][1] = (float)(y + height) / texelScale;
 
-    texture = sprite->tile + getGame().getTextureStart();
+    texture = sprite->tile;
     radius = width2 / 2.0f;
 }
 
@@ -89,8 +90,6 @@ Sprite::Sprite(TombRaider& tr, unsigned int room, unsigned int index) {
 
     tr.getRoomSprite(room, index,
                      10.0f, &texture, pos, spriteVertices, spriteTexCoords);
-
-    texture += getGame().getTextureStart(); // OpenRaider preloads some textures
 
     for (unsigned int j = 0; j < 12; j++)
         vertex[j / 3][j % 3] = spriteVertices[j];
@@ -140,7 +139,7 @@ void Sprite::display() {
             glColor3ubv(WHITE);
             break;
         default:
-            glBindTexture(GL_TEXTURE_2D, texture + 1);
+            getTextureManager().bindTextureId(texture);
 
             glBegin(GL_TRIANGLE_STRIP);
             glTexCoord2fv(texel[0]);

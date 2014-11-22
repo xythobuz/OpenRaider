@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141122 ]
+    * TextureManager now knows the difference between level and system textures.
+
     [ 20141116 ]
     * Fixed background color of wireframe mode
 

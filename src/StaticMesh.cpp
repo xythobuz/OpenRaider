@@ -31,8 +31,7 @@ void TexturedTriangle::display(float* vertices, float* colors, float* normals) {
 
     if ((getRender().getMode() != Render::modeWireframe)
         && (getRender().getMode() != Render::modeSolid)) {
-        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-        glBindTexture(GL_TEXTURE_2D, texture + 1);
+        getTextureManager().bindTextureId(texture);
     }
 
     glBegin(GL_TRIANGLES);
@@ -116,8 +115,7 @@ int setupTextureColor(float* colorf) {
         texture = gColorTextureHACK.at(colorI);
     } catch (...) {
         unsigned char* image = generateColorTexture(color, 32, 32, 32);
-        texture = getTextureManager().loadBufferSlot(image, 32, 32,
-                  RGBA, 32, getTextureManager().getTextureCount());
+        texture = getTextureManager().loadBufferSlot(image, 32, 32, RGBA, 32);
         delete [] image;
     }
 
@@ -157,7 +155,7 @@ StaticMesh::StaticMesh(TombRaider& tr, unsigned int index) {
                                    vertexIndices, st,
                                    &texture, &transparency);
         triangles.push_back(
-            new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices, st, texture, transparency));
     }
 
     // Coloured Triangles
@@ -180,7 +178,7 @@ StaticMesh::StaticMesh(TombRaider& tr, unsigned int index) {
         transparency = 0;
 
         triangles.push_back(
-            new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices, st, texture, transparency));
     }
 
     // Textured Rectangles
@@ -190,10 +188,9 @@ StaticMesh::StaticMesh(TombRaider& tr, unsigned int index) {
                                     vertexIndices, st,
                                     &texture, &transparency);
         triangles.push_back(
-            new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices, st, texture, transparency));
         triangles.push_back(
-            new TexturedTriangle(vertexIndices + 3, st + 6, texture + getGame().getTextureStart(),
-                                 transparency));
+            new TexturedTriangle(vertexIndices + 3, st + 6, texture, transparency));
     }
 
     // Coloured Rectangles
@@ -217,9 +214,9 @@ StaticMesh::StaticMesh(TombRaider& tr, unsigned int index) {
         transparency = 0;
 
         triangles.push_back(
-            new TexturedTriangle(vertexIndices, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices, st, texture, transparency));
         triangles.push_back(
-            new TexturedTriangle(vertexIndices + 3, st, texture + getGame().getTextureStart(), transparency));
+            new TexturedTriangle(vertexIndices + 3, st, texture, transparency));
     }
 }
 
@@ -246,8 +243,7 @@ void StaticMesh::display() {
         if (getRender().getMode() == Render::modeWireframe)
             glColor3ubv(WHITE);
 
-        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-        glBindTexture(GL_TEXTURE_2D, 1);  // White texture for colors
+        getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
 
         for (unsigned int i = 0; i < triangles.size(); i++)
             triangles.at(i)->display(vertices, colors, normals);

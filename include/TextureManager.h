@@ -11,59 +11,31 @@
 
 #include <vector>
 
+// These are loaded into TextureStorage::SYSTEM by initialize()!
+#define TEXTURE_WHITE 0
+#define TEXTURE_SPLASH 1
+
 /*!
  * \brief Texture registry
  */
 class TextureManager {
   public:
 
-    enum TextureFlag {
-        fUseMultiTexture = (1 << 0),
+    enum class TextureStorage {
+        GAME,
+        SYSTEM
     };
 
-    /*!
-    * \brief Constructs an object of Texture
-    */
-    TextureManager();
-
-    /*!
-     * \brief Deconstructs an object of Texture
-     */
     ~TextureManager();
-
-    /*!
-     * \brief Resets all texture data
-     */
-    void reset();
 
     int initialize();
 
     /*!
-     * \brief Get number of textures in use
-     * \returns used texture count, or -1 on error (uninitialized)
-     */
-    int getTextureCount();
-
-    /*!
-     * \brief Sets up multitexture rendering with passed ids
-     * \param texture0 first texture for multitexture
-     * \param texture1 second texture for multitexture
-     */
-    void bindMultiTexture(int texture0, int texture1);
-
-    /*!
      * \brief Binds the texture for use in GL
      * \param n valid texture index
+     * \param s Which TextureStorage should be accessed
      */
-    void bindTextureId(unsigned int n);
-
-    /*!
-     * \brief Clears an option flag
-     * \param flag flag to clear
-     */
-    void clearFlag(TextureFlag flag);
-
-    void disableMultiTexture();
+    void bindTextureId(unsigned int n, TextureStorage s = TextureStorage::GAME);
 
     /*!
      * \brief Loads Buffer as texture
@@ -72,6 +44,7 @@ class TextureManager {
      * \param height height of image
      * \param mode mode of image
      * \param bpp bits per pixel of image
+     * \param s Which TextureStorage should be accessed
      * \param slot slot (ID) of image
      * \param filter if the texture should be mipmap filtered
      * \returns texture ID or < 0 on error
@@ -79,25 +52,20 @@ class TextureManager {
     int loadBufferSlot(unsigned char* image,
                        unsigned int width, unsigned int height,
                        ColorMode mode, unsigned int bpp,
-                       unsigned int slot, bool filter = true);
+                       TextureStorage s = TextureStorage::GAME,
+                       int slot = -1, bool filter = true);
 
-    int loadImage(const char* filename);
-
-    /*!
-     * \brief Sets an option flag
-     * \param flag flag to set
-     */
-    void setFlag(TextureFlag flag);
-
-    void useMultiTexture(float aU, float aV, float bU, float bV);
+    int loadImage(const char* filename, TextureStorage s = TextureStorage::GAME, int slot = -1);
 
   private:
-    int loadTGA(const char* filename);
-    int loadPCX(const char* filename);
-    int loadPNG(const char* filename);
+    std::vector<unsigned int>& getIds(TextureStorage s);
 
-    std::vector<unsigned int> mTextureIds;
-    unsigned int mFlags;
+    int loadTGA(const char* filename, TextureStorage s, int slot);
+    int loadPCX(const char* filename, TextureStorage s, int slot);
+    int loadPNG(const char* filename, TextureStorage s, int slot);
+
+    std::vector<unsigned int> mTextureIdsGame;
+    std::vector<unsigned int> mTextureIdsSystem;
 };
 
 TextureManager& getTextureManager();

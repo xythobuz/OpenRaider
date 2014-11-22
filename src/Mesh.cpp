@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include "global.h"
+#include "TextureManager.h"
 #include "Mesh.h"
 
 
@@ -122,16 +123,16 @@ void Mesh::drawAlpha() {
         switch (mMode) {
             case MeshModeWireframe:
                 glColor3f(0.0, 0.0, 1.0);
-                glBindTexture(GL_TEXTURE_2D, 0);
+                getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
                 break;
             case MeshModeSolid:
                 // Bind WHITE texture for solid colors
-                glBindTexture(GL_TEXTURE_2D, 0);
+                getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
                 break;
             case MeshModeTexture:
             case MeshModeMultiTexture:
                 // Bind texture id for textures
-                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture + 1);
+                getTextureManager().bindTextureId(mQuads[i].texture);
                 break;
         }
 
@@ -155,16 +156,16 @@ void Mesh::drawAlpha() {
         switch (mMode) {
             case MeshModeWireframe:
                 glColor3f(0.0, 1.0, 0.0);
-                glBindTexture(GL_TEXTURE_2D, 0);
+                getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
                 break;
             case MeshModeSolid:
                 // Bind WHITE texture for solid colors
-                glBindTexture(GL_TEXTURE_2D, 0);
+                getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
                 break;
             case MeshModeTexture:
             case MeshModeMultiTexture:
                 // Bind texture id for textures
-                glBindTexture(GL_TEXTURE_2D, mTris[i].texture + 1);
+                getTextureManager().bindTextureId(mTris[i].texture);
                 break;
         }
 
@@ -231,17 +232,17 @@ void Mesh::drawSolid() {
                 break;
             case MeshModeWireframe:
                 // Bind WHITE texture for solid colors
-                glBindTexture(GL_TEXTURE_2D, 0);
+                getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
                 break;
 #ifdef MULTITEXTURE
             case MeshModeMultiTexture:
                 glActiveTextureARB(GL_TEXTURE0_ARB);
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture + 1);
+                getTextureManager().bindTextureId(mQuads[i].texture);
 
                 glActiveTextureARB(GL_TEXTURE1_ARB);
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, mQuads[i].bumpmap + 1);
+                getTextureManager().bindTextureId(mQuads[i].bumpmap);
                 break;
 #else
             case MeshModeMultiTexture:
@@ -249,7 +250,7 @@ void Mesh::drawSolid() {
             case MeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-                glBindTexture(GL_TEXTURE_2D, mQuads[i].texture + 1);
+                getTextureManager().bindTextureId(mQuads[i].texture);
                 break;
         }
 
@@ -286,17 +287,17 @@ void Mesh::drawSolid() {
                 break;
             case MeshModeWireframe:
                 // Bind WHITE texture for solid colors
-                glBindTexture(GL_TEXTURE_2D, 0);
+                getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
                 break;
 #ifdef MULTITEXTURE
             case MeshModeMultiTexture:
                 glActiveTextureARB(GL_TEXTURE0_ARB);
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, mTris[i].texture + 1);
+                getTextureManager().bindTextureId(mTris[i].texture);
 
                 glActiveTextureARB(GL_TEXTURE1_ARB);
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, mTris[i].bumpmap + 1);
+                getTextureManager().bindTextureId(mTris[i].bumpmap);
                 break;
 #else
             case MeshModeMultiTexture:
@@ -304,7 +305,7 @@ void Mesh::drawSolid() {
             case MeshModeTexture:
                 // Bind texture id for textures
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-                glBindTexture(GL_TEXTURE_2D, mTris[i].texture + 1);
+                getTextureManager().bindTextureId(mTris[i].texture);
                 break;
         }
 
