@@ -17,7 +17,6 @@
 #include "Camera.h"
 #include "Game.h"
 #include "Render.h"
-#include "TextureManager.h"
 #include "utils/strings.h"
 #include "utils/tga.h"
 #include "Window.h"
@@ -29,6 +28,13 @@ Render::Render() {
     mMode = Render::modeDisabled;
     mLock = 0;
     mFlags = (fRoomAlpha | fEntityModels | fRenderPonytail);
+
+    debugTexture = -1;
+    debugTextureStorage = TextureManager::TextureStorage::GAME;
+    debugX = 0.0f;
+    debugY = 0.0f;
+    debugW = 256.0f;
+    debugH = 256.0f;
 }
 
 Render::~Render() {
@@ -190,7 +196,6 @@ void Render::display() {
         case Render::modeDisabled:
             return;
         case Render::modeLoadScreen:
-            //! \fixme entry for seperate main drawing method -- Mongoose 2002.01.01
             drawLoadScreen();
             return;
         default:
@@ -327,6 +332,12 @@ void Render::display() {
     if (!(mMode == Render::modeSolid || mMode == Render::modeWireframe)) {
         for (unsigned int i = 0; i < mRoomRenderList.size(); i++)
             mRoomRenderList[i]->display(true);
+
+        if (debugTexture >= 0) {
+            getWindow().glEnter2D();
+            drawTexture(debugX, debugY, debugW, debugH, debugTexture, debugTextureStorage);
+            getWindow().glExit2D();
+        }
     }
 
     if (mMode == Render::modeWireframe)
@@ -336,38 +347,15 @@ void Render::display() {
 }
 
 void Render::drawLoadScreen() {
-    float x = 0.0f, y = 0.0f, z = 0.0f;
-    float w = getWindow().getWidth(), h = getWindow().getHeight();
+    getWindow().glEnter2D();
 
-    // Mongoose 2002.01.01, Rendered while game is loading...
-    //! \fixme seperate logo/particle coor later
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
+    drawTexture(0.0f, 0.0f, getWindow().getWidth(), getWindow().getHeight(),
+            TEXTURE_SPLASH, TextureManager::TextureStorage::SYSTEM);
 
-    glColor3ubv(WHITE);
+    if (debugTexture >= 0)
+        drawTexture(debugX, debugY, debugW, debugH, debugTexture, debugTextureStorage);
 
-    if (mFlags & Render::fGL_Lights)
-        glDisable(GL_LIGHTING);
-
-    // Mongoose 2002.01.01, Draw logo/load screen
-    glTranslatef(0.0f, 0.0f, -2000.0f);
-    glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
-
-    getTextureManager().bindTextureId(TEXTURE_SPLASH, TextureManager::TextureStorage::SYSTEM);
-
-    glBegin(GL_TRIANGLE_STRIP);
-    glTexCoord2f(1.0, 1.0);
-    glVertex3f(x + w, y + h, z);
-    glTexCoord2f(0.0, 1.0);
-    glVertex3f(x - w, y + h, z);
-    glTexCoord2f(1.0, 0.0);
-    glVertex3f(x + w, y - h, z);
-    glTexCoord2f(0.0, 0.0);
-    glVertex3f(x - w, y - h, z);
-    glEnd();
-
-    if (mFlags & Render::fGL_Lights)
-        glEnable(GL_LIGHTING);
+    getWindow().glExit2D();
 
     glFlush();
 }
@@ -484,5 +472,45 @@ bool Render::isVisible(float x, float y, float z, float radius) {
     }
 
     return (mViewVolume.isSphereInFrustum(x, y, z, radius));
+}
+
+float Render::getDistToSphereFromNear(float x, float y, float z, float radius) {
+    return mViewVolume.getDistToSphereFromNear(x, y, z, radius);
+}
+
+void Render::debugDisplayTexture(int texture, TextureManager::TextureStorage s,
+        float x, float y, float w, float h) {
+    debugTexture = texture;
+    debugTextureStorage = s;
+    debugX = x;
+    debugY = y;
+    debugW = w;
+    debugH = h;
+}
+
+void Render::drawTexture(float x, float y, float w, float h,
+        unsigned int texture, TextureManager::TextureStorage s) {
+    float z = 0.0f;
+
+    glColor3ubv(WHITE);
+
+    if (mFlags & Render::fGL_Lights)
+        glDisable(GL_LIGHTING);
+
+    getTextureManager().bindTextureId(texture, s);
+
+    glBegin(GL_TRIANGLE_STRIP);
+    glTexCoord2f(1.0, 1.0);
+    glVertex3f(x + w, y + h, z);
+    glTexCoord2f(0.0, 1.0);
+    glVertex3f(x, y + h, z);
+    glTexCoord2f(1.0, 0.0);
+    glVertex3f(x + w, y, z);
+    glTexCoord2f(0.0, 0.0);
+    glVertex3f(x, y, z);
+    glEnd();
+
+    if (mFlags & Render::fGL_Lights)
+        glEnable(GL_LIGHTING);
 }
 

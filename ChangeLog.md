@@ -2,8 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141123 ]
+    * Added texture viewer debug UI
+
     [ 20141122 ]
     * TextureManager now knows the difference between level and system textures.
+    * LoaderTR2 tries to load textures
 
     [ 20141116 ]
     * Fixed background color of wireframe mode

@@ -65,6 +65,21 @@ void argb2rgba32(unsigned char* image, unsigned int w, unsigned int h) {
     }
 }
 
+unsigned char* argb16to32(unsigned char* image, unsigned int w, unsigned int h) {
+    assert(image != nullptr);
+    assert(w > 0);
+    assert(h > 0);
+
+    unsigned char* img = new unsigned char[w * h * 4];
+    for (unsigned int i = 0; i < (w * h); ++i) {
+        img[i * 4] = ((image[i] >> 10) & 0x1F) * 8;
+        img[(i * 4) + 1] = ((image[i] >> 5) & 0x1F) * 8;
+        img[(i * 4) + 2] = (image[i] & 0x1F) * 8;
+        img[(i * 4) + 3] = (image[i] & 0x8000) ? 0xFF : 0;
+    }
+    return img;
+}
+
 #define NEXT_POWER(x) do {        \
     unsigned int i;               \
     for (i = 1; i < (x); i *= 2); \

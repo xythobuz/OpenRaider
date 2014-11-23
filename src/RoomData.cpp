@@ -192,9 +192,9 @@ void StaticModel::display() {
 
 bool StaticModel::operator<(const StaticModel& other) {
     float distA, distB;
-    distA = getRender().mViewVolume.getDistToSphereFromNear(pos[0],
+    distA = getRender().getDistToSphereFromNear(pos[0],
             pos[1], pos[2], 128.0f);
-    distB = getRender().mViewVolume.getDistToSphereFromNear(other.pos[0],
+    distB = getRender().getDistToSphereFromNear(other.pos[0],
             other.pos[1], other.pos[2], 128.0f);
     return (distA < distB);
 }

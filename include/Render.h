@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "Room.h"
+#include "TextureManager.h"
 #include "ViewVolume.h"
 
 /*!
@@ -113,10 +114,16 @@ class Render {
 
     bool isVisible(BoundingBox& box);
 
-    //! \fixme should be private
-    ViewVolume mViewVolume; //!< View Volume for frustum culling
+    float getDistToSphereFromNear(float x, float y, float z, float radius);
+
+    void debugDisplayTexture(int texture = -1,
+            TextureManager::TextureStorage s = TextureManager::TextureStorage::GAME,
+            float x = 0.0f, float y = 0.0f, float w = 256.0f, float h = 256.0f);
 
   private:
+
+    void drawTexture(float x, float y, float w, float h,
+            unsigned int texture, TextureManager::TextureStorage s);
 
     static void lightRoom(Room& room);
 
@@ -150,11 +157,17 @@ class Render {
 
     std::vector<Room*> mRoomRenderList;
 
+    ViewVolume mViewVolume; //!< View Volume for frustum culling
+
     unsigned int mFlags;                  //!< Rendering flags
     unsigned int mMode;                   //!< Rendering mode
     int mLock;
     int mSkyMesh;                         //!< Skymesh model id
     bool mSkyMeshRotation;                //!< Should Skymesh be rotated?
+
+    int debugTexture;
+    TextureManager::TextureStorage debugTextureStorage;
+    float debugX, debugY, debugW, debugH;
 };
 
 Render& getRender();

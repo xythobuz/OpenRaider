@@ -11,6 +11,8 @@
 
 #include "global.h"
 #include "Log.h"
+#include "TextureManager.h"
+#include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
 
 LoaderTR2::LoaderTR2() {
@@ -53,7 +55,7 @@ int LoaderTR2::load(std::string f) {
     loadSoundDetails();
     loadSampleIndices();
 
-    return 0;
+    return 42; // TODO Not finished with implementation!
 }
 
 void LoaderTR2::loadPaletteTextiles() {
@@ -64,21 +66,26 @@ void LoaderTR2::loadPaletteTextiles() {
     for (auto& x : palette)
         x = file.readU32();
 
+    // TODO store palette somewhere
+
     uint32_t numTextiles = file.readU32();
 
     file.seek(file.tell() + (numTextiles * 256 * 256)); // Skip 8bit textiles
 
     // Read the 16bit textiles, numTextiles * 256 * 256 * 2 bytes
-    std::vector<std::array<uint16_t, 256 * 256>> textiles;
     for (unsigned int i = 0; i < numTextiles; i++) {
-        std::array<uint16_t, 256 * 256> arr;
+        std::array<uint8_t, 256 * 256 * 2> arr;
         for (auto& x : arr) {
-            x = file.readU16();
+            x = file.readU8();
         }
-        textiles.push_back(arr);
-    }
 
-    // TODO store palette and textiles somewhere
+        // Convert 16bit textile to 32bit textile
+        unsigned char* img = argb16to32(&arr[0], 256, 256);
+        int r = getTextureManager().loadBufferSlot(img, 256, 256, ARGB, 32,
+                    TextureManager::TextureStorage::GAME, i);
+        assert(r >= 0); //! \fixme properly handle error when texture could not be loaded!
+        delete [] img;
+    }
 }
 
 void LoaderTR2::loadRooms() {

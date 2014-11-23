@@ -12,6 +12,7 @@
 #include "Game.h"
 #include "Log.h"
 #include "Menu.h"
+#include "Render.h"
 #include "RunTime.h"
 #include "TextureManager.h"
 #include "Window.h"
@@ -183,13 +184,42 @@ void UI::display() {
 
     Console::display();
 
-    if (ImGui::Begin("Engine/RT")) {
-        if (ImGui::CollapsingHeader("Engine", NULL, true, true)) {
+    if (ImGui::Begin("Engine")) {
+        if (ImGui::CollapsingHeader("Info", NULL, true, true)) {
             ImGui::Text("Uptime: %lums", systemTimerGet());
         }
 
-        if (ImGui::CollapsingHeader("Debug")) {
-
+        if (ImGui::CollapsingHeader("GL Textures")) {
+            static bool game = getGame().isLoaded();
+            static int index = 0;
+            static bool visible = false;
+            ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
+            ImGui::SliderInt("", &index, 0, getTextureManager().numTextures(
+                        game ? TextureManager::TextureStorage::GAME
+                        : TextureManager::TextureStorage::SYSTEM) - 1);
+            ImGui::PopItemWidth();
+            ImGui::SameLine();
+            if (ImGui::Checkbox("Game", &game)) {
+                if (game && !getGame().isLoaded())
+                    game = false;
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Show")) {
+                visible = true;
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Clear")) {
+                getRender().debugDisplayTexture();
+                visible = false;
+            }
+            if (visible) {
+                getRender().debugDisplayTexture(index,
+                        game ? TextureManager::TextureStorage::GAME
+                        : TextureManager::TextureStorage::SYSTEM,
+                        ImGui::GetWindowPos().x - ImGui::GetWindowWidth(),
+                        ImGui::GetWindowPos().y,
+                        ImGui::GetWindowWidth(), ImGui::GetWindowWidth());
+            }
         }
 
         if (ImGui::CollapsingHeader("UI Help")) {

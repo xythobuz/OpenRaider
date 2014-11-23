@@ -15,6 +15,9 @@ void bgr2rgb24(unsigned char* image, unsigned int w, unsigned int h);
 void bgra2rgba32(unsigned char* image, unsigned int w, unsigned int h);
 void argb2rgba32(unsigned char* image, unsigned int w, unsigned int h);
 
+// Returns newly allocated buffer
+unsigned char* argb16to32(unsigned char* image, unsigned int w, unsigned int h);
+
 unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* h,
                            unsigned int bpp);
 

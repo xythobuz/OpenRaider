@@ -20,8 +20,8 @@ add_executable (tester_loader EXCLUDE_FROM_ALL
     "../src/loader/Loader.cpp" "../src/loader/LoaderTR1.cpp"
     "../src/loader/LoaderTR2.cpp" "../src/loader/LoaderTR3.cpp"
 )
-add_dependencies (check tester_loader)
-add_test (NAME test_loader COMMAND tester_loader)
+#add_dependencies (check tester_loader)
+#add_test (NAME test_loader COMMAND tester_loader)
 
 #################################################################
 

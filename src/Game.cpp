@@ -74,16 +74,18 @@ int Game::loadLevel(const char* level) {
     if (loader) {
         // First Loader test
         error = loader->load(level);
-        if (error != 0) {
-            return error;
+        if (error == 0) {
+            getLog() << "Tried new Loader (0)..." << Log::endl;
+        } else {
+            getLog() << "Error while trying new loader (" << error << ")..." << Log::endl;
         }
-
-        // And now...?
-
-        getLog() << "Tried Loader..." << Log::endl;
     }
 
-    if ((!loader) || (error == 0)) {
+    if ((!loader) || (error != 0)) {
+        // Clean-Up between new & old loader
+        if (error != 0)
+            destroy();
+
         // Old TombRaider level loader
         error = mTombRaider.Load(levelName.c_str());
         if (error != 0)

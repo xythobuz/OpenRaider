@@ -138,6 +138,10 @@ int TextureManager::loadBufferSlot(unsigned char* image,
     return slot;
 }
 
+int TextureManager::numTextures(TextureStorage s) {
+    return getIds(s).size();
+}
+
 void TextureManager::bindTextureId(unsigned int n, TextureStorage s) {
     assert(n < getIds(s).size());
 

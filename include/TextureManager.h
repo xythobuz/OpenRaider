@@ -30,6 +30,8 @@ class TextureManager {
 
     int initialize();
 
+    int numTextures(TextureStorage s = TextureStorage::GAME);
+
     /*!
      * \brief Binds the texture for use in GL
      * \param n valid texture index
