@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141124 ]
+    * LoaderTR2 is starting to populate Room structures
+
     [ 20141123 ]
     * Added texture viewer debug UI
 

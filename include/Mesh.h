@@ -10,11 +10,40 @@
 #ifndef _MESH_H_
 #define _MESH_H_
 
+#include "loader/Loader.h"
+
 /*!
  * \brief OpenGL Mesh
  */
 class Mesh {
   public:
+
+    struct rectangle_t {
+        struct vertex_t a, b, c, d;
+        uint16_t texture;
+    }
+
+    Mesh();
+    ~Mesh();
+
+    void drawAlpha();
+    void drawSolid();
+
+    // Warning: texture is not the GL texture id,
+    // it is an index into the object texture list!
+    void addTexturedRectangle(struct vertex_t a, struct vertex_t b,
+            struct vertex_t c, struct vertex_t d, uint16_t texture);
+    void addTexturedTriangle(struct vertex_t a, struct vertex_t b,
+            struct vertex_t c, uint16_t texture);
+
+    std::vector<struct rectangle_t> texturedRectangles;
+    std::vector<struct rectangle_t> coloredRectangles;
+    std::vector<struct rectangle_t> texturedTriangles;
+    std::vector<struct rectangle_t> coloredTriangles;
+
+
+
+    // Old API
 
     typedef enum {
         MeshModeSolid,
@@ -77,19 +106,8 @@ class Mesh {
 
     } rect_t;
 
-    /*!
-     * \brief Constructs an object of Mesh
-     */
-    Mesh();
-
-    /*!
-     * \brief Deconstructs an object of Mesh
-     */
-    ~Mesh();
-
-    void drawAlpha();
-
-    void drawSolid();
+    void drawAlphaOld();
+    void drawSolidOld();
 
     void allocateColors(unsigned int n);
 

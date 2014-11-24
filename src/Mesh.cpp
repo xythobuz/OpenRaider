@@ -11,6 +11,51 @@
 #include "TextureManager.h"
 #include "Mesh.h"
 
+void Mesh::addTexturedRectangle(struct vertex_t a, struct vertex_t b,
+        struct vertex_t c, struct vertex_t d, uint16_t texture) {
+    struct rectangle_t r;
+    r.a = a;
+    r.b = b;
+    r.c = c;
+    r.d = d;
+    r.texture = texture;
+    texturedRectangles.push_back(r);
+}
+
+void Mesh::addTexturedTriangle(struct vertex_t a, struct vertex_t b,
+        struct vertex_t c, uint16_t texture) {
+    struct rectangle_t r;
+    r.a = a;
+    r.b = b;
+    r.c = c;
+    r.texture = texture;
+    texturedTriangles.push_back(r);
+}
+
+void Mesh::drawAlpha() {
+    if ((texturedRectangles.size() == 0)
+            && (texturedTriangles.size() == 0)
+            && (coloredRectangles.size() == 0)
+            && (coloredTriangles.size() == 0)) {
+        drawAlphaOld();
+        return;
+    }
+
+    // TODO replicate drawAlphaOld, but get object texture coord from World
+}
+
+void Mesh::drawSolid() {
+    if ((texturedRectangles.size() == 0)
+            && (texturedTriangles.size() == 0)
+            && (coloredRectangles.size() == 0)
+            && (coloredTriangles.size() == 0)) {
+        drawSolidOld();
+        return;
+    }
+
+
+}
+
 
 ////////////////////////////////////////////////////////////
 // Constructors
@@ -114,7 +159,7 @@ Mesh::~Mesh() {
 // Public Accessors
 ////////////////////////////////////////////////////////////
 
-void Mesh::drawAlpha() {
+void Mesh::drawAlphaOld() {
     unsigned int i, j, k, index;
 
 
@@ -186,7 +231,7 @@ void Mesh::drawAlpha() {
 }
 
 
-void Mesh::drawSolid() {
+void Mesh::drawSolidOld() {
     unsigned int i, j, k, index;
 
 

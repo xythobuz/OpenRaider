@@ -75,6 +75,7 @@ class StaticModel {
 
 class Portal {
   public:
+    Portal(float vert[4][3], float norm[3], int adj);
     Portal(TombRaider& tr, unsigned int room, unsigned int index, Matrix& transform);
 
     void getVertices(float vert[4][3]);

@@ -8,10 +8,16 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
+#include <cstdint>
+
+#include "loader/Loader.h"
 #include "TombRaider.h"
 
 class Sprite {
   public:
+    Sprite(struct vertex_t vert, uint16_t tex);
+
+    // Old API
     Sprite(TombRaider& tr, unsigned int room, unsigned int index);
     Sprite(TombRaider& tr, unsigned int item, unsigned int sequence, unsigned int index);
     void display();

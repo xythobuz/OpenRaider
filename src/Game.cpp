@@ -120,9 +120,10 @@ int Game::loadLevel(const char* level) {
         } else {
             mLoaded = true;
             getRender().setMode(Render::modeVertexLight);
-            return 0;
         }
     }
+
+    return 0;
 }
 
 void Game::handleAction(ActionEvents action, bool isFinished) {

@@ -21,10 +21,11 @@ typedef enum {
 class Room {
   public:
     Room(TombRaider& tr, unsigned int index);
+
+    Room();
     ~Room();
 
     BoundingBox& getBoundingBox();
-    Mesh& getMesh();
     void display(bool alpha);
 
     bool isWall(unsigned long sector);
@@ -43,24 +44,31 @@ class Room {
 
     unsigned long sizeAdjacentRooms();
     long getAdjacentRoom(unsigned long index);
+    void addAdjacentRoom(long r);
 
     unsigned long sizePortals();
     Portal& getPortal(unsigned long index);
+    void addPortal(Portal* p);
 
     unsigned long sizeSectors();
     Sector& getSector(unsigned long index);
+    void addSector(Sector* s);
 
     unsigned long sizeBox();
     Box& getBox(unsigned long index);
+    void addBox(Box* b);
 
     unsigned long sizeModels();
     StaticModel& getModel(unsigned long index);
+    void addModel(StaticModel* s);
 
     unsigned long sizeLights();
     Light& getLight(unsigned long index);
+    void addLight(Light* l);
 
     unsigned long sizeSprites();
     Sprite& getSprite(unsigned long index);
+    void addSprite(Sprite* s);
 
   private:
     void sortModels();

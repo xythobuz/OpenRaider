@@ -32,8 +32,8 @@ void bgr2rgb24(unsigned char* image, unsigned int w, unsigned int h) {
     for (unsigned int i = 0; i < (w * h); ++i) {
         /* 24-bit BGR to RGB */
         unsigned char swap = image[(i * 3) + 2];
-        image[(i * 3) + 2] = image[(i * 3)];
-        image[(i * 3)] = swap;
+        image[(i * 3) + 2] = image[i * 3];
+        image[i * 3] = swap;
     }
 }
 
@@ -46,7 +46,7 @@ void bgra2rgba32(unsigned char* image, unsigned int w, unsigned int h) {
         /* 32-bit BGRA to RGBA */
         unsigned char swap = image[(i * 4) + 2];
         image[(i * 4) + 2] = image[(i * 4)];
-        image[(i * 4)] = swap;
+        image[i * 4] = swap;
     }
 }
 
@@ -56,9 +56,9 @@ void argb2rgba32(unsigned char* image, unsigned int w, unsigned int h) {
     assert(h > 0);
 
     for (unsigned int i = 0; i < (w * h); ++i) {
-        /* 32-bit ARGB to RGBA */
-        unsigned char swap = image[(i * 4) + 3];
-        image[(i * 4)] = image[(i * 4) + 1];
+        // 32-bit ARGB to RGBA
+        unsigned char swap = image[i * 4];
+        image[i * 4] = image[(i * 4) + 1];
         image[(i * 4) + 1] = image[(i * 4) + 2];
         image[(i * 4) + 2] = image[(i * 4) + 3];
         image[(i * 4) + 3] = swap;
@@ -72,10 +72,16 @@ unsigned char* argb16to32(unsigned char* image, unsigned int w, unsigned int h) 
 
     unsigned char* img = new unsigned char[w * h * 4];
     for (unsigned int i = 0; i < (w * h); ++i) {
-        img[i * 4] = ((image[i] >> 10) & 0x1F) * 8;
-        img[(i * 4) + 1] = ((image[i] >> 5) & 0x1F) * 8;
-        img[(i * 4) + 2] = (image[i] & 0x1F) * 8;
-        img[(i * 4) + 3] = (image[i] & 0x8000) ? 0xFF : 0;
+        // arrr.rrgg gggb.bbbb shift to 5bit
+        img[i * 4] = (image[(i * 2) + 1] & 0x80) ? 0xFF : 0; // A
+        img[(i * 4) + 1] = (image[(i * 2) + 1] & 0x7C) >> 2; // R
+        img[(i * 4) + 2] = (image[(i * 2) + 1] & 0x03) << 3;
+        img[(i * 4) + 2] |= (image[i * 2] & 0xE0) >> 5; // G
+        img[(i * 4) + 3] = image[i * 2] & 0x1F; // B
+
+        img[(i * 4) + 1] <<= 3; // R
+        img[(i * 4) + 2] <<= 3; // G
+        img[(i * 4) + 3] <<= 3; // B
     }
     return img;
 }

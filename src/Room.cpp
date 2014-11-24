@@ -391,6 +391,12 @@ Room::Room(TombRaider& tr, unsigned int index) {
 #endif
 }
 
+Room::Room() : flags(0), numXSectors(0), numZSectors(0) {
+    pos[0] = 0;
+    pos[1] = 0;
+    pos[2] = 0;
+}
+
 #define EMPTY_VECTOR(x)     \
 while (!x.empty()) {        \
     delete x[x.size() - 1]; \
@@ -443,20 +449,20 @@ void Room::display(bool alpha) {
 
     switch (getRender().getMode()) {
         case Render::modeWireframe:
-            getMesh().mMode = Mesh::MeshModeWireframe;
+            mesh.mMode = Mesh::MeshModeWireframe;
             break;
         case Render::modeSolid:
-            getMesh().mMode = Mesh::MeshModeSolid;
+            mesh.mMode = Mesh::MeshModeSolid;
             break;
         default:
-            getMesh().mMode = Mesh::MeshModeTexture;
+            mesh.mMode = Mesh::MeshModeTexture;
             break;
     }
 
     if (alpha)
-        getMesh().drawAlpha();
+        mesh.drawAlpha();
     else
-        getMesh().drawSolid();
+        mesh.drawSolid();
 
     glPopMatrix();
 
@@ -553,6 +559,10 @@ long Room::getAdjacentRoom(unsigned long index) {
     return adjacentRooms.at(index);
 }
 
+void Room::addAdjacentRoom(long r) {
+    adjacentRooms.push_back(r);
+}
+
 unsigned long Room::sizePortals() {
     return portals.size();
 }
@@ -560,6 +570,10 @@ unsigned long Room::sizePortals() {
 Portal& Room::getPortal(unsigned long index) {
     assert(index < portals.size());
     return *portals.at(index);
+}
+
+void Room::addPortal(Portal* p) {
+    portals.push_back(p);
 }
 
 unsigned long Room::sizeSectors() {
@@ -571,6 +585,10 @@ Sector& Room::getSector(unsigned long index) {
     return *sectors.at(index);
 }
 
+void Room::addSector(Sector* s) {
+    sectors.push_back(s);
+}
+
 unsigned long Room::sizeBox() {
     return boxes.size();
 }
@@ -580,6 +598,10 @@ Box& Room::getBox(unsigned long index) {
     return *boxes.at(index);
 }
 
+void Room::addBox(Box* b) {
+    boxes.push_back(b);
+}
+
 unsigned long Room::sizeModels() {
     return models.size();
 }
@@ -587,6 +609,10 @@ unsigned long Room::sizeModels() {
 StaticModel& Room::getModel(unsigned long index) {
     assert(index < models.size());
     return *models.at(index);
+}
+
+void Room::addModel(StaticModel* s) {
+    models.push_back(s);
 }
 
 void Room::sortModels() {
@@ -602,6 +628,10 @@ Light& Room::getLight(unsigned long index) {
     return *lights.at(index);
 }
 
+void Room::addLight(Light* l) {
+    lights.push_back(l);
+}
+
 unsigned long Room::sizeSprites() {
     return sprites.size();
 }
@@ -611,11 +641,11 @@ Sprite& Room::getSprite(unsigned long index) {
     return *sprites.at(index);
 }
 
-BoundingBox& Room::getBoundingBox() {
-    return bbox;
+void Room::addSprite(Sprite* s) {
+    sprites.push_back(s);
 }
 
-Mesh& Room::getMesh() {
-    return mesh;
+BoundingBox& Room::getBoundingBox() {
+    return bbox;
 }
 

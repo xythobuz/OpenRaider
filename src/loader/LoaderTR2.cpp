@@ -11,6 +11,7 @@
 
 #include "global.h"
 #include "Log.h"
+#include "Mesh.h"
 #include "TextureManager.h"
 #include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
@@ -55,7 +56,7 @@ int LoaderTR2::load(std::string f) {
     loadSoundDetails();
     loadSampleIndices();
 
-    return 42; // TODO Not finished with implementation!
+    return 0; // TODO Not finished with implementation!
 }
 
 void LoaderTR2::loadPaletteTextiles() {
@@ -101,26 +102,32 @@ void LoaderTR2::loadRooms() {
         // Number of data words (2 bytes) to follow
         uint32_t dataToFollow = file.readU32();
 
+
+        std::vector<struct vertex> vertices;
+
         uint16_t numVertices = file.readU16();
         for (unsigned int v = 0; v < numVertices; v++) {
+            struct vertex v;
             // Vertex coordinates, relative to x/zOffset
-            int16_t relativeX = file.read16();
-            int16_t relativeY = file.read16();
-            int16_t relativeZ = file.read16();
+            v.x = file.read16();
+            v.y = file.read16();
+            v.z = file.read16();
 
-            int16_t lighting1 = file.read16();
+            v.light1 = file.read16();
 
             // Set of flags for special rendering effects
             // 0x8000 - Something to do with water surface?
             // 0x4000 - Underwater lighting modulation/movement if seen from above
             // 0x2000 - Water/Quicksand surface movement
             // 0x0010 - Normal?
-            uint16_t attributes = file.readU16();
+            v.attributes = file.readU16();
 
-            int16_t lighting2 = file.read16(); // Almost always equal to lighting1
+            v.light2 = file.read16(); // Almost always equal to light1
 
-            // TODO store vertex somewhere
+            vertices.push_back(v);
         }
+
+        Room* room = new Room();
 
         uint16_t numRectangles = file.readU16();
         for (unsigned int r = 0; r < numRectangles; r++) {
@@ -133,7 +140,8 @@ void LoaderTR2::loadRooms() {
             // Index into the object-texture list
             uint16_t texture = file.readU16();
 
-            // TODO store rectangles somewhere
+            room->getMesh().addTexturedRectangle(vertices.at(vertex1), vertices.at(vertex2),
+                    vertices.at(vertex3), vertices.at(vertex4), texture);
         }
 
         uint16_t numTriangles = file.readU16();
@@ -146,7 +154,8 @@ void LoaderTR2::loadRooms() {
             // Index into the object-texture list
             uint16_t texture = file.readU16();
 
-            // TODO store triangles somewhere
+            room->getMesh().addTexturedTriangle(vertices.at(vertex1), vertices.at(vertex2),
+                    vertices.at(vertex3), texture);
         }
 
         uint16_t numSprites = file.readU16();
@@ -154,7 +163,7 @@ void LoaderTR2::loadRooms() {
             uint16_t vertex = file.readU16(); // Index into vertex list
             uint16_t texture = file.readU16(); // Index into object-texture list
 
-            // TODO store sprites somewhere
+            room->addSprite(new Sprite(vertices.at(vertex), texture));
         }
 
         uint16_t numPortals = file.readU16();

@@ -100,6 +100,10 @@ Sprite::Sprite(TombRaider& tr, unsigned int room, unsigned int index) {
     radius = 0.0f;
 }
 
+Sprite::Sprite(struct vertex_t vert, uint16_t tex) {
+
+}
+
 void Sprite::display() {
     if (!getRender().isVisible(pos[0], pos[1], pos[2], radius))
         return;

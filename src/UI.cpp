@@ -200,7 +200,9 @@ void UI::display() {
             ImGui::PopItemWidth();
             ImGui::SameLine();
             if (ImGui::Checkbox("Game", &game)) {
-                if (game && !getGame().isLoaded())
+                if (game && (getTextureManager().numTextures(
+                        game ? TextureManager::TextureStorage::GAME
+                        : TextureManager::TextureStorage::SYSTEM) <= 0))
                     game = false;
             }
             ImGui::SameLine();
