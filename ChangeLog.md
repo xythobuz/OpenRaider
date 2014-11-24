@@ -4,6 +4,7 @@
 
     [ 20141124 ]
     * LoaderTR2 is starting to populate Room structures
+    * Added BinaryMemory reader
 
     [ 20141123 ]
     * Added texture viewer debug UI
