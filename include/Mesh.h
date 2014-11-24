@@ -21,7 +21,7 @@ class Mesh {
     struct rectangle_t {
         struct vertex_t a, b, c, d;
         uint16_t texture;
-    }
+    };
 
     Mesh();
     ~Mesh();

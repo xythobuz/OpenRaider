@@ -12,6 +12,7 @@
 #include "global.h"
 #include "Log.h"
 #include "Mesh.h"
+#include "Room.h"
 #include "TextureManager.h"
 #include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
@@ -103,28 +104,28 @@ void LoaderTR2::loadRooms() {
         uint32_t dataToFollow = file.readU32();
 
 
-        std::vector<struct vertex> vertices;
+        std::vector<struct vertex_t> vertices;
 
         uint16_t numVertices = file.readU16();
         for (unsigned int v = 0; v < numVertices; v++) {
-            struct vertex v;
+            struct vertex_t vert;
             // Vertex coordinates, relative to x/zOffset
-            v.x = file.read16();
-            v.y = file.read16();
-            v.z = file.read16();
+            vert.x = file.read16();
+            vert.y = file.read16();
+            vert.z = file.read16();
 
-            v.light1 = file.read16();
+            vert.light1 = file.read16();
 
             // Set of flags for special rendering effects
             // 0x8000 - Something to do with water surface?
             // 0x4000 - Underwater lighting modulation/movement if seen from above
             // 0x2000 - Water/Quicksand surface movement
             // 0x0010 - Normal?
-            v.attributes = file.readU16();
+            vert.attributes = file.readU16();
 
-            v.light2 = file.read16(); // Almost always equal to light1
+            vert.light2 = file.read16(); // Almost always equal to light1
 
-            vertices.push_back(v);
+            vertices.push_back(vert);
         }
 
         Room* room = new Room();

@@ -35,6 +35,8 @@ class Room {
     int getAdjoiningRoom(float x, float y, float z,
                          float x2, float y2, float z2);
 
+    Mesh& getMesh() { return mesh; }
+
     unsigned int getNumXSectors();
     unsigned int getNumZSectors();
     void getPos(float p[3]);
