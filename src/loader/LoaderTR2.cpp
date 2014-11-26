@@ -24,7 +24,7 @@ LoaderTR2::~LoaderTR2() {
 }
 
 int LoaderTR2::load(std::string f) {
-    if (file.open(f.c_str()) != 0) {
+    if (file.open(f) != 0) {
         return 1; // Could not open file
     }
 
@@ -56,6 +56,8 @@ int LoaderTR2::load(std::string f) {
     loadSoundMap();
     loadSoundDetails();
     loadSampleIndices();
+
+    loadExternalSoundFile(f);
 
     return 0; // TODO Not finished with implementation!
 }
@@ -287,12 +289,20 @@ void LoaderTR2::loadMeshes() {
     }
 
     uint32_t numMeshPointers = file.readU32();
-    std::vector<uint32_t> meshPointers;
-    for (unsigned int i = 0; i < numMeshPointers; i++) {
-        meshPointers.push_back(file.readU32());
+
+    if ((numMeshData == 0) || (numMeshPointers == 0)) {
+        //! \fixme debug level regulating output?
+        getLog() << "LoaderTR2: No mesh data found!" << Log::endl;
+        return;
     }
 
-    // TODO interpret the buffered mesh data
+    for (unsigned int i = 0; i < numMeshPointers; i++) {
+        uint32_t meshPointer = file.readU32();
+        char* tmpPtr = reinterpret_cast<char*>(&buffer[meshPointer]);
+        BinaryMemory mem(tmpPtr, numMeshData - meshPointer);
+
+        // TODO interpret the buffered mesh data
+    }
 }
 
 void LoaderTR2::loadMoveables() {
@@ -561,6 +571,9 @@ void LoaderTR2::loadBoxesOverlapsZones() {
     }
 
     // TODO store zones somewhere
+
+    if ((numBoxes > 0) || (numOverlaps > 0))
+        getLog() << "LoaderTR2: Found NPC NavigationHints, not yet implemented!" << Log::endl;
 }
 
 void LoaderTR2::loadAnimatedTextures() {
@@ -610,6 +623,9 @@ void LoaderTR2::loadCinematicFrames() {
 
         // TODO store cinematic frames somewhere
     }
+
+    if (numCinematicFrames > 0)
+        getLog() << "LoaderTR2: Found CinematicFrames, not yet implemented!" << Log::endl;
 }
 
 void LoaderTR2::loadDemoData() {
@@ -618,6 +634,8 @@ void LoaderTR2::loadDemoData() {
         file.readU8();
 
     // TODO store demo data somewhere, find out meaning
+    if (numDemoData > 0)
+        getLog() << "LoaderTR2: Found DemoData, not yet implemented!" << Log::endl;
 }
 
 void LoaderTR2::loadSoundMap() {
@@ -655,5 +673,57 @@ void LoaderTR2::loadSampleIndices() {
     }
 
     // TODO store sample indices somewhere
+}
+
+void LoaderTR2::loadExternalSoundFile(std::string f) {
+    size_t dir = f.find_last_of("/\\");
+    if (dir != std::string::npos) {
+        f.replace(dir + 1, std::string::npos, "MAIN.SFX");
+    } else {
+        f = "MAIN.SFX";
+    }
+
+    BinaryFile sfx;
+    if (sfx.open(f) != 0) {
+        getLog() << "LoaderTR2: Can't open \"" << f << "\"!" << Log::endl;
+        return;
+    }
+
+    int riffCount = 0;
+    bool done = false;
+    while (!done) {
+        char test[5];
+        test[4] = '\0';
+        for (int i = 0; i < 4; i++)
+            test[i] = sfx.read8();
+
+        if (std::string("RIFF") != std::string(test)) {
+            getLog() << "LoaderTR2: External SFX invalid! (" << riffCount
+                << ", \"" << test << "\" != \"RIFF\")" << Log::endl;
+            return;
+        }
+
+        uint32_t riffSize = sfx.readU32();
+
+        for (int i = 0; i < 4; i++)
+            test[i] = sfx.read8();
+
+        if (std::string("WAVE") != std::string(test)) {
+            getLog() << "LoaderTR2: External SFX invalid! (" << riffCount
+                << ", \"" << test << "\" != \"WAVE\")" << Log::endl;
+            return;
+        }
+
+        // TODO load riff somehow somewhere
+
+        // riffSize is (fileLength - 8)
+        sfx.seek(sfx.tell() + riffSize - 4);
+        riffCount++;
+
+        if (sfx.eof()) {
+            done = true;
+            getLog() << "LoaderTR2: Found " << riffCount << " SoundSamples" << Log::endl;
+        }
+    }
 }
 

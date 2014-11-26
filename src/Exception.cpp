@@ -10,11 +10,7 @@
 
 std::string Exception::lastException("No custom exception since start!");
 
-Exception::Exception(const char* what) : runtime_error(what) {
-    lastException = what;
-}
-
-Exception::Exception(const std::string& what) : runtime_error(what) {
+Exception::Exception(std::string what) : runtime_error(what) {
     lastException = what;
 }
 

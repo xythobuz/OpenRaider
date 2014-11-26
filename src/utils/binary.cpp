@@ -5,77 +5,41 @@
  * \author xythobuz
  */
 
+#include <sstream>
+
 #include "global.h"
+#include "Exception.h"
 #include "utils/binary.h"
 
-BinaryFile::BinaryFile(const char* f) {
-    int r = open(f);
-    if (r != 0)
-        throw r;
+BinaryReader::~BinaryReader() {
 }
 
-BinaryFile::~BinaryFile() {
-    if (file.is_open())
-        file.close();
-}
-
-int BinaryFile::open(const char* f) {
-    if (file.is_open()) {
-        return 1;
-    } else {
-        if (f == nullptr)
-            return 0;
-        file.open(f, std::ios_base::in | std::ios_base::binary);
-        return (file ? 0 : 1);
-    }
-}
-
-long long BinaryFile::tell() {
-    assert(file.is_open());
-    return file.tellg();
-}
-
-void BinaryFile::seek(long long pos) {
-    assert(file.is_open());
-    file.seekg(pos);
-}
-
-uint8_t BinaryFile::readU8() {
-    assert(file.is_open());
-    assert(file.good());
+uint8_t BinaryReader::readU8() {
     uint8_t ret;
     char* c = reinterpret_cast<char*>(&ret);
-    file.read(c, 1);
+    read(c, 1);
     return ret;
 }
 
-uint16_t BinaryFile::readU16() {
-    assert(file.is_open());
-    assert(file.good());
-    uint8_t a = readU8();
-    uint8_t b = readU8();
-    return ((uint16_t)a | (uint16_t)(b << 8));
+uint16_t BinaryReader::readU16() {
+    uint16_t a = readU8();
+    uint16_t b = readU8();
+    return (a | (b << 8));
 }
 
-uint32_t BinaryFile::readU32() {
-    assert(file.is_open());
-    assert(file.good());
-    uint16_t a = readU16();
-    uint16_t b = readU16();
-    return ((uint32_t)a | (uint32_t)(b << 16));
+uint32_t BinaryReader::readU32() {
+    uint32_t a = readU16();
+    uint32_t b = readU16();
+    return (a | (b << 16));
 }
 
-uint64_t BinaryFile::readU64() {
-    assert(file.is_open());
-    assert(file.good());
-    uint32_t a = readU32();
-    uint32_t b = readU32();
-    return ((uint64_t)a | ((uint64_t)b << 32));
+uint64_t BinaryReader::readU64() {
+    uint64_t a = readU32();
+    uint64_t b = readU32();
+    return (a | (b << 32));
 }
 
-float BinaryFile::readFloat() {
-    assert(file.is_open());
-    assert(file.good());
+float BinaryReader::readFloat() {
     uint32_t val = readU32();
     char* a = reinterpret_cast<char*>(&val);
 
@@ -95,7 +59,7 @@ namespace {
      *  without having to detect the endianness at run-time?
      */
     const int bigendiandetection = 1;
-#define ISBIGENDIAN() ((*(char *)&bigendiandetection) == 0)
+#define ISBIGENDIAN() ((*reinterpret_cast<const char *>(&bigendiandetection)) == 0)
 
     void swapByteOrder(char* d, unsigned int n) {
         if (ISBIGENDIAN()) {
@@ -108,60 +72,101 @@ namespace {
     }
 }
 
-int8_t BinaryFile::read8() {
-    assert(file.is_open());
-    assert(file.good());
+int8_t BinaryReader::read8() {
     int8_t ret;
     char* p = reinterpret_cast<char*>(&ret);
-    file.read(p, sizeof(ret));
+    read(p, sizeof(ret));
     return ret;
 }
 
-int16_t BinaryFile::read16() {
-    assert(file.is_open());
-    assert(file.good());
+int16_t BinaryReader::read16() {
     int16_t ret;
     char* p = reinterpret_cast<char*>(&ret);
-    file.read(p, sizeof(ret));
+    read(p, sizeof(ret));
     swapByteOrder(p, 2);
     return ret;
 }
 
-int32_t BinaryFile::read32() {
-    assert(file.is_open());
-    assert(file.good());
+int32_t BinaryReader::read32() {
     int32_t ret;
     char* p = reinterpret_cast<char*>(&ret);
-    file.read(p, sizeof(ret));
+    read(p, sizeof(ret));
     swapByteOrder(p, 4);
     return ret;
 }
 
-int64_t BinaryFile::read64() {
-    assert(file.is_open());
-    assert(file.good());
+int64_t BinaryReader::read64() {
     int64_t ret;
     char* p = reinterpret_cast<char*>(&ret);
-    file.read(p, sizeof(ret));
+    read(p, sizeof(ret));
     swapByteOrder(p, 8);
     return ret;
 }
 
 // ----------------------------------------------------------------------------
 
-BinaryMemory::BinaryMemory(char* d) : data(nullptr), offset(0) {
-    int r = open(d);
+BinaryFile::BinaryFile(std::string f) {
+    int r = open(f);
     if (r != 0)
         throw r;
 }
 
-int BinaryMemory::open(char* d) {
+BinaryFile::~BinaryFile() {
+    if (file.is_open())
+        file.close();
+}
+
+int BinaryFile::open(std::string f) {
+    if (file.is_open()) {
+        return 1;
+    } else {
+        if (f == "")
+            return 0;
+        file.open(f, std::ios_base::in | std::ios_base::binary);
+        return (file ? 0 : 1);
+    }
+}
+
+long long BinaryFile::tell() {
+    assert(file.is_open());
+    return file.tellg();
+}
+
+void BinaryFile::seek(long long pos) {
+    assert(file.is_open());
+    file.seekg(pos);
+}
+
+bool BinaryFile::eof() {
+    file.peek();
+    return file.eof();
+}
+
+void BinaryFile::read(char* d, int c) {
+    assert(file.is_open());
+    assert(file.good());
+    file.read(d, c);
+}
+
+// ----------------------------------------------------------------------------
+
+BinaryMemory::BinaryMemory(const char* d, long long m) : data(nullptr), offset(0), max(-1) {
+    int r = open(d, m);
+    if (r != 0)
+        throw r;
+}
+
+BinaryMemory::~BinaryMemory() {
+}
+
+int BinaryMemory::open(const char* d, long long m) {
     if (data != nullptr)
         return 1;
 
     if (d != nullptr) {
         data = d;
         offset = 0;
+        max = m;
     }
 
     return 0;
@@ -177,89 +182,23 @@ void BinaryMemory::seek(long long pos) {
     offset = pos;
 }
 
+bool BinaryMemory::eof() {
+    return (offset > max);
+}
+
 void BinaryMemory::read(char* d, int c) {
+    assert(offset >= 0);
+    assert(c > 0);
+    if ((offset + c) > max) {
+        std::ostringstream ss;
+        ss << "BinaryMemory read out of bounds ("
+            << offset << " + " << c << " > " << max;
+        throw new Exception(ss.str());
+    }
+
     for (int i = 0; i < c; i++) {
         d[i] = data[offset + i];
     }
     offset += c;
-}
-
-uint8_t BinaryMemory::readU8() {
-    assert(offset >= 0);
-    uint8_t ret;
-    char* c = reinterpret_cast<char*>(&ret);
-    read(c, 1);
-    return ret;
-}
-
-uint16_t BinaryMemory::readU16() {
-    assert(offset >= 0);
-    uint8_t a = readU8();
-    uint8_t b = readU8();
-    return ((uint16_t)a | (uint16_t)(b << 8));
-}
-
-uint32_t BinaryMemory::readU32() {
-    assert(offset >= 0);
-    uint16_t a = readU16();
-    uint16_t b = readU16();
-    return ((uint32_t)a | (uint32_t)(b << 16));
-}
-
-uint64_t BinaryMemory::readU64() {
-    assert(offset >= 0);
-    uint32_t a = readU32();
-    uint32_t b = readU32();
-    return ((uint64_t)a | (uint64_t)(b << 32));
-}
-
-float BinaryMemory::readFloat() {
-    assert(offset >= 0);
-    uint32_t val = readU32();
-    char* a = reinterpret_cast<char*>(&val);
-
-    float ret;
-    char* b = reinterpret_cast<char*>(&ret);
-
-    for (int i = 0; i < 4; i++)
-        b[i] = a[i];
-
-    return ret;
-}
-
-int8_t BinaryMemory::read8() {
-    assert(offset >= 0);
-    int8_t ret;
-    char* p = reinterpret_cast<char*>(&ret);
-    read(p, sizeof(ret));
-    return ret;
-}
-
-int16_t BinaryMemory::read16() {
-    assert(offset >= 0);
-    int16_t ret;
-    char* p = reinterpret_cast<char*>(&ret);
-    read(p, sizeof(ret));
-    swapByteOrder(p, 2);
-    return ret;
-}
-
-int32_t BinaryMemory::read32() {
-    assert(offset >= 0);
-    int32_t ret;
-    char* p = reinterpret_cast<char*>(&ret);
-    read(p, sizeof(ret));
-    swapByteOrder(p, 4);
-    return ret;
-}
-
-int64_t BinaryMemory::read64() {
-    assert(offset >= 0);
-    assert(offset >= 0);
-    int64_t ret;
-    char* p = reinterpret_cast<char*>(&ret);
-    read(p, sizeof(ret));
-    swapByteOrder(p, 8);
-    return ret;
 }
 

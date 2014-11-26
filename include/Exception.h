@@ -14,8 +14,7 @@
 
 class Exception : std::runtime_error {
   public:
-    Exception(const char* what);
-    Exception(const std::string& what);
+    Exception(std::string what);
 
     static std::string getLastException();
 

@@ -36,6 +36,8 @@ class LoaderTR2 : public Loader {
     void loadSoundMap();
     void loadSoundDetails();
     void loadSampleIndices();
+
+    void loadExternalSoundFile(std::string f);
 };
 
 #endif

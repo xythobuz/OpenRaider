@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141126 ]
+    * Reduced code duplication for BinaryFile/BinaryMemory
+    * LoaderTR2 tries to load an external SFX file
+
     [ 20141124 ]
     * LoaderTR2 is starting to populate Room structures
     * Added BinaryMemory reader
