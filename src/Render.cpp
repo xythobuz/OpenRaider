@@ -30,6 +30,7 @@ Render::Render() {
     mFlags = (fRoomAlpha | fEntityModels | fRenderPonytail);
 
     debugTexture = -1;
+    debugTextile = -1;
     debugTextureStorage = TextureManager::TextureStorage::GAME;
     debugX = 0.0f;
     debugY = 0.0f;
@@ -337,6 +338,10 @@ void Render::display() {
             getWindow().glEnter2D();
             drawTexture(debugX, debugY, debugW, debugH, debugTexture, debugTextureStorage);
             getWindow().glExit2D();
+        } else if (debugTextile >= 0) {
+            getWindow().glEnter2D();
+            drawTextile(debugX, debugY, debugW, debugH, debugTextile);
+            getWindow().glExit2D();
         }
     }
 
@@ -354,6 +359,8 @@ void Render::drawLoadScreen() {
 
     if (debugTexture >= 0)
         drawTexture(debugX, debugY, debugW, debugH, debugTexture, debugTextureStorage);
+    else if (debugTextile >= 0)
+        drawTextile(debugX, debugY, debugW, debugH, debugTextile);
 
     getWindow().glExit2D();
 
@@ -486,6 +493,7 @@ void Render::debugDisplayTexture(int texture, TextureManager::TextureStorage s,
     debugY = y;
     debugW = w;
     debugH = h;
+    debugTextile = -1;
 }
 
 void Render::drawTexture(float x, float y, float w, float h,
@@ -509,6 +517,29 @@ void Render::drawTexture(float x, float y, float w, float h,
     glTexCoord2f(0.0, 0.0);
     glVertex3f(x, y, z);
     glEnd();
+
+    if (mFlags & Render::fGL_Lights)
+        glEnable(GL_LIGHTING);
+}
+
+void Render::debugDisplayTextile(int texture, float x, float y, float w, float h) {
+    debugTextile = texture;
+    debugX = x;
+    debugY = y;
+    debugW = w;
+    debugH = h;
+    debugTexture = -1;
+}
+
+void Render::drawTextile(float x, float y, float w, float h, unsigned int textile) {
+    float z = 0.0f;
+
+    glColor3ubv(WHITE);
+
+    if (mFlags & Render::fGL_Lights)
+        glDisable(GL_LIGHTING);
+
+    getTextureManager().getTile(textile).displayRectangle(x, y, w, h, z);
 
     if (mFlags & Render::fGL_Lights)
         glEnable(GL_LIGHTING);

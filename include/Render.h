@@ -120,10 +120,15 @@ class Render {
             TextureManager::TextureStorage s = TextureManager::TextureStorage::GAME,
             float x = 0.0f, float y = 0.0f, float w = 256.0f, float h = 256.0f);
 
+    void debugDisplayTextile(int texture = -1,
+            float x = 0.0f, float y = 0.0f, float w = 64.0f, float h = 64.0f);
+
   private:
 
     void drawTexture(float x, float y, float w, float h,
             unsigned int texture, TextureManager::TextureStorage s);
+
+    void drawTextile(float x, float y, float w, float h, unsigned int textile);
 
     static void lightRoom(Room& room);
 
@@ -165,7 +170,7 @@ class Render {
     int mSkyMesh;                         //!< Skymesh model id
     bool mSkyMeshRotation;                //!< Should Skymesh be rotated?
 
-    int debugTexture;
+    int debugTexture, debugTextile;
     TextureManager::TextureStorage debugTextureStorage;
     float debugX, debugY, debugW, debugH;
 };

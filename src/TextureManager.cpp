@@ -24,12 +24,52 @@
 #include "utils/png.h"
 #endif
 
-std::vector<unsigned int>& TextureManager::getIds(TextureStorage s) {
-    if (s == TextureStorage::GAME)
-        return mTextureIdsGame;
-    else
-        return mTextureIdsSystem;
+TextureTileVertex::TextureTileVertex(uint8_t xc, uint8_t xp, uint8_t yc, uint8_t yp)
+        : xCoordinate(xc), xPixel(xp), yCoordinate(yc), yPixel(yp) { }
+
+// ----------------------------------------------------------------------------
+
+TextureTile::~TextureTile() {
+    while (!vertices.empty()) {
+        delete vertices.at(vertices.size() - 1);
+        vertices.pop_back();
+    }
 }
+
+void TextureTile::add(TextureTileVertex* t) {
+    vertices.push_back(t);
+}
+
+void TextureTile::displayRectangle(float x, float y, float w, float h, float z) {
+    assert(vertices.size() == 4);
+
+    getTextureManager().bindTextureId(texture);
+    //glBegin(GL_TRIANGLE_STRIP);
+    glBegin(GL_QUADS);
+
+    for (int i = 0; i < 4; i++) {
+        glTexCoord2f(vertices.at(i)->xPixel / 256.0f,
+                vertices.at(i)->yPixel / 256.0f);
+
+        if (vertices.at(i)->xCoordinate == 255) {
+            if (vertices.at(i)->yCoordinate == 255) {
+                glVertex3f(x + w, y + h, z);
+            } else {
+                glVertex3f(x + w, y, z);
+            }
+        } else {
+            if (vertices.at(i)->yCoordinate == 255) {
+                glVertex3f(x, y + h, z);
+            } else {
+                glVertex3f(x, y, z);
+            }
+        }
+    }
+
+    glEnd();
+}
+
+// ----------------------------------------------------------------------------
 
 TextureManager::~TextureManager() {
     while (mTextureIdsSystem.size() > 0) {
@@ -43,6 +83,32 @@ TextureManager::~TextureManager() {
         glDeleteTextures(1, &id);
         mTextureIdsGame.pop_back();
     }
+
+    while (!tiles.empty()) {
+        delete tiles.at(tiles.size() - 1);
+        tiles.pop_back();
+    }
+}
+
+void TextureManager::addTile(TextureTile* t) {
+    tiles.push_back(t);
+}
+
+int TextureManager::numTiles() {
+    return tiles.size();
+}
+
+TextureTile& TextureManager::getTile(int index) {
+    assert(index >= 0);
+    assert(index < tiles.size());
+    return *tiles.at(index);
+}
+
+std::vector<unsigned int>& TextureManager::getIds(TextureStorage s) {
+    if (s == TextureStorage::GAME)
+        return mTextureIdsGame;
+    else
+        return mTextureIdsSystem;
 }
 
 int TextureManager::initialize() {

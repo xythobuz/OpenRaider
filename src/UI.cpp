@@ -189,32 +189,51 @@ void UI::display() {
             ImGui::Text("Uptime: %lums", systemTimerGet());
         }
 
-        if (ImGui::CollapsingHeader("GL Textures")) {
+        static bool visibleTex = false;
+        static bool visibleTile = false;
+        if (ImGui::CollapsingHeader("Textures")) {
             static bool game = getGame().isLoaded();
             static int index = 0;
-            static bool visible = false;
             ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
-            ImGui::SliderInt("", &index, 0, getTextureManager().numTextures(
+            ImGui::SliderInt("##texslide", &index, 0, getTextureManager().numTextures(
                         game ? TextureManager::TextureStorage::GAME
                         : TextureManager::TextureStorage::SYSTEM) - 1);
             ImGui::PopItemWidth();
             ImGui::SameLine();
-            if (ImGui::Checkbox("Game", &game)) {
-                if (game && (getTextureManager().numTextures(
-                        game ? TextureManager::TextureStorage::GAME
-                        : TextureManager::TextureStorage::SYSTEM) <= 0))
-                    game = false;
+            if (ImGui::Button("+##texplus")) {
+                if (index < (getTextureManager().numTextures(
+                                game ? TextureManager::TextureStorage::GAME
+                                : TextureManager::TextureStorage::SYSTEM) - 1))
+                    index++;
+                else
+                    index = 0;
             }
             ImGui::SameLine();
-            if (ImGui::Button("Show")) {
-                visible = true;
+            if (ImGui::Button("-##texminus")) {
+                if (index > 0)
+                    index--;
+                else
+                    index = getTextureManager().numTextures(
+                                game ? TextureManager::TextureStorage::GAME
+                                : TextureManager::TextureStorage::SYSTEM) - 1;
             }
             ImGui::SameLine();
-            if (ImGui::Button("Clear")) {
+            if ((getTextureManager().numTextures() > 0)) {
+                ImGui::Checkbox("Game##texgame", &game);
+            } else {
+                game = false;
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Show##texshow")) {
+                visibleTex = true;
+                visibleTile = false;
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Clear##texclear")) {
                 getRender().debugDisplayTexture();
-                visible = false;
+                visibleTex = false;
             }
-            if (visible) {
+            if (visibleTex) {
                 getRender().debugDisplayTexture(index,
                         game ? TextureManager::TextureStorage::GAME
                         : TextureManager::TextureStorage::SYSTEM,
@@ -224,9 +243,52 @@ void UI::display() {
             }
         }
 
+        if (ImGui::CollapsingHeader("Textiles")) {
+            if (getTextureManager().numTiles() > 0) {
+                static int index = 0;
+                ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
+                ImGui::SliderInt("##tileslide", &index, 0, getTextureManager().numTiles() - 1);
+                ImGui::PopItemWidth();
+                ImGui::SameLine();
+                if (ImGui::Button("+##tileplus")) {
+                    if (index < (getTextureManager().numTiles() - 1))
+                        index++;
+                    else
+                        index = 0;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("-##tileminus")) {
+                    if (index > 0)
+                        index--;
+                    else
+                        index = getTextureManager().numTiles() - 1;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Show##tileshow")) {
+                    visibleTile = true;
+                    visibleTex = false;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Clear##tileclear")) {
+                    getRender().debugDisplayTextile();
+                    visibleTile = false;
+                }
+                if (visibleTile) {
+                    getRender().debugDisplayTextile(index,
+                            ImGui::GetWindowPos().x - (ImGui::GetWindowWidth() / 2),
+                            ImGui::GetWindowPos().y,
+                            (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
+                }
+            } else {
+                ImGui::Text("Please load a level!");
+            }
+        }
+
+        /*
         if (ImGui::CollapsingHeader("UI Help")) {
             ImGui::ShowUserGuide();
         }
+        */
     }
     ImGui::End();
 

@@ -9,11 +9,35 @@
 #ifndef _TEXTURE_MANAGER_H
 #define _TEXTURE_MANAGER_H
 
+#include <cstdint>
 #include <vector>
 
 // These are loaded into TextureStorage::SYSTEM by initialize()!
 #define TEXTURE_WHITE 0
 #define TEXTURE_SPLASH 1
+
+class TextureTileVertex {
+  public:
+    TextureTileVertex(uint8_t xc, uint8_t xp, uint8_t yc, uint8_t yp);
+
+    uint8_t xCoordinate, xPixel;
+    uint8_t yCoordinate, yPixel;
+};
+
+class TextureTile {
+  public:
+    TextureTile(uint16_t a, uint16_t t) : attribute(a), texture(t) { }
+    ~TextureTile();
+
+    void add(TextureTileVertex* t);
+
+    void displayRectangle(float x, float y, float w, float h, float z);
+
+  private:
+    uint16_t attribute;
+    uint16_t texture;
+    std::vector<TextureTileVertex*> vertices;
+};
 
 /*!
  * \brief Texture registry
@@ -59,6 +83,10 @@ class TextureManager {
 
     int loadImage(const char* filename, TextureStorage s = TextureStorage::GAME, int slot = -1);
 
+    void addTile(TextureTile* t);
+    int numTiles();
+    TextureTile& getTile(int index);
+
   private:
     std::vector<unsigned int>& getIds(TextureStorage s);
 
@@ -68,6 +96,8 @@ class TextureManager {
 
     std::vector<unsigned int> mTextureIdsGame;
     std::vector<unsigned int> mTextureIdsSystem;
+
+    std::vector<TextureTile*> tiles;
 };
 
 TextureManager& getTextureManager();

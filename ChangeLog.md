@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141127 ]
+    * Started work on loading the object texture mapping, with debug UI
+
     [ 20141126 ]
     * Reduced code duplication for BinaryFile/BinaryMemory
     * LoaderTR2 tries to load an external SFX file

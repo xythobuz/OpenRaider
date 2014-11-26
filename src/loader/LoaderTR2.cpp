@@ -452,30 +452,27 @@ void LoaderTR2::loadTextures() {
         // Index into the textile list
         uint16_t tile = file.readU16();
 
+        TextureTile* t = new TextureTile(attribute, tile);
+
         // The four corner vertices of the texture
         // The Pixel values are the actual coordinates of the vertexs pixel
         // The Coordinate values depend on where the other vertices are in
         // the object texture. And if the object texture is used to specify
         // a triangle, then the fourth vertexs values will all be zero
         // Coordinate is 1 if Pixel is the low val, 255 if high val in object texture
-        uint8_t xCoordinate1 = file.readU8();
-        uint8_t xPixel1 = file.readU8();
-        uint8_t yCoordinate1 = file.readU8();
-        uint8_t yPixel1 = file.readU8();
-        uint8_t xCoordinate2 = file.readU8();
-        uint8_t xPixel2 = file.readU8();
-        uint8_t yCoordinate2 = file.readU8();
-        uint8_t yPixel2 = file.readU8();
-        uint8_t xCoordinate3 = file.readU8();
-        uint8_t xPixel3 = file.readU8();
-        uint8_t yCoordinate3 = file.readU8();
-        uint8_t yPixel3 = file.readU8();
-        uint8_t xCoordinate4 = file.readU8();
-        uint8_t xPixel4 = file.readU8();
-        uint8_t yCoordinate4 = file.readU8();
-        uint8_t yPixel4 = file.readU8();
+        for (int i = 0; i < 4; i++) {
+            uint8_t xCoordinate = file.readU8();
+            uint8_t xPixel = file.readU8();
+            uint8_t yCoordinate = file.readU8();
+            uint8_t yPixel = file.readU8();
 
-        // TODO store object textures somewhere
+            assert((xCoordinate != 1) || (xCoordinate != 255));
+            assert((yCoordinate != 1) || (yCoordinate != 255));
+
+            t->add(new TextureTileVertex(xCoordinate, xPixel, yCoordinate, yPixel));
+        }
+
+        getTextureManager().addTile(t);
     }
 }
 
