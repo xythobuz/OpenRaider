@@ -73,20 +73,16 @@ int Game::loadLevel(const char* level) {
     auto loader = Loader::createLoader(level);
     if (loader) {
         // First Loader test
+        getLog() << "Trying to load using new loader..." << Log::endl;
         error = loader->load(level);
-        if (error == 0) {
-            getLog() << "Tried new Loader (0)..." << Log::endl;
-        } else {
+        if (error != 0) {
             getLog() << "Error while trying new loader (" << error << ")..." << Log::endl;
+            destroy();
         }
     }
 
     if ((!loader) || (error != 0)) {
-        // Clean-Up between new & old loader
-        if (error != 0)
-            destroy();
-
-        // Old TombRaider level loader
+        getLog() << "Falling back to old level loader..." << Log::endl;
         error = mTombRaider.Load(levelName.c_str());
         if (error != 0)
             return error;
@@ -99,7 +95,9 @@ int Game::loadLevel(const char* level) {
             tmp += "MAIN.SFX";
             error = mTombRaider.loadSFX(tmp.c_str());
             if (error != 0)
-                getLog() << "Could not load " << tmp << Log::endl;
+                getLog() << "Could not load SFX " << tmp << Log::endl;
+            else
+                getLog() << "Loaded external SFX file!" << Log::endl;
         }
 
         // Process data

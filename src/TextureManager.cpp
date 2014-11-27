@@ -40,14 +40,75 @@ void TextureTile::add(TextureTileVertex* t) {
     vertices.push_back(t);
 }
 
-void TextureTile::displayRectangle(float x, float y, float w, float h, float z) {
-    assert(vertices.size() == 4);
+bool TextureTile::isTriangle() {
+    assert(vertices.size() >= 3);
 
+    if (vertices.size() == 3)
+        return true;
+
+    return ((vertices.at(3)->xPixel == 0)
+            & (vertices.at(3)->xCoordinate == 0)
+            & (vertices.at(3)->yPixel == 0)
+            & (vertices.at(3)->yCoordinate == 0));
+}
+
+void TextureTile::display(float x, float y, float w, float h, float z) {
     getTextureManager().bindTextureId(texture);
-    //glBegin(GL_TRIANGLE_STRIP);
-    glBegin(GL_QUADS);
 
+    //! \fixme TR Rosetta Stone says this, but looks strange?
+    /*
+    if (attribute == 0) {
+        // Ignore transparency
+        glDisable(GL_BLEND);
+    }
+    */
+
+    if (isTriangle())
+        displayTriangle(x, y, w, h, z);
+    else
+        displayRectangle(x, y, w, h, z);
+
+    /*
+    if (attribute == 0) {
+        glEnable(GL_BLEND);
+    }
+    */
+}
+
+void TextureTile::displayRectangle(float x, float y, float w, float h, float z) {
+    float xmin = 256.0f, xmax = 0.0f;
+    float ymin = 256.0f, ymax = 0.0f;
     for (int i = 0; i < 4; i++) {
+        if (vertices.at(i)->xCoordinate == 255) {
+            if (vertices.at(i)->xPixel > xmax)
+                xmax = vertices.at(i)->xPixel;
+        } else {
+            if (vertices.at(i)->xPixel < xmin)
+                xmin = vertices.at(i)->xPixel;
+        }
+
+        if (vertices.at(i)->yCoordinate == 255) {
+            ymax = vertices.at(i)->yPixel;
+        } else {
+            ymin = vertices.at(i)->yPixel;
+        }
+    }
+
+    glBegin(GL_QUADS);
+    glTexCoord2f(xmin / 256.0f, ymin / 256.0f);
+    glVertex3f(x, y, z);
+    glTexCoord2f(xmax / 256.0f, ymin / 256.0f);
+    glVertex3f(x + w, y, z);
+    glTexCoord2f(xmax / 256.0f, ymax / 256.0f);
+    glVertex3f(x + w, y + h, z);
+    glTexCoord2f(xmin / 256.0f, ymax / 256.0f);
+    glVertex3f(x, y + h, z);
+    glEnd();
+}
+
+void TextureTile::displayTriangle(float x, float y, float w, float h, float z) {
+    glBegin(GL_TRIANGLE_STRIP);
+    for (int i = 0; i < 3; i++) {
         glTexCoord2f(vertices.at(i)->xPixel / 256.0f,
                 vertices.at(i)->yPixel / 256.0f);
 
@@ -65,7 +126,6 @@ void TextureTile::displayRectangle(float x, float y, float w, float h, float z) 
             }
         }
     }
-
     glEnd();
 }
 

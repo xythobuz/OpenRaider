@@ -539,7 +539,7 @@ void Render::drawTextile(float x, float y, float w, float h, unsigned int textil
     if (mFlags & Render::fGL_Lights)
         glDisable(GL_LIGHTING);
 
-    getTextureManager().getTile(textile).displayRectangle(x, y, w, h, z);
+    getTextureManager().getTile(textile).display(x, y, w, h, z);
 
     if (mFlags & Render::fGL_Lights)
         glEnable(GL_LIGHTING);

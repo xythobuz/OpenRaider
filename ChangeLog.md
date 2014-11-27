@@ -4,6 +4,7 @@
 
     [ 20141127 ]
     * Started work on loading the object texture mapping, with debug UI
+    * Textiles debug UI also draws triangles “properly”
 
     [ 20141126 ]
     * Reduced code duplication for BinaryFile/BinaryMemory

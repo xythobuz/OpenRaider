@@ -200,7 +200,7 @@ void UI::display() {
                         : TextureManager::TextureStorage::SYSTEM) - 1);
             ImGui::PopItemWidth();
             ImGui::SameLine();
-            if (ImGui::Button("+##texplus")) {
+            if (ImGui::Button("+##texplus", ImVec2(0, 0), true)) {
                 if (index < (getTextureManager().numTextures(
                                 game ? TextureManager::TextureStorage::GAME
                                 : TextureManager::TextureStorage::SYSTEM) - 1))
@@ -209,7 +209,7 @@ void UI::display() {
                     index = 0;
             }
             ImGui::SameLine();
-            if (ImGui::Button("-##texminus")) {
+            if (ImGui::Button("-##texminus", ImVec2(0, 0), true)) {
                 if (index > 0)
                     index--;
                 else
@@ -250,14 +250,14 @@ void UI::display() {
                 ImGui::SliderInt("##tileslide", &index, 0, getTextureManager().numTiles() - 1);
                 ImGui::PopItemWidth();
                 ImGui::SameLine();
-                if (ImGui::Button("+##tileplus")) {
+                if (ImGui::Button("+##tileplus", ImVec2(0, 0), true)) {
                     if (index < (getTextureManager().numTiles() - 1))
                         index++;
                     else
                         index = 0;
                 }
                 ImGui::SameLine();
-                if (ImGui::Button("-##tileminus")) {
+                if (ImGui::Button("-##tileminus", ImVec2(0, 0), true)) {
                     if (index > 0)
                         index--;
                     else
@@ -272,6 +272,9 @@ void UI::display() {
                 if (ImGui::Button("Clear##tileclear")) {
                     getRender().debugDisplayTextile();
                     visibleTile = false;
+                }
+                if (visibleTile && (index < getTextureManager().numTiles())) {
+                    ImGui::Text(getTextureManager().getTile(index).isTriangle() ? "Triangle" : "Rectangle");
                 }
                 if (visibleTile) {
                     getRender().debugDisplayTextile(index,

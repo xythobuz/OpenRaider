@@ -30,10 +30,13 @@ class TextureTile {
     ~TextureTile();
 
     void add(TextureTileVertex* t);
-
-    void displayRectangle(float x, float y, float w, float h, float z);
+    bool isTriangle();
+    void display(float x, float y, float w, float h, float z);
 
   private:
+    void displayTriangle(float x, float y, float w, float h, float z);
+    void displayRectangle(float x, float y, float w, float h, float z);
+
     uint16_t attribute;
     uint16_t texture;
     std::vector<TextureTileVertex*> vertices;
