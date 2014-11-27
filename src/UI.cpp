@@ -14,6 +14,7 @@
 #include "Menu.h"
 #include "Render.h"
 #include "RunTime.h"
+#include "Sound.h"
 #include "TextureManager.h"
 #include "Window.h"
 #include "commands/Command.h"
@@ -284,6 +285,40 @@ void UI::display() {
                 }
             } else {
                 ImGui::Text("Please load a level!");
+            }
+        }
+
+        if (ImGui::CollapsingHeader("SoundSamples")) {
+            if (!getSound().getEnabled()) {
+                ImGui::Text("Please enable Sound before loading a level!");
+                if (ImGui::Button("Enable Sound!")) {
+                    getSound().setEnabled(true);
+                }
+            } else if (getSound().registeredSources() == 0) {
+                ImGui::Text("Please load a level!");
+            } else {
+                static int index = 0;
+                ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
+                ImGui::SliderInt("##soundslide", &index, 0, getSound().registeredSources() - 1);
+                ImGui::PopItemWidth();
+                ImGui::SameLine();
+                if (ImGui::Button("+##soundplus", ImVec2(0, 0), true)) {
+                    if (index < (getSound().registeredSources() - 1))
+                        index++;
+                    else
+                        index = 0;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("-##soundminus", ImVec2(0, 0), true)) {
+                    if (index > 0)
+                        index--;
+                    else
+                        index = getSound().registeredSources() - 1;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Play##soundplay")) {
+                    getSound().play(index);
+                }
             }
         }
 

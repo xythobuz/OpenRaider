@@ -56,6 +56,8 @@ int SoundAL::initialize() {
 
 void SoundAL::setEnabled(bool on) {
     mEnabled = on;
+    if (on && (!mInit))
+        initialize();
 }
 
 void SoundAL::setVolume(float vol) {

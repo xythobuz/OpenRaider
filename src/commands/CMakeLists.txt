@@ -7,7 +7,6 @@ set (CMD_SRCS ${CMD_SRCS} "CommandGame.cpp")
 set (CMD_SRCS ${CMD_SRCS} "CommandMove.cpp")
 set (CMD_SRCS ${CMD_SRCS} "CommandRender.cpp")
 set (CMD_SRCS ${CMD_SRCS} "CommandSet.cpp")
-set (CMD_SRCS ${CMD_SRCS} "CommandSound.cpp")
 
 # Add library
 add_library (OpenRaider_commands OBJECT ${CMD_SRCS})

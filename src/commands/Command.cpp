@@ -19,7 +19,6 @@
 #include "commands/CommandMove.h"
 #include "commands/CommandRender.h"
 #include "commands/CommandSet.h"
-#include "commands/CommandSound.h"
 
 std::vector<std::shared_ptr<Command>> Command::commands;
 
@@ -41,7 +40,6 @@ void Command::fillCommandList() {
     commands.push_back(std::shared_ptr<Command>(new CommandMove()));
     commands.push_back(std::shared_ptr<Command>(new CommandMode()));
     commands.push_back(std::shared_ptr<Command>(new CommandRenderflag()));
-    commands.push_back(std::shared_ptr<Command>(new CommandSound()));
     commands.push_back(std::shared_ptr<Command>(new CommandPos()));
     commands.push_back(std::shared_ptr<Command>(new CommandViewmodel()));
     commands.push_back(std::shared_ptr<Command>(new CommandPigtail()));

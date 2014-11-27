@@ -13,6 +13,7 @@
 #include "Log.h"
 #include "Mesh.h"
 #include "Room.h"
+#include "Sound.h"
 #include "TextureManager.h"
 #include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
@@ -687,8 +688,7 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
     }
 
     int riffCount = 0;
-    bool done = false;
-    while (!done) {
+    while (!sfx.eof()) {
         char test[5];
         test[4] = '\0';
         for (int i = 0; i < 4; i++)
@@ -700,27 +700,22 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
             return;
         }
 
+        // riffSize is (fileLength - 8)
         uint32_t riffSize = sfx.readU32();
 
-        for (int i = 0; i < 4; i++)
-            test[i] = sfx.read8();
+        unsigned char buff[riffSize + 8];
+        sfx.seek(sfx.tell() - 8);
+        for (int i = 0; i < (riffSize + 8); i++)
+            buff[i] = sfx.readU8();
 
-        if (std::string("WAVE") != std::string(test)) {
-            getLog() << "LoaderTR2: External SFX invalid! (" << riffCount
-                << ", \"" << test << "\" != \"WAVE\")" << Log::endl;
-            return;
-        }
+        unsigned long src;
+        int ret = getSound().addWave(buff, riffSize + 8, &src, 0);
+        assert(ret >= 0);
 
-        // TODO load riff somehow somewhere
-
-        // riffSize is (fileLength - 8)
-        sfx.seek(sfx.tell() + riffSize - 4);
         riffCount++;
-
-        if (sfx.eof()) {
-            done = true;
-            getLog() << "LoaderTR2: Found " << riffCount << " SoundSamples" << Log::endl;
-        }
     }
+
+    if (riffCount > 0)
+        getLog() << "LoaderTR2: Found " << riffCount << " SoundSamples" << Log::endl;
 }
 

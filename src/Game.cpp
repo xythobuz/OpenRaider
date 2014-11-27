@@ -50,7 +50,7 @@ void Game::display() {
 void Game::destroy() {
     mLoaded = false;
     mLara = -1;
-    getRender().setMode(Render::modeDisabled);
+    getRender().setMode(Render::modeLoadScreen);
 
     getWorld().destroy();
     getRender().ClearWorld();
@@ -62,8 +62,7 @@ bool Game::isLoaded() {
 }
 
 int Game::loadLevel(const char* level) {
-    if (mLoaded)
-        destroy();
+    destroy();
 
     levelName = level;
 
