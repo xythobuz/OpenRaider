@@ -233,15 +233,9 @@ void renderFrame() {
     getMenu().display();
     UI::display();
 
-    const static unsigned long fpsUpdate = 250;
-    static unsigned long frameCount = 0;
-    static unsigned long lastTime = 0;
-    static unsigned long frameTimeSum = 0;
-    static unsigned long fps = 0;
-
-    if (getRunTime().getFPS()) {
+    if (getRunTime().getShowFPS()) {
         std::ostringstream s;
-        s << fps << "FPS";
+        s << getRunTime().getFPS() << "FPS";
         getWindow().glEnter2D();
         Font::drawText(10, getWindow().getHeight() - 25, 0.6f, BLUE, s.str());
         getWindow().glExit2D();
@@ -249,13 +243,7 @@ void renderFrame() {
 
     getWindow().swapBuffersGL();
 
-    frameCount++;
-    frameTimeSum += (systemTimerGet() - lastTime);
-    if (frameTimeSum >= fpsUpdate) {
-        fps = frameCount * (1000 / frameTimeSum);
-        frameCount = frameTimeSum = 0;
-    }
-    lastTime = systemTimerGet();
+    getRunTime().updateFPS();
 }
 
 #endif // UNIT_TEST

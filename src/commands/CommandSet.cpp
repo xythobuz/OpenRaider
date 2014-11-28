@@ -117,7 +117,7 @@ int CommandSet::execute(std::istream& args) {
             getLog() << "set-fps-Error: Invalid value" << Log::endl;
             return -8;
         }
-        getRunTime().setFPS(fps);
+        getRunTime().setShowFPS(fps);
     } else if (var.compare("basedir") == 0) {
         std::string temp;
         args >> temp;
@@ -191,7 +191,7 @@ int CommandGet::execute(std::istream& args) {
     } else if (var.compare("mouse_y") == 0) {
         getLog() << OR_RAD_TO_DEG(getCamera().getSensitivityY()) << Log::endl;
     } else if (var.compare("fps") == 0) {
-        getLog() << getRunTime().getFPS() << Log::endl;
+        getLog() << getRunTime().getShowFPS() << Log::endl;
     } else if (var.compare("basedir") == 0) {
         getLog() << getRunTime().getBaseDir() << Log::endl;
     } else if (var.compare("pakdir") == 0) {

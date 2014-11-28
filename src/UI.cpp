@@ -186,13 +186,30 @@ void UI::display() {
     Console::display();
 
     if (ImGui::Begin("Engine")) {
-        if (ImGui::CollapsingHeader("Info", NULL, true, true)) {
+        if (ImGui::CollapsingHeader("RunTime Info")) {
             ImGui::Text("Uptime: %lums", systemTimerGet());
+            ImGui::Text("Frames per Second: %luFPS", getRunTime().getFPS());
+            if (getRunTime().getHistoryFPS().size() > 1) {
+                static bool scroll = true;
+                if (scroll) {
+                    int offset = getRunTime().getHistoryFPS().size() - 1;
+                    if (offset > 15)
+                        offset = 15;
+                    ImGui::PlotLines("FPS", &getRunTime().getHistoryFPS()[1],
+                            getRunTime().getHistoryFPS().size() - 1,
+                            getRunTime().getHistoryFPS().size() - offset - 1);
+                } else {
+                    ImGui::PlotLines("FPS", &getRunTime().getHistoryFPS()[1],
+                            getRunTime().getHistoryFPS().size() - 1);
+                }
+                ImGui::SameLine();
+                ImGui::Checkbox("Scroll##fpsscroll", &scroll);
+            }
         }
 
         static bool visibleTex = false;
         static bool visibleTile = false;
-        if (ImGui::CollapsingHeader("Textures")) {
+        if (ImGui::CollapsingHeader("Texture Viewer")) {
             static bool game = getGame().isLoaded();
             static int index = 0;
             ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
@@ -244,7 +261,7 @@ void UI::display() {
             }
         }
 
-        if (ImGui::CollapsingHeader("Textiles")) {
+        if (ImGui::CollapsingHeader("Textile Viewer")) {
             if (getTextureManager().numTiles() > 0) {
                 static int index = 0;
                 ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
@@ -288,7 +305,7 @@ void UI::display() {
             }
         }
 
-        if (ImGui::CollapsingHeader("SoundSamples")) {
+        if (ImGui::CollapsingHeader("SoundSample Player")) {
             if (!getSound().getEnabled()) {
                 ImGui::Text("Please enable Sound before loading a level!");
                 if (ImGui::Button("Enable Sound!")) {

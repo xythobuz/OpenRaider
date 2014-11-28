@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141128 ]
+    * Added FPS Histogram Debug UI
+
     [ 20141127 ]
     * Started work on loading the object texture mapping, with debug UI
     * Textiles debug UI also draws triangles “properly”

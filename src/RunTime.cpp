@@ -7,6 +7,7 @@
 
 #include "global.h"
 #include "utils/strings.h"
+#include "utils/time.h"
 #include "RunTime.h"
 
 RunTime::RunTime()
@@ -33,6 +34,13 @@ RunTime::RunTime()
     keyBindings[backwardAction] = sKey;
     keyBindings[leftAction] = aKey;
     keyBindings[rightAction] = dKey;
+
+    lastTime = 0;
+    frameCount = 0;
+    frameCount2 = 0;
+    frameTimeSum = 0;
+    frameTimeSum2 = 0;
+    fps = 0;
 }
 
 std::string RunTime::getBaseDir() {
@@ -85,11 +93,36 @@ void RunTime::setRunning(bool run) {
     gameIsRunning = run;
 }
 
-bool RunTime::getFPS() {
+bool RunTime::getShowFPS() {
     return showFPS;
 }
 
-void RunTime::setFPS(bool fps) {
+void RunTime::setShowFPS(bool fps) {
     showFPS = fps;
+}
+
+void RunTime::updateFPS() {
+    frameCount++;
+    frameTimeSum += (systemTimerGet() - lastTime);
+    frameTimeSum2 += (systemTimerGet() - lastTime);
+    lastTime = systemTimerGet();
+    if (frameTimeSum >= 200) {
+        fps = frameCount * (1000 / frameTimeSum);
+        frameCount = frameTimeSum = 0;
+    }
+
+    if (frameTimeSum2 >= 1000) {
+        history.push_back(frameCount2);
+        frameCount2 = frameTimeSum2 = 0;
+    }
+    frameCount2++;
+}
+
+unsigned long RunTime::getFPS() {
+    return fps;
+}
+
+const std::vector<float>& RunTime::getHistoryFPS() {
+    return history;
 }
 

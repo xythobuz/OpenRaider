@@ -9,6 +9,7 @@
 #define _RUNTIME_H_
 
 #include <string>
+#include <vector>
 
 /*!
  * \brief Main Game Singleton
@@ -33,8 +34,12 @@ class RunTime {
     bool isRunning();
     void setRunning(bool run);
 
-    bool getFPS();
-    void setFPS(bool fps);
+    bool getShowFPS();
+    void setShowFPS(bool fps);
+
+    void updateFPS();
+    unsigned long getFPS();
+    const std::vector<float>& getHistoryFPS();
 
   private:
     std::string baseDir;
@@ -45,6 +50,12 @@ class RunTime {
     KeyboardButton keyBindings[ActionEventCount];
     bool gameIsRunning;
     bool showFPS;
+
+    unsigned long lastTime;
+    unsigned long frameCount, frameCount2;
+    unsigned long frameTimeSum, frameTimeSum2;
+    unsigned long fps;
+    std::vector<float> history;
 };
 
 RunTime& getRunTime();
