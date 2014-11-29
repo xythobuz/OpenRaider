@@ -164,6 +164,37 @@ TextureTile& TextureManager::getTile(int index) {
     return *tiles.at(index);
 }
 
+void TextureManager::addAnimatedTile(int index, int tile) {
+    while (index >= animations.size())
+        animations.push_back(std::vector<int>());
+
+    animations.at(index).push_back(tile);
+}
+
+int TextureManager::numAnimatedTiles() {
+    return animations.size();
+}
+
+int TextureManager::getFirstTileAnimation(int index) {
+    assert(index < animations.size());
+    assert(animations.at(index).size() > 0);
+    return animations.at(index).at(0);
+}
+
+int TextureManager::getNextTileAnimation(int tile) {
+    for (int a = 0; a < animations.size(); a++) {
+        for (int i = 0; i < animations.at(a).size(); i++) {
+            if (animations.at(a).at(i) == tile) {
+                if (i < (animations.at(a).size() - 1))
+                    return animations.at(a).at(i + 1);
+                else
+                    return animations.at(a).at(0);
+            }
+        }
+    }
+    return -1;
+}
+
 std::vector<unsigned int>& TextureManager::getIds(TextureStorage s) {
     if (s == TextureStorage::GAME)
         return mTextureIdsGame;

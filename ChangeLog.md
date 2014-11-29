@@ -2,8 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141129 ]
+    * LoaderTR2 now supports loading animated textiles
+
     [ 20141128 ]
     * Added FPS Histogram Debug UI
+    * Added RunTime Settings Debug UI
 
     [ 20141127 ]
     * Started work on loading the object texture mapping, with debug UI

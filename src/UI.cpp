@@ -6,6 +6,7 @@
  */
 
 #include <algorithm>
+#include <cstring>
 
 #include "global.h"
 #include "Console.h"
@@ -186,15 +187,15 @@ void UI::display() {
     Console::display();
 
     if (ImGui::Begin("Engine")) {
-        if (ImGui::CollapsingHeader("RunTime Info")) {
+        if (ImGui::CollapsingHeader("Engine Info")) {
             ImGui::Text("Uptime: %lums", systemTimerGet());
             ImGui::Text("Frames per Second: %luFPS", getRunTime().getFPS());
             if (getRunTime().getHistoryFPS().size() > 1) {
                 static bool scroll = true;
                 if (scroll) {
                     int offset = getRunTime().getHistoryFPS().size() - 1;
-                    if (offset > 15)
-                        offset = 15;
+                    if (offset > 10)
+                        offset = 10;
                     ImGui::PlotLines("FPS", &getRunTime().getHistoryFPS()[1],
                             getRunTime().getHistoryFPS().size() - 1,
                             getRunTime().getHistoryFPS().size() - offset - 1);
@@ -207,8 +208,105 @@ void UI::display() {
             }
         }
 
+        if (ImGui::CollapsingHeader("RunTime Settings")) {
+            bool showFPS = getRunTime().getShowFPS();
+            if (ImGui::Checkbox("Show FPS##runtime", &showFPS)) {
+                getRunTime().setShowFPS(showFPS);
+            }
+            ImGui::SameLine();
+            bool running = getRunTime().isRunning();
+            if (ImGui::Checkbox("Running (!)##runtime", &running)) {
+                getRunTime().setRunning(running);
+            }
+            ImGui::SameLine();
+            bool sound = getSound().getEnabled();
+            if (ImGui::Checkbox("Sound##runtime", &sound)) {
+                getSound().setEnabled(sound);
+            }
+            ImGui::SameLine();
+            bool fullscreen = getWindow().getFullscreen();
+            if (ImGui::Checkbox("Fullscreen##runtime", &fullscreen)) {
+                getWindow().setFullscreen(fullscreen);
+            }
+
+            float vol = getSound().getVolume();
+            if (ImGui::InputFloat("Volume##runtime", &vol, 0.0f, 0.0f, 3, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                if (vol < 0.0f)
+                    vol = 0.0f;
+                if (vol > 1.0f)
+                    vol = 1.0f;
+                getSound().setVolume(vol);
+            }
+
+            int w = getWindow().getWidth();
+            if (ImGui::InputInt("Width##runtime", &w, 10, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                if (w < 1)
+                    w = 1;
+                getWindow().setSize(w, getWindow().getHeight());
+            }
+            int h = getWindow().getHeight();
+            if (ImGui::InputInt("Height##runtime", &h, 10, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                if (h < 1)
+                    h = 1;
+                getWindow().setSize(getWindow().getWidth(), h);
+            }
+
+            static int fr = 0;
+            char buff[1024];
+            strncpy(buff, getRunTime().getBaseDir().c_str(), 1024);
+            if (ImGui::InputText("BaseDir##runtime", buff, 1024, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                getRunTime().setBaseDir(buff);
+                fr = getRunTime().getFPS();
+            }
+            if (fr > 0) {
+                ImGui::SameLine();
+                ImGui::Text("Done!##runtime1");
+                fr--;
+            }
+
+            static int fr2 = 0;
+            char buff2[1024];
+            strncpy(buff2, getRunTime().getPakDir().c_str(), 1024);
+            if (ImGui::InputText("PakDir##runtime", buff2, 1024, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                getRunTime().setPakDir(buff2);
+                fr2 = getRunTime().getFPS();
+            }
+            if (fr2 > 0) {
+                ImGui::SameLine();
+                ImGui::Text("Done!##runtime2");
+                fr2--;
+            }
+
+            static int fr3 = 0;
+            char buff3[1024];
+            strncpy(buff3, getRunTime().getAudioDir().c_str(), 1024);
+            if (ImGui::InputText("AudioDir##runtime", buff3, 1024, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                getRunTime().setAudioDir(buff3);
+                fr3 = getRunTime().getFPS();
+            }
+            if (fr3 > 0) {
+                ImGui::SameLine();
+                ImGui::Text("Done!##runtime3");
+                fr3--;
+            }
+
+            static int fr4 = 0;
+            char buff4[1024];
+            strncpy(buff4, getRunTime().getDataDir().c_str(), 1024);
+            if (ImGui::InputText("DataDir##runtime", buff4, 1024, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                getRunTime().setDataDir(buff4);
+                fr4 = getRunTime().getFPS();
+            }
+            if (fr4 > 0) {
+                ImGui::SameLine();
+                ImGui::Text("Done!##runtime4");
+                fr4--;
+            }
+        }
+
         static bool visibleTex = false;
         static bool visibleTile = false;
+        static bool visibleAnim = false;
         if (ImGui::CollapsingHeader("Texture Viewer")) {
             static bool game = getGame().isLoaded();
             static int index = 0;
@@ -245,6 +343,7 @@ void UI::display() {
             if (ImGui::Button("Show##texshow")) {
                 visibleTex = true;
                 visibleTile = false;
+                visibleAnim = false;
             }
             ImGui::SameLine();
             if (ImGui::Button("Clear##texclear")) {
@@ -285,6 +384,7 @@ void UI::display() {
                 if (ImGui::Button("Show##tileshow")) {
                     visibleTile = true;
                     visibleTex = false;
+                    visibleAnim = false;
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Clear##tileclear")) {
@@ -301,7 +401,62 @@ void UI::display() {
                             (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
                 }
             } else {
-                ImGui::Text("Please load a level!");
+                ImGui::Text("Please load a level using the new loader!");
+            }
+        }
+
+        if (ImGui::CollapsingHeader("Animated Textile Viewer")) {
+            if (getTextureManager().numAnimatedTiles() > 0) {
+                static int index = 0;
+                static int tile = getTextureManager().getFirstTileAnimation(index);
+                ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
+                if (ImGui::SliderInt("##animslide", &index, 0, getTextureManager().numAnimatedTiles() - 1)) {
+                    tile = getTextureManager().getFirstTileAnimation(index);
+                }
+                ImGui::PopItemWidth();
+                ImGui::SameLine();
+                if (ImGui::Button("+##animplus", ImVec2(0, 0), true)) {
+                    if (index < (getTextureManager().numAnimatedTiles() - 1))
+                        index++;
+                    else
+                        index = 0;
+                    tile = getTextureManager().getFirstTileAnimation(index);
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("-##animminus", ImVec2(0, 0), true)) {
+                    if (index > 0)
+                        index--;
+                    else
+                        index = getTextureManager().numAnimatedTiles() - 1;
+                    tile = getTextureManager().getFirstTileAnimation(index);
+                }
+                ImGui::SameLine();
+                static int fr = 0;
+                if (ImGui::Button("Show##animshow")) {
+                    visibleAnim = true;
+                    visibleTex = false;
+                    visibleTile = false;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Clear##animclear")) {
+                    getRender().debugDisplayTextile();
+                    visibleAnim = false;
+                }
+                if (visibleAnim) {
+                    if (fr > 0) {
+                        fr--;
+                    } else {
+                        getRender().debugDisplayTextile(tile,
+                                ImGui::GetWindowPos().x - (ImGui::GetWindowWidth() / 2),
+                                ImGui::GetWindowPos().y,
+                                (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
+                        fr = getRunTime().getFPS() / 2;
+                        tile = getTextureManager().getNextTileAnimation(tile);
+                    }
+                    ImGui::Text("Current Tile: %d", tile);
+                }
+            } else {
+                ImGui::Text("Please load a level with animated textures!");
             }
         }
 
@@ -339,11 +494,9 @@ void UI::display() {
             }
         }
 
-        /*
-        if (ImGui::CollapsingHeader("UI Help")) {
+        if (ImGui::CollapsingHeader("ImGui UI Help")) {
             ImGui::ShowUserGuide();
         }
-        */
     }
     ImGui::End();
 

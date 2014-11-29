@@ -90,6 +90,11 @@ class TextureManager {
     int numTiles();
     TextureTile& getTile(int index);
 
+    void addAnimatedTile(int index, int tile);
+    int numAnimatedTiles();
+    int getFirstTileAnimation(int index);
+    int getNextTileAnimation(int tile);
+
   private:
     std::vector<unsigned int>& getIds(TextureStorage s);
 
@@ -101,6 +106,7 @@ class TextureManager {
     std::vector<unsigned int> mTextureIdsSystem;
 
     std::vector<TextureTile*> tiles;
+    std::vector<std::vector<int>> animations;
 };
 
 TextureManager& getTextureManager();

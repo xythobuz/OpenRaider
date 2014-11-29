@@ -276,6 +276,9 @@ void LoaderTR2::loadFloorData() {
 
         // TODO store floor data somewhere
     }
+
+    if (numFloorData > 0)
+        getLog() << "LoaderTR2: Found " << numFloorData << " words FloorData, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadMeshes() {
@@ -292,7 +295,6 @@ void LoaderTR2::loadMeshes() {
     uint32_t numMeshPointers = file.readU32();
 
     if ((numMeshData == 0) || (numMeshPointers == 0)) {
-        //! \fixme debug level regulating output?
         getLog() << "LoaderTR2: No mesh data found!" << Log::endl;
         return;
     }
@@ -438,6 +440,9 @@ void LoaderTR2::loadStaticMeshes() {
 
         // TODO store static meshes somewhere
     }
+
+    if (numStaticMeshes > 0)
+        getLog() << "LoaderTR2: Found " << numStaticMeshes << " StaticMeshes, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadTextures() {
@@ -515,6 +520,9 @@ void LoaderTR2::loadCameras() {
 
         // TODO store cameras somewhere
     }
+
+    if (numCameras > 0)
+        getLog() << "LoaderTR2: Found " << numCameras << " Cameras, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadSoundSources() {
@@ -533,6 +541,9 @@ void LoaderTR2::loadSoundSources() {
 
         // TODO store sound sources somewhere
     }
+
+    if (numSoundSources > 0)
+        getLog() << "LoaderTR2: Found " << numSoundSources << " SoundSources, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadBoxesOverlapsZones() {
@@ -575,13 +586,31 @@ void LoaderTR2::loadBoxesOverlapsZones() {
 }
 
 void LoaderTR2::loadAnimatedTextures() {
-    uint32_t numAnimatedTextures = file.readU32();
+    uint32_t numWords = file.readU32() - 1;
+    uint16_t numAnimatedTextures = file.readU16();
     std::vector<uint16_t> animatedTextures;
-    for (unsigned int a = 0; a < numAnimatedTextures; a++) {
+    for (unsigned int a = 0; a < numWords; a++) {
         animatedTextures.push_back(file.readU16());
     }
 
-    // TODO store animated textures somewhere. Format?
+    int pos = 0;
+    for (unsigned int a = 0; a < numAnimatedTextures; a++) {
+        int count = animatedTextures.at(pos) + 1;
+        if ((pos + count) >= numWords) {
+            getLog() << "LoaderTR2: Invalid AnimatedTextures ("
+                << pos + count << " >= " << numWords << ")!" << Log::endl;
+            return;
+        }
+
+        for (int i = 0; i < count; i++) {
+            getTextureManager().addAnimatedTile(a, animatedTextures.at(pos + i + 1));
+        }
+
+        pos += count + 1;
+    }
+
+    if (pos != numWords)
+        getLog() << "LoaderTR2: Extra bytes at end of AnimatedTextures?" << Log::endl;
 }
 
 void LoaderTR2::loadItems() {
@@ -605,6 +634,9 @@ void LoaderTR2::loadItems() {
 
         // TODO store items somewhere
     }
+
+    if (numItems > 0)
+        getLog() << "LoaderTR2: Found " << numItems << " Items, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadCinematicFrames() {
@@ -623,7 +655,8 @@ void LoaderTR2::loadCinematicFrames() {
     }
 
     if (numCinematicFrames > 0)
-        getLog() << "LoaderTR2: Found CinematicFrames, not yet implemented!" << Log::endl;
+        getLog() << "LoaderTR2: Found " << numCinematicFrames
+            << " CinematicFrames, not yet implemented!" << Log::endl;
 }
 
 void LoaderTR2::loadDemoData() {
@@ -633,7 +666,7 @@ void LoaderTR2::loadDemoData() {
 
     // TODO store demo data somewhere, find out meaning
     if (numDemoData > 0)
-        getLog() << "LoaderTR2: Found DemoData, not yet implemented!" << Log::endl;
+        getLog() << "LoaderTR2: Found " << numDemoData << " bytes DemoData, not yet implemented!" << Log::endl;
 }
 
 void LoaderTR2::loadSoundMap() {
@@ -661,6 +694,9 @@ void LoaderTR2::loadSoundDetails() {
 
         // TODO store sound details somewhere
     }
+
+    if (numSoundDetails > 0)
+        getLog() << "LoaderTR2: Found " << numSoundDetails << " SoundDetails, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadSampleIndices() {
@@ -671,6 +707,8 @@ void LoaderTR2::loadSampleIndices() {
     }
 
     // TODO store sample indices somewhere
+    if (numSampleIndices > 0)
+        getLog() << "LoaderTR2: Found " << numSampleIndices << " SampleIndices, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadExternalSoundFile(std::string f) {
