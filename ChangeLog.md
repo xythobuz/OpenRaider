@@ -4,6 +4,8 @@
 
     [ 20141129 ]
     * LoaderTR2 now supports loading animated textiles
+    * Clearing textures and textiles before loading a new level
+    * Added SoundManager
 
     [ 20141128 ]
     * Added FPS Histogram Debug UI

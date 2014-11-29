@@ -14,6 +14,7 @@
 #include "Mesh.h"
 #include "Room.h"
 #include "Sound.h"
+#include "SoundManager.h"
 #include "TextureManager.h"
 #include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
@@ -63,6 +64,8 @@ int LoaderTR2::load(std::string f) {
     return 0; // TODO Not finished with implementation!
 }
 
+// ---- Textures ----
+
 void LoaderTR2::loadPaletteTextiles() {
     file.seek(file.tell() + 768); // Skip 8bit palette, 256 * 3 bytes
 
@@ -92,6 +95,73 @@ void LoaderTR2::loadPaletteTextiles() {
         delete [] img;
     }
 }
+
+void LoaderTR2::loadTextures() {
+    uint32_t numObjectTextures = file.readU32();
+    for (unsigned int o = 0; o < numObjectTextures; o++) {
+        // 0 means that a texture is all-opaque, and that transparency
+        // information is ignored.
+        // 1 means that transparency information is used. In 8-bit color,
+        // index 0 is the transparent color, while in 16-bit color, the
+        // top bit (0x8000) is the alpha channel (1 = opaque, 0 = transparent)
+        uint16_t attribute = file.readU16();
+
+        // Index into the textile list
+        uint16_t tile = file.readU16();
+
+        TextureTile* t = new TextureTile(attribute, tile);
+
+        // The four corner vertices of the texture
+        // The Pixel values are the actual coordinates of the vertexs pixel
+        // The Coordinate values depend on where the other vertices are in
+        // the object texture. And if the object texture is used to specify
+        // a triangle, then the fourth vertexs values will all be zero
+        // Coordinate is 1 if Pixel is the low val, 255 if high val in object texture
+        for (int i = 0; i < 4; i++) {
+            uint8_t xCoordinate = file.readU8();
+            uint8_t xPixel = file.readU8();
+            uint8_t yCoordinate = file.readU8();
+            uint8_t yPixel = file.readU8();
+
+            assert((xCoordinate != 1) || (xCoordinate != 255));
+            assert((yCoordinate != 1) || (yCoordinate != 255));
+
+            t->add(new TextureTileVertex(xCoordinate, xPixel, yCoordinate, yPixel));
+        }
+
+        getTextureManager().addTile(t);
+    }
+}
+
+void LoaderTR2::loadAnimatedTextures() {
+    uint32_t numWords = file.readU32() - 1;
+    uint16_t numAnimatedTextures = file.readU16();
+    std::vector<uint16_t> animatedTextures;
+    for (unsigned int a = 0; a < numWords; a++) {
+        animatedTextures.push_back(file.readU16());
+    }
+
+    int pos = 0;
+    for (unsigned int a = 0; a < numAnimatedTextures; a++) {
+        int count = animatedTextures.at(pos) + 1;
+        if ((pos + count) >= numWords) {
+            getLog() << "LoaderTR2: Invalid AnimatedTextures ("
+                << pos + count << " >= " << numWords << ")!" << Log::endl;
+            return;
+        }
+
+        for (int i = 0; i < count; i++) {
+            getTextureManager().addAnimatedTile(a, animatedTextures.at(pos + i + 1));
+        }
+
+        pos += count + 1;
+    }
+
+    if (pos != numWords)
+        getLog() << "LoaderTR2: Extra bytes at end of AnimatedTextures?" << Log::endl;
+}
+
+// ---- Rooms ----
 
 void LoaderTR2::loadRooms() {
     uint16_t numRooms = file.readU16();
@@ -281,6 +351,34 @@ void LoaderTR2::loadFloorData() {
         getLog() << "LoaderTR2: Found " << numFloorData << " words FloorData, unimplemented!" << Log::endl;
 }
 
+void LoaderTR2::loadSprites() {
+    uint32_t numSpriteTextures = file.readU32();
+    for (unsigned int s = 0; s < numSpriteTextures; s++) {
+        uint16_t tile = file.readU16();
+        uint8_t x = file.readU8();
+        uint8_t y = file.readU8();
+        uint16_t width = file.readU16(); // Actually (width * 256) + 255
+        uint16_t height = file.readU16(); // Actually (height * 256) + 255
+        int16_t leftSide = file.read16();
+        int16_t topSide = file.read16();
+        int16_t rightSide = file.read16();
+        int16_t bottomSide = file.read16();
+
+        // TODO store sprite textures somewhere
+    }
+
+    uint32_t numSpriteSequences = file.readU32();
+    for (unsigned int s = 0; s < numSpriteSequences; s++) {
+        int32_t objectID = file.read32(); // Item identifier, matched in Items[]
+        int16_t negativeLength = file.read16(); // Negative sprite count
+        int16_t offset = file.read16(); // Where sequence starts in sprite texture list
+
+        // TODO store sprite sequences somewhere
+    }
+}
+
+// ---- Meshes ----
+
 void LoaderTR2::loadMeshes() {
     // Number of bitu16s of mesh data to follow
     // Read all the mesh data into a buffer, because
@@ -307,6 +405,43 @@ void LoaderTR2::loadMeshes() {
         // TODO interpret the buffered mesh data
     }
 }
+
+void LoaderTR2::loadStaticMeshes() {
+    uint32_t numStaticMeshes = file.readU32();
+    for (unsigned int s = 0; s < numStaticMeshes; s++) {
+        uint32_t objectID = file.readU32(); // Matched in Items[]
+        uint16_t mesh = file.readU16(); // Offset into MeshPointers[]
+
+        // tr2_vertex BoundingBox[2][2];
+        // First index is which one, second index is opposite corners
+        int16_t x11 = file.read16();
+        int16_t y11 = file.read16();
+        int16_t z11 = file.read16();
+
+        int16_t x12 = file.read16();
+        int16_t y12 = file.read16();
+        int16_t z12 = file.read16();
+
+        int16_t x21 = file.read16();
+        int16_t y21 = file.read16();
+        int16_t z21 = file.read16();
+
+        int16_t x22 = file.read16();
+        int16_t y22 = file.read16();
+        int16_t z22 = file.read16();
+
+        // Meaning uncertain. Usually 2, and 3 for objects Lara can
+        // travel through, like TR2s skeletons and underwater plants
+        uint16_t flags = file.readU16();
+
+        // TODO store static meshes somewhere
+    }
+
+    if (numStaticMeshes > 0)
+        getLog() << "LoaderTR2: Found " << numStaticMeshes << " StaticMeshes, unimplemented!" << Log::endl;
+}
+
+// ---- Moveables ----
 
 void LoaderTR2::loadMoveables() {
     uint32_t numAnimations = file.readU32();
@@ -410,140 +545,30 @@ void LoaderTR2::loadMoveables() {
     // TODO combine all this into moveables with their animations
 }
 
-void LoaderTR2::loadStaticMeshes() {
-    uint32_t numStaticMeshes = file.readU32();
-    for (unsigned int s = 0; s < numStaticMeshes; s++) {
-        uint32_t objectID = file.readU32(); // Matched in Items[]
-        uint16_t mesh = file.readU16(); // Offset into MeshPointers[]
-
-        // tr2_vertex BoundingBox[2][2];
-        // First index is which one, second index is opposite corners
-        int16_t x11 = file.read16();
-        int16_t y11 = file.read16();
-        int16_t z11 = file.read16();
-
-        int16_t x12 = file.read16();
-        int16_t y12 = file.read16();
-        int16_t z12 = file.read16();
-
-        int16_t x21 = file.read16();
-        int16_t y21 = file.read16();
-        int16_t z21 = file.read16();
-
-        int16_t x22 = file.read16();
-        int16_t y22 = file.read16();
-        int16_t z22 = file.read16();
-
-        // Meaning uncertain. Usually 2, and 3 for objects Lara can
-        // travel through, like TR2s skeletons and underwater plants
-        uint16_t flags = file.readU16();
-
-        // TODO store static meshes somewhere
-    }
-
-    if (numStaticMeshes > 0)
-        getLog() << "LoaderTR2: Found " << numStaticMeshes << " StaticMeshes, unimplemented!" << Log::endl;
-}
-
-void LoaderTR2::loadTextures() {
-    uint32_t numObjectTextures = file.readU32();
-    for (unsigned int o = 0; o < numObjectTextures; o++) {
-        // 0 means that a texture is all-opaque, and that transparency
-        // information is ignored.
-        // 1 means that transparency information is used. In 8-bit color,
-        // index 0 is the transparent color, while in 16-bit color, the
-        // top bit (0x8000) is the alpha channel (1 = opaque, 0 = transparent)
-        uint16_t attribute = file.readU16();
-
-        // Index into the textile list
-        uint16_t tile = file.readU16();
-
-        TextureTile* t = new TextureTile(attribute, tile);
-
-        // The four corner vertices of the texture
-        // The Pixel values are the actual coordinates of the vertexs pixel
-        // The Coordinate values depend on where the other vertices are in
-        // the object texture. And if the object texture is used to specify
-        // a triangle, then the fourth vertexs values will all be zero
-        // Coordinate is 1 if Pixel is the low val, 255 if high val in object texture
-        for (int i = 0; i < 4; i++) {
-            uint8_t xCoordinate = file.readU8();
-            uint8_t xPixel = file.readU8();
-            uint8_t yCoordinate = file.readU8();
-            uint8_t yPixel = file.readU8();
-
-            assert((xCoordinate != 1) || (xCoordinate != 255));
-            assert((yCoordinate != 1) || (yCoordinate != 255));
-
-            t->add(new TextureTileVertex(xCoordinate, xPixel, yCoordinate, yPixel));
-        }
-
-        getTextureManager().addTile(t);
-    }
-}
-
-void LoaderTR2::loadSprites() {
-    uint32_t numSpriteTextures = file.readU32();
-    for (unsigned int s = 0; s < numSpriteTextures; s++) {
-        uint16_t tile = file.readU16();
-        uint8_t x = file.readU8();
-        uint8_t y = file.readU8();
-        uint16_t width = file.readU16(); // Actually (width * 256) + 255
-        uint16_t height = file.readU16(); // Actually (height * 256) + 255
-        int16_t leftSide = file.read16();
-        int16_t topSide = file.read16();
-        int16_t rightSide = file.read16();
-        int16_t bottomSide = file.read16();
-
-        // TODO store sprite textures somewhere
-    }
-
-    uint32_t numSpriteSequences = file.readU32();
-    for (unsigned int s = 0; s < numSpriteSequences; s++) {
-        int32_t objectID = file.read32(); // Item identifier, matched in Items[]
-        int16_t negativeLength = file.read16(); // Negative sprite count
-        int16_t offset = file.read16(); // Where sequence starts in sprite texture list
-
-        // TODO store sprite sequences somewhere
-    }
-}
-
-void LoaderTR2::loadCameras() {
-    uint32_t numCameras = file.readU32();
-    for (unsigned int c = 0; c < numCameras; c++) {
-        int32_t x = file.read32();
-        int32_t y = file.read32();
-        int32_t z = file.read32();
+void LoaderTR2::loadItems() {
+    uint32_t numItems = file.readU32();
+    for (unsigned int i = 0; i < numItems; i++) {
+        int16_t objectID = file.read16();
         int16_t room = file.read16();
 
-        file.seek(file.tell() + 2); // Unknown, correlates to Boxes? Zones?
-
-        // TODO store cameras somewhere
-    }
-
-    if (numCameras > 0)
-        getLog() << "LoaderTR2: Found " << numCameras << " Cameras, unimplemented!" << Log::endl;
-}
-
-void LoaderTR2::loadSoundSources() {
-    uint32_t numSoundSources = file.readU32();
-    for (unsigned int s = 0; s < numSoundSources; s++) {
-        // Absolute world coordinate positions of sound source
+        // Item position in world coordinates
         int32_t x = file.read32();
         int32_t y = file.read32();
         int32_t z = file.read32();
 
-        // Internal sound index
-        uint16_t soundID = file.readU16();
+        int16_t angle = file.read16(); // (0xC000 >> 14) * 90deg
+        int16_t intensity1 = file.read16(); // Constant lighting; -1 means mesh lighting
+        int16_t intensity2 = file.read16(); // Almost always like intensity1
 
-        // Unknown, 0x40, 0x80 or 0xC0
+        // 0x0100 - Initially visible
+        // 0x3E00 - Activation mask, open, can be XORed with related FloorData list fields.
         uint16_t flags = file.readU16();
 
-        // TODO store sound sources somewhere
+        // TODO store items somewhere
     }
 
-    if (numSoundSources > 0)
-        getLog() << "LoaderTR2: Found " << numSoundSources << " SoundSources, unimplemented!" << Log::endl;
+    if (numItems > 0)
+        getLog() << "LoaderTR2: Found " << numItems << " Items, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadBoxesOverlapsZones() {
@@ -585,130 +610,55 @@ void LoaderTR2::loadBoxesOverlapsZones() {
         getLog() << "LoaderTR2: Found NPC NavigationHints, not yet implemented!" << Log::endl;
 }
 
-void LoaderTR2::loadAnimatedTextures() {
-    uint32_t numWords = file.readU32() - 1;
-    uint16_t numAnimatedTextures = file.readU16();
-    std::vector<uint16_t> animatedTextures;
-    for (unsigned int a = 0; a < numWords; a++) {
-        animatedTextures.push_back(file.readU16());
-    }
+// ---- Sound ----
 
-    int pos = 0;
-    for (unsigned int a = 0; a < numAnimatedTextures; a++) {
-        int count = animatedTextures.at(pos) + 1;
-        if ((pos + count) >= numWords) {
-            getLog() << "LoaderTR2: Invalid AnimatedTextures ("
-                << pos + count << " >= " << numWords << ")!" << Log::endl;
-            return;
-        }
-
-        for (int i = 0; i < count; i++) {
-            getTextureManager().addAnimatedTile(a, animatedTextures.at(pos + i + 1));
-        }
-
-        pos += count + 1;
-    }
-
-    if (pos != numWords)
-        getLog() << "LoaderTR2: Extra bytes at end of AnimatedTextures?" << Log::endl;
-}
-
-void LoaderTR2::loadItems() {
-    uint32_t numItems = file.readU32();
-    for (unsigned int i = 0; i < numItems; i++) {
-        int16_t objectID = file.read16();
-        int16_t room = file.read16();
-
-        // Item position in world coordinates
+void LoaderTR2::loadSoundSources() {
+    uint32_t numSoundSources = file.readU32();
+    for (unsigned int s = 0; s < numSoundSources; s++) {
+        // Absolute world coordinate positions of sound source
         int32_t x = file.read32();
         int32_t y = file.read32();
         int32_t z = file.read32();
 
-        int16_t angle = file.read16(); // (0xC000 >> 14) * 90deg
-        int16_t intensity1 = file.read16(); // Constant lighting; -1 means mesh lighting
-        int16_t intensity2 = file.read16(); // Almost always like intensity1
+        // Internal sound index
+        uint16_t soundID = file.readU16();
 
-        // 0x0100 - Initially visible
-        // 0x3E00 - Activation mask, open, can be XORed with related FloorData list fields.
+        // Unknown, 0x40, 0x80 or 0xC0
         uint16_t flags = file.readU16();
 
-        // TODO store items somewhere
+        getSoundManager().addSoundSource(x, y, z, soundID, flags);
     }
-
-    if (numItems > 0)
-        getLog() << "LoaderTR2: Found " << numItems << " Items, unimplemented!" << Log::endl;
-}
-
-void LoaderTR2::loadCinematicFrames() {
-    uint16_t numCinematicFrames = file.readU16();
-    for (unsigned int c = 0; c < numCinematicFrames; c++) {
-        int16_t rotY = file.read16(); // Y rotation, +-32767 = +-180deg
-        int16_t rotZ = file.read16(); // Z rotation, like rotY
-        int16_t rotZ2 = file.read16(); // Like rotZ?
-        int16_t posZ = file.read16(); // Camera pos relative to what?
-        int16_t posY = file.read16();
-        int16_t posX = file.read16();
-        int16_t unknown = file.read16(); // Changing this can cause runtime error
-        int16_t rotX = file.read16(); // X rotation, like rotY
-
-        // TODO store cinematic frames somewhere
-    }
-
-    if (numCinematicFrames > 0)
-        getLog() << "LoaderTR2: Found " << numCinematicFrames
-            << " CinematicFrames, not yet implemented!" << Log::endl;
-}
-
-void LoaderTR2::loadDemoData() {
-    uint16_t numDemoData = file.readU16();
-    for (unsigned int d = 0; d < numDemoData; d++)
-        file.readU8();
-
-    // TODO store demo data somewhere, find out meaning
-    if (numDemoData > 0)
-        getLog() << "LoaderTR2: Found " << numDemoData << " bytes DemoData, not yet implemented!" << Log::endl;
 }
 
 void LoaderTR2::loadSoundMap() {
-    std::array<int16_t, 370> soundMap;
-    for (auto& x : soundMap) {
-        x = file.read16();
+    for (int i = 0; i < 370; i++) {
+        getSoundManager().addSoundMapEntry(file.read16());
     }
-
-    // TODO store sound map somewhere
 }
 
 void LoaderTR2::loadSoundDetails() {
     uint32_t numSoundDetails = file.readU32();
     for (unsigned int s = 0; s < numSoundDetails; s++) {
-        int16_t sample = file.read16(); // Index into SampleIndices[]
-        int16_t volume = file.read16();
+        uint16_t sample = file.readU16(); // Index into SampleIndices[]
+        uint16_t volume = file.readU16();
 
         // sound range? distance at which this sound can be heard?
-        int16_t unknown1 = file.read16();
+        uint16_t unknown1 = file.readU16();
 
         // Bits 8-15: priority?
         // Bits 2-7: number of samples in this group
         // Bits 0-1: channel number?
-        int16_t unknown2 = file.read16();
+        uint16_t unknown2 = file.readU16();
 
-        // TODO store sound details somewhere
+        getSoundManager().addSoundDetail(sample, ((float)volume) / 32767.0f);
     }
-
-    if (numSoundDetails > 0)
-        getLog() << "LoaderTR2: Found " << numSoundDetails << " SoundDetails, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadSampleIndices() {
     uint32_t numSampleIndices = file.readU32();
-    std::vector<uint32_t> sampleIndices;
     for (unsigned int i = 0; i < numSampleIndices; i++) {
-        sampleIndices.push_back(file.readU32());
+        getSoundManager().addSampleIndex(file.readU32());
     }
-
-    // TODO store sample indices somewhere
-    if (numSampleIndices > 0)
-        getLog() << "LoaderTR2: Found " << numSampleIndices << " SampleIndices, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadExternalSoundFile(std::string f) {
@@ -755,5 +705,54 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
 
     if (riffCount > 0)
         getLog() << "LoaderTR2: Found " << riffCount << " SoundSamples" << Log::endl;
+}
+
+// ---- Stuff ----
+
+void LoaderTR2::loadCameras() {
+    uint32_t numCameras = file.readU32();
+    for (unsigned int c = 0; c < numCameras; c++) {
+        int32_t x = file.read32();
+        int32_t y = file.read32();
+        int32_t z = file.read32();
+        int16_t room = file.read16();
+
+        file.seek(file.tell() + 2); // Unknown, correlates to Boxes? Zones?
+
+        // TODO store cameras somewhere
+    }
+
+    if (numCameras > 0)
+        getLog() << "LoaderTR2: Found " << numCameras << " Cameras, unimplemented!" << Log::endl;
+}
+
+void LoaderTR2::loadCinematicFrames() {
+    uint16_t numCinematicFrames = file.readU16();
+    for (unsigned int c = 0; c < numCinematicFrames; c++) {
+        int16_t rotY = file.read16(); // Y rotation, +-32767 = +-180deg
+        int16_t rotZ = file.read16(); // Z rotation, like rotY
+        int16_t rotZ2 = file.read16(); // Like rotZ?
+        int16_t posZ = file.read16(); // Camera pos relative to what?
+        int16_t posY = file.read16();
+        int16_t posX = file.read16();
+        int16_t unknown = file.read16(); // Changing this can cause runtime error
+        int16_t rotX = file.read16(); // X rotation, like rotY
+
+        // TODO store cinematic frames somewhere
+    }
+
+    if (numCinematicFrames > 0)
+        getLog() << "LoaderTR2: Found " << numCinematicFrames
+            << " CinematicFrames, not yet implemented!" << Log::endl;
+}
+
+void LoaderTR2::loadDemoData() {
+    uint16_t numDemoData = file.readU16();
+    for (unsigned int d = 0; d < numDemoData; d++)
+        file.readU8();
+
+    // TODO store demo data somewhere, find out meaning
+    if (numDemoData > 0)
+        getLog() << "LoaderTR2: Found " << numDemoData << " bytes DemoData, not yet implemented!" << Log::endl;
 }
 

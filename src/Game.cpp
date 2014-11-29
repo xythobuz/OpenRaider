@@ -17,6 +17,7 @@
 #include "Log.h"
 #include "Render.h"
 #include "Sound.h"
+#include "SoundManager.h"
 #include "StaticMesh.h"
 #include "TextureManager.h"
 #include "World.h"
@@ -55,6 +56,8 @@ void Game::destroy() {
     getWorld().destroy();
     getRender().ClearWorld();
     getSound().clear(); // Remove all previously loaded sounds
+    getSoundManager().clear();
+    getTextureManager().clear();
 }
 
 bool Game::isLoaded() {

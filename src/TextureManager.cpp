@@ -138,6 +138,10 @@ TextureManager::~TextureManager() {
         mTextureIdsSystem.pop_back();
     }
 
+    clear();
+}
+
+void TextureManager::clear() {
     while (mTextureIdsGame.size() > 0) {
         unsigned int id = mTextureIdsGame.at(mTextureIdsGame.size() - 1);
         glDeleteTextures(1, &id);
@@ -148,6 +152,9 @@ TextureManager::~TextureManager() {
         delete tiles.at(tiles.size() - 1);
         tiles.pop_back();
     }
+
+    while (!animations.empty())
+        animations.pop_back();
 }
 
 void TextureManager::addTile(TextureTile* t) {

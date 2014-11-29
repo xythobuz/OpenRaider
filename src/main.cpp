@@ -24,6 +24,7 @@
 #include "MenuFolder.h"
 #include "Render.h"
 #include "RunTime.h"
+#include "SoundManager.h"
 #include "TextureManager.h"
 #include "UI.h"
 #include "Window.h"
@@ -52,6 +53,7 @@ static std::shared_ptr<MenuFolder> gMenu;
 static std::shared_ptr<Render> gRender;
 static std::shared_ptr<RunTime> gRunTime;
 static std::shared_ptr<Sound> gSound;
+static std::shared_ptr<SoundManager> gSoundManager;
 static std::shared_ptr<TextureManager> gTextureManager;
 static std::shared_ptr<Window> gWindow;
 static std::shared_ptr<World> gWorld;
@@ -84,6 +86,10 @@ Sound& getSound() {
     return *gSound;
 }
 
+SoundManager& getSoundManager() {
+    return *gSoundManager;
+}
+
 TextureManager& getTextureManager() {
     return *gTextureManager;
 }
@@ -114,6 +120,7 @@ int main(int argc, char* argv[]) {
     gLog.reset(new Log());
     gMenu.reset(new MenuFolder());
     gRender.reset(new Render());
+    gSoundManager.reset(new SoundManager());
     gTextureManager.reset(new TextureManager());
     gWorld.reset(new World());
 

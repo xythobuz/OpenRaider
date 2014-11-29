@@ -57,6 +57,8 @@ class TextureManager {
 
     int initialize();
 
+    void clear();
+
     int numTextures(TextureStorage s = TextureStorage::GAME);
 
     /*!
