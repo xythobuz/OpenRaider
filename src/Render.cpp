@@ -175,7 +175,7 @@ void Render::setMode(int n) {
         case Render::modeSolid:
         case Render::modeWireframe:
             glClearColor(PURPLE[0] / 256.0f, PURPLE[1] / 256.0f,
-                    PURPLE[2] / 256.0f, PURPLE[3] / 256.0f);
+                         PURPLE[2] / 256.0f, PURPLE[3] / 256.0f);
             glDisable(GL_TEXTURE_2D);
             break;
         default:
@@ -186,7 +186,7 @@ void Render::setMode(int n) {
             }
 
             glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f,
-                    BLACK[2] / 256.0f, BLACK[3] / 256.0f);
+                         BLACK[2] / 256.0f, BLACK[3] / 256.0f);
 
             glEnable(GL_TEXTURE_2D);
     }
@@ -355,7 +355,7 @@ void Render::drawLoadScreen() {
     getWindow().glEnter2D();
 
     drawTexture(0.0f, 0.0f, getWindow().getWidth(), getWindow().getHeight(),
-            TEXTURE_SPLASH, TextureManager::TextureStorage::SYSTEM);
+                TEXTURE_SPLASH, TextureManager::TextureStorage::SYSTEM);
 
     if (debugTexture >= 0)
         drawTexture(debugX, debugY, debugW, debugH, debugTexture, debugTextureStorage);
@@ -486,7 +486,7 @@ float Render::getDistToSphereFromNear(float x, float y, float z, float radius) {
 }
 
 void Render::debugDisplayTexture(int texture, TextureManager::TextureStorage s,
-        float x, float y, float w, float h) {
+                                 float x, float y, float w, float h) {
     debugTexture = texture;
     debugTextureStorage = s;
     debugX = x;
@@ -497,7 +497,7 @@ void Render::debugDisplayTexture(int texture, TextureManager::TextureStorage s,
 }
 
 void Render::drawTexture(float x, float y, float w, float h,
-        unsigned int texture, TextureManager::TextureStorage s) {
+                         unsigned int texture, TextureManager::TextureStorage s) {
     float z = 0.0f;
 
     glColor3ubv(WHITE);

@@ -197,11 +197,11 @@ void UI::display() {
                     if (offset > 10)
                         offset = 10;
                     ImGui::PlotLines("FPS", &getRunTime().getHistoryFPS()[1],
-                            getRunTime().getHistoryFPS().size() - 1,
-                            getRunTime().getHistoryFPS().size() - offset - 1);
+                                     getRunTime().getHistoryFPS().size() - 1,
+                                     getRunTime().getHistoryFPS().size() - offset - 1);
                 } else {
                     ImGui::PlotLines("FPS", &getRunTime().getHistoryFPS()[1],
-                            getRunTime().getHistoryFPS().size() - 1);
+                                     getRunTime().getHistoryFPS().size() - 1);
                 }
                 ImGui::SameLine();
                 ImGui::Checkbox("Scroll##fpsscroll", &scroll);
@@ -230,7 +230,8 @@ void UI::display() {
             }
 
             float vol = getSound().getVolume();
-            if (ImGui::InputFloat("Volume##runtime", &vol, 0.0f, 0.0f, 3, ImGuiInputTextFlags_EnterReturnsTrue)) {
+            if (ImGui::InputFloat("Volume##runtime", &vol, 0.0f, 0.0f, 3,
+                                  ImGuiInputTextFlags_EnterReturnsTrue)) {
                 if (vol < 0.0f)
                     vol = 0.0f;
                 if (vol > 1.0f)
@@ -312,14 +313,14 @@ void UI::display() {
             static int index = 0;
             ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
             ImGui::SliderInt("##texslide", &index, 0, getTextureManager().numTextures(
-                        game ? TextureManager::TextureStorage::GAME
-                        : TextureManager::TextureStorage::SYSTEM) - 1);
+                                 game ? TextureManager::TextureStorage::GAME
+                                 : TextureManager::TextureStorage::SYSTEM) - 1);
             ImGui::PopItemWidth();
             ImGui::SameLine();
             if (ImGui::Button("+##texplus", ImVec2(0, 0), true)) {
                 if (index < (getTextureManager().numTextures(
-                                game ? TextureManager::TextureStorage::GAME
-                                : TextureManager::TextureStorage::SYSTEM) - 1))
+                                 game ? TextureManager::TextureStorage::GAME
+                                 : TextureManager::TextureStorage::SYSTEM) - 1))
                     index++;
                 else
                     index = 0;
@@ -352,11 +353,11 @@ void UI::display() {
             }
             if (visibleTex) {
                 getRender().debugDisplayTexture(index,
-                        game ? TextureManager::TextureStorage::GAME
-                        : TextureManager::TextureStorage::SYSTEM,
-                        ImGui::GetWindowPos().x - ImGui::GetWindowWidth(),
-                        ImGui::GetWindowPos().y,
-                        ImGui::GetWindowWidth(), ImGui::GetWindowWidth());
+                                                game ? TextureManager::TextureStorage::GAME
+                                                : TextureManager::TextureStorage::SYSTEM,
+                                                ImGui::GetWindowPos().x - ImGui::GetWindowWidth(),
+                                                ImGui::GetWindowPos().y,
+                                                ImGui::GetWindowWidth(), ImGui::GetWindowWidth());
             }
         }
 
@@ -396,9 +397,9 @@ void UI::display() {
                 }
                 if (visibleTile) {
                     getRender().debugDisplayTextile(index,
-                            ImGui::GetWindowPos().x - (ImGui::GetWindowWidth() / 2),
-                            ImGui::GetWindowPos().y,
-                            (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
+                                                    ImGui::GetWindowPos().x - (ImGui::GetWindowWidth() / 2),
+                                                    ImGui::GetWindowPos().y,
+                                                    (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
                 }
             } else {
                 ImGui::Text("Please load a level using the new loader!");
@@ -447,9 +448,9 @@ void UI::display() {
                         fr--;
                     } else {
                         getRender().debugDisplayTextile(tile,
-                                ImGui::GetWindowPos().x - (ImGui::GetWindowWidth() / 2),
-                                ImGui::GetWindowPos().y,
-                                (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
+                                                        ImGui::GetWindowPos().x - (ImGui::GetWindowWidth() / 2),
+                                                        ImGui::GetWindowPos().y,
+                                                        (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
                         fr = getRunTime().getFPS() / 2;
                         tile = getTextureManager().getNextTileAnimation(tile);
                     }

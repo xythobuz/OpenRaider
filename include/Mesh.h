@@ -32,9 +32,9 @@ class Mesh {
     // Warning: texture is not the GL texture id,
     // it is an index into the object texture list!
     void addTexturedRectangle(struct vertex_t a, struct vertex_t b,
-            struct vertex_t c, struct vertex_t d, uint16_t texture);
+                              struct vertex_t c, struct vertex_t d, uint16_t texture);
     void addTexturedTriangle(struct vertex_t a, struct vertex_t b,
-            struct vertex_t c, uint16_t texture);
+                             struct vertex_t c, uint16_t texture);
 
     std::vector<struct rectangle_t> texturedRectangles;
     std::vector<struct rectangle_t> coloredRectangles;

@@ -117,16 +117,16 @@ class Render {
     float getDistToSphereFromNear(float x, float y, float z, float radius);
 
     void debugDisplayTexture(int texture = -1,
-            TextureManager::TextureStorage s = TextureManager::TextureStorage::GAME,
-            float x = 0.0f, float y = 0.0f, float w = 256.0f, float h = 256.0f);
+                             TextureManager::TextureStorage s = TextureManager::TextureStorage::GAME,
+                             float x = 0.0f, float y = 0.0f, float w = 256.0f, float h = 256.0f);
 
     void debugDisplayTextile(int texture = -1,
-            float x = 0.0f, float y = 0.0f, float w = 64.0f, float h = 64.0f);
+                             float x = 0.0f, float y = 0.0f, float w = 64.0f, float h = 64.0f);
 
   private:
 
     void drawTexture(float x, float y, float w, float h,
-            unsigned int texture, TextureManager::TextureStorage s);
+                     unsigned int texture, TextureManager::TextureStorage s);
 
     void drawTextile(float x, float y, float w, float h, unsigned int textile);
 

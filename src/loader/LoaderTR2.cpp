@@ -90,7 +90,7 @@ void LoaderTR2::loadPaletteTextiles() {
         // Convert 16bit textile to 32bit textile
         unsigned char* img = argb16to32(&arr[0], 256, 256);
         int r = getTextureManager().loadBufferSlot(img, 256, 256, ARGB, 32,
-                    TextureManager::TextureStorage::GAME, i);
+                TextureManager::TextureStorage::GAME, i);
         assert(r >= 0); //! \fixme properly handle error when texture could not be loaded!
         delete [] img;
     }
@@ -146,7 +146,7 @@ void LoaderTR2::loadAnimatedTextures() {
         int count = animatedTextures.at(pos) + 1;
         if ((pos + count) >= numWords) {
             getLog() << "LoaderTR2: Invalid AnimatedTextures ("
-                << pos + count << " >= " << numWords << ")!" << Log::endl;
+                     << pos + count << " >= " << numWords << ")!" << Log::endl;
             return;
         }
 
@@ -215,7 +215,7 @@ void LoaderTR2::loadRooms() {
             uint16_t texture = file.readU16();
 
             room->getMesh().addTexturedRectangle(vertices.at(vertex1), vertices.at(vertex2),
-                    vertices.at(vertex3), vertices.at(vertex4), texture);
+                                                 vertices.at(vertex3), vertices.at(vertex4), texture);
         }
 
         uint16_t numTriangles = file.readU16();
@@ -229,7 +229,7 @@ void LoaderTR2::loadRooms() {
             uint16_t texture = file.readU16();
 
             room->getMesh().addTexturedTriangle(vertices.at(vertex1), vertices.at(vertex2),
-                    vertices.at(vertex3), texture);
+                                                vertices.at(vertex3), texture);
         }
 
         uint16_t numSprites = file.readU16();
@@ -684,7 +684,7 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
 
         if (std::string("RIFF") != std::string(test)) {
             getLog() << "LoaderTR2: External SFX invalid! (" << riffCount
-                << ", \"" << test << "\" != \"RIFF\")" << Log::endl;
+                     << ", \"" << test << "\" != \"RIFF\")" << Log::endl;
             return;
         }
 
@@ -743,7 +743,7 @@ void LoaderTR2::loadCinematicFrames() {
 
     if (numCinematicFrames > 0)
         getLog() << "LoaderTR2: Found " << numCinematicFrames
-            << " CinematicFrames, not yet implemented!" << Log::endl;
+                 << " CinematicFrames, not yet implemented!" << Log::endl;
 }
 
 void LoaderTR2::loadDemoData() {
@@ -753,6 +753,7 @@ void LoaderTR2::loadDemoData() {
 
     // TODO store demo data somewhere, find out meaning
     if (numDemoData > 0)
-        getLog() << "LoaderTR2: Found " << numDemoData << " bytes DemoData, not yet implemented!" << Log::endl;
+        getLog() << "LoaderTR2: Found " << numDemoData << " bytes DemoData, not yet implemented!" <<
+                 Log::endl;
 }
 

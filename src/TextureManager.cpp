@@ -25,7 +25,7 @@
 #endif
 
 TextureTileVertex::TextureTileVertex(uint8_t xc, uint8_t xp, uint8_t yc, uint8_t yp)
-        : xCoordinate(xc), xPixel(xp), yCoordinate(yc), yPixel(yp) { }
+    : xCoordinate(xc), xPixel(xp), yCoordinate(yc), yPixel(yp) { }
 
 // ----------------------------------------------------------------------------
 
@@ -110,7 +110,7 @@ void TextureTile::displayTriangle(float x, float y, float w, float h, float z) {
     glBegin(GL_TRIANGLE_STRIP);
     for (int i = 0; i < 3; i++) {
         glTexCoord2f(vertices.at(i)->xPixel / 256.0f,
-                vertices.at(i)->yPixel / 256.0f);
+                     vertices.at(i)->yPixel / 256.0f);
 
         if (vertices.at(i)->xCoordinate == 255) {
             if (vertices.at(i)->yCoordinate == 255) {

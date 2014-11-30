@@ -12,7 +12,7 @@
 #include "Mesh.h"
 
 void Mesh::addTexturedRectangle(struct vertex_t a, struct vertex_t b,
-        struct vertex_t c, struct vertex_t d, uint16_t texture) {
+                                struct vertex_t c, struct vertex_t d, uint16_t texture) {
     struct rectangle_t r;
     r.a = a;
     r.b = b;
@@ -23,7 +23,7 @@ void Mesh::addTexturedRectangle(struct vertex_t a, struct vertex_t b,
 }
 
 void Mesh::addTexturedTriangle(struct vertex_t a, struct vertex_t b,
-        struct vertex_t c, uint16_t texture) {
+                               struct vertex_t c, uint16_t texture) {
     struct rectangle_t r;
     r.a = a;
     r.b = b;
@@ -34,9 +34,9 @@ void Mesh::addTexturedTriangle(struct vertex_t a, struct vertex_t b,
 
 void Mesh::drawAlpha() {
     if ((texturedRectangles.size() == 0)
-            && (texturedTriangles.size() == 0)
-            && (coloredRectangles.size() == 0)
-            && (coloredTriangles.size() == 0)) {
+        && (texturedTriangles.size() == 0)
+        && (coloredRectangles.size() == 0)
+        && (coloredTriangles.size() == 0)) {
         drawAlphaOld();
         return;
     }
@@ -46,9 +46,9 @@ void Mesh::drawAlpha() {
 
 void Mesh::drawSolid() {
     if ((texturedRectangles.size() == 0)
-            && (texturedTriangles.size() == 0)
-            && (coloredRectangles.size() == 0)
-            && (coloredTriangles.size() == 0)) {
+        && (texturedTriangles.size() == 0)
+        && (coloredRectangles.size() == 0)
+        && (coloredTriangles.size() == 0)) {
         drawSolidOld();
         return;
     }
