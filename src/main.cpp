@@ -18,7 +18,6 @@
 #ifndef UNIT_TEST
 
 #include "Camera.h"
-#include "Font.h"
 #include "Game.h"
 #include "Log.h"
 #include "MenuFolder.h"
@@ -27,19 +26,15 @@
 #include "SoundManager.h"
 #include "TextureManager.h"
 #include "UI.h"
-#include "Window.h"
 #include "World.h"
-
-#ifdef USING_AL
-#include "SoundAL.h"
-#else
-#include "SoundNull.h"
-#endif
+#include "system/Font.h"
+#include "system/Sound.h"
+#include "system/Window.h"
 
 #ifdef USING_SDL
-#include "WindowSDL.h"
+#include "system/WindowSDL.h"
 #elif defined(USING_GLUT)
-#include "WindowGLUT.h"
+#include "system/WindowGLUT.h"
 #else
 #error No Windowing Library selected!
 #endif
@@ -52,8 +47,6 @@ static std::shared_ptr<Log> gLog;
 static std::shared_ptr<MenuFolder> gMenu;
 static std::shared_ptr<Render> gRender;
 static std::shared_ptr<RunTime> gRunTime;
-static std::shared_ptr<Sound> gSound;
-static std::shared_ptr<SoundManager> gSoundManager;
 static std::shared_ptr<TextureManager> gTextureManager;
 static std::shared_ptr<Window> gWindow;
 static std::shared_ptr<World> gWorld;
@@ -80,14 +73,6 @@ Render& getRender() {
 
 RunTime& getRunTime() {
     return *gRunTime;
-}
-
-Sound& getSound() {
-    return *gSound;
-}
-
-SoundManager& getSoundManager() {
-    return *gSoundManager;
 }
 
 TextureManager& getTextureManager() {
@@ -120,15 +105,8 @@ int main(int argc, char* argv[]) {
     gLog.reset(new Log());
     gMenu.reset(new MenuFolder());
     gRender.reset(new Render());
-    gSoundManager.reset(new SoundManager());
     gTextureManager.reset(new TextureManager());
     gWorld.reset(new World());
-
-#ifdef USING_AL
-    gSound.reset(new SoundAL());
-#else
-    gSound.reset(new SoundNull());
-#endif
 
 #ifdef USING_SDL
     gWindow.reset(new WindowSDL());
@@ -176,7 +154,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Initialize Sound
-    error = getSound().initialize();
+    error = Sound::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Sound (" << error << ")!" << std::endl;
         return -4;
@@ -222,6 +200,7 @@ int main(int argc, char* argv[]) {
 
     UI::shutdown();
     Font::shutdown();
+    Sound::shutdown();
 
 #ifdef DEBUG
     std::cout << std::endl;

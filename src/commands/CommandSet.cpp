@@ -7,11 +7,11 @@
 
 #include "global.h"
 #include "Camera.h"
-#include "Font.h"
 #include "Log.h"
 #include "RunTime.h"
-#include "Sound.h"
-#include "Window.h"
+#include "system/Font.h"
+#include "system/Sound.h"
+#include "system/Window.h"
 #include "utils/strings.h"
 #include "commands/CommandSet.h"
 
@@ -89,14 +89,14 @@ int CommandSet::execute(std::istream& args) {
             getLog() << "set-audio-Error: Invalid value" << Log::endl;
             return -4;
         }
-        getSound().setEnabled(audio);
+        Sound::setEnabled(audio);
     } else if (var.compare("volume") == 0) {
         float vol = 1.0f;
         if (!(args >> vol)) {
             getLog() << "set-volume-Error: Invalid value" << Log::endl;
             return -5;
         }
-        getSound().setVolume(vol);
+        Sound::setVolume(vol);
     } else if (var.compare("mouse_x") == 0) {
         float sense = 1.0f;
         if (!(args >> sense)) {
@@ -183,9 +183,9 @@ int CommandGet::execute(std::istream& args) {
     } else if (var.compare("fullscreen") == 0) {
         getLog() << getWindow().getFullscreen() << Log::endl;
     } else if (var.compare("audio") == 0) {
-        getLog() << getSound().getEnabled() << Log::endl;
+        getLog() << Sound::getEnabled() << Log::endl;
     } else if (var.compare("volume") == 0) {
-        getLog() << getSound().getVolume() << Log::endl;
+        getLog() << Sound::getVolume() << Log::endl;
     } else if (var.compare("mouse_x") == 0) {
         getLog() << OR_RAD_TO_DEG(getCamera().getSensitivityX()) << Log::endl;
     } else if (var.compare("mouse_y") == 0) {

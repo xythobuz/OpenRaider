@@ -19,8 +19,8 @@
 #include "Render.h"
 #include "utils/strings.h"
 #include "utils/tga.h"
-#include "Window.h"
 #include "World.h"
+#include "system/Window.h"
 
 Render::Render() {
     mSkyMesh = -1;

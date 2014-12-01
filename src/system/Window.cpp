@@ -13,7 +13,7 @@
 #include "global.h"
 #include "math/math.h"
 #include "utils/strings.h"
-#include "Window.h"
+#include "system/Window.h"
 
 int Window::initializeGL() {
     // Print driver support information

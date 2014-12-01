@@ -13,9 +13,9 @@
 #include "Log.h"
 #include "Mesh.h"
 #include "Room.h"
-#include "Sound.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
+#include "system/Sound.h"
 #include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
 
@@ -626,13 +626,16 @@ void LoaderTR2::loadSoundSources() {
         // Unknown, 0x40, 0x80 or 0xC0
         uint16_t flags = file.readU16();
 
-        getSoundManager().addSoundSource(x, y, z, soundID, flags);
+        SoundManager::addSoundSource(x, y, z, soundID, flags);
     }
+
+    if (numSoundSources > 0)
+        getLog() << "LoaderTR2: Found " << numSoundSources << " SoundSources" << Log::endl;
 }
 
 void LoaderTR2::loadSoundMap() {
     for (int i = 0; i < 370; i++) {
-        getSoundManager().addSoundMapEntry(file.read16());
+        SoundManager::addSoundMapEntry(file.read16());
     }
 }
 
@@ -650,15 +653,21 @@ void LoaderTR2::loadSoundDetails() {
         // Bits 0-1: channel number?
         uint16_t unknown2 = file.readU16();
 
-        getSoundManager().addSoundDetail(sample, ((float)volume) / 32767.0f);
+        SoundManager::addSoundDetail(sample, ((float)volume) / 32767.0f);
     }
+
+    if (numSoundDetails > 0)
+        getLog() << "LoaderTR2: Found " << numSoundDetails << " SoundDetails" << Log::endl;
 }
 
 void LoaderTR2::loadSampleIndices() {
     uint32_t numSampleIndices = file.readU32();
     for (unsigned int i = 0; i < numSampleIndices; i++) {
-        getSoundManager().addSampleIndex(file.readU32());
+        SoundManager::addSampleIndex(file.readU32());
     }
+
+    if (numSampleIndices > 0)
+        getLog() << "LoaderTR2: Found " << numSampleIndices << " SampleIndices" << Log::endl;
 }
 
 void LoaderTR2::loadExternalSoundFile(std::string f) {
@@ -697,7 +706,7 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
             buff[i] = sfx.readU8();
 
         unsigned long src;
-        int ret = getSound().addWave(buff, riffSize + 8, &src, 0);
+        int ret = Sound::loadBuffer(buff, riffSize + 8);
         assert(ret >= 0);
 
         riffCount++;

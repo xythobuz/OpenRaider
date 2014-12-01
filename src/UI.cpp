@@ -15,10 +15,11 @@
 #include "Menu.h"
 #include "Render.h"
 #include "RunTime.h"
-#include "Sound.h"
+#include "SoundManager.h"
 #include "TextureManager.h"
-#include "Window.h"
 #include "commands/Command.h"
+#include "system/Sound.h"
+#include "system/Window.h"
 #include "utils/time.h"
 #include "UI.h"
 
@@ -178,6 +179,8 @@ void UI::eventsFinished() {
     bool input = !(visible || getMenu().isVisible());
     if (getWindow().getMousegrab() != input)
         getWindow().setMousegrab(input);
+
+    io.MouseWheel = 0;
 }
 
 void UI::display() {
@@ -219,9 +222,9 @@ void UI::display() {
                 getRunTime().setRunning(running);
             }
             ImGui::SameLine();
-            bool sound = getSound().getEnabled();
+            bool sound = Sound::getEnabled();
             if (ImGui::Checkbox("Sound##runtime", &sound)) {
-                getSound().setEnabled(sound);
+                Sound::setEnabled(sound);
             }
             ImGui::SameLine();
             bool fullscreen = getWindow().getFullscreen();
@@ -229,14 +232,14 @@ void UI::display() {
                 getWindow().setFullscreen(fullscreen);
             }
 
-            float vol = getSound().getVolume();
+            float vol = Sound::getVolume();
             if (ImGui::InputFloat("Volume##runtime", &vol, 0.0f, 0.0f, 3,
                                   ImGuiInputTextFlags_EnterReturnsTrue)) {
                 if (vol < 0.0f)
                     vol = 0.0f;
                 if (vol > 1.0f)
                     vol = 1.0f;
-                getSound().setVolume(vol);
+                Sound::setVolume(vol);
             }
 
             int w = getWindow().getWidth();
@@ -461,22 +464,22 @@ void UI::display() {
             }
         }
 
-        if (ImGui::CollapsingHeader("SoundSample Player")) {
-            if (!getSound().getEnabled()) {
-                ImGui::Text("Please enable Sound before loading a level!");
+        if (ImGui::CollapsingHeader("SoundManager Player")) {
+            if (!Sound::getEnabled()) {
+                ImGui::Text("Please enable Sound first!");
                 if (ImGui::Button("Enable Sound!")) {
-                    getSound().setEnabled(true);
+                    Sound::setEnabled(true);
                 }
-            } else if (getSound().registeredSources() == 0) {
+            } else if (Sound::numBuffers() == 0) {
                 ImGui::Text("Please load a level!");
             } else {
                 static int index = 0;
                 ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
-                ImGui::SliderInt("##soundslide", &index, 0, getSound().registeredSources() - 1);
+                ImGui::SliderInt("##soundslide", &index, 0, SoundManager::sizeSoundMap() - 1);
                 ImGui::PopItemWidth();
                 ImGui::SameLine();
                 if (ImGui::Button("+##soundplus", ImVec2(0, 0), true)) {
-                    if (index < (getSound().registeredSources() - 1))
+                    if (index < (SoundManager::sizeSoundMap() - 1))
                         index++;
                     else
                         index = 0;
@@ -486,12 +489,14 @@ void UI::display() {
                     if (index > 0)
                         index--;
                     else
-                        index = getSound().registeredSources() - 1;
+                        index = SoundManager::sizeSoundMap() - 1;
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Play##soundplay")) {
-                    getSound().play(index);
+                    SoundManager::playSound(index);
                 }
+
+                ImGui::Text("Index: %d", SoundManager::getIndex(index));
             }
         }
 
@@ -558,7 +563,7 @@ void UI::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) {
 
 void UI::handleMouseScroll(int xrel, int yrel) {
     ImGuiIO& io = ImGui::GetIO();
-    io.MouseWheel = (yrel != 0) ? yrel > 0 ? 1 : -1 : 0;
+    io.MouseWheel += yrel;
 
     scrollEvents.push_back(std::make_tuple(xrel, yrel));
 }

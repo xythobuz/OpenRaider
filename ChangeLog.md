@@ -2,6 +2,11 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141201 ]
+    * Moved Font, Sound, Window modules into system subfolder
+    * Rewrote OpenAL sound implementation, separated sourcing and buffering
+    * LoaderTR2 loads all sound-related data into SoundManager
+
     [ 20141129 ]
     * LoaderTR2 now supports loading animated textiles
     * Clearing textures and textiles before loading a new level

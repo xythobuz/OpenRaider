@@ -8,7 +8,7 @@
 #ifndef _WINDOW_GLUT_H_
 #define _WINDOW_GLUT_H_
 
-#include "Window.h"
+#include "system/Window.h"
 
 /*!
  * \brief GLUT windowing implementation

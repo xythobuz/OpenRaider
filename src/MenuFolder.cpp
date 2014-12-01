@@ -6,13 +6,13 @@
  */
 
 #include "global.h"
-#include "Font.h"
 #include "Game.h"
 #include "loader/Loader.h"
 #include "Log.h"
 #include "RunTime.h"
-#include "Window.h"
 #include "MenuFolder.h"
+#include "system/Font.h"
+#include "system/Window.h"
 
 MenuFolder::MenuFolder() {
     mCursor = 0;

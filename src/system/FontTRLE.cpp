@@ -12,7 +12,7 @@
 
 #include "global.h"
 #include "utils/strings.h"
-#include "FontTRLE.h"
+#include "system/FontTRLE.h"
 
 #define SCALING 2.0f
 

@@ -8,13 +8,13 @@
 #include "global.h"
 #include "Log.h"
 #include "utils/strings.h"
-#include "Window.h"
-#include "Font.h"
-#include "FontImGui.h"
-#include "FontTRLE.h"
+#include "system/Window.h"
+#include "system/Font.h"
+#include "system/FontImGui.h"
+#include "system/FontTRLE.h"
 
 #ifdef USING_SDL_FONT
-#include "FontSDL.h"
+#include "system/FontSDL.h"
 #endif
 
 bool Font::isInit = false;

@@ -6,11 +6,11 @@
  */
 
 #include "global.h"
-#include "Font.h"
 #include "Log.h"
-#include "Window.h"
 #include "Menu.h"
 #include "MenuFolder.h"
+#include "system/Font.h"
+#include "system/Window.h"
 
 void Menu::showDialog(std::string msg, std::string btn1, std::string btn2,
                       std::function<int (bool state)> callback) {

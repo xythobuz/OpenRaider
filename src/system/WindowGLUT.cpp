@@ -13,7 +13,7 @@
 #include "RunTime.h"
 #include "UI.h"
 #include "utils/strings.h"
-#include "WindowGLUT.h"
+#include "system/WindowGLUT.h"
 
 //! \todo Modifier keys currently don't create keyboard events...
 

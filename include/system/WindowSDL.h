@@ -10,7 +10,7 @@
 
 #include "SDL.h"
 
-#include "Window.h"
+#include "system/Window.h"
 
 /*!
  * \brief SDL windowing implementation

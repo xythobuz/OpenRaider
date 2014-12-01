@@ -62,9 +62,6 @@ set (SRCS ${SRCS} "Camera.cpp")
 set (SRCS ${SRCS} "Console.cpp")
 set (SRCS ${SRCS} "Entity.cpp")
 set (SRCS ${SRCS} "Exception.cpp")
-set (SRCS ${SRCS} "Font.cpp")
-set (SRCS ${SRCS} "FontImGui.cpp")
-set (SRCS ${SRCS} "FontTRLE.cpp")
 set (SRCS ${SRCS} "Game.cpp")
 set (SRCS ${SRCS} "Log.cpp")
 set (SRCS ${SRCS} "main.cpp")
@@ -77,7 +74,6 @@ set (SRCS ${SRCS} "RoomData.cpp")
 set (SRCS ${SRCS} "RunTime.cpp")
 set (SRCS ${SRCS} "Script.cpp")
 set (SRCS ${SRCS} "SkeletalModel.cpp")
-set (SRCS ${SRCS} "Sound.cpp")
 set (SRCS ${SRCS} "SoundManager.cpp")
 set (SRCS ${SRCS} "Sprite.cpp")
 set (SRCS ${SRCS} "StaticMesh.cpp")
@@ -85,30 +81,24 @@ set (SRCS ${SRCS} "TextureManager.cpp")
 set (SRCS ${SRCS} "TombRaider.cpp")
 set (SRCS ${SRCS} "UI.cpp")
 set (SRCS ${SRCS} "ViewVolume.cpp")
-set (SRCS ${SRCS} "Window.cpp")
 set (SRCS ${SRCS} "World.cpp")
 
 # Select available Sound library
 if (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
-    set (SRCS ${SRCS} "SoundAL.cpp")
     set (USING_AL TRUE)
 else (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
-    set (SRCS ${SRCS} "SoundNull.cpp")
     set (USING_AL FALSE)
     message (STATUS "Disabled Sound support (no OpenAL and ALUT)!")
 endif (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
 
 # Select available Windowing library
 if (SDL2_FOUND AND NOT FORCE_GLUT)
-    set (SRCS ${SRCS} "WindowSDL.cpp")
     set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_SDL")
     if (SDL2TTF_FOUND)
-        set (SRCS ${SRCS} "FontSDL.cpp")
         set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_SDL_FONT")
     endif (SDL2TTF_FOUND)
 else (SDL2_FOUND AND NOT FORCE_GLUT)
     if (FREEGLUT_FOUND)
-        set (SRCS ${SRCS} "WindowGLUT.cpp")
         set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -DUSING_GLUT")
     else (FREEGLUT_FOUND)
         message (FATAL_ERROR "SDL2 or freeGLUT are required!")
@@ -230,6 +220,7 @@ add_subdirectory ("commands")
 add_subdirectory ("deps")
 add_subdirectory ("loader")
 add_subdirectory ("math")
+add_subdirectory ("system")
 add_subdirectory ("utils")
 
 # Add Executable
@@ -238,6 +229,7 @@ add_executable (OpenRaider MACOSX_BUNDLE ${RESRCS}
     $<TARGET_OBJECTS:OpenRaider_all> $<TARGET_OBJECTS:OpenRaider_commands>
     $<TARGET_OBJECTS:OpenRaider_deps> $<TARGET_OBJECTS:OpenRaider_math>
     $<TARGET_OBJECTS:OpenRaider_utils> $<TARGET_OBJECTS:OpenRaider_loader>
+    $<TARGET_OBJECTS:OpenRaider_system>
 )
 
 #################################################################

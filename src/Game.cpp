@@ -16,9 +16,9 @@
 #include "loader/Loader.h"
 #include "Log.h"
 #include "Render.h"
-#include "Sound.h"
 #include "SoundManager.h"
 #include "StaticMesh.h"
+#include "system/Sound.h"
 #include "TextureManager.h"
 #include "World.h"
 #include "utils/strings.h"
@@ -55,8 +55,8 @@ void Game::destroy() {
 
     getWorld().destroy();
     getRender().ClearWorld();
-    getSound().clear(); // Remove all previously loaded sounds
-    getSoundManager().clear();
+    Sound::clear(); // Remove all previously loaded sounds
+    SoundManager::clear();
     getTextureManager().clear();
 }
 
@@ -80,6 +80,8 @@ int Game::loadLevel(const char* level) {
         if (error != 0) {
             getLog() << "Error while trying new loader (" << error << ")..." << Log::endl;
             destroy();
+        } else {
+            SoundManager::prepareSources();
         }
     }
 
@@ -228,7 +230,7 @@ void Game::processPakSounds() {
     for (i = 0; i < mTombRaider.getSoundSamplesCount(); ++i) {
         mTombRaider.getSoundSample(i, &riffSz, &riff);
 
-        getSound().addWave(riff, riffSz, &id, Sound::SoundFlagsNone);
+        id = Sound::loadBuffer(riff, riffSz);
 
         //if (((i + 1) == TR_SOUND_F_PISTOL) && (id > 0))
         //{

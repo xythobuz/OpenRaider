@@ -27,22 +27,27 @@ struct SoundDetail {
 
 class SoundManager {
   public:
-    void clear();
-    void addSoundSource(float x, float y, float z, int id, int flags);
-    void addSoundMapEntry(int id);
-    void addSoundDetail(int sample, float volume);
-    void addSampleIndex(int index);
+    static void clear();
+    static int prepareSources();
 
-    int playSound(int index);
+    static void addSoundSource(float x, float y, float z, int id, int flags);
+    static void addSoundMapEntry(int id);
+    static void addSoundDetail(int sample, float volume);
+    static void addSampleIndex(int index);
+
+    static int sizeSoundMap();
+
+    static int getIndex(int index, float* volume = nullptr);
+
+    // index --> SoundMap --> SoundDetails --> SampleIndices --> play
+    static int playSound(int index);
 
   private:
-    std::vector<SoundSource> soundSources;
-    std::vector<int> soundMap;
-    std::vector<SoundDetail> soundDetails;
-    std::vector<int> sampleIndices;
+    static std::vector<SoundSource> soundSources;
+    static std::vector<int> soundMap;
+    static std::vector<SoundDetail> soundDetails;
+    static std::vector<int> sampleIndices;
 };
-
-SoundManager& getSoundManager();
 
 #endif
 

@@ -11,7 +11,7 @@
 #include "RunTime.h"
 #include "UI.h"
 #include "utils/strings.h"
-#include "WindowSDL.h"
+#include "system/WindowSDL.h"
 
 #define SUBSYSTEMS_USED (SDL_INIT_VIDEO | SDL_INIT_EVENTS)
 
