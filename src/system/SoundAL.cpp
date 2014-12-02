@@ -78,12 +78,16 @@ void SoundAL::clear() {
 
     alGetError();
     alDeleteBuffers(buffers.size(), &buffers[0]);
+    buffers.clear();
     if (alGetError() != AL_NO_ERROR) {
         getLog() << "SoundAL: Error while deleting buffers!" << Log::endl;
     }
 
     for (int i = 0; i < 3; i++)
         lastPosition[i] = 0.0f;
+
+    float orientation[6] = { 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f };
+    listenAt(lastPosition, orientation);
 }
 
 int SoundAL::numBuffers() {

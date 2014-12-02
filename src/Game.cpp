@@ -189,7 +189,7 @@ void Game::processSprites() {
 
         for (int j = 0; j < mTombRaider.NumSpriteSequences(); j++) {
             if (mTombRaider.SpriteSequence()[j].object_id == mTombRaider.Item()[i].object_id)
-                getWorld().addSprite(*new SpriteSequence(mTombRaider, i, j));
+                getWorld().addSprite(new SpriteSequence(mTombRaider, i, j));
         }
     }
 
@@ -198,14 +198,14 @@ void Game::processSprites() {
 
 void Game::processRooms() {
     for (int index = 0; index < mTombRaider.NumRooms(); index++)
-        getWorld().addRoom(*new Room(mTombRaider, index));
+        getWorld().addRoom(new Room(mTombRaider, index));
 
     getLog() << "Found " << mTombRaider.NumRooms() << " rooms." << Log::endl;
 }
 
 void Game::processModels() {
     for (int index = 0; index < mTombRaider.getMeshCount(); index++)
-        getWorld().addStaticMesh(*new StaticMesh(mTombRaider, index));
+        getWorld().addStaticMesh(new StaticMesh(mTombRaider, index));
 
     getLog() << "Found " << mTombRaider.getMeshCount() << " meshes." << Log::endl;
 }
@@ -386,14 +386,14 @@ void Game::processMoveable(int index, int i, int object_id) {
 
     // Create a new SkeletalModel, if needed
     if (!cached)
-        getWorld().addSkeletalModel(*new SkeletalModel(mTombRaider, index, object_id));
+        getWorld().addSkeletalModel(new SkeletalModel(mTombRaider, index, object_id));
 
     // Create a new Entity, using the cached or the new SkeletalModel
-    Entity& entity = *new Entity(mTombRaider, index, i, model);
+    Entity* entity = new Entity(mTombRaider, index, i, model);
     getWorld().addEntity(entity);
 
     // Store reference to Lara
-    if (entity.getObjectId() == 0)
+    if (entity->getObjectId() == 0)
         mLara = getWorld().sizeEntity() - 1;
 
     // Store reference to the SkyMesh

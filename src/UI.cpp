@@ -17,6 +17,7 @@
 #include "RunTime.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
+#include "World.h"
 #include "commands/Command.h"
 #include "system/Sound.h"
 #include "system/Window.h"
@@ -308,9 +309,12 @@ void UI::display() {
             }
         }
 
+        ImGui::Separator();
+
         static bool visibleTex = false;
         static bool visibleTile = false;
         static bool visibleAnim = false;
+        static bool visibleSprite = false;
         if (ImGui::CollapsingHeader("Texture Viewer")) {
             static bool game = getGame().isLoaded();
             static int index = 0;
@@ -348,6 +352,7 @@ void UI::display() {
                 visibleTex = true;
                 visibleTile = false;
                 visibleAnim = false;
+                visibleSprite = false;
             }
             ImGui::SameLine();
             if (ImGui::Button("Clear##texclear")) {
@@ -389,6 +394,7 @@ void UI::display() {
                     visibleTile = true;
                     visibleTex = false;
                     visibleAnim = false;
+                    visibleSprite = false;
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Clear##tileclear")) {
@@ -435,11 +441,11 @@ void UI::display() {
                     tile = getTextureManager().getFirstTileAnimation(index);
                 }
                 ImGui::SameLine();
-                static int fr = 0;
                 if (ImGui::Button("Show##animshow")) {
                     visibleAnim = true;
                     visibleTex = false;
                     visibleTile = false;
+                    visibleSprite = false;
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Clear##animclear")) {
@@ -447,6 +453,7 @@ void UI::display() {
                     visibleAnim = false;
                 }
                 if (visibleAnim) {
+                    static int fr = 0;
                     if (fr > 0) {
                         fr--;
                     } else {
@@ -464,7 +471,7 @@ void UI::display() {
             }
         }
 
-        if (ImGui::CollapsingHeader("SoundManager Player")) {
+        if (ImGui::CollapsingHeader("Sound Map Player")) {
             if (!Sound::getEnabled()) {
                 ImGui::Text("Please enable Sound first!");
                 if (ImGui::Button("Enable Sound!")) {
@@ -500,7 +507,72 @@ void UI::display() {
             }
         }
 
-        if (ImGui::CollapsingHeader("ImGui UI Help")) {
+        if (ImGui::CollapsingHeader("Sprite Sequence Viewer")) {
+            if (getWorld().sizeSprite() <= 0) {
+                ImGui::Text("Please load a level containing sprites!");
+            } else {
+                static int index = 0;
+                static int sprite = 0;
+                ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
+                if (ImGui::SliderInt("##spriteslide", &index, 0, getWorld().sizeSprite() - 1))
+                    sprite = 0;
+                ImGui::PopItemWidth();
+                ImGui::SameLine();
+                if (ImGui::Button("+##spriteplus", ImVec2(0, 0), true)) {
+                    if (index < (getWorld().sizeSprite() - 1))
+                        index++;
+                    else
+                        index = 0;
+                    sprite = 0;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("-##spriteminus", ImVec2(0, 0), true)) {
+                    if (index > 0)
+                        index--;
+                    else
+                        index = getWorld().sizeSprite() - 1;
+                    sprite = 0;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Show##spriteshow")) {
+                    visibleSprite = true;
+                    visibleTex = false;
+                    visibleTile = false;
+                    visibleAnim = false;
+                    sprite = 0;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Clear##spriteclear")) {
+                    getRender().debugDisplaySprite();
+                    visibleSprite = false;
+                }
+                if (visibleSprite) {
+                    static int fr = 0;
+                    if (fr > 0) {
+                        fr--;
+                    } else {
+                        getRender().debugDisplaySprite(index, sprite,
+                                                       ImGui::GetWindowPos().x - (ImGui::GetWindowWidth() / 2),
+                                                       ImGui::GetWindowPos().y,
+                                                       (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
+                        fr = getRunTime().getFPS() / 10;
+                        if (sprite < (getWorld().getSprite(index).size() - 1))
+                            sprite++;
+                        else
+                            sprite = 0;
+                    }
+
+                    ImGui::Text("Sprite %d/%d", sprite + 1, getWorld().getSprite(index).size());
+                }
+            }
+        }
+
+        ImGui::Separator();
+
+        if (ImGui::CollapsingHeader("ImGui/Debug UI Help")) {
+            ImGui::TextWrapped("DebugViewer Textures/Textiles/Sprites will be drawn on"
+                               " the left side and scale with the size of this window!");
+            ImGui::Separator();
             ImGui::ShowUserGuide();
         }
     }

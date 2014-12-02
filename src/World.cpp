@@ -15,8 +15,8 @@ World::~World() {
     destroy();
 }
 
-void World::addRoom(Room& room) {
-    mRooms.push_back(std::unique_ptr<Room>(&room));
+void World::addRoom(Room* room) {
+    mRooms.emplace_back(std::unique_ptr<Room>(room));
 }
 
 unsigned long World::sizeRoom() {
@@ -28,8 +28,8 @@ Room& World::getRoom(unsigned long index) {
     return *mRooms.at(index);
 }
 
-void World::addSprite(SpriteSequence& sprite) {
-    mSprites.push_back(std::unique_ptr<SpriteSequence>(&sprite));
+void World::addSprite(SpriteSequence* sprite) {
+    mSprites.emplace_back(std::unique_ptr<SpriteSequence>(sprite));
 }
 
 unsigned long World::sizeSprite() {
@@ -41,8 +41,8 @@ SpriteSequence& World::getSprite(unsigned long index) {
     return *mSprites.at(index);
 }
 
-void World::addEntity(Entity& entity) {
-    mEntities.push_back(std::unique_ptr<Entity>(&entity));
+void World::addEntity(Entity* entity) {
+    mEntities.emplace_back(std::unique_ptr<Entity>(entity));
 }
 
 unsigned long World::sizeEntity() {
@@ -54,8 +54,8 @@ Entity& World::getEntity(unsigned long index) {
     return *mEntities.at(index);
 }
 
-void World::addSkeletalModel(SkeletalModel& model) {
-    mModels.push_back(std::unique_ptr<SkeletalModel>(&model));
+void World::addSkeletalModel(SkeletalModel* model) {
+    mModels.emplace_back(std::unique_ptr<SkeletalModel>(model));
 }
 
 unsigned long World::sizeSkeletalModel() {
@@ -67,8 +67,8 @@ SkeletalModel& World::getSkeletalModel(unsigned long index) {
     return *mModels.at(index);
 }
 
-void World::addStaticMesh(StaticMesh& model) {
-    mMeshes.push_back(std::unique_ptr<StaticMesh>(&model));
+void World::addStaticMesh(StaticMesh* model) {
+    mMeshes.emplace_back(std::unique_ptr<StaticMesh>(model));
 }
 
 unsigned long World::sizeStaticMesh() {

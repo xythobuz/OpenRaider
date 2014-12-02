@@ -36,7 +36,7 @@ int SoundManager::prepareSources() {
     for (int i = 0; i < soundMap.size(); i++) {
         float vol;
         int index = getIndex(i, &vol);
-        if (index >= 0) {
+        if ((index >= 0) && (index < Sound::numBuffers())) {
             int ret = Sound::addSource(index, vol, true, false);
             assert(ret >= 0);
         }

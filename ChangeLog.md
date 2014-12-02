@@ -2,6 +2,11 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141202 ]
+    * No longer crashing when LoaderTR2 does not find an SFX file
+    * LoaderTR2 now loads level-wide Sprites (no Room Sprites yet)
+    * Added Sprite Viewer Debug UI
+
     [ 20141201 ]
     * Moved Font, Sound, Window modules into system subfolder
     * Rewrote OpenAL sound implementation, separated sourcing and buffering

@@ -31,7 +31,9 @@ Render::Render() {
 
     debugTexture = -1;
     debugTextile = -1;
+    debugSprite = -1;
     debugTextureStorage = TextureManager::TextureStorage::GAME;
+    debugSpriteOffset = 0;
     debugX = 0.0f;
     debugY = 0.0f;
     debugW = 256.0f;
@@ -342,6 +344,10 @@ void Render::display() {
             getWindow().glEnter2D();
             drawTextile(debugX, debugY, debugW, debugH, debugTextile);
             getWindow().glExit2D();
+        } else if (debugSprite >= 0) {
+            getWindow().glEnter2D();
+            drawSprite(debugX, debugY, debugW, debugH, debugSprite, debugSpriteOffset);
+            getWindow().glExit2D();
         }
     }
 
@@ -361,6 +367,8 @@ void Render::drawLoadScreen() {
         drawTexture(debugX, debugY, debugW, debugH, debugTexture, debugTextureStorage);
     else if (debugTextile >= 0)
         drawTextile(debugX, debugY, debugW, debugH, debugTextile);
+    else if (debugSprite >= 0)
+        drawSprite(debugX, debugY, debugW, debugH, debugSprite, debugSpriteOffset);
 
     getWindow().glExit2D();
 
@@ -532,14 +540,35 @@ void Render::debugDisplayTextile(int texture, float x, float y, float w, float h
 }
 
 void Render::drawTextile(float x, float y, float w, float h, unsigned int textile) {
-    float z = 0.0f;
-
     glColor3ubv(WHITE);
 
     if (mFlags & Render::fGL_Lights)
         glDisable(GL_LIGHTING);
 
-    getTextureManager().getTile(textile).display(x, y, w, h, z);
+    getTextureManager().getTile(textile).display(x, y, w, h, 0.0f);
+
+    if (mFlags & Render::fGL_Lights)
+        glEnable(GL_LIGHTING);
+}
+
+void Render::debugDisplaySprite(int sprite, int offset, float x, float y, float w, float h) {
+    debugSprite = sprite;
+    debugSpriteOffset = offset;
+    debugX = x;
+    debugY = y;
+    debugW = w;
+    debugH = h;
+    debugTexture = -1;
+    debugTextile = -1;
+}
+
+void Render::drawSprite(float x, float y, float w, float h, unsigned int sprite, unsigned int offset) {
+    glColor3ubv(WHITE);
+
+    if (mFlags & Render::fGL_Lights)
+        glDisable(GL_LIGHTING);
+
+    getWorld().getSprite(sprite).get(offset).display(x, y, w, h);
 
     if (mFlags & Render::fGL_Lights)
         glEnable(GL_LIGHTING);

@@ -192,7 +192,7 @@ void BinaryMemory::read(char* d, int c) {
     if ((offset + c) > max) {
         std::ostringstream ss;
         ss << "BinaryMemory read out of bounds ("
-           << offset << " + " << c << " > " << max;
+           << offset << " + " << c << " > " << max << ")";
         throw new Exception(ss.str());
     }
 

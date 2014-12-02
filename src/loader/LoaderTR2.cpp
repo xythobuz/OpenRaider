@@ -15,6 +15,7 @@
 #include "Room.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
+#include "World.h"
 #include "system/Sound.h"
 #include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
@@ -235,9 +236,9 @@ void LoaderTR2::loadRooms() {
         uint16_t numSprites = file.readU16();
         for (unsigned int s = 0; s < numSprites; s++) {
             uint16_t vertex = file.readU16(); // Index into vertex list
-            uint16_t texture = file.readU16(); // Index into object-texture list
+            uint16_t sprite = file.readU16(); // Index into sprite list
 
-            room->addSprite(new Sprite(vertices.at(vertex), texture));
+            // TODO store sprites somewhere
         }
 
         uint16_t numPortals = file.readU16();
@@ -336,6 +337,8 @@ void LoaderTR2::loadRooms() {
         int16_t alternateRoom = file.read16();
 
         uint16_t flags = file.readU16();
+
+        getWorld().addRoom(room);
     }
 }
 
@@ -353,18 +356,21 @@ void LoaderTR2::loadFloorData() {
 
 void LoaderTR2::loadSprites() {
     uint32_t numSpriteTextures = file.readU32();
+    std::vector<Sprite> sprites;
     for (unsigned int s = 0; s < numSpriteTextures; s++) {
         uint16_t tile = file.readU16();
         uint8_t x = file.readU8();
         uint8_t y = file.readU8();
         uint16_t width = file.readU16(); // Actually (width * 256) + 255
         uint16_t height = file.readU16(); // Actually (height * 256) + 255
+
+        // Required for what?
         int16_t leftSide = file.read16();
         int16_t topSide = file.read16();
         int16_t rightSide = file.read16();
         int16_t bottomSide = file.read16();
 
-        // TODO store sprite textures somewhere
+        sprites.emplace_back(tile, x, y, width, height);
     }
 
     uint32_t numSpriteSequences = file.readU32();
@@ -373,7 +379,15 @@ void LoaderTR2::loadSprites() {
         int16_t negativeLength = file.read16(); // Negative sprite count
         int16_t offset = file.read16(); // Where sequence starts in sprite texture list
 
-        // TODO store sprite sequences somewhere
+        assert(negativeLength < 0);
+        assert(offset >= 0);
+        assert((offset + (negativeLength * -1)) <= numSpriteTextures);
+
+        SpriteSequence* ss = new SpriteSequence(objectID);
+        for (int i = 0; i < (negativeLength * -1); i++) {
+            ss->add(sprites.at(offset + i));
+        }
+        getWorld().addSprite(ss);
     }
 }
 
@@ -399,10 +413,85 @@ void LoaderTR2::loadMeshes() {
 
     for (unsigned int i = 0; i < numMeshPointers; i++) {
         uint32_t meshPointer = file.readU32();
-        char* tmpPtr = reinterpret_cast<char*>(&buffer[meshPointer]);
-        BinaryMemory mem(tmpPtr, numMeshData - meshPointer);
 
-        // TODO interpret the buffered mesh data
+        char* tmpPtr = reinterpret_cast<char*>(&buffer[meshPointer / 2]);
+        BinaryMemory mem(tmpPtr, (numMeshData * 2) - meshPointer);
+
+        int16_t mx = mem.read16();
+        int16_t my = mem.read16();
+        int16_t mz = mem.read16();
+
+        int32_t collisionSize = mem.read32();
+
+        uint16_t numVertices = mem.readU16();
+        for (int v = 0; v < numVertices; v++) {
+            int16_t x = mem.read16();
+            int16_t y = mem.read16();
+            int16_t z = mem.read16();
+
+        }
+
+        int16_t numNormals = mem.read16();
+        if (numNormals > 0) {
+            // External vertex lighting is used, with the lighting calculated
+            // from the rooms ambient and point-source lighting values. The
+            // latter appears to use a simple Lambert law for directionality:
+            // intensity is proportional to
+            //      max((normal direction).(direction to source), 0)
+            for (int n = 0; n < numNormals; n++) {
+                int16_t x = mem.read16();
+                int16_t y = mem.read16();
+                int16_t z = mem.read16();
+
+            }
+        } else if (numNormals < 0) {
+            // Internal vertex lighting is used,
+            // using the data included with the mesh
+            for (int l = 0; l < (numNormals * -1); l++) {
+                int16_t light = mem.read16();
+
+            }
+        }
+
+        int16_t numTexturedRectangles = mem.read16();
+        for (int r = 0; r < numTexturedRectangles; r++) {
+            uint16_t vertex1 = mem.readU16();
+            uint16_t vertex2 = mem.readU16();
+            uint16_t vertex3 = mem.readU16();
+            uint16_t vertex4 = mem.readU16();
+            uint16_t texture = mem.readU16();
+
+        }
+
+        int16_t numTexturedTriangles = mem.read16();
+        for (int t = 0; t < numTexturedTriangles; t++) {
+            uint16_t vertex1 = mem.readU16();
+            uint16_t vertex2 = mem.readU16();
+            uint16_t vertex3 = mem.readU16();
+            uint16_t texture = mem.readU16();
+
+        }
+
+        int16_t numColoredRectangles = mem.read16();
+        for (int r = 0; r < numColoredRectangles; r++) {
+            uint16_t vertex1 = mem.readU16();
+            uint16_t vertex2 = mem.readU16();
+            uint16_t vertex3 = mem.readU16();
+            uint16_t vertex4 = mem.readU16();
+            uint16_t texture = mem.readU16();
+
+        }
+
+        int16_t numColoredTriangles = mem.read16();
+        for (int t = 0; t < numColoredTriangles; t++) {
+            uint16_t vertex1 = mem.readU16();
+            uint16_t vertex2 = mem.readU16();
+            uint16_t vertex3 = mem.readU16();
+            uint16_t texture = mem.readU16();
+
+        }
+
+        // TODO store mesh data somewhere
     }
 }
 
@@ -509,12 +598,10 @@ void LoaderTR2::loadMoveables() {
 
 
         // Offset of mesh origin from the parent mesh origin
-
-        /* Where the hell does this come from?!
-        int32_t x = file.read32();
-        int32_t y = file.read32();
-        int32_t z = file.read32();
-        */
+        //int32_t x = file.read32();
+        //int32_t y = file.read32();
+        //int32_t z = file.read32();
+        // Does not appear to be true...?
 
         // TODO store mesh trees somewhere
     }

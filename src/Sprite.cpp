@@ -12,46 +12,60 @@
 #include "TextureManager.h"
 #include "Sprite.h"
 
+SpriteSequence::SpriteSequence(int32_t objectID) {
+    id = objectID;
+}
+
+void SpriteSequence::add(Sprite s) {
+    sprites.push_back(s);
+}
+
+// -----------------------
+
 SpriteSequence::SpriteSequence(TombRaider& tr, unsigned int item, unsigned int sequence) {
     for (int i = 0; i < (-tr.SpriteSequence()[sequence].negative_length); i++)
-        sprites.push_back(new Sprite(tr, item, sequence, i));
+        oldsprites.push_back(new Sprite(tr, item, sequence, i));
 }
 
 SpriteSequence::~SpriteSequence() {
-    for (unsigned int i = 0; i < sprites.size(); i++)
-        delete sprites.at(i);
+    for (unsigned int i = 0; i < oldsprites.size(); i++)
+        delete oldsprites.at(i);
 }
 
 unsigned long SpriteSequence::size() {
-    return sprites.size();
+    if (oldsprites.size() > 0)
+        return oldsprites.size();
+    else
+        return sprites.size();
 }
 
 Sprite& SpriteSequence::get(unsigned long index) {
-    assert(index < sprites.size());
-    return *sprites.at(index);
+    if (oldsprites.size() > 0) {
+        assert(index < oldsprites.size());
+        return *oldsprites.at(index);
+    } else {
+        assert(index < sprites.size());
+        return sprites.at(index);
+    }
 }
 
-Sprite::Sprite(TombRaider& tr, unsigned int item, unsigned int sequence, unsigned int index) {
-    tr2_item_t* i = tr.Item();
-    tr2_sprite_texture_t* spriteTextures = tr.Sprite();
-    tr2_sprite_sequence_t* spriteSequence = tr.SpriteSequence();
+// ----------------------------------------------------------------------------
 
-    //! \fixme index was unused?!
-    tr2_sprite_texture_t* sprite = &spriteTextures[spriteSequence[sequence].offset + index];
+Sprite::Sprite(uint16_t tile, uint8_t x, uint8_t y, uint16_t width, uint16_t height) {
+    /*!
+     * \fixme TODO Can't do translation/visibility-check when rendering here.
+     * We don't know xyz of this Sprite because it could be used by
+     * different items at other coordinates in the world.
+     * Do translation/visibility-check at item/room level.
+     */
 
-    int width = sprite->width >> 8;
-    int height = sprite->height >> 8;
-    int x = sprite->x;
-    int y = sprite->y;
-    float scale = 4.0f;
-    float texelScale = 256.0f;
+    const float scale = 4.0f;
+    const float texelScale = 256.0f;
+
+    width >>= 8;
+    height >>= 8;
     int width2 = (int)(width * scale);
     int height2 = (int)(height * scale);
-
-    // For vising use
-    pos[0] = i[item].x;
-    pos[1] = i[item].y;
-    pos[2] = i[item].z;
 
     vertex[0][0] = -width2 / 2.0f;
     vertex[1][0] = -width2 / 2.0f;
@@ -80,16 +94,19 @@ Sprite::Sprite(TombRaider& tr, unsigned int item, unsigned int sequence, unsigne
     texel[0][0] = (float)(x) / texelScale;
     texel[0][1] = (float)(y + height) / texelScale;
 
-    texture = sprite->tile;
-    radius = width2 / 2.0f;
+    texture = tile;
+    //radius = width2 / 2.0f;
 }
+
+// -----------------------
 
 Sprite::Sprite(TombRaider& tr, unsigned int room, unsigned int index) {
     float spriteVertices[12];
     float spriteTexCoords[8];
+    float posUnused[3];
 
     tr.getRoomSprite(room, index,
-                     10.0f, &texture, pos, spriteVertices, spriteTexCoords);
+                     10.0f, &texture, posUnused, spriteVertices, spriteTexCoords);
 
     for (unsigned int j = 0; j < 12; j++)
         vertex[j / 3][j % 3] = spriteVertices[j];
@@ -97,19 +114,15 @@ Sprite::Sprite(TombRaider& tr, unsigned int room, unsigned int index) {
     for (unsigned int j = 0; j < 8; j++)
         texel[j / 2][j % 2] = spriteTexCoords[j];
 
-    radius = 0.0f;
-}
-
-Sprite::Sprite(struct vertex_t vert, uint16_t tex) {
-
+    //radius = 0.0f;
 }
 
 void Sprite::display() {
-    if (!getRender().isVisible(pos[0], pos[1], pos[2], radius))
-        return;
+    //if (!getRender().isVisible(pos[0], pos[1], pos[2], radius))
+    //    return;
 
     glPushMatrix();
-    glTranslated(pos[0], pos[1], pos[2]);
+    //glTranslated(pos[0], pos[1], pos[2]);
 
     // Sprites must always face camera, because they have no depth =)
     glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
@@ -158,5 +171,27 @@ void Sprite::display() {
     }
 
     glPopMatrix();
+}
+
+void Sprite::display(float x, float y, float w, float h) {
+    float z = 0.0f;
+
+    getTextureManager().bindTextureId(texture);
+
+    glBegin(GL_QUADS);
+
+    glTexCoord2fv(texel[1]);
+    glVertex3f(x, y, z);
+
+    glTexCoord2fv(texel[2]);
+    glVertex3f(x + w, y, z);
+
+    glTexCoord2fv(texel[3]);
+    glVertex3f(x + w, y + h, z);
+
+    glTexCoord2fv(texel[0]);
+    glVertex3f(x, y + h, z);
+
+    glEnd();
 }
 
