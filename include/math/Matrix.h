@@ -178,8 +178,6 @@ class Matrix {
      */
     void transpose();
 
-    float mMatrix[16]; //!< Data model, moved public for faster external renderer feedback use
-
   private:
 
     /*!
@@ -196,6 +194,8 @@ class Matrix {
      * \param result wil be set to resultant matrix value
      */
     static void multiply(const float a[16], const float b[16], float result[16]);
+
+    float mMatrix[16];
 };
 
 #endif

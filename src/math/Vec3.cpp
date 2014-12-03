@@ -98,8 +98,8 @@ Vec3& Vec3::operator *=(float s) {
 
 bool Vec3::operator ==(const Vec3& v) {
     return equalEpsilon(x, v.x)
-        && equalEpsilon(y, v.y)
-        && equalEpsilon(z, v.z);
+           && equalEpsilon(y, v.y)
+           && equalEpsilon(z, v.z);
 }
 
 bool Vec3::operator !=(const Vec3& v) {
