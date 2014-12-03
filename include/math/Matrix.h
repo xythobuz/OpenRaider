@@ -10,7 +10,7 @@
 
 #include "math/math.h"
 #include "math/Quaternion.h"
-#include "math/Vector3d.h"
+#include "math/Vec3.h"
 
 
 /*!
@@ -117,7 +117,7 @@ class Matrix {
      * \param v Vector to multiply with
      * \returns resultant vector (mult)
      */
-    Vector3d operator *(Vector3d v);
+    Vec3 operator *(Vec3 v);
 
     /*!
      * \brief Sets to identity matrix

@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141203 ]
+    * Renamed Vector3d to Vec3, small cleanup
+    * Added preliminary math unit test
+
     [ 20141202 ]
     * No longer crashing when LoaderTR2 does not find an SFX file
     * LoaderTR2 now loads level-wide Sprites (no Room Sprites yet)

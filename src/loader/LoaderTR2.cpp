@@ -694,7 +694,7 @@ void LoaderTR2::loadBoxesOverlapsZones() {
     // TODO store zones somewhere
 
     if ((numBoxes > 0) || (numOverlaps > 0))
-        getLog() << "LoaderTR2: Found NPC NavigationHints, not yet implemented!" << Log::endl;
+        getLog() << "LoaderTR2: Found NPC NavigationHints, unimplemented!" << Log::endl;
 }
 
 // ---- Sound ----
@@ -800,7 +800,7 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
     }
 
     if (riffCount > 0)
-        getLog() << "LoaderTR2: Found " << riffCount << " SoundSamples" << Log::endl;
+        getLog() << "LoaderTR2: Found " << riffCount << " SoundSamples in SFX" << Log::endl;
 }
 
 // ---- Stuff ----
@@ -839,7 +839,7 @@ void LoaderTR2::loadCinematicFrames() {
 
     if (numCinematicFrames > 0)
         getLog() << "LoaderTR2: Found " << numCinematicFrames
-                 << " CinematicFrames, not yet implemented!" << Log::endl;
+                 << " CinematicFrames, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadDemoData() {
@@ -849,7 +849,7 @@ void LoaderTR2::loadDemoData() {
 
     // TODO store demo data somewhere, find out meaning
     if (numDemoData > 0)
-        getLog() << "LoaderTR2: Found " << numDemoData << " bytes DemoData, not yet implemented!" <<
+        getLog() << "LoaderTR2: Found " << numDemoData << " bytes DemoData, unimplemented!" <<
                  Log::endl;
 }
 

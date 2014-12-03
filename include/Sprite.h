@@ -21,10 +21,10 @@ class Sprite {
 
     Sprite(TombRaider& tr, unsigned int item, unsigned int sequence, unsigned int index) :
         Sprite((tr.Sprite() + ((tr.SpriteSequence() + sequence)->offset) + index)->tile,
-        (tr.Sprite() + ((tr.SpriteSequence() + sequence)->offset) + index)->x,
-        (tr.Sprite() + ((tr.SpriteSequence() + sequence)->offset) + index)->y,
-        (tr.Sprite() + ((tr.SpriteSequence() + sequence)->offset) + index)->width,
-        (tr.Sprite() + ((tr.SpriteSequence() + sequence)->offset) + index)->height) { }
+               (tr.Sprite() + ((tr.SpriteSequence() + sequence)->offset) + index)->x,
+               (tr.Sprite() + ((tr.SpriteSequence() + sequence)->offset) + index)->y,
+               (tr.Sprite() + ((tr.SpriteSequence() + sequence)->offset) + index)->width,
+               (tr.Sprite() + ((tr.SpriteSequence() + sequence)->offset) + index)->height) { }
 
     void display();
     void display(float x, float y, float w, float h);

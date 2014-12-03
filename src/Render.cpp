@@ -562,7 +562,8 @@ void Render::debugDisplaySprite(int sprite, int offset, float x, float y, float 
     debugTextile = -1;
 }
 
-void Render::drawSprite(float x, float y, float w, float h, unsigned int sprite, unsigned int offset) {
+void Render::drawSprite(float x, float y, float w, float h, unsigned int sprite,
+                        unsigned int offset) {
     glColor3ubv(WHITE);
 
     if (mFlags & Render::fGL_Lights)

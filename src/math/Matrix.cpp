@@ -177,17 +177,17 @@ Matrix Matrix::operator *(const Matrix& a) {
     return multiply(a, *this);
 }
 
-Vector3d Matrix::operator *(Vector3d v) {
-    float x = v.mVec[0], y = v.mVec[1], z = v.mVec[2];
+Vec3 Matrix::operator *(Vec3 v) {
+    float x = v.x, y = v.y, z = v.z;
 
 #ifdef COLUMN_ORDER
-    return Vector3d(mMatrix[0] * x + mMatrix[4] * y + mMatrix[ 8] * z + mMatrix[12],
-                    mMatrix[1] * x + mMatrix[5] * y + mMatrix[ 9] * z + mMatrix[13],
-                    mMatrix[2] * x + mMatrix[6] * y + mMatrix[10] * z + mMatrix[14]);
+    return Vec3(mMatrix[0] * x + mMatrix[4] * y + mMatrix[ 8] * z + mMatrix[12],
+                mMatrix[1] * x + mMatrix[5] * y + mMatrix[ 9] * z + mMatrix[13],
+                mMatrix[2] * x + mMatrix[6] * y + mMatrix[10] * z + mMatrix[14]);
 #else
-    return Vector3d(mMatrix[0] * x + mMatrix[1] * y + mMatrix[ 2] * z + mMatrix[ 3],
-                    mMatrix[4] * x + mMatrix[5] * y + mMatrix[ 6] * z + mMatrix[ 7],
-                    mMatrix[8] * x + mMatrix[9] * y + mMatrix[10] * z + mMatrix[11]);
+    return Vec3(mMatrix[0] * x + mMatrix[1] * y + mMatrix[ 2] * z + mMatrix[ 3],
+                mMatrix[4] * x + mMatrix[5] * y + mMatrix[ 6] * z + mMatrix[ 7],
+                mMatrix[8] * x + mMatrix[9] * y + mMatrix[10] * z + mMatrix[11]);
 #endif
 }
 
