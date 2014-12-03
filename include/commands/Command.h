@@ -24,6 +24,7 @@ class Command {
     static void fillCommandList();
     static int command(std::string c);
     static int executeFile(std::string file);
+    static std::string autoComplete(std::string begin);
 
   private:
     static std::vector<std::shared_ptr<Command>> commands;

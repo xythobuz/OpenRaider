@@ -5,6 +5,9 @@
     [ 20141203 ]
     * Renamed Vector3d to Vec3, small cleanup
     * Added preliminary math unit test
+    * Updated ImGui to version 1.18 wip
+    * Console now has support for auto-completion
+    * Fixed Consoles command history behavior thanks to new ImGui features
 
     [ 20141202 ]
     * No longer crashing when LoaderTR2 does not find an SFX file

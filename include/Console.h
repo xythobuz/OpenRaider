@@ -11,11 +11,15 @@
 #include <string>
 #include <vector>
 
+struct ImGuiTextEditCallbackData;
+
 class Console {
   public:
     static void display();
 
   private:
+    static void callback(ImGuiTextEditCallbackData* data);
+
     const static int bufferLength = 256;
     static char buffer[bufferLength + 1];
     static bool scrollToBottom;
@@ -23,6 +27,7 @@ class Console {
     static unsigned long lastLogLength;
     static std::vector<std::string> lastCommands;
     static long lastCommandIndex;
+    static std::string bufferedCommand;
 };
 
 #endif

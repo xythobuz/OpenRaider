@@ -65,7 +65,7 @@ int Command::command(std::string c) {
         return 0;
 
     // Print help
-    if (cmd.compare("help") == 0) {
+    if (cmd == "help") {
         std::string arg;
         command >> arg;
         if (arg.length() == 0) {
@@ -86,7 +86,7 @@ int Command::command(std::string c) {
             // Show help for a specific command
             for (auto& x : commands) {
                 if (x) {
-                    if (x->name().compare(arg) == 0) {
+                    if (x->name() == arg) {
                         x->printHelp();
                         return 0;
                     }
@@ -100,7 +100,7 @@ int Command::command(std::string c) {
     // Execute command
     for (auto& x : commands) {
         if (x) {
-            if (x->name().compare(cmd) == 0) {
+            if (x->name() == cmd) {
                 return x->execute(command);
             }
         }
@@ -131,5 +131,49 @@ int Command::executeFile(std::string file) {
 
     f.close();
     return 0;
+}
+
+std::string Command::autoComplete(std::string begin) {
+    std::vector<std::string> candidates;
+
+    std::string help("help");
+    if (begin.size() <= help.size()) {
+                if (begin.compare(0, begin.size(), help, 0, begin.size()) == 0) {
+                    candidates.push_back(help);
+                }
+            }
+
+    for (auto& x : commands) {
+        if (x) {
+            std::string name = x->name();
+            if (begin.size() <= name.size()) {
+                if (begin.compare(0, begin.size(), name, 0, begin.size()) == 0) {
+                    candidates.push_back(name);
+                }
+            }
+        }
+    }
+
+    if (candidates.size() == 0) {
+        return "";
+    } else if (candidates.size() == 1) {
+        return candidates.at(0);
+    } else {
+        std::string common = candidates.at(0);
+        for (int i = 0; i < candidates.size(); i++) {
+            getLog() << candidates.at(i);
+            if (i < (candidates.size() - 1))
+                getLog() << "/";
+
+            for (int c = 0; (c < common.size()) && (c < candidates.at(i).size()); c++) {
+                if (common.at(c) != candidates.at(i).at(c)) {
+                    common.erase(c);
+                    break;
+                }
+            }
+        }
+        getLog() << Log::endl;
+        return common;
+    }
 }
 
