@@ -11,25 +11,20 @@
 #include "TextureManager.h"
 #include "Mesh.h"
 
-void Mesh::addTexturedRectangle(struct vertex_t a, struct vertex_t b,
-                                struct vertex_t c, struct vertex_t d, uint16_t texture) {
-    struct rectangle_t r;
-    r.a = a;
-    r.b = b;
-    r.c = c;
-    r.d = d;
-    r.texture = texture;
-    texturedRectangles.push_back(r);
+void Mesh::addTexturedRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, uint16_t textile) {
+    texturedRectangles.emplace_back(a, b, c, d, textile);
 }
 
-void Mesh::addTexturedTriangle(struct vertex_t a, struct vertex_t b,
-                               struct vertex_t c, uint16_t texture) {
-    struct rectangle_t r;
-    r.a = a;
-    r.b = b;
-    r.c = c;
-    r.texture = texture;
-    texturedTriangles.push_back(r);
+void Mesh::addTexturedTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile) {
+    texturedTriangles.emplace_back(a, b, c, Vec3(), textile);
+}
+
+void Mesh::addColoredRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, uint16_t textile) {
+    coloredRectangles.emplace_back(a, b, c, d, textile);
+}
+
+void Mesh::addColoredTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile) {
+    coloredTriangles.emplace_back(a, b, c, Vec3(), textile);
 }
 
 void Mesh::drawAlpha() {
@@ -41,7 +36,6 @@ void Mesh::drawAlpha() {
         return;
     }
 
-    // TODO replicate drawAlphaOld, but get object texture coord from World
 }
 
 void Mesh::drawSolid() {
@@ -52,7 +46,6 @@ void Mesh::drawSolid() {
         drawSolidOld();
         return;
     }
-
 
 }
 

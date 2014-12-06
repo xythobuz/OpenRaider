@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "Entity.h"
+#include "Mesh.h"
 #include "Room.h"
 #include "SkeletalModel.h"
 #include "Sprite.h"
@@ -54,6 +55,10 @@ class World {
     unsigned long sizeStaticMesh();
     StaticMesh& getStaticMesh(unsigned long index);
 
+    void addMesh(Mesh* mesh);
+    unsigned long sizeMesh();
+    Mesh& getMesh(unsigned long index);
+
     /*!
      * \brief Find room a location is in.
      *
@@ -82,7 +87,8 @@ class World {
     std::vector<std::unique_ptr<SpriteSequence>> mSprites;
     std::vector<std::unique_ptr<Entity>> mEntities;
     std::vector<std::unique_ptr<SkeletalModel>> mModels;
-    std::vector<std::unique_ptr<StaticMesh>> mMeshes;
+    std::vector<std::unique_ptr<StaticMesh>> mStaticMeshes;
+    std::vector<std::unique_ptr<Mesh>> mMeshes;
 };
 
 World& getWorld();

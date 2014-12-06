@@ -9,6 +9,7 @@
 #include "Game.h"
 #include "Render.h"
 #include "TextureManager.h"
+#include "World.h"
 #include "utils/pixel.h"
 #include "StaticMesh.h"
 
@@ -90,6 +91,10 @@ void TexturedTriangle::display(float* vertices, float* colors, float* normals) {
 
     glEnd();
 }
+
+// ----------------------------------------------------------------------------
+
+StaticMesh::StaticMesh(int i, int m) : id(i), mesh(m) { }
 
 #ifdef EXPERIMENTAL
 
@@ -218,6 +223,8 @@ StaticMesh::StaticMesh(TombRaider& tr, unsigned int index) {
         triangles.push_back(
             new TexturedTriangle(vertexIndices + 3, st, texture, transparency));
     }
+
+    id = mesh = -1;
 }
 
 StaticMesh::~StaticMesh() {
@@ -232,6 +239,11 @@ StaticMesh::~StaticMesh() {
 }
 
 void StaticMesh::display() {
+    if ((id != -1) && (mesh != -1)) {
+        getWorld().getMesh(mesh).drawSolid();
+        return;
+    }
+
     if (!dontshow) {
         //! \fixme Duh, vis tests need to be put back
         //if (!isVisible(center, radius, bbox))
@@ -251,6 +263,7 @@ void StaticMesh::display() {
 }
 
 float StaticMesh::getRadius() {
+    assert((id != -1) && (mesh != -1));
     return radius;
 }
 

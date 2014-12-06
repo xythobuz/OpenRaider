@@ -10,7 +10,7 @@
 #ifndef _MESH_H_
 #define _MESH_H_
 
-#include "loader/Loader.h"
+#include "math/Vec3.h"
 
 /*!
  * \brief OpenGL Mesh
@@ -19,8 +19,11 @@ class Mesh {
   public:
 
     struct rectangle_t {
-        struct vertex_t a, b, c, d;
+        Vec3 a, b, c, d;
         uint16_t texture;
+
+        rectangle_t(Vec3 _a, Vec3 _b, Vec3 _c, Vec3 _d, uint16_t t)
+            : a(_a), b(_b), c(_c), d(_d), texture(t) { }
     };
 
     Mesh();
@@ -29,17 +32,16 @@ class Mesh {
     void drawAlpha();
     void drawSolid();
 
-    // Warning: texture is not the GL texture id,
-    // it is an index into the object texture list!
-    void addTexturedRectangle(struct vertex_t a, struct vertex_t b,
-                              struct vertex_t c, struct vertex_t d, uint16_t texture);
-    void addTexturedTriangle(struct vertex_t a, struct vertex_t b,
-                             struct vertex_t c, uint16_t texture);
+    void addTexturedRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, uint16_t textile);
+    void addTexturedTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile);
 
-    std::vector<struct rectangle_t> texturedRectangles;
-    std::vector<struct rectangle_t> coloredRectangles;
-    std::vector<struct rectangle_t> texturedTriangles;
-    std::vector<struct rectangle_t> coloredTriangles;
+    void addColoredRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, uint16_t textile);
+    void addColoredTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile);
+
+    std::vector<rectangle_t> texturedRectangles;
+    std::vector<rectangle_t> coloredRectangles;
+    std::vector<rectangle_t> texturedTriangles;
+    std::vector<rectangle_t> coloredTriangles;
 
 
 

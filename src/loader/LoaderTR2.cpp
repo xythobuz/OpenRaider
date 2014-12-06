@@ -17,6 +17,7 @@
 #include "SoundManager.h"
 #include "TextureManager.h"
 #include "World.h"
+#include "math/Vec3.h"
 #include "system/Sound.h"
 #include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
@@ -191,28 +192,26 @@ void LoaderTR2::loadRooms() {
         // Number of data words (2 bytes) to follow
         uint32_t dataToFollow = file.readU32();
 
-        std::vector<vertex_t> vertices;
-
         uint16_t numVertices = file.readU16();
+        std::vector<Vec3> vertices;
         for (unsigned int v = 0; v < numVertices; v++) {
-            vertex_t vert;
             // Vertex coordinates, relative to x/zOffset
-            vert.x = file.read16();
-            vert.y = file.read16();
-            vert.z = file.read16();
+            int16_t x = file.read16();
+            int16_t y = file.read16();
+            int16_t z = file.read16();
 
-            vert.light1 = file.read16();
+            int16_t light1 = file.read16();
 
             // Set of flags for special rendering effects
             // 0x8000 - Something to do with water surface?
             // 0x4000 - Underwater lighting modulation/movement if seen from above
             // 0x2000 - Water/Quicksand surface movement
             // 0x0010 - Normal?
-            vert.attributes = file.readU16();
+            uint16_t attributes = file.readU16();
 
-            vert.light2 = file.read16(); // Almost always equal to light1
+            int16_t light2 = file.read16(); // Almost always equal to light1
 
-            vertices.push_back(vert);
+            vertices.emplace_back(x, y, z);
         }
 
         Room* room = new Room();
@@ -229,7 +228,8 @@ void LoaderTR2::loadRooms() {
             uint16_t texture = file.readU16();
 
             room->getMesh().addTexturedRectangle(vertices.at(vertex1), vertices.at(vertex2),
-                                                 vertices.at(vertex3), vertices.at(vertex4), texture);
+                                                 vertices.at(vertex3), vertices.at(vertex4),
+                                                 texture);
         }
 
         uint16_t numTriangles = file.readU16();
@@ -444,15 +444,16 @@ void LoaderTR2::loadMeshes() {
         int16_t mx = mem.read16();
         int16_t my = mem.read16();
         int16_t mz = mem.read16();
-
         int32_t collisionSize = mem.read32();
+        // TODO store mesh collision info somewhere
 
         uint16_t numVertices = mem.readU16();
+        std::vector<Vec3> vertices;
         for (int v = 0; v < numVertices; v++) {
             int16_t x = mem.read16();
             int16_t y = mem.read16();
             int16_t z = mem.read16();
-
+            vertices.emplace_back(x, y, z);
         }
 
         int16_t numNormals = mem.read16();
@@ -466,16 +467,18 @@ void LoaderTR2::loadMeshes() {
                 int16_t x = mem.read16();
                 int16_t y = mem.read16();
                 int16_t z = mem.read16();
-
+                // TODO store normals somewhere
             }
         } else if (numNormals < 0) {
             // Internal vertex lighting is used,
             // using the data included with the mesh
             for (int l = 0; l < (numNormals * -1); l++) {
                 int16_t light = mem.read16();
-
+                // TODO store lights somewhere
             }
         }
+
+        Mesh* mesh = new Mesh();
 
         int16_t numTexturedRectangles = mem.read16();
         for (int r = 0; r < numTexturedRectangles; r++) {
@@ -485,6 +488,9 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex4 = mem.readU16();
             uint16_t texture = mem.readU16();
 
+            mesh->addTexturedRectangle(vertices.at(vertex1), vertices.at(vertex2),
+                                       vertices.at(vertex3), vertices.at(vertex4),
+                                       texture);
         }
 
         int16_t numTexturedTriangles = mem.read16();
@@ -494,6 +500,8 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex3 = mem.readU16();
             uint16_t texture = mem.readU16();
 
+            mesh->addTexturedTriangle(vertices.at(vertex1), vertices.at(vertex2),
+                                      vertices.at(vertex3), texture);
         }
 
         int16_t numColoredRectangles = mem.read16();
@@ -504,6 +512,11 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex4 = mem.readU16();
             uint16_t texture = mem.readU16();
 
+            // TODO color?
+
+            mesh->addColoredRectangle(vertices.at(vertex1), vertices.at(vertex2),
+                                      vertices.at(vertex3), vertices.at(vertex4),
+                                      texture);
         }
 
         int16_t numColoredTriangles = mem.read16();
@@ -513,9 +526,13 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex3 = mem.readU16();
             uint16_t texture = mem.readU16();
 
+            // TODO color?
+
+            mesh->addColoredTriangle(vertices.at(vertex1), vertices.at(vertex2),
+                                     vertices.at(vertex3), texture);
         }
 
-        // TODO store mesh data somewhere
+        getWorld().addMesh(mesh);
     }
 
     if (numMeshPointers > 0)
@@ -550,7 +567,7 @@ void LoaderTR2::loadStaticMeshes() {
         // travel through, like TR2s skeletons and underwater plants
         uint16_t flags = file.readU16();
 
-        // TODO store static meshes somewhere
+        getWorld().addStaticMesh(new StaticMesh(objectID, mesh));
     }
 
     if (numStaticMeshes > 0)

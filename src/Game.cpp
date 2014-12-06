@@ -86,7 +86,7 @@ int Game::loadLevel(const char* level) {
             if (mLara == -1) {
                 getLog() << "Can't find Lara entity in level?!" << Log::endl;
             } else {
-                //mLoaded = true;
+                mLoaded = true;
                 //getRender().setMode(Render::modeVertexLight);
             }
         }

@@ -60,6 +60,7 @@ BoneTag::BoneTag(TombRaider& tr, unsigned int index, unsigned int i, unsigned in
 
 void BoneTag::display() {
     getWorld().getStaticMesh(mesh).display();
+    //getWorld().getMesh(mesh).drawSolid(); // TODO ?
 }
 
 void BoneTag::getOffset(float o[3]) {

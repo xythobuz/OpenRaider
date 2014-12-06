@@ -4,6 +4,8 @@
 
     [ 20141206 ]
     * LoaderTR2 now tries to load Moveables and Entities
+    * Added Meshes to World, taking role of StaticMeshes
+    * LoaderTR2 tries to load Meshes and StaticMeshes
 
     [ 20141203 ]
     * Renamed Vector3d to Vec3, small cleanup

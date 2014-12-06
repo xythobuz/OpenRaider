@@ -14,12 +14,6 @@
 
 #include "utils/binary.h"
 
-struct vertex_t {
-    int16_t x, y, z;
-    int16_t light1, light2;
-    int16_t attributes;
-};
-
 class Loader {
   public:
 

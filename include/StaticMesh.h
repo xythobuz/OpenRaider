@@ -25,6 +25,8 @@ class TexturedTriangle {
 
 class StaticMesh {
   public:
+    StaticMesh(int id, int mesh);
+
     StaticMesh(TombRaider& tr, unsigned int index);
     ~StaticMesh();
     void display();
@@ -44,6 +46,9 @@ class StaticMesh {
     float* normals;
 
     std::vector<TexturedTriangle*> triangles;
+
+    int id;
+    int mesh;
 };
 
 #endif

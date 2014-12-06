@@ -68,14 +68,27 @@ SkeletalModel& World::getSkeletalModel(unsigned long index) {
 }
 
 void World::addStaticMesh(StaticMesh* model) {
-    mMeshes.emplace_back(std::unique_ptr<StaticMesh>(model));
+    mStaticMeshes.emplace_back(std::unique_ptr<StaticMesh>(model));
 }
 
 unsigned long World::sizeStaticMesh() {
-    return mMeshes.size();
+    return mStaticMeshes.size();
 }
 
 StaticMesh& World::getStaticMesh(unsigned long index) {
+    assert(index < mStaticMeshes.size());
+    return *mStaticMeshes.at(index);
+}
+
+void World::addMesh(Mesh* mesh) {
+    mMeshes.emplace_back(mesh);
+}
+
+unsigned long World::sizeMesh() {
+    return mMeshes.size();
+}
+
+Mesh& World::getMesh(unsigned long index) {
     assert(index < mMeshes.size());
     return *mMeshes.at(index);
 }
@@ -114,6 +127,7 @@ void World::destroy() {
     mSprites.clear();
     mEntities.clear();
     mModels.clear();
+    mStaticMeshes.clear();
     mMeshes.clear();
 }
 
