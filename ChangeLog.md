@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141206 ]
+    * LoaderTR2 now tries to load Moveables and Entities
+
     [ 20141203 ]
     * Renamed Vector3d to Vec3, small cleanup
     * Added preliminary math unit test

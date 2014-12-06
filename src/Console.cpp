@@ -87,8 +87,8 @@ void Console::display() {
 
         if (ImGui::InputText("Command", buffer, bufferLength,
                              ImGuiInputTextFlags_EnterReturnsTrue
-                              | ImGuiInputTextFlags_CallbackCompletion
-                              | ImGuiInputTextFlags_CallbackHistory,
+                             | ImGuiInputTextFlags_CallbackCompletion
+                             | ImGuiInputTextFlags_CallbackHistory,
                              &Console::callback)) {
             getLog() << "> " << buffer << Log::endl;
             if (strlen(buffer) > 0) {

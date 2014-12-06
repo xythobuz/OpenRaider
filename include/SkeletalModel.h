@@ -15,6 +15,8 @@
 
 class BoneTag {
   public:
+    BoneTag(int m, float o[3], float r[3], char f);
+
     BoneTag(TombRaider& tr, unsigned int index, unsigned int j, unsigned int* l,
             unsigned int frame_offset);
     void display();
@@ -32,6 +34,8 @@ class BoneTag {
 
 class BoneFrame {
   public:
+    BoneFrame(float p[3]);
+
     BoneFrame(TombRaider& tr, unsigned int index, unsigned int frame_offset);
     ~BoneFrame();
 
@@ -39,6 +43,7 @@ class BoneFrame {
 
     unsigned long size();
     BoneTag& get(unsigned long i);
+    void add(BoneTag* t);
 
   private:
     float pos[3];
@@ -47,12 +52,15 @@ class BoneFrame {
 
 class AnimationFrame {
   public:
+    AnimationFrame(char r);
+
     AnimationFrame(TombRaider& tr, unsigned int index, int a, unsigned int* frame_offset,
                    int frame_step);
     ~AnimationFrame();
 
     unsigned long size();
     BoneFrame& get(unsigned long i);
+    void add(BoneFrame* f);
 
   private:
     char rate;
@@ -61,6 +69,8 @@ class AnimationFrame {
 
 class SkeletalModel {
   public:
+    SkeletalModel(int i);
+
     SkeletalModel(TombRaider& tr, unsigned int index, int objectId);
     ~SkeletalModel();
     void display(unsigned long aframe, unsigned long bframe);
@@ -71,6 +81,7 @@ class SkeletalModel {
 
     unsigned long size();
     AnimationFrame& get(unsigned long i);
+    void add(AnimationFrame* f);
 
   private:
     int id;

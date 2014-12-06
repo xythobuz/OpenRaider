@@ -138,10 +138,10 @@ std::string Command::autoComplete(std::string begin) {
 
     std::string help("help");
     if (begin.size() <= help.size()) {
-                if (begin.compare(0, begin.size(), help, 0, begin.size()) == 0) {
-                    candidates.push_back(help);
-                }
-            }
+        if (begin.compare(0, begin.size(), help, 0, begin.size()) == 0) {
+            candidates.push_back(help);
+        }
+    }
 
     for (auto& x : commands) {
         if (x) {

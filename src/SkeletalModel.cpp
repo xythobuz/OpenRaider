@@ -12,6 +12,15 @@
 #include "SkeletalModel.h"
 #include "World.h"
 
+BoneTag::BoneTag(int m, float o[3], float r[3], char f) {
+    mesh = m;
+    flag = f;
+    for (int i = 0; i < 3; i++) {
+        off[i] = o[i];
+        rot[i] = r[i];
+    }
+}
+
 BoneTag::BoneTag(TombRaider& tr, unsigned int index, unsigned int i, unsigned int* l,
                  unsigned int frame_offset) {
     tr2_moveable_t* moveable = tr.Moveable();
@@ -69,6 +78,13 @@ char BoneTag::getFlag() {
     return flag;
 }
 
+// ----------------------------------------------------------------------------
+
+BoneFrame::BoneFrame(float p[3]) {
+    for (int i = 0; i < 3; i++)
+        pos[i] = p[i];
+}
+
 BoneFrame::BoneFrame(TombRaider& tr, unsigned int index, unsigned int frame_offset) {
     tr2_moveable_t* moveable = tr.Moveable();
     unsigned short* frame = tr.Frame();
@@ -97,10 +113,20 @@ BoneTag& BoneFrame::get(unsigned long i) {
     return *tag.at(i);
 }
 
+void BoneFrame::add(BoneTag* t) {
+    tag.push_back(t);
+}
+
 void BoneFrame::getPosition(float p[3]) {
     p[0] = pos[0];
     p[1] = pos[1];
     p[2] = pos[2];
+}
+
+// ----------------------------------------------------------------------------
+
+AnimationFrame::AnimationFrame(char r) {
+    rate = r;
 }
 
 AnimationFrame::AnimationFrame(TombRaider& tr, unsigned int index, int a,
@@ -161,6 +187,16 @@ unsigned long AnimationFrame::size() {
 BoneFrame& AnimationFrame::get(unsigned long i) {
     assert(i < frame.size());
     return *frame.at(i);
+}
+
+void AnimationFrame::add(BoneFrame* f) {
+    frame.push_back(f);
+}
+
+// ----------------------------------------------------------------------------
+
+SkeletalModel::SkeletalModel(int i) {
+    id = i;
 }
 
 SkeletalModel::SkeletalModel(TombRaider& tr, unsigned int index, int objectId) {
@@ -392,5 +428,9 @@ unsigned long SkeletalModel::size() {
 AnimationFrame& SkeletalModel::get(unsigned long i) {
     assert(i < animation.size());
     return *animation.at(i);
+}
+
+void SkeletalModel::add(AnimationFrame* f) {
+    animation.push_back(f);
 }
 

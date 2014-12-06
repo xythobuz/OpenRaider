@@ -21,6 +21,8 @@ class Entity {
         MoveTypeSwim       = 3
     } MoveType;
 
+    Entity(float p[3], float a[3], int id, long r, unsigned int model);
+
     Entity(TombRaider& tr, unsigned int index, unsigned int i, unsigned int model);
 
     bool operator<(Entity& o);

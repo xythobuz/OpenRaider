@@ -15,6 +15,21 @@
 
 #include "games/TombRaider1.h"
 
+Entity::Entity(float p[3], float a[3], int id, long r, unsigned int model) {
+    for (int i = 0; i < 3; i++) {
+        pos[i] = p[i];
+        angles[i] = a[i];
+    }
+    objectId = id;
+    moveType = MoveTypeWalk;
+    room = r;
+    skeletalModel = model;
+    boneFrame = 0;
+    animationFrame = 0;
+    idleAnimation = 0;
+    state = 0;
+}
+
 Entity::Entity(TombRaider& tr, unsigned int index, unsigned int i, unsigned int model) {
     tr2_moveable_t* moveable = tr.Moveable();
     tr2_item_t* item = tr.Item();

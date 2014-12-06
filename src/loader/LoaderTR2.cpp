@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "global.h"
+#include "Game.h"
 #include "Log.h"
 #include "Mesh.h"
 #include "Room.h"
@@ -75,7 +76,7 @@ void LoaderTR2::loadPaletteTextiles() {
     for (auto& x : palette)
         x = file.readU32();
 
-    // TODO store palette somewhere
+    // TODO store palette somewhere?
 
     uint32_t numTextiles = file.readU32();
 
@@ -95,6 +96,11 @@ void LoaderTR2::loadPaletteTextiles() {
         assert(r >= 0); //! \fixme properly handle error when texture could not be loaded!
         delete [] img;
     }
+
+    if (numTextiles > 0)
+        getLog() << "LoaderTR2: Found " << numTextiles << " Textures!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Textures in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadTextures() {
@@ -124,14 +130,19 @@ void LoaderTR2::loadTextures() {
             uint8_t yCoordinate = file.readU8();
             uint8_t yPixel = file.readU8();
 
-            assert((xCoordinate != 1) || (xCoordinate != 255));
-            assert((yCoordinate != 1) || (yCoordinate != 255));
+            assert((xCoordinate == 1) || (xCoordinate == 255) || (xCoordinate == 0));
+            assert((yCoordinate == 1) || (yCoordinate == 255) || (yCoordinate == 0));
 
             t->add(new TextureTileVertex(xCoordinate, xPixel, yCoordinate, yPixel));
         }
 
         getTextureManager().addTile(t);
     }
+
+    if (numObjectTextures > 0)
+        getLog() << "LoaderTR2: Found " << numObjectTextures << " Textiles!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Textiles in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadAnimatedTextures() {
@@ -158,8 +169,11 @@ void LoaderTR2::loadAnimatedTextures() {
         pos += count + 1;
     }
 
+    if ((numAnimatedTextures > 0) || (numWords > 0))
+        getLog() << "LoaderTR2: Found " << numAnimatedTextures << " Animated Textures!" << Log::endl;
+
     if (pos != numWords)
-        getLog() << "LoaderTR2: Extra bytes at end of AnimatedTextures?" << Log::endl;
+        getLog() << "LoaderTR2: Extra bytes at end of AnimatedTextures?!" << Log::endl;
 }
 
 // ---- Rooms ----
@@ -177,12 +191,11 @@ void LoaderTR2::loadRooms() {
         // Number of data words (2 bytes) to follow
         uint32_t dataToFollow = file.readU32();
 
-
-        std::vector<struct vertex_t> vertices;
+        std::vector<vertex_t> vertices;
 
         uint16_t numVertices = file.readU16();
         for (unsigned int v = 0; v < numVertices; v++) {
-            struct vertex_t vert;
+            vertex_t vert;
             // Vertex coordinates, relative to x/zOffset
             vert.x = file.read16();
             vert.y = file.read16();
@@ -340,6 +353,11 @@ void LoaderTR2::loadRooms() {
 
         getWorld().addRoom(room);
     }
+
+    if (numRooms > 0)
+        getLog() << "LoaderTR2: Found " << numRooms << " Rooms!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Rooms in this Level?!" << Log::endl;
 }
 
 void LoaderTR2::loadFloorData() {
@@ -389,6 +407,12 @@ void LoaderTR2::loadSprites() {
         }
         getWorld().addSprite(ss);
     }
+
+    if ((numSpriteTextures > 0) || (numSpriteSequences > 0))
+        getLog() << "LoaderTR2: Found " << numSpriteTextures << " Sprites in " << numSpriteSequences <<
+                 " Sequences!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Sprites in this level?!" << Log::endl;
 }
 
 // ---- Meshes ----
@@ -493,6 +517,9 @@ void LoaderTR2::loadMeshes() {
 
         // TODO store mesh data somewhere
     }
+
+    if (numMeshPointers > 0)
+        getLog() << "LoaderTR2: Found " << numMeshPointers << " Meshes, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadStaticMeshes() {
@@ -528,12 +555,45 @@ void LoaderTR2::loadStaticMeshes() {
 
     if (numStaticMeshes > 0)
         getLog() << "LoaderTR2: Found " << numStaticMeshes << " StaticMeshes, unimplemented!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No StaticMeshes in this level?!" << Log::endl;
 }
 
 // ---- Moveables ----
 
+struct Animation_t {
+    uint32_t frameOffset;
+    uint8_t frameRate, frameSize;
+    uint16_t stateID, frameStart, frameEnd, nextAnimation;
+    uint16_t nextFrame, numStateChanges, stateChangeOffset;
+    uint16_t numAnimCommands, animCommandOffset;
+
+    Animation_t(uint32_t fo, uint8_t fr, uint8_t fs, uint16_t si,
+                uint16_t fst, uint16_t fe, uint16_t na, uint16_t nf,
+                uint16_t ns, uint16_t so, uint16_t nac, uint16_t ao)
+        : frameOffset(fo), frameRate(fr), frameSize(fs),
+          stateID(si), frameStart(fst), frameEnd(fe), nextAnimation(na),
+          nextFrame(nf), numStateChanges(ns), stateChangeOffset(so),
+          numAnimCommands(nac), animCommandOffset(ao) { }
+};
+
+struct StateChange_t {
+    uint16_t stateID, numAnimDispatches, animDispatchOffset;
+
+    StateChange_t(uint16_t s, uint16_t n, uint16_t a)
+        : stateID(s), numAnimDispatches(n), animDispatchOffset(a) { }
+};
+
+struct AnimDispatch_t {
+    int16_t low, high, nextAnimation, nextFrame;
+
+    AnimDispatch_t(int16_t l, int16_t h, int16_t na, int16_t nf)
+        : low(l), high(h), nextAnimation(na), nextFrame(nf) { }
+};
+
 void LoaderTR2::loadMoveables() {
     uint32_t numAnimations = file.readU32();
+    std::vector<Animation_t> animations;
     for (unsigned int a = 0; a < numAnimations; a++) {
         // *Byte* Offset into Frames[] (so divide by 2!)
         uint32_t frameOffset = file.readU32();
@@ -559,58 +619,108 @@ void LoaderTR2::loadMoveables() {
         uint16_t numAnimCommands = file.readU16(); // How many animation commands to use
         uint16_t animCommandOffset = file.readU16(); // Index into AnimCommand[]
 
-        // TODO store animations somewhere
+        animations.emplace_back(frameOffset, frameRate, frameSize,
+                                stateID, frameStart, frameEnd, nextAnimation, nextFrame, numStateChanges,
+                                stateChangeOffset, numAnimCommands, animCommandOffset);
     }
+
+    if (numAnimations > 0)
+        getLog() << "LoaderTR2: Found " << numAnimations << " Animations!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Animations in this level?!" << Log::endl;
 
     uint32_t numStateChanges = file.readU32();
+    std::vector<StateChange_t> stateChanges;
     for (unsigned int s = 0; s < numStateChanges; s++) {
         uint16_t stateID = file.readU16();
-        uint16_t numAnimDispatches = file.readU16();
+        uint16_t numAnimDispatches = file.readU16(); // Number of ranges (always 1..5?)
         uint16_t animDispatchOffset = file.readU16(); // Index into AnimDispatches[]
 
-        // TODO store state changes somewhere
+        stateChanges.emplace_back(stateID, numAnimDispatches, animDispatchOffset);
     }
 
+    if (numStateChanges > 0)
+        getLog() << "LoaderTR2: Found " << numStateChanges << " StateChanges!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No StateChanges in this level?!" << Log::endl;
+
     uint32_t numAnimDispatches = file.readU32();
+    std::vector<AnimDispatch_t> animDispatches;
     for (unsigned int a = 0; a < numAnimDispatches; a++) {
         int16_t low = file.read16(); // Lowest frame that uses this range
         int16_t high = file.read16(); // Highest frame (+1?) that uses this range
         int16_t nextAnimation = file.read16(); // Animation to go to
         int16_t nextFrame = file.read16(); // Frame offset to go to
 
-        // TODO store animation dispatches somewhere
+        animDispatches.emplace_back(low, high, nextAnimation, nextFrame);
     }
+
+    if (numAnimDispatches > 0)
+        getLog() << "LoaderTR2: Found " << numAnimDispatches << " AnimationDispatches!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No AnimationDispatches in this level?!" << Log::endl;
 
     uint32_t numAnimCommands = file.readU32();
     std::vector<int16_t> animCommands;
     for (unsigned int a = 0; a < numAnimCommands; a++) {
+        // A list of Opcodes with zero or more operands each,
+        // some referring to the whole animation (jump/grab points),
+        // some to specific frames (sound, bubbles, ...).
         animCommands.push_back(file.read16());
     }
 
+    if (numAnimCommands > 0)
+        getLog() << "LoaderTR2: Found " << numAnimCommands << " AnimationCommands!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No AnimationCommands in this level?!" << Log::endl;
+
+    // This is really one uint32_t flags, followed by
+    // three int32_t x, y, z. However, we're given the number
+    // of 32bits, as well as byte indices later, so we store
+    // it as a single list of int32_t.
     uint32_t numMeshTrees = file.readU32();
+    std::vector<int32_t> meshTrees;
     for (unsigned int m = 0; m < numMeshTrees; m++) {
         // 0x0002 - Put parent mesh on the mesh stack
         // 0x0001 - Pop mesh from stack, use as parent mesh
         // When both are not set, use previous mesh as parent mesh
         // When both are set, do 0x0001 first, then 0x0002, thereby
         // reading the stack but not changing it
-        uint32_t flags = file.readU32();
-
+        //uint32_t flags = file.readU32();
 
         // Offset of mesh origin from the parent mesh origin
         //int32_t x = file.read32();
         //int32_t y = file.read32();
         //int32_t z = file.read32();
-        // Does not appear to be true...?
 
-        // TODO store mesh trees somewhere
+        meshTrees.push_back(file.read32());
     }
+
+    if (numMeshTrees > 0)
+        getLog() << "LoaderTR2: Found " << numMeshTrees << " MeshTrees!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No MeshTrees in this level?!" << Log::endl;
 
     uint32_t numFrames = file.readU32();
     std::vector<uint16_t> frames;
     for (unsigned int f = 0; f < numFrames; f++) {
+        // int16 bb1x, bb1y, bb1z
+        // int16 bb2x, bb2y, bb2z
+        // int16 offsetX, offsetY, offsetZ
+        // What follows next is a list of angles with numMeshes (from Moveable) entries.
+        // If the top bit (0x8000) of the first uint16 is set, a single X angle follows,
+        // if the second bit (0x4000) is set, a Y angle follows, both are a Z angle.
+        // If none is set, it's a three-axis rotation. The next 10 bits (0x3FF0) are
+        // the X rotation, the next 10 (0x000F 0xFC00) are Y, the next (0x03FF) are
+        // the Z rotation. The scaling is always 0x100->90deg.
+        // Rotation order: Y, X, Z!
         frames.push_back(file.readU16());
     }
+
+    if (numFrames > 0)
+        getLog() << "LoaderTR2: Found " << numFrames << " Frames!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Frames in this level?!" << Log::endl;
 
     uint32_t numMoveables = file.readU32();
     for (unsigned int m = 0; m < numMoveables; m++) {
@@ -620,16 +730,80 @@ void LoaderTR2::loadMoveables() {
         uint16_t startingMesh = file.readU16(); // Offset into MeshPointers[]
         uint32_t meshTree = file.readU32(); // Offset into MeshTree[]
         // *Byte* offset into Frames[] (divide by 2 for Frames[i])
-        uint32_t frameOffset = file.readU32();
+        uint32_t frameOffset = file.readU32(); // Only needed if no animation
 
         // If animation index is 0xFFFF, the object is stationary or
         // animated by the engine (ponytail)
         uint16_t animation = file.readU16();
 
-        // TODO store moveables somewhere
+        // TODO load all animations, not only the first frame!
+        //if (animation == 0xFFFF) {
+
+        // Just add the frame indicated in frameOffset, nothing else
+        char* tmp = reinterpret_cast<char*>(&frames[0]) + frameOffset;
+        BinaryMemory frame(tmp + 12, (numFrames * 2) - frameOffset - 12); // skip two BBs
+        float pos[3];
+        pos[0] = frame.read16();
+        pos[1] = frame.read16();
+        pos[2] = frame.read16();
+        BoneFrame* bf = new BoneFrame(pos);
+
+        for (int i = 0; i < numMeshes; i++) {
+            int mesh = startingMesh + i;
+            float offset[3] = { 0.0f, 0.0f, 0.0f };
+            float rotation[3] = { 0.0f, 0.0f, 0.0f };
+            char flag = (i == 0) ? 2 : 0;
+
+            // Nonprimary tag - positioned relative to first tag
+            if (i != 0) {
+                tmp = reinterpret_cast<char*>(&meshTrees[0]) + meshTree; // TODO (meshTree * 4)?
+                tmp += (i - 1) * 16; // TODO ?
+                BinaryMemory tree(tmp, (numMeshTrees * 4) - meshTree - ((i - 1) * 16));
+                flag = (char)tree.readU32();
+                offset[0] = tree.read32();
+                offset[1] = tree.read32();
+                offset[2] = tree.read32();
+
+                uint16_t a = frame.readU16();
+                if (a & 0xC000) {
+                    // Single angle
+                    int index = 0;
+                    if ((a & 0x8000) && (a & 0x4000))
+                        index = 2;
+                    else if (a & 0x4000)
+                        index = 1;
+                    rotation[index] = ((float)(a & 0x03FF)) * 360.0f / 1024.0f;
+                } else {
+                    // Three angles
+                    uint16_t b = frame.readU16();
+                    rotation[0] = (a & 0x3FF0) >> 4;
+                    rotation[1] = ((a & 0x000F) << 6) | ((b & 0xFC00) >> 10);
+                    rotation[2] = b & 0x03FF;
+                    for (int i = 0; i < 3; i++)
+                        rotation[i] = rotation[i] * 360.0f / 1024.0f;
+                }
+            }
+
+            BoneTag* bt = new BoneTag(mesh, offset, rotation, flag);
+            bf->add(bt);
+        }
+
+        AnimationFrame* af = new AnimationFrame(0);
+        af->add(bf);
+
+        SkeletalModel* sm = new SkeletalModel(objectID);
+        sm->add(af);
+        getWorld().addSkeletalModel(sm);
+
+        //} else {
+        // Add the whole animation hierarchy
+        //}
     }
 
-    // TODO combine all this into moveables with their animations
+    if (numMoveables > 0)
+        getLog() << "LoaderTR2: Found " << numMoveables << " Moveables!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Moveables in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadItems() {
@@ -651,11 +825,35 @@ void LoaderTR2::loadItems() {
         // 0x3E00 - Activation mask, open, can be XORed with related FloorData list fields.
         uint16_t flags = file.readU16();
 
-        // TODO store items somewhere
+        // TODO for now we're only creating Entities for each Moveable Item
+        for (int m = 0; m < getWorld().sizeSkeletalModel(); m++) {
+            if (getWorld().getSkeletalModel(m).getId() == objectID) {
+                float pos[3] = {
+                    static_cast<float>(x),
+                    static_cast<float>(y),
+                    static_cast<float>(z)
+                };
+
+                float rot[3] = {
+                    0.0f,
+                    OR_DEG_TO_RAD(((angle >> 14) & 0x03) * 90.0f),
+                    0.0f
+                };
+
+                Entity* e = new Entity(pos, rot, objectID, room, m);
+                getWorld().addEntity(e);
+
+                if (objectID == 0) {
+                    getGame().setLara(getWorld().sizeEntity() - 1);
+                }
+            }
+        }
     }
 
     if (numItems > 0)
         getLog() << "LoaderTR2: Found " << numItems << " Items, unimplemented!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Items in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadBoxesOverlapsZones() {

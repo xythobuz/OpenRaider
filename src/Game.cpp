@@ -82,6 +82,13 @@ int Game::loadLevel(const char* level) {
             destroy();
         } else {
             SoundManager::prepareSources();
+
+            if (mLara == -1) {
+                getLog() << "Can't find Lara entity in level?!" << Log::endl;
+            } else {
+                //mLoaded = true;
+                //getRender().setMode(Render::modeVertexLight);
+            }
         }
     }
 
@@ -117,7 +124,7 @@ int Game::loadLevel(const char* level) {
         if (mLara == -1) {
             //! \todo Cutscene support
             getLog() << "Can't find Lara entity in level pak!" << Log::endl;
-            destroy();
+            //destroy();
             return -1;
         } else {
             mLoaded = true;
@@ -180,6 +187,12 @@ Entity& Game::getLara() {
     assert(mLara >= 0);
     assert(mLara < (int)getWorld().sizeEntity());
     return getWorld().getEntity(mLara);
+}
+
+void Game::setLara(long lara) {
+    assert(lara >= 0);
+    assert(lara < getWorld().sizeEntity());
+    mLara = lara;
 }
 
 void Game::processSprites() {

@@ -47,9 +47,9 @@ bool TextureTile::isTriangle() {
         return true;
 
     return ((vertices.at(3)->xPixel == 0)
-            & (vertices.at(3)->xCoordinate == 0)
-            & (vertices.at(3)->yPixel == 0)
-            & (vertices.at(3)->yCoordinate == 0));
+            && (vertices.at(3)->xCoordinate == 0)
+            && (vertices.at(3)->yPixel == 0)
+            && (vertices.at(3)->yCoordinate == 0));
 }
 
 void TextureTile::display(float x, float y, float w, float h, float z) {

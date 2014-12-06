@@ -33,6 +33,7 @@ class Game {
     void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
 
     Entity& getLara();
+    void setLara(long lara);
 
   private:
 
