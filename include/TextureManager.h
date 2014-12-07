@@ -12,6 +12,8 @@
 #include <cstdint>
 #include <vector>
 
+#include "math/Vec3.h"
+
 // These are loaded into TextureStorage::SYSTEM by initialize()!
 #define TEXTURE_WHITE 0
 #define TEXTURE_SPLASH 1
@@ -32,6 +34,9 @@ class TextureTile {
     void add(TextureTileVertex* t);
     bool isTriangle();
     void display(float x, float y, float w, float h, float z);
+
+    void displayTriangle(Vec3 a, Vec3 b, Vec3 c);
+    void displayRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d);
 
   private:
     void displayTriangle(float x, float y, float w, float h, float z);

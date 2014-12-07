@@ -4,6 +4,7 @@
 
     [ 20141207 ]
     * LoaderTR2 now also loads all important parts of the Room structures
+    * Started work on new Mesh implementation used with LoaderTR2
 
     [ 20141206 ]
     * LoaderTR2 now tries to load Moveables and Entities

@@ -76,6 +76,10 @@ void TextureTile::display(float x, float y, float w, float h, float z) {
 }
 
 void TextureTile::displayRectangle(float x, float y, float w, float h, float z) {
+    displayRectangle(Vec3(x, y, z), Vec3(x + w, y, z), Vec3(x + w, y + h, z), Vec3(x, y + h, z));
+}
+
+void TextureTile::displayRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d) {
     float xmin = 256.0f, xmax = 0.0f;
     float ymin = 256.0f, ymax = 0.0f;
     for (int i = 0; i < 4; i++) {
@@ -96,36 +100,31 @@ void TextureTile::displayRectangle(float x, float y, float w, float h, float z) 
 
     glBegin(GL_QUADS);
     glTexCoord2f(xmin / 256.0f, ymin / 256.0f);
-    glVertex3f(x, y, z);
+    glVertex3f(a.x, a.y, a.z);
     glTexCoord2f(xmax / 256.0f, ymin / 256.0f);
-    glVertex3f(x + w, y, z);
+    glVertex3f(b.x, b.y, b.z);
     glTexCoord2f(xmax / 256.0f, ymax / 256.0f);
-    glVertex3f(x + w, y + h, z);
+    glVertex3f(c.x, c.y, c.z);
     glTexCoord2f(xmin / 256.0f, ymax / 256.0f);
-    glVertex3f(x, y + h, z);
+    glVertex3f(d.x, d.y, d.z);
     glEnd();
 }
 
 void TextureTile::displayTriangle(float x, float y, float w, float h, float z) {
-    glBegin(GL_TRIANGLE_STRIP);
-    for (int i = 0; i < 3; i++) {
-        glTexCoord2f(vertices.at(i)->xPixel / 256.0f,
-                     vertices.at(i)->yPixel / 256.0f);
+    displayTriangle(Vec3(x, y, z), Vec3(x + w, y, z), Vec3(x + w, y + h, z));
+}
 
-        if (vertices.at(i)->xCoordinate == 255) {
-            if (vertices.at(i)->yCoordinate == 255) {
-                glVertex3f(x + w, y + h, z);
-            } else {
-                glVertex3f(x + w, y, z);
-            }
-        } else {
-            if (vertices.at(i)->yCoordinate == 255) {
-                glVertex3f(x, y + h, z);
-            } else {
-                glVertex3f(x, y, z);
-            }
-        }
-    }
+void TextureTile::displayTriangle(Vec3 a, Vec3 b, Vec3 c) {
+    glBegin(GL_TRIANGLE_STRIP);
+    glTexCoord2f(vertices.at(0)->xPixel / 256.0f,
+                 vertices.at(0)->yPixel / 256.0f);
+    glVertex3f(a.x, a.y, a.z);
+    glTexCoord2f(vertices.at(1)->xPixel / 256.0f,
+                 vertices.at(1)->yPixel / 256.0f);
+    glVertex3f(b.x, b.y, b.z);
+    glTexCoord2f(vertices.at(2)->xPixel / 256.0f,
+                 vertices.at(2)->yPixel / 256.0f);
+    glVertex3f(c.x, c.y, c.z);
     glEnd();
 }
 

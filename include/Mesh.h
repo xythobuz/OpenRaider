@@ -21,9 +21,11 @@ class Mesh {
     struct rectangle_t {
         Vec3 a, b, c, d;
         uint16_t texture;
+        float red, green, blue;
 
-        rectangle_t(Vec3 _a, Vec3 _b, Vec3 _c, Vec3 _d, uint16_t t)
-            : a(_a), b(_b), c(_c), d(_d), texture(t) { }
+        rectangle_t(Vec3 _a, Vec3 _b, Vec3 _c, Vec3 _d, uint16_t t,
+                    float re = 0.0f, float gr = 0.0f, float bl = 0.0f)
+            : a(_a), b(_b), c(_c), d(_d), texture(t), red(re), green(gr), blue(bl) { }
     };
 
     Mesh();
@@ -35,14 +37,16 @@ class Mesh {
     void addTexturedRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, uint16_t textile);
     void addTexturedTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile);
 
-    void addColoredRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, uint16_t textile);
-    void addColoredTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile);
+    void addColoredRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, float re, float gr, float bl);
+    void addColoredTriangle(Vec3 a, Vec3 b, Vec3 c, float re, float gr, float bl);
+
+    void addNormal(Vec3 n);
 
     std::vector<rectangle_t> texturedRectangles;
     std::vector<rectangle_t> coloredRectangles;
     std::vector<rectangle_t> texturedTriangles;
     std::vector<rectangle_t> coloredTriangles;
-
+    std::vector<Vec3> normals;
 
 
     // Old API

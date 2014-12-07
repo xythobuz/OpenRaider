@@ -5,8 +5,6 @@
  * \author xythobuz
  */
 
-#include <array>
-#include <cstdint>
 #include <vector>
 
 #include "global.h"
@@ -74,11 +72,8 @@ void LoaderTR2::loadPaletteTextiles() {
     file.seek(file.tell() + 768); // Skip 8bit palette, 256 * 3 bytes
 
     // Read the 16bit palette, 256 * 4 bytes, RGBA, A unused
-    std::array<uint32_t, 256> palette; //!< RGBA, A unused
     for (auto& x : palette)
         x = file.readU32();
-
-    // TODO store palette somewhere?
 
     uint32_t numTextiles = file.readU32();
 
@@ -443,8 +438,8 @@ void LoaderTR2::loadRooms() {
 
         getWorld().addRoom(room);
 
-        if ((numPortals == 0) || (numVertices == 0)
-            || ((numRectangles == 0) && (numTriangles == 0)))
+        if ((numPortals == 0) && (numVertices == 0)
+            && (numRectangles == 0) && (numTriangles == 0))
             getLog() << "LoaderTR2: Room " << i << " seems invalid: " << numPortals << "p "
                      << numRectangles << "r " << numTriangles << "t " << numVertices
                      << "v" << Log::endl;
@@ -555,6 +550,8 @@ void LoaderTR2::loadMeshes() {
             vertices.emplace_back(x, y, z);
         }
 
+        Mesh* mesh = new Mesh();
+
         int16_t numNormals = mem.read16();
         if (numNormals > 0) {
             // External vertex lighting is used, with the lighting calculated
@@ -566,7 +563,8 @@ void LoaderTR2::loadMeshes() {
                 int16_t x = mem.read16();
                 int16_t y = mem.read16();
                 int16_t z = mem.read16();
-                // TODO store normals somewhere
+
+                mesh->addNormal(Vec3(x, y, z));
             }
         } else if (numNormals < 0) {
             // Internal vertex lighting is used,
@@ -576,8 +574,6 @@ void LoaderTR2::loadMeshes() {
                 // TODO store lights somewhere
             }
         }
-
-        Mesh* mesh = new Mesh();
 
         int16_t numTexturedRectangles = mem.read16();
         for (int r = 0; r < numTexturedRectangles; r++) {
@@ -611,11 +607,15 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex4 = mem.readU16();
             uint16_t texture = mem.readU16();
 
-            // TODO color?
+            int index = (texture & 0xFF00) >> 8;
+            float red = (palette.at(index) & 0xFF000000) >> 24,
+                  green = (palette.at(index) & 0x00FF0000) >> 16,
+                  blue = (palette.at(index) & 0x0000FF00) >> 8;
+
 
             mesh->addColoredRectangle(vertices.at(vertex1), vertices.at(vertex2),
                                       vertices.at(vertex3), vertices.at(vertex4),
-                                      texture);
+                                      red, green, blue);
         }
 
         int16_t numColoredTriangles = mem.read16();
@@ -625,10 +625,13 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex3 = mem.readU16();
             uint16_t texture = mem.readU16();
 
-            // TODO color?
+            int index = (texture & 0xFF00) >> 8;
+            float red = (palette.at(index) & 0xFF000000) >> 24,
+                  green = (palette.at(index) & 0x00FF0000) >> 16,
+                  blue = (palette.at(index) & 0x0000FF00) >> 8;
 
             mesh->addColoredTriangle(vertices.at(vertex1), vertices.at(vertex2),
-                                     vertices.at(vertex3), texture);
+                                     vertices.at(vertex3), red, green, blue);
         }
 
         getWorld().addMesh(mesh);

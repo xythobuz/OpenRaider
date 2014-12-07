@@ -19,34 +19,59 @@ void Mesh::addTexturedTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile) {
     texturedTriangles.emplace_back(a, b, c, Vec3(), textile);
 }
 
-void Mesh::addColoredRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, uint16_t textile) {
-    coloredRectangles.emplace_back(a, b, c, d, textile);
+void Mesh::addColoredRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, float re, float gr, float bl) {
+    coloredRectangles.emplace_back(a, b, c, d, -1, re, gr, bl);
 }
 
-void Mesh::addColoredTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile) {
-    coloredTriangles.emplace_back(a, b, c, Vec3(), textile);
+void Mesh::addColoredTriangle(Vec3 a, Vec3 b, Vec3 c, float re, float gr, float bl) {
+    coloredTriangles.emplace_back(a, b, c, Vec3(), -1, re, gr, bl);
+}
+
+void Mesh::addNormal(Vec3 n) {
+    normals.emplace_back(n);
 }
 
 void Mesh::drawAlpha() {
     if ((texturedRectangles.size() == 0)
         && (texturedTriangles.size() == 0)
         && (coloredRectangles.size() == 0)
-        && (coloredTriangles.size() == 0)) {
+        && (coloredTriangles.size() == 0)
+        && (normals.size() == 0)) {
         drawAlphaOld();
         return;
     }
 
+    // TODO
 }
 
 void Mesh::drawSolid() {
     if ((texturedRectangles.size() == 0)
         && (texturedTriangles.size() == 0)
         && (coloredRectangles.size() == 0)
-        && (coloredTriangles.size() == 0)) {
+        && (coloredTriangles.size() == 0)
+        && (normals.size() == 0)) {
         drawSolidOld();
         return;
     }
 
+    // Render textured quads
+    for (auto& q : texturedRectangles) {
+        if (mMode == MeshModeWireframe) {
+            getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
+            glBegin(GL_QUADS);
+            glTexCoord2f(0.0f, 0.0f);
+            glVertex3f(q.a.x, q.a.y, q.a.z);
+            glTexCoord2f(1.0f, 0.0f);
+            glVertex3f(q.b.x, q.b.y, q.b.z);
+            glTexCoord2f(1.0f, 1.0f);
+            glVertex3f(q.c.x, q.c.y, q.c.z);
+            glTexCoord2f(0.0f, 1.0f);
+            glVertex3f(q.d.x, q.d.y, q.d.z);
+            glEnd();
+        } else if (mMode == MeshModeTexture) {
+            getTextureManager().getTile(q.texture).displayRectangle(q.a, q.b, q.c, q.d);
+        }
+    }
 }
 
 

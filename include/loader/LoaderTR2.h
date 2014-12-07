@@ -8,6 +8,9 @@
 #ifndef _LOADER_LOADER_TR2_H_
 #define _LOADER_LOADER_TR2_H_
 
+#include <array>
+#include <cstdint>
+
 #include "loader/Loader.h"
 
 class LoaderTR2 : public Loader {
@@ -38,6 +41,8 @@ class LoaderTR2 : public Loader {
     void loadSampleIndices();
 
     void loadExternalSoundFile(std::string f);
+
+    std::array<uint32_t, 256> palette;
 };
 
 #endif
