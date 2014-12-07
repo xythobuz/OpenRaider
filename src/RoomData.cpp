@@ -219,7 +219,17 @@ Portal::Portal(TombRaider& tr, unsigned int room, unsigned int index, Matrix& tr
 }
 
 Portal::Portal(float vert[4][3], float norm[3], int adj) {
+    for (unsigned int i = 0; i < 4; i++) {
+        for (unsigned int j = 0; j < 3; j++) {
+            vertices[i][j] = vert[i][j];
+        }
 
+        if (i < 3) {
+            normal[i] = norm[i];
+        }
+    }
+
+    adjoiningRoom = adj;
 }
 
 void Portal::getVertices(float vert[4][3]) {
@@ -232,12 +242,6 @@ void Portal::getVertices(float vert[4][3]) {
 
 int Portal::getAdjoiningRoom() {
     return adjoiningRoom;
-}
-
-// ----------------------------------------------------------------------------
-
-Box::Box(TombRaider& tr, unsigned int room, unsigned int index) {
-    tr.getRoomBox(room, index, a, b, c, d);
 }
 
 // ----------------------------------------------------------------------------

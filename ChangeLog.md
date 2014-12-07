@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141207 ]
+    * LoaderTR2 now also loads all important parts of the Room structures
+
     [ 20141206 ]
     * LoaderTR2 now tries to load Moveables and Entities
     * Added Meshes to World, taking role of StaticMeshes

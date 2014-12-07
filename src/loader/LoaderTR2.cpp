@@ -17,6 +17,7 @@
 #include "SoundManager.h"
 #include "TextureManager.h"
 #include "World.h"
+#include "math/Matrix.h"
 #include "math/Vec3.h"
 #include "system/Sound.h"
 #include "utils/pixel.h"
@@ -172,6 +173,8 @@ void LoaderTR2::loadAnimatedTextures() {
 
     if ((numAnimatedTextures > 0) || (numWords > 0))
         getLog() << "LoaderTR2: Found " << numAnimatedTextures << " Animated Textures!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Animated Textures in this level?!" << Log::endl;
 
     if (pos != numWords)
         getLog() << "LoaderTR2: Extra bytes at end of AnimatedTextures?!" << Log::endl;
@@ -181,7 +184,6 @@ void LoaderTR2::loadAnimatedTextures() {
 
 void LoaderTR2::loadRooms() {
     uint16_t numRooms = file.readU16();
-
     for (unsigned int i = 0; i < numRooms; i++) {
         // Room Header
         int32_t xOffset = file.read32();
@@ -194,6 +196,10 @@ void LoaderTR2::loadRooms() {
 
         uint16_t numVertices = file.readU16();
         std::vector<Vec3> vertices;
+        float bbox[2][3] = {
+            { 0.0f, 0.0f, 0.0f },
+            { 0.0f, 0.0f, 0.0f }
+        };
         for (unsigned int v = 0; v < numVertices; v++) {
             // Vertex coordinates, relative to x/zOffset
             int16_t x = file.read16();
@@ -212,9 +218,43 @@ void LoaderTR2::loadRooms() {
             int16_t light2 = file.read16(); // Almost always equal to light1
 
             vertices.emplace_back(x, y, z);
+
+            if (v == 0) {
+                for (int i = 0; i < 2; i++) {
+                    bbox[i][0] = x;
+                    bbox[i][1] = y;
+                    bbox[i][2] = z;
+                }
+            } else {
+                if (x < bbox[0][0])
+                    bbox[0][0] = x;
+                if (x > bbox[1][0])
+                    bbox[1][0] = x;
+
+                if (y < bbox[0][1])
+                    bbox[0][1] = y;
+                if (y > bbox[1][1])
+                    bbox[1][1] = y;
+
+                if (z < bbox[0][2])
+                    bbox[0][2] = z;
+                if (z > bbox[1][2])
+                    bbox[1][2] = z;
+            }
         }
 
-        Room* room = new Room();
+        float pos[3] {
+            static_cast<float>(xOffset),
+            0.0f,
+            static_cast<float>(zOffset)
+        };
+        Room* room = new Room(pos);
+
+        bbox[0][0] += pos[0];
+        bbox[1][0] += pos[0];
+        bbox[0][2] += pos[2];
+        bbox[1][2] += pos[2];
+        room->getBoundingBox().setBoundingBox(bbox[0], bbox[1]);
 
         uint16_t numRectangles = file.readU16();
         for (unsigned int r = 0; r < numRectangles; r++) {
@@ -254,6 +294,11 @@ void LoaderTR2::loadRooms() {
             // TODO store sprites somewhere
         }
 
+        Matrix transform;
+        transform.setIdentity();
+        transform.translate(pos);
+        room->addAdjacentRoom(i); // Always set room itself as first
+
         uint16_t numPortals = file.readU16();
         for (unsigned int p = 0; p < numPortals; p++) {
             // Which room this portal leads to
@@ -281,11 +326,46 @@ void LoaderTR2::loadRooms() {
             int16_t yCorner4 = file.read16();
             int16_t zCorner4 = file.read16();
 
-            // TODO store portals somewhere
+            float vertices[4][3] = {
+                {
+                    static_cast<float>(xCorner1),
+                    static_cast<float>(yCorner1),
+                    static_cast<float>(zCorner1)
+                }, {
+                    static_cast<float>(xCorner2),
+                    static_cast<float>(yCorner2),
+                    static_cast<float>(zCorner2)
+                }, {
+                    static_cast<float>(xCorner3),
+                    static_cast<float>(yCorner3),
+                    static_cast<float>(zCorner3)
+                }, {
+                    static_cast<float>(xCorner4),
+                    static_cast<float>(yCorner4),
+                    static_cast<float>(zCorner4)
+                }
+            };
+
+            // Portals have relative coordinates
+            transform.multiply3v(vertices[0], vertices[0]);
+            transform.multiply3v(vertices[1], vertices[1]);
+            transform.multiply3v(vertices[2], vertices[2]);
+            transform.multiply3v(vertices[3], vertices[3]);
+
+            float normals[3] = {
+                static_cast<float>(xNormal),
+                static_cast<float>(yNormal),
+                static_cast<float>(zNormal)
+            };
+
+            room->addPortal(new Portal(vertices, normals, adjoiningRoom));
+            room->addAdjacentRoom(adjoiningRoom);
         }
 
         uint16_t numZSectors = file.readU16();
         uint16_t numXSectors = file.readU16();
+        room->setNumXSectors(numXSectors);
+        room->setNumZSectors(numZSectors);
         for (unsigned int s = 0; s < (numZSectors * numXSectors); s++) {
             // Sectors are 1024*1024 world coordinates. Floor and Ceiling are
             // signed numbers of 256 units of height.
@@ -303,7 +383,12 @@ void LoaderTR2::loadRooms() {
             uint8_t roomAbove = file.readU8(); // 0xFF if none
             int8_t ceiling = file.read8(); // Absolute height of ceiling (/ 256)
 
-            // TODO store sectors somewhere
+            bool wall = false;
+            if ((((uint8_t)floor) == 0x81) || (((uint8_t)ceiling) == 0x81)) {
+                wall = true;
+            }
+
+            room->addSector(new Sector(floor * 256.0f, ceiling * 256.0f, wall));
         }
 
         int16_t intensity1 = file.read16();
@@ -347,11 +432,22 @@ void LoaderTR2::loadRooms() {
             // TODO store static meshes somewhere
         }
 
-        int16_t alternateRoom = file.read16();
+        int16_t alternateRoom = file.read16(); // TODO
 
         uint16_t flags = file.readU16();
+        int roomFlags = 0;
+        if (flags & 0x0001) {
+            roomFlags |= RoomFlagUnderWater;
+        }
+        room->setFlags(room->getFlags() | roomFlags);
 
         getWorld().addRoom(room);
+
+        if ((numPortals == 0) || (numVertices == 0)
+            || ((numRectangles == 0) && (numTriangles == 0)))
+            getLog() << "LoaderTR2: Room " << i << " seems invalid: " << numPortals << "p "
+                     << numRectangles << "r " << numTriangles << "t " << numVertices
+                     << "v" << Log::endl;
     }
 
     if (numRooms > 0)
@@ -370,6 +466,8 @@ void LoaderTR2::loadFloorData() {
 
     if (numFloorData > 0)
         getLog() << "LoaderTR2: Found " << numFloorData << " words FloorData, unimplemented!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No FloorData in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadSprites() {
@@ -430,13 +528,14 @@ void LoaderTR2::loadMeshes() {
 
     uint32_t numMeshPointers = file.readU32();
 
-    if ((numMeshData == 0) || (numMeshPointers == 0)) {
-        getLog() << "LoaderTR2: No mesh data found!" << Log::endl;
-        return;
-    }
-
     for (unsigned int i = 0; i < numMeshPointers; i++) {
         uint32_t meshPointer = file.readU32();
+
+        if (numMeshData < (meshPointer / 2)) {
+            getLog() << "LoaderTR2: Invalid Mesh: "
+                     << (meshPointer / 2) << " > " << numMeshData << Log::endl;
+            continue;
+        }
 
         char* tmpPtr = reinterpret_cast<char*>(&buffer[meshPointer / 2]);
         BinaryMemory mem(tmpPtr, (numMeshData * 2) - meshPointer);
@@ -536,7 +635,9 @@ void LoaderTR2::loadMeshes() {
     }
 
     if (numMeshPointers > 0)
-        getLog() << "LoaderTR2: Found " << numMeshPointers << " Meshes, unimplemented!" << Log::endl;
+        getLog() << "LoaderTR2: Found " << numMeshPointers << " Meshes!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No Meshes in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadStaticMeshes() {
@@ -571,7 +672,7 @@ void LoaderTR2::loadStaticMeshes() {
     }
 
     if (numStaticMeshes > 0)
-        getLog() << "LoaderTR2: Found " << numStaticMeshes << " StaticMeshes, unimplemented!" << Log::endl;
+        getLog() << "LoaderTR2: Found " << numStaticMeshes << " StaticMeshes!" << Log::endl;
     else
         getLog() << "LoaderTR2: No StaticMeshes in this level?!" << Log::endl;
 }
@@ -834,7 +935,7 @@ void LoaderTR2::loadItems() {
         int32_t y = file.read32();
         int32_t z = file.read32();
 
-        int16_t angle = file.read16(); // (0xC000 >> 14) * 90deg
+        uint16_t angle = file.readU16(); // (0xC000 >> 14) * 90deg
         int16_t intensity1 = file.read16(); // Constant lighting; -1 means mesh lighting
         int16_t intensity2 = file.read16(); // Almost always like intensity1
 
@@ -868,7 +969,7 @@ void LoaderTR2::loadItems() {
     }
 
     if (numItems > 0)
-        getLog() << "LoaderTR2: Found " << numItems << " Items, unimplemented!" << Log::endl;
+        getLog() << "LoaderTR2: Found " << numItems << " Items!" << Log::endl;
     else
         getLog() << "LoaderTR2: No Items in this level?!" << Log::endl;
 }
@@ -886,30 +987,52 @@ void LoaderTR2::loadBoxesOverlapsZones() {
 
         // Index into overlaps[]. The high bit is sometimes set
         // this occurs in front of swinging doors and the like
-        int16_t overlapIndex = file.read16();
+        uint16_t overlapIndex = file.readU16();
 
         // TODO store boxes somewhere
     }
 
     uint32_t numOverlaps = file.readU32();
-    std::vector<uint16_t> overlaps;
+    std::vector<std::vector<uint16_t>> overlaps;
+    overlaps.emplace_back();
+    unsigned int list = 0;
     for (unsigned int o = 0; o < numOverlaps; o++) {
-        overlaps.push_back(file.readU16());
+        // Apparently used by NPCs to decide where to go next.
+        // List of neighboring boxes for each box.
+        // Each entry is a uint16, 0x8000 set marks end of list.
+        uint16_t e = file.readU16();
+        overlaps.at(list).push_back(e);
+        if (e & 0x8000) {
+            overlaps.emplace_back();
+            list++;
+        }
     }
 
     // TODO store overlaps somewhere
 
-    std::vector<int16_t> zones;
     for (unsigned int z = 0; z < numBoxes; z++) {
-        for (unsigned int i = 0; i < 10; i++) {
-            zones.push_back(file.read16());
-        }
+        // Normal room state
+        int16_t ground1 = file.read16();
+        int16_t ground2 = file.read16();
+        int16_t ground3 = file.read16();
+        int16_t ground4 = file.read16();
+        int16_t fly = file.read16();
+
+        // Alternate room state
+        int16_t ground1alt = file.read16();
+        int16_t ground2alt = file.read16();
+        int16_t ground3alt = file.read16();
+        int16_t ground4alt = file.read16();
+        int16_t flyAlt = file.read16();
+
+        // TODO store zones somewhere
     }
 
-    // TODO store zones somewhere
-
     if ((numBoxes > 0) || (numOverlaps > 0))
-        getLog() << "LoaderTR2: Found NPC NavigationHints, unimplemented!" << Log::endl;
+        getLog() << "LoaderTR2: Found NPC NavigationHints (" << numBoxes
+                 << ", " << numOverlaps << ", " << list << "), unimplemented!" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No NPC NavigationHints in this level?!" << Log::endl;
 }
 
 // ---- Sound ----
@@ -933,6 +1056,8 @@ void LoaderTR2::loadSoundSources() {
 
     if (numSoundSources > 0)
         getLog() << "LoaderTR2: Found " << numSoundSources << " SoundSources" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No SoundSources in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadSoundMap() {
@@ -960,6 +1085,8 @@ void LoaderTR2::loadSoundDetails() {
 
     if (numSoundDetails > 0)
         getLog() << "LoaderTR2: Found " << numSoundDetails << " SoundDetails" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No SoundDetails in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadSampleIndices() {
@@ -970,6 +1097,8 @@ void LoaderTR2::loadSampleIndices() {
 
     if (numSampleIndices > 0)
         getLog() << "LoaderTR2: Found " << numSampleIndices << " SampleIndices" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No SampleIndices in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadExternalSoundFile(std::string f) {
@@ -1016,6 +1145,8 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
 
     if (riffCount > 0)
         getLog() << "LoaderTR2: Found " << riffCount << " SoundSamples in SFX" << Log::endl;
+    else
+        getLog() << "LoaderTR2: No SoundSamples in SFX?!" << Log::endl;
 }
 
 // ---- Stuff ----

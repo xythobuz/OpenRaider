@@ -22,7 +22,7 @@ class Room {
   public:
     Room(TombRaider& tr, unsigned int index);
 
-    Room();
+    Room(float p[3] = nullptr, unsigned int f = 0, unsigned int x = 0, unsigned int z = 0);
     ~Room();
 
     BoundingBox& getBoundingBox();
@@ -41,6 +41,10 @@ class Room {
     unsigned int getNumZSectors();
     void getPos(float p[3]);
 
+    void setNumXSectors(unsigned int n);
+    void setNumZSectors(unsigned int n);
+    void setPos(float p[3]);
+
     void setFlags(unsigned int f);
     unsigned int getFlags();
 
@@ -55,10 +59,6 @@ class Room {
     unsigned long sizeSectors();
     Sector& getSector(unsigned long index);
     void addSector(Sector* s);
-
-    unsigned long sizeBox();
-    Box& getBox(unsigned long index);
-    void addBox(Box* b);
 
     unsigned long sizeModels();
     StaticModel& getModel(unsigned long index);
@@ -87,7 +87,6 @@ class Room {
     std::vector<Sprite*> sprites;
     std::vector<StaticModel*> models;
     std::vector<Portal*> portals;
-    std::vector<Box*> boxes;
     std::vector<Sector*> sectors;
     std::vector<Light*> lights;
 

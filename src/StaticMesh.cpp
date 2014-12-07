@@ -94,7 +94,9 @@ void TexturedTriangle::display(float* vertices, float* colors, float* normals) {
 
 // ----------------------------------------------------------------------------
 
-StaticMesh::StaticMesh(int i, int m) : id(i), mesh(m) { }
+StaticMesh::StaticMesh(int i, int m) : id(i), mesh(m) {
+    vertices = colors = normals = nullptr;
+}
 
 #ifdef EXPERIMENTAL
 
@@ -263,7 +265,7 @@ void StaticMesh::display() {
 }
 
 float StaticMesh::getRadius() {
-    assert((id != -1) && (mesh != -1));
+    assert((id == -1) && (mesh == -1));
     return radius;
 }
 

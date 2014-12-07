@@ -20,6 +20,7 @@
 #include "StaticMesh.h"
 #include "system/Sound.h"
 #include "TextureManager.h"
+#include "UI.h"
 #include "World.h"
 #include "utils/strings.h"
 
@@ -89,6 +90,8 @@ int Game::loadLevel(const char* level) {
                 mLoaded = true;
                 //getRender().setMode(Render::modeVertexLight);
             }
+
+            UI::setVisible(true);
         }
     }
 

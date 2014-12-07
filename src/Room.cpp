@@ -19,10 +19,33 @@
 extern std::map<int, int> gMapTex2Bump;
 #endif
 
-Room::Room(TombRaider& tr, unsigned int index) {
-    float box[2][3];
-    Matrix transform;
+Room::Room(float p[3], unsigned int f, unsigned int x, unsigned int z)
+    : flags(f), numXSectors(x), numZSectors(z) {
+    if (p == nullptr) {
+        pos[0] = 0.0f;
+        pos[1] = 0.0f;
+        pos[2] = 0.0f;
+    } else {
+        pos[0] = p[0];
+        pos[1] = p[0];
+        pos[2] = p[0];
+    }
+}
 
+void Room::setNumXSectors(unsigned int n) {
+    numXSectors = n;
+}
+
+void Room::setNumZSectors(unsigned int n) {
+    numZSectors = n;
+}
+
+void Room::setPos(float p[3]) {
+    for (int i = 0; i < 3; i++)
+        pos[i] = p[i];
+}
+
+Room::Room(TombRaider& tr, unsigned int index) {
     if (!tr.isRoomValid(index)) {
         getLog() << "WARNING: Handling invalid vertex array in room" << Log::endl;
         return;
@@ -30,6 +53,7 @@ Room::Room(TombRaider& tr, unsigned int index) {
 
     flags = 0;
     unsigned int trFlags = 0;
+    float box[2][3];
     tr.getRoomInfo(index, &trFlags, pos, box[0], box[1]);
 
     if (trFlags & tombraiderRoom_underWater)
@@ -44,6 +68,7 @@ Room::Room(TombRaider& tr, unsigned int index) {
     bbox.setBoundingBox(box[0], box[1]);
 
     // Mongoose 2002.04.03, Setup 3D transform
+    Matrix transform;
     transform.setIdentity();
     transform.translate(pos);
 
@@ -57,18 +82,10 @@ Room::Room(TombRaider& tr, unsigned int index) {
         adjacentRooms.push_back(portals.back()->getAdjoiningRoom());
     }
 
-    //! \fixme Use more of sector structure, boxes, and floordata
-
     // List of sectors in this room
     count = tr.getRoomSectorCount(index, &numZSectors, &numXSectors);
     for (unsigned int i = 0; i < count; i++)
         sectors.push_back(new Sector(tr, index, i));
-
-    // Setup collision boxes
-    //! fixme Should use sectors, but this is a test
-    count = tr.getRoomBoxCount(index);
-    for (unsigned int i = 0; i < count; i++)
-        boxes.push_back(new Box(tr, index, i));
 
     // Setup room lights
     count = tr.getRoomLightCount(index);
@@ -391,12 +408,6 @@ Room::Room(TombRaider& tr, unsigned int index) {
 #endif
 }
 
-Room::Room() : flags(0), numXSectors(0), numZSectors(0) {
-    pos[0] = 0;
-    pos[1] = 0;
-    pos[2] = 0;
-}
-
 #define EMPTY_VECTOR(x)     \
 while (!x.empty()) {        \
     delete x[x.size() - 1]; \
@@ -407,7 +418,6 @@ Room::~Room() {
     EMPTY_VECTOR(sprites);
     EMPTY_VECTOR(models);
     EMPTY_VECTOR(portals);
-    EMPTY_VECTOR(boxes);
     EMPTY_VECTOR(sectors);
     EMPTY_VECTOR(lights);
 }
@@ -533,6 +543,10 @@ int Room::getAdjoiningRoom(float x, float y, float z,
     return -1;
 }
 
+void Room::setFlags(unsigned int f) {
+    flags = f;
+}
+
 unsigned int Room::getFlags() {
     return flags;
 }
@@ -587,19 +601,6 @@ Sector& Room::getSector(unsigned long index) {
 
 void Room::addSector(Sector* s) {
     sectors.push_back(s);
-}
-
-unsigned long Room::sizeBox() {
-    return boxes.size();
-}
-
-Box& Room::getBox(unsigned long index) {
-    assert(index < boxes.size());
-    return *boxes.at(index);
-}
-
-void Room::addBox(Box* b) {
-    boxes.push_back(b);
 }
 
 unsigned long Room::sizeModels() {

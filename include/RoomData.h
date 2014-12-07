@@ -87,16 +87,9 @@ class Portal {
     int adjoiningRoom;
 };
 
-class Box {
-  public:
-    Box(TombRaider& tr, unsigned int room, unsigned int index);
-
-  private:
-    float a[3], b[3], c[3], d[3];
-};
-
 class Sector {
   public:
+    Sector(float f, float c, bool w) : floor(f), ceiling(c), wall(w) { }
     Sector(TombRaider& tr, unsigned int room, unsigned int index);
     float getFloor();
     float getCeiling();
