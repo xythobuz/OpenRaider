@@ -8,10 +8,9 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
-#include "glm/vec2.hpp"
-#include "glm/vec4.hpp"
-
 #include <vector>
+#include <glm/vec2.hpp>
+#include <glm/vec4.hpp>
 
 class Shader {
   public:

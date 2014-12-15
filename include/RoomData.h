@@ -8,10 +8,9 @@
 #ifndef _ROOM_DATA_H_
 #define _ROOM_DATA_H_
 
-#include "glm/vec3.hpp"
-
-#include <vector>
 #include <memory>
+#include <vector>
+#include <glm/vec3.hpp>
 
 class BoundingBox {
   public:

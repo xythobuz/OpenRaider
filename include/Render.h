@@ -9,7 +9,7 @@
 #ifndef _RENDER_H_
 #define _RENDER_H_
 
-#include "glm/vec4.hpp"
+#include <glm/vec4.hpp>
 
 #include "TextureManager.h"
 

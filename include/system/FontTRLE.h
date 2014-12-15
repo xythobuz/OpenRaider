@@ -8,8 +8,8 @@
 #ifndef _FONT_TRLE_H_
 #define _FONT_TRLE_H_
 
-#include "glm/vec2.hpp"
 #include <vector>
+#include <glm/vec2.hpp>
 
 /*!
  * \brief Tomb Raider Level Editor Font loader

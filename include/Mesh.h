@@ -10,7 +10,7 @@
 #ifndef _MESH_H_
 #define _MESH_H_
 
-#include "glm/vec3.hpp"
+#include <glm/vec3.hpp>
 
 /*!
  * \brief OpenGL Mesh

@@ -5,9 +5,8 @@
  * \author xythobuz
  */
 
-#include "glm/gtx/intersect.hpp"
-
 #include <algorithm>
+#include <glm/gtx/intersect.hpp>
 
 #include "global.h"
 #include "Game.h"

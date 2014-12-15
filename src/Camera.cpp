@@ -6,7 +6,7 @@
  * \author xythobuz
  */
 
-#include "glm/gtc/matrix_transform.hpp"
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "global.h"
 #include "Camera.h"
