@@ -10,7 +10,7 @@
 #ifndef _MESH_H_
 #define _MESH_H_
 
-#include "math/Vec3.h"
+#include "glm/vec3.hpp"
 
 /*!
  * \brief OpenGL Mesh
@@ -19,11 +19,11 @@ class Mesh {
   public:
 
     struct rectangle_t {
-        Vec3 a, b, c, d;
+        glm::vec3 a, b, c, d;
         uint16_t texture;
         float red, green, blue;
 
-        rectangle_t(Vec3 _a, Vec3 _b, Vec3 _c, Vec3 _d, uint16_t t,
+        rectangle_t(glm::vec3 _a, glm::vec3 _b, glm::vec3 _c, glm::vec3 _d, uint16_t t,
                     float re = 0.0f, float gr = 0.0f, float bl = 0.0f)
             : a(_a), b(_b), c(_c), d(_d), texture(t), red(re), green(gr), blue(bl) { }
     };
@@ -34,19 +34,20 @@ class Mesh {
     void drawAlpha();
     void drawSolid();
 
-    void addTexturedRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, uint16_t textile);
-    void addTexturedTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile);
+    void addTexturedRectangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, glm::vec3 d, uint16_t textile);
+    void addTexturedTriangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, uint16_t textile);
 
-    void addColoredRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, float re, float gr, float bl);
-    void addColoredTriangle(Vec3 a, Vec3 b, Vec3 c, float re, float gr, float bl);
+    void addColoredRectangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, glm::vec3 d, float re, float gr,
+                             float bl);
+    void addColoredTriangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, float re, float gr, float bl);
 
-    void addNormal(Vec3 n);
+    void addNormal(glm::vec3 n);
 
     std::vector<rectangle_t> texturedRectangles;
     std::vector<rectangle_t> coloredRectangles;
     std::vector<rectangle_t> texturedTriangles;
     std::vector<rectangle_t> coloredTriangles;
-    std::vector<Vec3> normals;
+    std::vector<glm::vec3> normals;
 
 
     // Old API

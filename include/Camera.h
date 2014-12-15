@@ -2,92 +2,37 @@
  * \file include/Camera.h
  * \brief Camera class
  *
- * \author Mongoose
  * \author xythobuz
  */
 
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 
-#include "math/Quaternion.h"
+#include "glm/vec3.hpp"
+#include "glm/mat4x4.hpp"
 
-/*!
- * \brief Commands for interactive camera control
- */
-enum camera_command {
-    CAMERA_ROTATE_RIGHT,
-    CAMERA_ROTATE_LEFT,
-    CAMERA_ROTATE_UP,
-    CAMERA_ROTATE_DOWN
-};
-
-/*!
- * \brief Camera class
- */
 class Camera {
   public:
-    /*!
-     * \brief Constructs an object of Camera
-     */
-    Camera();
+    static void handleMouseMotion(int x, int y);
+    static glm::mat4 getViewMatrix();
 
-    /*!
-     * \brief Get the target currently looked at
-     * \param target where the target will be stored
-     */
-    void getTarget(float target[3]);
+    static float getRadianPitch() { return thetaX; }
+    static float getRadianYaw() { return thetaY; }
 
-    /*!
-     * \brief Get angle/yaw of camera
-     * \returns theta angle/yaw of camera
-     */
-    float getRadianYaw() { return mTheta; }
+    static void setPosition(glm::vec3 p) { pos = p; }
+    static glm::vec3 getPosition() { return pos; }
 
-    /*!
-     * \brief Get angle/pitch of camera
-     * \returns phi angle/pitch of camera
-     */
-    float getRadianPitch() { return mTheta2; }
+    static void setSensitivityX(float sens) { rotationDeltaX = sens; }
+    static float getSensitivityX() { return rotationDeltaX; }
 
-    /*!
-     * \brief Set current position
-     * \param pos new position
-     */
-    void setPosition(float pos[3]);
-
-    void setSensitivityX(float sens) { mRotationDeltaX = sens; }
-
-    float getSensitivityX() { return mRotationDeltaX; }
-
-    void setSensitivityY(float sens) { mRotationDeltaY = sens; }
-
-    float getSensitivityY() { return mRotationDeltaY; }
-
-    /*!
-     * \brief Updates view target
-     */
-    void update();
-
-    /*!
-     * \brief Sends interactive command to camera
-     * \param cmd valid camera command
-     */
-    void command(enum camera_command cmd);
+    static void setSensitivityY(float sens) { rotationDeltaY = sens; }
+    static float getSensitivityY() { return rotationDeltaY; }
 
   private:
-
-    void rotate(float angle, float x, float y, float z);
-
-    Quaternion mQ;         //!< Quaternion for rotation
-    float mPos[4];         //!< Location in 3 space (aka eye)
-    float mTarget[4];      //!< Postition we're looking at
-    float mViewDistance;   //!< Distance from target
-    float mTheta;          //!< View angle Y
-    float mTheta2;         //!< View angle Z
-    float mRotationDeltaX; //!< Horizontal mouse sensitivity
-    float mRotationDeltaY; //!< Vertical mouse sensitivity
+    static glm::vec3 pos;
+    static float thetaX, thetaY;
+    static float rotationDeltaX, rotationDeltaY;
 };
 
-Camera& getCamera();
-
 #endif
+

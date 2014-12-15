@@ -15,7 +15,7 @@
 #include "utils/pcx.h"
 
 int pcxCheck(const char* filename) {
-    assert(filename != NULL);
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
 
     std::ifstream file(filename, std::ios::in | std::ios::binary);
@@ -66,14 +66,15 @@ int pcxCheck(const char* filename) {
 }
 
 int pcxLoad(const char* filename, unsigned char** image,
-            unsigned int* width, unsigned int* height, ColorMode* mode, unsigned int* bpp) {
-    assert(filename != NULL);
+            unsigned int* width, unsigned int* height,
+            TextureManager::ColorMode* mode, unsigned int* bpp) {
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
-    assert(image != NULL);
-    assert(width != NULL);
-    assert(height != NULL);
-    assert(mode != NULL);
-    assert(bpp != NULL);
+    assert(image != nullptr);
+    assert(width != nullptr);
+    assert(height != nullptr);
+    assert(mode != nullptr);
+    assert(bpp != nullptr);
 
     std::ifstream file(filename, std::ios::in | std::ios::binary);
 
@@ -177,7 +178,7 @@ int pcxLoad(const char* filename, unsigned char** image,
     }
 
     // Read color palette
-    unsigned char* palette = NULL;
+    unsigned char* palette = nullptr;
     if (versionFive) {
         int c = file.get();
         if ((c == 12) && file) {
@@ -202,7 +203,7 @@ int pcxLoad(const char* filename, unsigned char** image,
             unsigned long baseIndex = (x + (y** width)) * 4;
             unsigned char alpha = 255, red = 0, green = 0, blue = 0;
 
-            if (palette != NULL) {
+            if (palette != nullptr) {
                 if (nPlanes == 1) {
                     red = palette[buffer[(y * totalBytes) + x] * 3];
                     green = palette[(buffer[(y * totalBytes) + x] * 3) + 1];
@@ -212,7 +213,7 @@ int pcxLoad(const char* filename, unsigned char** image,
                     delete [] buffer;
                     delete [] palette;
                     delete [] *image;
-                    *image = NULL;
+                    *image = nullptr;
                     return -10;
                 }
             } else {
@@ -229,7 +230,7 @@ int pcxLoad(const char* filename, unsigned char** image,
                     delete [] buffer;
                     delete [] palette;
                     delete [] *image;
-                    *image = NULL;
+                    *image = nullptr;
                     return -11;
                 }
             }
@@ -241,7 +242,7 @@ int pcxLoad(const char* filename, unsigned char** image,
         }
     }
 
-    *mode = RGBA;
+    *mode = TextureManager::ColorMode::RGBA;
     *bpp = 32;
 
     delete [] buffer;

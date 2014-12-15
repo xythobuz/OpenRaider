@@ -18,16 +18,5 @@ class CommandMode : public Command {
     virtual int execute(std::istream& args);
 };
 
-class CommandRenderflag : public Command {
-  public:
-    virtual std::string name();
-    virtual std::string brief();
-    virtual void printHelp();
-    virtual int execute(std::istream& args);
-
-  private:
-    int stringToFlag(std::string flag);
-};
-
 #endif
 

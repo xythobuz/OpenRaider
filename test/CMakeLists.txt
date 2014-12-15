@@ -25,15 +25,6 @@ add_executable (tester_loader EXCLUDE_FROM_ALL
 
 #################################################################
 
-add_executable (tester_math EXCLUDE_FROM_ALL
-    "math.cpp" "../src/math/math.cpp"
-    "../src/math/Vec3.cpp"
-)
-add_dependencies (check tester_math)
-add_test (NAME test_math COMMAND tester_math)
-
-#################################################################
-
 add_executable (tester_script EXCLUDE_FROM_ALL
     "Script.cpp" "../src/Script.cpp" "../src/main.cpp"
     "../src/utils/binary.cpp" "../src/Exception.cpp"

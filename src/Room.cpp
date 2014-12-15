@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include "glm/gtx/intersect.hpp"
+
 #include <algorithm>
 
 #include "global.h"
@@ -13,11 +15,6 @@
 #include "Render.h"
 #include "Room.h"
 #include "TextureManager.h"
-
-#ifdef MULTITEXTURE
-#include <map>
-extern std::map<int, int> gMapTex2Bump;
-#endif
 
 Room::Room(float p[3], unsigned int f, unsigned int x, unsigned int z)
     : flags(f), numXSectors(x), numZSectors(z) {
@@ -45,369 +42,6 @@ void Room::setPos(float p[3]) {
         pos[i] = p[i];
 }
 
-Room::Room(TombRaider& tr, unsigned int index) {
-    if (!tr.isRoomValid(index)) {
-        getLog() << "WARNING: Handling invalid vertex array in room" << Log::endl;
-        return;
-    }
-
-    flags = 0;
-    unsigned int trFlags = 0;
-    float box[2][3];
-    tr.getRoomInfo(index, &trFlags, pos, box[0], box[1]);
-
-    if (trFlags & tombraiderRoom_underWater)
-        flags |= RoomFlagUnderWater;
-
-    // Adjust positioning for OR world coordinate translation
-    box[0][0] += pos[0];
-    box[1][0] += pos[0];
-    box[0][2] += pos[2];
-    box[1][2] += pos[2];
-
-    bbox.setBoundingBox(box[0], box[1]);
-
-    // Mongoose 2002.04.03, Setup 3D transform
-    Matrix transform;
-    transform.setIdentity();
-    transform.translate(pos);
-
-    // Current room is always first
-    adjacentRooms.push_back(index);
-
-    // Setup portals
-    unsigned int count = tr.getRoomPortalCount(index);
-    for (unsigned int i = 0; i < count; i++) {
-        portals.push_back(new Portal(tr, index, i, transform));
-        adjacentRooms.push_back(portals.back()->getAdjoiningRoom());
-    }
-
-    // List of sectors in this room
-    count = tr.getRoomSectorCount(index, &numZSectors, &numXSectors);
-    for (unsigned int i = 0; i < count; i++)
-        sectors.push_back(new Sector(tr, index, i));
-
-    // Setup room lights
-    count = tr.getRoomLightCount(index);
-    for (unsigned int i = 0; i < count; i++)
-        lights.push_back(new Light(tr, index, i));
-
-    // Room models
-    count = tr.getRoomModelCount(index);
-    for (unsigned int i = 0; i < count; i++)
-        models.push_back(new StaticModel(tr, index, i));
-
-    // Room sprites
-    count = tr.getRoomSpriteCount(index);
-    for (unsigned int i = 0; i < count; i++)
-        sprites.push_back(new Sprite(tr, index, i));
-
-//#define EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
-#ifdef EXPERIMENTAL_UNIFIED_ROOM_GEOMETERY
-    unsigned int vertexCount, normalCount, colorCount, triCount;
-    float* vertexArray;
-    float* normalArray;
-    float* colorArray;
-    unsigned int* indices, *fflags;
-    float* texCoords;
-    int* textures;
-
-    tr.getRoomVertexArrays(index,
-                           &vertexCount, &vertexArray,
-                           &normalCount, &normalArray,
-                           &colorCount, &colorArray);
-
-    mesh.bufferVertexArray(vertexCount, vertexArray);
-    mesh.bufferNormalArray(normalCount, normalArray);
-    mesh.bufferColorArray(vertexCount, colorArray);
-
-    tr.getRoomTriangles(index, 0, &triCount, &indices, &texCoords, &textures, &fflags);
-
-    mesh.bufferTriangles(triCount, indices, texCoords, textures, fflags);
-#else
-    const unsigned int TextureLimit = 24;
-    float rgba[4];
-    float xyz[3];
-
-    count = tr.getRoomVertexCount(index);
-    mesh.allocateVertices(count);
-    mesh.allocateNormals(0); // count
-    mesh.allocateColors(count);
-
-    for (unsigned int i = 0; i < count; ++i) {
-        tr.getRoomVertex(index, i, xyz, rgba);
-
-        mesh.setVertex(i, xyz[0], xyz[1], xyz[2]);
-        mesh.setColor(i, rgba);
-    }
-
-    // Mongoose 2002.06.09, Setup allocation of meshes and polygons
-    // Counters ( Textured polygon lists are allocated per texture)
-    //          ( Textures are mapped to these meshes )
-    int triangle_counter[TextureLimit];
-    int triangle_counter_alpha[TextureLimit];
-    int rectangle_counter[TextureLimit];
-    int rectangle_counter_alpha[TextureLimit];
-    int tris_mesh_map[TextureLimit];
-    int rect_mesh_map[TextureLimit];
-
-    for (unsigned int i = 0; i < TextureLimit; ++i) {
-        triangle_counter[i]        = 0;
-        triangle_counter_alpha[i]  = 0;
-        rectangle_counter[i]       = 0;
-        rectangle_counter_alpha[i] = 0;
-
-        tris_mesh_map[i] = -1;
-        rect_mesh_map[i] = -1;
-    }
-
-    unsigned int numTris = 0;
-    unsigned int numQuads = 0;
-
-    int texture;
-    unsigned int r, t, q, v;
-    unsigned int indices[4];
-    float texCoords[8];
-
-    count = tr.getRoomTriangleCount(index);
-
-    // Mongoose 2002.08.15, Presort by alpha and texture and setup mapping
-    for (t = 0; t < count; ++t) {
-        tr.getRoomTriangle(index, t,
-                           indices, texCoords, &texture, &flags);
-
-        if (texture > (int)TextureLimit) {
-            getLog() << "Handling bad room[" << index << "].tris["
-                     << t << "].texture = " << texture << Log::endl;
-            texture = TextureLimit - 1;
-        }
-
-        // Counters set up polygon allocation
-        if (flags & tombraiderFace_Alpha ||
-            flags & tombraiderFace_PartialAlpha) {
-            triangle_counter_alpha[texture] += 1;
-        } else {
-            triangle_counter[texture] += 1;
-        }
-
-        // Counter sets up texture id to mesh id mapping
-        if (tris_mesh_map[texture] == -1) {
-            tris_mesh_map[texture] = ++numTris;
-        }
-    }
-
-    count = tr.getRoomRectangleCount(index);
-
-    for (r = 0; r < count; ++r) {
-        tr.getRoomRectangle(index, r,
-                            indices, texCoords, &texture, &flags);
-
-        if (texture > (int)TextureLimit) {
-            getLog() << "Handling bad room[" << index << "].quad["
-                     << r << "].texture = " << texture << Log::endl;
-            texture = TextureLimit - 1;
-        }
-
-        if (flags & tombraiderFace_Alpha ||
-            flags & tombraiderFace_PartialAlpha) {
-            rectangle_counter_alpha[texture] += 1;
-        } else {
-            rectangle_counter[texture] += 1;
-        }
-
-        if (rect_mesh_map[texture] == -1) {
-            rect_mesh_map[texture] = ++numQuads;
-        }
-    }
-
-    // Allocate indexed polygon meshes
-    mesh.allocateTriangles(numTris);
-    mesh.allocateRectangles(numQuads);
-
-    for (unsigned int i = 0, j = 0; i < TextureLimit; ++i) {
-        if (tris_mesh_map[i] > 0) {
-            j = tris_mesh_map[i] - 1;
-
-            t = triangle_counter[i];
-
-            mesh.mTris[j].texture = i;
-#ifdef MULTITEXTURE
-            mesh.mTris[j].bumpmap = gMapTex2Bump[i];
-#endif
-            mesh.mTris[j].cnum_triangles = 0;
-            mesh.mTris[j].num_triangles = 0;
-            mesh.mTris[j].cnum_alpha_triangles = 0;
-            mesh.mTris[j].num_alpha_triangles = 0;
-            mesh.mTris[j].triangles = 0x0;
-            mesh.mTris[j].alpha_triangles = 0x0;
-            mesh.mTris[j].texcoors = 0x0;
-            mesh.mTris[j].texcoors2 = 0x0;
-
-            if (t > 0) {
-                mesh.mTris[j].num_triangles = t;
-                mesh.mTris[j].triangles = new unsigned int[t * 3];
-                mesh.mTris[j].num_texcoors = t * 3;
-                mesh.mTris[j].texcoors = new float *[t * 3];
-                for (unsigned int tmp = 0; tmp < (t * 3); tmp++)
-                    mesh.mTris[j].texcoors[tmp] = new float[2];
-            }
-
-            t = triangle_counter_alpha[i];
-
-            if (t > 0) {
-                mesh.mTris[j].num_alpha_triangles = t;
-                mesh.mTris[j].alpha_triangles = new unsigned int[t * 3];
-                mesh.mTris[j].num_texcoors2 = t * 3;
-                mesh.mTris[j].texcoors2 = new float *[t * 3];
-                for (unsigned int tmp = 0; tmp < (t * 3); tmp++)
-                    mesh.mTris[j].texcoors2[tmp] = new float[2];
-            }
-        }
-
-        ///////////////////////////////////////////
-
-        if (rect_mesh_map[i] > 0) {
-            j = rect_mesh_map[i] - 1;
-
-            r = rectangle_counter[i];
-
-            mesh.mQuads[j].texture = i;
-#ifdef MULTITEXTURE
-            mesh.mQuads[j].bumpmap = gMapTex2Bump[i];
-#endif
-            mesh.mQuads[j].cnum_quads = 0;
-            mesh.mQuads[j].num_quads = 0;
-            mesh.mQuads[j].cnum_alpha_quads = 0;
-            mesh.mQuads[j].num_alpha_quads = 0;
-            mesh.mQuads[j].quads = 0x0;
-            mesh.mQuads[j].alpha_quads = 0x0;
-            mesh.mQuads[j].texcoors = 0x0;
-            mesh.mQuads[j].texcoors2 = 0x0;
-
-            if (r > 0) {
-                mesh.mQuads[j].num_quads = r;
-                mesh.mQuads[j].quads = new unsigned int[r * 4];
-                mesh.mQuads[j].num_texcoors = r * 4;
-                mesh.mQuads[j].texcoors = new float *[r * 4];
-                for (unsigned int tmp = 0; tmp < (r * 4); tmp++)
-                    mesh.mQuads[j].texcoors[tmp] = new float[2];
-            }
-
-            r = rectangle_counter_alpha[i];
-
-            if (r > 0) {
-                mesh.mQuads[j].num_alpha_quads = r;
-                mesh.mQuads[j].alpha_quads = new unsigned int[r * 4];
-                mesh.mQuads[j].num_texcoors2 = r * 4;
-                mesh.mQuads[j].texcoors2 = new float *[r * 4];
-                for (unsigned int tmp = 0; tmp < (r * 4); tmp++)
-                    mesh.mQuads[j].texcoors2[tmp] = new float[2];
-            }
-        }
-    }
-
-    // Generate textured triangles
-    count = tr.getRoomTriangleCount(index);
-
-    for (t = 0; t < count; ++t) {
-        tr.getRoomTriangle(index, t,
-                           indices, texCoords, &texture, &flags);
-
-        unsigned int j = tris_mesh_map[texture] - 1;
-
-        // Setup per vertex
-        for (unsigned int i = 0; i < 3; ++i) {
-            // Get vertex index {(0, a), (1, b), (2, c)}
-            v = indices[i];
-
-            if ((flags & tombraiderFace_Alpha ||
-                 flags & tombraiderFace_PartialAlpha) &&
-                mesh.mTris[j].num_alpha_triangles > 0) {
-                q = mesh.mTris[j].cnum_alpha_triangles * 3 + i;
-
-                mesh.mTris[j].alpha_triangles[q] = v;
-
-                mesh.mTris[j].texcoors2[q][0] = texCoords[i * 2];
-                mesh.mTris[j].texcoors2[q][1] = texCoords[i * 2 + 1];
-            } else if (mesh.mTris[j].num_triangles > 0) {
-                q = mesh.mTris[j].cnum_triangles * 3 + i;
-
-                mesh.mTris[j].triangles[q] = v;
-
-                mesh.mTris[j].texcoors[q][0] = texCoords[i * 2];
-                mesh.mTris[j].texcoors[q][1] = texCoords[i * 2 + 1];
-            }
-
-            // Partial alpha hack
-            if (flags & tombraiderFace_PartialAlpha) {
-                //mesh.colors[v].rgba[3] = 0.45;
-            }
-        }
-
-        if (flags & tombraiderFace_Alpha ||
-            flags & tombraiderFace_PartialAlpha) {
-            mesh.mTris[j].cnum_alpha_triangles++;
-        } else {
-            mesh.mTris[j].cnum_triangles++;
-        }
-    }
-
-    // Generate textured quads
-    count = tr.getRoomRectangleCount(index);
-
-    for (r = 0; r < count; ++r) {
-        tr.getRoomRectangle(index, r,
-                            indices, texCoords, &texture, &flags);
-
-        if (texture > (int)TextureLimit) {
-            texture = TextureLimit - 1;
-        }
-
-        unsigned int j = rect_mesh_map[texture] - 1;
-
-        if (mesh.mQuads[j].num_quads <= 0 &&
-            mesh.mQuads[j].num_alpha_quads <= 0)
-            continue;
-
-        // Setup per vertex
-        for (unsigned int i = 0; i < 4; ++i) {
-            // Get vertex index {(0, a), (1, b), (2, c), (3, d)}
-            v = indices[i];
-
-            if ((flags & tombraiderFace_Alpha ||
-                 flags & tombraiderFace_PartialAlpha) &&
-                mesh.mQuads[j].num_alpha_quads > 0) {
-                q = mesh.mQuads[j].cnum_alpha_quads * 4 + i;
-
-                mesh.mQuads[j].alpha_quads[q] = v;
-
-                mesh.mQuads[j].texcoors2[q][0] = texCoords[i * 2];
-                mesh.mQuads[j].texcoors2[q][1] = texCoords[i * 2 + 1];
-            } else if (mesh.mQuads[j].num_quads > 0) {
-                q = mesh.mQuads[j].cnum_quads * 4 + i;
-
-                mesh.mQuads[j].quads[q] = v;
-
-                mesh.mQuads[j].texcoors[q][0] = texCoords[i * 2];
-                mesh.mQuads[j].texcoors[q][1] = texCoords[i * 2 + 1];
-            }
-
-            // Partial alpha hack
-            if (flags & tombraiderFace_PartialAlpha) {
-                //rRoom->mesh.colors[v].rgba[3] = 0.45;
-            }
-        }
-
-        if (flags & tombraiderFace_Alpha ||
-            flags & tombraiderFace_PartialAlpha) {
-            mesh.mQuads[j].cnum_alpha_quads++;
-        } else {
-            mesh.mQuads[j].cnum_quads++;
-        }
-    }
-#endif
-}
-
 #define EMPTY_VECTOR(x)     \
 while (!x.empty()) {        \
     delete x[x.size() - 1]; \
@@ -423,12 +57,13 @@ Room::~Room() {
 }
 
 void Room::display(bool alpha) {
+    /*
     glPushMatrix();
     //LightingSetup();
 
     getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
 
-    if ((!alpha) && getRender().getMode() == Render::modeWireframe) {
+    if ((!alpha) && Render::getMode() == RenderMode::Wireframe) {
         glLineWidth(2.0);
         glColor3ubv(RED);
 
@@ -448,7 +83,7 @@ void Room::display(bool alpha) {
         glLineWidth(1.0);
     }
 
-    if (getRender().getMode() == Render::modeWireframe && (!alpha)) {
+    if (Render::getMode() == RenderMode::Wireframe && (!alpha)) {
         bbox.display(true, RED, GREEN);
     }
 
@@ -457,11 +92,11 @@ void Room::display(bool alpha) {
     // Reset since GL_MODULATE used, reset to WHITE
     glColor3ubv(WHITE);
 
-    switch (getRender().getMode()) {
-        case Render::modeWireframe:
+    switch (Render::getMode()) {
+        case RenderMode::Wireframe:
             mesh.mMode = Mesh::MeshModeWireframe;
             break;
-        case Render::modeSolid:
+        case RenderMode::Solid:
             mesh.mMode = Mesh::MeshModeSolid;
             break;
         default:
@@ -477,15 +112,16 @@ void Room::display(bool alpha) {
     glPopMatrix();
 
     // Draw other room meshes and sprites
-    if (alpha || (getRender().getMode() == Render::modeWireframe)
-        || (getRender().getMode() == Render::modeSolid)) {
-        sortModels();
+    if (alpha || (Render::getMode() == RenderMode::Wireframe)
+        || (Render::getMode() == RenderMode::Solid)) {
+        //sortModels(); // TODO
         for (unsigned int i = 0; i < sizeModels(); i++)
             getModel(i).display();
 
         for (unsigned int i = 0; i < sizeSprites(); i++)
             getSprite(i).display();
     }
+    */
 }
 
 bool Room::isWall(unsigned long sector) {
@@ -496,8 +132,8 @@ bool Room::isWall(unsigned long sector) {
 }
 
 long Room::getSector(float x, float z, float* floor, float* ceiling) {
-    assert(floor != NULL);
-    assert(ceiling != NULL);
+    assert(floor != nullptr);
+    assert(ceiling != nullptr);
 
     long sector = getSector(x, z);
 
@@ -527,16 +163,21 @@ void Room::getHeightAtPosition(float x, float* y, float z) {
 
 int Room::getAdjoiningRoom(float x, float y, float z,
                            float x2, float y2, float z2) {
-    float intersect[3], p1[3], p2[3];
     float vertices[4][3];
-
-    p1[0] = x;  p1[1] = y;  p1[2] = z;
-    p2[0] = x2; p2[1] = y2; p2[2] = z2;
+    glm::vec3 orig(x, y, z);
+    glm::vec3 dir(x2 - x, y2 - y, z2 - z);
+    glm::vec3 intersect;
+    glm::vec3 verts[4];
 
     for (unsigned long i = 0; i < portals.size(); i++) {
         portals.at(i)->getVertices(vertices);
-        if (intersectionLinePolygon(intersect, p1, p2, //4,
-                                    vertices))
+        verts[0] = glm::vec3(vertices[0][0], vertices[0][1], vertices[0][2]);
+        verts[1] = glm::vec3(vertices[1][0], vertices[1][1], vertices[1][2]);
+        verts[2] = glm::vec3(vertices[2][0], vertices[2][1], vertices[2][2]);
+        verts[3] = glm::vec3(vertices[3][0], vertices[3][1], vertices[3][2]);
+
+        if ((glm::intersectLineTriangle(orig, dir, verts[0], verts[1], verts[2], intersect))
+            || (glm::intersectLineTriangle(orig, dir, verts[0], verts[3], verts[1], intersect)))
             return portals.at(i)->getAdjoiningRoom();
     }
 
@@ -614,10 +255,6 @@ StaticModel& Room::getModel(unsigned long index) {
 
 void Room::addModel(StaticModel* s) {
     models.push_back(s);
-}
-
-void Room::sortModels() {
-    std::sort(models.begin(), models.end(), StaticModel::compare);
 }
 
 unsigned long Room::sizeLights() {

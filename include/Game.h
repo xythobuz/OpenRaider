@@ -12,7 +12,6 @@
 #include <vector>
 
 #include "Entity.h"
-#include "TombRaider.h"
 
 class Game {
   public:
@@ -47,8 +46,6 @@ class Game {
 
     std::string levelName;
     bool mLoaded;
-
-    TombRaider mTombRaider;
 
     long mLara;
 };

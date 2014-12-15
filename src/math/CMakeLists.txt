@@ -1,9 +1,0 @@
-# Source files
-set (MATH_SRCS ${MATH_SRCS} "math.cpp")
-set (MATH_SRCS ${MATH_SRCS} "Matrix.cpp")
-set (MATH_SRCS ${MATH_SRCS} "Quaternion.cpp")
-set (MATH_SRCS ${MATH_SRCS} "Vec3.cpp")
-
-# Add library
-add_library (OpenRaider_math OBJECT ${MATH_SRCS})
-

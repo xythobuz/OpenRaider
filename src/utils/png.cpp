@@ -19,11 +19,11 @@
 int pngCheck(const char* filename) {
     png_byte header[8];
 
-    assert(filename != NULL);
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
 
     FILE* fp = fopen(filename, "rb");
-    if (fp == NULL) {
+    if (fp == nullptr) {
         std::cout << "Could not open " << filename << std::endl;
         return -1;
     }
@@ -40,19 +40,20 @@ int pngCheck(const char* filename) {
 }
 
 int pngLoad(const char* filename, unsigned char** image,
-            unsigned int* width, unsigned int* height, ColorMode* mode, unsigned int* bpp) {
+            unsigned int* width, unsigned int* height,
+            TextureManager::ColorMode* mode, unsigned int* bpp) {
     png_byte header[8];
 
-    assert(filename != NULL);
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
-    assert(image != NULL);
-    assert(width != NULL);
-    assert(height != NULL);
-    assert(mode != NULL);
-    assert(bpp != NULL);
+    assert(image != nullptr);
+    assert(width != nullptr);
+    assert(height != nullptr);
+    assert(mode != nullptr);
+    assert(bpp != nullptr);
 
     FILE* fp = fopen(filename, "rb");
-    if (fp == NULL) {
+    if (fp == nullptr) {
         std::cout << "Could not open " << filename << std::endl;
         return -1;
     }
@@ -65,7 +66,7 @@ int pngLoad(const char* filename, unsigned char** image,
         return -2;
     }
 
-    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
     if (!png_ptr) {
         std::cout << "png_create_read_struct returned 0." << std::endl;
         fclose(fp);
@@ -75,7 +76,7 @@ int pngLoad(const char* filename, unsigned char** image,
     png_infop info_ptr = png_create_info_struct(png_ptr);
     if (!info_ptr) {
         std::cout << "png_create_info_struct returned 0." << std::endl;
-        png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
+        png_destroy_read_struct(&png_ptr, (png_infopp)nullptr, (png_infopp)nullptr);
         fclose(fp);
         return -4;
     }
@@ -83,7 +84,7 @@ int pngLoad(const char* filename, unsigned char** image,
     png_infop end_info = png_create_info_struct(png_ptr);
     if (!end_info) {
         std::cout << "png_create_info_struct returned 0." << std::endl;
-        png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp) NULL);
+        png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp) nullptr);
         fclose(fp);
         return -5;
     }
@@ -103,7 +104,7 @@ int pngLoad(const char* filename, unsigned char** image,
     png_uint_32 tmpWidth, tmpHeight;
 
     png_get_IHDR(png_ptr, info_ptr, &tmpWidth, &tmpHeight, &bit_depth, &color_type,
-                 NULL, NULL, NULL);
+                 nullptr, nullptr, nullptr);
 
     *width = tmpWidth;
     *height = tmpHeight;
@@ -129,14 +130,11 @@ int pngLoad(const char* filename, unsigned char** image,
     delete [] row_pointers;
     fclose(fp);
 
-    if (color_type == PNG_COLOR_TYPE_GRAY) {
-        *mode = GREYSCALE;
-        *bpp = 8;
-    } else if (color_type == PNG_COLOR_TYPE_RGB) {
-        *mode = RGB;
+    if (color_type == PNG_COLOR_TYPE_RGB) {
+        *mode = TextureManager::ColorMode::RGB;
         *bpp = 24;
     } else if (color_type == PNG_COLOR_TYPE_RGB_ALPHA) {
-        *mode = RGBA;
+        *mode = TextureManager::ColorMode::RGBA;
         *bpp = 32;
     } else {
         std::cout << filename << ": Unknown libpng color type " << color_type << std::endl;
@@ -164,10 +162,11 @@ int pngLoad(const char* filename, unsigned char** image,
 }
 
 int pngSave(const char* filename, unsigned char* image,
-            unsigned int width, unsigned int height, ColorMode mode, unsigned int bpp) {
-    assert(filename != NULL);
+            unsigned int width, unsigned int height,
+            TextureManager::ColorMode mode, unsigned int bpp) {
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
-    assert(image != NULL);
+    assert(image != nullptr);
     assert(width > 0);
     assert(height > 0);
 
@@ -177,7 +176,7 @@ int pngSave(const char* filename, unsigned char* image,
         return -1;
     }
 
-    png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
 
     if (!png_ptr) {
         std::cout << "png_create_write_struct failed" << std::endl;
@@ -207,15 +206,15 @@ int pngSave(const char* filename, unsigned char* image,
     }
 
     int color_type;
-    if ((mode == GREYSCALE) && (bpp == 8)) {
-        color_type = PNG_COLOR_TYPE_GRAY;
-    } else if (((mode == RGB) || (mode == BGR)) && (bpp == 24)) {
-        if (mode == BGR) {
+    if (((mode == TextureManager::ColorMode::RGB)
+                || (mode == TextureManager::ColorMode::BGR)) && (bpp == 24)) {
+        if (mode == TextureManager::ColorMode::BGR) {
             bgr2rgb24(image, width, height);
         }
         color_type = PNG_COLOR_TYPE_RGB;
-    } else if (((mode == RGBA) || (mode == BGRA)) && (bpp == 32)) {
-        if (mode == BGRA) {
+    } else if (((mode == TextureManager::ColorMode::RGBA)
+                || (mode == TextureManager::ColorMode::BGRA)) && (bpp == 32)) {
+        if (mode == TextureManager::ColorMode::BGRA) {
             bgra2rgba32(image, width, height);
         }
         color_type = PNG_COLOR_TYPE_RGB_ALPHA;
@@ -252,7 +251,7 @@ int pngSave(const char* filename, unsigned char* image,
         return -8;
     }
 
-    png_write_end(png_ptr, NULL);
+    png_write_end(png_ptr, nullptr);
 
     delete [] row_pointers;
     fclose(fp);

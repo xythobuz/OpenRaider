@@ -18,7 +18,7 @@ int tgaCheck(const char* filename);
 /*!
  * \brief Load a TGA image from file
  * \param filename path to file
- * \param image Where the pixmap will be stored (or NULL)
+ * \param image Where the pixmap will be stored (or nullptr)
  * \param width where the width will be stored
  * \param height where the height will be stored
  * \param type where the type will be stored (tga_type_t)

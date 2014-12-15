@@ -55,6 +55,12 @@ if (PNG_FOUND)
     add_definitions (${PNG_DEFINITIONS})
 endif (PNG_FOUND)
 
+# Add GLM Library
+find_package (GLM REQUIRED)
+if (GLM_FOUND)
+    include_directories (SYSTEM  ${GLM_INCLUDE_DIRS})
+endif (GLM_FOUND)
+
 #################################################################
 
 # Set Source files
@@ -78,9 +84,7 @@ set (SRCS ${SRCS} "SoundManager.cpp")
 set (SRCS ${SRCS} "Sprite.cpp")
 set (SRCS ${SRCS} "StaticMesh.cpp")
 set (SRCS ${SRCS} "TextureManager.cpp")
-set (SRCS ${SRCS} "TombRaider.cpp")
 set (SRCS ${SRCS} "UI.cpp")
-set (SRCS ${SRCS} "ViewVolume.cpp")
 set (SRCS ${SRCS} "World.cpp")
 
 # Select available Sound library
@@ -219,7 +223,6 @@ set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS}
 add_subdirectory ("commands")
 add_subdirectory ("deps")
 add_subdirectory ("loader")
-add_subdirectory ("math")
 add_subdirectory ("system")
 add_subdirectory ("utils")
 
@@ -227,9 +230,8 @@ add_subdirectory ("utils")
 add_library (OpenRaider_all OBJECT ${SRCS})
 add_executable (OpenRaider MACOSX_BUNDLE ${RESRCS}
     $<TARGET_OBJECTS:OpenRaider_all> $<TARGET_OBJECTS:OpenRaider_commands>
-    $<TARGET_OBJECTS:OpenRaider_deps> $<TARGET_OBJECTS:OpenRaider_math>
-    $<TARGET_OBJECTS:OpenRaider_utils> $<TARGET_OBJECTS:OpenRaider_loader>
-    $<TARGET_OBJECTS:OpenRaider_system>
+    $<TARGET_OBJECTS:OpenRaider_deps> $<TARGET_OBJECTS:OpenRaider_loader>
+    $<TARGET_OBJECTS:OpenRaider_utils> $<TARGET_OBJECTS:OpenRaider_system>
 )
 
 #################################################################

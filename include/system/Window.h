@@ -8,49 +8,61 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
-/*!
- * \brief Windowing interface
- */
+#include "glm/vec2.hpp"
+#include "glm/vec4.hpp"
+
+#include <vector>
+
+class Shader {
+  public:
+    Shader() : programID(-1) { }
+    ~Shader();
+
+    int compile(const char* vertex, const char* fragment);
+    void use();
+
+    int addUniform(const char* name);
+    unsigned int getUniform(int n);
+
+    void addBuffer(int n = 1);
+    unsigned int getBuffer(int n);
+
+  private:
+    int programID;
+    std::vector<unsigned int> uniforms;
+    std::vector<unsigned int> buffers;
+};
+
 class Window {
   public:
 
     virtual ~Window() {}
 
     virtual void setSize(unsigned int width, unsigned int height) = 0;
+    virtual unsigned int getWidth();
+    virtual unsigned int getHeight();
 
     virtual void setFullscreen(bool fullscreen) = 0;
-
-    virtual bool getFullscreen() { return mFullscreen; }
+    virtual bool getFullscreen();
 
     virtual void setMousegrab(bool grab) = 0;
-
-    virtual bool getMousegrab() { return mMousegrab; }
+    virtual bool getMousegrab();
 
     virtual int initialize() = 0;
 
     virtual void eventHandling() = 0;
 
     virtual void setTextInput(bool on) = 0;
-
-    virtual bool getTextInput() { return mTextInput; }
+    virtual bool getTextInput();
 
     virtual void swapBuffersGL() = 0;
 
-    virtual unsigned int getWidth() { return mWidth; }
+    static int initializeGL();
+    static void shutdownGL();
+    static void resizeGL();
 
-    virtual unsigned int getHeight() { return mHeight; }
-
-    virtual int initializeGL();
-
-    virtual void resizeGL();
-
-    virtual void glEnter2D();
-
-    virtual void glExit2D();
-
-    static void lookAt(float eyeX, float eyeY, float eyeZ,
-                       float lookAtX, float lookAtY, float lookAtZ,
-                       float upX, float upY, float upZ);
+    static void drawTextGL(std::vector<glm::vec2>& vertices, std::vector<glm::vec2>& uvs,
+                           glm::vec4 color, unsigned int texture);
 
   protected:
     bool mInit;
@@ -59,6 +71,19 @@ class Window {
     bool mTextInput;
     unsigned int mWidth;
     unsigned int mHeight;
+
+  private:
+    static Shader textShader;
+    static const char* textShaderVertex;
+    static const char* textShaderFragment;
+
+    static Shader imguiShader;
+    static const char* imguiShaderVertex;
+    static const char* imguiShaderFragment;
+
+    static unsigned int vertexArrayID;
+
+    friend class UI;
 };
 
 Window& getWindow();

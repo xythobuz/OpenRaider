@@ -12,8 +12,6 @@
 #include <cstdint>
 #include <vector>
 
-#include "math/Vec3.h"
-
 // These are loaded into TextureStorage::SYSTEM by initialize()!
 #define TEXTURE_WHITE 0
 #define TEXTURE_SPLASH 1
@@ -32,16 +30,11 @@ class TextureTile {
     ~TextureTile();
 
     void add(TextureTileVertex* t);
-    bool isTriangle();
-    void display(float x, float y, float w, float h, float z);
 
-    void displayTriangle(Vec3 a, Vec3 b, Vec3 c);
-    void displayRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d);
+    void displayTriangle(float a[3], float b[3], float c[3]);
+    void displayRectangle(float a[3], float b[3], float c[3], float d[3]);
 
   private:
-    void displayTriangle(float x, float y, float w, float h, float z);
-    void displayRectangle(float x, float y, float w, float h, float z);
-
     uint16_t attribute;
     uint16_t texture;
     std::vector<TextureTileVertex*> vertices;
@@ -53,6 +46,14 @@ class TextureTile {
 class TextureManager {
   public:
 
+    enum class ColorMode {
+        RGB,
+        RGBA,
+        ARGB,
+        BGR,
+        BGRA
+    };
+
     enum class TextureStorage {
         GAME,
         SYSTEM
@@ -61,6 +62,7 @@ class TextureManager {
     ~TextureManager();
 
     int initialize();
+    int initializeSplash();
 
     void clear();
 
@@ -70,8 +72,9 @@ class TextureManager {
      * \brief Binds the texture for use in GL
      * \param n valid texture index
      * \param s Which TextureStorage should be accessed
+     * \param unit Which GL texture unit should be used
      */
-    void bindTextureId(unsigned int n, TextureStorage s = TextureStorage::GAME);
+    void bindTextureId(unsigned int n, TextureStorage s = TextureStorage::GAME, unsigned int unit = 0);
 
     /*!
      * \brief Loads Buffer as texture
@@ -85,9 +88,9 @@ class TextureManager {
      * \param filter if the texture should be mipmap filtered
      * \returns texture ID or < 0 on error
      */
-    int loadBufferSlot(unsigned char* image,
-                       unsigned int width, unsigned int height,
-                       ColorMode mode, unsigned int bpp,
+    int loadBufferSlot(unsigned char* image = nullptr,
+                       unsigned int width = 256, unsigned int height = 256,
+                       ColorMode mode = ColorMode::RGBA, unsigned int bpp = 32,
                        TextureStorage s = TextureStorage::GAME,
                        int slot = -1, bool filter = true);
 

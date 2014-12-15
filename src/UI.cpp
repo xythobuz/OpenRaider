@@ -73,14 +73,14 @@ int UI::initialize() {
     //! \todo Use our own font subsystem instead of this?
     const void* png_data;
     unsigned int png_size;
-    ImGui::GetDefaultFontData(NULL, NULL, &png_data, &png_size);
+    ImGui::GetDefaultFontData(nullptr, nullptr, &png_data, &png_size);
     int tex_x, tex_y, tex_comp;
     void* tex_data = stbi_load_from_memory((const unsigned char*)png_data,
                                            (int)png_size, &tex_x, &tex_y, &tex_comp, 0);
 
-    //! \fixme TODO use proper texture slot
     fontTex = getTextureManager().loadBufferSlot((unsigned char*)tex_data,
-              tex_x, tex_y, RGBA, 32, TextureManager::TextureStorage::SYSTEM, -1, false);
+              tex_x, tex_y, TextureManager::ColorMode::RGBA, 32,
+              TextureManager::TextureStorage::SYSTEM, -1, false);
 
     stbi_image_free(tex_data);
 
@@ -311,6 +311,43 @@ void UI::display() {
 
         ImGui::Separator();
 
+        if (ImGui::CollapsingHeader("Sound Map Player")) {
+            if (!Sound::getEnabled()) {
+                ImGui::Text("Please enable Sound first!");
+                if (ImGui::Button("Enable Sound!")) {
+                    Sound::setEnabled(true);
+                }
+            } else if (Sound::numBuffers() == 0) {
+                ImGui::Text("Please load a level!");
+            } else {
+                static int index = 0;
+                ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
+                ImGui::SliderInt("##soundslide", &index, 0, SoundManager::sizeSoundMap() - 1);
+                ImGui::PopItemWidth();
+                ImGui::SameLine();
+                if (ImGui::Button("+##soundplus", ImVec2(0, 0), true)) {
+                    if (index < (SoundManager::sizeSoundMap() - 1))
+                        index++;
+                    else
+                        index = 0;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("-##soundminus", ImVec2(0, 0), true)) {
+                    if (index > 0)
+                        index--;
+                    else
+                        index = SoundManager::sizeSoundMap() - 1;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Play##soundplay")) {
+                    SoundManager::playSound(index);
+                }
+
+                ImGui::Text("Index: %d", SoundManager::getIndex(index));
+            }
+        }
+
+        /*
         static bool visibleTex = false;
         static bool visibleTile = false;
         static bool visibleAnim = false;
@@ -471,42 +508,6 @@ void UI::display() {
             }
         }
 
-        if (ImGui::CollapsingHeader("Sound Map Player")) {
-            if (!Sound::getEnabled()) {
-                ImGui::Text("Please enable Sound first!");
-                if (ImGui::Button("Enable Sound!")) {
-                    Sound::setEnabled(true);
-                }
-            } else if (Sound::numBuffers() == 0) {
-                ImGui::Text("Please load a level!");
-            } else {
-                static int index = 0;
-                ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
-                ImGui::SliderInt("##soundslide", &index, 0, SoundManager::sizeSoundMap() - 1);
-                ImGui::PopItemWidth();
-                ImGui::SameLine();
-                if (ImGui::Button("+##soundplus", ImVec2(0, 0), true)) {
-                    if (index < (SoundManager::sizeSoundMap() - 1))
-                        index++;
-                    else
-                        index = 0;
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("-##soundminus", ImVec2(0, 0), true)) {
-                    if (index > 0)
-                        index--;
-                    else
-                        index = SoundManager::sizeSoundMap() - 1;
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("Play##soundplay")) {
-                    SoundManager::playSound(index);
-                }
-
-                ImGui::Text("Index: %d", SoundManager::getIndex(index));
-            }
-        }
-
         if (ImGui::CollapsingHeader("Sprite Sequence Viewer")) {
             if (getWorld().sizeSprite() <= 0) {
                 ImGui::Text("Please load a level containing sprites!");
@@ -566,13 +567,14 @@ void UI::display() {
                 }
             }
         }
+        */
 
         ImGui::Separator();
 
         if (ImGui::CollapsingHeader("ImGui/Debug UI Help")) {
-            ImGui::TextWrapped("DebugViewer Textures/Textiles/Sprites will be drawn on"
-                               " the left side and scale with the size of this window!");
-            ImGui::Separator();
+            //ImGui::TextWrapped("DebugViewer Textures/Textiles/Sprites will be drawn on"
+            //                   " the left side and scale with the size of this window!");
+            //ImGui::Separator();
             ImGui::ShowUserGuide();
         }
     }
@@ -652,44 +654,84 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
     if (cmd_lists_count == 0)
         return;
 
-    getWindow().glEnter2D();
-
-    glDisable(GL_DEPTH_TEST);
     glEnable(GL_SCISSOR_TEST);
+    glDisable(GL_DEPTH_TEST);
 
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    glEnableClientState(GL_COLOR_ARRAY);
+    Window::imguiShader.use();
 
-    // Setup texture
-    getTextureManager().bindTextureId(fontTex, TextureManager::TextureStorage::SYSTEM);
+    glUniform2f(Window::imguiShader.getUniform(0), getWindow().getWidth(), getWindow().getHeight());
 
-    // Render command lists
-    for (int n = 0; n < cmd_lists_count; n++) {
-        const ImDrawList* cmd_list = cmd_lists[n];
-        const unsigned char* vtx_buffer = (const unsigned char*)cmd_list->vtx_buffer.begin();
-        glVertexPointer(2, GL_FLOAT, sizeof(ImDrawVert), (void*)(vtx_buffer));
-        glTexCoordPointer(2, GL_FLOAT, sizeof(ImDrawVert), (void*)(vtx_buffer + 8));
-        glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(ImDrawVert), (void*)(vtx_buffer + 16));
+    getTextureManager().bindTextureId(fontTex, TextureManager::TextureStorage::SYSTEM, 0);
+    glUniform1i(Window::imguiShader.getUniform(1), 0);
 
-        int vtx_offset = 0;
-        const ImDrawCmd* pcmd_end = cmd_list->commands.end();
-        for (const ImDrawCmd* pcmd = cmd_list->commands.begin(); pcmd != pcmd_end; pcmd++) {
-            glScissor((int)pcmd->clip_rect.x, (int)(ImGui::GetIO().DisplaySize.y - pcmd->clip_rect.w),
-                      (int)(pcmd->clip_rect.z - pcmd->clip_rect.x),
-                      (int)(pcmd->clip_rect.w - pcmd->clip_rect.y));
-            glDrawArrays(GL_TRIANGLES, vtx_offset, pcmd->vtx_count);
-            vtx_offset += pcmd->vtx_count;
+    glEnableVertexAttribArray(0); // Vertices
+    glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(0));
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+    glEnableVertexAttribArray(1); // UVs
+    glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(1));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+    glEnableVertexAttribArray(2); // Colors
+    glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(2));
+    glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+    std::vector<glm::vec2> vertices;
+    std::vector<glm::vec2> uvs;
+    std::vector<glm::vec4> colors;
+
+    /*! \fixme Don't copy data
+     * The GL calls and the shaders can probably be slightly altered
+     * to avoid copying all the vertices, uvs and colors again here.
+     */
+
+    for (int i = 0; i < cmd_lists_count; i++) {
+        auto& commands = cmd_lists[i]->commands;
+        auto& buffer = cmd_lists[i]->vtx_buffer;
+
+        int offset = 0;
+        for (int n = 0; n < commands.size(); n++) {
+            for (int v = 0; v < commands[n].vtx_count; v++) {
+                vertices.push_back(glm::vec2(buffer[offset + v].pos.x, buffer[offset + v].pos.y));
+                uvs.push_back(glm::vec2(buffer[offset + v].uv.x, buffer[offset + v].uv.y));
+
+                float r, g, b, a;
+                a = ((buffer[offset + v].col & 0xFF000000) >> 24) / 255.0f;
+                b = ((buffer[offset + v].col & 0x00FF0000) >> 16) / 255.0f;
+                g = ((buffer[offset + v].col & 0x0000FF00) >> 8) / 255.0f;
+                r = (buffer[offset + v].col & 0x000000FF) / 255.0f;
+                colors.push_back(glm::vec4(r, g, b, a));
+            }
+
+            offset += commands[n].vtx_count;
+
+            glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(0));
+            glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec2), &vertices[0], GL_STATIC_DRAW);
+
+            glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(1));
+            glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
+
+            glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(2));
+            glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec4), &colors[0], GL_STATIC_DRAW);
+
+            glScissor(commands[n].clip_rect.x,
+                      getWindow().getHeight() - commands[n].clip_rect.w,
+                      commands[n].clip_rect.z - commands[n].clip_rect.x,
+                      commands[n].clip_rect.w - commands[n].clip_rect.y);
+
+            glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+
+            vertices.clear();
+            uvs.clear();
+            colors.clear();
         }
     }
 
+    glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(1);
+    glDisableVertexAttribArray(2);
+
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_SCISSOR_TEST);
-
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    glDisableClientState(GL_COLOR_ARRAY);
-
-    getWindow().glExit2D();
 }
 

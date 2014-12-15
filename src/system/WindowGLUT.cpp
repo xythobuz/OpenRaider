@@ -69,9 +69,11 @@ int WindowGLUT::initialize() {
     int argc = 1;
     char* argv[] = { new char[11], nullptr };
     strcpy(argv[0], "OpenRaider");
-    glutInit(&argc, argv);
     glutInitWindowSize(mWidth, mHeight);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH | GLUT_MULTISAMPLE);
+    glutInitContextVersion(3, 3);
+    glutInitContextProfile(GLUT_CORE_PROFILE);
+    glutInit(&argc, argv);
     glutCreateWindow(VERSION);
 
     glutReshapeFunc(WindowGLUT::reshapeCallback);

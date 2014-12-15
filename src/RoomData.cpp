@@ -6,7 +6,6 @@
  */
 
 #include "global.h"
-#include "Render.h"
 #include "SkeletalModel.h"
 #include "World.h"
 #include "RoomData.h"
@@ -44,6 +43,7 @@ bool BoundingBox::inBoxPlane(float x, float z) {
 }
 
 void BoundingBox::display(bool points, const unsigned char c1[4], const unsigned char c2[4]) {
+    /*
     // Bind before entering now
     //glBindTexture(GL_TEXTURE_2D, 1);
     glPointSize(4.0);
@@ -114,30 +114,10 @@ void BoundingBox::display(bool points, const unsigned char c1[4], const unsigned
 
     glPointSize(1.0);
     //glLineWidth(1.0);
+    */
 }
 
 // ----------------------------------------------------------------------------
-
-Light::Light(TombRaider& tr, unsigned int room, unsigned int index) {
-    unsigned int lightFlags, lightType;
-
-    tr.getRoomLight(room, index, pos, color,
-                    dir, &att, &cutoff, &lightType, &lightFlags);
-
-    switch (lightType) {
-        case tombraiderLight_typeDirectional:
-            type = Light::typeDirectional;
-            break;
-        case tombraiderLight_typeSpot:
-            type = Light::typeSpot;
-            break;
-        case tombraiderLight_typePoint:
-        default:
-            type = Light::typePoint;
-    }
-
-    //! \todo Light flags?
-}
 
 void Light::getPos(float p[4]) {
     p[0] = pos[0];
@@ -173,52 +153,24 @@ Light::LightType Light::getType() {
 
 // ----------------------------------------------------------------------------
 
-StaticModel::StaticModel(TombRaider& tr, unsigned int room, unsigned int i) {
-    tr.getRoomModel(room, i, &index, pos, &yaw);
-}
-
 void StaticModel::display() {
     StaticMesh& mesh = getWorld().getStaticMesh(index);
 
-    if (!getRender().isVisible(pos[0], pos[1], pos[2], mesh.getRadius()))
-        return;
+    //if (!getRender().isVisible(pos[0], pos[1], pos[2], mesh.getRadius()))
+    //    return;
 
+    /*
     glPushMatrix();
     glTranslated(pos[0], pos[1], pos[2]);
     glRotated(yaw, 0, 1, 0);
     mesh.display();
     glPopMatrix();
-}
-
-bool StaticModel::operator<(const StaticModel& other) {
-    float distA, distB;
-    distA = getRender().getDistToSphereFromNear(pos[0],
-            pos[1], pos[2], 128.0f);
-    distB = getRender().getDistToSphereFromNear(other.pos[0],
-            other.pos[1], other.pos[2], 128.0f);
-    return (distA < distB);
-}
-
-bool StaticModel::compare(StaticModel* a, StaticModel* b) {
-    return (*b) < (*a);
+    */
 }
 
 // ----------------------------------------------------------------------------
 
-Portal::Portal(TombRaider& tr, unsigned int room, unsigned int index, Matrix& transform) {
-    float portalVertices[12];
-    tr.getRoomPortal(room, index, &adjoiningRoom, normal, portalVertices);
-    for (unsigned int j = 0; j < 4; ++j) {
-        vertices[j][0] = portalVertices[j * 3];
-        vertices[j][1] = portalVertices[j * 3 + 1];
-        vertices[j][2] = portalVertices[j * 3 + 2];
-
-        // Relative coors in vis portals
-        transform.multiply3v(vertices[j], vertices[j]);
-    }
-}
-
-Portal::Portal(float vert[4][3], float norm[3], int adj) {
+Portal::Portal(glm::vec3 vert[4], float norm[3], int adj) {
     for (unsigned int i = 0; i < 4; i++) {
         for (unsigned int j = 0; j < 3; j++) {
             vertices[i][j] = vert[i][j];
@@ -245,17 +197,6 @@ int Portal::getAdjoiningRoom() {
 }
 
 // ----------------------------------------------------------------------------
-
-Sector::Sector(TombRaider& tr, unsigned int room, unsigned int index) {
-    unsigned int sectorFlags;
-    int floorDataIndex, boxIndex, roomBelow, roomAbove;
-
-    tr.getRoomSector(room, index, &sectorFlags,
-                     &ceiling, &floor, &floorDataIndex, &boxIndex,
-                     &roomBelow, &roomAbove);
-
-    wall = (sectorFlags & tombraiderSector_wall);
-}
 
 float Sector::getFloor() {
     return floor;

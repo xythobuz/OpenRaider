@@ -9,7 +9,6 @@
 #define _STATIC_MODEL_H_
 
 #include <vector>
-#include "TombRaider.h"
 
 class TexturedTriangle {
   public:
@@ -26,8 +25,6 @@ class TexturedTriangle {
 class StaticMesh {
   public:
     StaticMesh(int id, int mesh);
-
-    StaticMesh(TombRaider& tr, unsigned int index);
     ~StaticMesh();
     void display();
     float getRadius();

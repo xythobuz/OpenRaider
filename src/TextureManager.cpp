@@ -40,21 +40,7 @@ void TextureTile::add(TextureTileVertex* t) {
     vertices.push_back(t);
 }
 
-bool TextureTile::isTriangle() {
-    assert(vertices.size() >= 3);
-
-    if (vertices.size() == 3)
-        return true;
-
-    return ((vertices.at(3)->xPixel == 0)
-            && (vertices.at(3)->xCoordinate == 0)
-            && (vertices.at(3)->yPixel == 0)
-            && (vertices.at(3)->yCoordinate == 0));
-}
-
-void TextureTile::display(float x, float y, float w, float h, float z) {
-    getTextureManager().bindTextureId(texture);
-
+void TextureTile::displayRectangle(float a[3], float b[3], float c[3], float d[3]) {
     //! \fixme TR Rosetta Stone says this, but looks strange?
     /*
     if (attribute == 0) {
@@ -63,23 +49,6 @@ void TextureTile::display(float x, float y, float w, float h, float z) {
     }
     */
 
-    if (isTriangle())
-        displayTriangle(x, y, w, h, z);
-    else
-        displayRectangle(x, y, w, h, z);
-
-    /*
-    if (attribute == 0) {
-        glEnable(GL_BLEND);
-    }
-    */
-}
-
-void TextureTile::displayRectangle(float x, float y, float w, float h, float z) {
-    displayRectangle(Vec3(x, y, z), Vec3(x + w, y, z), Vec3(x + w, y + h, z), Vec3(x, y + h, z));
-}
-
-void TextureTile::displayRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d) {
     float xmin = 256.0f, xmax = 0.0f;
     float ymin = 256.0f, ymax = 0.0f;
     for (int i = 0; i < 4; i++) {
@@ -98,6 +67,7 @@ void TextureTile::displayRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d) {
         }
     }
 
+    /*
     glBegin(GL_QUADS);
     glTexCoord2f(xmin / 256.0f, ymin / 256.0f);
     glVertex3f(a.x, a.y, a.z);
@@ -108,24 +78,11 @@ void TextureTile::displayRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d) {
     glTexCoord2f(xmin / 256.0f, ymax / 256.0f);
     glVertex3f(d.x, d.y, d.z);
     glEnd();
+    */
 }
 
-void TextureTile::displayTriangle(float x, float y, float w, float h, float z) {
-    displayTriangle(Vec3(x, y, z), Vec3(x + w, y, z), Vec3(x + w, y + h, z));
-}
+void TextureTile::displayTriangle(float a[3], float b[3], float c[3]) {
 
-void TextureTile::displayTriangle(Vec3 a, Vec3 b, Vec3 c) {
-    glBegin(GL_TRIANGLE_STRIP);
-    glTexCoord2f(vertices.at(0)->xPixel / 256.0f,
-                 vertices.at(0)->yPixel / 256.0f);
-    glVertex3f(a.x, a.y, a.z);
-    glTexCoord2f(vertices.at(1)->xPixel / 256.0f,
-                 vertices.at(1)->yPixel / 256.0f);
-    glVertex3f(b.x, b.y, b.z);
-    glTexCoord2f(vertices.at(2)->xPixel / 256.0f,
-                 vertices.at(2)->yPixel / 256.0f);
-    glVertex3f(c.x, c.y, c.z);
-    glEnd();
 }
 
 // ----------------------------------------------------------------------------
@@ -209,8 +166,21 @@ std::vector<unsigned int>& TextureManager::getIds(TextureStorage s) {
 }
 
 int TextureManager::initialize() {
+    assert(mTextureIdsGame.size() == 0);
+    assert(mTextureIdsSystem.size() == 0);
+
+    while (mTextureIdsSystem.size() < 2) {
+        unsigned int id;
+        glGenTextures(1, &id);
+        mTextureIdsSystem.push_back(id);
+    }
+
+    return 0;
+}
+
+int TextureManager::initializeSplash() {
     unsigned char* image = generateColorTexture(WHITE, 32, 32, 32);
-    int res = loadBufferSlot(image, 32, 32, RGBA, 32, TextureStorage::SYSTEM, TEXTURE_WHITE);
+    int res = loadBufferSlot(image, 32, 32, ColorMode::RGBA, 32, TextureStorage::SYSTEM, TEXTURE_WHITE, false);
     delete [] image;
     if (res < 0) {
         return -1;
@@ -232,12 +202,13 @@ int TextureManager::loadBufferSlot(unsigned char* image,
                                    unsigned int width, unsigned int height,
                                    ColorMode mode, unsigned int bpp,
                                    TextureStorage s, int slot, bool filter) {
-    assert(image != NULL);
     assert(width > 0);
     assert(height > 0);
-    assert((mode == GREYSCALE) || (mode == RGB)
-           || (mode == BGR) || (mode == ARGB)
-           || (mode == RGBA) || (mode ==  BGRA));
+    assert((mode == ColorMode::RGB)
+           || (mode == ColorMode::BGR)
+           || (mode == ColorMode::ARGB)
+           || (mode == ColorMode::RGBA)
+           || (mode ==  ColorMode::BGRA));
     assert((bpp == 8) || (bpp == 24) || (bpp == 32));
 
     if (slot == -1)
@@ -249,54 +220,48 @@ int TextureManager::loadBufferSlot(unsigned char* image,
         getIds(s).push_back(id);
     }
 
+    if (image == nullptr)
+        return slot;
+
     unsigned int glcMode;
     switch (mode) {
-        case GREYSCALE:
-            glcMode = GL_LUMINANCE;
+        case ColorMode::BGR:
+            glcMode = GL_BGR;
             break;
 
-        case BGR:
-            bgr2rgb24(image, width, height);
+        case ColorMode::RGB:
             glcMode = GL_RGB;
             break;
 
-        case RGB:
-            glcMode = GL_RGB;
-            break;
-
-        case ARGB:
+        case ColorMode::ARGB:
             argb2rgba32(image, width, height);
             glcMode = GL_RGBA;
             break;
 
-        case BGRA:
-            bgra2rgba32(image, width, height);
-            glcMode = GL_RGBA;
+        case ColorMode::BGRA:
+            glcMode = GL_BGRA;
             break;
 
-        case RGBA:
+        case ColorMode::RGBA:
             glcMode = GL_RGBA;
             break;
     }
 
-    glColor3ubv(WHITE);
-    glEnable(GL_DEPTH_TEST);
-    glShadeModel(GL_SMOOTH);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     glBindTexture(GL_TEXTURE_2D, getIds(s).at(slot));
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, glcMode, GL_UNSIGNED_BYTE, image);
 
     if (filter) {
-        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        // Trilinear filtering
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glGenerateMipmap(GL_TEXTURE_2D);
     } else {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     }
-
-    glTexImage2D(GL_TEXTURE_2D, 0, bpp / 8, width, height, 0, glcMode, GL_UNSIGNED_BYTE, image);
 
     return slot;
 }
@@ -305,12 +270,11 @@ int TextureManager::numTextures(TextureStorage s) {
     return getIds(s).size();
 }
 
-void TextureManager::bindTextureId(unsigned int n, TextureStorage s) {
+void TextureManager::bindTextureId(unsigned int n, TextureStorage s, unsigned int unit) {
     assert(n < getIds(s).size());
+    assert(unit < 80); //! \todo Query GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS
 
-    glEnable(GL_TEXTURE_2D);
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
+    glActiveTexture(GL_TEXTURE0 + unit);
     glBindTexture(GL_TEXTURE_2D, getIds(s).at(n));
 }
 
@@ -329,7 +293,7 @@ int TextureManager::loadImage(const char* filename, TextureStorage s, int slot) 
 }
 
 int TextureManager::loadPCX(const char* filename, TextureStorage s, int slot) {
-    assert(filename != NULL);
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
 
     unsigned char* image;
@@ -353,7 +317,7 @@ int TextureManager::loadPCX(const char* filename, TextureStorage s, int slot) {
 
 int TextureManager::loadPNG(const char* filename, TextureStorage s, int slot) {
 #ifdef USING_PNG
-    assert(filename != NULL);
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
 
     if (pngCheck(filename) != 0) {
@@ -384,7 +348,7 @@ int TextureManager::loadPNG(const char* filename, TextureStorage s, int slot) {
 }
 
 int TextureManager::loadTGA(const char* filename, TextureStorage s, int slot) {
-    assert(filename != NULL);
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
 
     unsigned char* image;
@@ -402,7 +366,7 @@ int TextureManager::loadTGA(const char* filename, TextureStorage s, int slot) {
         }
         if (image) {
             id = loadBufferSlot(image, w, h,
-                                (type == 2) ? RGBA : RGB,
+                                (type == 2) ? ColorMode::RGBA : ColorMode::RGB,
                                 (type == 2) ? 32 : 24,
                                 s, slot);
             delete [] image;

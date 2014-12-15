@@ -8,6 +8,8 @@
 #ifndef _UTILS_PNG_H_
 #define _UTILS_PNG_H_
 
+#include "TextureManager.h"
+
 /*!
  * \brief Check if a file is a valid PNG image
  * \param filename path of file to read
@@ -26,7 +28,8 @@ int pngCheck(const char* filename);
  * \returns 0 on success
  */
 int pngLoad(const char* filename, unsigned char** image,
-            unsigned int* width, unsigned int* height, ColorMode* mode, unsigned int* bpp);
+            unsigned int* width, unsigned int* height,
+            TextureManager::ColorMode* mode, unsigned int* bpp);
 
 /*!
  * \brief Create a PNG image file from an RGBA buffer
@@ -39,7 +42,8 @@ int pngLoad(const char* filename, unsigned char** image,
  * \returns 0 on success
  */
 int pngSave(const char* filename, unsigned char* image,
-            unsigned int width, unsigned int height, ColorMode mode, unsigned int bpp);
+            unsigned int width, unsigned int height,
+            TextureManager::ColorMode mode, unsigned int bpp);
 
 #endif
 

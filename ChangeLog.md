@@ -2,6 +2,17 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141215 ]
+    * Rewrote GL code for the Font implementations, ImGUI and the Main Menu
+
+    [ 20141214 ]
+    * Removed math, Matrix, Quaternion, Vec3, ViewVolume
+
+    [ 20141213 ]
+    * Completely removed old TombRaider level reader (so only unfinished TR2 compatibility now)
+    * Now creating OpenGL 3.3 Core Profile Context, so absolutely _nothing_ works right now!
+    * Now depending on GLM lib
+
     [ 20141207 ]
     * LoaderTR2 now also loads all important parts of the Room structures
     * Started work on new Mesh implementation used with LoaderTR2

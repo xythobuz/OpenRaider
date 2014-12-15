@@ -8,6 +8,9 @@
 #ifndef _FONT_TRLE_H_
 #define _FONT_TRLE_H_
 
+#include "glm/vec2.hpp"
+#include <vector>
+
 /*!
  * \brief Tomb Raider Level Editor Font loader
  */
@@ -30,8 +33,8 @@ class FontTRLE {
   private:
     static void setDefaultOffsets();
     static void loadLPS(std::string f);
-    static void writeChar(unsigned int index, unsigned int xDraw, unsigned int yDraw,
-                          float scale, const unsigned char color[4]);
+    static void writeChar(unsigned int index, unsigned int xDraw, unsigned int yDraw, float scale,
+                          std::vector<glm::vec2>& vertices, std::vector<glm::vec2>& uvs);
 
     static bool mFontInit;
     static unsigned int mFontTexture;

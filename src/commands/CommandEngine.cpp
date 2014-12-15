@@ -83,7 +83,7 @@ int CommandScreenshot::execute(std::istream& args) {
 
     renderFrame();
     renderFrame(); // Double buffered
-    getRender().screenShot(filename.c_str());
+    Render::screenShot(filename.c_str());
 
     getMenu().setVisible(false);
     UI::setVisible(true);

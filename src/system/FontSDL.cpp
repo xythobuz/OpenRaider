@@ -8,11 +8,13 @@
 #include <iostream>
 
 #include "global.h"
+#include "TextureManager.h"
+#include "system/Window.h"
 #include "system/FontSDL.h"
 
 bool FontSDL::mFontInit = false;
 TTF_Font* FontSDL::mFont = nullptr;
-unsigned int FontSDL::mFontTexture = 0;
+unsigned int FontSDL::mFontTexture = -1;
 
 void FontSDL::shutdown() {
     if (mFont != nullptr)
@@ -21,7 +23,6 @@ void FontSDL::shutdown() {
 
     if (mFontInit) {
         TTF_Quit();
-        glDeleteTextures(1, &mFontTexture);
         mFontInit = false;
     }
 }
@@ -33,7 +34,10 @@ int FontSDL::initialize(std::string font) {
             return -1;
         }
 
-        glGenTextures(1, &mFontTexture);
+        // Reserve slot
+        mFontTexture = getTextureManager().loadBufferSlot(nullptr, 256, 256,
+                TextureManager::ColorMode::RGBA, 32, TextureManager::TextureStorage::SYSTEM);
+
         mFontInit = true;
     }
 
@@ -82,46 +86,47 @@ void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
     int w = (int)((float)surface->w * scale);
     int h = (int)((float)surface->h * scale);
 
-    GLenum textureFormat;
+    TextureManager::ColorMode textureFormat;
+    unsigned int bpp = 0;
     if (surface->format->BytesPerPixel == 4) {
         if (surface->format->Rmask == 0x000000FF)
-            textureFormat = GL_RGBA;
+            textureFormat = TextureManager::ColorMode::RGBA;
         else
-            textureFormat = GL_BGRA_EXT;
+            textureFormat = TextureManager::ColorMode::BGRA;
+        bpp = 32;
     } else {
         if (surface->format->Rmask == 0x000000FF)
-            textureFormat = GL_RGB;
+            textureFormat = TextureManager::ColorMode::RGB;
         else
-            textureFormat = GL_BGR_EXT;
+            textureFormat = TextureManager::ColorMode::BGR;
+        bpp = 24;
     }
 
-    glBindTexture(GL_TEXTURE_2D, mFontTexture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0,
-                 textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
+    getTextureManager().loadBufferSlot(static_cast<unsigned char*>(surface->pixels),
+                                       surface->w, surface->h, textureFormat, bpp,
+                                       TextureManager::TextureStorage::SYSTEM, mFontTexture);
     SDL_FreeSurface(surface);
 
-    GLuint xMin = x;
-    GLuint yMin = y;
-    GLuint xMax = xMin + w;
-    GLuint yMax = yMin + h;
+    std::vector<glm::vec2> vertices;
+    std::vector<glm::vec2> uvs;
 
-    glColor4ubv(color);
+    vertices.push_back(glm::vec2(x, y + h));
+    vertices.push_back(glm::vec2(x, y));
+    vertices.push_back(glm::vec2(x + w, y + h));
 
-    glBegin(GL_QUADS);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex2i(xMin, yMin);
+    vertices.push_back(glm::vec2(x + w, y));
+    vertices.push_back(glm::vec2(x + w, y + h));
+    vertices.push_back(glm::vec2(x, y));
 
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex2i(xMin, yMax);
+    uvs.push_back(glm::vec2(0.0f, 1.0f));
+    uvs.push_back(glm::vec2(0.0f, 0.0f));
+    uvs.push_back(glm::vec2(1.0f, 1.0f));
 
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex2i(xMax, yMax);
+    uvs.push_back(glm::vec2(1.0f, 0.0f));
+    uvs.push_back(glm::vec2(1.0f, 1.0f));
+    uvs.push_back(glm::vec2(0.0f, 0.0f));
 
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex2i(xMax, yMin);
-    glEnd();
+    Window::drawTextGL(vertices, uvs, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), mFontTexture);
 }
 
 unsigned int FontSDL::heightText(float scale, unsigned int maxWidth, std::string s) {
@@ -163,45 +168,46 @@ void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     int w = (int)((float)surface->w * scale);
     int h = (int)((float)surface->h * scale);
 
-    GLenum textureFormat;
+    TextureManager::ColorMode textureFormat;
+    unsigned int bpp = 0;
     if (surface->format->BytesPerPixel == 4) {
         if (surface->format->Rmask == 0x000000FF)
-            textureFormat = GL_RGBA;
+            textureFormat = TextureManager::ColorMode::RGBA;
         else
-            textureFormat = GL_BGRA_EXT;
+            textureFormat = TextureManager::ColorMode::BGRA;
+        bpp = 32;
     } else {
         if (surface->format->Rmask == 0x000000FF)
-            textureFormat = GL_RGB;
+            textureFormat = TextureManager::ColorMode::RGB;
         else
-            textureFormat = GL_BGR_EXT;
+            textureFormat = TextureManager::ColorMode::BGR;
+        bpp = 24;
     }
 
-    glBindTexture(GL_TEXTURE_2D, mFontTexture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel, surface->w, surface->h, 0,
-                 textureFormat, GL_UNSIGNED_BYTE, surface->pixels);
+    getTextureManager().loadBufferSlot(static_cast<unsigned char*>(surface->pixels),
+                                       surface->w, surface->h, textureFormat, bpp,
+                                       TextureManager::TextureStorage::SYSTEM, mFontTexture);
     SDL_FreeSurface(surface);
 
-    GLuint xMin = x;
-    GLuint yMin = y;
-    GLuint xMax = xMin + w;
-    GLuint yMax = yMin + h;
+    std::vector<glm::vec2> vertices;
+    std::vector<glm::vec2> uvs;
 
-    glColor4ubv(color);
+    vertices.push_back(glm::vec2(x, y + h));
+    vertices.push_back(glm::vec2(x, y));
+    vertices.push_back(glm::vec2(x + w, y + h));
 
-    glBegin(GL_QUADS);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex2i(xMin, yMin);
+    vertices.push_back(glm::vec2(x + w, y));
+    vertices.push_back(glm::vec2(x + w, y + h));
+    vertices.push_back(glm::vec2(x, y));
 
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex2i(xMin, yMax);
+    uvs.push_back(glm::vec2(0.0f, 1.0f));
+    uvs.push_back(glm::vec2(0.0f, 0.0f));
+    uvs.push_back(glm::vec2(1.0f, 1.0f));
 
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex2i(xMax, yMax);
+    uvs.push_back(glm::vec2(1.0f, 0.0f));
+    uvs.push_back(glm::vec2(1.0f, 1.0f));
+    uvs.push_back(glm::vec2(0.0f, 0.0f));
 
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex2i(xMax, yMin);
-    glEnd();
+    Window::drawTextGL(vertices, uvs, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), mFontTexture);
 }
 

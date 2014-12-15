@@ -8,10 +8,10 @@
 #ifndef _ROOM_DATA_H_
 #define _ROOM_DATA_H_
 
+#include "glm/vec3.hpp"
+
 #include <vector>
 #include <memory>
-#include "math/Matrix.h"
-#include "TombRaider.h"
 
 class BoundingBox {
   public:
@@ -37,8 +37,6 @@ class Light {
         typeDirectional = 3  //!< Directional light
     } LightType;
 
-    Light(TombRaider& tr, unsigned int room, unsigned int index);
-
     void getPos(float p[4]);
     void getDir(float d[3]);
     float getAtt();
@@ -57,12 +55,7 @@ class Light {
 
 class StaticModel {
   public:
-    StaticModel(TombRaider& tr, unsigned int room, unsigned int i);
     void display();
-
-    // Compares distance to ViewVolume for depth sorting
-    bool operator<(const StaticModel& other);
-    static bool compare(StaticModel* a, StaticModel* b);
 
   private:
     int index;
@@ -75,8 +68,7 @@ class StaticModel {
 
 class Portal {
   public:
-    Portal(float vert[4][3], float norm[3], int adj);
-    Portal(TombRaider& tr, unsigned int room, unsigned int index, Matrix& transform);
+    Portal(glm::vec3 vert[4], float norm[3], int adj);
 
     void getVertices(float vert[4][3]);
     int getAdjoiningRoom();
@@ -90,7 +82,6 @@ class Portal {
 class Sector {
   public:
     Sector(float f, float c, bool w) : floor(f), ceiling(c), wall(w) { }
-    Sector(TombRaider& tr, unsigned int room, unsigned int index);
     float getFloor();
     float getCeiling();
     bool isWall();

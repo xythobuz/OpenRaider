@@ -69,7 +69,7 @@ void Console::callback(ImGuiTextEditCallbackData* data) {
 }
 
 void Console::display() {
-    if (ImGui::Begin("Console", NULL, ImVec2(600, 400), -1.0f)) {
+    if (ImGui::Begin("Console", nullptr, ImVec2(600, 400), -1.0f)) {
         if (lastLogLength != getLog().size()) {
             lastLogLength = getLog().size();
             scrollToBottom = true;

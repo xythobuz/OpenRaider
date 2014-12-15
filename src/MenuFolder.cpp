@@ -9,6 +9,7 @@
 #include "Game.h"
 #include "loader/Loader.h"
 #include "Log.h"
+#include "Render.h"
 #include "RunTime.h"
 #include "MenuFolder.h"
 #include "system/Font.h"
@@ -76,19 +77,18 @@ void MenuFolder::display() {
     if (!visible)
         return;
 
-    ::getWindow().glEnter2D();
-
-    // Draw half-transparent overlay
-    glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
-    glDisable(GL_TEXTURE_2D);
-    glRecti(0, 0, (GLint)::getWindow().getWidth(), (GLint)::getWindow().getHeight());
-    glEnable(GL_TEXTURE_2D);
-
-    // Draw heading
     Font::drawTextCentered(0, 10, 1.2f, BLUE, ::getWindow().getWidth(), VERSION);
 
+    // Draw half-transparent overlay
+    glm::vec4 color(0.0f, 0.0f, 0.0f, 0.75f);
+    Render::drawTexture(0.0f, 0.0f, getWindow().getWidth(), getWindow().getHeight(),
+                    color, TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
+
+    // Draw heading
+    Font::drawTextCentered(0, 10, 1.2f, BLUE, getWindow().getWidth(), VERSION);
+
     // Estimate displayable number of items
-    int items = (::getWindow().getHeight() - 60) / 25;
+    int items = (getWindow().getHeight() - 60) / 25;
 
     // Print list of "..", folders, files
     for (long i = mMin; (i < (mMin + items))
@@ -105,8 +105,6 @@ void MenuFolder::display() {
     }
 
     displayDialog();
-
-    ::getWindow().glExit2D();
 }
 
 void MenuFolder::loadOrOpen() {

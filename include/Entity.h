@@ -9,7 +9,6 @@
 #define _ENTITY_H_
 
 #include "SkeletalModel.h"
-#include "TombRaider.h"
 
 class Entity {
   public:
@@ -23,10 +22,6 @@ class Entity {
 
     Entity(float p[3], float a[3], int id, long r, unsigned int model);
 
-    Entity(TombRaider& tr, unsigned int index, unsigned int i, unsigned int model);
-
-    bool operator<(Entity& o);
-    static bool compare(Entity* a, Entity* b);
     void display();
     void move(char movement);
     void print();

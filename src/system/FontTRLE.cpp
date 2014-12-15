@@ -11,7 +11,9 @@
 #include <stdexcept>
 
 #include "global.h"
+#include "TextureManager.h"
 #include "utils/strings.h"
+#include "system/Window.h"
 #include "system/FontTRLE.h"
 
 #define SCALING 2.0f
@@ -21,8 +23,6 @@ unsigned int FontTRLE::mFontTexture = 0;
 int FontTRLE::offsets[106][5];
 
 void FontTRLE::shutdown() {
-    if (mFontInit)
-        glDeleteTextures(1, &mFontTexture);
 }
 
 int FontTRLE::initialize(std::string font) {
@@ -46,12 +46,8 @@ int FontTRLE::initialize(std::string font) {
         pixels[i] = pixels[i + 1] = pixels[i + 2] = (unsigned char)y;
     }
 
-    // ...into GL texture
-    glGenTextures(1, &mFontTexture);
-    glBindTexture(GL_TEXTURE_2D, mFontTexture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 256, 256, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pixels);
+    mFontTexture = getTextureManager().loadBufferSlot(pixels, 256, 256,
+            TextureManager::ColorMode::BGRA, 32, TextureManager::TextureStorage::SYSTEM);
     delete [] pixels;
 
     // Try to load .lps file or use default glyph positions
@@ -68,8 +64,6 @@ void FontTRLE::loadLPS(std::string f) {
         std::copy(&defaultOffsets[0][0], &defaultOffsets[0][0] + (106 * 5), &offsets[0][0]);
         return;
     }
-
-    //! \todo This is probably the worlds most unreliable parser...
 
     for (std::string line; std::getline(file, line);) {
         std::istringstream stream(line);
@@ -93,19 +87,19 @@ void FontTRLE::loadLPS(std::string f) {
     }
 }
 
-void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, unsigned int yDraw,
-                         float scale, const unsigned char color[4]) {
+void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, unsigned int yDraw, float scale,
+                         std::vector<glm::vec2>& vertices, std::vector<glm::vec2>& uvs) {
     assert(mFontInit == true);
 
-    int width = (int)(((float)offsets[index][2]) * scale * SCALING);
-    int height = (int)(((float)offsets[index][3]) * scale * SCALING);
-    int offset = (int)(((float)offsets[index][4]) * scale * SCALING);
+    float width = ((float)offsets[index][2]) * scale * SCALING;
+    float height = ((float)offsets[index][3]) * scale * SCALING;
+    float offset = ((float)offsets[index][4]) * scale * SCALING;
 
     // screen coordinates
-    int xMin = xDraw;
-    int yMin = ((int)yDraw) + offset + (int)(10.0f * scale * SCALING);
-    int xMax = xMin + width;
-    int yMax = yMin + height;
+    float xMin = xDraw;
+    float yMin = yDraw + offset + (10.0f * scale * SCALING);
+    float xMax = xMin + width;
+    float yMax = yMin + height;
 
     // texture part
     float txMin = ((float)offsets[index][0]) / 256.0f;
@@ -113,19 +107,21 @@ void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, unsigned int yD
     float tyMin = ((float)offsets[index][1]) / 256.0f;
     float tyMax = ((float)(offsets[index][1] + offsets[index][3])) / 256.0f;
 
-    // draw
-    glBindTexture(GL_TEXTURE_2D, mFontTexture);
-    glColor4f(color[0] * 256.0f, color[1] * 256.0f, color[2] * 256.0f, color[3] * 256.0f);
-    glBegin(GL_QUADS);
-    glTexCoord2f(txMin, tyMin);
-    glVertex2i(xMin, yMin);
-    glTexCoord2f(txMin, tyMax);
-    glVertex2i(xMin, yMax);
-    glTexCoord2f(txMax, tyMax);
-    glVertex2i(xMax, yMax);
-    glTexCoord2f(txMax, tyMin);
-    glVertex2i(xMax, yMin);
-    glEnd();
+    vertices.push_back(glm::vec2(xMin, yMax));
+    vertices.push_back(glm::vec2(xMin, yMin));
+    vertices.push_back(glm::vec2(xMax, yMax));
+
+    vertices.push_back(glm::vec2(xMax, yMin));
+    vertices.push_back(glm::vec2(xMax, yMax));
+    vertices.push_back(glm::vec2(xMin, yMin));
+
+    uvs.push_back(glm::vec2(txMin, tyMax));
+    uvs.push_back(glm::vec2(txMin, tyMin));
+    uvs.push_back(glm::vec2(txMax, tyMax));
+
+    uvs.push_back(glm::vec2(txMax, tyMin));
+    uvs.push_back(glm::vec2(txMax, tyMax));
+    uvs.push_back(glm::vec2(txMin, tyMin));
 }
 
 unsigned int FontTRLE::widthText(float scale, std::string s) {
@@ -154,6 +150,8 @@ void FontTRLE::drawText(unsigned int x, unsigned int y, float scale,
     assert(mFontInit == true);
     assert(s.length() > 0);
 
+    std::vector<glm::vec2> vertices;
+    std::vector<glm::vec2> uvs;
     for (unsigned int i = 0; i < s.length(); i++) {
         // index into offset table
         int index = s[i] - '!';
@@ -164,9 +162,12 @@ void FontTRLE::drawText(unsigned int x, unsigned int y, float scale,
         if ((index < 0) || (index > 105))
             continue; // skip unprintable chars
 
-        writeChar((unsigned int)index, x, y, scale, color);
+        writeChar((unsigned int)index, x, y, scale, vertices, uvs);
         x += (int)((float)(offsets[index][2] + 1) * scale * SCALING); // width
     }
+
+    glm::vec4 col(color[0] / 256.0f, color[1] / 256.0f, color[2] / 256.0f, color[3] / 256.0f);
+    Window::drawTextGL(vertices, uvs, col, mFontTexture);
 }
 
 unsigned int FontTRLE::heightText(float scale, unsigned int maxWidth, std::string s) {
@@ -210,6 +211,8 @@ void FontTRLE::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     unsigned int xStart = x;
     unsigned int yMax = 0;
 
+    std::vector<glm::vec2> vertices;
+    std::vector<glm::vec2> uvs;
     for (unsigned int i = 0; i < s.length(); i++) {
         // index into offset table
         int index = s[i] - '!';
@@ -233,9 +236,12 @@ void FontTRLE::drawTextWrapped(unsigned int x, unsigned int y, float scale,
             x -= (int)((float)(offsets[index][2] + 1) * scale * SCALING);
         }
 
-        writeChar((unsigned int)index, x, y, scale, color);
+        writeChar((unsigned int)index, x, y, scale, vertices, uvs);
         x += (int)((float)(offsets[index][2] + 1) * scale * SCALING); // width
     }
+
+    glm::vec4 col(color[0] / 256.0f, color[1] / 256.0f, color[2] / 256.0f, color[3] / 256.0f);
+    Window::drawTextGL(vertices, uvs, col, mFontTexture);
 }
 
 int FontTRLE::defaultOffsets[106][5] = {

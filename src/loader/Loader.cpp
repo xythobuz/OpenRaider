@@ -42,7 +42,7 @@ std::unique_ptr<Loader> Loader::createLoader(std::string f) {
         case TR_4:
         case TR_5:
         case TR_UNKNOWN:
-            return NULL;
+            return nullptr;
 
         case TR_2:
             return std::unique_ptr<Loader>(new LoaderTR2());

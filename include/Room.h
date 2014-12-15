@@ -11,7 +11,6 @@
 #include <vector>
 #include "Mesh.h"
 #include "Sprite.h"
-#include "TombRaider.h"
 #include "RoomData.h"
 
 typedef enum {
@@ -20,8 +19,6 @@ typedef enum {
 
 class Room {
   public:
-    Room(TombRaider& tr, unsigned int index);
-
     Room(float p[3] = nullptr, unsigned int f = 0, unsigned int x = 0, unsigned int z = 0);
     ~Room();
 
@@ -73,8 +70,6 @@ class Room {
     void addSprite(Sprite* s);
 
   private:
-    void sortModels();
-
     unsigned int flags;
     unsigned int numXSectors;
     unsigned int numZSectors;

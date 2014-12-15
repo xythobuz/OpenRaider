@@ -17,11 +17,9 @@
 
 #ifndef UNIT_TEST
 
-#include "Camera.h"
 #include "Game.h"
 #include "Log.h"
 #include "MenuFolder.h"
-#include "Render.h"
 #include "RunTime.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
@@ -41,19 +39,13 @@
 
 static std::string configFileToUse;
 
-static std::shared_ptr<Camera> gCamera;
 static std::shared_ptr<Game> gGame;
 static std::shared_ptr<Log> gLog;
 static std::shared_ptr<MenuFolder> gMenu;
-static std::shared_ptr<Render> gRender;
 static std::shared_ptr<RunTime> gRunTime;
 static std::shared_ptr<TextureManager> gTextureManager;
 static std::shared_ptr<Window> gWindow;
 static std::shared_ptr<World> gWorld;
-
-Camera& getCamera() {
-    return *gCamera;
-}
 
 Game& getGame() {
     return *gGame;
@@ -65,10 +57,6 @@ Log& getLog() {
 
 Menu& getMenu() {
     return *gMenu;
-}
-
-Render& getRender() {
-    return *gRender;
 }
 
 RunTime& getRunTime() {
@@ -100,11 +88,9 @@ int main(int argc, char* argv[]) {
     // RunTime is required by other constructors
     gRunTime.reset(new RunTime());
 
-    gCamera.reset(new Camera());
     gGame.reset(new Game());
     gLog.reset(new Log());
     gMenu.reset(new MenuFolder());
-    gRender.reset(new Render());
     gTextureManager.reset(new TextureManager());
     gWorld.reset(new World());
 
@@ -132,10 +118,10 @@ int main(int argc, char* argv[]) {
         return -2;
     }
 
-    // Initialize Font
-    error = Font::initialize();
+    // Initialize Texture Manager
+    error = getTextureManager().initialize();
     if (error != 0) {
-        std::cout << "Could not initialize Font (" << error << ")!" << std::endl;
+        std::cout << "Could not initialize TextureManager (" << error << ")!" << std::endl;
         return -3;
     }
 
@@ -153,17 +139,16 @@ int main(int argc, char* argv[]) {
         Command::executeFile(configFileToUse);
     }
 
+    error = getTextureManager().initializeSplash();
+    if (error != 0) {
+        std::cout << "Coult not load Splash Texture (" << error << ")!" << std::endl;
+        return -4;
+    }
+
     // Initialize Sound
     error = Sound::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Sound (" << error << ")!" << std::endl;
-        return -4;
-    }
-
-    // Initialize Texture Manager
-    error = getTextureManager().initialize();
-    if (error != 0) {
-        std::cout << "Could not initialize TextureManager (" << error << ")!" << std::endl;
         return -5;
     }
 
@@ -201,6 +186,7 @@ int main(int argc, char* argv[]) {
     UI::shutdown();
     Font::shutdown();
     Sound::shutdown();
+    Window::shutdownGL();
 
 #ifdef DEBUG
     std::cout << std::endl;
@@ -219,6 +205,7 @@ void renderFrame() {
     getMenu().display();
     UI::display();
 
+    /*
     if (getRunTime().getShowFPS()) {
         std::ostringstream s;
         s << getRunTime().getFPS() << "FPS";
@@ -226,6 +213,7 @@ void renderFrame() {
         Font::drawText(10, getWindow().getHeight() - 25, 0.6f, BLUE, s.str());
         getWindow().glExit2D();
     }
+    */
 
     getWindow().swapBuffersGL();
 

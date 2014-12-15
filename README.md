@@ -1,6 +1,8 @@
 # OpenRaider
 
-[![Build Status](https://travis-ci.org/xythobuz/OpenRaider.svg?branch=master)](https://travis-ci.org/xythobuz/OpenRaider)
+[![Build Status](https://travis-ci.org/xythobuz/OpenRaider.svg?branch=loader)](https://travis-ci.org/xythobuz/OpenRaider)
+
+__This is the development branch of OpenRaider! Currently in the process of moving to OpenGL 3.3...__
 
 This is a fork of the [OpenRaider](http://openraider.sourceforge.net) Open Source implementation of the classic Tomb Raider Game Engine. The original project was abandoned in 2003.
 
@@ -39,6 +41,7 @@ Basically, OpenRaider depends on the following:
 * C++11 compiler
 * cmake
 * OpenGL
+* GLM
 * zlib
 * SDL2
 * SDL2-TTF (optional, needed if you want to use TTF fonts)
@@ -47,7 +50,7 @@ Basically, OpenRaider depends on the following:
 
 On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 
-    sudo port install cmake zlib libsdl2 libsdl2_ttf
+    sudo port install cmake zlib glm libsdl2 libsdl2_ttf
 
 A similar command for the package manager of your favorite Linux Distribution should do the trick.
 
@@ -178,6 +181,7 @@ There are some included cmake scripts:
 * [GetGitRevisionDescription.cmake](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake)
 * [GetGitRevisionDescription.cmake.in](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake.in)
 * [FindFreeGLUT](https://github.com/PDAL/PDAL/blob/master/cmake/modules/FindFreeGLUT.cmake)
+* [FindGLM] (https://github.com/g-truc/glm/blob/master/util/FindGLM.cmake)
 
 See the respective files in `cmake` for their licensing.
 

@@ -11,14 +11,9 @@
 
 #include <vector>
 
-#include "TombRaider.h"
-
 class BoneTag {
   public:
     BoneTag(int m, float o[3], float r[3], char f);
-
-    BoneTag(TombRaider& tr, unsigned int index, unsigned int j, unsigned int* l,
-            unsigned int frame_offset);
     void display();
 
     void getOffset(float o[3]);
@@ -35,8 +30,6 @@ class BoneTag {
 class BoneFrame {
   public:
     BoneFrame(float p[3]);
-
-    BoneFrame(TombRaider& tr, unsigned int index, unsigned int frame_offset);
     ~BoneFrame();
 
     void getPosition(float p[3]);
@@ -53,9 +46,6 @@ class BoneFrame {
 class AnimationFrame {
   public:
     AnimationFrame(char r);
-
-    AnimationFrame(TombRaider& tr, unsigned int index, int a, unsigned int* frame_offset,
-                   int frame_step);
     ~AnimationFrame();
 
     unsigned long size();
@@ -70,8 +60,6 @@ class AnimationFrame {
 class SkeletalModel {
   public:
     SkeletalModel(int i);
-
-    SkeletalModel(TombRaider& tr, unsigned int index, int objectId);
     ~SkeletalModel();
     void display(unsigned long aframe, unsigned long bframe);
 

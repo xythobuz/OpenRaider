@@ -7,6 +7,9 @@
 
 #include <vector>
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 #include "global.h"
 #include "Game.h"
 #include "Log.h"
@@ -15,8 +18,6 @@
 #include "SoundManager.h"
 #include "TextureManager.h"
 #include "World.h"
-#include "math/Matrix.h"
-#include "math/Vec3.h"
 #include "system/Sound.h"
 #include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
@@ -88,7 +89,8 @@ void LoaderTR2::loadPaletteTextiles() {
 
         // Convert 16bit textile to 32bit textile
         unsigned char* img = argb16to32(&arr[0], 256, 256);
-        int r = getTextureManager().loadBufferSlot(img, 256, 256, ARGB, 32,
+        int r = getTextureManager().loadBufferSlot(img, 256, 256,
+                TextureManager::ColorMode::ARGB, 32,
                 TextureManager::TextureStorage::GAME, i);
         assert(r >= 0); //! \fixme properly handle error when texture could not be loaded!
         delete [] img;
@@ -190,16 +192,16 @@ void LoaderTR2::loadRooms() {
         uint32_t dataToFollow = file.readU32();
 
         uint16_t numVertices = file.readU16();
-        std::vector<Vec3> vertices;
+        std::vector<glm::vec3> vertices;
         float bbox[2][3] = {
             { 0.0f, 0.0f, 0.0f },
             { 0.0f, 0.0f, 0.0f }
         };
         for (unsigned int v = 0; v < numVertices; v++) {
             // Vertex coordinates, relative to x/zOffset
-            int16_t x = file.read16();
+            int32_t x = file.read16() + xOffset;
             int16_t y = file.read16();
-            int16_t z = file.read16();
+            int32_t z = file.read16() + zOffset;
 
             int16_t light1 = file.read16();
 
@@ -289,9 +291,7 @@ void LoaderTR2::loadRooms() {
             // TODO store sprites somewhere
         }
 
-        Matrix transform;
-        transform.setIdentity();
-        transform.translate(pos);
+        glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(pos[0], pos[1], pos[2]));
         room->addAdjacentRoom(i); // Always set room itself as first
 
         uint16_t numPortals = file.readU16();
@@ -321,31 +321,35 @@ void LoaderTR2::loadRooms() {
             int16_t yCorner4 = file.read16();
             int16_t zCorner4 = file.read16();
 
-            float vertices[4][3] = {
-                {
+            glm::vec4 vertices[4] = {
+                glm::vec4(
                     static_cast<float>(xCorner1),
                     static_cast<float>(yCorner1),
-                    static_cast<float>(zCorner1)
-                }, {
+                    static_cast<float>(zCorner1),
+                    1.0f
+                ), glm::vec4(
                     static_cast<float>(xCorner2),
                     static_cast<float>(yCorner2),
-                    static_cast<float>(zCorner2)
-                }, {
+                    static_cast<float>(zCorner2),
+                    1.0f
+                ), glm::vec4(
                     static_cast<float>(xCorner3),
                     static_cast<float>(yCorner3),
-                    static_cast<float>(zCorner3)
-                }, {
+                    static_cast<float>(zCorner3),
+                    1.0f
+                ), glm::vec4(
                     static_cast<float>(xCorner4),
                     static_cast<float>(yCorner4),
-                    static_cast<float>(zCorner4)
-                }
+                    static_cast<float>(zCorner4),
+                    0.0f
+                )
             };
 
             // Portals have relative coordinates
-            transform.multiply3v(vertices[0], vertices[0]);
-            transform.multiply3v(vertices[1], vertices[1]);
-            transform.multiply3v(vertices[2], vertices[2]);
-            transform.multiply3v(vertices[3], vertices[3]);
+            vertices[0] = transform * vertices[0];
+            vertices[1] = transform * vertices[1];
+            vertices[2] = transform * vertices[2];
+            vertices[3] = transform * vertices[3];
 
             float normals[3] = {
                 static_cast<float>(xNormal),
@@ -353,7 +357,14 @@ void LoaderTR2::loadRooms() {
                 static_cast<float>(zNormal)
             };
 
-            room->addPortal(new Portal(vertices, normals, adjoiningRoom));
+            glm::vec3 verts[4] = {
+                glm::vec3(vertices[0]),
+                glm::vec3(vertices[1]),
+                glm::vec3(vertices[2]),
+                glm::vec3(vertices[3])
+            };
+
+            room->addPortal(new Portal(verts, normals, adjoiningRoom));
             room->addAdjacentRoom(adjoiningRoom);
         }
 
@@ -542,7 +553,7 @@ void LoaderTR2::loadMeshes() {
         // TODO store mesh collision info somewhere
 
         uint16_t numVertices = mem.readU16();
-        std::vector<Vec3> vertices;
+        std::vector<glm::vec3> vertices;
         for (int v = 0; v < numVertices; v++) {
             int16_t x = mem.read16();
             int16_t y = mem.read16();
@@ -564,7 +575,7 @@ void LoaderTR2::loadMeshes() {
                 int16_t y = mem.read16();
                 int16_t z = mem.read16();
 
-                mesh->addNormal(Vec3(x, y, z));
+                mesh->addNormal(glm::vec3(x, y, z));
             }
         } else if (numNormals < 0) {
             // Internal vertex lighting is used,
@@ -957,7 +968,7 @@ void LoaderTR2::loadItems() {
 
                 float rot[3] = {
                     0.0f,
-                    OR_DEG_TO_RAD(((angle >> 14) & 0x03) * 90.0f),
+                    glm::radians(((angle >> 14) & 0x03) * 90.0f),
                     0.0f
                 };
 

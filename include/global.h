@@ -11,16 +11,6 @@
 
 void renderFrame();
 
-// Supported pixelmap color formats
-enum ColorMode {
-    GREYSCALE,
-    RGB,
-    RGBA,
-    ARGB,
-    BGR,
-    BGRA
-};
-
 // Colors used where ever needed
 const unsigned char BLACK[]  = {   0,   0,   0, 255 };
 const unsigned char GREY[]   = { 128, 128, 128, 255 };
@@ -77,25 +67,14 @@ typedef enum {
     unknownKey // Should always be at the end
 } KeyboardButton;
 
-// Visual C++ does not understand __attribute__
-#ifdef _MSC_VER
-#define __attribute__(x)
-#endif
-
-//! \todo Replace NULL usage with nullptr
-#ifndef NULL
-#define NULL nullptr
-#endif
-
 // Globally include OpenGL header
 #ifdef __APPLE__
-#include <OpenGL/gl.h>
+#include <OpenGL/gl3.h>
 #else
 #ifdef _WIN32
 #include <windows.h>
 #endif
-#include <GL/gl.h>
-#include <GL/glext.h>
+#include <GL/gl3.h>
 #endif
 
 // If available, use our own assert that prints the call stack

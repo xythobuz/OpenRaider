@@ -10,7 +10,7 @@
 
 unsigned char* generateColorTexture(const unsigned char* rgba, unsigned int width,
                                     unsigned int height, unsigned int bpp) {
-    assert(rgba != NULL);
+    assert(rgba != nullptr);
     assert(width > 0);
     assert(height > 0);
     assert((bpp % 8) == 0);
@@ -97,7 +97,7 @@ unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* 
                            unsigned int bpp) {
     unsigned int width = *w;
     unsigned int height = *h;
-    assert(image != NULL);
+    assert(image != nullptr);
     assert(width > 0);
     assert(height > 0);
     assert((bpp % 8) == 0);
@@ -111,7 +111,7 @@ unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* 
 
     // Check to see if scaling is needed
     if (height == original_height && width == original_width)
-        return NULL;
+        return nullptr;
 
     *w = width;
     *h = height;

@@ -46,7 +46,7 @@ std::string getHomeDirectory() {
 #elif defined(_WIN32)
 
     char path[MAX_PATH];
-    assertEqual(SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0, path), S_OK);
+    assertEqual(SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0, path), S_OK);
     size_t lenPath = strlen(path);
     for (unsigned int i = 0; i < lenPath; i++)
         if (dir[i] == '\\')

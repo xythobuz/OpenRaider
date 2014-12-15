@@ -11,23 +11,25 @@
 #include "TextureManager.h"
 #include "Mesh.h"
 
-void Mesh::addTexturedRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, uint16_t textile) {
+void Mesh::addTexturedRectangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, glm::vec3 d,
+                                uint16_t textile) {
     texturedRectangles.emplace_back(a, b, c, d, textile);
 }
 
-void Mesh::addTexturedTriangle(Vec3 a, Vec3 b, Vec3 c, uint16_t textile) {
-    texturedTriangles.emplace_back(a, b, c, Vec3(), textile);
+void Mesh::addTexturedTriangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, uint16_t textile) {
+    texturedTriangles.emplace_back(a, b, c, glm::vec3(), textile);
 }
 
-void Mesh::addColoredRectangle(Vec3 a, Vec3 b, Vec3 c, Vec3 d, float re, float gr, float bl) {
+void Mesh::addColoredRectangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, glm::vec3 d, float re,
+                               float gr, float bl) {
     coloredRectangles.emplace_back(a, b, c, d, -1, re, gr, bl);
 }
 
-void Mesh::addColoredTriangle(Vec3 a, Vec3 b, Vec3 c, float re, float gr, float bl) {
-    coloredTriangles.emplace_back(a, b, c, Vec3(), -1, re, gr, bl);
+void Mesh::addColoredTriangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, float re, float gr, float bl) {
+    coloredTriangles.emplace_back(a, b, c, glm::vec3(), -1, re, gr, bl);
 }
 
-void Mesh::addNormal(Vec3 n) {
+void Mesh::addNormal(glm::vec3 n) {
     normals.emplace_back(n);
 }
 
@@ -54,10 +56,10 @@ void Mesh::drawSolid() {
         return;
     }
 
-    // Render textured quads
     for (auto& q : texturedRectangles) {
         if (mMode == MeshModeWireframe) {
             getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
+            /*
             glBegin(GL_QUADS);
             glTexCoord2f(0.0f, 0.0f);
             glVertex3f(q.a.x, q.a.y, q.a.z);
@@ -68,8 +70,73 @@ void Mesh::drawSolid() {
             glTexCoord2f(0.0f, 1.0f);
             glVertex3f(q.d.x, q.d.y, q.d.z);
             glEnd();
+            */
+        } else if (mMode == MeshModeSolid) {
+            // TODO
         } else if (mMode == MeshModeTexture) {
-            getTextureManager().getTile(q.texture).displayRectangle(q.a, q.b, q.c, q.d);
+            //getTextureManager().getTile(q.texture).displayRectangle(q.a, q.b, q.c, q.d);
+        }
+    }
+
+    for (auto& t : texturedTriangles) {
+        if (mMode == MeshModeWireframe) {
+            getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
+            /*
+            glBegin(GL_TRIANGLES);
+            glTexCoord2f(0.0f, 0.0f);
+            glVertex3f(t.a.x, t.a.y, t.a.z);
+            glTexCoord2f(1.0f, 0.0f);
+            glVertex3f(t.b.x, t.b.y, t.b.z);
+            glTexCoord2f(1.0f, 1.0f);
+            glVertex3f(t.c.x, t.c.y, t.c.z);
+            glEnd();
+            */
+        } else if (mMode == MeshModeSolid) {
+            // TODO
+        } else if (mMode == MeshModeTexture) {
+            //getTextureManager().getTile(t.texture).displayTriangle(t.a, t.b, t.c);
+        }
+    }
+
+    for (auto& q : coloredRectangles) {
+        if (mMode == MeshModeWireframe) {
+            getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
+            /*
+            glBegin(GL_QUADS);
+            glTexCoord2f(0.0f, 0.0f);
+            glVertex3f(q.a.x, q.a.y, q.a.z);
+            glTexCoord2f(1.0f, 0.0f);
+            glVertex3f(q.b.x, q.b.y, q.b.z);
+            glTexCoord2f(1.0f, 1.0f);
+            glVertex3f(q.c.x, q.c.y, q.c.z);
+            glTexCoord2f(0.0f, 1.0f);
+            glVertex3f(q.d.x, q.d.y, q.d.z);
+            glEnd();
+            */
+        } else if (mMode == MeshModeSolid) {
+            // TODO
+        } else if (mMode == MeshModeTexture) {
+            // TODO
+        }
+    }
+
+    for (auto& t : coloredTriangles) {
+        if (mMode == MeshModeWireframe) {
+            getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
+            /*
+            glBegin(GL_TRIANGLES);
+            glTexCoord2f(0.0f, 0.0f);
+            glVertex3f(t.a.x, t.a.y, t.a.z);
+            glTexCoord2f(1.0f, 0.0f);
+            glVertex3f(t.b.x, t.b.y, t.b.z);
+            glTexCoord2f(1.0f, 1.0f);
+            glVertex3f(t.c.x, t.c.y, t.c.z);
+            glEnd();
+            */
+        } else if (mMode == MeshModeSolid) {
+            // TODO
+        } else if (mMode == MeshModeTexture) {
+            // TODO
         }
     }
 }
@@ -114,17 +181,17 @@ Mesh::~Mesh() {
     for (unsigned int i = 0; i < mNumVertices; i++)
         delete [] mVertices[i];
     delete [] mVertices;
-    mVertices = NULL;
+    mVertices = nullptr;
 
     for (unsigned int i = 0; i < mNumNormals; i++)
         delete [] mNormals[i];
     delete [] mNormals;
-    mNormals = NULL;
+    mNormals = nullptr;
 
     for (unsigned int i = 0; i < mNumColors; i++)
         delete [] mColors[i];
     delete [] mColors;
-    mColors = NULL;
+    mColors = nullptr;
 
     if (mTris) {
         for (unsigned int i = 0; i < mNumTris; ++i) {
@@ -135,7 +202,7 @@ Mesh::~Mesh() {
         }
 
         delete [] mTris;
-        mTris = NULL;
+        mTris = nullptr;
     }
 
     if (mQuads) {
@@ -147,29 +214,29 @@ Mesh::~Mesh() {
         }
 
         delete [] mQuads;
-        mQuads = NULL;
+        mQuads = nullptr;
     }
 
     delete [] mVertexArray;
-    mVertexArray = NULL;
+    mVertexArray = nullptr;
 
     delete [] mNormalArray;
-    mNormalArray = NULL;
+    mNormalArray = nullptr;
 
     delete [] mColorArray;
-    mColorArray = NULL;
+    mColorArray = nullptr;
 
     delete [] mTriangleTextures;
-    mTriangleTextures = NULL;
+    mTriangleTextures = nullptr;
 
     delete [] mTriangleIndices;
-    mTriangleIndices = NULL;
+    mTriangleIndices = nullptr;
 
     delete [] mTriangleFlags;
-    mTriangleFlags = NULL;
+    mTriangleFlags = nullptr;
 
     delete [] mTriangleTexCoordArray;
-    mTriangleTexCoordArray = NULL;
+    mTriangleTexCoordArray = nullptr;
 }
 
 
@@ -180,6 +247,7 @@ Mesh::~Mesh() {
 void Mesh::drawAlphaOld() {
     unsigned int i, j, k, index;
 
+    /*
 
     // Render quadralaterals
     for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i) {
@@ -246,46 +314,16 @@ void Mesh::drawAlphaOld() {
 
         glEnd();
     }
+
+    */
 }
 
 
 void Mesh::drawSolidOld() {
     unsigned int i, j, k, index;
 
+    /*
 
-    if (mFlags & fMesh_UseVertexArray) {
-        //glEnableClientState(GL_VERTEX_ARRAY);
-        //glVertexPointer(3, GL_FLOAT, 0, mVertexArray);
-
-        glPointSize(2.0f);
-        glColor3f(1.0f, 1.0f, 1.0f);
-        glBegin(GL_TRIANGLES);
-
-        for (i = 0; i < mTriangleCount * 3; ++i) {
-            //glArrayElement(mTriangleIndices[i]);
-            glVertex3fv(mVertexArray + mTriangleIndices[i]);
-        }
-
-        glEnd();
-
-        glPointSize(1.0f);
-
-        //! \fixme
-        /*
-        for (j = 0; j < mQuads[i].num_quads; ++j)
-        {
-            for (k = 0; k < 4; ++k)
-            {
-                index = mQuads[i].quads[j*4+k];
-
-                glTexCoord2fv(mQuads[i].texcoors[j*4+k]);
-                glArrayElement(mQuads[i].quads[j*4+k]);
-            }
-        }
-        */
-
-        return;
-    }
 
     // Render quadralaterals
     for (mQuads ? i = 0 : i = mNumQuads; i < mNumQuads; ++i) {
@@ -402,6 +440,8 @@ void Mesh::drawSolidOld() {
         glActiveTextureARB(GL_TEXTURE0_ARB);
     }
 #endif
+
+    */
 }
 
 

@@ -5,15 +5,12 @@
  * \author xythobuz
  */
 
-#include <cmath>
+#include "glm/glm.hpp"
 
 #include "global.h"
 #include "Log.h"
-#include "Render.h"
 #include "World.h"
 #include "Entity.h"
-
-#include "games/TombRaider1.h"
 
 Entity::Entity(float p[3], float a[3], int id, long r, unsigned int model) {
     for (int i = 0; i < 3; i++) {
@@ -30,52 +27,16 @@ Entity::Entity(float p[3], float a[3], int id, long r, unsigned int model) {
     state = 0;
 }
 
-Entity::Entity(TombRaider& tr, unsigned int index, unsigned int i, unsigned int model) {
-    tr2_moveable_t* moveable = tr.Moveable();
-    tr2_item_t* item = tr.Item();
-
-    pos[0] = item[i].x;
-    pos[1] = item[i].y;
-    pos[2] = item[i].z;
-    angles[0] = 0;
-    angles[1] = OR_DEG_TO_RAD(((item[i].angle >> 14) & 0x03) * 90.0f);
-    angles[2] = 0;
-    objectId = moveable[index].object_id;
-    moveType = MoveTypeWalk;
-    room = getWorld().getRoomByLocation(pos[0], pos[1], pos[2]);
-    skeletalModel = model;
-    boneFrame = 0;
-    animationFrame = 0;
-    idleAnimation = 0;
-    state = 0;
-}
-
-bool Entity::operator<(Entity& o) {
-    float distA = getRender().getDistToSphereFromNear(pos[0], pos[1], pos[2], 1.0f);
-    float distB = getRender().getDistToSphereFromNear(o.pos[0], o.pos[1], o.pos[2], 1.0f);
-    return (distA < distB);
-}
-
-bool Entity::compare(Entity* a, Entity* b) {
-    return (*b) < (*a);
-}
-
 void Entity::display() {
+    /*
     glPushMatrix();
     glTranslatef(pos[0], pos[1], pos[2]);
-    glRotatef(OR_RAD_TO_DEG(angles[1]), 0, 1, 0);
-    glRotatef(OR_RAD_TO_DEG(angles[0]), 1, 0, 0);
-    //glRotatef(OR_RAD_TO_DEG(angles[2]), 0, 0, 1);
+    glRotatef(glm::degrees(angles[1]), 0, 1, 0);
+    glRotatef(glm::degrees(angles[0]), 1, 0, 0);
+    //glRotatef(glm::degrees(angles[2]), 0, 0, 1);
     getWorld().getSkeletalModel(skeletalModel).display(animationFrame, boneFrame);
     glPopMatrix();
-
-    // Cycle frames
-    if (getRender().getFlags() & Render::fAnimateAllModels) {
-        if (boneFrame < (getModel().get(animationFrame).size() - 1))
-            boneFrame++;
-        else
-            boneFrame = 0;
-    }
+    */
 }
 
 void Entity::move(char movement) {
@@ -233,7 +194,7 @@ void Entity::print() {
              << ")" << Log::endl
              << "  " << pos[0] << "x " << pos[1] << "y " << pos[2] << "z"
              << Log::endl
-             << "  " << OR_RAD_TO_DEG(angles[1]) << " Yaw" << Log::endl;
+             << "  " << glm::degrees(angles[1]) << " Yaw" << Log::endl;
 }
 
 SkeletalModel& Entity::getModel() {

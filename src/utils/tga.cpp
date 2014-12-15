@@ -42,7 +42,7 @@ typedef struct {
 int tgaCheck(const char* filename) {
     char buffer[10];
 
-    assert(filename != NULL);
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
 
     FILE* f = fopen(filename, "rb");
@@ -73,18 +73,18 @@ int tgaLoad(const char* filename, unsigned char** image, unsigned int* width, un
     tga_t header;
     char comment[256];
     unsigned char pixel[4];
-    unsigned char* swap_row = NULL;
+    unsigned char* swap_row = nullptr;
     unsigned char tmp, packet;
     bool must_flip = 0;
     unsigned int size;
     unsigned int i, j;
 
-    assert(filename != NULL);
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
-    assert(image != NULL);
-    assert(width != NULL);
-    assert(height != NULL);
-    assert(type != NULL);
+    assert(image != nullptr);
+    assert(width != nullptr);
+    assert(height != nullptr);
+    assert(type != nullptr);
 
     FILE* f = fopen(filename, "rb");
     if (!f) {
@@ -159,7 +159,7 @@ int tgaLoad(const char* filename, unsigned char** image, unsigned int* width, un
         printf("Comment: '%s'\n", comment);
     }
 
-    *image = NULL;
+    *image = nullptr;
     size = header.width * header.height;
 
     if (!size || (!(header.colormap_type == 0 && (header.image_type == 2
@@ -311,9 +311,9 @@ int tgaSave(const char* filename, unsigned char* image, unsigned int width, unsi
     //unsigned int i;
     //unsigned char tmp;
 
-    assert(filename != NULL);
+    assert(filename != nullptr);
     assert(filename[0] != '\0');
-    assert(image != NULL);
+    assert(image != nullptr);
     assert(width > 0);
     assert(height > 0);
 

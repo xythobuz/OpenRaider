@@ -12,7 +12,6 @@
 #include "Log.h"
 #include "utils/strings.h"
 #include "commands/Command.h"
-#include "commands/CommandAnimate.h"
 #include "commands/CommandBind.h"
 #include "commands/CommandEngine.h"
 #include "commands/CommandGame.h"
@@ -36,10 +35,8 @@ void Command::fillCommandList() {
     commands.push_back(std::shared_ptr<Command>(new CommandSet()));
     commands.push_back(std::shared_ptr<Command>(new CommandGet()));
     commands.push_back(std::shared_ptr<Command>(new CommandScreenshot()));
-    commands.push_back(std::shared_ptr<Command>(new CommandAnimate()));
     commands.push_back(std::shared_ptr<Command>(new CommandMove()));
     commands.push_back(std::shared_ptr<Command>(new CommandMode()));
-    commands.push_back(std::shared_ptr<Command>(new CommandRenderflag()));
     commands.push_back(std::shared_ptr<Command>(new CommandPos()));
     commands.push_back(std::shared_ptr<Command>(new CommandViewmodel()));
     commands.push_back(std::shared_ptr<Command>(new CommandPigtail()));

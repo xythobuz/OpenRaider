@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include "glm/glm.hpp"
+
 #include "global.h"
 #include "Camera.h"
 #include "Log.h"
@@ -103,14 +105,14 @@ int CommandSet::execute(std::istream& args) {
             getLog() << "set-mouse_x-Error: Invalid value" << Log::endl;
             return -6;
         }
-        getCamera().setSensitivityX(OR_DEG_TO_RAD(sense));
+        Camera::setSensitivityX(glm::radians(sense));
     } else if (var.compare("mouse_y") == 0) {
         float sense = 1.0f;
         if (!(args >> sense)) {
             getLog() << "set-mouse_y-Error: Invalid value" << Log::endl;
             return -7;
         }
-        getCamera().setSensitivityY(OR_DEG_TO_RAD(sense));
+        Camera::setSensitivityY(glm::radians(sense));
     } else if (var.compare("fps") == 0) {
         bool fps = false;
         if (!(args >> fps)) {
@@ -187,9 +189,9 @@ int CommandGet::execute(std::istream& args) {
     } else if (var.compare("volume") == 0) {
         getLog() << Sound::getVolume() << Log::endl;
     } else if (var.compare("mouse_x") == 0) {
-        getLog() << OR_RAD_TO_DEG(getCamera().getSensitivityX()) << Log::endl;
+        getLog() << glm::degrees(Camera::getSensitivityX()) << Log::endl;
     } else if (var.compare("mouse_y") == 0) {
-        getLog() << OR_RAD_TO_DEG(getCamera().getSensitivityY()) << Log::endl;
+        getLog() << glm::degrees(Camera::getSensitivityY()) << Log::endl;
     } else if (var.compare("fps") == 0) {
         getLog() << getRunTime().getShowFPS() << Log::endl;
     } else if (var.compare("basedir") == 0) {

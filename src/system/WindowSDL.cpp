@@ -22,8 +22,8 @@ WindowSDL::WindowSDL() {
     mFullscreen = false;
     mMousegrab = false;
     mTextInput = false;
-    mWindow = NULL;
-    mGLContext = NULL;
+    mWindow = nullptr;
+    mGLContext = nullptr;
 }
 
 WindowSDL::~WindowSDL() {
@@ -82,24 +82,31 @@ int WindowSDL::initialize() {
     if (mFullscreen)
         flags |= SDL_WINDOW_FULLSCREEN;
 
-    if ((SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5) != 0)
-        || (SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5) != 0)
-        || (SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5) != 0)
-        || (SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16) != 0)
-        || (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1) != 0)) {
+    if ((SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1) != 0)
+        //|| (SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 2) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3) != 0)
+        || (SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE))) {
         std::cout << "SDL_GL_SetAttribute Error: " << SDL_GetError() << std::endl;
         return -2;
     }
 
     mWindow = SDL_CreateWindow(VERSION, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                mWidth, mHeight, flags);
-    if (mWindow == NULL) {
+    if (mWindow == nullptr) {
         std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
         return -3;
     }
 
     mGLContext = SDL_GL_CreateContext(mWindow);
-    if (mGLContext == NULL) {
+    if (mGLContext == nullptr) {
         std::cout << "SDL_GL_CreateContext Error: " << SDL_GetError() << std::endl;
         return -4;
     }
@@ -147,7 +154,7 @@ void WindowSDL::eventHandling() {
 
             case SDL_TEXTINPUT:
             case SDL_TEXTEDITING:
-                if (event.text.text != NULL)
+                if (event.text.text != nullptr)
                     UI::handleText(event.text.text, (event.type == SDL_TEXTEDITING));
                 break;
 

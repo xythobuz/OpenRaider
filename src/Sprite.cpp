@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include "glm/glm.hpp"
+
 #include "global.h"
 #include "Camera.h"
 #include "Game.h"
@@ -20,33 +22,13 @@ void SpriteSequence::add(Sprite s) {
     sprites.push_back(s);
 }
 
-// -----------------------
-
-SpriteSequence::SpriteSequence(TombRaider& tr, unsigned int item, unsigned int sequence) {
-    for (int i = 0; i < (-tr.SpriteSequence()[sequence].negative_length); i++)
-        oldsprites.push_back(new Sprite(tr, item, sequence, i));
-}
-
-SpriteSequence::~SpriteSequence() {
-    for (unsigned int i = 0; i < oldsprites.size(); i++)
-        delete oldsprites.at(i);
-}
-
 unsigned long SpriteSequence::size() {
-    if (oldsprites.size() > 0)
-        return oldsprites.size();
-    else
-        return sprites.size();
+    return sprites.size();
 }
 
 Sprite& SpriteSequence::get(unsigned long index) {
-    if (oldsprites.size() > 0) {
-        assert(index < oldsprites.size());
-        return *oldsprites.at(index);
-    } else {
-        assert(index < sprites.size());
-        return sprites.at(index);
-    }
+    assert(index < sprites.size());
+    return sprites.at(index);
 }
 
 // ----------------------------------------------------------------------------
@@ -98,39 +80,21 @@ Sprite::Sprite(uint16_t tile, uint8_t x, uint8_t y, uint16_t width, uint16_t hei
     //radius = width2 / 2.0f;
 }
 
-// -----------------------
-
-Sprite::Sprite(TombRaider& tr, unsigned int room, unsigned int index) {
-    float spriteVertices[12];
-    float spriteTexCoords[8];
-    float posUnused[3];
-
-    tr.getRoomSprite(room, index,
-                     10.0f, &texture, posUnused, spriteVertices, spriteTexCoords);
-
-    for (unsigned int j = 0; j < 12; j++)
-        vertex[j / 3][j % 3] = spriteVertices[j];
-
-    for (unsigned int j = 0; j < 8; j++)
-        texel[j / 2][j % 2] = spriteTexCoords[j];
-
-    //radius = 0.0f;
-}
-
 void Sprite::display() {
-    //if (!getRender().isVisible(pos[0], pos[1], pos[2], radius))
+    /*
+    //if (!Render::isVisible(pos[0], pos[1], pos[2], radius))
     //    return;
 
     glPushMatrix();
     //glTranslated(pos[0], pos[1], pos[2]);
 
     // Sprites must always face camera, because they have no depth =)
-    glRotated(OR_RAD_TO_DEG(getCamera().getRadianYaw()), 0, 1, 0);
+    glRotated(glm::degrees(Camera::getRadianYaw()), 0, 1, 0);
 
-    switch (getRender().getMode()) {
+    switch (Render::getMode()) {
         // No vertex lighting on sprites, as far as I see in specs
         // So just draw normal texture, no case 2
-        case Render::modeSolid:
+        case RenderMode::Solid:
             glBegin(GL_TRIANGLE_STRIP);
             glColor3f(texel[0][0], texel[0][1], 0.5);
             glVertex3fv(vertex[0]);
@@ -145,7 +109,7 @@ void Sprite::display() {
             glVertex3fv(vertex[2]);
             glEnd();
             break;
-        case Render::modeWireframe:
+        case RenderMode::Wireframe:
             glColor3ubv(CYAN);
             glBegin(GL_LINE_LOOP);
             glVertex3fv(vertex[0]);
@@ -171,9 +135,11 @@ void Sprite::display() {
     }
 
     glPopMatrix();
+    */
 }
 
 void Sprite::display(float x, float y, float w, float h) {
+    /*
     float z = 0.0f;
 
     getTextureManager().bindTextureId(texture);
@@ -193,5 +159,6 @@ void Sprite::display(float x, float y, float w, float h) {
     glVertex3f(x, y + h, z);
 
     glEnd();
+    */
 }
 

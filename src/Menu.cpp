@@ -142,10 +142,12 @@ void Menu::displayDialog() {
         unsigned int xOverlay = (::getWindow().getWidth() - wOverlay) / 2;
         unsigned int yOverlay = (::getWindow().getHeight() - hOverlay) / 2;
 
+        /*
         glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
         glDisable(GL_TEXTURE_2D);
         glRecti(xOverlay, yOverlay, xOverlay + wOverlay, yOverlay + hOverlay);
         glEnable(GL_TEXTURE_2D);
+        */
 
         Font::drawTextWrapped(xOverlay + 10, yOverlay + 5, 1.0f, BLUE, w0, dialogText);
         if (dialogButton2.length() > 0) {

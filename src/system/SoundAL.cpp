@@ -32,8 +32,8 @@ int SoundAL::initialize() {
     if (init)
         return 0;
 
-    ALCdevice* device = alcOpenDevice(NULL);
-    ALCcontext* context = alcCreateContext(device, NULL);
+    ALCdevice* device = alcOpenDevice(nullptr);
+    ALCcontext* context = alcCreateContext(device, nullptr);
     alcMakeContextCurrent(context);
 
     if (alutInitWithoutContext(nullptr, nullptr) == AL_FALSE) {
