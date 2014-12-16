@@ -29,10 +29,11 @@ class TextureTileVertex {
 class TextureTile {
   public:
     TextureTile(unsigned int a, unsigned int t) : attribute(a), texture(t) { }
+    void add(TextureTileVertex t) { vertices.push_back(t); }
 
     unsigned int getTexture() { return texture; }
-    glm::vec2 getUV(unsigned int i) { return glm::vec2(vertices.at(i).xPixel, vertices.at(i).yPixel); }
-    void add(TextureTileVertex t) { vertices.push_back(t); }
+    glm::vec2 getUV(unsigned int i) { return glm::vec2(vertices.at(i).xPixel / 255.0f,
+                                                       vertices.at(i).yPixel / 255.0f); }
 
   private:
     unsigned int attribute;

@@ -12,14 +12,14 @@
 #include "Camera.h"
 
 glm::vec3 Camera::pos(0.0f, 0.0f, 0.0f);
-float Camera::thetaX = glm::pi<float>();
+float Camera::thetaX = 0.0f;
 float Camera::thetaY = 0.0f;
 float Camera::rotationDeltaX = 0.75f;
 float Camera::rotationDeltaY = 0.75f;
 
 void Camera::reset() {
     pos = glm::vec3(0.0f, 0.0f, 0.0f);
-    thetaX = glm::pi<float>();
+    thetaX = 0.0f;
     thetaY = 0.0f;
 }
 
@@ -46,9 +46,9 @@ void Camera::handleAction(ActionEvents action, bool isFinished) {
     } else if (action == backwardAction) {
         pos -= dir * step;
     } else if (action == leftAction) {
-        pos -= right * step;
-    } else if (action == rightAction) {
         pos += right * step;
+    } else if (action == rightAction) {
+        pos -= right * step;
     } else if (action == jumpAction) {
         pos += up * step;
     } else if (action == crouchAction) {
@@ -61,29 +61,31 @@ void Camera::handleAction(ActionEvents action, bool isFinished) {
 
 void Camera::handleMouseMotion(int x, int y) {
     while (x > 0) {
-        if (thetaX < (glm::pi<float>() / 2.0f)) {
-            thetaX += rotationDeltaX;
-        }
+        thetaX += rotationDeltaX;
         x--;
     }
     while (x < 0) {
-        if (thetaX > -(glm::pi<float>() / 2.0f)) {
-            thetaX -= rotationDeltaX;
-        }
+        thetaX -= rotationDeltaX;
         x++;
     }
     while (y > 0) {
-        if (thetaY < (glm::pi<float>() / 2.0f)) {
-            thetaY += rotationDeltaY;
+        if (thetaY > -(glm::pi<float>() / 2.0f)) {
+            thetaY -= rotationDeltaY;
         }
         y--;
     }
     while (y < 0) {
-        if (thetaY > -(glm::pi<float>() / 2.0f)) {
-            thetaY -= rotationDeltaY;
+        if (thetaY < (glm::pi<float>() / 2.0f)) {
+            thetaY += rotationDeltaY;
         }
         y++;
     }
+
+    while (thetaX > (glm::pi<float>() * 2.0f))
+        thetaX -= glm::pi<float>() * 2.0f;
+
+    while (thetaX < -(glm::pi<float>() * 2.0f))
+        thetaX += glm::pi<float>() * 2.0f;
 }
 
 glm::mat4 Camera::getViewMatrix() {

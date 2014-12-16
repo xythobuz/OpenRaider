@@ -36,14 +36,15 @@ void Render::setMode(RenderMode m) {
             break;
         case RenderMode::Solid:
         case RenderMode::Wireframe:
-            glClearColor(PURPLE[0] / 256.0f, PURPLE[1] / 256.0f,
-                         PURPLE[2] / 256.0f, PURPLE[3] / 256.0f);
+            //glClearColor(PURPLE[0] / 256.0f, PURPLE[1] / 256.0f,
+            //             PURPLE[2] / 256.0f, PURPLE[3] / 256.0f);
             //glDisable(GL_TEXTURE_2D);
             break;
         default:
-            glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f,
-                         BLACK[2] / 256.0f, BLACK[3] / 256.0f);
+            //glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f,
+            //             BLACK[2] / 256.0f, BLACK[3] / 256.0f);
             //glEnable(GL_TEXTURE_2D);
+            break;
     }
 }
 
@@ -66,10 +67,23 @@ void Render::display() {
     }
 
     glm::mat4 view = Camera::getViewMatrix();
-    glm::mat4 projection = glm::perspective(45.0f, // Field of View
-                                            (float)getWindow().getWidth() / (float)getWindow().getHeight(),
-                                            0.1f, // Min Distance
-                                            100000.0f); // Max Distance
+
+    static unsigned int w = getWindow().getWidth();
+    static unsigned int h = getWindow().getHeight();
+    static glm::mat4 projection = glm::perspective(45.0f, // Field of View
+                                                   (float)getWindow().getWidth()
+                                                 / (float)getWindow().getHeight(),
+                                                   0.1f, // Min Distance
+                                                   100000.0f); // Max Distance
+
+    if ((w != getWindow().getWidth()) || (h != getWindow().getHeight())) {
+        w = getWindow().getWidth();
+        h = getWindow().getHeight();
+        glm::mat4 projection = glm::perspective(45.0f, // Field of View
+                                                (float)getWindow().getWidth() / (float)getWindow().getHeight(),
+                                                0.1f, // Min Distance
+                                                100000.0f); // Max Distance
+    }
 
     // Just draw all rooms, as a test
     for (int i = 0; i < getWorld().sizeRoom(); i++)

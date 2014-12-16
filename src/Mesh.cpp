@@ -81,8 +81,8 @@ void Mesh::prepare() {
         }
 
         if (indices.at(i) == 0) {
-            ind.push_back(ind.at(ind.size() - 1));
-            ind.push_back(ind.at(ind.size() - 3));
+            ind.push_back(ind.at(ind.size() - 2));
+            ind.push_back(ind.at(ind.size() - 5));
         }
 
         vertIndex += (indices.at(i) == 0) ? 4 : 3;
@@ -91,13 +91,29 @@ void Mesh::prepare() {
     indices = ind;
     vertices = vert;
     textures = tex;
+
+    assert((indices.size() % 3) == 0);
 }
 
 void Mesh::display(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {
     glm::mat4 MVP = projection * view * model;
 
-    // TODO handle different textures!
+    unsigned int indexStart = 0;
+    unsigned int indexPos = 1;
+    unsigned int texture = textures.at(indices.at(0));
 
-    Window::drawGL(vertices, uvs, indices, MVP, textures.at(0));
+    while ((indexStart != indexPos) && (indexPos < indices.size())) {
+        while ((indexPos < indices.size()) && (textures.at(indices.at(indexPos)) == texture))
+            indexPos++;
+
+        std::vector<unsigned short> ind(indices.begin() + indexStart, indices.begin() + indexPos);
+        Window::drawGL(vertices, uvs, ind, MVP, texture);
+
+        if (indexPos < indices.size()) {
+            indexStart = indexPos;
+            indexPos += 1;
+            texture = textures.at(indices.at(indexStart));
+        }
+    }
 }
 

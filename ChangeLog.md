@@ -4,7 +4,7 @@
 
     [ 20141216 ]
     * Allow navigation with a free-floating Camera
-    * Started drawing the Room Mesh structures
+    * Room Meshes are displayed more or less correctly
 
     [ 20141215 ]
     * Rewrote GL code for the Font implementations, ImGUI and the Main Menu

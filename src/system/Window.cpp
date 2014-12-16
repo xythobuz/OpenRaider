@@ -48,7 +48,8 @@ int Window::initializeGL() {
 	glBindVertexArray(vertexArrayID);
 
     // Set background to black
-    glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f, BLACK[2] / 256.0f, BLACK[3] / 256.0f);
+    //glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f, BLACK[2] / 256.0f, BLACK[3] / 256.0f);
+    glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
 
     // Set up Z buffer
     glEnable(GL_DEPTH_TEST);
@@ -377,7 +378,11 @@ out vec2 UV;
 uniform mat4 MVP;
 
 void main() {
-    gl_Position = MVP * vec4(vertexPosition_modelspace, 1);
+    vec4 pos = MVP * vec4(vertexPosition_modelspace.x,
+                          -vertexPosition_modelspace.y,
+                          vertexPosition_modelspace.z,
+                          1);
+    gl_Position = vec4(-pos.x, pos.yzw);
     UV = vertexUV;
 }
 )!?!";

@@ -22,6 +22,7 @@ class Camera {
 
     static float getRadianPitch() { return thetaX; }
     static float getRadianYaw() { return thetaY; }
+    static void setRadianPitch(float x) { thetaX = x; }
 
     static void setPosition(glm::vec3 p) { pos = p; }
     static glm::vec3 getPosition() { return pos; }
