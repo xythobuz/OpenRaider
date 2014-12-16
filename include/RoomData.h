@@ -14,15 +14,13 @@
 
 class BoundingBox {
   public:
-    BoundingBox();
-    void getBoundingBox(float box[2][3]);
-    void setBoundingBox(float min[3], float max[3]);
+    BoundingBox(glm::vec3 min, glm::vec3 max);
     void display(bool points, const unsigned char c1[4], const unsigned char c2[4]);
     bool inBox(float x, float y, float z);
     bool inBoxPlane(float x, float z);
 
   private:
-    float a[3], b[3];
+    glm::vec3 a, b;
 };
 
 class Light {

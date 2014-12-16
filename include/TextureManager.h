@@ -11,6 +11,7 @@
 
 #include <cstdint>
 #include <vector>
+#include <glm/vec2.hpp>
 
 // These are loaded into TextureStorage::SYSTEM by initialize()!
 #define TEXTURE_WHITE 0
@@ -18,7 +19,8 @@
 
 class TextureTileVertex {
   public:
-    TextureTileVertex(uint8_t xc, uint8_t xp, uint8_t yc, uint8_t yp);
+    TextureTileVertex(uint8_t xc, uint8_t xp, uint8_t yc, uint8_t yp)
+        : xCoordinate(xc), xPixel(xp), yCoordinate(yc), yPixel(yp) { }
 
     uint8_t xCoordinate, xPixel;
     uint8_t yCoordinate, yPixel;
@@ -26,18 +28,16 @@ class TextureTileVertex {
 
 class TextureTile {
   public:
-    TextureTile(uint16_t a, uint16_t t) : attribute(a), texture(t) { }
-    ~TextureTile();
+    TextureTile(unsigned int a, unsigned int t) : attribute(a), texture(t) { }
 
-    void add(TextureTileVertex* t);
-
-    void displayTriangle(float a[3], float b[3], float c[3]);
-    void displayRectangle(float a[3], float b[3], float c[3], float d[3]);
+    unsigned int getTexture() { return texture; }
+    glm::vec2 getUV(unsigned int i) { return glm::vec2(vertices.at(i).xPixel, vertices.at(i).yPixel); }
+    void add(TextureTileVertex t) { vertices.push_back(t); }
 
   private:
-    uint16_t attribute;
-    uint16_t texture;
-    std::vector<TextureTileVertex*> vertices;
+    unsigned int attribute;
+    unsigned int texture;
+    std::vector<TextureTileVertex> vertices;
 };
 
 /*!

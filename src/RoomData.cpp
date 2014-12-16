@@ -10,36 +10,15 @@
 #include "World.h"
 #include "RoomData.h"
 
-BoundingBox::BoundingBox() {
-    a[0] = a[1] = a[2] = 0;
-    b[0] = b[1] = b[2] = 0;
-}
-
-void BoundingBox::getBoundingBox(float box[2][3]) {
-    box[0][0] = a[0];
-    box[1][0] = b[0];
-    box[0][1] = a[1];
-    box[1][1] = b[1];
-    box[0][2] = a[2];
-    box[1][2] = b[2];
-}
-
-void BoundingBox::setBoundingBox(float min[3], float max[3]) {
-    a[0] = min[0];
-    b[0] = max[0];
-    a[1] = min[1];
-    b[1] = max[1];
-    a[2] = min[2];
-    b[2] = max[2];
-}
+BoundingBox::BoundingBox(glm::vec3 min, glm::vec3 max) : a(min), b(max) { }
 
 bool BoundingBox::inBox(float x, float y, float z) {
-    return ((y > a[1]) && (y < b[1]) && inBoxPlane(x, z));
+    return ((y > a.y) && (y < b.y) && inBoxPlane(x, z));
 }
 
 bool BoundingBox::inBoxPlane(float x, float z) {
-    return ((x > a[0]) && (x < b[0])
-            && (z > a[2]) && (z < b[2]));
+    return ((x > a.x) && (x < b.x)
+            && (z > a.z) && (z < b.z));
 }
 
 void BoundingBox::display(bool points, const unsigned char c1[4], const unsigned char c2[4]) {

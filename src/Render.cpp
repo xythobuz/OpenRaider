@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include <sstream>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include <stdlib.h>
 #include <math.h>
@@ -64,9 +65,15 @@ void Render::display() {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
 
-    // TODO Setup matrices
+    glm::mat4 view = Camera::getViewMatrix();
+    glm::mat4 projection = glm::perspective(45.0f, // Field of View
+                                            (float)getWindow().getWidth() / (float)getWindow().getHeight(),
+                                            0.1f, // Min Distance
+                                            100000.0f); // Max Distance
 
-    // TODO Render world
+    // Just draw all rooms, as a test
+    for (int i = 0; i < getWorld().sizeRoom(); i++)
+        getWorld().getRoom(i).display(view, projection);
 
     if (mode == RenderMode::Wireframe) {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);

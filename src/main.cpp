@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <memory>
-#include <sstream>
 
 #include "global.h"
 #include "Exception.h"
@@ -204,19 +203,7 @@ void renderFrame() {
     getGame().display();
     getMenu().display();
     UI::display();
-
-    /*
-    if (getRunTime().getShowFPS()) {
-        std::ostringstream s;
-        s << getRunTime().getFPS() << "FPS";
-        getWindow().glEnter2D();
-        Font::drawText(10, getWindow().getHeight() - 25, 0.6f, BLUE, s.str());
-        getWindow().glExit2D();
-    }
-    */
-
     getWindow().swapBuffersGL();
-
     getRunTime().updateFPS();
 }
 

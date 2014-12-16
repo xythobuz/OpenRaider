@@ -21,10 +21,12 @@ BoneTag::BoneTag(int m, float o[3], float r[3], char f) {
 }
 
 void BoneTag::display() {
+    /*
     if (getWorld().sizeMesh() > 0)
         getWorld().getMesh(mesh).drawSolid(); // TODO ?
     else
         getWorld().getStaticMesh(mesh).display();
+    */
 }
 
 void BoneTag::getOffset(float o[3]) {

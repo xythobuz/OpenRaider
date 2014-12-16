@@ -8,22 +8,26 @@
 #ifndef _ROOM_H_
 #define _ROOM_H_
 
+#include <memory>
 #include <vector>
+#include <glm/mat4x4.hpp>
+#include <glm/vec3.hpp>
+
 #include "Mesh.h"
 #include "Sprite.h"
 #include "RoomData.h"
 
-typedef enum {
+enum RoomFlags {
     RoomFlagUnderWater = (1 << 0)
-} RoomFlags;
+};
 
 class Room {
   public:
-    Room(float p[3] = nullptr, unsigned int f = 0, unsigned int x = 0, unsigned int z = 0);
-    ~Room();
+    Room(glm::vec3 _pos, BoundingBox* _bbox, Mesh* _mesh, unsigned int f)
+        : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f) { }
 
-    BoundingBox& getBoundingBox();
-    void display(bool alpha);
+    void prepare();
+    void display(glm::mat4 view, glm::mat4 projection);
 
     bool isWall(unsigned long sector);
     long getSector(float x, float z, float* floor, float* ceiling);
@@ -32,18 +36,16 @@ class Room {
     int getAdjoiningRoom(float x, float y, float z,
                          float x2, float y2, float z2);
 
-    Mesh& getMesh() { return mesh; }
+    BoundingBox& getBoundingBox() { return *bbox; }
+    Mesh& getMesh() { return *mesh; }
 
-    unsigned int getNumXSectors();
-    unsigned int getNumZSectors();
-    void getPos(float p[3]);
+    void setNumXSectors(unsigned int n) { numXSectors = n; }
+    unsigned int getNumXSectors() { return numXSectors; }
 
-    void setNumXSectors(unsigned int n);
-    void setNumZSectors(unsigned int n);
-    void setPos(float p[3]);
+    void setNumZSectors(unsigned int n) { numZSectors = n; }
+    unsigned int getNumZSectors() { return numZSectors; }
 
-    void setFlags(unsigned int f);
-    unsigned int getFlags();
+    unsigned int getFlags() { return flags; }
 
     unsigned long sizeAdjacentRooms();
     long getAdjacentRoom(unsigned long index);
@@ -70,20 +72,20 @@ class Room {
     void addSprite(Sprite* s);
 
   private:
+    glm::vec3 pos;
+    std::unique_ptr<BoundingBox> bbox;
+    std::unique_ptr<Mesh> mesh;
+
     unsigned int flags;
     unsigned int numXSectors;
     unsigned int numZSectors;
-    float pos[3];
-
-    BoundingBox bbox;
-    Mesh mesh;
 
     std::vector<long> adjacentRooms;
-    std::vector<Sprite*> sprites;
-    std::vector<StaticModel*> models;
-    std::vector<Portal*> portals;
-    std::vector<Sector*> sectors;
-    std::vector<Light*> lights;
+    std::vector<std::unique_ptr<Sprite>> sprites;
+    std::vector<std::unique_ptr<StaticModel>> models;
+    std::vector<std::unique_ptr<Portal>> portals;
+    std::vector<std::unique_ptr<Sector>> sectors;
+    std::vector<std::unique_ptr<Light>> lights;
 
     // Was used for "depth sorting" render list, but never assigned...?!
     //float dist; // Distance to near plane, move to room?

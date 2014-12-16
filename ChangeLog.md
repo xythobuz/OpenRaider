@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141216 ]
+    * Allow navigation with a free-floating Camera
+    * Started drawing the Room Mesh structures
+
     [ 20141215 ]
     * Rewrote GL code for the Font implementations, ImGUI and the Main Menu
 

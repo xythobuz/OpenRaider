@@ -7,6 +7,7 @@
 
 #include <algorithm>
 #include <map>
+#include <sstream>
 #include <cstdlib>
 #include <cstring>
 
@@ -16,9 +17,12 @@
 #include "loader/Loader.h"
 #include "Log.h"
 #include "Render.h"
+#include "RunTime.h"
 #include "SoundManager.h"
 #include "StaticMesh.h"
+#include "system/Font.h"
 #include "system/Sound.h"
+#include "system/Window.h"
 #include "TextureManager.h"
 #include "UI.h"
 #include "World.h"
@@ -41,6 +45,24 @@ int Game::initialize() {
 
 void Game::display() {
     Render::display();
+
+    if (getRunTime().getShowFPS()) {
+        std::ostringstream s;
+        s << getRunTime().getFPS() << "FPS";
+        Font::drawText(10, getWindow().getHeight() - 25, 0.6f, BLUE, s.str());
+
+        s.str("");
+        s << "X: " << Camera::getPosition().x << " (" << Camera::getRadianPitch() << ")";
+        Font::drawText(10, getWindow().getHeight() - 70, 0.6f, BLUE, s.str());
+
+        s.str("");
+        s << "Y: " << Camera::getPosition().y << " (" << Camera::getRadianYaw() << ")";
+        Font::drawText(10, getWindow().getHeight() - 55, 0.6f, BLUE, s.str());
+
+        s.str("");
+        s << "Z: " << Camera::getPosition().z;
+        Font::drawText(10, getWindow().getHeight() - 40, 0.6f, BLUE, s.str());
+    }
 }
 
 void Game::destroy() {
@@ -48,10 +70,10 @@ void Game::destroy() {
     mLara = -1;
     Render::setMode(RenderMode::LoadScreen);
 
-    getWorld().destroy();
-    Sound::clear(); // Remove all previously loaded sounds
+    Camera::reset();
     SoundManager::clear();
     getTextureManager().clear();
+    getWorld().destroy();
 }
 
 bool Game::isLoaded() {
@@ -64,65 +86,51 @@ int Game::loadLevel(const char* level) {
     getLog() << "Loading " << levelName << Log::endl;
     auto loader = Loader::createLoader(level);
     if (loader) {
-        // First Loader test
-        getLog() << "Trying to load using new loader..." << Log::endl;
         int error = loader->load(level);
         if (error != 0) {
-            getLog() << "Error while trying new loader (" << error << ")..." << Log::endl;
+            getLog() << "Error loading level (" << error << ")..." << Log::endl;
             destroy();
             return -2;
-        } else {
-            SoundManager::prepareSources();
+        }
 
-            if (mLara == -1) {
-                getLog() << "Can't find Lara entity in level?!" << Log::endl;
-            } else {
-                mLoaded = true;
-                //Render::setMode(RenderMode::Texture);
-            }
+        for (int i = 0; i < getWorld().sizeRoom(); i++) {
+            getWorld().getRoom(i).prepare();
+        }
 
+        SoundManager::prepareSources();
+
+        if (mLara == -1) {
+            getLog() << "Can't find Lara entity in level?!" << Log::endl;
             UI::setVisible(true);
-            return 0;
+        } else {
+            mLoaded = true;
+            Render::setMode(RenderMode::Texture);
         }
     } else {
         getLog() << "No suitable loader for this level!" << Log::endl;
         return -1;
     }
+
+    return 0;
 }
 
 void Game::handleAction(ActionEvents action, bool isFinished) {
-    if (mLoaded && (!isFinished)) {
-        if (action == forwardAction) {
-            getLara().move('f');
-        } else if (action == backwardAction) {
-            getLara().move('b');
-        } else if (action == leftAction) {
-            getLara().move('l');
-        } else if (action == rightAction) {
-            getLara().move('r');
-        } else if (action == jumpAction) {
+    if (isFinished || (!mLoaded))
+        return;
 
-        } else if (action == crouchAction) {
-
-        } else if (action == useAction) {
-
-        } else if (action == holsterAction) {
-
-        } else if (action == walkAction) {
-
-        }
-    }
+    Camera::handleAction(action, isFinished);
 }
 
 void Game::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) {
-    if (mLoaded) {
-        Camera::handleMouseMotion(xrel, yrel);
+    if (!mLoaded)
+        return;
 
-        /*
-        float angles[3] = { 0.0f, getCamera().getRadianYaw(), getCamera().getRadianPitch() };
-        getLara().setAngles(angles);
-        */
-    }
+    Camera::handleMouseMotion(xrel, yrel);
+
+    /* TODO
+    float angles[3] = { 0.0f, getCamera().getRadianYaw(), getCamera().getRadianPitch() };
+    getLara().setAngles(angles);
+    */
 }
 
 Entity& Game::getLara() {

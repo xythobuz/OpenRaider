@@ -35,6 +35,7 @@ bool Window::getTextInput() {
 
 Shader Window::textShader;
 Shader Window::imguiShader;
+Shader Window::textureShader;
 unsigned int Window::vertexArrayID = 0;
 
 int Window::initializeGL() {
@@ -74,6 +75,14 @@ int Window::initializeGL() {
     if (imguiShader.addUniform("textureSampler") < 0)
         return -7;
     imguiShader.addBuffer(3);
+
+    if (textureShader.compile(textureShaderVertex, textureShaderFragment) < 0)
+        return -8;
+    if (textureShader.addUniform("MVP") < 0)
+        return -9;
+    if (textureShader.addUniform("textureSampler") < 0)
+        return -10;
+    textureShader.addBuffer(3);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -120,6 +129,43 @@ void Window::drawTextGL(std::vector<glm::vec2>& vertices, std::vector<glm::vec2>
     glDisable(GL_DEPTH_TEST);
     glDrawArrays(GL_TRIANGLES, 0, vertices.size());
     glEnable(GL_DEPTH_TEST);
+
+    glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(1);
+}
+
+void Window::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
+                    std::vector<unsigned short>& indices, glm::mat4 MVP, unsigned int texture) {
+    assert(vertices.size() == uvs.size());
+    assert((indices.size() % 3) == 0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(0));
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(1));
+    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(2));
+    glBufferData(GL_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0], GL_STATIC_DRAW);
+
+    textureShader.use();
+
+    glUniformMatrix4fv(textureShader.getUniform(0), 1, GL_FALSE, &MVP[0][0]);
+
+    getTextureManager().bindTextureId(texture, TextureManager::TextureStorage::GAME, 0);
+    glUniform1i(textureShader.getUniform(1), 0);
+
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(1));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, textureShader.getBuffer(2));
+
+    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_SHORT, nullptr);
 
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
@@ -315,6 +361,38 @@ uniform sampler2D textureSampler;
 
 void main() {
     color = texture(textureSampler, UV) * FragColor;
+}
+)!?!";
+
+// --------------------------------------
+
+const char* Window::textureShaderVertex = R"!?!(
+#version 330 core
+
+layout(location = 0) in vec3 vertexPosition_modelspace;
+layout(location = 1) in vec2 vertexUV;
+
+out vec2 UV;
+
+uniform mat4 MVP;
+
+void main() {
+    gl_Position = MVP * vec4(vertexPosition_modelspace, 1);
+    UV = vertexUV;
+}
+)!?!";
+
+const char* Window::textureShaderFragment = R"!?!(
+#version 330 core
+
+in vec2 UV;
+
+out vec4 color;
+
+uniform sampler2D textureSampler;
+
+void main() {
+    color = texture(textureSampler, UV);
 }
 )!?!";
 

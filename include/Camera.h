@@ -13,6 +13,10 @@
 
 class Camera {
   public:
+
+    static void reset();
+
+    static void handleAction(ActionEvents action, bool isFinished);
     static void handleMouseMotion(int x, int y);
     static glm::mat4 getViewMatrix();
 

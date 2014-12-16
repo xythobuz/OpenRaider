@@ -131,7 +131,7 @@ void LoaderTR2::loadTextures() {
             assert((xCoordinate == 1) || (xCoordinate == 255) || (xCoordinate == 0));
             assert((yCoordinate == 1) || (yCoordinate == 255) || (yCoordinate == 0));
 
-            t->add(new TextureTileVertex(xCoordinate, xPixel, yCoordinate, yPixel));
+            t->add(TextureTileVertex(xCoordinate, xPixel, yCoordinate, yPixel));
         }
 
         getTextureManager().addTile(t);
@@ -187,72 +187,56 @@ void LoaderTR2::loadRooms() {
         int32_t yBottom = file.read32(); // lowest point == largest y value
         int32_t yTop = file.read32(); // highest point == smallest y value
 
+        glm::vec3 pos(xOffset, 0.0f, zOffset);
+
         // Number of data words (2 bytes) to follow
         uint32_t dataToFollow = file.readU32();
 
-        uint16_t numVertices = file.readU16();
-        std::vector<glm::vec3> vertices;
-        float bbox[2][3] = {
-            { 0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f }
+        glm::vec3 bbox[2] = {
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            glm::vec3(0.0f, 0.0f, 0.0f)
         };
+
+        uint16_t numVertices = file.readU16();
+        std::vector<RoomVertexTR2> vertices;
         for (unsigned int v = 0; v < numVertices; v++) {
-            // Vertex coordinates, relative to x/zOffset
-            int32_t x = file.read16() + xOffset;
-            int16_t y = file.read16();
-            int32_t z = file.read16() + zOffset;
+            RoomVertexTR2 vert;
+            vert.x = file.read16();
+            vert.y = file.read16();
+            vert.z = file.read16();
+            vert.light1 = file.read16();
+            vert.attributes = file.readU16();
+            vert.light2 = file.read16();
+            vertices.push_back(vert);
 
-            int16_t light1 = file.read16();
-
-            // Set of flags for special rendering effects
-            // 0x8000 - Something to do with water surface?
-            // 0x4000 - Underwater lighting modulation/movement if seen from above
-            // 0x2000 - Water/Quicksand surface movement
-            // 0x0010 - Normal?
-            uint16_t attributes = file.readU16();
-
-            int16_t light2 = file.read16(); // Almost always equal to light1
-
-            vertices.emplace_back(x, y, z);
-
+            // Fill bounding box
             if (v == 0) {
                 for (int i = 0; i < 2; i++) {
-                    bbox[i][0] = x;
-                    bbox[i][1] = y;
-                    bbox[i][2] = z;
+                    bbox[i].x = vert.x;
+                    bbox[i].y = vert.y;
+                    bbox[i].z = vert.z;
                 }
             } else {
-                if (x < bbox[0][0])
-                    bbox[0][0] = x;
-                if (x > bbox[1][0])
-                    bbox[1][0] = x;
-
-                if (y < bbox[0][1])
-                    bbox[0][1] = y;
-                if (y > bbox[1][1])
-                    bbox[1][1] = y;
-
-                if (z < bbox[0][2])
-                    bbox[0][2] = z;
-                if (z > bbox[1][2])
-                    bbox[1][2] = z;
+                if (vert.x < bbox[0].x)
+                    bbox[0].x = vert.x;
+                if (vert.x > bbox[1].x)
+                    bbox[1].x = vert.x;
+                if (vert.y < bbox[0].y)
+                    bbox[0].y = vert.y;
+                if (vert.y > bbox[1].y)
+                    bbox[1].y = vert.y;
+                if (vert.z < bbox[0].z)
+                    bbox[0].z = vert.z;
+                if (vert.z > bbox[1].z)
+                    bbox[1].z = vert.z;
             }
         }
 
-        float pos[3] {
-            static_cast<float>(xOffset),
-            0.0f,
-            static_cast<float>(zOffset)
-        };
-        Room* room = new Room(pos);
-
-        bbox[0][0] += pos[0];
-        bbox[1][0] += pos[0];
-        bbox[0][2] += pos[2];
-        bbox[1][2] += pos[2];
-        room->getBoundingBox().setBoundingBox(bbox[0], bbox[1]);
+        bbox[0] += pos;
+        bbox[1] += pos;
 
         uint16_t numRectangles = file.readU16();
+        std::vector<RoomRectangleTR2> rectangles;
         for (unsigned int r = 0; r < numRectangles; r++) {
             // Indices into the vertex list read just before
             uint16_t vertex1 = file.readU16();
@@ -263,12 +247,11 @@ void LoaderTR2::loadRooms() {
             // Index into the object-texture list
             uint16_t texture = file.readU16();
 
-            room->getMesh().addTexturedRectangle(vertices.at(vertex1), vertices.at(vertex2),
-                                                 vertices.at(vertex3), vertices.at(vertex4),
-                                                 texture);
+            rectangles.emplace_back(vertex1, vertex2, vertex3, vertex4, texture);
         }
 
         uint16_t numTriangles = file.readU16();
+        std::vector<RoomTriangleTR2> triangles;
         for (unsigned int t = 0; t < numTriangles; t++) {
             // Indices into the room vertex list
             uint16_t vertex1 = file.readU16();
@@ -278,8 +261,7 @@ void LoaderTR2::loadRooms() {
             // Index into the object-texture list
             uint16_t texture = file.readU16();
 
-            room->getMesh().addTexturedTriangle(vertices.at(vertex1), vertices.at(vertex2),
-                                                vertices.at(vertex3), texture);
+            triangles.emplace_back(vertex1, vertex2, vertex3, texture);
         }
 
         uint16_t numSprites = file.readU16();
@@ -290,8 +272,7 @@ void LoaderTR2::loadRooms() {
             // TODO store sprites somewhere
         }
 
-        glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(pos[0], pos[1], pos[2]));
-        room->addAdjacentRoom(i); // Always set room itself as first
+        //room->addAdjacentRoom(i); // Always set room itself as first
 
         uint16_t numPortals = file.readU16();
         for (unsigned int p = 0; p < numPortals; p++) {
@@ -320,57 +301,13 @@ void LoaderTR2::loadRooms() {
             int16_t yCorner4 = file.read16();
             int16_t zCorner4 = file.read16();
 
-            glm::vec4 vertices[4] = {
-                glm::vec4(
-                    static_cast<float>(xCorner1),
-                    static_cast<float>(yCorner1),
-                    static_cast<float>(zCorner1),
-                    1.0f
-                ), glm::vec4(
-                    static_cast<float>(xCorner2),
-                    static_cast<float>(yCorner2),
-                    static_cast<float>(zCorner2),
-                    1.0f
-                ), glm::vec4(
-                    static_cast<float>(xCorner3),
-                    static_cast<float>(yCorner3),
-                    static_cast<float>(zCorner3),
-                    1.0f
-                ), glm::vec4(
-                    static_cast<float>(xCorner4),
-                    static_cast<float>(yCorner4),
-                    static_cast<float>(zCorner4),
-                    0.0f
-                )
-            };
-
-            // Portals have relative coordinates
-            vertices[0] = transform * vertices[0];
-            vertices[1] = transform * vertices[1];
-            vertices[2] = transform * vertices[2];
-            vertices[3] = transform * vertices[3];
-
-            float normals[3] = {
-                static_cast<float>(xNormal),
-                static_cast<float>(yNormal),
-                static_cast<float>(zNormal)
-            };
-
-            glm::vec3 verts[4] = {
-                glm::vec3(vertices[0]),
-                glm::vec3(vertices[1]),
-                glm::vec3(vertices[2]),
-                glm::vec3(vertices[3])
-            };
-
-            room->addPortal(new Portal(verts, normals, adjoiningRoom));
-            room->addAdjacentRoom(adjoiningRoom);
+            // TODO store portals
         }
 
         uint16_t numZSectors = file.readU16();
         uint16_t numXSectors = file.readU16();
-        room->setNumXSectors(numXSectors);
-        room->setNumZSectors(numZSectors);
+        //room->setNumXSectors(numXSectors);
+        //room->setNumZSectors(numZSectors);
         for (unsigned int s = 0; s < (numZSectors * numXSectors); s++) {
             // Sectors are 1024*1024 world coordinates. Floor and Ceiling are
             // signed numbers of 256 units of height.
@@ -393,7 +330,7 @@ void LoaderTR2::loadRooms() {
                 wall = true;
             }
 
-            room->addSector(new Sector(floor * 256.0f, ceiling * 256.0f, wall));
+            //room->addSector(new Sector(floor * 256.0f, ceiling * 256.0f, wall));
         }
 
         int16_t intensity1 = file.read16();
@@ -440,14 +377,18 @@ void LoaderTR2::loadRooms() {
         int16_t alternateRoom = file.read16(); // TODO
 
         uint16_t flags = file.readU16();
-        int roomFlags = 0;
+        unsigned int roomFlags = 0;
         if (flags & 0x0001) {
             roomFlags |= RoomFlagUnderWater;
         }
-        room->setFlags(room->getFlags() | roomFlags);
+
+        BoundingBox* boundingbox = new BoundingBox(bbox[0], bbox[1]);
+        Mesh* mesh = new Mesh(vertices, rectangles, triangles);
+        Room* room = new Room(pos, boundingbox, mesh, roomFlags);
 
         getWorld().addRoom(room);
 
+        // Sanity check
         if ((numPortals == 0) && (numVertices == 0)
             && (numRectangles == 0) && (numTriangles == 0))
             getLog() << "LoaderTR2: Room " << i << " seems invalid: " << numPortals << "p "
@@ -560,7 +501,7 @@ void LoaderTR2::loadMeshes() {
             vertices.emplace_back(x, y, z);
         }
 
-        Mesh* mesh = new Mesh();
+        //Mesh* mesh = new Mesh();
 
         int16_t numNormals = mem.read16();
         if (numNormals > 0) {
@@ -574,7 +515,7 @@ void LoaderTR2::loadMeshes() {
                 int16_t y = mem.read16();
                 int16_t z = mem.read16();
 
-                mesh->addNormal(glm::vec3(x, y, z));
+                //mesh->addNormal(glm::vec3(x, y, z));
             }
         } else if (numNormals < 0) {
             // Internal vertex lighting is used,
@@ -593,9 +534,9 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex4 = mem.readU16();
             uint16_t texture = mem.readU16();
 
-            mesh->addTexturedRectangle(vertices.at(vertex1), vertices.at(vertex2),
-                                       vertices.at(vertex3), vertices.at(vertex4),
-                                       texture);
+            //mesh->addTexturedRectangle(vertices.at(vertex1), vertices.at(vertex2),
+            //                           vertices.at(vertex3), vertices.at(vertex4),
+            //                           texture);
         }
 
         int16_t numTexturedTriangles = mem.read16();
@@ -605,8 +546,8 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex3 = mem.readU16();
             uint16_t texture = mem.readU16();
 
-            mesh->addTexturedTriangle(vertices.at(vertex1), vertices.at(vertex2),
-                                      vertices.at(vertex3), texture);
+            //mesh->addTexturedTriangle(vertices.at(vertex1), vertices.at(vertex2),
+            //                          vertices.at(vertex3), texture);
         }
 
         int16_t numColoredRectangles = mem.read16();
@@ -623,9 +564,9 @@ void LoaderTR2::loadMeshes() {
                   blue = (palette.at(index) & 0x0000FF00) >> 8;
 
 
-            mesh->addColoredRectangle(vertices.at(vertex1), vertices.at(vertex2),
-                                      vertices.at(vertex3), vertices.at(vertex4),
-                                      red, green, blue);
+            //mesh->addColoredRectangle(vertices.at(vertex1), vertices.at(vertex2),
+            //                          vertices.at(vertex3), vertices.at(vertex4),
+            //                          red, green, blue);
         }
 
         int16_t numColoredTriangles = mem.read16();
@@ -640,11 +581,11 @@ void LoaderTR2::loadMeshes() {
                   green = (palette.at(index) & 0x00FF0000) >> 16,
                   blue = (palette.at(index) & 0x0000FF00) >> 8;
 
-            mesh->addColoredTriangle(vertices.at(vertex1), vertices.at(vertex2),
-                                     vertices.at(vertex3), red, green, blue);
+            //mesh->addColoredTriangle(vertices.at(vertex1), vertices.at(vertex2),
+            //                         vertices.at(vertex3), red, green, blue);
         }
 
-        getWorld().addMesh(mesh);
+        //getWorld().addMesh(mesh);
     }
 
     if (numMeshPointers > 0)

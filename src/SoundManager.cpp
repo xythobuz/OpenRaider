@@ -19,6 +19,8 @@ void SoundManager::clear() {
     soundMap.clear();
     soundDetails.clear();
     sampleIndices.clear();
+
+    Sound::clear();
 }
 
 int SoundManager::prepareSources() {

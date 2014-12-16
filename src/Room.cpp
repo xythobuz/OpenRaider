@@ -6,6 +6,7 @@
  */
 
 #include <algorithm>
+#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
 
 #include "global.h"
@@ -15,48 +16,17 @@
 #include "Room.h"
 #include "TextureManager.h"
 
-Room::Room(float p[3], unsigned int f, unsigned int x, unsigned int z)
-    : flags(f), numXSectors(x), numZSectors(z) {
-    if (p == nullptr) {
-        pos[0] = 0.0f;
-        pos[1] = 0.0f;
-        pos[2] = 0.0f;
-    } else {
-        pos[0] = p[0];
-        pos[1] = p[0];
-        pos[2] = p[0];
-    }
+void Room::display(glm::mat4 view, glm::mat4 projection) {
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos[0], pos[1], pos[2]));
+    mesh->display(model, view, projection);
 }
 
-void Room::setNumXSectors(unsigned int n) {
-    numXSectors = n;
+void Room::prepare() {
+    mesh->prepare();
 }
 
-void Room::setNumZSectors(unsigned int n) {
-    numZSectors = n;
-}
-
-void Room::setPos(float p[3]) {
-    for (int i = 0; i < 3; i++)
-        pos[i] = p[i];
-}
-
-#define EMPTY_VECTOR(x)     \
-while (!x.empty()) {        \
-    delete x[x.size() - 1]; \
-    x.pop_back();           \
-}
-
-Room::~Room() {
-    EMPTY_VECTOR(sprites);
-    EMPTY_VECTOR(models);
-    EMPTY_VECTOR(portals);
-    EMPTY_VECTOR(sectors);
-    EMPTY_VECTOR(lights);
-}
-
+/*
 void Room::display(bool alpha) {
-    /*
     glPushMatrix();
     //LightingSetup();
 
@@ -80,9 +50,7 @@ void Room::display(bool alpha) {
         }
 
         glLineWidth(1.0);
-    }
 
-    if (Render::getMode() == RenderMode::Wireframe && (!alpha)) {
         bbox.display(true, RED, GREEN);
     }
 
@@ -120,8 +88,8 @@ void Room::display(bool alpha) {
         for (unsigned int i = 0; i < sizeSprites(); i++)
             getSprite(i).display();
     }
-    */
 }
+*/
 
 bool Room::isWall(unsigned long sector) {
     assert(sector < sectors.size());
@@ -183,27 +151,6 @@ int Room::getAdjoiningRoom(float x, float y, float z,
     return -1;
 }
 
-void Room::setFlags(unsigned int f) {
-    flags = f;
-}
-
-unsigned int Room::getFlags() {
-    return flags;
-}
-
-unsigned int Room::getNumXSectors() {
-    return numXSectors;
-}
-
-unsigned int Room::getNumZSectors() {
-    return numZSectors;
-}
-
-void Room::getPos(float p[3]) {
-    for (unsigned int i = 0; i < 3; i++)
-        p[i] = pos[i];
-}
-
 unsigned long Room::sizeAdjacentRooms() {
     return adjacentRooms.size();
 }
@@ -214,7 +161,7 @@ long Room::getAdjacentRoom(unsigned long index) {
 }
 
 void Room::addAdjacentRoom(long r) {
-    adjacentRooms.push_back(r);
+    adjacentRooms.emplace_back(r);
 }
 
 unsigned long Room::sizePortals() {
@@ -227,7 +174,7 @@ Portal& Room::getPortal(unsigned long index) {
 }
 
 void Room::addPortal(Portal* p) {
-    portals.push_back(p);
+    portals.emplace_back(p);
 }
 
 unsigned long Room::sizeSectors() {
@@ -240,7 +187,7 @@ Sector& Room::getSector(unsigned long index) {
 }
 
 void Room::addSector(Sector* s) {
-    sectors.push_back(s);
+    sectors.emplace_back(s);
 }
 
 unsigned long Room::sizeModels() {
@@ -253,7 +200,7 @@ StaticModel& Room::getModel(unsigned long index) {
 }
 
 void Room::addModel(StaticModel* s) {
-    models.push_back(s);
+    models.emplace_back(s);
 }
 
 unsigned long Room::sizeLights() {
@@ -266,7 +213,7 @@ Light& Room::getLight(unsigned long index) {
 }
 
 void Room::addLight(Light* l) {
-    lights.push_back(l);
+    lights.emplace_back(l);
 }
 
 unsigned long Room::sizeSprites() {
@@ -279,10 +226,6 @@ Sprite& Room::getSprite(unsigned long index) {
 }
 
 void Room::addSprite(Sprite* s) {
-    sprites.push_back(s);
-}
-
-BoundingBox& Room::getBoundingBox() {
-    return bbox;
+    sprites.emplace_back(s);
 }
 

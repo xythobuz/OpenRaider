@@ -24,40 +24,21 @@
 #include "utils/png.h"
 #endif
 
-TextureTileVertex::TextureTileVertex(uint8_t xc, uint8_t xp, uint8_t yc, uint8_t yp)
-    : xCoordinate(xc), xPixel(xp), yCoordinate(yc), yPixel(yp) { }
-
-// ----------------------------------------------------------------------------
-
-TextureTile::~TextureTile() {
-    while (!vertices.empty()) {
-        delete vertices.at(vertices.size() - 1);
-        vertices.pop_back();
-    }
-}
-
-void TextureTile::add(TextureTileVertex* t) {
-    vertices.push_back(t);
-}
-
+/*
 void TextureTile::displayRectangle(float a[3], float b[3], float c[3], float d[3]) {
     //! \fixme TR Rosetta Stone says this, but looks strange?
-    /*
     if (attribute == 0) {
         // Ignore transparency
         glDisable(GL_BLEND);
     }
-    */
 
     float xmin = 256.0f, xmax = 0.0f;
     float ymin = 256.0f, ymax = 0.0f;
     for (int i = 0; i < 4; i++) {
         if (vertices.at(i)->xCoordinate == 255) {
-            if (vertices.at(i)->xPixel > xmax)
-                xmax = vertices.at(i)->xPixel;
+            xmax = vertices.at(i)->xPixel;
         } else {
-            if (vertices.at(i)->xPixel < xmin)
-                xmin = vertices.at(i)->xPixel;
+            xmin = vertices.at(i)->xPixel;
         }
 
         if (vertices.at(i)->yCoordinate == 255) {
@@ -67,7 +48,6 @@ void TextureTile::displayRectangle(float a[3], float b[3], float c[3], float d[3
         }
     }
 
-    /*
     glBegin(GL_QUADS);
     glTexCoord2f(xmin / 256.0f, ymin / 256.0f);
     glVertex3f(a.x, a.y, a.z);
@@ -78,12 +58,8 @@ void TextureTile::displayRectangle(float a[3], float b[3], float c[3], float d[3
     glTexCoord2f(xmin / 256.0f, ymax / 256.0f);
     glVertex3f(d.x, d.y, d.z);
     glEnd();
-    */
 }
-
-void TextureTile::displayTriangle(float a[3], float b[3], float c[3]) {
-
-}
+*/
 
 // ----------------------------------------------------------------------------
 
