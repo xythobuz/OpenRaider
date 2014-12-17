@@ -8,6 +8,8 @@
 #ifndef _FONT_IMGUI_H_
 #define _FONT_IMGUI_H_
 
+#include <string>
+
 /*!
  * \brief Default Font implementation
  */

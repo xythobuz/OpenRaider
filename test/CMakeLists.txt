@@ -26,7 +26,8 @@ add_executable (tester_loader EXCLUDE_FROM_ALL
 #################################################################
 
 add_executable (tester_script EXCLUDE_FROM_ALL
-    "Script.cpp" "../src/Script.cpp" "../src/main.cpp"
+    "Script.cpp" "ScriptPayload.h" "ScriptTest.h"
+    "../src/Script.cpp" "../src/main.cpp"
     "../src/utils/binary.cpp" "../src/Exception.cpp"
 )
 

@@ -64,28 +64,28 @@ endif (GLM_FOUND)
 #################################################################
 
 # Set Source files
-set (SRCS ${SRCS} "Camera.cpp")
-set (SRCS ${SRCS} "Console.cpp")
-set (SRCS ${SRCS} "Entity.cpp")
-set (SRCS ${SRCS} "Exception.cpp")
-set (SRCS ${SRCS} "Game.cpp")
-set (SRCS ${SRCS} "Log.cpp")
+set (SRCS ${SRCS} "Camera.cpp" "../include/Camera.h")
+set (SRCS ${SRCS} "Console.cpp" "../include/Console.h")
+set (SRCS ${SRCS} "Entity.cpp" "../include/Entity.h")
+set (SRCS ${SRCS} "Exception.cpp" "../include/Exception.h")
+set (SRCS ${SRCS} "Game.cpp" "../include/Game.h")
+set (SRCS ${SRCS} "Log.cpp" "../include/Log.h")
 set (SRCS ${SRCS} "main.cpp")
-set (SRCS ${SRCS} "Menu.cpp")
-set (SRCS ${SRCS} "MenuFolder.cpp")
-set (SRCS ${SRCS} "Mesh.cpp")
-set (SRCS ${SRCS} "Render.cpp")
-set (SRCS ${SRCS} "Room.cpp")
-set (SRCS ${SRCS} "RoomData.cpp")
-set (SRCS ${SRCS} "RunTime.cpp")
-set (SRCS ${SRCS} "Script.cpp")
-set (SRCS ${SRCS} "SkeletalModel.cpp")
-set (SRCS ${SRCS} "SoundManager.cpp")
-set (SRCS ${SRCS} "Sprite.cpp")
-set (SRCS ${SRCS} "StaticMesh.cpp")
-set (SRCS ${SRCS} "TextureManager.cpp")
-set (SRCS ${SRCS} "UI.cpp")
-set (SRCS ${SRCS} "World.cpp")
+set (SRCS ${SRCS} "Menu.cpp" "../include/Menu.h")
+set (SRCS ${SRCS} "MenuFolder.cpp" "../include/MenuFolder.h")
+set (SRCS ${SRCS} "Mesh.cpp" "../include/Mesh.h")
+set (SRCS ${SRCS} "Render.cpp" "../include/Render.h")
+set (SRCS ${SRCS} "Room.cpp" "../include/Room.h")
+set (SRCS ${SRCS} "RoomData.cpp" "../include/RoomData.h")
+set (SRCS ${SRCS} "RunTime.cpp" "../include/RunTime.h")
+set (SRCS ${SRCS} "Script.cpp" "../include/Script.h")
+set (SRCS ${SRCS} "SkeletalModel.cpp" "../include/SkeletalModel.h")
+set (SRCS ${SRCS} "SoundManager.cpp" "../include/SoundManager.h")
+set (SRCS ${SRCS} "Sprite.cpp" "../include/Sprite.h")
+set (SRCS ${SRCS} "StaticMesh.cpp" "../include/StaticMesh.h")
+set (SRCS ${SRCS} "TextureManager.cpp" "../include/TextureManager.h")
+set (SRCS ${SRCS} "UI.cpp" "../include/UI.h")
+set (SRCS ${SRCS} "World.cpp" "../include/World.h")
 
 # Select available Sound library
 if (OPENAL_FOUND AND ALUT_FOUND AND ENABLE_AUDIO)
@@ -227,9 +227,8 @@ add_subdirectory ("system")
 add_subdirectory ("utils")
 
 # Add Executable
-add_library (OpenRaider_all OBJECT ${SRCS})
 add_executable (OpenRaider MACOSX_BUNDLE ${RESRCS}
-    $<TARGET_OBJECTS:OpenRaider_all> $<TARGET_OBJECTS:OpenRaider_commands>
+    ${SRCS} $<TARGET_OBJECTS:OpenRaider_commands>
     $<TARGET_OBJECTS:OpenRaider_deps> $<TARGET_OBJECTS:OpenRaider_loader>
     $<TARGET_OBJECTS:OpenRaider_utils> $<TARGET_OBJECTS:OpenRaider_system>
 )
