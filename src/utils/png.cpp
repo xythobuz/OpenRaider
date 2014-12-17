@@ -207,7 +207,7 @@ int pngSave(const char* filename, unsigned char* image,
 
     int color_type;
     if (((mode == TextureManager::ColorMode::RGB)
-                || (mode == TextureManager::ColorMode::BGR)) && (bpp == 24)) {
+         || (mode == TextureManager::ColorMode::BGR)) && (bpp == 24)) {
         if (mode == TextureManager::ColorMode::BGR) {
             bgr2rgb24(image, width, height);
         }

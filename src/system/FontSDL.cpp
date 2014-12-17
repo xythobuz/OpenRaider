@@ -36,7 +36,7 @@ int FontSDL::initialize(std::string font) {
 
         // Reserve slot
         mFontTexture = getTextureManager().loadBufferSlot(nullptr, 256, 256,
-                TextureManager::ColorMode::RGBA, 32, TextureManager::TextureStorage::SYSTEM);
+                       TextureManager::ColorMode::RGBA, 32, TextureManager::TextureStorage::SYSTEM);
 
         mFontInit = true;
     }

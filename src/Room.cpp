@@ -19,6 +19,10 @@
 void Room::display(glm::mat4 view, glm::mat4 projection) {
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos[0], pos[1], pos[2]));
     mesh->display(model, view, projection);
+
+    for (auto& m : models) {
+        m->display(view, projection);
+    }
 }
 
 bool Room::isWall(unsigned long sector) {

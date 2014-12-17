@@ -14,14 +14,29 @@
 
 class BoundingBox {
   public:
-    BoundingBox(glm::vec3 min, glm::vec3 max);
-    void display(bool points, const unsigned char c1[4], const unsigned char c2[4]);
-    bool inBox(float x, float y, float z);
-    bool inBoxPlane(float x, float z);
+    BoundingBox(glm::vec3 min, glm::vec3 max) : a(min), b(max) { }
+    bool inBox(float x, float y, float z) { return ((y > a.y) && (y < b.y) && inBoxPlane(x, z)); }
+    bool inBoxPlane(float x, float z) { return ((x > a.x) && (x < b.x) && (z > a.z) && (z < b.z)); }
 
   private:
     glm::vec3 a, b;
 };
+
+// --------------------------------------
+
+class StaticModel {
+  public:
+    StaticModel(glm::vec3 p, float a, int i) : pos(p), angle(a), id(i), cache(-1) { }
+    void display(glm::mat4 view, glm::mat4 projection);
+
+  private:
+    glm::vec3 pos;
+    float angle;
+    int id;
+    int cache;
+};
+
+// --------------------------------------
 
 class Light {
   public:
@@ -50,18 +65,7 @@ class Light {
     LightType type; //! Type of light
 };
 
-class StaticModel {
-  public:
-    void display();
-
-  private:
-    int index;
-    float yaw;
-    float pos[3];
-
-    // ?
-    //float bbox[2][3];
-};
+// --------------------------------------
 
 class Portal {
   public:
@@ -75,6 +79,8 @@ class Portal {
     float normal[3];
     int adjoiningRoom;
 };
+
+// --------------------------------------
 
 class Sector {
   public:

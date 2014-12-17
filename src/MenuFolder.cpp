@@ -82,7 +82,7 @@ void MenuFolder::display() {
     // Draw half-transparent overlay
     glm::vec4 color(0.0f, 0.0f, 0.0f, 0.75f);
     Render::drawTexture(0.0f, 0.0f, getWindow().getWidth(), getWindow().getHeight(),
-                    color, TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
+                        color, TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
 
     // Draw heading
     Font::drawTextCentered(0, 10, 1.2f, BLUE, getWindow().getWidth(), VERSION);

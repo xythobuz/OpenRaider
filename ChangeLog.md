@@ -7,6 +7,8 @@
     * Mesh is now called RoomMesh
     * Removed non-functional GLUT windowing implementation
     * Created new windowing implementation using GLFW3
+    * World Meshes are loaded properly
+    * StaticModel/StaticMesh in Rooms are displayed (albeit not properly)
 
     [ 20141216 ]
     * Allow navigation with a free-floating Camera

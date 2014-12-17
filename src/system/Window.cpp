@@ -36,6 +36,7 @@ bool Window::getTextInput() {
 Shader Window::textShader;
 Shader Window::imguiShader;
 Shader Window::textureShader;
+Shader Window::colorShader;
 unsigned int Window::vertexArrayID = 0;
 
 int Window::initializeGL() {
@@ -45,7 +46,7 @@ int Window::initializeGL() {
     getLog() << "GLSL V.: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << Log::endl;
 
     glGenVertexArrays(1, &vertexArrayID);
-	glBindVertexArray(vertexArrayID);
+    glBindVertexArray(vertexArrayID);
 
     // Set background to black
     //glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f, BLACK[2] / 256.0f, BLACK[3] / 256.0f);
@@ -84,6 +85,12 @@ int Window::initializeGL() {
     if (textureShader.addUniform("textureSampler") < 0)
         return -10;
     textureShader.addBuffer(3);
+
+    if (colorShader.compile(colorShaderVertex, colorShaderFragment) < 0)
+        return -11;
+    if (colorShader.addUniform("MVP") < 0)
+        return -12;
+    colorShader.addBuffer(3);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -165,6 +172,40 @@ void Window::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uv
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, textureShader.getBuffer(2));
+
+    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_SHORT, nullptr);
+
+    glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(1);
+}
+
+void Window::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
+                    std::vector<unsigned short>& indices, glm::mat4 MVP) {
+    assert(vertices.size() == colors.size());
+    assert((indices.size() % 3) == 0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(0));
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(1));
+    glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), &colors[0], GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(2));
+    glBufferData(GL_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0], GL_STATIC_DRAW);
+
+    colorShader.use();
+
+    glUniformMatrix4fv(colorShader.getUniform(0), 1, GL_FALSE, &MVP[0][0]);
+
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(1));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, colorShader.getBuffer(2));
 
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_SHORT, nullptr);
 
@@ -401,5 +442,40 @@ void main() {
 }
 )!?!";
 
+// --------------------------------------
+
+const char* Window::colorShaderVertex = R"!?!(
+#version 330 core
+
+layout(location = 0) in vec3 vertexPosition_modelspace;
+layout(location = 1) in vec3 vertexColor;
+
+out vec3 Color;
+
+uniform mat4 MVP;
+
+void main() {
+    vec4 pos = MVP * vec4(vertexPosition_modelspace.x,
+                          -vertexPosition_modelspace.y,
+                          vertexPosition_modelspace.z,
+                          1);
+    gl_Position = vec4(-pos.x, pos.yzw);
+    Color = vertexColor;
+}
+)!?!";
+
+const char* Window::colorShaderFragment = R"!?!(
+#version 330 core
+
+in vec3 Color;
+
+out vec4 color;
+
+void main() {
+    color = vec4(Color, 1);
+}
+)!?!";
+
+// --------------------------------------
 // *INDENT-ON*
 

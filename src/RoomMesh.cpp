@@ -12,8 +12,8 @@
 #include "RoomMesh.h"
 
 RoomMesh::RoomMesh(const std::vector<RoomVertexTR2>& vert,
-     const std::vector<IndexedRectangle>& rect,
-     const std::vector<IndexedRectangle>& tri) {
+                   const std::vector<IndexedRectangle>& rect,
+                   const std::vector<IndexedRectangle>& tri) {
     for (auto& t : rect) {
         indices.push_back(0);
         vertices.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));

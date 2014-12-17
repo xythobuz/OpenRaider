@@ -141,7 +141,8 @@ int TextureManager::initialize() {
 
 int TextureManager::initializeSplash() {
     unsigned char* image = generateColorTexture(WHITE, 32, 32, 32);
-    int res = loadBufferSlot(image, 32, 32, ColorMode::RGBA, 32, TextureStorage::SYSTEM, TEXTURE_WHITE, false);
+    int res = loadBufferSlot(image, 32, 32, ColorMode::RGBA, 32, TextureStorage::SYSTEM, TEXTURE_WHITE,
+                             false);
     delete [] image;
     if (res < 0) {
         return -1;

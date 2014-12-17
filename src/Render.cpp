@@ -71,10 +71,10 @@ void Render::display() {
     static unsigned int w = getWindow().getWidth();
     static unsigned int h = getWindow().getHeight();
     static glm::mat4 projection = glm::perspective(45.0f, // Field of View
-                                                   (float)getWindow().getWidth()
-                                                 / (float)getWindow().getHeight(),
-                                                   0.1f, // Min Distance
-                                                   100000.0f); // Max Distance
+                                  (float)getWindow().getWidth()
+                                  / (float)getWindow().getHeight(),
+                                  0.1f, // Min Distance
+                                  100000.0f); // Max Distance
 
     if ((w != getWindow().getWidth()) || (h != getWindow().getHeight())) {
         w = getWindow().getWidth();

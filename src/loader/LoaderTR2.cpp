@@ -12,6 +12,7 @@
 #include "global.h"
 #include "Game.h"
 #include "Log.h"
+#include "Mesh.h"
 #include "Room.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
@@ -354,6 +355,7 @@ void LoaderTR2::loadRooms() {
         }
 
         uint16_t numStaticMeshes = file.readU16();
+        std::vector<StaticModel*> staticModels;
         for (unsigned int s = 0; s < numStaticMeshes; s++) {
             // Absolute position in world coordinates
             int32_t x = file.read32();
@@ -363,6 +365,7 @@ void LoaderTR2::loadRooms() {
             // High two bits (0xC000) indicate steps of
             // 90 degrees (eg. (rotation >> 14) * 90)
             uint16_t rotation = file.readU16();
+            assert((rotation & 0x3FFF) == 0);
 
             // Constant lighting, 0xFFFF means use mesh lighting
             uint16_t intensity1 = file.readU16();
@@ -371,7 +374,9 @@ void LoaderTR2::loadRooms() {
             // Which StaticMesh item to draw
             uint16_t objectID = file.readU16();
 
-            // TODO store static meshes somewhere
+            staticModels.push_back(new StaticModel(glm::vec3(x, y, z),
+                                                   (rotation >> 14) * 90.0f,
+                                                   objectID));
         }
 
         int16_t alternateRoom = file.read16(); // TODO
@@ -385,6 +390,9 @@ void LoaderTR2::loadRooms() {
         BoundingBox* boundingbox = new BoundingBox(bbox[0], bbox[1]);
         RoomMesh* mesh = new RoomMesh(vertices, rectangles, triangles);
         Room* room = new Room(pos, boundingbox, mesh, roomFlags);
+
+        for (auto m : staticModels)
+            room->addModel(m);
 
         getWorld().addRoom(room);
 
@@ -501,8 +509,6 @@ void LoaderTR2::loadMeshes() {
             vertices.emplace_back(x, y, z);
         }
 
-        //Mesh* mesh = new Mesh();
-
         int16_t numNormals = mem.read16();
         if (numNormals > 0) {
             // External vertex lighting is used, with the lighting calculated
@@ -527,6 +533,7 @@ void LoaderTR2::loadMeshes() {
         }
 
         int16_t numTexturedRectangles = mem.read16();
+        std::vector<IndexedRectangle> texturedRectangles;
         for (int r = 0; r < numTexturedRectangles; r++) {
             uint16_t vertex1 = mem.readU16();
             uint16_t vertex2 = mem.readU16();
@@ -534,23 +541,22 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex4 = mem.readU16();
             uint16_t texture = mem.readU16();
 
-            //mesh->addTexturedRectangle(vertices.at(vertex1), vertices.at(vertex2),
-            //                           vertices.at(vertex3), vertices.at(vertex4),
-            //                           texture);
+            texturedRectangles.emplace_back(texture, vertex1, vertex2, vertex3, vertex4);
         }
 
         int16_t numTexturedTriangles = mem.read16();
+        std::vector<IndexedRectangle> texturedTriangles;
         for (int t = 0; t < numTexturedTriangles; t++) {
             uint16_t vertex1 = mem.readU16();
             uint16_t vertex2 = mem.readU16();
             uint16_t vertex3 = mem.readU16();
             uint16_t texture = mem.readU16();
 
-            //mesh->addTexturedTriangle(vertices.at(vertex1), vertices.at(vertex2),
-            //                          vertices.at(vertex3), texture);
+            texturedTriangles.emplace_back(texture, vertex1, vertex2, vertex3);
         }
 
         int16_t numColoredRectangles = mem.read16();
+        std::vector<IndexedColoredRectangle> coloredRectangles;
         for (int r = 0; r < numColoredRectangles; r++) {
             uint16_t vertex1 = mem.readU16();
             uint16_t vertex2 = mem.readU16();
@@ -559,17 +565,15 @@ void LoaderTR2::loadMeshes() {
             uint16_t texture = mem.readU16();
 
             int index = (texture & 0xFF00) >> 8;
-            float red = (palette.at(index) & 0xFF000000) >> 24,
-                  green = (palette.at(index) & 0x00FF0000) >> 16,
-                  blue = (palette.at(index) & 0x0000FF00) >> 8;
+            uint8_t red = (palette.at(index) & 0xFF000000) >> 24,
+                    green = (palette.at(index) & 0x00FF0000) >> 16,
+                    blue = (palette.at(index) & 0x0000FF00) >> 8;
 
-
-            //mesh->addColoredRectangle(vertices.at(vertex1), vertices.at(vertex2),
-            //                          vertices.at(vertex3), vertices.at(vertex4),
-            //                          red, green, blue);
+            coloredRectangles.emplace_back(red, green, blue, vertex1, vertex2, vertex3, vertex4);
         }
 
         int16_t numColoredTriangles = mem.read16();
+        std::vector<IndexedColoredRectangle> coloredTriangles;
         for (int t = 0; t < numColoredTriangles; t++) {
             uint16_t vertex1 = mem.readU16();
             uint16_t vertex2 = mem.readU16();
@@ -577,15 +581,16 @@ void LoaderTR2::loadMeshes() {
             uint16_t texture = mem.readU16();
 
             int index = (texture & 0xFF00) >> 8;
-            float red = (palette.at(index) & 0xFF000000) >> 24,
-                  green = (palette.at(index) & 0x00FF0000) >> 16,
-                  blue = (palette.at(index) & 0x0000FF00) >> 8;
+            uint8_t red = (palette.at(index) & 0xFF000000) >> 24,
+                    green = (palette.at(index) & 0x00FF0000) >> 16,
+                    blue = (palette.at(index) & 0x0000FF00) >> 8;
 
-            //mesh->addColoredTriangle(vertices.at(vertex1), vertices.at(vertex2),
-            //                         vertices.at(vertex3), red, green, blue);
+            coloredTriangles.emplace_back(red, green, blue, vertex1, vertex2, vertex3);
         }
 
-        //getWorld().addMesh(mesh);
+        Mesh* mesh = new Mesh(vertices, texturedRectangles, texturedTriangles,
+                              coloredRectangles, coloredTriangles);
+        getWorld().addMesh(mesh);
     }
 
     if (numMeshPointers > 0)

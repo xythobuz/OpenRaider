@@ -93,6 +93,10 @@ int Game::loadLevel(const char* level) {
             return -2;
         }
 
+        for (int i = 0; i < getWorld().sizeMesh(); i++) {
+            getWorld().getMesh(i).prepare();
+        }
+
         for (int i = 0; i < getWorld().sizeRoom(); i++) {
             getWorld().getRoom(i).prepare();
         }

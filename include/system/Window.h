@@ -68,6 +68,9 @@ class Window {
     static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
                        std::vector<unsigned short>& indices, glm::mat4 MVP, unsigned int texture);
 
+    static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
+                       std::vector<unsigned short>& indices, glm::mat4 MVP);
+
   protected:
     bool mInit;
     bool mFullscreen;
@@ -88,6 +91,10 @@ class Window {
     static Shader textureShader;
     static const char* textureShaderVertex;
     static const char* textureShaderFragment;
+
+    static Shader colorShader;
+    static const char* colorShaderVertex;
+    static const char* colorShaderFragment;
 
     static unsigned int vertexArrayID;
 

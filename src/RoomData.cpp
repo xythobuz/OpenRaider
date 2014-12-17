@@ -5,95 +5,26 @@
  * \author xythobuz
  */
 
+#include <glm/gtc/matrix_transform.hpp>
+
 #include "global.h"
 #include "SkeletalModel.h"
 #include "World.h"
 #include "RoomData.h"
 
-BoundingBox::BoundingBox(glm::vec3 min, glm::vec3 max) : a(min), b(max) { }
-
-bool BoundingBox::inBox(float x, float y, float z) {
-    return ((y > a.y) && (y < b.y) && inBoxPlane(x, z));
-}
-
-bool BoundingBox::inBoxPlane(float x, float z) {
-    return ((x > a.x) && (x < b.x)
-            && (z > a.z) && (z < b.z));
-}
-
-void BoundingBox::display(bool points, const unsigned char c1[4], const unsigned char c2[4]) {
-    /*
-    // Bind before entering now
-    //glBindTexture(GL_TEXTURE_2D, 1);
-    glPointSize(4.0);
-    //glLineWidth(1.25);
-
-    //! \fixme Need to make custom color key for this
-    glColor3ubv(c1);
-
-    glBegin(GL_POINTS);
-    glVertex3f(b[0], b[1], b[2]);
-    glVertex3f(a[0], a[1], a[2]);
-
-    if (points) {
-        glVertex3f(b[0], a[1], b[2]);
-        glVertex3f(a[0], b[1], b[2]);
-        glVertex3f(b[0], b[1], a[2]);
-        glVertex3f(a[0], a[1], b[2]);
-        glVertex3f(a[0], b[1], a[2]);
-        glVertex3f(b[0], a[1], a[2]);
+void StaticModel::display(glm::mat4 view, glm::mat4 projection) {
+    if (cache < 0) {
+        for (int i = 0; i < getWorld().sizeStaticMesh(); i++) {
+            if (getWorld().getStaticMesh(i).getID() == id) {
+                cache = i;
+            }
+        }
+        assert(cache >= 0);
     }
 
-    glEnd();
-
-    glColor3ubv(c2);
-
-    glBegin(GL_LINES);
-    // max, top quad
-    glVertex3f(b[0], b[1], b[2]);
-    glVertex3f(b[0], a[1], b[2]);
-
-    glVertex3f(b[0], b[1], b[2]);
-    glVertex3f(a[0], b[1], b[2]);
-
-    glVertex3f(b[0], b[1], b[2]);
-    glVertex3f(b[0], b[1], a[2]);
-
-    // max-min, vertical quads
-    glVertex3f(a[0], b[1], b[2]);
-    glVertex3f(a[0], b[1], a[2]);
-
-    glVertex3f(b[0], a[1], b[2]);
-    glVertex3f(b[0], a[1], a[2]);
-
-    glVertex3f(b[0], a[1], b[2]);
-    glVertex3f(a[0], a[1], b[2]);
-
-    // min-max, vertical quads
-    glVertex3f(b[0], b[1], a[2]);
-    glVertex3f(b[0], a[1], a[2]);
-
-    glVertex3f(b[0], b[1], a[2]);
-    glVertex3f(a[0], b[1], a[2]);
-
-    glVertex3f(a[0], b[1], b[2]);
-    glVertex3f(a[0], a[1], b[2]);
-
-
-    // min, bottom quad
-    glVertex3f(a[0], a[1], a[2]);
-    glVertex3f(a[0], b[1], a[2]);
-
-    glVertex3f(a[0], a[1], a[2]);
-    glVertex3f(b[0], a[1], a[2]);
-
-    glVertex3f(a[0], a[1], a[2]);
-    glVertex3f(a[0], a[1], b[2]);
-    glEnd();
-
-    glPointSize(1.0);
-    //glLineWidth(1.0);
-    */
+    glm::mat4 model = glm::rotate(glm::translate(glm::mat4(1.0f), pos),
+                                  angle, glm::vec3(0.0f, 1.0f, 0.0f));
+    getWorld().getStaticMesh(cache).display(model, view, projection);
 }
 
 // ----------------------------------------------------------------------------
@@ -128,23 +59,6 @@ float Light::getCutoff() {
 
 Light::LightType Light::getType() {
     return type;
-}
-
-// ----------------------------------------------------------------------------
-
-void StaticModel::display() {
-    StaticMesh& mesh = getWorld().getStaticMesh(index);
-
-    //if (!getRender().isVisible(pos[0], pos[1], pos[2], mesh.getRadius()))
-    //    return;
-
-    /*
-    glPushMatrix();
-    glTranslated(pos[0], pos[1], pos[2]);
-    glRotated(yaw, 0, 1, 0);
-    mesh.display();
-    glPopMatrix();
-    */
 }
 
 // ----------------------------------------------------------------------------
