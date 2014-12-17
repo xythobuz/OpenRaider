@@ -20,6 +20,9 @@ extern const char* INSTALL_PREFIX;
 
 #cmakedefine USING_AL
 #cmakedefine USING_PNG
+#cmakedefine USING_SDL
+#cmakedefine USING_SDL_FONT
+#cmakedefine USING_GLFW
 
 #cmakedefine HAVE_EXECINFO_H
 #cmakedefine HAVE_BACKTRACE

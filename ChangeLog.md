@@ -5,6 +5,8 @@
     [ 20141217 ]
     * Introduced texel-offset in getUV() in an attempt to fix the texture-bleeding
     * Mesh is now called RoomMesh
+    * Removed non-functional GLUT windowing implementation
+    * Created new windowing implementation using GLFW3
 
     [ 20141216 ]
     * Allow navigation with a free-floating Camera

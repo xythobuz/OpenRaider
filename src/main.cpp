@@ -30,8 +30,8 @@
 
 #ifdef USING_SDL
 #include "system/WindowSDL.h"
-#elif defined(USING_GLUT)
-#include "system/WindowGLUT.h"
+#elif defined(USING_GLFW)
+#include "system/WindowGLFW.h"
 #else
 #error No Windowing Library selected!
 #endif
@@ -95,8 +95,8 @@ int main(int argc, char* argv[]) {
 
 #ifdef USING_SDL
     gWindow.reset(new WindowSDL());
-#elif defined(USING_GLUT)
-    gWindow.reset(new WindowGLUT());
+#elif defined(USING_GLFW)
+    gWindow.reset(new WindowGLFW());
 #endif
 
     Command::fillCommandList();

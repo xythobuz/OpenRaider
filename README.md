@@ -68,7 +68,7 @@ Linux Distributions will probably provide an ALUT library ready to install with 
 
 Sound support is optional, however. If cmake can’t find OpenAL and ALUT, Audio will be deactivated. If you want to explicitly deactivate it, call cmake with `-DENABLE_AUDIO=NO`.
 
-There is also a rudimentary windowing implementation using freeGLUT. It will be used if GLUT is found instead of SDL2, or if you call cmake with `-DFORCE_GLUT=YES`. Be aware that your experience will not be as nice as with SDL2...
+There is also a windowing implementation using GLFW. It will be used if GLFW is found instead of SDL2, or if you call cmake with `-DFORCE_GLFW=YES`. Be aware that your experience will not be as nice as with SDL2...
 
 ## Building
 
@@ -180,8 +180,8 @@ There are some included cmake scripts:
 * [FindSSE](https://gitorious.org/vc/vc/source/a1d8b9fc31060d870386613cc72319546c850b87:cmake/FindSSE.cmake)
 * [GetGitRevisionDescription.cmake](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake)
 * [GetGitRevisionDescription.cmake.in](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake.in)
-* [FindFreeGLUT](https://github.com/PDAL/PDAL/blob/master/cmake/modules/FindFreeGLUT.cmake)
 * [FindGLM] (https://github.com/g-truc/glm/blob/master/util/FindGLM.cmake)
+* [FindGLFW] (https://github.com/PixarAnimationStudios/OpenSubdiv/blob/master/cmake/FindGLFW.cmake)
 
 See the respective files in `cmake` for their licensing.
 

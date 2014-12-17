@@ -70,13 +70,14 @@ typedef enum {
 // Globally include OpenGL header
 #ifdef __APPLE__
 #include <OpenGL/gl3.h>
-#else
+#else // __APPLE__
 #ifdef _WIN32
 #include <windows.h>
-#endif
+#endif // _WIN32
+//! \todo gl3 header?
 #include <GL/gl.h>
 #include <GL/glext.h>
-#endif
+#endif // __APPLE__
 
 // If available, use our own assert that prints the call stack
 #if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
