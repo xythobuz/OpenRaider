@@ -21,76 +21,6 @@ void Room::display(glm::mat4 view, glm::mat4 projection) {
     mesh->display(model, view, projection);
 }
 
-void Room::prepare() {
-    mesh->prepare();
-}
-
-/*
-void Room::display(bool alpha) {
-    glPushMatrix();
-    //LightingSetup();
-
-    getTextureManager().bindTextureId(TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
-
-    if ((!alpha) && Render::getMode() == RenderMode::Wireframe) {
-        glLineWidth(2.0);
-        glColor3ubv(RED);
-
-        for (unsigned int i = 0; i < sizePortals(); i++) {
-            Portal& portal = getPortal(i);
-            float vertices[4][3];
-            portal.getVertices(vertices);
-
-            glBegin(GL_LINE_LOOP);
-            glVertex3fv(vertices[0]);
-            glVertex3fv(vertices[1]);
-            glVertex3fv(vertices[2]);
-            glVertex3fv(vertices[3]);
-            glEnd();
-        }
-
-        glLineWidth(1.0);
-
-        bbox.display(true, RED, GREEN);
-    }
-
-    glTranslated(pos[0], pos[1], pos[2]);
-
-    // Reset since GL_MODULATE used, reset to WHITE
-    glColor3ubv(WHITE);
-
-    switch (Render::getMode()) {
-        case RenderMode::Wireframe:
-            mesh.mMode = Mesh::MeshModeWireframe;
-            break;
-        case RenderMode::Solid:
-            mesh.mMode = Mesh::MeshModeSolid;
-            break;
-        default:
-            mesh.mMode = Mesh::MeshModeTexture;
-            break;
-    }
-
-    if (alpha)
-        mesh.drawAlpha();
-    else
-        mesh.drawSolid();
-
-    glPopMatrix();
-
-    // Draw other room meshes and sprites
-    if (alpha || (Render::getMode() == RenderMode::Wireframe)
-        || (Render::getMode() == RenderMode::Solid)) {
-        //sortModels(); // TODO
-        for (unsigned int i = 0; i < sizeModels(); i++)
-            getModel(i).display();
-
-        for (unsigned int i = 0; i < sizeSprites(); i++)
-            getSprite(i).display();
-    }
-}
-*/
-
 bool Room::isWall(unsigned long sector) {
     assert(sector < sectors.size());
 
@@ -150,6 +80,8 @@ int Room::getAdjoiningRoom(float x, float y, float z,
 
     return -1;
 }
+
+// --------------------------------------
 
 unsigned long Room::sizeAdjacentRooms() {
     return adjacentRooms.size();

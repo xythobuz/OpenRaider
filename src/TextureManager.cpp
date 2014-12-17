@@ -24,42 +24,27 @@
 #include "utils/png.h"
 #endif
 
-/*
-void TextureTile::displayRectangle(float a[3], float b[3], float c[3], float d[3]) {
-    //! \fixme TR Rosetta Stone says this, but looks strange?
-    if (attribute == 0) {
-        // Ignore transparency
-        glDisable(GL_BLEND);
+glm::vec2 TextureTile::getUV(unsigned int i) {
+    glm::vec2 uv(vertices.at(i).xPixel,
+                 vertices.at(i).yPixel);
+
+    /*! \fixme
+     * This is my somewhat hacky approach to fixing
+     * the bad texture-bleeding problems everywhere.
+     * That's better, but makes the seams between
+     * each sector much more visible!
+     */
+
+    if (vertices.at(i).xCoordinate == 1) {
+        uv.x += 0.375f;
     }
 
-    float xmin = 256.0f, xmax = 0.0f;
-    float ymin = 256.0f, ymax = 0.0f;
-    for (int i = 0; i < 4; i++) {
-        if (vertices.at(i)->xCoordinate == 255) {
-            xmax = vertices.at(i)->xPixel;
-        } else {
-            xmin = vertices.at(i)->xPixel;
-        }
-
-        if (vertices.at(i)->yCoordinate == 255) {
-            ymax = vertices.at(i)->yPixel;
-        } else {
-            ymin = vertices.at(i)->yPixel;
-        }
+    if (vertices.at(i).yCoordinate == 1) {
+        uv.y += 0.375f;
     }
 
-    glBegin(GL_QUADS);
-    glTexCoord2f(xmin / 256.0f, ymin / 256.0f);
-    glVertex3f(a.x, a.y, a.z);
-    glTexCoord2f(xmax / 256.0f, ymin / 256.0f);
-    glVertex3f(b.x, b.y, b.z);
-    glTexCoord2f(xmax / 256.0f, ymax / 256.0f);
-    glVertex3f(c.x, c.y, c.z);
-    glTexCoord2f(xmin / 256.0f, ymax / 256.0f);
-    glVertex3f(d.x, d.y, d.z);
-    glEnd();
+    return uv / 256.0f;
 }
-*/
 
 // ----------------------------------------------------------------------------
 

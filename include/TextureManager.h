@@ -32,8 +32,7 @@ class TextureTile {
     void add(TextureTileVertex t) { vertices.push_back(t); }
 
     unsigned int getTexture() { return texture; }
-    glm::vec2 getUV(unsigned int i) { return glm::vec2(vertices.at(i).xPixel / 255.0f,
-                                                       vertices.at(i).yPixel / 255.0f); }
+    glm::vec2 getUV(unsigned int i);
 
   private:
     unsigned int attribute;

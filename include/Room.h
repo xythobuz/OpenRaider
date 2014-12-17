@@ -13,9 +13,9 @@
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
 
-#include "Mesh.h"
 #include "Sprite.h"
 #include "RoomData.h"
+#include "RoomMesh.h"
 
 enum RoomFlags {
     RoomFlagUnderWater = (1 << 0)
@@ -23,10 +23,10 @@ enum RoomFlags {
 
 class Room {
   public:
-    Room(glm::vec3 _pos, BoundingBox* _bbox, Mesh* _mesh, unsigned int f)
+    Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f)
         : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f) { }
 
-    void prepare();
+    void prepare() { mesh->prepare(); }
     void display(glm::mat4 view, glm::mat4 projection);
 
     bool isWall(unsigned long sector);
@@ -37,7 +37,7 @@ class Room {
                          float x2, float y2, float z2);
 
     BoundingBox& getBoundingBox() { return *bbox; }
-    Mesh& getMesh() { return *mesh; }
+    RoomMesh& getMesh() { return *mesh; }
 
     void setNumXSectors(unsigned int n) { numXSectors = n; }
     unsigned int getNumXSectors() { return numXSectors; }
@@ -74,7 +74,7 @@ class Room {
   private:
     glm::vec3 pos;
     std::unique_ptr<BoundingBox> bbox;
-    std::unique_ptr<Mesh> mesh;
+    std::unique_ptr<RoomMesh> mesh;
 
     unsigned int flags;
     unsigned int numXSectors;

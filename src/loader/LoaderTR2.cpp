@@ -12,7 +12,6 @@
 #include "global.h"
 #include "Game.h"
 #include "Log.h"
-#include "Mesh.h"
 #include "Room.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
@@ -236,7 +235,7 @@ void LoaderTR2::loadRooms() {
         bbox[1] += pos;
 
         uint16_t numRectangles = file.readU16();
-        std::vector<RoomRectangleTR2> rectangles;
+        std::vector<IndexedRectangle> rectangles;
         for (unsigned int r = 0; r < numRectangles; r++) {
             // Indices into the vertex list read just before
             uint16_t vertex1 = file.readU16();
@@ -247,11 +246,11 @@ void LoaderTR2::loadRooms() {
             // Index into the object-texture list
             uint16_t texture = file.readU16();
 
-            rectangles.emplace_back(vertex1, vertex2, vertex3, vertex4, texture);
+            rectangles.emplace_back(texture, vertex1, vertex2, vertex3, vertex4);
         }
 
         uint16_t numTriangles = file.readU16();
-        std::vector<RoomTriangleTR2> triangles;
+        std::vector<IndexedRectangle> triangles;
         for (unsigned int t = 0; t < numTriangles; t++) {
             // Indices into the room vertex list
             uint16_t vertex1 = file.readU16();
@@ -261,7 +260,7 @@ void LoaderTR2::loadRooms() {
             // Index into the object-texture list
             uint16_t texture = file.readU16();
 
-            triangles.emplace_back(vertex1, vertex2, vertex3, texture);
+            triangles.emplace_back(texture, vertex1, vertex2, vertex3);
         }
 
         uint16_t numSprites = file.readU16();
@@ -331,6 +330,7 @@ void LoaderTR2::loadRooms() {
             }
 
             //room->addSector(new Sector(floor * 256.0f, ceiling * 256.0f, wall));
+            // TODO store sectors
         }
 
         int16_t intensity1 = file.read16();
@@ -383,7 +383,7 @@ void LoaderTR2::loadRooms() {
         }
 
         BoundingBox* boundingbox = new BoundingBox(bbox[0], bbox[1]);
-        Mesh* mesh = new Mesh(vertices, rectangles, triangles);
+        RoomMesh* mesh = new RoomMesh(vertices, rectangles, triangles);
         Room* room = new Room(pos, boundingbox, mesh, roomFlags);
 
         getWorld().addRoom(room);

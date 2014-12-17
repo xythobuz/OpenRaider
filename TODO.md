@@ -2,10 +2,6 @@
 
 ## General
 
-* Move to newer OpenGL (GL ES or 2.1 or 3.x or 4.x?)
-* Don't use C-Style code, try to replace with C++ lib
-* Mesh has 2 different approaches of storing the same data (eg. mColors and mColorArray), but half of ‘em isn’t implemented. Unify this, probably even combining Mesh and StaticMesh...
-* Don’t use float everywhere just because (eg. float colors)
 * Add verbose command line flag for debug output also in release builds
 * Don’t depend on setup: no data or config files should be necessary
 * Be able to change configuration from within OpenRaider
@@ -15,6 +11,7 @@
 * Screenshots are sometimes not written, sometimes distorted?
     * Seems to happen if OpenRaider.ini sets a resolution larger than the window can be
 * When the freeGLUT windowing interface is used, the first pressed button seems to be repeated
+    * Replace freeGLUT with glfw?
 
 ## Cmake
 
