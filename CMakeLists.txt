@@ -111,18 +111,19 @@ if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
 
     # Target for running cppcheck
     set (CHECK_STD "--std=c++11" "--std=posix")
-    set (CHECK_FLAGS "--quiet" "--force")
+    set (CHECK_FLAGS "--quiet" "--force" "-I${PROJECT_SOURCE_DIR}/include")
+    set (CHECK_FLAGS ${CHECK_FLAGS} "-i${PROJECT_SOURCE_DIR}/src/deps")
     set (CHECK_NORMAL "--enable=information,warning,performance,portability")
     set (CHECK_FULL "--enable=all")
     set (CHECK_CONFIG "--check-config")
     add_custom_target (cppcheck echo "Running cppcheck..."
-        COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_STD} ${CHECK_NORMAL} ${PROJECT_SOURCE_DIR}
+        COMMAND cppcheck ${CHECK_FLAGS} ${CHECK_STD} ${CHECK_NORMAL} ${PROJECT_SOURCE_DIR}
     )
     add_custom_target (cppcheckFull echo "Running full cppcheck..."
-        COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_STD} ${CHECK_FULL} ${PROJECT_SOURCE_DIR}
+        COMMAND cppcheck ${CHECK_FLAGS} ${CHECK_STD} ${CHECK_FULL} ${PROJECT_SOURCE_DIR}
     )
     add_custom_target (cppcheckConfig echo "Checking cppcheck config..."
-        COMMAND cppcheck ${CHECK_FLAGS} "-I${PROJECT_SOURCE_DIR}/include" ${CHECK_CONFIG} ${PROJECT_SOURCE_DIR}
+        COMMAND cppcheck ${CHECK_FLAGS} ${CHECK_CONFIG} ${PROJECT_SOURCE_DIR}
     )
 
     #################################################################

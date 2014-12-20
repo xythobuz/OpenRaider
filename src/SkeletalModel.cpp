@@ -102,10 +102,6 @@ void AnimationFrame::add(BoneFrame* f) {
 
 // ----------------------------------------------------------------------------
 
-SkeletalModel::SkeletalModel(int i) {
-    id = i;
-}
-
 SkeletalModel::~SkeletalModel() {
     for (unsigned long i = 0; i < animation.size(); i++)
         delete animation[i];
@@ -150,28 +146,6 @@ void SkeletalModel::display(unsigned long aframe, unsigned long bframe) {
         tag.display();
     }
     */
-}
-
-int SkeletalModel::getId() {
-    return id;
-}
-
-void SkeletalModel::setPigTail(bool b) {
-    pigtails = b;
-    if (b) {
-        ponyOff -= 20;
-        ponytail[1] -= 32;
-    } else {
-        ponyOff += 20;
-        ponytail[1] += 32;
-    }
-}
-
-void SkeletalModel::setPonyPos(float x, float y, float z, float angle) {
-    ponytail[0] = x;
-    ponytail[1] = y;
-    ponytail[2] = z;
-    ponytailAngle = angle;
 }
 
 unsigned long SkeletalModel::size() {

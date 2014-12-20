@@ -272,8 +272,6 @@ void LoaderTR2::loadRooms() {
             // TODO store sprites somewhere
         }
 
-        //room->addAdjacentRoom(i); // Always set room itself as first
-
         uint16_t numPortals = file.readU16();
         for (unsigned int p = 0; p < numPortals; p++) {
             // Which room this portal leads to
@@ -306,8 +304,6 @@ void LoaderTR2::loadRooms() {
 
         uint16_t numZSectors = file.readU16();
         uint16_t numXSectors = file.readU16();
-        //room->setNumXSectors(numXSectors);
-        //room->setNumZSectors(numZSectors);
         for (unsigned int s = 0; s < (numZSectors * numXSectors); s++) {
             // Sectors are 1024*1024 world coordinates. Floor and Ceiling are
             // signed numbers of 256 units of height.
@@ -365,7 +361,6 @@ void LoaderTR2::loadRooms() {
             // High two bits (0xC000) indicate steps of
             // 90 degrees (eg. (rotation >> 14) * 90)
             uint16_t rotation = file.readU16();
-            assert((rotation & 0x3FFF) == 0);
 
             // Constant lighting, 0xFFFF means use mesh lighting
             uint16_t intensity1 = file.readU16();
@@ -375,11 +370,11 @@ void LoaderTR2::loadRooms() {
             uint16_t objectID = file.readU16();
 
             staticModels.push_back(new StaticModel(glm::vec3(x, y, z),
-                                                   (rotation >> 14) * 90.0f,
+                                                   glm::radians((rotation >> 14) * 90.0f),
                                                    objectID));
         }
 
-        int16_t alternateRoom = file.read16(); // TODO
+        int16_t alternateRoom = file.read16();
 
         uint16_t flags = file.readU16();
         unsigned int roomFlags = 0;
@@ -389,7 +384,8 @@ void LoaderTR2::loadRooms() {
 
         BoundingBox* boundingbox = new BoundingBox(bbox[0], bbox[1]);
         RoomMesh* mesh = new RoomMesh(vertices, rectangles, triangles);
-        Room* room = new Room(pos, boundingbox, mesh, roomFlags);
+        Room* room = new Room(pos, boundingbox, mesh, roomFlags, alternateRoom,
+                              numXSectors, numZSectors);
 
         for (auto m : staticModels)
             room->addModel(m);
@@ -1095,7 +1091,6 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
         for (int i = 0; i < (riffSize + 8); i++)
             buff[i] = sfx.readU8();
 
-        unsigned long src;
         int ret = Sound::loadBuffer(buff, riffSize + 8);
         assert(ret >= 0);
 

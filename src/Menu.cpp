@@ -100,14 +100,14 @@ void Menu::displayDialog() {
             w1 = wMax;
         unsigned int h1 = Font::heightText(1.0f, w1, dialogButton1) + 10;
 
-        unsigned int wOverlay = wMax, hOverlay, w2 = 0, h2 = 0;
+        unsigned int wOverlay = wMax, hOverlay, w2 = 0;
 
         if (dialogButton2.length() > 0) {
             // Show text and two buttons
             w2 = Font::widthText(1.0f, dialogButton2) + 20;
             if (w2 > wMax)
                 w2 = wMax;
-            h2 = Font::heightText(1.0f, w2, dialogButton2) + 10;
+            unsigned int h2 = Font::heightText(1.0f, w2, dialogButton2) + 10;
 
             if (w0 > (w1 + w2)) {
                 if (w0 < wMax) {

@@ -24,19 +24,5 @@ class CommandViewmodel : public Command {
     virtual int execute(std::istream& args);
 };
 
-class CommandPigtail : public Command {
-  public:
-    virtual std::string name();
-    virtual std::string brief();
-    virtual int execute(std::istream& args);
-};
-
-class CommandPonypos : public Command {
-  public:
-    virtual std::string name();
-    virtual std::string brief();
-    virtual int execute(std::istream& args);
-};
-
 #endif
 

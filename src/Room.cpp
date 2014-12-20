@@ -87,19 +87,6 @@ int Room::getAdjoiningRoom(float x, float y, float z,
 
 // --------------------------------------
 
-unsigned long Room::sizeAdjacentRooms() {
-    return adjacentRooms.size();
-}
-
-long Room::getAdjacentRoom(unsigned long index) {
-    assert(index < adjacentRooms.size());
-    return adjacentRooms.at(index);
-}
-
-void Room::addAdjacentRoom(long r) {
-    adjacentRooms.emplace_back(r);
-}
-
 unsigned long Room::sizePortals() {
     return portals.size();
 }

@@ -23,8 +23,10 @@ enum RoomFlags {
 
 class Room {
   public:
-    Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f)
-        : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f) { }
+    Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
+         int a, int x, int z)
+       : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f), alternateRoom(a),
+         numXSectors(x), numZSectors(z) { }
 
     void prepare() { mesh->prepare(); }
     void display(glm::mat4 view, glm::mat4 projection);
@@ -39,17 +41,10 @@ class Room {
     BoundingBox& getBoundingBox() { return *bbox; }
     RoomMesh& getMesh() { return *mesh; }
 
-    void setNumXSectors(unsigned int n) { numXSectors = n; }
     unsigned int getNumXSectors() { return numXSectors; }
-
-    void setNumZSectors(unsigned int n) { numZSectors = n; }
     unsigned int getNumZSectors() { return numZSectors; }
 
     unsigned int getFlags() { return flags; }
-
-    unsigned long sizeAdjacentRooms();
-    long getAdjacentRoom(unsigned long index);
-    void addAdjacentRoom(long r);
 
     unsigned long sizePortals();
     Portal& getPortal(unsigned long index);
@@ -77,10 +72,10 @@ class Room {
     std::unique_ptr<RoomMesh> mesh;
 
     unsigned int flags;
-    unsigned int numXSectors;
-    unsigned int numZSectors;
+    int numXSectors;
+    int numZSectors;
+    int alternateRoom;
 
-    std::vector<long> adjacentRooms;
     std::vector<std::unique_ptr<Sprite>> sprites;
     std::vector<std::unique_ptr<StaticModel>> models;
     std::vector<std::unique_ptr<Portal>> portals;

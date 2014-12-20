@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141220 ]
+    * Fixed Room StaticModel rotation
+
     [ 20141217 ]
     * Introduced texel-offset in getUV() in an attempt to fix the texture-bleeding
     * Mesh is now called RoomMesh

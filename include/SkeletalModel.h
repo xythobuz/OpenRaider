@@ -59,13 +59,11 @@ class AnimationFrame {
 
 class SkeletalModel {
   public:
-    SkeletalModel(int i);
+    SkeletalModel(int i) : id(i) { }
     ~SkeletalModel();
     void display(unsigned long aframe, unsigned long bframe);
 
-    int getId();
-    void setPigTail(bool b);
-    void setPonyPos(float x, float y, float z, float angle);
+    int getId() { return id; }
 
     unsigned long size();
     AnimationFrame& get(unsigned long i);
@@ -73,15 +71,6 @@ class SkeletalModel {
 
   private:
     int id;
-    bool tr4Overlay;
-    bool pigtails;
-    long ponytailId;
-    float ponytail[3];
-    long ponytailMeshId;
-    unsigned int ponytailNumMeshes;
-    float ponytailAngle;
-    float ponyOff;
-    float ponyOff2;
     std::vector<AnimationFrame*> animation;
 };
 

@@ -95,6 +95,7 @@ void Render::display() {
 }
 
 void Render::screenShot(const char* filenameBase) {
+    /*
     int sz = getWindow().getWidth() * getWindow().getHeight();
     unsigned char* image = new unsigned char[sz * 3];
     static int count = 0;
@@ -115,10 +116,11 @@ void Render::screenShot(const char* filenameBase) {
         }
     }
 
-    //glReadPixels(0, 0, getWindow().getWidth(), getWindow().getHeight(), GL_BGR_EXT, GL_UNSIGNED_BYTE,
-    //             image);
-    //tgaSave(filename.str().c_str(), image, getWindow().getWidth(), getWindow().getHeight(), 0);
+    glReadPixels(0, 0, getWindow().getWidth(), getWindow().getHeight(), GL_BGR_EXT, GL_UNSIGNED_BYTE,
+                 image);
+    tgaSave(filename.str().c_str(), image, getWindow().getWidth(), getWindow().getHeight(), 0);
     delete [] image;
+    */
 }
 
 void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,

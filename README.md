@@ -39,16 +39,16 @@ A more or less recent [Doxygen documentation](http://xythobuz.github.io/OpenRaid
 Basically, OpenRaider depends on the following:
 
 * C++11 compiler
-* cmake
-* OpenGL
-* GLM
+* cmake (>= 2.8.8)
+* OpenGL (3.3 Core Profile compatible)
+* GLM (>= 0.9.6)
 * zlib
-* SDL2
-* SDL2-TTF (optional, needed if you want to use TTF fonts)
+* SDL2 or GLFW
+* SDL2-TTF (optional, doesn’t work with GLFW, needed if you want to use TTF fonts)
 * OpenAL & ALUT (optional, needed for sound output)
 * libpng (optional)
 
-On Mac OS X 10.9 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
+On Mac OS X 10.9 / 10.10 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 
     sudo port install cmake zlib glm libsdl2 libsdl2_ttf
 

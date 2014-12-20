@@ -75,21 +75,23 @@ void RoomMesh::prepare() {
 void RoomMesh::display(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {
     glm::mat4 MVP = projection * view * model;
 
-    unsigned int indexStart = 0;
-    unsigned int indexPos = 1;
-    unsigned int texture = textures.at(indices.at(0));
+    if (indices.size() > 0) {
+        unsigned int indexStart = 0;
+        unsigned int indexPos = 1;
+        unsigned int texture = textures.at(indices.at(0));
 
-    while ((indexStart != indexPos) && (indexPos < indices.size())) {
-        while ((indexPos < indices.size()) && (textures.at(indices.at(indexPos)) == texture))
-            indexPos++;
+        while ((indexStart != indexPos) && (indexPos < indices.size())) {
+            while ((indexPos < indices.size()) && (textures.at(indices.at(indexPos)) == texture))
+                indexPos++;
 
-        std::vector<unsigned short> ind(indices.begin() + indexStart, indices.begin() + indexPos);
-        Window::drawGL(vertices, uvs, ind, MVP, texture);
+            std::vector<unsigned short> ind(indices.begin() + indexStart, indices.begin() + indexPos);
+            Window::drawGL(vertices, uvs, ind, MVP, texture);
 
-        if (indexPos < indices.size()) {
-            indexStart = indexPos;
-            indexPos += 1;
-            texture = textures.at(indices.at(indexStart));
+            if (indexPos < indices.size()) {
+                indexStart = indexPos;
+                indexPos += 1;
+                texture = textures.at(indices.at(indexStart));
+            }
         }
     }
 }
