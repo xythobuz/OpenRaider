@@ -17,13 +17,15 @@
 #include "global.h"
 #include "Camera.h"
 #include "Game.h"
-#include "Render.h"
 #include "utils/strings.h"
 #include "utils/tga.h"
 #include "World.h"
 #include "system/Window.h"
+#include "Render.h"
 
 RenderMode Render::mode = RenderMode::Disabled;
+std::vector<Room*> Render::roomList;
+bool Render::displayViewFrustum = false;
 
 RenderMode Render::getMode() {
     return mode;
@@ -38,12 +40,10 @@ void Render::setMode(RenderMode m) {
         case RenderMode::Wireframe:
             //glClearColor(PURPLE[0] / 256.0f, PURPLE[1] / 256.0f,
             //             PURPLE[2] / 256.0f, PURPLE[3] / 256.0f);
-            //glDisable(GL_TEXTURE_2D);
             break;
         default:
             //glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f,
             //             BLACK[2] / 256.0f, BLACK[3] / 256.0f);
-            //glEnable(GL_TEXTURE_2D);
             break;
     }
 }
@@ -66,31 +66,67 @@ void Render::display() {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
 
-    glm::mat4 view = Camera::getViewMatrix();
-
-    static unsigned int w = getWindow().getWidth();
-    static unsigned int h = getWindow().getHeight();
-    static glm::mat4 projection = glm::perspective(45.0f, // Field of View
-                                  (float)getWindow().getWidth()
-                                  / (float)getWindow().getHeight(),
-                                  0.1f, // Min Distance
-                                  100000.0f); // Max Distance
-
-    if ((w != getWindow().getWidth()) || (h != getWindow().getHeight())) {
-        w = getWindow().getWidth();
-        h = getWindow().getHeight();
-        glm::mat4 projection = glm::perspective(45.0f, // Field of View
-                                                (float)getWindow().getWidth() / (float)getWindow().getHeight(),
-                                                0.1f, // Min Distance
-                                                100000.0f); // Max Distance
+    if (Camera::update()) {
+        clearRoomList();
+        buildRoomList(-2); // TODO cache room
+        std::cout << "Rendering " << roomList.size() << "/"
+                  << getWorld().sizeRoom() << " rooms..." << std::endl;
     }
 
-    // Just draw all rooms, as a test
-    for (int i = 0; i < getWorld().sizeRoom(); i++)
-        getWorld().getRoom(i).display(view, projection);
+    glm::mat4 projection = Camera::getProjectionMatrix();
+    glm::mat4 view = Camera::getViewMatrix();
+
+    for (auto r : roomList) {
+        r->display(view, projection);
+    }
+
+    if (displayViewFrustum)
+        Camera::displayFrustum(projection * view);
 
     if (mode == RenderMode::Wireframe) {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    }
+}
+
+void Render::clearRoomList() {
+    roomList.clear();
+}
+
+void Render::buildRoomList(int room) {
+    if (room < -1) {
+        // Check if the camera currently is in a room...
+        for (int i = 0; i < getWorld().sizeRoom(); i++) {
+            if (getWorld().getRoom(i).getBoundingBox().inBox(Camera::getPosition())) {
+                buildRoomList(i);
+                return;
+            }
+        }
+        std::cout << "Camera not found!" << std::endl;
+        buildRoomList(-1);
+    } else if (room == -1) {
+        // Check visibility for all rooms!
+        for (int i = 0; i < getWorld().sizeRoom(); i++) {
+            if (Camera::boxInFrustum(getWorld().getRoom(i).getBoundingBox())) {
+                roomList.push_back(&getWorld().getRoom(i));
+            }
+        }
+    } else {
+        // Check visibility of room and connected rooms, recursively?
+        if (Camera::boxInFrustum(getWorld().getRoom(room).getBoundingBox())) {
+            roomList.push_back(&getWorld().getRoom(room));
+            for (int i = 0; i < getWorld().getRoom(room).sizePortals(); i++) {
+                int r = getWorld().getRoom(room).getPortal(i).getAdjoiningRoom();
+                bool found = false;
+                for (int n = 0; n < roomList.size(); n++) {
+                    if (roomList.at(n) == &getWorld().getRoom(r)) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    buildRoomList(r);
+            }
+        }
     }
 }
 

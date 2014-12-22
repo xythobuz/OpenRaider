@@ -15,8 +15,25 @@
 class BoundingBox {
   public:
     BoundingBox(glm::vec3 min, glm::vec3 max) : a(min), b(max) { }
-    bool inBox(float x, float y, float z) { return ((y > a.y) && (y < b.y) && inBoxPlane(x, z)); }
-    bool inBoxPlane(float x, float z) { return ((x > a.x) && (x < b.x) && (z > a.z) && (z < b.z)); }
+
+    bool inBox(glm::vec3 p) {
+        return ((p.y >= a.y) && (p.y <= b.y) && inBoxPlane(p));
+    }
+
+    bool inBoxPlane(glm::vec3 p) {
+        return ((p.x >= a.x) && (p.x <= b.x) && (p.z >= a.z) && (p.z <= b.z));
+    }
+
+    glm::vec3 getVertexP(glm::vec3 normal) {
+        glm::vec3 p = a;
+        if (normal.x >= 0.0f)
+            p.x = b.x;
+        if (normal.y >= 0.0f)
+            p.y = b.y;
+        if (normal.z >= 0.0f)
+            p.z = b.z;
+        return p;
+    }
 
   private:
     glm::vec3 a, b;
@@ -34,6 +51,25 @@ class StaticModel {
     float angle;
     int id;
     int cache;
+};
+
+// --------------------------------------
+
+class Portal {
+  public:
+    Portal(int adj, glm::vec3 n, glm::vec3 v1, glm::vec3 v2, glm::vec3 v3,
+           glm::vec3 v4) : adjoiningRoom(adj), normal(n) {
+        vert[0] = v1; vert[1] = v2;
+        vert[2] = v3; vert[3] = v4;
+    }
+    int getAdjoiningRoom() { return adjoiningRoom; }
+    glm::vec3 getNormal() { return normal; }
+    glm::vec3 getVertex(int i) { assert((i >= 0) && (i < 4)); return vert[i]; }
+
+  private:
+    int adjoiningRoom;
+    glm::vec3 normal;
+    glm::vec3 vert[4];
 };
 
 // --------------------------------------
@@ -63,21 +99,6 @@ class Light {
     float color[4]; //! Color of light
     float cutoff; //! Fade out distance
     LightType type; //! Type of light
-};
-
-// --------------------------------------
-
-class Portal {
-  public:
-    Portal(glm::vec3 vert[4], float norm[3], int adj);
-
-    void getVertices(float vert[4][3]);
-    int getAdjoiningRoom();
-
-  private:
-    float vertices[4][3];
-    float normal[3];
-    int adjoiningRoom;
 };
 
 // --------------------------------------

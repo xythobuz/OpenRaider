@@ -9,8 +9,10 @@
 #ifndef _RENDER_H_
 #define _RENDER_H_
 
+#include <vector>
 #include <glm/vec4.hpp>
 
+#include "Room.h"
 #include "TextureManager.h"
 
 enum class RenderMode {
@@ -28,13 +30,23 @@ class Render {
 
     static void display();
 
+    static void clearRoomList();
+
     static void screenShot(const char* filenameBase);
 
     static void drawTexture(float x, float y, float w, float h, glm::vec4 color,
                             unsigned int texture, TextureManager::TextureStorage s);
 
+    static void setDisplayViewFrustum(bool d) { displayViewFrustum = d; }
+    static bool getDisplayViewFrustum() { return displayViewFrustum; }
+
   private:
+    static void buildRoomList(int room);
+
     static RenderMode mode;
+    static std::vector<Room*> roomList;
+
+    static bool displayViewFrustum;
 };
 
 #endif

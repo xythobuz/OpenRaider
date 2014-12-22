@@ -63,34 +63,6 @@ Light::LightType Light::getType() {
 
 // ----------------------------------------------------------------------------
 
-Portal::Portal(glm::vec3 vert[4], float norm[3], int adj) {
-    for (unsigned int i = 0; i < 4; i++) {
-        for (unsigned int j = 0; j < 3; j++) {
-            vertices[i][j] = vert[i][j];
-        }
-
-        if (i < 3) {
-            normal[i] = norm[i];
-        }
-    }
-
-    adjoiningRoom = adj;
-}
-
-void Portal::getVertices(float vert[4][3]) {
-    for (unsigned int i = 0; i < 4; i++) {
-        for (unsigned int j = 0; j < 3; j++) {
-            vert[i][j] = vertices[i][j];
-        }
-    }
-}
-
-int Portal::getAdjoiningRoom() {
-    return adjoiningRoom;
-}
-
-// ----------------------------------------------------------------------------
-
 float Sector::getFloor() {
     return floor;
 }

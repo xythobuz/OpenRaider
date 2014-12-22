@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141222 ]
+    * Added basic (not yet working) view frustum culling
+
     [ 20141220 ]
     * Fixed Room StaticModel rotation
 

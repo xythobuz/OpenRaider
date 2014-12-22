@@ -64,21 +64,17 @@ void Room::getHeightAtPosition(float x, float* y, float z) {
 
 int Room::getAdjoiningRoom(float x, float y, float z,
                            float x2, float y2, float z2) {
-    float vertices[4][3];
     glm::vec3 orig(x, y, z);
     glm::vec3 dir(x2 - x, y2 - y, z2 - z);
     glm::vec3 intersect;
-    glm::vec3 verts[4];
 
     for (unsigned long i = 0; i < portals.size(); i++) {
-        portals.at(i)->getVertices(vertices);
-        verts[0] = glm::vec3(vertices[0][0], vertices[0][1], vertices[0][2]);
-        verts[1] = glm::vec3(vertices[1][0], vertices[1][1], vertices[1][2]);
-        verts[2] = glm::vec3(vertices[2][0], vertices[2][1], vertices[2][2]);
-        verts[3] = glm::vec3(vertices[3][0], vertices[3][1], vertices[3][2]);
-
-        if ((glm::intersectLineTriangle(orig, dir, verts[0], verts[1], verts[2], intersect))
-            || (glm::intersectLineTriangle(orig, dir, verts[0], verts[3], verts[1], intersect)))
+        if ((glm::intersectLineTriangle(orig, dir, portals.at(i)->getVertex(0),
+                                        portals.at(i)->getVertex(1),
+                                        portals.at(i)->getVertex(2), intersect))
+            || (glm::intersectLineTriangle(orig, dir, portals.at(i)->getVertex(0),
+                                           portals.at(i)->getVertex(3),
+                                           portals.at(i)->getVertex(1), intersect)))
             return portals.at(i)->getAdjoiningRoom();
     }
 

@@ -52,11 +52,11 @@ void Game::display() {
         Font::drawText(10, getWindow().getHeight() - 25, 0.6f, BLUE, s.str());
 
         s.str("");
-        s << "X: " << Camera::getPosition().x << " (" << Camera::getRadianPitch() << ")";
+        s << "X: " << Camera::getPosition().x << " (" << Camera::getRotation().x << ")";
         Font::drawText(10, getWindow().getHeight() - 70, 0.6f, BLUE, s.str());
 
         s.str("");
-        s << "Y: " << Camera::getPosition().y << " (" << Camera::getRadianYaw() << ")";
+        s << "Y: " << Camera::getPosition().y << " (" << Camera::getRotation().y << ")";
         Font::drawText(10, getWindow().getHeight() - 55, 0.6f, BLUE, s.str());
 
         s.str("");
@@ -71,6 +71,7 @@ void Game::destroy() {
     Render::setMode(RenderMode::LoadScreen);
 
     Camera::reset();
+    Render::clearRoomList();
     SoundManager::clear();
     getTextureManager().clear();
     getWorld().destroy();
@@ -134,11 +135,6 @@ void Game::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) {
         return;
 
     Camera::handleMouseMotion(xrel, yrel);
-
-    /* TODO
-    float angles[3] = { 0.0f, getCamera().getRadianYaw(), getCamera().getRadianPitch() };
-    getLara().setAngles(angles);
-    */
 }
 
 Entity& Game::getLara() {

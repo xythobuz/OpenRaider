@@ -9,6 +9,7 @@
 #include <cstring>
 
 #include "global.h"
+#include "Camera.h"
 #include "Console.h"
 #include "Game.h"
 #include "Log.h"
@@ -231,6 +232,16 @@ void UI::display() {
             bool fullscreen = getWindow().getFullscreen();
             if (ImGui::Checkbox("Fullscreen##runtime", &fullscreen)) {
                 getWindow().setFullscreen(fullscreen);
+            }
+
+            bool updateViewFrustum = Camera::getUpdateViewFrustum();
+            if (ImGui::Checkbox("Update Frustum##runtime", &updateViewFrustum)) {
+                Camera::setUpdateViewFrustum(updateViewFrustum);
+            }
+            ImGui::SameLine();
+            bool displayViewFrustum = Render::getDisplayViewFrustum();
+            if (ImGui::Checkbox("Show Frustum##runtime", &displayViewFrustum)) {
+                Render::setDisplayViewFrustum(displayViewFrustum);
             }
 
             float vol = Sound::getVolume();

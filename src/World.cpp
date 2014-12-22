@@ -15,6 +15,15 @@ World::~World() {
     destroy();
 }
 
+void World::destroy() {
+    mRooms.clear();
+    mSprites.clear();
+    mEntities.clear();
+    mModels.clear();
+    mStaticMeshes.clear();
+    mMeshes.clear();
+}
+
 void World::addRoom(Room* room) {
     mRooms.emplace_back(std::unique_ptr<Room>(room));
 }
@@ -91,43 +100,5 @@ unsigned long World::sizeMesh() {
 Mesh& World::getMesh(unsigned long index) {
     assert(index < mMeshes.size());
     return *mMeshes.at(index);
-}
-
-
-long World::getRoomByLocation(long index, float x, float y, float z) {
-    assert(index >= 0);
-    assert(index < (long)mRooms.size());
-    Room& room = *mRooms.at(index);
-
-    if (room.getBoundingBox().inBox(x, y, z))
-        return index;
-    else
-        return getRoomByLocation(x, y, z);
-}
-
-
-long World::getRoomByLocation(float x, float y, float z) {
-    long hop = -1;
-
-    for (unsigned long i = 0; i < mRooms.size(); i++) {
-        if (mRooms.at(i)->getBoundingBox().inBoxPlane(x, z)) {
-            if (mRooms.at(i)->getBoundingBox().inBox(x, y, z))
-                return i;
-            else
-                hop = i; // This room is above or below current position
-        }
-    }
-
-    return hop;
-}
-
-
-void World::destroy() {
-    mRooms.clear();
-    mSprites.clear();
-    mEntities.clear();
-    mModels.clear();
-    mStaticMeshes.clear();
-    mMeshes.clear();
 }
 

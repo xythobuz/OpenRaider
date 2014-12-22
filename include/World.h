@@ -59,29 +59,6 @@ class World {
     unsigned long sizeMesh();
     Mesh& getMesh(unsigned long index);
 
-    /*!
-     * \brief Find room a location is in.
-     *
-     * If it fails to be in a room it gives closest overlapping room.
-     * \param index Guessed room index
-     * \param x X coordinate
-     * \param y Y coordinate
-     * \param z Z coordinate
-     * \returns correct room index or -1 for unknown
-     */
-    long getRoomByLocation(long index, float x, float y, float z);
-
-    /*!
-     * \brief Find room a location is in.
-     *
-     * If it fails to be in a room it gives closest overlapping room.
-     * \param x X coordinate
-     * \param y Y coordinate
-     * \param z Z coordinate
-     * \returns correct room index or -1 for unknown
-     */
-    long getRoomByLocation(float x, float y, float z);
-
   private:
     std::vector<std::unique_ptr<Room>> mRooms;
     std::vector<std::unique_ptr<SpriteSequence>> mSprites;

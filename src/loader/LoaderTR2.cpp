@@ -273,6 +273,7 @@ void LoaderTR2::loadRooms() {
         }
 
         uint16_t numPortals = file.readU16();
+        std::vector<Portal*> portals;
         for (unsigned int p = 0; p < numPortals; p++) {
             // Which room this portal leads to
             uint16_t adjoiningRoom = file.readU16();
@@ -299,7 +300,14 @@ void LoaderTR2::loadRooms() {
             int16_t yCorner4 = file.read16();
             int16_t zCorner4 = file.read16();
 
-            // TODO store portals
+            //! \fixme TODO translate vertices by room offset!
+
+            portals.push_back(new Portal(adjoiningRoom,
+                                         glm::vec3(xNormal, yNormal, zNormal),
+                                         glm::vec3(xCorner1, yCorner1, zCorner1),
+                                         glm::vec3(xCorner2, yCorner2, zCorner2),
+                                         glm::vec3(xCorner3, yCorner3, zCorner3),
+                                         glm::vec3(xCorner4, yCorner4, zCorner4)));
         }
 
         uint16_t numZSectors = file.readU16();
@@ -386,6 +394,9 @@ void LoaderTR2::loadRooms() {
         RoomMesh* mesh = new RoomMesh(vertices, rectangles, triangles);
         Room* room = new Room(pos, boundingbox, mesh, roomFlags, alternateRoom,
                               numXSectors, numZSectors);
+
+        for (auto p : portals)
+            room->addPortal(p);
 
         for (auto m : staticModels)
             room->addModel(m);
