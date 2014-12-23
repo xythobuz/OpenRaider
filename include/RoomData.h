@@ -14,7 +14,16 @@
 
 class BoundingBox {
   public:
-    BoundingBox(glm::vec3 min, glm::vec3 max) : a(min), b(max) { }
+    BoundingBox(glm::vec3 min, glm::vec3 max) : a(min), b(max) {
+        corner[0] = glm::vec3(a.x, a.y, a.z);
+        corner[1] = glm::vec3(b.x, a.y, a.z);
+        corner[2] = glm::vec3(a.x, b.y, a.z);
+        corner[3] = glm::vec3(a.x, a.y, b.z);
+        corner[4] = glm::vec3(b.x, b.y, a.z);
+        corner[5] = glm::vec3(a.x, b.y, b.z);
+        corner[6] = glm::vec3(b.x, a.y, b.z);
+        corner[7] = glm::vec3(b.x, b.y, b.z);
+    }
 
     bool inBox(glm::vec3 p) {
         return ((p.y >= a.y) && (p.y <= b.y) && inBoxPlane(p));
@@ -24,19 +33,14 @@ class BoundingBox {
         return ((p.x >= a.x) && (p.x <= b.x) && (p.z >= a.z) && (p.z <= b.z));
     }
 
-    glm::vec3 getVertexP(glm::vec3 normal) {
-        glm::vec3 p = a;
-        if (normal.x >= 0.0f)
-            p.x = b.x;
-        if (normal.y >= 0.0f)
-            p.y = b.y;
-        if (normal.z >= 0.0f)
-            p.z = b.z;
-        return p;
+    glm::vec3 getCorner(int i) {
+        assert((i >= 0) && (i < 8));
+        return corner[i];
     }
 
   private:
     glm::vec3 a, b;
+    glm::vec3 corner[8];
 };
 
 // --------------------------------------

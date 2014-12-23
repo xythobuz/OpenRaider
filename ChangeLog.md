@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141223 ]
+    * View frustum calculation now working
+
     [ 20141222 ]
     * Added basic (not yet working) view frustum culling
 

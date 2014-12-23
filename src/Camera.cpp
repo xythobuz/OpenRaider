@@ -28,32 +28,19 @@
 #define FBR 6
 #define FTR 7
 
-struct Plane {
-    glm::vec3 normal, pos;
-    float d;
-
-    Plane(glm::vec3 n = glm::vec3(0.0f, 0.0f, 0.0f),
-          glm::vec3 p = glm::vec3(0.0f, 0.0f, 0.0f)) {
-        set(n, p);
+class Plane {
+  public:
+    Plane() : normal(glm::vec3(0.0f, 0.0f, 0.0f)), d(0.0f) { }
+    void set(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3) {
+        normal = glm::normalize(glm::cross(v3 - v2, v1 - v2));
+        d = -glm::dot(normal, v2);
     }
-
-    void set(glm::vec3 a, glm::vec3 b, glm::vec3 c) {
-        glm::vec3 aux1 = a - b;
-        glm::vec3 aux2 = c - b;
-        normal = glm::normalize(glm::cross(aux2, aux1));
-        pos = b;
-        d = -glm::dot(normal, pos);
-    }
-
-    void set(glm::vec3 n, glm::vec3 p) {
-        normal = n;
-        pos = p;
-        d = -glm::dot(normal, pos);
-    }
-
     float distance(glm::vec3 p) {
         return d + glm::dot(normal, p);
     }
+  private:
+    glm::vec3 normal;
+    float d;
 };
 
 // ----------------------------------------------------------------------------
@@ -76,12 +63,12 @@ bool Camera::updateViewFrustum = true;
 static Plane planes[6];
 
 static glm::vec3 frustumColors[6] = {
-    glm::vec3(1.0f, 0.0f, 0.0f),
-    glm::vec3(0.0f, 1.0f, 0.0f),
-    glm::vec3(0.0f, 0.0f, 1.0f),
-    glm::vec3(1.0f, 1.0f, 0.0f),
-    glm::vec3(0.0f, 1.0f, 1.0f),
-    glm::vec3(1.0f, 0.0f, 1.0f)
+    glm::vec3(1.0f, 0.0f, 0.0f), // NEAR, red
+    glm::vec3(0.0f, 1.0f, 0.0f), // FAR, green
+    glm::vec3(0.0f, 0.0f, 1.0f), // TOP, blue
+    glm::vec3(1.0f, 1.0f, 0.0f), // BOTTOM, yellow
+    glm::vec3(0.0f, 1.0f, 1.0f), // LEFT, light-blue
+    glm::vec3(1.0f, 0.0f, 1.0f)  // RIGHT, pink
 };
 static glm::vec3 frustumVertices[8];
 
@@ -165,6 +152,7 @@ bool Camera::update() {
         return false;
 
     if (lastSize != size) {
+        //! \fixme TODO instead of mirroring the axes in the shader, scale here
         projection = glm::perspective(fov, size.x / size.y, nearDist, farDist);
         lastSize = size;
     }
@@ -187,55 +175,31 @@ bool Camera::update() {
     if (!updateViewFrustum)
         return false;
 
-    dir = glm::normalize(dir);
-    right = glm::normalize(right);
-    up = glm::normalize(up);
+    glm::mat4 combo = projection * view;
 
-    static float tang = glm::tan(glm::radians(fov * 0.5f));
-    static float nh = nearDist * tang;
-    float nw = nh * (size.x / size.y);
-    static float fh = farDist * tang;
-    float fw = fh * (size.x / size.y);
+    // Calculate frustum corners to display them
+    glm::mat4 inverse = glm::inverse(combo);
+    frustumVertices[NTL] = glm::vec3( 1.0f,  1.0f, 0.0f);
+    frustumVertices[NTR] = glm::vec3(-1.0f,  1.0f, 0.0f);
+    frustumVertices[NBL] = glm::vec3( 1.0f, -1.0f, 0.0f);
+    frustumVertices[NBR] = glm::vec3(-1.0f, -1.0f, 0.0f);
+    frustumVertices[FTL] = glm::vec3( 1.0f,  1.0f, 1.0f);
+    frustumVertices[FTR] = glm::vec3(-1.0f,  1.0f, 1.0f);
+    frustumVertices[FBL] = glm::vec3( 1.0f, -1.0f, 1.0f);
+    frustumVertices[FBR] = glm::vec3(-1.0f, -1.0f, 1.0f);
+    for (int i = 0; i < 8; i++) {
+        glm::vec4 t = inverse * glm::vec4(frustumVertices[i], 1.0f);
+        frustumVertices[i] = glm::vec3(t) / t.w;
+        frustumVertices[i].y *= -1.0f;
+    }
 
-    glm::vec3 nearCenter = pos + dir * nearDist;
-    glm::vec3 farCenter = pos + dir * farDist;
-
-    frustumVertices[NTL] = nearCenter + up * nh - right * nw;
-    frustumVertices[NTR] = nearCenter + up * nh + right * nw;
-    frustumVertices[NBL] = nearCenter - up * nh - right * nw;
-    frustumVertices[NBR] = nearCenter - up * nh + right * nw;
-    frustumVertices[FTL] = farCenter + up * fh - right * fw;
-    frustumVertices[FTR] = farCenter + up * fh + right * fw;
-    frustumVertices[FBL] = farCenter - up * fh - right * fw;
-    frustumVertices[FBR] = farCenter - up * fh + right * fw;
-
-#if 1
+    // Set planes used for frustum culling
     planes[TOP].set(frustumVertices[NTR], frustumVertices[NTL], frustumVertices[FTL]);
     planes[BOTTOM].set(frustumVertices[NBL], frustumVertices[NBR], frustumVertices[FBR]);
     planes[LEFT].set(frustumVertices[NTL], frustumVertices[NBL], frustumVertices[FBL]);
     planes[RIGHT].set(frustumVertices[NBR], frustumVertices[NTR], frustumVertices[FBR]);
     planes[NEAR].set(frustumVertices[NTL], frustumVertices[NTR], frustumVertices[NBR]);
     planes[FAR].set(frustumVertices[FTR], frustumVertices[FTL], frustumVertices[FBL]);
-#else
-    planes[NEAR].set(-dir, nearCenter);
-    planes[FAR].set(dir, farCenter);
-
-    glm::vec3 aux = glm::normalize((nearCenter + up * nh) - pos);
-    glm::vec3 normal = glm::cross(aux, right);
-    planes[TOP].set(normal, nearCenter + up * nh);
-
-    aux = glm::normalize((nearCenter - up * nh) - pos);
-    normal = glm::cross(right, aux);
-    planes[BOTTOM].set(normal, nearCenter - up * nh);
-
-    aux = glm::normalize((nearCenter - right * nw) - pos);
-    normal = glm::cross(aux, up);
-    planes[LEFT].set(normal, nearCenter - right * nw);
-
-    aux = glm::normalize((nearCenter + right * nw) - pos);
-    normal = glm::cross(up, aux);
-    planes[RIGHT].set(normal, nearCenter + right * nw);
-#endif
 
     lastPos = pos;
     lastRot = rot;
@@ -244,9 +208,18 @@ bool Camera::update() {
 
 bool Camera::boxInFrustum(BoundingBox b) {
     for (int i = 0; i < 6; i++) {
-        if (planes[i].distance(b.getVertexP(planes[i].normal)) < 0)
+        int out = 0, in = 0;
+        for (int c = 0; (c < 8) && ((in == 0) || (out == 0)); c++) {
+            if (planes[i].distance(b.getCorner(c)) < 0)
+                out++;
+            else
+                in++;
+        }
+
+        if (in == 0)
             return false;
     }
+
     return true;
 }
 
@@ -255,31 +228,37 @@ void Camera::displayFrustum(glm::mat4 MVP) {
     std::vector<glm::vec3> cols;
     std::vector<unsigned short> inds;
 
+    // Near
     verts.push_back(frustumVertices[NTL]);
     verts.push_back(frustumVertices[NTR]);
     verts.push_back(frustumVertices[NBR]);
     verts.push_back(frustumVertices[NBL]);
 
+    // Far
     verts.push_back(frustumVertices[FTR]);
     verts.push_back(frustumVertices[FTL]);
     verts.push_back(frustumVertices[FBL]);
     verts.push_back(frustumVertices[FBR]);
 
-    verts.push_back(frustumVertices[NBL]);
-    verts.push_back(frustumVertices[NBR]);
-    verts.push_back(frustumVertices[FBR]);
-    verts.push_back(frustumVertices[FBL]);
-
+    // Top
     verts.push_back(frustumVertices[NTR]);
     verts.push_back(frustumVertices[NTL]);
     verts.push_back(frustumVertices[FTL]);
     verts.push_back(frustumVertices[FTR]);
 
+    // Bottom
+    verts.push_back(frustumVertices[NBL]);
+    verts.push_back(frustumVertices[NBR]);
+    verts.push_back(frustumVertices[FBR]);
+    verts.push_back(frustumVertices[FBL]);
+
+    // Left
     verts.push_back(frustumVertices[NTL]);
     verts.push_back(frustumVertices[NBL]);
     verts.push_back(frustumVertices[FBL]);
     verts.push_back(frustumVertices[FTL]);
 
+    // Right
     verts.push_back(frustumVertices[NBR]);
     verts.push_back(frustumVertices[NTR]);
     verts.push_back(frustumVertices[FTR]);
