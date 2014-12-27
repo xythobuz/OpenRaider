@@ -43,6 +43,7 @@ typedef enum {
 
 // Keys available for binding
 typedef enum {
+    // Keyboard
     zeroKey = '0', oneKey = '1', twoKey = '2',
     threeKey = '3', fourKey = '4', fiveKey = '5',
     sixKey = '6', sevenKey = '7', eightKey = '8',
@@ -64,6 +65,13 @@ typedef enum {
     semicolonKey, slashKey, spaceKey, tabKey,
     leftmouseKey, middlemouseKey, rightmouseKey,
     fourthmouseKey, fifthmouseKey,
+
+    // Game Controller
+    aButton, bButton, xButton, yButton, backButton, startButton,
+    guideButton, leftStick, rightStick, leftShoulder, rightShoulder,
+    padUp, padDown, padLeft, padRight,
+    leftXAxis, leftYAxis, rightXAxis, rightYAxis, leftTrigger, rightTrigger,
+
     unknownKey // Should always be at the end
 } KeyboardButton;
 

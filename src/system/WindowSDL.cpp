@@ -8,12 +8,13 @@
 #include <iostream>
 
 #include "global.h"
+#include "Log.h"
 #include "RunTime.h"
 #include "UI.h"
 #include "utils/strings.h"
 #include "system/WindowSDL.h"
 
-#define SUBSYSTEMS_USED (SDL_INIT_VIDEO | SDL_INIT_EVENTS)
+#define SUBSYSTEMS_USED (SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER)
 
 WindowSDL::WindowSDL() {
     mInit = false;
@@ -24,10 +25,14 @@ WindowSDL::WindowSDL() {
     mTextInput = false;
     mWindow = nullptr;
     mGLContext = nullptr;
+    controller = nullptr;
 }
 
 WindowSDL::~WindowSDL() {
     if (mInit) {
+        if (controller)
+            SDL_GameControllerClose(controller);
+
         SDL_QuitSubSystem(SUBSYSTEMS_USED);
         SDL_Quit();
     }
@@ -115,23 +120,108 @@ int WindowSDL::initialize() {
     setSize(mWidth, mHeight);
     setMousegrab(mMousegrab);
 
+    if (SDL_NumJoysticks() == 0) {
+        getLog() << "No Joystick found!" << Log::endl;
+        return 0;
+    }
+
+    SDL_GameControllerAddMapping("341a0000000000000208000000000000,"
+                                 "USB GAMEPAD 8116,"
+                                 "a:b0,x:b2,start:b7,back:b6,leftstick:b8,rightstick:b9,"
+                                 "leftshoulder:b4,rightshoulder:b5,"
+                                 "dpup:h0.1,dpleft:h0.8,dpdown:h0.4,dpright:h0.2,"
+                                 "leftx:a0,lefty:a1,rightx:a3,righty:a2,"
+                                 "lefttrigger:,b:b1,y:b3,lefttrigger:a4,righttrigger:a4");
+
+    for (int i = 0; i < SDL_NumJoysticks(); i++) {
+        if (SDL_IsGameController(i)) {
+            controller = SDL_GameControllerOpen(i);
+            if (controller) {
+                getLog() << "Using controller \"" << SDL_GameControllerName(controller)
+                         << "\"..." << Log::endl;
+                break;
+            } else {
+                getLog() << "Couldn't open controller \"" << SDL_GameControllerNameForIndex(i)
+                         << "\"!" << Log::endl;
+            }
+        } else {
+            getLog() << "Joystick \"" << SDL_JoystickNameForIndex(i)
+                     << "\" is no controller!" << Log::endl;
+        }
+    }
     return 0;
 }
 
 void WindowSDL::eventHandling() {
     SDL_Event event;
+    KeyboardButton button;
 
     assert(mInit == true);
 
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
+            case SDL_CONTROLLERAXISMOTION:
+                button = unknownKey;
+                if (event.caxis.axis == SDL_CONTROLLER_AXIS_LEFTX)
+                    button = leftXAxis;
+                else if (event.caxis.axis == SDL_CONTROLLER_AXIS_LEFTY)
+                    button = leftYAxis;
+                else if (event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTX)
+                    button = rightXAxis;
+                else if (event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTY)
+                    button = rightYAxis;
+                else if (event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT)
+                    button = leftTrigger;
+                else if (event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT)
+                    button = rightTrigger;
+                if (button != unknownKey)
+                    UI::handleControllerAxis(event.caxis.value / 32768.0f, button);
+                break;
+
+            case SDL_CONTROLLERBUTTONDOWN:
+            case SDL_CONTROLLERBUTTONUP:
+                button = unknownKey;
+                if (event.cbutton.button == SDL_CONTROLLER_BUTTON_A)
+                    button = aButton;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_B)
+                    button = bButton;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_X)
+                    button = xButton;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_Y)
+                    button = yButton;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_BACK)
+                    button = backButton;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_GUIDE)
+                    button = guideButton;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_START)
+                    button = startButton;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_LEFTSTICK)
+                    button = leftStick;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_RIGHTSTICK)
+                    button = rightStick;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+                    button = leftShoulder;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)
+                    button = rightShoulder;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_UP)
+                    button = padUp;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_DOWN)
+                    button = padDown;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_LEFT)
+                    button = padLeft;
+                else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
+                    button = padRight;
+                if (button != unknownKey)
+                    UI::handleControllerButton(button, (event.type == SDL_CONTROLLERBUTTONUP));
+                break;
+
             case SDL_MOUSEMOTION:
                 UI::handleMouseMotion(event.motion.xrel, event.motion.yrel, event.motion.x, event.motion.y);
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
-                KeyboardButton button;
+                button = unknownKey;
                 if (event.button.button == SDL_BUTTON_LEFT)
                     button = leftmouseKey;
                 else if (event.button.button == SDL_BUTTON_RIGHT)
@@ -142,9 +232,9 @@ void WindowSDL::eventHandling() {
                     button = fourthmouseKey;
                 else if (event.button.button == SDL_BUTTON_X2)
                     button = fifthmouseKey;
-                else
-                    button = unknownKey;
-                UI::handleMouseClick(event.button.x, event.button.y, button, (event.type == SDL_MOUSEBUTTONUP));
+                if (button != unknownKey)
+                    UI::handleMouseClick(event.button.x, event.button.y, button,
+                                         (event.type == SDL_MOUSEBUTTONUP));
                 break;
 
             case SDL_MOUSEWHEEL:

@@ -2,6 +2,11 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141227 ]
+    * Added rudimentary SDL2 Game Controller support.
+    * Camera now using Quaternion for rotation.
+    * Movement now done using speed and frame time delta.
+
     [ 20141223 ]
     * View frustum calculation now working
 

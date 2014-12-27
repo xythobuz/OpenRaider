@@ -31,6 +31,10 @@
 Game::Game() {
     mLoaded = false;
     mLara = -1;
+
+    for (int i = 0; i < ActionEventCount; i++) {
+        activeEvents[i] = false;
+    }
 }
 
 Game::~Game() {
@@ -124,10 +128,19 @@ int Game::loadLevel(const char* level) {
 }
 
 void Game::handleAction(ActionEvents action, bool isFinished) {
-    if (isFinished || (!mLoaded))
+    assert(action < ActionEventCount);
+
+    if (!mLoaded)
         return;
 
-    Camera::handleAction(action, isFinished);
+    if (isFinished) {
+        activeEvents[action] = false;
+        Camera::handleAction(action, isFinished);
+    } else {
+        if (!activeEvents[action])
+            Camera::handleAction(action, isFinished);
+        activeEvents[action] = true;
+    }
 }
 
 void Game::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) {
@@ -135,6 +148,20 @@ void Game::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) {
         return;
 
     Camera::handleMouseMotion(xrel, yrel);
+}
+
+void Game::handleControllerAxis(float value, KeyboardButton axis) {
+    if (!mLoaded)
+        return;
+
+    Camera::handleControllerAxis(value, axis);
+}
+
+void Game::handleControllerButton(KeyboardButton button, bool released) {
+    if (!mLoaded)
+        return;
+
+    Camera::handleControllerButton(button, released);
 }
 
 Entity& Game::getLara() {

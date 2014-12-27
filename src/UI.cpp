@@ -653,6 +653,14 @@ void UI::handleMouseScroll(int xrel, int yrel) {
     scrollEvents.push_back(std::make_tuple(xrel, yrel));
 }
 
+void UI::handleControllerAxis(float value, KeyboardButton axis) {
+    getGame().handleControllerAxis(value, axis);
+}
+
+void UI::handleControllerButton(KeyboardButton button, bool released) {
+    getGame().handleControllerButton(button, released);
+}
+
 void UI::setVisible(bool v) {
     visible = v;
 }

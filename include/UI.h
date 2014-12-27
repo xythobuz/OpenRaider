@@ -30,6 +30,8 @@ class UI {
     static void handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released);
     static void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
     static void handleMouseScroll(int xrel, int yrel);
+    static void handleControllerAxis(float value, KeyboardButton axis);
+    static void handleControllerButton(KeyboardButton button, bool released);
 
     static void renderImGui(ImDrawList** const draw_lists, int count);
 

@@ -15,7 +15,6 @@
 
 class Game {
   public:
-
     Game();
     ~Game();
 
@@ -30,12 +29,13 @@ class Game {
     void display();
     void handleAction(ActionEvents action, bool isFinished);
     void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
+    void handleControllerAxis(float value, KeyboardButton axis);
+    void handleControllerButton(KeyboardButton button, bool released);
 
     Entity& getLara();
     void setLara(long lara);
 
   private:
-
     void processPakSounds();
     void processTextures();
     void processSprites();
@@ -48,6 +48,8 @@ class Game {
     bool mLoaded;
 
     long mLara;
+
+    bool activeEvents[ActionEventCount];
 };
 
 Game& getGame();

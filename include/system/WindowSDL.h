@@ -45,6 +45,7 @@ class WindowSDL : public Window {
   private:
     SDL_Window* mWindow;      //!< This is the pointer to the SDL surface
     SDL_GLContext mGLContext; //!< The OpenGL Context
+    SDL_GameController* controller;
 };
 
 #endif

@@ -41,6 +41,8 @@ class RunTime {
     unsigned long getFPS();
     const std::vector<float>& getHistoryFPS();
 
+    float getLastFrameTime();
+
   private:
     std::string baseDir;
     std::string pakDir;
@@ -51,7 +53,7 @@ class RunTime {
     bool gameIsRunning;
     bool showFPS;
 
-    unsigned long lastTime;
+    unsigned long lastTime, lastFrameTime;
     unsigned long frameCount, frameCount2;
     unsigned long frameTimeSum, frameTimeSum2;
     unsigned long fps;

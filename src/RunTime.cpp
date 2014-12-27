@@ -103,8 +103,9 @@ void RunTime::setShowFPS(bool fps) {
 
 void RunTime::updateFPS() {
     frameCount++;
-    frameTimeSum += (systemTimerGet() - lastTime);
-    frameTimeSum2 += (systemTimerGet() - lastTime);
+    lastFrameTime = systemTimerGet() - lastTime;
+    frameTimeSum += lastFrameTime;
+    frameTimeSum2 += lastFrameTime;
     lastTime = systemTimerGet();
     if (frameTimeSum >= 200) {
         fps = frameCount * (1000 / frameTimeSum);
@@ -124,5 +125,9 @@ unsigned long RunTime::getFPS() {
 
 const std::vector<float>& RunTime::getHistoryFPS() {
     return history;
+}
+
+float RunTime::getLastFrameTime() {
+    return lastFrameTime / 1000.0f;
 }
 
