@@ -25,8 +25,8 @@ class Room {
   public:
     Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
          int a, int x, int z)
-       : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f), alternateRoom(a),
-         numXSectors(x), numZSectors(z) { }
+        : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f), alternateRoom(a),
+          numXSectors(x), numZSectors(z) { }
 
     void prepare() { mesh->prepare(); }
     void display(glm::mat4 view, glm::mat4 projection);

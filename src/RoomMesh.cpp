@@ -67,9 +67,9 @@ void RoomMesh::prepare() {
 
     assert((ind.size() % 3) == 0);
 
-    indices = ind;
-    vertices = vert;
-    textures = tex;
+    indices = std::move(ind);
+    vertices = std::move(vert);
+    textures = std::move(tex);
 }
 
 void RoomMesh::display(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {

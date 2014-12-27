@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141228 ]
+    * Room Bounding Boxes are now visualized in Wireframe mode (again)
+
     [ 20141227 ]
     * Added rudimentary SDL2 Game Controller support.
     * Camera now using Quaternion for rotation.

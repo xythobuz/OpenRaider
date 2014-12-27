@@ -10,7 +10,40 @@
 #include "global.h"
 #include "SkeletalModel.h"
 #include "World.h"
+#include "system/Window.h"
 #include "RoomData.h"
+
+void BoundingBox::display(glm::mat4 VP, glm::vec3 color) {
+    std::vector<glm::vec3> verts;
+    std::vector<glm::vec3> cols;
+    std::vector<unsigned short> inds;
+
+    for (int i = 0; i < 8; i++) {
+        verts.push_back(corner[i]);
+        cols.push_back(color);
+    }
+
+    inds.push_back(0);
+    inds.push_back(2);
+    inds.push_back(4);
+    inds.push_back(1);
+    inds.push_back(6);
+    inds.push_back(7);
+    inds.push_back(5);
+    inds.push_back(3);
+    inds.push_back(0);
+    inds.push_back(1);
+    inds.push_back(4);
+    inds.push_back(7);
+    inds.push_back(6);
+    inds.push_back(3);
+    inds.push_back(5);
+    inds.push_back(2);
+
+    Window::drawLinesGL(verts, cols, inds, VP);
+}
+
+// ----------------------------------------------------------------------------
 
 void StaticModel::display(glm::mat4 view, glm::mat4 projection) {
     if (cache < 0) {

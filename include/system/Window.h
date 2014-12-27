@@ -71,6 +71,9 @@ class Window {
     static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
                        std::vector<unsigned short>& indices, glm::mat4 MVP);
 
+    static void drawLinesGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
+                            std::vector<unsigned short>& indices, glm::mat4 MVP);
+
   protected:
     bool mInit;
     bool mFullscreen;

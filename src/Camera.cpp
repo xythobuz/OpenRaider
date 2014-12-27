@@ -6,7 +6,6 @@
  * \author xythobuz
  */
 
-#include <limits>
 #include <glm/gtc/epsilon.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/quaternion.hpp>
@@ -37,6 +36,7 @@ const static float nearDist = 0.1f;
 const static float farDist = 75000.0f;
 const static float maxSpeed = 2048.0f;
 const static float controllerViewFactor = 384.0f;
+const static float controllerDeadZone = 0.1f;
 
 const static glm::vec3 rightUnit(1.0f, 0.0f, 0.0f);
 const static glm::vec3 upUnit(0.0f, 1.0f, 0.0f);
@@ -92,7 +92,7 @@ void Camera::handleMouseMotion(int x, int y) {
 }
 
 void Camera::handleControllerAxis(float value, KeyboardButton axis) {
-    if (glm::epsilonEqual(value, 0.0f, 0.01f))
+    if (glm::epsilonEqual(value, 0.0f, controllerDeadZone))
         value = 0.0f;
 
     if (axis == leftXAxis) {
@@ -134,10 +134,10 @@ bool Camera::update() {
     float dT = getRunTime().getLastFrameTime();
     pos += quaternion * posSpeed * dT;
 
-    if (glm::epsilonNotEqual(rotSpeed.x, 0.0f, 0.01f))
+    if (glm::epsilonNotEqual(rotSpeed.x, 0.0f, controllerDeadZone))
         quaternion = glm::quat(upUnit * rotationDeltaX * rotSpeed.x * dT) * quaternion;
 
-    if (glm::epsilonNotEqual(rotSpeed.y, 0.0f, 0.01f))
+    if (glm::epsilonNotEqual(rotSpeed.y, 0.0f, controllerDeadZone))
         quaternion = glm::quat(quaternion * -rightUnit * rotationDeltaY * rotSpeed.y * dT) * quaternion;
 
     glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
@@ -190,13 +190,13 @@ void Camera::calculateFrustumPlanes() {
 
     // Calculate frustum corners to display them
     glm::mat4 inverse = glm::inverse(combo);
-    frustumVertices[NTL] = glm::vec3( 1.0f,  1.0f, 0.0f);
+    frustumVertices[NTL] = glm::vec3(1.0f,  1.0f, 0.0f);
     frustumVertices[NTR] = glm::vec3(-1.0f,  1.0f, 0.0f);
-    frustumVertices[NBL] = glm::vec3( 1.0f, -1.0f, 0.0f);
+    frustumVertices[NBL] = glm::vec3(1.0f, -1.0f, 0.0f);
     frustumVertices[NBR] = glm::vec3(-1.0f, -1.0f, 0.0f);
-    frustumVertices[FTL] = glm::vec3( 1.0f,  1.0f, 1.0f);
+    frustumVertices[FTL] = glm::vec3(1.0f,  1.0f, 1.0f);
     frustumVertices[FTR] = glm::vec3(-1.0f,  1.0f, 1.0f);
-    frustumVertices[FBL] = glm::vec3( 1.0f, -1.0f, 1.0f);
+    frustumVertices[FBL] = glm::vec3(1.0f, -1.0f, 1.0f);
     frustumVertices[FBR] = glm::vec3(-1.0f, -1.0f, 1.0f);
     for (int i = 0; i < 8; i++) {
         glm::vec4 t = inverse * glm::vec4(frustumVertices[i], 1.0f);

@@ -83,9 +83,9 @@ void Mesh::prepare() {
     assert((ind.size() % 3) == 0);
     assert(vert.size() == tex.size());
     assert(vert.size() == uvs.size());
-    indices = ind;
-    vertices = vert;
-    textures = tex;
+    indices = std::move(ind);
+    vertices = std::move(vert);
+    textures = std::move(tex);
 
     std::vector<unsigned short> indC;
     std::vector<glm::vec3> vertC;
@@ -115,9 +115,9 @@ void Mesh::prepare() {
     }
     assert((indC.size() % 3) == 0);
     assert(vertC.size() == col.size());
-    indicesColor = indC;
-    verticesColor = vertC;
-    colors = col;
+    indicesColor = std::move(indC);
+    verticesColor = std::move(vertC);
+    colors = std::move(col);
 }
 
 void Mesh::display(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {
