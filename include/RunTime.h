@@ -11,56 +11,53 @@
 #include <string>
 #include <vector>
 
-/*!
- * \brief Main Game Singleton
- */
 class RunTime {
   public:
+    static void initialize();
+    static void updateFPS();
+    static void display();
 
-    RunTime();
+    static KeyboardButton getKeyBinding(ActionEvents event);
+    static void setKeyBinding(ActionEvents event, KeyboardButton button);
 
-    std::string getBaseDir();
-    void setBaseDir(std::string dir);
-    std::string getPakDir();
-    void setPakDir(std::string dir);
-    std::string getAudioDir();
-    void setAudioDir(std::string dir);
-    std::string getDataDir();
-    void setDataDir(std::string dir);
+    static std::string getBaseDir() { return baseDir; }
+    static void setBaseDir(std::string dir) { baseDir = dir; }
 
-    KeyboardButton getKeyBinding(ActionEvents event);
-    void setKeyBinding(ActionEvents event, KeyboardButton button);
+    static std::string getPakDir() { return pakDir; }
+    static void setPakDir(std::string dir) { pakDir = dir; }
 
-    bool isRunning();
-    void setRunning(bool run);
+    static std::string getAudioDir() { return audioDir; }
+    static void setAudioDir(std::string dir) { audioDir = dir; }
 
-    bool getShowFPS();
-    void setShowFPS(bool fps);
+    static std::string getDataDir() { return dataDir; }
+    static void setDataDir(std::string dir) { dataDir = dir; }
 
-    void updateFPS();
-    unsigned long getFPS();
-    const std::vector<float>& getHistoryFPS();
+    static bool isRunning() { return gameIsRunning; }
+    static void setRunning(bool run) { gameIsRunning = run; }
 
-    float getLastFrameTime();
+    static bool getShowFPS() { return showFPS; }
+    static void setShowFPS(bool fps) { showFPS = fps; }
+
+    static unsigned long getFPS() { return fps; }
+    static const std::vector<float>& getHistoryFPS() { return history; }
+    static float getLastFrameTime() { return lastFrameTime / 1000.0f; }
 
   private:
-    std::string baseDir;
-    std::string pakDir;
-    std::string audioDir;
-    std::string dataDir;
+    static std::string baseDir;
+    static std::string pakDir;
+    static std::string audioDir;
+    static std::string dataDir;
 
-    KeyboardButton keyBindings[ActionEventCount];
-    bool gameIsRunning;
-    bool showFPS;
+    static KeyboardButton keyBindings[ActionEventCount];
+    static bool gameIsRunning;
+    static bool showFPS;
 
-    unsigned long lastTime, lastFrameTime;
-    unsigned long frameCount, frameCount2;
-    unsigned long frameTimeSum, frameTimeSum2;
-    unsigned long fps;
-    std::vector<float> history;
+    static unsigned long lastTime, lastFrameTime;
+    static unsigned long frameCount, frameCount2;
+    static unsigned long frameTimeSum, frameTimeSum2;
+    static unsigned long fps;
+    static std::vector<float> history;
 };
-
-RunTime& getRunTime();
 
 #endif
 

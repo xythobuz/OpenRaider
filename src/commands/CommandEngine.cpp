@@ -28,7 +28,7 @@ void CommandLoad::printHelp() {
 }
 
 int CommandLoad::execute(std::istream& args) {
-    if (!getRunTime().isRunning()) {
+    if (!RunTime::isRunning()) {
         getLog() << "Use load command interactively!" << Log::endl;
         return -1;
     }
@@ -56,12 +56,12 @@ void CommandScreenshot::printHelp() {
 }
 
 int CommandScreenshot::execute(std::istream& args) {
-    if (!getRunTime().isRunning()) {
+    if (!RunTime::isRunning()) {
         getLog() << "Use sshot command interactively!" << Log::endl;
         return -1;
     }
 
-    std::string filename(getRunTime().getBaseDir());
+    std::string filename(RunTime::getBaseDir());
     filename += "/sshots/";
     filename += VERSION_SHORT;
 

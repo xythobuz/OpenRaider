@@ -50,9 +50,9 @@ int Game::initialize() {
 void Game::display() {
     Render::display();
 
-    if (getRunTime().getShowFPS()) {
+    if (RunTime::getShowFPS()) {
         std::ostringstream s;
-        s << getRunTime().getFPS() << "FPS";
+        s << RunTime::getFPS() << "FPS";
         Font::drawText(10, Window::getSize().y - 25, 0.6f, BLUE, s.str());
 
         s.str("");

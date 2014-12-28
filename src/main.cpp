@@ -33,7 +33,6 @@ static std::string configFileToUse;
 static std::shared_ptr<Game> gGame;
 static std::shared_ptr<Log> gLog;
 static std::shared_ptr<MenuFolder> gMenu;
-static std::shared_ptr<RunTime> gRunTime;
 static std::shared_ptr<TextureManager> gTextureManager;
 static std::shared_ptr<World> gWorld;
 
@@ -47,10 +46,6 @@ Log& getLog() {
 
 Menu& getMenu() {
     return *gMenu;
-}
-
-RunTime& getRunTime() {
-    return *gRunTime;
 }
 
 TextureManager& getTextureManager() {
@@ -72,7 +67,7 @@ int main(int argc, char* argv[]) {
     command_free(&cmd);
 
     // RunTime is required by other constructors
-    gRunTime.reset(new RunTime());
+    RunTime::initialize();
 
     gGame.reset(new Game());
     gLog.reset(new Log());
@@ -149,9 +144,9 @@ int main(int argc, char* argv[]) {
     getLog() << "Starting " << VERSION << Log::endl;
     getMenu().setVisible(true);
     systemTimerReset();
-    getRunTime().setRunning(true);
+    RunTime::setRunning(true);
 
-    while (getRunTime().isRunning()) {
+    while (RunTime::isRunning()) {
         Window::eventHandling();
         renderFrame();
     }
@@ -178,7 +173,7 @@ void renderFrame() {
     getMenu().display();
     UI::display();
     Window::swapBuffers();
-    getRunTime().updateFPS();
+    RunTime::updateFPS();
 }
 
 #endif // UNIT_TEST

@@ -56,7 +56,7 @@ int CommandBind::execute(std::istream& args) {
             return -3;
         }
 
-        getRunTime().setKeyBinding(e, c);
+        RunTime::setKeyBinding(e, c);
         return 0;
     }
 }

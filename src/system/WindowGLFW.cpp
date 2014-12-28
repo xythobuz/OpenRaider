@@ -60,7 +60,7 @@ void WindowGLFW::eventHandling() {
     glfwPollEvents();
 
     if (glfwWindowShouldClose(window)) {
-        getRunTime().setRunning(false);
+        RunTime::setRunning(false);
     }
 
     UI::eventsFinished();

@@ -634,7 +634,9 @@ void LoaderTR2::loadStaticMeshes() {
         // travel through, like TR2s skeletons and underwater plants
         uint16_t flags = file.readU16();
 
-        getWorld().addStaticMesh(new StaticMesh(objectID, mesh));
+        BoundingBox* bbox1 = new BoundingBox(glm::vec3(x11, y11, z11), glm::vec3(x12, y12, z12));
+        BoundingBox* bbox2 = new BoundingBox(glm::vec3(x21, y21, z21), glm::vec3(x22, y22, z22));
+        getWorld().addStaticMesh(new StaticMesh(objectID, mesh, bbox1, bbox2));
     }
 
     if (numStaticMeshes > 0)

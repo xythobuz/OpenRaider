@@ -6,6 +6,7 @@
  */
 
 #include "global.h"
+#include "UI.h"
 #include "system/Sound.h"
 #include "SoundManager.h"
 
@@ -113,6 +114,44 @@ int SoundManager::playSound(int index) {
         return 0;
     } else {
         return -1;
+    }
+}
+
+void SoundManager::display() {
+    if (ImGui::CollapsingHeader("Sound Map Player")) {
+        if (!Sound::getEnabled()) {
+            ImGui::Text("Please enable Sound first!");
+            if (ImGui::Button("Enable Sound!")) {
+                Sound::setEnabled(true);
+            }
+        } else if (Sound::numBuffers() == 0) {
+            ImGui::Text("Please load a level!");
+        } else {
+            static int index = 0;
+            ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
+            ImGui::SliderInt("##soundslide", &index, 0, sizeSoundMap() - 1);
+            ImGui::PopItemWidth();
+            ImGui::SameLine();
+            if (ImGui::Button("+##soundplus", ImVec2(0, 0), true)) {
+                if (index < (sizeSoundMap() - 1))
+                    index++;
+                else
+                    index = 0;
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("-##soundminus", ImVec2(0, 0), true)) {
+                if (index > 0)
+                    index--;
+                else
+                    index = sizeSoundMap() - 1;
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Play##soundplay")) {
+                playSound(index);
+            }
+
+            ImGui::Text("Index: %d", getIndex(index));
+        }
     }
 }
 

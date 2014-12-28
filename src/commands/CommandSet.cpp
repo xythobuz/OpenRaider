@@ -55,10 +55,10 @@ namespace {
         }
 
         // Expand Names
-        s = findAndReplace(s, "$(pakdir)", getRunTime().getPakDir());
-        s = findAndReplace(s, "$(audiodir)", getRunTime().getAudioDir());
-        s = findAndReplace(s, "$(datadir)", getRunTime().getDataDir());
-        s = findAndReplace(s, "$(basedir)", getRunTime().getBaseDir());
+        s = findAndReplace(s, "$(pakdir)", RunTime::getPakDir());
+        s = findAndReplace(s, "$(audiodir)", RunTime::getAudioDir());
+        s = findAndReplace(s, "$(datadir)", RunTime::getDataDir());
+        s = findAndReplace(s, "$(basedir)", RunTime::getBaseDir());
 
         // Full path
         s = expandHomeDirectory(s);
@@ -119,23 +119,23 @@ int CommandSet::execute(std::istream& args) {
             getLog() << "set-fps-Error: Invalid value" << Log::endl;
             return -8;
         }
-        getRunTime().setShowFPS(fps);
+        RunTime::setShowFPS(fps);
     } else if (var.compare("basedir") == 0) {
         std::string temp;
         args >> temp;
-        getRunTime().setBaseDir(expandNames(temp));
+        RunTime::setBaseDir(expandNames(temp));
     } else if (var.compare("pakdir") == 0) {
         std::string temp;
         args >> temp;
-        getRunTime().setPakDir(expandNames(temp));
+        RunTime::setPakDir(expandNames(temp));
     } else if (var.compare("audiodir") == 0) {
         std::string temp;
         args >> temp;
-        getRunTime().setAudioDir(expandNames(temp));
+        RunTime::setAudioDir(expandNames(temp));
     } else if (var.compare("datadir") == 0) {
         std::string temp;
         args >> temp;
-        getRunTime().setDataDir(expandNames(temp));
+        RunTime::setDataDir(expandNames(temp));
     } else if (var.compare("font") == 0) {
         std::string temp;
         args >> temp;
@@ -193,15 +193,15 @@ int CommandGet::execute(std::istream& args) {
     } else if (var.compare("mouse_y") == 0) {
         getLog() << glm::degrees(Camera::getSensitivityY()) << Log::endl;
     } else if (var.compare("fps") == 0) {
-        getLog() << getRunTime().getShowFPS() << Log::endl;
+        getLog() << RunTime::getShowFPS() << Log::endl;
     } else if (var.compare("basedir") == 0) {
-        getLog() << getRunTime().getBaseDir() << Log::endl;
+        getLog() << RunTime::getBaseDir() << Log::endl;
     } else if (var.compare("pakdir") == 0) {
-        getLog() << getRunTime().getPakDir() << Log::endl;
+        getLog() << RunTime::getPakDir() << Log::endl;
     } else if (var.compare("audiodir") == 0) {
-        getLog() << getRunTime().getAudioDir() << Log::endl;
+        getLog() << RunTime::getAudioDir() << Log::endl;
     } else if (var.compare("datadir") == 0) {
-        getLog() << getRunTime().getDataDir() << Log::endl;
+        getLog() << RunTime::getDataDir() << Log::endl;
     } else if (var.compare("font") == 0) {
         getLog() << Font::getFontName() << Log::endl;
     } else {

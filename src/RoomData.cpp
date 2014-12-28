@@ -13,14 +13,14 @@
 #include "system/Window.h"
 #include "RoomData.h"
 
-void BoundingBox::display(glm::mat4 VP) {
+void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot) {
     std::vector<glm::vec3> verts;
     std::vector<glm::vec3> cols;
     std::vector<unsigned short> inds;
 
     for (int i = 0; i < 8; i++) {
         verts.push_back(corner[i]);
-        cols.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+        cols.push_back(colorLine);
     }
 
     inds.push_back(0);
@@ -46,7 +46,7 @@ void BoundingBox::display(glm::mat4 VP) {
     inds.clear();
 
     for (int i = 0; i < 8; i++) {
-        cols.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+        cols.push_back(colorDot);
         inds.push_back(i);
     }
 
@@ -65,8 +65,9 @@ void StaticModel::display(glm::mat4 view, glm::mat4 projection) {
         assert(cache >= 0);
     }
 
-    glm::mat4 model = glm::rotate(glm::translate(glm::mat4(1.0f), pos),
-                                  angle, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
+    glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 model = translate * rotate;
     getWorld().getStaticMesh(cache).display(model, view, projection);
 }
 

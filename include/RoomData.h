@@ -40,7 +40,7 @@ class BoundingBox {
         return corner[i];
     }
 
-    void display(glm::mat4 VP);
+    void display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot);
 
   private:
     glm::vec3 corner[8];

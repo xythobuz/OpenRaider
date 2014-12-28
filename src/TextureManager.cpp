@@ -149,9 +149,9 @@ int TextureManager::initializeSplash() {
     }
 
     //! \fixme Temporary?
-    std::string filename = getRunTime().getPakDir() + "/tr2/TITLE.PCX";
+    std::string filename = RunTime::getPakDir() + "/tr2/TITLE.PCX";
     if (loadPCX(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
-        filename = getRunTime().getDataDir() + "/splash.tga";
+        filename = RunTime::getDataDir() + "/splash.tga";
         if (loadTGA(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
             return -2;
         }

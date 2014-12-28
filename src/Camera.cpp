@@ -161,7 +161,7 @@ bool Camera::update() {
     if ((!dirty) && equal(posSpeed, 0.0f) && equal(rotSpeed, 0.0f))
         return false;
 
-    float dT = getRunTime().getLastFrameTime();
+    float dT = RunTime::getLastFrameTime();
     pos += quaternion * posSpeed * dT;
 
     if (glm::epsilonNotEqual(rotSpeed.x, 0.0f, controllerDeadZone))

@@ -462,7 +462,7 @@ void WindowSDL::eventHandling() {
                 break;
 
             case SDL_QUIT:
-                getRunTime().setRunning(false);
+                RunTime::setRunning(false);
                 break;
         }
     }

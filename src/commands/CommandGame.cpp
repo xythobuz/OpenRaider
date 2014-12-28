@@ -21,7 +21,7 @@ std::string CommandPos::brief() {
 }
 
 int CommandPos::execute(std::istream& args) {
-    if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
+    if ((!RunTime::isRunning()) || (!getGame().isLoaded())) {
         getLog() << "Use pos command interactively!" << Log::endl;
         return -1;
     }
@@ -41,7 +41,7 @@ std::string CommandViewmodel::brief() {
 }
 
 int CommandViewmodel::execute(std::istream& args) {
-    if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
+    if ((!RunTime::isRunning()) || (!getGame().isLoaded())) {
         getLog() << "Use viewmodel command interactively!" << Log::endl;
         return -1;
     }

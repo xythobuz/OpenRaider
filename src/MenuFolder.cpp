@@ -30,7 +30,7 @@ MenuFolder::~MenuFolder() {
 }
 
 int MenuFolder::initialize() {
-    return init(getRunTime().getPakDir());
+    return init(RunTime::getPakDir());
 }
 
 int MenuFolder::init(std::string s) {

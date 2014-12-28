@@ -29,7 +29,7 @@ void CommandMove::printHelp() {
 }
 
 int CommandMove::execute(std::istream& args) {
-    if ((!getRunTime().isRunning()) || (!getGame().isLoaded())) {
+    if ((!RunTime::isRunning()) || (!getGame().isLoaded())) {
         getLog() << "Use move command interactively!" << Log::endl;
         return -1;
     }

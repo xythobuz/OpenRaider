@@ -42,6 +42,8 @@ class SoundManager {
     // index --> SoundMap --> SoundDetails --> SampleIndices --> play
     static int playSound(int index);
 
+    static void display();
+
   private:
     static std::vector<SoundSource> soundSources;
     static std::vector<int> soundMap;

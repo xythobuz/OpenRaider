@@ -40,8 +40,8 @@ std::list<std::tuple<int, int, int, int>> UI::motionEvents;
 std::list<std::tuple<int, int>> UI::scrollEvents;
 
 int UI::initialize() {
-    iniFilename = getRunTime().getBaseDir() + "/imgui.ini";
-    logFilename = getRunTime().getBaseDir() + "/imgui_log.txt";
+    iniFilename = RunTime::getBaseDir() + "/imgui.ini";
+    logFilename = RunTime::getBaseDir() + "/imgui_log.txt";
 
     ImGuiIO& io = ImGui::GetIO();
     io.DisplaySize = ImVec2(Window::getSize().x, Window::getSize().y);
@@ -136,7 +136,7 @@ void UI::eventsFinished() {
                 getMenu().handleKeyboard(std::get<0>(i), std::get<1>(i));
             } else {
                 for (int n = forwardAction; n < ActionEventCount; n++) {
-                    if (getRunTime().getKeyBinding((ActionEvents)n) == std::get<0>(i))
+                    if (RunTime::getKeyBinding((ActionEvents)n) == std::get<0>(i))
                         getGame().handleAction((ActionEvents)n, !std::get<1>(i));
                 }
             }
@@ -144,13 +144,13 @@ void UI::eventsFinished() {
 
         if (std::get<1>(i)) {
             if (!visible) {
-                if (getRunTime().getKeyBinding(menuAction) == std::get<0>(i)) {
+                if (RunTime::getKeyBinding(menuAction) == std::get<0>(i)) {
                     getMenu().setVisible(!getMenu().isVisible());
                 }
             }
 
             if ((!io.WantCaptureKeyboard) || (!visible)) {
-                if (getRunTime().getKeyBinding(debugAction) == std::get<0>(i)) {
+                if (RunTime::getKeyBinding(debugAction) == std::get<0>(i)) {
                     if (!metaKeyIsActive)
                         visible = !visible;
                 }
@@ -192,171 +192,8 @@ void UI::display() {
     Console::display();
 
     if (ImGui::Begin("Engine")) {
-        if (ImGui::CollapsingHeader("Engine Info")) {
-            ImGui::Text("Uptime: %lums", systemTimerGet());
-            ImGui::Text("Frames per Second: %luFPS", getRunTime().getFPS());
-            if (getRunTime().getHistoryFPS().size() > 1) {
-                static bool scroll = true;
-                if (scroll) {
-                    int offset = getRunTime().getHistoryFPS().size() - 1;
-                    if (offset > 10)
-                        offset = 10;
-                    ImGui::PlotLines("FPS", &getRunTime().getHistoryFPS()[1],
-                                     getRunTime().getHistoryFPS().size() - 1,
-                                     getRunTime().getHistoryFPS().size() - offset - 1);
-                } else {
-                    ImGui::PlotLines("FPS", &getRunTime().getHistoryFPS()[1],
-                                     getRunTime().getHistoryFPS().size() - 1);
-                }
-                ImGui::SameLine();
-                ImGui::Checkbox("Scroll##fpsscroll", &scroll);
-            }
-        }
-
-        if (ImGui::CollapsingHeader("RunTime Settings")) {
-            bool showFPS = getRunTime().getShowFPS();
-            if (ImGui::Checkbox("Show FPS##runtime", &showFPS)) {
-                getRunTime().setShowFPS(showFPS);
-            }
-            ImGui::SameLine();
-            bool running = getRunTime().isRunning();
-            if (ImGui::Checkbox("Running (!)##runtime", &running)) {
-                getRunTime().setRunning(running);
-            }
-            ImGui::SameLine();
-            bool sound = Sound::getEnabled();
-            if (ImGui::Checkbox("Sound##runtime", &sound)) {
-                Sound::setEnabled(sound);
-            }
-            ImGui::SameLine();
-            bool fullscreen = Window::getFullscreen();
-            if (ImGui::Checkbox("Fullscreen##runtime", &fullscreen)) {
-                Window::setFullscreen(fullscreen);
-            }
-
-            bool updateViewFrustum = Camera::getUpdateViewFrustum();
-            if (ImGui::Checkbox("Update Frustum##runtime", &updateViewFrustum)) {
-                Camera::setUpdateViewFrustum(updateViewFrustum);
-            }
-            ImGui::SameLine();
-            bool displayViewFrustum = Render::getDisplayViewFrustum();
-            if (ImGui::Checkbox("Show Frustum##runtime", &displayViewFrustum)) {
-                Render::setDisplayViewFrustum(displayViewFrustum);
-            }
-
-            float vol = Sound::getVolume();
-            if (ImGui::InputFloat("Volume##runtime", &vol, 0.0f, 0.0f, 3,
-                                  ImGuiInputTextFlags_EnterReturnsTrue)) {
-                if (vol < 0.0f)
-                    vol = 0.0f;
-                if (vol > 1.0f)
-                    vol = 1.0f;
-                Sound::setVolume(vol);
-            }
-
-            int w = Window::getSize().x;
-            if (ImGui::InputInt("Width##runtime", &w, 10, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
-                if (w < 1)
-                    w = 1;
-                Window::setSize(glm::vec2(w, Window::getSize().y));
-            }
-            int h = Window::getSize().y;
-            if (ImGui::InputInt("Height##runtime", &h, 10, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
-                if (h < 1)
-                    h = 1;
-                Window::setSize(glm::vec2(Window::getSize().x, h));
-            }
-
-            static int fr = 0;
-            char buff[1024];
-            strncpy(buff, getRunTime().getBaseDir().c_str(), 1024);
-            if (ImGui::InputText("BaseDir##runtime", buff, 1024, ImGuiInputTextFlags_EnterReturnsTrue)) {
-                getRunTime().setBaseDir(buff);
-                fr = getRunTime().getFPS();
-            }
-            if (fr > 0) {
-                ImGui::SameLine();
-                ImGui::Text("Done!##runtime1");
-                fr--;
-            }
-
-            static int fr2 = 0;
-            char buff2[1024];
-            strncpy(buff2, getRunTime().getPakDir().c_str(), 1024);
-            if (ImGui::InputText("PakDir##runtime", buff2, 1024, ImGuiInputTextFlags_EnterReturnsTrue)) {
-                getRunTime().setPakDir(buff2);
-                fr2 = getRunTime().getFPS();
-            }
-            if (fr2 > 0) {
-                ImGui::SameLine();
-                ImGui::Text("Done!##runtime2");
-                fr2--;
-            }
-
-            static int fr3 = 0;
-            char buff3[1024];
-            strncpy(buff3, getRunTime().getAudioDir().c_str(), 1024);
-            if (ImGui::InputText("AudioDir##runtime", buff3, 1024, ImGuiInputTextFlags_EnterReturnsTrue)) {
-                getRunTime().setAudioDir(buff3);
-                fr3 = getRunTime().getFPS();
-            }
-            if (fr3 > 0) {
-                ImGui::SameLine();
-                ImGui::Text("Done!##runtime3");
-                fr3--;
-            }
-
-            static int fr4 = 0;
-            char buff4[1024];
-            strncpy(buff4, getRunTime().getDataDir().c_str(), 1024);
-            if (ImGui::InputText("DataDir##runtime", buff4, 1024, ImGuiInputTextFlags_EnterReturnsTrue)) {
-                getRunTime().setDataDir(buff4);
-                fr4 = getRunTime().getFPS();
-            }
-            if (fr4 > 0) {
-                ImGui::SameLine();
-                ImGui::Text("Done!##runtime4");
-                fr4--;
-            }
-        }
-
-        ImGui::Separator();
-
-        if (ImGui::CollapsingHeader("Sound Map Player")) {
-            if (!Sound::getEnabled()) {
-                ImGui::Text("Please enable Sound first!");
-                if (ImGui::Button("Enable Sound!")) {
-                    Sound::setEnabled(true);
-                }
-            } else if (Sound::numBuffers() == 0) {
-                ImGui::Text("Please load a level!");
-            } else {
-                static int index = 0;
-                ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
-                ImGui::SliderInt("##soundslide", &index, 0, SoundManager::sizeSoundMap() - 1);
-                ImGui::PopItemWidth();
-                ImGui::SameLine();
-                if (ImGui::Button("+##soundplus", ImVec2(0, 0), true)) {
-                    if (index < (SoundManager::sizeSoundMap() - 1))
-                        index++;
-                    else
-                        index = 0;
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("-##soundminus", ImVec2(0, 0), true)) {
-                    if (index > 0)
-                        index--;
-                    else
-                        index = SoundManager::sizeSoundMap() - 1;
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("Play##soundplay")) {
-                    SoundManager::playSound(index);
-                }
-
-                ImGui::Text("Index: %d", SoundManager::getIndex(index));
-            }
-        }
+        RunTime::display();
+        SoundManager::display();
 
         /*
         static bool visibleTex = false;
@@ -509,7 +346,7 @@ void UI::display() {
                                                         ImGui::GetWindowPos().x - (ImGui::GetWindowWidth() / 2),
                                                         ImGui::GetWindowPos().y,
                                                         (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
-                        fr = getRunTime().getFPS() / 2;
+                        fr = RunTime::getFPS() / 2;
                         tile = getTextureManager().getNextTileAnimation(tile);
                     }
                     ImGui::Text("Current Tile: %d", tile);
@@ -567,7 +404,7 @@ void UI::display() {
                                                        ImGui::GetWindowPos().x - (ImGui::GetWindowWidth() / 2),
                                                        ImGui::GetWindowPos().y,
                                                        (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
-                        fr = getRunTime().getFPS() / 10;
+                        fr = RunTime::getFPS() / 10;
                         if (sprite < (getWorld().getSprite(index).size() - 1))
                             sprite++;
                         else
@@ -579,8 +416,6 @@ void UI::display() {
             }
         }
         */
-
-        ImGui::Separator();
 
         if (ImGui::CollapsingHeader("ImGui/Debug UI Help")) {
             //ImGui::TextWrapped("DebugViewer Textures/Textiles/Sprites will be drawn on"
