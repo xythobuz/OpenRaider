@@ -1,5 +1,5 @@
 /*!
- * \file include/FontTRLE.h
+ * \file include/system/FontTRLE.h
  * \brief Tomb Raider Level Editor Font loader
  *
  * \author xythobuz

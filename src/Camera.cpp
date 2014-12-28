@@ -6,6 +6,7 @@
  * \author xythobuz
  */
 
+#include <limits>
 #include <glm/gtc/epsilon.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/quaternion.hpp>
@@ -15,21 +16,19 @@
 #include "system/Window.h"
 #include "Camera.h"
 
-#define NEAR 0
-#define FAR 1
-#define TOP 2
-#define BOTTOM 3
-#define LEFT 4
-#define RIGHT 5
+static bool equal(float a, float b) {
+    return glm::epsilonEqual(a, b, std::numeric_limits<float>::epsilon());
+}
 
-#define NTL 0
-#define NBL 1
-#define NBR 2
-#define NTR 3
-#define FTL 4
-#define FBL 5
-#define FBR 6
-#define FTR 7
+static bool equal(glm::vec2 a, float b) {
+    return equal(a.x, b) && equal(a.y, b);
+}
+
+static bool equal(glm::vec3 a, float b) {
+    return equal(a.x, b) && equal(a.y, b) && equal(a.z, b);
+}
+
+// ----------------------------------------------------------------------------
 
 const static float fov = 45.0f;
 const static float nearDist = 0.1f;
@@ -52,12 +51,14 @@ glm::mat4 Camera::view(1.0f);
 float Camera::rotationDeltaX = 0.75f;
 float Camera::rotationDeltaY = 0.75f;
 bool Camera::updateViewFrustum = true;
+bool Camera::dirty = true;
 
 void Camera::reset() {
     pos = glm::vec3(0.0f, 0.0f, 0.0f);
     quaternion = glm::quat(glm::vec3(0.0f, 0.0f, 0.0f));
     posSpeed = glm::vec3(0.0f, 0.0f, 0.0f);
     rotSpeed = glm::vec2(0.0f, 0.0f);
+    dirty = true;
     lastSize = glm::vec2(0.0f, 0.0f);
     projection = glm::mat4(1.0f);
     view = glm::mat4(1.0f);
@@ -80,20 +81,38 @@ void Camera::handleAction(ActionEvents action, bool isFinished) {
         posSpeed += upUnit * maxSpeed * factor;
     } else if (action == crouchAction) {
         posSpeed -= upUnit * maxSpeed * factor;
+    } else {
+        return;
     }
+
+    dirty = true;
 }
 
 void Camera::handleMouseMotion(int x, int y) {
-    if (x != 0)
-        quaternion = glm::quat(upUnit * rotationDeltaX * float(x)) * quaternion;
+    if (x != 0) {
+        quaternion = glm::quat(upUnit * (rotationDeltaX * x)) * quaternion;
+        dirty = true;
+    }
 
-    if (y != 0)
-        quaternion = glm::quat(quaternion * -rightUnit * rotationDeltaY * float(y)) * quaternion;
+    static int lastDir = 0;
+    if (y != 0) {
+        float a = glm::dot(upUnit, quaternion * upUnit);
+        if (((lastDir >= 0) && (y < 0)) || ((lastDir <= 0) && (y > 0)) || (a > 0.5f)) {
+            quaternion = glm::quat(quaternion * -rightUnit * (rotationDeltaY * y)) * quaternion;
+            dirty = true;
+
+            // TODO find better way to clamp Y rotation axis!
+            if (a > 0.5f)
+                lastDir = y;
+        }
+    }
 }
 
 void Camera::handleControllerAxis(float value, KeyboardButton axis) {
     if (glm::epsilonEqual(value, 0.0f, controllerDeadZone))
         value = 0.0f;
+
+    // TODO clamp Y rotation axis somehow...?
 
     if (axis == leftXAxis) {
         posSpeed.x = -maxSpeed * value;
@@ -103,7 +122,11 @@ void Camera::handleControllerAxis(float value, KeyboardButton axis) {
         rotSpeed.x = controllerViewFactor * value;
     } else if (axis == rightYAxis) {
         rotSpeed.y = controllerViewFactor * value;
+    } else {
+        return;
     }
+
+    dirty = true;
 }
 
 void Camera::handleControllerButton(KeyboardButton button, bool released) {
@@ -119,17 +142,24 @@ void Camera::handleControllerButton(KeyboardButton button, bool released) {
         handleAction(leftAction, released);
     } else if (button == padRight) {
         handleAction(rightAction, released);
+    } else {
+        return;
     }
+
+    dirty = true;
 }
 
 bool Camera::update() {
-    glm::vec2 size(getWindow().getWidth(), getWindow().getHeight());
+    glm::vec2 size(Window::getSize());
 
     if (lastSize != size) {
         //! \fixme TODO instead of mirroring the Y axis in the shader, scale with -1 here
         projection = glm::perspective(fov, size.x / size.y, nearDist, farDist);
         lastSize = size;
     }
+
+    if ((!dirty) && equal(posSpeed, 0.0f) && equal(rotSpeed, 0.0f))
+        return false;
 
     float dT = getRunTime().getLastFrameTime();
     pos += quaternion * posSpeed * dT;
@@ -147,12 +177,14 @@ bool Camera::update() {
     if (updateViewFrustum)
         calculateFrustumPlanes();
 
+    dirty = false;
     return updateViewFrustum;
 }
 
 glm::vec2 Camera::getRotation() {
-    glm::vec3 euler = glm::eulerAngles(quaternion);
-    return glm::vec2(euler.y, euler.x);
+    float x = glm::dot(dirUnit, quaternion * dirUnit);
+    float y = glm::dot(upUnit, quaternion * upUnit);
+    return glm::vec2(x, y);
 }
 
 // ----------------------------------------------------------------------------
@@ -173,6 +205,22 @@ class FrustumPlane {
 };
 
 // ----------------------------------------------------------------------------
+
+#define NEAR 0
+#define FAR 1
+#define TOP 2
+#define BOTTOM 3
+#define LEFT 4
+#define RIGHT 5
+
+#define NTL 0
+#define NBL 1
+#define NBR 2
+#define NTR 3
+#define FTL 4
+#define FBL 5
+#define FBR 6
+#define FTR 7
 
 static FrustumPlane planes[6];
 static glm::vec3 frustumColors[6] = {

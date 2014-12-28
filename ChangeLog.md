@@ -4,6 +4,9 @@
 
     [ 20141228 ]
     * Room Bounding Boxes are now visualized in Wireframe mode (again)
+    * Window/WindowSDL/WindowGLFW are now completely static
+    * Shader class got some helper methods. Now in own file, system/Shader.
+    * Tried to limit camera vertical rotation.
 
     [ 20141227 ]
     * Added rudimentary SDL2 Game Controller support.

@@ -77,18 +77,18 @@ void MenuFolder::display() {
     if (!visible)
         return;
 
-    Font::drawTextCentered(0, 10, 1.2f, BLUE, ::getWindow().getWidth(), VERSION);
+    Font::drawTextCentered(0, 10, 1.2f, BLUE, Window::getSize().x, VERSION);
 
     // Draw half-transparent overlay
     glm::vec4 color(0.0f, 0.0f, 0.0f, 0.75f);
-    Render::drawTexture(0.0f, 0.0f, getWindow().getWidth(), getWindow().getHeight(),
+    Render::drawTexture(0.0f, 0.0f, Window::getSize().x, Window::getSize().y,
                         color, TEXTURE_WHITE, TextureManager::TextureStorage::SYSTEM);
 
     // Draw heading
-    Font::drawTextCentered(0, 10, 1.2f, BLUE, getWindow().getWidth(), VERSION);
+    Font::drawTextCentered(0, 10, 1.2f, BLUE, Window::getSize().x, VERSION);
 
     // Estimate displayable number of items
-    int items = (getWindow().getHeight() - 60) / 25;
+    int items = (Window::getSize().y - 60) / 25;
 
     // Print list of "..", folders, files
     for (long i = mMin; (i < (mMin + items))
@@ -137,7 +137,7 @@ void MenuFolder::handleKeyboard(KeyboardButton key, bool pressed) {
         return;
 
     assert(mapFolder != nullptr);
-    int items = (::getWindow().getHeight() - 60) / 25;
+    int items = (Window::getSize().y - 60) / 25;
 
     if (key == upKey) {
         if (mCursor > 0)
@@ -168,7 +168,7 @@ void MenuFolder::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton
     if (handleMouseClickDialog(x, y, button, released))
         return;
 
-    int items = (::getWindow().getHeight() - 60) / 25;
+    int items = (Window::getSize().y - 60) / 25;
 
     if (released || (button != leftmouseKey))
         return;
@@ -189,7 +189,7 @@ void MenuFolder::handleMouseScroll(int xrel, int yrel) {
 
     assert((xrel != 0) || (yrel != 0));
     assert(mapFolder != nullptr);
-    int items = (::getWindow().getHeight() - 60) / 25;
+    int items = (Window::getSize().y - 60) / 25;
 
     if ((mapFolder->folderCount() + mapFolder->fileCount() + 1) > items) {
         if (yrel < 0) {

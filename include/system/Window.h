@@ -1,5 +1,5 @@
 /*!
- * \file include/Window.h
+ * \file include/system/Window.h
  * \brief Windowing interface
  *
  * \author xythobuz
@@ -14,53 +14,26 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 
-class Shader {
-  public:
-    Shader() : programID(-1) { }
-    ~Shader();
-
-    int compile(const char* vertex, const char* fragment);
-    void use();
-
-    int addUniform(const char* name);
-    unsigned int getUniform(int n);
-
-    void addBuffer(int n = 1);
-    unsigned int getBuffer(int n);
-
-  private:
-    int programID;
-    std::vector<unsigned int> uniforms;
-    std::vector<unsigned int> buffers;
-};
+#include "Shader.h"
 
 class Window {
   public:
+    static int initialize();
+    static void eventHandling();
+    static void swapBuffers();
+    static void shutdown();
 
-    virtual ~Window() {}
+    static void setSize(glm::vec2 s);
+    static glm::vec2 getSize();
 
-    virtual void setSize(unsigned int width, unsigned int height) = 0;
-    virtual unsigned int getWidth();
-    virtual unsigned int getHeight();
+    static void setFullscreen(bool f);
+    static bool getFullscreen();
 
-    virtual void setFullscreen(bool fullscreen) = 0;
-    virtual bool getFullscreen();
+    static void setMousegrab(bool g);
+    static bool getMousegrab();
 
-    virtual void setMousegrab(bool grab) = 0;
-    virtual bool getMousegrab();
-
-    virtual int initialize() = 0;
-
-    virtual void eventHandling() = 0;
-
-    virtual void setTextInput(bool on) = 0;
-    virtual bool getTextInput();
-
-    virtual void swapBuffersGL() = 0;
-
-    static int initializeGL();
-    static void shutdownGL();
-    static void resizeGL();
+    static void setTextInput(bool t);
+    static bool getTextInput();
 
     static void drawTextGL(std::vector<glm::vec2>& vertices, std::vector<glm::vec2>& uvs,
                            glm::vec4 color, unsigned int texture);
@@ -69,20 +42,12 @@ class Window {
                        std::vector<unsigned short>& indices, glm::mat4 MVP, unsigned int texture);
 
     static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
-                       std::vector<unsigned short>& indices, glm::mat4 MVP);
-
-    static void drawLinesGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
-                            std::vector<unsigned short>& indices, glm::mat4 MVP);
-
-  protected:
-    bool mInit;
-    bool mFullscreen;
-    bool mMousegrab;
-    bool mTextInput;
-    unsigned int mWidth;
-    unsigned int mHeight;
+                       std::vector<unsigned short>& indices, glm::mat4 MVP, int mode = GL_TRIANGLES);
 
   private:
+    static int initializeGL();
+    static void shutdownGL();
+
     static Shader textShader;
     static const char* textShaderVertex;
     static const char* textShaderFragment;
@@ -90,6 +55,7 @@ class Window {
     static Shader imguiShader;
     static const char* imguiShaderVertex;
     static const char* imguiShaderFragment;
+    friend class UI;
 
     static Shader textureShader;
     static const char* textureShaderVertex;
@@ -100,11 +66,7 @@ class Window {
     static const char* colorShaderFragment;
 
     static unsigned int vertexArrayID;
-
-    friend class UI;
 };
-
-Window& getWindow();
 
 #endif
 

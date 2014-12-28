@@ -1,5 +1,5 @@
 /*!
- * \file include/FontSDL.h
+ * \file include/system/FontSDL.h
  * \brief SDL Font implementation
  *
  * \author xythobuz

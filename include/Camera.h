@@ -56,7 +56,7 @@ class Camera {
     static glm::mat4 projection;
     static glm::mat4 view;
     static float rotationDeltaX, rotationDeltaY;
-    static bool updateViewFrustum;
+    static bool updateViewFrustum, dirty;
 };
 
 #endif

@@ -1,5 +1,5 @@
 /*!
- * \file src/Font.cpp
+ * \file src/system/Font.cpp
  * \brief Font implementation
  *
  * \author xythobuz

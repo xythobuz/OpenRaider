@@ -1,5 +1,5 @@
 /*!
- * \file src/WindowGLFW.cpp
+ * \file src/system/WindowGLFW.cpp
  * \brief GLFW windowing implementation
  *
  * \author xythobuz
@@ -14,32 +14,19 @@
 #include "utils/strings.h"
 #include "system/WindowGLFW.h"
 
-static int lastMouseX = 0;
-static int lastMouseY = 0;
-
-WindowGLFW::WindowGLFW() {
-    mInit = false;
-    mWidth = DEFAULT_WIDTH;
-    mHeight = DEFAULT_HEIGHT;
-    mFullscreen = false;
-    mMousegrab = false;
-    mTextInput = false;
-    mWindow = nullptr;
-}
-
-WindowGLFW::~WindowGLFW() {
-    if (mInit) {
-        if (mWindow) {
-            glfwDestroyWindow(mWindow);
-        }
-
-        glfwTerminate();
-    }
-}
+glm::vec2 WindowGLFW::size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+bool WindowGLFW::fullscreen = false;
+bool WindowGLFW::mousegrab = false;
+bool WindowGLFW::textinput = false;
+GLFWwindow* WindowGLFW::window = nullptr;
+int WindowGLFW::lastMouseX = 0;
+int WindowGLFW::lastMouseY = 0;
+bool WindowGLFW::modShift = false;
+bool WindowGLFW::modControl = false;
+bool WindowGLFW::modAlt = false;
+bool WindowGLFW::modSuper = false;
 
 int WindowGLFW::initialize() {
-    assert(mInit == false);
-
     glfwSetErrorCallback(WindowGLFW::errorCallback);
     if (!glfwInit()) {
         return -1;
@@ -51,77 +38,74 @@ int WindowGLFW::initialize() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    mWindow = glfwCreateWindow(mWidth, mHeight, VERSION,
-                               mFullscreen ? glfwGetPrimaryMonitor() : nullptr, nullptr);
-    if (!mWindow) {
+    window = glfwCreateWindow(size.x, size.y, VERSION,
+                              fullscreen ? glfwGetPrimaryMonitor() : nullptr, nullptr);
+    if (!window) {
         glfwTerminate();
         return -2;
     }
 
-    glfwMakeContextCurrent(mWindow);
+    glfwMakeContextCurrent(window);
 
-    glfwSetWindowSizeCallback(mWindow, WindowGLFW::sizeCallback);
-    glfwSetCursorPosCallback(mWindow, WindowGLFW::cursorCallback);
-    glfwSetKeyCallback(mWindow, WindowGLFW::keyCallback);
-    glfwSetMouseButtonCallback(mWindow, WindowGLFW::buttonCallback);
-    glfwSetScrollCallback(mWindow, WindowGLFW::scrollCallback);
+    glfwSetWindowSizeCallback(window, WindowGLFW::sizeCallback);
+    glfwSetCursorPosCallback(window, WindowGLFW::cursorCallback);
+    glfwSetKeyCallback(window, WindowGLFW::keyCallback);
+    glfwSetMouseButtonCallback(window, WindowGLFW::buttonCallback);
+    glfwSetScrollCallback(window, WindowGLFW::scrollCallback);
 
-    mInit = true;
     return 0;
 }
 
 void WindowGLFW::eventHandling() {
-    assert(mInit == true);
-
     glfwPollEvents();
 
-    if (glfwWindowShouldClose(mWindow)) {
+    if (glfwWindowShouldClose(window)) {
         getRunTime().setRunning(false);
     }
 
     UI::eventsFinished();
 }
 
-void WindowGLFW::setSize(unsigned int width, unsigned int height) {
-    assert(width > 0);
-    assert(height > 0);
-
-    if (mInit) {
-        if ((mWidth != width) || (mHeight != height)) {
-            glfwSetWindowSize(mWindow, width, height);
-            getWindow().resizeGL();
-        }
-    }
-
-    mWidth = width;
-    mHeight = height;
+void WindowGLFW::swapBuffers() {
+    glfwSwapBuffers(window);
 }
 
-void WindowGLFW::setFullscreen(bool fullscreen) {
-    mFullscreen = fullscreen;
+void WindowGLFW::shutdown() {
+    if (window) {
+        glfwDestroyWindow(window);
+        glfwTerminate();
+        window = nullptr;
+    }
+}
 
+void WindowGLFW::setSize(glm::vec2 s) {
+    assert((s.x > 0) && (s.y > 0));
+    if (window) {
+        if ((size.x != s.x) || (size.y != s.y)) {
+            glfwSetWindowSize(window, s.x, s.y);
+        }
+    }
+    size = s;
+}
+
+void WindowGLFW::setFullscreen(bool f) {
+    fullscreen = f;
     //! \todo GLFW does not support toggling fullscreen?!
 }
 
-void WindowGLFW::setMousegrab(bool grab) {
-    mMousegrab = grab;
+void WindowGLFW::setMousegrab(bool g) {
+    mousegrab = g;
 
-    if (mInit == true) {
-        if (mMousegrab)
-            glfwSetInputMode(mWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    if (window) {
+        if (mousegrab)
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         else
-            glfwSetInputMode(mWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     }
 }
 
-void WindowGLFW::setTextInput(bool on) {
-    assert(mInit == true);
-    mTextInput = on;
-}
-
-void WindowGLFW::swapBuffersGL() {
-    assert(mInit == true);
-    glfwSwapBuffers(mWindow);
+void WindowGLFW::setTextInput(bool t) {
+    textinput = t;
 }
 
 void WindowGLFW::errorCallback(int error, const char* desc) {
@@ -129,7 +113,7 @@ void WindowGLFW::errorCallback(int error, const char* desc) {
 }
 
 void WindowGLFW::sizeCallback(GLFWwindow* w, int width, int height) {
-    getWindow().setSize(width, height);
+    size = glm::vec2(width, height);
 }
 
 void WindowGLFW::cursorCallback(GLFWwindow* w, double xpos, double ypos) {
@@ -139,11 +123,6 @@ void WindowGLFW::cursorCallback(GLFWwindow* w, double xpos, double ypos) {
     lastMouseX = xpos;
     lastMouseY = ypos;
 }
-
-static bool modShift = false;
-static bool modControl = false;
-static bool modAlt = false;
-static bool modSuper = false;
 
 void WindowGLFW::keyCallback(GLFWwindow* w, int key, int scancode, int action, int mods) {
     if (((mods & GLFW_MOD_SHIFT) != 0) != modShift) {
@@ -166,8 +145,8 @@ void WindowGLFW::keyCallback(GLFWwindow* w, int key, int scancode, int action, i
         UI::handleKeyboard(leftguiKey, modSuper);
     }
 
-    if (getWindow().getTextInput() && (action != GLFW_RELEASE)) {
-        //! \todo Handle text input properly!
+    if (textinput && (action != GLFW_RELEASE)) {
+        //! \todo GLFW does not support UTF8 text input?!
         if ((key >= '0') && (key <= '9')) {
             char s[2] = { (char)key, '\0' };
             UI::handleText(s, false);

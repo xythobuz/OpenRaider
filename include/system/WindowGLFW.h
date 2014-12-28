@@ -1,5 +1,5 @@
 /*!
- * \file include/WindowGLFW.h
+ * \file include/system/WindowGLFW.h
  * \brief GLFW windowing implementation
  *
  * \author xythobuz
@@ -10,27 +10,24 @@
 
 #include <GLFW/glfw3.h>
 
-#include "system/Window.h"
-
-class WindowGLFW : public Window {
+class WindowGLFW {
   public:
+    static int initialize();
+    static void eventHandling();
+    static void swapBuffers();
+    static void shutdown();
 
-    WindowGLFW();
-    virtual ~WindowGLFW();
+    static void setSize(glm::vec2 s);
+    static glm::vec2 getSize() { return size; }
 
-    virtual void setSize(unsigned int width, unsigned int height);
+    static void setFullscreen(bool f);
+    static bool getFullscreen() { return fullscreen; }
 
-    virtual void setFullscreen(bool fullscreen);
+    static void setMousegrab(bool g);
+    static bool getMousegrab() { return mousegrab; }
 
-    virtual void setMousegrab(bool grab);
-
-    virtual int initialize();
-
-    virtual void eventHandling();
-
-    virtual void setTextInput(bool on);
-
-    virtual void swapBuffersGL();
+    static void setTextInput(bool t);
+    static bool getTextInput() { return textinput; }
 
   private:
     static void errorCallback(int error, const char* desc);
@@ -42,7 +39,17 @@ class WindowGLFW : public Window {
 
     static KeyboardButton convertAsciiButton(int key);
 
-    GLFWwindow* mWindow;
+    static glm::vec2 size;
+    static bool fullscreen;
+    static bool mousegrab;
+    static bool textinput;
+    static GLFWwindow* window;
+    static int lastMouseX;
+    static int lastMouseY;
+    static bool modShift;
+    static bool modControl;
+    static bool modAlt;
+    static bool modSuper;
 };
 
 #endif

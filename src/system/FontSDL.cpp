@@ -1,5 +1,5 @@
 /*!
- * \file src/FontSDL.cpp
+ * \file src/system/FontSDL.cpp
  * \brief SDL Font implementation
  *
  * \author xythobuz

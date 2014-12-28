@@ -87,7 +87,7 @@ bool Menu::handleMouseScrollDialog(int xrel, int yrel) {
 
 void Menu::displayDialog() {
     if (dialogText.length() > 0) {
-        unsigned int wMax = ((unsigned int)(::getWindow().getWidth() * 0.66f));
+        unsigned int wMax = ((unsigned int)(Window::getSize().x * 0.66f));
 
         unsigned int w0 = Font::widthText(1.0f, dialogText) + 20;
         if (w0 > wMax)
@@ -139,8 +139,8 @@ void Menu::displayDialog() {
             hOverlay = h0 + h1;
         }
 
-        unsigned int xOverlay = (::getWindow().getWidth() - wOverlay) / 2;
-        unsigned int yOverlay = (::getWindow().getHeight() - hOverlay) / 2;
+        unsigned int xOverlay = (Window::getSize().x - wOverlay) / 2;
+        unsigned int yOverlay = (Window::getSize().y - hOverlay) / 2;
 
         /*
         glColor4f(0.0f, 0.0f, 0.0f, 0.75f);
@@ -157,13 +157,13 @@ void Menu::displayDialog() {
                 Font::drawTextWrapped(xOverlay + 10 + w1, yOverlay + 10 + h0,
                                       1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
             } else {
-                Font::drawTextWrapped((::getWindow().getWidth() - w1) / 2,
+                Font::drawTextWrapped((Window::getSize().x - w1) / 2,
                                       yOverlay + 10 + h0, 1.0f, dialogState ? BLUE : RED, w1, dialogButton1);
-                Font::drawTextWrapped((::getWindow().getWidth() - w2) / 2,
+                Font::drawTextWrapped((Window::getSize().x - w2) / 2,
                                       yOverlay + 10 + h0 + h1, 1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
             }
         } else {
-            Font::drawTextWrapped((::getWindow().getWidth() - w1) / 2,
+            Font::drawTextWrapped((Window::getSize().x - w1) / 2,
                                   yOverlay + 10 + h0, 1.0f, RED, w1, dialogButton1);
         }
     }

@@ -13,14 +13,14 @@
 #include "system/Window.h"
 #include "RoomData.h"
 
-void BoundingBox::display(glm::mat4 VP, glm::vec3 color) {
+void BoundingBox::display(glm::mat4 VP) {
     std::vector<glm::vec3> verts;
     std::vector<glm::vec3> cols;
     std::vector<unsigned short> inds;
 
     for (int i = 0; i < 8; i++) {
         verts.push_back(corner[i]);
-        cols.push_back(color);
+        cols.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
     }
 
     inds.push_back(0);
@@ -40,7 +40,17 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 color) {
     inds.push_back(5);
     inds.push_back(2);
 
-    Window::drawLinesGL(verts, cols, inds, VP);
+    Window::drawGL(verts, cols, inds, VP, GL_LINE_STRIP);
+
+    cols.clear();
+    inds.clear();
+
+    for (int i = 0; i < 8; i++) {
+        cols.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+        inds.push_back(i);
+    }
+
+    Window::drawGL(verts, cols, inds, VP, GL_POINTS);
 }
 
 // ----------------------------------------------------------------------------

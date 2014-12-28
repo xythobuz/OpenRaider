@@ -1,5 +1,5 @@
 /*!
- * \file include/WindowSDL.h
+ * \file include/system/WindowSDL.h
  * \brief SDL windowing implementation
  *
  * \author xythobuz
@@ -8,44 +8,37 @@
 #ifndef _WINDOW_SDL_H_
 #define _WINDOW_SDL_H_
 
+#include <glm/vec2.hpp>
+
 #include "SDL.h"
 
-#include "system/Window.h"
-
-/*!
- * \brief SDL windowing implementation
- */
-class WindowSDL : public Window {
+class WindowSDL {
   public:
+    static int initialize();
+    static void eventHandling();
+    static void swapBuffers();
+    static void shutdown();
 
-    /*!
-     * \brief Constructs an object of WindowSDL
-     */
-    WindowSDL();
+    static void setSize(glm::vec2 s);
+    static glm::vec2 getSize() { return size; }
 
-    /*!
-     * \brief Deconstructs an object of WindowSDL
-     */
-    virtual ~WindowSDL();
+    static void setFullscreen(bool f);
+    static bool getFullscreen() { return fullscreen; }
 
-    virtual void setSize(unsigned int width, unsigned int height);
+    static void setMousegrab(bool g);
+    static bool getMousegrab() { return mousegrab; }
 
-    virtual void setFullscreen(bool fullscreen);
-
-    virtual void setMousegrab(bool grab);
-
-    virtual int initialize();
-
-    virtual void eventHandling();
-
-    virtual void setTextInput(bool on);
-
-    virtual void swapBuffersGL();
+    static void setTextInput(bool t);
+    static bool getTextInput() { return textinput; }
 
   private:
-    SDL_Window* mWindow;      //!< This is the pointer to the SDL surface
-    SDL_GLContext mGLContext; //!< The OpenGL Context
-    SDL_GameController* controller;
+    static glm::vec2 size;
+    static bool fullscreen;
+    static bool mousegrab;
+    static bool textinput;
+    static SDL_Window* window;
+    static SDL_GLContext context;
+    static SDL_GameController* controller;
 };
 
 #endif

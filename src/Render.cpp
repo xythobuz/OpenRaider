@@ -53,7 +53,7 @@ void Render::display() {
 
     if (mode == RenderMode::LoadScreen) {
         glm::vec4 color(1.0f, 1.0f, 1.0f, 1.0f);
-        drawTexture(0.0f, 0.0f, getWindow().getWidth(), getWindow().getHeight(),
+        drawTexture(0.0f, 0.0f, Window::getSize().x, Window::getSize().y,
                     color, TEXTURE_SPLASH, TextureManager::TextureStorage::SYSTEM);
         return;
     } else if (mode == RenderMode::Disabled) {
@@ -132,7 +132,7 @@ void Render::buildRoomList(int room) {
 
 void Render::screenShot(const char* filenameBase) {
     /*
-    int sz = getWindow().getWidth() * getWindow().getHeight();
+    int sz = Window::getSize().x * Window::getSize().y;
     unsigned char* image = new unsigned char[sz * 3];
     static int count = 0;
     bool done = false;
@@ -152,9 +152,9 @@ void Render::screenShot(const char* filenameBase) {
         }
     }
 
-    glReadPixels(0, 0, getWindow().getWidth(), getWindow().getHeight(), GL_BGR_EXT, GL_UNSIGNED_BYTE,
+    glReadPixels(0, 0, Window::getSize().x, Window::getSize().y, GL_BGR_EXT, GL_UNSIGNED_BYTE,
                  image);
-    tgaSave(filename.str().c_str(), image, getWindow().getWidth(), getWindow().getHeight(), 0);
+    tgaSave(filename.str().c_str(), image, Window::getSize().x, Window::getSize().y, 0);
     delete [] image;
     */
 }

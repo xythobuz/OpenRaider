@@ -1,5 +1,5 @@
 /*!
- * \file src/Window.cpp
+ * \file src/system/Window.cpp
  * \brief windowing implementation
  *
  * \author xythobuz
@@ -7,31 +7,132 @@
 
 #include "global.h"
 #include "Log.h"
-#include "TextureManager.h"
 #include "utils/strings.h"
 #include "system/Window.h"
 
-unsigned int Window::getWidth() {
-    return mWidth;
+#ifdef USING_SDL
+#include "system/WindowSDL.h"
+#elif defined(USING_GLFW)
+#include "system/WindowGLFW.h"
+#else
+#error "No windowing library selected!"
+#endif
+
+int Window::initialize() {
+    int res = -1;
+#ifdef USING_SDL
+    res = WindowSDL::initialize();
+#elif defined(USING_GLFW)
+    res = WindowGLFW::initialize();
+#endif
+
+    initializeGL();
+    return res;
 }
 
-unsigned int Window::getHeight() {
-    return mHeight;
+void Window::eventHandling() {
+#ifdef USING_SDL
+    WindowSDL::eventHandling();
+#elif defined(USING_GLFW)
+    WindowGLFW::eventHandling();
+#endif
+}
+
+void Window::swapBuffers() {
+#ifdef USING_SDL
+    WindowSDL::swapBuffers();
+#elif defined(USING_GLFW)
+    WindowGLFW::swapBuffers();
+#endif
+}
+
+void Window::shutdown() {
+    shutdownGL();
+
+#ifdef USING_SDL
+    WindowSDL::shutdown();
+#elif defined(USING_GLFW)
+    WindowGLFW::shutdown();
+#endif
+}
+
+void Window::setSize(glm::vec2 s) {
+#ifdef USING_SDL
+    WindowSDL::setSize(s);
+#elif defined(USING_GLFW)
+    WindowGLFW::setSize(s);
+#endif
+}
+
+glm::vec2 Window::getSize() {
+    glm::vec2 ret(-1, -1);
+#ifdef USING_SDL
+    ret = WindowSDL::getSize();
+#elif defined(USING_GLFW)
+    ret = WindowGLFW::getSize();
+#endif
+
+    return ret;
+}
+
+void Window::setFullscreen(bool f) {
+#ifdef USING_SDL
+    WindowSDL::setFullscreen(f);
+#elif defined(USING_GLFW)
+    WindowGLFW::setFullscreen(f);
+#endif
 }
 
 bool Window::getFullscreen() {
-    return mFullscreen;
+    bool ret = false;
+#ifdef USING_SDL
+    ret = WindowSDL::getFullscreen();
+#elif defined(USING_GLFW)
+    ret = WindowGLFW::getFullscreen();
+#endif
+
+    return ret;
+}
+
+void Window::setMousegrab(bool g) {
+#ifdef USING_SDL
+    WindowSDL::setMousegrab(g);
+#elif defined(USING_GLFW)
+    WindowGLFW::setMousegrab(g);
+#endif
 }
 
 bool Window::getMousegrab() {
-    return mMousegrab;
+    bool ret = false;
+#ifdef USING_SDL
+    ret = WindowSDL::getMousegrab();
+#elif defined(USING_GLFW)
+    ret = WindowGLFW::getMousegrab();
+#endif
+
+    return ret;
+}
+
+void Window::setTextInput(bool t) {
+#ifdef USING_SDL
+    WindowSDL::setTextInput(t);
+#elif defined(USING_GLFW)
+    WindowGLFW::setTextInput(t);
+#endif
 }
 
 bool Window::getTextInput() {
-    return mTextInput;
+    bool ret = false;
+#ifdef USING_SDL
+    ret = WindowSDL::getTextInput();
+#elif defined(USING_GLFW)
+    ret = WindowGLFW::getTextInput();
+#endif
+
+    return ret;
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------
 
 Shader Window::textShader;
 Shader Window::imguiShader;
@@ -59,6 +160,8 @@ int Window::initializeGL() {
 
     // Set up culling
     //glEnable(GL_CULL_FACE); //! \todo Transparency?
+
+    glPointSize(5.0f);
 
     if (textShader.compile(textShaderVertex, textShaderFragment) < 0)
         return -1;
@@ -102,44 +205,25 @@ void Window::shutdownGL() {
     glDeleteVertexArrays(1, &vertexArrayID);
 }
 
-void Window::resizeGL() {
-    // new matrix?
-}
-
 void Window::drawTextGL(std::vector<glm::vec2>& vertices, std::vector<glm::vec2>& uvs,
                         glm::vec4 color, unsigned int texture) {
     assert(vertices.size() == uvs.size());
     assert((vertices.size() % 3) == 0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, textShader.getBuffer(0));
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec2), &vertices[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, textShader.getBuffer(1));
-    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
-
+    textShader.bufferData(0, vertices);
+    textShader.bufferData(1, uvs);
     textShader.use();
-
-    glUniform2f(textShader.getUniform(0), getWindow().getWidth(), getWindow().getHeight());
-
-    getTextureManager().bindTextureId(texture, TextureManager::TextureStorage::SYSTEM, 0);
-    glUniform1i(textShader.getUniform(1), 0);
-
-    glUniform4fv(textShader.getUniform(2), 1, &color.r);
-
-    glEnableVertexAttribArray(0); // Vertices
-    glBindBuffer(GL_ARRAY_BUFFER, textShader.getBuffer(0));
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    glEnableVertexAttribArray(1); // UVs
-    glBindBuffer(GL_ARRAY_BUFFER, textShader.getBuffer(1));
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+    textShader.loadUniform(0, getSize());
+    textShader.loadUniform(1, texture, TextureManager::TextureStorage::SYSTEM);
+    textShader.loadUniform(2, color);
+    textShader.bindBuffer(0, 0, 2);
+    textShader.bindBuffer(1, 1, 2);
 
     glDisable(GL_DEPTH_TEST);
     glDrawArrays(GL_TRIANGLES, 0, vertices.size());
     glEnable(GL_DEPTH_TEST);
 
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
+    textShader.disableAttribs();
 }
 
 void Window::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
@@ -147,223 +231,36 @@ void Window::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uv
     assert(vertices.size() == uvs.size());
     assert((indices.size() % 3) == 0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(0));
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(1));
-    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(2));
-    glBufferData(GL_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0], GL_STATIC_DRAW);
-
+    textureShader.bufferData(0, vertices);
+    textureShader.bufferData(1, uvs);
+    textureShader.bufferData(2, indices);
     textureShader.use();
-
-    glUniformMatrix4fv(textureShader.getUniform(0), 1, GL_FALSE, &MVP[0][0]);
-
-    getTextureManager().bindTextureId(texture, TextureManager::TextureStorage::GAME, 0);
-    glUniform1i(textureShader.getUniform(1), 0);
-
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(0));
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, textureShader.getBuffer(1));
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, textureShader.getBuffer(2));
-
+    textureShader.loadUniform(0, MVP);
+    textureShader.loadUniform(1, texture, TextureManager::TextureStorage::GAME);
+    textureShader.bindBuffer(0, 0, 3);
+    textureShader.bindBuffer(1, 1, 2);
+    textureShader.bindBuffer(2);
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_SHORT, nullptr);
-
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
+    textureShader.disableAttribs();
 }
 
 void Window::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
-                    std::vector<unsigned short>& indices, glm::mat4 MVP) {
-    assert(vertices.size() == colors.size());
-    assert((indices.size() % 3) == 0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(0));
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(1));
-    glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), &colors[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(2));
-    glBufferData(GL_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0], GL_STATIC_DRAW);
-
-    colorShader.use();
-
-    glUniformMatrix4fv(colorShader.getUniform(0), 1, GL_FALSE, &MVP[0][0]);
-
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(0));
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(1));
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, colorShader.getBuffer(2));
-
-    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_SHORT, nullptr);
-
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
-}
-
-void Window::drawLinesGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
-                         std::vector<unsigned short>& indices, glm::mat4 MVP) {
+                    std::vector<unsigned short>& indices, glm::mat4 MVP, int mode) {
     assert(vertices.size() == colors.size());
 
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(0));
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(1));
-    glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), &colors[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(2));
-    glBufferData(GL_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0], GL_STATIC_DRAW);
-
+    colorShader.bufferData(0, vertices);
+    colorShader.bufferData(1, colors);
+    colorShader.bufferData(2, indices);
     colorShader.use();
-
-    glUniformMatrix4fv(colorShader.getUniform(0), 1, GL_FALSE, &MVP[0][0]);
-
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(0));
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, colorShader.getBuffer(1));
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, colorShader.getBuffer(2));
-
-    glDrawElements(GL_LINE_STRIP, indices.size(), GL_UNSIGNED_SHORT, nullptr);
-
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
+    colorShader.loadUniform(0, MVP);
+    colorShader.bindBuffer(0, 0, 3);
+    colorShader.bindBuffer(1, 1, 3);
+    colorShader.bindBuffer(2);
+    glDrawElements(mode, indices.size(), GL_UNSIGNED_SHORT, nullptr);
+    colorShader.disableAttribs();
 }
 
-// ----------------------------------------------------------------------------
-
-Shader::~Shader() {
-    if (programID >= 0)
-        glDeleteProgram(programID);
-
-    if (!buffers.empty())
-        glDeleteBuffers(buffers.size(), &buffers[0]);
-}
-
-int Shader::addUniform(const char* name) {
-    assert(programID >= 0);
-    int r = glGetUniformLocation(programID, name);
-    if (r < 0) {
-        getLog() << "Can't find GLSL Uniform \"" << name << "\"!" << Log::endl;
-        return -1;
-    }
-    uniforms.push_back(r);
-    return uniforms.size() - 1;
-}
-
-unsigned int Shader::getUniform(int n) {
-    assert(n >= 0);
-    assert(n < uniforms.size());
-    return uniforms.at(n);
-}
-
-void Shader::addBuffer(int n) {
-    int s = buffers.size();
-    for (int i = 0; i < n; i++)
-        buffers.push_back(0);
-    glGenBuffers(n, &buffers[s]);
-}
-
-unsigned int Shader::getBuffer(int n) {
-    assert(n >= 0);
-    assert(n < buffers.size());
-    return buffers.at(n);
-}
-
-void Shader::use() {
-    assert(programID >= 0);
-    glUseProgram(programID);
-}
-
-int Shader::compile(const char* vertex, const char* fragment) {
-    assert(vertex != nullptr);
-    assert(fragment != nullptr);
-
-    GLuint vertexID = glCreateShader(GL_VERTEX_SHADER);
-    GLuint fragmentID = glCreateShader(GL_FRAGMENT_SHADER);
-
-    GLint result = GL_FALSE;
-    GLint logLength = 0;
-
-    // Compile vertex shader
-    glShaderSource(vertexID, 1, &vertex, nullptr);
-    glCompileShader(vertexID);
-
-    // Check vertex shader
-    glGetShaderiv(vertexID, GL_COMPILE_STATUS, &result);
-    glGetShaderiv(vertexID, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
-        std::vector<char> message(logLength + 1);
-        glGetShaderInfoLog(vertexID, logLength, nullptr, &message[0]);
-        if (result != GL_TRUE)
-            getLog() << "Vertex Shader compilation error:" << Log::endl;
-        getLog() << &message[0] << Log::endl;
-        glDeleteShader(vertexID);
-        glDeleteShader(fragmentID);
-        return -1;
-    }
-
-    // Compile fragment shader
-    glShaderSource(fragmentID, 1, &fragment, nullptr);
-    glCompileShader(fragmentID);
-
-    // Check fragment shader
-    glGetShaderiv(fragmentID, GL_COMPILE_STATUS, &result);
-    glGetShaderiv(fragmentID, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
-        std::vector<char> message(logLength + 1);
-        glGetShaderInfoLog(fragmentID, logLength, nullptr, &message[0]);
-        if (result != GL_TRUE)
-            getLog() << "Fragment Shader compilation error:" << Log::endl;
-        getLog() << &message[0] << Log::endl;
-        glDeleteShader(vertexID);
-        glDeleteShader(fragmentID);
-        return -2;
-    }
-
-    // Link both shaders
-    programID = glCreateProgram();
-    glAttachShader(programID, vertexID);
-    glAttachShader(programID, fragmentID);
-    glLinkProgram(programID);
-
-    // Check resulting program
-    glGetProgramiv(programID, GL_LINK_STATUS, &result);
-    glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
-        std::vector<char> message(logLength + 1);
-        glGetProgramInfoLog(programID, logLength, nullptr, &message[0]);
-        if (result != GL_TRUE)
-            getLog() << "Shader link error:" << Log::endl;
-        getLog() << &message[0] << Log::endl;
-        glDeleteShader(vertexID);
-        glDeleteShader(fragmentID);
-        glDeleteProgram(programID);
-        return -3;
-    }
-
-    glDeleteShader(vertexID);
-    glDeleteShader(fragmentID);
-    return programID;
-}
-
-// ----------------------------------------------------------------------------
+// --------------------------------------
 // *INDENT-OFF*
 
 const char* Window::textShaderVertex = R"!?!(

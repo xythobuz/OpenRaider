@@ -25,7 +25,7 @@ void Room::display(glm::mat4 view, glm::mat4 projection) {
     }
 
     if (Render::getMode() == RenderMode::Wireframe)
-        bbox->display(projection * view, glm::vec3(0.0f, 1.0f, 0.0f));
+        bbox->display(projection * view);
 }
 
 bool Room::isWall(unsigned long sector) {

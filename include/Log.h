@@ -11,6 +11,8 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
 
 class Log {
   public:
@@ -33,6 +35,14 @@ class Log {
             printBuffer.str("");
         }
         return (*this);
+    }
+
+    Log& operator<< (const glm::vec2& v) {
+        return (*this) << v.x << " " << v.y;
+    }
+
+    Log& operator<< (const glm::vec3& v) {
+        return (*this) << v.x << " " << v.y << " " << v.z;
     }
 
   private:

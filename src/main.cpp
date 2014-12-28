@@ -28,14 +28,6 @@
 #include "system/Sound.h"
 #include "system/Window.h"
 
-#ifdef USING_SDL
-#include "system/WindowSDL.h"
-#elif defined(USING_GLFW)
-#include "system/WindowGLFW.h"
-#else
-#error No Windowing Library selected!
-#endif
-
 static std::string configFileToUse;
 
 static std::shared_ptr<Game> gGame;
@@ -43,7 +35,6 @@ static std::shared_ptr<Log> gLog;
 static std::shared_ptr<MenuFolder> gMenu;
 static std::shared_ptr<RunTime> gRunTime;
 static std::shared_ptr<TextureManager> gTextureManager;
-static std::shared_ptr<Window> gWindow;
 static std::shared_ptr<World> gWorld;
 
 Game& getGame() {
@@ -64,10 +55,6 @@ RunTime& getRunTime() {
 
 TextureManager& getTextureManager() {
     return *gTextureManager;
-}
-
-Window& getWindow() {
-    return *gWindow;
 }
 
 World& getWorld() {
@@ -93,35 +80,22 @@ int main(int argc, char* argv[]) {
     gTextureManager.reset(new TextureManager());
     gWorld.reset(new World());
 
-#ifdef USING_SDL
-    gWindow.reset(new WindowSDL());
-#elif defined(USING_GLFW)
-    gWindow.reset(new WindowGLFW());
-#endif
-
     Command::fillCommandList();
 
     getLog() << "Initializing " << VERSION << Log::endl;
 
     // Initialize Windowing
-    int error = getWindow().initialize();
+    int error = Window::initialize();
     if (error != 0) {
-        std::cout << "Could not initialize Window (" << error << ")!" << std::endl;
+        std::cout << "Could not initialize Window/GL (" << error << ")!" << std::endl;
         return -1;
-    }
-
-    // Initialize OpenGL
-    error = getWindow().initializeGL();
-    if (error != 0) {
-        std::cout << "Could not initialize OpenGL (" << error << ")!" << std::endl;
-        return -2;
     }
 
     // Initialize Texture Manager
     error = getTextureManager().initialize();
     if (error != 0) {
         std::cout << "Could not initialize TextureManager (" << error << ")!" << std::endl;
-        return -3;
+        return -2;
     }
 
     if (configFileToUse == "") {
@@ -141,35 +115,35 @@ int main(int argc, char* argv[]) {
     error = getTextureManager().initializeSplash();
     if (error != 0) {
         std::cout << "Coult not load Splash Texture (" << error << ")!" << std::endl;
-        return -4;
+        return -3;
     }
 
     // Initialize Sound
     error = Sound::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Sound (" << error << ")!" << std::endl;
-        return -5;
+        return -4;
     }
 
     // Initialize Menu
     error = getMenu().initialize();
     if (error != 0) {
         std::cout << "Could not initialize Menu (" << error << ")!" << std::endl;
-        return -6;
+        return -5;
     }
 
     // Initialize Debug UI
     error = UI::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Debug UI (" << error << ")!" << std::endl;
-        return -7;
+        return -6;
     }
 
     // Initialize Game Engine
     error = getGame().initialize();
     if (error != 0) {
         std::cout << "Could not initialize Game (" << error << ")!" << std::endl;
-        return -8;
+        return -7;
     }
 
     getLog() << "Starting " << VERSION << Log::endl;
@@ -178,14 +152,14 @@ int main(int argc, char* argv[]) {
     getRunTime().setRunning(true);
 
     while (getRunTime().isRunning()) {
-        getWindow().eventHandling();
+        Window::eventHandling();
         renderFrame();
     }
 
     UI::shutdown();
     Font::shutdown();
     Sound::shutdown();
-    Window::shutdownGL();
+    Window::shutdown();
 
 #ifdef DEBUG
     std::cout << std::endl;
@@ -203,7 +177,7 @@ void renderFrame() {
     getGame().display();
     getMenu().display();
     UI::display();
-    getWindow().swapBuffersGL();
+    Window::swapBuffers();
     getRunTime().updateFPS();
 }
 

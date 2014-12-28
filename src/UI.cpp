@@ -44,7 +44,7 @@ int UI::initialize() {
     logFilename = getRunTime().getBaseDir() + "/imgui_log.txt";
 
     ImGuiIO& io = ImGui::GetIO();
-    io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
+    io.DisplaySize = ImVec2(Window::getSize().x, Window::getSize().y);
     io.DeltaTime = 1.0f / 60.0f;
 
     io.IniFilename = iniFilename.c_str();
@@ -90,7 +90,7 @@ int UI::initialize() {
 
 void UI::eventsFinished() {
     ImGuiIO& io = ImGui::GetIO();
-    io.DisplaySize = ImVec2((float)getWindow().getWidth(), (float)getWindow().getHeight());
+    io.DisplaySize = ImVec2(Window::getSize().x, Window::getSize().y);
 
     static unsigned long lastTime = 0;
     io.DeltaTime = ((float)(systemTimerGet() - lastTime)) / 1000.0f;
@@ -175,12 +175,12 @@ void UI::eventsFinished() {
         visible = false;
     }
 
-    if (getWindow().getTextInput() != visible)
-        getWindow().setTextInput(visible);
+    if (Window::getTextInput() != visible)
+        Window::setTextInput(visible);
 
     bool input = !(visible || getMenu().isVisible());
-    if (getWindow().getMousegrab() != input)
-        getWindow().setMousegrab(input);
+    if (Window::getMousegrab() != input)
+        Window::setMousegrab(input);
 
     io.MouseWheel = 0;
 }
@@ -229,9 +229,9 @@ void UI::display() {
                 Sound::setEnabled(sound);
             }
             ImGui::SameLine();
-            bool fullscreen = getWindow().getFullscreen();
+            bool fullscreen = Window::getFullscreen();
             if (ImGui::Checkbox("Fullscreen##runtime", &fullscreen)) {
-                getWindow().setFullscreen(fullscreen);
+                Window::setFullscreen(fullscreen);
             }
 
             bool updateViewFrustum = Camera::getUpdateViewFrustum();
@@ -254,17 +254,17 @@ void UI::display() {
                 Sound::setVolume(vol);
             }
 
-            int w = getWindow().getWidth();
+            int w = Window::getSize().x;
             if (ImGui::InputInt("Width##runtime", &w, 10, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
                 if (w < 1)
                     w = 1;
-                getWindow().setSize(w, getWindow().getHeight());
+                Window::setSize(glm::vec2(w, Window::getSize().y));
             }
-            int h = getWindow().getHeight();
+            int h = Window::getSize().y;
             if (ImGui::InputInt("Height##runtime", &h, 10, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
                 if (h < 1)
                     h = 1;
-                getWindow().setSize(getWindow().getWidth(), h);
+                Window::setSize(glm::vec2(Window::getSize().x, h));
             }
 
             static int fr = 0;
@@ -677,23 +677,11 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
     glDisable(GL_DEPTH_TEST);
 
     Window::imguiShader.use();
-
-    glUniform2f(Window::imguiShader.getUniform(0), getWindow().getWidth(), getWindow().getHeight());
-
-    getTextureManager().bindTextureId(fontTex, TextureManager::TextureStorage::SYSTEM, 0);
-    glUniform1i(Window::imguiShader.getUniform(1), 0);
-
-    glEnableVertexAttribArray(0); // Vertices
-    glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(0));
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    glEnableVertexAttribArray(1); // UVs
-    glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(1));
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    glEnableVertexAttribArray(2); // Colors
-    glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(2));
-    glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
+    Window::imguiShader.loadUniform(0, Window::getSize());
+    Window::imguiShader.loadUniform(1, fontTex, TextureManager::TextureStorage::SYSTEM);
+    Window::imguiShader.bindBuffer(0, 0, 2);
+    Window::imguiShader.bindBuffer(1, 1, 2);
+    Window::imguiShader.bindBuffer(2, 2, 4);
 
     std::vector<glm::vec2> vertices;
     std::vector<glm::vec2> uvs;
@@ -724,17 +712,12 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
 
             offset += commands[n].vtx_count;
 
-            glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(0));
-            glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec2), &vertices[0], GL_STATIC_DRAW);
-
-            glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(1));
-            glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
-
-            glBindBuffer(GL_ARRAY_BUFFER, Window::imguiShader.getBuffer(2));
-            glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec4), &colors[0], GL_STATIC_DRAW);
+            Window::imguiShader.bufferData(0, vertices);
+            Window::imguiShader.bufferData(1, uvs);
+            Window::imguiShader.bufferData(2, colors);
 
             glScissor(commands[n].clip_rect.x,
-                      getWindow().getHeight() - commands[n].clip_rect.w,
+                      Window::getSize().y - commands[n].clip_rect.w,
                       commands[n].clip_rect.z - commands[n].clip_rect.x,
                       commands[n].clip_rect.w - commands[n].clip_rect.y);
 
@@ -746,9 +729,7 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
         }
     }
 
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
-    glDisableVertexAttribArray(2);
+    Window::imguiShader.disableAttribs();
 
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_SCISSOR_TEST);

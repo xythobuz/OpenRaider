@@ -77,14 +77,14 @@ int CommandSet::execute(std::istream& args) {
             getLog() << "set-size-Error: Invalid value(s)" << Log::endl;
             return -2;
         }
-        getWindow().setSize(w, h);
+        Window::setSize(glm::vec2(w, h));
     } else if (var.compare("fullscreen") == 0) {
         bool fullscreen = false;
         if (!(args >> fullscreen)) {
             getLog() << "set-fullscreen-Error: Invalid value" << Log::endl;
             return -3;
         }
-        getWindow().setFullscreen(fullscreen);
+        Window::setFullscreen(fullscreen);
     } else if (var.compare("audio") == 0) {
         bool audio = false;
         if (!(args >> audio)) {
@@ -181,9 +181,9 @@ int CommandGet::execute(std::istream& args) {
     args >> var;
 
     if (var.compare("size") == 0) {
-        getLog() << getWindow().getWidth() << " " << getWindow().getHeight() << Log::endl;
+        getLog() << Window::getSize() << Log::endl;
     } else if (var.compare("fullscreen") == 0) {
-        getLog() << getWindow().getFullscreen() << Log::endl;
+        getLog() << Window::getFullscreen() << Log::endl;
     } else if (var.compare("audio") == 0) {
         getLog() << Sound::getEnabled() << Log::endl;
     } else if (var.compare("volume") == 0) {

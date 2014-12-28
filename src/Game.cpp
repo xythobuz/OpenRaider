@@ -53,19 +53,19 @@ void Game::display() {
     if (getRunTime().getShowFPS()) {
         std::ostringstream s;
         s << getRunTime().getFPS() << "FPS";
-        Font::drawText(10, getWindow().getHeight() - 25, 0.6f, BLUE, s.str());
+        Font::drawText(10, Window::getSize().y - 25, 0.6f, BLUE, s.str());
 
         s.str("");
         s << "X: " << Camera::getPosition().x << " (" << Camera::getRotation().x << ")";
-        Font::drawText(10, getWindow().getHeight() - 70, 0.6f, BLUE, s.str());
+        Font::drawText(10, Window::getSize().y - 70, 0.6f, BLUE, s.str());
 
         s.str("");
         s << "Y: " << Camera::getPosition().y << " (" << Camera::getRotation().y << ")";
-        Font::drawText(10, getWindow().getHeight() - 55, 0.6f, BLUE, s.str());
+        Font::drawText(10, Window::getSize().y - 55, 0.6f, BLUE, s.str());
 
         s.str("");
         s << "Z: " << Camera::getPosition().z;
-        Font::drawText(10, getWindow().getHeight() - 40, 0.6f, BLUE, s.str());
+        Font::drawText(10, Window::getSize().y - 40, 0.6f, BLUE, s.str());
     }
 }
 
