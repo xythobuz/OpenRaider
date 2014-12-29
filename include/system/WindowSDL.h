@@ -9,6 +9,7 @@
 #define _WINDOW_SDL_H_
 
 #include <glm/vec2.hpp>
+#include <glm/gtc/type_precision.hpp>
 
 #include "SDL.h"
 
@@ -19,8 +20,8 @@ class WindowSDL {
     static void swapBuffers();
     static void shutdown();
 
-    static void setSize(glm::vec2 s);
-    static glm::vec2 getSize() { return size; }
+    static void setSize(glm::i32vec2 s);
+    static glm::i32vec2 getSize() { return size; }
 
     static void setFullscreen(bool f);
     static bool getFullscreen() { return fullscreen; }
@@ -32,7 +33,7 @@ class WindowSDL {
     static bool getTextInput() { return textinput; }
 
   private:
-    static glm::vec2 size;
+    static glm::i32vec2 size;
     static bool fullscreen;
     static bool mousegrab;
     static bool textinput;

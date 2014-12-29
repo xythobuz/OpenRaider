@@ -10,13 +10,14 @@
 #define _RENDER_H_
 
 #include <vector>
+#include <glm/vec2.hpp>
 #include <glm/vec4.hpp>
+#include <glm/gtc/type_precision.hpp>
 
 #include "Room.h"
 #include "TextureManager.h"
 
 enum class RenderMode {
-    Disabled,
     LoadScreen,
     Solid,
     Wireframe,

@@ -12,22 +12,24 @@
 #include <glm/vec3.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <glm/gtc/type_precision.hpp>
 
 #include "RoomData.h"
 
 class Camera {
   public:
-
     static void reset();
     static bool update();
+    static void setSize(glm::i32vec2 s);
 
     static void handleAction(ActionEvents action, bool isFinished);
     static void handleMouseMotion(int x, int y);
     static void handleControllerAxis(float value, KeyboardButton axis);
     static void handleControllerButton(KeyboardButton button, bool released);
 
-    static void setPosition(glm::vec3 p) { pos = p; }
-    static glm::vec3 getPosition() { return pos; }
+    //! \fixme The Y axis seems to be the source of all evil?
+    static void setPosition(glm::vec3 p) { pos = glm::vec3(p.x, -p.y, p.z); }
+    static glm::vec3 getPosition() { return glm::vec3(pos.x, -pos.y, pos.z); }
 
     static glm::vec2 getRotation();
     static glm::mat4 getProjectionMatrix() { return projection; }
@@ -49,10 +51,10 @@ class Camera {
     static void calculateFrustumPlanes();
 
     static glm::vec3 pos;
+    static glm::vec3 drawPos;
     static glm::quat quaternion;
     static glm::vec3 posSpeed;
     static glm::vec2 rotSpeed;
-    static glm::vec2 lastSize;
     static glm::mat4 projection;
     static glm::mat4 view;
     static float rotationDeltaX, rotationDeltaY;

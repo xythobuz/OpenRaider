@@ -6,7 +6,9 @@
  */
 
 #include "global.h"
+#include "Camera.h"
 #include "Log.h"
+#include "UI.h"
 #include "utils/strings.h"
 #include "system/Window.h"
 
@@ -58,16 +60,20 @@ void Window::shutdown() {
 #endif
 }
 
-void Window::setSize(glm::vec2 s) {
+void Window::setSize(glm::i32vec2 s) {
 #ifdef USING_SDL
     WindowSDL::setSize(s);
 #elif defined(USING_GLFW)
     WindowGLFW::setSize(s);
 #endif
+
+    UI::setSize(s);
+    Camera::setSize(s);
+    glViewport(0, 0, s.x, s.y);
 }
 
-glm::vec2 Window::getSize() {
-    glm::vec2 ret(-1, -1);
+glm::i32vec2 Window::getSize() {
+    glm::i32vec2 ret(-1, -1);
 #ifdef USING_SDL
     ret = WindowSDL::getSize();
 #elif defined(USING_GLFW)

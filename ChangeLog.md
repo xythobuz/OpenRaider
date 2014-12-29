@@ -9,6 +9,9 @@
     * Now storing screenshots in PNG format
     * Updated imgui
     * Fixed StaticMesh Y-offset (position Y needed to be flipped)
+    * Draw Camera position along with view frustum
+    * _Fixed_ Camera position Y offset
+    * Window resizing working properly again
 
     [ 20141228 ]
     * Room Bounding Boxes are now visualized in Wireframe mode (again).

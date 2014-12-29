@@ -9,6 +9,7 @@
 #include <memory>
 
 #include "global.h"
+#include "Camera.h"
 #include "Exception.h"
 #include "Game.h"
 #include "Log.h"
@@ -139,6 +140,7 @@ int main(int argc, char* argv[]) {
     }
 
     getLog() << "Starting " << VERSION << Log::endl;
+    Camera::setSize(Window::getSize());
     getMenu().setVisible(true);
     systemTimerReset();
     RunTime::setRunning(true);

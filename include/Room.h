@@ -24,12 +24,10 @@ enum RoomFlags {
 class Room {
   public:
     Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
-         int a, int x, int z)
-        : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f), alternateRoom(a),
-          numXSectors(x), numZSectors(z) { }
+         int a, int x, int z);
 
     void prepare() { mesh->prepare(); }
-    void display(glm::mat4 view, glm::mat4 projection);
+    void display(glm::mat4 VP);
 
     bool isWall(unsigned long sector);
     long getSector(float x, float z, float* floor, float* ceiling);
@@ -68,13 +66,14 @@ class Room {
 
   private:
     glm::vec3 pos;
+    glm::mat4 model;
     std::unique_ptr<BoundingBox> bbox;
     std::unique_ptr<RoomMesh> mesh;
 
     unsigned int flags;
+    int alternateRoom;
     int numXSectors;
     int numZSectors;
-    int alternateRoom;
 
     std::vector<std::unique_ptr<Sprite>> sprites;
     std::vector<std::unique_ptr<StaticModel>> models;

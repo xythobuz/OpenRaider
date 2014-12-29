@@ -16,16 +16,23 @@
 #include "Room.h"
 #include "TextureManager.h"
 
-void Room::display(glm::mat4 view, glm::mat4 projection) {
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos[0], pos[1], pos[2]));
-    mesh->display(model, view, projection);
+Room::Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
+           int a, int x, int z) : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f),
+                                  alternateRoom(a), numXSectors(x), numZSectors(z) {
+    model = glm::translate(glm::mat4(1.0f), pos);
+}
+
+void Room::display(glm::mat4 VP) {
+    glm::mat4 MVP = VP * model;
+
+    mesh->display(MVP);
 
     for (auto& m : models) {
-        m->display(view, projection);
+        m->display(VP);
     }
 
     if (Render::getMode() == RenderMode::Wireframe)
-        bbox->display(projection * view, glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f));
+        bbox->display(VP, glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f));
 }
 
 bool Room::isWall(unsigned long sector) {

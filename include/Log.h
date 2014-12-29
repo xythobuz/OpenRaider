@@ -13,6 +13,7 @@
 #include <vector>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+#include <glm/gtc/type_precision.hpp>
 
 class Log {
   public:
@@ -38,6 +39,10 @@ class Log {
     }
 
     Log& operator<< (const glm::vec2& v) {
+        return (*this) << v.x << " " << v.y;
+    }
+
+    Log& operator<< (const glm::i32vec2& v) {
         return (*this) << v.x << " " << v.y;
     }
 

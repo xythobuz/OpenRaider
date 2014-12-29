@@ -6,7 +6,6 @@
  */
 
 #include "global.h"
-#include "Game.h"
 #include "Log.h"
 #include "Render.h"
 #include "commands/CommandRender.h"
@@ -27,16 +26,10 @@ void CommandMode::printHelp() {
     getLog() << "  solid" << Log::endl;
     getLog() << "  texture" << Log::endl;
     getLog() << "  titlescreen" << Log::endl;
-    getLog() << "  disabled" << Log::endl;
 
 }
 
 int CommandMode::execute(std::istream& args) {
-    if (!getGame().isLoaded()) {
-        getLog() << "Load a level to set the mode!" << Log::endl;
-        return -1;
-    }
-
     std::string s;
     args >> s;
 
@@ -52,9 +45,6 @@ int CommandMode::execute(std::istream& args) {
     } else if (s == "titlescreen") {
         Render::setMode(RenderMode::LoadScreen);
         getLog() << "Titlescreen mode" << Log::endl;
-    } else if (s == "disabled") {
-        Render::setMode(RenderMode::Disabled);
-        getLog() << "Disabled mode" << Log::endl;
     } else {
         getLog() << "Invalid use of mode command (" << s << ")!" << Log::endl;
         return -2;

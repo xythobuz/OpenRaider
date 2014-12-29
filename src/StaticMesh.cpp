@@ -10,14 +10,12 @@
 #include "World.h"
 #include "StaticMesh.h"
 
-void StaticMesh::display(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {
-    getWorld().getMesh(mesh).display(model, view, projection);
+void StaticMesh::display(glm::mat4 MVP) {
+    getWorld().getMesh(mesh).display(MVP);
 
     if (Render::getMode() == RenderMode::Wireframe) {
-        bbox1->display(projection * view * model,
-                       glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        bbox2->display(projection * view * model,
-                       glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        bbox1->display(MVP, glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        bbox2->display(MVP, glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
     }
 }
 

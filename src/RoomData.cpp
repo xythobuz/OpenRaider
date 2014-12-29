@@ -55,7 +55,13 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
 
 // ----------------------------------------------------------------------------
 
-void StaticModel::display(glm::mat4 view, glm::mat4 projection) {
+StaticModel::StaticModel(glm::vec3 pos, float angle, int i) : id(i), cache(-1) {
+    glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
+    glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translate * rotate;
+}
+
+void StaticModel::display(glm::mat4 VP) {
     if (cache < 0) {
         for (int i = 0; i < getWorld().sizeStaticMesh(); i++) {
             if (getWorld().getStaticMesh(i).getID() == id) {
@@ -65,10 +71,7 @@ void StaticModel::display(glm::mat4 view, glm::mat4 projection) {
         assert(cache >= 0);
     }
 
-    glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
-    glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
-    glm::mat4 model = translate * rotate;
-    getWorld().getStaticMesh(cache).display(model, view, projection);
+    getWorld().getStaticMesh(cache).display(VP * model);
 }
 
 // ----------------------------------------------------------------------------

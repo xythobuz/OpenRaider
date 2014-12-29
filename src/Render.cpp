@@ -23,7 +23,7 @@
 #include "utils/strings.h"
 #include "Render.h"
 
-RenderMode Render::mode = RenderMode::Disabled;
+RenderMode Render::mode = RenderMode::LoadScreen;
 std::vector<Room*> Render::roomList;
 bool Render::displayViewFrustum = false;
 
@@ -34,8 +34,6 @@ RenderMode Render::getMode() {
 void Render::setMode(RenderMode m) {
     mode = m;
     switch (mode) {
-        case RenderMode::Disabled:
-            break;
         case RenderMode::Solid:
         case RenderMode::Wireframe:
             //glClearColor(PURPLE[0] / 256.0f, PURPLE[1] / 256.0f,
@@ -56,8 +54,6 @@ void Render::display() {
         drawTexture(0.0f, 0.0f, Window::getSize().x, Window::getSize().y,
                     color, TEXTURE_SPLASH, TextureManager::TextureStorage::SYSTEM);
         return;
-    } else if (mode == RenderMode::Disabled) {
-        return;
     }
 
     if (mode == RenderMode::Wireframe) {
@@ -69,19 +65,18 @@ void Render::display() {
     if (Camera::update()) {
         clearRoomList();
         buildRoomList(-2); // TODO cache room
-        std::cout << "Rendering " << roomList.size() << "/"
-                  << getWorld().sizeRoom() << " rooms..." << std::endl;
     }
 
     glm::mat4 projection = Camera::getProjectionMatrix();
     glm::mat4 view = Camera::getViewMatrix();
+    glm::mat4 VP = projection * view;
 
     for (auto r : roomList) {
-        r->display(view, projection);
+        r->display(VP);
     }
 
     if (displayViewFrustum)
-        Camera::displayFrustum(projection * view);
+        Camera::displayFrustum(VP);
 
     if (mode == RenderMode::Wireframe) {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -101,7 +96,6 @@ void Render::buildRoomList(int room) {
                 return;
             }
         }
-        std::cout << "Camera not found!" << std::endl;
         buildRoomList(-1);
     } else if (room == -1) {
         // Check visibility for all rooms!
@@ -196,41 +190,37 @@ void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,
     Window::drawTextGL(vertices, uvs, color, texture);
 }
 
-static const int modeStringCount = 5;
+static const int modeStringCount = 4;
 static const char* modeStrings[modeStringCount] = {
-    "Disable", "Splash", "Texture", "Wireframe", "Solid"
+    "Splash", "Texture", "Wireframe", "Solid"
 };
 
 void Render::displayUI() {
-    if (ImGui::CollapsingHeader("Render Settings")) {
+    if (ImGui::CollapsingHeader("Render Settings##render")) {
         int item = 0;
-        if (mode == RenderMode::LoadScreen)
+        if (mode == RenderMode::Texture)
             item = 1;
-        else if (mode == RenderMode::Texture)
-            item = 2;
         else if (mode == RenderMode::Wireframe)
-            item = 3;
+            item = 2;
         else if (mode == RenderMode::Solid)
-            item = 4;
+            item = 3;
         if (ImGui::Combo("Mode", &item, modeStrings, modeStringCount)) {
             if (item == 0)
-                mode = RenderMode::Disabled;
-            else if (item == 1)
                 mode = RenderMode::LoadScreen;
-            else if (item == 2)
+            else if (item == 1)
                 mode = RenderMode::Texture;
-            else if (item == 3)
+            else if (item == 2)
                 mode = RenderMode::Wireframe;
-            else if (item == 4)
+            else if (item == 3)
                 mode = RenderMode::Solid;
         }
 
         bool updateViewFrustum = Camera::getUpdateViewFrustum();
-        if (ImGui::Checkbox("Update Frustum##runtime", &updateViewFrustum)) {
+        if (ImGui::Checkbox("Update Frustum##render", &updateViewFrustum)) {
             Camera::setUpdateViewFrustum(updateViewFrustum);
         }
         ImGui::SameLine();
-        ImGui::Checkbox("Show Frustum##runtime", &displayViewFrustum);
+        ImGui::Checkbox("Show Frustum##render", &displayViewFrustum);
     }
 }
 

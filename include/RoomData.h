@@ -10,6 +10,7 @@
 
 #include <memory>
 #include <vector>
+#include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
 
 class BoundingBox {
@@ -50,14 +51,13 @@ class BoundingBox {
 
 class StaticModel {
   public:
-    StaticModel(glm::vec3 p, float a, int i) : pos(p), angle(a), id(i), cache(-1) { }
-    void display(glm::mat4 view, glm::mat4 projection);
+    StaticModel(glm::vec3 pos, float angle, int i);
+    void display(glm::mat4 VP);
 
   private:
-    glm::vec3 pos;
-    float angle;
     int id;
     int cache;
+    glm::mat4 model;
 };
 
 // --------------------------------------

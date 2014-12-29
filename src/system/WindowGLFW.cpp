@@ -11,10 +11,11 @@
 #include "Log.h"
 #include "RunTime.h"
 #include "UI.h"
+#include "system/Window.h"
 #include "utils/strings.h"
 #include "system/WindowGLFW.h"
 
-glm::vec2 WindowGLFW::size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+glm::i32vec2 WindowGLFW::size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 bool WindowGLFW::fullscreen = false;
 bool WindowGLFW::mousegrab = false;
 bool WindowGLFW::textinput = false;
@@ -78,7 +79,7 @@ void WindowGLFW::shutdown() {
     }
 }
 
-void WindowGLFW::setSize(glm::vec2 s) {
+void WindowGLFW::setSize(glm::i32vec2 s) {
     assert((s.x > 0) && (s.y > 0));
     if (window) {
         if ((size.x != s.x) || (size.y != s.y)) {
@@ -113,7 +114,8 @@ void WindowGLFW::errorCallback(int error, const char* desc) {
 }
 
 void WindowGLFW::sizeCallback(GLFWwindow* w, int width, int height) {
-    size = glm::vec2(width, height);
+    size = glm::i32vec2(width, height);
+    Window::setSize(size);
 }
 
 void WindowGLFW::cursorCallback(GLFWwindow* w, double xpos, double ypos) {

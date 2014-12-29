@@ -12,6 +12,8 @@
 #include <list>
 #include <memory>
 #include <tuple>
+#include <glm/vec2.hpp>
+#include <glm/gtc/type_precision.hpp>
 
 class ImDrawList;
 
@@ -21,6 +23,7 @@ class UI {
     static void eventsFinished();
     static void display();
     static void shutdown();
+    static void setSize(glm::i32vec2 s);
 
     static void setVisible(bool v);
     static bool isVisible();

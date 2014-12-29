@@ -42,10 +42,10 @@ const static glm::vec3 upUnit(0.0f, 1.0f, 0.0f);
 const static glm::vec3 dirUnit(0.0f, 0.0f, -1.0f);
 
 glm::vec3 Camera::pos(0.0f, 0.0f, 0.0f);
+glm::vec3 Camera::drawPos(0.0f, 0.0f, 0.0f);
 glm::quat Camera::quaternion(glm::vec3(0.0f, 0.0f, 0.0f));
 glm::vec3 Camera::posSpeed(0.0f, 0.0f, 0.0f);
 glm::vec2 Camera::rotSpeed(0.0f, 0.0f);
-glm::vec2 Camera::lastSize(0.0f, 0.0f);
 glm::mat4 Camera::projection(1.0f);
 glm::mat4 Camera::view(1.0f);
 float Camera::rotationDeltaX = 0.75f;
@@ -55,13 +55,20 @@ bool Camera::dirty = true;
 
 void Camera::reset() {
     pos = glm::vec3(0.0f, 0.0f, 0.0f);
+    drawPos = glm::vec3(0.0f, 0.0f, 0.0f);
     quaternion = glm::quat(glm::vec3(0.0f, 0.0f, 0.0f));
     posSpeed = glm::vec3(0.0f, 0.0f, 0.0f);
     rotSpeed = glm::vec2(0.0f, 0.0f);
     dirty = true;
-    lastSize = glm::vec2(0.0f, 0.0f);
     projection = glm::mat4(1.0f);
     view = glm::mat4(1.0f);
+
+    setSize(Window::getSize());
+}
+
+void Camera::setSize(glm::i32vec2 s) {
+    //! \fixme TODO instead of mirroring the Y axis in the shader, scale with -1 here
+    projection = glm::perspective(fov, float(s.x) / float(s.y), nearDist, farDist);
 }
 
 void Camera::handleAction(ActionEvents action, bool isFinished) {
@@ -150,14 +157,6 @@ void Camera::handleControllerButton(KeyboardButton button, bool released) {
 }
 
 bool Camera::update() {
-    glm::vec2 size(Window::getSize());
-
-    if (lastSize != size) {
-        //! \fixme TODO instead of mirroring the Y axis in the shader, scale with -1 here
-        projection = glm::perspective(fov, size.x / size.y, nearDist, farDist);
-        lastSize = size;
-    }
-
     if ((!dirty) && equal(posSpeed, 0.0f) && equal(rotSpeed, 0.0f))
         return false;
 
@@ -259,6 +258,8 @@ void Camera::calculateFrustumPlanes() {
     planes[RIGHT].set(frustumVertices[NBR], frustumVertices[NTR], frustumVertices[FBR]);
     planes[NEAR].set(frustumVertices[NTL], frustumVertices[NTR], frustumVertices[NBR]);
     planes[FAR].set(frustumVertices[FTR], frustumVertices[FTL], frustumVertices[FBL]);
+
+    drawPos = getPosition();
 }
 
 bool Camera::boxInFrustum(BoundingBox b) {
@@ -334,5 +335,14 @@ void Camera::displayFrustum(glm::mat4 MVP) {
     }
 
     Window::drawGL(verts, cols, inds, MVP);
+
+    verts.clear();
+    cols.clear();
+    inds.clear();
+
+    verts.push_back(drawPos);
+    cols.push_back(glm::vec3(1.0f, 1.0f, 1.0f));
+    inds.push_back(0);
+    Window::drawGL(verts, cols, inds, MVP, GL_POINTS);
 }
 

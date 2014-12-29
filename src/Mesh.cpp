@@ -120,9 +120,7 @@ void Mesh::prepare() {
     colors = std::move(col);
 }
 
-void Mesh::display(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {
-    glm::mat4 MVP = projection * view * model;
-
+void Mesh::display(glm::mat4 MVP) {
     if (indices.size() > 0) {
         unsigned int indexStart = 0;
         unsigned int indexPos = 1;

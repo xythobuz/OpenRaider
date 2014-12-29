@@ -33,7 +33,7 @@ class RoomMesh {
              const std::vector<IndexedRectangle>& rectangles,
              const std::vector<IndexedRectangle>& triangles);
     void prepare();
-    void display(glm::mat4 model, glm::mat4 view, glm::mat4 projection);
+    void display(glm::mat4 MVP);
 
   private:
     std::vector<unsigned short> indices;

@@ -11,12 +11,13 @@
 #include "Log.h"
 #include "RunTime.h"
 #include "UI.h"
+#include "system/Window.h"
 #include "utils/strings.h"
 #include "system/WindowSDL.h"
 
 #define SUBSYSTEMS_USED (SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER)
 
-glm::vec2 WindowSDL::size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+glm::i32vec2 WindowSDL::size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 bool WindowSDL::fullscreen = false;
 bool WindowSDL::mousegrab = false;
 bool WindowSDL::textinput = false;
@@ -457,8 +458,10 @@ void WindowSDL::eventHandling() {
                 break;
 
             case SDL_WINDOWEVENT:
-                if (event.window.event == SDL_WINDOWEVENT_RESIZED)
-                    setSize(glm::vec2(event.window.data1, event.window.data2));
+                if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+                    size = glm::i32vec2(event.window.data1, event.window.data2);
+                    Window::setSize(size);
+                }
                 break;
 
             case SDL_QUIT:
@@ -493,12 +496,14 @@ void WindowSDL::shutdown() {
     }
 }
 
-void WindowSDL::setSize(glm::vec2 s) {
+void WindowSDL::setSize(glm::i32vec2 s) {
     assert((s.x > 0) && (s.y > 0));
-
+    if (window) {
+        if ((s.x != size.x) || (s.y != size.y)) {
+            SDL_SetWindowSize(window, size.x, size.y);
+        }
+    }
     size = s;
-    if (window)
-        SDL_SetWindowSize(window, size.x, size.y);
 }
 
 void WindowSDL::setFullscreen(bool f) {

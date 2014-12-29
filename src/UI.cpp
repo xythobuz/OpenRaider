@@ -39,6 +39,11 @@ std::list<std::tuple<unsigned int, unsigned int, KeyboardButton, bool>> UI::clic
 std::list<std::tuple<int, int, int, int>> UI::motionEvents;
 std::list<std::tuple<int, int>> UI::scrollEvents;
 
+void UI::setSize(glm::i32vec2 s) {
+    ImGuiIO& io = ImGui::GetIO();
+    io.DisplaySize = ImVec2(s.x, s.y);
+}
+
 int UI::initialize() {
     iniFilename = RunTime::getBaseDir() + "/imgui.ini";
     logFilename = RunTime::getBaseDir() + "/imgui_log.txt";

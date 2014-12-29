@@ -13,6 +13,7 @@
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
+#include <glm/gtc/type_precision.hpp>
 
 #include "Shader.h"
 
@@ -23,8 +24,8 @@ class Window {
     static void swapBuffers();
     static void shutdown();
 
-    static void setSize(glm::vec2 s);
-    static glm::vec2 getSize();
+    static void setSize(glm::i32vec2 s);
+    static glm::i32vec2 getSize();
 
     static void setFullscreen(bool f);
     static bool getFullscreen();

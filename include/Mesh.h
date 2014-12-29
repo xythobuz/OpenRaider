@@ -43,7 +43,7 @@ class Mesh {
          const std::vector<IndexedColoredRectangle>& coloredRectangles,
          const std::vector<IndexedColoredRectangle>& coloredTriangles);
     void prepare();
-    void display(glm::mat4 model, glm::mat4 view, glm::mat4 projection);
+    void display(glm::mat4 MVP);
 
   private:
     std::vector<unsigned short> indices;

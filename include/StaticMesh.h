@@ -16,7 +16,7 @@ class StaticMesh {
   public:
     StaticMesh(int i, int m, BoundingBox* b1, BoundingBox* b2)
         : id(i), mesh(m), bbox1(b1), bbox2(b2) { }
-    void display(glm::mat4 model, glm::mat4 view, glm::mat4 projection);
+    void display(glm::mat4 MVP);
 
     int getID() { return id; }
 
