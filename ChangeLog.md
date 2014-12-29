@@ -8,6 +8,7 @@
     * Now using stb_image for all image loading (except pcx format)
     * Now storing screenshots in PNG format
     * Updated imgui
+    * Fixed StaticMesh Y-offset (position Y needed to be flipped)
 
     [ 20141228 ]
     * Room Bounding Boxes are now visualized in Wireframe mode (again).

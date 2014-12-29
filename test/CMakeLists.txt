@@ -8,27 +8,17 @@ add_custom_target (check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 
 add_executable (tester_binary EXCLUDE_FROM_ALL
     "binary.cpp" "../src/utils/binary.cpp"
-    "../src/Exception.cpp" "../src/main.cpp"
+    "../src/Exception.cpp"
 )
 add_dependencies (check tester_binary)
 add_test (NAME test_binary COMMAND tester_binary)
 
 #################################################################
 
-add_executable (tester_loader EXCLUDE_FROM_ALL
-    "Loader.cpp" "../src/utils/binary.cpp"
-    "../src/loader/Loader.cpp" "../src/loader/LoaderTR1.cpp"
-    "../src/loader/LoaderTR2.cpp" "../src/loader/LoaderTR3.cpp"
-)
-#add_dependencies (check tester_loader)
-#add_test (NAME test_loader COMMAND tester_loader)
-
-#################################################################
-
 add_executable (tester_script EXCLUDE_FROM_ALL
     "Script.cpp" "ScriptPayload.h" "ScriptTest.h"
-    "../src/Script.cpp" "../src/main.cpp"
-    "../src/utils/binary.cpp" "../src/Exception.cpp"
+    "../src/Script.cpp" "../src/Exception.cpp"
+    "../src/utils/binary.cpp"
 )
 
 find_package (ZLIB REQUIRED)

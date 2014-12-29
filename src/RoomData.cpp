@@ -65,7 +65,7 @@ void StaticModel::display(glm::mat4 view, glm::mat4 projection) {
         assert(cache >= 0);
     }
 
-    glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
+    glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
     glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 model = translate * rotate;
     getWorld().getStaticMesh(cache).display(model, view, projection);

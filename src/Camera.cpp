@@ -94,8 +94,8 @@ void Camera::handleMouseMotion(int x, int y) {
         dirty = true;
     }
 
-    static int lastDir = 0;
     if (y != 0) {
+        static int lastDir = 0;
         float a = glm::dot(upUnit, quaternion * upUnit);
         if (((lastDir >= 0) && (y < 0)) || ((lastDir <= 0) && (y > 0)) || (a > 0.5f)) {
             quaternion = glm::quat(quaternion * -rightUnit * (rotationDeltaY * y)) * quaternion;

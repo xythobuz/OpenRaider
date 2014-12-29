@@ -10,12 +10,6 @@
 
 #include "global.h"
 #include "Exception.h"
-#include "commander/commander.h"
-#include "commands/Command.h"
-#include "utils/time.h"
-
-#ifndef UNIT_TEST
-
 #include "Game.h"
 #include "Log.h"
 #include "MenuFolder.h"
@@ -24,9 +18,12 @@
 #include "TextureManager.h"
 #include "UI.h"
 #include "World.h"
+#include "commander/commander.h"
+#include "commands/Command.h"
 #include "system/Font.h"
 #include "system/Sound.h"
 #include "system/Window.h"
+#include "utils/time.h"
 
 static std::string configFileToUse;
 
@@ -175,8 +172,6 @@ void renderFrame() {
     Window::swapBuffers();
     RunTime::updateFPS();
 }
-
-#endif // UNIT_TEST
 
 #if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
 #ifndef NDEBUG

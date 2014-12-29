@@ -196,12 +196,12 @@ void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,
     Window::drawTextGL(vertices, uvs, color, texture);
 }
 
-void Render::displayUI() {
-    static const int modeStringCount = 5;
-    static const char* modeStrings[modeStringCount] = {
-        "Disable", "Splash", "Texture", "Wireframe", "Solid"
-    };
+static const int modeStringCount = 5;
+static const char* modeStrings[modeStringCount] = {
+    "Disable", "Splash", "Texture", "Wireframe", "Solid"
+};
 
+void Render::displayUI() {
     if (ImGui::CollapsingHeader("Render Settings")) {
         int item = 0;
         if (mode == RenderMode::LoadScreen)

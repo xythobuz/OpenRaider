@@ -19,11 +19,13 @@
 #endif
 
 int Window::initialize() {
-    int res = -1;
+    int res;
 #ifdef USING_SDL
     res = WindowSDL::initialize();
 #elif defined(USING_GLFW)
     res = WindowGLFW::initialize();
+#else
+    res = -1;
 #endif
 
     initializeGL();
@@ -84,11 +86,13 @@ void Window::setFullscreen(bool f) {
 }
 
 bool Window::getFullscreen() {
-    bool ret = false;
+    bool ret;
 #ifdef USING_SDL
     ret = WindowSDL::getFullscreen();
 #elif defined(USING_GLFW)
     ret = WindowGLFW::getFullscreen();
+#else
+    ret = false;
 #endif
 
     return ret;
@@ -103,11 +107,13 @@ void Window::setMousegrab(bool g) {
 }
 
 bool Window::getMousegrab() {
-    bool ret = false;
+    bool ret;
 #ifdef USING_SDL
     ret = WindowSDL::getMousegrab();
 #elif defined(USING_GLFW)
     ret = WindowGLFW::getMousegrab();
+#else
+    ret = false;
 #endif
 
     return ret;
@@ -122,11 +128,13 @@ void Window::setTextInput(bool t) {
 }
 
 bool Window::getTextInput() {
-    bool ret = false;
+    bool ret;
 #ifdef USING_SDL
     ret = WindowSDL::getTextInput();
 #elif defined(USING_GLFW)
     ret = WindowGLFW::getTextInput();
+#else
+    ret = false;
 #endif
 
     return ret;

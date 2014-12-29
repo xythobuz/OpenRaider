@@ -36,7 +36,7 @@ class RunTime {
     static void setRunning(bool run) { gameIsRunning = run; }
 
     static bool getShowFPS() { return showFPS; }
-    static void setShowFPS(bool fps) { showFPS = fps; }
+    static void setShowFPS(bool f) { showFPS = f; }
 
     static unsigned long getFPS() { return fps; }
     static const std::vector<float>& getHistoryFPS() { return history; }
