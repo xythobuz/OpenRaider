@@ -2,6 +2,13 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141229 ]
+    * Removed utils/png, utils/tga image readers
+    * Included current stb_image, stb_image_write and stb_textedit
+    * Now using stb_image for all image loading (except pcx format)
+    * Now storing screenshots in PNG format
+    * Updated imgui
+
     [ 20141228 ]
     * Room Bounding Boxes are now visualized in Wireframe mode (again).
     * Window/WindowSDL/WindowGLFW are now completely static.

@@ -107,10 +107,7 @@ class TextureManager {
 
   private:
     std::vector<unsigned int>& getIds(TextureStorage s);
-
-    int loadTGA(const char* filename, TextureStorage s, int slot);
     int loadPCX(const char* filename, TextureStorage s, int slot);
-    int loadPNG(const char* filename, TextureStorage s, int slot);
 
     std::vector<unsigned int> mTextureIdsGame;
     std::vector<unsigned int> mTextureIdsSystem;

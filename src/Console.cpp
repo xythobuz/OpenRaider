@@ -7,6 +7,8 @@
 
 #include <cstring>
 
+#include "imgui/imgui.h"
+
 #include "global.h"
 #include "Log.h"
 #include "UI.h"

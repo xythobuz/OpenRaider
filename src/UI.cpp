@@ -8,6 +8,9 @@
 #include <algorithm>
 #include <cstring>
 
+#include "imgui/imgui.h"
+#include "stb/stb_image.h"
+
 #include "global.h"
 #include "Camera.h"
 #include "Console.h"
@@ -24,9 +27,6 @@
 #include "system/Window.h"
 #include "utils/time.h"
 #include "UI.h"
-
-#define STB_IMAGE_IMPLEMENTATION
-#include "imgui/stb_image.h"
 
 bool UI::visible = false;
 unsigned int UI::fontTex;
@@ -191,7 +191,9 @@ void UI::display() {
 
     Console::display();
 
+    static bool showTestWindow = false;
     if (ImGui::Begin("Engine")) {
+        Render::displayUI();
         RunTime::display();
         SoundManager::display();
 
@@ -422,9 +424,16 @@ void UI::display() {
             //                   " the left side and scale with the size of this window!");
             //ImGui::Separator();
             ImGui::ShowUserGuide();
+            ImGui::Separator();
+            if (ImGui::Button("Show/Hide Test Window")) {
+                showTestWindow = !showTestWindow;
+            }
         }
     }
     ImGui::End();
+
+    if (showTestWindow)
+        ImGui::ShowTestWindow();
 
     ImGui::Render();
 }

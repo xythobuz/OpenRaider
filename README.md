@@ -46,7 +46,6 @@ Basically, OpenRaider depends on the following:
 * SDL2 or GLFW
 * SDL2-TTF (optional, doesn’t work with GLFW, needed if you want to use TTF fonts)
 * OpenAL & ALUT (optional, needed for sound output)
-* libpng (optional)
 
 On Mac OS X 10.9 / 10.10 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 

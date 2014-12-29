@@ -11,18 +11,15 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+#include "stb/stb_image.h"
+
 #include "global.h"
 #include "Log.h"
 #include "RunTime.h"
 #include "utils/pcx.h"
 #include "utils/pixel.h"
 #include "utils/strings.h"
-#include "utils/tga.h"
 #include "TextureManager.h"
-
-#ifdef USING_PNG
-#include "utils/png.h"
-#endif
 
 glm::vec2 TextureTile::getUV(unsigned int i) {
     glm::vec2 uv(vertices.at(i).xPixel,
@@ -150,9 +147,9 @@ int TextureManager::initializeSplash() {
 
     //! \fixme Temporary?
     std::string filename = RunTime::getPakDir() + "/tr2/TITLE.PCX";
-    if (loadPCX(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
+    if (loadImage(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
         filename = RunTime::getDataDir() + "/splash.tga";
-        if (loadTGA(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
+        if (loadImage(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
             return -2;
         }
     }
@@ -241,100 +238,56 @@ void TextureManager::bindTextureId(unsigned int n, TextureStorage s, unsigned in
 }
 
 int TextureManager::loadImage(const char* filename, TextureStorage s, int slot) {
+    //! \todo case insensitive compare
+
     if (stringEndsWith(filename, ".pcx") || stringEndsWith(filename, ".PCX")) {
         return loadPCX(filename, s, slot);
-    } else if (stringEndsWith(filename, ".png") || stringEndsWith(filename, ".PNG")) {
-        return loadPNG(filename, s, slot);
-    } else if (stringEndsWith(filename, ".tga") || stringEndsWith(filename, ".TGA")) {
-        return loadTGA(filename, s, slot);
     } else {
-        getLog() << "No known image file type? (" << filename << ")" << Log::endl;
+        int x, y, n;
+        unsigned char* data = stbi_load(filename, &x, &y, &n, 0);
+        if (data) {
+            if ((n < 3) || (n > 4)) {
+                getLog() << "Image \"" << filename << "\" has unsupported format ("
+                         << n << ")!" << Log::endl;
+                stbi_image_free(data);
+                return -2;
+            }
+            int id = loadBufferSlot(data, x, y, (n == 3) ? ColorMode::RGB : ColorMode::RGBA,
+                                    (n == 3) ? 24 : 32, s, slot);
+            stbi_image_free(data);
+            return id;
+        } else {
+            getLog() << "Can't load image \"" << filename << "\"!" << Log::endl;
+            return -1;
+        }
     }
-
-    return -1;
 }
 
 int TextureManager::loadPCX(const char* filename, TextureStorage s, int slot) {
     assert(filename != nullptr);
     assert(filename[0] != '\0');
 
-    unsigned char* image;
-    unsigned int w, h, bpp;
-    ColorMode c;
-    int id = -1;
-    int error = pcxLoad(filename, &image, &w, &h, &c, &bpp);
+    int error = pcxCheck(filename);
+    if (!error) {
+        unsigned char* image;
+        unsigned int w, h, bpp;
+        ColorMode c;
 
-    if (error == 0) {
-        unsigned char* image2 = scaleBuffer(image, &w, &h, bpp);
-        if (image2) {
+        error = pcxLoad(filename, &image, &w, &h, &c, &bpp);
+        if (!error) {
+            unsigned char* image2 = scaleBuffer(image, &w, &h, bpp);
+            if (image2) {
+                delete [] image;
+                image = image2;
+            }
+            int id = loadBufferSlot(image, w, h, c, bpp, s, slot);
             delete [] image;
-            image = image2;
+            return id;
         }
-        id = loadBufferSlot(image, w, h, c, bpp, s, slot);
-        delete [] image;
+
+        return -5;
     }
 
-    return id;
-}
-
-int TextureManager::loadPNG(const char* filename, TextureStorage s, int slot) {
-#ifdef USING_PNG
-    assert(filename != nullptr);
-    assert(filename[0] != '\0');
-
-    if (pngCheck(filename) != 0) {
-        return -1;
-    }
-
-    unsigned char* image;
-    unsigned int w, h, bpp;
-    ColorMode c;
-    int id = -1;
-    int error = pngLoad(filename, &image, &w, &h, &c, &bpp);
-
-    if (error == 0) {
-        unsigned char* image2 = scaleBuffer(image, &w, &h, bpp);
-        if (image2) {
-            delete [] image;
-            image = image2;
-        }
-        id = loadBufferSlot(image, w, h, c, bpp, s, slot);
-        delete [] image;
-    }
-
-    return id;
-#else
-    getLog() << "No PNG support available (" << filename << ")" << Log::endl;
-    return -1;
-#endif
-}
-
-int TextureManager::loadTGA(const char* filename, TextureStorage s, int slot) {
-    assert(filename != nullptr);
-    assert(filename[0] != '\0');
-
-    unsigned char* image;
-    unsigned int w, h;
-    char type;
-    int id = -1;
-
-    if (!tgaCheck(filename)) {
-        tgaLoad(filename, &image, &w, &h, &type);
-
-        unsigned char* image2 = scaleBuffer(image, &w, &h, (type == 2) ? 32 : 24);
-        if (image2) {
-            delete [] image;
-            image = image2;
-        }
-        if (image) {
-            id = loadBufferSlot(image, w, h,
-                                (type == 2) ? ColorMode::RGBA : ColorMode::RGB,
-                                (type == 2) ? 32 : 24,
-                                s, slot);
-            delete [] image;
-        }
-    }
-
-    return id;
+    return -4;
 }
 

@@ -5,9 +5,10 @@
  * \author xythobuz
  */
 
+#include "imgui/imgui.h"
+
 #include "global.h"
 #include "Camera.h"
-#include "Render.h"
 #include "UI.h"
 #include "system/Sound.h"
 #include "system/Window.h"
@@ -65,10 +66,13 @@ void RunTime::setKeyBinding(ActionEvents event, KeyboardButton button) {
 
 void RunTime::updateFPS() {
     frameCount++;
+    frameCount2++;
+
     lastFrameTime = systemTimerGet() - lastTime;
     frameTimeSum += lastFrameTime;
     frameTimeSum2 += lastFrameTime;
     lastTime = systemTimerGet();
+
     if (frameTimeSum >= 200) {
         fps = frameCount * (1000 / frameTimeSum);
         frameCount = frameTimeSum = 0;
@@ -78,20 +82,13 @@ void RunTime::updateFPS() {
         history.push_back(frameCount2);
         frameCount2 = frameTimeSum2 = 0;
     }
-    frameCount2++;
 }
 
 void RunTime::display() {
     if (ImGui::CollapsingHeader("RunTime Settings")) {
-        bool showFPS = getShowFPS();
-        if (ImGui::Checkbox("Show FPS##runtime", &showFPS)) {
-            setShowFPS(showFPS);
-        }
+        ImGui::Checkbox("Show FPS##runtime", &showFPS);
         ImGui::SameLine();
-        bool running = isRunning();
-        if (ImGui::Checkbox("Running (!)##runtime", &running)) {
-            setRunning(running);
-        }
+        ImGui::Checkbox("Running (!)##runtime", &gameIsRunning);
         ImGui::SameLine();
         bool sound = Sound::getEnabled();
         if (ImGui::Checkbox("Sound##runtime", &sound)) {
@@ -101,16 +98,6 @@ void RunTime::display() {
         bool fullscreen = Window::getFullscreen();
         if (ImGui::Checkbox("Fullscreen##runtime", &fullscreen)) {
             Window::setFullscreen(fullscreen);
-        }
-
-        bool updateViewFrustum = Camera::getUpdateViewFrustum();
-        if (ImGui::Checkbox("Update Frustum##runtime", &updateViewFrustum)) {
-            Camera::setUpdateViewFrustum(updateViewFrustum);
-        }
-        ImGui::SameLine();
-        bool displayViewFrustum = Render::getDisplayViewFrustum();
-        if (ImGui::Checkbox("Show Frustum##runtime", &displayViewFrustum)) {
-            Render::setDisplayViewFrustum(displayViewFrustum);
         }
 
         float vol = Sound::getVolume();
@@ -191,19 +178,19 @@ void RunTime::display() {
 
     if (ImGui::CollapsingHeader("Performance")) {
         ImGui::Text("Uptime: %lums", systemTimerGet());
-        ImGui::Text("Frames per Second: %luFPS", getFPS());
-        if (getHistoryFPS().size() > 1) {
+        ImGui::Text("Frames per Second: %luFPS", fps);
+        if (history.size() > 1) {
             static bool scroll = true;
             if (scroll) {
-                int offset = getHistoryFPS().size() - 1;
+                int offset = history.size() - 1;
                 if (offset > 10)
                     offset = 10;
-                ImGui::PlotLines("FPS", &getHistoryFPS()[1],
-                                 getHistoryFPS().size() - 1,
-                                 getHistoryFPS().size() - offset - 1);
+                ImGui::PlotLines("FPS", &history[1],
+                                 history.size() - 1,
+                                 history.size() - offset - 1);
             } else {
-                ImGui::PlotLines("FPS", &getHistoryFPS()[1],
-                                 getHistoryFPS().size() - 1);
+                ImGui::PlotLines("FPS", &history[1],
+                                 history.size() - 1);
             }
             ImGui::SameLine();
             ImGui::Checkbox("Scroll##fpsscroll", &scroll);

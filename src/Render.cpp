@@ -10,17 +10,17 @@
 #include <sstream>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
+#include "imgui/imgui.h"
+#include "stb/stb_image_write.h"
 
 #include "global.h"
 #include "Camera.h"
 #include "Game.h"
-#include "utils/strings.h"
-#include "utils/tga.h"
+#include "Log.h"
+#include "UI.h"
 #include "World.h"
 #include "system/Window.h"
+#include "utils/strings.h"
 #include "Render.h"
 
 RenderMode Render::mode = RenderMode::Disabled;
@@ -131,32 +131,42 @@ void Render::buildRoomList(int room) {
 }
 
 void Render::screenShot(const char* filenameBase) {
-    /*
-    int sz = Window::getSize().x * Window::getSize().y;
-    unsigned char* image = new unsigned char[sz * 3];
-    static int count = 0;
-    bool done = false;
-
     assert(filenameBase != nullptr);
 
-    // Don't overwrite files
-    std::ostringstream filename;
-    while (!done) {
-        filename << filenameBase << "-" << count++ << ".tga";
+    int w = Window::getSize().x;
+    int h = Window::getSize().y;
+    int sz = w * h;
+    unsigned char* image = new unsigned char[sz * 3];
+    glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, image);
 
-        FILE* f = fopen(filename.str().c_str(), "rb");
-        if (f) {
-            fclose(f);
-        } else {
-            done = true;
+    unsigned char* buffer = new unsigned char[sz * 3];
+    for (int x = 0; x < w; x++) {
+        for (int y = 0; y < h; y++) {
+            buffer[3 * (x + (y * w))] = image[3 * (x + ((h - y - 1) * w))];
+            buffer[(3 * (x + (y * w))) + 1] = image[(3 * (x + ((h - y - 1) * w))) + 1];
+            buffer[(3 * (x + (y * w))) + 2] = image[(3 * (x + ((h - y - 1) * w))) + 2];
         }
     }
 
-    glReadPixels(0, 0, Window::getSize().x, Window::getSize().y, GL_BGR_EXT, GL_UNSIGNED_BYTE,
-                 image);
-    tgaSave(filename.str().c_str(), image, Window::getSize().x, Window::getSize().y, 0);
+    // Don't overwrite files
+    static int count = 0;
+    bool done = false;
+    std::string f;
+    while (!done) {
+        std::ostringstream filename;
+        filename << filenameBase << "-" << count++ << ".png";
+        f = filename.str();
+        std::ifstream fs(f);
+        done = !fs.good();
+        fs.close();
+    }
+
+    if (!stbi_write_png(f.c_str(), w, h, 3, buffer, 0)) {
+        getLog() << "Error saving image \"" << f << "\"!" << Log::endl;
+    }
+
     delete [] image;
-    */
+    delete [] buffer;
 }
 
 void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,
@@ -184,5 +194,43 @@ void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,
     assert(s == TextureManager::TextureStorage::SYSTEM);
 
     Window::drawTextGL(vertices, uvs, color, texture);
+}
+
+void Render::displayUI() {
+    static const int modeStringCount = 5;
+    static const char* modeStrings[modeStringCount] = {
+        "Disable", "Splash", "Texture", "Wireframe", "Solid"
+    };
+
+    if (ImGui::CollapsingHeader("Render Settings")) {
+        int item = 0;
+        if (mode == RenderMode::LoadScreen)
+            item = 1;
+        else if (mode == RenderMode::Texture)
+            item = 2;
+        else if (mode == RenderMode::Wireframe)
+            item = 3;
+        else if (mode == RenderMode::Solid)
+            item = 4;
+        if (ImGui::Combo("Mode", &item, modeStrings, modeStringCount)) {
+            if (item == 0)
+                mode = RenderMode::Disabled;
+            else if (item == 1)
+                mode = RenderMode::LoadScreen;
+            else if (item == 2)
+                mode = RenderMode::Texture;
+            else if (item == 3)
+                mode = RenderMode::Wireframe;
+            else if (item == 4)
+                mode = RenderMode::Solid;
+        }
+
+        bool updateViewFrustum = Camera::getUpdateViewFrustum();
+        if (ImGui::Checkbox("Update Frustum##runtime", &updateViewFrustum)) {
+            Camera::setUpdateViewFrustum(updateViewFrustum);
+        }
+        ImGui::SameLine();
+        ImGui::Checkbox("Show Frustum##runtime", &displayViewFrustum);
+    }
 }
 

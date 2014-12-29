@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include "imgui/imgui.h"
+
 #include "global.h"
 #include "UI.h"
 #include "system/FontImGui.h"

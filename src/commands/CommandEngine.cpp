@@ -51,8 +51,8 @@ std::string CommandScreenshot::brief() {
 
 void CommandScreenshot::printHelp() {
     getLog() << "sshot-Command Usage:" << Log::endl;
-    getLog() << "  sshot [debug|menu] [debug|menu]" << Log::endl;
-    getLog() << "Add console/menu to capture them too" << Log::endl;
+    getLog() << "  sshot" << Log::endl;
+    getLog() << "You wont be able to capture imgui..." << Log::endl;
 }
 
 int CommandScreenshot::execute(std::istream& args) {
@@ -65,30 +65,7 @@ int CommandScreenshot::execute(std::istream& args) {
     filename += "/sshots/";
     filename += VERSION_SHORT;
 
-    std::string temp, temp2;
-    args >> temp >> temp2;
-
-    UI::setVisible(false);
-    getMenu().setVisible(false);
-
-    if (temp == "debug")
-        UI::setVisible(true);
-    else if (temp == "menu")
-        getMenu().setVisible(true);
-
-    if (temp2 == "debug")
-        UI::setVisible(true);
-    else if (temp2 == "menu")
-        getMenu().setVisible(true);
-
-    renderFrame();
-    renderFrame(); // Double buffered
     Render::screenShot(filename.c_str());
-
-    getMenu().setVisible(false);
-    UI::setVisible(true);
-
-    getLog() << "Screenshot stored..." << Log::endl;
     return 0;
 }
 
@@ -103,7 +80,7 @@ std::string CommandQuit::brief() {
 }
 
 int CommandQuit::execute(std::istream& args) {
-    exit(0);
+    RunTime::setRunning(false);
     return 0;
 }
 

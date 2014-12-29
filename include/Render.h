@@ -29,6 +29,7 @@ class Render {
     static void setMode(RenderMode m);
 
     static void display();
+    static void displayUI();
 
     static void clearRoomList();
 

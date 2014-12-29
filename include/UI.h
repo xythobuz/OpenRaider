@@ -13,7 +13,7 @@
 #include <memory>
 #include <tuple>
 
-#include "imgui/imgui.h"
+class ImDrawList;
 
 class UI {
   public:
