@@ -12,8 +12,16 @@
 
 #include "global.h"
 #include "utils/filesystem.h"
-#include "utils/File.h"
+#include "utils/strings.h"
 #include "utils/Folder.h"
+
+File::File(std::string file) : path(file) {
+    size_t pos = file.rfind('/', file.length() - 2);
+    name = file.substr(pos + 1);
+    std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+}
+
+// ----------------------------------------------------------------------------
 
 #if defined(HAVE_DIRENT_H) && defined(HAVE_OPENDIR) && defined(HAVE_READDIR_R) && defined(HAVE_CLOSEDIR) && defined(HAVE_DT_DIR)
 #include <dirent.h>
@@ -68,14 +76,6 @@ Folder::Folder(std::string folder, bool listDotFiles) {
 
     hasListed = false;
     listDot = listDotFiles;
-}
-
-std::string& Folder::getName() {
-    return name;
-}
-
-std::string& Folder::getPath() {
-    return path;
 }
 
 unsigned long Folder::fileCount() {
@@ -219,4 +219,12 @@ int Folder::readFolderItems(std::vector<std::string>& foundFiles,
 }
 
 #endif
+
+void Folder::findFilesEndingWith(std::vector<File>& found, std::string end, bool casesensitive) {
+    createFolderItems();
+    for (auto& f : files) {
+        if (stringEndsWith(f.getName(), end, casesensitive))
+            found.push_back(f);
+    }
+}
 

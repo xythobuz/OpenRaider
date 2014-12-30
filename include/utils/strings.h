@@ -14,7 +14,7 @@ std::string findAndReplace(std::string s, std::string find, std::string replace)
 
 std::string expandHomeDirectory(std::string s);
 
-bool stringEndsWith(std::string s, std::string suffix);
+bool stringEndsWith(std::string s, std::string suffix, bool casesensitive = false);
 
 #endif
 

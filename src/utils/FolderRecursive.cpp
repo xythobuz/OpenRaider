@@ -6,7 +6,7 @@
  */
 
 #include "global.h"
-#include "utils/File.h"
+#include "utils/strings.h"
 #include "utils/Folder.h"
 
 unsigned long Folder::countRecursiveFiles() {
@@ -61,5 +61,14 @@ File& Folder::getRecursiveFile(unsigned long i) {
 
     assert(false);
     return files.at(0);
+}
+
+void Folder::findRecursiveFilesEndingWith(std::vector<File>& found, std::string end, bool casesensitive) {
+    createFolderItems();
+    for (unsigned long i = 0; i < countRecursiveFiles(); i++) {
+        if (stringEndsWith(getRecursiveFile(i).getName(), end, casesensitive)) {
+            found.push_back(getRecursiveFile(i));
+        }
+    }
 }
 

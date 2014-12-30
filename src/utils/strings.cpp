@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include <algorithm>
+
 #include "global.h"
 #include "utils/filesystem.h"
 #include "utils/strings.h"
@@ -27,7 +29,12 @@ std::string expandHomeDirectory(std::string s) {
     return s;
 }
 
-bool stringEndsWith(std::string s, std::string suffix) {
+bool stringEndsWith(std::string s, std::string suffix, bool casesensitive) {
+    if (!casesensitive) {
+        std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+        std::transform(suffix.begin(), suffix.end(), suffix.begin(), ::tolower);
+    }
+
     if (s.length() >= suffix.length()) {
         std::string end = s.substr(s.length() - suffix.length());
         return (end == suffix);

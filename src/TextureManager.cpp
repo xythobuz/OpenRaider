@@ -16,8 +16,10 @@
 #include "global.h"
 #include "Log.h"
 #include "RunTime.h"
+#include "utils/Folder.h"
 #include "utils/pcx.h"
 #include "utils/pixel.h"
+#include "utils/random.h"
 #include "utils/strings.h"
 #include "TextureManager.h"
 
@@ -145,12 +147,19 @@ int TextureManager::initializeSplash() {
         return -1;
     }
 
-    //! \fixme Temporary?
-    std::string filename = RunTime::getPakDir() + "/tr2/TITLE.PCX";
-    if (loadImage(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
-        filename = RunTime::getDataDir() + "/splash.tga";
-        if (loadImage(filename.c_str(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
+    Folder f(RunTime::getPakDir());
+    std::vector<File> files;
+    f.findRecursiveFilesEndingWith(files, ".pcx");
+    if (files.size() == 0) {
+        if (loadImage(RunTime::getDataDir() + "/splash.tga", TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
             return -2;
+        }
+    } else {
+        int i = randomInteger(files.size() - 1);
+        if (loadImage(files.at(i).getPath(), TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
+            if (loadImage(RunTime::getDataDir() + "/splash.tga", TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
+                return -3;
+            }
         }
     }
 
@@ -237,14 +246,14 @@ void TextureManager::bindTextureId(unsigned int n, TextureStorage s, unsigned in
     glBindTexture(GL_TEXTURE_2D, getIds(s).at(n));
 }
 
-int TextureManager::loadImage(const char* filename, TextureStorage s, int slot) {
+int TextureManager::loadImage(std::string filename, TextureStorage s, int slot) {
     //! \todo case insensitive compare
 
-    if (stringEndsWith(filename, ".pcx") || stringEndsWith(filename, ".PCX")) {
+    if (stringEndsWith(filename, ".pcx")) {
         return loadPCX(filename, s, slot);
     } else {
         int x, y, n;
-        unsigned char* data = stbi_load(filename, &x, &y, &n, 0);
+        unsigned char* data = stbi_load(filename.c_str(), &x, &y, &n, 0);
         if (data) {
             if ((n < 3) || (n > 4)) {
                 getLog() << "Image \"" << filename << "\" has unsupported format ("
@@ -263,17 +272,14 @@ int TextureManager::loadImage(const char* filename, TextureStorage s, int slot) 
     }
 }
 
-int TextureManager::loadPCX(const char* filename, TextureStorage s, int slot) {
-    assert(filename != nullptr);
-    assert(filename[0] != '\0');
-
-    int error = pcxCheck(filename);
+int TextureManager::loadPCX(std::string filename, TextureStorage s, int slot) {
+    int error = pcxCheck(filename.c_str());
     if (!error) {
         unsigned char* image;
         unsigned int w, h, bpp;
         ColorMode c;
 
-        error = pcxLoad(filename, &image, &w, &h, &c, &bpp);
+        error = pcxLoad(filename.c_str(), &image, &w, &h, &c, &bpp);
         if (!error) {
             unsigned char* image2 = scaleBuffer(image, &w, &h, bpp);
             if (image2) {

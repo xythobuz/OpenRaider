@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141230 ]
+    * Added random number generation utility
+    * Added file name searching utilities
+    * Finally made file name comparisons case-insensitive
+    * Splash screen now chosen randomly from all PCX images in pak folder
+
     [ 20141229 ]
     * Removed utils/png, utils/tga image readers
     * Included current stb_image, stb_image_write and stb_textedit

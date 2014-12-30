@@ -94,7 +94,7 @@ class TextureManager {
                        TextureStorage s = TextureStorage::GAME,
                        int slot = -1, bool filter = true);
 
-    int loadImage(const char* filename, TextureStorage s = TextureStorage::GAME, int slot = -1);
+    int loadImage(std::string filename, TextureStorage s = TextureStorage::GAME, int slot = -1);
 
     void addTile(TextureTile* t);
     int numTiles();
@@ -107,7 +107,7 @@ class TextureManager {
 
   private:
     std::vector<unsigned int>& getIds(TextureStorage s);
-    int loadPCX(const char* filename, TextureStorage s, int slot);
+    int loadPCX(std::string filename, TextureStorage s, int slot);
 
     std::vector<unsigned int> mTextureIdsGame;
     std::vector<unsigned int> mTextureIdsSystem;
