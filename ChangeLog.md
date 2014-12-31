@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20141231 ]
+    * No longer using Exceptions.
+    * Moved OpenGL related code from Window into Shader, imguiShader in UI.
+
     [ 20141230 ]
     * Added random number generation utility
     * Added file name searching utilities

@@ -8,8 +8,6 @@
 #ifndef _UTILS_FOLDER_H_
 #define _UTILS_FOLDER_H_
 
-#include "Exception.h"
-
 #include <functional>
 #include <memory>
 #include <string>

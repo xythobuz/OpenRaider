@@ -7,7 +7,7 @@
 
 #include "global.h"
 #include "TextureManager.h"
-#include "system/Window.h"
+#include "system/Shader.h"
 #include "Mesh.h"
 
 Mesh::Mesh(const std::vector<glm::vec3>& vert,
@@ -131,7 +131,7 @@ void Mesh::display(glm::mat4 MVP) {
                 indexPos++;
 
             std::vector<unsigned short> ind(indices.begin() + indexStart, indices.begin() + indexPos);
-            Window::drawGL(vertices, uvs, ind, MVP, texture);
+            Shader::drawGL(vertices, uvs, ind, MVP, texture);
 
             if (indexPos < indices.size()) {
                 indexStart = indexPos;
@@ -142,6 +142,6 @@ void Mesh::display(glm::mat4 MVP) {
     }
 
     if (indicesColor.size() > 0)
-        Window::drawGL(verticesColor, colors, indicesColor, MVP);
+        Shader::drawGL(verticesColor, colors, indicesColor, MVP);
 }
 

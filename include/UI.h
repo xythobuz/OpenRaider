@@ -15,6 +15,8 @@
 #include <glm/vec2.hpp>
 #include <glm/gtc/type_precision.hpp>
 
+#include "system/Shader.h"
+
 class ImDrawList;
 
 class UI {
@@ -49,6 +51,10 @@ class UI {
     static std::list<std::tuple<unsigned int, unsigned int, KeyboardButton, bool>> clickEvents;
     static std::list<std::tuple<int, int, int, int>> motionEvents;
     static std::list<std::tuple<int, int>> scrollEvents;
+
+    static Shader imguiShader;
+    static const char* imguiShaderVertex;
+    static const char* imguiShaderFragment;
 };
 
 #endif

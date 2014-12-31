@@ -11,6 +11,7 @@
 #include <cstring>
 
 #include "global.h"
+#include <Log.h>
 #include "utils/filesystem.h"
 #include "utils/strings.h"
 #include "utils/Folder.h"
@@ -122,8 +123,9 @@ void Folder::createFolderItems() {
         return;
 
     std::vector<std::string> foundFiles, foundFolders;
-    if (readFolderItems(foundFiles, foundFolders) != 0)
-        throw Exception(std::string("Could not open folder ") + name);
+    if (readFolderItems(foundFiles, foundFolders) != 0) {
+        getLog() << "Could not open folder " << name << Log::endl;
+    }
 
     if (!listDot) {
         std::vector<std::string>::iterator it = foundFiles.begin();

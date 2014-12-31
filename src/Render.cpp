@@ -19,6 +19,7 @@
 #include "Log.h"
 #include "UI.h"
 #include "World.h"
+#include "system/Shader.h"
 #include "system/Window.h"
 #include "utils/strings.h"
 #include "Render.h"
@@ -184,10 +185,10 @@ void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,
     uvs.push_back(glm::vec2(1.0f, 1.0f));
     uvs.push_back(glm::vec2(0.0f, 0.0f));
 
-    //! \fixme drawTextGL only uses SYSTEM textures!
+    //! \fixme This drawGL only uses SYSTEM textures!
     assert(s == TextureManager::TextureStorage::SYSTEM);
 
-    Window::drawTextGL(vertices, uvs, color, texture);
+    Shader::drawGL(vertices, uvs, color, texture);
 }
 
 static const int modeStringCount = 4;

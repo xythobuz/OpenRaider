@@ -13,7 +13,7 @@
 #include "global.h"
 #include "TextureManager.h"
 #include "utils/strings.h"
-#include "system/Window.h"
+#include "system/Shader.h"
 #include "system/FontTRLE.h"
 
 #define SCALING 2.0f
@@ -167,7 +167,7 @@ void FontTRLE::drawText(unsigned int x, unsigned int y, float scale,
     }
 
     glm::vec4 col(color[0] / 256.0f, color[1] / 256.0f, color[2] / 256.0f, color[3] / 256.0f);
-    Window::drawTextGL(vertices, uvs, col, mFontTexture);
+    Shader::drawGL(vertices, uvs, col, mFontTexture);
 }
 
 unsigned int FontTRLE::heightText(float scale, unsigned int maxWidth, std::string s) {
@@ -241,7 +241,7 @@ void FontTRLE::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     }
 
     glm::vec4 col(color[0] / 256.0f, color[1] / 256.0f, color[2] / 256.0f, color[3] / 256.0f);
-    Window::drawTextGL(vertices, uvs, col, mFontTexture);
+    Shader::drawGL(vertices, uvs, col, mFontTexture);
 }
 
 int FontTRLE::defaultOffsets[106][5] = {

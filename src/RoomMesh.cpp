@@ -8,7 +8,7 @@
 #include "global.h"
 #include "Mesh.h"
 #include "TextureManager.h"
-#include "system/Window.h"
+#include "system/Shader.h"
 #include "RoomMesh.h"
 
 RoomMesh::RoomMesh(const std::vector<RoomVertexTR2>& vert,
@@ -83,7 +83,7 @@ void RoomMesh::display(glm::mat4 MVP) {
                 indexPos++;
 
             std::vector<unsigned short> ind(indices.begin() + indexStart, indices.begin() + indexPos);
-            Window::drawGL(vertices, uvs, ind, MVP, texture);
+            Shader::drawGL(vertices, uvs, ind, MVP, texture);
 
             if (indexPos < indices.size()) {
                 indexStart = indexPos;

@@ -10,7 +10,6 @@
 
 #include "global.h"
 #include "Camera.h"
-#include "Exception.h"
 #include "Game.h"
 #include "Log.h"
 #include "MenuFolder.h"
@@ -22,6 +21,7 @@
 #include "commander/commander.h"
 #include "commands/Command.h"
 #include "system/Font.h"
+#include "system/Shader.h"
 #include "system/Sound.h"
 #include "system/Window.h"
 #include "utils/time.h"
@@ -80,15 +80,21 @@ int main(int argc, char* argv[]) {
     // Initialize Windowing
     int error = Window::initialize();
     if (error != 0) {
-        std::cout << "Could not initialize Window/GL (" << error << ")!" << std::endl;
+        std::cout << "Could not initialize Window (" << error << ")!" << std::endl;
         return -1;
+    }
+
+    error = Shader::initialize();
+    if (error != 0) {
+        std::cout << "Could not initialize OpenGL (" << error << ")!" << std::endl;
+        return -2;
     }
 
     // Initialize Texture Manager
     error = getTextureManager().initialize();
     if (error != 0) {
         std::cout << "Could not initialize TextureManager (" << error << ")!" << std::endl;
-        return -2;
+        return -3;
     }
 
     if (configFileToUse == "") {
@@ -108,35 +114,35 @@ int main(int argc, char* argv[]) {
     error = getTextureManager().initializeSplash();
     if (error != 0) {
         std::cout << "Coult not load Splash Texture (" << error << ")!" << std::endl;
-        return -3;
+        return -4;
     }
 
     // Initialize Sound
     error = Sound::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Sound (" << error << ")!" << std::endl;
-        return -4;
+        return -5;
     }
 
     // Initialize Menu
     error = getMenu().initialize();
     if (error != 0) {
         std::cout << "Could not initialize Menu (" << error << ")!" << std::endl;
-        return -5;
+        return -6;
     }
 
     // Initialize Debug UI
     error = UI::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Debug UI (" << error << ")!" << std::endl;
-        return -6;
+        return -7;
     }
 
     // Initialize Game Engine
     error = getGame().initialize();
     if (error != 0) {
         std::cout << "Could not initialize Game (" << error << ")!" << std::endl;
-        return -7;
+        return -8;
     }
 
     getLog() << "Starting " << VERSION << Log::endl;
@@ -153,6 +159,7 @@ int main(int argc, char* argv[]) {
     UI::shutdown();
     Font::shutdown();
     Sound::shutdown();
+    Shader::shutdown();
     Window::shutdown();
 
 #ifdef DEBUG
@@ -195,9 +202,6 @@ namespace {
             std::cout << strs[i] << std::endl;
 
         delete [] strs;
-
-        std::cout << std::endl << "Last custom Exception:" << std::endl;
-        std::cout << "    " << Exception::getLastException() << std::endl << std::endl;
 
         oldTerminateHandler();
         abort();

@@ -10,7 +10,7 @@
 #include "global.h"
 #include "SkeletalModel.h"
 #include "World.h"
-#include "system/Window.h"
+#include "system/Shader.h"
 #include "RoomData.h"
 
 void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot) {
@@ -40,7 +40,7 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
     inds.push_back(5);
     inds.push_back(2);
 
-    Window::drawGL(verts, cols, inds, VP, GL_LINE_STRIP);
+    Shader::drawGL(verts, cols, inds, VP, GL_LINE_STRIP);
 
     cols.clear();
     inds.clear();
@@ -50,7 +50,7 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
         inds.push_back(i);
     }
 
-    Window::drawGL(verts, cols, inds, VP, GL_POINTS);
+    Shader::drawGL(verts, cols, inds, VP, GL_POINTS);
 }
 
 // ----------------------------------------------------------------------------

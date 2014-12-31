@@ -28,6 +28,7 @@
 #include "utils/time.h"
 #include "UI.h"
 
+Shader UI::imguiShader;
 bool UI::visible = false;
 unsigned int UI::fontTex;
 std::string UI::iniFilename;
@@ -45,6 +46,14 @@ void UI::setSize(glm::i32vec2 s) {
 }
 
 int UI::initialize() {
+    if (imguiShader.compile(imguiShaderVertex, imguiShaderFragment) < 0)
+        return -1;
+    if (imguiShader.addUniform("screen") < 0)
+        return -2;
+    if (imguiShader.addUniform("textureSampler") < 0)
+        return -3;
+    imguiShader.addBuffer(3);
+
     iniFilename = RunTime::getBaseDir() + "/imgui.ini";
     logFilename = RunTime::getBaseDir() + "/imgui_log.txt";
 
@@ -525,12 +534,12 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
     glEnable(GL_SCISSOR_TEST);
     glDisable(GL_DEPTH_TEST);
 
-    Window::imguiShader.use();
-    Window::imguiShader.loadUniform(0, Window::getSize());
-    Window::imguiShader.loadUniform(1, fontTex, TextureManager::TextureStorage::SYSTEM);
-    Window::imguiShader.bindBuffer(0, 0, 2);
-    Window::imguiShader.bindBuffer(1, 1, 2);
-    Window::imguiShader.bindBuffer(2, 2, 4);
+    imguiShader.use();
+    imguiShader.loadUniform(0, Window::getSize());
+    imguiShader.loadUniform(1, fontTex, TextureManager::TextureStorage::SYSTEM);
+    imguiShader.bindBuffer(0, 0, 2);
+    imguiShader.bindBuffer(1, 1, 2);
+    imguiShader.bindBuffer(2, 2, 4);
 
     std::vector<glm::vec2> vertices;
     std::vector<glm::vec2> uvs;
@@ -561,9 +570,9 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
 
             offset += commands[n].vtx_count;
 
-            Window::imguiShader.bufferData(0, vertices);
-            Window::imguiShader.bufferData(1, uvs);
-            Window::imguiShader.bufferData(2, colors);
+            imguiShader.bufferData(0, vertices);
+            imguiShader.bufferData(1, uvs);
+            imguiShader.bufferData(2, colors);
 
             glScissor(commands[n].clip_rect.x,
                       Window::getSize().y - commands[n].clip_rect.w,
@@ -578,9 +587,52 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
         }
     }
 
-    Window::imguiShader.disableAttribs();
+    imguiShader.disableAttribs();
 
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_SCISSOR_TEST);
 }
+
+// --------------------------------------
+// *INDENT-OFF*
+
+const char* UI::imguiShaderVertex = R"!?!(
+#version 330 core
+
+layout(location = 0) in vec2 vertexPosition_screen;
+layout(location = 1) in vec2 vertexUV;
+layout(location = 2) in vec4 vertexColor;
+
+out vec2 UV;
+out vec4 FragColor;
+
+uniform vec2 screen;
+
+void main() {
+    vec2 halfScreen = screen / 2;
+    vec2 vertexPosition_homogenous = (vertexPosition_screen - halfScreen) / halfScreen;
+
+    gl_Position = vec4(vertexPosition_homogenous.x, -vertexPosition_homogenous.y, 0, 1);
+    UV = vertexUV;
+    FragColor = vertexColor;
+}
+)!?!";
+
+const char* UI::imguiShaderFragment = R"!?!(
+#version 330 core
+
+in vec2 UV;
+in vec4 FragColor;
+
+out vec4 color;
+
+uniform sampler2D textureSampler;
+
+void main() {
+    color = texture(textureSampler, UV) * FragColor;
+}
+)!?!";
+
+// --------------------------------------
+// *INDENT-ON*
 

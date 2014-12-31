@@ -8,7 +8,6 @@
 #include <sstream>
 
 #include "global.h"
-#include "Exception.h"
 #include "utils/binary.h"
 
 BinaryReader::~BinaryReader() {
@@ -189,13 +188,7 @@ bool BinaryMemory::eof() {
 void BinaryMemory::read(char* d, int c) {
     assert(offset >= 0);
     assert(c > 0);
-    if ((offset + c) > max) {
-        std::ostringstream ss;
-        ss << "BinaryMemory read out of bounds ("
-           << offset << " + " << c << " > " << max << ")";
-        throw new Exception(ss.str());
-    }
-
+    assert((offset + c) <= max);
     for (int i = 0; i < c; i++) {
         d[i] = data[offset + i];
     }

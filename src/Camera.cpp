@@ -13,6 +13,7 @@
 
 #include "global.h"
 #include "RunTime.h"
+#include "system/Shader.h"
 #include "system/Window.h"
 #include "Camera.h"
 
@@ -334,7 +335,7 @@ void Camera::displayFrustum(glm::mat4 MVP) {
         inds.push_back(4 * i);
     }
 
-    Window::drawGL(verts, cols, inds, MVP);
+    Shader::drawGL(verts, cols, inds, MVP);
 
     verts.clear();
     cols.clear();
@@ -343,6 +344,6 @@ void Camera::displayFrustum(glm::mat4 MVP) {
     verts.push_back(drawPos);
     cols.push_back(glm::vec3(1.0f, 1.0f, 1.0f));
     inds.push_back(0);
-    Window::drawGL(verts, cols, inds, MVP, GL_POINTS);
+    Shader::drawGL(verts, cols, inds, MVP, GL_POINTS);
 }
 

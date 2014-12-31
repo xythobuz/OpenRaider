@@ -9,7 +9,7 @@
 
 #include "global.h"
 #include "TextureManager.h"
-#include "system/Window.h"
+#include "system/Shader.h"
 #include "system/FontSDL.h"
 
 bool FontSDL::mFontInit = false;
@@ -126,7 +126,7 @@ void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
     uvs.push_back(glm::vec2(1.0f, 1.0f));
     uvs.push_back(glm::vec2(0.0f, 0.0f));
 
-    Window::drawTextGL(vertices, uvs, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), mFontTexture);
+    Shader::drawGL(vertices, uvs, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), mFontTexture);
 }
 
 unsigned int FontSDL::heightText(float scale, unsigned int maxWidth, std::string s) {
@@ -208,6 +208,6 @@ void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     uvs.push_back(glm::vec2(1.0f, 1.0f));
     uvs.push_back(glm::vec2(0.0f, 0.0f));
 
-    Window::drawTextGL(vertices, uvs, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), mFontTexture);
+    Shader::drawGL(vertices, uvs, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), mFontTexture);
 }
 
