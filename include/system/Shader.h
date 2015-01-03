@@ -17,7 +17,7 @@
 
 class ShaderBuffer {
   public:
-    ShaderBuffer() : buffer(0), created(false) { }
+    ShaderBuffer();
     ~ShaderBuffer();
 
     void bufferData(int elem, int size, void* data);
@@ -32,7 +32,6 @@ class ShaderBuffer {
 
   private:
     unsigned int buffer;
-    bool created;
 };
 
 class Shader {

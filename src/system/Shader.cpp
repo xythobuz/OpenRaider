@@ -11,18 +11,15 @@
 #include "system/Window.h"
 #include "system/Shader.h"
 
+ShaderBuffer::ShaderBuffer() : buffer(0) {
+    glGenBuffers(1, &buffer);
+}
+
 ShaderBuffer::~ShaderBuffer() {
-    if (created) {
-        glDeleteBuffers(1, &buffer);
-    }
+    glDeleteBuffers(1, &buffer);
 }
 
 void ShaderBuffer::bufferData(int elem, int size, void* data) {
-    if (!created) {
-        glGenBuffers(1, &buffer);
-        created = true;
-    }
-
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glBufferData(GL_ARRAY_BUFFER, elem * size, data, GL_STATIC_DRAW);
 }

@@ -71,15 +71,15 @@ void Console::callback(ImGuiTextEditCallbackData* data) {
 }
 
 void Console::display() {
-    if (ImGui::Begin("Console", nullptr, ImVec2(600, 400), -1.0f)) {
+    if (ImGui::Begin("Console", nullptr, ImVec2(600, 400))) {
         if (lastLogLength != getLog().size()) {
             lastLogLength = getLog().size();
             scrollToBottom = true;
         }
 
-        ImGui::BeginChild("ConsoleText", ImVec2(ImGui::GetWindowWidth(), ImGui::GetWindowSize().y - 70));
+        ImGui::BeginChild("ConsoleText", ImVec2(0, -ImGui::GetTextLineSpacing() * 2));
         for (unsigned long i = 0; i < getLog().size(); i++) {
-            ImGui::Text("%s", getLog().get(i).c_str());
+            ImGui::TextUnformatted(getLog().get(i).c_str());
         }
         if (scrollToBottom) {
             ImGui::SetScrollPosHere();

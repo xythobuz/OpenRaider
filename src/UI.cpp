@@ -206,7 +206,7 @@ void UI::display() {
     Console::display();
 
     static bool showTestWindow = false;
-    if (ImGui::Begin("Engine")) {
+    if (ImGui::Begin("Engine", nullptr, ImVec2(400, 400))) {
         Render::displayUI();
         RunTime::display();
         SoundManager::display();

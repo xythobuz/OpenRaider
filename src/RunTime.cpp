@@ -114,13 +114,13 @@ void RunTime::display() {
         if (ImGui::InputInt("Width##runtime", &w, 10, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
             if (w < 1)
                 w = 1;
-            Window::setSize(glm::vec2(w, Window::getSize().y));
+            Window::setSize(glm::i32vec2(w, Window::getSize().y));
         }
         int h = Window::getSize().y;
         if (ImGui::InputInt("Height##runtime", &h, 10, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
             if (h < 1)
                 h = 1;
-            Window::setSize(glm::vec2(Window::getSize().x, h));
+            Window::setSize(glm::i32vec2(Window::getSize().x, h));
         }
 
         static int fr = 0;
