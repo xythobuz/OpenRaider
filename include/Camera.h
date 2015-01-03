@@ -51,7 +51,6 @@ class Camera {
     static void calculateFrustumPlanes();
 
     static glm::vec3 pos;
-    static glm::vec3 drawPos;
     static glm::quat quaternion;
     static glm::vec3 posSpeed;
     static glm::vec2 rotSpeed;

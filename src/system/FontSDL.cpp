@@ -15,6 +15,8 @@
 bool FontSDL::mFontInit = false;
 TTF_Font* FontSDL::mFont = nullptr;
 unsigned int FontSDL::mFontTexture = -1;
+ShaderBuffer FontSDL::vertexBuffer;
+ShaderBuffer FontSDL::uvBuffer;
 
 void FontSDL::shutdown() {
     if (mFont != nullptr)
@@ -126,7 +128,10 @@ void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
     uvs.push_back(glm::vec2(1.0f, 1.0f));
     uvs.push_back(glm::vec2(0.0f, 0.0f));
 
-    Shader::drawGL(vertices, uvs, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), mFontTexture);
+    vertexBuffer.bufferData(vertices);
+    uvBuffer.bufferData(uvs);
+    Shader::drawGL(vertexBuffer, uvBuffer, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+                   mFontTexture, TextureManager::TextureStorage::SYSTEM);
 }
 
 unsigned int FontSDL::heightText(float scale, unsigned int maxWidth, std::string s) {
@@ -208,6 +213,9 @@ void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     uvs.push_back(glm::vec2(1.0f, 1.0f));
     uvs.push_back(glm::vec2(0.0f, 0.0f));
 
-    Shader::drawGL(vertices, uvs, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), mFontTexture);
+    vertexBuffer.bufferData(vertices);
+    uvBuffer.bufferData(uvs);
+    Shader::drawGL(vertexBuffer, uvBuffer, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+                   mFontTexture, TextureManager::TextureStorage::SYSTEM);
 }
 

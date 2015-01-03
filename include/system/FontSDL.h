@@ -33,6 +33,8 @@ class FontSDL {
     static bool mFontInit;
     static TTF_Font* mFont;
     static unsigned int mFontTexture;
+    static ShaderBuffer vertexBuffer;
+    static ShaderBuffer uvBuffer;
 };
 
 #endif

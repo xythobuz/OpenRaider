@@ -69,8 +69,11 @@ void TextureManager::clear() {
         tiles.pop_back();
     }
 
-    while (!animations.empty())
-        animations.pop_back();
+    animations.clear();
+
+    gameUnits.clear();
+    systemUnits.clear();
+    nextFreeTextureUnit = 0;
 }
 
 void TextureManager::addTile(TextureTile* t) {
@@ -123,6 +126,13 @@ std::vector<unsigned int>& TextureManager::getIds(TextureStorage s) {
         return mTextureIdsGame;
     else
         return mTextureIdsSystem;
+}
+
+std::vector<int>& TextureManager::getUnits(TextureStorage s) {
+    if (s == TextureStorage::GAME)
+        return gameUnits;
+    else
+        return systemUnits;
 }
 
 int TextureManager::initialize() {
@@ -216,7 +226,7 @@ int TextureManager::loadBufferSlot(unsigned char* image,
     }
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glBindTexture(GL_TEXTURE_2D, getIds(s).at(slot));
+    bindTexture(slot, s);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, glcMode, GL_UNSIGNED_BYTE, image);
 
     if (filter) {
@@ -246,9 +256,23 @@ void TextureManager::bindTextureId(unsigned int n, TextureStorage s, unsigned in
     glBindTexture(GL_TEXTURE_2D, getIds(s).at(n));
 }
 
-int TextureManager::loadImage(std::string filename, TextureStorage s, int slot) {
-    //! \todo case insensitive compare
+int TextureManager::bindTexture(unsigned int n, TextureStorage s) {
+    assert(n < getIds(s).size());
 
+    if ((n < getUnits(s).size()) && (getUnits(s).at(n) >= 0)) {
+        bindTextureId(n, s, getUnits(s).at(n));
+        return getUnits(s).at(n);
+    } else {
+        while (getUnits(s).size() <= n)
+            getUnits(s).push_back(-1);
+        getUnits(s).at(n) = nextFreeTextureUnit;
+        bindTextureId(n, s, nextFreeTextureUnit);
+        nextFreeTextureUnit++;
+        return nextFreeTextureUnit - 1;
+    }
+}
+
+int TextureManager::loadImage(std::string filename, TextureStorage s, int slot) {
     if (stringEndsWith(filename, ".pcx")) {
         return loadPCX(filename, s, slot);
     } else {

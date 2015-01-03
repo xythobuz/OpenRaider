@@ -6,89 +6,85 @@
  */
 
 #include "global.h"
-#include "Mesh.h"
 #include "TextureManager.h"
-#include "system/Shader.h"
 #include "RoomMesh.h"
 
 RoomMesh::RoomMesh(const std::vector<RoomVertexTR2>& vert,
                    const std::vector<IndexedRectangle>& rect,
                    const std::vector<IndexedRectangle>& tri) {
     for (auto& t : rect) {
-        indices.push_back(0);
-        vertices.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));
-        vertices.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
-        vertices.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
-        vertices.push_back(glm::vec3(vert.at(t.v4).x, vert.at(t.v4).y, vert.at(t.v4).z));
-        textures.push_back(t.texture);
+        indicesBuff.push_back(0);
+        verticesBuff.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));
+        verticesBuff.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
+        verticesBuff.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
+        verticesBuff.push_back(glm::vec3(vert.at(t.v4).x, vert.at(t.v4).y, vert.at(t.v4).z));
+        texturesBuff.push_back(t.texture);
     }
 
     for (auto& t : tri) {
-        indices.push_back(1);
-        vertices.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));
-        vertices.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
-        vertices.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
-        textures.push_back(t.texture);
+        indicesBuff.push_back(1);
+        verticesBuff.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));
+        verticesBuff.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
+        verticesBuff.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
+        texturesBuff.push_back(t.texture);
     }
 }
 
 void RoomMesh::prepare() {
     std::vector<unsigned short> ind;
     std::vector<glm::vec3> vert;
+    std::vector<glm::vec2> uvBuff;
     std::vector<unsigned int> tex;
 
-    std::map<PackedVertex, unsigned short> vertexMap;
-
     int vertIndex = 0;
-    for (int i = 0; i < indices.size(); i++) {
-        unsigned int texture = getTextureManager().getTile(textures.at(i)).getTexture();
-        for (int v = 0; v < ((indices.at(i) == 0) ? 4 : 3); v++) {
-            glm::vec2 uv = getTextureManager().getTile(textures.at(i)).getUV(v);
-            PackedVertex p(vertices.at(vertIndex + v), uv, texture);
-            unsigned short s;
-            if (findSimilarVertex(p, vertexMap, s)) {
-                ind.push_back(s); // Vertex already cached
-            } else {
-                vertexMap[p] = vert.size();
-                ind.push_back(vert.size());
-                vert.push_back(p.pos);
-                uvs.push_back(p.uv);
-                tex.push_back(p.tex);
-            }
+    for (int i = 0; i < indicesBuff.size(); i++) {
+        unsigned int texture = getTextureManager().getTile(texturesBuff.at(i)).getTexture();
+        for (int v = 0; v < ((indicesBuff.at(i) == 0) ? 4 : 3); v++) {
+            ind.push_back(vert.size());
+            vert.push_back(verticesBuff.at(vertIndex + v));
+            uvBuff.push_back(getTextureManager().getTile(texturesBuff.at(i)).getUV(v));
+            tex.push_back(texture);
         }
 
-        if (indices.at(i) == 0) {
+        if (indicesBuff.at(i) == 0) {
             ind.push_back(ind.at(ind.size() - 2));
             ind.push_back(ind.at(ind.size() - 5));
         }
 
-        vertIndex += (indices.at(i) == 0) ? 4 : 3;
+        vertIndex += (indicesBuff.at(i) == 0) ? 4 : 3;
     }
 
     assert((ind.size() % 3) == 0);
+    assert(vert.size() == tex.size());
+    assert(vert.size() == uvBuff.size());
 
-    indices = std::move(ind);
-    vertices = std::move(vert);
-    textures = std::move(tex);
+    indicesBuff = std::move(ind);
+    vertices.bufferData(vert);
+    uvs.bufferData(uvBuff);
+    texturesBuff = std::move(tex);
 }
 
 void RoomMesh::display(glm::mat4 MVP) {
-    if (indices.size() > 0) {
+    if (indicesBuff.size() > 0) {
         unsigned int indexStart = 0;
         unsigned int indexPos = 1;
-        unsigned int texture = textures.at(indices.at(0));
+        unsigned int texture = texturesBuff.at(indicesBuff.at(0));
 
-        while ((indexStart != indexPos) && (indexPos < indices.size())) {
-            while ((indexPos < indices.size()) && (textures.at(indices.at(indexPos)) == texture))
+        while ((indexStart != indexPos) && (indexPos < indicesBuff.size())) {
+            while ((indexPos < indicesBuff.size())
+                    && (texturesBuff.at(indicesBuff.at(indexPos)) == texture)) {
                 indexPos++;
+            }
 
-            std::vector<unsigned short> ind(indices.begin() + indexStart, indices.begin() + indexPos);
-            Shader::drawGL(vertices, uvs, ind, MVP, texture);
+            std::vector<unsigned short> ind(indicesBuff.begin() + indexStart,
+                                            indicesBuff.begin() + indexPos);
+            indices.bufferData(ind);
+            Shader::drawGL(vertices, uvs, indices, texture, MVP);
 
-            if (indexPos < indices.size()) {
+            if (indexPos < indicesBuff.size()) {
                 indexStart = indexPos;
                 indexPos += 1;
-                texture = textures.at(indices.at(indexStart));
+                texture = texturesBuff.at(indicesBuff.at(indexStart));
             }
         }
     }

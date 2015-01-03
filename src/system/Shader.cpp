@@ -11,30 +11,44 @@
 #include "system/Window.h"
 #include "system/Shader.h"
 
-ShaderBuffer::ShaderBuffer() : buffer(0) {
-    glGenBuffers(1, &buffer);
-}
-
 ShaderBuffer::~ShaderBuffer() {
-    glDeleteBuffers(1, &buffer);
+    if (created)
+        glDeleteBuffers(1, &buffer);
 }
 
 void ShaderBuffer::bufferData(int elem, int size, void* data) {
+    if (!created) {
+        glGenBuffers(1, &buffer);
+        created = true;
+    }
+
+    boundSize = elem;
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glBufferData(GL_ARRAY_BUFFER, elem * size, data, GL_STATIC_DRAW);
 }
 
 void ShaderBuffer::bindBuffer() {
+    if (!created) {
+        glGenBuffers(1, &buffer);
+        created = true;
+    }
+
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffer);
 }
 
 void ShaderBuffer::bindBuffer(int location, int size) {
+    if (!created) {
+        glGenBuffers(1, &buffer);
+        created = true;
+    }
+
     glEnableVertexAttribArray(location);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glVertexAttribPointer(location, size, GL_FLOAT, GL_FALSE, 0, nullptr);
 }
 
 void ShaderBuffer::unbind(int location) {
+    assert(created == true);
     glDisableVertexAttribArray(location);
 }
 
@@ -43,9 +57,6 @@ void ShaderBuffer::unbind(int location) {
 Shader::~Shader() {
     if (programID >= 0)
         glDeleteProgram(programID);
-
-    if (!buffers.empty())
-        glDeleteBuffers(buffers.size(), &buffers[0]);
 }
 
 int Shader::addUniform(const char* name) {
@@ -65,24 +76,6 @@ unsigned int Shader::getUniform(int n) {
     return uniforms.at(n);
 }
 
-void Shader::addBuffer(int n) {
-    int s = buffers.size();
-    for (int i = 0; i < n; i++)
-        buffers.push_back(0);
-    glGenBuffers(n, &buffers[s]);
-}
-
-unsigned int Shader::getBuffer(int n) {
-    assert(n >= 0);
-    assert(n < buffers.size());
-    return buffers.at(n);
-}
-
-void Shader::bufferData(int buff, int elem, int size, void* d) {
-    glBindBuffer(GL_ARRAY_BUFFER, getBuffer(buff));
-    glBufferData(GL_ARRAY_BUFFER, elem * size, d, GL_STREAM_DRAW);
-}
-
 void Shader::loadUniform(int uni, glm::vec2 vec) {
     glUniform2f(getUniform(uni), vec.x, vec.y);
 }
@@ -95,32 +88,8 @@ void Shader::loadUniform(int uni, glm::mat4 mat) {
     glUniformMatrix4fv(getUniform(uni), 1, GL_FALSE, &mat[0][0]);
 }
 
-void Shader::loadUniform(int uni, int texture, TextureManager::TextureStorage store, int slot) {
-    getTextureManager().bindTextureId(texture, store, slot);
-    glUniform1i(getUniform(uni), slot);
-}
-
-void Shader::bindBuffer(int buff) {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, getBuffer(buff));
-}
-
-void Shader::bindBuffer(int buff, int location, int size) {
-    glEnableVertexAttribArray(location);
-    glBindBuffer(GL_ARRAY_BUFFER, getBuffer(buff));
-    glVertexAttribPointer(location, size, GL_FLOAT, GL_FALSE, 0, nullptr);
-
-    while (attribs.size() <= location)
-        attribs.push_back(false);
-    attribs.at(location) = true;
-}
-
-void Shader::disableAttribs() {
-    for (int i = 0; i < attribs.size(); i++) {
-        if (attribs.at(i)) {
-            glDisableVertexAttribArray(i);
-            attribs.at(i) = false;
-        }
-    }
+void Shader::loadUniform(int uni, int texture, TextureManager::TextureStorage store) {
+    glUniform1i(getUniform(uni), getTextureManager().bindTexture(texture, store));
 }
 
 void Shader::use() {
@@ -225,6 +194,9 @@ int Shader::initialize() {
     // Accept fragment if closer to camera
     glDepthFunc(GL_LESS);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     // Set up culling
     //glEnable(GL_CULL_FACE); //! \todo Transparency?
 
@@ -238,7 +210,6 @@ int Shader::initialize() {
         return -3;
     if (textShader.addUniform("colorVar") < 0)
         return -4;
-    textShader.addBuffer(2);
 
     if (textureShader.compile(textureShaderVertex, textureShaderFragment) < 0)
         return -5;
@@ -246,16 +217,11 @@ int Shader::initialize() {
         return -6;
     if (textureShader.addUniform("textureSampler") < 0)
         return -7;
-    textureShader.addBuffer(3);
 
     if (colorShader.compile(colorShaderVertex, colorShaderFragment) < 0)
         return -8;
     if (colorShader.addUniform("MVP") < 0)
         return -9;
-    colorShader.addBuffer(3);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     return 0;
 }
@@ -264,59 +230,81 @@ void Shader::shutdown() {
     glDeleteVertexArrays(1, &vertexArrayID);
 }
 
-void Shader::drawGL(std::vector<glm::vec2>& vertices, std::vector<glm::vec2>& uvs,
-                    glm::vec4 color, unsigned int texture) {
-    assert(vertices.size() == uvs.size());
-    assert((vertices.size() % 3) == 0);
+void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
+                    unsigned int texture, TextureManager::TextureStorage store) {
+    assert(vertices.getSize() == uvs.getSize());
+    assert((vertices.getSize() % 3) == 0);
 
-    textShader.bufferData(0, vertices);
-    textShader.bufferData(1, uvs);
     textShader.use();
     textShader.loadUniform(0, Window::getSize());
-    textShader.loadUniform(1, texture, TextureManager::TextureStorage::SYSTEM);
+    textShader.loadUniform(1, texture, store);
     textShader.loadUniform(2, color);
-    textShader.bindBuffer(0, 0, 2);
-    textShader.bindBuffer(1, 1, 2);
+    vertices.bindBuffer(0, 2);
+    uvs.bindBuffer(1, 2);
 
     glDisable(GL_DEPTH_TEST);
-    glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+    glDrawArrays(GL_TRIANGLES, 0, vertices.getSize());
     glEnable(GL_DEPTH_TEST);
 
-    textShader.disableAttribs();
+    vertices.unbind(0);
+    uvs.unbind(1);
 }
 
-void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
-                    std::vector<unsigned short>& indices, glm::mat4 MVP, unsigned int texture) {
-    assert(vertices.size() == uvs.size());
-    assert((indices.size() % 3) == 0);
+void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture,
+                    glm::mat4 MVP, TextureManager::TextureStorage store) {
+    assert(vertices.getSize() == uvs.getSize());
+    assert((vertices.getSize() % 3) == 0);
 
-    textureShader.bufferData(0, vertices);
-    textureShader.bufferData(1, uvs);
-    textureShader.bufferData(2, indices);
     textureShader.use();
     textureShader.loadUniform(0, MVP);
-    textureShader.loadUniform(1, texture, TextureManager::TextureStorage::GAME);
-    textureShader.bindBuffer(0, 0, 3);
-    textureShader.bindBuffer(1, 1, 2);
-    textureShader.bindBuffer(2);
-    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_SHORT, nullptr);
-    textureShader.disableAttribs();
+    textureShader.loadUniform(1, texture, store);
+    vertices.bindBuffer(0, 3);
+    uvs.bindBuffer(1, 2);
+    glDrawArrays(GL_TRIANGLES, 0, vertices.getSize());
+    vertices.unbind(0);
+    uvs.unbind(1);
 }
 
-void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
-                    std::vector<unsigned short>& indices, glm::mat4 MVP, int mode) {
-    assert(vertices.size() == colors.size());
+void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& indices,
+                    unsigned int texture, glm::mat4 MVP, TextureManager::TextureStorage store) {
+    assert(vertices.getSize() == uvs.getSize());
+    assert((indices.getSize() % 3) == 0);
 
-    colorShader.bufferData(0, vertices);
-    colorShader.bufferData(1, colors);
-    colorShader.bufferData(2, indices);
+    textureShader.use();
+    textureShader.loadUniform(0, MVP);
+    textureShader.loadUniform(1, texture, store);
+    vertices.bindBuffer(0, 3);
+    uvs.bindBuffer(1, 2);
+    indices.bindBuffer();
+    glDrawElements(GL_TRIANGLES, indices.getSize(), GL_UNSIGNED_SHORT, nullptr);
+    vertices.unbind(0);
+    uvs.unbind(1);
+}
+
+void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP, unsigned int mode) {
+    assert(vertices.getSize() == colors.getSize());
+
     colorShader.use();
     colorShader.loadUniform(0, MVP);
-    colorShader.bindBuffer(0, 0, 3);
-    colorShader.bindBuffer(1, 1, 3);
-    colorShader.bindBuffer(2);
-    glDrawElements(mode, indices.size(), GL_UNSIGNED_SHORT, nullptr);
-    colorShader.disableAttribs();
+    vertices.bindBuffer(0, 3);
+    colors.bindBuffer(1, 3);
+    glDrawArrays(mode, 0, vertices.getSize());
+    vertices.unbind(0);
+    colors.unbind(1);
+}
+
+void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
+                    glm::mat4 MVP, unsigned int mode) {
+    assert(vertices.getSize() == colors.getSize());
+
+    colorShader.use();
+    colorShader.loadUniform(0, MVP);
+    vertices.bindBuffer(0, 3);
+    colors.bindBuffer(1, 3);
+    indices.bindBuffer();
+    glDrawElements(mode, indices.getSize(), GL_UNSIGNED_SHORT, nullptr);
+    vertices.unbind(0);
+    colors.unbind(1);
 }
 
 // --------------------------------------

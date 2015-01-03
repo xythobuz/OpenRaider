@@ -52,7 +52,6 @@ int UI::initialize() {
         return -2;
     if (imguiShader.addUniform("textureSampler") < 0)
         return -3;
-    imguiShader.addBuffer(3);
 
     iniFilename = RunTime::getBaseDir() + "/imgui.ini";
     logFilename = RunTime::getBaseDir() + "/imgui_log.txt";
@@ -531,19 +530,17 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
     if (cmd_lists_count == 0)
         return;
 
+    static ShaderBuffer vert, uv, col;
+
     glEnable(GL_SCISSOR_TEST);
     glDisable(GL_DEPTH_TEST);
 
     imguiShader.use();
     imguiShader.loadUniform(0, Window::getSize());
     imguiShader.loadUniform(1, fontTex, TextureManager::TextureStorage::SYSTEM);
-    imguiShader.bindBuffer(0, 0, 2);
-    imguiShader.bindBuffer(1, 1, 2);
-    imguiShader.bindBuffer(2, 2, 4);
-
-    std::vector<glm::vec2> vertices;
-    std::vector<glm::vec2> uvs;
-    std::vector<glm::vec4> colors;
+    vert.bindBuffer(0, 2);
+    uv.bindBuffer(1, 2);
+    col.bindBuffer(2, 4);
 
     /*! \fixme Don't copy data
      * The GL calls and the shaders can probably be slightly altered
@@ -556,6 +553,10 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
 
         int offset = 0;
         for (int n = 0; n < commands.size(); n++) {
+            std::vector<glm::vec2> vertices;
+            std::vector<glm::vec2> uvs;
+            std::vector<glm::vec4> colors;
+
             for (int v = 0; v < commands[n].vtx_count; v++) {
                 vertices.push_back(glm::vec2(buffer[offset + v].pos.x, buffer[offset + v].pos.y));
                 uvs.push_back(glm::vec2(buffer[offset + v].uv.x, buffer[offset + v].uv.y));
@@ -570,9 +571,9 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
 
             offset += commands[n].vtx_count;
 
-            imguiShader.bufferData(0, vertices);
-            imguiShader.bufferData(1, uvs);
-            imguiShader.bufferData(2, colors);
+            vert.bufferData(vertices);
+            uv.bufferData(uvs);
+            col.bufferData(colors);
 
             glScissor(commands[n].clip_rect.x,
                       Window::getSize().y - commands[n].clip_rect.w,
@@ -580,14 +581,12 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
                       commands[n].clip_rect.w - commands[n].clip_rect.y);
 
             glDrawArrays(GL_TRIANGLES, 0, vertices.size());
-
-            vertices.clear();
-            uvs.clear();
-            colors.clear();
         }
     }
 
-    imguiShader.disableAttribs();
+    vert.unbind(0);
+    uv.unbind(1);
+    col.unbind(2);
 
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_SCISSOR_TEST);

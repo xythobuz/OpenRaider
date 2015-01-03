@@ -185,10 +185,11 @@ void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,
     uvs.push_back(glm::vec2(1.0f, 1.0f));
     uvs.push_back(glm::vec2(0.0f, 0.0f));
 
-    //! \fixme This drawGL only uses SYSTEM textures!
-    assert(s == TextureManager::TextureStorage::SYSTEM);
+    static ShaderBuffer vert, uv;
+    vert.bufferData(vertices);
+    uv.bufferData(uvs);
 
-    Shader::drawGL(vertices, uvs, color, texture);
+    Shader::drawGL(vert, uv, color, texture, s);
 }
 
 static const int modeStringCount = 4;

@@ -8,11 +8,12 @@
 #ifndef _MESH_H_
 #define _MESH_H_
 
-#include <map>
 #include <vector>
 #include <glm/mat4x4.hpp>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+
+#include "system/Shader.h"
 
 struct IndexedRectangle {
     unsigned int v1, v2, v3, v4; // Vertex list indices
@@ -46,53 +47,17 @@ class Mesh {
     void display(glm::mat4 MVP);
 
   private:
-    std::vector<unsigned short> indices;
-    std::vector<glm::vec3> vertices;
-    std::vector<glm::vec2> uvs;
-    std::vector<unsigned int> textures;
+    std::vector<unsigned short> indicesBuff;
+    std::vector<glm::vec3> verticesBuff;
+    std::vector<unsigned int> texturesBuff;
 
-    std::vector<unsigned short> indicesColor;
-    std::vector<glm::vec3> verticesColor;
-    std::vector<glm::vec3> colors;
+    std::vector<unsigned short> indicesColorBuff;
+    std::vector<glm::vec3> verticesColorBuff;
+    std::vector<glm::vec3> colorsBuff;
+
+    ShaderBuffer indices, vertices, uvs;
+    ShaderBuffer indicesColor, verticesColor, colors;
 };
-
-// --------------------------------------
-
-struct PackedVertex {
-    glm::vec3 pos;
-    glm::vec2 uv;
-    unsigned int tex;
-
-    PackedVertex(glm::vec3 p, glm::vec2 u, unsigned int t) : pos(p), uv(u), tex(t) { }
-
-    bool operator<(const PackedVertex& v) const {
-        return memcmp(this, &v, sizeof(PackedVertex)) > 0;
-    }
-};
-
-struct PackedColoredVertex {
-    glm::vec3 pos;
-    glm::vec3 col;
-
-    PackedColoredVertex(glm::vec3 p, glm::vec3 c) : pos(p), col(c) { }
-
-    bool operator<(const PackedColoredVertex& v) const {
-        return memcmp(this, &v, sizeof(PackedColoredVertex)) > 0;
-    }
-};
-
-template <typename T>
-bool findSimilarVertex(T& v,
-                       std::map<T, unsigned short> m,
-                       unsigned short& s) {
-    auto it = m.find(v);
-    if (it == m.end())
-        return false;
-    else {
-        s = it->second;
-        return true;
-    }
-}
 
 #endif
 

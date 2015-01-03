@@ -6,6 +6,8 @@
     * Fixed bug in WindowSDL where resizing only worked after calling it two times.
     * Fixed bug in Console that caused its window to get bigger after each launch.
     * Added ShaderBuffer class.
+    * Level geometry now stored in GL buffers at level load.
+        * Greatly improved level load times, more FPS.
 
     [ 20141231 ]
     * No longer using Exceptions.

@@ -17,7 +17,7 @@
 
 class ShaderBuffer {
   public:
-    ShaderBuffer();
+    ShaderBuffer() : created(false), buffer(0), boundSize(0) { }
     ~ShaderBuffer();
 
     void bufferData(int elem, int size, void* data);
@@ -30,8 +30,12 @@ class ShaderBuffer {
     void bindBuffer(int location, int size);
     void unbind(int location);
 
+    int getSize() { return boundSize; }
+
   private:
+    bool created;
     unsigned int buffer;
+    int boundSize;
 };
 
 class Shader {
@@ -45,41 +49,31 @@ class Shader {
     int addUniform(const char* name);
     unsigned int getUniform(int n);
 
-    void addBuffer(int n = 1);
-    unsigned int getBuffer(int n);
-
-    template<typename T>
-    void bufferData(int buff, std::vector<T> v)
-        { bufferData(buff, v.size(), sizeof(T), &v[0]); }
-    void bufferData(int buff, int elem, int size, void* d);
-
     void loadUniform(int uni, glm::vec2 vec);
     void loadUniform(int uni, glm::vec4 vec);
     void loadUniform(int uni, glm::mat4 mat);
-    void loadUniform(int uni, int texture, TextureManager::TextureStorage store, int slot = 0);
-
-    void bindBuffer(int buff);
-    void bindBuffer(int buff, int location, int size);
-
-    void disableAttribs();
+    void loadUniform(int uni, int texture, TextureManager::TextureStorage store);
 
     static int initialize();
     static void shutdown();
 
-    static void drawGL(std::vector<glm::vec2>& vertices, std::vector<glm::vec2>& uvs,
-                       glm::vec4 color, unsigned int texture);
+    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color, unsigned int texture,
+                       TextureManager::TextureStorage store = TextureManager::TextureStorage::SYSTEM);
 
-    static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
-                       std::vector<unsigned short>& indices, glm::mat4 MVP, unsigned int texture);
+    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture, glm::mat4 MVP,
+                       TextureManager::TextureStorage store = TextureManager::TextureStorage::GAME);
+    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& indices,
+                       unsigned int texture, glm::mat4 MVP,
+                       TextureManager::TextureStorage store = TextureManager::TextureStorage::GAME);
 
-    static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
-                       std::vector<unsigned short>& indices, glm::mat4 MVP, int mode = GL_TRIANGLES);
+    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
+                       unsigned int mode = GL_TRIANGLES);
+    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
+                       glm::mat4 MVP, unsigned int mode = GL_TRIANGLES);
 
   private:
     int programID;
     std::vector<unsigned int> uniforms;
-    std::vector<unsigned int> buffers;
-    std::vector<bool> attribs;
 
     static Shader textShader;
     static const char* textShaderVertex;

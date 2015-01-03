@@ -59,6 +59,7 @@ class TextureManager {
         SYSTEM
     };
 
+    TextureManager() : nextFreeTextureUnit(0) { }
     ~TextureManager();
 
     int initialize();
@@ -69,12 +70,12 @@ class TextureManager {
     int numTextures(TextureStorage s = TextureStorage::GAME);
 
     /*!
-     * \brief Binds the texture for use in GL
-     * \param n valid texture index
-     * \param s Which TextureStorage should be accessed
-     * \param unit Which GL texture unit should be used
+     * \brief Bind texture to next free texture unit.
+     * \param n ID of texture to bind
+     * \param s Place where texture is stored
+     * \returns ID of GL texture unit to which this texture is bound.
      */
-    void bindTextureId(unsigned int n, TextureStorage s = TextureStorage::GAME, unsigned int unit = 0);
+    int bindTexture(unsigned int n, TextureStorage s);
 
     /*!
      * \brief Loads Buffer as texture
@@ -107,6 +108,9 @@ class TextureManager {
 
   private:
     std::vector<unsigned int>& getIds(TextureStorage s);
+    std::vector<int>& getUnits(TextureStorage s);
+
+    void bindTextureId(unsigned int n, TextureStorage s, unsigned int unit);
     int loadPCX(std::string filename, TextureStorage s, int slot);
 
     std::vector<unsigned int> mTextureIdsGame;
@@ -114,6 +118,10 @@ class TextureManager {
 
     std::vector<TextureTile*> tiles;
     std::vector<std::vector<int>> animations;
+
+    std::vector<int> gameUnits;
+    std::vector<int> systemUnits;
+    unsigned int nextFreeTextureUnit;
 };
 
 TextureManager& getTextureManager();

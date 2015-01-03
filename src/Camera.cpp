@@ -43,7 +43,6 @@ const static glm::vec3 upUnit(0.0f, 1.0f, 0.0f);
 const static glm::vec3 dirUnit(0.0f, 0.0f, -1.0f);
 
 glm::vec3 Camera::pos(0.0f, 0.0f, 0.0f);
-glm::vec3 Camera::drawPos(0.0f, 0.0f, 0.0f);
 glm::quat Camera::quaternion(glm::vec3(0.0f, 0.0f, 0.0f));
 glm::vec3 Camera::posSpeed(0.0f, 0.0f, 0.0f);
 glm::vec2 Camera::rotSpeed(0.0f, 0.0f);
@@ -56,7 +55,6 @@ bool Camera::dirty = true;
 
 void Camera::reset() {
     pos = glm::vec3(0.0f, 0.0f, 0.0f);
-    drawPos = glm::vec3(0.0f, 0.0f, 0.0f);
     quaternion = glm::quat(glm::vec3(0.0f, 0.0f, 0.0f));
     posSpeed = glm::vec3(0.0f, 0.0f, 0.0f);
     rotSpeed = glm::vec2(0.0f, 0.0f);
@@ -233,6 +231,12 @@ static glm::vec3 frustumColors[6] = {
 };
 static glm::vec3 frustumVertices[8];
 
+static ShaderBuffer vertexBuffer;
+static ShaderBuffer colorBuffer;
+static ShaderBuffer indexBuffer;
+static ShaderBuffer vertexPointBuffer;
+static ShaderBuffer colorPointBuffer;
+
 void Camera::calculateFrustumPlanes() {
     glm::mat4 combo = projection * view;
 
@@ -260,30 +264,7 @@ void Camera::calculateFrustumPlanes() {
     planes[NEAR].set(frustumVertices[NTL], frustumVertices[NTR], frustumVertices[NBR]);
     planes[FAR].set(frustumVertices[FTR], frustumVertices[FTL], frustumVertices[FBL]);
 
-    drawPos = getPosition();
-}
-
-bool Camera::boxInFrustum(BoundingBox b) {
-    for (int i = 0; i < 6; i++) {
-        int out = 0, in = 0;
-        for (int c = 0; (c < 8) && ((in == 0) || (out == 0)); c++) {
-            if (planes[i].distance(b.getCorner(c)) < 0)
-                out++;
-            else
-                in++;
-        }
-
-        if (in == 0)
-            return false;
-    }
-
-    return true;
-}
-
-void Camera::displayFrustum(glm::mat4 MVP) {
     std::vector<glm::vec3> verts;
-    std::vector<glm::vec3> cols;
-    std::vector<unsigned short> inds;
 
     // Near
     verts.push_back(frustumVertices[NTL]);
@@ -321,29 +302,60 @@ void Camera::displayFrustum(glm::mat4 MVP) {
     verts.push_back(frustumVertices[FTR]);
     verts.push_back(frustumVertices[FBR]);
 
-    for (int i = 0; i < 6; i++) {
-        cols.push_back(frustumColors[i]);
-        cols.push_back(frustumColors[i]);
-        cols.push_back(frustumColors[i]);
-        cols.push_back(frustumColors[i]);
-
-        inds.push_back(4 * i);
-        inds.push_back((4 * i) + 1);
-        inds.push_back((4 * i) + 2);
-        inds.push_back((4 * i) + 3);
-        inds.push_back((4 * i) + 2);
-        inds.push_back(4 * i);
-    }
-
-    Shader::drawGL(verts, cols, inds, MVP);
+    vertexBuffer.bufferData(verts);
 
     verts.clear();
-    cols.clear();
-    inds.clear();
+    std::vector<glm::vec3> cols;
 
-    verts.push_back(drawPos);
+    verts.push_back(getPosition());
     cols.push_back(glm::vec3(1.0f, 1.0f, 1.0f));
-    inds.push_back(0);
-    Shader::drawGL(verts, cols, inds, MVP, GL_POINTS);
+
+    vertexPointBuffer.bufferData(verts);
+    colorPointBuffer.bufferData(cols);
+
+    if (colorBuffer.getSize() == 0) {
+        cols.clear();
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                cols.push_back(frustumColors[i]);
+            }
+        }
+        colorBuffer.bufferData(cols);
+    }
+
+    if (indexBuffer.getSize() == 0) {
+        std::vector<unsigned short> inds;
+        for (int i = 0; i < 6; i++) {
+            inds.push_back(4 * i);
+            inds.push_back((4 * i) + 1);
+            inds.push_back((4 * i) + 2);
+            inds.push_back((4 * i) + 3);
+            inds.push_back((4 * i) + 2);
+            inds.push_back(4 * i);
+        }
+        indexBuffer.bufferData(inds);
+    }
+}
+
+bool Camera::boxInFrustum(BoundingBox b) {
+    for (int i = 0; i < 6; i++) {
+        int out = 0, in = 0;
+        for (int c = 0; (c < 8) && ((in == 0) || (out == 0)); c++) {
+            if (planes[i].distance(b.getCorner(c)) < 0)
+                out++;
+            else
+                in++;
+        }
+
+        if (in == 0)
+            return false;
+    }
+
+    return true;
+}
+
+void Camera::displayFrustum(glm::mat4 MVP) {
+    Shader::drawGL(vertexBuffer, colorBuffer, indexBuffer, MVP);
+    Shader::drawGL(vertexPointBuffer, colorPointBuffer, MVP, GL_POINTS);
 }
 

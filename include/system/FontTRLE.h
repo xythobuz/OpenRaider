@@ -11,6 +11,8 @@
 #include <vector>
 #include <glm/vec2.hpp>
 
+#include "system/Shader.h"
+
 /*!
  * \brief Tomb Raider Level Editor Font loader
  */
@@ -42,6 +44,9 @@ class FontTRLE {
     // 106 entries: (x, y, w, h, offset)
     static int offsets[106][5];
     static int defaultOffsets[106][5];
+
+    static ShaderBuffer vertexBuffer;
+    static ShaderBuffer uvBuffer;
 };
 
 #endif

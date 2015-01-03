@@ -21,6 +21,8 @@
 bool FontTRLE::mFontInit = false;
 unsigned int FontTRLE::mFontTexture = 0;
 int FontTRLE::offsets[106][5];
+ShaderBuffer FontTRLE::vertexBuffer;
+ShaderBuffer FontTRLE::uvBuffer;
 
 void FontTRLE::shutdown() {
 }
@@ -166,8 +168,10 @@ void FontTRLE::drawText(unsigned int x, unsigned int y, float scale,
         x += (int)((float)(offsets[index][2] + 1) * scale * SCALING); // width
     }
 
+    vertexBuffer.bufferData(vertices);
+    uvBuffer.bufferData(uvs);
     glm::vec4 col(color[0] / 256.0f, color[1] / 256.0f, color[2] / 256.0f, color[3] / 256.0f);
-    Shader::drawGL(vertices, uvs, col, mFontTexture);
+    Shader::drawGL(vertexBuffer, uvBuffer, col, mFontTexture);
 }
 
 unsigned int FontTRLE::heightText(float scale, unsigned int maxWidth, std::string s) {
@@ -240,8 +244,10 @@ void FontTRLE::drawTextWrapped(unsigned int x, unsigned int y, float scale,
         x += (int)((float)(offsets[index][2] + 1) * scale * SCALING); // width
     }
 
+    vertexBuffer.bufferData(vertices);
+    uvBuffer.bufferData(uvs);
     glm::vec4 col(color[0] / 256.0f, color[1] / 256.0f, color[2] / 256.0f, color[3] / 256.0f);
-    Shader::drawGL(vertices, uvs, col, mFontTexture);
+    Shader::drawGL(vertexBuffer, uvBuffer, col, mFontTexture);
 }
 
 int FontTRLE::defaultOffsets[106][5] = {
