@@ -37,8 +37,9 @@ int FontSDL::initialize(std::string font) {
         }
 
         // Reserve slot
-        mFontTexture = getTextureManager().loadBufferSlot(nullptr, 256, 256,
-                       TextureManager::ColorMode::RGBA, 32, TextureManager::TextureStorage::SYSTEM);
+        mFontTexture = TextureManager::loadBufferSlot(nullptr, 256, 256,
+                                                      ColorMode::RGBA, 32,
+                                                      TextureStorage::SYSTEM);
 
         mFontInit = true;
     }
@@ -88,25 +89,25 @@ void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
     int w = (int)((float)surface->w * scale);
     int h = (int)((float)surface->h * scale);
 
-    TextureManager::ColorMode textureFormat;
+    ColorMode textureFormat;
     unsigned int bpp = 0;
     if (surface->format->BytesPerPixel == 4) {
         if (surface->format->Rmask == 0x000000FF)
-            textureFormat = TextureManager::ColorMode::RGBA;
+            textureFormat = ColorMode::RGBA;
         else
-            textureFormat = TextureManager::ColorMode::BGRA;
+            textureFormat = ColorMode::BGRA;
         bpp = 32;
     } else {
         if (surface->format->Rmask == 0x000000FF)
-            textureFormat = TextureManager::ColorMode::RGB;
+            textureFormat = ColorMode::RGB;
         else
-            textureFormat = TextureManager::ColorMode::BGR;
+            textureFormat = ColorMode::BGR;
         bpp = 24;
     }
 
-    getTextureManager().loadBufferSlot(static_cast<unsigned char*>(surface->pixels),
-                                       surface->w, surface->h, textureFormat, bpp,
-                                       TextureManager::TextureStorage::SYSTEM, mFontTexture);
+    TextureManager::loadBufferSlot(static_cast<unsigned char*>(surface->pixels),
+                                   surface->w, surface->h, textureFormat, bpp,
+                                   TextureStorage::SYSTEM, mFontTexture);
     SDL_FreeSurface(surface);
 
     std::vector<glm::vec2> vertices;
@@ -131,7 +132,7 @@ void FontSDL::drawText(unsigned int x, unsigned int y, float scale,
     vertexBuffer.bufferData(vertices);
     uvBuffer.bufferData(uvs);
     Shader::drawGL(vertexBuffer, uvBuffer, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
-                   mFontTexture, TextureManager::TextureStorage::SYSTEM);
+                   mFontTexture, TextureStorage::SYSTEM);
 }
 
 unsigned int FontSDL::heightText(float scale, unsigned int maxWidth, std::string s) {
@@ -173,25 +174,25 @@ void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     int w = (int)((float)surface->w * scale);
     int h = (int)((float)surface->h * scale);
 
-    TextureManager::ColorMode textureFormat;
+    ColorMode textureFormat;
     unsigned int bpp = 0;
     if (surface->format->BytesPerPixel == 4) {
         if (surface->format->Rmask == 0x000000FF)
-            textureFormat = TextureManager::ColorMode::RGBA;
+            textureFormat = ColorMode::RGBA;
         else
-            textureFormat = TextureManager::ColorMode::BGRA;
+            textureFormat = ColorMode::BGRA;
         bpp = 32;
     } else {
         if (surface->format->Rmask == 0x000000FF)
-            textureFormat = TextureManager::ColorMode::RGB;
+            textureFormat = ColorMode::RGB;
         else
-            textureFormat = TextureManager::ColorMode::BGR;
+            textureFormat = ColorMode::BGR;
         bpp = 24;
     }
 
-    getTextureManager().loadBufferSlot(static_cast<unsigned char*>(surface->pixels),
-                                       surface->w, surface->h, textureFormat, bpp,
-                                       TextureManager::TextureStorage::SYSTEM, mFontTexture);
+    TextureManager::loadBufferSlot(static_cast<unsigned char*>(surface->pixels),
+                                   surface->w, surface->h, textureFormat, bpp,
+                                   TextureStorage::SYSTEM, mFontTexture);
     SDL_FreeSurface(surface);
 
     std::vector<glm::vec2> vertices;
@@ -216,6 +217,6 @@ void FontSDL::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     vertexBuffer.bufferData(vertices);
     uvBuffer.bufferData(uvs);
     Shader::drawGL(vertexBuffer, uvBuffer, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
-                   mFontTexture, TextureManager::TextureStorage::SYSTEM);
+                   mFontTexture, TextureStorage::SYSTEM);
 }
 

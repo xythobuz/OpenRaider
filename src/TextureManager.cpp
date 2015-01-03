@@ -23,117 +23,13 @@
 #include "utils/strings.h"
 #include "TextureManager.h"
 
-glm::vec2 TextureTile::getUV(unsigned int i) {
-    glm::vec2 uv(vertices.at(i).xPixel,
-                 vertices.at(i).yPixel);
-
-    /*! \fixme
-     * This is my somewhat hacky approach to fixing
-     * the bad texture-bleeding problems everywhere.
-     * That's better, but makes the seams between
-     * each sector much more visible!
-     */
-
-    if (vertices.at(i).xCoordinate == 1) {
-        uv.x += 0.375f;
-    }
-
-    if (vertices.at(i).yCoordinate == 1) {
-        uv.y += 0.375f;
-    }
-
-    return uv / 256.0f;
-}
-
-// ----------------------------------------------------------------------------
-
-TextureManager::~TextureManager() {
-    while (mTextureIdsSystem.size() > 0) {
-        unsigned int id = mTextureIdsSystem.at(mTextureIdsSystem.size() - 1);
-        glDeleteTextures(1, &id);
-        mTextureIdsSystem.pop_back();
-    }
-
-    clear();
-}
-
-void TextureManager::clear() {
-    while (mTextureIdsGame.size() > 0) {
-        unsigned int id = mTextureIdsGame.at(mTextureIdsGame.size() - 1);
-        glDeleteTextures(1, &id);
-        mTextureIdsGame.pop_back();
-    }
-
-    while (!tiles.empty()) {
-        delete tiles.at(tiles.size() - 1);
-        tiles.pop_back();
-    }
-
-    animations.clear();
-
-    gameUnits.clear();
-    systemUnits.clear();
-    nextFreeTextureUnit = 0;
-}
-
-void TextureManager::addTile(TextureTile* t) {
-    tiles.push_back(t);
-}
-
-int TextureManager::numTiles() {
-    return tiles.size();
-}
-
-TextureTile& TextureManager::getTile(int index) {
-    assert(index >= 0);
-    assert(index < tiles.size());
-    return *tiles.at(index);
-}
-
-void TextureManager::addAnimatedTile(int index, int tile) {
-    while (index >= animations.size())
-        animations.push_back(std::vector<int>());
-
-    animations.at(index).push_back(tile);
-}
-
-int TextureManager::numAnimatedTiles() {
-    return animations.size();
-}
-
-int TextureManager::getFirstTileAnimation(int index) {
-    assert(index < animations.size());
-    assert(animations.at(index).size() > 0);
-    return animations.at(index).at(0);
-}
-
-int TextureManager::getNextTileAnimation(int tile) {
-    for (int a = 0; a < animations.size(); a++) {
-        for (int i = 0; i < animations.at(a).size(); i++) {
-            if (animations.at(a).at(i) == tile) {
-                if (i < (animations.at(a).size() - 1))
-                    return animations.at(a).at(i + 1);
-                else
-                    return animations.at(a).at(0);
-            }
-        }
-    }
-    return -1;
-}
-
-std::vector<unsigned int>& TextureManager::getIds(TextureStorage s) {
-    if (s == TextureStorage::GAME)
-        return mTextureIdsGame;
-    else
-        return mTextureIdsSystem;
-}
-
-std::vector<int>& TextureManager::getUnits(TextureStorage s) {
-    if (s == TextureStorage::GAME)
-        return gameUnits;
-    else
-        return systemUnits;
-}
+std::vector<unsigned int> TextureManager::mTextureIdsGame;
+std::vector<unsigned int> TextureManager::mTextureIdsSystem;
+std::vector<TextureTile*> TextureManager::tiles;
+std::vector<std::vector<int>> TextureManager::animations;
+std::vector<int> TextureManager::gameUnits;
+std::vector<int> TextureManager::systemUnits;
+unsigned int TextureManager::nextFreeTextureUnit = 0;
 
 int TextureManager::initialize() {
     assert(mTextureIdsGame.size() == 0);
@@ -174,6 +70,35 @@ int TextureManager::initializeSplash() {
     }
 
     return 0;
+}
+
+void TextureManager::shutdown() {
+    while (mTextureIdsSystem.size() > 0) {
+        unsigned int id = mTextureIdsSystem.at(mTextureIdsSystem.size() - 1);
+        glDeleteTextures(1, &id);
+        mTextureIdsSystem.pop_back();
+    }
+
+    clear();
+}
+
+void TextureManager::clear() {
+    while (mTextureIdsGame.size() > 0) {
+        unsigned int id = mTextureIdsGame.at(mTextureIdsGame.size() - 1);
+        glDeleteTextures(1, &id);
+        mTextureIdsGame.pop_back();
+    }
+
+    while (!tiles.empty()) {
+        delete tiles.at(tiles.size() - 1);
+        tiles.pop_back();
+    }
+
+    animations.clear();
+
+    gameUnits.clear();
+    systemUnits.clear();
+    nextFreeTextureUnit = 0;
 }
 
 int TextureManager::loadBufferSlot(unsigned char* image,
@@ -272,6 +197,51 @@ int TextureManager::bindTexture(unsigned int n, TextureStorage s) {
     }
 }
 
+void TextureManager::addTile(TextureTile* t) {
+    tiles.push_back(t);
+}
+
+int TextureManager::numTiles() {
+    return tiles.size();
+}
+
+TextureTile& TextureManager::getTile(int index) {
+    assert(index >= 0);
+    assert(index < tiles.size());
+    return *tiles.at(index);
+}
+
+void TextureManager::addAnimatedTile(int index, int tile) {
+    while (index >= animations.size())
+        animations.push_back(std::vector<int>());
+
+    animations.at(index).push_back(tile);
+}
+
+int TextureManager::numAnimatedTiles() {
+    return animations.size();
+}
+
+int TextureManager::getFirstTileAnimation(int index) {
+    assert(index < animations.size());
+    assert(animations.at(index).size() > 0);
+    return animations.at(index).at(0);
+}
+
+int TextureManager::getNextTileAnimation(int tile) {
+    for (int a = 0; a < animations.size(); a++) {
+        for (int i = 0; i < animations.at(a).size(); i++) {
+            if (animations.at(a).at(i) == tile) {
+                if (i < (animations.at(a).size() - 1))
+                    return animations.at(a).at(i + 1);
+                else
+                    return animations.at(a).at(0);
+            }
+        }
+    }
+    return -1;
+}
+
 int TextureManager::loadImage(std::string filename, TextureStorage s, int slot) {
     if (stringEndsWith(filename, ".pcx")) {
         return loadPCX(filename, s, slot);
@@ -319,5 +289,43 @@ int TextureManager::loadPCX(std::string filename, TextureStorage s, int slot) {
     }
 
     return -4;
+}
+
+std::vector<unsigned int>& TextureManager::getIds(TextureStorage s) {
+    if (s == TextureStorage::GAME)
+        return mTextureIdsGame;
+    else
+        return mTextureIdsSystem;
+}
+
+std::vector<int>& TextureManager::getUnits(TextureStorage s) {
+    if (s == TextureStorage::GAME)
+        return gameUnits;
+    else
+        return systemUnits;
+}
+
+// ----------------------------------------------------------------------------
+
+glm::vec2 TextureTile::getUV(unsigned int i) {
+    glm::vec2 uv(vertices.at(i).xPixel,
+                 vertices.at(i).yPixel);
+
+    /*! \fixme
+     * This is my somewhat hacky approach to fixing
+     * the bad texture-bleeding problems everywhere.
+     * That's better, but makes the seams between
+     * each sector much more visible!
+     */
+
+    if (vertices.at(i).xCoordinate == 1) {
+        uv.x += 0.375f;
+    }
+
+    if (vertices.at(i).yCoordinate == 1) {
+        uv.y += 0.375f;
+    }
+
+    return uv / 256.0f;
 }
 

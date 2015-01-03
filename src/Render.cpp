@@ -53,7 +53,7 @@ void Render::display() {
     if (mode == RenderMode::LoadScreen) {
         glm::vec4 color(1.0f, 1.0f, 1.0f, 1.0f);
         drawTexture(0.0f, 0.0f, Window::getSize().x, Window::getSize().y,
-                    color, TEXTURE_SPLASH, TextureManager::TextureStorage::SYSTEM);
+                    color, TEXTURE_SPLASH, TextureStorage::SYSTEM);
         return;
     }
 
@@ -165,7 +165,7 @@ void Render::screenShot(const char* filenameBase) {
 }
 
 void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,
-                         unsigned int texture, TextureManager::TextureStorage s) {
+                         unsigned int texture, TextureStorage s) {
     std::vector<glm::vec2> vertices;
     std::vector<glm::vec2> uvs;
 

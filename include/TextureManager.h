@@ -40,34 +40,30 @@ class TextureTile {
     std::vector<TextureTileVertex> vertices;
 };
 
+enum class ColorMode {
+    RGB,
+    RGBA,
+    ARGB,
+    BGR,
+    BGRA
+};
+
+enum class TextureStorage {
+    GAME,
+    SYSTEM
+};
+
 /*!
  * \brief Texture registry
  */
 class TextureManager {
   public:
+    static int initialize();
+    static int initializeSplash();
+    static void shutdown();
+    static void clear();
 
-    enum class ColorMode {
-        RGB,
-        RGBA,
-        ARGB,
-        BGR,
-        BGRA
-    };
-
-    enum class TextureStorage {
-        GAME,
-        SYSTEM
-    };
-
-    TextureManager() : nextFreeTextureUnit(0) { }
-    ~TextureManager();
-
-    int initialize();
-    int initializeSplash();
-
-    void clear();
-
-    int numTextures(TextureStorage s = TextureStorage::GAME);
+    static int numTextures(TextureStorage s = TextureStorage::GAME);
 
     /*!
      * \brief Bind texture to next free texture unit.
@@ -75,7 +71,7 @@ class TextureManager {
      * \param s Place where texture is stored
      * \returns ID of GL texture unit to which this texture is bound.
      */
-    int bindTexture(unsigned int n, TextureStorage s);
+    static int bindTexture(unsigned int n, TextureStorage s);
 
     /*!
      * \brief Loads Buffer as texture
@@ -89,42 +85,40 @@ class TextureManager {
      * \param filter if the texture should be mipmap filtered
      * \returns texture ID or < 0 on error
      */
-    int loadBufferSlot(unsigned char* image = nullptr,
-                       unsigned int width = 256, unsigned int height = 256,
-                       ColorMode mode = ColorMode::RGBA, unsigned int bpp = 32,
-                       TextureStorage s = TextureStorage::GAME,
-                       int slot = -1, bool filter = true);
+    static int loadBufferSlot(unsigned char* image = nullptr,
+                              unsigned int width = 256, unsigned int height = 256,
+                              ColorMode mode = ColorMode::RGBA, unsigned int bpp = 32,
+                              TextureStorage s = TextureStorage::GAME,
+                              int slot = -1, bool filter = true);
 
-    int loadImage(std::string filename, TextureStorage s = TextureStorage::GAME, int slot = -1);
+    static int loadImage(std::string filename, TextureStorage s = TextureStorage::GAME, int slot = -1);
 
-    void addTile(TextureTile* t);
-    int numTiles();
-    TextureTile& getTile(int index);
+    static void addTile(TextureTile* t);
+    static int numTiles();
+    static TextureTile& getTile(int index);
 
-    void addAnimatedTile(int index, int tile);
-    int numAnimatedTiles();
-    int getFirstTileAnimation(int index);
-    int getNextTileAnimation(int tile);
+    static void addAnimatedTile(int index, int tile);
+    static int numAnimatedTiles();
+    static int getFirstTileAnimation(int index);
+    static int getNextTileAnimation(int tile);
 
   private:
-    std::vector<unsigned int>& getIds(TextureStorage s);
-    std::vector<int>& getUnits(TextureStorage s);
+    static std::vector<unsigned int>& getIds(TextureStorage s);
+    static std::vector<int>& getUnits(TextureStorage s);
 
-    void bindTextureId(unsigned int n, TextureStorage s, unsigned int unit);
-    int loadPCX(std::string filename, TextureStorage s, int slot);
+    static void bindTextureId(unsigned int n, TextureStorage s, unsigned int unit);
+    static int loadPCX(std::string filename, TextureStorage s, int slot);
 
-    std::vector<unsigned int> mTextureIdsGame;
-    std::vector<unsigned int> mTextureIdsSystem;
+    static std::vector<unsigned int> mTextureIdsGame;
+    static std::vector<unsigned int> mTextureIdsSystem;
 
-    std::vector<TextureTile*> tiles;
-    std::vector<std::vector<int>> animations;
+    static std::vector<TextureTile*> tiles;
+    static std::vector<std::vector<int>> animations;
 
-    std::vector<int> gameUnits;
-    std::vector<int> systemUnits;
-    unsigned int nextFreeTextureUnit;
+    static std::vector<int> gameUnits;
+    static std::vector<int> systemUnits;
+    static unsigned int nextFreeTextureUnit;
 };
-
-TextureManager& getTextureManager();
 
 #endif
 

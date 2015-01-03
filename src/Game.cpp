@@ -77,7 +77,7 @@ void Game::destroy() {
     Camera::reset();
     Render::clearRoomList();
     SoundManager::clear();
-    getTextureManager().clear();
+    TextureManager::clear();
     getWorld().destroy();
 }
 

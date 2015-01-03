@@ -8,6 +8,7 @@
     * Added ShaderBuffer class.
     * Level geometry now stored in GL buffers at level load.
         * Greatly improved level load times, more FPS.
+    * TextureManager is now completely static.
 
     [ 20141231 ]
     * No longer using Exceptions.

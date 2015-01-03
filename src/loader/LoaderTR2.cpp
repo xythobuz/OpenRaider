@@ -88,9 +88,9 @@ void LoaderTR2::loadPaletteTextiles() {
 
         // Convert 16bit textile to 32bit textile
         unsigned char* img = argb16to32(&arr[0], 256, 256);
-        int r = getTextureManager().loadBufferSlot(img, 256, 256,
-                TextureManager::ColorMode::ARGB, 32,
-                TextureManager::TextureStorage::GAME, i);
+        int r = TextureManager::loadBufferSlot(img, 256, 256,
+                                               ColorMode::ARGB, 32,
+                                               TextureStorage::GAME, i);
         assert(r >= 0); //! \fixme properly handle error when texture could not be loaded!
         delete [] img;
     }
@@ -134,7 +134,7 @@ void LoaderTR2::loadTextures() {
             t->add(TextureTileVertex(xCoordinate, xPixel, yCoordinate, yPixel));
         }
 
-        getTextureManager().addTile(t);
+        TextureManager::addTile(t);
     }
 
     if (numObjectTextures > 0)
@@ -161,7 +161,7 @@ void LoaderTR2::loadAnimatedTextures() {
         }
 
         for (int i = 0; i < count; i++) {
-            getTextureManager().addAnimatedTile(a, animatedTextures.at(pos + i + 1));
+            TextureManager::addAnimatedTile(a, animatedTextures.at(pos + i + 1));
         }
 
         pos += count + 1;

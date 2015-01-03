@@ -92,9 +92,9 @@ int UI::initialize() {
     void* tex_data = stbi_load_from_memory((const unsigned char*)png_data,
                                            (int)png_size, &tex_x, &tex_y, &tex_comp, 0);
 
-    fontTex = getTextureManager().loadBufferSlot((unsigned char*)tex_data,
-              tex_x, tex_y, TextureManager::ColorMode::RGBA, 32,
-              TextureManager::TextureStorage::SYSTEM, -1, false);
+    fontTex = TextureManager::loadBufferSlot((unsigned char*)tex_data,
+                                             tex_x, tex_y, ColorMode::RGBA, 32,
+                                             TextureStorage::SYSTEM, -1, false);
 
     stbi_image_free(tex_data);
 
@@ -219,15 +219,13 @@ void UI::display() {
             static bool game = getGame().isLoaded();
             static int index = 0;
             ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
-            ImGui::SliderInt("##texslide", &index, 0, getTextureManager().numTextures(
-                                 game ? TextureManager::TextureStorage::GAME
-                                 : TextureManager::TextureStorage::SYSTEM) - 1);
+            ImGui::SliderInt("##texslide", &index, 0, TextureManager::.numTextures(
+                                 game ? TextureStorage::GAME : TextureStorage::SYSTEM) - 1);
             ImGui::PopItemWidth();
             ImGui::SameLine();
             if (ImGui::Button("+##texplus", ImVec2(0, 0), true)) {
-                if (index < (getTextureManager().numTextures(
-                                 game ? TextureManager::TextureStorage::GAME
-                                 : TextureManager::TextureStorage::SYSTEM) - 1))
+                if (index < (TextureManager::numTextures(
+                                 game ? TextureStorage::GAME : TextureStorage::SYSTEM) - 1))
                     index++;
                 else
                     index = 0;
@@ -237,12 +235,11 @@ void UI::display() {
                 if (index > 0)
                     index--;
                 else
-                    index = getTextureManager().numTextures(
-                                game ? TextureManager::TextureStorage::GAME
-                                : TextureManager::TextureStorage::SYSTEM) - 1;
+                    index = TextureManager::numTextures(
+                                game ? TextureStorage::GAME : TextureStorage::SYSTEM) - 1;
             }
             ImGui::SameLine();
-            if ((getTextureManager().numTextures() > 0)) {
+            if ((TextureManager::numTextures() > 0)) {
                 ImGui::Checkbox("Game##texgame", &game);
             } else {
                 game = false;
@@ -261,8 +258,7 @@ void UI::display() {
             }
             if (visibleTex) {
                 getRender().debugDisplayTexture(index,
-                                                game ? TextureManager::TextureStorage::GAME
-                                                : TextureManager::TextureStorage::SYSTEM,
+                                                game ? TextureStorage::GAME : TextureStorage::SYSTEM,
                                                 ImGui::GetWindowPos().x - ImGui::GetWindowWidth(),
                                                 ImGui::GetWindowPos().y,
                                                 ImGui::GetWindowWidth(), ImGui::GetWindowWidth());
@@ -270,14 +266,14 @@ void UI::display() {
         }
 
         if (ImGui::CollapsingHeader("Textile Viewer")) {
-            if (getTextureManager().numTiles() > 0) {
+            if (TextureManager::numTiles() > 0) {
                 static int index = 0;
                 ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
-                ImGui::SliderInt("##tileslide", &index, 0, getTextureManager().numTiles() - 1);
+                ImGui::SliderInt("##tileslide", &index, 0, TextureManager::numTiles() - 1);
                 ImGui::PopItemWidth();
                 ImGui::SameLine();
                 if (ImGui::Button("+##tileplus", ImVec2(0, 0), true)) {
-                    if (index < (getTextureManager().numTiles() - 1))
+                    if (index < (TextureManager::numTiles() - 1))
                         index++;
                     else
                         index = 0;
@@ -287,7 +283,7 @@ void UI::display() {
                     if (index > 0)
                         index--;
                     else
-                        index = getTextureManager().numTiles() - 1;
+                        index = TextureManager::numTiles() - 1;
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Show##tileshow")) {
@@ -301,8 +297,8 @@ void UI::display() {
                     getRender().debugDisplayTextile();
                     visibleTile = false;
                 }
-                if (visibleTile && (index < getTextureManager().numTiles())) {
-                    ImGui::Text(getTextureManager().getTile(index).isTriangle() ? "Triangle" : "Rectangle");
+                if (visibleTile && (index < TextureManager::numTiles())) {
+                    ImGui::Text(TextureManager::.getTile(index).isTriangle() ? "Triangle" : "Rectangle");
                 }
                 if (visibleTile) {
                     getRender().debugDisplayTextile(index,
@@ -316,29 +312,29 @@ void UI::display() {
         }
 
         if (ImGui::CollapsingHeader("Animated Textile Viewer")) {
-            if (getTextureManager().numAnimatedTiles() > 0) {
+            if (TextureManager::.numAnimatedTiles() > 0) {
                 static int index = 0;
-                static int tile = getTextureManager().getFirstTileAnimation(index);
+                static int tile = TextureManager::.getFirstTileAnimation(index);
                 ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
-                if (ImGui::SliderInt("##animslide", &index, 0, getTextureManager().numAnimatedTiles() - 1)) {
-                    tile = getTextureManager().getFirstTileAnimation(index);
+                if (ImGui::SliderInt("##animslide", &index, 0, TextureManager::.numAnimatedTiles() - 1)) {
+                    tile = TextureManager::.getFirstTileAnimation(index);
                 }
                 ImGui::PopItemWidth();
                 ImGui::SameLine();
                 if (ImGui::Button("+##animplus", ImVec2(0, 0), true)) {
-                    if (index < (getTextureManager().numAnimatedTiles() - 1))
+                    if (index < (TextureManager::.numAnimatedTiles() - 1))
                         index++;
                     else
                         index = 0;
-                    tile = getTextureManager().getFirstTileAnimation(index);
+                    tile = TextureManager::.getFirstTileAnimation(index);
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("-##animminus", ImVec2(0, 0), true)) {
                     if (index > 0)
                         index--;
                     else
-                        index = getTextureManager().numAnimatedTiles() - 1;
-                    tile = getTextureManager().getFirstTileAnimation(index);
+                        index = TextureManager::.numAnimatedTiles() - 1;
+                    tile = TextureManager::.getFirstTileAnimation(index);
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Show##animshow")) {
@@ -362,7 +358,7 @@ void UI::display() {
                                                         ImGui::GetWindowPos().y,
                                                         (ImGui::GetWindowWidth() / 2), (ImGui::GetWindowWidth() / 2));
                         fr = RunTime::getFPS() / 2;
-                        tile = getTextureManager().getNextTileAnimation(tile);
+                        tile = TextureManager::.getNextTileAnimation(tile);
                     }
                     ImGui::Text("Current Tile: %d", tile);
                 }
@@ -537,7 +533,7 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
 
     imguiShader.use();
     imguiShader.loadUniform(0, Window::getSize());
-    imguiShader.loadUniform(1, fontTex, TextureManager::TextureStorage::SYSTEM);
+    imguiShader.loadUniform(1, fontTex, TextureStorage::SYSTEM);
     vert.bindBuffer(0, 2);
     uv.bindBuffer(1, 2);
     col.bindBuffer(2, 4);

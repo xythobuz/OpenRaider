@@ -37,7 +37,7 @@ class Render {
     static void screenShot(const char* filenameBase);
 
     static void drawTexture(float x, float y, float w, float h, glm::vec4 color,
-                            unsigned int texture, TextureManager::TextureStorage s);
+                            unsigned int texture, TextureStorage s);
 
     static void setDisplayViewFrustum(bool d) { displayViewFrustum = d; }
     static bool getDisplayViewFrustum() { return displayViewFrustum; }

@@ -52,19 +52,19 @@ class Shader {
     void loadUniform(int uni, glm::vec2 vec);
     void loadUniform(int uni, glm::vec4 vec);
     void loadUniform(int uni, glm::mat4 mat);
-    void loadUniform(int uni, int texture, TextureManager::TextureStorage store);
+    void loadUniform(int uni, int texture, TextureStorage store);
 
     static int initialize();
     static void shutdown();
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color, unsigned int texture,
-                       TextureManager::TextureStorage store = TextureManager::TextureStorage::SYSTEM);
+                       TextureStorage store = TextureStorage::SYSTEM);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture, glm::mat4 MVP,
-                       TextureManager::TextureStorage store = TextureManager::TextureStorage::GAME);
+                       TextureStorage store = TextureStorage::GAME);
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& indices,
                        unsigned int texture, glm::mat4 MVP,
-                       TextureManager::TextureStorage store = TextureManager::TextureStorage::GAME);
+                       TextureStorage store = TextureStorage::GAME);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
                        unsigned int mode = GL_TRIANGLES);

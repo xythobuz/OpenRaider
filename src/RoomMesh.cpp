@@ -38,11 +38,11 @@ void RoomMesh::prepare() {
 
     int vertIndex = 0;
     for (int i = 0; i < indicesBuff.size(); i++) {
-        unsigned int texture = getTextureManager().getTile(texturesBuff.at(i)).getTexture();
+        unsigned int texture = TextureManager::getTile(texturesBuff.at(i)).getTexture();
         for (int v = 0; v < ((indicesBuff.at(i) == 0) ? 4 : 3); v++) {
             ind.push_back(vert.size());
             vert.push_back(verticesBuff.at(vertIndex + v));
-            uvBuff.push_back(getTextureManager().getTile(texturesBuff.at(i)).getUV(v));
+            uvBuff.push_back(TextureManager::getTile(texturesBuff.at(i)).getUV(v));
             tex.push_back(texture);
         }
 

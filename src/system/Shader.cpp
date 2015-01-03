@@ -7,7 +7,6 @@
 
 #include "global.h"
 #include "Log.h"
-#include "TextureManager.h"
 #include "system/Window.h"
 #include "system/Shader.h"
 
@@ -88,8 +87,8 @@ void Shader::loadUniform(int uni, glm::mat4 mat) {
     glUniformMatrix4fv(getUniform(uni), 1, GL_FALSE, &mat[0][0]);
 }
 
-void Shader::loadUniform(int uni, int texture, TextureManager::TextureStorage store) {
-    glUniform1i(getUniform(uni), getTextureManager().bindTexture(texture, store));
+void Shader::loadUniform(int uni, int texture, TextureStorage store) {
+    glUniform1i(getUniform(uni), TextureManager::bindTexture(texture, store));
 }
 
 void Shader::use() {
@@ -231,7 +230,7 @@ void Shader::shutdown() {
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
-                    unsigned int texture, TextureManager::TextureStorage store) {
+                    unsigned int texture, TextureStorage store) {
     assert(vertices.getSize() == uvs.getSize());
     assert((vertices.getSize() % 3) == 0);
 
@@ -251,7 +250,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture,
-                    glm::mat4 MVP, TextureManager::TextureStorage store) {
+                    glm::mat4 MVP, TextureStorage store) {
     assert(vertices.getSize() == uvs.getSize());
     assert((vertices.getSize() % 3) == 0);
 
@@ -266,7 +265,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int text
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& indices,
-                    unsigned int texture, glm::mat4 MVP, TextureManager::TextureStorage store) {
+                    unsigned int texture, glm::mat4 MVP, TextureStorage store) {
     assert(vertices.getSize() == uvs.getSize());
     assert((indices.getSize() % 3) == 0);
 

@@ -48,8 +48,9 @@ int FontTRLE::initialize(std::string font) {
         pixels[i] = pixels[i + 1] = pixels[i + 2] = (unsigned char)y;
     }
 
-    mFontTexture = getTextureManager().loadBufferSlot(pixels, 256, 256,
-                   TextureManager::ColorMode::BGRA, 32, TextureManager::TextureStorage::SYSTEM);
+    mFontTexture = TextureManager::loadBufferSlot(pixels, 256, 256,
+                                                  ColorMode::BGRA, 32,
+                                                  TextureStorage::SYSTEM);
     delete [] pixels;
 
     // Try to load .lps file or use default glyph positions

@@ -31,7 +31,6 @@ static std::string configFileToUse;
 static std::shared_ptr<Game> gGame;
 static std::shared_ptr<Log> gLog;
 static std::shared_ptr<MenuFolder> gMenu;
-static std::shared_ptr<TextureManager> gTextureManager;
 static std::shared_ptr<World> gWorld;
 
 Game& getGame() {
@@ -44,10 +43,6 @@ Log& getLog() {
 
 Menu& getMenu() {
     return *gMenu;
-}
-
-TextureManager& getTextureManager() {
-    return *gTextureManager;
 }
 
 World& getWorld() {
@@ -70,7 +65,6 @@ int main(int argc, char* argv[]) {
     gGame.reset(new Game());
     gLog.reset(new Log());
     gMenu.reset(new MenuFolder());
-    gTextureManager.reset(new TextureManager());
     gWorld.reset(new World());
 
     Command::fillCommandList();
@@ -91,7 +85,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Initialize Texture Manager
-    error = getTextureManager().initialize();
+    error = TextureManager::initialize();
     if (error != 0) {
         std::cout << "Could not initialize TextureManager (" << error << ")!" << std::endl;
         return -3;
@@ -111,7 +105,7 @@ int main(int argc, char* argv[]) {
         Command::executeFile(configFileToUse);
     }
 
-    error = getTextureManager().initializeSplash();
+    error = TextureManager::initializeSplash();
     if (error != 0) {
         std::cout << "Coult not load Splash Texture (" << error << ")!" << std::endl;
         return -4;

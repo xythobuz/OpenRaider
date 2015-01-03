@@ -32,7 +32,7 @@ int pcxCheck(const char* filename);
  */
 int pcxLoad(const char* filename, unsigned char** image,
             unsigned int* width, unsigned int* height,
-            TextureManager::ColorMode* mode, unsigned int* bpp);
+            ColorMode* mode, unsigned int* bpp);
 
 #endif
 
