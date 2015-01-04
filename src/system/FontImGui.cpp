@@ -11,14 +11,14 @@
 #include "UI.h"
 #include "system/FontImGui.h"
 
-#define SCALE_CALC 1.0f
-#define SCALE_DRAW 20.0f
+#define SCALE_CALC 30.0f
+#define SCALE_DRAW SCALE_CALC
 
 unsigned int FontImGui::widthText(float scale, std::string s) {
     ImGuiIO& io = ImGui::GetIO();
     ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, FLT_MAX, io.DisplaySize.y, s.c_str(),
                                          s.c_str() + s.length());
-    return size.y;
+    return size.x;
 }
 
 void FontImGui::drawText(unsigned int x, unsigned int y, float scale,
@@ -39,7 +39,7 @@ unsigned int FontImGui::heightText(float scale, unsigned int maxWidth, std::stri
     ImGuiIO& io = ImGui::GetIO();
     ImVec2 size = io.Font->CalcTextSizeA(scale * SCALE_CALC, FLT_MAX, maxWidth, s.c_str(),
                                          s.c_str() + s.length());
-    return size.x;
+    return size.y;
 }
 
 void FontImGui::drawTextWrapped(unsigned int x, unsigned int y, float scale,

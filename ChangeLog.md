@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150104 ]
+    * FontImGui has started to be useful (larger text, proper size calculation).
+
     [ 20150103 ]
     * Fixed bug in WindowSDL where resizing only worked after calling it two times.
     * Fixed bug in Console that caused its window to get bigger after each launch.

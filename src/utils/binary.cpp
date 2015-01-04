@@ -105,9 +105,7 @@ int64_t BinaryReader::read64() {
 // ----------------------------------------------------------------------------
 
 BinaryFile::BinaryFile(std::string f) {
-    int r = open(f);
-    if (r != 0)
-        throw r;
+    assert(open(f) == 0);
 }
 
 BinaryFile::~BinaryFile() {
@@ -150,9 +148,7 @@ void BinaryFile::read(char* d, int c) {
 // ----------------------------------------------------------------------------
 
 BinaryMemory::BinaryMemory(const char* d, long long m) : data(nullptr), offset(0), max(-1) {
-    int r = open(d, m);
-    if (r != 0)
-        throw r;
+    assert(open(d, m) == 0);
 }
 
 BinaryMemory::~BinaryMemory() {
