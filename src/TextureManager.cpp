@@ -114,7 +114,7 @@ int TextureManager::loadBufferSlot(unsigned char* image,
            || (mode ==  ColorMode::BGRA));
     assert((bpp == 8) || (bpp == 24) || (bpp == 32));
 
-    if (slot == -1)
+    if (slot < 0)
         slot = getIds(s).size();
 
     while (getIds(s).size() <= slot) {

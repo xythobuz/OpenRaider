@@ -1,6 +1,6 @@
 /*!
  * \file src/system/FontTRLE.cpp
- * \brief SDL Font implementation
+ * \brief Tomb Raider Level Editor Font loader
  *
  * \author xythobuz
  */

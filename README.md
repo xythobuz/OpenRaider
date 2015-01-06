@@ -44,12 +44,11 @@ Basically, OpenRaider depends on the following:
 * GLM (>= 0.9.6)
 * zlib
 * SDL2 or GLFW
-* SDL2-TTF (optional, doesn’t work with GLFW, needed if you want to use TTF fonts)
 * OpenAL & ALUT (optional, needed for sound output)
 
 On Mac OS X 10.9 / 10.10 with [XCode](https://developer.apple.com/xcode/) and [MacPorts](http://www.macports.org) installed, the following should be enough to get all dependencies that are available as port:
 
-    sudo port install cmake zlib glm libsdl2 libsdl2_ttf
+    sudo port install cmake zlib glm libsdl2
 
 A similar command for the package manager of your favorite Linux Distribution should do the trick.
 
@@ -175,7 +174,6 @@ There are some included cmake scripts:
 
 * [FindALUT](https://github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake)
 * [FindSDL2](https://github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake)
-* [FindSDL2TTF](https://github.com/Deraen/ohj2710/blob/master/cmake_modules/FindSDL2TTF.cmake)
 * [FindSSE](https://gitorious.org/vc/vc/source/a1d8b9fc31060d870386613cc72319546c850b87:cmake/FindSSE.cmake)
 * [GetGitRevisionDescription.cmake](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake)
 * [GetGitRevisionDescription.cmake.in](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake.in)

@@ -9,32 +9,25 @@
 #include "Log.h"
 #include "utils/strings.h"
 #include "system/Window.h"
-#include "system/Font.h"
 #include "system/FontImGui.h"
 #include "system/FontTRLE.h"
-
-#ifdef USING_SDL_FONT
-#include "system/FontSDL.h"
-#endif
+#include "system/FontTTF.h"
+#include "system/Font.h"
 
 bool Font::isInit = false;
 std::string Font::fontName;
 
 void Font::shutdown() {
     FontTRLE::shutdown();
-#ifdef USING_SDL_FONT
-    FontSDL::shutdown();
-#endif
+    FontTTF::shutdown();
 }
 
 int Font::initialize(std::string font) {
     fontName = font;
     if (stringEndsWith(fontName, ".pc")) {
         return FontTRLE::initialize(fontName);
-#ifdef USING_SDL_FONT
     } else if (stringEndsWith(fontName, ".ttf")) {
-        return FontSDL::initialize(fontName);
-#endif
+        return FontTTF::initialize(fontName);
     }
 
     if (font != "") {
@@ -48,10 +41,8 @@ int Font::initialize(std::string font) {
 unsigned int Font::widthText(float scale, std::string s) {
     if (stringEndsWith(fontName, ".pc")) {
         return FontTRLE::widthText(scale, s);
-#ifdef USING_SDL_FONT
     } else if (stringEndsWith(fontName, ".ttf")) {
-        return FontSDL::widthText(scale, s);
-#endif
+        return FontTTF::widthText(scale, s);
     } else {
         return FontImGui::widthText(scale, s);
     }
@@ -60,10 +51,8 @@ unsigned int Font::widthText(float scale, std::string s) {
 unsigned int Font::heightText(float scale, unsigned int maxWidth, std::string s) {
     if (stringEndsWith(fontName, ".pc")) {
         return FontTRLE::heightText(scale, maxWidth, s);
-#ifdef USING_SDL_FONT
     } else if (stringEndsWith(fontName, ".ttf")) {
-        return FontSDL::heightText(scale, maxWidth, s);
-#endif
+        return FontTTF::heightText(scale, maxWidth, s);
     } else {
         return FontImGui::heightText(scale, maxWidth, s);
     }
@@ -73,10 +62,8 @@ void Font::drawText(unsigned int x, unsigned int y, float scale,
                     const unsigned char color[4], std::string s) {
     if (stringEndsWith(fontName, ".pc")) {
         FontTRLE::drawText(x, y, scale, color, s);
-#ifdef USING_SDL_FONT
     } else if (stringEndsWith(fontName, ".ttf")) {
-        FontSDL::drawText(x, y, scale, color, s);
-#endif
+        FontTTF::drawText(x, y, scale, color, s);
     } else {
         FontImGui::drawText(x, y, scale, color, s);
     }
@@ -86,10 +73,8 @@ void Font::drawTextWrapped(unsigned int x, unsigned int y, float scale,
                            const unsigned char color[4], unsigned int maxWidth, std::string s) {
     if (stringEndsWith(fontName, ".pc")) {
         FontTRLE::drawTextWrapped(x, y, scale, color, maxWidth, s);
-#ifdef USING_SDL_FONT
     } else if (stringEndsWith(fontName, ".ttf")) {
-        FontSDL::drawTextWrapped(x, y, scale, color, maxWidth, s);
-#endif
+        FontTTF::drawTextWrapped(x, y, scale, color, maxWidth, s);
     } else {
         FontImGui::drawTextWrapped(x, y, scale, color, maxWidth, s);
     }

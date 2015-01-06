@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150106 ]
+    * Removed SDL2-TTF Font implementation
+    * Added new Font implementation using stb_truetype
+
     [ 20150104 ]
     * FontImGui has started to be useful (larger text, proper size calculation).
 

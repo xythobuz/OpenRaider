@@ -86,6 +86,21 @@ unsigned char* argb16to32(unsigned char* image, unsigned int w, unsigned int h) 
     return img;
 }
 
+unsigned char* grayscale2rgba(unsigned char* image, unsigned int w, unsigned int h) {
+    assert(image != nullptr);
+    assert(w > 0);
+    assert(h > 0);
+
+    unsigned char* img = new unsigned char[w * h * 4];
+    for (unsigned int i = 0; i < (w * h); i++) {
+        img[i * 4] = image[i];
+        img[(i * 4) + 1] = image[i];
+        img[(i * 4) + 2] = image[i];
+        img[(i * 4) + 3] = (image[i] == 0) ? 0 : 255;
+    }
+    return img;
+}
+
 #define NEXT_POWER(x) do {        \
     unsigned int i;               \
     for (i = 1; i < (x); i *= 2); \
