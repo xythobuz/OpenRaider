@@ -15,7 +15,7 @@
 
 #define MAP_WIDTH 512
 #define MAP_HEIGHT 512
-#define FONT_SIZE 30
+#define FONT_SIZE 33
 #define MAP_NUM_CHARS 50
 
 FontMapTTF::FontMapTTF() : begin(-1), texture(-1), charInfo(nullptr) { }
@@ -159,56 +159,7 @@ unsigned int FontTTF::widthText(float scale, std::string s) {
 
 void FontTTF::drawText(unsigned int x, unsigned int y, float scale,
                        const unsigned char color[4], std::string s) {
-    glm::vec4 col(color[0] / 256.0f, color[1] / 256.0f, color[2] / 256.0f, color[3] / 256.0f);
-    std::vector<glm::vec2> vertices;
-    std::vector<glm::vec2> uvs;
-    int texture = -1;
-    float xpos = x, ypos = y + (FONT_SIZE * scale);
-    for (int i = 0; i < s.length(); i++) {
-        if ((s[i] < 0x20) || (s[i] == 0x7F)) {
-            continue;
-        }
-
-        stbtt_aligned_quad quad;
-        int tex = getQuad(s[i], &xpos, &ypos, &quad);
-
-        if ((texture != tex) && (texture != -1)) {
-            vertexBuffer.bufferData(vertices);
-            uvBuffer.bufferData(uvs);
-            Shader::drawGL(vertexBuffer, uvBuffer, col, texture);
-            vertices.clear();
-            uvs.clear();
-        }
-
-        texture = tex;
-
-        glm::vec2 v1(quad.x0, quad.y0);
-        glm::vec2 v2(quad.x0, quad.y0 + ((quad.y1 - quad.y0) * scale));
-        glm::vec2 v3(quad.x0 + ((quad.x1 - quad.x0) * scale), quad.y0 + ((quad.y1 - quad.y0) * scale));
-        glm::vec2 v4(quad.x0 + ((quad.x1 - quad.x0) * scale), quad.y0);
-        glm::vec2 u1(quad.s0, quad.t0);
-        glm::vec2 u2(quad.s0, quad.t1);
-        glm::vec2 u3(quad.s1, quad.t1);
-        glm::vec2 u4(quad.s1, quad.t0);
-
-        vertices.push_back(v1);
-        vertices.push_back(v2);
-        vertices.push_back(v3);
-        vertices.push_back(v4);
-        vertices.push_back(v1);
-        vertices.push_back(v3);
-
-        uvs.push_back(u1);
-        uvs.push_back(u2);
-        uvs.push_back(u3);
-        uvs.push_back(u4);
-        uvs.push_back(u1);
-        uvs.push_back(u3);
-    }
-
-    vertexBuffer.bufferData(vertices);
-    uvBuffer.bufferData(uvs);
-    Shader::drawGL(vertexBuffer, uvBuffer, col, texture);
+    drawTextInternal(x, y, scale, color, 0, s, false);
 }
 
 unsigned int FontTTF::heightText(float scale, unsigned int maxWidth, std::string s) {
@@ -230,6 +181,12 @@ unsigned int FontTTF::heightText(float scale, unsigned int maxWidth, std::string
 
 void FontTTF::drawTextWrapped(unsigned int x, unsigned int y, float scale,
                               const unsigned char color[4], unsigned int maxWidth, std::string s) {
+    drawTextInternal(x, y, scale, color, maxWidth, s, true);
+}
+
+void FontTTF::drawTextInternal(unsigned int x, unsigned int y, float scale,
+                               const unsigned char color[4], unsigned int maxWidth, std::string s,
+                               bool drawWrapped) {
     glm::vec4 col(color[0] / 256.0f, color[1] / 256.0f, color[2] / 256.0f, color[3] / 256.0f);
     std::vector<glm::vec2> vertices;
     std::vector<glm::vec2> uvs;
@@ -243,7 +200,7 @@ void FontTTF::drawTextWrapped(unsigned int x, unsigned int y, float scale,
         stbtt_aligned_quad quad;
         int tex = getQuad(s[i], &xpos, &ypos, &quad);
 
-        if (xpos > (x + maxWidth)) {
+        if (drawWrapped && (xpos > (x + maxWidth))) {
             xpos = x;
             ypos += FONT_SIZE * scale;
             if (s[i] != ' ')
@@ -261,28 +218,24 @@ void FontTTF::drawTextWrapped(unsigned int x, unsigned int y, float scale,
 
         texture = tex;
 
-        glm::vec2 v1(quad.x0, quad.y0);
-        glm::vec2 v2(quad.x0, quad.y0 + ((quad.y1 - quad.y0) * scale));
-        glm::vec2 v3(quad.x0 + ((quad.x1 - quad.x0) * scale), quad.y0 + ((quad.y1 - quad.y0) * scale));
-        glm::vec2 v4(quad.x0 + ((quad.x1 - quad.x0) * scale), quad.y0);
-        glm::vec2 u1(quad.s0, quad.t0);
-        glm::vec2 u2(quad.s0, quad.t1);
-        glm::vec2 u3(quad.s1, quad.t1);
-        glm::vec2 u4(quad.s1, quad.t0);
+        float xmin = quad.x0;
+        float xmax = quad.x0 + ((quad.x1 - quad.x0) * scale);
+        float ymin = quad.y1;
+        float ymax = quad.y1 + ((quad.y0 - quad.y1) * scale);
 
-        vertices.push_back(v1);
-        vertices.push_back(v2);
-        vertices.push_back(v3);
-        vertices.push_back(v4);
-        vertices.push_back(v1);
-        vertices.push_back(v3);
+        vertices.emplace_back(xmin, ymin);
+        vertices.emplace_back(xmin, ymax);
+        vertices.emplace_back(xmax, ymax);
+        vertices.emplace_back(xmax, ymin);
+        vertices.emplace_back(xmin, ymin);
+        vertices.emplace_back(xmax, ymax);
 
-        uvs.push_back(u1);
-        uvs.push_back(u2);
-        uvs.push_back(u3);
-        uvs.push_back(u4);
-        uvs.push_back(u1);
-        uvs.push_back(u3);
+        uvs.emplace_back(quad.s0, quad.t1);
+        uvs.emplace_back(quad.s0, quad.t0);
+        uvs.emplace_back(quad.s1, quad.t0);
+        uvs.emplace_back(quad.s1, quad.t1);
+        uvs.emplace_back(quad.s0, quad.t1);
+        uvs.emplace_back(quad.s1, quad.t0);
     }
 
     vertexBuffer.bufferData(vertices);
@@ -301,7 +254,7 @@ int FontTTF::charIsMapped(int c) {
     if (c >= (MAP_NUM_CHARS / 2))
         begin -= (MAP_NUM_CHARS / 2);
 
-    getLog() << "Unmapped character " << c << ", new map from " << begin << " to "
+    getLog() << "Unmapped character '" << char(c) << "', new map from " << begin << " to "
              << begin + MAP_NUM_CHARS - 1 << "..." << Log::endl;
 
     int p = maps.size();

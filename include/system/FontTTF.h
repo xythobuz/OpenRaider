@@ -47,6 +47,9 @@ class FontTTF {
   private:
     static int charIsMapped(int c);
     static int getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad *quad);
+    static void drawTextInternal(unsigned int x, unsigned int y, float scale,
+                                 const unsigned char color[4], unsigned int maxWidth, std::string s,
+                                 bool drawWrapped);
 
     static unsigned char* fontData;
     static std::vector<FontMapTTF> maps;

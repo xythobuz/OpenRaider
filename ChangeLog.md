@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140107 ]
+    * Fixed problems with FontTTFs Glyph Baseline
+
     [ 20150106 ]
     * Removed SDL2-TTF Font implementation
     * Added new Font implementation using stb_truetype
