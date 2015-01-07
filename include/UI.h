@@ -12,7 +12,7 @@
 #include <list>
 #include <memory>
 #include <tuple>
-#include <glm/vec2.hpp>
+
 #include <glm/gtc/type_precision.hpp>
 
 #include "system/Shader.h"

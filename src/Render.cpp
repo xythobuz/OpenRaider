@@ -8,10 +8,6 @@
 
 #include <algorithm>
 #include <sstream>
-#include <glm/gtc/matrix_transform.hpp>
-
-#include "imgui/imgui.h"
-#include "stb/stb_image_write.h"
 
 #include "global.h"
 #include "Camera.h"
@@ -23,6 +19,11 @@
 #include "system/Window.h"
 #include "utils/strings.h"
 #include "Render.h"
+
+#include <glm/gtc/matrix_transform.hpp>
+
+#include "imgui/imgui.h"
+#include "stb/stb_image_write.h"
 
 RenderMode Render::mode = RenderMode::LoadScreen;
 std::vector<Room*> Render::roomList;

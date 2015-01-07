@@ -7,15 +7,16 @@
  */
 
 #include <limits>
-#include <glm/gtc/epsilon.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/quaternion.hpp>
 
 #include "global.h"
 #include "RunTime.h"
 #include "system/Shader.h"
 #include "system/Window.h"
 #include "Camera.h"
+
+#include <glm/gtc/epsilon.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 static bool equal(float a, float b) {
     return glm::epsilonEqual(a, b, std::numeric_limits<float>::epsilon());

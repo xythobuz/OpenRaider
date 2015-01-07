@@ -5,8 +5,6 @@
  * \author xythobuz
  */
 
-#include <glm/glm.hpp>
-
 #include "global.h"
 #include "Camera.h"
 #include "Log.h"
@@ -77,7 +75,7 @@ int CommandSet::execute(std::istream& args) {
             getLog() << "set-size-Error: Invalid value(s)" << Log::endl;
             return -2;
         }
-        Window::setSize(glm::vec2(w, h));
+        Window::setSize(glm::i32vec2(w, h));
     } else if (var.compare("fullscreen") == 0) {
         bool fullscreen = false;
         if (!(args >> fullscreen)) {

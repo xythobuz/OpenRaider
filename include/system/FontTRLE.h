@@ -9,7 +9,6 @@
 #define _FONT_TRLE_H_
 
 #include <vector>
-#include <glm/vec2.hpp>
 
 #include "system/Shader.h"
 

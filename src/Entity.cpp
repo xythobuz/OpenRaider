@@ -5,8 +5,6 @@
  * \author xythobuz
  */
 
-#include <glm/glm.hpp>
-
 #include "global.h"
 #include "Log.h"
 #include "World.h"

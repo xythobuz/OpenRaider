@@ -6,8 +6,6 @@
  */
 
 #include <algorithm>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/intersect.hpp>
 
 #include "global.h"
 #include "Game.h"
@@ -15,6 +13,9 @@
 #include "Render.h"
 #include "Room.h"
 #include "TextureManager.h"
+
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/intersect.hpp>
 
 Room::Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
            int a, int x, int z) : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f),

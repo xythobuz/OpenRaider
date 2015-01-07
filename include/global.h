@@ -87,10 +87,18 @@ typedef enum {
 #include <GL/glext.h>
 #endif // __APPLE__
 
+/*! \todo Is there a better way to handle this?
+ * We wan't to use our own assert(). Unfortunately, glm includes
+ * <cassert> in its headers. So we need to define NDEBUG here.
+ * To avoid a conflict, our flag is now called NODEBUG instead.
+ */
+#define NDEBUG
+#include <glm/glm.hpp>
+
 // If available, use our own assert that prints the call stack
 #if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
 
-#ifndef NDEBUG
+#ifndef NODEBUG
 
 #include <iostream>
 #include <execinfo.h>
@@ -160,13 +168,13 @@ template<typename T, typename U>
         assertNotEqualImplementation(#x " != " #y, assertEvalTemp, assertEvalTemp2, __FILE__, __LINE__, true); \
 }
 
-#else // NDEBUG
+#else // NODEBUG
 
 #define assert(x)
 #define assertEqual(x, y)
 #define assertNotEqual(x, y)
 
-#endif // NDEBUG
+#endif // NODEBUG
 
 #else // EXECINFO
 

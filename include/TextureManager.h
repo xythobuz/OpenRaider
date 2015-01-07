@@ -9,9 +9,7 @@
 #ifndef _TEXTURE_MANAGER_H
 #define _TEXTURE_MANAGER_H
 
-#include <cstdint>
 #include <vector>
-#include <glm/vec2.hpp>
 
 // These are loaded into TextureStorage::SYSTEM by initialize()!
 #define TEXTURE_WHITE 0
@@ -19,11 +17,11 @@
 
 class TextureTileVertex {
   public:
-    TextureTileVertex(uint8_t xc, uint8_t xp, uint8_t yc, uint8_t yp)
+    TextureTileVertex(int xc, int xp, int yc, int yp)
         : xCoordinate(xc), xPixel(xp), yCoordinate(yc), yPixel(yp) { }
 
-    uint8_t xCoordinate, xPixel;
-    uint8_t yCoordinate, yPixel;
+    int xCoordinate, xPixel;
+    int yCoordinate, yPixel;
 };
 
 class TextureTile {

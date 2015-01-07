@@ -5,13 +5,13 @@
  * \author xythobuz
  */
 
-#include <glm/gtc/matrix_transform.hpp>
-
 #include "global.h"
 #include "SkeletalModel.h"
 #include "World.h"
 #include "system/Shader.h"
 #include "RoomData.h"
+
+#include <glm/gtc/matrix_transform.hpp>
 
 void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot) {
     std::vector<glm::vec3> verts;

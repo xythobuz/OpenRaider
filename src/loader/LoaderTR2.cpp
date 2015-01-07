@@ -6,8 +6,6 @@
  */
 
 #include <vector>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 
 #include "global.h"
 #include "Game.h"
@@ -20,6 +18,8 @@
 #include "system/Sound.h"
 #include "utils/pixel.h"
 #include "loader/LoaderTR2.h"
+
+#include <glm/gtc/matrix_transform.hpp>
 
 LoaderTR2::LoaderTR2() {
 }

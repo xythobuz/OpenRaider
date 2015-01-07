@@ -177,7 +177,7 @@ void renderFrame() {
 }
 
 #if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
-#ifndef NDEBUG
+#ifndef NODEBUG
 
 #include <exception>
 #include <execinfo.h>
@@ -192,8 +192,8 @@ namespace {
         char** strs = backtrace_symbols(callstack, frames);
 
         std::cout << std::endl;
-        for (int i = 0; i < frames; i++)
-            std::cout << strs[i] << std::endl;
+        for (int i = frames; i > 0; i++)
+            std::cout << strs[i - 1] << std::endl;
 
         delete [] strs;
 
@@ -204,6 +204,6 @@ namespace {
     std::terminate_handler oldTerminateHandler = std::set_terminate(terminateHandler);
 }
 
-#endif // NDEBUG
+#endif // NODEBUG
 #endif // HAVE_EXECINFO_H && HAVE_BACKTRACE && HAVE_BACKTRACE_SYMBOLS
 

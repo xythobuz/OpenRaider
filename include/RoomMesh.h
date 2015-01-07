@@ -9,9 +9,6 @@
 #define _ROOM_MESH_H_
 
 #include <vector>
-#include <glm/mat4x4.hpp>
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
 
 #include "Mesh.h"
 #include "system/Shader.h"

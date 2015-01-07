@@ -4,6 +4,7 @@
 
     [ 20140107 ]
     * Fixed problems with FontTTFs Glyph Baseline
+    * No longer using wrong assert() when glm is included
 
     [ 20150106 ]
     * Removed SDL2-TTF Font implementation

@@ -8,7 +8,6 @@
 #ifndef _WINDOW_GLFW_H_
 #define _WINDOW_GLFW_H_
 
-#include <glm/vec2.hpp>
 #include <glm/gtc/type_precision.hpp>
 
 #include <GLFW/glfw3.h>
