@@ -27,6 +27,7 @@ const unsigned char CYAN[]   = {   0, 255, 255, 255 };
 typedef enum {
     menuAction = 0,
     debugAction,
+    consoleAction,
 
     forwardAction,
     backwardAction,

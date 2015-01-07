@@ -5,6 +5,9 @@
     [ 20140107 ]
     * Fixed problems with FontTTFs Glyph Baseline
     * No longer using wrong assert() when glm is included
+    * Updated imgui, now Version 1.20
+    * Every imgui window is displayed separately and with close button
+    * Added consoleAction, defaulting to backquoteKey
 
     [ 20150106 ]
     * Removed SDL2-TTF Font implementation

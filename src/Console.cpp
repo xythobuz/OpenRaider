@@ -15,9 +15,8 @@
 #include "commands/Command.h"
 #include "Console.h"
 
+bool Console::visible = false;
 char Console::buffer[bufferLength + 1] = "";
-bool Console::scrollToBottom = false;
-bool Console::focusInput = false;
 unsigned long Console::lastLogLength = 0;
 std::vector<std::string> Console::lastCommands;
 long Console::lastCommandIndex = -1;
@@ -71,7 +70,11 @@ void Console::callback(ImGuiTextEditCallbackData* data) {
 }
 
 void Console::display() {
-    if (ImGui::Begin("Console", nullptr, ImVec2(600, 400))) {
+    if (!visible)
+        return;
+
+    static bool scrollToBottom = false;
+    if (ImGui::Begin("Console", &visible, ImVec2(600, 400))) {
         if (lastLogLength != getLog().size()) {
             lastLogLength = getLog().size();
             scrollToBottom = true;
@@ -87,6 +90,7 @@ void Console::display() {
         }
         ImGui::EndChild();
 
+        bool focusInput = false;
         if (ImGui::InputText("Command", buffer, bufferLength,
                              ImGuiInputTextFlags_EnterReturnsTrue
                              | ImGuiInputTextFlags_CallbackCompletion

@@ -48,6 +48,7 @@ void RunTime::initialize() {
     // Default key bindings
     keyBindings[menuAction] = escapeKey;
     keyBindings[debugAction] = qKey;
+    keyBindings[consoleAction] = backquoteKey;
     keyBindings[forwardAction] = wKey;
     keyBindings[backwardAction] = sKey;
     keyBindings[leftAction] = aKey;

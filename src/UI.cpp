@@ -113,7 +113,7 @@ void UI::eventsFinished() {
 
     ImGui::NewFrame();
 
-    if (!visible) {
+    if (!(visible || Console::isVisible())) {
         while (!clickEvents.empty()) {
             auto i = clickEvents.front();
             if (getMenu().isVisible()) {
@@ -144,7 +144,7 @@ void UI::eventsFinished() {
     while (!keyboardEvents.empty()) {
         auto i = keyboardEvents.front();
 
-        if (!visible) {
+        if (!(visible || Console::isVisible())) {
             if (getMenu().isVisible()) {
                 getMenu().handleKeyboard(std::get<0>(i), std::get<1>(i));
             } else {
@@ -156,16 +156,21 @@ void UI::eventsFinished() {
         }
 
         if (std::get<1>(i)) {
-            if (!visible) {
+            if (!(visible || Console::isVisible())) {
                 if (RunTime::getKeyBinding(menuAction) == std::get<0>(i)) {
                     getMenu().setVisible(!getMenu().isVisible());
                 }
             }
 
-            if ((!io.WantCaptureKeyboard) || (!visible)) {
-                if (RunTime::getKeyBinding(debugAction) == std::get<0>(i)) {
-                    if (!metaKeyIsActive)
+            if ((!io.WantCaptureKeyboard) || (!(visible || Console::isVisible()))) {
+                if (!metaKeyIsActive) {
+                    if (RunTime::getKeyBinding(debugAction) == std::get<0>(i)) {
                         visible = !visible;
+                    }
+
+                    if (RunTime::getKeyBinding(consoleAction) == std::get<0>(i)) {
+                        Console::setVisible(!Console::isVisible());
+                    }
                 }
             }
         }
@@ -174,24 +179,22 @@ void UI::eventsFinished() {
     }
 
     bool clicked = !clickEvents.empty();
-    // Only already empty when !visible
-    if (visible) {
-        clickEvents.clear();
-        motionEvents.clear();
-        scrollEvents.clear();
-    }
+    clickEvents.clear();
+    motionEvents.clear();
+    scrollEvents.clear();
 
-    if (visible && (
+    if ((visible || Console::isVisible()) && (
             ((!io.WantCaptureKeyboard) && io.KeysDown[escapeKey])
             || ((!io.WantCaptureMouse) && clicked)
         )) {
         visible = false;
+        Console::setVisible(false);
     }
 
-    if (Window::getTextInput() != visible)
-        Window::setTextInput(visible);
+    if (Window::getTextInput() != (visible || Console::isVisible()))
+        Window::setTextInput(visible || Console::isVisible());
 
-    bool input = !(visible || getMenu().isVisible());
+    bool input = !(visible || Console::isVisible() || getMenu().isVisible());
     if (Window::getMousegrab() != input)
         Window::setMousegrab(input);
 
@@ -199,13 +202,15 @@ void UI::eventsFinished() {
 }
 
 void UI::display() {
-    if (!visible)
-        return;
-
     Console::display();
 
+    if (!visible) {
+        ImGui::Render();
+        return;
+    }
+
     static bool showTestWindow = false;
-    if (ImGui::Begin("Engine", nullptr, ImVec2(400, 400))) {
+    if (ImGui::Begin("Engine", &visible, ImVec2(400, 400))) {
         Render::displayUI();
         RunTime::display();
         SoundManager::display();
@@ -512,14 +517,6 @@ void UI::handleControllerAxis(float value, KeyboardButton axis) {
 
 void UI::handleControllerButton(KeyboardButton button, bool released) {
     getGame().handleControllerButton(button, released);
-}
-
-void UI::setVisible(bool v) {
-    visible = v;
-}
-
-bool UI::isVisible() {
-    return visible;
 }
 
 void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {

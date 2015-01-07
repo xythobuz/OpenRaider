@@ -17,13 +17,16 @@ class Console {
   public:
     static void display();
 
+    static bool isVisible() { return visible; }
+    static void setVisible(bool v) { visible = v; }
+
   private:
     static void callback(ImGuiTextEditCallbackData* data);
 
     const static int bufferLength = 256;
+
+    static bool visible;
     static char buffer[bufferLength + 1];
-    static bool scrollToBottom;
-    static bool focusInput;
     static unsigned long lastLogLength;
     static std::vector<std::string> lastCommands;
     static long lastCommandIndex;

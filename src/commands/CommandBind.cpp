@@ -66,6 +66,8 @@ ActionEvents CommandBind::stringToActionEvent(std::string action) {
         return menuAction;
     } else if (action == "debug") {
         return debugAction;
+    } else if (action == "console") {
+        return consoleAction;
     } else if (action == "forward") {
         return forwardAction;
     } else if (action == "backward") {

@@ -17,7 +17,7 @@
 
 #include "system/Shader.h"
 
-class ImDrawList;
+struct ImDrawList;
 
 class UI {
   public:
@@ -27,8 +27,8 @@ class UI {
     static void shutdown();
     static void setSize(glm::i32vec2 s);
 
-    static void setVisible(bool v);
-    static bool isVisible();
+    static void setVisible(bool v) { visible = v; }
+    static bool isVisible() { return visible; }
 
     static void handleKeyboard(KeyboardButton key, bool pressed);
     static void handleText(char* text, bool notFinished);
