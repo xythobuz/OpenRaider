@@ -4,6 +4,12 @@ set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenRaider_CXX_FLAGS_
 
 add_custom_target (check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 
+# Add GLM Library
+find_package (GLM REQUIRED)
+if (GLM_FOUND)
+    include_directories (SYSTEM  ${GLM_INCLUDE_DIRS})
+endif (GLM_FOUND)
+
 #################################################################
 
 add_executable (tester_binary EXCLUDE_FROM_ALL
