@@ -8,8 +8,6 @@
 #include "imgui/imgui.h"
 
 #include "global.h"
-#include "Camera.h"
-#include "UI.h"
 #include "system/Sound.h"
 #include "system/Window.h"
 #include "utils/strings.h"

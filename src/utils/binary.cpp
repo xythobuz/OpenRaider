@@ -5,8 +5,6 @@
  * \author xythobuz
  */
 
-#include <sstream>
-
 #include "global.h"
 #include "utils/binary.h"
 

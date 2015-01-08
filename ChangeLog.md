@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140108 ]
+    * FPS and Camera position now displayed in imgui Overlay
+    * Removed many unnecessary includes
+
     [ 20140107 ]
     * Fixed problems with FontTTFs Glyph Baseline
     * No longer using wrong assert() when glm is included

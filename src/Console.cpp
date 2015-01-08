@@ -11,7 +11,6 @@
 
 #include "global.h"
 #include "Log.h"
-#include "UI.h"
 #include "commands/Command.h"
 #include "Console.h"
 

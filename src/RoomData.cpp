@@ -6,7 +6,6 @@
  */
 
 #include "global.h"
-#include "SkeletalModel.h"
 #include "World.h"
 #include "system/Shader.h"
 #include "RoomData.h"

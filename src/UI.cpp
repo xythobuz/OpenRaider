@@ -5,9 +5,6 @@
  * \author xythobuz
  */
 
-#include <algorithm>
-#include <cstring>
-
 #include "imgui/imgui.h"
 #include "stb/stb_image.h"
 
@@ -202,6 +199,23 @@ void UI::eventsFinished() {
 }
 
 void UI::display() {
+    if (RunTime::getShowFPS()) {
+        if (ImGui::Begin("Debug Overlay", nullptr, ImVec2(0,0), 0.3f,
+                         ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize
+                         | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings
+                         | ImGuiWindowFlags_AlwaysAutoResize)) {
+            ImGui::Text("%d FPS", RunTime::getFPS());
+            ImGui::Text("X: %.1f (%.2f)", Camera::getPosition().x, Camera::getRotation().x);
+            ImGui::Text("Y: %.2f (%.2f)", Camera::getPosition().y, Camera::getRotation().y);
+            ImGui::Text("Z: %.2f", Camera::getPosition().z);
+
+            auto window = ImGui::GetWindowSize();
+            auto screen = Window::getSize();
+            ImGui::SetWindowPos(ImVec2(10, screen.y - window.y - 10));
+        }
+        ImGui::End();
+    }
+
     Console::display();
 
     if (!visible) {

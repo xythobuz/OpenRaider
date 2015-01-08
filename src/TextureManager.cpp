@@ -6,11 +6,6 @@
  * \author xythobuz
  */
 
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdarg.h>
-
 #include "stb/stb_image.h"
 
 #include "global.h"

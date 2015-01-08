@@ -10,8 +10,6 @@
 #include <OpenAL/al.h>
 #else
 #include <AL/al.h>
-#include <fcntl.h>
-#include <unistd.h>
 #endif
 
 #include <AL/alut.h>

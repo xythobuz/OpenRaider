@@ -31,7 +31,7 @@ std::string getCurrentWorkingDirectory() {
 #else
 
     assert(false);
-    return std::string();
+    return "";
 
 #endif
 }
@@ -56,7 +56,7 @@ std::string getHomeDirectory() {
 #else
 
     assert(false);
-    return std::string();
+    return "";
 
 #endif
 }

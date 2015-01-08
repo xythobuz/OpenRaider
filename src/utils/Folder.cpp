@@ -7,8 +7,6 @@
 
 #include <algorithm>
 #include <iostream>
-#include <sstream>
-#include <cstring>
 
 #include "global.h"
 #include <Log.h>

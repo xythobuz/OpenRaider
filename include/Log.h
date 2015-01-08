@@ -8,6 +8,7 @@
 #ifndef _LOG_H_
 #define _LOG_H_
 
+#include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -29,9 +30,7 @@ class Log {
         printBuffer << t;
         if (printBuffer.str().back() == endl) {
             mHistory.push_back(printBuffer.str().substr(0, printBuffer.str().length() - 1));
-#ifdef DEBUG
             std::cout << printBuffer.str().substr(0, printBuffer.str().length() - 1) << std::endl;
-#endif
             printBuffer.str("");
         }
         return (*this);

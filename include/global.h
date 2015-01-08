@@ -106,7 +106,7 @@ typedef enum {
 
 template<typename T, typename U>
 [[noreturn]] void assertEqualImplementation(const char* exp, T a, U b, const char* file, int line,
-        bool print) {
+                                            bool print = false, const char* str = nullptr) {
     const unsigned int maxSize = 128;
     void* callstack[maxSize];
     int frames = backtrace(callstack, maxSize);
@@ -115,28 +115,7 @@ template<typename T, typename U>
     std::cout << std::endl << "assertion failed:" << std::endl;
     std::cout << "\t" << exp << std::endl;
     if (print)
-        std::cout << "\t (" << a << " != " << b << ")" << std::endl;
-    std::cout << "in " << file << ":" << line << std::endl << std::endl;
-
-    for (int i = 0; i < frames; i++)
-        std::cout << strs[i] << std::endl;
-
-    delete [] strs;
-    abort();
-}
-
-template<typename T, typename U>
-[[noreturn]] void assertNotEqualImplementation(const char* exp, T a, U b, const char* file,
-        int line, bool print) {
-    const unsigned int maxSize = 128;
-    void* callstack[maxSize];
-    int frames = backtrace(callstack, maxSize);
-    char** strs = backtrace_symbols(callstack, frames);
-
-    std::cout << std::endl << "assertion failed:" << std::endl;
-    std::cout << "\t" << exp << std::endl;
-    if (print)
-        std::cout << "\t (" << a << " == " << b << ")" << std::endl;
+        std::cout << "\t (" << a << " " << str << " " << b << ")" << std::endl;
     std::cout << "in " << file << ":" << line << std::endl << std::endl;
 
     for (int i = 0; i < frames; i++)
@@ -152,21 +131,23 @@ template<typename T, typename U>
 #define assert(x) { \
     auto assertEvalTemp = x; \
     if (!assertEvalTemp) \
-        assertEqualImplementation(#x, assertEvalTemp, true, __FILE__, __LINE__, false); \
+        assertEqualImplementation(#x, assertEvalTemp, true, __FILE__, __LINE__); \
 }
 
 #define assertEqual(x, y) { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp != assertEvalTemp2) \
-        assertEqualImplementation(#x " == " #y, assertEvalTemp, assertEvalTemp2, __FILE__, __LINE__, true); \
+        assertEqualImplementation(#x " == " #y, assertEvalTemp, assertEvalTemp2, \
+                                  __FILE__, __LINE__, true, "!="); \
 }
 
 #define assertNotEqual(x, y) { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp == assertEvalTemp2) \
-        assertNotEqualImplementation(#x " != " #y, assertEvalTemp, assertEvalTemp2, __FILE__, __LINE__, true); \
+        assertEqualImplementation(#x " != " #y, assertEvalTemp, assertEvalTemp2, \
+                                  __FILE__, __LINE__, true, "=="); \
 }
 
 #else // NODEBUG

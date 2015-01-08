@@ -5,9 +5,6 @@
  * \author Mongoose
  */
 
-#include <cstdio>
-#include <math.h>
-
 #include "global.h"
 #include "World.h"
 

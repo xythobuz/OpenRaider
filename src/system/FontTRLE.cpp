@@ -5,10 +5,8 @@
  * \author xythobuz
  */
 
-#include <algorithm>
 #include <fstream>
 #include <sstream>
-#include <stdexcept>
 
 #include "global.h"
 #include "TextureManager.h"

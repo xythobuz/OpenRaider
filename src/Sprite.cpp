@@ -7,7 +7,6 @@
 
 #include "global.h"
 #include "Camera.h"
-#include "Game.h"
 #include "Render.h"
 #include "TextureManager.h"
 #include "Sprite.h"

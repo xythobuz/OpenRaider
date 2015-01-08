@@ -5,14 +5,11 @@
  * \author xythobuz
  */
 
-#include <iostream>
-
 #include "global.h"
 #include "Log.h"
 #include "RunTime.h"
 #include "UI.h"
 #include "system/Window.h"
-#include "utils/strings.h"
 #include "system/WindowSDL.h"
 
 #define SUBSYSTEMS_USED (SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER)
@@ -27,7 +24,7 @@ SDL_GameController* WindowSDL::controller = nullptr;
 
 int WindowSDL::initialize() {
     if (SDL_Init(SUBSYSTEMS_USED) != 0) {
-        std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
+        getLog() << "SDL_Init Error: " << SDL_GetError() << Log::endl;
         return -1;
     }
 
@@ -47,20 +44,20 @@ int WindowSDL::initialize() {
         || (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE))) {
-        std::cout << "SDL_GL_SetAttribute Error: " << SDL_GetError() << std::endl;
+        getLog() << "SDL_GL_SetAttribute Error: " << SDL_GetError() << Log::endl;
         return -2;
     }
 
     window = SDL_CreateWindow(VERSION, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                               size.x, size.y, flags);
     if (!window) {
-        std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+        getLog() << "SDL_CreateWindow Error: " << SDL_GetError() << Log::endl;
         return -3;
     }
 
     context = SDL_GL_CreateContext(window);
     if (!context) {
-        std::cout << "SDL_GL_CreateContext Error: " << SDL_GetError() << std::endl;
+        getLog() << "SDL_GL_CreateContext Error: " << SDL_GetError() << Log::endl;
         return -4;
     }
 

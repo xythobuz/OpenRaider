@@ -5,14 +5,11 @@
  * \author xythobuz
  */
 
-#include <cstring>
-
 #include "global.h"
 #include "Log.h"
 #include "RunTime.h"
 #include "UI.h"
 #include "system/Window.h"
-#include "utils/strings.h"
 #include "system/WindowGLFW.h"
 
 glm::i32vec2 WindowGLFW::size(DEFAULT_WIDTH, DEFAULT_HEIGHT);

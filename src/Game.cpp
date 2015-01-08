@@ -5,28 +5,16 @@
  * \author xythobuz
  */
 
-#include <algorithm>
-#include <map>
-#include <sstream>
-#include <cstdlib>
-#include <cstring>
-
 #include "global.h"
 #include "Camera.h"
 #include "Game.h"
 #include "loader/Loader.h"
 #include "Log.h"
 #include "Render.h"
-#include "RunTime.h"
 #include "SoundManager.h"
-#include "StaticMesh.h"
-#include "system/Font.h"
-#include "system/Sound.h"
-#include "system/Window.h"
 #include "TextureManager.h"
 #include "UI.h"
 #include "World.h"
-#include "utils/strings.h"
 
 Game::Game() {
     mLoaded = false;
@@ -35,9 +23,6 @@ Game::Game() {
     for (int i = 0; i < ActionEventCount; i++) {
         activeEvents[i] = false;
     }
-}
-
-Game::~Game() {
 }
 
 int Game::initialize() {
@@ -49,24 +34,6 @@ int Game::initialize() {
 
 void Game::display() {
     Render::display();
-
-    if (RunTime::getShowFPS()) {
-        std::ostringstream s;
-        s << RunTime::getFPS() << "FPS";
-        Font::drawText(10, Window::getSize().y - 25, 0.6f, BLUE, s.str());
-
-        s.str("");
-        s << "X: " << Camera::getPosition().x << " (" << Camera::getRotation().x << ")";
-        Font::drawText(10, Window::getSize().y - 70, 0.6f, BLUE, s.str());
-
-        s.str("");
-        s << "Y: " << Camera::getPosition().y << " (" << Camera::getRotation().y << ")";
-        Font::drawText(10, Window::getSize().y - 55, 0.6f, BLUE, s.str());
-
-        s.str("");
-        s << "Z: " << Camera::getPosition().z;
-        Font::drawText(10, Window::getSize().y - 40, 0.6f, BLUE, s.str());
-    }
 }
 
 void Game::destroy() {
@@ -81,14 +48,9 @@ void Game::destroy() {
     getWorld().destroy();
 }
 
-bool Game::isLoaded() {
-    return mLoaded;
-}
-
 int Game::loadLevel(const char* level) {
     destroy();
-    levelName = level;
-    getLog() << "Loading " << levelName << Log::endl;
+    getLog() << "Loading " << level << Log::endl;
     auto loader = Loader::createLoader(level);
     if (loader) {
         int error = loader->load(level);

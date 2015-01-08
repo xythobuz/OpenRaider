@@ -7,7 +7,6 @@
 
 #include "global.h"
 #include "TextureManager.h"
-#include "system/Shader.h"
 #include "Mesh.h"
 
 Mesh::Mesh(const std::vector<glm::vec3>& vert,

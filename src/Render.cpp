@@ -6,18 +6,14 @@
  * \author xythobuz
  */
 
-#include <algorithm>
 #include <sstream>
 
 #include "global.h"
 #include "Camera.h"
-#include "Game.h"
 #include "Log.h"
-#include "UI.h"
 #include "World.h"
 #include "system/Shader.h"
 #include "system/Window.h"
-#include "utils/strings.h"
 #include "Render.h"
 
 #include <glm/gtc/matrix_transform.hpp>
@@ -28,25 +24,6 @@
 RenderMode Render::mode = RenderMode::LoadScreen;
 std::vector<Room*> Render::roomList;
 bool Render::displayViewFrustum = false;
-
-RenderMode Render::getMode() {
-    return mode;
-}
-
-void Render::setMode(RenderMode m) {
-    mode = m;
-    switch (mode) {
-        case RenderMode::Solid:
-        case RenderMode::Wireframe:
-            //glClearColor(PURPLE[0] / 256.0f, PURPLE[1] / 256.0f,
-            //             PURPLE[2] / 256.0f, PURPLE[3] / 256.0f);
-            break;
-        default:
-            //glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f,
-            //             BLACK[2] / 256.0f, BLACK[3] / 256.0f);
-            break;
-    }
-}
 
 void Render::display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -83,10 +60,6 @@ void Render::display() {
     if (mode == RenderMode::Wireframe) {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
-}
-
-void Render::clearRoomList() {
-    roomList.clear();
 }
 
 void Render::buildRoomList(int room) {

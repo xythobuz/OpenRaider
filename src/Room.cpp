@@ -5,14 +5,10 @@
  * \author xythobuz
  */
 
-#include <algorithm>
-
 #include "global.h"
-#include "Game.h"
 #include "Log.h"
 #include "Render.h"
 #include "Room.h"
-#include "TextureManager.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>

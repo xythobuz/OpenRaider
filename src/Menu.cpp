@@ -8,7 +8,6 @@
 #include "global.h"
 #include "Log.h"
 #include "Menu.h"
-#include "MenuFolder.h"
 #include "system/Font.h"
 #include "system/Window.h"
 

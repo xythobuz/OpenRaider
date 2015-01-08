@@ -16,15 +16,12 @@
 class Game {
   public:
     Game();
-    ~Game();
 
     int initialize();
-
-    bool isLoaded();
-
-    int loadLevel(const char* level);
-
     void destroy();
+
+    bool isLoaded() { return mLoaded; }
+    int loadLevel(const char* level);
 
     void display();
     void handleAction(ActionEvents action, bool isFinished);
@@ -36,19 +33,8 @@ class Game {
     void setLara(long lara);
 
   private:
-    void processPakSounds();
-    void processTextures();
-    void processSprites();
-    void processMoveables();
-    void processMoveable(int index, int i, int object_id);
-    void processModels();
-    void processRooms();
-
-    std::string levelName;
     bool mLoaded;
-
     long mLara;
-
     bool activeEvents[ActionEventCount];
 };
 

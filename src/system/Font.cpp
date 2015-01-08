@@ -8,7 +8,6 @@
 #include "global.h"
 #include "Log.h"
 #include "utils/strings.h"
-#include "system/Window.h"
 #include "system/FontImGui.h"
 #include "system/FontTRLE.h"
 #include "system/FontTTF.h"
