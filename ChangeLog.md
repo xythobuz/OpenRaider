@@ -5,6 +5,8 @@
     [ 20140108 ]
     * FPS and Camera position now displayed in imgui Overlay
     * Removed many unnecessary includes
+    * Camera now using combination of quaternion and X/Y angle.
+        * Fixes strange bug that sometimes rotated Camera on Z Axis.
 
     [ 20140107 ]
     * Fixed problems with FontTTFs Glyph Baseline

@@ -16,6 +16,7 @@
 
 #include <glm/gtc/epsilon.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
 static bool equal(float a, float b) {
@@ -36,7 +37,7 @@ const static float fov = 45.0f;
 const static float nearDist = 0.1f;
 const static float farDist = 75000.0f;
 const static float maxSpeed = 2048.0f;
-const static float controllerViewFactor = 384.0f;
+const static float controllerViewFactor = glm::pi<float>();
 const static float controllerDeadZone = 0.1f;
 
 const static glm::vec3 rightUnit(1.0f, 0.0f, 0.0f);
@@ -44,7 +45,7 @@ const static glm::vec3 upUnit(0.0f, 1.0f, 0.0f);
 const static glm::vec3 dirUnit(0.0f, 0.0f, -1.0f);
 
 glm::vec3 Camera::pos(0.0f, 0.0f, 0.0f);
-glm::quat Camera::quaternion(glm::vec3(0.0f, 0.0f, 0.0f));
+glm::vec2 Camera::rot(glm::pi<float>(), 0.0f);
 glm::vec3 Camera::posSpeed(0.0f, 0.0f, 0.0f);
 glm::vec2 Camera::rotSpeed(0.0f, 0.0f);
 glm::mat4 Camera::projection(1.0f);
@@ -56,7 +57,7 @@ bool Camera::dirty = true;
 
 void Camera::reset() {
     pos = glm::vec3(0.0f, 0.0f, 0.0f);
-    quaternion = glm::quat(glm::vec3(0.0f, 0.0f, 0.0f));
+    rot = glm::vec2(glm::pi<float>(), 0.0f);
     posSpeed = glm::vec3(0.0f, 0.0f, 0.0f);
     rotSpeed = glm::vec2(0.0f, 0.0f);
     dirty = true;
@@ -96,23 +97,38 @@ void Camera::handleAction(ActionEvents action, bool isFinished) {
 }
 
 void Camera::handleMouseMotion(int x, int y) {
-    if (x != 0) {
-        quaternion = glm::quat(upUnit * (rotationDeltaX * x)) * quaternion;
+    if ((x != 0) || (y != 0))
         dirty = true;
+
+    while (x > 0) {
+        rot.x += rotationDeltaX;
+        x--;
     }
 
-    if (y != 0) {
-        static int lastDir = 0;
-        float a = glm::dot(upUnit, quaternion * upUnit);
-        if (((lastDir >= 0) && (y < 0)) || ((lastDir <= 0) && (y > 0)) || (a > 0.5f)) {
-            quaternion = glm::quat(quaternion * -rightUnit * (rotationDeltaY * y)) * quaternion;
-            dirty = true;
+    while (x < 0) {
+        rot.x -= rotationDeltaX;
+        x++;
+    }
 
-            // TODO find better way to clamp Y rotation axis!
-            if (a > 0.5f)
-                lastDir = y;
+    while (y > 0) {
+        if (rot.y > -(glm::pi<float>() / 2.0f)) {
+            rot.y -= rotationDeltaY;
         }
+        y--;
     }
+
+    while (y < 0) {
+        if (rot.y < (glm::pi<float>() / 2.0f)) {
+            rot.y += rotationDeltaY;
+        }
+        y++;
+    }
+
+    while (rot.x > (glm::pi<float>() * 2.0f))
+        rot.x -= glm::pi<float>() * 2.0f;
+
+    while (rot.x < -(glm::pi<float>() * 2.0f))
+        rot.x += glm::pi<float>() * 2.0f;
 }
 
 void Camera::handleControllerAxis(float value, KeyboardButton axis) {
@@ -128,7 +144,7 @@ void Camera::handleControllerAxis(float value, KeyboardButton axis) {
     } else if (axis == rightXAxis) {
         rotSpeed.x = controllerViewFactor * value;
     } else if (axis == rightYAxis) {
-        rotSpeed.y = controllerViewFactor * value;
+        rotSpeed.y = -controllerViewFactor * value;
     } else {
         return;
     }
@@ -161,13 +177,13 @@ bool Camera::update() {
         return false;
 
     float dT = RunTime::getLastFrameTime();
+    rot += rotSpeed * dT;
+
+    glm::quat quatY = glm::angleAxis(rot.x, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::quat quatX = glm::angleAxis(rot.y, glm::vec3(1.0f, 0.0f, 0.0f));
+    glm::quat quaternion = quatY * quatX;
+
     pos += quaternion * posSpeed * dT;
-
-    if (glm::epsilonNotEqual(rotSpeed.x, 0.0f, controllerDeadZone))
-        quaternion = glm::quat(upUnit * rotationDeltaX * rotSpeed.x * dT) * quaternion;
-
-    if (glm::epsilonNotEqual(rotSpeed.y, 0.0f, controllerDeadZone))
-        quaternion = glm::quat(quaternion * -rightUnit * rotationDeltaY * rotSpeed.y * dT) * quaternion;
 
     glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
     glm::mat4 rotate = glm::toMat4(quaternion);
@@ -178,12 +194,6 @@ bool Camera::update() {
 
     dirty = false;
     return updateViewFrustum;
-}
-
-glm::vec2 Camera::getRotation() {
-    float x = glm::dot(dirUnit, quaternion * dirUnit);
-    float y = glm::dot(upUnit, quaternion * upUnit);
-    return glm::vec2(x, y);
 }
 
 // ----------------------------------------------------------------------------
