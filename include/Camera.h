@@ -25,7 +25,7 @@ class Camera {
 
     //! \fixme The Y axis seems to be the source of all evil?
     static void setPosition(glm::vec3 p) { pos = glm::vec3(p.x, -p.y, p.z); }
-    static glm::vec3 getPosition() { return pos; }
+    static glm::vec3 getPosition() { return glm::vec3(pos.x, -pos.y, pos.z); }
 
     static glm::vec2 getRotation() { return rot; }
     static glm::mat4 getProjectionMatrix() { return projection; }

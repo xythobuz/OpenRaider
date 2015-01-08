@@ -21,5 +21,5 @@
 
 * Depend on physfs for easier file location management
 * Depend on libcdio, use it to read original CDs or CUE/TOC/ISO images
-* Add ability to play the FMVs. Format? VLC can play them!
+* Add ability to play the FMVs. QuickTime, ima4 Audio, h264 avc1 Video!
 

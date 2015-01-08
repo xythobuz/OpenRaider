@@ -11,6 +11,7 @@
 #include "global.h"
 #include "Camera.h"
 #include "Log.h"
+#include "StaticMesh.h"
 #include "World.h"
 #include "system/Shader.h"
 #include "system/Window.h"
@@ -180,7 +181,7 @@ void Render::displayUI() {
             item = 2;
         else if (mode == RenderMode::Solid)
             item = 3;
-        if (ImGui::Combo("Mode", &item, modeStrings, modeStringCount)) {
+        if (ImGui::Combo("Render Mode", &item, modeStrings, modeStringCount)) {
             if (item == 0)
                 mode = RenderMode::LoadScreen;
             else if (item == 1)
@@ -191,12 +192,26 @@ void Render::displayUI() {
                 mode = RenderMode::Solid;
         }
 
+        ImGui::Separator();
+        ImGui::Text("Camera:");
         bool updateViewFrustum = Camera::getUpdateViewFrustum();
         if (ImGui::Checkbox("Update Frustum##render", &updateViewFrustum)) {
             Camera::setUpdateViewFrustum(updateViewFrustum);
         }
         ImGui::SameLine();
         ImGui::Checkbox("Show Frustum##render", &displayViewFrustum);
+
+        ImGui::Separator();
+        ImGui::Text("Bounding Boxes:");
+        bool showBoundingBox = Room::getShowBoundingBox();
+        if (ImGui::Checkbox("Room##bbox", &showBoundingBox)) {
+            Room::setShowBoundingBox(showBoundingBox);
+        }
+        ImGui::SameLine();
+        bool showBoundingBox2 = StaticMesh::getShowBoundingBox();
+        if (ImGui::Checkbox("StaticMesh##bbox", &showBoundingBox2)) {
+            StaticMesh::setShowBoundingBox(showBoundingBox2);
+        }
     }
 }
 

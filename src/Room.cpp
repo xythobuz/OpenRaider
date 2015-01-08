@@ -7,11 +7,12 @@
 
 #include "global.h"
 #include "Log.h"
-#include "Render.h"
 #include "Room.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
+
+bool Room::showBoundingBox = false;
 
 Room::Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
            int a, int x, int z) : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f),
@@ -28,7 +29,7 @@ void Room::display(glm::mat4 VP) {
         m->display(VP);
     }
 
-    if (Render::getMode() == RenderMode::Wireframe)
+    if (showBoundingBox)
         bbox->display(VP, glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f));
 }
 

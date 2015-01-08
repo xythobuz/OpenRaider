@@ -62,6 +62,9 @@ class Room {
     Sprite& getSprite(unsigned long index);
     void addSprite(Sprite* s);
 
+    static void setShowBoundingBox(bool s) { showBoundingBox = s; }
+    static bool getShowBoundingBox() { return showBoundingBox; }
+
   private:
     glm::vec3 pos;
     glm::mat4 model;
@@ -79,8 +82,7 @@ class Room {
     std::vector<std::unique_ptr<Sector>> sectors;
     std::vector<std::unique_ptr<Light>> lights;
 
-    // Was used for "depth sorting" render list, but never assigned...?!
-    //float dist; // Distance to near plane, move to room?
+    static bool showBoundingBox;
 };
 
 #endif

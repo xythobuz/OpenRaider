@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140109 ]
+    * Display of Bounding Boxes can be individually toggled for Rooms/StaticMeshes
+
     [ 20140108 ]
     * FPS and Camera position now displayed in imgui Overlay
     * Removed many unnecessary includes

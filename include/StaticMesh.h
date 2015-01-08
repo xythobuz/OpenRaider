@@ -20,10 +20,15 @@ class StaticMesh {
 
     int getID() { return id; }
 
+    static void setShowBoundingBox(bool s) { showBoundingBox = s; }
+    static bool getShowBoundingBox() { return showBoundingBox; }
+
   private:
     int id;
     int mesh;
     std::unique_ptr<BoundingBox> bbox1, bbox2;
+
+    static bool showBoundingBox;
 };
 
 #endif
