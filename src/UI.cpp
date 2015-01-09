@@ -95,6 +95,55 @@ int UI::initialize() {
 
     stbi_image_free(tex_data);
 
+    // Set up OpenRaider style
+    ImGuiStyle& style = ImGui::GetStyle();
+    style.Colors[ImGuiCol_Text]                 = ImVec4(0.90f, 0.90f, 0.90f, 1.00f);
+    style.Colors[ImGuiCol_WindowBg]             = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+    style.Colors[ImGuiCol_Border]               = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
+    style.Colors[ImGuiCol_BorderShadow]         = ImVec4(0.00f, 0.00f, 0.00f, 0.60f);
+    style.Colors[ImGuiCol_FrameBg]              = ImVec4(0.80f, 0.80f, 0.80f, 0.30f);
+    style.Colors[ImGuiCol_TitleBg]              = ImVec4(0.50f, 0.70f, 1.00f, 0.45f);
+    style.Colors[ImGuiCol_TitleBgCollapsed]     = ImVec4(0.40f, 0.65f, 1.00f, 0.20f);
+    style.Colors[ImGuiCol_ScrollbarBg]          = ImVec4(0.40f, 0.65f, 1.00f, 0.15f);
+    style.Colors[ImGuiCol_ScrollbarGrab]        = ImVec4(0.40f, 0.65f, 1.00f, 0.30f);
+    style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.40f, 0.65f, 1.00f, 0.40f);
+    style.Colors[ImGuiCol_ScrollbarGrabActive]  = ImVec4(1.00f, 0.16f, 0.16f, 0.40f);
+    style.Colors[ImGuiCol_ComboBg]              = ImVec4(0.20f, 0.20f, 0.20f, 0.99f);
+    style.Colors[ImGuiCol_CheckHovered]         = ImVec4(1.00f, 0.40f, 0.40f, 0.45f);
+    style.Colors[ImGuiCol_CheckActive]          = ImVec4(0.65f, 0.50f, 0.50f, 0.55f);
+    style.Colors[ImGuiCol_CheckMark]            = ImVec4(0.90f, 0.90f, 0.90f, 0.50f);
+    style.Colors[ImGuiCol_SliderGrab]           = ImVec4(1.00f, 1.00f, 1.00f, 0.30f);
+    style.Colors[ImGuiCol_SliderGrabActive]     = ImVec4(1.00f, 0.20f, 0.22f, 1.00f);
+    style.Colors[ImGuiCol_Button]               = ImVec4(1.00f, 0.20f, 0.20f, 0.60f);
+    style.Colors[ImGuiCol_ButtonHovered]        = ImVec4(1.00f, 0.20f, 0.18f, 1.00f);
+    style.Colors[ImGuiCol_ButtonActive]         = ImVec4(1.00f, 0.00f, 0.00f, 1.00f);
+    style.Colors[ImGuiCol_Header]               = ImVec4(0.21f, 0.54f, 1.00f, 0.45f);
+    style.Colors[ImGuiCol_HeaderHovered]        = ImVec4(0.22f, 0.56f, 1.00f, 0.80f);
+    style.Colors[ImGuiCol_HeaderActive]         = ImVec4(0.00f, 0.31f, 1.00f, 1.00f);
+    style.Colors[ImGuiCol_Column]               = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
+    style.Colors[ImGuiCol_ColumnHovered]        = ImVec4(0.60f, 0.40f, 0.40f, 1.00f);
+    style.Colors[ImGuiCol_ColumnActive]         = ImVec4(0.80f, 0.50f, 0.50f, 1.00f);
+    style.Colors[ImGuiCol_ResizeGrip]           = ImVec4(1.00f, 1.00f, 1.00f, 0.30f);
+    style.Colors[ImGuiCol_ResizeGripHovered]    = ImVec4(1.00f, 1.00f, 1.00f, 0.60f);
+    style.Colors[ImGuiCol_ResizeGripActive]     = ImVec4(1.00f, 1.00f, 1.00f, 0.90f);
+    style.Colors[ImGuiCol_CloseButton]          = ImVec4(0.21f, 0.56f, 1.00f, 0.50f);
+    style.Colors[ImGuiCol_CloseButtonHovered]   = ImVec4(0.21f, 0.32f, 1.00f, 0.60f);
+    style.Colors[ImGuiCol_CloseButtonActive]    = ImVec4(0.70f, 0.70f, 0.70f, 1.00f);
+    style.Colors[ImGuiCol_PlotLines]            = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
+    style.Colors[ImGuiCol_PlotLinesHovered]     = ImVec4(0.90f, 0.70f, 0.00f, 1.00f);
+    style.Colors[ImGuiCol_PlotHistogram]        = ImVec4(0.90f, 0.70f, 0.00f, 1.00f);
+    style.Colors[ImGuiCol_PlotHistogramHovered] = ImVec4(1.00f, 0.60f, 0.00f, 1.00f);
+    style.Colors[ImGuiCol_TextSelectedBg]       = ImVec4(0.00f, 0.00f, 1.00f, 0.35f);
+    style.Colors[ImGuiCol_TooltipBg]            = ImVec4(0.05f, 0.05f, 0.10f, 0.90f);
+    style.WindowPadding                         = ImVec2(2, 2);
+    style.WindowRounding                        = 9;
+    style.FramePadding                          = ImVec2(2, 1);
+    style.ItemSpacing                           = ImVec2(2, 2);
+    style.ItemInnerSpacing                      = ImVec2(1, 1);
+    style.TouchExtraPadding                     = ImVec2(0, 0);
+    style.TreeNodeSpacing                       = 3;
+    style.ScrollBarWidth                        = 10;
+
     return 0;
 }
 
@@ -224,6 +273,7 @@ void UI::display() {
     }
 
     static bool showTestWindow = false;
+    static bool showStyleWindow = false;
     if (ImGui::Begin("Engine", &visible, ImVec2(400, 400))) {
         Render::displayUI();
         RunTime::display();
@@ -456,12 +506,19 @@ void UI::display() {
             if (ImGui::Button("Show/Hide Test Window")) {
                 showTestWindow = !showTestWindow;
             }
+            ImGui::SameLine();
+            if (ImGui::Button("Show/Hide Style Editor")) {
+                showStyleWindow = !showStyleWindow;
+            }
         }
     }
     ImGui::End();
 
     if (showTestWindow)
         ImGui::ShowTestWindow();
+
+    if (showStyleWindow)
+        ImGui::ShowStyleEditor();
 
     ImGui::Render();
 }

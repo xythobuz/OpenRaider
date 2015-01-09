@@ -178,18 +178,16 @@ void RunTime::display() {
     if (ImGui::CollapsingHeader("Performance")) {
         ImGui::Text("Uptime: %lums", systemTimerGet());
         ImGui::Text("Frames per Second: %luFPS", fps);
-        if (history.size() > 1) {
+        int size = history.size() - 1;
+        if (size > 0) {
             static bool scroll = true;
             if (scroll) {
-                int offset = history.size() - 1;
-                if (offset > 10)
-                    offset = 10;
-                ImGui::PlotLines("FPS", &history[1],
-                                 history.size() - 1,
-                                 history.size() - offset - 1);
+                int start = 0;
+                if (size > 10)
+                    start = size - 11;
+                ImGui::PlotLines("FPS", &history[1 + start], size - start);
             } else {
-                ImGui::PlotLines("FPS", &history[1],
-                                 history.size() - 1);
+                ImGui::PlotLines("FPS", &history[1], size);
             }
             ImGui::SameLine();
             ImGui::Checkbox("Scroll##fpsscroll", &scroll);

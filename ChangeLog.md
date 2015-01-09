@@ -4,6 +4,7 @@
 
     [ 20140109 ]
     * Display of Bounding Boxes can be individually toggled for Rooms/StaticMeshes
+    * Tightened imgui Style and changed colors to match the _OpenRaider-blue_
 
     [ 20140108 ]
     * FPS and Camera position now displayed in imgui Overlay
