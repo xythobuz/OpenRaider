@@ -49,7 +49,8 @@ class Folder {
     void executeRemoveRecursiveFiles(std::function<bool (File& f)> func);
     std::string getRecursiveFileName(unsigned long i);
     File& getRecursiveFile(unsigned long i);
-    void findRecursiveFilesEndingWith(std::vector<File>& found, std::string end, bool casesensitive = false);
+    void findRecursiveFilesEndingWith(std::vector<File>& found, std::string end,
+                                      bool casesensitive = false);
 
   private:
     void createFolderItems();

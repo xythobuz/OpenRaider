@@ -67,7 +67,7 @@ int FontMapTTF::initialize(unsigned char* fontData, int firstChar) {
     delete [] pixels;
 
     texture = TextureManager::loadBufferSlot(rgb, MAP_WIDTH, MAP_HEIGHT, ColorMode::RGBA,
-                                             32, TextureStorage::SYSTEM, texture);
+              32, TextureStorage::SYSTEM, texture);
     delete [] rgb;
     if (texture < 0) {
         delete [] charInfo;
@@ -85,7 +85,7 @@ bool FontMapTTF::contains(int c) {
     return (begin >= 0) && (c >= begin) && (c < (begin + MAP_NUM_CHARS));
 }
 
-void FontMapTTF::getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad *quad) {
+void FontMapTTF::getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad* quad) {
     assert(contains(c));
     stbtt_GetPackedQuad(charInfo, MAP_WIDTH, MAP_HEIGHT, c - begin, xpos, ypos, quad, 0);
 }
@@ -255,7 +255,7 @@ int FontTTF::charIsMapped(int c) {
         begin -= (MAP_NUM_CHARS / 2);
 
     Log::get(LOG_INFO) << "Unmapped character '" << char(c) << "', new map from " << begin << " to "
-             << begin + MAP_NUM_CHARS - 1 << "..." << Log::endl;
+                       << begin + MAP_NUM_CHARS - 1 << "..." << Log::endl;
 
     int p = maps.size();
     maps.emplace_back();
@@ -266,7 +266,7 @@ int FontTTF::charIsMapped(int c) {
     return p;
 }
 
-int FontTTF::getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad *quad) {
+int FontTTF::getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad* quad) {
     if (c < 0) {
         //! \todo This has nothing to do with proper UTF8 support...
         c += 128;

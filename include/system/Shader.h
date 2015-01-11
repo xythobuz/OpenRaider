@@ -21,7 +21,7 @@ class ShaderBuffer {
 
     template<typename T>
     void bufferData(std::vector<T> v)
-        { bufferData(v.size(), sizeof(T), &v[0]); }
+    { bufferData(v.size(), sizeof(T), &v[0]); }
 
     void bindBuffer();
     void bindBuffer(int location, int size);

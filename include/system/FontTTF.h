@@ -23,7 +23,7 @@ class FontMapTTF {
     int initialize(unsigned char* fontData, int firstChar);
     bool contains(int c);
     int getTexture() { return texture; }
-    void getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad *quad);
+    void getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad* quad);
 
   private:
     int begin;
@@ -46,7 +46,7 @@ class FontTTF {
 
   private:
     static int charIsMapped(int c);
-    static int getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad *quad);
+    static int getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad* quad);
     static void drawTextInternal(unsigned int x, unsigned int y, float scale,
                                  const unsigned char color[4], unsigned int maxWidth, std::string s,
                                  bool drawWrapped);

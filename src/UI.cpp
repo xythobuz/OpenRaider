@@ -92,8 +92,8 @@ int UI::initialize() {
                                            (int)png_size, &tex_x, &tex_y, &tex_comp, 0);
 
     fontTex = TextureManager::loadBufferSlot((unsigned char*)tex_data,
-                                             tex_x, tex_y, ColorMode::RGBA, 32,
-                                             TextureStorage::SYSTEM, -1, false);
+              tex_x, tex_y, ColorMode::RGBA, 32,
+              TextureStorage::SYSTEM, -1, false);
 
     stbi_image_free(tex_data);
 
@@ -175,7 +175,7 @@ void UI::eventsFinished() {
             auto i = motionEvents.front();
             if (!getMenu().isVisible()) {
                 Game::handleMouseMotion(std::get<0>(i), std::get<1>(i),
-                                            std::get<2>(i), std::get<3>(i));
+                                        std::get<2>(i), std::get<3>(i));
             }
             motionEvents.pop_front();
         }
@@ -251,7 +251,7 @@ void UI::eventsFinished() {
 
 void UI::display() {
     if (RunTime::getShowFPS()) {
-        if (ImGui::Begin("Debug Overlay", nullptr, ImVec2(0,0), 0.3f,
+        if (ImGui::Begin("Debug Overlay", nullptr, ImVec2(0, 0), 0.3f,
                          ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize
                          | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings
                          | ImGuiWindowFlags_AlwaysAutoResize)) {

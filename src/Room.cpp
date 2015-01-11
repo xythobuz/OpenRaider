@@ -16,7 +16,7 @@ bool Room::showBoundingBox = false;
 
 Room::Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
            int a, int x, int z) : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f),
-                                  alternateRoom(a), numXSectors(x), numZSectors(z) {
+    alternateRoom(a), numXSectors(x), numZSectors(z) {
     model = glm::translate(glm::mat4(1.0f), pos);
 }
 

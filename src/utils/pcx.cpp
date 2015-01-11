@@ -31,7 +31,8 @@ int pcxCheck(const char* filename) {
     }
 
     if (header[0] != 0x0A) {
-        Log::get(LOG_ERROR) << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" << Log::endl;
+        Log::get(LOG_ERROR) << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" <<
+                            Log::endl;
         delete [] header;
         return -2;
     }
@@ -89,7 +90,8 @@ int pcxLoad(const char* filename, unsigned char** image,
     }
 
     if (header[0] != 0x0A) {
-        Log::get(LOG_ERROR) << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" << Log::endl;
+        Log::get(LOG_ERROR) << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" <<
+                            Log::endl;
         delete [] header;
         return -2;
     }

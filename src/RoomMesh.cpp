@@ -77,7 +77,7 @@ void RoomMesh::display(glm::mat4 MVP) {
 
         while ((indexStart != indexPos) && (indexPos < indicesBuff.size())) {
             while ((indexPos < indicesBuff.size())
-                    && (texturesBuff.at(indicesBuff.at(indexPos)) == texture)) {
+                   && (texturesBuff.at(indicesBuff.at(indexPos)) == texture)) {
                 indexPos++;
             }
 

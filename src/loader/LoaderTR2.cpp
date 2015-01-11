@@ -156,7 +156,7 @@ void LoaderTR2::loadAnimatedTextures() {
         int count = animatedTextures.at(pos) + 1;
         if ((pos + count) >= numWords) {
             Log::get(LOG_DEBUG) << "LoaderTR2: Invalid AnimatedTextures ("
-                     << pos + count << " >= " << numWords << ")!" << Log::endl;
+                                << pos + count << " >= " << numWords << ")!" << Log::endl;
             return;
         }
 
@@ -168,7 +168,8 @@ void LoaderTR2::loadAnimatedTextures() {
     }
 
     if ((numAnimatedTextures > 0) || (numWords > 0))
-        Log::get(LOG_INFO) << "LoaderTR2: Found " << numAnimatedTextures << " Animated Textures!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numAnimatedTextures << " Animated Textures!" <<
+                           Log::endl;
     else
         Log::get(LOG_INFO) << "LoaderTR2: No Animated Textures in this level?!" << Log::endl;
 
@@ -407,8 +408,8 @@ void LoaderTR2::loadRooms() {
         if ((numPortals == 0) && (numVertices == 0)
             && (numRectangles == 0) && (numTriangles == 0))
             Log::get(LOG_DEBUG) << "LoaderTR2: Room " << i << " seems invalid: " << numPortals << "p "
-                     << numRectangles << "r " << numTriangles << "t " << numVertices
-                     << "v" << Log::endl;
+                                << numRectangles << "r " << numTriangles << "t " << numVertices
+                                << "v" << Log::endl;
     }
 
     if (numRooms > 0)
@@ -426,7 +427,8 @@ void LoaderTR2::loadFloorData() {
     }
 
     if (numFloorData > 0)
-        Log::get(LOG_INFO) << "LoaderTR2: Found " << numFloorData << " words FloorData, unimplemented!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numFloorData << " words FloorData, unimplemented!" <<
+                           Log::endl;
     else
         Log::get(LOG_INFO) << "LoaderTR2: No FloorData in this level?!" << Log::endl;
 }
@@ -468,8 +470,9 @@ void LoaderTR2::loadSprites() {
     }
 
     if ((numSpriteTextures > 0) || (numSpriteSequences > 0))
-        Log::get(LOG_INFO) << "LoaderTR2: Found " << numSpriteTextures << " Sprites in " << numSpriteSequences <<
-                 " Sequences!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numSpriteTextures << " Sprites in " <<
+                           numSpriteSequences <<
+                           " Sequences!" << Log::endl;
     else
         Log::get(LOG_INFO) << "LoaderTR2: No Sprites in this level?!" << Log::endl;
 }
@@ -494,7 +497,7 @@ void LoaderTR2::loadMeshes() {
 
         if (numMeshData < (meshPointer / 2)) {
             Log::get(LOG_DEBUG) << "LoaderTR2: Invalid Mesh: "
-                     << (meshPointer / 2) << " > " << numMeshData << Log::endl;
+                                << (meshPointer / 2) << " > " << numMeshData << Log::endl;
             continue;
         }
 
@@ -742,7 +745,8 @@ void LoaderTR2::loadMoveables() {
     }
 
     if (numAnimDispatches > 0)
-        Log::get(LOG_INFO) << "LoaderTR2: Found " << numAnimDispatches << " AnimationDispatches!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numAnimDispatches << " AnimationDispatches!" <<
+                           Log::endl;
     else
         Log::get(LOG_INFO) << "LoaderTR2: No AnimationDispatches in this level?!" << Log::endl;
 
@@ -998,7 +1002,7 @@ void LoaderTR2::loadBoxesOverlapsZones() {
 
     if ((numBoxes > 0) || (numOverlaps > 0))
         Log::get(LOG_INFO) << "LoaderTR2: Found NPC NavigationHints (" << numBoxes
-                 << ", " << numOverlaps << ", " << list << "), unimplemented!" << Log::endl;
+                           << ", " << numOverlaps << ", " << list << "), unimplemented!" << Log::endl;
     else
         Log::get(LOG_INFO) << "LoaderTR2: No NPC NavigationHints in this level?!" << Log::endl;
 }
@@ -1092,7 +1096,7 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
 
         if (std::string("RIFF") != std::string(test)) {
             Log::get(LOG_DEBUG) << "LoaderTR2: External SFX invalid! (" << riffCount
-                     << ", \"" << test << "\" != \"RIFF\")" << Log::endl;
+                                << ", \"" << test << "\" != \"RIFF\")" << Log::endl;
             return;
         }
 
@@ -1152,7 +1156,7 @@ void LoaderTR2::loadCinematicFrames() {
 
     if (numCinematicFrames > 0)
         Log::get(LOG_INFO) << "LoaderTR2: Found " << numCinematicFrames
-                 << " CinematicFrames, unimplemented!" << Log::endl;
+                           << " CinematicFrames, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadDemoData() {
@@ -1163,6 +1167,6 @@ void LoaderTR2::loadDemoData() {
     // TODO store demo data somewhere, find out meaning
     if (numDemoData > 0)
         Log::get(LOG_INFO) << "LoaderTR2: Found " << numDemoData << " bytes DemoData, unimplemented!" <<
-                 Log::endl;
+                           Log::endl;
 }
 

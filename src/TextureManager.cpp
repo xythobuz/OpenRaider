@@ -246,7 +246,7 @@ int TextureManager::loadImage(std::string filename, TextureStorage s, int slot) 
         if (data) {
             if ((n < 3) || (n > 4)) {
                 Log::get(LOG_ERROR) << "Image \"" << filename << "\" has unsupported format ("
-                         << n << ")!" << Log::endl;
+                                    << n << ")!" << Log::endl;
                 stbi_image_free(data);
                 return -2;
             }

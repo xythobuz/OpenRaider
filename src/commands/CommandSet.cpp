@@ -137,7 +137,8 @@ int CommandSet::execute(std::istream& args) {
         args >> temp;
         int error = Font::initialize(expandNames(temp));
         if (error != 0)
-            Log::get(LOG_USER) << "Error initializing font: " << expandNames(temp) << "(" << error << ")" << Log::endl;
+            Log::get(LOG_USER) << "Error initializing font: " << expandNames(temp) << "(" << error << ")" <<
+                               Log::endl;
     } else {
         Log::get(LOG_USER) << "set-Error: Unknown variable (" << var.c_str() << ")" << Log::endl;
         return -1;

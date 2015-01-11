@@ -74,15 +74,15 @@ int WindowSDL::initialize() {
             controller = SDL_GameControllerOpen(i);
             if (controller) {
                 Log::get(LOG_INFO) << "Using controller \"" << SDL_GameControllerName(controller)
-                         << "\"..." << Log::endl;
+                                   << "\"..." << Log::endl;
                 break;
             } else {
                 Log::get(LOG_WARNING) << "Couldn't open controller \"" << SDL_GameControllerNameForIndex(i)
-                         << "\"!" << Log::endl;
+                                      << "\"!" << Log::endl;
             }
         } else {
             Log::get(LOG_WARNING) << "Joystick \"" << SDL_JoystickNameForIndex(i)
-                     << "\" is no compatible controller!" << Log::endl;
+                                  << "\" is no compatible controller!" << Log::endl;
         }
     }
 

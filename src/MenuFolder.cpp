@@ -59,7 +59,7 @@ int MenuFolder::init(Folder* folder, bool filter) {
             Loader::LoaderVersion version = Loader::checkFile(f.getPath());
             if (version == Loader::TR_UNKNOWN) {
                 Log::get(LOG_ERROR) << "Error: pak file '" << f.getName().c_str()
-                         << "' invalid" << Log::endl;
+                                    << "' invalid" << Log::endl;
                 return true; // delete file from list
             }
 
@@ -118,7 +118,7 @@ void MenuFolder::loadOrOpen() {
         }
     } else {
         int error = Game::loadLevel(mapFolder->getFile((unsigned long)mCursor
-                                        - 1 - mapFolder->folderCount()).getPath().c_str());
+                                    - 1 - mapFolder->folderCount()).getPath().c_str());
         if (error == 0) {
             visible = false;
         } else {

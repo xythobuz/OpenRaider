@@ -106,7 +106,7 @@ typedef enum {
 
 template<typename T, typename U>
 [[noreturn]] void assertEqualImplementation(const char* exp, T a, U b, const char* file, int line,
-                                            bool print = false, const char* str = nullptr) {
+        bool print = false, const char* str = nullptr) {
     const unsigned int maxSize = 128;
     void* callstack[maxSize];
     int frames = backtrace(callstack, maxSize);

@@ -89,7 +89,7 @@ void Console::display() {
         ImGui::Checkbox("Info##log", &visibleLogs[3]);
         ImGui::SameLine();
         ImGui::Checkbox("Debug##log", &visibleLogs[4]);
-        ImGui::SameLine();
+
         static bool logToTTY = false, logToClipboard = false, logToFile = false;
         if (ImGui::Button("Log to TTY")) { logToTTY = true; }
         ImGui::SameLine();
