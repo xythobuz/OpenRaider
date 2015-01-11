@@ -24,7 +24,7 @@ SDL_GameController* WindowSDL::controller = nullptr;
 
 int WindowSDL::initialize() {
     if (SDL_Init(SUBSYSTEMS_USED) != 0) {
-        getLog() << "SDL_Init Error: " << SDL_GetError() << Log::endl;
+        Log::get(LOG_ERROR) << "SDL_Init Error: " << SDL_GetError() << Log::endl;
         return -1;
     }
 
@@ -44,20 +44,20 @@ int WindowSDL::initialize() {
         || (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3) != 0)
         || (SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE))) {
-        getLog() << "SDL_GL_SetAttribute Error: " << SDL_GetError() << Log::endl;
+        Log::get(LOG_ERROR) << "SDL_GL_SetAttribute Error: " << SDL_GetError() << Log::endl;
         return -2;
     }
 
     window = SDL_CreateWindow(VERSION, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                               size.x, size.y, flags);
     if (!window) {
-        getLog() << "SDL_CreateWindow Error: " << SDL_GetError() << Log::endl;
+        Log::get(LOG_ERROR) << "SDL_CreateWindow Error: " << SDL_GetError() << Log::endl;
         return -3;
     }
 
     context = SDL_GL_CreateContext(window);
     if (!context) {
-        getLog() << "SDL_GL_CreateContext Error: " << SDL_GetError() << Log::endl;
+        Log::get(LOG_ERROR) << "SDL_GL_CreateContext Error: " << SDL_GetError() << Log::endl;
         return -4;
     }
 
@@ -65,7 +65,7 @@ int WindowSDL::initialize() {
     setTextInput(textinput);
 
     if (SDL_NumJoysticks() == 0) {
-        getLog() << "No Joystick found!" << Log::endl;
+        Log::get(LOG_INFO) << "No Joystick found!" << Log::endl;
         return 0;
     }
 
@@ -73,16 +73,16 @@ int WindowSDL::initialize() {
         if (SDL_IsGameController(i)) {
             controller = SDL_GameControllerOpen(i);
             if (controller) {
-                getLog() << "Using controller \"" << SDL_GameControllerName(controller)
+                Log::get(LOG_INFO) << "Using controller \"" << SDL_GameControllerName(controller)
                          << "\"..." << Log::endl;
                 break;
             } else {
-                getLog() << "Couldn't open controller \"" << SDL_GameControllerNameForIndex(i)
+                Log::get(LOG_WARNING) << "Couldn't open controller \"" << SDL_GameControllerNameForIndex(i)
                          << "\"!" << Log::endl;
             }
         } else {
-            getLog() << "Joystick \"" << SDL_JoystickNameForIndex(i)
-                     << "\" is no controller!" << Log::endl;
+            Log::get(LOG_WARNING) << "Joystick \"" << SDL_JoystickNameForIndex(i)
+                     << "\" is no compatible controller!" << Log::endl;
         }
     }
 
@@ -532,5 +532,26 @@ void WindowSDL::setTextInput(bool t) {
         SDL_StartTextInput();
     else
         SDL_StopTextInput();
+}
+
+void WindowSDL::setClipboard(const char* s) {
+    if (window) {
+        if (SDL_SetClipboardText(s) < 0) {
+            Log::get(LOG_ERROR) << "SDL_SetClipboardText Error: " << SDL_GetError() << Log::endl;
+        }
+    }
+}
+
+const char* WindowSDL::getClipboard() {
+    if (window) {
+        //! \fixme Should be freed with SDL_free(). But how, where, when?
+        const char* ret = SDL_GetClipboardText();
+        if (ret == nullptr) {
+            Log::get(LOG_ERROR) << "SDL_GetClipboardText Error: " << SDL_GetError() << Log::endl;
+        }
+        return ret;
+    }
+
+    return nullptr;
 }
 

@@ -10,9 +10,9 @@
 
 #include "global.h"
 #include "Camera.h"
-#include "Game.h"
 #include "Log.h"
 #include "MenuFolder.h"
+#include "Render.h"
 #include "RunTime.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
@@ -28,18 +28,8 @@
 
 static std::string configFileToUse;
 
-static std::shared_ptr<Game> gGame;
-static std::shared_ptr<Log> gLog;
 static std::shared_ptr<MenuFolder> gMenu;
 static std::shared_ptr<World> gWorld;
-
-Game& getGame() {
-    return *gGame;
-}
-
-Log& getLog() {
-    return *gLog;
-}
 
 Menu& getMenu() {
     return *gMenu;
@@ -62,14 +52,12 @@ int main(int argc, char* argv[]) {
     // RunTime is required by other constructors
     RunTime::initialize();
 
-    gGame.reset(new Game());
-    gLog.reset(new Log());
     gMenu.reset(new MenuFolder());
     gWorld.reset(new World());
 
     Command::fillCommandList();
 
-    getLog() << "Initializing " << VERSION << Log::endl;
+    Log::get(LOG_INFO) << "Initializing " << VERSION << Log::endl;
 
     // Initialize Windowing
     int error = Window::initialize();
@@ -132,18 +120,12 @@ int main(int argc, char* argv[]) {
         return -7;
     }
 
-    // Initialize Game Engine
-    error = getGame().initialize();
-    if (error != 0) {
-        std::cout << "Could not initialize Game (" << error << ")!" << std::endl;
-        return -8;
-    }
-
-    getLog() << "Starting " << VERSION << Log::endl;
+    Log::get(LOG_INFO) << "Starting " << VERSION << Log::endl;
     Camera::setSize(Window::getSize());
     getMenu().setVisible(true);
     systemTimerReset();
     RunTime::setRunning(true);
+    Render::setMode(RenderMode::LoadScreen);
 
     while (RunTime::isRunning()) {
         Window::eventHandling();
@@ -169,7 +151,7 @@ int main(int argc, char* argv[]) {
 }
 
 void renderFrame() {
-    getGame().display();
+    Render::display();
     getMenu().display();
     UI::display();
     Window::swapBuffers();
@@ -182,26 +164,23 @@ void renderFrame() {
 #include <exception>
 #include <execinfo.h>
 
-namespace {
-    extern std::terminate_handler oldTerminateHandler;
+[[noreturn]] static void terminateHandler();
+static std::terminate_handler oldTerminateHandler = std::set_terminate(terminateHandler);
 
-    [[noreturn]] void terminateHandler() {
-        const unsigned int maxSize = 128;
-        void* callstack[maxSize];
-        int frames = backtrace(callstack, maxSize);
-        char** strs = backtrace_symbols(callstack, frames);
+[[noreturn]] static void terminateHandler() {
+    const unsigned int maxSize = 128;
+    void* callstack[maxSize];
+    int frames = backtrace(callstack, maxSize);
+    char** strs = backtrace_symbols(callstack, frames);
 
-        std::cout << std::endl;
-        for (int i = frames; i > 0; i++)
-            std::cout << strs[i - 1] << std::endl;
+    std::cout << std::endl;
+    for (int i = frames; i > 0; i++)
+        std::cout << strs[i - 1] << std::endl;
 
-        delete [] strs;
+    delete [] strs;
 
-        oldTerminateHandler();
-        abort();
-    }
-
-    std::terminate_handler oldTerminateHandler = std::set_terminate(terminateHandler);
+    oldTerminateHandler();
+    abort();
 }
 
 #endif // NODEBUG

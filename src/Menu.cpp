@@ -27,7 +27,7 @@ void Menu::showDialog(std::string msg, std::string btn1, std::string btn2,
     dialogState = false;
     dialogFunction = callback;
 
-    getLog() << dialogText << Log::endl;
+    Log::get(LOG_USER) << dialogText << Log::endl;
 }
 
 void Menu::ackDialog() {

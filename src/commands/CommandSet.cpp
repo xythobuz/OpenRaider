@@ -24,45 +24,43 @@ std::string CommandSet::brief() {
 }
 
 void CommandSet::printHelp() {
-    getLog() << "set-Command Usage:" << Log::endl;
-    getLog() << "  set VAR VAL" << Log::endl;
-    getLog() << "Available Variables:" << Log::endl;
-    getLog() << "  basedir    STRING" << Log::endl;
-    getLog() << "  pakdir     STRING" << Log::endl;
-    getLog() << "  audiodir   STRING" << Log::endl;
-    getLog() << "  datadir    STRING" << Log::endl;
-    getLog() << "  font       STRING" << Log::endl;
-    getLog() << "  size       INT INT" << Log::endl;
-    getLog() << "  fullscreen BOOL" << Log::endl;
-    getLog() << "  audio      BOOL" << Log::endl;
-    getLog() << "  volume     BOOL" << Log::endl;
-    getLog() << "  mouse_x    FLOAT" << Log::endl;
-    getLog() << "  mouse_y    FLOAT" << Log::endl;
-    getLog() << "  fps        BOOL" << Log::endl;
-    getLog() << "Enclose STRINGs with \"\"!" << Log::endl;
+    Log::get(LOG_USER) << "set-Command Usage:" << Log::endl;
+    Log::get(LOG_USER) << "  set VAR VAL" << Log::endl;
+    Log::get(LOG_USER) << "Available Variables:" << Log::endl;
+    Log::get(LOG_USER) << "  basedir    STRING" << Log::endl;
+    Log::get(LOG_USER) << "  pakdir     STRING" << Log::endl;
+    Log::get(LOG_USER) << "  audiodir   STRING" << Log::endl;
+    Log::get(LOG_USER) << "  datadir    STRING" << Log::endl;
+    Log::get(LOG_USER) << "  font       STRING" << Log::endl;
+    Log::get(LOG_USER) << "  size       INT INT" << Log::endl;
+    Log::get(LOG_USER) << "  fullscreen BOOL" << Log::endl;
+    Log::get(LOG_USER) << "  audio      BOOL" << Log::endl;
+    Log::get(LOG_USER) << "  volume     BOOL" << Log::endl;
+    Log::get(LOG_USER) << "  mouse_x    FLOAT" << Log::endl;
+    Log::get(LOG_USER) << "  mouse_y    FLOAT" << Log::endl;
+    Log::get(LOG_USER) << "  fps        BOOL" << Log::endl;
+    Log::get(LOG_USER) << "Enclose STRINGs with \"\"!" << Log::endl;
 }
 
-namespace {
-    std::string expandNames(std::string s) {
-        // Remove quotes
-        if ((s.length() >= 3) &&
-            (((s[0] == '"') && (s[s.length() - 1] == '"'))
-             || ((s[0] == '\'') && (s[s.length() - 1] == '\'')))) {
-            s.erase(0, 1);
-            s.erase(s.length() - 1, 1);
-        }
-
-        // Expand Names
-        s = findAndReplace(s, "$(pakdir)", RunTime::getPakDir());
-        s = findAndReplace(s, "$(audiodir)", RunTime::getAudioDir());
-        s = findAndReplace(s, "$(datadir)", RunTime::getDataDir());
-        s = findAndReplace(s, "$(basedir)", RunTime::getBaseDir());
-
-        // Full path
-        s = expandHomeDirectory(s);
-
-        return s;
+static std::string expandNames(std::string s) {
+    // Remove quotes
+    if ((s.length() >= 3) &&
+        (((s[0] == '"') && (s[s.length() - 1] == '"'))
+         || ((s[0] == '\'') && (s[s.length() - 1] == '\'')))) {
+        s.erase(0, 1);
+        s.erase(s.length() - 1, 1);
     }
+
+    // Expand Names
+    s = findAndReplace(s, "$(pakdir)", RunTime::getPakDir());
+    s = findAndReplace(s, "$(audiodir)", RunTime::getAudioDir());
+    s = findAndReplace(s, "$(datadir)", RunTime::getDataDir());
+    s = findAndReplace(s, "$(basedir)", RunTime::getBaseDir());
+
+    // Full path
+    s = expandHomeDirectory(s);
+
+    return s;
 }
 
 int CommandSet::execute(std::istream& args) {
@@ -72,49 +70,49 @@ int CommandSet::execute(std::istream& args) {
     if (var.compare("size") == 0) {
         unsigned int w = DEFAULT_WIDTH, h = DEFAULT_HEIGHT;
         if (!(args >> w >> h)) {
-            getLog() << "set-size-Error: Invalid value(s)" << Log::endl;
+            Log::get(LOG_USER) << "set-size-Error: Invalid value(s)" << Log::endl;
             return -2;
         }
         Window::setSize(glm::i32vec2(w, h));
     } else if (var.compare("fullscreen") == 0) {
         bool fullscreen = false;
         if (!(args >> fullscreen)) {
-            getLog() << "set-fullscreen-Error: Invalid value" << Log::endl;
+            Log::get(LOG_USER) << "set-fullscreen-Error: Invalid value" << Log::endl;
             return -3;
         }
         Window::setFullscreen(fullscreen);
     } else if (var.compare("audio") == 0) {
         bool audio = false;
         if (!(args >> audio)) {
-            getLog() << "set-audio-Error: Invalid value" << Log::endl;
+            Log::get(LOG_USER) << "set-audio-Error: Invalid value" << Log::endl;
             return -4;
         }
         Sound::setEnabled(audio);
     } else if (var.compare("volume") == 0) {
         float vol = 1.0f;
         if (!(args >> vol)) {
-            getLog() << "set-volume-Error: Invalid value" << Log::endl;
+            Log::get(LOG_USER) << "set-volume-Error: Invalid value" << Log::endl;
             return -5;
         }
         Sound::setVolume(vol);
     } else if (var.compare("mouse_x") == 0) {
         float sense = 1.0f;
         if (!(args >> sense)) {
-            getLog() << "set-mouse_x-Error: Invalid value" << Log::endl;
+            Log::get(LOG_USER) << "set-mouse_x-Error: Invalid value" << Log::endl;
             return -6;
         }
         Camera::setSensitivityX(glm::radians(sense));
     } else if (var.compare("mouse_y") == 0) {
         float sense = 1.0f;
         if (!(args >> sense)) {
-            getLog() << "set-mouse_y-Error: Invalid value" << Log::endl;
+            Log::get(LOG_USER) << "set-mouse_y-Error: Invalid value" << Log::endl;
             return -7;
         }
         Camera::setSensitivityY(glm::radians(sense));
     } else if (var.compare("fps") == 0) {
         bool fps = false;
         if (!(args >> fps)) {
-            getLog() << "set-fps-Error: Invalid value" << Log::endl;
+            Log::get(LOG_USER) << "set-fps-Error: Invalid value" << Log::endl;
             return -8;
         }
         RunTime::setShowFPS(fps);
@@ -139,9 +137,9 @@ int CommandSet::execute(std::istream& args) {
         args >> temp;
         int error = Font::initialize(expandNames(temp));
         if (error != 0)
-            getLog() << "Error initializing font: " << expandNames(temp) << "(" << error << ")" << Log::endl;
+            Log::get(LOG_USER) << "Error initializing font: " << expandNames(temp) << "(" << error << ")" << Log::endl;
     } else {
-        getLog() << "set-Error: Unknown variable (" << var.c_str() << ")" << Log::endl;
+        Log::get(LOG_USER) << "set-Error: Unknown variable (" << var.c_str() << ")" << Log::endl;
         return -1;
     }
 
@@ -157,21 +155,21 @@ std::string CommandGet::brief() {
 }
 
 void CommandGet::printHelp() {
-    getLog() << "get-Command Usage:" << Log::endl;
-    getLog() << "  get VAR" << Log::endl;
-    getLog() << "Available Variables:" << Log::endl;
-    getLog() << "  basedir" << Log::endl;
-    getLog() << "  pakdir" << Log::endl;
-    getLog() << "  audiodir" << Log::endl;
-    getLog() << "  datadir" << Log::endl;
-    getLog() << "  font" << Log::endl;
-    getLog() << "  size" << Log::endl;
-    getLog() << "  fullscreen" << Log::endl;
-    getLog() << "  audio" << Log::endl;
-    getLog() << "  volume" << Log::endl;
-    getLog() << "  mouse_x" << Log::endl;
-    getLog() << "  mouse_y" << Log::endl;
-    getLog() << "  fps" << Log::endl;
+    Log::get(LOG_USER) << "get-Command Usage:" << Log::endl;
+    Log::get(LOG_USER) << "  get VAR" << Log::endl;
+    Log::get(LOG_USER) << "Available Variables:" << Log::endl;
+    Log::get(LOG_USER) << "  basedir" << Log::endl;
+    Log::get(LOG_USER) << "  pakdir" << Log::endl;
+    Log::get(LOG_USER) << "  audiodir" << Log::endl;
+    Log::get(LOG_USER) << "  datadir" << Log::endl;
+    Log::get(LOG_USER) << "  font" << Log::endl;
+    Log::get(LOG_USER) << "  size" << Log::endl;
+    Log::get(LOG_USER) << "  fullscreen" << Log::endl;
+    Log::get(LOG_USER) << "  audio" << Log::endl;
+    Log::get(LOG_USER) << "  volume" << Log::endl;
+    Log::get(LOG_USER) << "  mouse_x" << Log::endl;
+    Log::get(LOG_USER) << "  mouse_y" << Log::endl;
+    Log::get(LOG_USER) << "  fps" << Log::endl;
 }
 
 int CommandGet::execute(std::istream& args) {
@@ -179,31 +177,31 @@ int CommandGet::execute(std::istream& args) {
     args >> var;
 
     if (var.compare("size") == 0) {
-        getLog() << Window::getSize() << Log::endl;
+        Log::get(LOG_USER) << Window::getSize() << Log::endl;
     } else if (var.compare("fullscreen") == 0) {
-        getLog() << Window::getFullscreen() << Log::endl;
+        Log::get(LOG_USER) << Window::getFullscreen() << Log::endl;
     } else if (var.compare("audio") == 0) {
-        getLog() << Sound::getEnabled() << Log::endl;
+        Log::get(LOG_USER) << Sound::getEnabled() << Log::endl;
     } else if (var.compare("volume") == 0) {
-        getLog() << Sound::getVolume() << Log::endl;
+        Log::get(LOG_USER) << Sound::getVolume() << Log::endl;
     } else if (var.compare("mouse_x") == 0) {
-        getLog() << glm::degrees(Camera::getSensitivityX()) << Log::endl;
+        Log::get(LOG_USER) << glm::degrees(Camera::getSensitivityX()) << Log::endl;
     } else if (var.compare("mouse_y") == 0) {
-        getLog() << glm::degrees(Camera::getSensitivityY()) << Log::endl;
+        Log::get(LOG_USER) << glm::degrees(Camera::getSensitivityY()) << Log::endl;
     } else if (var.compare("fps") == 0) {
-        getLog() << RunTime::getShowFPS() << Log::endl;
+        Log::get(LOG_USER) << RunTime::getShowFPS() << Log::endl;
     } else if (var.compare("basedir") == 0) {
-        getLog() << RunTime::getBaseDir() << Log::endl;
+        Log::get(LOG_USER) << RunTime::getBaseDir() << Log::endl;
     } else if (var.compare("pakdir") == 0) {
-        getLog() << RunTime::getPakDir() << Log::endl;
+        Log::get(LOG_USER) << RunTime::getPakDir() << Log::endl;
     } else if (var.compare("audiodir") == 0) {
-        getLog() << RunTime::getAudioDir() << Log::endl;
+        Log::get(LOG_USER) << RunTime::getAudioDir() << Log::endl;
     } else if (var.compare("datadir") == 0) {
-        getLog() << RunTime::getDataDir() << Log::endl;
+        Log::get(LOG_USER) << RunTime::getDataDir() << Log::endl;
     } else if (var.compare("font") == 0) {
-        getLog() << Font::getFontName() << Log::endl;
+        Log::get(LOG_USER) << Font::getFontName() << Log::endl;
     } else {
-        getLog() << "get-Error: Unknown variable (" << var << ")" << Log::endl;
+        Log::get(LOG_USER) << "get-Error: Unknown variable (" << var << ")" << Log::endl;
         return -1;
     }
 

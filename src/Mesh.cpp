@@ -58,7 +58,12 @@ void Mesh::prepare() {
     int vertIndex = 0;
     for (int i = 0; i < indicesBuff.size(); i++) {
         unsigned int texture = TextureManager::getTile(texturesBuff.at(i)).getTexture();
-        for (int v = 0; v < ((indicesBuff.at(i) == 0) ? 4 : 3); v++) {
+        for (int x = 0; x < ((indicesBuff.at(i) == 0) ? 4 : 3); x++) {
+            int v = x;
+            if (v == 0)
+                v = 2;
+            else if (v == 2)
+                v = 0;
             ind.push_back(vert.size());
             vert.push_back(verticesBuff.at(vertIndex + v));
             uvBuff.push_back(TextureManager::getTile(texturesBuff.at(i)).getUV(v));
@@ -66,8 +71,8 @@ void Mesh::prepare() {
         }
 
         if (indicesBuff.at(i) == 0) {
-            ind.push_back(ind.at(ind.size() - 2));
-            ind.push_back(ind.at(ind.size() - 5));
+            ind.push_back(ind.at(ind.size() - 4));
+            ind.push_back(ind.at(ind.size() - 3));
         }
 
         vertIndex += (indicesBuff.at(i) == 0) ? 4 : 3;
@@ -88,15 +93,20 @@ void Mesh::prepare() {
 
     vertIndex = 0;
     for (int i = 0; i < indicesColorBuff.size(); i++) {
-        for (int v = 0; v < ((indicesColorBuff.at(i) == 0) ? 4 : 3); v++) {
+        for (int x = 0; x < ((indicesColorBuff.at(i) == 0) ? 4 : 3); x++) {
+            int v = x;
+            if (v == 0)
+                v = 2;
+            else if (v == 2)
+                v = 0;
             indCol.push_back(vertCol.size());
             vertCol.push_back(verticesColorBuff.at(vertIndex + v));
             cols.push_back(colorsBuff.at(i));
         }
 
         if (indicesColorBuff.at(i) == 0) {
-            indCol.push_back(indCol.at(indCol.size() - 2));
-            indCol.push_back(indCol.at(indCol.size() - 5));
+            indCol.push_back(indCol.at(indCol.size() - 4));
+            indCol.push_back(indCol.at(indCol.size() - 3));
         }
 
         vertIndex += (indicesColorBuff.at(i) == 0) ? 4 : 3;

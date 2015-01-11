@@ -74,14 +74,63 @@ void Console::display() {
 
     static bool scrollToBottom = false;
     if (ImGui::Begin("Console", &visible, ImVec2(600, 400))) {
-        if (lastLogLength != getLog().size()) {
-            lastLogLength = getLog().size();
+        if (lastLogLength != Log::size()) {
+            lastLogLength = Log::size();
             scrollToBottom = true;
         }
 
+        static bool visibleLogs[LOG_COUNT] = { true, true, true, true, false };
+        ImGui::Checkbox("Error##log", &visibleLogs[1]);
+        ImGui::SameLine();
+        ImGui::Checkbox("Warning##log", &visibleLogs[2]);
+        ImGui::SameLine();
+        ImGui::Checkbox("User##log", &visibleLogs[0]);
+        ImGui::SameLine();
+        ImGui::Checkbox("Info##log", &visibleLogs[3]);
+        ImGui::SameLine();
+        ImGui::Checkbox("Debug##log", &visibleLogs[4]);
+        ImGui::SameLine();
+        static bool logToTTY = false, logToClipboard = false, logToFile = false;
+        if (ImGui::Button("Log to TTY")) { logToTTY = true; }
+        ImGui::SameLine();
+        if (ImGui::Button("Log to Clipboard")) { logToClipboard = true; }
+        ImGui::SameLine();
+        if (ImGui::Button("Log to File")) { logToFile = true; }
+        ImGui::Separator();
+
         ImGui::BeginChild("ConsoleText", ImVec2(0, -ImGui::GetTextLineSpacing() * 2));
-        for (unsigned long i = 0; i < getLog().size(); i++) {
-            ImGui::TextUnformatted(getLog().get(i).c_str());
+        if (logToTTY)
+            ImGui::LogToTTY();
+        else if (logToClipboard)
+            ImGui::LogToClipboard();
+        else if (logToFile)
+            ImGui::LogToFile();
+        for (unsigned long i = 0; i < Log::size(); i++) {
+            auto entry = Log::getEntry(i);
+
+            assert(entry.level < LOG_COUNT);
+            if (!visibleLogs[entry.level]) {
+                continue;
+            }
+
+            ImVec4 col(1.0f, 1.0f, 1.0f, 1.0f);
+            if (entry.level == LOG_ERROR) {
+                col = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
+            } else if (entry.level == LOG_WARNING) {
+                col = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
+            } else if (entry.level == LOG_DEBUG) {
+                col = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
+            } else if (entry.level == LOG_USER) {
+                col = ImVec4(0.5f, 0.75f, 1.0f, 1.0f);
+            }
+
+            ImGui::PushStyleColor(ImGuiCol_Text, col);
+            ImGui::TextUnformatted(entry.text.c_str());
+            ImGui::PopStyleColor();
+        }
+        if (logToTTY || logToClipboard || logToFile) {
+            ImGui::LogFinish();
+            logToTTY = logToClipboard = logToFile = false;
         }
         if (scrollToBottom) {
             ImGui::SetScrollPosHere();
@@ -95,11 +144,11 @@ void Console::display() {
                              | ImGuiInputTextFlags_CallbackCompletion
                              | ImGuiInputTextFlags_CallbackHistory,
                              &Console::callback)) {
-            getLog() << "> " << buffer << Log::endl;
+            Log::get(LOG_USER) << "> " << buffer << Log::endl;
             if (strlen(buffer) > 0) {
                 int error = Command::command(buffer);
                 if (error != 0) {
-                    getLog() << "Error code: " << error << Log::endl;
+                    Log::get(LOG_USER) << "Error code: " << error << Log::endl;
                 }
 
                 if ((lastCommands.size() == 0) || (lastCommands[lastCommands.size() - 1] != buffer))

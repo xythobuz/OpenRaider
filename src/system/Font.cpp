@@ -30,7 +30,7 @@ int Font::initialize(std::string font) {
     }
 
     if (font != "") {
-        getLog() << "Unknown font file format: " << font << Log::endl;
+        Log::get(LOG_ERROR) << "Unknown font file format: " << font << Log::endl;
         return -1;
     } else {
         return 0;

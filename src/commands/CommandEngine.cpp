@@ -23,19 +23,19 @@ std::string CommandLoad::brief() {
 }
 
 void CommandLoad::printHelp() {
-    getLog() << "load-Command Usage:" << Log::endl;
-    getLog() << "  load /path/to/level" << Log::endl;
+    Log::get(LOG_USER) << "load-Command Usage:" << Log::endl;
+    Log::get(LOG_USER) << "  load /path/to/level" << Log::endl;
 }
 
 int CommandLoad::execute(std::istream& args) {
     if (!RunTime::isRunning()) {
-        getLog() << "Use load command interactively!" << Log::endl;
+        Log::get(LOG_USER) << "Use load command interactively!" << Log::endl;
         return -1;
     }
 
     std::string map;
     args >> map;
-    int error = getGame().loadLevel(map.c_str());
+    int error = Game::loadLevel(map.c_str());
     return error;
 }
 
@@ -50,14 +50,14 @@ std::string CommandScreenshot::brief() {
 }
 
 void CommandScreenshot::printHelp() {
-    getLog() << "sshot-Command Usage:" << Log::endl;
-    getLog() << "  sshot" << Log::endl;
-    getLog() << "You wont be able to capture imgui..." << Log::endl;
+    Log::get(LOG_USER) << "sshot-Command Usage:" << Log::endl;
+    Log::get(LOG_USER) << "  sshot" << Log::endl;
+    Log::get(LOG_USER) << "You wont be able to capture imgui..." << Log::endl;
 }
 
 int CommandScreenshot::execute(std::istream& args) {
     if (!RunTime::isRunning()) {
-        getLog() << "Use sshot command interactively!" << Log::endl;
+        Log::get(LOG_USER) << "Use sshot command interactively!" << Log::endl;
         return -1;
     }
 

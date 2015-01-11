@@ -2,6 +2,14 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140111 ]
+    * Enabled back face culling --> triangles now oriented correctly
+    * Game is now completely static
+    * Shaders drawGL methods can now be given a specific Shader instance.
+    * Log now manages different log levels. Console displays them colored.
+    * Console can now log to the TTY, the clipboard or a file.
+    * Added system clipboard support for imgui in both WindowSDL and WindowGLFW.
+
     [ 20140109 ]
     * Display of Bounding Boxes can be individually toggled for Rooms/StaticMeshes
     * Tightened imgui Style and changed colors to match the _OpenRaider-blue_

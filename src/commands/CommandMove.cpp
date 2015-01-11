@@ -20,34 +20,34 @@ std::string CommandMove::brief() {
 }
 
 void CommandMove::printHelp() {
-    getLog() << "move-Command Usage:" << Log::endl;
-    getLog() << "  move COMMAND" << Log::endl;
-    getLog() << "Where COMMAND is one of the following:" << Log::endl;
-    getLog() << "  walk" << Log::endl;
-    getLog() << "  fly" << Log::endl;
-    getLog() << "  noclip" << Log::endl;
+    Log::get(LOG_USER) << "move-Command Usage:" << Log::endl;
+    Log::get(LOG_USER) << "  move COMMAND" << Log::endl;
+    Log::get(LOG_USER) << "Where COMMAND is one of the following:" << Log::endl;
+    Log::get(LOG_USER) << "  walk" << Log::endl;
+    Log::get(LOG_USER) << "  fly" << Log::endl;
+    Log::get(LOG_USER) << "  noclip" << Log::endl;
 }
 
 int CommandMove::execute(std::istream& args) {
-    if ((!RunTime::isRunning()) || (!getGame().isLoaded())) {
-        getLog() << "Use move command interactively!" << Log::endl;
+    if ((!RunTime::isRunning()) || (!Game::isLoaded())) {
+        Log::get(LOG_USER) << "Use move command interactively!" << Log::endl;
         return -1;
     }
 
     std::string s;
     args >> s;
     if (s.compare("walk") == 0) {
-        getGame().getLara().setMoveType(Entity::MoveTypeWalk);
+        Game::getLara().setMoveType(Entity::MoveTypeWalk);
     } else if (s.compare("fly") == 0) {
-        getGame().getLara().setMoveType(Entity::MoveTypeFly);
+        Game::getLara().setMoveType(Entity::MoveTypeFly);
     } else if (s.compare("noclip") == 0) {
-        getGame().getLara().setMoveType(Entity::MoveTypeNoClipping);
+        Game::getLara().setMoveType(Entity::MoveTypeNoClipping);
     } else {
-        getLog() << "Invalid use of move command (" << s << ")!" << Log::endl;
+        Log::get(LOG_USER) << "Invalid use of move command (" << s << ")!" << Log::endl;
         return -2;
     }
 
-    getLog() << s  << "ing" << Log::endl;
+    Log::get(LOG_USER) << s  << "ing" << Log::endl;
     return 0;
 }
 

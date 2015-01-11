@@ -15,45 +15,70 @@
 
 #include <glm/gtc/type_precision.hpp>
 
+#define LOG_USER    0
+#define LOG_ERROR   1
+#define LOG_WARNING 2
+#define LOG_INFO    3
+#define LOG_DEBUG   4
+#define LOG_COUNT   5
+
+struct LogEntry {
+  public:
+    std::string text;
+    int level;
+    LogEntry(std::string t, int l) : text(t), level(l) { }
+};
+
+class LogLevel;
 class Log {
   public:
-
     const static char endl = '\n';
 
-    Log();
+    static LogLevel& get(int level);
+    static unsigned long size() { return wholeLog.size(); }
+    static LogEntry getEntry(unsigned long i) { return wholeLog.at(i); }
 
-    unsigned long size();
-    std::string get(unsigned long i);
+  private:
+    static LogLevel logs[LOG_COUNT];
+
+    static std::vector<LogEntry> wholeLog;
+    friend class LogLevel;
+};
+
+class LogLevel {
+  public:
+    LogLevel(int l) : level(l) { printBuffer << std::boolalpha; }
+
+    LogLevel& operator<< (const glm::vec2& v) {
+        return (*this) << v.x << " " << v.y;
+    }
+
+    LogLevel& operator<< (const glm::i32vec2& v) {
+        return (*this) << v.x << " " << v.y;
+    }
+
+    LogLevel& operator<< (const glm::vec3& v) {
+        return (*this) << v.x << " " << v.y << " " << v.z;
+    }
 
     template<typename T>
-    Log& operator<< (const T t) {
+    LogLevel& operator<< (const T t) {
         printBuffer << t;
-        if (printBuffer.str().back() == endl) {
-            mHistory.push_back(printBuffer.str().substr(0, printBuffer.str().length() - 1));
-            std::cout << printBuffer.str().substr(0, printBuffer.str().length() - 1) << std::endl;
+        if (printBuffer.str().back() == Log::endl) {
+            std::string s = printBuffer.str().substr(0, printBuffer.str().length() - 1);
             printBuffer.str("");
+            Log::wholeLog.emplace_back(s, level);
+#ifdef DEBUG
+            std::cout << s << std::endl;
+#endif
         }
         return (*this);
     }
 
-    Log& operator<< (const glm::vec2& v) {
-        return (*this) << v.x << " " << v.y;
-    }
-
-    Log& operator<< (const glm::i32vec2& v) {
-        return (*this) << v.x << " " << v.y;
-    }
-
-    Log& operator<< (const glm::vec3& v) {
-        return (*this) << v.x << " " << v.y << " " << v.z;
-    }
-
   private:
-    std::vector<std::string> mHistory;
+    int level;
     std::ostringstream printBuffer;
 };
-
-Log& getLog();
 
 #endif
 

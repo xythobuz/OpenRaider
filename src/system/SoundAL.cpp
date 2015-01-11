@@ -35,7 +35,7 @@ int SoundAL::initialize() {
     alcMakeContextCurrent(context);
 
     if (alutInitWithoutContext(nullptr, nullptr) == AL_FALSE) {
-        getLog() << "SoundAL Error: " << alutGetErrorString(alutGetError()) << Log::endl;
+        Log::get(LOG_ERROR) << "SoundAL Error: " << alutGetErrorString(alutGetError()) << Log::endl;
         return -1;
     }
 
@@ -50,7 +50,7 @@ void SoundAL::shutdown() {
 
     clear();
     if (alutExit() == AL_FALSE)
-        getLog() << "SoundAL Error: " << alutGetErrorString(alutGetError()) << Log::endl;
+        Log::get(LOG_ERROR) << "SoundAL Error: " << alutGetErrorString(alutGetError()) << Log::endl;
     init = false;
 }
 
@@ -64,21 +64,21 @@ void SoundAL::clear() {
     alDeleteSources(sources.size(), &sources[0]);
     sources.clear();
     if (alGetError() != AL_NO_ERROR) {
-        getLog() << "SoundAL: Error while deleting sources!" << Log::endl;
+        Log::get(LOG_ERROR) << "SoundAL: Error while deleting sources!" << Log::endl;
     }
 
     alGetError();
     alDeleteSources(listenerSources.size(), &listenerSources[0]);
     listenerSources.clear();
     if (alGetError() != AL_NO_ERROR) {
-        getLog() << "SoundAL: Error while deleting listener sources!" << Log::endl;
+        Log::get(LOG_ERROR) << "SoundAL: Error while deleting listener sources!" << Log::endl;
     }
 
     alGetError();
     alDeleteBuffers(buffers.size(), &buffers[0]);
     buffers.clear();
     if (alGetError() != AL_NO_ERROR) {
-        getLog() << "SoundAL: Error while deleting buffers!" << Log::endl;
+        Log::get(LOG_ERROR) << "SoundAL: Error while deleting buffers!" << Log::endl;
     }
 
     for (int i = 0; i < 3; i++)
@@ -99,7 +99,7 @@ int SoundAL::loadBuffer(unsigned char* buffer, unsigned int length) {
     alGetError();
     unsigned int r = alutCreateBufferFromFileImage(buffer, length);
     if (r == AL_NONE) {
-        getLog() << "SoundAL Error: " << alutGetErrorString(alutGetError()) << Log::endl;
+        Log::get(LOG_ERROR) << "SoundAL Error: " << alutGetErrorString(alutGetError()) << Log::endl;
         return -2;
     }
     buffers.push_back(r);
@@ -122,7 +122,7 @@ int SoundAL::addSource(int buffer, float volume, bool atListener, bool loop) {
     alGetError();
     alGenSources(1, &id);
     if (alGetError() != AL_NO_ERROR) {
-        getLog() << "SoundAL Error: Could not create source!" << Log::endl;
+        Log::get(LOG_ERROR) << "SoundAL Error: Could not create source!" << Log::endl;
         return -2;
     }
 
@@ -147,7 +147,7 @@ int SoundAL::sourceAt(int source, float pos[3]) {
         return -1;
 
     if ((source < 0) || (source >= sources.size()) || (pos == nullptr)) {
-        getLog() << "SoundAL: Can't position non-existing source!" << Log::endl;
+        Log::get(LOG_ERROR) << "SoundAL: Can't position non-existing source!" << Log::endl;
         return -2;
     }
 
@@ -179,12 +179,12 @@ void SoundAL::play(int source, bool atListener) {
         if ((source >= 0) && (source < listenerSources.size()))
             alSourcePlay(listenerSources.at(source));
         else
-            getLog() << "SoundAL: Can't play non-existing listener source!" << Log::endl;
+            Log::get(LOG_ERROR) << "SoundAL: Can't play non-existing listener source!" << Log::endl;
     } else {
         if ((source >= 0) && (source < sources.size()))
             alSourcePlay(sources.at(source));
         else
-            getLog() << "SoundAL: Can't play non-existing source!" << Log::endl;
+            Log::get(LOG_ERROR) << "SoundAL: Can't play non-existing source!" << Log::endl;
     }
 }
 

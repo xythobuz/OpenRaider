@@ -20,6 +20,7 @@
 
 int Window::initialize() {
     int res;
+
 #ifdef USING_SDL
     res = WindowSDL::initialize();
 #elif defined(USING_GLFW)
@@ -27,6 +28,7 @@ int Window::initialize() {
 #else
     res = -1;
 #endif
+
     return res;
 }
 
@@ -68,6 +70,7 @@ void Window::setSize(glm::i32vec2 s) {
 
 glm::i32vec2 Window::getSize() {
     glm::i32vec2 ret(-1, -1);
+
 #ifdef USING_SDL
     ret = WindowSDL::getSize();
 #elif defined(USING_GLFW)
@@ -87,6 +90,7 @@ void Window::setFullscreen(bool f) {
 
 bool Window::getFullscreen() {
     bool ret;
+
 #ifdef USING_SDL
     ret = WindowSDL::getFullscreen();
 #elif defined(USING_GLFW)
@@ -108,6 +112,7 @@ void Window::setMousegrab(bool g) {
 
 bool Window::getMousegrab() {
     bool ret;
+
 #ifdef USING_SDL
     ret = WindowSDL::getMousegrab();
 #elif defined(USING_GLFW)
@@ -129,12 +134,35 @@ void Window::setTextInput(bool t) {
 
 bool Window::getTextInput() {
     bool ret;
+
 #ifdef USING_SDL
     ret = WindowSDL::getTextInput();
 #elif defined(USING_GLFW)
     ret = WindowGLFW::getTextInput();
 #else
     ret = false;
+#endif
+
+    return ret;
+}
+
+void Window::setClipboard(const char* s) {
+#ifdef USING_SDL
+    WindowSDL::setClipboard(s);
+#elif defined(USING_GLFW)
+    WindowGLFW::setClipboard(s);
+#endif
+}
+
+const char* Window::getClipboard() {
+    const char* ret;
+
+#ifdef USING_SDL
+    ret = WindowSDL::getClipboard();
+#elif defined(USING_GLFW)
+    ret = WindowGLFW::getClipboard();
+#else
+    ret = nullptr;
 #endif
 
     return ret;

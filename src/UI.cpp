@@ -79,6 +79,8 @@ int UI::initialize() {
     io.KeyMap[ImGuiKey_Z] = zKey;
 
     io.RenderDrawListsFn = UI::renderImGui;
+    io.GetClipboardTextFn = Window::getClipboard;
+    io.SetClipboardTextFn = Window::setClipboard;
 
     // Load font texture
     //! \todo Use our own font subsystem instead of this?
@@ -172,7 +174,7 @@ void UI::eventsFinished() {
         while (!motionEvents.empty()) {
             auto i = motionEvents.front();
             if (!getMenu().isVisible()) {
-                getGame().handleMouseMotion(std::get<0>(i), std::get<1>(i),
+                Game::handleMouseMotion(std::get<0>(i), std::get<1>(i),
                                             std::get<2>(i), std::get<3>(i));
             }
             motionEvents.pop_front();
@@ -196,7 +198,7 @@ void UI::eventsFinished() {
             } else {
                 for (int n = forwardAction; n < ActionEventCount; n++) {
                     if (RunTime::getKeyBinding((ActionEvents)n) == std::get<0>(i))
-                        getGame().handleAction((ActionEvents)n, !std::get<1>(i));
+                        Game::handleAction((ActionEvents)n, !std::get<1>(i));
                 }
             }
         }
@@ -285,7 +287,7 @@ void UI::display() {
         static bool visibleAnim = false;
         static bool visibleSprite = false;
         if (ImGui::CollapsingHeader("Texture Viewer")) {
-            static bool game = getGame().isLoaded();
+            static bool game = Game::isLoaded();
             static int index = 0;
             ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
             ImGui::SliderInt("##texslide", &index, 0, TextureManager::.numTextures(
@@ -583,11 +585,11 @@ void UI::handleMouseScroll(int xrel, int yrel) {
 }
 
 void UI::handleControllerAxis(float value, KeyboardButton axis) {
-    getGame().handleControllerAxis(value, axis);
+    Game::handleControllerAxis(value, axis);
 }
 
 void UI::handleControllerButton(KeyboardButton button, bool released) {
-    getGame().handleControllerButton(button, released);
+    Game::handleControllerButton(button, released);
 }
 
 void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
@@ -597,7 +599,7 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
     static ShaderBuffer vert, uv, col;
 
     glEnable(GL_SCISSOR_TEST);
-    glDisable(GL_DEPTH_TEST);
+    Shader::set2DState(true);
 
     imguiShader.use();
     imguiShader.loadUniform(0, Window::getSize());
@@ -652,7 +654,7 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
     uv.unbind(1);
     col.unbind(2);
 
-    glEnable(GL_DEPTH_TEST);
+    Shader::set2DState(false);
     glDisable(GL_SCISSOR_TEST);
 }
 

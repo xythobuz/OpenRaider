@@ -25,7 +25,7 @@ Command::~Command() {
 }
 
 void Command::printHelp() {
-    getLog() << "No help available!" << Log::endl;
+    Log::get(LOG_USER) << "No help available!" << Log::endl;
 }
 
 void Command::fillCommandList() {
@@ -65,17 +65,17 @@ int Command::command(std::string c) {
         command >> arg;
         if (arg.length() == 0) {
             // List all available commands
-            getLog() << "Available commands:" << Log::endl;
-            getLog() << std::right << std::setw(11);
-            getLog() << "help" << " - print command help" << Log::endl;
+            Log::get(LOG_USER) << "Available commands:" << Log::endl;
+            Log::get(LOG_USER) << std::right << std::setw(11);
+            Log::get(LOG_USER) << "help" << " - print command help" << Log::endl;
             for (auto& x : commands) {
                 if (x) {
-                    getLog() << std::right << std::setw(11);
-                    getLog() << x->name() << " - " << x->brief() << Log::endl;
+                    Log::get(LOG_USER) << std::right << std::setw(11);
+                    Log::get(LOG_USER) << x->name() << " - " << x->brief() << Log::endl;
                 }
             }
-            getLog() << "Use help COMMAND to get additional info" << Log::endl;
-            getLog() << "Pass BOOLs as true or false" << Log::endl;
+            Log::get(LOG_USER) << "Use help COMMAND to get additional info" << Log::endl;
+            Log::get(LOG_USER) << "Pass BOOLs as true or false" << Log::endl;
             return 0;
         } else {
             // Show help for a specific command
@@ -87,7 +87,7 @@ int Command::command(std::string c) {
                     }
                 }
             }
-            getLog() << "Unknown command: \"" << arg << "\"" << Log::endl;
+            Log::get(LOG_USER) << "Unknown command: \"" << arg << "\"" << Log::endl;
             return -1;
         }
     }
@@ -101,17 +101,17 @@ int Command::command(std::string c) {
         }
     }
 
-    getLog() << "Unknown command: \"" << cmd << "\"" << Log::endl;
+    Log::get(LOG_USER) << "Unknown command: \"" << cmd << "\"" << Log::endl;
     return -1;
 }
 
 int Command::executeFile(std::string file) {
     std::string configFile = expandHomeDirectory(file);
-    getLog() << "Loading config from \"" << configFile << "\"..." << Log::endl;
+    Log::get(LOG_INFO) << "Loading config from \"" << configFile << "\"..." << Log::endl;
 
     std::ifstream f(configFile);
     if (!f) {
-        getLog() << "Could not open file!" << Log::endl;
+        Log::get(LOG_ERROR) << "Could not open file!" << Log::endl;
         return -1;
     }
 
@@ -121,7 +121,7 @@ int Command::executeFile(std::string file) {
 
         int error = Command::command(line);
         if (error != 0)
-            getLog() << "Error Code: " << error << Log::endl;
+            Log::get(LOG_ERROR) << "Error Code: " << error << Log::endl;
     }
 
     f.close();
@@ -156,9 +156,9 @@ std::string Command::autoComplete(std::string begin) {
     } else {
         std::string common = candidates.at(0);
         for (int i = 0; i < candidates.size(); i++) {
-            getLog() << candidates.at(i);
+            Log::get(LOG_USER) << candidates.at(i);
             if (i < (candidates.size() - 1))
-                getLog() << "/";
+                Log::get(LOG_USER) << "/";
 
             for (int c = 0; (c < common.size()) && (c < candidates.at(i).size()); c++) {
                 if (common.at(c) != candidates.at(i).at(c)) {
@@ -167,7 +167,7 @@ std::string Command::autoComplete(std::string begin) {
                 }
             }
         }
-        getLog() << Log::endl;
+        Log::get(LOG_USER) << Log::endl;
         return common;
     }
 }

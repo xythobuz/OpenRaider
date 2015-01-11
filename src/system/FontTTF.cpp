@@ -43,7 +43,7 @@ int FontMapTTF::initialize(unsigned char* fontData, int firstChar) {
     unsigned char* pixels = new unsigned char[MAP_WIDTH * MAP_HEIGHT];
     if (!stbtt_PackBegin(&context, pixels, MAP_WIDTH, MAP_HEIGHT, 0, 1, nullptr)) {
         delete [] pixels;
-        getLog() << "Error initializing font map in stbtt_PackBegin!" << Log::endl;
+        Log::get(LOG_ERROR) << "Error initializing font map in stbtt_PackBegin!" << Log::endl;
         return -1;
     }
 
@@ -58,7 +58,7 @@ int FontMapTTF::initialize(unsigned char* fontData, int firstChar) {
         delete [] pixels;
         delete [] charInfo;
         charInfo = nullptr;
-        getLog() << "Error packing font map!" << Log::endl;
+        Log::get(LOG_ERROR) << "Error packing font map!" << Log::endl;
         return -2;
     }
 
@@ -72,7 +72,7 @@ int FontMapTTF::initialize(unsigned char* fontData, int firstChar) {
     if (texture < 0) {
         delete [] charInfo;
         charInfo = nullptr;
-        getLog() << "Error loading new font map texture!" << Log::endl;
+        Log::get(LOG_ERROR) << "Error loading new font map texture!" << Log::endl;
         return -3;
     }
 
@@ -102,7 +102,7 @@ int FontTTF::initialize(std::string f) {
 
     std::ifstream file(f, std::ios::binary);
     if (!file) {
-        getLog() << "Couldn't open file \"" << f << "\"!" << Log::endl;
+        Log::get(LOG_ERROR) << "Couldn't open file \"" << f << "\"!" << Log::endl;
         return -1;
     }
 
@@ -119,7 +119,7 @@ int FontTTF::initialize(std::string f) {
 
     fontData = new unsigned char[size];
     if (!file.read(reinterpret_cast<char*>(fontData), size)) {
-        getLog() << "Couldn't read data in \"" << f << "\"" << Log::endl;
+        Log::get(LOG_ERROR) << "Couldn't read data in \"" << f << "\"" << Log::endl;
         delete [] fontData;
         fontData = nullptr;
         return -2;
@@ -254,7 +254,7 @@ int FontTTF::charIsMapped(int c) {
     if (c >= (MAP_NUM_CHARS / 2))
         begin -= (MAP_NUM_CHARS / 2);
 
-    getLog() << "Unmapped character '" << char(c) << "', new map from " << begin << " to "
+    Log::get(LOG_INFO) << "Unmapped character '" << char(c) << "', new map from " << begin << " to "
              << begin + MAP_NUM_CHARS - 1 << "..." << Log::endl;
 
     int p = maps.size();

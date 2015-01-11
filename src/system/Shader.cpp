@@ -62,7 +62,7 @@ int Shader::addUniform(const char* name) {
     assert(programID >= 0);
     int r = glGetUniformLocation(programID, name);
     if (r < 0) {
-        getLog() << "Can't find GLSL Uniform \"" << name << "\"!" << Log::endl;
+        Log::get(LOG_ERROR) << "Can't find GLSL Uniform \"" << name << "\"!" << Log::endl;
         return -1;
     }
     uniforms.push_back(r);
@@ -117,8 +117,8 @@ int Shader::compile(const char* vertex, const char* fragment) {
         std::vector<char> message(logLength + 1);
         glGetShaderInfoLog(vertexID, logLength, nullptr, &message[0]);
         if (result != GL_TRUE)
-            getLog() << "Vertex Shader compilation error:" << Log::endl;
-        getLog() << &message[0] << Log::endl;
+            Log::get(LOG_ERROR) << "Vertex Shader compilation error:" << Log::endl;
+        Log::get(LOG_ERROR) << &message[0] << Log::endl;
         glDeleteShader(vertexID);
         glDeleteShader(fragmentID);
         return -1;
@@ -135,8 +135,8 @@ int Shader::compile(const char* vertex, const char* fragment) {
         std::vector<char> message(logLength + 1);
         glGetShaderInfoLog(fragmentID, logLength, nullptr, &message[0]);
         if (result != GL_TRUE)
-            getLog() << "Fragment Shader compilation error:" << Log::endl;
-        getLog() << &message[0] << Log::endl;
+            Log::get(LOG_ERROR) << "Fragment Shader compilation error:" << Log::endl;
+        Log::get(LOG_ERROR) << &message[0] << Log::endl;
         glDeleteShader(vertexID);
         glDeleteShader(fragmentID);
         return -2;
@@ -155,8 +155,8 @@ int Shader::compile(const char* vertex, const char* fragment) {
         std::vector<char> message(logLength + 1);
         glGetProgramInfoLog(programID, logLength, nullptr, &message[0]);
         if (result != GL_TRUE)
-            getLog() << "Shader link error:" << Log::endl;
-        getLog() << &message[0] << Log::endl;
+            Log::get(LOG_ERROR) << "Shader link error:" << Log::endl;
+        Log::get(LOG_ERROR) << &message[0] << Log::endl;
         glDeleteShader(vertexID);
         glDeleteShader(fragmentID);
         glDeleteProgram(programID);
@@ -176,10 +176,10 @@ Shader Shader::colorShader;
 unsigned int Shader::vertexArrayID = 0;
 
 int Shader::initialize() {
-    getLog() << "GL Ven.: " << glGetString(GL_VENDOR) << Log::endl;
-    getLog() << "GL Ren.: " << glGetString(GL_RENDERER) << Log::endl;
-    getLog() << "GL Ver.: " << glGetString(GL_VERSION) << Log::endl;
-    getLog() << "GLSL V.: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << Log::endl;
+    Log::get(LOG_DEBUG) << "GL Ven.: " << glGetString(GL_VENDOR) << Log::endl;
+    Log::get(LOG_DEBUG) << "GL Ren.: " << glGetString(GL_RENDERER) << Log::endl;
+    Log::get(LOG_DEBUG) << "GL Ver.: " << glGetString(GL_VERSION) << Log::endl;
+    Log::get(LOG_DEBUG) << "GLSL V.: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << Log::endl;
 
     glGenVertexArrays(1, &vertexArrayID);
     glBindVertexArray(vertexArrayID);
@@ -188,16 +188,11 @@ int Shader::initialize() {
     //glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f, BLACK[2] / 256.0f, BLACK[3] / 256.0f);
     glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
 
-    // Set up Z buffer
-    glEnable(GL_DEPTH_TEST);
-    // Accept fragment if closer to camera
+    set2DState(false);
     glDepthFunc(GL_LESS);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    // Set up culling
-    //glEnable(GL_CULL_FACE); //! \todo Transparency?
 
     glPointSize(5.0f);
 
@@ -229,34 +224,44 @@ void Shader::shutdown() {
     glDeleteVertexArrays(1, &vertexArrayID);
 }
 
+void Shader::set2DState(bool on) {
+    if (on) {
+        glDisable(GL_CULL_FACE);
+        glDisable(GL_DEPTH_TEST);
+    } else {
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_CULL_FACE);
+    }
+}
+
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
-                    unsigned int texture, TextureStorage store) {
+                    unsigned int texture, TextureStorage store, Shader& shader) {
     assert(vertices.getSize() == uvs.getSize());
     assert((vertices.getSize() % 3) == 0);
 
-    textShader.use();
-    textShader.loadUniform(0, Window::getSize());
-    textShader.loadUniform(1, texture, store);
-    textShader.loadUniform(2, color);
+    shader.use();
+    shader.loadUniform(0, Window::getSize());
+    shader.loadUniform(1, texture, store);
+    shader.loadUniform(2, color);
     vertices.bindBuffer(0, 2);
     uvs.bindBuffer(1, 2);
 
-    glDisable(GL_DEPTH_TEST);
+    set2DState(true);
     glDrawArrays(GL_TRIANGLES, 0, vertices.getSize());
-    glEnable(GL_DEPTH_TEST);
+    set2DState(false);
 
     vertices.unbind(0);
     uvs.unbind(1);
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture,
-                    glm::mat4 MVP, TextureStorage store) {
+                    glm::mat4 MVP, TextureStorage store, Shader& shader) {
     assert(vertices.getSize() == uvs.getSize());
     assert((vertices.getSize() % 3) == 0);
 
-    textureShader.use();
-    textureShader.loadUniform(0, MVP);
-    textureShader.loadUniform(1, texture, store);
+    shader.use();
+    shader.loadUniform(0, MVP);
+    shader.loadUniform(1, texture, store);
     vertices.bindBuffer(0, 3);
     uvs.bindBuffer(1, 2);
     glDrawArrays(GL_TRIANGLES, 0, vertices.getSize());
@@ -265,13 +270,14 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int text
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& indices,
-                    unsigned int texture, glm::mat4 MVP, TextureStorage store) {
+                    unsigned int texture, glm::mat4 MVP, TextureStorage store,
+                    Shader& shader) {
     assert(vertices.getSize() == uvs.getSize());
     assert((indices.getSize() % 3) == 0);
 
-    textureShader.use();
-    textureShader.loadUniform(0, MVP);
-    textureShader.loadUniform(1, texture, store);
+    shader.use();
+    shader.loadUniform(0, MVP);
+    shader.loadUniform(1, texture, store);
     vertices.bindBuffer(0, 3);
     uvs.bindBuffer(1, 2);
     indices.bindBuffer();
@@ -280,11 +286,12 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& ind
     uvs.unbind(1);
 }
 
-void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP, unsigned int mode) {
+void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
+                    unsigned int mode, Shader& shader) {
     assert(vertices.getSize() == colors.getSize());
 
-    colorShader.use();
-    colorShader.loadUniform(0, MVP);
+    shader.use();
+    shader.loadUniform(0, MVP);
     vertices.bindBuffer(0, 3);
     colors.bindBuffer(1, 3);
     glDrawArrays(mode, 0, vertices.getSize());
@@ -293,11 +300,11 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
-                    glm::mat4 MVP, unsigned int mode) {
+                    glm::mat4 MVP, unsigned int mode, Shader& shader) {
     assert(vertices.getSize() == colors.getSize());
 
-    colorShader.use();
-    colorShader.loadUniform(0, MVP);
+    shader.use();
+    shader.loadUniform(0, MVP);
     vertices.bindBuffer(0, 3);
     colors.bindBuffer(1, 3);
     indices.bindBuffer();

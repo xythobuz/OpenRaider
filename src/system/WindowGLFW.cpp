@@ -106,8 +106,20 @@ void WindowGLFW::setTextInput(bool t) {
     textinput = t;
 }
 
+void WindowGLFW::setClipboard(const char* s) {
+    if (window)
+        glfwSetClipboardString(window, s);
+}
+
+const char* WindowGLFW::getClipboard() {
+    if (window)
+        return glfwGetClipboardString(window);
+
+    return nullptr;
+}
+
 void WindowGLFW::errorCallback(int error, const char* desc) {
-    getLog() << "GLFW Error (" << error << "): " << desc << Log::endl;
+    Log::get(LOG_ERROR) << "GLFW Error (" << error << "): " << desc << Log::endl;
 }
 
 void WindowGLFW::sizeCallback(GLFWwindow* w, int width, int height) {

@@ -122,7 +122,7 @@ void Folder::createFolderItems() {
 
     std::vector<std::string> foundFiles, foundFolders;
     if (readFolderItems(foundFiles, foundFolders) != 0) {
-        getLog() << "Could not open folder " << name << Log::endl;
+        Log::get(LOG_ERROR) << "Could not open folder " << name << Log::endl;
     }
 
     if (!listDot) {

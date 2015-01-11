@@ -19,13 +19,13 @@ std::string CommandMode::brief() {
 }
 
 void CommandMode::printHelp() {
-    getLog() << "mode-Command Usage:" << Log::endl;
-    getLog() << "  mode MODE" << Log::endl;
-    getLog() << "Where MODE is one of the following:" << Log::endl;
-    getLog() << "  wireframe" << Log::endl;
-    getLog() << "  solid" << Log::endl;
-    getLog() << "  texture" << Log::endl;
-    getLog() << "  titlescreen" << Log::endl;
+    Log::get(LOG_USER) << "mode-Command Usage:" << Log::endl;
+    Log::get(LOG_USER) << "  mode MODE" << Log::endl;
+    Log::get(LOG_USER) << "Where MODE is one of the following:" << Log::endl;
+    Log::get(LOG_USER) << "  wireframe" << Log::endl;
+    Log::get(LOG_USER) << "  solid" << Log::endl;
+    Log::get(LOG_USER) << "  texture" << Log::endl;
+    Log::get(LOG_USER) << "  titlescreen" << Log::endl;
 
 }
 
@@ -35,18 +35,18 @@ int CommandMode::execute(std::istream& args) {
 
     if (s == "wireframe") {
         Render::setMode(RenderMode::Wireframe);
-        getLog() << "Wireframe mode" << Log::endl;
+        Log::get(LOG_USER) << "Wireframe mode" << Log::endl;
     } else if (s == "solid") {
         Render::setMode(RenderMode::Solid);
-        getLog() << "Solid mode" << Log::endl;
+        Log::get(LOG_USER) << "Solid mode" << Log::endl;
     } else if (s == "texture") {
         Render::setMode(RenderMode::Texture);
-        getLog() << "Texture Mode" << Log::endl;
+        Log::get(LOG_USER) << "Texture Mode" << Log::endl;
     } else if (s == "titlescreen") {
         Render::setMode(RenderMode::LoadScreen);
-        getLog() << "Titlescreen mode" << Log::endl;
+        Log::get(LOG_USER) << "Titlescreen mode" << Log::endl;
     } else {
-        getLog() << "Invalid use of mode command (" << s << ")!" << Log::endl;
+        Log::get(LOG_USER) << "Invalid use of mode command (" << s << ")!" << Log::endl;
         return -2;
     }
 

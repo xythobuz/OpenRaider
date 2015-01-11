@@ -49,22 +49,20 @@ float BinaryReader::readFloat() {
     return ret;
 }
 
-namespace {
-    /*! \fixme Left-Shift with signed integer is undefined!
-     *  So we can't use the same method as for unsigned integers.
-     *  Is there a portable way to read multi-byte signed integers,
-     *  without having to detect the endianness at run-time?
-     */
-    const int bigendiandetection = 1;
+/*! \fixme Left-Shift with signed integer is undefined!
+ *  So we can't use the same method as for unsigned integers.
+ *  Is there a portable way to read multi-byte signed integers,
+ *  without having to detect the endianness at run-time?
+ */
+const static int bigendiandetection = 1;
 #define ISBIGENDIAN() ((*reinterpret_cast<const char *>(&bigendiandetection)) == 0)
 
-    void swapByteOrder(char* d, unsigned int n) {
-        if (ISBIGENDIAN()) {
-            for (unsigned int i = 0; i < (n / 2); i++) {
-                char tmp = d[i];
-                d[i] = d[n - i - 1];
-                d[n - i - 1] = tmp;
-            }
+static void swapByteOrder(char* d, unsigned int n) {
+    if (ISBIGENDIAN()) {
+        for (unsigned int i = 0; i < (n / 2); i++) {
+            char tmp = d[i];
+            d[i] = d[n - i - 1];
+            d[n - i - 1] = tmp;
         }
     }
 }

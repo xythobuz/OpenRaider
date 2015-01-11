@@ -7,6 +7,7 @@
 
 #include "global.h"
 #include "Camera.h"
+#include "Console.h"
 #include "Game.h"
 #include "loader/Loader.h"
 #include "Log.h"
@@ -16,31 +17,19 @@
 #include "UI.h"
 #include "World.h"
 
-Game::Game() {
+bool Game::mLoaded = false;
+long Game::mLara = -1;
+bool Game::activeEvents[ActionEventCount];
+
+void Game::destroy() {
     mLoaded = false;
     mLara = -1;
 
     for (int i = 0; i < ActionEventCount; i++) {
         activeEvents[i] = false;
     }
-}
 
-int Game::initialize() {
-    // Enable Renderer
     Render::setMode(RenderMode::LoadScreen);
-
-    return 0;
-}
-
-void Game::display() {
-    Render::display();
-}
-
-void Game::destroy() {
-    mLoaded = false;
-    mLara = -1;
-    Render::setMode(RenderMode::LoadScreen);
-
     Camera::reset();
     Render::clearRoomList();
     SoundManager::clear();
@@ -50,12 +39,13 @@ void Game::destroy() {
 
 int Game::loadLevel(const char* level) {
     destroy();
-    getLog() << "Loading " << level << Log::endl;
+
+    Log::get(LOG_INFO) << "Loading " << level << Log::endl;
     auto loader = Loader::createLoader(level);
     if (loader) {
         int error = loader->load(level);
         if (error != 0) {
-            getLog() << "Error loading level (" << error << ")..." << Log::endl;
+            Log::get(LOG_ERROR) << "Error loading level (" << error << ")..." << Log::endl;
             destroy();
             return -2;
         }
@@ -70,19 +60,20 @@ int Game::loadLevel(const char* level) {
 
         SoundManager::prepareSources();
 
+        mLoaded = true;
+        Render::setMode(RenderMode::Texture);
+
         if (mLara == -1) {
-            getLog() << "Can't find Lara entity in level?!" << Log::endl;
+            Log::get(LOG_WARNING) << "Can't find Lara entity in level?!" << Log::endl;
+            Console::setVisible(true);
             UI::setVisible(true);
         } else {
-            mLoaded = true;
-            Render::setMode(RenderMode::Texture);
-
             Camera::setPosition(glm::vec3(getLara().getPos(0),
                                           getLara().getPos(1) - 1024.0f,
                                           getLara().getPos(2)));
         }
     } else {
-        getLog() << "No suitable loader for this level!" << Log::endl;
+        Log::get(LOG_ERROR) << "No suitable loader for this level!" << Log::endl;
         return -1;
     }
 

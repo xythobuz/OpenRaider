@@ -21,12 +21,12 @@ std::string CommandPos::brief() {
 }
 
 int CommandPos::execute(std::istream& args) {
-    if ((!RunTime::isRunning()) || (!getGame().isLoaded())) {
-        getLog() << "Use pos command interactively!" << Log::endl;
+    if ((!RunTime::isRunning()) || (!Game::isLoaded())) {
+        Log::get(LOG_USER) << "Use pos command interactively!" << Log::endl;
         return -1;
     }
 
-    getGame().getLara().print();
+    Game::getLara().print();
     return 0;
 }
 
@@ -41,8 +41,8 @@ std::string CommandViewmodel::brief() {
 }
 
 int CommandViewmodel::execute(std::istream& args) {
-    if ((!RunTime::isRunning()) || (!getGame().isLoaded())) {
-        getLog() << "Use viewmodel command interactively!" << Log::endl;
+    if ((!RunTime::isRunning()) || (!Game::isLoaded())) {
+        Log::get(LOG_USER) << "Use viewmodel command interactively!" << Log::endl;
         return -1;
     }
 
@@ -53,10 +53,10 @@ int CommandViewmodel::execute(std::istream& args) {
     unsigned int n = atoi(s.c_str());
 
     if (n < getWorld().sizeSkeletalModel()) {
-        getGame().getLara().setSkeletalModel(n);
+        Game::getLara().setSkeletalModel(n);
         return 0;
     } else {
-        getLog() << "Invalid SkeletalModel index!" << Log::endl;
+        Log::get(LOG_USER) << "Invalid SkeletalModel index!" << Log::endl;
         return -2;
     }
 }

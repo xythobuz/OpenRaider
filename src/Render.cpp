@@ -132,7 +132,7 @@ void Render::screenShot(const char* filenameBase) {
     }
 
     if (!stbi_write_png(f.c_str(), w, h, 3, buffer, 0)) {
-        getLog() << "Error saving image \"" << f << "\"!" << Log::endl;
+        Log::get(LOG_ERROR) << "Error saving image \"" << f << "\"!" << Log::endl;
     }
 
     delete [] image;
@@ -145,20 +145,20 @@ void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,
     std::vector<glm::vec2> uvs;
 
     vertices.push_back(glm::vec2(x, y + h));
-    vertices.push_back(glm::vec2(x, y));
     vertices.push_back(glm::vec2(x + w, y + h));
+    vertices.push_back(glm::vec2(x, y));
 
     vertices.push_back(glm::vec2(x + w, y));
-    vertices.push_back(glm::vec2(x + w, y + h));
     vertices.push_back(glm::vec2(x, y));
+    vertices.push_back(glm::vec2(x + w, y + h));
 
     uvs.push_back(glm::vec2(0.0f, 1.0f));
-    uvs.push_back(glm::vec2(0.0f, 0.0f));
     uvs.push_back(glm::vec2(1.0f, 1.0f));
+    uvs.push_back(glm::vec2(0.0f, 0.0f));
 
     uvs.push_back(glm::vec2(1.0f, 0.0f));
-    uvs.push_back(glm::vec2(1.0f, 1.0f));
     uvs.push_back(glm::vec2(0.0f, 0.0f));
+    uvs.push_back(glm::vec2(1.0f, 1.0f));
 
     static ShaderBuffer vert, uv;
     vert.bufferData(vertices);

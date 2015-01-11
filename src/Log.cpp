@@ -8,16 +8,12 @@
 #include "global.h"
 #include "Log.h"
 
-Log::Log() {
-    printBuffer << std::boolalpha;
-}
+LogLevel Log::logs[LOG_COUNT] = { 0, 1, 2, 3, 4 };
+std::vector<LogEntry> Log::wholeLog;
 
-unsigned long Log::size() {
-    return mHistory.size();
-}
-
-std::string Log::get(unsigned long i) {
-    assert(i < mHistory.size());
-    return mHistory.at(i);
+LogLevel& Log::get(int level) {
+    assert(level >= 0);
+    assert(level < LOG_COUNT);
+    return logs[level];
 }
 

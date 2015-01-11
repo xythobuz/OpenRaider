@@ -58,7 +58,7 @@ int MenuFolder::init(Folder* folder, bool filter) {
             // Check maps for validity
             Loader::LoaderVersion version = Loader::checkFile(f.getPath());
             if (version == Loader::TR_UNKNOWN) {
-                getLog() << "Error: pak file '" << f.getName().c_str()
+                Log::get(LOG_ERROR) << "Error: pak file '" << f.getName().c_str()
                          << "' invalid" << Log::endl;
                 return true; // delete file from list
             }
@@ -117,7 +117,7 @@ void MenuFolder::loadOrOpen() {
             showDialog("Error reading subfolder!", "OK", "");
         }
     } else {
-        int error = getGame().loadLevel(mapFolder->getFile((unsigned long)mCursor
+        int error = Game::loadLevel(mapFolder->getFile((unsigned long)mCursor
                                         - 1 - mapFolder->folderCount()).getPath().c_str());
         if (error == 0) {
             visible = false;

@@ -96,9 +96,9 @@ void LoaderTR2::loadPaletteTextiles() {
     }
 
     if (numTextiles > 0)
-        getLog() << "LoaderTR2: Found " << numTextiles << " Textures!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numTextiles << " Textures!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Textures in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Textures in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadTextures() {
@@ -138,9 +138,9 @@ void LoaderTR2::loadTextures() {
     }
 
     if (numObjectTextures > 0)
-        getLog() << "LoaderTR2: Found " << numObjectTextures << " Textiles!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numObjectTextures << " Textiles!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Textiles in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Textiles in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadAnimatedTextures() {
@@ -155,7 +155,7 @@ void LoaderTR2::loadAnimatedTextures() {
     for (unsigned int a = 0; a < numAnimatedTextures; a++) {
         int count = animatedTextures.at(pos) + 1;
         if ((pos + count) >= numWords) {
-            getLog() << "LoaderTR2: Invalid AnimatedTextures ("
+            Log::get(LOG_DEBUG) << "LoaderTR2: Invalid AnimatedTextures ("
                      << pos + count << " >= " << numWords << ")!" << Log::endl;
             return;
         }
@@ -168,12 +168,12 @@ void LoaderTR2::loadAnimatedTextures() {
     }
 
     if ((numAnimatedTextures > 0) || (numWords > 0))
-        getLog() << "LoaderTR2: Found " << numAnimatedTextures << " Animated Textures!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numAnimatedTextures << " Animated Textures!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Animated Textures in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Animated Textures in this level?!" << Log::endl;
 
     if (pos != numWords)
-        getLog() << "LoaderTR2: Extra bytes at end of AnimatedTextures?!" << Log::endl;
+        Log::get(LOG_DEBUG) << "LoaderTR2: Extra bytes at end of AnimatedTextures?!" << Log::endl;
 }
 
 // ---- Rooms ----
@@ -406,15 +406,15 @@ void LoaderTR2::loadRooms() {
         // Sanity check
         if ((numPortals == 0) && (numVertices == 0)
             && (numRectangles == 0) && (numTriangles == 0))
-            getLog() << "LoaderTR2: Room " << i << " seems invalid: " << numPortals << "p "
+            Log::get(LOG_DEBUG) << "LoaderTR2: Room " << i << " seems invalid: " << numPortals << "p "
                      << numRectangles << "r " << numTriangles << "t " << numVertices
                      << "v" << Log::endl;
     }
 
     if (numRooms > 0)
-        getLog() << "LoaderTR2: Found " << numRooms << " Rooms!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numRooms << " Rooms!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Rooms in this Level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Rooms in this Level?!" << Log::endl;
 }
 
 void LoaderTR2::loadFloorData() {
@@ -426,9 +426,9 @@ void LoaderTR2::loadFloorData() {
     }
 
     if (numFloorData > 0)
-        getLog() << "LoaderTR2: Found " << numFloorData << " words FloorData, unimplemented!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numFloorData << " words FloorData, unimplemented!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No FloorData in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No FloorData in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadSprites() {
@@ -468,10 +468,10 @@ void LoaderTR2::loadSprites() {
     }
 
     if ((numSpriteTextures > 0) || (numSpriteSequences > 0))
-        getLog() << "LoaderTR2: Found " << numSpriteTextures << " Sprites in " << numSpriteSequences <<
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numSpriteTextures << " Sprites in " << numSpriteSequences <<
                  " Sequences!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Sprites in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Sprites in this level?!" << Log::endl;
 }
 
 // ---- Meshes ----
@@ -493,7 +493,7 @@ void LoaderTR2::loadMeshes() {
         uint32_t meshPointer = file.readU32();
 
         if (numMeshData < (meshPointer / 2)) {
-            getLog() << "LoaderTR2: Invalid Mesh: "
+            Log::get(LOG_DEBUG) << "LoaderTR2: Invalid Mesh: "
                      << (meshPointer / 2) << " > " << numMeshData << Log::endl;
             continue;
         }
@@ -601,9 +601,9 @@ void LoaderTR2::loadMeshes() {
     }
 
     if (numMeshPointers > 0)
-        getLog() << "LoaderTR2: Found " << numMeshPointers << " Meshes!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numMeshPointers << " Meshes!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Meshes in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Meshes in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadStaticMeshes() {
@@ -640,9 +640,9 @@ void LoaderTR2::loadStaticMeshes() {
     }
 
     if (numStaticMeshes > 0)
-        getLog() << "LoaderTR2: Found " << numStaticMeshes << " StaticMeshes!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numStaticMeshes << " StaticMeshes!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No StaticMeshes in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No StaticMeshes in this level?!" << Log::endl;
 }
 
 // ---- Moveables ----
@@ -711,9 +711,9 @@ void LoaderTR2::loadMoveables() {
     }
 
     if (numAnimations > 0)
-        getLog() << "LoaderTR2: Found " << numAnimations << " Animations!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numAnimations << " Animations!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Animations in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Animations in this level?!" << Log::endl;
 
     uint32_t numStateChanges = file.readU32();
     std::vector<StateChange_t> stateChanges;
@@ -726,9 +726,9 @@ void LoaderTR2::loadMoveables() {
     }
 
     if (numStateChanges > 0)
-        getLog() << "LoaderTR2: Found " << numStateChanges << " StateChanges!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numStateChanges << " StateChanges!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No StateChanges in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No StateChanges in this level?!" << Log::endl;
 
     uint32_t numAnimDispatches = file.readU32();
     std::vector<AnimDispatch_t> animDispatches;
@@ -742,9 +742,9 @@ void LoaderTR2::loadMoveables() {
     }
 
     if (numAnimDispatches > 0)
-        getLog() << "LoaderTR2: Found " << numAnimDispatches << " AnimationDispatches!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numAnimDispatches << " AnimationDispatches!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No AnimationDispatches in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No AnimationDispatches in this level?!" << Log::endl;
 
     uint32_t numAnimCommands = file.readU32();
     std::vector<int16_t> animCommands;
@@ -756,9 +756,9 @@ void LoaderTR2::loadMoveables() {
     }
 
     if (numAnimCommands > 0)
-        getLog() << "LoaderTR2: Found " << numAnimCommands << " AnimationCommands!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numAnimCommands << " AnimationCommands!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No AnimationCommands in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No AnimationCommands in this level?!" << Log::endl;
 
     // This is really one uint32_t flags, followed by
     // three int32_t x, y, z. However, we're given the number
@@ -783,9 +783,9 @@ void LoaderTR2::loadMoveables() {
     }
 
     if (numMeshTrees > 0)
-        getLog() << "LoaderTR2: Found " << numMeshTrees << " MeshTrees!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numMeshTrees << " MeshTrees!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No MeshTrees in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No MeshTrees in this level?!" << Log::endl;
 
     uint32_t numFrames = file.readU32();
     std::vector<uint16_t> frames;
@@ -804,9 +804,9 @@ void LoaderTR2::loadMoveables() {
     }
 
     if (numFrames > 0)
-        getLog() << "LoaderTR2: Found " << numFrames << " Frames!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numFrames << " Frames!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Frames in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Frames in this level?!" << Log::endl;
 
     uint32_t numMoveables = file.readU32();
     for (unsigned int m = 0; m < numMoveables; m++) {
@@ -887,9 +887,9 @@ void LoaderTR2::loadMoveables() {
     }
 
     if (numMoveables > 0)
-        getLog() << "LoaderTR2: Found " << numMoveables << " Moveables!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numMoveables << " Moveables!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Moveables in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Moveables in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadItems() {
@@ -930,16 +930,16 @@ void LoaderTR2::loadItems() {
                 getWorld().addEntity(e);
 
                 if (objectID == 0) {
-                    getGame().setLara(getWorld().sizeEntity() - 1);
+                    Game::setLara(getWorld().sizeEntity() - 1);
                 }
             }
         }
     }
 
     if (numItems > 0)
-        getLog() << "LoaderTR2: Found " << numItems << " Items!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numItems << " Items!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No Items in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No Items in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadBoxesOverlapsZones() {
@@ -997,10 +997,10 @@ void LoaderTR2::loadBoxesOverlapsZones() {
     }
 
     if ((numBoxes > 0) || (numOverlaps > 0))
-        getLog() << "LoaderTR2: Found NPC NavigationHints (" << numBoxes
+        Log::get(LOG_INFO) << "LoaderTR2: Found NPC NavigationHints (" << numBoxes
                  << ", " << numOverlaps << ", " << list << "), unimplemented!" << Log::endl;
     else
-        getLog() << "LoaderTR2: No NPC NavigationHints in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No NPC NavigationHints in this level?!" << Log::endl;
 }
 
 // ---- Sound ----
@@ -1023,9 +1023,9 @@ void LoaderTR2::loadSoundSources() {
     }
 
     if (numSoundSources > 0)
-        getLog() << "LoaderTR2: Found " << numSoundSources << " SoundSources" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numSoundSources << " SoundSources" << Log::endl;
     else
-        getLog() << "LoaderTR2: No SoundSources in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No SoundSources in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadSoundMap() {
@@ -1052,9 +1052,9 @@ void LoaderTR2::loadSoundDetails() {
     }
 
     if (numSoundDetails > 0)
-        getLog() << "LoaderTR2: Found " << numSoundDetails << " SoundDetails" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numSoundDetails << " SoundDetails" << Log::endl;
     else
-        getLog() << "LoaderTR2: No SoundDetails in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No SoundDetails in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadSampleIndices() {
@@ -1064,9 +1064,9 @@ void LoaderTR2::loadSampleIndices() {
     }
 
     if (numSampleIndices > 0)
-        getLog() << "LoaderTR2: Found " << numSampleIndices << " SampleIndices" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numSampleIndices << " SampleIndices" << Log::endl;
     else
-        getLog() << "LoaderTR2: No SampleIndices in this level?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No SampleIndices in this level?!" << Log::endl;
 }
 
 void LoaderTR2::loadExternalSoundFile(std::string f) {
@@ -1079,7 +1079,7 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
 
     BinaryFile sfx;
     if (sfx.open(f) != 0) {
-        getLog() << "LoaderTR2: Can't open \"" << f << "\"!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Can't open \"" << f << "\"!" << Log::endl;
         return;
     }
 
@@ -1091,7 +1091,7 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
             test[i] = sfx.read8();
 
         if (std::string("RIFF") != std::string(test)) {
-            getLog() << "LoaderTR2: External SFX invalid! (" << riffCount
+            Log::get(LOG_DEBUG) << "LoaderTR2: External SFX invalid! (" << riffCount
                      << ", \"" << test << "\" != \"RIFF\")" << Log::endl;
             return;
         }
@@ -1111,9 +1111,9 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
     }
 
     if (riffCount > 0)
-        getLog() << "LoaderTR2: Found " << riffCount << " SoundSamples in SFX" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << riffCount << " SoundSamples in SFX" << Log::endl;
     else
-        getLog() << "LoaderTR2: No SoundSamples in SFX?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No SoundSamples in SFX?!" << Log::endl;
 }
 
 // ---- Stuff ----
@@ -1132,7 +1132,7 @@ void LoaderTR2::loadCameras() {
     }
 
     if (numCameras > 0)
-        getLog() << "LoaderTR2: Found " << numCameras << " Cameras, unimplemented!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numCameras << " Cameras, unimplemented!" << Log::endl;
 }
 
 void LoaderTR2::loadCinematicFrames() {
@@ -1151,7 +1151,7 @@ void LoaderTR2::loadCinematicFrames() {
     }
 
     if (numCinematicFrames > 0)
-        getLog() << "LoaderTR2: Found " << numCinematicFrames
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numCinematicFrames
                  << " CinematicFrames, unimplemented!" << Log::endl;
 }
 
@@ -1162,7 +1162,7 @@ void LoaderTR2::loadDemoData() {
 
     // TODO store demo data somewhere, find out meaning
     if (numDemoData > 0)
-        getLog() << "LoaderTR2: Found " << numDemoData << " bytes DemoData, unimplemented!" <<
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numDemoData << " bytes DemoData, unimplemented!" <<
                  Log::endl;
 }
 

@@ -39,7 +39,12 @@ void RoomMesh::prepare() {
     int vertIndex = 0;
     for (int i = 0; i < indicesBuff.size(); i++) {
         unsigned int texture = TextureManager::getTile(texturesBuff.at(i)).getTexture();
-        for (int v = 0; v < ((indicesBuff.at(i) == 0) ? 4 : 3); v++) {
+        for (int x = 0; x < ((indicesBuff.at(i) == 0) ? 4 : 3); x++) {
+            int v = x;
+            if (v == 0)
+                v = 2;
+            else if (v == 2)
+                v = 0;
             ind.push_back(vert.size());
             vert.push_back(verticesBuff.at(vertIndex + v));
             uvBuff.push_back(TextureManager::getTile(texturesBuff.at(i)).getUV(v));
@@ -47,8 +52,8 @@ void RoomMesh::prepare() {
         }
 
         if (indicesBuff.at(i) == 0) {
-            ind.push_back(ind.at(ind.size() - 2));
-            ind.push_back(ind.at(ind.size() - 5));
+            ind.push_back(ind.at(ind.size() - 4));
+            ind.push_back(ind.at(ind.size() - 3));
         }
 
         vertIndex += (indicesBuff.at(i) == 0) ? 4 : 3;

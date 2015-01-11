@@ -42,7 +42,7 @@ void Entity::move(char movement) {
 }
 
 void Entity::print() {
-    getLog() << "Entity " << objectId << ":" << Log::endl
+    Log::get(LOG_INFO) << "Entity " << objectId << ":" << Log::endl
              << "  Room " << room << " (" << getWorld().getRoom(room).getFlags()
              << ")" << Log::endl
              << "  " << pos[0] << "x " << pos[1] << "y " << pos[2] << "z"

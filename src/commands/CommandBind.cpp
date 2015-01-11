@@ -19,40 +19,40 @@ std::string CommandBind::brief() {
 }
 
 void CommandBind::printHelp() {
-    getLog() << "bind-Command Usage:" << Log::endl;
-    getLog() << "  bind ACTION KEY" << Log::endl;
-    getLog() << "Available Actions:" << Log::endl;
-    getLog() << "  menu" << Log::endl;
-    getLog() << "  debug" << Log::endl;
-    getLog() << "  forward" << Log::endl;
-    getLog() << "  backward" << Log::endl;
-    getLog() << "  left" << Log::endl;
-    getLog() << "  right" << Log::endl;
-    getLog() << "  jump" << Log::endl;
-    getLog() << "  crouch" << Log::endl;
-    getLog() << "  use" << Log::endl;
-    getLog() << "  holster" << Log::endl;
-    getLog() << "  walk" << Log::endl;
-    getLog() << "Key-Format:" << Log::endl;
-    getLog() << "  'a' or '1'    for character/number keys" << Log::endl;
-    getLog() << "  \"leftctrl\"  for symbols and special keys" << Log::endl;
+    Log::get(LOG_USER) << "bind-Command Usage:" << Log::endl;
+    Log::get(LOG_USER) << "  bind ACTION KEY" << Log::endl;
+    Log::get(LOG_USER) << "Available Actions:" << Log::endl;
+    Log::get(LOG_USER) << "  menu" << Log::endl;
+    Log::get(LOG_USER) << "  debug" << Log::endl;
+    Log::get(LOG_USER) << "  forward" << Log::endl;
+    Log::get(LOG_USER) << "  backward" << Log::endl;
+    Log::get(LOG_USER) << "  left" << Log::endl;
+    Log::get(LOG_USER) << "  right" << Log::endl;
+    Log::get(LOG_USER) << "  jump" << Log::endl;
+    Log::get(LOG_USER) << "  crouch" << Log::endl;
+    Log::get(LOG_USER) << "  use" << Log::endl;
+    Log::get(LOG_USER) << "  holster" << Log::endl;
+    Log::get(LOG_USER) << "  walk" << Log::endl;
+    Log::get(LOG_USER) << "Key-Format:" << Log::endl;
+    Log::get(LOG_USER) << "  'a' or '1'    for character/number keys" << Log::endl;
+    Log::get(LOG_USER) << "  \"leftctrl\"  for symbols and special keys" << Log::endl;
 }
 
 int CommandBind::execute(std::istream& args) {
     std::string a, b;
     if (!(args >> a >> b)) {
-        getLog() << "Invalid use of bind-command" << Log::endl;
+        Log::get(LOG_USER) << "Invalid use of bind-command" << Log::endl;
         return -1;
     } else {
         ActionEvents e = stringToActionEvent(a);
         if (e == ActionEventCount) {
-            getLog() << "bind-Error: Unknown action (" << a << ")" << Log::endl;
+            Log::get(LOG_USER) << "bind-Error: Unknown action (" << a << ")" << Log::endl;
             return -2;
         }
 
         KeyboardButton c = stringToKeyboardButton(b);
         if (c == unknownKey) {
-            getLog() << "bind-Error: Unknown key (" << b << ")" << Log::endl;
+            Log::get(LOG_USER) << "bind-Error: Unknown key (" << b << ")" << Log::endl;
             return -3;
         }
 

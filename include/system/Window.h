@@ -28,6 +28,9 @@ class Window {
 
     static void setTextInput(bool t);
     static bool getTextInput();
+
+    static void setClipboard(const char* s);
+    static const char* getClipboard();
 };
 
 #endif

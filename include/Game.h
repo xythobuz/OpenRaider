@@ -15,30 +15,24 @@
 
 class Game {
   public:
-    Game();
+    static void destroy();
 
-    int initialize();
-    void destroy();
+    static bool isLoaded() { return mLoaded; }
+    static int loadLevel(const char* level);
 
-    bool isLoaded() { return mLoaded; }
-    int loadLevel(const char* level);
+    static void handleAction(ActionEvents action, bool isFinished);
+    static void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
+    static void handleControllerAxis(float value, KeyboardButton axis);
+    static void handleControllerButton(KeyboardButton button, bool released);
 
-    void display();
-    void handleAction(ActionEvents action, bool isFinished);
-    void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
-    void handleControllerAxis(float value, KeyboardButton axis);
-    void handleControllerButton(KeyboardButton button, bool released);
-
-    Entity& getLara();
-    void setLara(long lara);
+    static Entity& getLara();
+    static void setLara(long lara);
 
   private:
-    bool mLoaded;
-    long mLara;
-    bool activeEvents[ActionEventCount];
+    static bool mLoaded;
+    static long mLara;
+    static bool activeEvents[ActionEventCount];
 };
-
-Game& getGame();
 
 #endif
 

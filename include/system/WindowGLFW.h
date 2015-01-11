@@ -31,6 +31,9 @@ class WindowGLFW {
     static void setTextInput(bool t);
     static bool getTextInput() { return textinput; }
 
+    static void setClipboard(const char* s);
+    static const char* getClipboard();
+
   private:
     static void errorCallback(int error, const char* desc);
     static void sizeCallback(GLFWwindow* w, int width, int height);

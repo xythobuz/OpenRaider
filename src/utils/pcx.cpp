@@ -25,38 +25,38 @@ int pcxCheck(const char* filename) {
 
     // Basic validation
     if (!file.read((char*)(&header[0]), 128)) {
-        getLog() << "File not big enough for valid PCX header!" << Log::endl;
+        Log::get(LOG_ERROR) << "File not big enough for valid PCX header!" << Log::endl;
         delete [] header;
         return -1;
     }
 
     if (header[0] != 0x0A) {
-        getLog() << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" << Log::endl;
+        Log::get(LOG_ERROR) << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" << Log::endl;
         delete [] header;
         return -2;
     }
 
     if ((header[1] != 0) && ((header[1] < 2) || (header[1] > 5))) {
         // Valid: 0, 2, 3, 4, 5
-        getLog() << "Unknown PCX file format version (" << header[1] << ")" << Log::endl;
+        Log::get(LOG_ERROR) << "Unknown PCX file format version (" << header[1] << ")" << Log::endl;
         delete [] header;
         return -3;
     }
 
     if ((header[2] != 0) && (header[2] != 1)) {
-        getLog() << "Unknown PCX file encoding (" << header[2] << ")" << Log::endl;
+        Log::get(LOG_ERROR) << "Unknown PCX file encoding (" << header[2] << ")" << Log::endl;
         delete [] header;
         return -4;
     }
 
     if (header[3] != 8) {
-        getLog() << "Only supporting 8bit (" << header[3] << "bit)" << Log::endl;
+        Log::get(LOG_ERROR) << "Only supporting 8bit (" << header[3] << "bit)" << Log::endl;
         delete [] header;
         return -5;
     }
 
     if (header[64] != 0) {
-        getLog() << "Reserved field is  used (" << header[64] << " != 0)" << Log::endl;
+        Log::get(LOG_ERROR) << "Reserved field is  used (" << header[64] << " != 0)" << Log::endl;
         delete [] header;
         return -6;
     }
@@ -83,38 +83,38 @@ int pcxLoad(const char* filename, unsigned char** image,
 
     // Basic validation
     if (!file.read((char*)(&header[0]), 128)) {
-        getLog() << "File not big enough for valid PCX header!" << Log::endl;
+        Log::get(LOG_ERROR) << "File not big enough for valid PCX header!" << Log::endl;
         delete [] header;
         return -1;
     }
 
     if (header[0] != 0x0A) {
-        getLog() << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" << Log::endl;
+        Log::get(LOG_ERROR) << "Magic number at file start is wrong (" << header[0] << " != 0x0A)" << Log::endl;
         delete [] header;
         return -2;
     }
 
     if ((header[1] != 0) && ((header[1] < 2) || (header[1] > 5))) {
         // Valid: 0, 2, 3, 4, 5
-        getLog() << "Unknown PCX file format version (" << header[1] << ")" << Log::endl;
+        Log::get(LOG_ERROR) << "Unknown PCX file format version (" << header[1] << ")" << Log::endl;
         delete [] header;
         return -3;
     }
 
     if ((header[2] != 0) && (header[2] != 1)) {
-        getLog() << "Unknown PCX file encoding (" << header[2] << ")" << Log::endl;
+        Log::get(LOG_ERROR) << "Unknown PCX file encoding (" << header[2] << ")" << Log::endl;
         delete [] header;
         return -4;
     }
 
     if (header[3] != 8) {
-        getLog() << "Only supporting 8bit (" << header[3] << "bit)" << Log::endl;
+        Log::get(LOG_ERROR) << "Only supporting 8bit (" << header[3] << "bit)" << Log::endl;
         delete [] header;
         return -5;
     }
 
     if (header[64] != 0) {
-        getLog() << "Reserved field is  used (" << header[64] << " != 0)" << Log::endl;
+        Log::get(LOG_ERROR) << "Reserved field is  used (" << header[64] << " != 0)" << Log::endl;
         delete [] header;
         return -6;
     }
@@ -151,8 +151,8 @@ int pcxLoad(const char* filename, unsigned char** image,
         unsigned int n = 1; // Run-length-encoding assumes 1
         int c = file.get();
         if (!file) {
-            getLog() << "Could not read data (" << i
-                      << (file.eof() ? " EOF" : "") << ")" << Log::endl;
+            Log::get(LOG_ERROR) << "Could not read data (" << i
+                                << (file.eof() ? " EOF" : "") << ")" << Log::endl;
             delete [] buffer;
             return -7;
         }
@@ -163,8 +163,8 @@ int pcxLoad(const char* filename, unsigned char** image,
                 n = c & 0x3F;
                 c = file.get();
                 if (!file) {
-                    getLog() << "Could not read data rle (" << i
-                              << (file.eof() ? " EOF" : "") << ")" << Log::endl;
+                    Log::get(LOG_ERROR) << "Could not read data rle (" << i
+                                        << (file.eof() ? " EOF" : "") << ")" << Log::endl;
                     delete [] buffer;
                     return -8;
                 }
@@ -186,7 +186,7 @@ int pcxLoad(const char* filename, unsigned char** image,
             for (unsigned int i = 0; i < 768; i++) {
                 palette[i] = (unsigned char)file.get();
                 if (!file) {
-                    getLog() << "Could not read 256 color palette (" << i << ")" << Log::endl;
+                    Log::get(LOG_ERROR) << "Could not read 256 color palette (" << i << ")" << Log::endl;
                     delete [] buffer;
                     delete [] palette;
                     return -9;
@@ -209,7 +209,7 @@ int pcxLoad(const char* filename, unsigned char** image,
                     green = palette[(buffer[(y * totalBytes) + x] * 3) + 1];
                     blue = palette[(buffer[(y * totalBytes) + x] * 3) + 2];
                 } else {
-                    getLog() << "Unsupported number of planes (" << nPlanes << ")" << Log::endl;
+                    Log::get(LOG_ERROR) << "Unsupported number of planes (" << nPlanes << ")" << Log::endl;
                     delete [] buffer;
                     delete [] palette;
                     delete [] *image;
@@ -226,7 +226,7 @@ int pcxLoad(const char* filename, unsigned char** image,
                 } else if (nPlanes == 1) {
                     red = green = blue = buffer[(y * totalBytes) + x];
                 } else {
-                    getLog() << "Unsupported number of planes (" << nPlanes << ")" << Log::endl;
+                    Log::get(LOG_ERROR) << "Unsupported number of planes (" << nPlanes << ")" << Log::endl;
                     delete [] buffer;
                     delete [] palette;
                     delete [] *image;
