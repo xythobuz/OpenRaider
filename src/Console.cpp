@@ -106,7 +106,7 @@ void Console::display() {
         else if (logToFile)
             ImGui::LogToFile();
         for (unsigned long i = 0; i < Log::size(); i++) {
-            auto entry = Log::getEntry(i);
+            auto& entry = Log::getEntry(i);
 
             assert(entry.level < LOG_COUNT);
             if (!visibleLogs[entry.level]) {

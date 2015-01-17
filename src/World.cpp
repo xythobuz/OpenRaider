@@ -34,17 +34,30 @@ Room& World::getRoom(unsigned long index) {
     return *mRooms.at(index);
 }
 
-void World::addSprite(SpriteSequence* sprite) {
-    mSprites.emplace_back(std::unique_ptr<SpriteSequence>(sprite));
+void World::addSprite(Sprite* sprite) {
+    mSprites.emplace_back(std::unique_ptr<Sprite>(sprite));
 }
 
 unsigned long World::sizeSprite() {
     return mSprites.size();
 }
 
-SpriteSequence& World::getSprite(unsigned long index) {
+Sprite& World::getSprite(unsigned long index) {
     assert(index < mSprites.size());
     return *mSprites.at(index);
+}
+
+void World::addSpriteSequence(SpriteSequence* sprite) {
+    mSpriteSequences.emplace_back(std::unique_ptr<SpriteSequence>(sprite));
+}
+
+unsigned long World::sizeSpriteSequence() {
+    return mSpriteSequences.size();
+}
+
+SpriteSequence& World::getSpriteSequence(unsigned long index) {
+    assert(index < mSpriteSequences.size());
+    return *mSpriteSequences.at(index);
 }
 
 void World::addEntity(Entity* entity) {

@@ -63,7 +63,7 @@ int LoaderTR2::load(std::string f) {
 
     loadExternalSoundFile(f);
 
-    return 0; // TODO Not finished with implementation!
+    return 0;
 }
 
 // ---- Textures ----
@@ -266,11 +266,13 @@ void LoaderTR2::loadRooms() {
         }
 
         uint16_t numSprites = file.readU16();
+        std::vector<RoomSprite*> roomSprites;
         for (unsigned int s = 0; s < numSprites; s++) {
             uint16_t vertex = file.readU16(); // Index into vertex list
             uint16_t sprite = file.readU16(); // Index into sprite list
 
-            // TODO store sprites somewhere
+            auto& v = vertices.at(vertex);
+            roomSprites.push_back(new RoomSprite(glm::vec3(v.x, v.y, v.z) + pos, sprite));
         }
 
         uint16_t numPortals = file.readU16();
@@ -402,6 +404,9 @@ void LoaderTR2::loadRooms() {
         for (auto m : staticModels)
             room->addModel(m);
 
+        for (auto s : roomSprites)
+            room->addSprite(s);
+
         getWorld().addRoom(room);
 
         // Sanity check
@@ -435,7 +440,6 @@ void LoaderTR2::loadFloorData() {
 
 void LoaderTR2::loadSprites() {
     uint32_t numSpriteTextures = file.readU32();
-    std::vector<Sprite> sprites;
     for (unsigned int s = 0; s < numSpriteTextures; s++) {
         uint16_t tile = file.readU16();
         uint8_t x = file.readU8();
@@ -449,7 +453,8 @@ void LoaderTR2::loadSprites() {
         int16_t rightSide = file.read16();
         int16_t bottomSide = file.read16();
 
-        sprites.emplace_back(tile, x, y, width, height);
+        Sprite* sp = new Sprite(tile, x, y, width, height);
+        getWorld().addSprite(sp);
     }
 
     uint32_t numSpriteSequences = file.readU32();
@@ -462,11 +467,8 @@ void LoaderTR2::loadSprites() {
         assert(offset >= 0);
         assert((offset + (negativeLength * -1)) <= numSpriteTextures);
 
-        SpriteSequence* ss = new SpriteSequence(objectID);
-        for (int i = 0; i < (negativeLength * -1); i++) {
-            ss->add(sprites.at(offset + i));
-        }
-        getWorld().addSprite(ss);
+        SpriteSequence* ss = new SpriteSequence(objectID, offset, (negativeLength * -1));
+        getWorld().addSpriteSequence(ss);
     }
 
     if ((numSpriteTextures > 0) || (numSpriteSequences > 0))
@@ -491,7 +493,6 @@ void LoaderTR2::loadMeshes() {
     }
 
     uint32_t numMeshPointers = file.readU32();
-
     for (unsigned int i = 0; i < numMeshPointers; i++) {
         uint32_t meshPointer = file.readU32();
 

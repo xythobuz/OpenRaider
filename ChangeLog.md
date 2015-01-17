@@ -2,6 +2,13 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140117 ]
+    * Updated imgui, fix for Logging to Clipboard included.
+    * Sprites and SpriteSequences are now stored independently in World.
+    * Added support for Room Sprites displaying.
+    * Can now toggle display of Room geometry, models and sprites.
+    * Room list is now displayed in reverse. This _fixes_ some transparency issues.
+
     [ 20140111 ]
     * Enabled back face culling --> triangles now oriented correctly
     * Game is now completely static

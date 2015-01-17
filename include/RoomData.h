@@ -60,6 +60,18 @@ class StaticModel {
 
 // --------------------------------------
 
+class RoomSprite {
+  public:
+    RoomSprite(glm::vec3 p, int s) : pos(p), sprite(s) { }
+    void display(glm::mat4 VP);
+
+  private:
+    glm::vec3 pos;
+    int sprite;
+};
+
+// --------------------------------------
+
 class Portal {
   public:
     Portal(int adj, glm::vec3 n, glm::vec3 v1, glm::vec3 v2, glm::vec3 v3,

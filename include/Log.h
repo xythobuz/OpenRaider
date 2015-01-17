@@ -36,7 +36,7 @@ class Log {
 
     static LogLevel& get(int level);
     static unsigned long size() { return wholeLog.size(); }
-    static LogEntry getEntry(unsigned long i) { return wholeLog.at(i); }
+    static LogEntry& getEntry(unsigned long i) { return wholeLog.at(i); }
 
   private:
     static LogLevel logs[LOG_COUNT];

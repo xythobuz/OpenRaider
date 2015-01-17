@@ -6,6 +6,7 @@
  */
 
 #include "global.h"
+#include "Camera.h"
 #include "World.h"
 #include "system/Shader.h"
 #include "RoomData.h"
@@ -79,6 +80,16 @@ void StaticModel::display(glm::mat4 VP) {
     }
 
     getWorld().getStaticMesh(cache).display(VP * model);
+}
+
+// ----------------------------------------------------------------------------
+
+void RoomSprite::display(glm::mat4 VP) {
+    glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
+    glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), Camera::getRotation().x, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 model = translate * rotate;
+
+    getWorld().getSprite(sprite).display(VP * model);
 }
 
 // ----------------------------------------------------------------------------

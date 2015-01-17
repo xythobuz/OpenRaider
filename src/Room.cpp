@@ -13,6 +13,9 @@
 #include <glm/gtx/intersect.hpp>
 
 bool Room::showBoundingBox = false;
+bool Room::showRoomModels = true;
+bool Room::showRoomSprites = true;
+bool Room::showRoomGeometry = true;
 
 Room::Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
            int a, int x, int z) : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f),
@@ -23,10 +26,19 @@ Room::Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
 void Room::display(glm::mat4 VP) {
     glm::mat4 MVP = VP * model;
 
-    mesh->display(MVP);
+    if (showRoomGeometry)
+        mesh->display(MVP);
 
-    for (auto& m : models) {
-        m->display(VP);
+    if (showRoomModels) {
+        for (auto& m : models) {
+            m->display(VP);
+        }
+    }
+
+    if (showRoomSprites) {
+        for (auto& s : sprites) {
+            s->display(VP);
+        }
     }
 
     if (showBoundingBox)
@@ -87,72 +99,5 @@ int Room::getAdjoiningRoom(float x, float y, float z,
     }
 
     return -1;
-}
-
-// --------------------------------------
-
-unsigned long Room::sizePortals() {
-    return portals.size();
-}
-
-Portal& Room::getPortal(unsigned long index) {
-    assert(index < portals.size());
-    return *portals.at(index);
-}
-
-void Room::addPortal(Portal* p) {
-    portals.emplace_back(p);
-}
-
-unsigned long Room::sizeSectors() {
-    return sectors.size();
-}
-
-Sector& Room::getSector(unsigned long index) {
-    assert(index < sectors.size());
-    return *sectors.at(index);
-}
-
-void Room::addSector(Sector* s) {
-    sectors.emplace_back(s);
-}
-
-unsigned long Room::sizeModels() {
-    return models.size();
-}
-
-StaticModel& Room::getModel(unsigned long index) {
-    assert(index < models.size());
-    return *models.at(index);
-}
-
-void Room::addModel(StaticModel* s) {
-    models.emplace_back(s);
-}
-
-unsigned long Room::sizeLights() {
-    return lights.size();
-}
-
-Light& Room::getLight(unsigned long index) {
-    assert(index < lights.size());
-    return *lights.at(index);
-}
-
-void Room::addLight(Light* l) {
-    lights.emplace_back(l);
-}
-
-unsigned long Room::sizeSprites() {
-    return sprites.size();
-}
-
-Sprite& Room::getSprite(unsigned long index) {
-    assert(index < sprites.size());
-    return *sprites.at(index);
-}
-
-void Room::addSprite(Sprite* s) {
-    sprites.emplace_back(s);
 }
 

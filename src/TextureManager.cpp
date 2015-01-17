@@ -36,10 +36,6 @@ int TextureManager::initialize() {
         mTextureIdsSystem.push_back(id);
     }
 
-    return 0;
-}
-
-int TextureManager::initializeSplash() {
     unsigned char* image = generateColorTexture(WHITE, 32, 32, 32);
     int res = loadBufferSlot(image, 32, 32, ColorMode::RGBA, 32, TextureStorage::SYSTEM, TEXTURE_WHITE,
                              false);
@@ -48,6 +44,10 @@ int TextureManager::initializeSplash() {
         return -1;
     }
 
+    return 0;
+}
+
+int TextureManager::initializeSplash() {
     Folder f(RunTime::getPakDir());
     std::vector<File> files;
     f.findRecursiveFilesEndingWith(files, ".pcx");

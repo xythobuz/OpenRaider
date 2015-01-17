@@ -11,151 +11,38 @@
 #include "TextureManager.h"
 #include "Sprite.h"
 
-SpriteSequence::SpriteSequence(int32_t objectID) {
-    id = objectID;
-}
+const static float scale = 4.0f;
+const static float texelScale = 256.0f;
+const static int texelOffset = 2;
 
-void SpriteSequence::add(Sprite s) {
-    sprites.push_back(s);
-}
-
-unsigned long SpriteSequence::size() {
-    return sprites.size();
-}
-
-Sprite& SpriteSequence::get(unsigned long index) {
-    assert(index < sprites.size());
-    return sprites.at(index);
-}
-
-// ----------------------------------------------------------------------------
-
-Sprite::Sprite(uint16_t tile, uint8_t x, uint8_t y, uint16_t width, uint16_t height) {
-    /*!
-     * \fixme TODO Can't do translation/visibility-check when rendering here.
-     * We don't know xyz of this Sprite because it could be used by
-     * different items at other coordinates in the world.
-     * Do translation/visibility-check at item/room level.
-     */
-
-    const float scale = 4.0f;
-    const float texelScale = 256.0f;
-
+Sprite::Sprite(int tile, int x, int y, int width, int height) : texture(tile) {
     width >>= 8;
     height >>= 8;
+
     int width2 = (int)(width * scale);
     int height2 = (int)(height * scale);
 
-    vertex[0][0] = -width2 / 2.0f;
-    vertex[1][0] = -width2 / 2.0f;
-    vertex[2][0] = width2 / 2.0f;
-    vertex[3][0] = width2 / 2.0f;
+    std::vector<glm::vec2> uv;
+    uv.emplace_back(float(x + texelOffset) / texelScale, float(y + height) / texelScale);
+    uv.emplace_back(float(x + texelOffset) / texelScale, float(y + texelOffset) / texelScale);
+    uv.emplace_back(float(x + width) / texelScale, float(y + texelOffset) / texelScale);
+    uv.emplace_back(float(x + width) / texelScale, float(y + height) / texelScale);
+    uv.emplace_back(uv.at(0));
+    uv.emplace_back(uv.at(2));
 
-    vertex[0][1] = 0;
-    vertex[1][1] = -height2;
-    vertex[2][1] = -height2;
-    vertex[3][1] = 0;
+    std::vector<glm::vec3> vert;
+    vert.emplace_back(float(-width2) / 2.0f, 0.0f, 0.0f);
+    vert.emplace_back(float(-width2) / 2.0f, float(-height2), 0.0f);
+    vert.emplace_back(float(width2) / 2.0f, float(-height2), 0.0f);
+    vert.emplace_back(float(width2) / 2.0f, 0.0f, 0.0f);
+    vert.emplace_back(vert.at(0));
+    vert.emplace_back(vert.at(2));
 
-    vertex[0][2] = 0;
-    vertex[1][2] = 0;
-    vertex[2][2] = 0;
-    vertex[3][2] = 0;
-
-    texel[3][0] = (float)(x + width) / texelScale;
-    texel[3][1] = (float)(y + height) / texelScale;
-
-    texel[2][0] = (float)(x + width) / texelScale;
-    texel[2][1] = (float)(y) / texelScale;
-
-    texel[1][0] = (float)(x) / texelScale;
-    texel[1][1] = (float)(y) / texelScale;
-
-    texel[0][0] = (float)(x) / texelScale;
-    texel[0][1] = (float)(y + height) / texelScale;
-
-    texture = tile;
-    //radius = width2 / 2.0f;
+    vertices.bufferData(vert);
+    uvs.bufferData(uv);
 }
 
-void Sprite::display() {
-    /*
-    //if (!Render::isVisible(pos[0], pos[1], pos[2], radius))
-    //    return;
-
-    glPushMatrix();
-    //glTranslated(pos[0], pos[1], pos[2]);
-
-    // Sprites must always face camera, because they have no depth =)
-    glRotated(glm::degrees(Camera::getRadianYaw()), 0, 1, 0);
-
-    switch (Render::getMode()) {
-        // No vertex lighting on sprites, as far as I see in specs
-        // So just draw normal texture, no case 2
-        case RenderMode::Solid:
-            glBegin(GL_TRIANGLE_STRIP);
-            glColor3f(texel[0][0], texel[0][1], 0.5);
-            glVertex3fv(vertex[0]);
-
-            glColor3f(texel[1][0], texel[1][1], 0.5);
-            glVertex3fv(vertex[1]);
-
-            glColor3f(texel[3][0], texel[3][1], 0.5);
-            glVertex3fv(vertex[3]);
-
-            glColor3f(texel[2][0], texel[2][1], 0.5);
-            glVertex3fv(vertex[2]);
-            glEnd();
-            break;
-        case RenderMode::Wireframe:
-            glColor3ubv(CYAN);
-            glBegin(GL_LINE_LOOP);
-            glVertex3fv(vertex[0]);
-            glVertex3fv(vertex[1]);
-            glVertex3fv(vertex[2]);
-            glVertex3fv(vertex[3]);
-            glEnd();
-            glColor3ubv(WHITE);
-            break;
-        default:
-            getTextureManager().bindTextureId(texture);
-
-            glBegin(GL_TRIANGLE_STRIP);
-            glTexCoord2fv(texel[0]);
-            glVertex3fv(vertex[0]);
-            glTexCoord2fv(texel[1]);
-            glVertex3fv(vertex[1]);
-            glTexCoord2fv(texel[3]);
-            glVertex3fv(vertex[3]);
-            glTexCoord2fv(texel[2]);
-            glVertex3fv(vertex[2]);
-            glEnd();
-    }
-
-    glPopMatrix();
-    */
-}
-
-void Sprite::display(float x, float y, float w, float h) {
-    /*
-    float z = 0.0f;
-
-    getTextureManager().bindTextureId(texture);
-
-    glBegin(GL_QUADS);
-
-    glTexCoord2fv(texel[1]);
-    glVertex3f(x, y, z);
-
-    glTexCoord2fv(texel[2]);
-    glVertex3f(x + w, y, z);
-
-    glTexCoord2fv(texel[3]);
-    glVertex3f(x + w, y + h, z);
-
-    glTexCoord2fv(texel[0]);
-    glVertex3f(x, y + h, z);
-
-    glEnd();
-    */
+void Sprite::display(glm::mat4 MVP) {
+    Shader::drawGL(vertices, uvs, texture, MVP);
 }
 

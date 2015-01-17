@@ -8,35 +8,27 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
-#include <cstdint>
-
-#include "loader/Loader.h"
+#include "system/Shader.h"
 
 class Sprite {
   public:
-    Sprite(uint16_t tile, uint8_t x, uint8_t y, uint16_t width, uint16_t height);
-    void display();
-    void display(float x, float y, float w, float h);
+    Sprite(int tile, int x, int y, int width, int height);
+    void display(glm::mat4 MVP);
 
   private:
-    float vertex[4][3];
-    float texel[4][2];
-    //float pos[3];
-    //float radius; //!< \fixme yeah, I know (I don't? --xythobuz)
     int texture;
+    ShaderBuffer vertices, uvs;
 };
 
 class SpriteSequence {
   public:
-    SpriteSequence(int32_t objectID);
-    void add(Sprite s);
-
-    unsigned long size();
-    Sprite& get(unsigned long index);
+    SpriteSequence(int objectID, int offset, int size)
+        : id(objectID), start(offset), length(size) { }
 
   private:
-    int32_t id;
-    std::vector<Sprite> sprites;
+    int id;
+    int start;
+    int length;
 };
 
 #endif

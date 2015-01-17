@@ -6,6 +6,7 @@
  * \author xythobuz
  */
 
+#include <fstream>
 #include <sstream>
 
 #include "global.h"
@@ -51,8 +52,8 @@ void Render::display() {
     glm::mat4 view = Camera::getViewMatrix();
     glm::mat4 VP = projection * view;
 
-    for (auto r : roomList) {
-        r->display(VP);
+    for (int r = roomList.size() - 1; r >= 0; r--) {
+        roomList.at(r)->display(VP);
     }
 
     if (displayViewFrustum)
@@ -211,6 +212,28 @@ void Render::displayUI() {
         bool showBoundingBox2 = StaticMesh::getShowBoundingBox();
         if (ImGui::Checkbox("StaticMesh##bbox", &showBoundingBox2)) {
             StaticMesh::setShowBoundingBox(showBoundingBox2);
+        }
+
+        ImGui::Separator();
+        ImGui::Text("Renderable Objects:");
+        bool showRoomGeometry = Room::getShowRoomGeometry();
+        if (ImGui::Checkbox("Room Geometry##render", &showRoomGeometry)) {
+            Room::setShowRoomGeometry(showRoomGeometry);
+        }
+        ImGui::SameLine();
+        bool showRoomModels = Room::getShowRoomModels();
+        if (ImGui::Checkbox("Room Models##render", &showRoomModels)) {
+            Room::setShowRoomModels(showRoomModels);
+        }
+        ImGui::SameLine();
+        bool showRoomSprites = Room::getShowRoomSprites();
+        if (ImGui::Checkbox("Room Sprites##render", &showRoomSprites)) {
+            Room::setShowRoomSprites(showRoomSprites);
+        }
+
+        ImGui::Separator();
+        if (ImGui::Button("New Splash##render")) {
+            TextureManager::initializeSplash();
         }
     }
 }

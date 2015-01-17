@@ -39,9 +39,13 @@ class World {
     unsigned long sizeRoom();
     Room& getRoom(unsigned long index);
 
-    void addSprite(SpriteSequence* sprite);
+    void addSprite(Sprite* sprite);
     unsigned long sizeSprite();
-    SpriteSequence& getSprite(unsigned long index);
+    Sprite& getSprite(unsigned long index);
+
+    void addSpriteSequence(SpriteSequence* sprite);
+    unsigned long sizeSpriteSequence();
+    SpriteSequence& getSpriteSequence(unsigned long index);
 
     void addEntity(Entity* entity);
     unsigned long sizeEntity();
@@ -61,7 +65,8 @@ class World {
 
   private:
     std::vector<std::unique_ptr<Room>> mRooms;
-    std::vector<std::unique_ptr<SpriteSequence>> mSprites;
+    std::vector<std::unique_ptr<Sprite>> mSprites;
+    std::vector<std::unique_ptr<SpriteSequence>> mSpriteSequences;
     std::vector<std::unique_ptr<Entity>> mEntities;
     std::vector<std::unique_ptr<SkeletalModel>> mModels;
     std::vector<std::unique_ptr<StaticMesh>> mStaticMeshes;
