@@ -55,6 +55,11 @@ int WindowSDL::initialize() {
         return -3;
     }
 
+    int w = size.x, h = size.y;
+    SDL_GetWindowSize(window, &w, &h);
+    size.x = w;
+    size.y = h;
+
     context = SDL_GL_CreateContext(window);
     if (!context) {
         Log::get(LOG_ERROR) << "SDL_GL_CreateContext Error: " << SDL_GetError() << Log::endl;

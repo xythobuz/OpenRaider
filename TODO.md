@@ -6,11 +6,6 @@
 * Don’t depend on setup: no data or config files should be necessary
 * Be able to change configuration from within OpenRaider
 
-## Bugs
-
-* Screenshots are sometimes distorted?
-    * Seems to happen if OpenRaider.ini sets a resolution larger than the window can be
-
 ## Cmake
 
 * Support SSE with other compilers than Clang (src/CMakeLists.txt)

@@ -51,6 +51,11 @@ int WindowGLFW::initialize() {
     glfwSetMouseButtonCallback(window, WindowGLFW::buttonCallback);
     glfwSetScrollCallback(window, WindowGLFW::scrollCallback);
 
+    int w = size.x, h = size.y;
+    glfwGetWindowSize(window, &w, &h);
+    size.x = w;
+    size.y = h;
+
     return 0;
 }
 

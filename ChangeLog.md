@@ -8,6 +8,7 @@
     * Added support for Room Sprites displaying.
     * Can now toggle display of Room geometry, models and sprites.
     * Room list is now displayed in reverse. This _fixes_ some transparency issues.
+    * Fixed a bug that sometimes caused distorted Screenshots.
 
     [ 20140111 ]
     * Enabled back face culling --> triangles now oriented correctly
