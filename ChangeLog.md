@@ -3,7 +3,9 @@
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
     [ 20140118 ]
-    * Added ability to visualize font _outline_
+    * Added ability to visualize font _outline_.
+    * Updated imgui to newest version, now with its own TTF support.
+    * Fixed drawing of camera view frustum.
 
     [ 20140117 ]
     * Updated imgui, fix for Logging to Clipboard included.

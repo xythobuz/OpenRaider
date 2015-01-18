@@ -366,7 +366,9 @@ bool Camera::boxInFrustum(BoundingBox b) {
 }
 
 void Camera::displayFrustum(glm::mat4 MVP) {
+    Shader::set2DState(true, false);
     Shader::drawGL(vertexBuffer, colorBuffer, indexBuffer, MVP);
     Shader::drawGL(vertexPointBuffer, colorPointBuffer, MVP, GL_POINTS);
+    Shader::set2DState(false, false);
 }
 

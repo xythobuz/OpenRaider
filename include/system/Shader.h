@@ -54,7 +54,7 @@ class Shader {
     static int initialize();
     static void shutdown();
 
-    static void set2DState(bool on);
+    static void set2DState(bool on, bool depth = true);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color, unsigned int texture,
                        TextureStorage store = TextureStorage::SYSTEM, unsigned int mode = GL_TRIANGLES,

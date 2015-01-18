@@ -224,13 +224,15 @@ void Shader::shutdown() {
     glDeleteVertexArrays(1, &vertexArrayID);
 }
 
-void Shader::set2DState(bool on) {
+void Shader::set2DState(bool on, bool depth) {
     if (on) {
         glDisable(GL_CULL_FACE);
-        glDisable(GL_DEPTH_TEST);
+        if (depth)
+            glDisable(GL_DEPTH_TEST);
     } else {
-        glEnable(GL_DEPTH_TEST);
         glEnable(GL_CULL_FACE);
+        if (depth)
+            glEnable(GL_DEPTH_TEST);
     }
 }
 

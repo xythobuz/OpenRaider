@@ -6,7 +6,6 @@
  */
 
 #include "imgui/imgui.h"
-#include "stb/stb_image.h"
 
 #include "global.h"
 #include "Camera.h"
@@ -83,19 +82,12 @@ int UI::initialize() {
     io.SetClipboardTextFn = Window::setClipboard;
 
     // Load font texture
-    //! \todo Use our own font subsystem instead of this?
-    const void* png_data;
-    unsigned int png_size;
-    ImGui::GetDefaultFontData(nullptr, nullptr, &png_data, &png_size);
-    int tex_x, tex_y, tex_comp;
-    void* tex_data = stbi_load_from_memory((const unsigned char*)png_data,
-                                           (int)png_size, &tex_x, &tex_y, &tex_comp, 0);
-
-    fontTex = TextureManager::loadBufferSlot((unsigned char*)tex_data,
-              tex_x, tex_y, ColorMode::RGBA, 32,
-              TextureStorage::SYSTEM, -1, false);
-
-    stbi_image_free(tex_data);
+    //! \TODO allow loading other TTF fonts
+    unsigned char* pixels;
+    int width, height;
+    io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
+    fontTex = TextureManager::loadBufferSlot(pixels, width, height, ColorMode::RGBA, 32,
+                                             TextureStorage::SYSTEM, -1, false);
 
     // Set up OpenRaider style
     ImGuiStyle& style = ImGui::GetStyle();
