@@ -34,9 +34,15 @@ class Font {
     static void drawTextCentered(unsigned int x, unsigned int y, float scale,
                                  const unsigned char color[4], unsigned int width, std::string s);
 
+    static void setShowFontBox(bool s) { showFontBox = s; }
+    static bool getShowFontBox() { return showFontBox; }
+
   private:
+    static void drawFontBox(unsigned int x, unsigned int y, unsigned int w, unsigned int h);
+
     static bool isInit;
     static std::string fontName;
+    static bool showFontBox;
 };
 
 #endif

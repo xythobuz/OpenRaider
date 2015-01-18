@@ -79,7 +79,7 @@ void Console::display() {
             scrollToBottom = true;
         }
 
-        static bool visibleLogs[LOG_COUNT] = { true, true, true, true, false };
+        static bool visibleLogs[LOG_COUNT] = { true, true, true, true, true };
         ImGui::Checkbox("Error##log", &visibleLogs[1]);
         ImGui::SameLine();
         ImGui::Checkbox("Warning##log", &visibleLogs[2]);
@@ -125,7 +125,7 @@ void Console::display() {
             }
 
             ImGui::PushStyleColor(ImGuiCol_Text, col);
-            ImGui::TextUnformatted(entry.text.c_str());
+            ImGui::TextWrapped("%s", entry.text.c_str());
             ImGui::PopStyleColor();
         }
         if (logToTTY || logToClipboard || logToFile) {

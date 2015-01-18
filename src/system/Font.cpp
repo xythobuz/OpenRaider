@@ -5,16 +5,20 @@
  * \author xythobuz
  */
 
+#include <vector>
+
 #include "global.h"
 #include "Log.h"
 #include "utils/strings.h"
 #include "system/FontImGui.h"
 #include "system/FontTRLE.h"
 #include "system/FontTTF.h"
+#include "system/Shader.h"
 #include "system/Font.h"
 
 bool Font::isInit = false;
 std::string Font::fontName;
+bool Font::showFontBox = false;
 
 void Font::shutdown() {
     FontTRLE::shutdown();
@@ -66,6 +70,12 @@ void Font::drawText(unsigned int x, unsigned int y, float scale,
     } else {
         FontImGui::drawText(x, y, scale, color, s);
     }
+
+    if (showFontBox) {
+        unsigned int w = widthText(scale, s);
+        unsigned int h = heightText(scale, w + 100, s); // Should always be one line
+        drawFontBox(x, y, w, h);
+    }
 }
 
 void Font::drawTextWrapped(unsigned int x, unsigned int y, float scale,
@@ -77,10 +87,41 @@ void Font::drawTextWrapped(unsigned int x, unsigned int y, float scale,
     } else {
         FontImGui::drawTextWrapped(x, y, scale, color, maxWidth, s);
     }
+
+    if (showFontBox) {
+        unsigned int w = widthText(scale, s);
+        if (w > maxWidth)
+            w = maxWidth;
+        unsigned int h = heightText(scale, w, s); // Should always be one line
+        drawFontBox(x, y, w, h);
+    }
 }
 
 void Font::drawTextCentered(unsigned int x, unsigned int y, float scale,
                             const unsigned char color[4], unsigned int width, std::string s) {
     drawText(x + ((width / 2) - (widthText(scale, s) / 2)), y, scale, color, s);
+}
+
+void Font::drawFontBox(unsigned int x, unsigned int y, unsigned int w, unsigned int h) {
+    static ShaderBuffer vert, uv;
+    std::vector<glm::vec2> vertices, uvs;
+
+    vertices.emplace_back(x, y);
+    vertices.emplace_back(x + w, y);
+    vertices.emplace_back(x + w, y + h);
+    vertices.emplace_back(x, y + h);
+    vertices.emplace_back(x, y);
+
+    uvs.emplace_back(0.0f, 0.0f);
+    uvs.emplace_back(1.0f, 0.0f);
+    uvs.emplace_back(1.0f, 1.0f);
+    uvs.emplace_back(0.0f, 1.0f);
+    uvs.emplace_back(0.0f, 0.0f);
+
+    vert.bufferData(vertices);
+    uv.bufferData(uvs);
+
+    Shader::drawGL(vert, uv, glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), TEXTURE_WHITE,
+                   TextureStorage::SYSTEM, GL_LINE_STRIP);
 }
 

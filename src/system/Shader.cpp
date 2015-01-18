@@ -235,9 +235,11 @@ void Shader::set2DState(bool on) {
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
-                    unsigned int texture, TextureStorage store, Shader& shader) {
+                    unsigned int texture, TextureStorage store, unsigned int mode,
+                    Shader& shader) {
     assert(vertices.getSize() == uvs.getSize());
-    assert((vertices.getSize() % 3) == 0);
+    if (mode == GL_TRIANGLES)
+        assert((vertices.getSize() % 3) == 0)
 
     shader.use();
     shader.loadUniform(0, Window::getSize());
@@ -247,7 +249,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
     uvs.bindBuffer(1, 2);
 
     set2DState(true);
-    glDrawArrays(GL_TRIANGLES, 0, vertices.getSize());
+    glDrawArrays(mode, 0, vertices.getSize());
     set2DState(false);
 
     vertices.unbind(0);

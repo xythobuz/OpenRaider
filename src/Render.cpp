@@ -14,6 +14,7 @@
 #include "Log.h"
 #include "StaticMesh.h"
 #include "World.h"
+#include "system/Font.h"
 #include "system/Shader.h"
 #include "system/Window.h"
 #include "Render.h"
@@ -212,6 +213,11 @@ void Render::displayUI() {
         bool showBoundingBox2 = StaticMesh::getShowBoundingBox();
         if (ImGui::Checkbox("StaticMesh##bbox", &showBoundingBox2)) {
             StaticMesh::setShowBoundingBox(showBoundingBox2);
+        }
+        ImGui::SameLine();
+        bool showFontBox = Font::getShowFontBox();
+        if (ImGui::Checkbox("Font##bbox", &showFontBox)) {
+            Font::setShowFontBox(showFontBox);
         }
 
         ImGui::Separator();

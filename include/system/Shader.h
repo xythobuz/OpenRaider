@@ -57,7 +57,8 @@ class Shader {
     static void set2DState(bool on);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color, unsigned int texture,
-                       TextureStorage store = TextureStorage::SYSTEM, Shader& shader = textShader);
+                       TextureStorage store = TextureStorage::SYSTEM, unsigned int mode = GL_TRIANGLES,
+                       Shader& shader = textShader);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture, glm::mat4 MVP,
                        TextureStorage store = TextureStorage::GAME, Shader& shader = textureShader);
