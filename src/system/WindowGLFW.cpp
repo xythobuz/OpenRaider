@@ -123,6 +123,10 @@ const char* WindowGLFW::getClipboard() {
     return nullptr;
 }
 
+void WindowGLFW::inputPositionCallback(int x, int y) {
+
+}
+
 void WindowGLFW::errorCallback(int error, const char* desc) {
     Log::get(LOG_ERROR) << "GLFW Error (" << error << "): " << desc << Log::endl;
 }

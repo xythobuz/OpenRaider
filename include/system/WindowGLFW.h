@@ -34,6 +34,8 @@ class WindowGLFW {
     static void setClipboard(const char* s);
     static const char* getClipboard();
 
+    static void inputPositionCallback(int x, int y);
+
   private:
     static void errorCallback(int error, const char* desc);
     static void sizeCallback(GLFWwindow* w, int width, int height);

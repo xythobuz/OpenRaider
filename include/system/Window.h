@@ -31,6 +31,8 @@ class Window {
 
     static void setClipboard(const char* s);
     static const char* getClipboard();
+
+    static void inputPositionCallback(int x, int y);
 };
 
 #endif

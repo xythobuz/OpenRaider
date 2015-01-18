@@ -560,3 +560,12 @@ const char* WindowSDL::getClipboard() {
     return nullptr;
 }
 
+void WindowSDL::inputPositionCallback(int x, int y) {
+    SDL_Rect rect;
+    rect.x = x;
+    rect.y = y;
+    rect.w = 50;
+    rect.h = 25;
+    SDL_SetTextInputRect(&rect);
+}
+

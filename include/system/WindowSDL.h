@@ -34,6 +34,8 @@ class WindowSDL {
     static void setClipboard(const char* s);
     static const char* getClipboard();
 
+    static void inputPositionCallback(int x, int y);
+
   private:
     static glm::i32vec2 size;
     static bool fullscreen;

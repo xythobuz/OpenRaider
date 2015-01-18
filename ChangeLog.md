@@ -6,6 +6,7 @@
     * Added ability to visualize font _outline_.
     * Updated imgui to newest version, now with its own TTF support.
     * Fixed drawing of camera view frustum.
+    * Added support for imgui/SDLs IME text input rectangle.
 
     [ 20140117 ]
     * Updated imgui, fix for Logging to Clipboard included.

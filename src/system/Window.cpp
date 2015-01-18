@@ -168,3 +168,11 @@ const char* Window::getClipboard() {
     return ret;
 }
 
+void Window::inputPositionCallback(int x, int y) {
+#ifdef USING_SDL
+    WindowSDL::inputPositionCallback(x, y);
+#elif defined(USING_GLFW)
+    WindowGLFW::inputPositionCallback(x, y);
+#endif
+}
+

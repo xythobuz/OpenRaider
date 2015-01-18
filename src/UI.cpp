@@ -80,6 +80,7 @@ int UI::initialize() {
     io.RenderDrawListsFn = UI::renderImGui;
     io.GetClipboardTextFn = Window::getClipboard;
     io.SetClipboardTextFn = Window::setClipboard;
+    io.ImeSetInputScreenPosFn = Window::inputPositionCallback;
 
     // Load font texture
     //! \TODO allow loading other TTF fonts
