@@ -15,6 +15,7 @@ World::~World() {
 void World::destroy() {
     mRooms.clear();
     mSprites.clear();
+    mSpriteSequences.clear();
     mEntities.clear();
     mModels.clear();
     mStaticMeshes.clear();

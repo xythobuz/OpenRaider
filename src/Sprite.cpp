@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "Render.h"
 #include "TextureManager.h"
+#include "World.h"
 #include "Sprite.h"
 
 const static float scale = 4.0f;
@@ -44,5 +45,13 @@ Sprite::Sprite(int tile, int x, int y, int width, int height) : texture(tile) {
 
 void Sprite::display(glm::mat4 MVP) {
     Shader::drawGL(vertices, uvs, texture, MVP);
+}
+
+// ----------------------------------------------------------------------------
+
+void SpriteSequence::display(glm::mat4 MVP, int index) {
+    assert(index >= 0);
+    assert(index < length);
+    getWorld().getSprite(start + index).display(MVP);
 }
 

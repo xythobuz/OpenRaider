@@ -107,7 +107,7 @@ SkeletalModel::~SkeletalModel() {
         delete animation[i];
 }
 
-void SkeletalModel::display(unsigned long aframe, unsigned long bframe) {
+void SkeletalModel::display(glm::mat4 MVP, int aframe, int bframe) {
     /*
     assert(aframe < size());
     assert(bframe < get(aframe).size());

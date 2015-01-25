@@ -24,6 +24,9 @@ class SpriteSequence {
   public:
     SpriteSequence(int objectID, int offset, int size)
         : id(objectID), start(offset), length(size) { }
+    void display(glm::mat4 MVP, int index);
+
+    int getID() { return id; }
 
   private:
     int id;

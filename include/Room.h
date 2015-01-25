@@ -22,7 +22,7 @@ enum RoomFlags {
 class Room {
   public:
     Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
-         int a, int x, int z);
+         int a, int x, int z, int i);
 
     void prepare() { mesh->prepare(); }
     void display(glm::mat4 VP);
@@ -37,10 +37,11 @@ class Room {
     BoundingBox& getBoundingBox() { return *bbox; }
     RoomMesh& getMesh() { return *mesh; }
 
-    unsigned int getNumXSectors() { return numXSectors; }
-    unsigned int getNumZSectors() { return numZSectors; }
-
     unsigned int getFlags() { return flags; }
+    int getAlternateRoom() { return alternateRoom; }
+    int getNumXSectors() { return numXSectors; }
+    int getNumZSectors() { return numZSectors; }
+    int getIndex() { return roomIndex; }
 
     void addSprite(RoomSprite* s) { sprites.emplace_back(s); }
     void addModel(StaticModel* s) { models.emplace_back(s); }
@@ -73,6 +74,7 @@ class Room {
     int alternateRoom;
     int numXSectors;
     int numZSectors;
+    int roomIndex;
 
     std::vector<std::unique_ptr<RoomSprite>> sprites;
     std::vector<std::unique_ptr<StaticModel>> models;

@@ -6,112 +6,75 @@
  */
 
 #include "global.h"
+#include "Camera.h"
 #include "Log.h"
 #include "World.h"
 #include "Entity.h"
 
-Entity::Entity(float p[3], float a[3], int id, long r, unsigned int model) {
-    for (int i = 0; i < 3; i++) {
-        pos[i] = p[i];
-        angles[i] = a[i];
+#include <glm/gtc/matrix_transform.hpp>
+
+#define CACHE_SPRITE 0
+#define CACHE_MESH 1
+#define CACHE_MODEL 2
+
+bool Entity::showEntitySprites = true;
+bool Entity::showEntityMeshes = true;
+bool Entity::showEntityModels = true;
+
+void Entity::display(glm::mat4 VP) {
+    if ((cache == -1) || (cacheType == -1)) {
+        for (int i = 0; i < getWorld().sizeSpriteSequence(); i++) {
+            auto& s = getWorld().getSpriteSequence(i);
+            if (s.getID() == id) {
+                cacheType = CACHE_SPRITE;
+                cache = i;
+                break;
+            }
+        }
+
+        for (int i = 0; (i < getWorld().sizeStaticMesh()) && (cache == -1); i++) {
+            auto& s = getWorld().getStaticMesh(i);
+            if (s.getID() == id) {
+                cacheType = CACHE_MESH;
+                cache = i;
+                break;
+            }
+        }
+
+        for (int i = 0; (i < getWorld().sizeSkeletalModel()) && (cache == -1); i++) {
+            auto& s = getWorld().getSkeletalModel(i);
+            if (s.getID() == id) {
+                cacheType = CACHE_MODEL;
+                cache = i;
+                break;
+            }
+        }
+
+        assert(cache > -1);
+        assert(cacheType > -1);
     }
-    objectId = id;
-    moveType = MoveTypeWalk;
-    room = r;
-    skeletalModel = model;
-    boneFrame = 0;
-    animationFrame = 0;
-    idleAnimation = 0;
-    state = 0;
-}
 
-void Entity::display() {
-    /*
-    glPushMatrix();
-    glTranslatef(pos[0], pos[1], pos[2]);
-    glRotatef(glm::degrees(angles[1]), 0, 1, 0);
-    glRotatef(glm::degrees(angles[0]), 1, 0, 0);
-    //glRotatef(glm::degrees(angles[2]), 0, 0, 1);
-    getWorld().getSkeletalModel(skeletalModel).display(animationFrame, boneFrame);
-    glPopMatrix();
-    */
-}
+    glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
+    glm::mat4 rotate;
+    if (cacheType == 0) {
+        rotate = glm::rotate(glm::mat4(1.0f), Camera::getRotation().x, glm::vec3(0.0f, 1.0f, 0.0f));
+    } else {
+        rotate = glm::rotate(glm::mat4(1.0f), rot.y, glm::vec3(0.0f, 1.0f, 0.0f));
+    }
+    glm::mat4 model = translate * rotate;
+    glm::mat4 MVP = VP * model;
 
-void Entity::move(char movement) {
-
-}
-
-void Entity::print() {
-    Log::get(LOG_INFO) << "Entity " << objectId << ":" << Log::endl
-                       << "  Room " << room << " (" << getWorld().getRoom(room).getFlags()
-                       << ")" << Log::endl
-                       << "  " << pos[0] << "x " << pos[1] << "y " << pos[2] << "z"
-                       << Log::endl
-                       << "  " << glm::degrees(angles[1]) << " Yaw" << Log::endl;
-}
-
-SkeletalModel& Entity::getModel() {
-    return getWorld().getSkeletalModel(skeletalModel);
-}
-
-void Entity::setSkeletalModel(unsigned int model) {
-    skeletalModel = model;
-    animationFrame = 0;
-    boneFrame = 0;
-    idleAnimation = 0;
-}
-
-Entity::MoveType Entity::getMoveType() {
-    return moveType;
-}
-
-void Entity::setMoveType(MoveType m) {
-    moveType = m;
-}
-
-int Entity::getObjectId() {
-    return objectId;
-}
-
-void Entity::setAngles(float a[3]) {
-    for (unsigned int i = 0; i < 3; i++)
-        angles[i] = a[i];
-}
-
-float Entity::getPos(unsigned int i) {
-    return pos[i];
-}
-
-float Entity::getAngle(unsigned int i) {
-    return angles[i];
-}
-
-long Entity::getRoom() {
-    return room;
-}
-
-unsigned long Entity::getAnimation() {
-    return animationFrame;
-}
-
-void Entity::setAnimation(unsigned long index) {
-    animationFrame = index;
-    boneFrame = 0;
-}
-
-unsigned long Entity::getBoneFrame() {
-    return boneFrame;
-}
-
-void Entity::setBoneFrame(unsigned long index) {
-    boneFrame = index;
-}
-
-unsigned long Entity::getIdleAnimation() {
-    return idleAnimation;
-}
-
-void Entity::setIdleAnimation(unsigned long index) {
-    idleAnimation = index;
+    if (cacheType == CACHE_SPRITE) {
+        if (showEntitySprites)
+            getWorld().getSpriteSequence(cache).display(MVP, sprite);
+    } else if (cacheType == CACHE_MESH) {
+        if (showEntityMeshes)
+            getWorld().getStaticMesh(cache).display(MVP);
+    } else if (cacheType == CACHE_MODEL) {
+        if (showEntityModels)
+            getWorld().getSkeletalModel(cache).display(MVP, animation, frame);
+    } else {
+        assert(false && "This should not happen...");
+    }
 }
 

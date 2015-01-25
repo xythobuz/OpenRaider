@@ -18,8 +18,8 @@ bool Room::showRoomSprites = true;
 bool Room::showRoomGeometry = true;
 
 Room::Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
-           int a, int x, int z) : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f),
-    alternateRoom(a), numXSectors(x), numZSectors(z) {
+           int a, int x, int z, int i) : pos(_pos), bbox(_bbox), mesh(_mesh), flags(f),
+    alternateRoom(a), numXSectors(x), numZSectors(z), roomIndex(i) {
     model = glm::translate(glm::mat4(1.0f), pos);
 }
 

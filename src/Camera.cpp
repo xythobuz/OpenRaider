@@ -36,7 +36,7 @@ static bool equal(glm::vec3 a, float b) {
 const static float fov = 45.0f;
 const static float nearDist = 0.1f;
 const static float farDist = 75000.0f;
-const static float maxSpeed = 2048.0f;
+const static float maxSpeed = 3072.0f;
 const static float controllerViewFactor = glm::pi<float>();
 const static float controllerDeadZone = 0.1f;
 

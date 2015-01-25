@@ -8,57 +8,46 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
-#include "SkeletalModel.h"
-
 class Entity {
   public:
-    typedef enum {
-        MoveTypeWalkNoSwim = -1,
-        MoveTypeWalk       = 0,
-        MoveTypeNoClipping = 1,
-        MoveTypeFly        = 2,
-        MoveTypeSwim       = 3
-    } MoveType;
+    Entity(int i, int r, glm::vec3 po, glm::vec3 ro)
+        : id(i), room(r), pos(po), rot(ro), cache(-1), cacheType(-1),
+        sprite(0), animation(0), frame(0) { }
+    void display(glm::mat4 VP);
 
-    Entity(float p[3], float a[3], int id, long r, unsigned int model);
+    int getID() { return id; }
+    int getRoom() { return room; }
+    glm::vec3 getPosition() { return pos; }
+    glm::vec3 getRotation() { return rot; }
 
-    void display();
-    void move(char movement);
-    void print();
+    int getSprite() { return sprite; }
+    void setSprite(int i) { sprite = i; }
+    int getAnimation() { return animation; }
+    void setAnimation(int i) { animation = i; frame = 0; }
+    int getFrame() { return frame; }
+    void setFrame(int i) { frame = i; }
 
-    SkeletalModel& getModel();
-    void setSkeletalModel(unsigned int model);
-    MoveType getMoveType();
-    void setMoveType(MoveType m);
-    int getObjectId();
-    void setAngles(float a[3]);
-    float getPos(unsigned int i);
-    float getAngle(unsigned int i);
-    long getRoom();
-
-    // Animation State
-    unsigned long getAnimation();
-    void setAnimation(unsigned long index);
-    unsigned long getBoneFrame();
-    void setBoneFrame(unsigned long index);
-    unsigned long getIdleAnimation();
-    void setIdleAnimation(unsigned long index);
+    static void setShowEntitySprites(bool s) { showEntitySprites = s; }
+    static bool getShowEntitySprites() { return showEntitySprites; }
+    static void setShowEntityMeshes(bool s) { showEntityMeshes = s; }
+    static bool getShowEntityMeshes() { return showEntityMeshes; }
+    static void setShowEntityModels(bool s) { showEntityModels = s; }
+    static bool getShowEntityModels() { return showEntityModels; }
 
   private:
-    float pos[3];
-    float angles[3];
-    long room;
+    int id;
+    int room;
+    glm::vec3 pos;
+    glm::vec3 rot;
+    int cache, cacheType;
 
-    unsigned int skeletalModel;
-    MoveType moveType;
+    int sprite;
+    int animation;
+    int frame;
 
-    int state;
-    int objectId;
-
-    // Animation State
-    unsigned long boneFrame;
-    unsigned long animationFrame;
-    unsigned long idleAnimation;
+    static bool showEntitySprites;
+    static bool showEntityMeshes;
+    static bool showEntityModels;
 };
 
 #endif

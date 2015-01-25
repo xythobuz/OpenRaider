@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140124 ]
+    * Started working on Entity system.
+
     [ 20140118 ]
     * Added ability to visualize font _outline_.
     * Updated imgui to newest version, now with its own TTF support.

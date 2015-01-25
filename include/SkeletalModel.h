@@ -61,9 +61,9 @@ class SkeletalModel {
   public:
     SkeletalModel(int i) : id(i) { }
     ~SkeletalModel();
-    void display(unsigned long aframe, unsigned long bframe);
+    void display(glm::mat4 MVP, int aframe, int bframe);
 
-    int getId() { return id; }
+    int getID() { return id; }
 
     unsigned long size();
     AnimationFrame& get(unsigned long i);

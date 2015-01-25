@@ -396,7 +396,7 @@ void LoaderTR2::loadRooms() {
         BoundingBox* boundingbox = new BoundingBox(bbox[0], bbox[1]);
         RoomMesh* mesh = new RoomMesh(vertices, rectangles, triangles);
         Room* room = new Room(pos, boundingbox, mesh, roomFlags, alternateRoom,
-                              numXSectors, numZSectors);
+                              numXSectors, numZSectors, i);
 
         for (auto p : portals)
             room->addPortal(p);
@@ -916,28 +916,23 @@ void LoaderTR2::loadItems() {
         // 0x3E00 - Activation mask, open, can be XORed with related FloorData list fields.
         uint16_t flags = file.readU16();
 
-        // TODO for now we're only creating Entities for each Moveable Item
-        for (int m = 0; m < getWorld().sizeSkeletalModel(); m++) {
-            if (getWorld().getSkeletalModel(m).getId() == objectID) {
-                float pos[3] = {
-                    static_cast<float>(x),
-                    static_cast<float>(y),
-                    static_cast<float>(z)
-                };
+        glm::vec3 pos(
+            static_cast<float>(x),
+            static_cast<float>(y),
+            static_cast<float>(z)
+        );
 
-                float rot[3] = {
-                    0.0f,
-                    glm::radians(((angle >> 14) & 0x03) * 90.0f),
-                    0.0f
-                };
+        glm::vec3 rot(
+            0.0f,
+            glm::radians(((angle >> 14) & 0x03) * 90.0f),
+            0.0f
+        );
 
-                Entity* e = new Entity(pos, rot, objectID, room, m);
-                getWorld().addEntity(e);
+        Entity* e = new Entity(objectID, room, pos, rot);
+        getWorld().addEntity(e);
 
-                if (objectID == 0) {
-                    Game::setLara(getWorld().sizeEntity() - 1);
-                }
-            }
+        if (objectID == 0) {
+            Game::setLara(getWorld().sizeEntity() - 1);
         }
     }
 

@@ -14,9 +14,6 @@
 #include "commands/Command.h"
 #include "commands/CommandBind.h"
 #include "commands/CommandEngine.h"
-#include "commands/CommandGame.h"
-#include "commands/CommandMove.h"
-#include "commands/CommandRender.h"
 #include "commands/CommandSet.h"
 
 std::vector<std::shared_ptr<Command>> Command::commands;
@@ -30,15 +27,11 @@ void Command::printHelp() {
 
 void Command::fillCommandList() {
     commands.clear();
-    commands.push_back(std::shared_ptr<Command>(new CommandLoad()));
     commands.push_back(std::shared_ptr<Command>(new CommandBind()));
+    commands.push_back(std::shared_ptr<Command>(new CommandLoad()));
     commands.push_back(std::shared_ptr<Command>(new CommandSet()));
     commands.push_back(std::shared_ptr<Command>(new CommandGet()));
     commands.push_back(std::shared_ptr<Command>(new CommandScreenshot()));
-    commands.push_back(std::shared_ptr<Command>(new CommandMove()));
-    commands.push_back(std::shared_ptr<Command>(new CommandMode()));
-    commands.push_back(std::shared_ptr<Command>(new CommandPos()));
-    commands.push_back(std::shared_ptr<Command>(new CommandViewmodel()));
     commands.push_back(std::shared_ptr<Command>(new CommandQuit()));
 }
 

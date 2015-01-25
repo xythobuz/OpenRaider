@@ -55,6 +55,13 @@ void Render::display() {
 
     for (int r = roomList.size() - 1; r >= 0; r--) {
         roomList.at(r)->display(VP);
+
+        for (int i = 0; i < getWorld().sizeEntity(); i++) {
+            auto& e = getWorld().getEntity(i);
+            if (roomList.at(r)->getIndex() == e.getRoom()) {
+                e.display(VP);
+            }
+        }
     }
 
     if (displayViewFrustum)
@@ -235,6 +242,21 @@ void Render::displayUI() {
         bool showRoomSprites = Room::getShowRoomSprites();
         if (ImGui::Checkbox("Room Sprites##render", &showRoomSprites)) {
             Room::setShowRoomSprites(showRoomSprites);
+        }
+
+        bool showEntitySprites = Entity::getShowEntitySprites();
+        if (ImGui::Checkbox("Entity Sprites##render", &showEntitySprites)) {
+            Entity::setShowEntitySprites(showEntitySprites);
+        }
+        ImGui::SameLine();
+        bool showEntityMeshes = Entity::getShowEntityMeshes();
+        if (ImGui::Checkbox("Entity Meshes##render", &showEntityMeshes)) {
+            Entity::setShowEntityMeshes(showEntityMeshes);
+        }
+        ImGui::SameLine();
+        bool showEntityModels = Entity::getShowEntityModels();
+        if (ImGui::Checkbox("Entity Models##render", &showEntityModels)) {
+            Entity::setShowEntityModels(showEntityModels);
         }
 
         ImGui::Separator();

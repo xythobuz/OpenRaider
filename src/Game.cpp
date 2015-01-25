@@ -68,9 +68,9 @@ int Game::loadLevel(const char* level) {
             Console::setVisible(true);
             UI::setVisible(true);
         } else {
-            Camera::setPosition(glm::vec3(getLara().getPos(0),
-                                          getLara().getPos(1) - 1024.0f,
-                                          getLara().getPos(2)));
+            Camera::setPosition(glm::vec3(getLara().getPosition().x,
+                                          getLara().getPosition().y - 1024.0f,
+                                          getLara().getPosition().z));
         }
     } else {
         Log::get(LOG_ERROR) << "No suitable loader for this level!" << Log::endl;
