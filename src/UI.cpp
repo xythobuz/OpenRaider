@@ -89,6 +89,7 @@ int UI::initialize() {
     io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
     fontTex = TextureManager::loadBufferSlot(pixels, width, height, ColorMode::RGBA, 32,
                                              TextureStorage::SYSTEM, -1, false);
+    io.Fonts->TexID = TextureManager::getBufferManager(fontTex, TextureStorage::SYSTEM);
 
     // Set up OpenRaider style
     ImGuiStyle& style = ImGui::GetStyle();
@@ -272,20 +273,12 @@ void UI::display() {
     if (ImGui::Begin("Engine", &visible, ImVec2(400, 400))) {
         Render::displayUI();
         RunTime::display();
-        SoundManager::display();
 
-        /*
-        static bool visibleTex = false;
-        static bool visibleTile = false;
-        static bool visibleAnim = false;
-        static bool visibleSprite = false;
         if (ImGui::CollapsingHeader("Texture Viewer")) {
             static bool game = Game::isLoaded();
             static int index = 0;
-            ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
-            ImGui::SliderInt("##texslide", &index, 0, TextureManager::.numTextures(
+            ImGui::SliderInt("##texslide", &index, 0, TextureManager::numTextures(
                                  game ? TextureStorage::GAME : TextureStorage::SYSTEM) - 1);
-            ImGui::PopItemWidth();
             ImGui::SameLine();
             if (ImGui::Button("+##texplus", ImVec2(0, 0), true)) {
                 if (index < (TextureManager::numTextures(
@@ -302,32 +295,36 @@ void UI::display() {
                     index = TextureManager::numTextures(
                                 game ? TextureStorage::GAME : TextureStorage::SYSTEM) - 1;
             }
-            ImGui::SameLine();
-            if ((TextureManager::numTextures() > 0)) {
+
+            if ((TextureManager::numTextures(TextureStorage::GAME) > 0)) {
+                ImGui::SameLine();
                 ImGui::Checkbox("Game##texgame", &game);
             } else {
                 game = false;
             }
-            ImGui::SameLine();
-            if (ImGui::Button("Show##texshow")) {
-                visibleTex = true;
-                visibleTile = false;
-                visibleAnim = false;
-                visibleSprite = false;
+
+            if (index >= TextureManager::numTextures(game ? TextureStorage::GAME : TextureStorage::SYSTEM)) {
+                index = TextureManager::numTextures(game ? TextureStorage::GAME : TextureStorage::SYSTEM) - 1;
+                if (index < 0) {
+                    game = false;
+                    index = 0;
+                }
             }
-            ImGui::SameLine();
-            if (ImGui::Button("Clear##texclear")) {
-                getRender().debugDisplayTexture();
-                visibleTex = false;
-            }
-            if (visibleTex) {
-                getRender().debugDisplayTexture(index,
-                                                game ? TextureStorage::GAME : TextureStorage::SYSTEM,
-                                                ImGui::GetWindowPos().x - ImGui::GetWindowWidth(),
-                                                ImGui::GetWindowPos().y,
-                                                ImGui::GetWindowWidth(), ImGui::GetWindowWidth());
-            }
+
+            ImGui::Image(TextureManager::getBufferManager(index,
+                                                          game ? TextureStorage::GAME
+                                                            : TextureStorage::SYSTEM),
+                         ImVec2(ImGui::GetColumnWidth() * 2 / 3, ImGui::GetColumnWidth() * 2 / 3));
         }
+
+        SoundManager::display();
+
+        /*
+        static bool visibleTex = false;
+        static bool visibleTile = false;
+        static bool visibleAnim = false;
+        static bool visibleSprite = false;
+
 
         if (ImGui::CollapsingHeader("Textile Viewer")) {
             if (TextureManager::numTiles() > 0) {
@@ -596,7 +593,6 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
 
     imguiShader.use();
     imguiShader.loadUniform(0, Window::getSize());
-    imguiShader.loadUniform(1, fontTex, TextureStorage::SYSTEM);
     vert.bindBuffer(0, 2);
     uv.bindBuffer(1, 2);
     col.bindBuffer(2, 4);
@@ -633,6 +629,10 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
             vert.bufferData(vertices);
             uv.bufferData(uvs);
             col.bufferData(colors);
+
+            auto bm = static_cast<BufferManager*>(commands[n].texture_id);
+            assert(bm != nullptr);
+            imguiShader.loadUniform(1, bm->getTextureID(), bm->getTextureStorage());
 
             glScissor(commands[n].clip_rect.x,
                       Window::getSize().y - commands[n].clip_rect.w,

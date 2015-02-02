@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140203 ]
+    * Updated imgui to newest version, supporting Images
+    * Imgui Image texture viewer (still buggy)
+
     [ 20140124 ]
     * Started working on Entity system.
 

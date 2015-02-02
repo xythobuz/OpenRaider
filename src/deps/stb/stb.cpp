@@ -18,8 +18,7 @@
 #define STBRP_ASSERT assert
 #include "stb/stb_rect_pack.h"
 
-//! \TODO bring back when imgui allows it
-//#define STB_TRUETYPE_IMPLEMENTATION
-//#define STBTT_assert(x) assert(x)
-//#include "stb/stb_truetype.h"
+#define STB_TRUETYPE_IMPLEMENTATION
+#define STBTT_assert(x) assert(x)
+#include "stb/stb_truetype.h"
 

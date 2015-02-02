@@ -51,9 +51,17 @@ enum class TextureStorage {
     SYSTEM
 };
 
-/*!
- * \brief Texture registry
- */
+class BufferManager {
+  public:
+    BufferManager(int t, TextureStorage s) : texture(t), storage(s) { }
+    int getTextureID() { return texture; }
+    TextureStorage getTextureStorage() { return storage; }
+
+  private:
+    int texture;
+    TextureStorage storage;
+};
+
 class TextureManager {
   public:
     static int initialize();
@@ -100,6 +108,8 @@ class TextureManager {
     static int getFirstTileAnimation(int index);
     static int getNextTileAnimation(int tile);
 
+    static BufferManager* getBufferManager(int tex, TextureStorage store);
+
   private:
     static std::vector<unsigned int>& getIds(TextureStorage s);
     static std::vector<int>& getUnits(TextureStorage s);
@@ -116,6 +126,9 @@ class TextureManager {
     static std::vector<int> gameUnits;
     static std::vector<int> systemUnits;
     static unsigned int nextFreeTextureUnit;
+
+    static std::vector<BufferManager> gameBuffers;
+    static std::vector<BufferManager> systemBuffers;
 };
 
 #endif
