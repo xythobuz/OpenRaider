@@ -106,9 +106,11 @@ class TextureManager {
     static void addAnimatedTile(int index, int tile);
     static int numAnimatedTiles();
     static int getFirstTileAnimation(int index);
-    static int getNextTileAnimation(int tile);
+    static int getNextTileAnimation(int index, int tile);
 
     static BufferManager* getBufferManager(int tex, TextureStorage store);
+
+    static void display();
 
   private:
     static std::vector<unsigned int>& getIds(TextureStorage s);

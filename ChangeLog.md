@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140204 ]
+    * Return of textile, animated textile and sprite viewer, in TextureManager
+
     [ 20140203 ]
     * Updated imgui to newest version, supporting Images
     * Texture viewer is back, using imgui Images

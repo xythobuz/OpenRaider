@@ -41,6 +41,8 @@ Sprite::Sprite(int tile, int x, int y, int width, int height) : texture(tile) {
 
     vertices.bufferData(vert);
     uvs.bufferData(uv);
+
+    uv2D = glm::vec4(uv.at(0), uv.at(2));
 }
 
 void Sprite::display(glm::mat4 MVP) {

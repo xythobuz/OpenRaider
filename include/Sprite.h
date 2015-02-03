@@ -15,9 +15,13 @@ class Sprite {
     Sprite(int tile, int x, int y, int width, int height);
     void display(glm::mat4 MVP);
 
+    int getTexture() { return texture; }
+    glm::vec4 getUVs() { return uv2D; }
+
   private:
     int texture;
     ShaderBuffer vertices, uvs;
+    glm::vec4 uv2D;
 };
 
 class SpriteSequence {
@@ -27,6 +31,8 @@ class SpriteSequence {
     void display(glm::mat4 MVP, int index);
 
     int getID() { return id; }
+    int getStart() { return start; }
+    int size() { return length; }
 
   private:
     int id;
