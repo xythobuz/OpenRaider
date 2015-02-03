@@ -16,7 +16,7 @@
 #define MAP_WIDTH 512
 #define MAP_HEIGHT 512
 #define FONT_SIZE 33
-#define MAP_NUM_CHARS 50
+#define MAP_NUM_CHARS 100
 
 FontMapTTF::FontMapTTF() : begin(-1), texture(-1), charInfo(nullptr) { }
 

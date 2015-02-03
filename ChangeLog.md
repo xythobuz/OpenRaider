@@ -4,7 +4,7 @@
 
     [ 20140203 ]
     * Updated imgui to newest version, supporting Images
-    * Imgui Image texture viewer (still buggy)
+    * Texture viewer is back, using imgui Images
 
     [ 20140124 ]
     * Started working on Entity system.

@@ -235,7 +235,6 @@
  ==================
 
  - misc: merge or clarify ImVec4 / ImGuiAabb, they are essentially duplicate containers
-!- i/o: avoid requesting mouse capture if button held and initial click was out of reach for imgui
  - window: add horizontal scroll
  - window: fix resize grip rendering scaling along with Rounding style setting
  - window: autofit feedback loop when user relies on any dynamic layout (window width multiplier, column). maybe just clearly drop manual autofit?
@@ -257,6 +256,7 @@
  - input number: use mouse wheel to step up/down
  - input number: non-decimal input.
  - layout: horizontal layout helper (github issue #97)
+ - layout: more generic alignment state (left/right/centered) for single items?
  - layout: clean up the InputFloatN/SliderFloatN/ColorEdit4 layout code. item width should include frame padding.
  - columns: separator function or parameter that works within the column (currently Separator() bypass all columns)
  - columns: declare column set (each column: fixed size, %, fill, distribute default size among fills)
@@ -300,6 +300,7 @@
  - misc: mark printf compiler attributes on relevant functions
  - misc: provide a way to compile out the entire implementation while providing a dummy API (e.g. #define IMGUI_DUMMY_IMPL)
  - misc: double-clicking on title bar to minimize isn't consistent, perhaps move to single-click on left-most collapse icon?
+ - style editor: have a more global HSV setter (e.g. alter hue on all elements). consider replacing active/hovered by offset in HSV space?
  - style editor: color child window height expressed in multiple of line height.
  - optimization/render: use indexed rendering to reduce vertex data cost (for remote/networked imgui)
  - optimization/render: move clip-rect to vertex data? would allow merging all commands
@@ -1059,7 +1060,7 @@ struct ImGuiWindow
 
     ImGuiDrawContext        DC;
     ImVector<ImGuiID>       IDStack;
-    ImVector<ImVec4>        ClipRectStack;
+    ImVector<ImVec4>        ClipRectStack;                      // Scissoring / clipping rectangle. x1, y1, x2, y2.
     int                     LastFrameDrawn;
     float                   ItemWidthDefault;
     ImGuiStorage            StateStorage;
@@ -1697,9 +1698,24 @@ void ImGui::NewFrame()
     else
         g.HoveredRootWindow = FindHoveredWindow(g.IO.MousePos, true);
 
-    // Are we using inputs? Tell user so they can capture/discard them.
-    g.IO.WantCaptureMouse = (g.HoveredWindow != NULL) || (g.ActiveId != 0);
+    // Are we using inputs? Tell user so they can capture/discard the inputs away from the rest of their application.
+    // When clicking outside of a window we assume the click is owned by the application and won't request capture.
+    int mouse_earliest_button_down = -1;
+    for (size_t i = 0; i < IM_ARRAYSIZE(g.IO.MouseDown); i++)
+    {
+        if (g.IO.MouseClicked[i])
+            g.IO.MouseDownOwned[i] = (g.HoveredWindow != NULL);
+        if (g.IO.MouseDown[i])
+            if (mouse_earliest_button_down == -1 || g.IO.MouseClickedTime[mouse_earliest_button_down] > g.IO.MouseClickedTime[i])
+                mouse_earliest_button_down = i;
+    }
+    bool mouse_owned_by_application = mouse_earliest_button_down != -1 && !g.IO.MouseDownOwned[mouse_earliest_button_down];
+    g.IO.WantCaptureMouse = (!mouse_owned_by_application && g.HoveredWindow != NULL) || (g.ActiveId != 0);
     g.IO.WantCaptureKeyboard = (g.ActiveId != 0);
+
+    // If mouse was first clicked outside of ImGui bounds we also cancel out hovering.
+    if (mouse_owned_by_application)
+        g.HoveredWindow = g.HoveredRootWindow = NULL;
 
     // Scale & Scrolling
     if (g.HoveredWindow && g.IO.MouseWheel != 0.0f)
@@ -1830,7 +1846,7 @@ static void PushClipRect(const ImVec4& clip_rect, bool clipped = true)
     ImVec4 cr = clip_rect;
     if (clipped && !window->ClipRectStack.empty())
     {
-        // Clip to new clip rect
+        // Clip with existing clip rect
         const ImVec4 cur_cr = window->ClipRectStack.back();
         cr = ImVec4(ImMax(cr.x, cur_cr.x), ImMax(cr.y, cur_cr.y), ImMin(cr.z, cur_cr.z), ImMin(cr.w, cur_cr.w));
     }
@@ -2815,7 +2831,7 @@ bool ImGui::Begin(const char* name, bool* p_opened, ImVec2 size, float fill_alph
 
             const ImVec2 text_size = CalcTextSize(name, NULL, true);
             const ImVec2 text_max = window->Pos + ImVec2(window->Size.x - (p_opened ? (title_bar_aabb.GetHeight()-3) : style.FramePadding.x), style.FramePadding.y + text_size.y);
-            const bool clip_title = text_size.x > (text_max.x - text_min.x);    // only push a clip rectangle if we need to, because it may turn into a separate draw call
+            const bool clip_title = text_size.x > (text_max.x - text_min.x);    // only push a clip rectangle if we need to, because it may turn into a separate draw call  // FIXME-OPT: CPU side clipping would work well for this kind of case.
             if (clip_title)
                 PushClipRect(ImVec4(text_min.x, text_min.y, text_max.x, text_max.y));
             RenderText(text_min, name);
@@ -6154,6 +6170,7 @@ void ImDrawList::UpdateClipRect()
     }
 }
 
+// Scissoring. The values in clip_rect are x1, y1, x2, y2.
 void ImDrawList::PushClipRect(const ImVec4& clip_rect)
 {
     clip_rect_stack.push_back(clip_rect);
@@ -7712,6 +7729,8 @@ void ImGui::ShowTestWindow(bool* opened)
     ImGui::Text("ImGui says hello.");
     //ImGui::Text("MousePos (%g, %g)", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
     //ImGui::Text("MouseWheel %d", ImGui::GetIO().MouseWheel);
+    //ImGui::Text("WantCaptureMouse: %d", ImGui::GetIO().WantCaptureMouse);
+    //ImGui::Text("WantCaptureKeyboard: %d", ImGui::GetIO().WantCaptureKeyboard);
 
     ImGui::Spacing();
     if (ImGui::CollapsingHeader("Help"))

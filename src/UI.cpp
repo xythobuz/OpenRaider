@@ -11,7 +11,6 @@
 #include "Camera.h"
 #include "Console.h"
 #include "Game.h"
-#include "Log.h"
 #include "Menu.h"
 #include "Render.h"
 #include "RunTime.h"
@@ -89,7 +88,8 @@ int UI::initialize() {
     io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
     fontTex = TextureManager::loadBufferSlot(pixels, width, height, ColorMode::RGBA, 32,
                                              TextureStorage::SYSTEM, -1, false);
-    io.Fonts->TexID = TextureManager::getBufferManager(fontTex, TextureStorage::SYSTEM);
+    auto bm = TextureManager::getBufferManager(fontTex, TextureStorage::SYSTEM);
+    io.Fonts->TexID = bm;
 
     // Set up OpenRaider style
     ImGuiStyle& style = ImGui::GetStyle();
@@ -311,10 +311,9 @@ void UI::display() {
                 }
             }
 
-            ImGui::Image(TextureManager::getBufferManager(index,
-                                                          game ? TextureStorage::GAME
-                                                            : TextureStorage::SYSTEM),
-                         ImVec2(ImGui::GetColumnWidth() * 2 / 3, ImGui::GetColumnWidth() * 2 / 3));
+            auto bm = TextureManager::getBufferManager(index, game ? TextureStorage::GAME
+                                                                : TextureStorage::SYSTEM);
+            ImGui::Image(bm, ImVec2(ImGui::GetColumnWidth() * 2 / 3, ImGui::GetColumnWidth() * 2 / 3));
         }
 
         SoundManager::display();

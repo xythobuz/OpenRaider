@@ -76,9 +76,10 @@ void TextureManager::shutdown() {
         mTextureIdsSystem.pop_back();
     }
 
-    clear();
-
+    gameBuffers.clear();
     systemBuffers.clear();
+
+    clear();
 }
 
 void TextureManager::clear() {
@@ -98,8 +99,6 @@ void TextureManager::clear() {
     gameUnits.clear();
     systemUnits.clear();
     nextFreeTextureUnit = 0;
-
-    gameBuffers.clear();
 }
 
 int TextureManager::loadBufferSlot(unsigned char* image,
@@ -167,9 +166,6 @@ int TextureManager::loadBufferSlot(unsigned char* image,
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     }
 
-    Log::get(LOG_DEBUG) << "New Texture: " << slot << " - "
-        << ((s == TextureStorage::GAME) ? "Game" : "System") << Log::endl;
-
     return slot;
 }
 
@@ -186,11 +182,6 @@ void TextureManager::bindTextureId(unsigned int n, TextureStorage s, unsigned in
 }
 
 int TextureManager::bindTexture(unsigned int n, TextureStorage s) {
-    if (n >= getIds(s).size()) {
-        Log::get(LOG_DEBUG) << "Bound Unknown Texture " << n << " in "
-            << ((s == TextureStorage::GAME) ? "Game" : "System") << Log::endl;
-    }
-
     assert(n < getIds(s).size());
 
     if ((n < getUnits(s).size()) && (getUnits(s).at(n) >= 0)) {
@@ -253,11 +244,8 @@ int TextureManager::getNextTileAnimation(int tile) {
 
 BufferManager* TextureManager::getBufferManager(int tex, TextureStorage store) {
     auto& v = (store == TextureStorage::GAME) ? gameBuffers : systemBuffers;
-    while (v.size() <= tex) {
+    while (v.size() <= (tex + 1)) {
         v.emplace_back(v.size(), store);
-
-        Log::get(LOG_DEBUG) << "New BufferManager: " << v.size() - 1 << " - "
-            << ((store == TextureStorage::GAME) ? "Game" : "System") << Log::endl;
     }
     return &(v.at(tex));
 }
