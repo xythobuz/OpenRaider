@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140211 ]
+    * Updated imgui to version 1.32
+    * Included some SDL game controller configurations
+    * Camera movement speed is now clamped when moving in multiple directions
+    * Slightly increased controller dead-zone, now 0.2
+
     [ 20140204 ]
     * Return of textile, animated textile and sprite viewer, in TextureManager
 

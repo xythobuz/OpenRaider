@@ -84,7 +84,7 @@ int UI::initialize() {
     int width, height;
     io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
     fontTex = TextureManager::loadBufferSlot(pixels, width, height, ColorMode::RGBA, 32,
-                                             TextureStorage::SYSTEM, -1, false);
+              TextureStorage::SYSTEM, -1, false);
     auto bm = TextureManager::getBufferManager(fontTex, TextureStorage::SYSTEM);
     io.Fonts->TexID = bm;
 

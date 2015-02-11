@@ -12,7 +12,7 @@ class Entity {
   public:
     Entity(int i, int r, glm::vec3 po, glm::vec3 ro)
         : id(i), room(r), pos(po), rot(ro), cache(-1), cacheType(-1),
-        sprite(0), animation(0), frame(0) { }
+          sprite(0), animation(0), frame(0) { }
     void display(glm::mat4 VP);
 
     int getID() { return id; }

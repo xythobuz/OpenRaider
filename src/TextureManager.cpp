@@ -21,6 +21,30 @@
 #include "utils/strings.h"
 #include "TextureManager.h"
 
+glm::vec2 TextureTile::getUV(unsigned int i) {
+    glm::vec2 uv(vertices.at(i).xPixel,
+                 vertices.at(i).yPixel);
+
+    /*! \fixme
+     * This is my somewhat hacky approach to fixing
+     * the bad texture-bleeding problems everywhere.
+     * That's better, but makes the seams between
+     * each sector much more visible!
+     */
+
+    if (vertices.at(i).xCoordinate == 1) {
+        uv.x += 0.375f;
+    }
+
+    if (vertices.at(i).yCoordinate == 1) {
+        uv.y += 0.375f;
+    }
+
+    return uv / 256.0f;
+}
+
+// ----------------------------------------------------------------------------
+
 std::vector<unsigned int> TextureManager::mTextureIdsGame;
 std::vector<unsigned int> TextureManager::mTextureIdsSystem;
 std::vector<TextureTile*> TextureManager::tiles;
@@ -354,7 +378,7 @@ void TextureManager::display() {
         }
 
         auto bm = getBufferManager(index, game ? TextureStorage::GAME
-                                                            : TextureStorage::SYSTEM);
+                                   : TextureStorage::SYSTEM);
         ImGui::Image(bm, ImVec2(ImGui::GetColumnWidth() * 2 / 3, ImGui::GetColumnWidth() * 2 / 3));
     }
 
@@ -446,7 +470,7 @@ void TextureManager::display() {
             if (fr > 0) {
                 fr--;
             } else {
-                fr = RunTime::getFPS() / 2;
+                fr = RunTime::getFPS() / 5;
                 tile = next;
             }
         } else {
@@ -513,29 +537,5 @@ void TextureManager::display() {
 
         }
     }
-}
-
-// ----------------------------------------------------------------------------
-
-glm::vec2 TextureTile::getUV(unsigned int i) {
-    glm::vec2 uv(vertices.at(i).xPixel,
-                 vertices.at(i).yPixel);
-
-    /*! \fixme
-     * This is my somewhat hacky approach to fixing
-     * the bad texture-bleeding problems everywhere.
-     * That's better, but makes the seams between
-     * each sector much more visible!
-     */
-
-    if (vertices.at(i).xCoordinate == 1) {
-        uv.x += 0.375f;
-    }
-
-    if (vertices.at(i).yCoordinate == 1) {
-        uv.y += 0.375f;
-    }
-
-    return uv / 256.0f;
 }
 

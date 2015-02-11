@@ -18,7 +18,7 @@ unsigned int FontImGui::widthText(float scale, std::string s) {
     ImGuiIO& io = ImGui::GetIO();
     ImFont* font = io.Fonts->Fonts.at(0);
     ImVec2 size = font->CalcTextSizeA(scale * SCALE_CALC, FLT_MAX, io.DisplaySize.y, s.c_str(),
-                                                    s.c_str() + s.length());
+                                      s.c_str() + s.length());
     return size.x;
 }
 
@@ -42,7 +42,7 @@ unsigned int FontImGui::heightText(float scale, unsigned int maxWidth, std::stri
     ImGuiIO& io = ImGui::GetIO();
     ImFont* font = io.Fonts->Fonts.at(0);
     ImVec2 size = font->CalcTextSizeA(scale * SCALE_CALC, FLT_MAX, maxWidth, s.c_str(),
-                                                    s.c_str() + s.length());
+                                      s.c_str() + s.length());
     return size.y;
 }
 

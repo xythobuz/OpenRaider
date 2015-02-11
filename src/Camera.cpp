@@ -38,7 +38,7 @@ const static float nearDist = 0.1f;
 const static float farDist = 75000.0f;
 const static float maxSpeed = 3072.0f;
 const static float controllerViewFactor = glm::pi<float>();
-const static float controllerDeadZone = 0.1f;
+const static float controllerDeadZone = 0.2f;
 
 const static glm::vec3 rightUnit(1.0f, 0.0f, 0.0f);
 const static glm::vec3 upUnit(0.0f, 1.0f, 0.0f);
@@ -183,7 +183,12 @@ bool Camera::update() {
     glm::quat quatX = glm::angleAxis(rot.y, glm::vec3(1.0f, 0.0f, 0.0f));
     glm::quat quaternion = quatY * quatX;
 
-    pos += quaternion * posSpeed * dT;
+    glm::vec3 clampedSpeed(posSpeed);
+    if (glm::length(clampedSpeed) > maxSpeed) {
+        clampedSpeed = glm::normalize(clampedSpeed) * maxSpeed;
+    }
+
+    pos += quaternion * clampedSpeed * dT;
 
     glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
     glm::mat4 rotate = glm::toMat4(quaternion);

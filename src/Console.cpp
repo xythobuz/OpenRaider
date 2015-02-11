@@ -21,7 +21,7 @@ std::vector<std::string> Console::lastCommands;
 long Console::lastCommandIndex = -1;
 std::string Console::bufferedCommand;
 
-void Console::callback(ImGuiTextEditCallbackData* data) {
+int Console::callback(ImGuiTextEditCallbackData* data) {
     bool update = false;
     std::string completion;
 
@@ -66,6 +66,8 @@ void Console::callback(ImGuiTextEditCallbackData* data) {
 
         data->CursorPos = strlen(data->Buf);
     }
+
+    return 0;
 }
 
 void Console::display() {
@@ -98,7 +100,7 @@ void Console::display() {
         if (ImGui::Button("Log to File")) { logToFile = true; }
         ImGui::Separator();
 
-        ImGui::BeginChild("ConsoleText", ImVec2(0, -ImGui::GetTextLineSpacing() * 2));
+        ImGui::BeginChild("ConsoleText", ImVec2(0, -ImGui::GetTextLineHeightWithSpacing() * 2));
         if (logToTTY)
             ImGui::LogToTTY();
         else if (logToClipboard)

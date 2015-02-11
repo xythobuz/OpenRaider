@@ -74,6 +74,21 @@ int WindowSDL::initialize() {
         return 0;
     }
 
+    SDL_GameControllerAddMapping("341a0000000000000208000000000000,"
+                                 "USB GAMEPAD 8116,"
+                                 "a:b0,x:b2,start:b7,back:b6,leftstick:b8,rightstick:b9,"
+                                 "leftshoulder:b4,rightshoulder:b5,"
+                                 "dpup:h0.1,dpleft:h0.8,dpdown:h0.4,dpright:h0.2,"
+                                 "leftx:a0,lefty:a1,rightx:a3,righty:a2,"
+                                 "lefttrigger:,b:b1,y:b3,lefttrigger:a4,righttrigger:a4");
+
+    SDL_GameControllerAddMapping("10080000000000000100000000000000,"
+                                 "Twin USB Joystick,"
+                                 "a:b4,b:b2,y:b0,x:b6,start:b18,back:b16,leftstick:b20,"
+                                 "rightstick:b22,leftshoulder:b12,rightshoulder:b14,dpup:h0.1,"
+                                 "dpleft:h0.8,dpdown:h0.4,dpright:h0.2,leftx:a0,lefty:a2,rightx:a6,"
+                                 "righty:a4,lefttrigger:b8,righttrigger:b10");
+
     for (int i = 0; i < SDL_NumJoysticks(); i++) {
         if (SDL_IsGameController(i)) {
             controller = SDL_GameControllerOpen(i);

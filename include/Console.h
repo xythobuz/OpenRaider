@@ -21,7 +21,7 @@ class Console {
     static void setVisible(bool v) { visible = v; }
 
   private:
-    static void callback(ImGuiTextEditCallbackData* data);
+    static int callback(ImGuiTextEditCallbackData* data);
 
     const static int bufferLength = 256;
 
