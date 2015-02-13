@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140213 ]
+    * The menu can be navigated using a controller
+    * Vertical camera rotation is now also clamped when using a controller
+
     [ 20140211 ]
     * Updated imgui to version 1.32
     * Included some SDL game controller configurations

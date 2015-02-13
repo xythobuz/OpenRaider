@@ -21,7 +21,6 @@ class Camera {
     static void handleAction(ActionEvents action, bool isFinished);
     static void handleMouseMotion(int x, int y);
     static void handleControllerAxis(float value, KeyboardButton axis);
-    static void handleControllerButton(KeyboardButton button, bool released);
 
     //! \fixme The Y axis seems to be the source of all evil?
     static void setPosition(glm::vec3 p) { pos = glm::vec3(p.x, -p.y, p.z); }

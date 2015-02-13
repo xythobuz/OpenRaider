@@ -23,7 +23,6 @@ class Game {
     static void handleAction(ActionEvents action, bool isFinished);
     static void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);
     static void handleControllerAxis(float value, KeyboardButton axis);
-    static void handleControllerButton(KeyboardButton button, bool released);
 
     static Entity& getLara();
     static void setLara(long lara);

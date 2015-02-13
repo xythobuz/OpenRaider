@@ -37,8 +37,10 @@ const static float fov = 45.0f;
 const static float nearDist = 0.1f;
 const static float farDist = 75000.0f;
 const static float maxSpeed = 3072.0f;
+const static float controllerDeadZone = 0.33f;
 const static float controllerViewFactor = glm::pi<float>();
-const static float controllerDeadZone = 0.2f;
+const static float rotationAngleClamp = glm::pi<float>() * 2.0f;
+const static float rotationAngleVertMax = glm::pi<float>() / 2.0f;
 
 const static glm::vec3 rightUnit(1.0f, 0.0f, 0.0f);
 const static glm::vec3 upUnit(0.0f, 1.0f, 0.0f);
@@ -111,31 +113,23 @@ void Camera::handleMouseMotion(int x, int y) {
     }
 
     while (y > 0) {
-        if (rot.y > -(glm::pi<float>() / 2.0f)) {
+        if (rot.y > -rotationAngleVertMax) {
             rot.y -= rotationDeltaY;
         }
         y--;
     }
 
     while (y < 0) {
-        if (rot.y < (glm::pi<float>() / 2.0f)) {
+        if (rot.y < rotationAngleVertMax) {
             rot.y += rotationDeltaY;
         }
         y++;
     }
-
-    while (rot.x > (glm::pi<float>() * 2.0f))
-        rot.x -= glm::pi<float>() * 2.0f;
-
-    while (rot.x < -(glm::pi<float>() * 2.0f))
-        rot.x += glm::pi<float>() * 2.0f;
 }
 
 void Camera::handleControllerAxis(float value, KeyboardButton axis) {
     if (glm::epsilonEqual(value, 0.0f, controllerDeadZone))
         value = 0.0f;
-
-    // TODO clamp Y rotation axis somehow...?
 
     if (axis == leftXAxis) {
         posSpeed.x = -maxSpeed * value;
@@ -152,32 +146,26 @@ void Camera::handleControllerAxis(float value, KeyboardButton axis) {
     dirty = true;
 }
 
-void Camera::handleControllerButton(KeyboardButton button, bool released) {
-    if (button == aButton) {
-        handleAction(jumpAction, released);
-    } else if (button == bButton) {
-        handleAction(crouchAction, released);
-    } else if (button == padUp) {
-        handleAction(forwardAction, released);
-    } else if (button == padDown) {
-        handleAction(backwardAction, released);
-    } else if (button == padLeft) {
-        handleAction(leftAction, released);
-    } else if (button == padRight) {
-        handleAction(rightAction, released);
-    } else {
-        return;
-    }
-
-    dirty = true;
-}
-
 bool Camera::update() {
     if ((!dirty) && equal(posSpeed, 0.0f) && equal(rotSpeed, 0.0f))
         return false;
 
+    while (rot.x > rotationAngleClamp)
+        rot.x -= rotationAngleClamp;
+    while (rot.x < -rotationAngleClamp)
+        rot.x += rotationAngleClamp;
+    while (rot.y > rotationAngleClamp)
+        rot.y -= rotationAngleClamp;
+    while (rot.y < -rotationAngleClamp)
+        rot.y += rotationAngleClamp;
+
     float dT = RunTime::getLastFrameTime();
-    rot += rotSpeed * dT;
+    glm::vec2 newRot = rot + rotSpeed * dT;
+
+    if ((newRot.y > -rotationAngleVertMax) && (newRot.y < rotationAngleVertMax))
+        rot = newRot;
+    else
+        rotSpeed = glm::vec2(0.0f, 0.0f);
 
     glm::quat quatY = glm::angleAxis(rot.x, glm::vec3(0.0f, 1.0f, 0.0f));
     glm::quat quatX = glm::angleAxis(rot.y, glm::vec3(1.0f, 0.0f, 0.0f));

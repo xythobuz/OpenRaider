@@ -360,7 +360,42 @@ void UI::handleControllerAxis(float value, KeyboardButton axis) {
 }
 
 void UI::handleControllerButton(KeyboardButton button, bool released) {
-    Game::handleControllerButton(button, released);
+    if (visible || Console::isVisible())
+        return;
+
+    if (getMenu().isVisible()) {
+        if (button == aButton) {
+            handleKeyboard(enterKey, !released);
+        } else if (button == padUp) {
+            handleKeyboard(upKey, !released);
+        } else if (button == padDown) {
+            handleKeyboard(downKey, !released);
+        } else if (button == padLeft) {
+            handleKeyboard(leftKey, !released);
+        } else if (button == padRight) {
+            handleKeyboard(rightKey, !released);
+        } else if (button == startButton) {
+            if (!released)
+                getMenu().setVisible(false);
+        }
+    } else {
+        if (button == aButton) {
+            Game::handleAction(jumpAction, released);
+        } else if (button == bButton) {
+            Game::handleAction(crouchAction, released);
+        } else if (button == padUp) {
+            Game::handleAction(forwardAction, released);
+        } else if (button == padDown) {
+            Game::handleAction(backwardAction, released);
+        } else if (button == padLeft) {
+            Game::handleAction(leftAction, released);
+        } else if (button == padRight) {
+            Game::handleAction(rightAction, released);
+        } else if (button == startButton) {
+            if (!released)
+                getMenu().setVisible(true);
+        }
+    }
 }
 
 void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {

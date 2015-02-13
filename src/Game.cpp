@@ -87,8 +87,9 @@ void Game::handleAction(ActionEvents action, bool isFinished) {
         return;
 
     if (isFinished) {
+        if (activeEvents[action])
+            Camera::handleAction(action, isFinished);
         activeEvents[action] = false;
-        Camera::handleAction(action, isFinished);
     } else {
         if (!activeEvents[action])
             Camera::handleAction(action, isFinished);
@@ -108,13 +109,6 @@ void Game::handleControllerAxis(float value, KeyboardButton axis) {
         return;
 
     Camera::handleControllerAxis(value, axis);
-}
-
-void Game::handleControllerButton(KeyboardButton button, bool released) {
-    if (!mLoaded)
-        return;
-
-    Camera::handleControllerButton(button, released);
 }
 
 Entity& Game::getLara() {
