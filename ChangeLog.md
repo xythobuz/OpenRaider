@@ -5,6 +5,7 @@
     [ 20140213 ]
     * The menu can be navigated using a controller
     * Vertical camera rotation is now also clamped when using a controller
+    * Worked on rendering SkeletalModels, not yet working correctly
 
     [ 20140211 ]
     * Updated imgui to version 1.32

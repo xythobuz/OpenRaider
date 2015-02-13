@@ -13,39 +13,38 @@
 
 class BoneTag {
   public:
-    BoneTag(int m, float o[3], float r[3], char f);
-    void display();
+    BoneTag(int m, glm::vec3 o, glm::vec3 r, char f) : mesh(m), off(o), rot(r), flag(f) { }
+    void display(glm::mat4 MVP);
 
-    void getOffset(float o[3]);
-    void getRotation(float r[3]);
-    char getFlag();
+    glm::vec3 getOffset() { return off; }
+    glm::vec3 getRotation() { return rot; }
+    char getFlag() { return flag; }
 
   private:
     int mesh;
-    float off[3];
-    float rot[3];
+    glm::vec3 off, rot;
     char flag;
 };
 
 class BoneFrame {
   public:
-    BoneFrame(float p[3]);
+    BoneFrame(glm::vec3 p) : pos(p) { }
     ~BoneFrame();
 
-    void getPosition(float p[3]);
+    glm::vec3 getPosition() { return pos; }
 
     unsigned long size();
     BoneTag& get(unsigned long i);
     void add(BoneTag* t);
 
   private:
-    float pos[3];
+    glm::vec3 pos;
     std::vector<BoneTag*> tag;
 };
 
 class AnimationFrame {
   public:
-    AnimationFrame(char r);
+    AnimationFrame(char r) : rate(r) { }
     ~AnimationFrame();
 
     unsigned long size();

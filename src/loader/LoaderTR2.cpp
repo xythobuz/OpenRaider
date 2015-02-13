@@ -833,15 +833,15 @@ void LoaderTR2::loadMoveables() {
         // Just add the frame indicated in frameOffset, nothing else
         char* tmp = reinterpret_cast<char*>(&frames[0]) + frameOffset;
         BinaryMemory frame(tmp + 12, (numFrames * 2) - frameOffset - 12); // skip two BBs
-        float pos[3];
-        pos[0] = frame.read16();
-        pos[1] = frame.read16();
-        pos[2] = frame.read16();
+        glm::vec3 pos;
+        pos.x = frame.read16();
+        pos.y = frame.read16();
+        pos.z = frame.read16();
         BoneFrame* bf = new BoneFrame(pos);
 
         for (int i = 0; i < numMeshes; i++) {
             int mesh = startingMesh + i;
-            float offset[3] = { 0.0f, 0.0f, 0.0f };
+            glm::vec3 offset;
             float rotation[3] = { 0.0f, 0.0f, 0.0f };
             char flag = (i == 0) ? 2 : 0;
 
@@ -851,9 +851,9 @@ void LoaderTR2::loadMoveables() {
                 tmp += (i - 1) * 16; // TODO ?
                 BinaryMemory tree(tmp, (numMeshTrees * 4) - meshTree - ((i - 1) * 16));
                 flag = (char)tree.readU32();
-                offset[0] = tree.read32();
-                offset[1] = tree.read32();
-                offset[2] = tree.read32();
+                offset.x = tree.read32();
+                offset.y = tree.read32();
+                offset.z = tree.read32();
 
                 uint16_t a = frame.readU16();
                 if (a & 0xC000) {
@@ -875,7 +875,8 @@ void LoaderTR2::loadMoveables() {
                 }
             }
 
-            BoneTag* bt = new BoneTag(mesh, offset, rotation, flag);
+            glm::vec3 rot(rotation[0], rotation[1], rotation[2]);
+            BoneTag* bt = new BoneTag(mesh, offset, rot, flag);
             bf->add(bt);
         }
 

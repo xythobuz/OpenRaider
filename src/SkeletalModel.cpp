@@ -11,46 +11,13 @@
 #include "SkeletalModel.h"
 #include "World.h"
 
-BoneTag::BoneTag(int m, float o[3], float r[3], char f) {
-    mesh = m;
-    flag = f;
-    for (int i = 0; i < 3; i++) {
-        off[i] = o[i];
-        rot[i] = r[i];
-    }
-}
+#include <glm/gtc/matrix_transform.hpp>
 
-void BoneTag::display() {
-    /*
-    if (getWorld().sizeMesh() > 0)
-        getWorld().getMesh(mesh).drawSolid(); // TODO ?
-    else
-        getWorld().getStaticMesh(mesh).display();
-    */
-}
-
-void BoneTag::getOffset(float o[3]) {
-    o[0] = off[0];
-    o[1] = off[1];
-    o[2] = off[2];
-}
-
-void BoneTag::getRotation(float r[3]) {
-    r[0] = rot[0];
-    r[1] = rot[1];
-    r[2] = rot[2];
-}
-
-char BoneTag::getFlag() {
-    return flag;
+void BoneTag::display(glm::mat4 MVP) {
+    getWorld().getMesh(mesh).display(MVP);
 }
 
 // ----------------------------------------------------------------------------
-
-BoneFrame::BoneFrame(float p[3]) {
-    for (int i = 0; i < 3; i++)
-        pos[i] = p[i];
-}
 
 BoneFrame::~BoneFrame() {
     for (unsigned long i = 0; i < tag.size(); i++)
@@ -70,17 +37,7 @@ void BoneFrame::add(BoneTag* t) {
     tag.push_back(t);
 }
 
-void BoneFrame::getPosition(float p[3]) {
-    p[0] = pos[0];
-    p[1] = pos[1];
-    p[2] = pos[2];
-}
-
 // ----------------------------------------------------------------------------
-
-AnimationFrame::AnimationFrame(char r) {
-    rate = r;
-}
 
 AnimationFrame::~AnimationFrame() {
     for (unsigned long i = 0; i < frame.size(); i++)
@@ -102,50 +59,113 @@ void AnimationFrame::add(BoneFrame* f) {
 
 // ----------------------------------------------------------------------------
 
+class MatrixStack {
+  public:
+    MatrixStack(glm::mat4 start) : startVal(start) { stack.push_back(startVal); }
+
+    void push() {
+        //assert(stack.size() > 0);
+        if (stack.size() > 0)
+            stack.push_back(stack.at(stack.size() - 1));
+    }
+
+    void pop() {
+        //assert(stack.size() > 0);
+        if (stack.size() > 0)
+            stack.pop_back();
+    }
+
+    glm::mat4 get() {
+        //assert(stack.size() > 0);
+        if (stack.size() > 0)
+            return stack.at(stack.size() - 1);
+        return startVal;
+    }
+
+  private:
+    std::vector<glm::mat4> stack;
+    glm::mat4 startVal;
+};
+
+// ----------------------------------------------------------------------------
+
 SkeletalModel::~SkeletalModel() {
     for (unsigned long i = 0; i < animation.size(); i++)
         delete animation[i];
 }
 
+//#define DEBUG_MODELS
+
+#ifdef DEBUG_MODELS
+#include <bitset>
+#endif
+
 void SkeletalModel::display(glm::mat4 MVP, int aframe, int bframe) {
-    /*
     assert(aframe < size());
     assert(bframe < get(aframe).size());
 
     AnimationFrame& anim = get(aframe);
     BoneFrame& boneframe = anim.get(bframe);
 
-    float pos[3];
-    boneframe.getPosition(pos);
-    glTranslatef(pos[0], pos[1], pos[2]);
+    glm::vec3 pos = boneframe.getPosition();
+    glm::mat4 frameTrans = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
+
+    MatrixStack stack(MVP * frameTrans);
+
+#ifdef DEBUG_MODELS
+    Log::get(LOG_DEBUG) << "Starting SkeletalModel:" << Log::endl;
+    int cnt = 0;
+#endif
 
     for (unsigned int a = 0; a < boneframe.size(); a++) {
         BoneTag& tag = boneframe.get(a);
-        float rot[3], off[3];
 
-        tag.getRotation(rot);
-        tag.getOffset(off);
+        glm::mat4 translate(1.0f);
 
-        if (a == 0) {
-            glRotatef(rot[1], 0, 1, 0);
-            glRotatef(rot[0], 1, 0, 0);
-            glRotatef(rot[2], 0, 0, 1);
-        } else {
-            if (tag.getFlag() & 0x01)
-                glPopMatrix();
+        if (a != 0) {
+            if (tag.getFlag() & 0x01) {
+                stack.pop();
+#ifdef DEBUG_MODELS
+                Log::get(LOG_DEBUG) << "  --> pop" << Log::endl;
+                cnt--;
+#endif
+            }
 
-            if (tag.getFlag() & 0x02)
-                glPushMatrix();
+            if (tag.getFlag() & 0x02) {
+                stack.push();
+#ifdef DEBUG_MODELS
+                Log::get(LOG_DEBUG) << "  --> push" << Log::endl;
+                cnt++;
+#endif
+            }
 
-            glTranslatef(off[0], off[1], off[2]);
-            glRotatef(rot[1], 0, 1, 0);
-            glRotatef(rot[0], 1, 0, 0);
-            glRotatef(rot[2], 0, 0, 1);
+#ifdef DEBUG_MODELS
+            if (tag.getFlag() & ~0x03) {
+                std::bitset<8> bs(tag.getFlag());
+                Log::get(LOG_DEBUG) << "  Unexpected flag " << bs << Log::endl;
+            }
+#endif
+
+            glm::vec3 off = tag.getOffset();
+            translate = glm::translate(glm::mat4(1.0f), glm::vec3(off.x, -off.y, off.z));
         }
 
-        tag.display();
+        glm::vec3 rot = tag.getRotation();
+        glm::mat4 rotY = glm::rotate(glm::mat4(1.0f), rot[1], glm::vec3(0.0f, 1.0f, 0.0f));
+        glm::mat4 rotX = glm::rotate(glm::mat4(1.0f), rot[0], glm::vec3(1.0f, 0.0f, 0.0f));
+        glm::mat4 rotZ = glm::rotate(glm::mat4(1.0f), rot[2], glm::vec3(0.0f, 0.0f, 1.0f));
+        glm::mat4 rotate = rotZ * rotX * rotY;
+
+        glm::mat4 mod = translate * rotate;
+        tag.display(stack.get() * mod);
+#ifdef DEBUG_MODELS
+        Log::get(LOG_DEBUG) << "  --> get (" << cnt << ")" << Log::endl;
+#endif
     }
-    */
+
+#ifdef DEBUG_MODELS
+    Log::get(LOG_DEBUG) << "Done!" << Log::endl;
+#endif
 }
 
 unsigned long SkeletalModel::size() {
