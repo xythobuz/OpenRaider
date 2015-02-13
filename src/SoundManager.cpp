@@ -30,10 +30,10 @@ int SoundManager::prepareSources() {
         float vol;
         int index = getIndex(soundSources.at(i).id, &vol);
         int ret = Sound::addSource(index, vol, false, true);
-        assert(ret == i);
+        assertEqual(ret, i);
         float pos[3] = { soundSources.at(i).x, soundSources.at(i).y, soundSources.at(i).z };
         ret = Sound::sourceAt(i, pos);
-        assert(ret == 0);
+        assertEqual(ret, 0);
         Sound::play(i, false);
     }
 
@@ -42,7 +42,7 @@ int SoundManager::prepareSources() {
         int index = getIndex(i, &vol);
         if ((index >= 0) && (index < Sound::numBuffers())) {
             int ret = Sound::addSource(index, vol, true, false);
-            assert(ret >= 0);
+            assertGreaterThanEqual(ret, 0);
         }
     }
 }

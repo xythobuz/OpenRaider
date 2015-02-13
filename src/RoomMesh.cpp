@@ -59,9 +59,9 @@ void RoomMesh::prepare() {
         vertIndex += (indicesBuff.at(i) == 0) ? 4 : 3;
     }
 
-    assert((ind.size() % 3) == 0);
-    assert(vert.size() == tex.size());
-    assert(vert.size() == uvBuff.size());
+    assertEqual(ind.size() % 3, 0);
+    assertEqual(vert.size(), tex.size());
+    assertEqual(vert.size(), uvBuff.size());
 
     indicesBuff = std::move(ind);
     vertices.bufferData(vert);

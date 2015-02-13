@@ -52,8 +52,8 @@ void Sprite::display(glm::mat4 MVP) {
 // ----------------------------------------------------------------------------
 
 void SpriteSequence::display(glm::mat4 MVP, int index) {
-    assert(index >= 0);
-    assert(index < length);
+    assertGreaterThanEqual(index, 0);
+    assertLessThan(index, length);
     getWorld().getSprite(start + index).display(MVP);
 }
 

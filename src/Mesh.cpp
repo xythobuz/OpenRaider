@@ -78,9 +78,9 @@ void Mesh::prepare() {
         vertIndex += (indicesBuff.at(i) == 0) ? 4 : 3;
     }
 
-    assert((ind.size() % 3) == 0);
-    assert(vert.size() == tex.size());
-    assert(vert.size() == uvBuff.size());
+    assertEqual(ind.size() % 3, 0);
+    assertEqual(vert.size(), tex.size());
+    assertEqual(vert.size(), uvBuff.size());
 
     indicesBuff = std::move(ind);
     vertices.bufferData(vert);
@@ -112,8 +112,8 @@ void Mesh::prepare() {
         vertIndex += (indicesColorBuff.at(i) == 0) ? 4 : 3;
     }
 
-    assert((indCol.size() % 3) == 0);
-    assert(vertCol.size() == cols.size());
+    assertEqual(indCol.size() % 3, 0);
+    assertEqual(vertCol.size(), cols.size());
 
     indicesColor.bufferData(indCol);
     verticesColor.bufferData(vertCol);

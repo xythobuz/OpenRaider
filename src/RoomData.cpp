@@ -76,7 +76,7 @@ void StaticModel::display(glm::mat4 VP) {
                 cache = i;
             }
         }
-        assert(cache >= 0);
+        assertGreaterThanEqual(cache, 0);
     }
 
     getWorld().getStaticMesh(cache).display(VP * model);

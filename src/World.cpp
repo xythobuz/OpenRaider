@@ -31,7 +31,7 @@ unsigned long World::sizeRoom() {
 }
 
 Room& World::getRoom(unsigned long index) {
-    assert(index < mRooms.size());
+    assertLessThan(index, mRooms.size());
     return *mRooms.at(index);
 }
 
@@ -44,7 +44,7 @@ unsigned long World::sizeSprite() {
 }
 
 Sprite& World::getSprite(unsigned long index) {
-    assert(index < mSprites.size());
+    assertLessThan(index, mSprites.size());
     return *mSprites.at(index);
 }
 
@@ -57,7 +57,7 @@ unsigned long World::sizeSpriteSequence() {
 }
 
 SpriteSequence& World::getSpriteSequence(unsigned long index) {
-    assert(index < mSpriteSequences.size());
+    assertLessThan(index, mSpriteSequences.size());
     return *mSpriteSequences.at(index);
 }
 
@@ -70,7 +70,7 @@ unsigned long World::sizeEntity() {
 }
 
 Entity& World::getEntity(unsigned long index) {
-    assert(index < mEntities.size());
+    assertLessThan(index, mEntities.size());
     return *mEntities.at(index);
 }
 
@@ -83,7 +83,7 @@ unsigned long World::sizeSkeletalModel() {
 }
 
 SkeletalModel& World::getSkeletalModel(unsigned long index) {
-    assert(index < mModels.size());
+    assertLessThan(index, mModels.size());
     return *mModels.at(index);
 }
 
@@ -96,7 +96,7 @@ unsigned long World::sizeStaticMesh() {
 }
 
 StaticMesh& World::getStaticMesh(unsigned long index) {
-    assert(index < mStaticMeshes.size());
+    assertLessThan(index, mStaticMeshes.size());
     return *mStaticMeshes.at(index);
 }
 
@@ -109,7 +109,7 @@ unsigned long World::sizeMesh() {
 }
 
 Mesh& World::getMesh(unsigned long index) {
-    assert(index < mMeshes.size());
+    assertLessThan(index, mMeshes.size());
     return *mMeshes.at(index);
 }
 

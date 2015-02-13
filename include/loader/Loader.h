@@ -16,7 +16,6 @@
 
 class Loader {
   public:
-
     typedef enum {
         TR_UNKNOWN = 0,
         TR_1 = 1,
@@ -27,10 +26,7 @@ class Loader {
     } LoaderVersion;
 
     static LoaderVersion checkFile(std::string f);
-
     static std::unique_ptr<Loader> createLoader(std::string f);
-
-    virtual ~Loader();
 
     virtual int load(std::string f) = 0;
 

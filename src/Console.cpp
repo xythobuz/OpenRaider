@@ -110,7 +110,7 @@ void Console::display() {
         for (unsigned long i = 0; i < Log::size(); i++) {
             auto& entry = Log::getEntry(i);
 
-            assert(entry.level < LOG_COUNT);
+            assertLessThan(entry.level, LOG_COUNT);
             if (!visibleLogs[entry.level]) {
                 continue;
             }

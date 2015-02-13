@@ -115,7 +115,7 @@ template<typename T, typename U>
     std::cout << std::endl << "assertion failed:" << std::endl;
     std::cout << "\t" << exp << std::endl;
     if (print)
-        std::cout << "\t (" << a << " " << str << " " << b << ")" << std::endl;
+        std::cout << "\t(" << a << " " << str << " " << b << ")" << std::endl;
     std::cout << "in " << file << ":" << line << std::endl << std::endl;
 
     for (int i = 0; i < frames; i++)
@@ -150,11 +150,47 @@ template<typename T, typename U>
                                   __FILE__, __LINE__, true, "=="); \
 }
 
+#define assertLessThan(x, y) { \
+    auto assertEvalTemp = x; \
+    auto assertEvalTemp2 = y; \
+    if (assertEvalTemp >= assertEvalTemp2) \
+        assertEqualImplementation(#x " < " #y, assertEvalTemp, assertEvalTemp2, \
+                                  __FILE__, __LINE__, true, ">="); \
+}
+
+#define assertLessThanEqual(x, y) { \
+    auto assertEvalTemp = x; \
+    auto assertEvalTemp2 = y; \
+    if (assertEvalTemp > assertEvalTemp2) \
+        assertEqualImplementation(#x " <= " #y, assertEvalTemp, assertEvalTemp2, \
+                                  __FILE__, __LINE__, true, ">"); \
+}
+
+#define assertGreaterThan(x, y) { \
+    auto assertEvalTemp = x; \
+    auto assertEvalTemp2 = y; \
+    if (assertEvalTemp <= assertEvalTemp2) \
+        assertEqualImplementation(#x " > " #y, assertEvalTemp, assertEvalTemp2, \
+                                  __FILE__, __LINE__, true, "<="); \
+}
+
+#define assertGreaterThanEqual(x, y) { \
+    auto assertEvalTemp = x; \
+    auto assertEvalTemp2 = y; \
+    if (assertEvalTemp < assertEvalTemp2) \
+        assertEqualImplementation(#x " >= " #y, assertEvalTemp, assertEvalTemp2, \
+                                  __FILE__, __LINE__, true, "<"); \
+}
+
 #else // NODEBUG
 
 #define assert(x)
 #define assertEqual(x, y)
 #define assertNotEqual(x, y)
+#define assertLessThan(x, y)
+#define assertLessThanEqual(x, y)
+#define assertGreaterThan(x, y)
+#define assertGreaterThanEqual(x, y)
 
 #endif // NODEBUG
 
@@ -164,6 +200,10 @@ template<typename T, typename U>
 #include <cassert>
 #define assertEqual(x, y) assert((x) == (y))
 #define assertNotEqual(x, y) assert((x) != (y))
+#define assertLessThan(x, y) assert((x) < (y))
+#define assertLessThanEqual(x, y) assert((x) <= (y))
+#define assertGreaterThan(x, y) assert((x) > (y))
+#define assertGreaterThanEqual(x, y) assert((x) >= (y))
 
 #endif // EXECINFO
 

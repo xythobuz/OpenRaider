@@ -36,8 +36,6 @@ void Command::fillCommandList() {
 }
 
 int Command::command(std::string c) {
-    assert(commands.size() > 0);
-
     // Remove comment, if any
     size_t comment = c.find_first_of('#');
     if (comment != std::string::npos)

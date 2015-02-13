@@ -21,7 +21,7 @@ int randomInteger(int max, int min) {
     if (max == min)
         return max;
 
-    assert(max > min);
+    assertGreaterThan(max, min);
 
     if (!engineIsSeeded) {
         engine.seed(std::chrono::system_clock::now().time_since_epoch().count());

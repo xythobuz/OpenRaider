@@ -56,8 +56,8 @@ std::vector<BufferManager> TextureManager::gameBuffers;
 std::vector<BufferManager> TextureManager::systemBuffers;
 
 int TextureManager::initialize() {
-    assert(mTextureIdsGame.size() == 0);
-    assert(mTextureIdsSystem.size() == 0);
+    assertEqual(mTextureIdsGame.size(), 0);
+    assertEqual(mTextureIdsSystem.size(), 0);
 
     while (mTextureIdsSystem.size() < 2) {
         unsigned int id;
@@ -132,8 +132,8 @@ int TextureManager::loadBufferSlot(unsigned char* image,
                                    unsigned int width, unsigned int height,
                                    ColorMode mode, unsigned int bpp,
                                    TextureStorage s, int slot, bool filter) {
-    assert(width > 0);
-    assert(height > 0);
+    assertGreaterThan(width, 0);
+    assertGreaterThan(height, 0);
     assert((mode == ColorMode::RGB)
            || (mode == ColorMode::BGR)
            || (mode == ColorMode::ARGB)
@@ -201,15 +201,15 @@ int TextureManager::numTextures(TextureStorage s) {
 }
 
 void TextureManager::bindTextureId(unsigned int n, TextureStorage s, unsigned int unit) {
-    assert(n < getIds(s).size());
-    assert(unit < 80); //! \todo Query GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS
+    assertLessThan(n, getIds(s).size());
+    assertLessThan(unit, 80); //! \todo Query GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS
 
     glActiveTexture(GL_TEXTURE0 + unit);
     glBindTexture(GL_TEXTURE_2D, getIds(s).at(n));
 }
 
 int TextureManager::bindTexture(unsigned int n, TextureStorage s) {
-    assert(n < getIds(s).size());
+    assertLessThan(n, getIds(s).size());
 
     if ((n < getUnits(s).size()) && (getUnits(s).at(n) >= 0)) {
         bindTextureId(n, s, getUnits(s).at(n));
@@ -233,8 +233,8 @@ int TextureManager::numTiles() {
 }
 
 TextureTile& TextureManager::getTile(int index) {
-    assert(index >= 0);
-    assert(index < tiles.size());
+    assertGreaterThanEqual(index, 0);
+    assertLessThan(index, tiles.size());
     return *tiles.at(index);
 }
 
@@ -250,13 +250,13 @@ int TextureManager::numAnimatedTiles() {
 }
 
 int TextureManager::getFirstTileAnimation(int index) {
-    assert(index < animations.size());
-    assert(animations.at(index).size() > 0);
+    assertLessThan(index, animations.size());
+    assertGreaterThan(animations.at(index).size(), 0);
     return animations.at(index).at(0);
 }
 
 int TextureManager::getNextTileAnimation(int index, int tile) {
-    assert(index < animations.size());
+    assertLessThan(index, animations.size());
     for (int i = 0; i < animations.at(index).size(); i++) {
         if (animations.at(index).at(i) == tile) {
             if (i < (animations.at(index).size() - 1))

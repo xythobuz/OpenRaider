@@ -50,8 +50,8 @@ void Entity::display(glm::mat4 VP) {
             }
         }
 
-        assert(cache > -1);
-        assert(cacheType > -1);
+        assertGreaterThan(cache, -1);
+        assertGreaterThan(cacheType, -1);
     }
 
     glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));

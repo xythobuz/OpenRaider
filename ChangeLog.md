@@ -6,6 +6,7 @@
     * The menu can be navigated using a controller
     * Vertical camera rotation is now also clamped when using a controller
     * Worked on rendering SkeletalModels, not yet working correctly
+    * Implemented level loader for TR3, but tries to access invalid textiles
 
     [ 20140211 ]
     * Updated imgui to version 1.32

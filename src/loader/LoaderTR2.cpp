@@ -21,12 +21,6 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-LoaderTR2::LoaderTR2() {
-}
-
-LoaderTR2::~LoaderTR2() {
-}
-
 int LoaderTR2::load(std::string f) {
     if (file.open(f) != 0) {
         return 1; // Could not open file
@@ -91,7 +85,7 @@ void LoaderTR2::loadPaletteTextiles() {
         int r = TextureManager::loadBufferSlot(img, 256, 256,
                                                ColorMode::ARGB, 32,
                                                TextureStorage::GAME, i);
-        assert(r >= 0); //! \fixme properly handle error when texture could not be loaded!
+        assertGreaterThanEqual(r, 0); //! \fixme properly handle error when texture could not be loaded!
         delete [] img;
     }
 
@@ -106,9 +100,14 @@ void LoaderTR2::loadTextures() {
     for (unsigned int o = 0; o < numObjectTextures; o++) {
         // 0 means that a texture is all-opaque, and that transparency
         // information is ignored.
+        //
         // 1 means that transparency information is used. In 8-bit color,
         // index 0 is the transparent color, while in 16-bit color, the
         // top bit (0x8000) is the alpha channel (1 = opaque, 0 = transparent)
+        //
+        // 2 (TR3 only) means that the opacity (alpha) is equal to the intensity;
+        // the brighter the color, the more opaque it is. The intensity is probably
+        // calculated as the maximum of the individual color values.
         uint16_t attribute = file.readU16();
 
         // Index into the textile list
@@ -178,6 +177,38 @@ void LoaderTR2::loadAnimatedTextures() {
 }
 
 // ---- Rooms ----
+
+void LoaderTR2::loadRoomLights() {
+    int16_t intensity1 = file.read16();
+    int16_t intensity2 = file.read16();
+    int16_t lightMode = file.read16();
+
+    uint16_t numLights = file.readU16();
+    for (unsigned int l = 0; l < numLights; l++) {
+        // Position of light, in world coordinates
+        int32_t x = file.read32();
+        int32_t y = file.read32();
+        int32_t z = file.read32();
+
+        uint16_t intensity1 = file.readU16();
+        uint16_t intensity2 = file.readU16(); // Almost always equal to intensity1
+
+        uint32_t fade1 = file.readU32(); // Falloff value?
+        uint32_t fade2 = file.readU32(); // Falloff value?
+
+        // TODO store light somewhere
+    }
+}
+
+void LoaderTR2::loadRoomDataEnd(int16_t& alternateRoom, unsigned int& roomFlags) {
+    alternateRoom = file.read16();
+
+    uint16_t flags = file.readU16();
+    roomFlags = 0;
+    if (flags & 0x0001) {
+        roomFlags |= RoomFlagUnderWater;
+    }
+}
 
 void LoaderTR2::loadRooms() {
     uint16_t numRooms = file.readU16();
@@ -332,6 +363,10 @@ void LoaderTR2::loadRooms() {
             uint8_t roomAbove = file.readU8(); // 0xFF if none
             int8_t ceiling = file.read8(); // Absolute height of ceiling (/ 256)
 
+            // In TR3 indexBox is more complicated. Only bits 4-14 are the 'real' index.
+            // Bits 0-3 are most likely some kind of flag (footstep sound?).
+            // There is a special value of the 'real' index, 2047 or 0x7FF.
+
             bool wall = false;
             if ((((uint8_t)floor) == 0x81) || (((uint8_t)ceiling) == 0x81)) {
                 wall = true;
@@ -341,25 +376,7 @@ void LoaderTR2::loadRooms() {
             // TODO store sectors
         }
 
-        int16_t intensity1 = file.read16();
-        int16_t intensity2 = file.read16();
-        int16_t lightMode = file.read16();
-
-        uint16_t numLights = file.readU16();
-        for (unsigned int l = 0; l < numLights; l++) {
-            // Position of light, in world coordinates
-            int32_t x = file.read32();
-            int32_t y = file.read32();
-            int32_t z = file.read32();
-
-            uint16_t intensity1 = file.readU16();
-            uint16_t intensity2 = file.readU16(); // Almost always equal to intensity1
-
-            uint32_t fade1 = file.readU32(); // Falloff value?
-            uint32_t fade2 = file.readU32(); // Falloff value?
-
-            // TODO store light somewhere
-        }
+        loadRoomLights();
 
         uint16_t numStaticMeshes = file.readU16();
         std::vector<StaticModel*> staticModels;
@@ -385,13 +402,9 @@ void LoaderTR2::loadRooms() {
                                                    objectID));
         }
 
-        int16_t alternateRoom = file.read16();
-
-        uint16_t flags = file.readU16();
+        int16_t alternateRoom = -1;
         unsigned int roomFlags = 0;
-        if (flags & 0x0001) {
-            roomFlags |= RoomFlagUnderWater;
-        }
+        loadRoomDataEnd(alternateRoom, roomFlags);
 
         BoundingBox* boundingbox = new BoundingBox(bbox[0], bbox[1]);
         RoomMesh* mesh = new RoomMesh(vertices, rectangles, triangles);
@@ -463,9 +476,9 @@ void LoaderTR2::loadSprites() {
         int16_t negativeLength = file.read16(); // Negative sprite count
         int16_t offset = file.read16(); // Where sequence starts in sprite texture list
 
-        assert(negativeLength < 0);
-        assert(offset >= 0);
-        assert((offset + (negativeLength * -1)) <= numSpriteTextures);
+        assertLessThan(negativeLength, 0);
+        assertGreaterThanEqual(offset, 0);
+        assertLessThanEqual(offset + (negativeLength * -1), numSpriteTextures);
 
         SpriteSequence* ss = new SpriteSequence(objectID, offset, (negativeLength * -1));
         getWorld().addSpriteSequence(ss);
@@ -1106,7 +1119,7 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
             buff[i] = sfx.readU8();
 
         int ret = Sound::loadBuffer(buff, riffSize + 8);
-        assert(ret >= 0);
+        assertGreaterThanEqual(ret, 0);
 
         riffCount++;
     }

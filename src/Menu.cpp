@@ -14,12 +14,12 @@
 void Menu::showDialog(std::string msg, std::string btn1, std::string btn2,
                       std::function<int (bool state)> callback) {
     // Only show one dialog at a time
-    assert(dialogText.length() == 0);
-    assert(dialogButton1.length() == 0);
-    assert(dialogButton2.length() == 0);
+    assertEqual(dialogText.length(), 0);
+    assertEqual(dialogButton1.length(), 0);
+    assertEqual(dialogButton2.length(), 0);
 
-    assert(msg.length() > 0);
-    assert(btn1.length() > 0);
+    assertGreaterThan(msg.length(), 0);
+    assertGreaterThan(btn1.length(), 0);
 
     dialogText = msg;
     dialogButton1 = btn1;
@@ -93,7 +93,7 @@ void Menu::displayDialog() {
             w0 = wMax;
         unsigned int h0 =  Font::heightText(1.0f, w0, dialogText) + 10;
 
-        assert(dialogButton1.length() > 0);
+        assertGreaterThan(dialogButton1.length(), 0);
         unsigned int w1 = Font::widthText(1.0f, dialogButton1) + 20;
         if (w1 > wMax)
             w1 = wMax;

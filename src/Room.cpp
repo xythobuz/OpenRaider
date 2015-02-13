@@ -46,7 +46,7 @@ void Room::display(glm::mat4 VP) {
 }
 
 bool Room::isWall(unsigned long sector) {
-    assert(sector < sectors.size());
+    assertLessThan(sector, sectors.size());
 
     //! \fixme is (sector > 0) correct??
     return ((sector > 0) && sectors.at(sector)->isWall());

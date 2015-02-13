@@ -8,17 +8,15 @@
 #ifndef _LOADER_LOADER_TR3_H_
 #define _LOADER_LOADER_TR3_H_
 
-#include "loader/Loader.h"
+#include "loader/LoaderTR2.h"
 
-class LoaderTR3 : public Loader {
+class LoaderTR3 : public LoaderTR2 {
   public:
-    LoaderTR3();
-    virtual ~LoaderTR3();
-
     virtual int load(std::string f);
 
-  private:
-
+  protected:
+    virtual void loadRoomLights();
+    virtual void loadRoomDataEnd(int16_t& alternateRoom, unsigned int& roomFlags);
 };
 
 #endif

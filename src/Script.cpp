@@ -228,12 +228,12 @@ unsigned int Script::levelCount() {
 }
 
 std::string Script::getLevelName(unsigned int i) {
-    assert(i < numLevels);
+    assertLessThan(i, numLevels);
     return levelNames.at(i);
 }
 
 std::string Script::getLevelFilename(unsigned int i) {
-    assert(i < numLevels);
+    assertLessThan(i, numLevels);
     return levelFilenames.at(i);
 }
 
@@ -242,7 +242,7 @@ unsigned int Script::pictureCount() {
 }
 
 std::string Script::getPictureFilename(unsigned int i) {
-    assert(i < numPictures);
+    assertLessThan(i, numPictures);
     return pictureFilenames.at(i);
 }
 
@@ -251,7 +251,7 @@ unsigned int Script::cutsceneCount() {
 }
 
 std::string Script::getCutsceneFilename(unsigned int i) {
-    assert(i < numCutscenes);
+    assertLessThan(i, numCutscenes);
     return cutsceneFilenames.at(i);
 }
 
@@ -260,7 +260,7 @@ unsigned int Script::titleCount() {
 }
 
 std::string Script::getTitleFilename(unsigned int i) {
-    assert(i < numTitles);
+    assertLessThan(i, numTitles);
     return titleFilenames.at(i);
 }
 
@@ -269,7 +269,7 @@ unsigned int Script::videoCount() {
 }
 
 std::string Script::getVideoFilename(unsigned int i) {
-    assert(i < numFMVs);
+    assertLessThan(i, numFMVs);
     return fmvFilenames.at(i);
 }
 
@@ -278,7 +278,7 @@ unsigned int Script::gameStringCount() {
 }
 
 std::string Script::getGameString(unsigned int i) {
-    assert(i < numGameStrings);
+    assertLessThan(i, numGameStrings);
     return gameStrings.at(i);
 }
 
@@ -287,35 +287,35 @@ unsigned int Script::pcStringCount() {
 }
 
 std::string Script::getPCString(unsigned int i) {
-    assert(i < numPCStrings);
+    assertLessThan(i, numPCStrings);
     return pcStrings.at(i);
 }
 
 std::string Script::getPuzzleString(unsigned int i, unsigned int j) {
-    assert(i < 4);
-    assert(j < numLevels);
+    assertLessThan(i, 4);
+    assertLessThan(j, numLevels);
     return puzzles.at(i).at(j);
 }
 
 std::string Script::getPickupString(unsigned int i, unsigned int j) {
-    assert(i < 2);
-    assert(j < numLevels);
+    assertLessThan(i, 2);
+    assertLessThan(j, numLevels);
     return pickups.at(i).at(j);
 }
 
 std::string Script::getKeyString(unsigned int i, unsigned int j) {
-    assert(i < 4);
-    assert(j < numLevels);
+    assertLessThan(i, 4);
+    assertLessThan(j, numLevels);
     return keys.at(i).at(j);
 }
 
 void Script::registerScriptHandler(ScriptOpCode op, std::function<int (bool, uint16_t)> func) {
-    assert(op < OP_UNKNOWN);
+    assertLessThan(op, OP_UNKNOWN);
     scriptHandlers[op] = func;
 }
 
 int Script::runScript(unsigned int level) {
-    assert(level < (numLevels + 1));
+    assertLessThan(level, (numLevels + 1));
     std::vector<uint16_t> s = script.at(level);
 
     for (unsigned int i = 0; i < s.size(); i++) {

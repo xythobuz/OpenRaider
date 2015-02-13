@@ -35,7 +35,8 @@ class BoundingBox {
     }
 
     glm::vec3 getCorner(int i) {
-        assert((i >= 0) && (i < 8));
+        assertGreaterThanEqual(i, 0);
+        assertLessThan(i, 8);
         return corner[i];
     }
 
@@ -81,7 +82,12 @@ class Portal {
     }
     int getAdjoiningRoom() { return adjoiningRoom; }
     glm::vec3 getNormal() { return normal; }
-    glm::vec3 getVertex(int i) { assert((i >= 0) && (i < 4)); return vert[i]; }
+
+    glm::vec3 getVertex(int i) {
+        assertGreaterThanEqual(i, 0);
+        assertLessThan(i, 4);
+        return vert[i];
+    }
 
   private:
     int adjoiningRoom;
