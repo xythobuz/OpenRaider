@@ -8,6 +8,13 @@
 #include "global.h"
 #include "Script.h"
 
+const bool Script::opcodeHasOperand[OP_UNKNOWN] {
+    true, true, true, true, true, true,
+    false, true, true, false, true, false,
+    true, false, false, false, true, true,
+    true, true, true, false, false
+};
+
 Script::Script() : puzzles(4), pickups(2), keys(4) {
     version = 0;
     firstOption = 0;

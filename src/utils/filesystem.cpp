@@ -49,8 +49,8 @@ std::string getHomeDirectory() {
     assertEqual(SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0, path), S_OK);
     size_t lenPath = strlen(path);
     for (unsigned int i = 0; i < lenPath; i++)
-        if (dir[i] == '\\')
-            dir[i] = '/';
+        if (path[i] == '\\')
+            path[i] = '/';
     return std::string(path);
 
 #else

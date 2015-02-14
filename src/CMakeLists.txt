@@ -45,6 +45,14 @@ if (GLM_FOUND)
     include_directories (SYSTEM  ${GLM_INCLUDE_DIRS})
 endif (GLM_FOUND)
 
+if (WIN32)
+    find_package (GLEW REQUIRED)
+    if (GLEW_FOUND)
+        include_directories (SYSTEM ${GLEW_INCLUDE_DIRS})
+        set (LIBS ${LIBS} ${GLEW_LIBRARIES})
+    endif (GLEW_FOUND)
+endif (WIN32)
+
 #################################################################
 
 # Set Source files

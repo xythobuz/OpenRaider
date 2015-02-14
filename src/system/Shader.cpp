@@ -241,7 +241,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
                     Shader& shader) {
     assert(vertices.getSize() == uvs.getSize());
     if (mode == GL_TRIANGLES) {
-        assert((vertices.getSize() % 3) == 0)
+        assert((vertices.getSize() % 3) == 0);
     }
 
     shader.use();
@@ -295,7 +295,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
                     unsigned int mode, Shader& shader) {
     assert(vertices.getSize() == colors.getSize());
     if (mode == GL_TRIANGLES) {
-        assert((vertices.getSize() % 3) == 0)
+        assert((vertices.getSize() % 3) == 0);
     }
 
     shader.use();
@@ -311,7 +311,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& 
                     glm::mat4 MVP, unsigned int mode, Shader& shader) {
     assert(vertices.getSize() == colors.getSize());
     if (mode == GL_TRIANGLES) {
-        assert((indices.getSize() % 3) == 0)
+        assert((indices.getSize() % 3) == 0);
     }
 
     shader.use();

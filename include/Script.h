@@ -144,12 +144,7 @@ class Script {
     void readStringPackage(BinaryFile& f, std::vector<std::string>& v, unsigned int n);
     void readScriptPackage(BinaryFile& f, std::vector<std::vector<uint16_t>>& v, unsigned int n);
 
-    const bool opcodeHasOperand[OP_UNKNOWN] {
-        true, true, true, true, true, true,
-        false, true, true, false, true, false,
-        true, false, false, false, true, true,
-        true, true, true, false, false
-    };
+    const static bool opcodeHasOperand[OP_UNKNOWN];
 
     // Header
     uint32_t version; // Always 3, for TR2/3 on PC and PSX

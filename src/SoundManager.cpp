@@ -45,6 +45,8 @@ int SoundManager::prepareSources() {
             assertGreaterThanEqual(ret, 0);
         }
     }
+
+    return 0;
 }
 
 void SoundManager::addSoundSource(float x, float y, float z, int id, int flags) {

@@ -1113,12 +1113,13 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
         // riffSize is (fileLength - 8)
         uint32_t riffSize = sfx.readU32();
 
-        unsigned char buff[riffSize + 8];
+        unsigned char* buff = new unsigned char[riffSize + 8];
         sfx.seek(sfx.tell() - 8);
         for (int i = 0; i < (riffSize + 8); i++)
             buff[i] = sfx.readU8();
 
         int ret = Sound::loadBuffer(buff, riffSize + 8);
+        delete [] buff;
         assertGreaterThanEqual(ret, 0);
 
         riffCount++;

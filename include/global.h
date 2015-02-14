@@ -81,11 +81,14 @@ typedef enum {
 #include <OpenGL/gl3.h>
 #else // __APPLE__
 #ifdef _WIN32
-#include <windows.h>
-#endif // _WIN32
+#include <GL/glew.h>
+#include <GL/wglew.h>
+#pragma comment(lib, "glew32.lib")
+#else // _WIN32
 //! \todo gl3 header?
 #include <GL/gl.h>
 #include <GL/glext.h>
+#endif // _WIN32
 #endif // __APPLE__
 
 /*! \todo Is there a better way to handle this?
