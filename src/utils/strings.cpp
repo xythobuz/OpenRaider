@@ -41,6 +41,9 @@ char *bufferString(const char *string, va_list args) {
 
     text = new char[sz];
 
+    va_list copy;
+    va_copy(copy, args);
+
     n = vsnprintf(text, sz, string, args);
 
     if (n < 0) {
@@ -50,8 +53,10 @@ char *bufferString(const char *string, va_list args) {
         sz = n + 1; // buffer too small
         delete [] text;
         text = new char[sz];
-        n = vsnprintf(text, sz, string, args);
+        n = vsnprintf(text, sz, string, copy);
     }
+
+    va_end(copy);
 
     return text;
 }
