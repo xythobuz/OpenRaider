@@ -31,7 +31,7 @@ int SoundManager::prepareSources() {
         int index = getIndex(soundSources.at(i).id, &vol);
         int ret = Sound::addSource(index, vol, false, true);
         assertEqual(ret, i);
-        float pos[3] = { soundSources.at(i).x, soundSources.at(i).y, soundSources.at(i).z };
+        glm::vec3 pos = soundSources.at(i).pos;
         ret = Sound::sourceAt(i, pos);
         assertEqual(ret, 0);
         Sound::play(i, false);
@@ -49,8 +49,8 @@ int SoundManager::prepareSources() {
     return 0;
 }
 
-void SoundManager::addSoundSource(float x, float y, float z, int id, int flags) {
-    soundSources.emplace_back(x, y, z, id, flags);
+void SoundManager::addSoundSource(glm::vec3 p, int id, int flags) {
+    soundSources.emplace_back(p, id, flags);
 }
 
 void SoundManager::addSoundMapEntry(int id) {
@@ -63,10 +63,6 @@ void SoundManager::addSoundDetail(int sample, float volume) {
 
 void SoundManager::addSampleIndex(int index) {
     sampleIndices.push_back(index);
-}
-
-int SoundManager::sizeSoundMap() {
-    return soundMap.size();
 }
 
 int SoundManager::getIndex(int index, float* volume) {
@@ -121,40 +117,44 @@ int SoundManager::playSound(int index) {
 }
 
 void SoundManager::display() {
-    if (ImGui::CollapsingHeader("Sound Map Player")) {
+    if (ImGui::CollapsingHeader("Sound Player")) {
         if (!Sound::getEnabled()) {
             ImGui::Text("Please enable Sound first!");
             if (ImGui::Button("Enable Sound!")) {
                 Sound::setEnabled(true);
             }
+            return;
         } else if (Sound::numBuffers() == 0) {
-            ImGui::Text("Please load a level!");
-        } else {
-            static int index = 0;
-            ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
-            ImGui::SliderInt("##soundslide", &index, 0, sizeSoundMap() - 1);
-            ImGui::PopItemWidth();
-            ImGui::SameLine();
-            if (ImGui::Button("+##soundplus", ImVec2(0, 0), true)) {
-                if (index < (sizeSoundMap() - 1))
-                    index++;
-                else
-                    index = 0;
-            }
-            ImGui::SameLine();
-            if (ImGui::Button("-##soundminus", ImVec2(0, 0), true)) {
-                if (index > 0)
-                    index--;
-                else
-                    index = sizeSoundMap() - 1;
-            }
-            ImGui::SameLine();
-            if (ImGui::Button("Play##soundplay")) {
-                playSound(index);
-            }
-
-            ImGui::Text("Index: %d", getIndex(index));
+            ImGui::Text("No Sounds currently loaded!");
+            return;
         }
+
+        static int index = 0;
+        ImGui::Text("Map");
+        ImGui::SameLine();
+        ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.5f);
+        ImGui::SliderInt("##soundslide", &index, 0, soundMap.size() - 1);
+        ImGui::PopItemWidth();
+        ImGui::SameLine();
+        if (ImGui::Button("+##soundplus", ImVec2(0, 0), true)) {
+            if (index < (soundMap.size() - 1))
+                index++;
+            else
+                index = 0;
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("-##soundminus", ImVec2(0, 0), true)) {
+            if (index > 0)
+                index--;
+            else
+                index = soundMap.size() - 1;
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("Play##soundplay")) {
+            playSound(index);
+        }
+        ImGui::SameLine();
+        ImGui::Text("%d", getIndex(index));
     }
 }
 

@@ -1033,7 +1033,7 @@ void LoaderTR2::loadSoundSources() {
         // Unknown, 0x40, 0x80 or 0xC0
         uint16_t flags = file.readU16();
 
-        SoundManager::addSoundSource(x, y, z, soundID, flags);
+        SoundManager::addSoundSource(glm::vec3(x, y, z), soundID, flags);
     }
 
     if (numSoundSources > 0)

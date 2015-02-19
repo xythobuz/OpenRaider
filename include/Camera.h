@@ -39,8 +39,16 @@ class Camera {
     static void setUpdateViewFrustum(bool u) { updateViewFrustum = u; }
     static bool getUpdateViewFrustum() { return updateViewFrustum; }
 
+    static void setRoom(int r) { if (room != r) dirty = true; room = r; }
+    static int getRoom() { return room; }
+
+    static void setShowOverlay(bool s) { showOverlay = s; }
+    static bool getShowOverlay() { return showOverlay; }
+
     static bool boxInFrustum(BoundingBox b);
     static void displayFrustum(glm::mat4 MVP);
+
+    static void displayUI();
 
   private:
     static void calculateFrustumPlanes();
@@ -52,7 +60,8 @@ class Camera {
     static glm::mat4 projection;
     static glm::mat4 view;
     static float rotationDeltaX, rotationDeltaY;
-    static bool updateViewFrustum, dirty;
+    static bool updateViewFrustum, dirty, showOverlay;
+    static int room;
 };
 
 #endif

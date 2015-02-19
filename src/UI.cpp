@@ -11,14 +11,18 @@
 #include "Camera.h"
 #include "Console.h"
 #include "Game.h"
+#include "Log.h"
 #include "Menu.h"
 #include "Render.h"
 #include "RunTime.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
+#include "World.h"
 #include "system/Window.h"
 #include "utils/time.h"
 #include "UI.h"
+
+#include <glm/gtc/matrix_transform.hpp>
 
 Shader UI::imguiShader;
 bool UI::visible = false;
@@ -242,14 +246,14 @@ void UI::eventsFinished() {
 
 void UI::display() {
     if (RunTime::getShowFPS()) {
-        if (ImGui::Begin("Debug Overlay", nullptr, ImVec2(0, 0), 0.3f,
+        if (ImGui::Begin("Debug Overlay", nullptr, ImVec2(0, 0), -1.0f,
                          ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize
                          | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings
                          | ImGuiWindowFlags_AlwaysAutoResize)) {
             ImGui::Text("%d FPS", RunTime::getFPS());
             ImGui::Text("X: %.1f (%.2f)", Camera::getPosition().x, Camera::getRotation().x);
             ImGui::Text("Y: %.2f (%.2f)", Camera::getPosition().y, Camera::getRotation().y);
-            ImGui::Text("Z: %.2f", Camera::getPosition().z);
+            ImGui::Text("Z: %.2f (%d)", Camera::getPosition().z, Camera::getRoom());
 
             auto window = ImGui::GetWindowSize();
             auto screen = Window::getSize();
@@ -257,6 +261,9 @@ void UI::display() {
         }
         ImGui::End();
     }
+
+    if (Game::isLoaded())
+        Camera::displayUI();
 
     Console::display();
 
@@ -282,6 +289,76 @@ void UI::display() {
             ImGui::SameLine();
             if (ImGui::Button("Show/Hide Style Editor")) {
                 showStyleWindow = !showStyleWindow;
+            }
+        }
+
+        if (ImGui::CollapsingHeader("ShaderTexture Test")) {
+            static ShaderTexture* st = nullptr;
+            static int index = 0;
+            ImGui::SliderInt("SkeletalModel", &index, 0, getWorld().sizeSkeletalModel() - 1);
+
+            static glm::mat4 MVP(1.0f);
+            static bool dirty = true, redraw = false;
+            static float zoom = 1.0f;
+            static float pos[3];
+            static float rot[3];
+
+            if (ImGui::SliderFloat3("Position", pos, -100.0f, 100.0f)) {
+                dirty = true;
+            }
+            if (ImGui::SliderFloat3("Rotation", rot, -6.0f, 6.0f)) {
+                dirty = true;
+            }
+            if (ImGui::SliderFloat("Zoom", &zoom, -1.0f, 2.0f)) {
+                dirty = true;
+            }
+
+            if (dirty) {
+                static glm::mat4 projection = glm::perspective(45.0f, 1.0f, 0.1f, 2000.0f);
+
+                glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(zoom, zoom, zoom));
+                glm::mat4 rotateX = glm::rotate(glm::mat4(1.0f), rot[0], glm::vec3(1.0f, 0.0f, 0.0f));
+                glm::mat4 rotateY = glm::rotate(glm::mat4(1.0f), rot[1], glm::vec3(0.0f, 1.0f, 0.0f));
+                glm::mat4 rotateZ = glm::rotate(glm::mat4(1.0f), rot[2], glm::vec3(0.0f, 0.0f, 1.0f));
+                glm::mat4 rotate = rotateZ * rotateY * rotateX;
+                glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos[0], pos[1], pos[2]));
+                glm::mat4 view = glm::inverse(scale * rotate * translate);
+                MVP = projection * view;
+
+                redraw = true;
+                dirty = false;
+            }
+
+            if ((index >= 0) && (index < getWorld().sizeSkeletalModel())) {
+                auto& sm = getWorld().getSkeletalModel(index);
+                if ((sm.size() > 0) && (sm.get(0).size() > 0)) {
+                    if (ImGui::Button("(Re)Create ShaderTexture...")) {
+                        if (st != nullptr) {
+                            delete st;
+                            st = nullptr;
+                        }
+                        if (st == nullptr) {
+                            st = new ShaderTexture();
+                            redraw = true;
+                        }
+                    }
+                    if ((st != nullptr) && redraw) {
+                        st->clear();
+                        sm.display(MVP, 0, 0, st);
+                        redraw = false;
+                        Log::get(LOG_DEBUG) << "Rendered new ShaderTexture!" << Log::endl;
+                    }
+                } else {
+                    ImGui::Text("Selected SkeletalModel has no animation/frame!");
+                }
+            } else {
+                ImGui::Text("No SkeletalModels loaded!");
+            }
+
+            if (st != nullptr) {
+                auto bm = TextureManager::getBufferManager(st->getTexture(), TextureStorage::SYSTEM);
+                ImGui::Image(bm, ImVec2(ImGui::GetColumnWidth() * 2 / 3,
+                                        ImGui::GetColumnWidth() * 2 / 3));
             }
         }
     }

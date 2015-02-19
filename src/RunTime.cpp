@@ -180,7 +180,7 @@ void RunTime::display() {
         ImGui::Text("Frames per Second: %luFPS", fps);
         int size = history.size() - 1;
         if (size > 0) {
-            static bool scroll = true;
+            static bool scroll = false;
             if (scroll) {
                 int start = 0;
                 if (size > 10)

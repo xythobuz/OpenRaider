@@ -150,9 +150,6 @@ int TextureManager::loadBufferSlot(unsigned char* image,
         getIds(s).push_back(id);
     }
 
-    if (image == nullptr)
-        return slot;
-
     unsigned int glcMode;
     switch (mode) {
         case ColorMode::BGR:
@@ -164,7 +161,8 @@ int TextureManager::loadBufferSlot(unsigned char* image,
             break;
 
         case ColorMode::ARGB:
-            argb2rgba32(image, width, height);
+            if (image != nullptr)
+                argb2rgba32(image, width, height);
             glcMode = GL_RGBA;
             break;
 
@@ -222,6 +220,11 @@ int TextureManager::bindTexture(unsigned int n, TextureStorage s) {
         nextFreeTextureUnit++;
         return nextFreeTextureUnit - 1;
     }
+}
+
+unsigned int TextureManager::getTextureID(int n, TextureStorage s) {
+    assertLessThan(n, getIds(s).size());
+    return getIds(s).at(n);
 }
 
 void TextureManager::addTile(TextureTile* t) {

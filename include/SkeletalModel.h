@@ -11,10 +11,12 @@
 
 #include <vector>
 
+#include "system/Shader.h"
+
 class BoneTag {
   public:
     BoneTag(int m, glm::vec3 o, glm::vec3 r, char f) : mesh(m), off(o), rot(r), flag(f) { }
-    void display(glm::mat4 MVP);
+    void display(glm::mat4 MVP, ShaderTexture* shaderTexture = nullptr);
 
     glm::vec3 getOffset() { return off; }
     glm::vec3 getRotation() { return rot; }
@@ -60,7 +62,7 @@ class SkeletalModel {
   public:
     SkeletalModel(int i) : id(i) { }
     ~SkeletalModel();
-    void display(glm::mat4 MVP, int aframe, int bframe);
+    void display(glm::mat4 MVP, int aframe, int bframe, ShaderTexture* shaderTexture = nullptr);
 
     int getID() { return id; }
 

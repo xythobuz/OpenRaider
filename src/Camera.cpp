@@ -8,6 +8,8 @@
 
 #include <limits>
 
+#include "imgui/imgui.h"
+
 #include "global.h"
 #include "RunTime.h"
 #include "system/Shader.h"
@@ -56,6 +58,8 @@ float Camera::rotationDeltaX = 0.75f;
 float Camera::rotationDeltaY = 0.75f;
 bool Camera::updateViewFrustum = true;
 bool Camera::dirty = true;
+bool Camera::showOverlay = false;
+int Camera::room = -1;
 
 void Camera::reset() {
     pos = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -65,6 +69,7 @@ void Camera::reset() {
     dirty = true;
     projection = glm::mat4(1.0f);
     view = glm::mat4(1.0f);
+    room = -1;
 
     setSize(Window::getSize());
 }
@@ -187,6 +192,19 @@ bool Camera::update() {
 
     dirty = false;
     return updateViewFrustum;
+}
+
+void Camera::displayUI() {
+    if (!showOverlay)
+        return;
+
+    if (ImGui::Begin("Camera Look-At Overlay", &showOverlay, ImVec2(0, 0), -1.0f,
+                     ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize
+                     | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings
+                     | ImGuiWindowFlags_AlwaysAutoResize)) {
+        // TODO
+    }
+    ImGui::End();
 }
 
 // ----------------------------------------------------------------------------

@@ -24,7 +24,7 @@ float SoundAL::volume = 1.0f;
 std::vector<unsigned int> SoundAL::buffers;
 std::vector<unsigned int> SoundAL::sources;
 std::vector<unsigned int> SoundAL::listenerSources;
-float SoundAL::lastPosition[3] = { 0.0f, 0.0f, 0.0f };
+glm::vec3 SoundAL::lastPosition(0.0f, 0.0f, 0.0f);
 
 int SoundAL::initialize() {
     if (init)
@@ -41,6 +41,12 @@ int SoundAL::initialize() {
 
     init = true;
     setVolume(volume);
+
+    lastPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 at(0.0f, 0.0f, -1.0f);
+    glm::vec3 up(0.0f, 1.0f, 0.0f);
+    listenAt(lastPosition, at, up);
+
     return 0;
 }
 
@@ -81,11 +87,10 @@ void SoundAL::clear() {
         Log::get(LOG_ERROR) << "SoundAL: Error while deleting buffers!" << Log::endl;
     }
 
-    for (int i = 0; i < 3; i++)
-        lastPosition[i] = 0.0f;
-
-    float orientation[6] = { 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f };
-    listenAt(lastPosition, orientation);
+    lastPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 at(0.0f, 0.0f, -1.0f);
+    glm::vec3 up(0.0f, 1.0f, 0.0f);
+    listenAt(lastPosition, at, up);
 }
 
 int SoundAL::numBuffers() {
@@ -133,7 +138,7 @@ int SoundAL::addSource(int buffer, float volume, bool atListener, bool loop) {
         alSourcei(id, AL_LOOPING, AL_TRUE);
 
     if (atListener) {
-        alSourcefv(id, AL_POSITION, lastPosition);
+        alSourcefv(id, AL_POSITION, &lastPosition[0]);
         listenerSources.push_back(id);
         return listenerSources.size() - 1;
     } else {
@@ -142,33 +147,33 @@ int SoundAL::addSource(int buffer, float volume, bool atListener, bool loop) {
     }
 }
 
-int SoundAL::sourceAt(int source, float pos[3]) {
+int SoundAL::sourceAt(int source, glm::vec3 pos) {
     if (!init)
         return -1;
 
-    if ((source < 0) || (source >= sources.size()) || (pos == nullptr)) {
+    if ((source < 0) || (source >= sources.size())) {
         Log::get(LOG_ERROR) << "SoundAL: Can't position non-existing source!" << Log::endl;
         return -2;
     }
 
-    alSourcefv(sources.at(source), AL_POSITION, pos);
+    alSourcefv(sources.at(source), AL_POSITION, &pos[0]);
 
     return 0;
 }
 
-void SoundAL::listenAt(float pos[3], float orientation[6]) {
-    if ((!init) || (pos == nullptr) || (orientation == nullptr))
+void SoundAL::listenAt(glm::vec3 pos, glm::vec3 at, glm::vec3 up) {
+    if (!init)
         return;
 
-    alListenerfv(AL_POSITION, pos);
+    float orientation[6] = { at.x, at.y, at.z, up.x, up.y, up.z };
+    alListenerfv(AL_POSITION, &pos[0]);
     alListenerfv(AL_ORIENTATION, orientation);
 
     for (auto& s : listenerSources) {
-        alSourcefv(s, AL_POSITION, pos);
+        alSourcefv(s, AL_POSITION, &pos[0]);
     }
 
-    for (int i = 0; i < 3; i++)
-        lastPosition[i] = pos[i];
+    lastPosition = pos;
 }
 
 void SoundAL::play(int source, bool atListener) {

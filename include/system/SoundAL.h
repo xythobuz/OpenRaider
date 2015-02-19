@@ -22,8 +22,8 @@ class SoundAL {
     static int numSources(bool atListener);
     static int addSource(int buffer, float volume, bool atListener, bool loop);
 
-    static int sourceAt(int source, float pos[3]);
-    static void listenAt(float pos[3], float orientation[6]);
+    static int sourceAt(int source, glm::vec3 pos);
+    static void listenAt(glm::vec3 pos, glm::vec3 at, glm::vec3 up);
 
     static void play(int source, bool atListener);
     static void stopAll();
@@ -43,7 +43,7 @@ class SoundAL {
     static std::vector<unsigned int> sources;
     static std::vector<unsigned int> listenerSources;
 
-    static float lastPosition[3];
+    static glm::vec3 lastPosition;
 };
 
 #endif

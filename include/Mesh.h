@@ -41,7 +41,7 @@ class Mesh {
          const std::vector<IndexedColoredRectangle>& coloredRectangles,
          const std::vector<IndexedColoredRectangle>& coloredTriangles);
     void prepare();
-    void display(glm::mat4 MVP);
+    void display(glm::mat4 MVP, ShaderTexture* shaderTexture = nullptr);
 
   private:
     std::vector<unsigned short> indicesBuff;

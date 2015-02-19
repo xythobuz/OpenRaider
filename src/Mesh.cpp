@@ -125,7 +125,7 @@ void Mesh::prepare() {
     colorsBuff.clear();
 }
 
-void Mesh::display(glm::mat4 MVP) {
+void Mesh::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {
     if (indicesBuff.size() > 0) {
         unsigned int indexStart = 0;
         unsigned int indexPos = 1;
@@ -140,7 +140,7 @@ void Mesh::display(glm::mat4 MVP) {
             std::vector<unsigned short> ind(indicesBuff.begin() + indexStart,
                                             indicesBuff.begin() + indexPos);
             indices.bufferData(ind);
-            Shader::drawGL(vertices, uvs, indices, texture, MVP);
+            Shader::drawGL(vertices, uvs, indices, texture, MVP, TextureStorage::GAME, shaderTexture);
 
             if (indexPos < indicesBuff.size()) {
                 indexStart = indexPos;
@@ -151,6 +151,6 @@ void Mesh::display(glm::mat4 MVP) {
     }
 
     if (indicesColor.getSize() > 0)
-        Shader::drawGL(verticesColor, colors, indicesColor, MVP);
+        Shader::drawGL(verticesColor, colors, indicesColor, MVP, GL_TRIANGLES, shaderTexture);
 }
 

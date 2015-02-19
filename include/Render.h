@@ -43,7 +43,7 @@ class Render {
     static bool getDisplayViewFrustum() { return displayViewFrustum; }
 
   private:
-    static void buildRoomList(int room);
+    static void buildRoomList(int room = -2);
 
     static RenderMode mode;
     static std::vector<Room*> roomList;

@@ -53,6 +53,52 @@ void ShaderBuffer::unbind(int location) {
 
 // ----------------------------------------------------------------------------
 
+static int loadBufferSlot(unsigned char* image = nullptr,
+                          unsigned int width = 256, unsigned int height = 256,
+                          ColorMode mode = ColorMode::RGBA, unsigned int bpp = 32,
+                          TextureStorage s = TextureStorage::GAME,
+                          int slot = -1, bool filter = true);
+
+ShaderTexture::ShaderTexture(int w, int h) : width(w), height(h) {
+    glGenFramebuffers(1, &framebuffer);
+    bind();
+
+    texture = TextureManager::loadBufferSlot(nullptr, width, height, ColorMode::RGBA,
+              32, TextureStorage::SYSTEM, -1, false);
+
+    glGenRenderbuffers(1, &depth);
+    glBindRenderbuffer(GL_RENDERBUFFER, depth);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depth);
+
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+                         TextureManager::getTextureID(texture, TextureStorage::SYSTEM), 0);
+
+    GLenum drawBuffer = GL_COLOR_ATTACHMENT0;
+    glDrawBuffers(1, &drawBuffer);
+
+    assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
+}
+
+ShaderTexture::~ShaderTexture() {
+    glDeleteRenderbuffers(1, &depth);
+    glDeleteFramebuffers(1,  &framebuffer);
+
+    //! \TODO free texture slot
+}
+
+void ShaderTexture::clear() {
+    bind();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void ShaderTexture::bind() {
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glViewport(0, 0, width, height);
+}
+
+// ----------------------------------------------------------------------------
+
 Shader::~Shader() {
     if (programID >= 0)
         glDeleteProgram(programID);
@@ -238,10 +284,17 @@ void Shader::set2DState(bool on, bool depth) {
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
                     unsigned int texture, TextureStorage store, unsigned int mode,
-                    Shader& shader) {
+                    ShaderTexture* target, Shader& shader) {
     assert(vertices.getSize() == uvs.getSize());
     if (mode == GL_TRIANGLES) {
         assert((vertices.getSize() % 3) == 0);
+    }
+
+    if (target == nullptr) {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+    } else {
+        target->bind();
     }
 
     shader.use();
@@ -260,9 +313,17 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture,
-                    glm::mat4 MVP, TextureStorage store, Shader& shader) {
+                    glm::mat4 MVP, TextureStorage store, ShaderTexture* target,
+                    Shader& shader) {
     assert(vertices.getSize() == uvs.getSize());
     assert((vertices.getSize() % 3) == 0);
+
+    if (target == nullptr) {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+    } else {
+        target->bind();
+    }
 
     shader.use();
     shader.loadUniform(0, MVP);
@@ -276,9 +337,16 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int text
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& indices,
                     unsigned int texture, glm::mat4 MVP, TextureStorage store,
-                    Shader& shader) {
+                    ShaderTexture* target, Shader& shader) {
     assert(vertices.getSize() == uvs.getSize());
     assert((indices.getSize() % 3) == 0);
+
+    if (target == nullptr) {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+    } else {
+        target->bind();
+    }
 
     shader.use();
     shader.loadUniform(0, MVP);
@@ -292,10 +360,17 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& ind
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
-                    unsigned int mode, Shader& shader) {
+                    unsigned int mode, ShaderTexture* target, Shader& shader) {
     assert(vertices.getSize() == colors.getSize());
     if (mode == GL_TRIANGLES) {
         assert((vertices.getSize() % 3) == 0);
+    }
+
+    if (target == nullptr) {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+    } else {
+        target->bind();
     }
 
     shader.use();
@@ -308,10 +383,17 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
-                    glm::mat4 MVP, unsigned int mode, Shader& shader) {
+                    glm::mat4 MVP, unsigned int mode, ShaderTexture* target, Shader& shader) {
     assert(vertices.getSize() == colors.getSize());
     if (mode == GL_TRIANGLES) {
         assert((indices.getSize() % 3) == 0);
+    }
+
+    if (target == nullptr) {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+    } else {
+        target->bind();
     }
 
     shader.use();
@@ -351,7 +433,7 @@ const char* Shader::textShaderFragment = R"!?!(
 
 in vec2 UV;
 
-out vec4 color;
+layout(location = 0) out vec4 color;
 
 uniform sampler2D textureSampler;
 uniform vec4 colorVar;
@@ -388,7 +470,7 @@ const char* Shader::textureShaderFragment = R"!?!(
 
 in vec2 UV;
 
-out vec4 color;
+layout(location = 0) out vec4 color;
 
 uniform sampler2D textureSampler;
 
@@ -405,7 +487,7 @@ const char* Shader::colorShaderVertex = R"!?!(
 layout(location = 0) in vec3 vertexPosition_modelspace;
 layout(location = 1) in vec3 vertexColor;
 
-out vec3 Color;
+out vec3 color;
 
 uniform mat4 MVP;
 
@@ -415,19 +497,19 @@ void main() {
                           vertexPosition_modelspace.z,
                           1);
     gl_Position = vec4(-pos.x, pos.yzw);
-    Color = vertexColor;
+    color = vertexColor;
 }
 )!?!";
 
 const char* Shader::colorShaderFragment = R"!?!(
 #version 330 core
 
-in vec3 Color;
+in vec3 color;
 
-out vec4 color;
+layout(location = 0) out vec4 color_out;
 
 void main() {
-    color = vec4(Color, 1);
+    color_out = vec4(color, 1);
 }
 )!?!";
 

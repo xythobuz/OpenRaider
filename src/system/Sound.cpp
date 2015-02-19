@@ -64,7 +64,7 @@ int Sound::addSource(int buffer, float volume, bool atListener, bool loop) {
 #endif
 }
 
-int Sound::sourceAt(int source, float pos[3]) {
+int Sound::sourceAt(int source, glm::vec3 pos) {
 #ifdef USING_AL
     return SoundAL::sourceAt(source, pos);
 #else
@@ -72,9 +72,9 @@ int Sound::sourceAt(int source, float pos[3]) {
 #endif
 }
 
-void Sound::listenAt(float pos[3], float orientation[6]) {
+void Sound::listenAt(glm::vec3 pos, glm::vec3 at, glm::vec3 up) {
 #ifdef USING_AL
-    SoundAL::listenAt(pos, orientation);
+    SoundAL::listenAt(pos, at, up);
 #endif
 }
 

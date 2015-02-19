@@ -11,11 +11,11 @@
 #include <vector>
 
 struct SoundSource {
-    float x, y, z;
+    glm::vec3 pos;
     int id, flags;
 
-    SoundSource(float _x, float _y, float _z, int i, int f)
-        : x(_x), y(_y), z(_z), id(i), flags(f) { }
+    SoundSource(glm::vec3 p, int i, int f)
+        : pos(p), id(i), flags(f) { }
 };
 
 struct SoundDetail {
@@ -30,12 +30,10 @@ class SoundManager {
     static void clear();
     static int prepareSources();
 
-    static void addSoundSource(float x, float y, float z, int id, int flags);
+    static void addSoundSource(glm::vec3 p, int id, int flags);
     static void addSoundMapEntry(int id);
     static void addSoundDetail(int sample, float volume);
     static void addSampleIndex(int index);
-
-    static int sizeSoundMap();
 
     static int getIndex(int index, float* volume = nullptr);
 

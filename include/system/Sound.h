@@ -20,8 +20,8 @@ class Sound {
     static int numSources(bool atListener = false);
     static int addSource(int buffer, float volume = 1.0f, bool atListener = false, bool loop = false);
 
-    static int sourceAt(int source, float pos[3]);
-    static void listenAt(float pos[3], float orientation[6]);
+    static int sourceAt(int source, glm::vec3 pos);
+    static void listenAt(glm::vec3 pos, glm::vec3 at, glm::vec3 up);
 
     static void play(int source, bool atListener = false);
     static void stopAll();

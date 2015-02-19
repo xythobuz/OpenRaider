@@ -45,8 +45,13 @@ void Render::display() {
     }
 
     if (Camera::update()) {
-        clearRoomList();
-        buildRoomList(-2); // TODO cache room
+        int r = Camera::getRoom();
+        if (r < 0) {
+            clearRoomList();
+            buildRoomList();
+        } else {
+            buildRoomList(r);
+        }
     }
 
     glm::mat4 projection = Camera::getProjectionMatrix();
@@ -190,7 +195,7 @@ void Render::displayUI() {
             item = 2;
         else if (mode == RenderMode::Solid)
             item = 3;
-        if (ImGui::Combo("Render Mode", &item, modeStrings, modeStringCount)) {
+        if (ImGui::Combo("Render Mode##render", &item, modeStrings, modeStringCount)) {
             if (item == 0)
                 mode = RenderMode::LoadScreen;
             else if (item == 1)
@@ -209,6 +214,14 @@ void Render::displayUI() {
         }
         ImGui::SameLine();
         ImGui::Checkbox("Show Frustum##render", &displayViewFrustum);
+        ImGui::SameLine();
+        bool showOverlay = Camera::getShowOverlay();
+        if (ImGui::Checkbox("Overlay", &showOverlay)) {
+            Camera::setShowOverlay(showOverlay);
+        }
+        if (ImGui::Button("Reset Room ID")) {
+            Camera::setRoom(-1);
+        }
 
         ImGui::Separator();
         ImGui::Text("Bounding Boxes:");
@@ -229,33 +242,37 @@ void Render::displayUI() {
 
         ImGui::Separator();
         ImGui::Text("Renderable Objects:");
+        ImGui::Text("Room: ");
+        ImGui::SameLine();
         bool showRoomGeometry = Room::getShowRoomGeometry();
-        if (ImGui::Checkbox("Room Geometry##render", &showRoomGeometry)) {
+        if (ImGui::Checkbox("Geometry##renderroom", &showRoomGeometry)) {
             Room::setShowRoomGeometry(showRoomGeometry);
         }
         ImGui::SameLine();
         bool showRoomModels = Room::getShowRoomModels();
-        if (ImGui::Checkbox("Room Models##render", &showRoomModels)) {
+        if (ImGui::Checkbox("Models##renderroom", &showRoomModels)) {
             Room::setShowRoomModels(showRoomModels);
         }
         ImGui::SameLine();
         bool showRoomSprites = Room::getShowRoomSprites();
-        if (ImGui::Checkbox("Room Sprites##render", &showRoomSprites)) {
+        if (ImGui::Checkbox("Sprites##renderroom", &showRoomSprites)) {
             Room::setShowRoomSprites(showRoomSprites);
         }
 
+        ImGui::Text("Entity: ");
+        ImGui::SameLine();
         bool showEntitySprites = Entity::getShowEntitySprites();
-        if (ImGui::Checkbox("Entity Sprites##render", &showEntitySprites)) {
+        if (ImGui::Checkbox("Sprites##renderentity", &showEntitySprites)) {
             Entity::setShowEntitySprites(showEntitySprites);
         }
         ImGui::SameLine();
         bool showEntityMeshes = Entity::getShowEntityMeshes();
-        if (ImGui::Checkbox("Entity Meshes##render", &showEntityMeshes)) {
+        if (ImGui::Checkbox("Meshes##renderentity", &showEntityMeshes)) {
             Entity::setShowEntityMeshes(showEntityMeshes);
         }
         ImGui::SameLine();
         bool showEntityModels = Entity::getShowEntityModels();
-        if (ImGui::Checkbox("Entity Models##render", &showEntityModels)) {
+        if (ImGui::Checkbox("Models##renderentity", &showEntityModels)) {
             Entity::setShowEntityModels(showEntityModels);
         }
 

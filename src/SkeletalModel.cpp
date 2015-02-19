@@ -13,8 +13,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-void BoneTag::display(glm::mat4 MVP) {
-    getWorld().getMesh(mesh).display(MVP);
+void BoneTag::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {
+    getWorld().getMesh(mesh).display(MVP, shaderTexture);
 }
 
 // ----------------------------------------------------------------------------
@@ -100,7 +100,7 @@ SkeletalModel::~SkeletalModel() {
 #include <bitset>
 #endif
 
-void SkeletalModel::display(glm::mat4 MVP, int aframe, int bframe) {
+void SkeletalModel::display(glm::mat4 MVP, int aframe, int bframe, ShaderTexture* shaderTexture) {
     assertLessThan(aframe, size());
     assertLessThan(bframe, get(aframe).size());
 
@@ -157,7 +157,7 @@ void SkeletalModel::display(glm::mat4 MVP, int aframe, int bframe) {
         glm::mat4 rotate = rotZ * rotX * rotY;
 
         glm::mat4 mod = translate * rotate;
-        tag.display(stack.get() * mod);
+        tag.display(stack.get() * mod, shaderTexture);
 #ifdef DEBUG_MODELS
         Log::get(LOG_DEBUG) << "  --> get (" << cnt << ")" << Log::endl;
 #endif

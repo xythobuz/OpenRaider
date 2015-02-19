@@ -112,6 +112,8 @@ class TextureManager {
 
     static void display();
 
+    static unsigned int getTextureID(int n, TextureStorage s);
+
   private:
     static std::vector<unsigned int>& getIds(TextureStorage s);
     static std::vector<int>& getUnits(TextureStorage s);
