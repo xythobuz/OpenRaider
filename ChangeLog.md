@@ -2,6 +2,11 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140219 ]
+    * Started implementing ability to render into textures (mainly for debugging)
+    * Started implementing camera movement room tracking
+    * Started implementing camera look-at target overlay UI
+
     [ 20140213 ]
     * The menu can be navigated using a controller
     * Vertical camera rotation is now also clamped when using a controller
