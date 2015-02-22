@@ -22,7 +22,7 @@ struct face4_t {
      */
     unsigned 16 little texture;
 
-    summary vertices[0], " - ", vertices[1], " - ", vertices[2], " - ", vertices[4];
+    summary vertices[0], " - ", vertices[1], " - ", vertices[2], " - ", vertices[3];
 }
 
 // Triangular faces
