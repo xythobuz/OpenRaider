@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140222 ]
+    * Updated imgui to version 1.33
+
     [ 20140219 ]
     * Started implementing ability to render into textures (mainly for debugging)
     * Started implementing camera movement room tracking
