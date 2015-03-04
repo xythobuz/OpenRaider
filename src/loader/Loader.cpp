@@ -7,6 +7,7 @@
 
 #include "global.h"
 #include "loader/Loader.h"
+#include "loader/LoaderTR1.h"
 #include "loader/LoaderTR2.h"
 #include "loader/LoaderTR3.h"
 
@@ -38,11 +39,13 @@ Loader::LoaderVersion Loader::checkFile(std::string f) {
 std::unique_ptr<Loader> Loader::createLoader(std::string f) {
     LoaderVersion v = checkFile(f);
     switch (v) {
-        case TR_1:
         case TR_4:
         case TR_5:
         case TR_UNKNOWN:
             return nullptr;
+
+        case TR_1:
+            return std::unique_ptr<Loader>(new LoaderTR1());
 
         case TR_2:
             return std::unique_ptr<Loader>(new LoaderTR2());

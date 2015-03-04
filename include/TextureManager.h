@@ -9,6 +9,8 @@
 #ifndef _TEXTURE_MANAGER_H
 #define _TEXTURE_MANAGER_H
 
+#include <array>
+#include <tuple>
 #include <vector>
 
 // These are loaded into TextureStorage::SYSTEM by initialize()!
@@ -68,6 +70,7 @@ class TextureManager {
     static int initializeSplash();
     static void shutdown();
     static void clear();
+    static void prepare();
 
     static int numTextures(TextureStorage s = TextureStorage::GAME);
 
@@ -114,6 +117,11 @@ class TextureManager {
 
     static unsigned int getTextureID(int n, TextureStorage s);
 
+    static void setPalette(int index, glm::vec4 color);
+    static glm::vec4 getPalette(int index);
+
+    static void addIndexedTexture(unsigned char* image, unsigned int width, unsigned int height);
+
   private:
     static std::vector<unsigned int>& getIds(TextureStorage s);
     static std::vector<int>& getUnits(TextureStorage s);
@@ -133,6 +141,9 @@ class TextureManager {
 
     static std::vector<BufferManager> gameBuffers;
     static std::vector<BufferManager> systemBuffers;
+
+    static std::array<glm::vec4, 256> colorPalette;
+    static std::vector<std::tuple<unsigned char*, unsigned int, unsigned int>> indexedTextures;
 };
 
 #endif

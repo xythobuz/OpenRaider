@@ -109,7 +109,7 @@ typedef enum {
 
 template<typename T, typename U>
 [[noreturn]] void assertEqualImplementation(const char* exp, T a, U b, const char* file, int line,
-        bool print = false, const char* str = nullptr) {
+                                            const char* str = nullptr) {
     const unsigned int maxSize = 128;
     void* callstack[maxSize];
     int frames = backtrace(callstack, maxSize);
@@ -117,7 +117,7 @@ template<typename T, typename U>
 
     std::cout << std::endl << "assertion failed:" << std::endl;
     std::cout << "\t" << exp << std::endl;
-    if (print)
+    if (str != nullptr)
         std::cout << "\t(" << a << " " << str << " " << b << ")" << std::endl;
     std::cout << "in " << file << ":" << line << std::endl << std::endl;
 
@@ -142,7 +142,7 @@ template<typename T, typename U>
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp != assertEvalTemp2) \
         assertEqualImplementation(#x " == " #y, assertEvalTemp, assertEvalTemp2, \
-                                  __FILE__, __LINE__, true, "!="); \
+                                  __FILE__, __LINE__, "!="); \
 }
 
 #define assertNotEqual(x, y) { \
@@ -150,7 +150,7 @@ template<typename T, typename U>
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp == assertEvalTemp2) \
         assertEqualImplementation(#x " != " #y, assertEvalTemp, assertEvalTemp2, \
-                                  __FILE__, __LINE__, true, "=="); \
+                                  __FILE__, __LINE__, "=="); \
 }
 
 #define assertLessThan(x, y) { \
@@ -158,7 +158,7 @@ template<typename T, typename U>
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp >= assertEvalTemp2) \
         assertEqualImplementation(#x " < " #y, assertEvalTemp, assertEvalTemp2, \
-                                  __FILE__, __LINE__, true, ">="); \
+                                  __FILE__, __LINE__, ">="); \
 }
 
 #define assertLessThanEqual(x, y) { \
@@ -166,7 +166,7 @@ template<typename T, typename U>
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp > assertEvalTemp2) \
         assertEqualImplementation(#x " <= " #y, assertEvalTemp, assertEvalTemp2, \
-                                  __FILE__, __LINE__, true, ">"); \
+                                  __FILE__, __LINE__, ">"); \
 }
 
 #define assertGreaterThan(x, y) { \
@@ -174,7 +174,7 @@ template<typename T, typename U>
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp <= assertEvalTemp2) \
         assertEqualImplementation(#x " > " #y, assertEvalTemp, assertEvalTemp2, \
-                                  __FILE__, __LINE__, true, "<="); \
+                                  __FILE__, __LINE__, "<="); \
 }
 
 #define assertGreaterThanEqual(x, y) { \
@@ -182,7 +182,7 @@ template<typename T, typename U>
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp < assertEvalTemp2) \
         assertEqualImplementation(#x " >= " #y, assertEvalTemp, assertEvalTemp2, \
-                                  __FILE__, __LINE__, true, "<"); \
+                                  __FILE__, __LINE__, "<"); \
 }
 
 #else // NODEBUG

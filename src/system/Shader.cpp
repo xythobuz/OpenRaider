@@ -53,12 +53,6 @@ void ShaderBuffer::unbind(int location) {
 
 // ----------------------------------------------------------------------------
 
-static int loadBufferSlot(unsigned char* image = nullptr,
-                          unsigned int width = 256, unsigned int height = 256,
-                          ColorMode mode = ColorMode::RGBA, unsigned int bpp = 32,
-                          TextureStorage s = TextureStorage::GAME,
-                          int slot = -1, bool filter = true);
-
 ShaderTexture::ShaderTexture(int w, int h) : width(w), height(h) {
     glGenFramebuffers(1, &framebuffer);
     bind();
@@ -346,6 +340,21 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& ind
         glViewport(0, 0, Window::getSize().x, Window::getSize().y);
     } else {
         target->bind();
+
+        unsigned int sz = vertices.getSize();
+        glm::vec3* buffer = new glm::vec3[sz];
+    glBindBuffer(GL_ARRAY_BUFFER, vertices.getBuffer());
+        glGetBufferSubData(GL_ARRAY_BUFFER, 0, sz * sizeof(glm::vec3), buffer);
+
+        Log::get(LOG_DEBUG) << "drawGL Vertex dump:" << Log::endl;
+        for (unsigned int i = 0; i < sz; i++) {
+            glm::vec4 tmp(buffer[i], 1.0f);
+            tmp = MVP * tmp;
+            glm::vec3 res(tmp.x, tmp.y, tmp.z);
+            Log::get(LOG_DEBUG) << buffer[i] << " -> " << res << Log::endl;
+        }
+
+        delete [] buffer;
     }
 
     shader.use();

@@ -101,7 +101,7 @@ int64_t BinaryReader::read64() {
 // ----------------------------------------------------------------------------
 
 BinaryFile::BinaryFile(std::string f) {
-    assert(open(f) == 0);
+    assertEqual(open(f), 0);
 }
 
 BinaryFile::~BinaryFile() {
@@ -144,7 +144,7 @@ void BinaryFile::read(char* d, int c) {
 // ----------------------------------------------------------------------------
 
 BinaryMemory::BinaryMemory(const char* d, long long m) : data(nullptr), offset(0), max(-1) {
-    assert(open(d, m) == 0);
+    assertEqual(open(d, m), 0);
 }
 
 BinaryMemory::~BinaryMemory() {
@@ -164,23 +164,23 @@ int BinaryMemory::open(const char* d, long long m) {
 }
 
 long long BinaryMemory::tell() {
-    assert(offset >= 0);
+    assertGreaterThanEqual(offset, 0);
     return offset;
 }
 
 void BinaryMemory::seek(long long pos) {
-    assert(pos >= 0);
+    assertGreaterThanEqual(pos, 0);
     offset = pos;
 }
 
 bool BinaryMemory::eof() {
-    return (offset > max);
+    return (offset >= max);
 }
 
 void BinaryMemory::read(char* d, int c) {
-    assert(offset >= 0);
-    assert(c > 0);
-    assert((offset + c) <= max);
+    assertGreaterThanEqual(offset, 0);
+    assertGreaterThan(c, 0);
+    assertLessThanEqual(offset + c, max);
     for (int i = 0; i < c; i++) {
         d[i] = data[offset + i];
     }

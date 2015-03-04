@@ -49,6 +49,8 @@ int MenuFolder::init(Folder* folder, bool filter) {
             // Filter files based on file name
             if ((f.getName().length() > 4)
                 && (f.getName().compare(f.getName().length() - 4, 4, ".phd") != 0)
+                && (f.getName().compare(f.getName().length() - 4, 4, ".psx") != 0)
+                && (f.getName().compare(f.getName().length() - 4, 4, ".tub") != 0)
                 && (f.getName().compare(f.getName().length() - 4, 4, ".tr2") != 0)
                 && (f.getName().compare(f.getName().length() - 4, 4, ".tr4") != 0)
                 && (f.getName().compare(f.getName().length() - 4, 4, ".trc") != 0)) {

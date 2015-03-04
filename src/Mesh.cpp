@@ -37,7 +37,7 @@ Mesh::Mesh(const std::vector<glm::vec3>& vert,
         verticesColorBuff.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
         verticesColorBuff.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
         verticesColorBuff.push_back(glm::vec3(vert.at(t.v4).x, vert.at(t.v4).y, vert.at(t.v4).z));
-        colorsBuff.push_back(glm::vec3(t.r, t.g, t.b));
+        colorsBuff.push_back(t.index);
     }
 
     for (auto& t : coloredTri) {
@@ -45,7 +45,7 @@ Mesh::Mesh(const std::vector<glm::vec3>& vert,
         verticesColorBuff.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));
         verticesColorBuff.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
         verticesColorBuff.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
-        colorsBuff.push_back(glm::vec3(t.r, t.g, t.b));
+        colorsBuff.push_back(t.index);
     }
 }
 
@@ -101,7 +101,8 @@ void Mesh::prepare() {
                 v = 0;
             indCol.push_back(vertCol.size());
             vertCol.push_back(verticesColorBuff.at(vertIndex + v));
-            cols.push_back(colorsBuff.at(i));
+            glm::vec4 c = TextureManager::getPalette(colorsBuff.at(i));
+            cols.push_back(glm::vec3(c.x, c.y, c.z));
         }
 
         if (indicesColorBuff.at(i) == 0) {

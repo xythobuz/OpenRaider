@@ -59,6 +59,7 @@ int Game::loadLevel(const char* level) {
         }
 
         SoundManager::prepareSources();
+        TextureManager::prepare();
 
         mLoaded = true;
         Render::setMode(RenderMode::Texture);

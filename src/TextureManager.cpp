@@ -45,6 +45,8 @@ glm::vec2 TextureTile::getUV(unsigned int i) {
 
 // ----------------------------------------------------------------------------
 
+#define COLOR_PALETTE_SIZE 256
+
 std::vector<unsigned int> TextureManager::mTextureIdsGame;
 std::vector<unsigned int> TextureManager::mTextureIdsSystem;
 std::vector<TextureTile*> TextureManager::tiles;
@@ -54,6 +56,8 @@ std::vector<int> TextureManager::systemUnits;
 unsigned int TextureManager::nextFreeTextureUnit = 0;
 std::vector<BufferManager> TextureManager::gameBuffers;
 std::vector<BufferManager> TextureManager::systemBuffers;
+std::array<glm::vec4, 256> TextureManager::colorPalette;
+std::vector<std::tuple<unsigned char*, unsigned int, unsigned int>> TextureManager::indexedTextures;
 
 int TextureManager::initialize() {
     assertEqual(mTextureIdsGame.size(), 0);
@@ -126,6 +130,8 @@ void TextureManager::clear() {
     gameUnits.clear();
     systemUnits.clear();
     nextFreeTextureUnit = 0;
+
+    indexedTextures.clear();
 }
 
 int TextureManager::loadBufferSlot(unsigned char* image,
@@ -277,6 +283,44 @@ BufferManager* TextureManager::getBufferManager(int tex, TextureStorage store) {
         v.emplace_back(v.size(), store);
     }
     return &(v.at(tex));
+}
+
+void TextureManager::setPalette(int index, glm::vec4 color) {
+    assertGreaterThanEqual(index, 0);
+    assertLessThan(index, COLOR_PALETTE_SIZE);
+    colorPalette[index] = color;
+}
+
+glm::vec4 TextureManager::getPalette(int index) {
+    assertGreaterThanEqual(index, 0);
+    assertLessThan(index, COLOR_PALETTE_SIZE);
+    return colorPalette[index];
+}
+
+void TextureManager::addIndexedTexture(unsigned char* image, unsigned int width, unsigned int height) {
+    unsigned char* img = new unsigned char[width * height];
+    for (unsigned int i = 0; i < (width * height); i++)
+        img[i] = image[i];
+    indexedTextures.emplace_back(img, width, height);
+}
+
+void TextureManager::prepare() {
+    for (int i = 0; i < indexedTextures.size(); i++) {
+        auto tex = indexedTextures.at(i);
+        unsigned char* img = std::get<0>(tex);
+        unsigned int width = std::get<1>(tex);
+        unsigned int height = std::get<2>(tex);
+        unsigned char* image = new unsigned char[width * height * 4];
+        for (unsigned int i = 0; i < (width * height); i++) {
+            auto col = getPalette(img[i]);
+            image[i * 4] = col.x * 255;
+            image[(i * 4) + 1] = col.y * 255;
+            image[(i * 4) + 2] = col.z * 255;
+            image[(i * 4) + 3] = col.w * 255;
+        }
+        delete [] img;
+        loadBufferSlot(image, width, height, ColorMode::RGBA, 32, TextureStorage::GAME, i, true);
+    }
 }
 
 int TextureManager::loadImage(std::string filename, TextureStorage s, int slot) {

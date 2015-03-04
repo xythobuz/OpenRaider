@@ -30,7 +30,8 @@ int LoaderTR2::load(std::string f) {
         return 2; // Not a TR2 level?!
     }
 
-    loadPaletteTextiles();
+    loadPalette();
+    loadTextures();
 
     file.seek(file.tell() + 4); // Unused value?
 
@@ -39,7 +40,7 @@ int LoaderTR2::load(std::string f) {
     loadMeshes();
     loadMoveables();
     loadStaticMeshes();
-    loadTextures();
+    loadTextiles();
     loadSprites();
     loadCameras();
     loadSoundSources();
@@ -62,25 +63,34 @@ int LoaderTR2::load(std::string f) {
 
 // ---- Textures ----
 
-void LoaderTR2::loadPaletteTextiles() {
+void LoaderTR2::loadPalette() {
     file.seek(file.tell() + 768); // Skip 8bit palette, 256 * 3 bytes
 
     // Read the 16bit palette, 256 * 4 bytes, RGBA, A unused
-    for (auto& x : palette)
-        x = file.readU32();
+    for (int i = 0; i < 256; i++) {
+        uint8_t r = file.readU8();
+        uint8_t g = file.readU8();
+        uint8_t b = file.readU8();
+        uint8_t a = file.readU8();
 
-    uint32_t numTextiles = file.readU32();
+        glm::vec4 c(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
+        TextureManager::setPalette(i, c);
+    }
+}
 
-    file.seek(file.tell() + (numTextiles * 256 * 256)); // Skip 8bit textiles
+void LoaderTR2::loadTextures() {
+    uint32_t numTextures = file.readU32();
 
-    // Read the 16bit textiles, numTextiles * 256 * 256 * 2 bytes
-    for (unsigned int i = 0; i < numTextiles; i++) {
+    file.seek(file.tell() + (numTextures * 256 * 256)); // Skip 8bit textures
+
+    // Read the 16bit textures, numTextures * 256 * 256 * 2 bytes
+    for (unsigned int i = 0; i < numTextures; i++) {
         std::array<uint8_t, 256 * 256 * 2> arr;
         for (auto& x : arr) {
             x = file.readU8();
         }
 
-        // Convert 16bit textile to 32bit textile
+        // Convert 16bit textures to 32bit textures
         unsigned char* img = argb16to32(&arr[0], 256, 256);
         int r = TextureManager::loadBufferSlot(img, 256, 256,
                                                ColorMode::ARGB, 32,
@@ -89,13 +99,13 @@ void LoaderTR2::loadPaletteTextiles() {
         delete [] img;
     }
 
-    if (numTextiles > 0)
-        Log::get(LOG_INFO) << "LoaderTR2: Found " << numTextiles << " Textures!" << Log::endl;
+    if (numTextures > 0)
+        Log::get(LOG_INFO) << "LoaderTR2: Found " << numTextures << " Textures!" << Log::endl;
     else
         Log::get(LOG_INFO) << "LoaderTR2: No Textures in this level?!" << Log::endl;
 }
 
-void LoaderTR2::loadTextures() {
+void LoaderTR2::loadTextiles() {
     uint32_t numObjectTextures = file.readU32();
     for (unsigned int o = 0; o < numObjectTextures; o++) {
         // 0 means that a texture is all-opaque, and that transparency
@@ -110,7 +120,7 @@ void LoaderTR2::loadTextures() {
         // calculated as the maximum of the individual color values.
         uint16_t attribute = file.readU16();
 
-        // Index into the textile list
+        // Index into the texture list
         uint16_t tile = file.readU16();
 
         TextureTile* t = new TextureTile(attribute, tile);
@@ -200,6 +210,32 @@ void LoaderTR2::loadRoomLights() {
     }
 }
 
+void LoaderTR2::loadRoomStaticMeshes(std::vector<StaticModel*>& staticModels) {
+    uint16_t numStaticMeshes = file.readU16();
+    for (unsigned int s = 0; s < numStaticMeshes; s++) {
+        // Absolute position in world coordinates
+        int32_t x = file.read32();
+        int32_t y = file.read32();
+        int32_t z = file.read32();
+
+        // High two bits (0xC000) indicate steps of
+        // 90 degrees (eg. (rotation >> 14) * 90)
+        uint16_t rotation = file.readU16();
+
+        // Constant lighting, 0xFFFF means use mesh lighting
+        //! \todo Use static mesh lighting information
+        uint16_t intensity1 = file.readU16();
+        uint16_t intensity2 = file.readU16();
+
+        // Which StaticMesh item to draw
+        uint16_t objectID = file.readU16();
+
+        staticModels.push_back(new StaticModel(glm::vec3(x, y, z),
+                                               glm::radians((rotation >> 14) * 90.0f),
+                                               objectID));
+    }
+}
+
 void LoaderTR2::loadRoomDataEnd(int16_t& alternateRoom, unsigned int& roomFlags) {
     alternateRoom = file.read16();
 
@@ -208,6 +244,15 @@ void LoaderTR2::loadRoomDataEnd(int16_t& alternateRoom, unsigned int& roomFlags)
     if (flags & 0x0001) {
         roomFlags |= RoomFlagUnderWater;
     }
+}
+
+void LoaderTR2::loadRoomVertex(RoomVertexTR2& vert) {
+    vert.x = file.read16();
+    vert.y = file.read16();
+    vert.z = file.read16();
+    vert.light1 = file.read16();
+    vert.attributes = file.readU16();
+    vert.light2 = file.read16();
 }
 
 void LoaderTR2::loadRooms() {
@@ -233,12 +278,7 @@ void LoaderTR2::loadRooms() {
         std::vector<RoomVertexTR2> vertices;
         for (unsigned int v = 0; v < numVertices; v++) {
             RoomVertexTR2 vert;
-            vert.x = file.read16();
-            vert.y = file.read16();
-            vert.z = file.read16();
-            vert.light1 = file.read16();
-            vert.attributes = file.readU16();
-            vert.light2 = file.read16();
+            loadRoomVertex(vert);
             vertices.push_back(vert);
 
             // Fill bounding box
@@ -378,29 +418,8 @@ void LoaderTR2::loadRooms() {
 
         loadRoomLights();
 
-        uint16_t numStaticMeshes = file.readU16();
         std::vector<StaticModel*> staticModels;
-        for (unsigned int s = 0; s < numStaticMeshes; s++) {
-            // Absolute position in world coordinates
-            int32_t x = file.read32();
-            int32_t y = file.read32();
-            int32_t z = file.read32();
-
-            // High two bits (0xC000) indicate steps of
-            // 90 degrees (eg. (rotation >> 14) * 90)
-            uint16_t rotation = file.readU16();
-
-            // Constant lighting, 0xFFFF means use mesh lighting
-            uint16_t intensity1 = file.readU16();
-            uint16_t intensity2 = file.readU16();
-
-            // Which StaticMesh item to draw
-            uint16_t objectID = file.readU16();
-
-            staticModels.push_back(new StaticModel(glm::vec3(x, y, z),
-                                                   glm::radians((rotation >> 14) * 90.0f),
-                                                   objectID));
-        }
+        loadRoomStaticMeshes(staticModels);
 
         int16_t alternateRoom = -1;
         unsigned int roomFlags = 0;
@@ -493,6 +512,10 @@ void LoaderTR2::loadSprites() {
 }
 
 // ---- Meshes ----
+
+int LoaderTR2::getPaletteIndex(uint16_t index) {
+    return (index & 0xFF00) >> 8; // Use index into 16bit palette
+}
 
 void LoaderTR2::loadMeshes() {
     // Number of bitu16s of mesh data to follow
@@ -588,12 +611,8 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex4 = mem.readU16();
             uint16_t texture = mem.readU16();
 
-            int index = (texture & 0xFF00) >> 8;
-            uint8_t red = (palette.at(index) & 0xFF000000) >> 24,
-                    green = (palette.at(index) & 0x00FF0000) >> 16,
-                    blue = (palette.at(index) & 0x0000FF00) >> 8;
-
-            coloredRectangles.emplace_back(red, green, blue, vertex1, vertex2, vertex3, vertex4);
+            int index = getPaletteIndex(texture);
+            coloredRectangles.emplace_back(index, vertex1, vertex2, vertex3, vertex4);
         }
 
         int16_t numColoredTriangles = mem.read16();
@@ -604,12 +623,8 @@ void LoaderTR2::loadMeshes() {
             uint16_t vertex3 = mem.readU16();
             uint16_t texture = mem.readU16();
 
-            int index = (texture & 0xFF00) >> 8;
-            uint8_t red = (palette.at(index) & 0xFF000000) >> 24,
-                    green = (palette.at(index) & 0x00FF0000) >> 16,
-                    blue = (palette.at(index) & 0x0000FF00) >> 8;
-
-            coloredTriangles.emplace_back(red, green, blue, vertex1, vertex2, vertex3);
+            int index = getPaletteIndex(texture);
+            coloredTriangles.emplace_back(index, vertex1, vertex2, vertex3);
         }
 
         Mesh* mesh = new Mesh(vertices, texturedRectangles, texturedTriangles,
@@ -850,6 +865,7 @@ void LoaderTR2::loadMoveables() {
         pos.x = frame.read16();
         pos.y = frame.read16();
         pos.z = frame.read16();
+        // TODO frame data format different for TR1!
         BoneFrame* bf = new BoneFrame(pos);
 
         for (int i = 0; i < numMeshes; i++) {
@@ -1097,6 +1113,10 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
         return;
     }
 
+    loadSoundFiles(sfx);
+}
+
+void LoaderTR2::loadSoundFiles(BinaryReader& sfx) {
     int riffCount = 0;
     while (!sfx.eof()) {
         char test[5];
@@ -1126,9 +1146,9 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
     }
 
     if (riffCount > 0)
-        Log::get(LOG_INFO) << "LoaderTR2: Found " << riffCount << " SoundSamples in SFX" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: Loaded " << riffCount << " SoundSamples" << Log::endl;
     else
-        Log::get(LOG_INFO) << "LoaderTR2: No SoundSamples in SFX?!" << Log::endl;
+        Log::get(LOG_INFO) << "LoaderTR2: No SoundSamples found!" << Log::endl;
 }
 
 // ---- Stuff ----

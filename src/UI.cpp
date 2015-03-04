@@ -304,26 +304,27 @@ void UI::display() {
             static float rot[3];
 
             if (ImGui::SliderFloat3("Position", pos, -100.0f, 100.0f)) {
-                dirty = true;
+                //dirty = true;
             }
             if (ImGui::SliderFloat3("Rotation", rot, -6.0f, 6.0f)) {
-                dirty = true;
+                //dirty = true;
             }
             if (ImGui::SliderFloat("Zoom", &zoom, -1.0f, 2.0f)) {
-                dirty = true;
+                //dirty = true;
             }
 
             if (dirty) {
                 static glm::mat4 projection = glm::perspective(45.0f, 1.0f, 0.1f, 2000.0f);
 
-                glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(zoom, zoom, zoom));
                 glm::mat4 rotateX = glm::rotate(glm::mat4(1.0f), rot[0], glm::vec3(1.0f, 0.0f, 0.0f));
                 glm::mat4 rotateY = glm::rotate(glm::mat4(1.0f), rot[1], glm::vec3(0.0f, 1.0f, 0.0f));
                 glm::mat4 rotateZ = glm::rotate(glm::mat4(1.0f), rot[2], glm::vec3(0.0f, 0.0f, 1.0f));
-                glm::mat4 rotate = rotateZ * rotateY * rotateX;
+                glm::mat4 rotate = rotateZ * rotateX * rotateY;
                 glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos[0], pos[1], pos[2]));
-                glm::mat4 view = glm::inverse(scale * rotate * translate);
-                MVP = projection * view;
+                //glm::mat4 view = glm::inverse(rotate * translate);
+                glm::mat4 view = rotate * translate;
+                glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(zoom, zoom, zoom));
+                MVP = projection * view * scale;
 
                 redraw = true;
                 dirty = false;

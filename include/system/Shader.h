@@ -27,6 +27,7 @@ class ShaderBuffer {
     void bindBuffer(int location, int size);
     void unbind(int location);
 
+    unsigned int getBuffer() { assert(created); return buffer; }
     int getSize() { return boundSize; }
 
   private:

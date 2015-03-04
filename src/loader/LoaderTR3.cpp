@@ -18,7 +18,8 @@ int LoaderTR3::load(std::string f) {
         return 2; // Not a TR3 level?!
     }
 
-    loadPaletteTextiles();
+    loadPalette();
+    loadTextures();
 
     file.seek(file.tell() + 4); // Unused value?
 
@@ -32,7 +33,7 @@ int LoaderTR3::load(std::string f) {
     loadSoundSources();
     loadBoxesOverlapsZones();
     loadAnimatedTextures();
-    loadTextures();
+    loadTextiles();
     loadItems();
 
     file.seek(file.tell() + 8192); // Skip Light map, only for 8bit coloring

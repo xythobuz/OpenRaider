@@ -11,6 +11,8 @@
 #include <array>
 #include <cstdint>
 
+#include "RoomData.h"
+#include "RoomMesh.h"
 #include "loader/Loader.h"
 
 class LoaderTR2 : public Loader {
@@ -18,15 +20,18 @@ class LoaderTR2 : public Loader {
     virtual int load(std::string f);
 
   protected:
-    virtual void loadPaletteTextiles();
+    virtual void loadPalette();
+    virtual void loadTextures();
     virtual void loadRoomLights();
+    virtual void loadRoomStaticMeshes(std::vector<StaticModel*>& staticModels);
     virtual void loadRoomDataEnd(int16_t& alternateRoom, unsigned int& roomFlags);
+    virtual void loadRoomVertex(RoomVertexTR2& vert);
     virtual void loadRooms();
     virtual void loadFloorData();
     virtual void loadMeshes();
     virtual void loadMoveables();
     virtual void loadStaticMeshes();
-    virtual void loadTextures();
+    virtual void loadTextiles();
     virtual void loadSprites();
     virtual void loadCameras();
     virtual void loadSoundSources();
@@ -40,8 +45,9 @@ class LoaderTR2 : public Loader {
     virtual void loadSampleIndices();
 
     virtual void loadExternalSoundFile(std::string f);
+    virtual void loadSoundFiles(BinaryReader& sfx);
 
-    std::array<uint32_t, 256> palette;
+    virtual int getPaletteIndex(uint16_t index);
 };
 
 #endif

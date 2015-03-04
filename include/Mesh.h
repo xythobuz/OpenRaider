@@ -22,13 +22,12 @@ struct IndexedRectangle {
 };
 
 struct IndexedColoredRectangle {
-    unsigned int v1, v2, v3, v4;
-    unsigned char r, g, b;
+    unsigned int v1, v2, v3, v4, index;
 
-    IndexedColoredRectangle(unsigned char _r, unsigned char _g, unsigned char _b,
+    IndexedColoredRectangle(unsigned int paletteIndex,
                             unsigned int _v1, unsigned int _v2,
                             unsigned int _v3, unsigned int _v4 = 0)
-        : v1(_v1), v2(_v2), v3(_v3), v4(_v4), r(_r), g(_g), b(_b) { }
+        : v1(_v1), v2(_v2), v3(_v3), v4(_v4), index(paletteIndex) { }
 };
 
 // --------------------------------------
@@ -50,7 +49,7 @@ class Mesh {
 
     std::vector<unsigned short> indicesColorBuff;
     std::vector<glm::vec3> verticesColorBuff;
-    std::vector<glm::vec3> colorsBuff;
+    std::vector<unsigned int> colorsBuff;
 
     ShaderBuffer indices, vertices, uvs;
     ShaderBuffer indicesColor, verticesColor, colors;

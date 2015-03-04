@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140304 ]
+    * Added (more or less working) support for loading TR1 levels
+
     [ 20140222 ]
     * Updated imgui to version 1.33
 

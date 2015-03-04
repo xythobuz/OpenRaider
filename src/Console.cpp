@@ -74,8 +74,8 @@ void Console::display() {
     if (!visible)
         return;
 
-    static bool scrollToBottom = false;
     if (ImGui::Begin("Console", &visible, ImVec2(600, 400))) {
+        static bool scrollToBottom = false;
         if (lastLogLength != Log::size()) {
             lastLogLength = Log::size();
             scrollToBottom = true;
@@ -166,7 +166,6 @@ void Console::display() {
 
         if (ImGui::IsItemHovered() || focusInput) {
             ImGui::SetKeyboardFocusHere(-1);
-            focusInput = false;
         }
     }
     ImGui::End();
