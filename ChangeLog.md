@@ -4,6 +4,7 @@
 
     [ 20140304 ]
     * Added (more or less working) support for loading TR1 levels
+    * Updated imgui
 
     [ 20140222 ]
     * Updated imgui to version 1.33
