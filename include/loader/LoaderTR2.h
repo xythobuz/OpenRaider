@@ -45,7 +45,7 @@ class LoaderTR2 : public Loader {
     virtual void loadSampleIndices();
 
     virtual void loadExternalSoundFile(std::string f);
-    virtual void loadSoundFiles(BinaryReader& sfx);
+    virtual int loadSoundFiles(BinaryReader& sfx, unsigned int count = 0);
 
     virtual int getPaletteIndex(uint16_t index);
 };

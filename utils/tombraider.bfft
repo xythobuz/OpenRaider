@@ -380,7 +380,7 @@ struct sound_details_t {
     signed 16 little unknown1;
     signed 16 little unknown2;
 
-    summary sample, " - ", volume;
+    summary "Sample: ", sample, ", Vol: ", volume * 100 / 32767, "%";
 }
 
 // ########## Main file layout ##########
@@ -508,20 +508,20 @@ struct main {
 
     // TR1s sound map has 256 entries, TR2 & TR3 have 370
     if (TRversion > 1)
-        skip soundMap[370 * 2];
+        signed 16 little soundMap[370];
     else
-        skip soundMap[256 * 2];
+        signed 16 little soundMap[256];
 
     unsigned 32 little numSoundDetails;
     sound_details_t soundDetails[numSoundDetails];
 
     // TR1 has the sample data embedded here (WAV files)
     if (TRversion == 1) {
-        unsigned 32 little numSamples;
-        skip samples[numSamples];
+        unsigned 32 little numWAVSamples;
+        skip wavSamples[numWAVSamples];
     }
 
     unsigned 32 little numSampleIndices;
-    skip sampleIndices[numSampleIndices * 4];
+    unsigned 32 little sampleIndices[numSampleIndices];
 }
 

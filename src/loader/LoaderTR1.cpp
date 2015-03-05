@@ -47,7 +47,6 @@ int LoaderTR1::load(std::string f) {
     loadSoundMap();
     loadSoundDetails();
     loadSoundSamples();
-    loadSampleIndices();
 
     return 0;
 }
@@ -59,17 +58,11 @@ void LoaderTR1::loadPalette() {
         uint8_t g = file.readU8();
         uint8_t b = file.readU8();
 
-        //! \fixme Hack to make everything brighter
-        static const uint8_t lightHackFactor = 3;
-        r *= lightHackFactor;
-        if (r > 255)
-            r = 255;
-        g *= lightHackFactor;
-        if (g > 255)
-            g = 255;
-        b *= lightHackFactor;
-        if (b > 255)
-            b = 255;
+        // Color values range from 0 to 63, so multiply by 4
+        static const uint8_t lightFactor = 4;
+        r *= lightFactor;
+        g *= lightFactor;
+        b *= lightFactor;
 
         glm::vec4 c(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
         TextureManager::setPalette(i, c);
@@ -253,18 +246,26 @@ void LoaderTR1::loadSoundMap() {
 
 void LoaderTR1::loadSoundSamples() {
     uint32_t soundSampleSize = file.readU32();
-    if (soundSampleSize <= 0) {
-        return;
-    }
-
     std::vector<uint8_t> buffer;
     for (int i = 0; i < soundSampleSize; i++) {
         buffer.push_back(file.readU8());
     }
 
-    char* tmpPtr = reinterpret_cast<char*>(&buffer[0]);
-    BinaryMemory sfx(tmpPtr, soundSampleSize);
-    loadSoundFiles(sfx);
+    uint32_t numSampleIndices = file.readU32();
+    for (unsigned int i = 0; i < numSampleIndices; i++) {
+        SoundManager::addSampleIndex(i);
+        uint32_t sampleOffset = file.readU32();
+        assertLessThan(sampleOffset, soundSampleSize);
+        char* tmpPtr = reinterpret_cast<char*>(&buffer[sampleOffset]);
+        BinaryMemory sample(tmpPtr, soundSampleSize - sampleOffset);
+        int ret = loadSoundFiles(sample, 1);
+        assertEqual(ret, 1);
+    }
+
+    if (numSampleIndices > 0)
+        Log::get(LOG_INFO) << "LoaderTR1: Found " << numSampleIndices << " SoundSamples" << Log::endl;
+    else
+        Log::get(LOG_INFO) << "LoaderTR1: No SoundSamples in this level?!" << Log::endl;
 }
 
 int LoaderTR1::getPaletteIndex(uint16_t index) {

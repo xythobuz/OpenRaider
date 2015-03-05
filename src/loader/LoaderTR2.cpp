@@ -1113,21 +1113,30 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
         return;
     }
 
-    loadSoundFiles(sfx);
+    int riffCount = loadSoundFiles(sfx);
+    if (riffCount > 0)
+        Log::get(LOG_INFO) << "LoaderTR2: Loaded " << riffCount << " SoundSamples" << Log::endl;
+    else if (riffCount == 0)
+        Log::get(LOG_INFO) << "LoaderTR2: No SoundSamples found!" << Log::endl;
+    else
+        Log::get(LOG_ERROR) << "LoaderTR2: Error loading SoundSamples!" << Log::endl;
 }
 
-void LoaderTR2::loadSoundFiles(BinaryReader& sfx) {
+int LoaderTR2::loadSoundFiles(BinaryReader& sfx, unsigned int count) {
     int riffCount = 0;
     while (!sfx.eof()) {
+        if ((count > 0) && (riffCount >= count))
+            break;
+
         char test[5];
         test[4] = '\0';
         for (int i = 0; i < 4; i++)
             test[i] = sfx.read8();
 
         if (std::string("RIFF") != std::string(test)) {
-            Log::get(LOG_DEBUG) << "LoaderTR2: External SFX invalid! (" << riffCount
+            Log::get(LOG_DEBUG) << "LoaderTR2: SoundSamples invalid! (" << riffCount
                                 << ", \"" << test << "\" != \"RIFF\")" << Log::endl;
-            return;
+            return -1;
         }
 
         // riffSize is (fileLength - 8)
@@ -1144,11 +1153,7 @@ void LoaderTR2::loadSoundFiles(BinaryReader& sfx) {
 
         riffCount++;
     }
-
-    if (riffCount > 0)
-        Log::get(LOG_INFO) << "LoaderTR2: Loaded " << riffCount << " SoundSamples" << Log::endl;
-    else
-        Log::get(LOG_INFO) << "LoaderTR2: No SoundSamples found!" << Log::endl;
+    return riffCount;
 }
 
 // ---- Stuff ----

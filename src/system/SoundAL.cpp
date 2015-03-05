@@ -27,8 +27,10 @@ std::vector<unsigned int> SoundAL::listenerSources;
 glm::vec3 SoundAL::lastPosition(0.0f, 0.0f, 0.0f);
 
 int SoundAL::initialize() {
-    if (init)
+    if (init) {
+        Log::get(LOG_WARNING) << "SoundAL Warning: Already initialized..." << Log::endl;
         return 0;
+    }
 
     ALCdevice* device = alcOpenDevice(nullptr);
     ALCcontext* context = alcCreateContext(device, nullptr);
@@ -51,18 +53,23 @@ int SoundAL::initialize() {
 }
 
 void SoundAL::shutdown() {
-    if (!init)
+    if (!init) {
+        Log::get(LOG_ERROR) << "SoundAL Error: Shutdown but not initialized!" << Log::endl;
         return;
+    }
 
     clear();
+    init = false;
+
     if (alutExit() == AL_FALSE)
         Log::get(LOG_ERROR) << "SoundAL Error: " << alutGetErrorString(alutGetError()) << Log::endl;
-    init = false;
 }
 
 void SoundAL::clear() {
-    if (!init)
+    if (!init) {
+        Log::get(LOG_ERROR) << "SoundAL Error: Clear but not initialized!" << Log::endl;
         return;
+    }
 
     stopAll();
 
@@ -98,8 +105,10 @@ int SoundAL::numBuffers() {
 }
 
 int SoundAL::loadBuffer(unsigned char* buffer, unsigned int length) {
-    if (!init)
+    if (!init) {
+        Log::get(LOG_ERROR) << "SoundAL Error: Buffer load, but not initialized!" << Log::endl;
         return -1;
+    }
 
     alGetError();
     unsigned int r = alutCreateBufferFromFileImage(buffer, length);
@@ -119,8 +128,16 @@ int SoundAL::numSources(bool atListener) {
 }
 
 int SoundAL::addSource(int buffer, float volume, bool atListener, bool loop) {
-    if ((!init) || (buffer < 0) || (buffer >= buffers.size()))
+    if (!init) {
+        Log::get(LOG_ERROR) << "SoundAL Error: Adding source, but not initialized!" << Log::endl;
         return -1;
+    }
+
+    if ((buffer < 0) || (buffer >= buffers.size())) {
+        Log::get(LOG_ERROR) << "SoundAL Error: Adding source, but '" << buffer
+                            << "' invalid (max '" << buffers.size() << "')!" << Log::endl;
+        return -2;
+    }
 
     unsigned int id;
 
@@ -128,7 +145,7 @@ int SoundAL::addSource(int buffer, float volume, bool atListener, bool loop) {
     alGenSources(1, &id);
     if (alGetError() != AL_NO_ERROR) {
         Log::get(LOG_ERROR) << "SoundAL Error: Could not create source!" << Log::endl;
-        return -2;
+        return -3;
     }
 
     alSourcei(id, AL_BUFFER, buffers.at(buffer));
@@ -148,8 +165,10 @@ int SoundAL::addSource(int buffer, float volume, bool atListener, bool loop) {
 }
 
 int SoundAL::sourceAt(int source, glm::vec3 pos) {
-    if (!init)
+    if (!init) {
+        Log::get(LOG_ERROR) << "SoundAL Error: Positioning source, but not initialized!" << Log::endl;
         return -1;
+    }
 
     if ((source < 0) || (source >= sources.size())) {
         Log::get(LOG_ERROR) << "SoundAL: Can't position non-existing source!" << Log::endl;
@@ -162,8 +181,10 @@ int SoundAL::sourceAt(int source, glm::vec3 pos) {
 }
 
 void SoundAL::listenAt(glm::vec3 pos, glm::vec3 at, glm::vec3 up) {
-    if (!init)
+    if (!init) {
+        Log::get(LOG_ERROR) << "SoundAL Error: Positioning listener, but not initialized!" << Log::endl;
         return;
+    }
 
     float orientation[6] = { at.x, at.y, at.z, up.x, up.y, up.z };
     alListenerfv(AL_POSITION, &pos[0]);

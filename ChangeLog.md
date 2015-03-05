@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140305 ]
+    * SoundAL now has more useful error message output.
+    * Fixed TR1 color map parsing, now textures have the proper color values.
+    * Fixed TR1 sound sample parsing. Can now load all TR1 levels without crashing.
+    * Improved parsing and summaries in binspector level reading script.
+
     [ 20140304 ]
     * Added (more or less working) support for loading TR1 levels
     * Updated imgui
