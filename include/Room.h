@@ -46,7 +46,6 @@ class Room {
     void addSprite(RoomSprite* s) { sprites.emplace_back(s); }
     void addModel(StaticModel* s) { models.emplace_back(s); }
     void addSector(Sector* s) { sectors.emplace_back(s); }
-    void addLight(Light* l) { lights.emplace_back(l); }
 
     void addPortal(Portal* p) { portals.emplace_back(p); }
     unsigned long sizePortals() { return portals.size(); }
@@ -80,7 +79,6 @@ class Room {
     std::vector<std::unique_ptr<StaticModel>> models;
     std::vector<std::unique_ptr<Portal>> portals;
     std::vector<std::unique_ptr<Sector>> sectors;
-    std::vector<std::unique_ptr<Light>> lights;
 
     static bool showBoundingBox;
     static bool showRoomModels;

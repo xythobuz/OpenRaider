@@ -343,7 +343,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& ind
 
         unsigned int sz = vertices.getSize();
         glm::vec3* buffer = new glm::vec3[sz];
-    glBindBuffer(GL_ARRAY_BUFFER, vertices.getBuffer());
+        glBindBuffer(GL_ARRAY_BUFFER, vertices.getBuffer());
         glGetBufferSubData(GL_ARRAY_BUFFER, 0, sz * sizeof(glm::vec3), buffer);
 
         Log::get(LOG_DEBUG) << "drawGL Vertex dump:" << Log::endl;

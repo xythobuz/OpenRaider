@@ -97,35 +97,6 @@ class Portal {
 
 // --------------------------------------
 
-class Light {
-  public:
-    /*!
-     * \brief Type a light can be of
-     */
-    typedef enum {
-        typePoint       = 1, //!< Point light
-        typeSpot        = 2, //!< Spot light
-        typeDirectional = 3  //!< Directional light
-    } LightType;
-
-    void getPos(float p[4]);
-    void getDir(float d[3]);
-    float getAtt();
-    void getColor(float c[4]);
-    float getCutoff();
-    LightType getType();
-
-  private:
-    float pos[4]; //! Light position in 3 space
-    float dir[3]; //! Light direction
-    float att;
-    float color[4]; //! Color of light
-    float cutoff; //! Fade out distance
-    LightType type; //! Type of light
-};
-
-// --------------------------------------
-
 class Sector {
   public:
     Sector(float f, float c, bool w) : floor(f), ceiling(c), wall(w) { }

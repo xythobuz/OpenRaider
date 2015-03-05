@@ -95,40 +95,6 @@ void RoomSprite::display(glm::mat4 VP) {
 
 // ----------------------------------------------------------------------------
 
-void Light::getPos(float p[4]) {
-    p[0] = pos[0];
-    p[1] = pos[1];
-    p[2] = pos[2];
-    p[3] = pos[3];
-}
-
-void Light::getDir(float d[3]) {
-    d[0] = dir[0];
-    d[1] = dir[1];
-    d[2] = dir[2];
-}
-
-float Light::getAtt() {
-    return att;
-}
-
-void Light::getColor(float c[4]) {
-    c[0] = color[0];
-    c[1] = color[1];
-    c[2] = color[2];
-    c[3] = color[3];
-}
-
-float Light::getCutoff() {
-    return cutoff;
-}
-
-Light::LightType Light::getType() {
-    return type;
-}
-
-// ----------------------------------------------------------------------------
-
 float Sector::getFloor() {
     return floor;
 }

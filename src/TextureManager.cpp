@@ -297,7 +297,8 @@ glm::vec4 TextureManager::getPalette(int index) {
     return colorPalette[index];
 }
 
-void TextureManager::addIndexedTexture(unsigned char* image, unsigned int width, unsigned int height) {
+void TextureManager::addIndexedTexture(unsigned char* image, unsigned int width,
+                                       unsigned int height) {
     unsigned char* img = new unsigned char[width * height];
     for (unsigned int i = 0; i < (width * height); i++)
         img[i] = image[i];

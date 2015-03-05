@@ -24,32 +24,6 @@ unsigned char* generateColorTexture(const unsigned char* rgba, unsigned int widt
     return image;
 }
 
-void bgr2rgb24(unsigned char* image, unsigned int w, unsigned int h) {
-    assert(image != nullptr);
-    assert(w > 0);
-    assert(h > 0);
-
-    for (unsigned int i = 0; i < (w * h); ++i) {
-        /* 24-bit BGR to RGB */
-        unsigned char swap = image[(i * 3) + 2];
-        image[(i * 3) + 2] = image[i * 3];
-        image[i * 3] = swap;
-    }
-}
-
-void bgra2rgba32(unsigned char* image, unsigned int w, unsigned int h) {
-    assert(image != nullptr);
-    assert(w > 0);
-    assert(h > 0);
-
-    for (unsigned int i = 0; i < (w * h); ++i) {
-        /* 32-bit BGRA to RGBA */
-        unsigned char swap = image[(i * 4) + 2];
-        image[(i * 4) + 2] = image[(i * 4)];
-        image[i * 4] = swap;
-    }
-}
-
 void argb2rgba32(unsigned char* image, unsigned int w, unsigned int h) {
     assert(image != nullptr);
     assert(w > 0);
