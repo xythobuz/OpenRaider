@@ -10,6 +10,7 @@
 #include "Log.h"
 #include "SoundManager.h"
 #include "World.h"
+#include "utils/strings.h"
 #include "loader/LoaderTR1.h"
 
 int LoaderTR1::load(std::string f) {
@@ -22,6 +23,10 @@ int LoaderTR1::load(std::string f) {
         return 2; // Not a TR1 level?!
     }
 
+    bool unfinishedBusiness = stringEndsWith(f, ".tub");
+    if (unfinishedBusiness)
+        Log::get(LOG_INFO) << "LoaderTR1: Detected Unfinished Business level!" << Log::endl;
+
     loadTextures();
 
     file.seek(file.tell() + 4); // Unused value?
@@ -33,6 +38,10 @@ int LoaderTR1::load(std::string f) {
     loadStaticMeshes();
     loadTextiles();
     loadSprites();
+
+    if (unfinishedBusiness)
+        loadPalette();
+
     loadCameras();
     loadSoundSources();
     loadBoxesOverlapsZones();
@@ -41,7 +50,9 @@ int LoaderTR1::load(std::string f) {
 
     file.seek(file.tell() + 8192); // TODO light map!
 
-    loadPalette();
+    if (!unfinishedBusiness)
+        loadPalette();
+
     loadCinematicFrames();
     loadDemoData();
     loadSoundMap();

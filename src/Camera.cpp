@@ -43,6 +43,7 @@ const static float controllerDeadZone = 0.33f;
 const static float controllerViewFactor = glm::pi<float>();
 const static float rotationAngleClamp = glm::pi<float>() * 2.0f;
 const static float rotationAngleVertMax = glm::pi<float>() / 2.0f;
+const static float runFactor = 2.5f;
 
 const static glm::vec3 rightUnit(1.0f, 0.0f, 0.0f);
 const static glm::vec3 upUnit(0.0f, 1.0f, 0.0f);
@@ -59,6 +60,7 @@ float Camera::rotationDeltaY = 0.75f;
 bool Camera::updateViewFrustum = true;
 bool Camera::dirty = true;
 bool Camera::showOverlay = false;
+bool Camera::movingFaster = false;
 int Camera::room = -1;
 
 void Camera::reset() {
@@ -96,6 +98,8 @@ void Camera::handleAction(ActionEvents action, bool isFinished) {
         posSpeed += upUnit * maxSpeed * factor;
     } else if (action == crouchAction) {
         posSpeed -= upUnit * maxSpeed * factor;
+    } else if (action == walkAction) {
+        movingFaster = !isFinished;
     } else {
         return;
     }
@@ -176,9 +180,17 @@ bool Camera::update() {
     glm::quat quatX = glm::angleAxis(rot.y, glm::vec3(1.0f, 0.0f, 0.0f));
     glm::quat quaternion = quatY * quatX;
 
-    glm::vec3 clampedSpeed(posSpeed);
-    if (glm::length(clampedSpeed) > maxSpeed) {
-        clampedSpeed = glm::normalize(clampedSpeed) * maxSpeed;
+    glm::vec3 clampedSpeed;
+    if (movingFaster) {
+        clampedSpeed = posSpeed * runFactor;
+        if (glm::length(clampedSpeed) > (maxSpeed * runFactor)) {
+            clampedSpeed = glm::normalize(clampedSpeed) * maxSpeed * runFactor;
+        }
+    } else {
+        clampedSpeed = posSpeed;
+        if (glm::length(clampedSpeed) > maxSpeed) {
+            clampedSpeed = glm::normalize(clampedSpeed) * maxSpeed;
+        }
     }
 
     pos += quaternion * clampedSpeed * dT;

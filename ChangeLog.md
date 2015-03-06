@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140306 ]
+    * Fixed LoaderTR1, can now also open the Unfinished Business levels
+    * Walk key can now be used to increase free-camera movement speed
+
     [ 20140305 ]
     * SoundAL now has more useful error message output.
     * Fixed TR1 color map parsing, now textures have the proper color values.
