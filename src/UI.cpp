@@ -461,6 +461,10 @@ void UI::handleControllerButton(KeyboardButton button, bool released) {
             Game::handleAction(jumpAction, released);
         } else if (button == bButton) {
             Game::handleAction(crouchAction, released);
+        } else if (button == xButton) {
+            Game::handleAction(useAction, released);
+        } else if (button == yButton) {
+            Game::handleAction(holsterAction, released);
         } else if (button == padUp) {
             Game::handleAction(forwardAction, released);
         } else if (button == padDown) {
@@ -469,6 +473,8 @@ void UI::handleControllerButton(KeyboardButton button, bool released) {
             Game::handleAction(leftAction, released);
         } else if (button == padRight) {
             Game::handleAction(rightAction, released);
+        } else if (button == leftShoulder) {
+            Game::handleAction(walkAction, released);
         } else if (button == startButton) {
             if (!released)
                 getMenu().setVisible(true);

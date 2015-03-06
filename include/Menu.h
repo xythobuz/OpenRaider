@@ -30,6 +30,9 @@ class Menu {
 
     void setVisible(bool v) { visible = v; }
 
+    static const glm::vec4 textColor;
+    static const glm::vec4 selectedColor;
+
   protected:
 
     virtual void showDialog(std::string msg, std::string btn1, std::string btn2,

@@ -8,17 +8,19 @@
 #include "global.h"
 #include "utils/pixel.h"
 
-unsigned char* generateColorTexture(const unsigned char* rgba, unsigned int width,
+unsigned char* generateColorTexture(glm::vec4 rgba, unsigned int width,
                                     unsigned int height, unsigned int bpp) {
-    assert(rgba != nullptr);
     assert(width > 0);
     assert(height > 0);
-    assert((bpp % 8) == 0);
+    assert((bpp == 24) || (bpp == 32));
 
     unsigned char* image = new unsigned char[height * width * (bpp / 8)];
     for (unsigned int i = 0; i < (width * height); i++) {
-        for (unsigned int a = 0; a < (bpp / 8); a++) {
-            image[(i * (bpp / 8)) + a] = rgba[a];
+        image[i * (bpp / 8)] = (unsigned char)(rgba.r * 255);
+        image[(i * (bpp / 8)) + 1] = (unsigned char)(rgba.g * 255);
+        image[(i * (bpp / 8)) + 2] = (unsigned char)(rgba.b * 255);
+        if (bpp == 32) {
+            image[(i * (bpp / 8)) + 3] = (unsigned char)(rgba.a * 255);
         }
     }
     return image;

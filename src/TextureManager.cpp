@@ -69,7 +69,7 @@ int TextureManager::initialize() {
         mTextureIdsSystem.push_back(id);
     }
 
-    unsigned char* image = generateColorTexture(WHITE, 32, 32, 32);
+    unsigned char* image = generateColorTexture(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 32, 32, 32);
     int res = loadBufferSlot(image, 32, 32, ColorMode::RGBA, 32, TextureStorage::SYSTEM, TEXTURE_WHITE,
                              false);
     delete [] image;

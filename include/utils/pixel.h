@@ -8,7 +8,7 @@
 #ifndef _UTILS_PIXEL_H_
 #define _UTILS_PIXEL_H_
 
-unsigned char* generateColorTexture(const unsigned char* rgba, unsigned int width,
+unsigned char* generateColorTexture(glm::vec4 rgba, unsigned int width,
                                     unsigned int height, unsigned int bpp);
 
 void argb2rgba32(unsigned char* image, unsigned int w, unsigned int h);

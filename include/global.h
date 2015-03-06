@@ -11,18 +11,6 @@
 
 void renderFrame();
 
-// Colors used where ever needed
-const unsigned char BLACK[]  = {   0,   0,   0, 255 };
-const unsigned char GREY[]   = { 128, 128, 128, 255 };
-const unsigned char WHITE[]  = { 255, 255, 255, 255 };
-const unsigned char RED[]    = { 255,   0,   0, 255 };
-const unsigned char GREEN[]  = {   0, 255,   0, 255 };
-const unsigned char PURPLE[] = {  77,  77, 128, 255 };
-const unsigned char BLUE[]   = { 128, 179, 255, 255 };
-const unsigned char PINK[]   = { 255,   0, 255, 255 };
-const unsigned char YELLOW[] = { 255, 255,   0, 255 };
-const unsigned char CYAN[]   = {   0, 255, 255, 255 };
-
 // Actions that can be bound to a key and sent to the game engine
 typedef enum {
     menuAction = 0,
@@ -64,6 +52,8 @@ typedef enum {
     pageupKey, pauseKey, dotKey, rightaltKey, rightctrlKey, enterKey,
     rightguiKey, rightbracketKey, rightshiftKey, scrolllockKey,
     semicolonKey, slashKey, spaceKey, tabKey,
+
+    // Mouse
     leftmouseKey, middlemouseKey, rightmouseKey,
     fourthmouseKey, fifthmouseKey,
 

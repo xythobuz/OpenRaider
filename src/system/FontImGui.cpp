@@ -23,11 +23,12 @@ unsigned int FontImGui::widthText(float scale, std::string s) {
 }
 
 void FontImGui::drawText(unsigned int x, unsigned int y, float scale,
-                         const unsigned char color[4], std::string s) {
+                         glm::vec4 color, std::string s) {
     ImGuiIO& io = ImGui::GetIO();
     ImFont* font = io.Fonts->Fonts.at(0);
     ImVec2 pos = ImVec2(x, y);
-    ImU32 col = color[0] | (color[1] << 8) | (color[2] << 16) | (color[3] << 24);
+    ImU32 col = (ImU32(color.r * 255)) | (ImU32(color.g * 255) << 8) | (ImU32(color.b * 255) << 16) |
+                (ImU32(color.a * 255) << 24);
 
     ImDrawList dl;
     dl.PushTextureID(font->ContainerAtlas->TexID);
@@ -47,11 +48,12 @@ unsigned int FontImGui::heightText(float scale, unsigned int maxWidth, std::stri
 }
 
 void FontImGui::drawTextWrapped(unsigned int x, unsigned int y, float scale,
-                                const unsigned char color[4], unsigned int maxWidth, std::string s) {
+                                glm::vec4 color, unsigned int maxWidth, std::string s) {
     ImGuiIO& io = ImGui::GetIO();
     ImFont* font = io.Fonts->Fonts.at(0);
     ImVec2 pos = ImVec2(x, y);
-    ImU32 col = color[0] | (color[1] << 8) | (color[2] << 16) | (color[3] << 24);
+    ImU32 col = (ImU32(color.r * 255)) | (ImU32(color.g * 255) << 8) | (ImU32(color.b * 255) << 16) |
+                (ImU32(color.a * 255) << 24);
 
     ImDrawList dl;
     dl.PushTextureID(font->ContainerAtlas->TexID);

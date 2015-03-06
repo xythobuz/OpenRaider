@@ -5,6 +5,9 @@
     [ 20140306 ]
     * Fixed LoaderTR1, can now also open the Unfinished Business levels
     * Walk key can now be used to increase free-camera movement speed
+    * Removed color definitions in global.h
+    * Font interface now using glm::vec4 float colors
+    * Hard-coded controller mapping now supports all available ActionEvents
 
     [ 20140305 ]
     * SoundAL now has more useful error message output.

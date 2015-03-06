@@ -79,7 +79,7 @@ void MenuFolder::display() {
     if (!visible)
         return;
 
-    Font::drawTextCentered(0, 10, 1.2f, BLUE, Window::getSize().x, VERSION);
+    Font::drawTextCentered(0, 10, 1.2f, textColor, Window::getSize().x, VERSION);
 
     // Draw half-transparent overlay
     glm::vec4 color(0.0f, 0.0f, 0.0f, 0.75f);
@@ -87,7 +87,7 @@ void MenuFolder::display() {
                         color, TEXTURE_WHITE, TextureStorage::SYSTEM);
 
     // Draw heading
-    Font::drawTextCentered(0, 10, 1.2f, BLUE, Window::getSize().x, VERSION);
+    Font::drawTextCentered(0, 10, 1.2f, textColor, Window::getSize().x, VERSION);
 
     // Estimate displayable number of items
     int items = (Window::getSize().y - 60) / 25;
@@ -96,10 +96,10 @@ void MenuFolder::display() {
     for (long i = mMin; (i < (mMin + items))
          && (i < (mapFolder->folderCount() + mapFolder->fileCount() + 1)); i++) {
         if (i == 0) {
-            Font::drawText(25, 50, 0.75f, (mCursor == i) ? RED : BLUE, "..");
+            Font::drawText(25, 50, 0.75f, (mCursor == i) ? selectedColor : textColor, "..");
         } else {
             Font::drawText(25, (unsigned int)(50 + (25 * (i - mMin))), 0.75f,
-                           (mCursor == i) ? RED : BLUE,
+                           (mCursor == i) ? selectedColor : textColor,
                            ((i - 1) < mapFolder->folderCount()) ?
                            (mapFolder->getFolder(i - 1).getName() + "/")
                            : mapFolder->getFile(i - 1 - mapFolder->folderCount()).getName());

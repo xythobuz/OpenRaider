@@ -224,8 +224,7 @@ int Shader::initialize() {
     glGenVertexArrays(1, &vertexArrayID);
     glBindVertexArray(vertexArrayID);
 
-    // Set background to black
-    //glClearColor(BLACK[0] / 256.0f, BLACK[1] / 256.0f, BLACK[2] / 256.0f, BLACK[3] / 256.0f);
+    // Set background color
     glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
 
     set2DState(false);

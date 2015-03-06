@@ -11,6 +11,9 @@
 #include "system/Font.h"
 #include "system/Window.h"
 
+const glm::vec4 Menu::textColor(0.5f, 0.7f, 1.0f, 1.0f);
+const glm::vec4 Menu::selectedColor(1.0f, 0.0f, 0.0f, 1.0f);
+
 void Menu::showDialog(std::string msg, std::string btn1, std::string btn2,
                       std::function<int (bool state)> callback) {
     // Only show one dialog at a time
@@ -148,22 +151,22 @@ void Menu::displayDialog() {
         glEnable(GL_TEXTURE_2D);
         */
 
-        Font::drawTextWrapped(xOverlay + 10, yOverlay + 5, 1.0f, BLUE, w0, dialogText);
+        Font::drawTextWrapped(xOverlay + 10, yOverlay + 5, 1.0f, textColor, w0, dialogText);
         if (dialogButton2.length() > 0) {
             if ((w1 + w2) <= wMax) {
                 Font::drawTextWrapped(xOverlay + 10, yOverlay + 10 + h0, 1.0f,
-                                      dialogState ? BLUE : RED, w1, dialogButton1);
+                                      dialogState ? textColor : selectedColor, w1, dialogButton1);
                 Font::drawTextWrapped(xOverlay + 10 + w1, yOverlay + 10 + h0,
-                                      1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
+                                      1.0f, dialogState ? selectedColor : textColor, w2, dialogButton2);
             } else {
                 Font::drawTextWrapped((Window::getSize().x - w1) / 2,
-                                      yOverlay + 10 + h0, 1.0f, dialogState ? BLUE : RED, w1, dialogButton1);
+                                      yOverlay + 10 + h0, 1.0f, dialogState ? textColor : selectedColor, w1, dialogButton1);
                 Font::drawTextWrapped((Window::getSize().x - w2) / 2,
-                                      yOverlay + 10 + h0 + h1, 1.0f, dialogState ? RED : BLUE, w2, dialogButton2);
+                                      yOverlay + 10 + h0 + h1, 1.0f, dialogState ? selectedColor : textColor, w2, dialogButton2);
             }
         } else {
             Font::drawTextWrapped((Window::getSize().x - w1) / 2,
-                                  yOverlay + 10 + h0, 1.0f, RED, w1, dialogButton1);
+                                  yOverlay + 10 + h0, 1.0f, selectedColor, w1, dialogButton1);
         }
     }
 }

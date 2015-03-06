@@ -158,7 +158,7 @@ unsigned int FontTTF::widthText(float scale, std::string s) {
 }
 
 void FontTTF::drawText(unsigned int x, unsigned int y, float scale,
-                       const unsigned char color[4], std::string s) {
+                       glm::vec4 color, std::string s) {
     drawTextInternal(x, y, scale, color, 0, s, false);
 }
 
@@ -180,14 +180,13 @@ unsigned int FontTTF::heightText(float scale, unsigned int maxWidth, std::string
 }
 
 void FontTTF::drawTextWrapped(unsigned int x, unsigned int y, float scale,
-                              const unsigned char color[4], unsigned int maxWidth, std::string s) {
+                              glm::vec4 color, unsigned int maxWidth, std::string s) {
     drawTextInternal(x, y, scale, color, maxWidth, s, true);
 }
 
 void FontTTF::drawTextInternal(unsigned int x, unsigned int y, float scale,
-                               const unsigned char color[4], unsigned int maxWidth, std::string s,
+                               glm::vec4 color, unsigned int maxWidth, std::string s,
                                bool drawWrapped) {
-    glm::vec4 col(color[0] / 256.0f, color[1] / 256.0f, color[2] / 256.0f, color[3] / 256.0f);
     std::vector<glm::vec2> vertices;
     std::vector<glm::vec2> uvs;
     int texture = -1;
@@ -211,7 +210,7 @@ void FontTTF::drawTextInternal(unsigned int x, unsigned int y, float scale,
         if ((texture != tex) && (texture != -1)) {
             vertexBuffer.bufferData(vertices);
             uvBuffer.bufferData(uvs);
-            Shader::drawGL(vertexBuffer, uvBuffer, col, texture);
+            Shader::drawGL(vertexBuffer, uvBuffer, color, texture);
             vertices.clear();
             uvs.clear();
         }
@@ -240,7 +239,7 @@ void FontTTF::drawTextInternal(unsigned int x, unsigned int y, float scale,
 
     vertexBuffer.bufferData(vertices);
     uvBuffer.bufferData(uvs);
-    Shader::drawGL(vertexBuffer, uvBuffer, col, texture);
+    Shader::drawGL(vertexBuffer, uvBuffer, color, texture);
 }
 
 int FontTTF::charIsMapped(int c) {
