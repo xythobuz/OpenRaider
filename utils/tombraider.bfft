@@ -22,7 +22,7 @@ struct face4_t {
      */
     unsigned 16 little texture;
 
-    summary vertices[0], " - ", vertices[1], " - ", vertices[2], " - ", vertices[3];
+    summary texture, ": ", vertices[0], " - ", vertices[1], " - ", vertices[2], " - ", vertices[3];
 }
 
 // Triangular faces
@@ -53,7 +53,7 @@ struct room_vertex_t {
     vertex_t vertex;
 
     /*
-     * Room lighting is internal vertex lighting, except for except
+     * Room lighting is internal vertex lighting, except
      * for necessarily external sources like flares.
      * Room ambient lights and point sources are ignored.
      */

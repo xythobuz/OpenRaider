@@ -8,6 +8,7 @@
     * Removed color definitions in global.h
     * Font interface now using glm::vec4 float colors
     * Hard-coded controller mapping now supports all available ActionEvents
+    * Fixed TR3 level loading. Only some levels with invalid SoundSources still crash.
 
     [ 20140305 ]
     * SoundAL now has more useful error message output.

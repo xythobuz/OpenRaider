@@ -26,6 +26,9 @@ class LoaderTR2 : public Loader {
     virtual void loadRoomStaticMeshes(std::vector<StaticModel*>& staticModels);
     virtual void loadRoomDataEnd(int16_t& alternateRoom, unsigned int& roomFlags);
     virtual void loadRoomVertex(RoomVertexTR2& vert);
+    virtual void loadRoomMesh(std::vector<IndexedRectangle>& rectangles,
+                              std::vector<IndexedRectangle>& triangles,
+                              uint16_t& numRectangles, uint16_t& numTriangles);
     virtual void loadRooms();
     virtual void loadFloorData();
     virtual void loadMeshes();

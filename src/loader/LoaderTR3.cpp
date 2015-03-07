@@ -83,3 +83,34 @@ void LoaderTR3::loadRoomDataEnd(int16_t& alternateRoom, unsigned int& roomFlags)
     // TODO store room-light color (?) somewhere
 }
 
+void LoaderTR3::loadRoomMesh(std::vector<IndexedRectangle>& rectangles,
+                             std::vector<IndexedRectangle>& triangles,
+                             uint16_t& numRectangles, uint16_t& numTriangles) {
+    numRectangles = file.readU16();
+    for (unsigned int r = 0; r < numRectangles; r++) {
+        // Indices into the vertex list read just before
+        uint16_t vertex1 = file.readU16();
+        uint16_t vertex2 = file.readU16();
+        uint16_t vertex3 = file.readU16();
+        uint16_t vertex4 = file.readU16();
+
+        // Index into the object-texture list
+        uint16_t texture = file.readU16() & 0x7FFF;
+
+        rectangles.emplace_back(texture, vertex1, vertex2, vertex3, vertex4);
+    }
+
+    numTriangles = file.readU16();
+    for (unsigned int t = 0; t < numTriangles; t++) {
+        // Indices into the room vertex list
+        uint16_t vertex1 = file.readU16();
+        uint16_t vertex2 = file.readU16();
+        uint16_t vertex3 = file.readU16();
+
+        // Index into the object-texture list
+        uint16_t texture = file.readU16() & 0x7FFF;
+
+        triangles.emplace_back(texture, vertex1, vertex2, vertex3);
+    }
+}
+

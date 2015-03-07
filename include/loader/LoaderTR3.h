@@ -17,6 +17,9 @@ class LoaderTR3 : public LoaderTR2 {
   protected:
     virtual void loadRoomLights();
     virtual void loadRoomDataEnd(int16_t& alternateRoom, unsigned int& roomFlags);
+    virtual void loadRoomMesh(std::vector<IndexedRectangle>& rectangles,
+                              std::vector<IndexedRectangle>& triangles,
+                              uint16_t& numRectangles, uint16_t& numTriangles);
 };
 
 #endif

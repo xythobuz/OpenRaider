@@ -255,6 +255,37 @@ void LoaderTR2::loadRoomVertex(RoomVertexTR2& vert) {
     vert.light2 = file.read16();
 }
 
+void LoaderTR2::loadRoomMesh(std::vector<IndexedRectangle>& rectangles,
+                             std::vector<IndexedRectangle>& triangles,
+                             uint16_t& numRectangles, uint16_t& numTriangles) {
+    numRectangles = file.readU16();
+    for (unsigned int r = 0; r < numRectangles; r++) {
+        // Indices into the vertex list read just before
+        uint16_t vertex1 = file.readU16();
+        uint16_t vertex2 = file.readU16();
+        uint16_t vertex3 = file.readU16();
+        uint16_t vertex4 = file.readU16();
+
+        // Index into the object-texture list
+        uint16_t texture = file.readU16();
+
+        rectangles.emplace_back(texture, vertex1, vertex2, vertex3, vertex4);
+    }
+
+    numTriangles = file.readU16();
+    for (unsigned int t = 0; t < numTriangles; t++) {
+        // Indices into the room vertex list
+        uint16_t vertex1 = file.readU16();
+        uint16_t vertex2 = file.readU16();
+        uint16_t vertex3 = file.readU16();
+
+        // Index into the object-texture list
+        uint16_t texture = file.readU16();
+
+        triangles.emplace_back(texture, vertex1, vertex2, vertex3);
+    }
+}
+
 void LoaderTR2::loadRooms() {
     uint16_t numRooms = file.readU16();
     for (unsigned int i = 0; i < numRooms; i++) {
@@ -307,34 +338,10 @@ void LoaderTR2::loadRooms() {
         bbox[0] += pos;
         bbox[1] += pos;
 
-        uint16_t numRectangles = file.readU16();
         std::vector<IndexedRectangle> rectangles;
-        for (unsigned int r = 0; r < numRectangles; r++) {
-            // Indices into the vertex list read just before
-            uint16_t vertex1 = file.readU16();
-            uint16_t vertex2 = file.readU16();
-            uint16_t vertex3 = file.readU16();
-            uint16_t vertex4 = file.readU16();
-
-            // Index into the object-texture list
-            uint16_t texture = file.readU16();
-
-            rectangles.emplace_back(texture, vertex1, vertex2, vertex3, vertex4);
-        }
-
-        uint16_t numTriangles = file.readU16();
         std::vector<IndexedRectangle> triangles;
-        for (unsigned int t = 0; t < numTriangles; t++) {
-            // Indices into the room vertex list
-            uint16_t vertex1 = file.readU16();
-            uint16_t vertex2 = file.readU16();
-            uint16_t vertex3 = file.readU16();
-
-            // Index into the object-texture list
-            uint16_t texture = file.readU16();
-
-            triangles.emplace_back(texture, vertex1, vertex2, vertex3);
-        }
+        uint16_t numRectangles, numTriangles;
+        loadRoomMesh(rectangles, triangles, numRectangles, numTriangles);
 
         uint16_t numSprites = file.readU16();
         std::vector<RoomSprite*> roomSprites;
