@@ -100,12 +100,7 @@ void RunTime::display() {
         }
 
         float vol = Sound::getVolume();
-        if (ImGui::InputFloat("Volume##runtime", &vol, 0.0f, 0.0f, 3,
-                              ImGuiInputTextFlags_EnterReturnsTrue)) {
-            if (vol < 0.0f)
-                vol = 0.0f;
-            if (vol > 1.0f)
-                vol = 1.0f;
+        if (ImGui::SliderFloat("Volume##runtime", &vol, 0.0f, 1.0f)) {
             Sound::setVolume(vol);
         }
 

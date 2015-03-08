@@ -226,9 +226,11 @@ namespace ImGui
     IMGUI_API void          Spacing();
     IMGUI_API void          Columns(int count = 1, const char* id = NULL, bool border=true);    // setup number of columns
     IMGUI_API void          NextColumn();                                                       // next column
-    IMGUI_API float         GetColumnOffset(int column_index = -1);
-    IMGUI_API void          SetColumnOffset(int column_index, float offset);
-    IMGUI_API float         GetColumnWidth(int column_index = -1);
+    IMGUI_API int           GetColumnIndex();                                                   // get current column index
+    IMGUI_API float         GetColumnOffset(int column_index = -1);                             // get position of column line (in pixels, from the left side of the contents region). pass -1 to use current column, otherwise 0..GetcolumnsCount() inclusive. column 0 is usually 0.0f and not resizable unless you call this.
+    IMGUI_API void          SetColumnOffset(int column_index, float offset_x);                  // set position of column line (in pixels, from the left side of the contents region). pass -1 to use current column.
+    IMGUI_API float         GetColumnWidth(int column_index = -1);                              // column width (== GetColumnOffset(GetColumnIndex()+1) - GetColumnOffset(GetColumnOffset())
+    IMGUI_API int           GetColumnsCount();                                                  // number of columns (what was passed to Columns())
     IMGUI_API ImVec2        GetCursorPos();                                                     // cursor position is relative to window position
     IMGUI_API float         GetCursorPosX();                                                    // "
     IMGUI_API float         GetCursorPosY();                                                    // "
@@ -574,12 +576,15 @@ struct ImGuiIO
     const char* (*GetClipboardTextFn)();
     void        (*SetClipboardTextFn)(const char* text);
 
-    // Optional: override memory allocations (default to posix malloc/free). MemFreeFn() may be called with a NULL pointer.
+    // Optional: override memory allocations. MemFreeFn() may be called with a NULL pointer.
+    // (default to posix malloc/free)
     void*       (*MemAllocFn)(size_t sz);
     void        (*MemFreeFn)(void* ptr);
 
     // Optional: notify OS Input Method Editor of the screen position of your cursor for text input position (e.g. when using Japanese/Chinese IME in Windows)
+    // (default to use native imm32 api on Windows)
     void        (*ImeSetInputScreenPosFn)(int x, int y);
+    void*       ImeWindowHandle;            // (Windows) Set this to your HWND to get automatic IME cursor positioning.
 
     //------------------------------------------------------------------
     // Input - Fill before calling NewFrame()
@@ -921,7 +926,7 @@ struct ImFont
     float               FontSize;           // <user set>      // Height of characters, set during loading (don't change after loading)
     float               Scale;              // = 1.0f          // Base font scale, multiplied by the per-window font scale which you can adjust with SetFontScale()
     ImVec2              DisplayOffset;      // = (0.0f,0.0f)   // Offset font rendering by xx pixels
-    ImWchar             FallbackChar;       // = '?'           // Replacement glyph if one isn't found.
+    ImWchar             FallbackChar;       // = '?'           // Replacement glyph if one isn't found. Only set via SetFallbackChar()
 
     // Members: Runtime data
     struct Glyph
@@ -934,9 +939,10 @@ struct ImFont
     };
     ImFontAtlas*        ContainerAtlas;     // What we has been loaded into
     ImVector<Glyph>     Glyphs;
+    const Glyph*        FallbackGlyph;      // == FindGlyph(FontFallbackChar)
+    float               FallbackXAdvance;   //
     ImVector<float>     IndexXAdvance;      // Glyphs->XAdvance directly indexable (for CalcTextSize functions which are often bottleneck in large UI)
     ImVector<int>       IndexLookup;        // Index glyphs by Unicode code-point
-    const Glyph*        FallbackGlyph;      // == FindGlyph(FontFallbackChar)
 
     // Methods
     IMGUI_API ImFont();
@@ -944,6 +950,7 @@ struct ImFont
     IMGUI_API void                  Clear();
     IMGUI_API void                  BuildLookupTable();
     IMGUI_API const Glyph*          FindGlyph(unsigned short c) const;
+    IMGUI_API void                  SetFallbackChar(ImWchar c);
     IMGUI_API bool                  IsLoaded() const        { return ContainerAtlas != NULL; }
 
     // 'max_width' stops rendering after a certain width (could be turned into a 2d size). FLT_MAX to disable.

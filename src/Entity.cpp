@@ -23,10 +23,17 @@ bool Entity::showEntityModels = true;
 
 void Entity::display(glm::mat4 VP) {
     if ((cache == -1) || (cacheType == -1)) {
-        for (int i = 0; i < getWorld().sizeSpriteSequence(); i++) {
-            auto& s = getWorld().getSpriteSequence(i);
+        /*
+         * The order in which to look for matching objects with the same ID
+         * seems to be very important!
+         * If sprites and meshes are searched before models, many objects will
+         * be displayed wrong (eg. 'bad guy' becomes 'clothes' in tr2/boat)...
+         */
+
+        for (int i = 0; (i < getWorld().sizeSkeletalModel()) && (cache == -1); i++) {
+            auto& s = getWorld().getSkeletalModel(i);
             if (s.getID() == id) {
-                cacheType = CACHE_SPRITE;
+                cacheType = CACHE_MODEL;
                 cache = i;
                 break;
             }
@@ -41,10 +48,10 @@ void Entity::display(glm::mat4 VP) {
             }
         }
 
-        for (int i = 0; (i < getWorld().sizeSkeletalModel()) && (cache == -1); i++) {
-            auto& s = getWorld().getSkeletalModel(i);
+        for (int i = 0; i < getWorld().sizeSpriteSequence(); i++) {
+            auto& s = getWorld().getSpriteSequence(i);
             if (s.getID() == id) {
-                cacheType = CACHE_MODEL;
+                cacheType = CACHE_SPRITE;
                 cache = i;
                 break;
             }

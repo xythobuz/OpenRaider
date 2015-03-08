@@ -10,19 +10,32 @@
 
 #include <vector>
 
-struct SoundSource {
-    glm::vec3 pos;
-    int id, flags;
-
+class SoundSource {
+  public:
     SoundSource(glm::vec3 p, int i, int f)
-        : pos(p), id(i), flags(f) { }
+        : pos(p), id(i), flags(f), source(-1) { }
+    void prepare();
+    glm::vec3 getPos() { return pos; }
+    int getID() { return id; }
+    int getFlags() { return flags; }
+    int getSource() { return source; }
+
+  private:
+    glm::vec3 pos;
+    int id, flags, source;
 };
 
-struct SoundDetail {
-    int sample;
-    float volume;
+class SoundDetail {
+  public:
+    SoundDetail(int s, float v) : sample(s), source(-1), volume(v) { }
+    int getSample() { return sample; }
+    float getVolume() { return volume; }
+    int getSource() { return source; }
+    void setSource(int s) { source = s; }
 
-    SoundDetail(int s, float v) : sample(s), volume(v) { }
+  private:
+    int sample, source;
+    float volume;
 };
 
 class SoundManager {
@@ -35,11 +48,11 @@ class SoundManager {
     static void addSoundDetail(int sample, float volume);
     static void addSampleIndex(int index);
 
-    static int getIndex(int index, float* volume = nullptr);
-
     // index --> SoundMap --> SoundDetails --> SampleIndices --> play
+    static int getIndex(int index, float* volume = nullptr, SoundDetail** sd = nullptr);
     static int playSound(int index);
 
+    static void listenAt(glm::vec3 pos, glm::vec3 at, glm::vec3 up);
     static void display();
 
   private:

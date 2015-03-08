@@ -245,7 +245,7 @@ void UI::eventsFinished() {
 }
 
 void UI::display() {
-    if (RunTime::getShowFPS()) {
+    if (RunTime::getShowFPS() && (!getMenu().isVisible())) {
         if (ImGui::Begin("Debug Overlay", nullptr, ImVec2(0, 0), -1.0f,
                          ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize
                          | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings

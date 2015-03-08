@@ -2,6 +2,13 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140307 ]
+    * Can now load all TR3 levels without crashing
+    * Sound Sources now working, with (more or less) proper 3D Sound
+    * Fixed bug that caused entities to display the wrong object
+    * Improved Debug UI
+    * Updated imgui
+
     [ 20140306 ]
     * Fixed LoaderTR1, can now also open the Unfinished Business levels
     * Walk key can now be used to increase free-camera movement speed

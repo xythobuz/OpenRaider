@@ -18,6 +18,10 @@
 #include "Log.h"
 #include "system/SoundAL.h"
 
+const static float soundTravelSectors = 15.0f;
+const static float referenceDistance = 1024.0f;
+const static float maxDistance = referenceDistance * soundTravelSectors;
+
 bool SoundAL::init = false;
 bool SoundAL::enabled = true;
 float SoundAL::volume = 1.0f;
@@ -43,6 +47,8 @@ int SoundAL::initialize() {
 
     init = true;
     setVolume(volume);
+
+    alDistanceModel(AL_LINEAR_DISTANCE_CLAMPED);
 
     lastPosition = glm::vec3(0.0f, 0.0f, 0.0f);
     glm::vec3 at(0.0f, 0.0f, -1.0f);
@@ -150,6 +156,8 @@ int SoundAL::addSource(int buffer, float volume, bool atListener, bool loop) {
 
     alSourcei(id, AL_BUFFER, buffers.at(buffer));
     alSourcef(id, AL_GAIN, volume);
+    alSourcef(id, AL_REFERENCE_DISTANCE, referenceDistance);
+    alSourcef(id, AL_MAX_DISTANCE, maxDistance);
 
     if (loop)
         alSourcei(id, AL_LOOPING, AL_TRUE);

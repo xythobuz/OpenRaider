@@ -8,8 +8,36 @@
 #include "imgui/imgui.h"
 
 #include "global.h"
+#include "Camera.h"
+#include "Log.h"
 #include "system/Sound.h"
 #include "SoundManager.h"
+
+void SoundSource::prepare() {
+    if (source != -1)
+        return;
+
+    float vol;
+    int index = SoundManager::getIndex(id, &vol);
+    if ((index < 0) || (index > Sound::numBuffers())) {
+        Log::get(LOG_ERROR) << "Invalid SoundSource ID (" << index << ", "
+                            << Sound::numBuffers() << ")!" << Log::endl;
+        source = -2;
+    } else {
+        source = Sound::addSource(index, vol, false, true);
+        if (source < 0) {
+            source = -2;
+        } else {
+            int ret = Sound::sourceAt(source, pos);
+            if (ret < 0) {
+                Log::get(LOG_ERROR) << "Error positioning SoundSource " << id << Log::endl;
+            }
+            Sound::play(source, false);
+        }
+    }
+}
+
+// ----------------------------------------------------------------------------
 
 std::vector<SoundSource> SoundManager::soundSources;
 std::vector<int> SoundManager::soundMap;
@@ -26,24 +54,21 @@ void SoundManager::clear() {
 }
 
 int SoundManager::prepareSources() {
-    for (int i = 0; i < soundSources.size(); i++) {
-        float vol;
-        int index = getIndex(soundSources.at(i).id, &vol);
-        int ret = Sound::addSource(index, vol, false, true);
-        assertEqual(ret, i);
-        glm::vec3 pos = soundSources.at(i).pos;
-        ret = Sound::sourceAt(i, pos);
-        assertEqual(ret, 0);
-        Sound::play(i, false);
-    }
-
     for (int i = 0; i < soundMap.size(); i++) {
         float vol;
-        int index = getIndex(i, &vol);
+        SoundDetail* sd;
+        int index = getIndex(i, &vol, &sd);
         if ((index >= 0) && (index < Sound::numBuffers())) {
             int ret = Sound::addSource(index, vol, true, false);
-            assertGreaterThanEqual(ret, 0);
+            if (ret < 0) {
+                Log::get(LOG_ERROR) << "Error adding SoundSource " << index << Log::endl;
+            }
+            sd->setSource(ret);
         }
+    }
+
+    for (int i = 0; i < soundSources.size(); i++) {
+        soundSources.at(i).prepare();
     }
 
     return 0;
@@ -65,7 +90,7 @@ void SoundManager::addSampleIndex(int index) {
     sampleIndices.push_back(index);
 }
 
-int SoundManager::getIndex(int index, float* volume) {
+int SoundManager::getIndex(int index, float* volume, SoundDetail** sd) {
     if (index <= -1)
         return -1;
 
@@ -82,16 +107,19 @@ int SoundManager::getIndex(int index, float* volume) {
 
     SoundDetail s = soundDetails.at(index);
 
-    if (volume != nullptr)
-        *volume = s.volume;
+    if (sd != nullptr)
+        *sd = &soundDetails.at(index);
 
-    if (s.sample <= -1)
+    if (volume != nullptr)
+        *volume = s.getVolume();
+
+    if (s.getSample() <= -1)
         return -5; // SoundDetail has no entry here (-1)
 
-    if (s.sample >= sampleIndices.size())
+    if (s.getSample() >= sampleIndices.size())
         return -6; // SoundDetail entry is bigger than SampleIndices
 
-    index = sampleIndices.at(s.sample);
+    index = sampleIndices.at(s.getSample());
 
     if (index <= -1)
         return -7; // SampleIndices has no entry here (-1)
@@ -101,15 +129,12 @@ int SoundManager::getIndex(int index, float* volume) {
 
 int SoundManager::playSound(int index) {
     if ((index >= 0) && (index < soundMap.size())) {
-        if (soundMap.at(index) == -1)
-            return 0;
+        SoundDetail* sd;
+        int i = getIndex(index, nullptr, &sd);
+        if ((i < 0) || (i >= Sound::numBuffers()))
+            return -2;
 
-        int c = 1;
-        for (int i = 0; i < index; i++)
-            if (soundMap.at(i) != -1)
-                c++;
-
-        Sound::play(c, true);
+        Sound::play(sd->getSource(), true);
         return 0;
     } else {
         return -1;
@@ -117,6 +142,34 @@ int SoundManager::playSound(int index) {
 }
 
 void SoundManager::display() {
+    if (ImGui::CollapsingHeader("Sound Sources")) {
+        ImGui::Columns(5, "soundsources");
+        ImGui::Text("No"); ImGui::NextColumn();
+        ImGui::Text("ID"); ImGui::NextColumn();
+        ImGui::Text("Flags"); ImGui::NextColumn();
+        ImGui::Text("Pos"); ImGui::NextColumn();
+        ImGui::Text("Go"); ImGui::NextColumn();
+        ImGui::Separator();
+        for (int i = 0; i < soundSources.size(); i++) {
+            auto& ss = soundSources.at(i);
+            ImGui::Text("%03d", i);
+            ImGui::NextColumn();
+            ImGui::Text("%d", ss.getID());
+            ImGui::NextColumn();
+            ImGui::Text("%X", ss.getFlags());
+            ImGui::NextColumn();
+            ImGui::Text("%.1f %.1f %.1f", ss.getPos().x, ss.getPos().y, ss.getPos().z);
+            ImGui::NextColumn();
+            ImGui::PushID(i);
+            if (ImGui::Button("Go!")) {
+                Camera::setPosition(ss.getPos());
+            }
+            ImGui::PopID();
+            ImGui::NextColumn();
+        }
+        ImGui::Columns(1);
+    }
+
     if (ImGui::CollapsingHeader("Sound Player")) {
         if (!Sound::getEnabled()) {
             ImGui::Text("Please enable Sound first!");

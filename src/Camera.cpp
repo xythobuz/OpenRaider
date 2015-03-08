@@ -13,6 +13,7 @@
 #include "global.h"
 #include "RunTime.h"
 #include "system/Shader.h"
+#include "system/Sound.h"
 #include "system/Window.h"
 #include "Camera.h"
 
@@ -201,6 +202,10 @@ bool Camera::update() {
 
     if (updateViewFrustum)
         calculateFrustumPlanes();
+
+    glm::vec3 at(0.0f, 0.0f, -1.0f);
+    glm::vec3 up(0.0f, -1.0f, 0.0f);
+    Sound::listenAt(pos, quaternion * at, quaternion * up);
 
     dirty = false;
     return updateViewFrustum;
