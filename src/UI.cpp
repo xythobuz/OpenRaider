@@ -139,7 +139,7 @@ int UI::initialize() {
     style.ItemInnerSpacing                      = ImVec2(1, 1);
     style.TouchExtraPadding                     = ImVec2(0, 0);
     style.TreeNodeSpacing                       = 3;
-    style.ScrollBarWidth                        = 10;
+    style.ScrollbarWidth                        = 10;
 
     return 0;
 }
@@ -274,7 +274,7 @@ void UI::display() {
 
     static bool showTestWindow = false;
     static bool showStyleWindow = false;
-    if (ImGui::Begin("Engine", &visible, ImVec2(400, 400))) {
+    if (ImGui::Begin("Engine", &visible, ImVec2(500, 600))) {
         Render::displayUI();
         RunTime::display();
         TextureManager::display();

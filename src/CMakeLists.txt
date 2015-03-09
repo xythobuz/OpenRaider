@@ -170,36 +170,6 @@ endif (APPLE)
 
 #################################################################
 
-# Check for SSE, enable if available
-include (../cmake/FindSSE.cmake)
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    if (SSE_FOUND)
-        set (SSE_FOUND_MSG "${SSE_FOUND_MSG} SSE")
-        set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -msse")
-    endif (SSE_FOUND)
-    if (SSE2_FOUND)
-        set (SSE_FOUND_MSG "${SSE_FOUND_MSG} SSE2")
-        set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -msse2")
-    endif (SSE2_FOUND)
-    if (SSE3_FOUND)
-        set (SSE_FOUND_MSG "${SSE_FOUND_MSG} SSE3")
-        set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -msse3")
-    endif (SSE3_FOUND)
-    if (SSSE3_FOUND)
-        set (SSE_FOUND_MSG "${SSE_FOUND_MSG} SSSE3")
-        set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -mssse3")
-    endif (SSSE3_FOUND)
-    if (SSE4_1_FOUND)
-        set (SSE_FOUND_MSG "${SSE_FOUND_MSG} SSE4.1")
-        set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} -msse4.1")
-    endif (SSE4_1_FOUND)
-
-    # Display message if something is enabled
-    if (NOT "${SSE_FOUND_MSG}" STREQUAL "")
-        message (STATUS "Enabled${SSE_FOUND_MSG}...")
-    endif (NOT "${SSE_FOUND_MSG}" STREQUAL "")
-endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-
 # Apply Flags
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenRaider_CXX_FLAGS}")
 set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${OpenRaider_CXX_FLAGS} ${OpenRaider_CXX_FLAGS_DEBUG}")

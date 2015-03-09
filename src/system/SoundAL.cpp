@@ -222,6 +222,16 @@ void SoundAL::play(int source, bool atListener) {
     }
 }
 
+void SoundAL::stop(int source) {
+    if (!init)
+        return;
+
+    if ((source >= 0) && (source < sources.size()))
+        alSourceStop(sources.at(source));
+    else
+        Log::get(LOG_ERROR) << "SoundAL: Can't stop non-existing source!" << Log::endl;
+}
+
 void SoundAL::stopAll() {
     if (!init)
         return;

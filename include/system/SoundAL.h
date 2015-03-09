@@ -26,6 +26,7 @@ class SoundAL {
     static void listenAt(glm::vec3 pos, glm::vec3 at, glm::vec3 up);
 
     static void play(int source, bool atListener);
+    static void stop(int source);
     static void stopAll();
 
     static void setEnabled(bool on);

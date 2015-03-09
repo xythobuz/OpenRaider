@@ -2,6 +2,13 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140309 ]
+    * Removed (unused) SSE support script
+    * Added level loading notification in main menu
+    * Can now start/stop individual SoundSources
+    * Added SoundDetail debug UI, improved SoundSources debug UI
+    * Updated imgui to version 1.35
+
     [ 20140307 ]
     * Can now load all TR3 levels without crashing
     * Sound Sources now working, with (more or less) proper 3D Sound

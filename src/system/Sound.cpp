@@ -84,6 +84,12 @@ void Sound::play(int source, bool atListener) {
 #endif
 }
 
+void Sound::stop(int source) {
+#ifdef USING_AL
+    SoundAL::stop(source);
+#endif
+}
+
 void Sound::stopAll() {
 #ifdef USING_AL
     SoundAL::stopAll();

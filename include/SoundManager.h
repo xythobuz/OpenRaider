@@ -13,16 +13,20 @@
 class SoundSource {
   public:
     SoundSource(glm::vec3 p, int i, int f)
-        : pos(p), id(i), flags(f), source(-1) { }
+        : pos(p), id(i), flags(f), source(-1), playing(false) { }
     void prepare();
+    void play();
+    void stop();
     glm::vec3 getPos() { return pos; }
     int getID() { return id; }
     int getFlags() { return flags; }
     int getSource() { return source; }
+    bool isPlaying() { return playing; }
 
   private:
     glm::vec3 pos;
     int id, flags, source;
+    bool playing;
 };
 
 class SoundDetail {

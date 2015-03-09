@@ -1120,6 +1120,8 @@ void LoaderTR2::loadExternalSoundFile(std::string f) {
         return;
     }
 
+    Log::get(LOG_INFO) << "LoaderTR2: Loading \"" << f << "\"" << Log::endl;
+
     int riffCount = loadSoundFiles(sfx);
     if (riffCount > 0)
         Log::get(LOG_INFO) << "LoaderTR2: Loaded " << riffCount << " SoundSamples" << Log::endl;

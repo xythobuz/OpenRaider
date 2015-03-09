@@ -32,9 +32,22 @@ void SoundSource::prepare() {
             if (ret < 0) {
                 Log::get(LOG_ERROR) << "Error positioning SoundSource " << id << Log::endl;
             }
-            Sound::play(source, false);
         }
     }
+}
+
+void SoundSource::play() {
+    playing = true;
+
+    if (source >= 0)
+        Sound::play(source, false);
+}
+
+void SoundSource::stop() {
+    playing = false;
+
+    if (source >= 0)
+        Sound::stop(source);
 }
 
 // ----------------------------------------------------------------------------
@@ -69,6 +82,7 @@ int SoundManager::prepareSources() {
 
     for (int i = 0; i < soundSources.size(); i++) {
         soundSources.at(i).prepare();
+        soundSources.at(i).play();
     }
 
     return 0;
@@ -142,27 +156,54 @@ int SoundManager::playSound(int index) {
 }
 
 void SoundManager::display() {
+    static bool offsets = false;
     if (ImGui::CollapsingHeader("Sound Sources")) {
         ImGui::Columns(5, "soundsources");
-        ImGui::Text("No"); ImGui::NextColumn();
-        ImGui::Text("ID"); ImGui::NextColumn();
-        ImGui::Text("Flags"); ImGui::NextColumn();
-        ImGui::Text("Pos"); ImGui::NextColumn();
-        ImGui::Text("Go"); ImGui::NextColumn();
+        ImGui::Text("No");
+        ImGui::NextColumn();
+        ImGui::Text("ID");
+        ImGui::NextColumn();
+        ImGui::Text("Flags");
+        ImGui::NextColumn();
+        ImGui::Text("Pos");
+        ImGui::NextColumn();
+        ImGui::Text("Tools");
+        ImGui::NextColumn();
         ImGui::Separator();
+        if (!offsets) {
+            ImGui::SetColumnOffset(1, 40.0f);
+            ImGui::SetColumnOffset(2, 80.0f);
+            ImGui::SetColumnOffset(3, 130.0f);
+            ImGui::SetColumnOffset(4, 350.0f);
+            offsets = true;
+        }
         for (int i = 0; i < soundSources.size(); i++) {
             auto& ss = soundSources.at(i);
             ImGui::Text("%03d", i);
             ImGui::NextColumn();
             ImGui::Text("%d", ss.getID());
             ImGui::NextColumn();
-            ImGui::Text("%X", ss.getFlags());
+            ImGui::Text("0x%X", ss.getFlags());
             ImGui::NextColumn();
             ImGui::Text("%.1f %.1f %.1f", ss.getPos().x, ss.getPos().y, ss.getPos().z);
             ImGui::NextColumn();
             ImGui::PushID(i);
-            if (ImGui::Button("Go!")) {
+            if (ImGui::Button("Warp")) {
                 Camera::setPosition(ss.getPos());
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Play")) {
+                playSound(soundSources.at(i).getID());
+            }
+            ImGui::SameLine();
+            if (ss.isPlaying()) {
+                if (ImGui::Button("Stop")) {
+                    ss.stop();
+                }
+            } else {
+                if (ImGui::Button("Start")) {
+                    ss.play();
+                }
             }
             ImGui::PopID();
             ImGui::NextColumn();
@@ -170,7 +211,49 @@ void SoundManager::display() {
         ImGui::Columns(1);
     }
 
-    if (ImGui::CollapsingHeader("Sound Player")) {
+    static bool offsets2 = false;
+    if (ImGui::CollapsingHeader("Sound Details")) {
+        ImGui::Columns(4, "sounddetails");
+        ImGui::Text("No");
+        ImGui::NextColumn();
+        ImGui::Text("Vol");
+        ImGui::NextColumn();
+        ImGui::Text("Sample");
+        ImGui::NextColumn();
+        ImGui::Text("Tools");
+        ImGui::NextColumn();
+        ImGui::Separator();
+        if (!offsets2) {
+            ImGui::SetColumnOffset(1, 40.0f);
+            ImGui::SetColumnOffset(2, 80.0f);
+            ImGui::SetColumnOffset(3, 180.0f);
+            offsets2 = true;
+        }
+        for (int i = 0; i < soundDetails.size(); i++) {
+            auto& sd = soundDetails.at(i);
+            ImGui::Text("%03d", i);
+            ImGui::NextColumn();
+            ImGui::Text("%.2f", sd.getVolume());
+            ImGui::NextColumn();
+            if ((sd.getSample() < 0) || (sd.getSample() >= sampleIndices.size())) {
+                ImGui::Text("%03d --> ???", sd.getSample());
+            } else {
+                ImGui::Text("%03d --> %03d", sd.getSample(), sampleIndices.at(sd.getSample()));
+            }
+            ImGui::NextColumn();
+            ImGui::PushID(i);
+            if (sd.getSource() >= 0) {
+                if (ImGui::Button("Play")) {
+                    Sound::play(sd.getSource(), true);
+                }
+            }
+            ImGui::PopID();
+            ImGui::NextColumn();
+        }
+        ImGui::Columns(1);
+    }
+
+    if (ImGui::CollapsingHeader("Sound Map Player")) {
         if (!Sound::getEnabled()) {
             ImGui::Text("Please enable Sound first!");
             if (ImGui::Button("Enable Sound!")) {

@@ -174,7 +174,6 @@ There are some included cmake scripts:
 
 * [FindALUT](https://github.com/rpavlik/cmake-modules/blob/master/FindALUT.cmake)
 * [FindSDL2](https://github.com/dhewm/dhewm3/blob/master/neo/sys/cmake/FindSDL2.cmake)
-* [FindSSE](https://gitorious.org/vc/vc/source/a1d8b9fc31060d870386613cc72319546c850b87:cmake/FindSSE.cmake)
 * [GetGitRevisionDescription.cmake](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake)
 * [GetGitRevisionDescription.cmake.in](https://github.com/rpavlik/cmake-modules/blob/master/GetGitRevisionDescription.cmake.in)
 * [FindGLM] (https://github.com/g-truc/glm/blob/master/util/FindGLM.cmake)

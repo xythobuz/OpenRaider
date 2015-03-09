@@ -35,7 +35,7 @@ class Menu {
 
   protected:
 
-    virtual void showDialog(std::string msg, std::string btn1, std::string btn2,
+    virtual void showDialog(std::string msg, std::string btn1, std::string btn2 = "",
                             std::function<int (bool state)> callback = std::function<int (bool)>());
 
     virtual void ackDialog();

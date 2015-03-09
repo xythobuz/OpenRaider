@@ -119,8 +119,11 @@ void MenuFolder::loadOrOpen() {
             showDialog("Error reading subfolder!", "OK", "");
         }
     } else {
+        showDialog("Loading...", "OK");
+        renderFrame();
         int error = Game::loadLevel(mapFolder->getFile((unsigned long)mCursor
                                     - 1 - mapFolder->folderCount()).getPath().c_str());
+        ackDialog();
         if (error == 0) {
             visible = false;
         } else {
