@@ -716,6 +716,72 @@ struct AnimDispatch_t {
         : low(l), high(h), nextAnimation(na), nextFrame(nf) { }
 };
 
+void LoaderTR2::loadAngleSet(BoneFrame* bf, BinaryReader& frame, uint16_t numMeshes,
+                             uint16_t startingMesh, uint32_t meshTree,
+                             uint32_t numMeshTrees, std::vector<int32_t> meshTrees) {
+    for (int i = 0; i < numMeshes; i++) {
+        int mesh = startingMesh + i;
+        glm::vec3 offset(0.0f, 0.0f, 0.0f);
+        float rotation[3] = { 0.0f, 0.0f, 0.0f };
+        char flag = (i == 0) ? 2 : 0;
+
+        // Nonprimary tag - positioned relative to first tag
+        if (i != 0) {
+            char* tmp = reinterpret_cast<char*>(&meshTrees[0]) + meshTree; // TODO (meshTree * 4)?
+            tmp += (i - 1) * 16; // TODO ?
+            BinaryMemory tree(tmp, (numMeshTrees * 4) - meshTree - ((i - 1) * 16));
+            flag = (char)tree.readU32();
+            offset.x = tree.read32();
+            offset.y = tree.read32();
+            offset.z = tree.read32();
+
+            uint16_t a = frame.readU16();
+            if (a & 0xC000) {
+                // Single angle
+                int index = 0;
+                if ((a & 0x8000) && (a & 0x4000))
+                    index = 2;
+                else if (a & 0x4000)
+                    index = 1;
+                rotation[index] = ((float)(a & 0x03FF)) * 360.0f / 1024.0f;
+            } else {
+                // Three angles
+                uint16_t b = frame.readU16();
+                rotation[0] = (a & 0x3FF0) >> 4;
+                rotation[1] = ((a & 0x000F) << 6) | ((b & 0xFC00) >> 10);
+                rotation[2] = b & 0x03FF;
+                for (int i = 0; i < 3; i++)
+                    rotation[i] = rotation[i] * 360.0f / 1024.0f;
+            }
+        }
+
+        glm::vec3 rot(rotation[0], rotation[1], rotation[2]);
+        BoneTag* bt = new BoneTag(mesh, offset, rot, flag);
+        bf->add(bt);
+    }
+}
+
+BoneFrame* LoaderTR2::loadFrame(BinaryReader& frame, uint16_t numMeshes,
+                                uint16_t startingMesh, uint32_t meshTree,
+                                uint32_t numMeshTrees, std::vector<int32_t> meshTrees) {
+    int16_t bb1x = frame.read16();
+    int16_t bb1y = frame.read16();
+    int16_t bb1z = frame.read16();
+    int16_t bb2x = frame.read16();
+    int16_t bb2y = frame.read16();
+    int16_t bb2z = frame.read16();
+
+    glm::vec3 pos;
+    pos.x = frame.read16();
+    pos.y = frame.read16();
+    pos.z = frame.read16();
+
+    BoneFrame* bf = new BoneFrame(pos);
+    loadAngleSet(bf, frame, numMeshes, startingMesh, meshTree, numMeshTrees, meshTrees);
+
+    return bf;
+}
+
 void LoaderTR2::loadMoveables() {
     uint32_t numAnimations = file.readU32();
     std::vector<Animation_t> animations;
@@ -862,70 +928,43 @@ void LoaderTR2::loadMoveables() {
         // animated by the engine (ponytail)
         uint16_t animation = file.readU16();
 
-        // TODO load all animations, not only the first frame!
-        //if (animation == 0xFFFF) {
+        /*
+        if (animation == 0xFFFF) {
+        */
+            // Just add the frame indicated in frameOffset, nothing else
+            char* tmp = reinterpret_cast<char*>(&frames[0]) + frameOffset;
+            BinaryMemory frame(tmp, (numFrames * 2) - frameOffset);
 
-        // Just add the frame indicated in frameOffset, nothing else
-        char* tmp = reinterpret_cast<char*>(&frames[0]) + frameOffset;
-        BinaryMemory frame(tmp + 12, (numFrames * 2) - frameOffset - 12); // skip two BBs
-        glm::vec3 pos;
-        pos.x = frame.read16();
-        pos.y = frame.read16();
-        pos.z = frame.read16();
-        // TODO frame data format different for TR1!
-        BoneFrame* bf = new BoneFrame(pos);
+            if (((numFrames * 2) - frameOffset) <= 0)
+                continue; // TR1/LEVEL3A crashes without this?!
 
-        for (int i = 0; i < numMeshes; i++) {
-            int mesh = startingMesh + i;
-            glm::vec3 offset;
-            float rotation[3] = { 0.0f, 0.0f, 0.0f };
-            char flag = (i == 0) ? 2 : 0;
+            BoneFrame* bf = loadFrame(frame, numMeshes, startingMesh, meshTree, numMeshTrees, meshTrees);
+            AnimationFrame* af = new AnimationFrame(0);
+            af->add(bf);
 
-            // Nonprimary tag - positioned relative to first tag
-            if (i != 0) {
-                tmp = reinterpret_cast<char*>(&meshTrees[0]) + meshTree; // TODO (meshTree * 4)?
-                tmp += (i - 1) * 16; // TODO ?
-                BinaryMemory tree(tmp, (numMeshTrees * 4) - meshTree - ((i - 1) * 16));
-                flag = (char)tree.readU32();
-                offset.x = tree.read32();
-                offset.y = tree.read32();
-                offset.z = tree.read32();
+            SkeletalModel* sm = new SkeletalModel(objectID);
+            sm->add(af);
+            getWorld().addSkeletalModel(sm);
+        /*
+        } else {
+            // TODO Add the whole animation hierarchy
+            auto& anim = animations.at(animation);
 
-                uint16_t a = frame.readU16();
-                if (a & 0xC000) {
-                    // Single angle
-                    int index = 0;
-                    if ((a & 0x8000) && (a & 0x4000))
-                        index = 2;
-                    else if (a & 0x4000)
-                        index = 1;
-                    rotation[index] = ((float)(a & 0x03FF)) * 360.0f / 1024.0f;
-                } else {
-                    // Three angles
-                    uint16_t b = frame.readU16();
-                    rotation[0] = (a & 0x3FF0) >> 4;
-                    rotation[1] = ((a & 0x000F) << 6) | ((b & 0xFC00) >> 10);
-                    rotation[2] = b & 0x03FF;
-                    for (int i = 0; i < 3; i++)
-                        rotation[i] = rotation[i] * 360.0f / 1024.0f;
-                }
+            char* tmp = reinterpret_cast<char*>(&frames[0]) + anim.frameOffset;
+            BinaryMemory frame(tmp, (numFrames * 2) - anim.frameOffset);
+            AnimationFrame* af = new AnimationFrame(0);
+
+            for (int i = 0; i < ((anim.frameEnd - anim.frameStart) + 1); i++) {
+                BoneFrame* bf = loadFrame(frame, numMeshes, startingMesh,
+                                          meshTree, numMeshTrees, meshTrees);
+                af->add(bf);
             }
 
-            glm::vec3 rot(rotation[0], rotation[1], rotation[2]);
-            BoneTag* bt = new BoneTag(mesh, offset, rot, flag);
-            bf->add(bt);
+            SkeletalModel* sm = new SkeletalModel(objectID);
+            sm->add(af);
+            getWorld().addSkeletalModel(sm);
         }
-
-        AnimationFrame* af = new AnimationFrame(0);
-        af->add(bf);
-
-        SkeletalModel* sm = new SkeletalModel(objectID);
-        sm->add(af);
-        getWorld().addSkeletalModel(sm);
-
-        //} else {
-        // Add the whole animation hierarchy
-        //}
+        */
     }
 
     if (numMoveables > 0)

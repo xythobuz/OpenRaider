@@ -283,3 +283,47 @@ int LoaderTR1::getPaletteIndex(uint16_t index) {
     return index;
 }
 
+void LoaderTR1::loadAngleSet(BoneFrame* bf, BinaryReader& frame, uint16_t numMeshes,
+                             uint16_t startingMesh, uint32_t meshTree,
+                             uint32_t numMeshTrees, std::vector<int32_t> meshTrees) {
+    /*! \fixme
+     * The TR Rosetta Stone documentation says:
+     *     number of angle sets to follow;
+     *     these start with the first mesh, and meshes
+     *     without angles get zero angles.
+     * I'm not sure what this means. This code may be wrong.
+     */
+    uint16_t numValues = frame.readU16();
+
+    for (int i = 0; i < numValues; i++) {
+        int mesh = startingMesh + i;
+        glm::vec3 offset(0.0f, 0.0f, 0.0f);
+        float rotation[3] = { 0.0f, 0.0f, 0.0f };
+        char flag = (i == 0) ? 2 : 0;
+
+        // Nonprimary tag - positioned relative to first tag
+        if (i != 0) {
+            char* tmp = reinterpret_cast<char*>(&meshTrees[0]) + meshTree; // TODO (meshTree * 4)?
+            tmp += (i - 1) * 16; // TODO ?
+            BinaryMemory tree(tmp, (numMeshTrees * 4) - meshTree - ((i - 1) * 16));
+
+            flag = (char)tree.readU32();
+            offset.x = tree.read32();
+            offset.y = tree.read32();
+            offset.z = tree.read32();
+
+            uint16_t b = frame.readU16();
+            uint16_t a = frame.readU16();
+            rotation[0] = (a & 0x3FF0) >> 4;
+            rotation[1] = ((a & 0x000F) << 6) | ((b & 0xFC00) >> 10);
+            rotation[2] = b & 0x03FF;
+            for (int i = 0; i < 3; i++)
+                rotation[i] = rotation[i] * 360.0f / 1024.0f;
+        }
+
+        glm::vec3 rot(rotation[0], rotation[1], rotation[2]);
+        BoneTag* bt = new BoneTag(mesh, offset, rot, flag);
+        bf->add(bt);
+    }
+}
+

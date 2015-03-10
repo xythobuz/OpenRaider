@@ -26,6 +26,9 @@ class LoaderTR1 : public LoaderTR2 {
     virtual void loadSoundSamples();
 
     virtual int getPaletteIndex(uint16_t index);
+    virtual void loadAngleSet(BoneFrame* bf, BinaryReader& frame, uint16_t numMeshes,
+                              uint16_t startingMesh, uint32_t meshTree,
+                              uint32_t numMeshTrees, std::vector<int32_t> meshTrees);
 };
 
 #endif

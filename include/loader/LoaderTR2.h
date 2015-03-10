@@ -13,6 +13,8 @@
 
 #include "RoomData.h"
 #include "RoomMesh.h"
+#include "SkeletalModel.h"
+#include "utils/binary.h"
 #include "loader/Loader.h"
 
 class LoaderTR2 : public Loader {
@@ -51,6 +53,12 @@ class LoaderTR2 : public Loader {
     virtual int loadSoundFiles(BinaryReader& sfx, unsigned int count = 0);
 
     virtual int getPaletteIndex(uint16_t index);
+    virtual void loadAngleSet(BoneFrame* bf, BinaryReader& frame, uint16_t numMeshes,
+                              uint16_t startingMesh, uint32_t meshTree,
+                              uint32_t numMeshTrees, std::vector<int32_t> meshTrees);
+    virtual BoneFrame* loadFrame(BinaryReader& frame, uint16_t numMeshes,
+                                 uint16_t startingMesh, uint32_t meshTree,
+                                 uint32_t numMeshTrees, std::vector<int32_t> meshTrees);
 };
 
 #endif

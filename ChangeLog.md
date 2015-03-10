@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140310 ]
+    * Tried to fix moveable loading. Fixed TR1 angle parser, but still not working better.
+
     [ 20140309 ]
     * Removed (unused) SSE support script
     * Added level loading notification in main menu
