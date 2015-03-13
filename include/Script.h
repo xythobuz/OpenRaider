@@ -91,9 +91,8 @@ class Script {
     } ScriptItem;
 
     Script();
-    ~Script();
 
-    int load(const char* file);
+    int load(std::string file);
 
     unsigned int levelCount();
     std::string getLevelName(unsigned int i);
@@ -123,6 +122,9 @@ class Script {
 
     void registerScriptHandler(ScriptOpCode op, std::function<int (bool, uint16_t)> func);
     int runScript(unsigned int level);
+
+    std::string getDescription() { return description; }
+    std::string getLanguage();
 
   private:
 

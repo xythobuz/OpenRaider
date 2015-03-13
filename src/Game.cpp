@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "loader/Loader.h"
 #include "Log.h"
+#include "Menu.h"
 #include "Render.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
@@ -37,7 +38,7 @@ void Game::destroy() {
     getWorld().destroy();
 }
 
-int Game::loadLevel(const char* level) {
+int Game::loadLevel(std::string level) {
     destroy();
 
     Log::get(LOG_INFO) << "Loading " << level << Log::endl;
@@ -63,11 +64,10 @@ int Game::loadLevel(const char* level) {
 
         mLoaded = true;
         Render::setMode(RenderMode::Texture);
+        Menu::setVisible(false);
 
         if (mLara == -1) {
             Log::get(LOG_WARNING) << "Can't find Lara entity in level?!" << Log::endl;
-            Console::setVisible(true);
-            UI::setVisible(true);
         } else {
             Camera::setPosition(glm::vec3(getLara().getPosition().x,
                                           getLara().getPosition().y - 1024.0f,

@@ -187,5 +187,7 @@ See the respective files in `cmake` for their licensing.
 
 The [clibs/commander](https://github.com/clibs/commander) dependency is Copyright (c) 2012 TJ Holowaychuk (tj@vision-media.ca) and licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
-The included GUI lib, [imgui](https://github.com/ocornut/imgui/) is Copyright (c) 2014 Omar Cornut. See src/deps/imgui/LICENSE for more informations about the MIT license used.
+The included GUI lib, [imgui](https://github.com/ocornut/imgui/) is Copyright (c) 2014 Omar Cornut. See src/deps/imgui/LICENSE for more informations about the MIT license used. 
+
+Also included is the imgui addon [imguifilesystem by Flix01](https://gist.github.com/Flix01/f34b5efa91e50a241c1b).
 

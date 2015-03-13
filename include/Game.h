@@ -9,7 +9,6 @@
 #define _GAME_H_
 
 #include <string>
-#include <vector>
 
 #include "Entity.h"
 
@@ -18,7 +17,7 @@ class Game {
     static void destroy();
 
     static bool isLoaded() { return mLoaded; }
-    static int loadLevel(const char* level);
+    static int loadLevel(std::string level);
 
     static void handleAction(ActionEvents action, bool isFinished);
     static void handleMouseMotion(int xrel, int yrel, int xabs, int yabs);

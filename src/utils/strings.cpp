@@ -43,3 +43,33 @@ bool stringEndsWith(std::string s, std::string suffix, bool casesensitive) {
     return false;
 }
 
+std::string removeLastPathElement(std::string s) {
+    auto pos = s.find_last_of("/\\");
+    if (pos == std::string::npos)
+        return s;
+    return s.erase(pos);
+}
+
+std::string getLastPathElement(std::string s) {
+    auto pos = s.find_last_of("/\\");
+    if (pos == std::string::npos)
+        return s;
+    return s.erase(0, pos + 1);
+}
+
+std::string convertPathDelimiter(std::string s) {
+    std::string::size_type pos;
+
+#ifdef _WIN32
+    while ((pos = s.find('/')) != std::string::npos) {
+        s.replace(pos, 1, 1, '\\');
+    }
+#else
+    while ((pos = s.find('\\')) != std::string::npos) {
+        s.replace(pos, 1, 1, '/');
+    }
+#endif
+
+    return s;
+}
+

@@ -2,6 +2,11 @@
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140312 ]
+    * Now including imguifilesystem dependency
+    * Completely re-wrote Main menu, now reading TOMBPC.DAT scripts
+    * Main menu is now just a full-screen ImGui window
+
     [ 20140310 ]
     * Tried to fix moveable loading. Fixed TR1 angle parser, but still not working better.
 

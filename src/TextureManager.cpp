@@ -84,6 +84,10 @@ int TextureManager::initializeSplash() {
     Folder f(RunTime::getPakDir());
     std::vector<File> files;
     f.findRecursiveFilesEndingWith(files, ".pcx");
+    f.findRecursiveFilesEndingWith(files, ".bmp");
+    f.findRecursiveFilesEndingWith(files, ".png");
+    f.findRecursiveFilesEndingWith(files, ".tga");
+    f.findRecursiveFilesEndingWith(files, ".jpg");
     if (files.size() == 0) {
         if (loadImage(RunTime::getDataDir() + "/splash.tga", TextureStorage::SYSTEM, TEXTURE_SPLASH) < 0) {
             return -2;

@@ -12,6 +12,7 @@
 #include "global.h"
 #include "Camera.h"
 #include "Log.h"
+#include "Menu.h"
 #include "StaticMesh.h"
 #include "World.h"
 #include "system/Font.h"
@@ -279,6 +280,10 @@ void Render::displayUI() {
         ImGui::Separator();
         if (ImGui::Button("New Splash##render")) {
             TextureManager::initializeSplash();
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("New Menu##render")) {
+            Menu::initialize();
         }
     }
 }

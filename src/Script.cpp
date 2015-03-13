@@ -40,11 +40,7 @@ Script::Script() : puzzles(4), pickups(2), keys(4) {
     numGameStrings = 0;
 }
 
-Script::~Script() {
-
-}
-
-int Script::load(const char* file) {
+int Script::load(std::string file) {
     BinaryFile f;
 
     if (f.open(file) != 0)
@@ -349,5 +345,21 @@ int Script::runScript(unsigned int level) {
     }
 
     return 0;
+}
+
+std::string Script::getLanguage() {
+    if (language == S_English) {
+        return "English (UK)";
+    } else if (language == S_French) {
+        return "French";
+    } else if (language == S_German) {
+        return "German";
+    } else if (language == S_American) {
+        return "English (US)";
+    } else if (language == S_Japanese) {
+        return "Japanese";
+    } else {
+        return "Unknown";
+    }
 }
 

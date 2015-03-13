@@ -931,20 +931,20 @@ void LoaderTR2::loadMoveables() {
         /*
         if (animation == 0xFFFF) {
         */
-            // Just add the frame indicated in frameOffset, nothing else
-            char* tmp = reinterpret_cast<char*>(&frames[0]) + frameOffset;
-            BinaryMemory frame(tmp, (numFrames * 2) - frameOffset);
+        // Just add the frame indicated in frameOffset, nothing else
+        char* tmp = reinterpret_cast<char*>(&frames[0]) + frameOffset;
+        BinaryMemory frame(tmp, (numFrames * 2) - frameOffset);
 
-            if (((numFrames * 2) - frameOffset) <= 0)
-                continue; // TR1/LEVEL3A crashes without this?!
+        if (((numFrames * 2) - frameOffset) <= 0)
+            continue; // TR1/LEVEL3A crashes without this?!
 
-            BoneFrame* bf = loadFrame(frame, numMeshes, startingMesh, meshTree, numMeshTrees, meshTrees);
-            AnimationFrame* af = new AnimationFrame(0);
-            af->add(bf);
+        BoneFrame* bf = loadFrame(frame, numMeshes, startingMesh, meshTree, numMeshTrees, meshTrees);
+        AnimationFrame* af = new AnimationFrame(0);
+        af->add(bf);
 
-            SkeletalModel* sm = new SkeletalModel(objectID);
-            sm->add(af);
-            getWorld().addSkeletalModel(sm);
+        SkeletalModel* sm = new SkeletalModel(objectID);
+        sm->add(af);
+        getWorld().addSkeletalModel(sm);
         /*
         } else {
             // TODO Add the whole animation hierarchy

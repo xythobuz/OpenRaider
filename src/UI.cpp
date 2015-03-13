@@ -88,7 +88,7 @@ int UI::initialize() {
     int width, height;
     io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
     fontTex = TextureManager::loadBufferSlot(pixels, width, height, ColorMode::RGBA, 32,
-              TextureStorage::SYSTEM, -1, false);
+              TextureStorage::SYSTEM, -1, true);
     auto bm = TextureManager::getBufferManager(fontTex, TextureStorage::SYSTEM);
     io.Fonts->TexID = bm;
 
@@ -156,56 +156,27 @@ void UI::eventsFinished() {
 
     ImGui::NewFrame();
 
-    if (!(visible || Console::isVisible())) {
-        while (!clickEvents.empty()) {
-            auto i = clickEvents.front();
-            if (getMenu().isVisible()) {
-                getMenu().handleMouseClick(std::get<0>(i), std::get<1>(i),
-                                           std::get<2>(i), std::get<3>(i));
-            }
-            clickEvents.pop_front();
-        }
-
+    if (!(visible || Console::isVisible() || Menu::isVisible())) {
         while (!motionEvents.empty()) {
             auto i = motionEvents.front();
-            if (!getMenu().isVisible()) {
-                Game::handleMouseMotion(std::get<0>(i), std::get<1>(i),
-                                        std::get<2>(i), std::get<3>(i));
-            }
+            Game::handleMouseMotion(std::get<0>(i), std::get<1>(i),
+                                    std::get<2>(i), std::get<3>(i));
             motionEvents.pop_front();
-        }
-
-        while (!scrollEvents.empty()) {
-            auto i = scrollEvents.front();
-            if (getMenu().isVisible()) {
-                getMenu().handleMouseScroll(std::get<0>(i), std::get<1>(i));
-            }
-            scrollEvents.pop_front();
         }
     }
 
     while (!keyboardEvents.empty()) {
         auto i = keyboardEvents.front();
 
-        if (!(visible || Console::isVisible())) {
-            if (getMenu().isVisible()) {
-                getMenu().handleKeyboard(std::get<0>(i), std::get<1>(i));
-            } else {
-                for (int n = forwardAction; n < ActionEventCount; n++) {
-                    if (RunTime::getKeyBinding((ActionEvents)n) == std::get<0>(i))
-                        Game::handleAction((ActionEvents)n, !std::get<1>(i));
-                }
+        if (!(visible || Console::isVisible() || Menu::isVisible())) {
+            for (int n = forwardAction; n < ActionEventCount; n++) {
+                if (RunTime::getKeyBinding((ActionEvents)n) == std::get<0>(i))
+                    Game::handleAction((ActionEvents)n, !std::get<1>(i));
             }
         }
 
         if (std::get<1>(i)) {
-            if (!(visible || Console::isVisible())) {
-                if (RunTime::getKeyBinding(menuAction) == std::get<0>(i)) {
-                    getMenu().setVisible(!getMenu().isVisible());
-                }
-            }
-
-            if ((!io.WantCaptureKeyboard) || (!(visible || Console::isVisible()))) {
+            if ((!io.WantCaptureKeyboard) || (!(visible || Console::isVisible() || Menu::isVisible()))) {
                 if (!metaKeyIsActive) {
                     if (RunTime::getKeyBinding(debugAction) == std::get<0>(i)) {
                         visible = !visible;
@@ -213,6 +184,10 @@ void UI::eventsFinished() {
 
                     if (RunTime::getKeyBinding(consoleAction) == std::get<0>(i)) {
                         Console::setVisible(!Console::isVisible());
+                    }
+
+                    if (RunTime::getKeyBinding(menuAction) == std::get<0>(i)) {
+                        Menu::setVisible(!Menu::isVisible());
                     }
                 }
             }
@@ -226,18 +201,16 @@ void UI::eventsFinished() {
     motionEvents.clear();
     scrollEvents.clear();
 
-    if ((visible || Console::isVisible()) && (
-            ((!io.WantCaptureKeyboard) && io.KeysDown[escapeKey])
-            || ((!io.WantCaptureMouse) && clicked)
-        )) {
+    // Allow clicking into the game to hide debug UI
+    if ((visible || Console::isVisible()) && ((!io.WantCaptureMouse) && clicked)) {
         visible = false;
         Console::setVisible(false);
     }
 
-    if (Window::getTextInput() != (visible || Console::isVisible()))
+    if (Window::getTextInput() != (visible || Console::isVisible() || Menu::isVisible()))
         Window::setTextInput(visible || Console::isVisible());
 
-    bool input = !(visible || Console::isVisible() || getMenu().isVisible());
+    bool input = !(visible || Console::isVisible() || Menu::isVisible());
     if (Window::getMousegrab() != input)
         Window::setMousegrab(input);
 
@@ -245,7 +218,7 @@ void UI::eventsFinished() {
 }
 
 void UI::display() {
-    if (RunTime::getShowFPS() && (!getMenu().isVisible())) {
+    if (RunTime::getShowFPS() && (!Menu::isVisible())) {
         if (ImGui::Begin("Debug Overlay", nullptr, ImVec2(0, 0), -1.0f,
                          ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize
                          | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings
@@ -266,6 +239,7 @@ void UI::display() {
         Camera::displayUI();
 
     Console::display();
+    Menu::display();
 
     if (!visible) {
         ImGui::Render();
@@ -441,7 +415,7 @@ void UI::handleControllerButton(KeyboardButton button, bool released) {
     if (visible || Console::isVisible())
         return;
 
-    if (getMenu().isVisible()) {
+    if (Menu::isVisible()) {
         if (button == aButton) {
             handleKeyboard(enterKey, !released);
         } else if (button == padUp) {
@@ -454,7 +428,7 @@ void UI::handleControllerButton(KeyboardButton button, bool released) {
             handleKeyboard(rightKey, !released);
         } else if (button == startButton) {
             if (!released)
-                getMenu().setVisible(false);
+                Menu::setVisible(false);
         }
     } else {
         if (button == aButton) {
@@ -477,7 +451,7 @@ void UI::handleControllerButton(KeyboardButton button, bool released) {
             Game::handleAction(walkAction, released);
         } else if (button == startButton) {
             if (!released)
-                getMenu().setVisible(true);
+                Menu::setVisible(true);
         }
     }
 }

@@ -11,7 +11,7 @@
 #include "global.h"
 #include "Camera.h"
 #include "Log.h"
-#include "MenuFolder.h"
+#include "Menu.h"
 #include "Render.h"
 #include "RunTime.h"
 #include "SoundManager.h"
@@ -27,13 +27,7 @@
 #include "utils/time.h"
 
 static std::string configFileToUse;
-
-static std::shared_ptr<MenuFolder> gMenu;
 static std::shared_ptr<World> gWorld;
-
-Menu& getMenu() {
-    return *gMenu;
-}
 
 World& getWorld() {
     return *gWorld;
@@ -52,7 +46,6 @@ int main(int argc, char* argv[]) {
     // RunTime is required by other constructors
     RunTime::initialize();
 
-    gMenu.reset(new MenuFolder());
     gWorld.reset(new World());
 
     Command::fillCommandList();
@@ -106,23 +99,23 @@ int main(int argc, char* argv[]) {
         return -5;
     }
 
-    // Initialize Menu
-    error = getMenu().initialize();
-    if (error != 0) {
-        std::cout << "Could not initialize Menu (" << error << ")!" << std::endl;
-        return -6;
-    }
-
     // Initialize Debug UI
     error = UI::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Debug UI (" << error << ")!" << std::endl;
+        return -6;
+    }
+
+    // Initialize Menu
+    error = Menu::initialize();
+    if (error != 0) {
+        std::cout << "Could not initialize Menu (" << error << ")!" << std::endl;
         return -7;
     }
 
     Log::get(LOG_INFO) << "Starting " << VERSION << Log::endl;
     Camera::setSize(Window::getSize());
-    getMenu().setVisible(true);
+    Menu::setVisible(true);
     systemTimerReset();
     RunTime::setRunning(true);
     Render::setMode(RenderMode::LoadScreen);
@@ -132,6 +125,7 @@ int main(int argc, char* argv[]) {
         renderFrame();
     }
 
+    Menu::shutdown();
     UI::shutdown();
     Font::shutdown();
     Sound::shutdown();
@@ -152,7 +146,6 @@ int main(int argc, char* argv[]) {
 
 void renderFrame() {
     Render::display();
-    getMenu().display();
     UI::display();
     Window::swapBuffers();
     RunTime::updateFPS();
