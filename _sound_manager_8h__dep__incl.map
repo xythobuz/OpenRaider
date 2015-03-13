@@ -1,0 +1,8 @@
+<map id="include/SoundManager.h" name="include/SoundManager.h">
+<area shape="rect" id="node2" href="$_game_8cpp.html" title="Gameplay Handler. " alt="" coords="5,80,111,107"/>
+<area shape="rect" id="node3" href="$_loader_t_r1_8cpp.html" title="TR1 level file loader. " alt="" coords="135,80,311,107"/>
+<area shape="rect" id="node4" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="335,80,511,107"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="536,80,633,107"/>
+<area shape="rect" id="node6" href="$_sound_manager_8cpp.html" title="Sound Source Manager. " alt="" coords="658,80,818,107"/>
+<area shape="rect" id="node7" href="$_u_i_8cpp.html" title="UI/Event Manager. " alt="" coords="842,80,925,107"/>
+</map>

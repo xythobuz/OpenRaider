@@ -1,4 +1,4 @@
 <map id="include/Sprite.h" name="include/Sprite.h">
-<area shape="rect" id="node2" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="8,80,109,107"/>
-<area shape="rect" id="node5" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="111,155,241,181"/>
+<area shape="rect" id="node2" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="13,80,136,107"/>
+<area shape="rect" id="node4" href="$_texture_manager_8h.html" title="Texture Registry. " alt="" coords="61,155,192,181"/>
 </map>

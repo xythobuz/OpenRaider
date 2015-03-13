@@ -1,11 +1,10 @@
 <map id="include/loader/Loader.h" name="include/loader/Loader.h">
-<area shape="rect" id="node2" href="$_loader_t_r1_8h.html" title="TR1 level file loader. " alt="" coords="29,80,203,107"/>
-<area shape="rect" id="node4" href="$_loader_t_r2_8h.html" title="TR2 level file loader. " alt="" coords="307,80,482,107"/>
-<area shape="rect" id="node5" href="$_loader_8cpp.html" title="Level file loader. " alt="" coords="197,155,341,181"/>
-<area shape="rect" id="node7" href="$_loader_t_r3_8h.html" title="TR3 level file loader. " alt="" coords="506,80,681,107"/>
-<area shape="rect" id="node9" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="705,80,807,107"/>
-<area shape="rect" id="node10" href="$_menu_folder_8cpp.html" title="File&#45;Explorer like menu. " alt="" coords="831,80,963,107"/>
-<area shape="rect" id="node3" href="$_loader_t_r1_8cpp.html" title="TR1 level file loader. " alt="" coords="5,155,173,181"/>
-<area shape="rect" id="node6" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="365,155,533,181"/>
-<area shape="rect" id="node8" href="$_loader_t_r3_8cpp.html" title="TR3 level file loader. " alt="" coords="557,155,725,181"/>
+<area shape="rect" id="node2" href="$_loader_t_r2_8h.html" title="TR2 level file loader. " alt="" coords="336,80,523,107"/>
+<area shape="rect" id="node4" href="$_loader_8cpp.html" title="Level file loader. " alt="" coords="354,229,505,256"/>
+<area shape="rect" id="node9" href="$_game_8cpp.html" title="Gameplay Handler. " alt="" coords="729,80,834,107"/>
+<area shape="rect" id="node3" href="$_loader_t_r1_8h.html" title="TR1 level file loader. " alt="" coords="5,155,192,181"/>
+<area shape="rect" id="node6" href="$_loader_t_r3_8h.html" title="TR3 level file loader. " alt="" coords="467,155,653,181"/>
+<area shape="rect" id="node8" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="216,155,392,181"/>
+<area shape="rect" id="node5" href="$_loader_t_r1_8cpp.html" title="TR1 level file loader. " alt="" coords="11,229,187,256"/>
+<area shape="rect" id="node7" href="$_loader_t_r3_8cpp.html" title="TR3 level file loader. " alt="" coords="529,229,705,256"/>
 </map>

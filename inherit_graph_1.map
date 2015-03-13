@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_binary_file.html" title="BinaryFile" alt="" coords="5,5,81,32"/>
+<area shape="rect" id="node1" href="$class_binary_reader.html" title="BinaryReader" alt="" coords="5,31,109,57"/>
+<area shape="rect" id="node2" href="$class_binary_file.html" title="BinaryFile" alt="" coords="171,5,252,32"/>
+<area shape="rect" id="node3" href="$class_binary_memory.html" title="BinaryMemory" alt="" coords="157,56,265,83"/>
 </map>

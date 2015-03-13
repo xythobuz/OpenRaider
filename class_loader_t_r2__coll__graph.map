@@ -1,4 +1,10 @@
 <map id="LoaderTR2" name="LoaderTR2">
-<area shape="rect" id="node2" href="$class_loader.html" title="Loader" alt="" coords="17,95,79,121"/>
-<area shape="rect" id="node3" href="$class_binary_file.html" title="BinaryFile" alt="" coords="10,5,86,32"/>
+<area shape="rect" id="node2" href="$class_loader.html" title="Loader" alt="" coords="67,517,131,544"/>
+<area shape="rect" id="node3" href="$class_binary_file.html" title="BinaryFile" alt="" coords="58,428,139,455"/>
+<area shape="rect" id="node4" href="$class_binary_reader.html" title="BinaryReader" alt="" coords="5,339,109,365"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="134,339,229,365"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="115,248,248,289"/>
+<area shape="rect" id="node7" title="STL class. " alt="" coords="117,157,246,199"/>
+<area shape="rect" id="node8" title="STL class. " alt="" coords="104,81,259,108"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="131,5,231,32"/>
 </map>

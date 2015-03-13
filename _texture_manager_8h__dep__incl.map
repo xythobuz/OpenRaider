@@ -1,9 +1,47 @@
 <map id="include/TextureManager.h" name="include/TextureManager.h">
-<area shape="rect" id="node2" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="5,80,108,107"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title="Where main() is. " alt="" coords="132,80,227,107"/>
-<area shape="rect" id="node4" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="251,80,359,107"/>
-<area shape="rect" id="node5" href="$_room_8cpp.html" title="World Room Mesh. " alt="" coords="383,80,485,107"/>
-<area shape="rect" id="node6" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="509,80,639,107"/>
-<area shape="rect" id="node7" href="$_texture_manager_8cpp.html" title="Texture registry. " alt="" coords="664,80,823,107"/>
-<area shape="rect" id="node8" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="847,80,925,107"/>
+<area shape="rect" id="node2" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="1136,80,1304,107"/>
+<area shape="rect" id="node11" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="5,453,181,480"/>
+<area shape="rect" id="node13" href="$_render_8h.html" title="World Renderer. " alt="" coords="2191,379,2313,405"/>
+<area shape="rect" id="node15" href="$_game_8cpp.html" title="Gameplay Handler. " alt="" coords="2034,453,2139,480"/>
+<area shape="rect" id="node16" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="1805,453,1902,480"/>
+<area shape="rect" id="node18" href="$_sprite_8cpp.html" title="2D Billboard Collection " alt="" coords="1673,453,1777,480"/>
+<area shape="rect" id="node19" href="$_u_i_8cpp.html" title="UI/Event Manager. " alt="" coords="1927,453,2009,480"/>
+<area shape="rect" id="node25" href="$_texture_manager_8cpp.html" title="Texture Registry. " alt="" coords="3379,453,3546,480"/>
+<area shape="rect" id="node28" href="$_room_mesh_8cpp.html" title="Room Mesh Geometry. " alt="" coords="1645,304,1782,331"/>
+<area shape="rect" id="node29" href="$_mesh_8cpp.html" title="Textured/Colored Mesh. " alt="" coords="908,229,1009,256"/>
+<area shape="rect" id="node34" href="$_font_t_r_l_e_8cpp.html" title="Tomb Raider Level Editor Font loader. " alt="" coords="1584,229,1760,256"/>
+<area shape="rect" id="node36" href="$_font_t_t_f_8cpp.html" title="TrueType Font Implementation. " alt="" coords="1803,229,1968,256"/>
+<area shape="rect" id="node38" href="$_menu_8cpp.html" title="Main Menu. " alt="" coords="3253,453,3355,480"/>
+<area shape="rect" id="node45" href="$pcx_8h.html" title="PCX image reader. " alt="" coords="3307,80,3434,107"/>
+<area shape="rect" id="node3" href="$_mesh_8h.html" title="Textured/Colored Mesh. " alt="" coords="737,155,849,181"/>
+<area shape="rect" id="node4" href="$_room_mesh_8h.html" title="Room Mesh Geometry. " alt="" coords="687,229,833,256"/>
+<area shape="rect" id="node17" href="$_render_8cpp.html" title="World Renderer. " alt="" coords="1069,453,1181,480"/>
+<area shape="rect" id="node22" href="$_room_data_8cpp.html" title="Auxiliary Room classes. " alt="" coords="1510,453,1642,480"/>
+<area shape="rect" id="node30" href="$_sprite_8h.html" title="2D Billboard Collection " alt="" coords="1221,229,1334,256"/>
+<area shape="rect" id="node31" href="$_skeletal_model_8h.html" title="Moveable Mesh Geometry. " alt="" coords="1033,229,1196,256"/>
+<area shape="rect" id="node32" href="$_font_t_r_l_e_8h.html" title="Tomb Raider Level Editor Font loader. " alt="" coords="1127,155,1313,181"/>
+<area shape="rect" id="node33" href="$_font_8cpp.html" title="Font Interface. " alt="" coords="1409,229,1551,256"/>
+<area shape="rect" id="node35" href="$_font_t_t_f_8h.html" title="TrueType Font Implementation. " alt="" coords="1709,155,1885,181"/>
+<area shape="rect" id="node37" href="$_u_i_8h.html" title="UI/Event Manager. " alt="" coords="2467,379,2559,405"/>
+<area shape="rect" id="node43" href="$_camera_8cpp.html" title="Camera, View Frustum. " alt="" coords="1337,155,1453,181"/>
+<area shape="rect" id="node44" href="$_shader_8cpp.html" title="OpenGL Shader Implementation. " alt="" coords="1477,155,1635,181"/>
+<area shape="rect" id="node20" href="$_world_8h.html" title="World Model. " alt="" coords="1069,379,1182,405"/>
+<area shape="rect" id="node5" href="$_loader_t_r2_8h.html" title="TR2 level file loader. " alt="" coords="403,304,589,331"/>
+<area shape="rect" id="node12" href="$_room_8h.html" title="Room in World. " alt="" coords="719,304,833,331"/>
+<area shape="rect" id="node6" href="$_loader_t_r1_8h.html" title="TR1 level file loader. " alt="" coords="507,379,693,405"/>
+<area shape="rect" id="node7" href="$_loader_8cpp.html" title="Level file loader. " alt="" coords="406,453,557,480"/>
+<area shape="rect" id="node9" href="$_loader_t_r3_8h.html" title="TR3 level file loader. " alt="" coords="245,379,432,405"/>
+<area shape="rect" id="node8" href="$_loader_t_r1_8cpp.html" title="TR1 level file loader. " alt="" coords="581,453,757,480"/>
+<area shape="rect" id="node10" href="$_loader_t_r3_8cpp.html" title="TR3 level file loader. " alt="" coords="205,453,381,480"/>
+<area shape="rect" id="node27" href="$_room_8cpp.html" title="Room in World. " alt="" coords="768,379,872,405"/>
+<area shape="rect" id="node14" href="$_command_engine_8cpp.html" title="Engine Commands. " alt="" coords="2164,453,2404,480"/>
+<area shape="rect" id="node21" href="$_entity_8cpp.html" title="Things in the World. " alt="" coords="1206,453,1309,480"/>
+<area shape="rect" id="node23" href="$_skeletal_model_8cpp.html" title="Moveable Mesh Geometry. " alt="" coords="1333,453,1485,480"/>
+<area shape="rect" id="node24" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="782,453,917,480"/>
+<area shape="rect" id="node26" href="$_world_8cpp.html" title="World Model. " alt="" coords="941,453,1045,480"/>
+<area shape="rect" id="node39" href="$_font_im_gui_8cpp.html" title="Default Font Implementation. " alt="" coords="3051,453,3229,480"/>
+<area shape="rect" id="node40" href="$_window_8cpp.html" title="Windowing Interface. " alt="" coords="2428,453,2591,480"/>
+<area shape="rect" id="node41" href="$_window_g_l_f_w_8cpp.html" title="GLFW Windowing Implementation. " alt="" coords="2615,453,2815,480"/>
+<area shape="rect" id="node42" href="$_window_s_d_l_8cpp.html" title="SDL2 Windowing Implementation. " alt="" coords="2839,453,3027,480"/>
+<area shape="rect" id="node46" href="$pcx_8cpp.html" title="PCX image reader. " alt="" coords="3408,155,3525,181"/>
 </map>

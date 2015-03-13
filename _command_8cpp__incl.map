@@ -1,14 +1,9 @@
 <map id="src/commands/Command.cpp" name="src/commands/Command.cpp">
-<area shape="rect" id="node4" href="$global_8h.html" title="Global typedefs. " alt="" coords="195,80,262,107"/>
-<area shape="rect" id="node10" href="$_log_8h.html" title="Log. " alt="" coords="698,155,751,181"/>
-<area shape="rect" id="node14" href="$strings_8h.html" title="String handling utilities. " alt="" coords="565,155,658,181"/>
-<area shape="rect" id="node15" href="$_command_8h.html" title="Command interface. " alt="" coords="965,155,1122,181"/>
-<area shape="rect" id="node18" href="$_command_animate_8h.html" title="Animate Command interface. " alt="" coords="1081,80,1283,107"/>
-<area shape="rect" id="node19" href="$_command_bind_8h.html" title="Bind Command interface. " alt="" coords="1308,80,1491,107"/>
-<area shape="rect" id="node20" href="$_command_engine_8h.html" title="Engine Command interface. " alt="" coords="1515,80,1711,107"/>
-<area shape="rect" id="node21" href="$_command_game_8h.html" title="Game Command interface. " alt="" coords="1735,80,1928,107"/>
-<area shape="rect" id="node22" href="$_command_move_8h.html" title="Move Command interface. " alt="" coords="1953,80,2142,107"/>
-<area shape="rect" id="node23" href="$_command_render_8h.html" title="Render Command interface. " alt="" coords="388,80,587,107"/>
-<area shape="rect" id="node24" href="$_command_set_8h.html" title="Set Command interface. " alt="" coords="611,80,787,107"/>
-<area shape="rect" id="node25" href="$_command_sound_8h.html" title="Sound Command interface. " alt="" coords="811,80,1006,107"/>
+<area shape="rect" id="node4" href="$global_8h.html" title="Included everywhere. " alt="" coords="429,80,498,107"/>
+<area shape="rect" id="node11" href="$_log_8h.html" title="Global Logging Utility. " alt="" coords="709,80,765,107"/>
+<area shape="rect" id="node16" href="$strings_8h.html" title="String handling utilities. " alt="" coords="584,80,684,107"/>
+<area shape="rect" id="node17" href="$_command_8h.html" title="Commands. " alt="" coords="1072,155,1236,181"/>
+<area shape="rect" id="node20" href="$_command_bind_8h.html" title="Bind Command. " alt="" coords="1048,80,1239,107"/>
+<area shape="rect" id="node21" href="$_command_engine_8h.html" title="Engine Commands. " alt="" coords="1263,80,1469,107"/>
+<area shape="rect" id="node22" href="$_command_set_8h.html" title="Get/Set Commands. " alt="" coords="789,80,973,107"/>
 </map>

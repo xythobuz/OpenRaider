@@ -1,0 +1,9 @@
+<map id="ImGuiFs::Dialog" name="ImGuiFs::Dialog">
+<area shape="rect" id="node3" href="$struct_im_vec2.html" title="ImVec2" alt="" coords="839,7,906,33"/>
+<area shape="rect" id="node4" href="$class_im_vector.html" title="ImVector\&lt; char[MAX\l_FILENAME_BYTES]\&gt;" alt="" coords="5,73,164,114"/>
+<area shape="rect" id="node6" href="$class_im_vector.html" title="ImVector\&lt; FolderInfo \&gt;" alt="" coords="544,119,703,145"/>
+<area shape="rect" id="node8" href="$struct_im_gui_text_filter.html" title="ImGuiTextFilter" alt="" coords="816,161,929,188"/>
+<area shape="rect" id="node9" href="$class_im_vector.html" title="ImVector\&lt; ImGuiTextFilter\l::TextRange \&gt;" alt="" coords="535,170,712,211"/>
+<area shape="rect" id="node10" href="$struct_im_gui_text_filter_1_1_text_range.html" title="ImGuiTextFilter::TextRange" alt="" coords="269,177,455,204"/>
+<area shape="rect" id="node11" href="$class_im_vector.html" title="ImVector\&lt; char[MAX\l_PATH_BYTES]\&gt;" alt="" coords="800,213,945,254"/>
+</map>

@@ -1,11 +1,9 @@
-<map id="include/Sound.h" name="include/Sound.h">
-<area shape="rect" id="node2" href="$_sound_a_l_8h.html" title="This is the OpenAL audio manager Header. " alt="" coords="5,80,132,107"/>
-<area shape="rect" id="node4" href="$_sound_null_8h.html" title="This is the null audio manager Header. " alt="" coords="157,80,287,107"/>
-<area shape="rect" id="node7" href="$_command_set_8cpp.html" title="Set command. " alt="" coords="311,80,522,107"/>
-<area shape="rect" id="node8" href="$_command_sound_8cpp.html" title="Sound command. " alt="" coords="546,80,775,107"/>
-<area shape="rect" id="node9" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="800,80,903,107"/>
-<area shape="rect" id="node10" href="$_sound_8cpp.html" title="This is the audio manager Implementation. " alt="" coords="927,80,1031,107"/>
-<area shape="rect" id="node3" href="$_sound_a_l_8cpp.html" title="This is the OpenAL audio manager Implementation. " alt="" coords="9,155,129,181"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="Where main() is. " alt="" coords="164,155,259,181"/>
-<area shape="rect" id="node6" href="$_sound_null_8cpp.html" title="This is the null audio manager Implementation. " alt="" coords="283,155,407,181"/>
+<map id="include/system/Sound.h" name="include/system/Sound.h">
+<area shape="rect" id="node2" href="$_camera_8cpp.html" title="Camera, View Frustum. " alt="" coords="5,80,121,107"/>
+<area shape="rect" id="node3" href="$_command_set_8cpp.html" title="Get/Set Commands. " alt="" coords="146,80,365,107"/>
+<area shape="rect" id="node4" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="389,80,565,107"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="589,80,687,107"/>
+<area shape="rect" id="node6" href="$_run_time_8cpp.html" title="Runtime Configuration Storage. " alt="" coords="711,80,834,107"/>
+<area shape="rect" id="node7" href="$_sound_manager_8cpp.html" title="Sound Source Manager. " alt="" coords="858,80,1018,107"/>
+<area shape="rect" id="node8" href="$_sound_8cpp.html" title="Sound Interface. " alt="" coords="1043,80,1196,107"/>
 </map>

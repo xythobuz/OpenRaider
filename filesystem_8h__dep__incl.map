@@ -1,5 +1,5 @@
 <map id="include/utils/filesystem.h" name="include/utils/filesystem.h">
-<area shape="rect" id="node2" href="$filesystem_8cpp.html" title="file&#45;system utilities " alt="" coords="5,80,152,107"/>
-<area shape="rect" id="node3" href="$src_2utils_2_folder_8cpp.html" title="Recursive file&#45;system walking utilities. " alt="" coords="176,80,301,107"/>
-<area shape="rect" id="node4" href="$strings_8cpp.html" title="String handling utilities. " alt="" coords="325,80,453,107"/>
+<area shape="rect" id="node2" href="$filesystem_8cpp.html" title="file&#45;system utilities " alt="" coords="5,80,161,107"/>
+<area shape="rect" id="node3" href="$_folder_8cpp.html" title="File&#45;system walking utilities. " alt="" coords="186,80,319,107"/>
+<area shape="rect" id="node4" href="$strings_8cpp.html" title="String handling utilities. " alt="" coords="343,80,479,107"/>
 </map>

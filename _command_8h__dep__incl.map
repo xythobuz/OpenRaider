@@ -1,22 +1,11 @@
 <map id="include/commands/Command.h" name="include/commands/Command.h">
-<area shape="rect" id="node2" href="$_command_animate_8h.html" title="Animate Command interface. " alt="" coords="1775,80,1965,121"/>
-<area shape="rect" id="node3" href="$_command_8cpp.html" title="Commands. " alt="" coords="1002,169,1194,196"/>
-<area shape="rect" id="node5" href="$_command_bind_8h.html" title="Bind Command interface. " alt="" coords="231,80,421,121"/>
-<area shape="rect" id="node7" href="$_command_engine_8h.html" title="Engine Command interface. " alt="" coords="445,80,634,121"/>
-<area shape="rect" id="node9" href="$_command_game_8h.html" title="Game Command interface. " alt="" coords="658,80,847,121"/>
-<area shape="rect" id="node11" href="$_command_move_8h.html" title="Move Command interface. " alt="" coords="871,80,1061,121"/>
-<area shape="rect" id="node13" href="$_command_render_8h.html" title="Render Command interface. " alt="" coords="1135,80,1325,121"/>
-<area shape="rect" id="node15" href="$_command_set_8h.html" title="Set Command interface. " alt="" coords="1349,80,1538,121"/>
-<area shape="rect" id="node17" href="$_command_sound_8h.html" title="Sound Command interface. " alt="" coords="1562,80,1751,121"/>
-<area shape="rect" id="node19" href="$_console_8cpp.html" title="Console class. " alt="" coords="1989,87,2103,114"/>
-<area shape="rect" id="node20" href="$main_8cpp.html" title="Where main() is. " alt="" coords="2128,87,2223,114"/>
-<area shape="rect" id="node21" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="2247,87,2325,114"/>
-<area shape="rect" id="node4" href="$_command_animate_8cpp.html" title="Animate command. " alt="" coords="1965,169,2204,196"/>
-<area shape="rect" id="node6" href="$_command_bind_8cpp.html" title="Bind command. " alt="" coords="5,169,223,196"/>
-<area shape="rect" id="node8" href="$_command_engine_8cpp.html" title="Engine commands. " alt="" coords="247,169,477,196"/>
-<area shape="rect" id="node10" href="$_command_game_8cpp.html" title="Game meta&#45;commands. " alt="" coords="501,169,729,196"/>
-<area shape="rect" id="node12" href="$_command_move_8cpp.html" title="Move command. " alt="" coords="754,169,978,196"/>
-<area shape="rect" id="node14" href="$_command_render_8cpp.html" title="Renderer commands. " alt="" coords="1219,169,1452,196"/>
-<area shape="rect" id="node16" href="$_command_set_8cpp.html" title="Set command. " alt="" coords="1477,169,1687,196"/>
-<area shape="rect" id="node18" href="$_command_sound_8cpp.html" title="Sound command. " alt="" coords="1711,169,1941,196"/>
+<area shape="rect" id="node2" href="$_command_bind_8h.html" title="Bind Command. " alt="" coords="630,80,829,121"/>
+<area shape="rect" id="node3" href="$_command_8cpp.html" title="Commands. " alt="" coords="270,169,469,196"/>
+<area shape="rect" id="node5" href="$_command_engine_8h.html" title="Engine Commands. " alt="" coords="133,80,331,121"/>
+<area shape="rect" id="node7" href="$_command_set_8h.html" title="Get/Set Commands. " alt="" coords="407,80,606,121"/>
+<area shape="rect" id="node9" href="$_console_8cpp.html" title="Console Window. " alt="" coords="853,87,971,114"/>
+<area shape="rect" id="node10" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="995,87,1093,114"/>
+<area shape="rect" id="node4" href="$_command_bind_8cpp.html" title="Bind Command. " alt="" coords="737,169,962,196"/>
+<area shape="rect" id="node6" href="$_command_engine_8cpp.html" title="Engine Commands. " alt="" coords="5,169,245,196"/>
+<area shape="rect" id="node8" href="$_command_set_8cpp.html" title="Get/Set Commands. " alt="" coords="493,169,712,196"/>
 </map>

@@ -1,8 +1,14 @@
 <map id="src/Camera.cpp" name="src/Camera.cpp">
-<area shape="rect" id="node2" href="$global_8h.html" title="Global typedefs. " alt="" coords="237,80,304,107"/>
-<area shape="rect" id="node9" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="541,80,640,107"/>
-<area shape="rect" id="node13" href="$_camera_8h.html" title="Camera class. " alt="" coords="679,80,758,107"/>
-<area shape="rect" id="node10" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="545,229,637,256"/>
-<area shape="rect" id="node11" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="671,155,798,181"/>
-<area shape="rect" id="node12" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="534,155,647,181"/>
+<area shape="rect" id="node3" href="$imgui_8h.html" title="imgui/imgui.h" alt="" coords="654,80,754,107"/>
+<area shape="rect" id="node5" href="$global_8h.html" title="Included everywhere. " alt="" coords="252,229,321,256"/>
+<area shape="rect" id="node21" href="$_run_time_8h.html" title="Runtime Configuration Storage. " alt="" coords="1035,80,1122,107"/>
+<area shape="rect" id="node24" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="1147,80,1269,107"/>
+<area shape="rect" id="node28" href="$_sound_8h.html" title="Sound Interface. " alt="" coords="1549,80,1667,107"/>
+<area shape="rect" id="node29" href="$_window_8h.html" title="Windowing Interface. " alt="" coords="1398,80,1525,107"/>
+<area shape="rect" id="node31" href="$_camera_8h.html" title="Camera, View Frustum. " alt="" coords="1293,80,1373,107"/>
+<area shape="rect" id="node4" href="$imconfig_8h.html" title="imconfig.h" alt="" coords="339,155,421,181"/>
+<area shape="rect" id="node19" href="$imgui__user_8h.html" title="imgui_user.h" alt="" coords="896,155,995,181"/>
+<area shape="rect" id="node20" href="$imguifilesystem_8h.html" title="imguifilesystem/imguifilesystem.h" alt="" coords="836,229,1055,256"/>
+<area shape="rect" id="node25" href="$_texture_manager_8h.html" title="Texture Registry. " alt="" coords="1200,155,1331,181"/>
+<area shape="rect" id="node32" href="$_room_data_8h.html" title="Auxiliary Room classes. " alt="" coords="1355,155,1453,181"/>
 </map>

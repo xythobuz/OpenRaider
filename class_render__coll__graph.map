@@ -1,4 +1,10 @@
 <map id="Render" name="Render">
-<area shape="rect" id="node2" href="$class_view_volume.html" title="Viewing Volume for culling use. " alt="" coords="5,124,99,151"/>
-<area shape="rect" id="node3" href="$class_matrix.html" title="3D Matrix " alt="" coords="24,5,80,32"/>
+<area shape="rect" id="node3" href="$class_room.html" title="Room" alt="" coords="901,257,959,284"/>
+<area shape="rect" id="node5" href="$class_bounding_box.html" title="BoundingBox" alt="" coords="345,80,446,107"/>
+<area shape="rect" id="node7" href="$class_room_mesh.html" title="RoomMesh" alt="" coords="350,131,441,157"/>
+<area shape="rect" id="node8" href="$class_shader_buffer.html" title="ShaderBuffer" alt="" coords="37,17,137,44"/>
+<area shape="rect" id="node14" href="$class_portal.html" title="Portal" alt="" coords="59,251,116,277"/>
+<area shape="rect" id="node17" href="$class_sector.html" title="Sector" alt="" coords="57,301,117,328"/>
+<area shape="rect" id="node20" href="$class_static_model.html" title="StaticModel" alt="" coords="41,355,133,381"/>
+<area shape="rect" id="node23" href="$class_room_sprite.html" title="RoomSprite" alt="" coords="41,420,133,447"/>
 </map>

@@ -1,21 +1,16 @@
 <map id="src/Entity.cpp" name="src/Entity.cpp">
-<area shape="rect" id="node3" href="$global_8h.html" title="Global typedefs. " alt="" coords="297,80,363,107"/>
-<area shape="rect" id="node9" href="$_log_8h.html" title="Log. " alt="" coords="599,80,653,107"/>
-<area shape="rect" id="node13" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="725,80,799,107"/>
-<area shape="rect" id="node28" href="$_world_8h.html" title="The game world (model) " alt="" coords="1123,80,1187,107"/>
-<area shape="rect" id="node29" href="$_entity_8h.html" title="World Entities. " alt="" coords="1440,155,1503,181"/>
-<area shape="rect" id="node32" href="$_tomb_raider1_8h.html" title="Tomb Raider 1 items and states. " alt="" coords="1263,80,1413,107"/>
-<area shape="rect" id="node14" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="1003,155,1070,181"/>
-<area shape="rect" id="node27" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="520,229,623,256"/>
-<area shape="rect" id="node15" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="901,229,965,256"/>
-<area shape="rect" id="node16" href="$_sprite_8h.html" title="World Sprite. " alt="" coords="1329,229,1393,256"/>
-<area shape="rect" id="node17" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="1250,304,1351,331"/>
-<area shape="rect" id="node21" href="$_room_data_8h.html" title="World Room Mesh. " alt="" coords="989,229,1084,256"/>
-<area shape="rect" id="node20" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="1235,379,1366,405"/>
-<area shape="rect" id="node23" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="618,304,717,331"/>
-<area shape="rect" id="node24" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="621,453,713,480"/>
-<area shape="rect" id="node25" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="604,379,731,405"/>
-<area shape="rect" id="node26" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="755,379,868,405"/>
-<area shape="rect" id="node30" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="1417,229,1528,256"/>
-<area shape="rect" id="node31" href="$_static_mesh_8h.html" title="Static Model Meshes. " alt="" coords="1108,229,1203,256"/>
+<area shape="rect" id="node2" href="$global_8h.html" title="Included everywhere. " alt="" coords="303,80,372,107"/>
+<area shape="rect" id="node9" href="$_camera_8h.html" title="Camera, View Frustum. " alt="" coords="1021,80,1101,107"/>
+<area shape="rect" id="node14" href="$_log_8h.html" title="Global Logging Utility. " alt="" coords="721,80,777,107"/>
+<area shape="rect" id="node17" href="$_world_8h.html" title="World Model. " alt="" coords="1309,80,1377,107"/>
+<area shape="rect" id="node18" href="$_entity_8h.html" title="Things in the World. " alt="" coords="1795,155,1861,181"/>
+<area shape="rect" id="node11" href="$_room_data_8h.html" title="Auxiliary Room classes. " alt="" coords="1201,229,1298,256"/>
+<area shape="rect" id="node19" href="$_mesh_8h.html" title="Textured/Colored Mesh. " alt="" coords="1679,304,1745,331"/>
+<area shape="rect" id="node24" href="$_room_8h.html" title="Room in World. " alt="" coords="1439,155,1508,181"/>
+<area shape="rect" id="node25" href="$_sprite_8h.html" title="2D Billboard Collection " alt="" coords="1651,229,1719,256"/>
+<area shape="rect" id="node27" href="$_skeletal_model_8h.html" title="Moveable Mesh Geometry. " alt="" coords="1159,304,1276,331"/>
+<area shape="rect" id="node28" href="$_static_mesh_8h.html" title="Static Model Meshes. " alt="" coords="1251,155,1349,181"/>
+<area shape="rect" id="node20" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="1555,379,1677,405"/>
+<area shape="rect" id="node21" href="$_texture_manager_8h.html" title="Texture Registry. " alt="" coords="1752,453,1883,480"/>
+<area shape="rect" id="node26" href="$_room_mesh_8h.html" title="Room Mesh Geometry. " alt="" coords="1525,229,1627,256"/>
 </map>

@@ -1,0 +1,4 @@
+<map id="SoundManager" name="SoundManager">
+<area shape="rect" id="node3" href="$class_sound_source.html" title="SoundSource" alt="" coords="47,5,150,32"/>
+<area shape="rect" id="node6" href="$class_sound_detail.html" title="SoundDetail" alt="" coords="402,5,497,32"/>
+</map>

@@ -1,4 +1,4 @@
 <map id="include/UI.h" name="include/UI.h">
-<area shape="rect" id="node6" href="$imgui_8h.html" title="imgui/imgui.h" alt="" coords="333,80,425,107"/>
-<area shape="rect" id="node7" href="$imconfig_8h.html" title="imconfig.h" alt="" coords="121,155,197,181"/>
+<area shape="rect" id="node7" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="522,80,645,107"/>
+<area shape="rect" id="node9" href="$_texture_manager_8h.html" title="Texture Registry. " alt="" coords="415,155,546,181"/>
 </map>

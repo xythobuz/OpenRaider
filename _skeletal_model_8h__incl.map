@@ -1,4 +1,4 @@
 <map id="include/SkeletalModel.h" name="include/SkeletalModel.h">
-<area shape="rect" id="node3" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="85,80,186,107"/>
-<area shape="rect" id="node6" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="187,155,318,181"/>
+<area shape="rect" id="node3" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="75,80,197,107"/>
+<area shape="rect" id="node4" href="$_texture_manager_8h.html" title="Texture Registry. " alt="" coords="125,155,256,181"/>
 </map>

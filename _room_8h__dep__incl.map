@@ -1,18 +1,19 @@
 <map id="include/Room.h" name="include/Room.h">
-<area shape="rect" id="node2" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="1251,80,1366,107"/>
-<area shape="rect" id="node10" href="$_room_8cpp.html" title="World Room Mesh. " alt="" coords="2261,155,2362,181"/>
-<area shape="rect" id="node15" href="$_world_8h.html" title="The game world (model) " alt="" coords="873,80,979,107"/>
-<area shape="rect" id="node3" href="$_command_animate_8cpp.html" title="Animate command. " alt="" coords="551,155,789,181"/>
-<area shape="rect" id="node4" href="$_command_engine_8cpp.html" title="Engine commands. " alt="" coords="1748,155,1979,181"/>
-<area shape="rect" id="node5" href="$_command_render_8cpp.html" title="Renderer commands. " alt="" coords="2003,155,2236,181"/>
-<area shape="rect" id="node6" href="$_entity_8cpp.html" title="World Entities. " alt="" coords="814,155,913,181"/>
-<area shape="rect" id="node7" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="937,155,1040,181"/>
-<area shape="rect" id="node8" href="$main_8cpp.html" title="Where main() is. " alt="" coords="1064,155,1159,181"/>
-<area shape="rect" id="node9" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="1183,155,1291,181"/>
-<area shape="rect" id="node11" href="$_room_data_8cpp.html" title="World Room Mesh. " alt="" coords="1315,155,1446,181"/>
-<area shape="rect" id="node12" href="$_skeletal_model_8cpp.html" title="This is the factored out skeletal model class. " alt="" coords="381,155,527,181"/>
-<area shape="rect" id="node13" href="$_sprite_8cpp.html" title="World Sprite. " alt="" coords="1470,155,1569,181"/>
-<area shape="rect" id="node14" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="1593,155,1723,181"/>
-<area shape="rect" id="node16" href="$_command_game_8cpp.html" title="Game meta&#45;commands. " alt="" coords="5,155,233,181"/>
-<area shape="rect" id="node17" href="$_world_8cpp.html" title="The game world (model) " alt="" coords="258,155,357,181"/>
+<area shape="rect" id="node2" href="$_render_8h.html" title="World Renderer. " alt="" coords="496,80,619,107"/>
+<area shape="rect" id="node9" href="$_world_8h.html" title="World Model. " alt="" coords="1051,80,1165,107"/>
+<area shape="rect" id="node12" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="2032,155,2208,181"/>
+<area shape="rect" id="node18" href="$_room_8cpp.html" title="Room in World. " alt="" coords="1240,80,1344,107"/>
+<area shape="rect" id="node3" href="$_command_engine_8cpp.html" title="Engine Commands. " alt="" coords="5,155,245,181"/>
+<area shape="rect" id="node4" href="$_game_8cpp.html" title="Gameplay Handler. " alt="" coords="505,155,610,181"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="634,155,731,181"/>
+<area shape="rect" id="node6" href="$_render_8cpp.html" title="World Renderer. " alt="" coords="756,155,868,181"/>
+<area shape="rect" id="node7" href="$_sprite_8cpp.html" title="2D Billboard Collection " alt="" coords="269,155,373,181"/>
+<area shape="rect" id="node8" href="$_u_i_8cpp.html" title="UI/Event Manager. " alt="" coords="397,155,480,181"/>
+<area shape="rect" id="node10" href="$_entity_8cpp.html" title="Things in the World. " alt="" coords="893,155,995,181"/>
+<area shape="rect" id="node11" href="$_loader_t_r1_8cpp.html" title="TR1 level file loader. " alt="" coords="1020,155,1196,181"/>
+<area shape="rect" id="node13" href="$_room_data_8cpp.html" title="Auxiliary Room classes. " alt="" coords="1221,155,1353,181"/>
+<area shape="rect" id="node14" href="$_skeletal_model_8cpp.html" title="Moveable Mesh Geometry. " alt="" coords="1377,155,1529,181"/>
+<area shape="rect" id="node15" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="1554,155,1689,181"/>
+<area shape="rect" id="node16" href="$_texture_manager_8cpp.html" title="Texture Registry. " alt="" coords="1713,155,1879,181"/>
+<area shape="rect" id="node17" href="$_world_8cpp.html" title="World Model. " alt="" coords="1904,155,2008,181"/>
 </map>

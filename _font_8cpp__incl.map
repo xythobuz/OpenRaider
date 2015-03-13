@@ -1,6 +1,12 @@
-<map id="src/Font.cpp" name="src/Font.cpp">
-<area shape="rect" id="node2" href="$global_8h.html" title="Global typedefs. " alt="" coords="188,80,255,107"/>
-<area shape="rect" id="node8" href="$strings_8h.html" title="String handling utilities. " alt="" coords="279,80,372,107"/>
-<area shape="rect" id="node10" href="$_window_8h.html" title="Windowing interface. " alt="" coords="397,80,475,107"/>
-<area shape="rect" id="node11" href="$_font_8h.html" title="Font interface. " alt="" coords="500,80,556,107"/>
+<map id="src/system/Font.cpp" name="src/system/Font.cpp">
+<area shape="rect" id="node3" href="$global_8h.html" title="Included everywhere. " alt="" coords="309,80,379,107"/>
+<area shape="rect" id="node10" href="$_log_8h.html" title="Global Logging Utility. " alt="" coords="628,80,684,107"/>
+<area shape="rect" id="node14" href="$strings_8h.html" title="String handling utilities. " alt="" coords="838,80,938,107"/>
+<area shape="rect" id="node15" href="$_font_im_gui_8h.html" title="Default Font Implementation. " alt="" coords="963,80,1104,107"/>
+<area shape="rect" id="node16" href="$_font_t_r_l_e_8h.html" title="Tomb Raider Level Editor Font loader. " alt="" coords="1283,80,1423,107"/>
+<area shape="rect" id="node17" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="1352,155,1475,181"/>
+<area shape="rect" id="node21" href="$_font_t_t_f_8h.html" title="TrueType Font Implementation. " alt="" coords="1128,80,1259,107"/>
+<area shape="rect" id="node23" href="$_font_8h.html" title="Font Interface. " alt="" coords="709,80,814,107"/>
+<area shape="rect" id="node18" href="$_texture_manager_8h.html" title="Texture Registry. " alt="" coords="1549,229,1680,256"/>
+<area shape="rect" id="node22" href="$stb_2stb__truetype_8h.html" title="stb/stb_truetype.h" alt="" coords="1149,155,1277,181"/>
 </map>

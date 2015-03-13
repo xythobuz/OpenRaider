@@ -1,23 +1,28 @@
 <map id="include/Log.h" name="include/Log.h">
-<area shape="rect" id="node2" href="$_command_8cpp.html" title="Commands. " alt="" coords="5,80,197,107"/>
-<area shape="rect" id="node3" href="$_command_animate_8cpp.html" title="Animate command. " alt="" coords="222,80,461,107"/>
-<area shape="rect" id="node4" href="$_command_bind_8cpp.html" title="Bind command. " alt="" coords="485,80,702,107"/>
-<area shape="rect" id="node5" href="$_command_engine_8cpp.html" title="Engine commands. " alt="" coords="726,80,957,107"/>
-<area shape="rect" id="node6" href="$_command_game_8cpp.html" title="Game meta&#45;commands. " alt="" coords="981,80,1209,107"/>
-<area shape="rect" id="node7" href="$_command_move_8cpp.html" title="Move command. " alt="" coords="1233,80,1457,107"/>
-<area shape="rect" id="node8" href="$_command_render_8cpp.html" title="Renderer commands. " alt="" coords="1482,80,1715,107"/>
-<area shape="rect" id="node9" href="$_command_set_8cpp.html" title="Set command. " alt="" coords="1740,80,1951,107"/>
-<area shape="rect" id="node10" href="$_command_sound_8cpp.html" title="Sound command. " alt="" coords="1975,80,2204,107"/>
-<area shape="rect" id="node11" href="$_console_8cpp.html" title="Console class. " alt="" coords="2228,80,2343,107"/>
-<area shape="rect" id="node12" href="$_entity_8cpp.html" title="World Entities. " alt="" coords="2367,80,2465,107"/>
-<area shape="rect" id="node13" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="2490,80,2593,107"/>
-<area shape="rect" id="node14" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="2617,80,2785,107"/>
-<area shape="rect" id="node15" href="$_log_8cpp.html" title="Log. " alt="" coords="2809,80,2897,107"/>
-<area shape="rect" id="node16" href="$main_8cpp.html" title="Where main() is. " alt="" coords="2922,80,3017,107"/>
-<area shape="rect" id="node17" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="3041,80,3140,107"/>
-<area shape="rect" id="node18" href="$_menu_folder_8cpp.html" title="File&#45;Explorer like menu. " alt="" coords="3165,80,3297,107"/>
-<area shape="rect" id="node19" href="$_room_8cpp.html" title="World Room Mesh. " alt="" coords="3321,80,3423,107"/>
-<area shape="rect" id="node20" href="$_skeletal_model_8cpp.html" title="This is the factored out skeletal model class. " alt="" coords="3447,80,3593,107"/>
-<area shape="rect" id="node21" href="$_texture_manager_8cpp.html" title="Texture registry. " alt="" coords="3617,80,3775,107"/>
-<area shape="rect" id="node22" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="3799,80,3878,107"/>
+<area shape="rect" id="node2" href="$_command_8cpp.html" title="Commands. " alt="" coords="5,80,204,107"/>
+<area shape="rect" id="node3" href="$_command_bind_8cpp.html" title="Bind Command. " alt="" coords="228,80,453,107"/>
+<area shape="rect" id="node4" href="$_command_engine_8cpp.html" title="Engine Commands. " alt="" coords="478,80,718,107"/>
+<area shape="rect" id="node5" href="$_command_set_8cpp.html" title="Get/Set Commands. " alt="" coords="742,80,961,107"/>
+<area shape="rect" id="node6" href="$_console_8cpp.html" title="Console Window. " alt="" coords="985,80,1102,107"/>
+<area shape="rect" id="node7" href="$_entity_8cpp.html" title="Things in the World. " alt="" coords="1127,80,1229,107"/>
+<area shape="rect" id="node8" href="$_game_8cpp.html" title="Gameplay Handler. " alt="" coords="1253,80,1359,107"/>
+<area shape="rect" id="node9" href="$_loader_t_r1_8cpp.html" title="TR1 level file loader. " alt="" coords="1383,80,1559,107"/>
+<area shape="rect" id="node10" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="1583,80,1759,107"/>
+<area shape="rect" id="node11" href="$_log_8cpp.html" title="Global Logging Utility. " alt="" coords="1783,80,1874,107"/>
+<area shape="rect" id="node12" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="1899,80,1996,107"/>
+<area shape="rect" id="node13" href="$_menu_8cpp.html" title="Main Menu. " alt="" coords="2020,80,2123,107"/>
+<area shape="rect" id="node14" href="$_render_8cpp.html" title="World Renderer. " alt="" coords="2147,80,2259,107"/>
+<area shape="rect" id="node15" href="$_room_8cpp.html" title="Room in World. " alt="" coords="2283,80,2387,107"/>
+<area shape="rect" id="node16" href="$_skeletal_model_8cpp.html" title="Moveable Mesh Geometry. " alt="" coords="2411,80,2563,107"/>
+<area shape="rect" id="node17" href="$_sound_manager_8cpp.html" title="Sound Source Manager. " alt="" coords="2587,80,2747,107"/>
+<area shape="rect" id="node18" href="$_font_8cpp.html" title="Font Interface. " alt="" coords="2771,80,2913,107"/>
+<area shape="rect" id="node19" href="$_font_t_t_f_8cpp.html" title="TrueType Font Implementation. " alt="" coords="2937,80,3102,107"/>
+<area shape="rect" id="node20" href="$_shader_8cpp.html" title="OpenGL Shader Implementation. " alt="" coords="3126,80,3283,107"/>
+<area shape="rect" id="node21" href="$_sound_a_l_8cpp.html" title="OpenAL Sound Implementation. " alt="" coords="3308,80,3477,107"/>
+<area shape="rect" id="node22" href="$_window_g_l_f_w_8cpp.html" title="GLFW Windowing Implementation. " alt="" coords="3502,80,3702,107"/>
+<area shape="rect" id="node23" href="$_window_s_d_l_8cpp.html" title="SDL2 Windowing Implementation. " alt="" coords="3727,80,3915,107"/>
+<area shape="rect" id="node24" href="$_texture_manager_8cpp.html" title="Texture Registry. " alt="" coords="3939,80,4105,107"/>
+<area shape="rect" id="node25" href="$_u_i_8cpp.html" title="UI/Event Manager. " alt="" coords="4130,80,4213,107"/>
+<area shape="rect" id="node26" href="$_folder_8cpp.html" title="File&#45;system walking utilities. " alt="" coords="4237,80,4370,107"/>
+<area shape="rect" id="node27" href="$pcx_8cpp.html" title="PCX image reader. " alt="" coords="4394,80,4511,107"/>
 </map>

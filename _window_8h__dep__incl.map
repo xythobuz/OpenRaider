@@ -1,14 +1,13 @@
-<map id="include/Window.h" name="include/Window.h">
-<area shape="rect" id="node2" href="$_window_g_l_u_t_8h.html" title="GLUT windowing implementation. " alt="" coords="5,80,160,107"/>
-<area shape="rect" id="node4" href="$_window_s_d_l_8h.html" title="SDL windowing implementation. " alt="" coords="184,80,331,107"/>
-<area shape="rect" id="node6" href="$_command_set_8cpp.html" title="Set command. " alt="" coords="355,80,565,107"/>
-<area shape="rect" id="node7" href="$_font_8cpp.html" title="Font implementation. " alt="" coords="589,80,680,107"/>
-<area shape="rect" id="node8" href="$main_8cpp.html" title="Where main() is. " alt="" coords="705,80,799,107"/>
-<area shape="rect" id="node9" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="824,80,923,107"/>
-<area shape="rect" id="node10" href="$_menu_folder_8cpp.html" title="File&#45;Explorer like menu. " alt="" coords="947,80,1079,107"/>
-<area shape="rect" id="node11" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="1103,80,1211,107"/>
-<area shape="rect" id="node12" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="1235,80,1314,107"/>
-<area shape="rect" id="node13" href="$_window_8cpp.html" title="windowing implementation " alt="" coords="1339,80,1453,107"/>
-<area shape="rect" id="node3" href="$_window_g_l_u_t_8cpp.html" title="GLUT windowing implementation. " alt="" coords="9,155,157,181"/>
-<area shape="rect" id="node5" href="$_window_s_d_l_8cpp.html" title="SDL windowing implementation. " alt="" coords="187,155,327,181"/>
+<map id="include/system/Window.h" name="include/system/Window.h">
+<area shape="rect" id="node2" href="$_camera_8cpp.html" title="Camera, View Frustum. " alt="" coords="5,80,121,107"/>
+<area shape="rect" id="node3" href="$_command_set_8cpp.html" title="Get/Set Commands. " alt="" coords="146,80,365,107"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="389,80,487,107"/>
+<area shape="rect" id="node5" href="$_menu_8cpp.html" title="Main Menu. " alt="" coords="511,80,613,107"/>
+<area shape="rect" id="node6" href="$_render_8cpp.html" title="World Renderer. " alt="" coords="638,80,750,107"/>
+<area shape="rect" id="node7" href="$_run_time_8cpp.html" title="Runtime Configuration Storage. " alt="" coords="774,80,897,107"/>
+<area shape="rect" id="node8" href="$_shader_8cpp.html" title="OpenGL Shader Implementation. " alt="" coords="921,80,1078,107"/>
+<area shape="rect" id="node9" href="$_window_8cpp.html" title="Windowing Interface. " alt="" coords="1102,80,1265,107"/>
+<area shape="rect" id="node10" href="$_window_g_l_f_w_8cpp.html" title="GLFW Windowing Implementation. " alt="" coords="1289,80,1489,107"/>
+<area shape="rect" id="node11" href="$_window_s_d_l_8cpp.html" title="SDL2 Windowing Implementation. " alt="" coords="1513,80,1701,107"/>
+<area shape="rect" id="node12" href="$_u_i_8cpp.html" title="UI/Event Manager. " alt="" coords="1726,80,1809,107"/>
 </map>

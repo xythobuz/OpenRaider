@@ -1,4 +1,10 @@
 <map id="include/loader/LoaderTR2.h" name="include/loader/LoaderTR2.h">
-<area shape="rect" id="node2" href="$_loader_8h.html" title="Level file loader. " alt="" coords="67,80,176,107"/>
-<area shape="rect" id="node5" href="$binary_8h.html" title="Binary file reading utilities. " alt="" coords="171,155,263,181"/>
+<area shape="rect" id="node4" href="$_room_data_8h.html" title="Auxiliary Room classes. " alt="" coords="495,80,592,107"/>
+<area shape="rect" id="node7" href="$_room_mesh_8h.html" title="Room Mesh Geometry. " alt="" coords="275,80,377,107"/>
+<area shape="rect" id="node12" href="$_skeletal_model_8h.html" title="Moveable Mesh Geometry. " alt="" coords="389,155,506,181"/>
+<area shape="rect" id="node13" href="$binary_8h.html" title="Binary file reading utilities. " alt="" coords="812,155,909,181"/>
+<area shape="rect" id="node16" href="$_loader_8h.html" title="Level file loader. " alt="" coords="668,80,784,107"/>
+<area shape="rect" id="node8" href="$_mesh_8h.html" title="Textured/Colored Mesh. " alt="" coords="197,155,263,181"/>
+<area shape="rect" id="node9" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="237,229,359,256"/>
+<area shape="rect" id="node10" href="$_texture_manager_8h.html" title="Texture Registry. " alt="" coords="55,304,186,331"/>
 </map>

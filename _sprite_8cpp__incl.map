@@ -1,19 +1,16 @@
 <map id="src/Sprite.cpp" name="src/Sprite.cpp">
-<area shape="rect" id="node2" href="$global_8h.html" title="Global typedefs. " alt="" coords="247,80,314,107"/>
-<area shape="rect" id="node8" href="$_camera_8h.html" title="Camera class. " alt="" coords="496,80,575,107"/>
-<area shape="rect" id="node11" href="$_game_8h.html" title="Game abstraction. " alt="" coords="1181,80,1249,107"/>
-<area shape="rect" id="node20" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="637,80,711,107"/>
-<area shape="rect" id="node23" href="$_sprite_8h.html" title="World Sprite. " alt="" coords="1021,229,1085,256"/>
-<area shape="rect" id="node9" href="$_quaternion_8h.html" title="Quaternion. " alt="" coords="432,379,559,405"/>
-<area shape="rect" id="node10" href="$math_8h.html" title="Vector and Matrix math. " alt="" coords="551,453,643,480"/>
-<area shape="rect" id="node14" href="$_entity_8h.html" title="World Entities. " alt="" coords="1184,155,1247,181"/>
-<area shape="rect" id="node16" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="1083,304,1185,331"/>
-<area shape="rect" id="node15" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="1160,229,1271,256"/>
-<area shape="rect" id="node19" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="1069,379,1199,405"/>
-<area shape="rect" id="node21" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="865,155,931,181"/>
-<area shape="rect" id="node28" href="$_view_volume_8h.html" title="Viewing Volume for culling use. " alt="" coords="533,229,636,256"/>
-<area shape="rect" id="node22" href="$_mesh_8h.html" title="OpenGL Mesh. " alt="" coords="831,229,895,256"/>
-<area shape="rect" id="node24" href="$_room_data_8h.html" title="World Room Mesh. " alt="" coords="712,229,807,256"/>
-<area shape="rect" id="node26" href="$_matrix_8h.html" title="3D Matrix " alt="" coords="547,304,646,331"/>
-<area shape="rect" id="node27" href="$_vector3d_8h.html" title="3D Math vector " alt="" coords="635,379,748,405"/>
+<area shape="rect" id="node2" href="$global_8h.html" title="Included everywhere. " alt="" coords="336,80,405,107"/>
+<area shape="rect" id="node9" href="$_camera_8h.html" title="Camera, View Frustum. " alt="" coords="873,80,953,107"/>
+<area shape="rect" id="node14" href="$_render_8h.html" title="World Renderer. " alt="" coords="671,80,748,107"/>
+<area shape="rect" id="node16" href="$_sprite_8h.html" title="2D Billboard Collection " alt="" coords="798,229,866,256"/>
+<area shape="rect" id="node18" href="$_texture_manager_8h.html" title="Texture Registry. " alt="" coords="568,453,699,480"/>
+<area shape="rect" id="node23" href="$_world_8h.html" title="World Model. " alt="" coords="1289,80,1357,107"/>
+<area shape="rect" id="node11" href="$_room_data_8h.html" title="Auxiliary Room classes. " alt="" coords="1223,229,1321,256"/>
+<area shape="rect" id="node15" href="$_room_8h.html" title="Room in World. " alt="" coords="1079,155,1148,181"/>
+<area shape="rect" id="node21" href="$_room_mesh_8h.html" title="Room Mesh Geometry. " alt="" coords="996,229,1097,256"/>
+<area shape="rect" id="node17" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="941,379,1064,405"/>
+<area shape="rect" id="node22" href="$_mesh_8h.html" title="Textured/Colored Mesh. " alt="" coords="1110,304,1175,331"/>
+<area shape="rect" id="node24" href="$_entity_8h.html" title="Things in the World. " alt="" coords="1548,155,1615,181"/>
+<area shape="rect" id="node25" href="$_skeletal_model_8h.html" title="Moveable Mesh Geometry. " alt="" coords="1347,304,1464,331"/>
+<area shape="rect" id="node26" href="$_static_mesh_8h.html" title="Static Model Meshes. " alt="" coords="1273,155,1372,181"/>
 </map>

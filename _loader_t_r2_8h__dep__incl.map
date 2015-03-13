@@ -1,4 +1,8 @@
 <map id="include/loader/LoaderTR2.h" name="include/loader/LoaderTR2.h">
-<area shape="rect" id="node2" href="$_loader_8cpp.html" title="Level file loader. " alt="" coords="5,80,149,107"/>
-<area shape="rect" id="node3" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="173,80,341,107"/>
+<area shape="rect" id="node2" href="$_loader_t_r1_8h.html" title="TR1 level file loader. " alt="" coords="57,80,244,107"/>
+<area shape="rect" id="node3" href="$_loader_8cpp.html" title="Level file loader. " alt="" coords="206,155,357,181"/>
+<area shape="rect" id="node5" href="$_loader_t_r3_8h.html" title="TR3 level file loader. " alt="" coords="319,80,505,107"/>
+<area shape="rect" id="node7" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="529,80,705,107"/>
+<area shape="rect" id="node4" href="$_loader_t_r1_8cpp.html" title="TR1 level file loader. " alt="" coords="5,155,181,181"/>
+<area shape="rect" id="node6" href="$_loader_t_r3_8cpp.html" title="TR3 level file loader. " alt="" coords="381,155,557,181"/>
 </map>

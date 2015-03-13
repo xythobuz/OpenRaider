@@ -1,10 +1,27 @@
 <map id="src/TextureManager.cpp" name="src/TextureManager.cpp">
-<area shape="rect" id="node6" href="$global_8h.html" title="Global typedefs. " alt="" coords="349,80,416,107"/>
-<area shape="rect" id="node12" href="$_log_8h.html" title="Log. " alt="" coords="875,80,928,107"/>
-<area shape="rect" id="node16" href="$_run_time_8h.html" title="run time configuration storage " alt="" coords="557,80,640,107"/>
-<area shape="rect" id="node17" href="$pcx_8h.html" title="PCX image reader. " alt="" coords="665,80,743,107"/>
-<area shape="rect" id="node18" href="$pixel_8h.html" title="Pixel buffer utilities. " alt="" coords="768,80,851,107"/>
-<area shape="rect" id="node19" href="$strings_8h.html" title="String handling utilities. " alt="" coords="440,80,533,107"/>
-<area shape="rect" id="node20" href="$tga_8h.html" title="TGA image reader/writer. " alt="" coords="952,80,1027,107"/>
-<area shape="rect" id="node21" href="$_texture_manager_8h.html" title="Texture registry. " alt="" coords="1051,80,1175,107"/>
+<area shape="rect" id="node2" href="$imgui_8h.html" title="imgui/imgui.h" alt="" coords="397,80,497,107"/>
+<area shape="rect" id="node4" href="$global_8h.html" title="Included everywhere. " alt="" coords="749,229,819,256"/>
+<area shape="rect" id="node20" href="$stb__image_8h.html" title="stb/stb_image.h" alt="" coords="917,80,1033,107"/>
+<area shape="rect" id="node22" href="$_game_8h.html" title="Gameplay Handler. " alt="" coords="1496,80,1565,107"/>
+<area shape="rect" id="node25" href="$_log_8h.html" title="Global Logging Utility. " alt="" coords="1167,80,1223,107"/>
+<area shape="rect" id="node29" href="$_run_time_8h.html" title="Runtime Configuration Storage. " alt="" coords="1261,80,1347,107"/>
+<area shape="rect" id="node30" href="$_world_8h.html" title="World Model. " alt="" coords="1593,80,1661,107"/>
+<area shape="rect" id="node34" href="$_texture_manager_8h.html" title="Texture Registry. " alt="" coords="2212,453,2343,480"/>
+<area shape="rect" id="node43" href="$_folder_8h.html" title="Recursive file&#45;system walking utilities. " alt="" coords="2025,80,2124,107"/>
+<area shape="rect" id="node45" href="$pcx_8h.html" title="PCX image reader. " alt="" coords="2390,379,2471,405"/>
+<area shape="rect" id="node46" href="$pixel_8h.html" title="Pixel buffer utilities. " alt="" coords="2199,80,2287,107"/>
+<area shape="rect" id="node47" href="$random_8h.html" title="Random number generation. " alt="" coords="2311,80,2417,107"/>
+<area shape="rect" id="node48" href="$strings_8h.html" title="String handling utilities. " alt="" coords="1371,80,1471,107"/>
+<area shape="rect" id="node3" href="$imconfig_8h.html" title="imconfig.h" alt="" coords="639,155,721,181"/>
+<area shape="rect" id="node18" href="$imgui__user_8h.html" title="imgui_user.h" alt="" coords="65,155,164,181"/>
+<area shape="rect" id="node19" href="$imguifilesystem_8h.html" title="imguifilesystem/imguifilesystem.h" alt="" coords="5,229,224,256"/>
+<area shape="rect" id="node24" href="$_entity_8h.html" title="Things in the World. " alt="" coords="1421,155,1488,181"/>
+<area shape="rect" id="node32" href="$_mesh_8h.html" title="Textured/Colored Mesh. " alt="" coords="1483,304,1549,331"/>
+<area shape="rect" id="node37" href="$_room_8h.html" title="Room in World. " alt="" coords="1677,155,1747,181"/>
+<area shape="rect" id="node38" href="$_sprite_8h.html" title="2D Billboard Collection " alt="" coords="1491,229,1559,256"/>
+<area shape="rect" id="node41" href="$_skeletal_model_8h.html" title="Moveable Mesh Geometry. " alt="" coords="1341,304,1459,331"/>
+<area shape="rect" id="node42" href="$_static_mesh_8h.html" title="Static Model Meshes. " alt="" coords="1861,155,1960,181"/>
+<area shape="rect" id="node33" href="$_shader_8h.html" title="OpenGL Shader Implementation. " alt="" coords="1528,379,1651,405"/>
+<area shape="rect" id="node39" href="$_room_data_8h.html" title="Auxiliary Room classes. " alt="" coords="1862,229,1959,256"/>
+<area shape="rect" id="node40" href="$_room_mesh_8h.html" title="Room Mesh Geometry. " alt="" coords="1584,229,1685,256"/>
 </map>

@@ -1,5 +1,0 @@
-<map id="tr2_mesh_t" name="tr2_mesh_t">
-<area shape="rect" id="node2" href="$_tomb_raider_data_8h.html#structtr2__quad__t" title="A rectangular (quad) face definition. " alt="" coords="5,5,87,32"/>
-<area shape="rect" id="node3" href="$_tomb_raider_data_8h.html#structtr2__tri__t" title="A triangular face definition. " alt="" coords="160,5,220,32"/>
-<area shape="rect" id="node4" href="$_tomb_raider_data_8h.html#structtr2__vertex__t" title="Basic vertex structure. " alt="" coords="281,5,368,32"/>
-</map>

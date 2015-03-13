@@ -1,4 +1,11 @@
 <map id="include/Script.h" name="include/Script.h">
-<area shape="rect" id="node2" href="$src_2_script_8cpp.html" title="Game script loader. " alt="" coords="5,80,104,107"/>
-<area shape="rect" id="node3" href="$test_2_script_8cpp.html" title="Game script loader unit test. " alt="" coords="129,80,231,107"/>
+<area shape="rect" id="node2" href="$_menu_8h.html" title="Main Menu. " alt="" coords="453,80,565,107"/>
+<area shape="rect" id="node9" href="$src_2_script_8cpp.html" title="Tomb Raider 2/3 Script Loader. " alt="" coords="590,80,693,107"/>
+<area shape="rect" id="node10" href="$test_2_script_8cpp.html" title="Tomb Raider Script Loader Unit Test. " alt="" coords="717,80,824,107"/>
+<area shape="rect" id="node3" href="$_command_engine_8cpp.html" title="Engine Commands. " alt="" coords="5,155,245,181"/>
+<area shape="rect" id="node4" href="$_game_8cpp.html" title="Gameplay Handler. " alt="" coords="270,155,375,181"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="399,155,497,181"/>
+<area shape="rect" id="node6" href="$_menu_8cpp.html" title="Main Menu. " alt="" coords="521,155,623,181"/>
+<area shape="rect" id="node7" href="$_render_8cpp.html" title="World Renderer. " alt="" coords="648,155,760,181"/>
+<area shape="rect" id="node8" href="$_u_i_8cpp.html" title="UI/Event Manager. " alt="" coords="784,155,867,181"/>
 </map>

@@ -1,8 +1,8 @@
 <map id="include/Menu.h" name="include/Menu.h">
-<area shape="rect" id="node2" href="$_menu_folder_8h.html" title="File&#45;Explorer like Menu. " alt="" coords="129,80,267,107"/>
-<area shape="rect" id="node4" href="$_menu_8cpp.html" title="Menu &#39;overlay&#39;. " alt="" coords="281,155,379,181"/>
-<area shape="rect" id="node6" href="$_command_engine_8cpp.html" title="Engine commands. " alt="" coords="359,80,589,107"/>
-<area shape="rect" id="node7" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="613,80,692,107"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title="Where main() is. " alt="" coords="5,155,100,181"/>
-<area shape="rect" id="node5" href="$_menu_folder_8cpp.html" title="File&#45;Explorer like menu. " alt="" coords="124,155,256,181"/>
+<area shape="rect" id="node2" href="$_command_engine_8cpp.html" title="Engine Commands. " alt="" coords="5,80,245,107"/>
+<area shape="rect" id="node3" href="$_game_8cpp.html" title="Gameplay Handler. " alt="" coords="270,80,375,107"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="399,80,497,107"/>
+<area shape="rect" id="node5" href="$_menu_8cpp.html" title="Main Menu. " alt="" coords="521,80,623,107"/>
+<area shape="rect" id="node6" href="$_render_8cpp.html" title="World Renderer. " alt="" coords="648,80,760,107"/>
+<area shape="rect" id="node7" href="$_u_i_8cpp.html" title="UI/Event Manager. " alt="" coords="784,80,867,107"/>
 </map>

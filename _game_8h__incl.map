@@ -1,6 +1,3 @@
 <map id="include/Game.h" name="include/Game.h">
-<area shape="rect" id="node4" href="$_entity_8h.html" title="World Entities. " alt="" coords="155,80,218,107"/>
-<area shape="rect" id="node6" href="$_tomb_raider_8h.html" title="Loads maps, meshes, textures... " alt="" coords="229,229,331,256"/>
-<area shape="rect" id="node5" href="$_skeletal_model_8h.html" title="This is the factored out skeletal model class. " alt="" coords="131,155,242,181"/>
-<area shape="rect" id="node9" href="$_tomb_raider_data_8h.html" title="Structs and enums for TombRaider. " alt="" coords="332,304,463,331"/>
+<area shape="rect" id="node3" href="$_entity_8h.html" title="Things in the World. " alt="" coords="85,80,151,107"/>
 </map>

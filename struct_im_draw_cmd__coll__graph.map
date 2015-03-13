@@ -1,3 +1,10 @@
 <map id="ImDrawCmd" name="ImDrawCmd">
-<area shape="rect" id="node2" href="$struct_im_vec4.html" title="ImVec4" alt="" coords="21,5,85,32"/>
+<area shape="rect" id="node8" href="$class_im_vector.html" title="ImVector\&lt; ImDrawCmd \&gt;" alt="" coords="463,5,635,32"/>
+<area shape="rect" id="node2" href="$struct_im_vec4.html" title="ImVec4" alt="" coords="5,81,72,108"/>
+<area shape="rect" id="node4" href="$class_im_vector.html" title="ImVector\&lt; ImVec4 \&gt;" alt="" coords="295,117,439,144"/>
+<area shape="rect" id="node3" href="$struct_im_draw_list.html" title="ImDrawList" alt="" coords="784,152,873,179"/>
+<area shape="rect" id="node5" href="$class_im_vector.html" title="ImVector\&lt; ImDrawVert \&gt;" alt="" coords="464,244,633,271"/>
+<area shape="rect" id="node6" href="$imgui_8h.html#struct_im_draw_vert" title="ImDrawVert" alt="" coords="177,207,269,233"/>
+<area shape="rect" id="node7" href="$struct_im_vec2.html" title="ImVec2" alt="" coords="5,207,72,233"/>
+<area shape="rect" id="node9" href="$class_im_vector.html" title="ImVector\&lt; ImTextureID \&gt;" alt="" coords="463,295,635,321"/>
 </map>

@@ -1,19 +1,20 @@
 <map id="include/Sprite.h" name="include/Sprite.h">
-<area shape="rect" id="node2" href="$_room_8h.html" title="World Room Mesh. " alt="" coords="1255,80,1363,107"/>
-<area shape="rect" id="node14" href="$_sprite_8cpp.html" title="World Sprite. " alt="" coords="2263,229,2362,256"/>
-<area shape="rect" id="node16" href="$_world_8h.html" title="The game world (model) " alt="" coords="935,155,1042,181"/>
-<area shape="rect" id="node3" href="$_render_8h.html" title="OpenRaider Renderer class. " alt="" coords="1251,155,1366,181"/>
-<area shape="rect" id="node11" href="$_room_8cpp.html" title="World Room Mesh. " alt="" coords="2138,229,2239,256"/>
-<area shape="rect" id="node4" href="$_command_animate_8cpp.html" title="Animate command. " alt="" coords="551,229,789,256"/>
-<area shape="rect" id="node5" href="$_command_engine_8cpp.html" title="Engine commands. " alt="" coords="1471,229,1701,256"/>
-<area shape="rect" id="node6" href="$_command_render_8cpp.html" title="Renderer commands. " alt="" coords="1725,229,1959,256"/>
-<area shape="rect" id="node7" href="$_entity_8cpp.html" title="World Entities. " alt="" coords="814,229,913,256"/>
-<area shape="rect" id="node8" href="$_game_8cpp.html" title="Game abstraction. " alt="" coords="937,229,1040,256"/>
-<area shape="rect" id="node9" href="$main_8cpp.html" title="Where main() is. " alt="" coords="1064,229,1159,256"/>
-<area shape="rect" id="node10" href="$_render_8cpp.html" title="OpenRaider Renderer class. " alt="" coords="1183,229,1291,256"/>
-<area shape="rect" id="node12" href="$_room_data_8cpp.html" title="World Room Mesh. " alt="" coords="1315,229,1446,256"/>
-<area shape="rect" id="node13" href="$_skeletal_model_8cpp.html" title="This is the factored out skeletal model class. " alt="" coords="381,229,527,256"/>
-<area shape="rect" id="node15" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="1983,229,2114,256"/>
-<area shape="rect" id="node17" href="$_command_game_8cpp.html" title="Game meta&#45;commands. " alt="" coords="5,229,233,256"/>
-<area shape="rect" id="node18" href="$_world_8cpp.html" title="The game world (model) " alt="" coords="258,229,357,256"/>
+<area shape="rect" id="node2" href="$_room_8h.html" title="Room in World. " alt="" coords="1438,80,1553,107"/>
+<area shape="rect" id="node8" href="$_sprite_8cpp.html" title="2D Billboard Collection " alt="" coords="1839,229,1943,256"/>
+<area shape="rect" id="node10" href="$_world_8h.html" title="World Model. " alt="" coords="1176,155,1289,181"/>
+<area shape="rect" id="node3" href="$_render_8h.html" title="World Renderer. " alt="" coords="1483,155,1606,181"/>
+<area shape="rect" id="node13" href="$_loader_t_r2_8cpp.html" title="TR2 level file loader. " alt="" coords="1145,229,1321,256"/>
+<area shape="rect" id="node19" href="$_room_8cpp.html" title="Room in World. " alt="" coords="1630,155,1734,181"/>
+<area shape="rect" id="node4" href="$_command_engine_8cpp.html" title="Engine Commands. " alt="" coords="1967,229,2207,256"/>
+<area shape="rect" id="node5" href="$_game_8cpp.html" title="Gameplay Handler. " alt="" coords="1452,229,1557,256"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="1581,229,1679,256"/>
+<area shape="rect" id="node7" href="$_render_8cpp.html" title="World Renderer. " alt="" coords="1703,229,1815,256"/>
+<area shape="rect" id="node9" href="$_u_i_8cpp.html" title="UI/Event Manager. " alt="" coords="1345,229,1427,256"/>
+<area shape="rect" id="node11" href="$_entity_8cpp.html" title="Things in the World. " alt="" coords="5,229,108,256"/>
+<area shape="rect" id="node12" href="$_loader_t_r1_8cpp.html" title="TR1 level file loader. " alt="" coords="133,229,309,256"/>
+<area shape="rect" id="node14" href="$_room_data_8cpp.html" title="Auxiliary Room classes. " alt="" coords="333,229,465,256"/>
+<area shape="rect" id="node15" href="$_skeletal_model_8cpp.html" title="Moveable Mesh Geometry. " alt="" coords="490,229,642,256"/>
+<area shape="rect" id="node16" href="$_static_mesh_8cpp.html" title="Static Model Meshes. " alt="" coords="667,229,801,256"/>
+<area shape="rect" id="node17" href="$_texture_manager_8cpp.html" title="Texture Registry. " alt="" coords="825,229,992,256"/>
+<area shape="rect" id="node18" href="$_world_8cpp.html" title="World Model. " alt="" coords="1017,229,1121,256"/>
 </map>

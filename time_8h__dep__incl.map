@@ -1,5 +1,6 @@
 <map id="include/utils/time.h" name="include/utils/time.h">
-<area shape="rect" id="node2" href="$main_8cpp.html" title="Where main() is. " alt="" coords="5,80,100,107"/>
-<area shape="rect" id="node3" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="124,80,203,107"/>
-<area shape="rect" id="node4" href="$time_8cpp.html" title="Time handling utilities. " alt="" coords="227,80,342,107"/>
+<area shape="rect" id="node2" href="$main_8cpp.html" title="Main Entry Point. " alt="" coords="5,80,103,107"/>
+<area shape="rect" id="node3" href="$_run_time_8cpp.html" title="Runtime Configuration Storage. " alt="" coords="127,80,250,107"/>
+<area shape="rect" id="node4" href="$_u_i_8cpp.html" title="UI/Event Manager. " alt="" coords="274,80,357,107"/>
+<area shape="rect" id="node5" href="$time_8cpp.html" title="Time handling utilities. " alt="" coords="381,80,503,107"/>
 </map>

@@ -1,3 +1,6 @@
 <map id="src/deps/imgui/imgui.h" name="src/deps/imgui/imgui.h">
-<area shape="rect" id="node2" href="$imconfig_8h.html" title="imconfig.h" alt="" coords="5,80,81,107"/>
+<area shape="rect" id="node2" href="$imconfig_8h.html" title="imconfig.h" alt="" coords="355,80,437,107"/>
+<area shape="rect" id="node17" href="$imgui__user_8h.html" title="imgui_user.h" alt="" coords="912,80,1011,107"/>
+<area shape="rect" id="node3" href="$global_8h.html" title="Included everywhere. " alt="" coords="252,155,321,181"/>
+<area shape="rect" id="node18" href="$imguifilesystem_8h.html" title="imguifilesystem/imguifilesystem.h" alt="" coords="852,155,1071,181"/>
 </map>

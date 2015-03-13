@@ -1,3 +1,4 @@
-<map id="src/deps/imgui/stb_image.h" name="src/deps/imgui/stb_image.h">
-<area shape="rect" id="node2" href="$_u_i_8cpp.html" title="UI interface manager. " alt="" coords="29,95,107,121"/>
+<map id="src/deps/stb/stb_image.h" name="src/deps/stb/stb_image.h">
+<area shape="rect" id="node2" href="$stb_8cpp.html" title="stb implementation " alt="" coords="5,80,145,107"/>
+<area shape="rect" id="node3" href="$_texture_manager_8cpp.html" title="Texture Registry. " alt="" coords="169,80,336,107"/>
 </map>

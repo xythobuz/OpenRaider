@@ -1,0 +1,5 @@
+<map id="SkeletalModel" name="SkeletalModel">
+<area shape="rect" id="node3" href="$class_animation_frame.html" title="AnimationFrame" alt="" coords="52,363,172,389"/>
+<area shape="rect" id="node5" href="$class_bone_frame.html" title="BoneFrame" alt="" coords="66,184,158,211"/>
+<area shape="rect" id="node7" href="$class_bone_tag.html" title="BoneTag" alt="" coords="74,5,150,32"/>
+</map>

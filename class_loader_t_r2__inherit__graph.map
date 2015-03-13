@@ -1,3 +1,5 @@
 <map id="LoaderTR2" name="LoaderTR2">
-<area shape="rect" id="node2" href="$class_loader.html" title="Loader" alt="" coords="17,5,79,32"/>
+<area shape="rect" id="node3" href="$class_loader_t_r1.html" title="LoaderTR1" alt="" coords="5,155,95,181"/>
+<area shape="rect" id="node4" href="$class_loader_t_r3.html" title="LoaderTR3" alt="" coords="119,155,208,181"/>
+<area shape="rect" id="node2" href="$class_loader.html" title="Loader" alt="" coords="74,5,138,32"/>
 </map>

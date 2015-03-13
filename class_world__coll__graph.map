@@ -1,0 +1,19 @@
+<map id="World" name="World">
+<area shape="rect" id="node4" href="$class_static_mesh.html" title="StaticMesh" alt="" coords="1612,688,1700,715"/>
+<area shape="rect" id="node31" href="$class_room.html" title="Room" alt="" coords="1627,601,1685,628"/>
+<area shape="rect" id="node6" href="$class_bounding_box.html" title="BoundingBox" alt="" coords="1014,775,1115,801"/>
+<area shape="rect" id="node9" href="$class_skeletal_model.html" title="SkeletalModel" alt="" coords="1603,745,1709,772"/>
+<area shape="rect" id="node11" href="$class_animation_frame.html" title="AnimationFrame" alt="" coords="1005,833,1125,860"/>
+<area shape="rect" id="node13" href="$class_bone_frame.html" title="BoneFrame" alt="" coords="428,833,520,860"/>
+<area shape="rect" id="node15" href="$class_bone_tag.html" title="BoneTag" alt="" coords="5,833,81,860"/>
+<area shape="rect" id="node18" href="$class_entity.html" title="Entity" alt="" coords="1628,797,1684,824"/>
+<area shape="rect" id="node21" href="$class_sprite.html" title="Sprite" alt="" coords="1036,156,1093,183"/>
+<area shape="rect" id="node22" href="$class_shader_buffer.html" title="ShaderBuffer" alt="" coords="669,123,769,149"/>
+<area shape="rect" id="node25" href="$class_mesh.html" title="Mesh" alt="" coords="1037,360,1092,387"/>
+<area shape="rect" id="node33" href="$class_room_mesh.html" title="RoomMesh" alt="" coords="1019,411,1110,437"/>
+<area shape="rect" id="node36" href="$class_portal.html" title="Portal" alt="" coords="691,556,748,583"/>
+<area shape="rect" id="node39" href="$class_sector.html" title="Sector" alt="" coords="689,607,749,633"/>
+<area shape="rect" id="node42" href="$class_static_model.html" title="StaticModel" alt="" coords="673,657,765,684"/>
+<area shape="rect" id="node45" href="$class_room_sprite.html" title="RoomSprite" alt="" coords="673,709,765,736"/>
+<area shape="rect" id="node48" href="$class_sprite_sequence.html" title="SpriteSequence" alt="" coords="1597,863,1715,889"/>
+</map>
