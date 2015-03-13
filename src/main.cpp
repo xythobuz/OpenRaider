@@ -44,6 +44,7 @@ int main(int argc, char* argv[]) {
     command_free(&cmd);
 
     // RunTime is required by other constructors
+    Log::initialize();
     RunTime::initialize();
 
     gWorld.reset(new World());

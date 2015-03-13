@@ -8,12 +8,17 @@
 #include "global.h"
 #include "Log.h"
 
-LogLevel Log::logs[LOG_COUNT] = { 0, 1, 2, 3, 4 };
+std::vector<LogLevel> Log::logs;
 std::vector<LogEntry> Log::wholeLog;
+
+void Log::initialize() {
+    for (int i = 0; i < LOG_COUNT; i++)
+        logs.emplace_back(i);
+}
 
 LogLevel& Log::get(int level) {
     assertGreaterThanEqual(level, 0);
     assertLessThan(level, LOG_COUNT);
-    return logs[level];
+    return logs.at(level);
 }
 

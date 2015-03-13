@@ -34,13 +34,13 @@ class Log {
   public:
     const static char endl = '\n';
 
+    static void initialize();
     static LogLevel& get(int level);
     static unsigned long size() { return wholeLog.size(); }
     static LogEntry& getEntry(unsigned long i) { return wholeLog.at(i); }
 
   private:
-    static LogLevel logs[LOG_COUNT];
-
+    static std::vector<LogLevel> logs;
     static std::vector<LogEntry> wholeLog;
     friend class LogLevel;
 };
