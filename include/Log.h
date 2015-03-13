@@ -48,6 +48,7 @@ class Log {
 class LogLevel {
   public:
     LogLevel(int l) : level(l) { printBuffer << std::boolalpha; }
+    LogLevel(LogLevel&& l) : level(l.level) { }
 
     LogLevel& operator<< (const glm::vec2& v) {
         return (*this) << v.x << " " << v.y;
