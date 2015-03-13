@@ -1,6 +1,6 @@
 /*!
  * \file include/commands/CommandEngine.h
- * \brief Engine Command interface
+ * \brief Engine Commands
  *
  * \author xythobuz
  */

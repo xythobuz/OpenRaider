@@ -1,6 +1,6 @@
 /*!
  * \file src/World.cpp
- * \brief The game world (model)
+ * \brief World Model
  *
  * \author Mongoose
  */

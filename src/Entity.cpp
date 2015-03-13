@@ -1,6 +1,6 @@
 /*!
  * \file src/Entity.cpp
- * \brief World Entities
+ * \brief Things in the World
  *
  * \author xythobuz
  */

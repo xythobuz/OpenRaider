@@ -1,6 +1,6 @@
 /*!
  * \file src/UI.cpp
- * \brief UI interface manager
+ * \brief UI/Event Manager
  *
  * \author xythobuz
  */
@@ -83,7 +83,7 @@ int UI::initialize() {
     io.ImeSetInputScreenPosFn = Window::inputPositionCallback;
 
     // Load font texture
-    //! \TODO allow loading other TTF fonts
+    //! \fixme allow loading other TTF fonts
     unsigned char* pixels;
     int width, height;
     io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);

@@ -1,6 +1,6 @@
 /*!
  * \file include/Game.h
- * \brief Game abstraction
+ * \brief Gameplay Handler
  *
  * \author xythobuz
  */

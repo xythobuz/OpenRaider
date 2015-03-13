@@ -1,6 +1,6 @@
 /*!
  * \file src/Camera.cpp
- * \brief Camera class
+ * \brief Camera, View Frustum
  *
  * \author Mongoose
  * \author xythobuz

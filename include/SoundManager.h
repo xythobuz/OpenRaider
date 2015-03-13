@@ -1,6 +1,6 @@
 /*!
  * \file include/SoundManager.h
- * \brief This is the audio manager Header
+ * \brief Sound Source Manager
  *
  * \author xythobuz
  */

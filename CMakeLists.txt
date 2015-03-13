@@ -4,7 +4,7 @@ project (OpenRaider)
 # Version Number
 set (OpenRaider_VERSION_MAJOR 0)
 set (OpenRaider_VERSION_MINOR 1)
-set (OpenRaider_VERSION_MICRO 3)
+set (OpenRaider_VERSION_MICRO 4)
 set (OpenRaider_VERSION_RELEASE -git)
 
 # Build Host

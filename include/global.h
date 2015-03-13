@@ -1,6 +1,6 @@
 /*!
  * \file include/global.h
- * \brief Global typedefs
+ * \brief Included everywhere
  *
  * \author xythobuz
  */
@@ -75,15 +75,15 @@ typedef enum {
 #include <GL/wglew.h>
 #pragma comment(lib, "glew32.lib")
 #else // _WIN32
-//! \todo gl3 header?
+//! \fixme gl3 header?
 #include <GL/gl.h>
 #include <GL/glext.h>
 #endif // _WIN32
 #endif // __APPLE__
 
-/*! \todo Is there a better way to handle this?
+/*! \fixme Is there a better way to handle this?
  * We wan't to use our own assert(). Unfortunately, glm includes
- * <cassert> in its headers. So we need to define NDEBUG here.
+ * cassert in its headers. So we need to define NDEBUG here.
  * To avoid a conflict, our flag is now called NODEBUG instead.
  */
 #define NDEBUG

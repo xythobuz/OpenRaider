@@ -1,6 +1,6 @@
 /*!
  * \file include/system/WindowGLFW.h
- * \brief GLFW windowing implementation
+ * \brief GLFW Windowing Implementation
  *
  * \author xythobuz
  */

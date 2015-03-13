@@ -1,6 +1,6 @@
 /*!
  * \file src/TextureManager.cpp
- * \brief Texture registry
+ * \brief Texture Registry
  *
  * \author Mongoose
  * \author xythobuz
@@ -210,7 +210,7 @@ int TextureManager::numTextures(TextureStorage s) {
 
 void TextureManager::bindTextureId(unsigned int n, TextureStorage s, unsigned int unit) {
     assertLessThan(n, getIds(s).size());
-    assertLessThan(unit, 80); //! \todo Query GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS
+    assertLessThan(unit, 80); //! \fixme Query GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS
 
     glActiveTexture(GL_TEXTURE0 + unit);
     glBindTexture(GL_TEXTURE_2D, getIds(s).at(n));

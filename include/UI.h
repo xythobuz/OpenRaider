@@ -1,6 +1,6 @@
 /*!
  * \file include/UI.h
- * \brief Abstract UI interface
+ * \brief UI/Event Manager
  *
  * \author xythobuz
  */

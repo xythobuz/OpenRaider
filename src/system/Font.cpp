@@ -1,6 +1,6 @@
 /*!
  * \file src/system/Font.cpp
- * \brief Font implementation
+ * \brief Font Interface
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file src/system/FontImGui.cpp
- * \brief Default Font implementation
+ * \brief Default Font Implementation
  *
  * \author xythobuz
  */

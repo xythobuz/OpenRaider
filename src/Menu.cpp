@@ -78,7 +78,7 @@ void Menu::shutdown() {
 
     scripts.clear();
     paths.clear();
-    images.clear(); //! \TODO free texture slots
+    images.clear(); //! \fixme free texture slots
 }
 
 void Menu::display() {

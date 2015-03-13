@@ -1,6 +1,6 @@
 /*!
  * \file src/SoundManager.cpp
- * \brief This is the audio manager Implementation
+ * \brief Sound Source Manager
  *
  * \author xythobuz
  */

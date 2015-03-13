@@ -1,6 +1,6 @@
 /*!
  * \file include/system/Shader.h
- * \brief OpenGL Shader implementation
+ * \brief OpenGL Shader Implementation
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file include/World.h
- * \brief The game world (model)
+ * \brief World Model
  *
  * \author Mongoose
  * \author xythobuz

@@ -1,6 +1,6 @@
 /*!
  * \file include/Console.h
- * \brief Console class
+ * \brief Console Window
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file src/Game.cpp
- * \brief Game abstraction
+ * \brief Gameplay Handler
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file include/Script.h
- * \brief Game script loader
+ * \brief Tomb Raider 2/3 Script Loader
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file src/Render.cpp
- * \brief OpenRaider Renderer class
+ * \brief World Renderer
  *
  * \author Mongoose
  * \author xythobuz
@@ -47,8 +47,8 @@ void Render::display() {
 
     if (Camera::update()) {
         int r = Camera::getRoom();
+        clearRoomList();
         if (r < 0) {
-            clearRoomList();
             buildRoomList();
         } else {
             buildRoomList(r);
@@ -78,16 +78,16 @@ void Render::display() {
     }
 }
 
-void Render::buildRoomList(int room) {
+void Render::buildRoomList(int room, int budget) {
     if (room < -1) {
         // Check if the camera currently is in a room...
         for (int i = 0; i < getWorld().sizeRoom(); i++) {
             if (getWorld().getRoom(i).getBoundingBox().inBox(Camera::getPosition())) {
-                buildRoomList(i);
+                buildRoomList(i, budget);
                 return;
             }
         }
-        buildRoomList(-1);
+        buildRoomList(-1, budget);
     } else if (room == -1) {
         // Check visibility for all rooms!
         for (int i = 0; i < getWorld().sizeRoom(); i++) {
@@ -96,7 +96,7 @@ void Render::buildRoomList(int room) {
             }
         }
     } else {
-        // Check visibility of room and connected rooms, recursively?
+        // Check visibility of room and connected rooms, recursively
         if (Camera::boxInFrustum(getWorld().getRoom(room).getBoundingBox())) {
             roomList.push_back(&getWorld().getRoom(room));
             for (int i = 0; i < getWorld().getRoom(room).sizePortals(); i++) {
@@ -108,8 +108,11 @@ void Render::buildRoomList(int room) {
                         break;
                     }
                 }
-                if (!found)
-                    buildRoomList(r);
+                if (!found) {
+                    if (budget > 0) {
+                        buildRoomList(r, --budget);
+                    }
+                }
             }
         }
     }

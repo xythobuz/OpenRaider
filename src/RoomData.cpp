@@ -1,6 +1,6 @@
 /*!
  * \file src/RoomData.cpp
- * \brief World Room Mesh
+ * \brief Auxiliary Room classes
  *
  * \author xythobuz
  */

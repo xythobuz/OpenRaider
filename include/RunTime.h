@@ -1,6 +1,6 @@
 /*!
  * \file include/RunTime.h
- * \brief run time configuration storage
+ * \brief Runtime Configuration Storage
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file include/Room.h
- * \brief World Room Mesh
+ * \brief Room in World
  *
  * \author xythobuz
  */

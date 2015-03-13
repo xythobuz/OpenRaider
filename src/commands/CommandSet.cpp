@@ -1,6 +1,6 @@
 /*!
  * \file src/commands/CommandSet.cpp
- * \brief Set command
+ * \brief Get/Set Commands
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file include/system/Font.h
- * \brief Font interface
+ * \brief Font Interface
  *
  * \author xythobuz
  */

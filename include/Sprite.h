@@ -1,6 +1,6 @@
 /*!
  * \file include/Sprite.h
- * \brief World Sprite
+ * \brief 2D Billboard Collection
  *
  * \author xythobuz
  */

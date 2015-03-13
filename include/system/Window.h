@@ -1,6 +1,6 @@
 /*!
  * \file include/system/Window.h
- * \brief Windowing interface
+ * \brief Windowing Interface
  *
  * \author xythobuz
  */

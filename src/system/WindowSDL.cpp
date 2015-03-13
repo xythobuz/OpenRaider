@@ -1,6 +1,6 @@
 /*!
  * \file src/system/WindowSDL.cpp
- * \brief SDL windowing implementation
+ * \brief SDL2 Windowing Implementation
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file include/Camera.h
- * \brief Camera class
+ * \brief Camera, View Frustum
  *
  * \author xythobuz
  */

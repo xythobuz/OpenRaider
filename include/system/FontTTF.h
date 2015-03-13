@@ -1,6 +1,6 @@
 /*!
  * \file include/system/FontTTF.h
- * \brief TrueType Font implementation
+ * \brief TrueType Font Implementation
  *
  * \author xythobuz
  */

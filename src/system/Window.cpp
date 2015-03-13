@@ -1,6 +1,6 @@
 /*!
  * \file src/system/Window.cpp
- * \brief windowing implementation
+ * \brief Windowing Interface
  *
  * \author xythobuz
  */

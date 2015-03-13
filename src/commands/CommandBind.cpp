@@ -1,6 +1,6 @@
 /*!
  * \file src/commands/CommandBind.cpp
- * \brief Bind command
+ * \brief Bind Command
  *
  * \author xythobuz
  */

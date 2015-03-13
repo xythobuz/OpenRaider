@@ -1,6 +1,6 @@
 /*!
  * \file test/binary.cpp
- * \brief Binary Unit Test
+ * \brief Binary File Reading Unit Test
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file src/main.cpp
- * \brief Where main() is
+ * \brief Main Entry Point
  *
  * \author xythobuz
  */

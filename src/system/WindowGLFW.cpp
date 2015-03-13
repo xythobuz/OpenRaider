@@ -1,6 +1,6 @@
 /*!
  * \file src/system/WindowGLFW.cpp
- * \brief GLFW windowing implementation
+ * \brief GLFW Windowing Implementation
  *
  * \author xythobuz
  */
@@ -93,7 +93,7 @@ void WindowGLFW::setSize(glm::i32vec2 s) {
 
 void WindowGLFW::setFullscreen(bool f) {
     fullscreen = f;
-    //! \todo GLFW does not support toggling fullscreen?!
+    //! \fixme GLFW does not support toggling fullscreen?!
 }
 
 void WindowGLFW::setMousegrab(bool g) {
@@ -166,7 +166,7 @@ void WindowGLFW::keyCallback(GLFWwindow* w, int key, int scancode, int action, i
     }
 
     if (textinput && (action != GLFW_RELEASE)) {
-        //! \todo GLFW does not support UTF8 text input?!
+        //! \fixme GLFW does not support UTF8 text input?!
         if ((key >= '0') && (key <= '9')) {
             char s[2] = { (char)key, '\0' };
             UI::handleText(s, false);

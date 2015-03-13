@@ -1,6 +1,6 @@
 /*!
  * \file include/system/FontImGui.h
- * \brief Default Font implementation
+ * \brief Default Font Implementation
  *
  * \author xythobuz
  */

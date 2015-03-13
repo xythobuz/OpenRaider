@@ -1,6 +1,6 @@
 /*!
  * \file include/commands/CommandSet.h
- * \brief Set Command interface
+ * \brief Get/Set Commands
  *
  * \author xythobuz
  */

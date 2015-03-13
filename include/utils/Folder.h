@@ -1,5 +1,5 @@
 /*!
- * \file include/utils/FileSystem.h
+ * \file include/utils/Folder.h
  * \brief Recursive file-system walking utilities
  *
  * \author xythobuz

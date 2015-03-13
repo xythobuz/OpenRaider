@@ -1,6 +1,6 @@
 /*!
  * \file test/Script.cpp
- * \brief Game script loader unit test
+ * \brief Tomb Raider Script Loader Unit Test
  *
  * \author xythobuz
  */

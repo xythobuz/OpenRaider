@@ -1,6 +1,6 @@
 /*!
  * \file include/commands/CommandBind.h
- * \brief Bind Command interface
+ * \brief Bind Command
  *
  * \author xythobuz
  */

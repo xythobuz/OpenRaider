@@ -1,6 +1,6 @@
 /*!
  * \file include/Log.h
- * \brief Log
+ * \brief Global Logging Utility
  *
  * \author xythobuz
  */

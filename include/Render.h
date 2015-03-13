@@ -1,6 +1,6 @@
 /*!
  * \file include/Render.h
- * \brief OpenRaider Renderer class
+ * \brief World Renderer
  *
  * \author Mongoose
  * \author xythobuz
@@ -43,7 +43,7 @@ class Render {
     static bool getDisplayViewFrustum() { return displayViewFrustum; }
 
   private:
-    static void buildRoomList(int room = -2);
+    static void buildRoomList(int room = -2, int budget = 10);
 
     static RenderMode mode;
     static std::vector<Room*> roomList;

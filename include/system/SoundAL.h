@@ -1,6 +1,6 @@
 /*!
  * \file include/system/SoundAL.h
- * \brief This is the OpenAL audio manager Header
+ * \brief OpenAL Sound Implementation
  *
  * \author xythobuz
  */

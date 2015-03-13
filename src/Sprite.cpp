@@ -1,6 +1,6 @@
 /*!
  * \file src/Sprite.cpp
- * \brief World Sprite
+ * \brief 2D Billboard Collection
  *
  * \author xythobuz
  */

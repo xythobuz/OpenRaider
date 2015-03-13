@@ -1,6 +1,6 @@
 /*!
  * \file include/RoomData.h
- * \brief World Room Mesh
+ * \brief Auxiliary Room classes
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file src/utils/Folder.cpp
- * \brief Recursive file-system walking utilities
+ * \brief File-system walking utilities
  *
  * \author xythobuz
  */

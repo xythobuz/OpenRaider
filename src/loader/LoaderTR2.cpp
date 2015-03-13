@@ -223,7 +223,7 @@ void LoaderTR2::loadRoomStaticMeshes(std::vector<StaticModel*>& staticModels) {
         uint16_t rotation = file.readU16();
 
         // Constant lighting, 0xFFFF means use mesh lighting
-        //! \todo Use static mesh lighting information
+        //! \fixme Use static mesh lighting information
         uint16_t intensity1 = file.readU16();
         uint16_t intensity2 = file.readU16();
 
@@ -381,7 +381,7 @@ void LoaderTR2::loadRooms() {
             int16_t yCorner4 = file.read16();
             int16_t zCorner4 = file.read16();
 
-            //! \fixme TODO translate vertices by room offset!
+            // TODO translate vertices by room offset!
 
             portals.push_back(new Portal(adjoiningRoom,
                                          glm::vec3(xNormal, yNormal, zNormal),

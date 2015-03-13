@@ -1,6 +1,6 @@
 /*!
  * \file src/system/SoundAL.cpp
- * \brief This is the OpenAL audio manager Implementation
+ * \brief OpenAL Sound Implementation
  *
  * \author Mongoose
  * \author xythobuz

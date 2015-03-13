@@ -1,6 +1,6 @@
 /*!
  * \file src/Log.cpp
- * \brief Log
+ * \brief Global Logging Utility
  *
  * \author xythobuz
  */

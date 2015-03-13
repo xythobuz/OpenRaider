@@ -1,6 +1,6 @@
 /*!
  * \file src/Mesh.cpp
- * \brief OpenGL Mesh
+ * \brief Textured/Colored Mesh
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file src/SkeletalModel.cpp
- * \brief This is the factored out skeletal model class
+ * \brief Moveable Mesh Geometry
  *
  * \author Mongoose
  * \author xythobuz

@@ -1,5 +1,5 @@
 /*!
- * \file src/utils/Folder.cpp
+ * \file src/utils/FolderRecursive.cpp
  * \brief Recursive file-system walking utilities
  *
  * \author xythobuz

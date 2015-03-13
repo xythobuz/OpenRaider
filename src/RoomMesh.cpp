@@ -1,6 +1,6 @@
 /*!
  * \file src/RoomMesh.cpp
- * \brief World Room Mesh
+ * \brief Room Mesh Geometry
  *
  * \author xythobuz
  */

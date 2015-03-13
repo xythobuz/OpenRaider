@@ -1,6 +1,6 @@
 /*!
  * \file src/system/Shader.cpp
- * \brief OpenGL Shader implementation
+ * \brief OpenGL Shader Implementation
  *
  * \author xythobuz
  */
@@ -78,7 +78,7 @@ ShaderTexture::~ShaderTexture() {
     glDeleteRenderbuffers(1, &depth);
     glDeleteFramebuffers(1,  &framebuffer);
 
-    //! \TODO free texture slot
+    //! \fixme free texture slot
 }
 
 void ShaderTexture::clear() {

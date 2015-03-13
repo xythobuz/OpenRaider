@@ -1,6 +1,6 @@
 /*!
  * \file src/commands/CommandEngine.cpp
- * \brief Engine commands
+ * \brief Engine Commands
  *
  * \author xythobuz
  */

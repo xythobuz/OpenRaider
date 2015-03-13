@@ -1,6 +1,6 @@
 /*!
  * \file include/SkeletalModel.h
- * \brief This is the factored out skeletal model class
+ * \brief Moveable Mesh Geometry
  *
  * \author Mongoose
  * \author xythobuz

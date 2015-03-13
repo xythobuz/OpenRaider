@@ -1,6 +1,6 @@
 /*!
  * \file test/ScriptTest.h
- * \brief Game script loader unit test payload
+ * \brief Tomb Raider Script Loader Unit Test Header
  *
  * \author xythobuz
  */

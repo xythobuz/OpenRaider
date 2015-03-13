@@ -1,6 +1,6 @@
 /*!
  * \file include/TextureManager.h
- * \brief Texture registry
+ * \brief Texture Registry
  *
  * \author Mongoose
  * \author xythobuz

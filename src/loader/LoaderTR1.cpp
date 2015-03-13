@@ -127,7 +127,7 @@ void LoaderTR1::loadRoomStaticMeshes(std::vector<StaticModel*>& staticModels) {
         uint16_t rotation = file.readU16();
 
         // Constant lighting, 0xFFFF means use mesh lighting
-        //! \todo Use static mesh lighting information
+        //! \fixme Use static mesh lighting information
         uint16_t intensity1 = file.readU16();
 
         // Which StaticMesh item to draw

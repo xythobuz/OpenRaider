@@ -1,6 +1,6 @@
 /*!
  * \file src/system/FontTTF.cpp
- * \brief TrueType Font implementation
+ * \brief TrueType Font Implementation
  *
  * \author xythobuz
  */
@@ -34,7 +34,7 @@ FontMapTTF::~FontMapTTF() {
     }
 
     if (texture > -1) {
-        //! \todo _Free_ the TextureManager buffer slot
+        //! \fixme Free the TextureManager buffer slot
     }
 }
 
@@ -267,7 +267,7 @@ int FontTTF::charIsMapped(int c) {
 
 int FontTTF::getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad* quad) {
     if (c < 0) {
-        //! \todo This has nothing to do with proper UTF8 support...
+        //! \fixme This has nothing to do with proper UTF8 support...
         c += 128;
     }
 

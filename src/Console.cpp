@@ -1,6 +1,6 @@
 /*!
  * \file src/Console.cpp
- * \brief Console class
+ * \brief Console Window
  *
  * \author xythobuz
  */

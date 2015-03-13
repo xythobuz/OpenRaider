@@ -1,6 +1,6 @@
 /*!
  * \file include/commands/Command.h
- * \brief Command interface
+ * \brief Commands
  *
  * \author xythobuz
  */

@@ -1,6 +1,6 @@
 /*!
  * \file src/RunTime.cpp
- * \brief run time configuration storage
+ * \brief Runtime Configuration Storage
  *
  * \author xythobuz
  */

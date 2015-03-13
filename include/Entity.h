@@ -1,6 +1,6 @@
 /*!
  * \file include/Entity.h
- * \brief World Entities
+ * \brief Things in the World
  *
  * \author xythobuz
  */
