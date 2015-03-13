@@ -153,11 +153,10 @@ int Shader::compile(const char* vertex, const char* fragment) {
     // Check vertex shader
     glGetShaderiv(vertexID, GL_COMPILE_STATUS, &result);
     glGetShaderiv(vertexID, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
+    if ((logLength > 0) && (result != GL_TRUE)) {
         std::vector<char> message(logLength + 1);
         glGetShaderInfoLog(vertexID, logLength, nullptr, &message[0]);
-        if (result != GL_TRUE)
-            Log::get(LOG_ERROR) << "Vertex Shader compilation error:" << Log::endl;
+        Log::get(LOG_ERROR) << "Vertex Shader compilation error:" << Log::endl;
         Log::get(LOG_ERROR) << &message[0] << Log::endl;
         glDeleteShader(vertexID);
         glDeleteShader(fragmentID);
@@ -171,11 +170,10 @@ int Shader::compile(const char* vertex, const char* fragment) {
     // Check fragment shader
     glGetShaderiv(fragmentID, GL_COMPILE_STATUS, &result);
     glGetShaderiv(fragmentID, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
+    if ((logLength > 0) && (result != GL_TRUE)) {
         std::vector<char> message(logLength + 1);
         glGetShaderInfoLog(fragmentID, logLength, nullptr, &message[0]);
-        if (result != GL_TRUE)
-            Log::get(LOG_ERROR) << "Fragment Shader compilation error:" << Log::endl;
+        Log::get(LOG_ERROR) << "Fragment Shader compilation error:" << Log::endl;
         Log::get(LOG_ERROR) << &message[0] << Log::endl;
         glDeleteShader(vertexID);
         glDeleteShader(fragmentID);
@@ -191,11 +189,10 @@ int Shader::compile(const char* vertex, const char* fragment) {
     // Check resulting program
     glGetProgramiv(programID, GL_LINK_STATUS, &result);
     glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
+    if ((logLength > 0) && (result != GL_TRUE)) {
         std::vector<char> message(logLength + 1);
         glGetProgramInfoLog(programID, logLength, nullptr, &message[0]);
-        if (result != GL_TRUE)
-            Log::get(LOG_ERROR) << "Shader link error:" << Log::endl;
+        Log::get(LOG_ERROR) << "Shader link error:" << Log::endl;
         Log::get(LOG_ERROR) << &message[0] << Log::endl;
         glDeleteShader(vertexID);
         glDeleteShader(fragmentID);
