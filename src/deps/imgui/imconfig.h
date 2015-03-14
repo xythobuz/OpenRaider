@@ -30,12 +30,10 @@
 #define IMGUI_INCLUDE_IMGUI_USER_H
 
 //---- Define implicit cast operators to convert back<>forth from your math types and ImVec2/ImVec4.
-#include <glm/vec2.hpp>
 #define IM_VEC2_CLASS_EXTRA                                                \
         ImVec2(const glm::vec2& f) { x = f.x; y = f.y; }                   \
         operator glm::vec2() const { return glm::vec2(x, y); }
 
-#include <glm/vec4.hpp>
 #define IM_VEC4_CLASS_EXTRA                                                \
         ImVec4(const glm::vec4& f) { x = f.x; y = f.y; z = f.z; w = f.w; } \
         operator glm::vec4() const { return glm::vec4(x,y,z,w); }
