@@ -7,10 +7,3 @@ if [ "$CXX" = "g++" ]; then sudo apt-get install g++-4.8; fi
 
 if [ "$CXX" = "clang++" ]; then sudo apt-get install --allow-unauthenticated clang-3.5; fi
 
-git clone https://github.com/hpicgs/glbinding.git
-cd glbinding
-cmake .
-make -j4
-sudo make install
-cd ..
-
