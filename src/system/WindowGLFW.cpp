@@ -5,6 +5,9 @@
  * \author xythobuz
  */
 
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+
 #include "global.h"
 #include "Log.h"
 #include "RunTime.h"
@@ -34,7 +37,7 @@ int WindowGLFW::initialize() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, int(GL_TRUE));
 
     window = glfwCreateWindow(size.x, size.y, VERSION,
                               fullscreen ? glfwGetPrimaryMonitor() : nullptr, nullptr);

@@ -10,7 +10,7 @@
 
 #include <glm/gtc/type_precision.hpp>
 
-#include <GLFW/glfw3.h>
+class GLFWwindow;
 
 class WindowGLFW {
   public:
