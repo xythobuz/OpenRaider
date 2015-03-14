@@ -1,4 +1,4 @@
 #!/bin/bash
 
-brew install sdl2 sdl2_ttf freealut glm
+brew install sdl2 sdl2_ttf freealut glm glbinding
 
