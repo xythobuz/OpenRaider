@@ -288,7 +288,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
     }
 
     shader.use();
-    shader.loadUniform(0, Window::getSize());
+    shader.loadUniform(0, glm::vec2(Window::getSize()));
     shader.loadUniform(1, texture, store);
     shader.loadUniform(2, color);
     vertices.bindBuffer(0, 2);

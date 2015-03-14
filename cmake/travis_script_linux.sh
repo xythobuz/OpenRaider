@@ -8,9 +8,12 @@ if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.5"; fi
 
 git clone https://github.com/hpicgs/glbinding.git
 cd glbinding
-cmake .
+mkdir build
+cd build
+cmake ..
 make -j4
 sudo make install
+cd ..
 cd ..
 
 mkdir build && cd build && cmake .. && make -j 4 && make check
