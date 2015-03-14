@@ -7,10 +7,14 @@ find_package (OpenGL REQUIRED)
 include_directories (SYSTEM ${OPENGL_INCLUDE_DIRS})
 set (LIBS ${LIBS} ${OPENGL_LIBRARIES})
 
-# Add Z Library
-find_package (ZLIB REQUIRED)
-include_directories (SYSTEM ${ZLIB_INCLUDE_DIRS})
-set (LIBS ${LIBS} ${ZLIB_LIBRARIES})
+# Add GLM Library
+find_package (GLM REQUIRED)
+include_directories (SYSTEM  ${GLM_INCLUDE_DIRS})
+
+# Add glbinding Library
+find_package (glbinding REQUIRED)
+include_directories (SYSTEM ${GLBINDING_INCLUDES})
+set (LIBS ${LIBS} ${GLBINDING_LIBRARIES})
 
 # Add SDL2 Library
 find_package (SDL2)
@@ -38,20 +42,6 @@ if (OPENAL_FOUND)
         set (LIBS ${LIBS} ${ALUT_LIBRARIES})
     endif (ALUT_FOUND)
 endif (OPENAL_FOUND)
-
-# Add GLM Library
-find_package (GLM REQUIRED)
-if (GLM_FOUND)
-    include_directories (SYSTEM  ${GLM_INCLUDE_DIRS})
-endif (GLM_FOUND)
-
-if (WIN32)
-    find_package (GLEW REQUIRED)
-    if (GLEW_FOUND)
-        include_directories (SYSTEM ${GLEW_INCLUDE_DIRS})
-        set (LIBS ${LIBS} ${GLEW_LIBRARIES})
-    endif (GLEW_FOUND)
-endif (WIN32)
 
 #################################################################
 

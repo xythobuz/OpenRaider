@@ -43,9 +43,9 @@ int main(int argc, char* argv[]) {
     command_parse(&cmd, argc, argv);
     command_free(&cmd);
 
-    // RunTime is required by other constructors
+    glbinding::Binding::initialize();
     Log::initialize();
-    RunTime::initialize();
+    RunTime::initialize(); // RunTime is required by other constructors
 
     gWorld.reset(new World());
 

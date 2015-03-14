@@ -67,10 +67,9 @@ typedef enum {
 } KeyboardButton;
 
 // Globally include OpenGL header
-#ifdef __APPLE__
-#include <OpenGL/gl3.h>
-#else // __APPLE__
-#endif // __APPLE__
+#include <glbinding/gl/gl.h>
+#include <glbinding/Binding.h>
+using namespace gl;
 
 /*! \fixme Is there a better way to handle this?
  * We wan't to use our own assert(). Unfortunately, glm includes

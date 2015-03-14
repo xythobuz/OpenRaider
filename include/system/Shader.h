@@ -73,7 +73,7 @@ class Shader {
     static void set2DState(bool on, bool depth = true);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color, unsigned int texture,
-                       TextureStorage store = TextureStorage::SYSTEM, unsigned int mode = GL_TRIANGLES,
+                       TextureStorage store = TextureStorage::SYSTEM, GLenum = GL_TRIANGLES,
                        ShaderTexture* target = nullptr, Shader& shader = textShader);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture, glm::mat4 MVP,
@@ -85,10 +85,10 @@ class Shader {
                        Shader& shader = textureShader);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
-                       unsigned int mode = GL_TRIANGLES, ShaderTexture* target = nullptr,
+                       GLenum mode = GL_TRIANGLES, ShaderTexture* target = nullptr,
                        Shader& shader = colorShader);
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
-                       glm::mat4 MVP, unsigned int mode = GL_TRIANGLES, ShaderTexture* target = nullptr,
+                       glm::mat4 MVP, GLenum mode = GL_TRIANGLES, ShaderTexture* target = nullptr,
                        Shader& shader = colorShader);
 
   private:

@@ -143,7 +143,7 @@ int Shader::compile(const char* vertex, const char* fragment) {
     GLuint vertexID = glCreateShader(GL_VERTEX_SHADER);
     GLuint fragmentID = glCreateShader(GL_FRAGMENT_SHADER);
 
-    GLint result = GL_FALSE;
+    GLint result = GLint(GL_FALSE);
     GLint logLength = 0;
 
     // Compile vertex shader
@@ -153,7 +153,7 @@ int Shader::compile(const char* vertex, const char* fragment) {
     // Check vertex shader
     glGetShaderiv(vertexID, GL_COMPILE_STATUS, &result);
     glGetShaderiv(vertexID, GL_INFO_LOG_LENGTH, &logLength);
-    if ((logLength > 0) && (result != GL_TRUE)) {
+    if ((logLength > 0) && (result != GLint(GL_TRUE))) {
         std::vector<char> message(logLength + 1);
         glGetShaderInfoLog(vertexID, logLength, nullptr, &message[0]);
         Log::get(LOG_ERROR) << "Vertex Shader compilation error:" << Log::endl;
@@ -170,7 +170,7 @@ int Shader::compile(const char* vertex, const char* fragment) {
     // Check fragment shader
     glGetShaderiv(fragmentID, GL_COMPILE_STATUS, &result);
     glGetShaderiv(fragmentID, GL_INFO_LOG_LENGTH, &logLength);
-    if ((logLength > 0) && (result != GL_TRUE)) {
+    if ((logLength > 0) && (result != GLint(GL_TRUE))) {
         std::vector<char> message(logLength + 1);
         glGetShaderInfoLog(fragmentID, logLength, nullptr, &message[0]);
         Log::get(LOG_ERROR) << "Fragment Shader compilation error:" << Log::endl;
@@ -189,7 +189,7 @@ int Shader::compile(const char* vertex, const char* fragment) {
     // Check resulting program
     glGetProgramiv(programID, GL_LINK_STATUS, &result);
     glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &logLength);
-    if ((logLength > 0) && (result != GL_TRUE)) {
+    if ((logLength > 0) && (result != GLint(GL_TRUE))) {
         std::vector<char> message(logLength + 1);
         glGetProgramInfoLog(programID, logLength, nullptr, &message[0]);
         Log::get(LOG_ERROR) << "Shader link error:" << Log::endl;
@@ -273,7 +273,7 @@ void Shader::set2DState(bool on, bool depth) {
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
-                    unsigned int texture, TextureStorage store, unsigned int mode,
+                    unsigned int texture, TextureStorage store, GLenum mode,
                     ShaderTexture* target, Shader& shader) {
     assert(vertices.getSize() == uvs.getSize());
     if (mode == GL_TRIANGLES) {
@@ -365,7 +365,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& ind
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
-                    unsigned int mode, ShaderTexture* target, Shader& shader) {
+                    GLenum mode, ShaderTexture* target, Shader& shader) {
     assert(vertices.getSize() == colors.getSize());
     if (mode == GL_TRIANGLES) {
         assert((vertices.getSize() % 3) == 0);
@@ -388,7 +388,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
-                    glm::mat4 MVP, unsigned int mode, ShaderTexture* target, Shader& shader) {
+                    glm::mat4 MVP, GLenum mode, ShaderTexture* target, Shader& shader) {
     assert(vertices.getSize() == colors.getSize());
     if (mode == GL_TRIANGLES) {
         assert((indices.getSize() % 3) == 0);
