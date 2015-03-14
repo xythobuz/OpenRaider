@@ -208,7 +208,7 @@ void UI::eventsFinished() {
     }
 
     if (Window::getTextInput() != (visible || Console::isVisible() || Menu::isVisible()))
-        Window::setTextInput(visible || Console::isVisible());
+        Window::setTextInput(visible || Console::isVisible() || Menu::isVisible());
 
     bool input = !(visible || Console::isVisible() || Menu::isVisible());
     if (Window::getMousegrab() != input)
