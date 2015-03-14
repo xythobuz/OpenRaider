@@ -16,9 +16,6 @@ script:
     - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake/travis_script_linux.sh; fi; fi
     - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then if [ "$TRAVIS_OS_NAME" = "osx" ]; then cmake/travis_script_mac.sh; fi; fi
 
-after_success:
-    - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake/travis_after_success_linux.sh; fi; fi
-
 notifications:
     email:
         recipients:
@@ -34,10 +31,6 @@ notifications:
 os:
     - linux
     - osx
-
-matrix:
-    allow_failures:
-        - os: linux
 
 env:
     global:

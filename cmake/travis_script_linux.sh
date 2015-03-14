@@ -6,8 +6,10 @@ if [ "$CXX" = "g++" ]; then export CXX="g++-4.8"; fi
 if [ "$CC" = "clang" ]; then export CC="clang-3.5"; fi
 if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.5"; fi
 
+# Need to build current glbinding from source
 git clone https://github.com/hpicgs/glbinding.git
 cd glbinding
+sed -i 's/  -Werror/  /g' cmake/PlatformLinuxGCC.cmake
 mkdir build
 cd build
 cmake ..
