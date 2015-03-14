@@ -9,5 +9,5 @@ if [ "$CXX" = "clang++" ]; then sudo apt-get install --allow-unauthenticated cla
 
 wget 'http://downloads.sourceforge.net/project/ogl-math/glm-0.9.6.3/glm-0.9.6.3.zip'
 unzip glm-0.9.6.3.zip
-sudo cp glm/glm /usr/local/include/glm
+sudo cp -R glm/glm /usr/local/include/glm
 
