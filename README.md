@@ -20,14 +20,6 @@ Visit the IRC Channel `#OpenRaider` on `chat.freenode.net` ([Webchat](http://web
 * [SDL2](http://www.libsdl.org) or [GLFW](http://www.glfw.org)
 * [OpenAL](http://www.openal.org) & [ALUT](https://github.com/vancegroup/freealut) (optional, needed for sound output)
 
-Mac OS X with XCode and [MacPorts](http://www.macports.org) installed (or replace `libsdl2` by `glfw`):
-
-    sudo port install cmake glm libsdl2
-
-Unfortunately, glbinding is not available as binary. But it can be built and installed from source easily. To create a distributable Bundle with glbinding in the default location, do this before running `make install`:
-
-    sudo install_name_tool -id /usr/local/lib/libglbinding.dylib /usr/local/lib/libglbinding.dylib
-
 ## Building
 
 The basic steps needed to build and run OpenRaider:
