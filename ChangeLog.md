@@ -5,6 +5,7 @@
     [ 20140318 ]
     * Updated imgui to version 1.36
     * Can now display all compiled/linked library versions
+    * GLFW windowing interface now supports proper text input
 
     [ 20140313 ]
     * Renderer now limits room list size

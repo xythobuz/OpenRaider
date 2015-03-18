@@ -5,6 +5,7 @@
  * \author xythobuz
  */
 
+#include <codecvt>
 #include <sstream>
 
 #define GLFW_INCLUDE_NONE
@@ -53,6 +54,7 @@ int WindowGLFW::initialize() {
     glfwSetWindowSizeCallback(window, WindowGLFW::sizeCallback);
     glfwSetCursorPosCallback(window, WindowGLFW::cursorCallback);
     glfwSetKeyCallback(window, WindowGLFW::keyCallback);
+    glfwSetCharCallback(window, WindowGLFW::charCallback);
     glfwSetMouseButtonCallback(window, WindowGLFW::buttonCallback);
     glfwSetScrollCallback(window, WindowGLFW::scrollCallback);
 
@@ -138,9 +140,7 @@ std::string WindowGLFW::getVersion(bool linked) {
     }
 }
 
-void WindowGLFW::inputPositionCallback(int x, int y) {
-
-}
+void WindowGLFW::inputPositionCallback(int x, int y) { }
 
 void WindowGLFW::errorCallback(int error, const char* desc) {
     Log::get(LOG_ERROR) << "GLFW Error (" << error << "): " << desc << Log::endl;
@@ -180,21 +180,29 @@ void WindowGLFW::keyCallback(GLFWwindow* w, int key, int scancode, int action, i
         UI::handleKeyboard(leftguiKey, modSuper);
     }
 
-    if (textinput && (action != GLFW_RELEASE)) {
-        //! \fixme GLFW does not support UTF8 text input?!
-        if ((key >= '0') && (key <= '9')) {
-            char s[2] = { (char)key, '\0' };
-            UI::handleText(s, false);
-        } else if ((key >= 'A') && (key <= 'Z')) {
-            key = key - 'A' + 'a';
-            char s[2] = { (char)key, '\0' };
-            UI::handleText(s, false);
-            key = key - 'a' + 'A';
-        }
-    }
-
     KeyboardButton b = convertAsciiButton(key);
     UI::handleKeyboard(b, (action != GLFW_RELEASE));
+}
+
+void WindowGLFW::charCallback(GLFWwindow* w, unsigned int codepoint) {
+    static std::codecvt_utf8<char32_t> conv;
+    static mbstate_t state;
+    static const int bufferSize = 42;
+    static char buffer[bufferSize + 1];
+
+    if (textinput) {
+        char32_t inBuff[2] = { codepoint, '\0' };
+        const char32_t* in = nullptr;
+        char* ex = nullptr;
+        auto res = conv.out(state, inBuff, inBuff + 1, in, buffer, buffer + bufferSize, ex);
+        if (res != 0) {
+            Log::get(LOG_DEBUG) << "UTF-32 to UTF-8 conversion error (" << res << ")" << Log::endl;
+            return;
+        }
+
+        *ex = '\0';
+        UI::handleText(buffer, false);
+    }
 }
 
 void WindowGLFW::buttonCallback(GLFWwindow* w, int button, int action, int mods) {
@@ -253,7 +261,7 @@ KeyboardButton WindowGLFW::convertAsciiButton(int key) {
         return static_cast<KeyboardButton>(key);
     }
 
-    //! \fixme GLFW requires keyboard layout? Currently US is hard coded
+    //! \fixme GLFW requires keyboard layout, currently US is hard coded!
     switch (key) {
         case ' ':
             return spaceKey;
