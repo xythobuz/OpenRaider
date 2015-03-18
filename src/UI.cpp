@@ -18,6 +18,7 @@
 #include "SoundManager.h"
 #include "TextureManager.h"
 #include "World.h"
+#include "system/Sound.h"
 #include "system/Window.h"
 #include "utils/time.h"
 #include "UI.h"
@@ -138,7 +139,7 @@ int UI::initialize() {
     style.ItemSpacing                           = ImVec2(2, 2);
     style.ItemInnerSpacing                      = ImVec2(1, 1);
     style.TouchExtraPadding                     = ImVec2(0, 0);
-    style.TreeNodeSpacing                       = 3;
+    style.IndentSpacing                       = 3;
     style.ScrollbarWidth                        = 10;
 
     return 0;
@@ -230,7 +231,7 @@ void UI::display() {
 
             auto window = ImGui::GetWindowSize();
             auto screen = Window::getSize();
-            ImGui::SetWindowPos(ImVec2(10, screen.y - window.y - 10));
+            //ImGui::SetWindowPos(ImVec2(10, screen.y - window.y - 10));
         }
         ImGui::End();
     }
@@ -253,6 +254,22 @@ void UI::display() {
         RunTime::display();
         TextureManager::display();
         SoundManager::display();
+
+        if (ImGui::CollapsingHeader("Library Versions")) {
+            ImGui::TextWrapped("%s", VERSION);
+            ImGui::Separator();
+            ImGui::TextWrapped("ImGui v%s", IMGUI_VERSION);
+            ImGui::TextWrapped("%s", Window::getVersion(false).c_str());
+            ImGui::TextWrapped("%s", Shader::getVersion(false).c_str());
+            ImGui::TextWrapped("%s", Sound::getVersion(false).c_str());
+            ImGui::TextWrapped("GLM v%d.%d.%d", (GLM_VERSION / 100),
+                               ((GLM_VERSION % 100) / 10), (GLM_VERSION % 10));
+            ImGui::Separator();
+            ImGui::TextWrapped("ImGui v%s", ImGui::GetVersion());
+            ImGui::TextWrapped("%s", Window::getVersion(true).c_str());
+            ImGui::TextWrapped("%s", Shader::getVersion(true).c_str());
+            ImGui::TextWrapped("%s", Sound::getVersion(true).c_str());
+        }
 
         if (ImGui::CollapsingHeader("ImGui/Debug UI Help")) {
             ImGui::ShowUserGuide();
@@ -357,6 +374,7 @@ void UI::handleKeyboard(KeyboardButton key, bool pressed) {
     io.KeysDown[key] = pressed;
     io.KeyCtrl = io.KeysDown[leftctrlKey] | io.KeysDown[rightctrlKey];
     io.KeyShift = io.KeysDown[leftshiftKey] | io.KeysDown[rightshiftKey];
+    io.KeyAlt = io.KeysDown[leftaltKey] | io.KeysDown[rightaltKey];
 
     keyboardEvents.push_back(std::make_tuple(key, pressed));
 

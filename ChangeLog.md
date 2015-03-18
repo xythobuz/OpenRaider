@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20140318 ]
+    * Updated imgui to version 1.36
+    * Can now display all compiled/linked library versions
+
     [ 20140313 ]
     * Renderer now limits room list size
     * Updated Doxyfile template to current Doxygen version

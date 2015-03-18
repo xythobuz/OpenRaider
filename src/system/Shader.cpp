@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include <sstream>
+
 #include "global.h"
 #include "Log.h"
 #include "system/Window.h"
@@ -207,17 +209,23 @@ int Shader::compile(const char* vertex, const char* fragment) {
 
 // ----------------------------------------------------------------------------
 
+std::string Shader::getVersion(bool linked) {
+    std::ostringstream str;
+    if (!linked) {
+        str << "OpenGL v" << glGetString(GL_VERSION);
+    } else {
+        str << "OpenGL " << glGetString(GL_SHADING_LANGUAGE_VERSION) << " "
+            << glGetString(GL_RENDERER) << " (" << glGetString(GL_VENDOR) << ")";
+    }
+    return str.str();
+}
+
 Shader Shader::textShader;
 Shader Shader::textureShader;
 Shader Shader::colorShader;
 unsigned int Shader::vertexArrayID = 0;
 
 int Shader::initialize() {
-    Log::get(LOG_DEBUG) << "GL Ven.: " << glGetString(GL_VENDOR) << Log::endl;
-    Log::get(LOG_DEBUG) << "GL Ren.: " << glGetString(GL_RENDERER) << Log::endl;
-    Log::get(LOG_DEBUG) << "GL Ver.: " << glGetString(GL_VERSION) << Log::endl;
-    Log::get(LOG_DEBUG) << "GLSL V.: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << Log::endl;
-
     glGenVertexArrays(1, &vertexArrayID);
     glBindVertexArray(vertexArrayID);
 

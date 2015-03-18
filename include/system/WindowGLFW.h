@@ -8,6 +8,7 @@
 #ifndef _WINDOW_GLFW_H_
 #define _WINDOW_GLFW_H_
 
+#include <string>
 #include <glm/gtc/type_precision.hpp>
 
 class GLFWwindow;
@@ -35,6 +36,8 @@ class WindowGLFW {
     static const char* getClipboard();
 
     static void inputPositionCallback(int x, int y);
+
+    static std::string getVersion(bool linked);
 
   private:
     static void errorCallback(int error, const char* desc);

@@ -124,3 +124,11 @@ float Sound::getVolume() {
 #endif
 }
 
+std::string Sound::getVersion(bool linked) {
+#ifdef USING_AL
+    return SoundAL::getVersion(linked);
+#else
+    return "none";
+#endif
+}
+

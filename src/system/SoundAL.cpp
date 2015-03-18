@@ -13,6 +13,7 @@
 #endif
 
 #include <AL/alut.h>
+#include <sstream>
 
 #include "global.h"
 #include "Log.h"
@@ -257,5 +258,17 @@ void SoundAL::setVolume(float vol) {
 
 float SoundAL::getVolume() {
     return volume;
+}
+
+std::string SoundAL::getVersion(bool linked) {
+    std::ostringstream str;
+    if (!linked) {
+        str << "OpenAL v" << alGetString(AL_VERSION) << "; ALUT v"
+            << ALUT_API_MAJOR_VERSION << "." << ALUT_API_MINOR_VERSION;
+    } else {
+        str << "OpenAL " << alGetString(AL_RENDERER) << " (" << alGetString(AL_VENDOR)
+            << "); ALUT v" << alutGetMajorVersion() << "." << alutGetMinorVersion();
+    }
+    return str.str();
 }
 

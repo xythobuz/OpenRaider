@@ -8,6 +8,8 @@
 #ifndef _SOUND_H_
 #define _SOUND_H_
 
+#include <string>
+
 class Sound {
   public:
     static int initialize();
@@ -32,6 +34,8 @@ class Sound {
 
     static void setVolume(float vol = 1.0f);
     static float getVolume();
+
+    static std::string getVersion(bool linked);
 };
 
 #endif

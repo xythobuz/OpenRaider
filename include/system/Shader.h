@@ -8,6 +8,7 @@
 #ifndef _SHADER_H_
 #define _SHADER_H_
 
+#include <string>
 #include <vector>
 
 #include "TextureManager.h"
@@ -90,6 +91,8 @@ class Shader {
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
                        glm::mat4 MVP, GLenum mode = GL_TRIANGLES, ShaderTexture* target = nullptr,
                        Shader& shader = colorShader);
+
+    static std::string getVersion(bool linked);
 
   private:
     int programID;

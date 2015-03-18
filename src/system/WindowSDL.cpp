@@ -5,6 +5,10 @@
  * \author xythobuz
  */
 
+#include <sstream>
+
+#include "SDL_revision.h"
+
 #include "global.h"
 #include "Log.h"
 #include "RunTime.h"
@@ -582,5 +586,23 @@ void WindowSDL::inputPositionCallback(int x, int y) {
     rect.w = 50;
     rect.h = 25;
     SDL_SetTextInputRect(&rect);
+}
+
+std::string WindowSDL::getVersion(bool linked) {
+    SDL_version vers;
+
+    if (linked) {
+        SDL_GetVersion(&vers);
+    } else {
+        SDL_VERSION(&vers);
+    }
+
+    std::ostringstream str;
+    str << "SDL2 v" << int(vers.major) << "." << int(vers.minor) << "." << int(vers.patch);
+    if (linked) {
+        return str.str() + " (" + SDL_GetRevision() + ")";
+    } else {
+        return str.str() + " (" + SDL_REVISION + ")";
+    }
 }
 

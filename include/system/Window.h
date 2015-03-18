@@ -8,6 +8,7 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
+#include <string>
 #include <glm/gtc/type_precision.hpp>
 
 class Window {
@@ -33,6 +34,8 @@ class Window {
     static const char* getClipboard();
 
     static void inputPositionCallback(int x, int y);
+
+    static std::string getVersion(bool linked);
 };
 
 #endif

@@ -8,6 +8,7 @@
 #ifndef _SOUND_AL_H_
 #define _SOUND_AL_H_
 
+#include <string>
 #include <vector>
 
 class SoundAL {
@@ -34,6 +35,8 @@ class SoundAL {
 
     static void setVolume(float vol);
     static float getVolume();
+
+    static std::string getVersion(bool linked);
 
   private:
     static bool init;

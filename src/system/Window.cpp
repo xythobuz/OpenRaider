@@ -176,3 +176,15 @@ void Window::inputPositionCallback(int x, int y) {
 #endif
 }
 
+std::string Window::getVersion(bool linked) {
+    std::string ret;
+
+#ifdef USING_SDL
+    ret = WindowSDL::getVersion(linked);
+#elif defined(USING_GLFW)
+    ret = WindowGLFW::getVersion(linked);
+#endif
+
+    return ret;
+}
+

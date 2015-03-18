@@ -8,6 +8,7 @@
 #ifndef _WINDOW_SDL_H_
 #define _WINDOW_SDL_H_
 
+#include <string>
 #include <glm/gtc/type_precision.hpp>
 
 #include "SDL.h"
@@ -35,6 +36,8 @@ class WindowSDL {
     static const char* getClipboard();
 
     static void inputPositionCallback(int x, int y);
+
+    static std::string getVersion(bool linked);
 
   private:
     static glm::i32vec2 size;

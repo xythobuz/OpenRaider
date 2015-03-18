@@ -5,6 +5,8 @@
  * \author xythobuz
  */
 
+#include <sstream>
+
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
@@ -124,6 +126,16 @@ const char* WindowGLFW::getClipboard() {
         return glfwGetClipboardString(window);
 
     return nullptr;
+}
+
+std::string WindowGLFW::getVersion(bool linked) {
+    if (linked) {
+        return std::string("GLFW v") + glfwGetVersionString();
+    } else {
+        std::ostringstream str;
+        str << "GLFW v" << GLFW_VERSION_MAJOR << "." << GLFW_VERSION_MINOR << "." << GLFW_VERSION_REVISION;
+        return str.str();
+    }
 }
 
 void WindowGLFW::inputPositionCallback(int x, int y) {
