@@ -6,6 +6,7 @@
     * No longer including gl.h globally, now only using gl33.h where needed.
     * No longer including all of glm globally, only the vec2/3/4 and mat4x4.
     * No longer re-defining our own assert(), now called orAssert().
+    * Updated imgui to version 1.37
 
     [ 20150318 ]
     * Updated imgui to version 1.36
