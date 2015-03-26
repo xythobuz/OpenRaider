@@ -29,7 +29,7 @@ unsigned long BoneFrame::size() {
 }
 
 BoneTag& BoneFrame::get(unsigned long i) {
-    assertLessThan(i, tag.size());
+    orAssertLessThan(i, tag.size());
     return *tag.at(i);
 }
 
@@ -49,7 +49,7 @@ unsigned long AnimationFrame::size() {
 }
 
 BoneFrame& AnimationFrame::get(unsigned long i) {
-    assertLessThan(i, frame.size());
+    orAssertLessThan(i, frame.size());
     return *frame.at(i);
 }
 
@@ -64,19 +64,19 @@ class MatrixStack {
     MatrixStack(glm::mat4 start) : startVal(start) { stack.push_back(startVal); }
 
     void push() {
-        //assertGreaterThan(stack.size(), 0);
+        //orAssertGreaterThan(stack.size(), 0);
         if (stack.size() > 0)
             stack.push_back(stack.at(stack.size() - 1));
     }
 
     void pop() {
-        //assertGreaterThan(stack.size(), 0);
+        //orAssertGreaterThan(stack.size(), 0);
         if (stack.size() > 0)
             stack.pop_back();
     }
 
     glm::mat4 get() {
-        //assertGreaterThan(stack.size(), 0);
+        //orAssertGreaterThan(stack.size(), 0);
         if (stack.size() > 0)
             return stack.at(stack.size() - 1);
         return startVal;
@@ -101,8 +101,8 @@ SkeletalModel::~SkeletalModel() {
 #endif
 
 void SkeletalModel::display(glm::mat4 MVP, int aframe, int bframe, ShaderTexture* shaderTexture) {
-    assertLessThan(aframe, size());
-    assertLessThan(bframe, get(aframe).size());
+    orAssertLessThan(aframe, size());
+    orAssertLessThan(bframe, get(aframe).size());
 
     AnimationFrame& anim = get(aframe);
     BoneFrame& boneframe = anim.get(bframe);
@@ -173,7 +173,7 @@ unsigned long SkeletalModel::size() {
 }
 
 AnimationFrame& SkeletalModel::get(unsigned long i) {
-    assertLessThan(i, animation.size());
+    orAssertLessThan(i, animation.size());
     return *animation.at(i);
 }
 

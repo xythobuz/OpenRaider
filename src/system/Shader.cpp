@@ -12,97 +12,99 @@
 #include "system/Window.h"
 #include "system/Shader.h"
 
+#include <glbinding/gl/gl33.h>
+
 ShaderBuffer::~ShaderBuffer() {
     if (created)
-        glDeleteBuffers(1, &buffer);
+        gl::glDeleteBuffers(1, &buffer);
 }
 
 void ShaderBuffer::bufferData(int elem, int size, void* data) {
     if (!created) {
-        glGenBuffers(1, &buffer);
+        gl::glGenBuffers(1, &buffer);
         created = true;
     }
 
     boundSize = elem;
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, elem * size, data, GL_STATIC_DRAW);
+    gl::glBindBuffer(gl::GL_ARRAY_BUFFER, buffer);
+    gl::glBufferData(gl::GL_ARRAY_BUFFER, elem * size, data, gl::GL_STATIC_DRAW);
 }
 
 void ShaderBuffer::bindBuffer() {
     if (!created) {
-        glGenBuffers(1, &buffer);
+        gl::glGenBuffers(1, &buffer);
         created = true;
     }
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffer);
+    gl::glBindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, buffer);
 }
 
 void ShaderBuffer::bindBuffer(int location, int size) {
     if (!created) {
-        glGenBuffers(1, &buffer);
+        gl::glGenBuffers(1, &buffer);
         created = true;
     }
 
-    glEnableVertexAttribArray(location);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glVertexAttribPointer(location, size, GL_FLOAT, GL_FALSE, 0, nullptr);
+    gl::glEnableVertexAttribArray(location);
+    gl::glBindBuffer(gl::GL_ARRAY_BUFFER, buffer);
+    gl::glVertexAttribPointer(location, size, gl::GL_FLOAT, gl::GL_FALSE, 0, nullptr);
 }
 
 void ShaderBuffer::unbind(int location) {
-    assert(created == true);
-    glDisableVertexAttribArray(location);
+    orAssert(created == true);
+    gl::glDisableVertexAttribArray(location);
 }
 
 // ----------------------------------------------------------------------------
 
 ShaderTexture::ShaderTexture(int w, int h) : width(w), height(h) {
-    glGenFramebuffers(1, &framebuffer);
+    gl::glGenFramebuffers(1, &framebuffer);
     bind();
 
     texture = TextureManager::loadBufferSlot(nullptr, width, height, ColorMode::RGBA,
               32, TextureStorage::SYSTEM, -1, false);
 
-    glGenRenderbuffers(1, &depth);
-    glBindRenderbuffer(GL_RENDERBUFFER, depth);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depth);
+    gl::glGenRenderbuffers(1, &depth);
+    gl::glBindRenderbuffer(gl::GL_RENDERBUFFER, depth);
+    gl::glRenderbufferStorage(gl::GL_RENDERBUFFER, gl::GL_DEPTH_COMPONENT, width, height);
+    gl::glFramebufferRenderbuffer(gl::GL_FRAMEBUFFER, gl::GL_DEPTH_ATTACHMENT, gl::GL_RENDERBUFFER, depth);
 
-    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+    gl::glFramebufferTexture(gl::GL_FRAMEBUFFER, gl::GL_COLOR_ATTACHMENT0,
                          TextureManager::getTextureID(texture, TextureStorage::SYSTEM), 0);
 
-    GLenum drawBuffer = GL_COLOR_ATTACHMENT0;
-    glDrawBuffers(1, &drawBuffer);
+    gl::GLenum drawBuffer = gl::GL_COLOR_ATTACHMENT0;
+    gl::glDrawBuffers(1, &drawBuffer);
 
-    assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
+    orAssert(gl::glCheckFramebufferStatus(gl::GL_FRAMEBUFFER) == gl::GL_FRAMEBUFFER_COMPLETE);
 }
 
 ShaderTexture::~ShaderTexture() {
-    glDeleteRenderbuffers(1, &depth);
-    glDeleteFramebuffers(1,  &framebuffer);
+    gl::glDeleteRenderbuffers(1, &depth);
+    gl::glDeleteFramebuffers(1,  &framebuffer);
 
     //! \fixme free texture slot
 }
 
 void ShaderTexture::clear() {
     bind();
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
 }
 
 void ShaderTexture::bind() {
-    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-    glViewport(0, 0, width, height);
+    gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, framebuffer);
+    gl::glViewport(0, 0, width, height);
 }
 
 // ----------------------------------------------------------------------------
 
 Shader::~Shader() {
     if (programID >= 0)
-        glDeleteProgram(programID);
+        gl::glDeleteProgram(programID);
 }
 
 int Shader::addUniform(const char* name) {
-    assert(programID >= 0);
-    int r = glGetUniformLocation(programID, name);
+    orAssert(programID >= 0);
+    int r = gl::glGetUniformLocation(programID, name);
     if (r < 0) {
         Log::get(LOG_ERROR) << "Can't find GLSL Uniform \"" << name << "\"!" << Log::endl;
         return -1;
@@ -112,112 +114,124 @@ int Shader::addUniform(const char* name) {
 }
 
 unsigned int Shader::getUniform(int n) {
-    assert(n >= 0);
-    assert(n < uniforms.size());
+    orAssert(n >= 0);
+    orAssert(n < uniforms.size());
     return uniforms.at(n);
 }
 
 void Shader::loadUniform(int uni, glm::vec2 vec) {
-    glUniform2f(getUniform(uni), vec.x, vec.y);
+    gl::glUniform2f(getUniform(uni), vec.x, vec.y);
 }
 
 void Shader::loadUniform(int uni, glm::vec4 vec) {
-    glUniform4f(getUniform(uni), vec.r, vec.g, vec.b, vec.a);
+    gl::glUniform4f(getUniform(uni), vec.r, vec.g, vec.b, vec.a);
 }
 
 void Shader::loadUniform(int uni, glm::mat4 mat) {
-    glUniformMatrix4fv(getUniform(uni), 1, GL_FALSE, &mat[0][0]);
+    gl::glUniformMatrix4fv(getUniform(uni), 1, gl::GL_FALSE, &mat[0][0]);
 }
 
 void Shader::loadUniform(int uni, int texture, TextureStorage store) {
-    glUniform1i(getUniform(uni), TextureManager::bindTexture(texture, store));
+    gl::glUniform1i(getUniform(uni), TextureManager::bindTexture(texture, store));
 }
 
 void Shader::use() {
-    assert(programID >= 0);
-    glUseProgram(programID);
+    orAssert(programID >= 0);
+    gl::glUseProgram(programID);
 }
 
 int Shader::compile(const char* vertex, const char* fragment) {
-    assert(vertex != nullptr);
-    assert(fragment != nullptr);
+    orAssert(vertex != nullptr);
+    orAssert(fragment != nullptr);
 
-    GLuint vertexID = glCreateShader(GL_VERTEX_SHADER);
-    GLuint fragmentID = glCreateShader(GL_FRAGMENT_SHADER);
+    gl::GLuint vertexID = gl::glCreateShader(gl::GL_VERTEX_SHADER);
+    gl::GLuint fragmentID = gl::glCreateShader(gl::GL_FRAGMENT_SHADER);
 
-    GLint result = GLint(GL_FALSE);
-    GLint logLength = 0;
+    gl::GLint result = gl::GLint(gl::GL_FALSE);
+    gl::GLint logLength = 0;
 
     // Compile vertex shader
-    glShaderSource(vertexID, 1, &vertex, nullptr);
-    glCompileShader(vertexID);
+    gl::glShaderSource(vertexID, 1, &vertex, nullptr);
+    gl::glCompileShader(vertexID);
 
     // Check vertex shader
-    glGetShaderiv(vertexID, GL_COMPILE_STATUS, &result);
-    glGetShaderiv(vertexID, GL_INFO_LOG_LENGTH, &logLength);
-    if ((logLength > 0) && (result != GLint(GL_TRUE))) {
+    gl::glGetShaderiv(vertexID, gl::GL_COMPILE_STATUS, &result);
+    gl::glGetShaderiv(vertexID, gl::GL_INFO_LOG_LENGTH, &logLength);
+    if ((logLength > 0) && (result != gl::GLint(gl::GL_TRUE))) {
         std::vector<char> message(logLength + 1);
-        glGetShaderInfoLog(vertexID, logLength, nullptr, &message[0]);
+        gl::glGetShaderInfoLog(vertexID, logLength, nullptr, &message[0]);
         Log::get(LOG_ERROR) << "Vertex Shader compilation error:" << Log::endl;
         Log::get(LOG_ERROR) << &message[0] << Log::endl;
-        glDeleteShader(vertexID);
-        glDeleteShader(fragmentID);
+        gl::glDeleteShader(vertexID);
+        gl::glDeleteShader(fragmentID);
         return -1;
     }
 
     // Compile fragment shader
-    glShaderSource(fragmentID, 1, &fragment, nullptr);
-    glCompileShader(fragmentID);
+    gl::glShaderSource(fragmentID, 1, &fragment, nullptr);
+    gl::glCompileShader(fragmentID);
 
     // Check fragment shader
-    glGetShaderiv(fragmentID, GL_COMPILE_STATUS, &result);
-    glGetShaderiv(fragmentID, GL_INFO_LOG_LENGTH, &logLength);
-    if ((logLength > 0) && (result != GLint(GL_TRUE))) {
+    gl::glGetShaderiv(fragmentID, gl::GL_COMPILE_STATUS, &result);
+    gl::glGetShaderiv(fragmentID, gl::GL_INFO_LOG_LENGTH, &logLength);
+    if ((logLength > 0) && (result != gl::GLint(gl::GL_TRUE))) {
         std::vector<char> message(logLength + 1);
-        glGetShaderInfoLog(fragmentID, logLength, nullptr, &message[0]);
+        gl::glGetShaderInfoLog(fragmentID, logLength, nullptr, &message[0]);
         Log::get(LOG_ERROR) << "Fragment Shader compilation error:" << Log::endl;
         Log::get(LOG_ERROR) << &message[0] << Log::endl;
-        glDeleteShader(vertexID);
-        glDeleteShader(fragmentID);
+        gl::glDeleteShader(vertexID);
+        gl::glDeleteShader(fragmentID);
         return -2;
     }
 
     // Link both shaders
-    programID = glCreateProgram();
-    glAttachShader(programID, vertexID);
-    glAttachShader(programID, fragmentID);
-    glLinkProgram(programID);
+    programID = gl::glCreateProgram();
+    gl::glAttachShader(programID, vertexID);
+    gl::glAttachShader(programID, fragmentID);
+    gl::glLinkProgram(programID);
 
     // Check resulting program
-    glGetProgramiv(programID, GL_LINK_STATUS, &result);
-    glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &logLength);
-    if ((logLength > 0) && (result != GLint(GL_TRUE))) {
+    gl::glGetProgramiv(programID, gl::GL_LINK_STATUS, &result);
+    gl::glGetProgramiv(programID, gl::GL_INFO_LOG_LENGTH, &logLength);
+    if ((logLength > 0) && (result != gl::GLint(gl::GL_TRUE))) {
         std::vector<char> message(logLength + 1);
-        glGetProgramInfoLog(programID, logLength, nullptr, &message[0]);
+        gl::glGetProgramInfoLog(programID, logLength, nullptr, &message[0]);
         Log::get(LOG_ERROR) << "Shader link error:" << Log::endl;
         Log::get(LOG_ERROR) << &message[0] << Log::endl;
-        glDeleteShader(vertexID);
-        glDeleteShader(fragmentID);
-        glDeleteProgram(programID);
+        gl::glDeleteShader(vertexID);
+        gl::glDeleteShader(fragmentID);
+        gl::glDeleteProgram(programID);
         return -3;
     }
 
-    glDeleteShader(vertexID);
-    glDeleteShader(fragmentID);
+    gl::glDeleteShader(vertexID);
+    gl::glDeleteShader(fragmentID);
     return programID;
 }
 
 // ----------------------------------------------------------------------------
 
 std::string Shader::getVersion(bool linked) {
-    std::ostringstream str;
-    if (!linked) {
-        str << "OpenGL v" << glGetString(GL_VERSION);
-    } else {
-        str << "OpenGL " << glGetString(GL_SHADING_LANGUAGE_VERSION) << " "
-            << glGetString(GL_RENDERER) << " (" << glGetString(GL_VENDOR) << ")";
+    static std::string cache;
+    static std::string cacheLinked;
+    static bool cacheFilled = false;
+
+    if (!cacheFilled) {
+        std::ostringstream str;
+        str << "OpenGL v" << gl::glGetString(gl::GL_VERSION);
+        cache = str.str();
+        str.str("");
+        str << "OpenGL " << gl::glGetString(gl::GL_SHADING_LANGUAGE_VERSION) << " "
+            << gl::glGetString(gl::GL_RENDERER) << " (" << gl::glGetString(gl::GL_VENDOR) << ")";
+        cacheLinked = str.str();
+        cacheFilled = true;
     }
-    return str.str();
+
+    if (linked) {
+        return cacheLinked;
+    } else {
+        return cache;
+    }
 }
 
 Shader Shader::textShader;
@@ -226,19 +240,19 @@ Shader Shader::colorShader;
 unsigned int Shader::vertexArrayID = 0;
 
 int Shader::initialize() {
-    glGenVertexArrays(1, &vertexArrayID);
-    glBindVertexArray(vertexArrayID);
+    gl::glGenVertexArrays(1, &vertexArrayID);
+    gl::glBindVertexArray(vertexArrayID);
 
     // Set background color
-    glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
+    gl::glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
 
     set2DState(false);
-    glDepthFunc(GL_LESS);
+    gl::glDepthFunc(gl::GL_LESS);
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    gl::glEnable(gl::GL_BLEND);
+    gl::glBlendFunc(gl::GL_SRC_ALPHA, gl::GL_ONE_MINUS_SRC_ALPHA);
 
-    glPointSize(5.0f);
+    gl::glPointSize(5.0f);
 
     if (textShader.compile(textShaderVertex, textShaderFragment) < 0)
         return -1;
@@ -265,32 +279,32 @@ int Shader::initialize() {
 }
 
 void Shader::shutdown() {
-    glDeleteVertexArrays(1, &vertexArrayID);
+    gl::glDeleteVertexArrays(1, &vertexArrayID);
 }
 
 void Shader::set2DState(bool on, bool depth) {
     if (on) {
-        glDisable(GL_CULL_FACE);
+        gl::glDisable(gl::GL_CULL_FACE);
         if (depth)
-            glDisable(GL_DEPTH_TEST);
+            gl::glDisable(gl::GL_DEPTH_TEST);
     } else {
-        glEnable(GL_CULL_FACE);
+        gl::glEnable(gl::GL_CULL_FACE);
         if (depth)
-            glEnable(GL_DEPTH_TEST);
+            gl::glEnable(gl::GL_DEPTH_TEST);
     }
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
-                    unsigned int texture, TextureStorage store, GLenum mode,
+                    unsigned int texture, TextureStorage store, gl::GLenum mode,
                     ShaderTexture* target, Shader& shader) {
-    assert(vertices.getSize() == uvs.getSize());
-    if (mode == GL_TRIANGLES) {
-        assert((vertices.getSize() % 3) == 0);
+    orAssert(vertices.getSize() == uvs.getSize());
+    if (mode == gl::GL_TRIANGLES) {
+        orAssert((vertices.getSize() % 3) == 0);
     }
 
     if (target == nullptr) {
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+        gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
+        gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
     } else {
         target->bind();
     }
@@ -303,7 +317,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
     uvs.bindBuffer(1, 2);
 
     set2DState(true);
-    glDrawArrays(mode, 0, vertices.getSize());
+    gl::glDrawArrays(mode, 0, vertices.getSize());
     set2DState(false);
 
     vertices.unbind(0);
@@ -313,12 +327,12 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture,
                     glm::mat4 MVP, TextureStorage store, ShaderTexture* target,
                     Shader& shader) {
-    assert(vertices.getSize() == uvs.getSize());
-    assert((vertices.getSize() % 3) == 0);
+    orAssert(vertices.getSize() == uvs.getSize());
+    orAssert((vertices.getSize() % 3) == 0);
 
     if (target == nullptr) {
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+        gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
+        gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
     } else {
         target->bind();
     }
@@ -328,7 +342,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int text
     shader.loadUniform(1, texture, store);
     vertices.bindBuffer(0, 3);
     uvs.bindBuffer(1, 2);
-    glDrawArrays(GL_TRIANGLES, 0, vertices.getSize());
+    gl::glDrawArrays(gl::GL_TRIANGLES, 0, vertices.getSize());
     vertices.unbind(0);
     uvs.unbind(1);
 }
@@ -336,19 +350,19 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int text
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& indices,
                     unsigned int texture, glm::mat4 MVP, TextureStorage store,
                     ShaderTexture* target, Shader& shader) {
-    assert(vertices.getSize() == uvs.getSize());
-    assert((indices.getSize() % 3) == 0);
+    orAssert(vertices.getSize() == uvs.getSize());
+    orAssert((indices.getSize() % 3) == 0);
 
     if (target == nullptr) {
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+        gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
+        gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
     } else {
         target->bind();
 
         unsigned int sz = vertices.getSize();
         glm::vec3* buffer = new glm::vec3[sz];
-        glBindBuffer(GL_ARRAY_BUFFER, vertices.getBuffer());
-        glGetBufferSubData(GL_ARRAY_BUFFER, 0, sz * sizeof(glm::vec3), buffer);
+        gl::glBindBuffer(gl::GL_ARRAY_BUFFER, vertices.getBuffer());
+        gl::glGetBufferSubData(gl::GL_ARRAY_BUFFER, 0, sz * sizeof(glm::vec3), buffer);
 
         Log::get(LOG_DEBUG) << "drawGL Vertex dump:" << Log::endl;
         for (unsigned int i = 0; i < sz; i++) {
@@ -367,21 +381,21 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& ind
     vertices.bindBuffer(0, 3);
     uvs.bindBuffer(1, 2);
     indices.bindBuffer();
-    glDrawElements(GL_TRIANGLES, indices.getSize(), GL_UNSIGNED_SHORT, nullptr);
+    gl::glDrawElements(gl::GL_TRIANGLES, indices.getSize(), gl::GL_UNSIGNED_SHORT, nullptr);
     vertices.unbind(0);
     uvs.unbind(1);
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
-                    GLenum mode, ShaderTexture* target, Shader& shader) {
-    assert(vertices.getSize() == colors.getSize());
-    if (mode == GL_TRIANGLES) {
-        assert((vertices.getSize() % 3) == 0);
+                    gl::GLenum mode, ShaderTexture* target, Shader& shader) {
+    orAssert(vertices.getSize() == colors.getSize());
+    if (mode == gl::GL_TRIANGLES) {
+        orAssert((vertices.getSize() % 3) == 0);
     }
 
     if (target == nullptr) {
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+        gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
+        gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
     } else {
         target->bind();
     }
@@ -390,21 +404,21 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
     shader.loadUniform(0, MVP);
     vertices.bindBuffer(0, 3);
     colors.bindBuffer(1, 3);
-    glDrawArrays(mode, 0, vertices.getSize());
+    gl::glDrawArrays(mode, 0, vertices.getSize());
     vertices.unbind(0);
     colors.unbind(1);
 }
 
 void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
-                    glm::mat4 MVP, GLenum mode, ShaderTexture* target, Shader& shader) {
-    assert(vertices.getSize() == colors.getSize());
-    if (mode == GL_TRIANGLES) {
-        assert((indices.getSize() % 3) == 0);
+                    glm::mat4 MVP, gl::GLenum mode, ShaderTexture* target, Shader& shader) {
+    orAssert(vertices.getSize() == colors.getSize());
+    if (mode == gl::GL_TRIANGLES) {
+        orAssert((indices.getSize() % 3) == 0);
     }
 
     if (target == nullptr) {
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        glViewport(0, 0, Window::getSize().x, Window::getSize().y);
+        gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
+        gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
     } else {
         target->bind();
     }
@@ -414,7 +428,7 @@ void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& 
     vertices.bindBuffer(0, 3);
     colors.bindBuffer(1, 3);
     indices.bindBuffer();
-    glDrawElements(mode, indices.getSize(), GL_UNSIGNED_SHORT, nullptr);
+    gl::glDrawElements(mode, indices.getSize(), gl::GL_UNSIGNED_SHORT, nullptr);
     vertices.unbind(0);
     colors.unbind(1);
 }

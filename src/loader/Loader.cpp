@@ -55,3 +55,5 @@ std::unique_ptr<Loader> Loader::createLoader(std::string f) {
     }
 }
 
+Loader::~Loader() { }
+

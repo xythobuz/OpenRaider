@@ -101,7 +101,7 @@ int64_t BinaryReader::read64() {
 // ----------------------------------------------------------------------------
 
 BinaryFile::BinaryFile(std::string f) {
-    assertEqual(open(f), 0);
+    orAssertEqual(open(f), 0);
 }
 
 BinaryFile::~BinaryFile() {
@@ -121,12 +121,12 @@ int BinaryFile::open(std::string f) {
 }
 
 long long BinaryFile::tell() {
-    assert(file.is_open());
+    orAssert(file.is_open());
     return file.tellg();
 }
 
 void BinaryFile::seek(long long pos) {
-    assert(file.is_open());
+    orAssert(file.is_open());
     file.seekg(pos);
 }
 
@@ -136,15 +136,15 @@ bool BinaryFile::eof() {
 }
 
 void BinaryFile::read(char* d, int c) {
-    assert(file.is_open());
-    assert(file.good());
+    orAssert(file.is_open());
+    orAssert(file.good());
     file.read(d, c);
 }
 
 // ----------------------------------------------------------------------------
 
 BinaryMemory::BinaryMemory(const char* d, long long m) : data(nullptr), offset(0), max(-1) {
-    assertEqual(open(d, m), 0);
+    orAssertEqual(open(d, m), 0);
 }
 
 BinaryMemory::~BinaryMemory() {
@@ -164,12 +164,12 @@ int BinaryMemory::open(const char* d, long long m) {
 }
 
 long long BinaryMemory::tell() {
-    assertGreaterThanEqual(offset, 0);
+    orAssertGreaterThanEqual(offset, 0);
     return offset;
 }
 
 void BinaryMemory::seek(long long pos) {
-    assertGreaterThanEqual(pos, 0);
+    orAssertGreaterThanEqual(pos, 0);
     offset = pos;
 }
 
@@ -178,9 +178,9 @@ bool BinaryMemory::eof() {
 }
 
 void BinaryMemory::read(char* d, int c) {
-    assertGreaterThanEqual(offset, 0);
-    assertGreaterThan(c, 0);
-    assertLessThanEqual(offset + c, max);
+    orAssertGreaterThanEqual(offset, 0);
+    orAssertGreaterThan(c, 0);
+    orAssertLessThanEqual(offset + c, max);
     for (int i = 0; i < c; i++) {
         d[i] = data[offset + i];
     }

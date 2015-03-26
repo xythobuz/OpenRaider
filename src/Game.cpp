@@ -82,7 +82,7 @@ int Game::loadLevel(std::string level) {
 }
 
 void Game::handleAction(ActionEvents action, bool isFinished) {
-    assertLessThan(action, ActionEventCount);
+    orAssertLessThan(action, ActionEventCount);
 
     if (!mLoaded)
         return;
@@ -113,14 +113,14 @@ void Game::handleControllerAxis(float value, KeyboardButton axis) {
 }
 
 Entity& Game::getLara() {
-    assertGreaterThanEqual(mLara, 0);
-    assertLessThan(mLara, getWorld().sizeEntity());
+    orAssertGreaterThanEqual(mLara, 0);
+    orAssertLessThan(mLara, getWorld().sizeEntity());
     return getWorld().getEntity(mLara);
 }
 
 void Game::setLara(long lara) {
-    assertGreaterThanEqual(lara, 0);
-    assertLessThan(lara, getWorld().sizeEntity());
+    orAssertGreaterThanEqual(lara, 0);
+    orAssertLessThan(lara, getWorld().sizeEntity());
     mLara = lara;
 }
 

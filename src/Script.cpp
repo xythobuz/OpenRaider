@@ -54,7 +54,7 @@ int Script::load(std::string file) {
     description = desc;
 
     uint16_t gameflowSize = f.readU16();
-    assertEqual(gameflowSize, 128);
+    orAssertEqual(gameflowSize, 128);
 
     firstOption = f.readU32();
     titleReplace = f.read32();
@@ -150,11 +150,11 @@ void Script::readScriptPackage(BinaryFile& f, std::vector<std::vector<uint16_t>>
     uint16_t* offset = new uint16_t[n];
     for (unsigned int i = 0; i < n; i++) {
         offset[i] = f.readU16();
-        assertEqual(offset[i] % 2, 0);
+        orAssertEqual(offset[i] % 2, 0);
     }
 
     uint16_t numBytes = f.readU16();
-    assertEqual(numBytes % 2, 0); // 16 bit opcodes and operands
+    orAssertEqual(numBytes % 2, 0); // 16 bit opcodes and operands
 
     uint16_t* list = new uint16_t[(numBytes + 6) / 2];
     for (uint16_t i = 0; i < (numBytes / 2); i++) {
@@ -231,12 +231,12 @@ unsigned int Script::levelCount() {
 }
 
 std::string Script::getLevelName(unsigned int i) {
-    assertLessThan(i, numLevels);
+    orAssertLessThan(i, numLevels);
     return levelNames.at(i);
 }
 
 std::string Script::getLevelFilename(unsigned int i) {
-    assertLessThan(i, numLevels);
+    orAssertLessThan(i, numLevels);
     return levelFilenames.at(i);
 }
 
@@ -245,7 +245,7 @@ unsigned int Script::pictureCount() {
 }
 
 std::string Script::getPictureFilename(unsigned int i) {
-    assertLessThan(i, numPictures);
+    orAssertLessThan(i, numPictures);
     return pictureFilenames.at(i);
 }
 
@@ -254,7 +254,7 @@ unsigned int Script::cutsceneCount() {
 }
 
 std::string Script::getCutsceneFilename(unsigned int i) {
-    assertLessThan(i, numCutscenes);
+    orAssertLessThan(i, numCutscenes);
     return cutsceneFilenames.at(i);
 }
 
@@ -263,7 +263,7 @@ unsigned int Script::titleCount() {
 }
 
 std::string Script::getTitleFilename(unsigned int i) {
-    assertLessThan(i, numTitles);
+    orAssertLessThan(i, numTitles);
     return titleFilenames.at(i);
 }
 
@@ -272,7 +272,7 @@ unsigned int Script::videoCount() {
 }
 
 std::string Script::getVideoFilename(unsigned int i) {
-    assertLessThan(i, numFMVs);
+    orAssertLessThan(i, numFMVs);
     return fmvFilenames.at(i);
 }
 
@@ -281,7 +281,7 @@ unsigned int Script::gameStringCount() {
 }
 
 std::string Script::getGameString(unsigned int i) {
-    assertLessThan(i, numGameStrings);
+    orAssertLessThan(i, numGameStrings);
     return gameStrings.at(i);
 }
 
@@ -290,35 +290,35 @@ unsigned int Script::pcStringCount() {
 }
 
 std::string Script::getPCString(unsigned int i) {
-    assertLessThan(i, numPCStrings);
+    orAssertLessThan(i, numPCStrings);
     return pcStrings.at(i);
 }
 
 std::string Script::getPuzzleString(unsigned int i, unsigned int j) {
-    assertLessThan(i, 4);
-    assertLessThan(j, numLevels);
+    orAssertLessThan(i, 4);
+    orAssertLessThan(j, numLevels);
     return puzzles.at(i).at(j);
 }
 
 std::string Script::getPickupString(unsigned int i, unsigned int j) {
-    assertLessThan(i, 2);
-    assertLessThan(j, numLevels);
+    orAssertLessThan(i, 2);
+    orAssertLessThan(j, numLevels);
     return pickups.at(i).at(j);
 }
 
 std::string Script::getKeyString(unsigned int i, unsigned int j) {
-    assertLessThan(i, 4);
-    assertLessThan(j, numLevels);
+    orAssertLessThan(i, 4);
+    orAssertLessThan(j, numLevels);
     return keys.at(i).at(j);
 }
 
 void Script::registerScriptHandler(ScriptOpCode op, std::function<int (bool, uint16_t)> func) {
-    assertLessThan(op, OP_UNKNOWN);
+    orAssertLessThan(op, OP_UNKNOWN);
     scriptHandlers[op] = func;
 }
 
 int Script::runScript(unsigned int level) {
-    assertLessThan(level, (numLevels + 1));
+    orAssertLessThan(level, (numLevels + 1));
     std::vector<uint16_t> s = script.at(level);
 
     for (unsigned int i = 0; i < s.size(); i++) {

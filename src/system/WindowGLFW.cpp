@@ -18,6 +18,8 @@
 #include "system/Window.h"
 #include "system/WindowGLFW.h"
 
+#include <glbinding/gl/gl33.h>
+
 glm::i32vec2 WindowGLFW::size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 bool WindowGLFW::fullscreen = false;
 bool WindowGLFW::mousegrab = false;
@@ -40,7 +42,7 @@ int WindowGLFW::initialize() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, int(GL_TRUE));
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, int(gl::GL_TRUE));
 
     window = glfwCreateWindow(size.x, size.y, VERSION,
                               fullscreen ? glfwGetPrimaryMonitor() : nullptr, nullptr);
@@ -89,7 +91,7 @@ void WindowGLFW::shutdown() {
 }
 
 void WindowGLFW::setSize(glm::i32vec2 s) {
-    assert((s.x > 0) && (s.y > 0));
+    orAssert((s.x > 0) && (s.y > 0));
     if (window) {
         if ((size.x != s.x) || (size.y != s.y)) {
             glfwSetWindowSize(window, s.x, s.y);

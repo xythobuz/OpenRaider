@@ -26,6 +26,8 @@
 #include "system/Window.h"
 #include "utils/time.h"
 
+#include <glbinding/Binding.h>
+
 static std::string configFileToUse;
 static std::shared_ptr<World> gWorld;
 
@@ -153,7 +155,7 @@ void renderFrame() {
 }
 
 #if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
-#ifndef NODEBUG
+#ifndef NDEBUG
 
 #include <exception>
 #include <execinfo.h>
@@ -177,6 +179,6 @@ static std::terminate_handler oldTerminateHandler = std::set_terminate(terminate
     abort();
 }
 
-#endif // NODEBUG
+#endif // NDEBUG
 #endif // HAVE_EXECINFO_H && HAVE_BACKTRACE && HAVE_BACKTRACE_SYMBOLS
 

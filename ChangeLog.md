@@ -2,41 +2,46 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
-    [ 20140318 ]
+    [ 20150326 ]
+    * No longer including gl.h globally, now only using gl33.h where needed.
+    * No longer including all of glm globally, only the vec2/3/4 and mat4x4.
+    * No longer re-defining our own assert(), now called orAssert().
+
+    [ 20150318 ]
     * Updated imgui to version 1.36
     * Can now display all compiled/linked library versions
     * GLFW windowing interface now supports proper text input
 
-    [ 20140313 ]
+    [ 20150313 ]
     * Renderer now limits room list size
     * Updated Doxyfile template to current Doxygen version
     * Improved documentation
 
 ## OpenRaider (0.1.3) xythobuz <xythobuz@xythobuz.de>
 
-    [ 20140312 ]
+    [ 20150312 ]
     * Now including imguifilesystem dependency
     * Completely re-wrote Main menu, now reading TOMBPC.DAT scripts
     * Main menu is now just a full-screen ImGui window
 
-    [ 20140310 ]
+    [ 20150310 ]
     * Tried to fix moveable loading. Fixed TR1 angle parser, but still not working better.
 
-    [ 20140309 ]
+    [ 20150309 ]
     * Removed (unused) SSE support script
     * Added level loading notification in main menu
     * Can now start/stop individual SoundSources
     * Added SoundDetail debug UI, improved SoundSources debug UI
     * Updated imgui to version 1.35
 
-    [ 20140307 ]
+    [ 20150307 ]
     * Can now load all TR3 levels without crashing
     * Sound Sources now working, with (more or less) proper 3D Sound
     * Fixed bug that caused entities to display the wrong object
     * Improved Debug UI
     * Updated imgui
 
-    [ 20140306 ]
+    [ 20150306 ]
     * Fixed LoaderTR1, can now also open the Unfinished Business levels
     * Walk key can now be used to increase free-camera movement speed
     * Removed color definitions in global.h
@@ -44,53 +49,53 @@
     * Hard-coded controller mapping now supports all available ActionEvents
     * Fixed TR3 level loading. Only some levels with invalid SoundSources still crash.
 
-    [ 20140305 ]
+    [ 20150305 ]
     * SoundAL now has more useful error message output.
     * Fixed TR1 color map parsing, now textures have the proper color values.
     * Fixed TR1 sound sample parsing. Can now load all TR1 levels without crashing.
     * Improved parsing and summaries in binspector level reading script.
 
-    [ 20140304 ]
+    [ 20150304 ]
     * Added (more or less working) support for loading TR1 levels
     * Updated imgui
 
-    [ 20140222 ]
+    [ 20150222 ]
     * Updated imgui to version 1.33
 
-    [ 20140219 ]
+    [ 20150219 ]
     * Started implementing ability to render into textures (mainly for debugging)
     * Started implementing camera movement room tracking
     * Started implementing camera look-at target overlay UI
 
-    [ 20140213 ]
+    [ 20150213 ]
     * The menu can be navigated using a controller
     * Vertical camera rotation is now also clamped when using a controller
     * Worked on rendering SkeletalModels, not yet working correctly
     * Implemented level loader for TR3, but tries to access invalid textiles
 
-    [ 20140211 ]
+    [ 20150211 ]
     * Updated imgui to version 1.32
     * Included some SDL game controller configurations
     * Camera movement speed is now clamped when moving in multiple directions
     * Slightly increased controller dead-zone, now 0.2
 
-    [ 20140204 ]
+    [ 20150204 ]
     * Return of textile, animated textile and sprite viewer, in TextureManager
 
-    [ 20140203 ]
+    [ 20150203 ]
     * Updated imgui to newest version, supporting Images
     * Texture viewer is back, using imgui Images
 
-    [ 20140124 ]
+    [ 20150124 ]
     * Started working on Entity system.
 
-    [ 20140118 ]
+    [ 20150118 ]
     * Added ability to visualize font _outline_.
     * Updated imgui to newest version, now with its own TTF support.
     * Fixed drawing of camera view frustum.
     * Added support for imgui/SDLs IME text input rectangle.
 
-    [ 20140117 ]
+    [ 20150117 ]
     * Updated imgui, fix for Logging to Clipboard included.
     * Sprites and SpriteSequences are now stored independently in World.
     * Added support for Room Sprites displaying.
@@ -98,7 +103,7 @@
     * Room list is now displayed in reverse. This _fixes_ some transparency issues.
     * Fixed a bug that sometimes caused distorted Screenshots.
 
-    [ 20140111 ]
+    [ 20150111 ]
     * Enabled back face culling --> triangles now oriented correctly
     * Game is now completely static
     * Shaders drawGL methods can now be given a specific Shader instance.
@@ -106,17 +111,17 @@
     * Console can now log to the TTY, the clipboard or a file.
     * Added system clipboard support for imgui in both WindowSDL and WindowGLFW.
 
-    [ 20140109 ]
+    [ 20150109 ]
     * Display of Bounding Boxes can be individually toggled for Rooms/StaticMeshes
     * Tightened imgui Style and changed colors to match the _OpenRaider-blue_
 
-    [ 20140108 ]
+    [ 20150108 ]
     * FPS and Camera position now displayed in imgui Overlay
     * Removed many unnecessary includes
     * Camera now using combination of quaternion and X/Y angle.
         * Fixes strange bug that sometimes rotated Camera on Z Axis.
 
-    [ 20140107 ]
+    [ 20150107 ]
     * Fixed problems with FontTTFs Glyph Baseline
     * No longer using wrong assert() when glm is included
     * Updated imgui, now Version 1.20

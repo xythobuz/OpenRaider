@@ -35,8 +35,8 @@ class BoundingBox {
     }
 
     glm::vec3 getCorner(int i) {
-        assertGreaterThanEqual(i, 0);
-        assertLessThan(i, 8);
+        orAssertGreaterThanEqual(i, 0);
+        orAssertLessThan(i, 8);
         return corner[i];
     }
 
@@ -84,8 +84,8 @@ class Portal {
     glm::vec3 getNormal() { return normal; }
 
     glm::vec3 getVertex(int i) {
-        assertGreaterThanEqual(i, 0);
-        assertLessThan(i, 4);
+        orAssertGreaterThanEqual(i, 0);
+        orAssertLessThan(i, 4);
         return vert[i];
     }
 

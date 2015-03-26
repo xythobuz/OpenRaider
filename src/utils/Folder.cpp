@@ -85,7 +85,7 @@ unsigned long Folder::fileCount() {
 
 File& Folder::getFile(unsigned long i) {
     createFolderItems();
-    assert(i < files.size());
+    orAssert(i < files.size());
     return files.at(i);
 }
 
@@ -96,7 +96,7 @@ unsigned long Folder::folderCount() {
 
 Folder& Folder::getFolder(unsigned long i) {
     createFolderItems();
-    assert(i < folders.size());
+    orAssert(i < folders.size());
     return folders.at(i);
 }
 

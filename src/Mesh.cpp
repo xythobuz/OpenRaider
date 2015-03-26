@@ -9,6 +9,8 @@
 #include "TextureManager.h"
 #include "Mesh.h"
 
+#include <glbinding/gl/gl33.h>
+
 Mesh::Mesh(const std::vector<glm::vec3>& vert,
            const std::vector<IndexedRectangle>& rect,
            const std::vector<IndexedRectangle>& tri,
@@ -78,9 +80,9 @@ void Mesh::prepare() {
         vertIndex += (indicesBuff.at(i) == 0) ? 4 : 3;
     }
 
-    assertEqual(ind.size() % 3, 0);
-    assertEqual(vert.size(), tex.size());
-    assertEqual(vert.size(), uvBuff.size());
+    orAssertEqual(ind.size() % 3, 0);
+    orAssertEqual(vert.size(), tex.size());
+    orAssertEqual(vert.size(), uvBuff.size());
 
     indicesBuff = std::move(ind);
     vertices.bufferData(vert);
@@ -113,8 +115,8 @@ void Mesh::prepare() {
         vertIndex += (indicesColorBuff.at(i) == 0) ? 4 : 3;
     }
 
-    assertEqual(indCol.size() % 3, 0);
-    assertEqual(vertCol.size(), cols.size());
+    orAssertEqual(indCol.size() % 3, 0);
+    orAssertEqual(vertCol.size(), cols.size());
 
     indicesColor.bufferData(indCol);
     verticesColor.bufferData(vertCol);
@@ -152,6 +154,6 @@ void Mesh::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {
     }
 
     if (indicesColor.getSize() > 0)
-        Shader::drawGL(verticesColor, colors, indicesColor, MVP, GL_TRIANGLES, shaderTexture);
+        Shader::drawGL(verticesColor, colors, indicesColor, MVP, gl::GL_TRIANGLES, shaderTexture);
 }
 

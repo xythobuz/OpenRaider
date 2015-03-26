@@ -81,12 +81,12 @@ int FontMapTTF::initialize(unsigned char* fontData, int firstChar) {
 }
 
 bool FontMapTTF::contains(int c) {
-    assert(begin >= 0);
+    orAssert(begin >= 0);
     return (begin >= 0) && (c >= begin) && (c < (begin + MAP_NUM_CHARS));
 }
 
 void FontMapTTF::getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad* quad) {
-    assert(contains(c));
+    orAssert(contains(c));
     stbtt_GetPackedQuad(charInfo, MAP_WIDTH, MAP_HEIGHT, c - begin, xpos, ypos, quad, 0);
 }
 
@@ -98,7 +98,7 @@ ShaderBuffer FontTTF::vertexBuffer;
 ShaderBuffer FontTTF::uvBuffer;
 
 int FontTTF::initialize(std::string f) {
-    assert(f.length() > 0);
+    orAssert(f.length() > 0);
 
     std::ifstream file(f, std::ios::binary);
     if (!file) {
@@ -108,7 +108,7 @@ int FontTTF::initialize(std::string f) {
 
     file.seekg(0, std::ios::end);
     auto size = file.tellg();
-    assert(size > 0);
+    orAssert(size > 0);
     file.seekg(0);
 
     maps.clear();
@@ -272,7 +272,7 @@ int FontTTF::getQuad(int c, float* xpos, float* ypos, stbtt_aligned_quad* quad) 
     }
 
     int map = charIsMapped(c);
-    assert(map >= 0);
+    orAssert(map >= 0);
     maps.at(map).getQuad(c, xpos, ypos, quad);
     return maps.at(map).getTexture();
 }

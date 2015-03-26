@@ -26,7 +26,7 @@ void Folder::executeRemoveRecursiveFiles(std::function<bool (File& f)> func) {
 
 std::string Folder::getRecursiveFileName(unsigned long i) {
     createFolderItems();
-    assert(i < countRecursiveFiles());
+    orAssert(i < countRecursiveFiles());
     if (i < fileCount()) {
         return getFile(i).getName();
     } else {
@@ -40,13 +40,13 @@ std::string Folder::getRecursiveFileName(unsigned long i) {
         }
     }
 
-    assert(false);
+    orAssert(false);
     return "";
 }
 
 File& Folder::getRecursiveFile(unsigned long i) {
     createFolderItems();
-    assert(i < countRecursiveFiles());
+    orAssert(i < countRecursiveFiles());
     if (i < fileCount()) {
         return getFile(i);
     } else {
@@ -59,7 +59,7 @@ File& Folder::getRecursiveFile(unsigned long i) {
         }
     }
 
-    assert(false);
+    orAssert(false);
     return files.at(0);
 }
 

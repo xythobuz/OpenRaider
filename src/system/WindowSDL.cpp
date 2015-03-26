@@ -518,7 +518,7 @@ void WindowSDL::shutdown() {
 }
 
 void WindowSDL::setSize(glm::i32vec2 s) {
-    assert((s.x > 0) && (s.y > 0));
+    orAssert((s.x > 0) && (s.y > 0));
     if (window) {
         if ((s.x != size.x) || (s.y != size.y)) {
             SDL_SetWindowSize(window, s.x, s.y);

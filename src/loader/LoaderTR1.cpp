@@ -266,11 +266,11 @@ void LoaderTR1::loadSoundSamples() {
     for (unsigned int i = 0; i < numSampleIndices; i++) {
         SoundManager::addSampleIndex(i);
         uint32_t sampleOffset = file.readU32();
-        assertLessThan(sampleOffset, soundSampleSize);
+        orAssertLessThan(sampleOffset, soundSampleSize);
         char* tmpPtr = reinterpret_cast<char*>(&buffer[sampleOffset]);
         BinaryMemory sample(tmpPtr, soundSampleSize - sampleOffset);
         int ret = loadSoundFiles(sample, 1);
-        assertEqual(ret, 1);
+        orAssertEqual(ret, 1);
     }
 
     if (numSampleIndices > 0)

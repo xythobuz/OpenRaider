@@ -21,6 +21,8 @@
 #include "utils/strings.h"
 #include "TextureManager.h"
 
+#include <glbinding/gl/gl33.h>
+
 glm::vec2 TextureTile::getUV(unsigned int i) {
     glm::vec2 uv(vertices.at(i).xPixel,
                  vertices.at(i).yPixel);
@@ -60,12 +62,12 @@ std::array<glm::vec4, 256> TextureManager::colorPalette;
 std::vector<std::tuple<unsigned char*, unsigned int, unsigned int>> TextureManager::indexedTextures;
 
 int TextureManager::initialize() {
-    assertEqual(mTextureIdsGame.size(), 0);
-    assertEqual(mTextureIdsSystem.size(), 0);
+    orAssertEqual(mTextureIdsGame.size(), 0);
+    orAssertEqual(mTextureIdsSystem.size(), 0);
 
     while (mTextureIdsSystem.size() < 2) {
         unsigned int id;
-        glGenTextures(1, &id);
+        gl::glGenTextures(1, &id);
         mTextureIdsSystem.push_back(id);
     }
 
@@ -107,7 +109,7 @@ int TextureManager::initializeSplash() {
 void TextureManager::shutdown() {
     while (mTextureIdsSystem.size() > 0) {
         unsigned int id = mTextureIdsSystem.at(mTextureIdsSystem.size() - 1);
-        glDeleteTextures(1, &id);
+        gl::glDeleteTextures(1, &id);
         mTextureIdsSystem.pop_back();
     }
 
@@ -120,7 +122,7 @@ void TextureManager::shutdown() {
 void TextureManager::clear() {
     while (mTextureIdsGame.size() > 0) {
         unsigned int id = mTextureIdsGame.at(mTextureIdsGame.size() - 1);
-        glDeleteTextures(1, &id);
+        gl::glDeleteTextures(1, &id);
         mTextureIdsGame.pop_back();
     }
 
@@ -142,63 +144,63 @@ int TextureManager::loadBufferSlot(unsigned char* image,
                                    unsigned int width, unsigned int height,
                                    ColorMode mode, unsigned int bpp,
                                    TextureStorage s, int slot, bool filter) {
-    assertGreaterThan(width, 0);
-    assertGreaterThan(height, 0);
-    assert((mode == ColorMode::RGB)
+    orAssertGreaterThan(width, 0);
+    orAssertGreaterThan(height, 0);
+    orAssert((mode == ColorMode::RGB)
            || (mode == ColorMode::BGR)
            || (mode == ColorMode::ARGB)
            || (mode == ColorMode::RGBA)
            || (mode ==  ColorMode::BGRA));
-    assert((bpp == 8) || (bpp == 24) || (bpp == 32));
+    orAssert((bpp == 8) || (bpp == 24) || (bpp == 32));
 
     if (slot < 0)
         slot = getIds(s).size();
 
     while (getIds(s).size() <= slot) {
         unsigned int id;
-        glGenTextures(1, &id);
+        gl::glGenTextures(1, &id);
         getIds(s).push_back(id);
     }
 
-    GLenum glcMode;
+    gl::GLenum glcMode;
     switch (mode) {
         case ColorMode::BGR:
-            glcMode = GL_BGR;
+            glcMode = gl::GL_BGR;
             break;
 
         case ColorMode::RGB:
-            glcMode = GL_RGB;
+            glcMode = gl::GL_RGB;
             break;
 
         case ColorMode::ARGB:
             if (image != nullptr)
                 argb2rgba32(image, width, height);
-            glcMode = GL_RGBA;
+            glcMode = gl::GL_RGBA;
             break;
 
         case ColorMode::BGRA:
-            glcMode = GL_BGRA;
+            glcMode = gl::GL_BGRA;
             break;
 
         case ColorMode::RGBA:
-            glcMode = GL_RGBA;
+            glcMode = gl::GL_RGBA;
             break;
     }
 
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    gl::glPixelStorei(gl::GL_UNPACK_ALIGNMENT, 1);
     bindTexture(slot, s);
-    glTexImage2D(GL_TEXTURE_2D, 0, GLint(GL_RGBA), width, height, 0, glcMode, GL_UNSIGNED_BYTE, image);
+    gl::glTexImage2D(gl::GL_TEXTURE_2D, 0, gl::GLint(gl::GL_RGBA), width, height, 0, glcMode, gl::GL_UNSIGNED_BYTE, image);
 
     if (filter) {
         // Trilinear filtering
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GLint(GL_REPEAT));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GLint(GL_REPEAT));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GLint(GL_LINEAR));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GLint(GL_LINEAR_MIPMAP_LINEAR));
-        glGenerateMipmap(GL_TEXTURE_2D);
+        gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_WRAP_S, gl::GLint(gl::GL_REPEAT));
+        gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_WRAP_T, gl::GLint(gl::GL_REPEAT));
+        gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MAG_FILTER, gl::GLint(gl::GL_LINEAR));
+        gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MIN_FILTER, gl::GLint(gl::GL_LINEAR_MIPMAP_LINEAR));
+        gl::glGenerateMipmap(gl::GL_TEXTURE_2D);
     } else {
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GLint(GL_NEAREST));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GLint(GL_NEAREST));
+        gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MIN_FILTER, gl::GLint(gl::GL_NEAREST));
+        gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MAG_FILTER, gl::GLint(gl::GL_NEAREST));
     }
 
     return slot;
@@ -209,15 +211,15 @@ int TextureManager::numTextures(TextureStorage s) {
 }
 
 void TextureManager::bindTextureId(unsigned int n, TextureStorage s, unsigned int unit) {
-    assertLessThan(n, getIds(s).size());
-    assertLessThan(unit, 80); //! \fixme Query GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS
+    orAssertLessThan(n, getIds(s).size());
+    orAssertLessThan(unit, 80); //! \fixme Query GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS
 
-    glActiveTexture(GL_TEXTURE0 + unit);
-    glBindTexture(GL_TEXTURE_2D, getIds(s).at(n));
+    gl::glActiveTexture(gl::GL_TEXTURE0 + unit);
+    gl::glBindTexture(gl::GL_TEXTURE_2D, getIds(s).at(n));
 }
 
 int TextureManager::bindTexture(unsigned int n, TextureStorage s) {
-    assertLessThan(n, getIds(s).size());
+    orAssertLessThan(n, getIds(s).size());
 
     if ((n < getUnits(s).size()) && (getUnits(s).at(n) >= 0)) {
         bindTextureId(n, s, getUnits(s).at(n));
@@ -233,7 +235,7 @@ int TextureManager::bindTexture(unsigned int n, TextureStorage s) {
 }
 
 unsigned int TextureManager::getTextureID(int n, TextureStorage s) {
-    assertLessThan(n, getIds(s).size());
+    orAssertLessThan(n, getIds(s).size());
     return getIds(s).at(n);
 }
 
@@ -246,8 +248,8 @@ int TextureManager::numTiles() {
 }
 
 TextureTile& TextureManager::getTile(int index) {
-    assertGreaterThanEqual(index, 0);
-    assertLessThan(index, tiles.size());
+    orAssertGreaterThanEqual(index, 0);
+    orAssertLessThan(index, tiles.size());
     return *tiles.at(index);
 }
 
@@ -263,13 +265,13 @@ int TextureManager::numAnimatedTiles() {
 }
 
 int TextureManager::getFirstTileAnimation(int index) {
-    assertLessThan(index, animations.size());
-    assertGreaterThan(animations.at(index).size(), 0);
+    orAssertLessThan(index, animations.size());
+    orAssertGreaterThan(animations.at(index).size(), 0);
     return animations.at(index).at(0);
 }
 
 int TextureManager::getNextTileAnimation(int index, int tile) {
-    assertLessThan(index, animations.size());
+    orAssertLessThan(index, animations.size());
     for (int i = 0; i < animations.at(index).size(); i++) {
         if (animations.at(index).at(i) == tile) {
             if (i < (animations.at(index).size() - 1))
@@ -290,14 +292,14 @@ BufferManager* TextureManager::getBufferManager(int tex, TextureStorage store) {
 }
 
 void TextureManager::setPalette(int index, glm::vec4 color) {
-    assertGreaterThanEqual(index, 0);
-    assertLessThan(index, COLOR_PALETTE_SIZE);
+    orAssertGreaterThanEqual(index, 0);
+    orAssertLessThan(index, COLOR_PALETTE_SIZE);
     colorPalette[index] = color;
 }
 
 glm::vec4 TextureManager::getPalette(int index) {
-    assertGreaterThanEqual(index, 0);
-    assertLessThan(index, COLOR_PALETTE_SIZE);
+    orAssertGreaterThanEqual(index, 0);
+    orAssertLessThan(index, COLOR_PALETTE_SIZE);
     return colorPalette[index];
 }
 

@@ -66,29 +66,21 @@ typedef enum {
     unknownKey // Should always be at the end
 } KeyboardButton;
 
-// Globally include OpenGL header
-#include <glbinding/gl/gl.h>
-#include <glbinding/Binding.h>
-using namespace gl;
-
-/*! \fixme Is there a better way to handle this?
- * We wan't to use our own assert(). Unfortunately, glm includes
- * cassert in its headers. So we need to define NDEBUG here.
- * To avoid a conflict, our flag is now called NODEBUG instead.
- */
-#define NDEBUG
-#include <glm/glm.hpp>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
+#include <glm/mat4x4.hpp>
 
 // If available, use our own assert that prints the call stack
 #if defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE) && defined(HAVE_BACKTRACE_SYMBOLS)
 
-#ifndef NODEBUG
+#ifndef NDEBUG
 
 #include <iostream>
 #include <execinfo.h>
 
 template<typename T, typename U>
-[[noreturn]] void assertEqualImplementation(const char* exp, T a, U b, const char* file, int line,
+[[noreturn]] void orAssertImplementation(const char* exp, T a, U b, const char* file, int line,
         const char* str = nullptr) {
     const unsigned int maxSize = 128;
     void* callstack[maxSize];
@@ -108,85 +100,82 @@ template<typename T, typename U>
     abort();
 }
 
-// Evaluating x or y could have side-effects
-// So we only do it once!
-
-#define assert(x) { \
+#define orAssert(x) { \
     auto assertEvalTemp = x; \
     if (!assertEvalTemp) \
-        assertEqualImplementation(#x, assertEvalTemp, true, __FILE__, __LINE__); \
+        orAssertImplementation(#x, assertEvalTemp, true, __FILE__, __LINE__); \
 }
 
-#define assertEqual(x, y) { \
+#define orAssertEqual(x, y) { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp != assertEvalTemp2) \
-        assertEqualImplementation(#x " == " #y, assertEvalTemp, assertEvalTemp2, \
+        orAssertImplementation(#x " == " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, "!="); \
 }
 
-#define assertNotEqual(x, y) { \
+#define orAssertNotEqual(x, y) { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp == assertEvalTemp2) \
-        assertEqualImplementation(#x " != " #y, assertEvalTemp, assertEvalTemp2, \
+        orAssertImplementation(#x " != " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, "=="); \
 }
 
-#define assertLessThan(x, y) { \
+#define orAssertLessThan(x, y) { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp >= assertEvalTemp2) \
-        assertEqualImplementation(#x " < " #y, assertEvalTemp, assertEvalTemp2, \
+        orAssertImplementation(#x " < " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, ">="); \
 }
 
-#define assertLessThanEqual(x, y) { \
+#define orAssertLessThanEqual(x, y) { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp > assertEvalTemp2) \
-        assertEqualImplementation(#x " <= " #y, assertEvalTemp, assertEvalTemp2, \
+        orAssertImplementation(#x " <= " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, ">"); \
 }
 
-#define assertGreaterThan(x, y) { \
+#define orAssertGreaterThan(x, y) { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp <= assertEvalTemp2) \
-        assertEqualImplementation(#x " > " #y, assertEvalTemp, assertEvalTemp2, \
+        orAssertImplementation(#x " > " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, "<="); \
 }
 
-#define assertGreaterThanEqual(x, y) { \
+#define orAssertGreaterThanEqual(x, y) { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp < assertEvalTemp2) \
-        assertEqualImplementation(#x " >= " #y, assertEvalTemp, assertEvalTemp2, \
+        orAssertImplementation(#x " >= " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, "<"); \
 }
 
-#else // NODEBUG
+#else // NDEBUG
 
-#define assert(x)
-#define assertEqual(x, y)
-#define assertNotEqual(x, y)
-#define assertLessThan(x, y)
-#define assertLessThanEqual(x, y)
-#define assertGreaterThan(x, y)
-#define assertGreaterThanEqual(x, y)
+#define orAssert(x)
+#define orAssertEqual(x, y)
+#define orAssertNotEqual(x, y)
+#define orAssertLessThan(x, y)
+#define orAssertLessThanEqual(x, y)
+#define orAssertGreaterThan(x, y)
+#define orAssertGreaterThanEqual(x, y)
 
-#endif // NODEBUG
+#endif // NDEBUG
 
 #else // EXECINFO
 
 // Fall back to the default C assert
 #include <cassert>
-#define assertEqual(x, y) assert((x) == (y))
-#define assertNotEqual(x, y) assert((x) != (y))
-#define assertLessThan(x, y) assert((x) < (y))
-#define assertLessThanEqual(x, y) assert((x) <= (y))
-#define assertGreaterThan(x, y) assert((x) > (y))
-#define assertGreaterThanEqual(x, y) assert((x) >= (y))
+#define orAssertEqual(x, y) assert((x) == (y))
+#define orAssertNotEqual(x, y) assert((x) != (y))
+#define orAssertLessThan(x, y) assert((x) < (y))
+#define orAssertLessThanEqual(x, y) assert((x) <= (y))
+#define orAssertGreaterThan(x, y) assert((x) > (y))
+#define orAssertGreaterThanEqual(x, y) assert((x) >= (y))
 
 #endif // EXECINFO
 

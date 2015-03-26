@@ -25,12 +25,12 @@ std::string getCurrentWorkingDirectory() {
 #if defined(HAVE_UNISTD_H) && defined(HAVE_GETCWD)
 
     char path[1024];
-    assertEqual(getcwd(path, 1024), path);
+    orAssertEqual(getcwd(path, 1024), path);
     return std::string(path);
 
 #else
 
-    assert(false);
+    orAssert(false);
     return "";
 
 #endif
@@ -40,13 +40,13 @@ std::string getHomeDirectory() {
 #if defined(HAVE_STDLIB_H) && defined(HAVE_GETENV)
 
     char* path = getenv("HOME");
-    assert(path != nullptr);
+    orAssert(path != nullptr);
     return path;
 
 #elif defined(_WIN32)
 
     char path[MAX_PATH];
-    assertEqual(SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0, path), S_OK);
+    orAssertEqual(SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0, path), S_OK);
     size_t lenPath = strlen(path);
     for (unsigned int i = 0; i < lenPath; i++)
         if (path[i] == '\\')
@@ -55,7 +55,7 @@ std::string getHomeDirectory() {
 
 #else
 
-    assert(false);
+    orAssert(false);
     return "";
 
 #endif

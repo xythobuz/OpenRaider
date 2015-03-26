@@ -23,6 +23,7 @@
 #include "utils/time.h"
 #include "UI.h"
 
+#include <glbinding/gl/gl33.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 Shader UI::imguiShader;
@@ -480,7 +481,7 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
 
     static ShaderBuffer vert, uv, col;
 
-    glEnable(GL_SCISSOR_TEST);
+    gl::glEnable(gl::GL_SCISSOR_TEST);
     Shader::set2DState(true);
 
     imguiShader.use();
@@ -523,15 +524,15 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
             col.bufferData(colors);
 
             auto bm = static_cast<BufferManager*>(commands[n].texture_id);
-            assert(bm != nullptr);
+            orAssert(bm != nullptr);
             imguiShader.loadUniform(1, bm->getTextureID(), bm->getTextureStorage());
 
-            glScissor(commands[n].clip_rect.x,
+            gl::glScissor(commands[n].clip_rect.x,
                       Window::getSize().y - commands[n].clip_rect.w,
                       commands[n].clip_rect.z - commands[n].clip_rect.x,
                       commands[n].clip_rect.w - commands[n].clip_rect.y);
 
-            glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+            gl::glDrawArrays(gl::GL_TRIANGLES, 0, vertices.size());
         }
     }
 
@@ -540,7 +541,7 @@ void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
     col.unbind(2);
 
     Shader::set2DState(false);
-    glDisable(GL_SCISSOR_TEST);
+    gl::glDisable(gl::GL_SCISSOR_TEST);
 }
 
 // --------------------------------------

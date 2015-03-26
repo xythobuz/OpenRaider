@@ -95,7 +95,7 @@ void LoaderTR2::loadTextures() {
         int r = TextureManager::loadBufferSlot(img, 256, 256,
                                                ColorMode::ARGB, 32,
                                                TextureStorage::GAME, i);
-        assertGreaterThanEqual(r, 0); //! \fixme properly handle error when texture could not be loaded!
+        orAssertGreaterThanEqual(r, 0); //! \fixme properly handle error when texture could not be loaded!
         delete [] img;
     }
 
@@ -137,8 +137,8 @@ void LoaderTR2::loadTextiles() {
             uint8_t yCoordinate = file.readU8();
             uint8_t yPixel = file.readU8();
 
-            assert((xCoordinate == 1) || (xCoordinate == 255) || (xCoordinate == 0));
-            assert((yCoordinate == 1) || (yCoordinate == 255) || (yCoordinate == 0));
+            orAssert((xCoordinate == 1) || (xCoordinate == 255) || (xCoordinate == 0));
+            orAssert((yCoordinate == 1) || (yCoordinate == 255) || (yCoordinate == 0));
 
             t->add(TextureTileVertex(xCoordinate, xPixel, yCoordinate, yPixel));
         }
@@ -502,9 +502,9 @@ void LoaderTR2::loadSprites() {
         int16_t negativeLength = file.read16(); // Negative sprite count
         int16_t offset = file.read16(); // Where sequence starts in sprite texture list
 
-        assertLessThan(negativeLength, 0);
-        assertGreaterThanEqual(offset, 0);
-        assertLessThanEqual(offset + (negativeLength * -1), numSpriteTextures);
+        orAssertLessThan(negativeLength, 0);
+        orAssertGreaterThanEqual(offset, 0);
+        orAssertLessThanEqual(offset + (negativeLength * -1), numSpriteTextures);
 
         SpriteSequence* ss = new SpriteSequence(objectID, offset, (negativeLength * -1));
         getWorld().addSpriteSequence(ss);
@@ -1197,7 +1197,7 @@ int LoaderTR2::loadSoundFiles(BinaryReader& sfx, unsigned int count) {
 
         int ret = Sound::loadBuffer(buff, riffSize + 8);
         delete [] buff;
-        assertGreaterThanEqual(ret, 0);
+        orAssertGreaterThanEqual(ret, 0);
 
         riffCount++;
     }

@@ -11,6 +11,7 @@
 #include "system/Shader.h"
 #include "RoomData.h"
 
+#include <glbinding/gl/gl33.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot) {
@@ -44,7 +45,7 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
     vert.bufferData(verts);
     col.bufferData(cols);
     ind.bufferData(inds);
-    Shader::drawGL(vert, col, ind, VP, GL_LINE_STRIP);
+    Shader::drawGL(vert, col, ind, VP, gl::GL_LINE_STRIP);
 
     cols.clear();
     inds.clear();
@@ -58,7 +59,7 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
     vert2.bufferData(verts);
     col2.bufferData(cols);
     ind2.bufferData(inds);
-    Shader::drawGL(vert2, col2, ind2, VP, GL_POINTS);
+    Shader::drawGL(vert2, col2, ind2, VP, gl::GL_POINTS);
 }
 
 // ----------------------------------------------------------------------------
@@ -76,7 +77,7 @@ void StaticModel::display(glm::mat4 VP) {
                 cache = i;
             }
         }
-        assertGreaterThanEqual(cache, 0);
+        orAssertGreaterThanEqual(cache, 0);
     }
 
     getWorld().getStaticMesh(cache).display(VP * model);

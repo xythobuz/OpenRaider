@@ -11,7 +11,7 @@
 #include <string>
 #include <glm/gtc/type_precision.hpp>
 
-class GLFWwindow;
+struct GLFWwindow;
 
 class WindowGLFW {
   public:

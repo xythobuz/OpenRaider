@@ -10,9 +10,9 @@
 
 unsigned char* generateColorTexture(glm::vec4 rgba, unsigned int width,
                                     unsigned int height, unsigned int bpp) {
-    assert(width > 0);
-    assert(height > 0);
-    assert((bpp == 24) || (bpp == 32));
+    orAssert(width > 0);
+    orAssert(height > 0);
+    orAssert((bpp == 24) || (bpp == 32));
 
     unsigned char* image = new unsigned char[height * width * (bpp / 8)];
     for (unsigned int i = 0; i < (width * height); i++) {
@@ -27,9 +27,9 @@ unsigned char* generateColorTexture(glm::vec4 rgba, unsigned int width,
 }
 
 void argb2rgba32(unsigned char* image, unsigned int w, unsigned int h) {
-    assert(image != nullptr);
-    assert(w > 0);
-    assert(h > 0);
+    orAssert(image != nullptr);
+    orAssert(w > 0);
+    orAssert(h > 0);
 
     for (unsigned int i = 0; i < (w * h); ++i) {
         // 32-bit ARGB to RGBA
@@ -42,9 +42,9 @@ void argb2rgba32(unsigned char* image, unsigned int w, unsigned int h) {
 }
 
 unsigned char* argb16to32(unsigned char* image, unsigned int w, unsigned int h) {
-    assert(image != nullptr);
-    assert(w > 0);
-    assert(h > 0);
+    orAssert(image != nullptr);
+    orAssert(w > 0);
+    orAssert(h > 0);
 
     unsigned char* img = new unsigned char[w * h * 4];
     for (unsigned int i = 0; i < (w * h); ++i) {
@@ -63,9 +63,9 @@ unsigned char* argb16to32(unsigned char* image, unsigned int w, unsigned int h) 
 }
 
 unsigned char* grayscale2rgba(unsigned char* image, unsigned int w, unsigned int h) {
-    assert(image != nullptr);
-    assert(w > 0);
-    assert(h > 0);
+    orAssert(image != nullptr);
+    orAssert(w > 0);
+    orAssert(h > 0);
 
     unsigned char* img = new unsigned char[w * h * 4];
     for (unsigned int i = 0; i < (w * h); i++) {
@@ -88,10 +88,10 @@ unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* 
                            unsigned int bpp) {
     unsigned int width = *w;
     unsigned int height = *h;
-    assert(image != nullptr);
-    assert(width > 0);
-    assert(height > 0);
-    assert((bpp % 8) == 0);
+    orAssert(image != nullptr);
+    orAssert(width > 0);
+    orAssert(height > 0);
+    orAssert((bpp % 8) == 0);
 
     unsigned int components = bpp / 8;
     unsigned int original_height = height;

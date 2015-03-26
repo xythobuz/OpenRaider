@@ -15,8 +15,8 @@
 #include "utils/pcx.h"
 
 int pcxCheck(const char* filename) {
-    assert(filename != nullptr);
-    assert(filename[0] != '\0');
+    orAssert(filename != nullptr);
+    orAssert(filename[0] != '\0');
 
     std::ifstream file(filename, std::ios::in | std::ios::binary);
 
@@ -69,13 +69,13 @@ int pcxCheck(const char* filename) {
 int pcxLoad(const char* filename, unsigned char** image,
             unsigned int* width, unsigned int* height,
             ColorMode* mode, unsigned int* bpp) {
-    assert(filename != nullptr);
-    assert(filename[0] != '\0');
-    assert(image != nullptr);
-    assert(width != nullptr);
-    assert(height != nullptr);
-    assert(mode != nullptr);
-    assert(bpp != nullptr);
+    orAssert(filename != nullptr);
+    orAssert(filename[0] != '\0');
+    orAssert(image != nullptr);
+    orAssert(width != nullptr);
+    orAssert(height != nullptr);
+    orAssert(mode != nullptr);
+    orAssert(bpp != nullptr);
 
     std::ifstream file(filename, std::ios::in | std::ios::binary);
 

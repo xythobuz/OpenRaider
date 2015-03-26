@@ -57,8 +57,8 @@ void Entity::display(glm::mat4 VP) {
             }
         }
 
-        assertGreaterThan(cache, -1);
-        assertGreaterThan(cacheType, -1);
+        orAssertGreaterThan(cache, -1);
+        orAssertGreaterThan(cacheType, -1);
     }
 
     glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
@@ -80,8 +80,6 @@ void Entity::display(glm::mat4 VP) {
     } else if (cacheType == CACHE_MODEL) {
         if (showEntityModels)
             getWorld().getSkeletalModel(cache).display(MVP, animation, frame);
-    } else {
-        assert(false && "This should not happen...");
     }
 }
 

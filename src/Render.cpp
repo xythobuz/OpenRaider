@@ -21,6 +21,7 @@
 #include "Render.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glbinding/gl/gl33.h>
 
 #include "imgui/imgui.h"
 #include "stb/stb_image_write.h"
@@ -30,7 +31,7 @@ std::vector<Room*> Render::roomList;
 bool Render::displayViewFrustum = false;
 
 void Render::display() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
 
     if (mode == RenderMode::LoadScreen) {
         glm::vec4 color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -40,9 +41,9 @@ void Render::display() {
     }
 
     if (mode == RenderMode::Wireframe) {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        gl::glPolygonMode(gl::GL_FRONT_AND_BACK, gl::GL_LINE);
     } else {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        gl::glPolygonMode(gl::GL_FRONT_AND_BACK, gl::GL_FILL);
     }
 
     if (Camera::update()) {
@@ -74,7 +75,7 @@ void Render::display() {
         Camera::displayFrustum(VP);
 
     if (mode == RenderMode::Wireframe) {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        gl::glPolygonMode(gl::GL_FRONT_AND_BACK, gl::GL_FILL);
     }
 }
 
@@ -119,13 +120,13 @@ void Render::buildRoomList(int room, int budget) {
 }
 
 void Render::screenShot(const char* filenameBase) {
-    assert(filenameBase != nullptr);
+    orAssert(filenameBase != nullptr);
 
     int w = Window::getSize().x;
     int h = Window::getSize().y;
     int sz = w * h;
     unsigned char* image = new unsigned char[sz * 3];
-    glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, image);
+    gl::glReadPixels(0, 0, w, h, gl::GL_RGB, gl::GL_UNSIGNED_BYTE, image);
 
     unsigned char* buffer = new unsigned char[sz * 3];
     for (int x = 0; x < w; x++) {

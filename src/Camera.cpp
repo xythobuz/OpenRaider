@@ -17,6 +17,7 @@
 #include "system/Window.h"
 #include "Camera.h"
 
+#include <glbinding/gl/gl33.h>
 #include <glm/gtc/epsilon.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
@@ -396,7 +397,7 @@ bool Camera::boxInFrustum(BoundingBox b) {
 void Camera::displayFrustum(glm::mat4 MVP) {
     Shader::set2DState(true, false);
     Shader::drawGL(vertexBuffer, colorBuffer, indexBuffer, MVP);
-    Shader::drawGL(vertexPointBuffer, colorPointBuffer, MVP, GL_POINTS);
+    Shader::drawGL(vertexPointBuffer, colorPointBuffer, MVP, gl::GL_POINTS);
     Shader::set2DState(false, false);
 }
 

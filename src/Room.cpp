@@ -46,15 +46,15 @@ void Room::display(glm::mat4 VP) {
 }
 
 bool Room::isWall(unsigned long sector) {
-    assertLessThan(sector, sectors.size());
+    orAssertLessThan(sector, sectors.size());
 
     //! \fixme is (sector > 0) correct??
     return ((sector > 0) && sectors.at(sector)->isWall());
 }
 
 long Room::getSector(float x, float z, float* floor, float* ceiling) {
-    assert(floor != nullptr);
-    assert(ceiling != nullptr);
+    orAssert(floor != nullptr);
+    orAssert(ceiling != nullptr);
 
     long sector = getSector(x, z);
 

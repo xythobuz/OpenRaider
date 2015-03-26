@@ -122,6 +122,6 @@ void Font::drawFontBox(unsigned int x, unsigned int y, unsigned int w, unsigned 
     uv.bufferData(uvs);
 
     Shader::drawGL(vert, uv, glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), TEXTURE_WHITE,
-                   TextureStorage::SYSTEM, GL_LINE_STRIP);
+                   TextureStorage::SYSTEM, gl::GL_LINE_STRIP);
 }
 

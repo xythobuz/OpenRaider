@@ -17,8 +17,8 @@ void Log::initialize() {
 }
 
 LogLevel& Log::get(int level) {
-    assertGreaterThanEqual(level, 0);
-    assertLessThan(level, LOG_COUNT);
+    orAssertGreaterThanEqual(level, 0);
+    orAssertLessThan(level, LOG_COUNT);
     return logs.at(level);
 }
 

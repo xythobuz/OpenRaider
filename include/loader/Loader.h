@@ -28,6 +28,7 @@ class Loader {
     static LoaderVersion checkFile(std::string f);
     static std::unique_ptr<Loader> createLoader(std::string f);
 
+    virtual ~Loader();
     virtual int load(std::string f) = 0;
 
   protected:

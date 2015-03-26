@@ -21,7 +21,7 @@ class SoundAL {
     static int loadBuffer(unsigned char* buffer, unsigned int length);
 
     static int numSources(bool atListener);
-    static int addSource(int buffer, float volume, bool atListener, bool loop);
+    static int addSource(int buffer, float vol, bool atListener, bool loop);
 
     static int sourceAt(int source, glm::vec3 pos);
     static void listenAt(glm::vec3 pos, glm::vec3 at, glm::vec3 up);

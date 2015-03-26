@@ -134,7 +134,7 @@ int SoundAL::numSources(bool atListener) {
         return sources.size();
 }
 
-int SoundAL::addSource(int buffer, float volume, bool atListener, bool loop) {
+int SoundAL::addSource(int buffer, float vol, bool atListener, bool loop) {
     if (!init) {
         Log::get(LOG_ERROR) << "SoundAL Error: Adding source, but not initialized!" << Log::endl;
         return -1;
@@ -156,7 +156,7 @@ int SoundAL::addSource(int buffer, float volume, bool atListener, bool loop) {
     }
 
     alSourcei(id, AL_BUFFER, buffers.at(buffer));
-    alSourcef(id, AL_GAIN, volume);
+    alSourcef(id, AL_GAIN, vol);
     alSourcef(id, AL_REFERENCE_DISTANCE, referenceDistance);
     alSourcef(id, AL_MAX_DISTANCE, maxDistance);
 

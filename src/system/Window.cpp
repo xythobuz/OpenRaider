@@ -18,6 +18,8 @@
 #error "No windowing library selected!"
 #endif
 
+#include <glbinding/gl/gl33.h>
+
 int Window::initialize() {
     int res;
 
@@ -65,7 +67,7 @@ void Window::setSize(glm::i32vec2 s) {
 
     UI::setSize(s);
     Camera::setSize(s);
-    glViewport(0, 0, s.x, s.y);
+    gl::glViewport(0, 0, s.x, s.y);
 }
 
 glm::i32vec2 Window::getSize() {

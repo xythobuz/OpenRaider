@@ -26,7 +26,7 @@ void FontTRLE::shutdown() {
 }
 
 int FontTRLE::initialize(std::string font) {
-    assert(stringEndsWith(font, ".pc") == true);
+    orAssert(stringEndsWith(font, ".pc") == true);
 
     shutdown();
 
@@ -90,7 +90,7 @@ void FontTRLE::loadLPS(std::string f) {
 
 void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, unsigned int yDraw, float scale,
                          std::vector<glm::vec2>& vertices, std::vector<glm::vec2>& uvs) {
-    assert(mFontInit == true);
+    orAssert(mFontInit == true);
 
     float width = ((float)offsets[index][2]) * scale * SCALING;
     float height = ((float)offsets[index][3]) * scale * SCALING;
@@ -126,8 +126,8 @@ void FontTRLE::writeChar(unsigned int index, unsigned int xDraw, unsigned int yD
 }
 
 unsigned int FontTRLE::widthText(float scale, std::string s) {
-    assert(mFontInit == true);
-    assert(s.length() > 0);
+    orAssert(mFontInit == true);
+    orAssert(s.length() > 0);
 
     unsigned int width = 0;
     for (unsigned int i = 0; i < s.length(); i++) {
@@ -148,8 +148,8 @@ unsigned int FontTRLE::widthText(float scale, std::string s) {
 
 void FontTRLE::drawText(unsigned int x, unsigned int y, float scale,
                         glm::vec4 color, std::string s) {
-    assert(mFontInit == true);
-    assert(s.length() > 0);
+    orAssert(mFontInit == true);
+    orAssert(s.length() > 0);
 
     std::vector<glm::vec2> vertices;
     std::vector<glm::vec2> uvs;
@@ -173,8 +173,8 @@ void FontTRLE::drawText(unsigned int x, unsigned int y, float scale,
 }
 
 unsigned int FontTRLE::heightText(float scale, unsigned int maxWidth, std::string s) {
-    assert(mFontInit == true);
-    assert(s.length() > 0);
+    orAssert(mFontInit == true);
+    orAssert(s.length() > 0);
 
     unsigned int x = 0;
     unsigned int yMax = 0;
@@ -207,8 +207,8 @@ unsigned int FontTRLE::heightText(float scale, unsigned int maxWidth, std::strin
 
 void FontTRLE::drawTextWrapped(unsigned int x, unsigned int y, float scale,
                                glm::vec4 color, unsigned int maxWidth, std::string s) {
-    assert(mFontInit == true);
-    assert(s.length() > 0);
+    orAssert(mFontInit == true);
+    orAssert(s.length() > 0);
 
     unsigned int xStart = x;
     unsigned int yMax = 0;

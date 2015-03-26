@@ -11,10 +11,7 @@ if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.5"; fi
 #curl -L https://github.com/hpicgs/glbinding/archive/${GLBVER}.tar.gz | tar xzf -
 #cd glbinding-${GLBVER#v}
 
-# Hacky fix to allow building glbinding with clang on Linux
-#sed -i 's/  -Werror/  /g' cmake/PlatformLinuxGCC.cmake
-
-# Try fix in glbinding master
+# Need to use master until a fixed version is released
 git clone https://github.com/hpicgs/glbinding.git
 cd glbinding
 

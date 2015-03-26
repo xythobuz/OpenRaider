@@ -13,6 +13,8 @@
 
 #include "TextureManager.h"
 
+#include <glbinding/gl/gl33.h>
+
 class ShaderBuffer {
   public:
     ShaderBuffer() : created(false), buffer(0), boundSize(0) { }
@@ -28,7 +30,7 @@ class ShaderBuffer {
     void bindBuffer(int location, int size);
     void unbind(int location);
 
-    unsigned int getBuffer() { assert(created); return buffer; }
+    unsigned int getBuffer() { orAssert(created); return buffer; }
     int getSize() { return boundSize; }
 
   private:
@@ -74,7 +76,7 @@ class Shader {
     static void set2DState(bool on, bool depth = true);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color, unsigned int texture,
-                       TextureStorage store = TextureStorage::SYSTEM, GLenum = GL_TRIANGLES,
+                       TextureStorage store = TextureStorage::SYSTEM, gl::GLenum = gl::GL_TRIANGLES,
                        ShaderTexture* target = nullptr, Shader& shader = textShader);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture, glm::mat4 MVP,
@@ -86,10 +88,10 @@ class Shader {
                        Shader& shader = textureShader);
 
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
-                       GLenum mode = GL_TRIANGLES, ShaderTexture* target = nullptr,
+                       gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
                        Shader& shader = colorShader);
     static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
-                       glm::mat4 MVP, GLenum mode = GL_TRIANGLES, ShaderTexture* target = nullptr,
+                       glm::mat4 MVP, gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
                        Shader& shader = colorShader);
 
     static std::string getVersion(bool linked);

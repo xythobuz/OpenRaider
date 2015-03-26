@@ -54,12 +54,12 @@ void RunTime::initialize() {
 }
 
 KeyboardButton RunTime::getKeyBinding(ActionEvents event) {
-    assertLessThan(event, ActionEventCount);
+    orAssertLessThan(event, ActionEventCount);
     return keyBindings[event];
 }
 
 void RunTime::setKeyBinding(ActionEvents event, KeyboardButton button) {
-    assertLessThan(event, ActionEventCount);
+    orAssertLessThan(event, ActionEventCount);
     keyBindings[event] = button;
 }
 

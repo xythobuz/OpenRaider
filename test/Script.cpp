@@ -163,7 +163,7 @@ static int readPayloadChunk(const unsigned char* data, unsigned int size, const 
 }
 
 static int runForPayload(unsigned int n, bool print, bool printData) {
-    assert(n < testPayloadCount);
+    orAssert(n < testPayloadCount);
     // Get temp file name
     char tmpFile[] = "/tmp/openraider_unit_test_0";
     FILE* f;
@@ -205,7 +205,7 @@ int main(int argc, char* argv[]) {
             if (strcmp(argv[1], "--printScript") == 0) {
                 printData = false;
             }
-            assert(testPayloadCount < 10);
+            orAssert(testPayloadCount < 10);
             if ((argv[2][0] >= '0')
                 && (static_cast<unsigned int>(argv[2][0]) <= (testPayloadCount + '0'))) {
                 whichFile = argv[2][0] - '0';
@@ -228,7 +228,7 @@ int main(int argc, char* argv[]) {
         if (whichFile == -1) {
             // From given path
             Script s;
-            assertEqual(s.load(argv[2]), 0);
+            orAssertEqual(s.load(argv[2]), 0);
             return printDataScript(s, printData);
         } else {
             // From payload
