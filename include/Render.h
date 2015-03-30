@@ -33,9 +33,6 @@ class Render {
 
     static void screenShot(const char* filenameBase);
 
-    static void drawTexture(float x, float y, float w, float h, glm::vec4 color,
-                            unsigned int texture, TextureStorage s);
-
     static RenderMode getMode() { return mode; }
     static void setMode(RenderMode m) { mode = m; }
 

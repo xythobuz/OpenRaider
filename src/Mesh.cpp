@@ -18,36 +18,36 @@ Mesh::Mesh(const std::vector<glm::vec3>& vert,
            const std::vector<IndexedColoredRectangle>& coloredTri) {
     for (auto& t : rect) {
         indicesBuff.push_back(0);
-        verticesBuff.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));
-        verticesBuff.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
-        verticesBuff.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
-        verticesBuff.push_back(glm::vec3(vert.at(t.v4).x, vert.at(t.v4).y, vert.at(t.v4).z));
+        verticesBuff.emplace_back(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z);
+        verticesBuff.emplace_back(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z);
+        verticesBuff.emplace_back(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z);
+        verticesBuff.emplace_back(vert.at(t.v4).x, vert.at(t.v4).y, vert.at(t.v4).z);
         texturesBuff.push_back(t.texture);
     }
 
     for (auto& t : tri) {
         indicesBuff.push_back(1);
-        verticesBuff.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));
-        verticesBuff.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
-        verticesBuff.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
+        verticesBuff.emplace_back(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z);
+        verticesBuff.emplace_back(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z);
+        verticesBuff.emplace_back(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z);
         texturesBuff.push_back(t.texture);
     }
 
     for (auto& t : coloredRect) {
         indicesColorBuff.push_back(0);
-        verticesColorBuff.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));
-        verticesColorBuff.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
-        verticesColorBuff.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
-        verticesColorBuff.push_back(glm::vec3(vert.at(t.v4).x, vert.at(t.v4).y, vert.at(t.v4).z));
-        colorsBuff.push_back(t.index);
+        verticesColorBuff.emplace_back(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z);
+        verticesColorBuff.emplace_back(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z);
+        verticesColorBuff.emplace_back(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z);
+        verticesColorBuff.emplace_back(vert.at(t.v4).x, vert.at(t.v4).y, vert.at(t.v4).z);
+        colorsIndexBuff.push_back(t.index);
     }
 
     for (auto& t : coloredTri) {
         indicesColorBuff.push_back(1);
-        verticesColorBuff.push_back(glm::vec3(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z));
-        verticesColorBuff.push_back(glm::vec3(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z));
-        verticesColorBuff.push_back(glm::vec3(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z));
-        colorsBuff.push_back(t.index);
+        verticesColorBuff.emplace_back(vert.at(t.v1).x, vert.at(t.v1).y, vert.at(t.v1).z);
+        verticesColorBuff.emplace_back(vert.at(t.v2).x, vert.at(t.v2).y, vert.at(t.v2).z);
+        verticesColorBuff.emplace_back(vert.at(t.v3).x, vert.at(t.v3).y, vert.at(t.v3).z);
+        colorsIndexBuff.push_back(t.index);
     }
 }
 
@@ -85,8 +85,8 @@ void Mesh::prepare() {
     orAssertEqual(vert.size(), uvBuff.size());
 
     indicesBuff = std::move(ind);
-    vertices.bufferData(vert);
-    uvs.bufferData(uvBuff);
+    verticesBuff = std::move(vert);
+    uvsBuff = std::move(uvBuff);
     texturesBuff = std::move(tex);
 
     std::vector<unsigned short> indCol;
@@ -103,7 +103,7 @@ void Mesh::prepare() {
                 v = 0;
             indCol.push_back(vertCol.size());
             vertCol.push_back(verticesColorBuff.at(vertIndex + v));
-            glm::vec4 c = TextureManager::getPalette(colorsBuff.at(i));
+            glm::vec4 c = TextureManager::getPalette(colorsIndexBuff.at(i));
             cols.push_back(glm::vec3(c.x, c.y, c.z));
         }
 
@@ -118,14 +118,9 @@ void Mesh::prepare() {
     orAssertEqual(indCol.size() % 3, 0);
     orAssertEqual(vertCol.size(), cols.size());
 
-    indicesColor.bufferData(indCol);
-    verticesColor.bufferData(vertCol);
-    colors.bufferData(cols);
-
-    verticesBuff.clear();
-    indicesColorBuff.clear();
-    verticesColorBuff.clear();
-    colorsBuff.clear();
+    indicesColorBuff = std::move(indCol);
+    verticesColorBuff = std::move(vertCol);
+    colorsBuff = std::move(cols);
 }
 
 void Mesh::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {
@@ -140,10 +135,10 @@ void Mesh::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {
                 indexPos++;
             }
 
-            std::vector<unsigned short> ind(indicesBuff.begin() + indexStart,
+            std::vector<unsigned short> indices(indicesBuff.begin() + indexStart,
                                             indicesBuff.begin() + indexPos);
-            indices.bufferData(ind);
-            Shader::drawGL(vertices, uvs, indices, texture, MVP, TextureStorage::GAME, shaderTexture);
+            Shader::drawGL(verticesBuff, uvsBuff, indices, MVP, texture,
+                           TextureStorage::GAME, gl::GL_TRIANGLES, shaderTexture);
 
             if (indexPos < indicesBuff.size()) {
                 indexStart = indexPos;
@@ -153,7 +148,7 @@ void Mesh::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {
         }
     }
 
-    if (indicesColor.getSize() > 0)
-        Shader::drawGL(verticesColor, colors, indicesColor, MVP, gl::GL_TRIANGLES, shaderTexture);
+    if (indicesColorBuff.size() > 0)
+        Shader::drawGL(verticesColorBuff, colorsBuff, indicesColorBuff, MVP, gl::GL_TRIANGLES, shaderTexture);
 }
 

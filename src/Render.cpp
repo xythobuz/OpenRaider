@@ -33,9 +33,15 @@ void Render::display() {
     gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
 
     if (mode == RenderMode::LoadScreen) {
-        glm::vec4 color(1.0f, 1.0f, 1.0f, 1.0f);
-        drawTexture(0.0f, 0.0f, Window::getSize().x, Window::getSize().y,
-                    color, TEXTURE_SPLASH, TextureStorage::SYSTEM);
+        ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
+        ImGui::SetNextWindowSize(ImVec2(Window::getSize().x, Window::getSize().y));
+        ImGui::Begin("SplashWindow", nullptr, ImGuiWindowFlags_NoTitleBar
+                     | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove
+                     | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse
+                     | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings);
+        auto bm = TextureManager::getBufferManager(TEXTURE_SPLASH, TextureStorage::SYSTEM);
+        ImGui::Image(bm, ImVec2(Window::getSize().x, Window::getSize().y));
+        ImGui::End();
         return;
     }
 
@@ -155,34 +161,6 @@ void Render::screenShot(const char* filenameBase) {
 
     delete [] image;
     delete [] buffer;
-}
-
-void Render::drawTexture(float x, float y, float w, float h, glm::vec4 color,
-                         unsigned int texture, TextureStorage s) {
-    std::vector<glm::vec2> vertices;
-    std::vector<glm::vec2> uvs;
-
-    vertices.push_back(glm::vec2(x, y + h));
-    vertices.push_back(glm::vec2(x + w, y + h));
-    vertices.push_back(glm::vec2(x, y));
-
-    vertices.push_back(glm::vec2(x + w, y));
-    vertices.push_back(glm::vec2(x, y));
-    vertices.push_back(glm::vec2(x + w, y + h));
-
-    uvs.push_back(glm::vec2(0.0f, 1.0f));
-    uvs.push_back(glm::vec2(1.0f, 1.0f));
-    uvs.push_back(glm::vec2(0.0f, 0.0f));
-
-    uvs.push_back(glm::vec2(1.0f, 0.0f));
-    uvs.push_back(glm::vec2(0.0f, 0.0f));
-    uvs.push_back(glm::vec2(1.0f, 1.0f));
-
-    static ShaderBuffer vert, uv;
-    vert.bufferData(vertices);
-    uv.bufferData(uvs);
-
-    Shader::drawGL(vert, uv, color, texture, s);
 }
 
 static const int modeStringCount = 4;

@@ -271,11 +271,11 @@ static glm::vec3 frustumColors[6] = {
 };
 static glm::vec3 frustumVertices[8];
 
-static ShaderBuffer vertexBuffer;
-static ShaderBuffer colorBuffer;
-static ShaderBuffer indexBuffer;
-static ShaderBuffer vertexPointBuffer;
-static ShaderBuffer colorPointBuffer;
+static std::vector<glm::vec3> vertexBuffer;
+static std::vector<glm::vec3> colorBuffer;
+static std::vector<unsigned short> indexBuffer;
+static std::vector<glm::vec3> vertexPointBuffer;
+static std::vector<glm::vec3> colorPointBuffer;
 
 void Camera::calculateFrustumPlanes() {
     glm::mat4 combo = projection * view;
@@ -304,76 +304,64 @@ void Camera::calculateFrustumPlanes() {
     planes[NEAR].set(frustumVertices[NTL], frustumVertices[NTR], frustumVertices[NBR]);
     planes[FAR].set(frustumVertices[FTR], frustumVertices[FTL], frustumVertices[FBL]);
 
-    std::vector<glm::vec3> verts;
-
     // Near
-    verts.push_back(frustumVertices[NTL]);
-    verts.push_back(frustumVertices[NTR]);
-    verts.push_back(frustumVertices[NBR]);
-    verts.push_back(frustumVertices[NBL]);
+    vertexBuffer.push_back(frustumVertices[NTL]);
+    vertexBuffer.push_back(frustumVertices[NTR]);
+    vertexBuffer.push_back(frustumVertices[NBR]);
+    vertexBuffer.push_back(frustumVertices[NBL]);
 
     // Far
-    verts.push_back(frustumVertices[FTR]);
-    verts.push_back(frustumVertices[FTL]);
-    verts.push_back(frustumVertices[FBL]);
-    verts.push_back(frustumVertices[FBR]);
+    vertexBuffer.push_back(frustumVertices[FTR]);
+    vertexBuffer.push_back(frustumVertices[FTL]);
+    vertexBuffer.push_back(frustumVertices[FBL]);
+    vertexBuffer.push_back(frustumVertices[FBR]);
 
     // Top
-    verts.push_back(frustumVertices[NTR]);
-    verts.push_back(frustumVertices[NTL]);
-    verts.push_back(frustumVertices[FTL]);
-    verts.push_back(frustumVertices[FTR]);
+    vertexBuffer.push_back(frustumVertices[NTR]);
+    vertexBuffer.push_back(frustumVertices[NTL]);
+    vertexBuffer.push_back(frustumVertices[FTL]);
+    vertexBuffer.push_back(frustumVertices[FTR]);
 
     // Bottom
-    verts.push_back(frustumVertices[NBL]);
-    verts.push_back(frustumVertices[NBR]);
-    verts.push_back(frustumVertices[FBR]);
-    verts.push_back(frustumVertices[FBL]);
+    vertexBuffer.push_back(frustumVertices[NBL]);
+    vertexBuffer.push_back(frustumVertices[NBR]);
+    vertexBuffer.push_back(frustumVertices[FBR]);
+    vertexBuffer.push_back(frustumVertices[FBL]);
 
     // Left
-    verts.push_back(frustumVertices[NTL]);
-    verts.push_back(frustumVertices[NBL]);
-    verts.push_back(frustumVertices[FBL]);
-    verts.push_back(frustumVertices[FTL]);
+    vertexBuffer.push_back(frustumVertices[NTL]);
+    vertexBuffer.push_back(frustumVertices[NBL]);
+    vertexBuffer.push_back(frustumVertices[FBL]);
+    vertexBuffer.push_back(frustumVertices[FTL]);
 
     // Right
-    verts.push_back(frustumVertices[NBR]);
-    verts.push_back(frustumVertices[NTR]);
-    verts.push_back(frustumVertices[FTR]);
-    verts.push_back(frustumVertices[FBR]);
+    vertexBuffer.push_back(frustumVertices[NBR]);
+    vertexBuffer.push_back(frustumVertices[NTR]);
+    vertexBuffer.push_back(frustumVertices[FTR]);
+    vertexBuffer.push_back(frustumVertices[FBR]);
 
-    vertexBuffer.bufferData(verts);
+    // Position indicator
+    vertexPointBuffer.push_back(getPosition());
+    colorPointBuffer.push_back(glm::vec3(1.0f, 1.0f, 1.0f));
 
-    verts.clear();
-    std::vector<glm::vec3> cols;
-
-    verts.push_back(getPosition());
-    cols.push_back(glm::vec3(1.0f, 1.0f, 1.0f));
-
-    vertexPointBuffer.bufferData(verts);
-    colorPointBuffer.bufferData(cols);
-
-    if (colorBuffer.getSize() == 0) {
-        cols.clear();
+    // Lazy initialization of frustum plane color buffer
+    if (colorBuffer.size() == 0) {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 4; j++) {
-                cols.push_back(frustumColors[i]);
+                colorBuffer.push_back(frustumColors[i]);
             }
         }
-        colorBuffer.bufferData(cols);
     }
 
-    if (indexBuffer.getSize() == 0) {
-        std::vector<unsigned short> inds;
+    if (indexBuffer.size() == 0) {
         for (int i = 0; i < 6; i++) {
-            inds.push_back(4 * i);
-            inds.push_back((4 * i) + 1);
-            inds.push_back((4 * i) + 2);
-            inds.push_back((4 * i) + 3);
-            inds.push_back((4 * i) + 2);
-            inds.push_back(4 * i);
+            indexBuffer.push_back(4 * i);
+            indexBuffer.push_back((4 * i) + 1);
+            indexBuffer.push_back((4 * i) + 2);
+            indexBuffer.push_back((4 * i) + 3);
+            indexBuffer.push_back((4 * i) + 2);
+            indexBuffer.push_back(4 * i);
         }
-        indexBuffer.bufferData(inds);
     }
 }
 

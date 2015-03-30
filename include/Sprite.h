@@ -8,7 +8,7 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
-#include "system/Shader.h"
+#include <vector>
 
 class Sprite {
   public:
@@ -20,7 +20,8 @@ class Sprite {
 
   private:
     int texture;
-    ShaderBuffer vertices, uvs;
+    std::vector<glm::vec3> vertexBuff;
+    std::vector<glm::vec2> uvBuff;
     glm::vec4 uv2D;
 };
 

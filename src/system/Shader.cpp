@@ -27,7 +27,7 @@ void ShaderBuffer::bufferData(int elem, int size, void* data) {
 
     boundSize = elem;
     gl::glBindBuffer(gl::GL_ARRAY_BUFFER, buffer);
-    gl::glBufferData(gl::GL_ARRAY_BUFFER, elem * size, data, gl::GL_STATIC_DRAW);
+    gl::glBufferData(gl::GL_ARRAY_BUFFER, elem * size, data, gl::GL_DYNAMIC_DRAW);
 }
 
 void ShaderBuffer::bindBuffer() {
@@ -234,10 +234,10 @@ std::string Shader::getVersion(bool linked) {
     }
 }
 
-Shader Shader::textShader;
 Shader Shader::textureShader;
 Shader Shader::colorShader;
 unsigned int Shader::vertexArrayID = 0;
+bool Shader::lastBufferWasNotFramebuffer = true;
 
 int Shader::initialize() {
     gl::glGenVertexArrays(1, &vertexArrayID);
@@ -254,26 +254,17 @@ int Shader::initialize() {
 
     gl::glPointSize(5.0f);
 
-    if (textShader.compile(textShaderVertex, textShaderFragment) < 0)
-        return -1;
-    if (textShader.addUniform("screen") < 0)
-        return -2;
-    if (textShader.addUniform("textureSampler") < 0)
-        return -3;
-    if (textShader.addUniform("colorVar") < 0)
-        return -4;
-
     if (textureShader.compile(textureShaderVertex, textureShaderFragment) < 0)
-        return -5;
+        return -1;
     if (textureShader.addUniform("MVP") < 0)
-        return -6;
+        return -2;
     if (textureShader.addUniform("textureSampler") < 0)
-        return -7;
+        return -3;
 
     if (colorShader.compile(colorShaderVertex, colorShaderFragment) < 0)
-        return -8;
+        return -4;
     if (colorShader.addUniform("MVP") < 0)
-        return -9;
+        return -5;
 
     return 0;
 }
@@ -294,183 +285,117 @@ void Shader::set2DState(bool on, bool depth) {
     }
 }
 
-void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color,
-                    unsigned int texture, TextureStorage store, gl::GLenum mode,
-                    ShaderTexture* target, Shader& shader) {
-    orAssert(vertices.getSize() == uvs.getSize());
-    if (mode == gl::GL_TRIANGLES) {
-        orAssert((vertices.getSize() % 3) == 0);
-    }
-
-    if (target == nullptr) {
+void Shader::bindProperBuffer(ShaderTexture* target) {
+    if ((target == nullptr) && lastBufferWasNotFramebuffer) {
+        lastBufferWasNotFramebuffer = false;
         gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
         gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
-    } else {
+    } else if (target != nullptr) {
+        lastBufferWasNotFramebuffer = true;
         target->bind();
     }
-
-    shader.use();
-    shader.loadUniform(0, glm::vec2(Window::getSize()));
-    shader.loadUniform(1, texture, store);
-    shader.loadUniform(2, color);
-    vertices.bindBuffer(0, 2);
-    uvs.bindBuffer(1, 2);
-
-    set2DState(true);
-    gl::glDrawArrays(mode, 0, vertices.getSize());
-    set2DState(false);
-
-    vertices.unbind(0);
-    uvs.unbind(1);
 }
 
-void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture,
-                    glm::mat4 MVP, TextureStorage store, ShaderTexture* target,
-                    Shader& shader) {
-    orAssert(vertices.getSize() == uvs.getSize());
-    orAssert((vertices.getSize() % 3) == 0);
-
-    if (target == nullptr) {
-        gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
-        gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
-    } else {
-        target->bind();
-    }
-
-    shader.use();
-    shader.loadUniform(0, MVP);
-    shader.loadUniform(1, texture, store);
-    vertices.bindBuffer(0, 3);
-    uvs.bindBuffer(1, 2);
-    gl::glDrawArrays(gl::GL_TRIANGLES, 0, vertices.getSize());
-    vertices.unbind(0);
-    uvs.unbind(1);
-}
-
-void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& indices,
-                    unsigned int texture, glm::mat4 MVP, TextureStorage store,
-                    ShaderTexture* target, Shader& shader) {
-    orAssert(vertices.getSize() == uvs.getSize());
-    orAssert((indices.getSize() % 3) == 0);
-
-    if (target == nullptr) {
-        gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
-        gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
-    } else {
-        target->bind();
-
-        unsigned int sz = vertices.getSize();
-        glm::vec3* buffer = new glm::vec3[sz];
-        gl::glBindBuffer(gl::GL_ARRAY_BUFFER, vertices.getBuffer());
-        gl::glGetBufferSubData(gl::GL_ARRAY_BUFFER, 0, sz * sizeof(glm::vec3), buffer);
-
-        Log::get(LOG_DEBUG) << "drawGL Vertex dump:" << Log::endl;
-        for (unsigned int i = 0; i < sz; i++) {
-            glm::vec4 tmp(buffer[i], 1.0f);
-            tmp = MVP * tmp;
-            glm::vec3 res(tmp.x, tmp.y, tmp.z);
-            Log::get(LOG_DEBUG) << buffer[i] << " -> " << res << Log::endl;
-        }
-
-        delete [] buffer;
-    }
-
-    shader.use();
-    shader.loadUniform(0, MVP);
-    shader.loadUniform(1, texture, store);
-    vertices.bindBuffer(0, 3);
-    uvs.bindBuffer(1, 2);
-    indices.bindBuffer();
-    gl::glDrawElements(gl::GL_TRIANGLES, indices.getSize(), gl::GL_UNSIGNED_SHORT, nullptr);
-    vertices.unbind(0);
-    uvs.unbind(1);
-}
-
-void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
+void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
+                    glm::mat4 MVP, unsigned int texture, TextureStorage store,
                     gl::GLenum mode, ShaderTexture* target, Shader& shader) {
-    orAssert(vertices.getSize() == colors.getSize());
-    if (mode == gl::GL_TRIANGLES) {
-        orAssert((vertices.getSize() % 3) == 0);
-    }
-
-    if (target == nullptr) {
-        gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
-        gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
-    } else {
-        target->bind();
-    }
+    orAssert(vertices.size() == uvs.size());
+    if (mode == gl::GL_TRIANGLES)
+        orAssert((vertices.size() % 3) == 0);
+    bindProperBuffer(target);
 
     shader.use();
     shader.loadUniform(0, MVP);
-    vertices.bindBuffer(0, 3);
-    colors.bindBuffer(1, 3);
-    gl::glDrawArrays(mode, 0, vertices.getSize());
-    vertices.unbind(0);
-    colors.unbind(1);
+    shader.loadUniform(1, texture, store);
+
+    shader.vertexBuffer.bufferData(vertices);
+    shader.otherBuffer.bufferData(uvs);
+
+    shader.vertexBuffer.bindBuffer(0, 3);
+    shader.otherBuffer.bindBuffer(1, 2);
+
+    gl::glDrawArrays(mode, 0, shader.vertexBuffer.getSize());
+
+    shader.vertexBuffer.unbind(0);
+    shader.otherBuffer.unbind(1);
 }
 
-void Shader::drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
-                    glm::mat4 MVP, gl::GLenum mode, ShaderTexture* target, Shader& shader) {
-    orAssert(vertices.getSize() == colors.getSize());
-    if (mode == gl::GL_TRIANGLES) {
-        orAssert((indices.getSize() % 3) == 0);
-    }
-
-    if (target == nullptr) {
-        gl::glBindFramebuffer(gl::GL_FRAMEBUFFER, 0);
-        gl::glViewport(0, 0, Window::getSize().x, Window::getSize().y);
-    } else {
-        target->bind();
-    }
+void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
+                    std::vector<unsigned short>& indices, glm::mat4 MVP,
+                    unsigned int texture, TextureStorage store,
+                    gl::GLenum mode, ShaderTexture* target, Shader& shader) {
+    orAssert(vertices.size() == uvs.size());
+    if (mode == gl::GL_TRIANGLES)
+        orAssert((indices.size() % 3) == 0);
+    bindProperBuffer(target);
 
     shader.use();
     shader.loadUniform(0, MVP);
-    vertices.bindBuffer(0, 3);
-    colors.bindBuffer(1, 3);
-    indices.bindBuffer();
-    gl::glDrawElements(mode, indices.getSize(), gl::GL_UNSIGNED_SHORT, nullptr);
-    vertices.unbind(0);
-    colors.unbind(1);
+    shader.loadUniform(1, texture, store);
+
+    shader.vertexBuffer.bufferData(vertices);
+    shader.otherBuffer.bufferData(uvs);
+    shader.indexBuffer.bufferData(indices);
+
+    shader.vertexBuffer.bindBuffer(0, 3);
+    shader.otherBuffer.bindBuffer(1, 2);
+    shader.indexBuffer.bindBuffer();
+
+    gl::glDrawElements(mode, shader.indexBuffer.getSize(), gl::GL_UNSIGNED_SHORT, nullptr);
+
+    shader.vertexBuffer.unbind(0);
+    shader.otherBuffer.unbind(1);
+}
+
+void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
+                    glm::mat4 MVP, gl::GLenum mode, ShaderTexture* target, Shader& shader) {
+    orAssert(vertices.size() == colors.size());
+    if (mode == gl::GL_TRIANGLES)
+        orAssert((vertices.size() % 3) == 0);
+    bindProperBuffer(target);
+
+    shader.use();
+    shader.loadUniform(0, MVP);
+
+    shader.vertexBuffer.bufferData(vertices);
+    shader.otherBuffer.bufferData(colors);
+
+    shader.vertexBuffer.bindBuffer(0, 3);
+    shader.otherBuffer.bindBuffer(1, 3);
+
+    gl::glDrawArrays(mode, 0, shader.vertexBuffer.getSize());
+
+    shader.vertexBuffer.unbind(0);
+    shader.otherBuffer.unbind(1);
+}
+
+void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
+                    std::vector<unsigned short>& indices, glm::mat4 MVP,
+                    gl::GLenum mode, ShaderTexture* target, Shader& shader) {
+    orAssert(vertices.size() == colors.size());
+    if (mode == gl::GL_TRIANGLES)
+        orAssert((indices.size() % 3) == 0);
+    bindProperBuffer(target);
+
+    shader.use();
+    shader.loadUniform(0, MVP);
+
+    shader.vertexBuffer.bufferData(vertices);
+    shader.otherBuffer.bufferData(colors);
+    shader.indexBuffer.bufferData(indices);
+
+    shader.vertexBuffer.bindBuffer(0, 3);
+    shader.otherBuffer.bindBuffer(1, 3);
+    shader.indexBuffer.bindBuffer();
+
+    gl::glDrawElements(mode, shader.indexBuffer.getSize(), gl::GL_UNSIGNED_SHORT, nullptr);
+
+    shader.vertexBuffer.unbind(0);
+    shader.otherBuffer.unbind(1);
 }
 
 // --------------------------------------
 // *INDENT-OFF*
-
-const char* Shader::textShaderVertex = R"!?!(
-#version 330 core
-
-layout(location = 0) in vec2 vertexPosition_screen;
-layout(location = 1) in vec2 vertexUV;
-
-out vec2 UV;
-
-uniform vec2 screen;
-
-void main() {
-    vec2 halfScreen = screen / 2;
-    vec2 vertexPosition_homogenous = (vertexPosition_screen - halfScreen) / halfScreen;
-
-    gl_Position = vec4(vertexPosition_homogenous.x, -vertexPosition_homogenous.y, 0, 1);
-    UV = vertexUV;
-}
-)!?!";
-
-const char* Shader::textShaderFragment = R"!?!(
-#version 330 core
-
-in vec2 UV;
-
-layout(location = 0) out vec4 color;
-
-uniform sampler2D textureSampler;
-uniform vec4 colorVar;
-
-void main() {
-    color = texture(textureSampler, UV) * colorVar;
-}
-)!?!";
-
-// --------------------------------------
 
 const char* Shader::textureShaderVertex = R"!?!(
 #version 330 core

@@ -75,23 +75,22 @@ class Shader {
 
     static void set2DState(bool on, bool depth = true);
 
-    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, glm::vec4 color, unsigned int texture,
-                       TextureStorage store = TextureStorage::SYSTEM, gl::GLenum mode = gl::GL_TRIANGLES,
-                       ShaderTexture* target = nullptr, Shader& shader = textShader);
-
-    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, unsigned int texture, glm::mat4 MVP,
-                       TextureStorage store = TextureStorage::GAME, ShaderTexture* target = nullptr,
-                       Shader& shader = textureShader);
-    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& uvs, ShaderBuffer& indices,
-                       unsigned int texture, glm::mat4 MVP,
-                       TextureStorage store = TextureStorage::GAME, ShaderTexture* target = nullptr,
-                       Shader& shader = textureShader);
-
-    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, glm::mat4 MVP,
+    static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
+                       glm::mat4 MVP, unsigned int texture, TextureStorage store,
                        gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
-                       Shader& shader = colorShader);
-    static void drawGL(ShaderBuffer& vertices, ShaderBuffer& colors, ShaderBuffer& indices,
-                       glm::mat4 MVP, gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
+                       Shader& shader = textureShader);
+    static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
+                       std::vector<unsigned short>& indices, glm::mat4 MVP,
+                       unsigned int texture, TextureStorage store,
+                       gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
+                       Shader& shader = textureShader);
+
+    static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
+                       glm::mat4 MVP, gl::GLenum mode = gl::GL_TRIANGLES,
+                       ShaderTexture* target = nullptr, Shader& shader = colorShader);
+    static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
+                       std::vector<unsigned short>& indices, glm::mat4 MVP,
+                       gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
                        Shader& shader = colorShader);
 
     static std::string getVersion(bool linked);
@@ -99,10 +98,9 @@ class Shader {
   private:
     int programID;
     std::vector<unsigned int> uniforms;
+    ShaderBuffer vertexBuffer, otherBuffer, indexBuffer;
 
-    static Shader textShader;
-    static const char* textShaderVertex;
-    static const char* textShaderFragment;
+    static void bindProperBuffer(ShaderTexture* target);
 
     static Shader textureShader;
     static const char* textureShaderVertex;
@@ -113,6 +111,7 @@ class Shader {
     static const char* colorShaderFragment;
 
     static unsigned int vertexArrayID;
+    static bool lastBufferWasNotFramebuffer;
 };
 
 #endif

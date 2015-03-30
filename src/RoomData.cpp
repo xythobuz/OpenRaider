@@ -41,11 +41,7 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
     inds.push_back(5);
     inds.push_back(2);
 
-    static ShaderBuffer vert, col, ind;
-    vert.bufferData(verts);
-    col.bufferData(cols);
-    ind.bufferData(inds);
-    Shader::drawGL(vert, col, ind, VP, gl::GL_LINE_STRIP);
+    Shader::drawGL(verts, cols, inds, VP, gl::GL_LINE_STRIP);
 
     cols.clear();
     inds.clear();
@@ -55,11 +51,7 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
         inds.push_back(i);
     }
 
-    static ShaderBuffer vert2, col2, ind2;
-    vert2.bufferData(verts);
-    col2.bufferData(cols);
-    ind2.bufferData(inds);
-    Shader::drawGL(vert2, col2, ind2, VP, gl::GL_POINTS);
+    Shader::drawGL(verts, cols, inds, VP, gl::GL_POINTS);
 }
 
 // ----------------------------------------------------------------------------

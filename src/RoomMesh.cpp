@@ -7,6 +7,7 @@
 
 #include "global.h"
 #include "TextureManager.h"
+#include "system/Shader.h"
 #include "RoomMesh.h"
 
 RoomMesh::RoomMesh(const std::vector<RoomVertexTR2>& vert,
@@ -33,7 +34,6 @@ RoomMesh::RoomMesh(const std::vector<RoomVertexTR2>& vert,
 void RoomMesh::prepare() {
     std::vector<unsigned short> ind;
     std::vector<glm::vec3> vert;
-    std::vector<glm::vec2> uvBuff;
     std::vector<unsigned int> tex;
 
     int vertIndex = 0;
@@ -47,7 +47,7 @@ void RoomMesh::prepare() {
                 v = 0;
             ind.push_back(vert.size());
             vert.push_back(verticesBuff.at(vertIndex + v));
-            uvBuff.push_back(TextureManager::getTile(texturesBuff.at(i)).getUV(v));
+            uvsBuff.push_back(TextureManager::getTile(texturesBuff.at(i)).getUV(v));
             tex.push_back(texture);
         }
 
@@ -61,11 +61,10 @@ void RoomMesh::prepare() {
 
     orAssertEqual(ind.size() % 3, 0);
     orAssertEqual(vert.size(), tex.size());
-    orAssertEqual(vert.size(), uvBuff.size());
+    orAssertEqual(vert.size(), uvsBuff.size());
 
     indicesBuff = std::move(ind);
-    vertices.bufferData(vert);
-    uvs.bufferData(uvBuff);
+    verticesBuff = std::move(vert);
     texturesBuff = std::move(tex);
 }
 
@@ -81,10 +80,9 @@ void RoomMesh::display(glm::mat4 MVP) {
                 indexPos++;
             }
 
-            std::vector<unsigned short> ind(indicesBuff.begin() + indexStart,
+            std::vector<unsigned short> indices(indicesBuff.begin() + indexStart,
                                             indicesBuff.begin() + indexPos);
-            indices.bufferData(ind);
-            Shader::drawGL(vertices, uvs, indices, texture, MVP);
+            Shader::drawGL(verticesBuff, uvsBuff, indices, MVP, texture, TextureStorage::GAME);
 
             if (indexPos < indicesBuff.size()) {
                 indexStart = indexPos;

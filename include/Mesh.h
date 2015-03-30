@@ -45,14 +45,13 @@ class Mesh {
   private:
     std::vector<unsigned short> indicesBuff;
     std::vector<glm::vec3> verticesBuff;
+    std::vector<glm::vec2> uvsBuff;
     std::vector<unsigned int> texturesBuff;
 
     std::vector<unsigned short> indicesColorBuff;
     std::vector<glm::vec3> verticesColorBuff;
-    std::vector<unsigned int> colorsBuff;
-
-    ShaderBuffer indices, vertices, uvs;
-    ShaderBuffer indicesColor, verticesColor, colors;
+    std::vector<glm::vec3> colorsBuff;
+    std::vector<unsigned int> colorsIndexBuff;
 };
 
 #endif

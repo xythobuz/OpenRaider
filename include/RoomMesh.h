@@ -11,7 +11,6 @@
 #include <vector>
 
 #include "Mesh.h"
-#include "system/Shader.h"
 
 struct RoomVertexTR2 {
     int x, y, z; // Vertex coordinates, relative to x/zOffset
@@ -36,8 +35,8 @@ class RoomMesh {
   private:
     std::vector<unsigned short> indicesBuff;
     std::vector<glm::vec3> verticesBuff;
+    std::vector<glm::vec2> uvsBuff;
     std::vector<unsigned int> texturesBuff;
-    ShaderBuffer indices, vertices, uvs;
 };
 
 #endif
