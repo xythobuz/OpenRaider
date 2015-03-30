@@ -5,8 +5,6 @@ set basedir    "@CMAKE_INSTALL_PREFIX@"
 set datadir    "$(basedir)/share/OpenRaider"
 set pakdir     "$(datadir)"
 set audiodir   "$(datadir)"
-set font       "$(datadir)/test.ttf"
-# set font       "$(datadir)/font.pc"
 
 # Windowing
 set size       1280 720

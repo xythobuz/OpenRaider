@@ -9,8 +9,6 @@ if [ ! -d "${HOME}/.OpenRaider" ]; then
     mkdir -p ~/.OpenRaider/sshots
     cp ../Resources/defaults/OpenRaider.ini ~/.OpenRaider/
     cp ../Resources/defaults/*.tga ~/.OpenRaider/data
-    cp ../Resources/defaults/*.ttf ~/.OpenRaider/data
-    cp ../Resources/defaults/*.pc ~/.OpenRaider/data
     echo "DONE"
     osascript -e 'tell app "System Events" to display alert "Initial Configuration stored in ~/.OpenRaider\n\nView and edit OpenRaider.ini to your needs..."'
 fi

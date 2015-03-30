@@ -285,9 +285,19 @@ int TextureManager::getNextTileAnimation(int index, int tile) {
 
 BufferManager* TextureManager::getBufferManager(int tex, TextureStorage store) {
     auto& v = (store == TextureStorage::GAME) ? gameBuffers : systemBuffers;
-    while (v.size() <= (tex + 1)) {
+
+    /*! \fixme  Strange +2 needed, or else OpenRaider crashes hard.
+     * Normally, this should only be (tex). I had to increase it to
+     * (tex + 1) some time ago when OpenRaider crashed in relation to
+     * non-existing texture IDs. Now, after removing all custom Font
+     * support (one texture less loaded at startup), OR crashed again.
+     * Increasing this to (tex + 2) "fixed" the problem. Why?
+     */
+
+    while (v.size() <= (tex + 2)) {
         v.emplace_back(v.size(), store);
     }
+
     return &(v.at(tex));
 }
 

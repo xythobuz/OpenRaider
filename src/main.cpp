@@ -20,7 +20,6 @@
 #include "World.h"
 #include "commander/commander.h"
 #include "commands/Command.h"
-#include "system/Font.h"
 #include "system/Shader.h"
 #include "system/Sound.h"
 #include "system/Window.h"
@@ -130,7 +129,6 @@ int main(int argc, char* argv[]) {
 
     Menu::shutdown();
     UI::shutdown();
-    Font::shutdown();
     Sound::shutdown();
     Shader::shutdown();
     Window::shutdown();

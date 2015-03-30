@@ -9,8 +9,6 @@ if not exist "%UserProfile%\.OpenRaider" (
 	mkdir %UserProfile%\.OpenRaider\sshots
 	copy data\OpenRaider.ini %UserProfile%\.OpenRaider
 	copy data\*.tga %UserProfile%\.OpenRaider\data
-	copy data\*.ttf %UserProfile%\.OpenRaider\data
-	copy data\*.pc %UserProfile%\.OpenRaider\data
 	echo Done!
 ) else (
 	echo Already done

@@ -152,7 +152,7 @@ if (APPLE)
     set (RESRCS ${RESRCS} ${MAC_ICON})
 
     # Copy Data
-    set (MAC_DATA "../data/font.pc" "../data/OpenRaider.ini" "../data/test.ttf" "../data/splash.tga")
+    set (MAC_DATA "../data/OpenRaider.ini" "../data/splash.tga")
     set_source_files_properties (${MAC_DATA} PROPERTIES MACOSX_PACKAGE_LOCATION Resources/defaults)
     set (RESRCS ${RESRCS} ${MAC_DATA})
 endif (APPLE)
@@ -238,9 +238,7 @@ elseif (NOT WIN32)
         RENAME "OpenRaider.ini")
 
     # Data files
-    install (FILES "${PROJECT_SOURCE_DIR}/data/font.pc"
-                    "${PROJECT_SOURCE_DIR}/data/splash.tga"
-                    "${PROJECT_SOURCE_DIR}/data/test.ttf"
+    install (FILES "${PROJECT_SOURCE_DIR}/data/splash.tga"
         DESTINATION "share/OpenRaider")
 endif (APPLE)
 

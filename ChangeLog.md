@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150330 ]
+    * Removed custom Font support
+
     [ 20150326 ]
     * No longer including gl.h globally, now only using gl33.h where needed.
     * No longer including all of glm globally, only the vec2/3/4 and mat4x4.

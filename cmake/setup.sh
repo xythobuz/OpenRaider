@@ -10,7 +10,5 @@ mkdir -p ~/.OpenRaider/sshots
 
 cp data/OpenRaider.ini ~/.OpenRaider/
 cp data/*.tga ~/.OpenRaider/data
-cp data/*.ttf ~/.OpenRaider/data
-cp data/*.pc ~/.OpenRaider/data
 
 echo "DONE"

@@ -140,7 +140,7 @@ int UI::initialize() {
     style.ItemSpacing                           = ImVec2(2, 2);
     style.ItemInnerSpacing                      = ImVec2(1, 1);
     style.TouchExtraPadding                     = ImVec2(0, 0);
-    style.IndentSpacing                       = 3;
+    style.IndentSpacing                         = 3;
     style.ScrollbarWidth                        = 10;
 
     return 0;

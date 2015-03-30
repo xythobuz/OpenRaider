@@ -9,7 +9,6 @@
 #include "Camera.h"
 #include "Log.h"
 #include "RunTime.h"
-#include "system/Font.h"
 #include "system/Sound.h"
 #include "system/Window.h"
 #include "utils/strings.h"
@@ -31,7 +30,6 @@ void CommandSet::printHelp() {
     Log::get(LOG_USER) << "  pakdir     STRING" << Log::endl;
     Log::get(LOG_USER) << "  audiodir   STRING" << Log::endl;
     Log::get(LOG_USER) << "  datadir    STRING" << Log::endl;
-    Log::get(LOG_USER) << "  font       STRING" << Log::endl;
     Log::get(LOG_USER) << "  size       INT INT" << Log::endl;
     Log::get(LOG_USER) << "  fullscreen BOOL" << Log::endl;
     Log::get(LOG_USER) << "  audio      BOOL" << Log::endl;
@@ -132,13 +130,6 @@ int CommandSet::execute(std::istream& args) {
         std::string temp;
         args >> temp;
         RunTime::setDataDir(expandNames(temp));
-    } else if (var.compare("font") == 0) {
-        std::string temp;
-        args >> temp;
-        int error = Font::initialize(expandNames(temp));
-        if (error != 0)
-            Log::get(LOG_USER) << "Error initializing font: " << expandNames(temp) << "(" << error << ")" <<
-                               Log::endl;
     } else {
         Log::get(LOG_USER) << "set-Error: Unknown variable (" << var.c_str() << ")" << Log::endl;
         return -1;
@@ -163,7 +154,6 @@ void CommandGet::printHelp() {
     Log::get(LOG_USER) << "  pakdir" << Log::endl;
     Log::get(LOG_USER) << "  audiodir" << Log::endl;
     Log::get(LOG_USER) << "  datadir" << Log::endl;
-    Log::get(LOG_USER) << "  font" << Log::endl;
     Log::get(LOG_USER) << "  size" << Log::endl;
     Log::get(LOG_USER) << "  fullscreen" << Log::endl;
     Log::get(LOG_USER) << "  audio" << Log::endl;
@@ -199,8 +189,6 @@ int CommandGet::execute(std::istream& args) {
         Log::get(LOG_USER) << RunTime::getAudioDir() << Log::endl;
     } else if (var.compare("datadir") == 0) {
         Log::get(LOG_USER) << RunTime::getDataDir() << Log::endl;
-    } else if (var.compare("font") == 0) {
-        Log::get(LOG_USER) << Font::getFontName() << Log::endl;
     } else {
         Log::get(LOG_USER) << "get-Error: Unknown variable (" << var << ")" << Log::endl;
         return -1;
