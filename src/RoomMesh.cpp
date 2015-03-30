@@ -70,25 +70,17 @@ void RoomMesh::prepare() {
 
 void RoomMesh::display(glm::mat4 MVP) {
     if (indicesBuff.size() > 0) {
-        unsigned int indexStart = 0;
-        unsigned int indexPos = 1;
-        unsigned int texture = texturesBuff.at(indicesBuff.at(0));
+        Shader::drawGLBuffer(verticesBuff, uvsBuff);
 
-        while ((indexStart != indexPos) && (indexPos < indicesBuff.size())) {
-            while ((indexPos < indicesBuff.size())
-                   && (texturesBuff.at(indicesBuff.at(indexPos)) == texture)) {
-                indexPos++;
+        for (int i = 0; i < TextureManager::numTextures(TextureStorage::GAME); i++) {
+            std::vector<unsigned short> indices;
+            for (int n = 0; n < indicesBuff.size(); n++) {
+                if (texturesBuff.at(indicesBuff.at(n)) == i) {
+                    indices.push_back(indicesBuff.at(n));
+                }
             }
 
-            std::vector<unsigned short> indices(indicesBuff.begin() + indexStart,
-                                            indicesBuff.begin() + indexPos);
-            Shader::drawGL(verticesBuff, uvsBuff, indices, MVP, texture, TextureStorage::GAME);
-
-            if (indexPos < indicesBuff.size()) {
-                indexStart = indexPos;
-                indexPos += 1;
-                texture = texturesBuff.at(indicesBuff.at(indexStart));
-            }
+            Shader::drawGLOnly(indices, MVP, i, TextureStorage::GAME);
         }
     }
 }

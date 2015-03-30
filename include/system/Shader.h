@@ -85,6 +85,13 @@ class Shader {
                        gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
                        Shader& shader = textureShader);
 
+    static void drawGLBuffer(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
+                             Shader& shader = textureShader);
+    static void drawGLOnly(std::vector<unsigned short>& indices, glm::mat4 MVP,
+                           unsigned int texture, TextureStorage store,
+                           gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
+                           Shader& shader = textureShader);
+
     static void drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
                        glm::mat4 MVP, gl::GLenum mode = gl::GL_TRIANGLES,
                        ShaderTexture* target = nullptr, Shader& shader = colorShader);

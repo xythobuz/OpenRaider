@@ -324,7 +324,20 @@ void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uv
                     std::vector<unsigned short>& indices, glm::mat4 MVP,
                     unsigned int texture, TextureStorage store,
                     gl::GLenum mode, ShaderTexture* target, Shader& shader) {
+    drawGLBuffer(vertices, uvs);
+    drawGLOnly(indices, MVP, texture, store, mode, target, shader);
+}
+
+void Shader::drawGLBuffer(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs, Shader& shader) {
     orAssert(vertices.size() == uvs.size());
+
+    shader.vertexBuffer.bufferData(vertices);
+    shader.otherBuffer.bufferData(uvs);
+}
+
+void Shader::drawGLOnly(std::vector<unsigned short>& indices, glm::mat4 MVP,
+                        unsigned int texture, TextureStorage store,
+                        gl::GLenum mode, ShaderTexture* target, Shader& shader) {
     if (mode == gl::GL_TRIANGLES)
         orAssert((indices.size() % 3) == 0);
     bindProperBuffer(target);
@@ -333,8 +346,6 @@ void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uv
     shader.loadUniform(0, MVP);
     shader.loadUniform(1, texture, store);
 
-    shader.vertexBuffer.bufferData(vertices);
-    shader.otherBuffer.bufferData(uvs);
     shader.indexBuffer.bufferData(indices);
 
     shader.vertexBuffer.bindBuffer(0, 3);
