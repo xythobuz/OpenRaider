@@ -18,8 +18,8 @@
 #define CACHE_MODEL 2
 
 bool Entity::showEntitySprites = true;
-bool Entity::showEntityMeshes = true;
-bool Entity::showEntityModels = true;
+bool Entity::showEntityMeshes = false;
+bool Entity::showEntityModels = false;
 
 void Entity::display(glm::mat4 VP) {
     if ((cache == -1) || (cacheType == -1)) {

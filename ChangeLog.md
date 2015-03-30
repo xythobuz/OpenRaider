@@ -4,6 +4,7 @@
 
     [ 20150330 ]
     * Removed custom Font support
+    * Some GL performance improvements
 
     [ 20150326 ]
     * No longer including gl.h globally, now only using gl33.h where needed.
