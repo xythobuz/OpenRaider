@@ -384,11 +384,11 @@ void LoaderTR2::loadRooms() {
             // TODO translate vertices by room offset!
 
             portals.push_back(new Portal(adjoiningRoom,
-                                         glm::vec3(xNormal, yNormal, zNormal),
-                                         glm::vec3(xCorner1, yCorner1, zCorner1),
-                                         glm::vec3(xCorner2, yCorner2, zCorner2),
-                                         glm::vec3(xCorner3, yCorner3, zCorner3),
-                                         glm::vec3(xCorner4, yCorner4, zCorner4)));
+                                         glm::vec3(xNormal, yNormal, zNormal) + pos,
+                                         glm::vec3(xCorner1, yCorner1, zCorner1) + pos,
+                                         glm::vec3(xCorner2, yCorner2, zCorner2) + pos,
+                                         glm::vec3(xCorner3, yCorner3, zCorner3) + pos,
+                                         glm::vec3(xCorner4, yCorner4, zCorner4) + pos));
         }
 
         uint16_t numZSectors = file.readU16();
@@ -446,7 +446,7 @@ void LoaderTR2::loadRooms() {
         for (auto s : roomSprites)
             room->addSprite(s);
 
-        getWorld().addRoom(room);
+        World::addRoom(room);
 
         // Sanity check
         if ((numPortals == 0) && (numVertices == 0)
@@ -493,7 +493,7 @@ void LoaderTR2::loadSprites() {
         int16_t bottomSide = file.read16();
 
         Sprite* sp = new Sprite(tile, x, y, width, height);
-        getWorld().addSprite(sp);
+        World::addSprite(sp);
     }
 
     uint32_t numSpriteSequences = file.readU32();
@@ -507,7 +507,7 @@ void LoaderTR2::loadSprites() {
         orAssertLessThanEqual(offset + (negativeLength * -1), numSpriteTextures);
 
         SpriteSequence* ss = new SpriteSequence(objectID, offset, (negativeLength * -1));
-        getWorld().addSpriteSequence(ss);
+        World::addSpriteSequence(ss);
     }
 
     if ((numSpriteTextures > 0) || (numSpriteSequences > 0))
@@ -636,7 +636,7 @@ void LoaderTR2::loadMeshes() {
 
         Mesh* mesh = new Mesh(vertices, texturedRectangles, texturedTriangles,
                               coloredRectangles, coloredTriangles);
-        getWorld().addMesh(mesh);
+        World::addMesh(mesh);
     }
 
     if (numMeshPointers > 0)
@@ -675,7 +675,7 @@ void LoaderTR2::loadStaticMeshes() {
 
         BoundingBox* bbox1 = new BoundingBox(glm::vec3(x11, y11, z11), glm::vec3(x12, y12, z12));
         BoundingBox* bbox2 = new BoundingBox(glm::vec3(x21, y21, z21), glm::vec3(x22, y22, z22));
-        getWorld().addStaticMesh(new StaticMesh(objectID, mesh, bbox1, bbox2));
+        World::addStaticMesh(new StaticMesh(objectID, mesh, bbox1, bbox2));
     }
 
     if (numStaticMeshes > 0)
@@ -944,7 +944,7 @@ void LoaderTR2::loadMoveables() {
 
         SkeletalModel* sm = new SkeletalModel(objectID);
         sm->add(af);
-        getWorld().addSkeletalModel(sm);
+        World::addSkeletalModel(sm);
         /*
         } else {
             // TODO Add the whole animation hierarchy
@@ -962,7 +962,7 @@ void LoaderTR2::loadMoveables() {
 
             SkeletalModel* sm = new SkeletalModel(objectID);
             sm->add(af);
-            getWorld().addSkeletalModel(sm);
+            World::addSkeletalModel(sm);
         }
         */
     }
@@ -1005,10 +1005,10 @@ void LoaderTR2::loadItems() {
         );
 
         Entity* e = new Entity(objectID, room, pos, rot);
-        getWorld().addEntity(e);
+        World::addEntity(e);
 
         if (objectID == 0) {
-            Game::setLara(getWorld().sizeEntity() - 1);
+            Game::setLara(World::sizeEntity() - 1);
         }
     }
 

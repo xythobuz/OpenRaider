@@ -9,6 +9,8 @@
 #include "Log.h"
 #include "Room.h"
 
+#include "imgui/imgui.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
 
@@ -24,10 +26,9 @@ Room::Room(glm::vec3 _pos, BoundingBox* _bbox, RoomMesh* _mesh, unsigned int f,
 }
 
 void Room::display(glm::mat4 VP) {
-    glm::mat4 MVP = VP * model;
-
-    if (showRoomGeometry)
-        mesh->display(MVP);
+    if (showRoomGeometry) {
+        mesh->display(VP * model);
+    }
 
     if (showRoomModels) {
         for (auto& m : models) {
@@ -41,8 +42,15 @@ void Room::display(glm::mat4 VP) {
         }
     }
 
-    if (showBoundingBox)
+    if (showBoundingBox) {
         bbox->display(VP, glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f));
+    }
+
+    if (Portal::getShowBoundingBox()) {
+        for (auto& p : portals) {
+            p->display(VP);
+        }
+    }
 }
 
 bool Room::isWall(unsigned long sector) {
@@ -99,5 +107,38 @@ int Room::getAdjoiningRoom(float x, float y, float z,
     }
 
     return -1;
+}
+
+void Room::displayUI() {
+    ImGui::PushID(roomIndex);
+    ImGui::Text("%03d", roomIndex);
+    ImGui::NextColumn();
+    ImGui::Text("%03d", alternateRoom);
+    ImGui::NextColumn();
+    ImGui::Text("0x%04X", flags);
+    ImGui::NextColumn();
+    if (models.size() > 0) {
+        if (ImGui::TreeNode("...##model")) {
+            for (auto& m : models) {
+                m->displayUI();
+            }
+            ImGui::TreePop();
+        }
+    } else {
+        ImGui::Text("None");
+    }
+    ImGui::NextColumn();
+    if (portals.size() > 0) {
+        if (ImGui::TreeNode("...##portal")) {
+            for (auto& p : portals) {
+                p->displayUI();
+            }
+            ImGui::TreePop();
+        }
+    } else {
+        ImGui::Text("None");
+    }
+    ImGui::NextColumn();
+    ImGui::PopID();
 }
 

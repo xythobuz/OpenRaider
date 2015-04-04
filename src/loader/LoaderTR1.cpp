@@ -179,10 +179,10 @@ void LoaderTR1::loadItems() {
         );
 
         Entity* e = new Entity(objectID, room, pos, rot);
-        getWorld().addEntity(e);
+        World::addEntity(e);
 
         if (objectID == 0) {
-            Game::setLara(getWorld().sizeEntity() - 1);
+            Game::setLara(World::sizeEntity() - 1);
         }
     }
 

@@ -51,6 +51,8 @@ class Room {
     unsigned long sizePortals() { return portals.size(); }
     Portal& getPortal(unsigned long index) { return *portals.at(index); }
 
+    void displayUI();
+
     static void setShowBoundingBox(bool s) { showBoundingBox = s; }
     static bool getShowBoundingBox() { return showBoundingBox; }
 

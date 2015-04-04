@@ -24,55 +24,47 @@
  */
 class World {
   public:
+    static void destroy();
 
-    /*!
-     * \brief Deconstructs an object of World
-     */
-    ~World();
+    static void addRoom(Room* room);
+    static unsigned long sizeRoom();
+    static Room& getRoom(unsigned long index);
 
-    /*!
-     * \brief Clears all data in world
-     */
-    void destroy();
+    static void addSprite(Sprite* sprite);
+    static unsigned long sizeSprite();
+    static Sprite& getSprite(unsigned long index);
 
-    void addRoom(Room* room);
-    unsigned long sizeRoom();
-    Room& getRoom(unsigned long index);
+    static void addSpriteSequence(SpriteSequence* sprite);
+    static unsigned long sizeSpriteSequence();
+    static SpriteSequence& getSpriteSequence(unsigned long index);
 
-    void addSprite(Sprite* sprite);
-    unsigned long sizeSprite();
-    Sprite& getSprite(unsigned long index);
+    static void addEntity(Entity* entity);
+    static unsigned long sizeEntity();
+    static Entity& getEntity(unsigned long index);
 
-    void addSpriteSequence(SpriteSequence* sprite);
-    unsigned long sizeSpriteSequence();
-    SpriteSequence& getSpriteSequence(unsigned long index);
+    static void addSkeletalModel(SkeletalModel* model);
+    static unsigned long sizeSkeletalModel();
+    static SkeletalModel& getSkeletalModel(unsigned long index);
 
-    void addEntity(Entity* entity);
-    unsigned long sizeEntity();
-    Entity& getEntity(unsigned long index);
+    static void addStaticMesh(StaticMesh* model);
+    static unsigned long sizeStaticMesh();
+    static StaticMesh& getStaticMesh(unsigned long index);
 
-    void addSkeletalModel(SkeletalModel* model);
-    unsigned long sizeSkeletalModel();
-    SkeletalModel& getSkeletalModel(unsigned long index);
+    static void addMesh(Mesh* mesh);
+    static unsigned long sizeMesh();
+    static Mesh& getMesh(unsigned long index);
 
-    void addStaticMesh(StaticMesh* model);
-    unsigned long sizeStaticMesh();
-    StaticMesh& getStaticMesh(unsigned long index);
-
-    void addMesh(Mesh* mesh);
-    unsigned long sizeMesh();
-    Mesh& getMesh(unsigned long index);
+    static void displayUI();
 
   private:
-    std::vector<std::unique_ptr<Room>> mRooms;
-    std::vector<std::unique_ptr<Sprite>> mSprites;
-    std::vector<std::unique_ptr<SpriteSequence>> mSpriteSequences;
-    std::vector<std::unique_ptr<Entity>> mEntities;
-    std::vector<std::unique_ptr<SkeletalModel>> mModels;
-    std::vector<std::unique_ptr<StaticMesh>> mStaticMeshes;
-    std::vector<std::unique_ptr<Mesh>> mMeshes;
+    static std::vector<std::unique_ptr<Room>> rooms;
+    static std::vector<std::unique_ptr<Sprite>> sprites;
+    static std::vector<std::unique_ptr<SpriteSequence>> spriteSequences;
+    static std::vector<std::unique_ptr<Entity>> entities;
+    static std::vector<std::unique_ptr<SkeletalModel>> models;
+    static std::vector<std::unique_ptr<StaticMesh>> staticMeshes;
+    static std::vector<std::unique_ptr<Mesh>> meshes;
 };
 
-World& getWorld();
-
 #endif
+

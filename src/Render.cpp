@@ -68,8 +68,8 @@ void Render::display() {
     for (int r = roomList.size() - 1; r >= 0; r--) {
         roomList.at(r)->display(VP);
 
-        for (int i = 0; i < getWorld().sizeEntity(); i++) {
-            auto& e = getWorld().getEntity(i);
+        for (int i = 0; i < World::sizeEntity(); i++) {
+            auto& e = World::getEntity(i);
             if (roomList.at(r)->getIndex() == e.getRoom()) {
                 e.display(VP);
             }
@@ -87,8 +87,8 @@ void Render::display() {
 void Render::buildRoomList(int room, int budget) {
     if (room < -1) {
         // Check if the camera currently is in a room...
-        for (int i = 0; i < getWorld().sizeRoom(); i++) {
-            if (getWorld().getRoom(i).getBoundingBox().inBox(Camera::getPosition())) {
+        for (int i = 0; i < World::sizeRoom(); i++) {
+            if (World::getRoom(i).getBoundingBox().inBox(Camera::getPosition())) {
                 buildRoomList(i, budget);
                 return;
             }
@@ -96,27 +96,37 @@ void Render::buildRoomList(int room, int budget) {
         buildRoomList(-1, budget);
     } else if (room == -1) {
         // Check visibility for all rooms!
-        for (int i = 0; i < getWorld().sizeRoom(); i++) {
-            if (Camera::boxInFrustum(getWorld().getRoom(i).getBoundingBox())) {
-                roomList.push_back(&getWorld().getRoom(i));
+        for (int i = 0; i < World::sizeRoom(); i++) {
+            if (Camera::boxInFrustum(World::getRoom(i).getBoundingBox())) {
+                roomList.push_back(&World::getRoom(i));
             }
         }
     } else {
         // Check visibility of room and connected rooms, recursively
-        if (Camera::boxInFrustum(getWorld().getRoom(room).getBoundingBox())) {
-            roomList.push_back(&getWorld().getRoom(room));
-            for (int i = 0; i < getWorld().getRoom(room).sizePortals(); i++) {
-                int r = getWorld().getRoom(room).getPortal(i).getAdjoiningRoom();
+        if (Camera::boxInFrustum(World::getRoom(room).getBoundingBox())) {
+            roomList.push_back(&World::getRoom(room));
+            for (int i = 0; i < World::getRoom(room).sizePortals(); i++) {
+                auto& portal = World::getRoom(room).getPortal(i);
+
+                // Check if portal is visible / can be seen through
+                bool visible = Camera::boxInFrustum(portal.getBoundingBox());
+                if (!visible) {
+                    continue;
+                }
+
+                // Check if already in list...
                 bool found = false;
                 for (int n = 0; n < roomList.size(); n++) {
-                    if (roomList.at(n) == &getWorld().getRoom(r)) {
+                    if (roomList.at(n) == &World::getRoom(portal.getAdjoiningRoom())) {
                         found = true;
                         break;
                     }
                 }
+
+                // ...only render if not
                 if (!found) {
                     if (budget > 0) {
-                        buildRoomList(r, --budget);
+                        buildRoomList(portal.getAdjoiningRoom(), --budget);
                     }
                 }
             }
@@ -201,20 +211,26 @@ void Render::displayUI() {
         if (ImGui::Checkbox("Overlay", &showOverlay)) {
             Camera::setShowOverlay(showOverlay);
         }
-        if (ImGui::Button("Reset Room ID")) {
-            Camera::setRoom(-1);
+        glm::vec3 camPos = Camera::getPosition();
+        if (ImGui::SliderFloat3("Position", &camPos.x, -100000, 100000)) {
+            Camera::setPosition(camPos);
         }
 
         ImGui::Separator();
         ImGui::Text("Bounding Boxes:");
         bool showBoundingBox = Room::getShowBoundingBox();
-        if (ImGui::Checkbox("Room##bbox", &showBoundingBox)) {
+        if (ImGui::Checkbox("Rooms##bbox", &showBoundingBox)) {
             Room::setShowBoundingBox(showBoundingBox);
         }
         ImGui::SameLine();
         bool showBoundingBox2 = StaticMesh::getShowBoundingBox();
-        if (ImGui::Checkbox("StaticMesh##bbox", &showBoundingBox2)) {
+        if (ImGui::Checkbox("StaticMeshes##bbox", &showBoundingBox2)) {
             StaticMesh::setShowBoundingBox(showBoundingBox2);
+        }
+        ImGui::SameLine();
+        bool showBoundingBox3 = Portal::getShowBoundingBox();
+        if (ImGui::Checkbox("Portals##bbox", &showBoundingBox3)) {
+            Portal::setShowBoundingBox(showBoundingBox3);
         }
 
         ImGui::Separator();

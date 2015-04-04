@@ -543,17 +543,17 @@ void TextureManager::display() {
     }
 
     if (ImGui::CollapsingHeader("Sprite Sequence Viewer")) {
-        if (getWorld().sizeSprite() <= 0) {
+        if (World::sizeSprite() <= 0) {
             ImGui::Text("Please load a level containing sprites!");
         } else {
             static int index = 0;
             static int sprite = 0;
-            if (ImGui::SliderInt("##spriteslide", &index, 0, getWorld().sizeSpriteSequence() - 1)) {
+            if (ImGui::SliderInt("##spriteslide", &index, 0, World::sizeSpriteSequence() - 1)) {
                 sprite = 0;
             }
             ImGui::SameLine();
             if (ImGui::Button("+##spriteplus", ImVec2(0, 0), true)) {
-                if (index < (getWorld().sizeSpriteSequence() - 1))
+                if (index < (World::sizeSpriteSequence() - 1))
                     index++;
                 else
                     index = 0;
@@ -564,23 +564,23 @@ void TextureManager::display() {
                 if (index > 0)
                     index--;
                 else
-                    index = getWorld().sizeSpriteSequence() - 1;
+                    index = World::sizeSpriteSequence() - 1;
                 sprite = 0;
             }
 
-            if (index >= getWorld().sizeSpriteSequence()) {
+            if (index >= World::sizeSpriteSequence()) {
                 index = 0;
                 sprite = 0;
             }
 
-            if (sprite >= getWorld().getSpriteSequence(index).size()) {
+            if (sprite >= World::getSpriteSequence(index).size()) {
                 sprite = 0;
             }
 
             ImGui::SameLine();
-            ImGui::Text("Sprite %d/%d", sprite + 1, getWorld().getSpriteSequence(index).size());
+            ImGui::Text("Sprite %d/%d", sprite + 1, World::getSpriteSequence(index).size());
 
-            auto& s = getWorld().getSprite(getWorld().getSpriteSequence(index).getStart() + sprite);
+            auto& s = World::getSprite(World::getSpriteSequence(index).getStart() + sprite);
             auto bm = getBufferManager(s.getTexture(), TextureStorage::GAME);
             ImVec2 size(ImGui::GetColumnWidth() * 2 / 3, ImGui::GetColumnWidth() * 2 / 3);
             auto uv = s.getUVs();
@@ -593,7 +593,7 @@ void TextureManager::display() {
                 fr--;
             } else {
                 fr = RunTime::getFPS() / 10;
-                if (sprite < (getWorld().getSpriteSequence(index).size() - 1))
+                if (sprite < (World::getSpriteSequence(index).size() - 1))
                     sprite++;
                 else
                     sprite = 0;

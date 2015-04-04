@@ -255,6 +255,7 @@ void UI::display() {
         RunTime::display();
         TextureManager::display();
         SoundManager::display();
+        World::displayUI();
 
         if (ImGui::CollapsingHeader("Library Versions")) {
             ImGui::TextWrapped("%s", VERSION);
@@ -287,7 +288,7 @@ void UI::display() {
         if (ImGui::CollapsingHeader("ShaderTexture Test")) {
             static ShaderTexture* st = nullptr;
             static int index = 0;
-            ImGui::SliderInt("SkeletalModel", &index, 0, getWorld().sizeSkeletalModel() - 1);
+            ImGui::SliderInt("SkeletalModel", &index, 0, World::sizeSkeletalModel() - 1);
 
             static glm::mat4 MVP(1.0f);
             static bool dirty = true, redraw = false;
@@ -322,8 +323,8 @@ void UI::display() {
                 dirty = false;
             }
 
-            if ((index >= 0) && (index < getWorld().sizeSkeletalModel())) {
-                auto& sm = getWorld().getSkeletalModel(index);
+            if ((index >= 0) && (index < World::sizeSkeletalModel())) {
+                auto& sm = World::getSkeletalModel(index);
                 if ((sm.size() > 0) && (sm.get(0).size() > 0)) {
                     if (ImGui::Button("(Re)Create ShaderTexture...")) {
                         if (st != nullptr) {

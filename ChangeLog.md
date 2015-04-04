@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150404 ]
+    * World is now static
+    * Can display debug informations about Rooms and StaticMeshes
+    * Can now render portal outlines
+    * Building rendering list now also based on portal visibility
+
     [ 20150330 ]
     * Removed custom Font support
     * Some GL performance improvements

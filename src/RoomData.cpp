@@ -11,6 +11,8 @@
 #include "system/Shader.h"
 #include "RoomData.h"
 
+#include "imgui/imgui.h"
+
 #include <glbinding/gl/gl33.h>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -64,15 +66,19 @@ StaticModel::StaticModel(glm::vec3 pos, float angle, int i) : id(i), cache(-1) {
 
 void StaticModel::display(glm::mat4 VP) {
     if (cache < 0) {
-        for (int i = 0; i < getWorld().sizeStaticMesh(); i++) {
-            if (getWorld().getStaticMesh(i).getID() == id) {
+        for (int i = 0; i < World::sizeStaticMesh(); i++) {
+            if (World::getStaticMesh(i).getID() == id) {
                 cache = i;
             }
         }
         orAssertGreaterThanEqual(cache, 0);
     }
 
-    getWorld().getStaticMesh(cache).display(VP * model);
+    World::getStaticMesh(cache).display(VP * model);
+}
+
+void StaticModel::displayUI() {
+    ImGui::Text("ID %d; No. %d", id, cache);
 }
 
 // ----------------------------------------------------------------------------
@@ -83,7 +89,21 @@ void RoomSprite::display(glm::mat4 VP) {
                                    0.0f));
     glm::mat4 model = translate * rotate;
 
-    getWorld().getSprite(sprite).display(VP * model);
+    World::getSprite(sprite).display(VP * model);
+}
+
+// ----------------------------------------------------------------------------
+
+bool Portal::showBoundingBox = false;
+
+void Portal::display(glm::mat4 VP) {
+    if (showBoundingBox) {
+        bbox.display(VP, glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    }
+}
+
+void Portal::displayUI() {
+    ImGui::Text("To %03d", adjoiningRoom);
 }
 
 // ----------------------------------------------------------------------------

@@ -35,7 +35,7 @@ void Game::destroy() {
     Render::clearRoomList();
     SoundManager::clear();
     TextureManager::clear();
-    getWorld().destroy();
+    World::destroy();
 }
 
 int Game::loadLevel(std::string level) {
@@ -51,12 +51,12 @@ int Game::loadLevel(std::string level) {
             return -2;
         }
 
-        for (int i = 0; i < getWorld().sizeMesh(); i++) {
-            getWorld().getMesh(i).prepare();
+        for (int i = 0; i < World::sizeMesh(); i++) {
+            World::getMesh(i).prepare();
         }
 
-        for (int i = 0; i < getWorld().sizeRoom(); i++) {
-            getWorld().getRoom(i).prepare();
+        for (int i = 0; i < World::sizeRoom(); i++) {
+            World::getRoom(i).prepare();
         }
 
         SoundManager::prepareSources();
@@ -114,13 +114,13 @@ void Game::handleControllerAxis(float value, KeyboardButton axis) {
 
 Entity& Game::getLara() {
     orAssertGreaterThanEqual(mLara, 0);
-    orAssertLessThan(mLara, getWorld().sizeEntity());
-    return getWorld().getEntity(mLara);
+    orAssertLessThan(mLara, World::sizeEntity());
+    return World::getEntity(mLara);
 }
 
 void Game::setLara(long lara) {
     orAssertGreaterThanEqual(lara, 0);
-    orAssertLessThan(lara, getWorld().sizeEntity());
+    orAssertLessThan(lara, World::sizeEntity());
     mLara = lara;
 }
 

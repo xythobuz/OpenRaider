@@ -14,7 +14,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 void BoneTag::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {
-    getWorld().getMesh(mesh).display(MVP, shaderTexture);
+    World::getMesh(mesh).display(MVP, shaderTexture);
 }
 
 // ----------------------------------------------------------------------------

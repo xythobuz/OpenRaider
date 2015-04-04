@@ -28,11 +28,6 @@
 #include <glbinding/Binding.h>
 
 static std::string configFileToUse;
-static std::shared_ptr<World> gWorld;
-
-World& getWorld() {
-    return *gWorld;
-}
 
 int main(int argc, char* argv[]) {
     command_t cmd;
@@ -47,8 +42,6 @@ int main(int argc, char* argv[]) {
     glbinding::Binding::initialize();
     Log::initialize();
     RunTime::initialize(); // RunTime is required by other constructors
-
-    gWorld.reset(new World());
 
     Command::fillCommandList();
 
@@ -127,6 +120,7 @@ int main(int argc, char* argv[]) {
         renderFrame();
     }
 
+    World::destroy();
     Menu::shutdown();
     UI::shutdown();
     Sound::shutdown();

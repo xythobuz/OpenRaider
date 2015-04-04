@@ -30,8 +30,8 @@ void Entity::display(glm::mat4 VP) {
          * be displayed wrong (eg. 'bad guy' becomes 'clothes' in tr2/boat)...
          */
 
-        for (int i = 0; (i < getWorld().sizeSkeletalModel()) && (cache == -1); i++) {
-            auto& s = getWorld().getSkeletalModel(i);
+        for (int i = 0; (i < World::sizeSkeletalModel()) && (cache == -1); i++) {
+            auto& s = World::getSkeletalModel(i);
             if (s.getID() == id) {
                 cacheType = CACHE_MODEL;
                 cache = i;
@@ -39,8 +39,8 @@ void Entity::display(glm::mat4 VP) {
             }
         }
 
-        for (int i = 0; (i < getWorld().sizeStaticMesh()) && (cache == -1); i++) {
-            auto& s = getWorld().getStaticMesh(i);
+        for (int i = 0; (i < World::sizeStaticMesh()) && (cache == -1); i++) {
+            auto& s = World::getStaticMesh(i);
             if (s.getID() == id) {
                 cacheType = CACHE_MESH;
                 cache = i;
@@ -48,8 +48,8 @@ void Entity::display(glm::mat4 VP) {
             }
         }
 
-        for (int i = 0; i < getWorld().sizeSpriteSequence(); i++) {
-            auto& s = getWorld().getSpriteSequence(i);
+        for (int i = 0; i < World::sizeSpriteSequence(); i++) {
+            auto& s = World::getSpriteSequence(i);
             if (s.getID() == id) {
                 cacheType = CACHE_SPRITE;
                 cache = i;
@@ -73,13 +73,13 @@ void Entity::display(glm::mat4 VP) {
 
     if (cacheType == CACHE_SPRITE) {
         if (showEntitySprites)
-            getWorld().getSpriteSequence(cache).display(MVP, sprite);
+            World::getSpriteSequence(cache).display(MVP, sprite);
     } else if (cacheType == CACHE_MESH) {
         if (showEntityMeshes)
-            getWorld().getStaticMesh(cache).display(MVP);
+            World::getStaticMesh(cache).display(MVP);
     } else if (cacheType == CACHE_MODEL) {
         if (showEntityModels)
-            getWorld().getSkeletalModel(cache).display(MVP, animation, frame);
+            World::getSkeletalModel(cache).display(MVP, animation, frame);
     }
 }
 
