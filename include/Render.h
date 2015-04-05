@@ -40,7 +40,9 @@ class Render {
     static bool getDisplayViewFrustum() { return displayViewFrustum; }
 
   private:
-    static void buildRoomList(int room = -2, int budget = 10);
+    static void buildRoomList(glm::mat4 VP, int room = -2,
+                              glm::vec2 min = glm::vec2(-1.0f, -1.0f),
+                              glm::vec2 max = glm::vec2(1.0f, 1.0f));
 
     static RenderMode mode;
     static std::vector<Room*> roomList;

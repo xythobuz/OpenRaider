@@ -381,10 +381,8 @@ void LoaderTR2::loadRooms() {
             int16_t yCorner4 = file.read16();
             int16_t zCorner4 = file.read16();
 
-            // TODO translate vertices by room offset!
-
             portals.push_back(new Portal(adjoiningRoom,
-                                         glm::vec3(xNormal, yNormal, zNormal) + pos,
+                                         glm::vec3(xNormal, yNormal, zNormal),
                                          glm::vec3(xCorner1, yCorner1, zCorner1) + pos,
                                          glm::vec3(xCorner2, yCorner2, zCorner2) + pos,
                                          glm::vec3(xCorner3, yCorner3, zCorner3) + pos,

@@ -137,7 +137,11 @@ void Shader::loadUniform(int uni, int texture, TextureStorage store) {
 
 void Shader::use() {
     orAssert(programID >= 0);
-    gl::glUseProgram(programID);
+    static int lastID = -1;
+    if (programID != lastID) {
+        gl::glUseProgram(programID);
+        lastID = programID;
+    }
 }
 
 int Shader::compile(const char* vertex, const char* fragment) {
@@ -299,9 +303,6 @@ void Shader::bindProperBuffer(ShaderTexture* target) {
 void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
                     glm::mat4 MVP, unsigned int texture, TextureStorage store,
                     gl::GLenum mode, ShaderTexture* target, Shader& shader) {
-    orAssert(vertices.size() == uvs.size());
-    if (mode == gl::GL_TRIANGLES)
-        orAssert((vertices.size() % 3) == 0);
     bindProperBuffer(target);
 
     shader.use();
@@ -329,8 +330,6 @@ void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uv
 }
 
 void Shader::drawGLBuffer(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs, Shader& shader) {
-    orAssert(vertices.size() == uvs.size());
-
     shader.vertexBuffer.bufferData(vertices);
     shader.otherBuffer.bufferData(uvs);
 }
@@ -338,8 +337,6 @@ void Shader::drawGLBuffer(std::vector<glm::vec3>& vertices, std::vector<glm::vec
 void Shader::drawGLOnly(std::vector<unsigned short>& indices, glm::mat4 MVP,
                         unsigned int texture, TextureStorage store,
                         gl::GLenum mode, ShaderTexture* target, Shader& shader) {
-    if (mode == gl::GL_TRIANGLES)
-        orAssert((indices.size() % 3) == 0);
     bindProperBuffer(target);
 
     shader.use();
@@ -360,9 +357,6 @@ void Shader::drawGLOnly(std::vector<unsigned short>& indices, glm::mat4 MVP,
 
 void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
                     glm::mat4 MVP, gl::GLenum mode, ShaderTexture* target, Shader& shader) {
-    orAssert(vertices.size() == colors.size());
-    if (mode == gl::GL_TRIANGLES)
-        orAssert((vertices.size() % 3) == 0);
     bindProperBuffer(target);
 
     shader.use();
@@ -383,9 +377,6 @@ void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& co
 void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& colors,
                     std::vector<unsigned short>& indices, glm::mat4 MVP,
                     gl::GLenum mode, ShaderTexture* target, Shader& shader) {
-    orAssert(vertices.size() == colors.size());
-    if (mode == gl::GL_TRIANGLES)
-        orAssert((indices.size() % 3) == 0);
     bindProperBuffer(target);
 
     shader.use();

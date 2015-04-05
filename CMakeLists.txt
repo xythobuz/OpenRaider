@@ -171,5 +171,18 @@ if (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         COMMENT "Auto-Formatting code..." VERBATIM
     )
+
+    #################################################################
+
+    # Count source code lines
+    add_custom_target (count
+        COMMAND cloc --exclude-dir=deps,cmake,data,build ${PROJECT_SOURCE_DIR}
+        COMMENT "Counting lines of source code..." VERBATIM
+    )
+
+    add_custom_target (countFull
+        COMMAND cloc --exclude-dir=build ${PROJECT_SOURCE_DIR}
+        COMMENT "Counting lines of source code..." VERBATIM
+    )
 endif (${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
 

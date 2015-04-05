@@ -51,19 +51,20 @@ void Render::display() {
         gl::glPolygonMode(gl::GL_FRONT_AND_BACK, gl::GL_FILL);
     }
 
-    if (Camera::update()) {
-        int r = Camera::getRoom();
-        clearRoomList();
-        if (r < 0) {
-            buildRoomList();
-        } else {
-            buildRoomList(r);
-        }
-    }
-
+    bool updated = Camera::update();
     glm::mat4 projection = Camera::getProjectionMatrix();
     glm::mat4 view = Camera::getViewMatrix();
     glm::mat4 VP = projection * view;
+
+    //if (updated) {
+        int r = Camera::getRoom();
+        clearRoomList();
+        if (r < 0) {
+            buildRoomList(VP);
+        } else {
+            buildRoomList(VP, r);
+        }
+    //}
 
     for (int r = roomList.size() - 1; r >= 0; r--) {
         roomList.at(r)->display(VP);
@@ -84,16 +85,16 @@ void Render::display() {
     }
 }
 
-void Render::buildRoomList(int room, int budget) {
+void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max) {
     if (room < -1) {
         // Check if the camera currently is in a room...
         for (int i = 0; i < World::sizeRoom(); i++) {
             if (World::getRoom(i).getBoundingBox().inBox(Camera::getPosition())) {
-                buildRoomList(i, budget);
+                buildRoomList(VP, i);
                 return;
             }
         }
-        buildRoomList(-1, budget);
+        buildRoomList(VP, -1);
     } else if (room == -1) {
         // Check visibility for all rooms!
         for (int i = 0; i < World::sizeRoom(); i++) {
@@ -102,19 +103,57 @@ void Render::buildRoomList(int room, int budget) {
             }
         }
     } else {
-        // Check visibility of room and connected rooms, recursively
+        // Check if this room is visible
         if (Camera::boxInFrustum(World::getRoom(room).getBoundingBox())) {
             roomList.push_back(&World::getRoom(room));
+
+            // Display the visibility test for the portal to this room
+            BoundingBox debugBox(glm::vec3(min, 0.0f), glm::vec3(max, 0.0f));
+            debugBox.display(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+            ImGui::Text("   Min: %.3f %.3f", min.x, min.y);
+            ImGui::Text("   Max: %.3f %.3f", max.x, max.y);
+
+            // Check all portals leading from this room to somewhere else
             for (int i = 0; i < World::getRoom(room).sizePortals(); i++) {
                 auto& portal = World::getRoom(room).getPortal(i);
 
-                // Check if portal is visible / can be seen through
-                bool visible = Camera::boxInFrustum(portal.getBoundingBox());
-                if (!visible) {
-                    continue;
+                // Calculate the 2D window of this portal
+                glm::vec2 newMin, newMax;
+                bool inited = false;
+                for (int c = 0; c < 4; c++) {
+                    glm::vec3 vert = portal.getVertex(c);
+                    glm::vec4 result = VP * glm::vec4(vert, 1.0f);
+                    vert = glm::vec3(result) / result.w;
+
+                    ImGui::Text("Test %d: %.3f %.3f", c, vert.x, vert.y);
+
+                    if (!inited) {
+                        newMin = glm::vec2(vert);
+                        newMax = glm::vec2(vert);
+                        inited = true;
+                    } else {
+                        if (vert.x < newMin.x)
+                            newMin.x = vert.x;
+                        if (vert.y < newMin.y)
+                            newMin.y = vert.y;
+                        if (vert.x > newMax.x)
+                            newMax.x = vert.x;
+                        if (vert.y > newMax.y)
+                            newMax.y = vert.y;
+                    }
                 }
 
-                // Check if already in list...
+                // Check if the portal intersects the portal leading into this room
+                if (!((min.x < newMax.x) && (max.x > newMin.x)
+                    && (min.y < newMax.y) && (max.y > newMin.y))) {
+                    ImGui::Text("Invisible!");
+                    continue;
+                } else {
+                    ImGui::Text("Visible!");
+                }
+
+                // Check if this room is already in the list...
                 bool found = false;
                 for (int n = 0; n < roomList.size(); n++) {
                     if (roomList.at(n) == &World::getRoom(portal.getAdjoiningRoom())) {
@@ -123,11 +162,9 @@ void Render::buildRoomList(int room, int budget) {
                     }
                 }
 
-                // ...only render if not
+                // ...only render it if it is not
                 if (!found) {
-                    if (budget > 0) {
-                        buildRoomList(portal.getAdjoiningRoom(), --budget);
-                    }
+                    buildRoomList(VP, portal.getAdjoiningRoom(), newMin, newMax);
                 }
             }
         }

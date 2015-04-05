@@ -278,6 +278,10 @@ static std::vector<glm::vec3> vertexPointBuffer;
 static std::vector<glm::vec3> colorPointBuffer;
 
 void Camera::calculateFrustumPlanes() {
+    vertexBuffer.clear();
+    vertexPointBuffer.clear();
+    colorPointBuffer.clear();
+
     glm::mat4 combo = projection * view;
 
     // Calculate frustum corners to display them
