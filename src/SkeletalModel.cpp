@@ -108,7 +108,7 @@ void SkeletalModel::display(glm::mat4 MVP, int aframe, int bframe, ShaderTexture
     BoneFrame& boneframe = anim.get(bframe);
 
     glm::vec3 pos = boneframe.getPosition();
-    glm::mat4 frameTrans = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
+    glm::mat4 frameTrans = glm::translate(glm::mat4(1.0f), pos);
 
     MatrixStack stack(MVP * frameTrans);
 
@@ -147,7 +147,7 @@ void SkeletalModel::display(glm::mat4 MVP, int aframe, int bframe, ShaderTexture
 #endif
 
             glm::vec3 off = tag.getOffset();
-            translate = glm::translate(glm::mat4(1.0f), glm::vec3(off.x, -off.y, off.z));
+            translate = glm::translate(glm::mat4(1.0f), off);
         }
 
         glm::vec3 rot = tag.getRotation();

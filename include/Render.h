@@ -48,6 +48,7 @@ class Render {
     static std::vector<Room*> roomList;
 
     static bool displayViewFrustum;
+    static bool displayVisibilityCheck;
 };
 
 #endif

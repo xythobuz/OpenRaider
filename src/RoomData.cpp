@@ -59,7 +59,7 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
 // ----------------------------------------------------------------------------
 
 StaticModel::StaticModel(glm::vec3 pos, float angle, int i) : id(i), cache(-1) {
-    glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
+    glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
     glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
     model = translate * rotate;
 }
@@ -84,12 +84,13 @@ void StaticModel::displayUI() {
 // ----------------------------------------------------------------------------
 
 void RoomSprite::display(glm::mat4 VP) {
-    glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
-    glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), Camera::getRotation().x, glm::vec3(0.0f, 1.0f,
-                                   0.0f));
-    glm::mat4 model = translate * rotate;
+    glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
 
-    World::getSprite(sprite).display(VP * model);
+    //! \fixme Calculate angle between camera and sprite
+    glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), Camera::getRotation().x,
+                                   glm::vec3(0.0f, 1.0f, 0.0f));
+
+    World::getSprite(sprite).display(VP * (translate * rotate));
 }
 
 // ----------------------------------------------------------------------------

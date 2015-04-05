@@ -79,7 +79,6 @@ void Camera::reset() {
 }
 
 void Camera::setSize(glm::i32vec2 s) {
-    //! \fixme TODO instead of mirroring the Y axis in the shader, scale with -1 here
     projection = glm::perspective(fov, float(s.x) / float(s.y), nearDist, farDist);
 }
 
@@ -93,9 +92,9 @@ void Camera::handleAction(ActionEvents action, bool isFinished) {
     } else if (action == backwardAction) {
         posSpeed -= dirUnit * maxSpeed * factor;
     } else if (action == leftAction) {
-        posSpeed += rightUnit * maxSpeed * factor;
-    } else if (action == rightAction) {
         posSpeed -= rightUnit * maxSpeed * factor;
+    } else if (action == rightAction) {
+        posSpeed += rightUnit * maxSpeed * factor;
     } else if (action == jumpAction) {
         posSpeed += upUnit * maxSpeed * factor;
     } else if (action == crouchAction) {
@@ -114,12 +113,12 @@ void Camera::handleMouseMotion(int x, int y) {
         dirty = true;
 
     while (x > 0) {
-        rot.x += rotationDeltaX;
+        rot.x -= rotationDeltaX;
         x--;
     }
 
     while (x < 0) {
-        rot.x -= rotationDeltaX;
+        rot.x += rotationDeltaX;
         x++;
     }
 
@@ -143,11 +142,11 @@ void Camera::handleControllerAxis(float value, KeyboardButton axis) {
         value = 0.0f;
 
     if (axis == leftXAxis) {
-        posSpeed.x = -maxSpeed * value;
+        posSpeed.x = maxSpeed * value;
     } else if (axis == leftYAxis) {
         posSpeed.z = maxSpeed * value;
     } else if (axis == rightXAxis) {
-        rotSpeed.x = controllerViewFactor * value;
+        rotSpeed.x = -controllerViewFactor * value;
     } else if (axis == rightYAxis) {
         rotSpeed.y = -controllerViewFactor * value;
     } else {
@@ -178,9 +177,10 @@ bool Camera::update() {
     else
         rotSpeed = glm::vec2(0.0f, 0.0f);
 
+    static glm::quat quatZ = glm::angleAxis(glm::pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
     glm::quat quatY = glm::angleAxis(rot.x, glm::vec3(0.0f, 1.0f, 0.0f));
     glm::quat quatX = glm::angleAxis(rot.y, glm::vec3(1.0f, 0.0f, 0.0f));
-    glm::quat quaternion = quatY * quatX;
+    glm::quat quaternion = quatZ * quatY * quatX;
 
     glm::vec3 clampedSpeed;
     if (movingFaster) {
@@ -297,7 +297,6 @@ void Camera::calculateFrustumPlanes() {
     for (int i = 0; i < 8; i++) {
         glm::vec4 t = inverse * glm::vec4(frustumVertices[i], 1.0f);
         frustumVertices[i] = glm::vec3(t) / t.w;
-        frustumVertices[i].y *= -1.0f;
     }
 
     // Set planes used for frustum culling
@@ -373,7 +372,7 @@ bool Camera::boxInFrustum(BoundingBox b) {
     for (int i = 0; i < 6; i++) {
         int out = 0, in = 0;
         for (int c = 0; (c < 8) && ((in == 0) || (out == 0)); c++) {
-            if (planes[i].distance(b.getCorner(c)) < 0)
+            if (planes[i].distance(b.getCorner(c)) > 0)
                 out++;
             else
                 in++;

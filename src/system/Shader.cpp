@@ -411,10 +411,10 @@ uniform mat4 MVP;
 
 void main() {
     vec4 pos = MVP * vec4(vertexPosition_modelspace.x,
-                          -vertexPosition_modelspace.y,
+                          vertexPosition_modelspace.y,
                           vertexPosition_modelspace.z,
                           1);
-    gl_Position = vec4(-pos.x, pos.yzw);
+    gl_Position = pos;
     UV = vertexUV;
 }
 )!?!";
@@ -447,10 +447,10 @@ uniform mat4 MVP;
 
 void main() {
     vec4 pos = MVP * vec4(vertexPosition_modelspace.x,
-                          -vertexPosition_modelspace.y,
+                          vertexPosition_modelspace.y,
                           vertexPosition_modelspace.z,
                           1);
-    gl_Position = vec4(-pos.x, pos.yzw);
+    gl_Position = pos;
     color = vertexColor;
 }
 )!?!";

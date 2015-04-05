@@ -28,6 +28,7 @@
 RenderMode Render::mode = RenderMode::LoadScreen;
 std::vector<Room*> Render::roomList;
 bool Render::displayViewFrustum = false;
+bool Render::displayVisibilityCheck = false;
 
 void Render::display() {
     gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
@@ -56,7 +57,7 @@ void Render::display() {
     glm::mat4 view = Camera::getViewMatrix();
     glm::mat4 VP = projection * view;
 
-    //if (updated) {
+    if (updated || displayVisibilityCheck) {
         int r = Camera::getRoom();
         clearRoomList();
         if (r < 0) {
@@ -64,7 +65,7 @@ void Render::display() {
         } else {
             buildRoomList(VP, r);
         }
-    //}
+    }
 
     for (int r = roomList.size() - 1; r >= 0; r--) {
         roomList.at(r)->display(VP);
@@ -103,69 +104,79 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
             }
         }
     } else {
-        // Check if this room is visible
-        if (Camera::boxInFrustum(World::getRoom(room).getBoundingBox())) {
-            roomList.push_back(&World::getRoom(room));
+        roomList.push_back(&World::getRoom(room));
 
+        if (displayVisibilityCheck) {
             // Display the visibility test for the portal to this room
             BoundingBox debugBox(glm::vec3(min, 0.0f), glm::vec3(max, 0.0f));
             debugBox.display(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
             ImGui::Text("   Min: %.3f %.3f", min.x, min.y);
             ImGui::Text("   Max: %.3f %.3f", max.x, max.y);
+        }
 
-            // Check all portals leading from this room to somewhere else
-            for (int i = 0; i < World::getRoom(room).sizePortals(); i++) {
-                auto& portal = World::getRoom(room).getPortal(i);
+        // Check all portals leading from this room to somewhere else
+        for (int i = 0; i < World::getRoom(room).sizePortals(); i++) {
+            auto& portal = World::getRoom(room).getPortal(i);
 
-                // Calculate the 2D window of this portal
-                glm::vec2 newMin, newMax;
-                bool inited = false;
-                for (int c = 0; c < 4; c++) {
-                    glm::vec3 vert = portal.getVertex(c);
-                    glm::vec4 result = VP * glm::vec4(vert, 1.0f);
-                    vert = glm::vec3(result) / result.w;
+            // Calculate the 2D window of this portal
+            glm::vec3 newMin, newMax;
+            for (int c = 0; c < 4; c++) {
+                glm::vec3 vert = portal.getVertex(c);
+                glm::vec4 result = VP * glm::vec4(vert, 1.0f);
+                vert = glm::vec3(result) / result.w;
 
-                    ImGui::Text("Test %d: %.3f %.3f", c, vert.x, vert.y);
-
-                    if (!inited) {
-                        newMin = glm::vec2(vert);
-                        newMax = glm::vec2(vert);
-                        inited = true;
-                    } else {
-                        if (vert.x < newMin.x)
-                            newMin.x = vert.x;
-                        if (vert.y < newMin.y)
-                            newMin.y = vert.y;
-                        if (vert.x > newMax.x)
-                            newMax.x = vert.x;
-                        if (vert.y > newMax.y)
-                            newMax.y = vert.y;
-                    }
+                if (displayVisibilityCheck) {
+                    ImGui::Text("Test %d: %.3f %.3f %.3f", c, vert.x, vert.y, vert.z);
                 }
 
-                // Check if the portal intersects the portal leading into this room
-                if (!((min.x < newMax.x) && (max.x > newMin.x)
-                    && (min.y < newMax.y) && (max.y > newMin.y))) {
-                    ImGui::Text("Invisible!");
-                    continue;
+                if (c == 0) {
+                    newMin = vert;
+                    newMax = vert;
                 } else {
-                    ImGui::Text("Visible!");
+                    if (vert.x < newMin.x)
+                        newMin.x = vert.x;
+                    if (vert.y < newMin.y)
+                        newMin.y = vert.y;
+                    if (vert.z < newMin.z)
+                        newMin.z = vert.z;
+                    if (vert.x > newMax.x)
+                        newMax.x = vert.x;
+                    if (vert.y > newMax.y)
+                        newMax.y = vert.y;
+                    if (vert.z > newMax.z)
+                        newMax.z = vert.z;
                 }
+            }
 
-                // Check if this room is already in the list...
-                bool found = false;
-                for (int n = 0; n < roomList.size(); n++) {
-                    if (roomList.at(n) == &World::getRoom(portal.getAdjoiningRoom())) {
-                        found = true;
-                        break;
-                    }
-                }
+            if (displayVisibilityCheck) {
+                ImGui::Text("NewMin: %.3f %.3f %.3f", newMin.x, newMin.y, newMin.z);
+                ImGui::Text("NewMax: %.3f %.3f %.3f", newMax.x, newMax.y, newMax.z);
+            }
 
-                // ...only render it if it is not
-                if (!found) {
-                    buildRoomList(VP, portal.getAdjoiningRoom(), newMin, newMax);
+            //! \fixme Currently also checking behind player, because Z is always 1.0f?!
+            //if ((newMin.z > 0.0f) || (newMin.z < -1.0f) || (newMax.z > 0.0f) || (newMax.z < -1.0f)) {
+            //    continue;
+            //}
+
+            // Check if the portal intersects the portal leading into this room
+            if (!((min.x < newMax.x) && (max.x > newMin.x)
+                && (min.y < newMax.y) && (max.y > newMin.y))) {
+                continue;
+            }
+
+            // Check if this room is already in the list...
+            bool found = false;
+            for (int n = 0; n < roomList.size(); n++) {
+                if (roomList.at(n) == &World::getRoom(portal.getAdjoiningRoom())) {
+                    found = true;
+                    break;
                 }
+            }
+
+            // ...only render it if it is not
+            if (!found) {
+                buildRoomList(VP, portal.getAdjoiningRoom(), glm::vec2(newMin), glm::vec2(newMax));
             }
         }
     }
@@ -269,6 +280,8 @@ void Render::displayUI() {
         if (ImGui::Checkbox("Portals##bbox", &showBoundingBox3)) {
             Portal::setShowBoundingBox(showBoundingBox3);
         }
+        ImGui::SameLine();
+        ImGui::Checkbox("VisChecks##bbox", &displayVisibilityCheck);
 
         ImGui::Separator();
         ImGui::Text("Renderable Objects:");

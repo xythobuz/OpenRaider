@@ -2,6 +2,11 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150405 ]
+    * No longer flipping axis in shaders, now turning camera upside-down.
+    * Mostly fixed portal-to-portal 2D visibility checks.
+        * Currently also checking behind player.
+
     [ 20150404 ]
     * World is now static
     * Can display debug informations about Rooms and StaticMeshes
