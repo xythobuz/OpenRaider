@@ -29,6 +29,7 @@ unsigned long RunTime::frameTimeSum = 0;
 unsigned long RunTime::frameTimeSum2 = 0;
 unsigned long RunTime::fps = 0;
 std::vector<float> RunTime::history;
+unsigned long RunTime::glCallCount = 0;
 
 void RunTime::initialize() {
     baseDir = expandHomeDirectory("~/.OpenRaider");

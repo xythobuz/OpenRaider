@@ -36,6 +36,8 @@ static std::string configFileToUse;
 
 #ifdef DEBUG
 static void glErrorCallback(const glbinding::FunctionCall& call) {
+    RunTime::incrementCallCount();
+
     gl::GLenum error = gl::glGetError();
     if (error == gl::GL_NO_ERROR) {
         return;
@@ -66,6 +68,11 @@ static void glErrorCallback(const glbinding::FunctionCall& call) {
 
     log << Log::endl;
 }
+
+static void glUnresolvedCallback(const glbinding::AbstractFunction& func) {
+    Log::get(LOG_ERROR) << "Unresolved OpenGL call: \"" << func.name() << "\"!" << Log::endl;
+    orAssert(func.isResolved());
+}
 #endif
 
 int main(int argc, char* argv[]) {
@@ -89,6 +96,7 @@ int main(int argc, char* argv[]) {
                                      | glbinding::CallbackMask::ParametersAndReturnValue,
                                      { "glGetError" });
     glbinding::setAfterCallback(glErrorCallback);
+    glbinding::setUnresolvedCallback(glUnresolvedCallback);
 #endif
 
     Log::get(LOG_INFO) << "Initializing " << VERSION << Log::endl;

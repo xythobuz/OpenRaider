@@ -6,6 +6,7 @@
  */
 
 #include "global.h"
+#include "Log.h"
 #include "loader/Loader.h"
 #include "loader/LoaderTR1.h"
 #include "loader/LoaderTR2.h"
@@ -32,6 +33,8 @@ Loader::LoaderVersion Loader::checkFile(std::string f) {
         case 0x00345254: // "TR4\0"
             return TR_4;
     }
+
+    Log::get(LOG_ERROR) << "Unknown TR level version: \"" << start << "\"" << Log::endl;
 
     return TR_UNKNOWN;
 }

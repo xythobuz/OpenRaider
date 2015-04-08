@@ -20,7 +20,7 @@
 #include "Render.h"
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <glbinding/gl/gl33.h>
+#include <glbinding/gl/gl.h>
 
 #include "imgui/imgui.h"
 #include "stb/stb_image_write.h"
@@ -58,13 +58,8 @@ void Render::display() {
     glm::mat4 VP = projection * view;
 
     if (updated || displayVisibilityCheck) {
-        int r = Camera::getRoom();
         clearRoomList();
-        if (r < 0) {
-            buildRoomList(VP);
-        } else {
-            buildRoomList(VP, r);
-        }
+        buildRoomList(VP);
     }
 
     for (int r = roomList.size() - 1; r >= 0; r--) {

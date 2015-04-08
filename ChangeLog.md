@@ -8,6 +8,9 @@
     * Fix to allow imguifilesystem to compile using Visual Studio 2013.
     * Very simple implementation of solid-mode using white texture.
     * New option to keep camera in a room.
+    * Counting number of OpenGL calls per frame.
+    * Now displaying meaningful error message when no OpenGL lib was found at run-time.
+    * No including gl.h instead of gl33.h where needed.
 
     [ 20150405 ]
     * No longer flipping axis in shaders, now turning camera upside-down.

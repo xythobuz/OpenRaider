@@ -9,7 +9,7 @@
 #include "TextureManager.h"
 #include "Mesh.h"
 
-#include <glbinding/gl/gl33.h>
+#include <glbinding/gl/gl.h>
 
 Mesh::Mesh(const std::vector<glm::vec3>& vert,
            const std::vector<IndexedRectangle>& rect,

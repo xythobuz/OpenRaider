@@ -13,7 +13,7 @@
 #include "system/Window.h"
 #include "system/Shader.h"
 
-#include <glbinding/gl/gl33.h>
+#include <glbinding/gl/gl.h>
 
 ShaderBuffer::~ShaderBuffer() {
     if (created)

@@ -18,7 +18,7 @@
 #error "No windowing library selected!"
 #endif
 
-#include <glbinding/gl/gl33.h>
+#include <glbinding/gl/gl.h>
 
 int Window::initialize() {
     int res;

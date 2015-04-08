@@ -13,7 +13,7 @@
 
 #include "TextureManager.h"
 
-#include <glbinding/gl/gl33.h>
+#include <glbinding/gl/gl.h>
 
 class ShaderBuffer {
   public:

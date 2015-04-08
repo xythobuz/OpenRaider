@@ -18,7 +18,7 @@
 #include "system/Window.h"
 #include "system/WindowGLFW.h"
 
-#include <glbinding/gl/gl33.h>
+#include <glbinding/gl/gl.h>
 
 glm::i32vec2 WindowGLFW::size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 bool WindowGLFW::fullscreen = false;

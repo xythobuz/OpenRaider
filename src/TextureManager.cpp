@@ -21,7 +21,7 @@
 #include "utils/strings.h"
 #include "TextureManager.h"
 
-#include <glbinding/gl/gl33.h>
+#include <glbinding/gl/gl.h>
 
 glm::vec2 TextureTile::getUV(unsigned int i) {
     glm::vec2 uv(vertices.at(i).xPixel,

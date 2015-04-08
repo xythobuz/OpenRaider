@@ -23,7 +23,7 @@
 #include "utils/time.h"
 #include "UI.h"
 
-#include <glbinding/gl/gl33.h>
+#include <glbinding/gl/gl.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 Shader UI::imguiShader;
@@ -225,7 +225,12 @@ void UI::display() {
                          ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize
                          | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings
                          | ImGuiWindowFlags_AlwaysAutoResize)) {
+#ifdef DEBUG
+            ImGui::Text("%d FPS  %lu CPF", RunTime::getFPS(), RunTime::getCallCount());
+#else
             ImGui::Text("%d FPS", RunTime::getFPS());
+#endif
+
             ImGui::Text("X: %.1f (%.2f)", Camera::getPosition().x, Camera::getRotation().x);
             ImGui::Text("Y: %.2f (%.2f)", Camera::getPosition().y, Camera::getRotation().y);
             ImGui::Text("Z: %.2f (%d)", Camera::getPosition().z, Camera::getRoom());

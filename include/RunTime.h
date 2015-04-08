@@ -42,6 +42,9 @@ class RunTime {
     static const std::vector<float>& getHistoryFPS() { return history; }
     static float getLastFrameTime() { return lastFrameTime / 1000.0f; }
 
+    static void incrementCallCount() { glCallCount++; }
+    static unsigned long getCallCount() { auto c = glCallCount; glCallCount = 0; return c; }
+
   private:
     static std::string baseDir;
     static std::string pakDir;
@@ -57,6 +60,7 @@ class RunTime {
     static unsigned long frameTimeSum, frameTimeSum2;
     static unsigned long fps;
     static std::vector<float> history;
+    static unsigned long glCallCount;
 };
 
 #endif

@@ -55,8 +55,7 @@ class WindowGLFW {
     static bool mousegrab;
     static bool textinput;
     static GLFWwindow* window;
-    static int lastMouseX;
-    static int lastMouseY;
+    static int lastMouseX, lastMouseY;
     static bool modShift;
     static bool modControl;
     static bool modAlt;

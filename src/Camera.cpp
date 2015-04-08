@@ -18,7 +18,6 @@
 #include "system/Window.h"
 #include "Camera.h"
 
-#include <glbinding/gl/gl33.h>
 #include <glm/gtc/epsilon.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>

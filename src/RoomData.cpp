@@ -13,7 +13,7 @@
 
 #include "imgui/imgui.h"
 
-#include <glbinding/gl/gl33.h>
+#include <glbinding/gl/gl.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot) {
