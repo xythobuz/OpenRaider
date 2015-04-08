@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150408 ]
+    * Now checking for errors after every OpenGL call.
+    * Slightly tweaked portal visibility checks.
+    * Fix to allow imguifilesystem to compile using Visual Studio 2013.
+    * Very simple implementation of solid-mode using white texture.
+
     [ 20150405 ]
     * No longer flipping axis in shaders, now turning camera upside-down.
     * Mostly fixed portal-to-portal 2D visibility checks.

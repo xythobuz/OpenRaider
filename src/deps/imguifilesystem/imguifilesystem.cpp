@@ -357,13 +357,13 @@ protected:
     static struct stat stat1;
     static struct stat stat2;
     static SorterSignature sorter;
-#   ifdef MSC_VER
+#   ifdef _MSC_VER
     // Never tested (I've just been told that cl.exe does not have strcasecmp: please search the web for other possible alternative implementations)
     inline static int strcasecmp( const char *s1, const char *s2 )  {
         return _stricmp(s1,s2);
         //return lstrcmpiA(s1,s2);  // Not sure this is better
     }
-#   endif //MSC_VER
+#   endif //_MSC_VER
     // Possible problem: sorting is in ASCII with these methods
     static int Alphasort(const struct dirent **e1,const struct dirent **e2)    {
         return strcasecmp((*e1)->d_name,(*e2)->d_name);

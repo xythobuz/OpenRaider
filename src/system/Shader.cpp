@@ -9,6 +9,7 @@
 
 #include "global.h"
 #include "Log.h"
+#include "Render.h"
 #include "system/Window.h"
 #include "system/Shader.h"
 
@@ -132,7 +133,12 @@ void Shader::loadUniform(int uni, glm::mat4 mat) {
 }
 
 void Shader::loadUniform(int uni, int texture, TextureStorage store) {
-    gl::glUniform1i(getUniform(uni), TextureManager::bindTexture(texture, store));
+    if ((Render::getMode() == RenderMode::Solid)
+        && (store == TextureStorage::GAME)) {
+        gl::glUniform1i(getUniform(uni), TextureManager::bindTexture(TEXTURE_SPLASH, TextureStorage::SYSTEM));
+    } else {
+        gl::glUniform1i(getUniform(uni), TextureManager::bindTexture(texture, store));
+    }
 }
 
 void Shader::use() {

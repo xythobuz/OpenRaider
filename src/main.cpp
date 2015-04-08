@@ -27,7 +27,46 @@
 
 #include <glbinding/Binding.h>
 
+#ifdef DEBUG
+#include <glbinding/callbacks.h>
+#include <glbinding/Meta.h>
+#endif
+
 static std::string configFileToUse;
+
+#ifdef DEBUG
+static void glErrorCallback(const glbinding::FunctionCall& call) {
+    gl::GLenum error = gl::glGetError();
+    if (error == gl::GL_NO_ERROR) {
+        return;
+    }
+
+    auto& log = Log::get(LOG_DEBUG);
+    if (glbinding::Meta::stringsByGL()) {
+        log << "OpenGL Error: " << glbinding::Meta::getString(error) << Log::endl;
+    } else {
+        log << "OpenGL Error: "
+            << static_cast<std::underlying_type<gl::GLenum>::type>(error)
+            << Log::endl;
+    }
+    log << call.function->name() << "(";
+
+    for (int i = 0; i < call.parameters.size(); i++) {
+        log << call.parameters[i]->asString();
+        if (i < (call.parameters.size() - 1)) {
+            log << ", ";
+        }
+    }
+
+    log << ")";
+
+    if (call.returnValue) {
+        log << " -> " << call.returnValue->asString();
+    }
+
+    log << Log::endl;
+}
+#endif
 
 int main(int argc, char* argv[]) {
     command_t cmd;
@@ -42,8 +81,15 @@ int main(int argc, char* argv[]) {
     glbinding::Binding::initialize();
     Log::initialize();
     RunTime::initialize(); // RunTime is required by other constructors
-
     Command::fillCommandList();
+
+#ifdef DEBUG
+    // Register global OpenGL after-callback for all GL functions except glGetError
+    glbinding::setCallbackMaskExcept(glbinding::CallbackMask::After
+                                     | glbinding::CallbackMask::ParametersAndReturnValue,
+                                     { "glGetError" });
+    glbinding::setAfterCallback(glErrorCallback);
+#endif
 
     Log::get(LOG_INFO) << "Initializing " << VERSION << Log::endl;
 

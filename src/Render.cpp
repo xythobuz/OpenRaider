@@ -110,25 +110,19 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
             // Display the visibility test for the portal to this room
             BoundingBox debugBox(glm::vec3(min, 0.0f), glm::vec3(max, 0.0f));
             debugBox.display(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
-            ImGui::Text("   Min: %.3f %.3f", min.x, min.y);
-            ImGui::Text("   Max: %.3f %.3f", max.x, max.y);
         }
 
         // Check all portals leading from this room to somewhere else
         for (int i = 0; i < World::getRoom(room).sizePortals(); i++) {
             auto& portal = World::getRoom(room).getPortal(i);
+            auto& room = World::getRoom(portal.getAdjoiningRoom());
 
-            // Calculate the 2D window of this portal
+            // Calculate the 2D screen-space bounding box of this portal
             glm::vec3 newMin, newMax;
             for (int c = 0; c < 4; c++) {
                 glm::vec3 vert = portal.getVertex(c);
                 glm::vec4 result = VP * glm::vec4(vert, 1.0f);
                 vert = glm::vec3(result) / result.w;
-
-                if (displayVisibilityCheck) {
-                    ImGui::Text("Test %d: %.3f %.3f %.3f", c, vert.x, vert.y, vert.z);
-                }
 
                 if (c == 0) {
                     newMin = vert;
@@ -149,11 +143,6 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
                 }
             }
 
-            if (displayVisibilityCheck) {
-                ImGui::Text("NewMin: %.3f %.3f %.3f", newMin.x, newMin.y, newMin.z);
-                ImGui::Text("NewMax: %.3f %.3f %.3f", newMax.x, newMax.y, newMax.z);
-            }
-
             //! \fixme Currently also checking behind player, because Z is always 1.0f?!
             //if ((newMin.z > 0.0f) || (newMin.z < -1.0f) || (newMax.z > 0.0f) || (newMax.z < -1.0f)) {
             //    continue;
@@ -165,10 +154,15 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
                 continue;
             }
 
+            // Check if the connected room is in our view frustum (could be visible)
+            if (!Camera::boxInFrustum(room.getBoundingBox())) {
+                continue;
+            }
+
             // Check if this room is already in the list...
             bool found = false;
             for (int n = 0; n < roomList.size(); n++) {
-                if (roomList.at(n) == &World::getRoom(portal.getAdjoiningRoom())) {
+                if (roomList.at(n) == &room) {
                     found = true;
                     break;
                 }

@@ -372,7 +372,7 @@ bool Camera::boxInFrustum(BoundingBox b) {
     for (int i = 0; i < 6; i++) {
         int out = 0, in = 0;
         for (int c = 0; (c < 8) && ((in == 0) || (out == 0)); c++) {
-            if (planes[i].distance(b.getCorner(c)) > 0)
+            if (planes[i].distance(b.getCorner(c)) >= 0)
                 out++;
             else
                 in++;
