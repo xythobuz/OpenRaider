@@ -72,6 +72,7 @@ int Game::loadLevel(std::string level) {
             Camera::setPosition(glm::vec3(getLara().getPosition().x,
                                           getLara().getPosition().y - 1024.0f,
                                           getLara().getPosition().z));
+            Camera::setRoom(getLara().getRoom());
         }
     } else {
         Log::get(LOG_ERROR) << "No suitable loader for this level!" << Log::endl;

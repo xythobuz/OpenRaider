@@ -44,6 +44,9 @@ class Camera {
     static void setShowOverlay(bool s) { showOverlay = s; }
     static bool getShowOverlay() { return showOverlay; }
 
+    static void setKeepInRoom(bool k) { keepInRoom = k; }
+    static bool getKeepInRoom() { return keepInRoom; }
+
     static bool boxInFrustum(BoundingBox b);
     static void displayFrustum(glm::mat4 MVP);
 
@@ -60,6 +63,7 @@ class Camera {
     static glm::mat4 view;
     static float rotationDeltaX, rotationDeltaY;
     static bool updateViewFrustum, dirty, showOverlay, movingFaster;
+    static bool keepInRoom;
     static int room;
 };
 

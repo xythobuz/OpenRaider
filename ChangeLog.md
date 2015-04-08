@@ -7,6 +7,7 @@
     * Slightly tweaked portal visibility checks.
     * Fix to allow imguifilesystem to compile using Visual Studio 2013.
     * Very simple implementation of solid-mode using white texture.
+    * New option to keep camera in a room.
 
     [ 20150405 ]
     * No longer flipping axis in shaders, now turning camera upside-down.

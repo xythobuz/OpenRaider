@@ -243,18 +243,23 @@ void Render::displayUI() {
         ImGui::Separator();
         ImGui::Text("Camera:");
         bool updateViewFrustum = Camera::getUpdateViewFrustum();
-        if (ImGui::Checkbox("Update Frustum##render", &updateViewFrustum)) {
+        if (ImGui::Checkbox("Update Frustum##camera", &updateViewFrustum)) {
             Camera::setUpdateViewFrustum(updateViewFrustum);
         }
         ImGui::SameLine();
-        ImGui::Checkbox("Show Frustum##render", &displayViewFrustum);
+        ImGui::Checkbox("Show Frustum##camera", &displayViewFrustum);
         ImGui::SameLine();
         bool showOverlay = Camera::getShowOverlay();
-        if (ImGui::Checkbox("Overlay", &showOverlay)) {
+        if (ImGui::Checkbox("Overlay##camera", &showOverlay)) {
             Camera::setShowOverlay(showOverlay);
         }
+        ImGui::SameLine();
+        bool keepInRoom = Camera::getKeepInRoom();
+        if (ImGui::Checkbox("Keep in Room##camera", &keepInRoom)) {
+            Camera::setKeepInRoom(keepInRoom);
+        }
         glm::vec3 camPos = Camera::getPosition();
-        if (ImGui::SliderFloat3("Position", &camPos.x, -100000, 100000)) {
+        if (ImGui::SliderFloat3("Position##camera", &camPos.x, -100000, 100000)) {
             Camera::setPosition(camPos);
         }
 

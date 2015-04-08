@@ -12,6 +12,7 @@
 
 #include "global.h"
 #include "RunTime.h"
+#include "World.h"
 #include "system/Shader.h"
 #include "system/Sound.h"
 #include "system/Window.h"
@@ -63,6 +64,7 @@ bool Camera::updateViewFrustum = true;
 bool Camera::dirty = true;
 bool Camera::showOverlay = false;
 bool Camera::movingFaster = false;
+bool Camera::keepInRoom = false;
 int Camera::room = -1;
 
 void Camera::reset() {
@@ -182,20 +184,23 @@ bool Camera::update() {
     glm::quat quatX = glm::angleAxis(rot.y, glm::vec3(1.0f, 0.0f, 0.0f));
     glm::quat quaternion = quatZ * quatY * quatX;
 
-    glm::vec3 clampedSpeed;
-    if (movingFaster) {
-        clampedSpeed = posSpeed * runFactor;
-        if (glm::length(clampedSpeed) > (maxSpeed * runFactor)) {
-            clampedSpeed = glm::normalize(clampedSpeed) * maxSpeed * runFactor;
-        }
-    } else {
-        clampedSpeed = posSpeed;
-        if (glm::length(clampedSpeed) > maxSpeed) {
-            clampedSpeed = glm::normalize(clampedSpeed) * maxSpeed;
-        }
+    float factor = movingFaster ? runFactor : 1.0f;
+    glm::vec3 clampedSpeed = posSpeed * factor;
+    if (glm::length(clampedSpeed) > (maxSpeed * factor)) {
+        clampedSpeed = glm::normalize(clampedSpeed) * maxSpeed * factor;
     }
 
-    pos += quaternion * clampedSpeed * dT;
+    glm::vec3 newPos = pos + (quaternion * clampedSpeed * dT);
+    if (keepInRoom) {
+        if ((room < 0) || (room >= World::sizeRoom())) {
+            keepInRoom = false;
+            pos = newPos;
+        } else if (World::getRoom(room).getBoundingBox().inBox(newPos)) {
+            pos = newPos;
+        }
+    } else {
+        pos = newPos;
+    }
 
     glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
     glm::mat4 rotate = glm::toMat4(quaternion);
