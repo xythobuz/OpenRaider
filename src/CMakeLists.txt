@@ -46,6 +46,7 @@ endif (OPENAL_FOUND)
 #################################################################
 
 # Set Source files
+set (SRCS ${SRCS} "BoundingBox.cpp" "../include/BoundingBox.h")
 set (SRCS ${SRCS} "Camera.cpp" "../include/Camera.h")
 set (SRCS ${SRCS} "Console.cpp" "../include/Console.h")
 set (SRCS ${SRCS} "Entity.cpp" "../include/Entity.h")
@@ -112,6 +113,10 @@ check_symbol_exists (DT_DIR "dirent.h" HAVE_DT_DIR)
 # getcwd() for the current working directory
 check_include_files (unistd.h HAVE_UNISTD_H)
 check_function_exists (getcwd HAVE_GETCWD)
+
+# _getcwd() for current working directory in windows
+check_include_files (direct.h HAVE_DIRECT_H)
+check_function_exists (_getcwd HAVE__GETCWD)
 
 # getenv() for reading environment variables
 check_include_files (stdlib.h HAVE_STDLIB_H)

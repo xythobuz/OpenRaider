@@ -11,6 +11,7 @@
 #include <memory>
 #include <vector>
 
+#include "BoundingBox.h"
 #include "Sprite.h"
 #include "RoomData.h"
 #include "RoomMesh.h"

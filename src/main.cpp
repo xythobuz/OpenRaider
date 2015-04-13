@@ -9,6 +9,7 @@
 #include <memory>
 
 #include "global.h"
+#include "BoundingBox.h"
 #include "Camera.h"
 #include "Log.h"
 #include "Menu.h"
@@ -195,6 +196,7 @@ int main(int argc, char* argv[]) {
 
 void renderFrame() {
     Render::display();
+    BoundingBox::display();
     UI::display();
     Window::swapBuffers();
     RunTime::updateFPS();

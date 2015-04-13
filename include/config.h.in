@@ -35,6 +35,9 @@ extern const char* INSTALL_PREFIX;
 #cmakedefine HAVE_UNISTD_H
 #cmakedefine HAVE_GETCWD
 
+#cmakedefine HAVE_DIRECT_H
+#cmakedefine HAVE__GETCWD
+
 #cmakedefine HAVE_STDLIB_H
 #cmakedefine HAVE_GETENV
 

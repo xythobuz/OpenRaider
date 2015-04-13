@@ -61,7 +61,7 @@ void Entity::display(glm::mat4 VP) {
         orAssertGreaterThan(cacheType, -1);
     }
 
-    glm::mat4 translate = glm::translate(glm::mat4(1.0f), glm::vec3(pos.x, -pos.y, pos.z));
+    glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
     glm::mat4 rotate;
     if (cacheType == 0) {
         rotate = glm::rotate(glm::mat4(1.0f), Camera::getRotation().x, glm::vec3(0.0f, 1.0f, 0.0f));

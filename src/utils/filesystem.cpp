@@ -16,6 +16,10 @@
 #include <stdlib.h>
 #endif
 
+#if defined(HAVE_DIRECT_H) && defined(HAVE__GETCWD)
+#include <direct.h>
+#endif
+
 #ifdef _WIN32
 #include <windows.h>
 #include <shlobj.h>
@@ -28,6 +32,12 @@ std::string getCurrentWorkingDirectory() {
     orAssertEqual(getcwd(path, 1024), path);
     return std::string(path);
 
+#elif defined(HAVE_DIRECT_H) && defined(HAVE__GETCWD)
+
+    char path[1024];
+    orAssertEqual(_getcwd(path, 1024), path);
+    return std::string(path);
+
 #else
 
     orAssert(false);
@@ -37,13 +47,7 @@ std::string getCurrentWorkingDirectory() {
 }
 
 std::string getHomeDirectory() {
-#if defined(HAVE_STDLIB_H) && defined(HAVE_GETENV)
-
-    char* path = getenv("HOME");
-    orAssert(path != nullptr);
-    return path;
-
-#elif defined(_WIN32)
+#if defined(_WIN32)
 
     char path[MAX_PATH];
     orAssertEqual(SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0, path), S_OK);
@@ -52,6 +56,12 @@ std::string getHomeDirectory() {
         if (path[i] == '\\')
             path[i] = '/';
     return std::string(path);
+
+#elif defined(HAVE_STDLIB_H) && defined(HAVE_GETENV)
+
+    char* path = getenv("HOME");
+    orAssert(path != nullptr);
+    return path;
 
 #else
 
