@@ -10,6 +10,7 @@
 #include <sstream>
 
 #include "global.h"
+#include "BoundingBox.h"
 #include "Camera.h"
 #include "Log.h"
 #include "Menu.h"
@@ -26,7 +27,7 @@
 #include "stb/stb_image_write.h"
 
 RenderMode Render::mode = RenderMode::LoadScreen;
-std::vector<Room*> Render::roomList;
+std::vector<RoomRenderList> Render::roomList;
 bool Render::displayViewFrustum = false;
 bool Render::displayVisibilityCheck = false;
 
@@ -63,18 +64,33 @@ void Render::display() {
     }
 
     for (int r = roomList.size() - 1; r >= 0; r--) {
-        roomList.at(r)->display(VP);
+        auto& rl = roomList.at(r);
+
+        //! \fixme TODO scissor to portal in screenspace to fix 4D rendering
+
+        //gl::glEnable(gl::GL_SCISSOR_TEST);
+        //gl::glScissor(rl.portalPos.x, rl.portalPos.y, rl.portalSize.x, rl.portalSize.y);
+
+        //ImGui::Text("%.2f %.2f", rl.portalPos.x, rl.portalPos.y);
+        //ImGui::Text("%.2f %.2f", rl.portalSize.x, rl.portalSize.y);
+        //ImGui::Text("--");
+
+        rl.room->display(VP);
 
         for (int i = 0; i < World::sizeEntity(); i++) {
             auto& e = World::getEntity(i);
-            if (roomList.at(r)->getIndex() == e.getRoom()) {
+            if (rl.room->getIndex() == e.getRoom()) {
                 e.display(VP);
             }
         }
+
+        //gl::glDisable(gl::GL_SCISSOR_TEST);
     }
 
     if (displayViewFrustum)
         Camera::displayFrustum(VP);
+
+    BoundingBox::display();
 
     if (mode == RenderMode::Wireframe) {
         gl::glPolygonMode(gl::GL_FRONT_AND_BACK, gl::GL_FILL);
@@ -82,6 +98,10 @@ void Render::display() {
 }
 
 void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max) {
+    glm::vec2 halfSize = glm::vec2(Window::getSize()) / 2.0f;
+    glm::vec2 pos = (min * halfSize) + halfSize;
+    glm::vec2 size = (max * halfSize) + halfSize - pos;
+
     if (room < -1) {
         // Check if the camera currently is in a room...
         for (int i = 0; i < World::sizeRoom(); i++) {
@@ -95,11 +115,11 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
         // Check visibility for all rooms!
         for (int i = 0; i < World::sizeRoom(); i++) {
             if (Camera::boxInFrustum(World::getRoom(i).getBoundingBox())) {
-                roomList.push_back(&World::getRoom(i));
+                roomList.emplace_back(&World::getRoom(i), pos, size);
             }
         }
     } else {
-        roomList.push_back(&World::getRoom(room));
+        roomList.emplace_back(&World::getRoom(room), pos, size);
 
         if (displayVisibilityCheck) {
             // Display the visibility test for the portal to this room
@@ -157,7 +177,7 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
             // Check if this room is already in the list...
             bool found = false;
             for (int n = 0; n < roomList.size(); n++) {
-                if (roomList.at(n) == &room) {
+                if (roomList.at(n).room == &room) {
                     found = true;
                     break;
                 }

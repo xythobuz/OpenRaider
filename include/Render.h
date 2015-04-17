@@ -23,6 +23,14 @@ enum class RenderMode {
     Texture
 };
 
+struct RoomRenderList {
+    RoomRenderList(Room* r, glm::vec2 pos, glm::vec2 size)
+        : room(r), portalPos(pos), portalSize(size) { }
+
+    Room* room;
+    glm::vec2 portalPos, portalSize;
+};
+
 class Render {
   public:
 
@@ -45,7 +53,7 @@ class Render {
                               glm::vec2 max = glm::vec2(1.0f, 1.0f));
 
     static RenderMode mode;
-    static std::vector<Room*> roomList;
+    static std::vector<RoomRenderList> roomList;
 
     static bool displayViewFrustum;
     static bool displayVisibilityCheck;

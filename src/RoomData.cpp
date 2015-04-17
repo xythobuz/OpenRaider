@@ -13,7 +13,6 @@
 
 #include "imgui/imgui.h"
 
-#include <glbinding/gl/gl.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 StaticModel::StaticModel(glm::vec3 pos, float angle, int i) : id(i), cache(-1) {

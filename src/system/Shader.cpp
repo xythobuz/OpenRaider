@@ -416,10 +416,7 @@ out vec2 UV;
 uniform mat4 MVP;
 
 void main() {
-    vec4 pos = MVP * vec4(vertexPosition_modelspace.x,
-                          vertexPosition_modelspace.y,
-                          vertexPosition_modelspace.z,
-                          1);
+    vec4 pos = MVP * vec4(vertexPosition_modelspace, 1);
     gl_Position = pos;
     UV = vertexUV;
 }
@@ -452,10 +449,7 @@ out vec3 color;
 uniform mat4 MVP;
 
 void main() {
-    vec4 pos = MVP * vec4(vertexPosition_modelspace.x,
-                          vertexPosition_modelspace.y,
-                          vertexPosition_modelspace.z,
-                          1);
+    vec4 pos = MVP * vec4(vertexPosition_modelspace, 1);
     gl_Position = pos;
     color = vertexColor;
 }
