@@ -16,11 +16,11 @@ unsigned char* generateColorTexture(glm::vec4 rgba, unsigned int width,
 
     unsigned char* image = new unsigned char[height * width * (bpp / 8)];
     for (unsigned int i = 0; i < (width * height); i++) {
-        image[i * (bpp / 8)] = (unsigned char)(rgba.r * 255);
-        image[(i * (bpp / 8)) + 1] = (unsigned char)(rgba.g * 255);
-        image[(i * (bpp / 8)) + 2] = (unsigned char)(rgba.b * 255);
+        image[i * (bpp / 8)] = static_cast<unsigned char>(rgba.r * 255);
+        image[(i * (bpp / 8)) + 1] = static_cast<unsigned char>(rgba.g * 255);
+        image[(i * (bpp / 8)) + 2] = static_cast<unsigned char>(rgba.b * 255);
         if (bpp == 32) {
-            image[(i * (bpp / 8)) + 3] = (unsigned char)(rgba.a * 255);
+            image[(i * (bpp / 8)) + 3] = static_cast<unsigned char>(rgba.a * 255);
         }
     }
     return image;
@@ -113,27 +113,27 @@ unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* 
 
     // Copy user data to float format.
     for (unsigned int i = 0; i < original_height * original_width * components; ++i) {
-        tempin[i] = (float)image[i];
+        tempin[i] = image[i];
     }
 
     // Determine which filter to use by checking ratios.
     float sx;
     if (width > 1) {
-        sx = (float)(original_width - 1) / (float)(width - 1);
+        sx = (original_width - 1.0f) / (width - 1.0f);
     } else {
-        sx = (float)(original_width - 1);
+        sx = original_width - 1.0f;
     }
 
     float sy;
     if (height > 1) {
-        sy = (float)(original_height - 1) / (float)(height - 1);
+        sy = (original_height - 1.0f) / (height - 1.0f);
     } else {
-        sy = (float)(original_height - 1);
+        sy = original_height - 1.0f;
     }
 
     if (sx < 1.0 && sy < 1.0) { // Magnify both width and height: use weighted sample of 4 pixels
         for (unsigned int i = 0; i < height; ++i) {
-            unsigned int i0 = (unsigned int)(i * sy);
+            unsigned int i0 = static_cast<unsigned int>(i * sy);
             unsigned int i1 = i0 + 1;
 
             if (i1 >= original_height) {
@@ -143,7 +143,7 @@ unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* 
             float alpha = i * sy - i0;
 
             for (unsigned int j = 0; j < width; ++j) {
-                unsigned int j0 = (unsigned int)(j * sx);
+                unsigned int j0 = static_cast<unsigned int>(j * sx);
                 unsigned int j1 = j0 + 1;
 
                 if (j1 >= original_width) {
@@ -169,7 +169,7 @@ unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* 
         }
     } else { // Shrink width and/or height: use an unweighted box filter
         for (unsigned int i = 0; i < height; ++i) {
-            unsigned int i0 = (unsigned int)(i * sy);
+            unsigned int i0 = static_cast<unsigned int>(i * sy);
             unsigned int i1 = i0 + 1;
 
             if (i1 >= original_height) {
@@ -177,7 +177,7 @@ unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* 
             }
 
             for (unsigned int j = 0; j < width; ++j) {
-                unsigned int j0 = (unsigned int)(j * sx);
+                unsigned int j0 = static_cast<unsigned int>(j * sx);
                 unsigned int j1 = j0 + 1;
 
                 if (j1 >= original_width) {
@@ -206,7 +206,7 @@ unsigned char* scaleBuffer(unsigned char* image, unsigned int* w, unsigned int* 
 
     // Copy to our results.
     for (unsigned int i = 0; i < height * width * components; ++i) {
-        timage[i] = (unsigned char)tempout[i];
+        timage[i] = static_cast<unsigned char>(tempout[i]);
     }
 
     // Delete our temp buffers.

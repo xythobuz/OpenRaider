@@ -130,14 +130,19 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
         // Check all portals leading from this room to somewhere else
         for (int i = 0; i < World::getRoom(room).sizePortals(); i++) {
             auto& portal = World::getRoom(room).getPortal(i);
-            auto& room = World::getRoom(portal.getAdjoiningRoom());
+            auto& r = World::getRoom(portal.getAdjoiningRoom());
 
             // Calculate the 2D screen-space bounding box of this portal
             glm::vec3 newMin, newMax;
             for (int c = 0; c < 4; c++) {
-                glm::vec3 vert = portal.getVertex(c);
-                glm::vec4 result = VP * glm::vec4(vert, 1.0f);
-                vert = glm::vec3(result) / result.w;
+                glm::vec3 port = portal.getVertex(c);
+                glm::vec4 result = VP * glm::vec4(port, 1.0f);
+                glm::vec3 vert = glm::vec3(result) / result.w;
+
+                ImGui::Text("%.2f %.2f %.2f", port.x, port.y, port.z);
+                ImGui::Text("%.2f %.2f %.2f %.2f", result.x, result.y, result.z, result.w);
+                ImGui::Text("%.2f %.2f %.2f", vert.x, vert.y, vert.z);
+                ImGui::Text("----");
 
                 if (c == 0) {
                     newMin = vert;
@@ -158,8 +163,17 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
                 }
             }
 
+            //ImGui::Text("%.2f %.2f %.2f", newMin.x, newMin.y, newMin.z);
+            //ImGui::Text("%.2f %.2f %.2f", newMax.x, newMax.y, newMax.z);
+            //ImGui::Text("----");
+
             //! \fixme Currently also checking behind player, because Z is always 1.0f?!
             //if ((newMin.z > 0.0f) || (newMin.z < -1.0f) || (newMax.z > 0.0f) || (newMax.z < -1.0f)) {
+            //    continue;
+            //}
+
+            //! \fixme Need to check portal normal, only render if it points in our direction
+            //if (!normalFacingUs) {
             //    continue;
             //}
 
@@ -170,14 +184,14 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
             }
 
             // Check if the connected room is in our view frustum (could be visible)
-            if (!Camera::boxInFrustum(room.getBoundingBox())) {
-                continue;
+            if (!Camera::boxInFrustum(r.getBoundingBox())) {
+                //continue;
             }
 
             // Check if this room is already in the list...
             bool found = false;
             for (int n = 0; n < roomList.size(); n++) {
-                if (roomList.at(n).room == &room) {
+                if (roomList.at(n).room == &r) {
                     found = true;
                     break;
                 }

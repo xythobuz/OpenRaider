@@ -112,7 +112,7 @@ void Folder::executeRemoveFiles(std::function<bool (File& f)> func) {
     createFolderItems();
     for (unsigned long i = 0; i < fileCount(); i++) {
         if (func(getFile(i))) {
-            files.erase(files.begin() + (long)i--);
+            files.erase(files.begin() + i--);
         }
     }
 }

@@ -24,7 +24,7 @@ int pcxCheck(const char* filename) {
     unsigned char* header = new unsigned char[128];
 
     // Basic validation
-    if (!file.read((char*)(&header[0]), 128)) {
+    if (!file.read(reinterpret_cast<char*>(&header[0]), 128)) {
         Log::get(LOG_ERROR) << "File not big enough for valid PCX header!" << Log::endl;
         delete [] header;
         return -1;
@@ -83,7 +83,7 @@ int pcxLoad(const char* filename, unsigned char** image,
     unsigned char* header = new unsigned char[128];
 
     // Basic validation
-    if (!file.read((char*)(&header[0]), 128)) {
+    if (!file.read(reinterpret_cast<char*>(&header[0]), 128)) {
         Log::get(LOG_ERROR) << "File not big enough for valid PCX header!" << Log::endl;
         delete [] header;
         return -1;
@@ -174,7 +174,7 @@ int pcxLoad(const char* filename, unsigned char** image,
         }
 
         for (unsigned int j = 0; j < n; j++)
-            buffer[b++] = (unsigned char)c;
+            buffer[b++] = static_cast<unsigned char>(c);
 
         i += n;
     }
@@ -186,7 +186,7 @@ int pcxLoad(const char* filename, unsigned char** image,
         if ((c == 12) && file) {
             palette = new unsigned char[768];
             for (unsigned int i = 0; i < 768; i++) {
-                palette[i] = (unsigned char)file.get();
+                palette[i] = static_cast<unsigned char>(file.get());
                 if (!file) {
                     Log::get(LOG_ERROR) << "Could not read 256 color palette (" << i << ")" << Log::endl;
                     delete [] buffer;

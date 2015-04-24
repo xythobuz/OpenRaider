@@ -189,8 +189,8 @@ void LoaderTR2::loadAnimatedTextures() {
 // ---- Rooms ----
 
 void LoaderTR2::loadRoomLights() {
-    int16_t intensity1 = file.read16();
-    int16_t intensity2 = file.read16();
+    int16_t roomIntensity1 = file.read16();
+    int16_t roomIntensity2 = file.read16();
     int16_t lightMode = file.read16();
 
     uint16_t numLights = file.readU16();
@@ -314,10 +314,10 @@ void LoaderTR2::loadRooms() {
 
             // Fill bounding box
             if (v == 0) {
-                for (int i = 0; i < 2; i++) {
-                    bbox[i].x = vert.x;
-                    bbox[i].y = vert.y;
-                    bbox[i].z = vert.z;
+                for (int n = 0; n < 2; n++) {
+                    bbox[n].x = vert.x;
+                    bbox[n].y = vert.y;
+                    bbox[n].z = vert.z;
                 }
             } else {
                 if (vert.x < bbox[0].x)
@@ -413,7 +413,7 @@ void LoaderTR2::loadRooms() {
             // There is a special value of the 'real' index, 2047 or 0x7FF.
 
             bool wall = false;
-            if ((((uint8_t)floor) == 0x81) || (((uint8_t)ceiling) == 0x81)) {
+            if (((floor & 0xFF) == 0x81) || ((ceiling & 0xFF) == 0x81)) {
                 wall = true;
             }
 
@@ -728,7 +728,7 @@ void LoaderTR2::loadAngleSet(BoneFrame* bf, BinaryReader& frame, uint16_t numMes
             char* tmp = reinterpret_cast<char*>(&meshTrees[0]) + meshTree; // TODO (meshTree * 4)?
             tmp += (i - 1) * 16; // TODO ?
             BinaryMemory tree(tmp, (numMeshTrees * 4) - meshTree - ((i - 1) * 16));
-            flag = (char)tree.readU32();
+            flag = static_cast<char>(tree.readU32());
             offset.x = tree.read32();
             offset.y = tree.read32();
             offset.z = tree.read32();
@@ -741,15 +741,15 @@ void LoaderTR2::loadAngleSet(BoneFrame* bf, BinaryReader& frame, uint16_t numMes
                     index = 2;
                 else if (a & 0x4000)
                     index = 1;
-                rotation[index] = ((float)(a & 0x03FF)) * 360.0f / 1024.0f;
+                rotation[index] = (static_cast<float>(a & 0x03FF)) * 360.0f / 1024.0f;
             } else {
                 // Three angles
                 uint16_t b = frame.readU16();
                 rotation[0] = (a & 0x3FF0) >> 4;
                 rotation[1] = ((a & 0x000F) << 6) | ((b & 0xFC00) >> 10);
                 rotation[2] = b & 0x03FF;
-                for (int i = 0; i < 3; i++)
-                    rotation[i] = rotation[i] * 360.0f / 1024.0f;
+                for (int n = 0; n < 3; n++)
+                    rotation[n] = rotation[n] * 360.0f / 1024.0f;
             }
         }
 
@@ -1122,7 +1122,7 @@ void LoaderTR2::loadSoundDetails() {
         // Bits 0-1: channel number?
         uint16_t unknown2 = file.readU16();
 
-        SoundManager::addSoundDetail(sample, ((float)volume) / 32767.0f);
+        SoundManager::addSoundDetail(sample, volume / 32767.0f);
     }
 
     if (numSoundDetails > 0)

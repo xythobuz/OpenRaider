@@ -53,8 +53,8 @@ int LoaderTR3::load(std::string f) {
 }
 
 void LoaderTR3::loadRoomLights() {
-    int16_t intensity1 = file.read16();
-    int16_t intensity2 = file.read16();
+    int16_t roomIntensity1 = file.read16();
+    int16_t roomIntensity2 = file.read16();
 
     uint16_t numLights = file.readU16();
     for (unsigned int l = 0; l < numLights; l++) {

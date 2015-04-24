@@ -203,8 +203,7 @@ void WindowSDL::eventHandling() {
 
             case SDL_TEXTINPUT:
             case SDL_TEXTEDITING:
-                if (event.text.text != nullptr)
-                    UI::handleText(event.text.text, (event.type == SDL_TEXTEDITING));
+                UI::handleText(event.text.text, (event.type == SDL_TEXTEDITING));
                 break;
 
             case SDL_KEYDOWN:

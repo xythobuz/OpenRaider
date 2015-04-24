@@ -97,7 +97,7 @@ KeyboardButton CommandBind::stringToKeyboardButton(std::string key) {
         char c = key[1];
         if (((c >= '0') && (c <= '9'))
             || ((c >= 'a') && (c <= 'z')))
-            return (KeyboardButton)c;
+            return static_cast<KeyboardButton>(c);
     } else if ((key.length() >= 3) && (key[0] == '\"') && (key[key.length() - 1] == '\"')) {
         // Special characters like tilde, esc, quote...
         key.erase(key.length() - 1); // Delete " at end

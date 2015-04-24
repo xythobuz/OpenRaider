@@ -151,7 +151,7 @@ void UI::eventsFinished() {
     io.DisplaySize = ImVec2(Window::getSize().x, Window::getSize().y);
 
     static unsigned long lastTime = 0;
-    io.DeltaTime = ((float)(systemTimerGet() - lastTime)) / 1000.0f;
+    io.DeltaTime = (systemTimerGet() - lastTime) / 1000.0f;
     lastTime = systemTimerGet();
     if (io.DeltaTime <= 0.0f)
         io.DeltaTime = 1.0f / 60.0f;
@@ -172,8 +172,9 @@ void UI::eventsFinished() {
 
         if (!(visible || Console::isVisible() || Menu::isVisible())) {
             for (int n = forwardAction; n < ActionEventCount; n++) {
-                if (RunTime::getKeyBinding((ActionEvents)n) == std::get<0>(i))
-                    Game::handleAction((ActionEvents)n, !std::get<1>(i));
+                auto ae = static_cast<ActionEvents>(n);
+                if (RunTime::getKeyBinding(ae) == std::get<0>(i))
+                    Game::handleAction(ae, !std::get<1>(i));
             }
         }
 
@@ -402,7 +403,7 @@ void UI::handleText(char* text, bool notFinished) {
 
 void UI::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
     ImGuiIO& io = ImGui::GetIO();
-    io.MousePos = ImVec2((float)x, (float)y);
+    io.MousePos = ImVec2(x, y);
     if (button == leftmouseKey) {
         io.MouseDown[0] = !released;
     } else if (button == rightmouseKey) {
@@ -420,7 +421,7 @@ void UI::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button,
 
 void UI::handleMouseMotion(int xrel, int yrel, int xabs, int yabs) {
     ImGuiIO& io = ImGui::GetIO();
-    io.MousePos = ImVec2((float)xabs, (float)yabs);
+    io.MousePos = ImVec2(xabs, yabs);
 
     motionEvents.push_back(std::make_tuple(xrel, yrel, xabs, yabs));
 }

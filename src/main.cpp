@@ -184,7 +184,9 @@ int main(int argc, char* argv[]) {
 #ifdef DEBUG
     std::cout << std::endl;
     std::cout << "Thanks for testing " << VERSION << std::endl;
+#if defined(__DATE__) && defined(__TIME__)
     std::cout << "Build date: " << __DATE__ << " @ " << __TIME__ << std::endl;
+#endif
     std::cout << "Build host: " << BUILD_HOST << std::endl;
     std::cout << "Web site  : http://github.com/xythobuz/OpenRaider" << std::endl;
     std::cout << "Contact   : xythobuz@xythobuz.de" << std::endl;

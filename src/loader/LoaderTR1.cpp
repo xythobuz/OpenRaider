@@ -307,7 +307,7 @@ void LoaderTR1::loadAngleSet(BoneFrame* bf, BinaryReader& frame, uint16_t numMes
             tmp += (i - 1) * 16; // TODO ?
             BinaryMemory tree(tmp, (numMeshTrees * 4) - meshTree - ((i - 1) * 16));
 
-            flag = (char)tree.readU32();
+            flag = static_cast<char>(tree.readU32());
             offset.x = tree.read32();
             offset.y = tree.read32();
             offset.z = tree.read32();
@@ -317,8 +317,8 @@ void LoaderTR1::loadAngleSet(BoneFrame* bf, BinaryReader& frame, uint16_t numMes
             rotation[0] = (a & 0x3FF0) >> 4;
             rotation[1] = ((a & 0x000F) << 6) | ((b & 0xFC00) >> 10);
             rotation[2] = b & 0x03FF;
-            for (int i = 0; i < 3; i++)
-                rotation[i] = rotation[i] * 360.0f / 1024.0f;
+            for (int n = 0; n < 3; n++)
+                rotation[n] = rotation[n] * 360.0f / 1024.0f;
         }
 
         glm::vec3 rot(rotation[0], rotation[1], rotation[2]);
