@@ -133,16 +133,10 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
             auto& r = World::getRoom(portal.getAdjoiningRoom());
 
             // Calculate the 2D screen-space bounding box of this portal
-            glm::vec3 newMin, newMax;
+            glm::vec4 newMin, newMax;
             for (int c = 0; c < 4; c++) {
                 glm::vec3 port = portal.getVertex(c);
-                glm::vec4 result = VP * glm::vec4(port, 1.0f);
-                glm::vec3 vert = glm::vec3(result) / result.w;
-
-                ImGui::Text("%.2f %.2f %.2f", port.x, port.y, port.z);
-                ImGui::Text("%.2f %.2f %.2f %.2f", result.x, result.y, result.z, result.w);
-                ImGui::Text("%.2f %.2f %.2f", vert.x, vert.y, vert.z);
-                ImGui::Text("----");
+                glm::vec4 vert = VP * glm::vec4(port, 1.0f);
 
                 if (c == 0) {
                     newMin = vert;
@@ -154,23 +148,24 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
                         newMin.y = vert.y;
                     if (vert.z < newMin.z)
                         newMin.z = vert.z;
+                    if (vert.w < newMin.w)
+                        newMin.w = vert.w;
                     if (vert.x > newMax.x)
                         newMax.x = vert.x;
                     if (vert.y > newMax.y)
                         newMax.y = vert.y;
                     if (vert.z > newMax.z)
                         newMax.z = vert.z;
+                    if (vert.w > newMax.w)
+                        newMax.w = vert.w;
                 }
             }
 
-            //ImGui::Text("%.2f %.2f %.2f", newMin.x, newMin.y, newMin.z);
-            //ImGui::Text("%.2f %.2f %.2f", newMax.x, newMax.y, newMax.z);
-            //ImGui::Text("----");
-
-            //! \fixme Currently also checking behind player, because Z is always 1.0f?!
-            //if ((newMin.z > 0.0f) || (newMin.z < -1.0f) || (newMax.z > 0.0f) || (newMax.z < -1.0f)) {
-            //    continue;
-            //}
+            // Check if the portal lies behind the player
+            if (!((newMin.z <= newMin.w) && (newMin.z >= -newMin.w)
+                && (newMax.z <= newMax.w) && (newMax.z >= -newMax.w))) {
+                continue;
+            }
 
             //! \fixme Need to check portal normal, only render if it points in our direction
             //if (!normalFacingUs) {
@@ -178,8 +173,8 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
             //}
 
             // Check if the portal intersects the portal leading into this room
-            if (!((min.x < newMax.x) && (max.x > newMin.x)
-                && (min.y < newMax.y) && (max.y > newMin.y))) {
+            if (!((min.x < (newMax.x / newMax.w)) && (max.x > (newMin.x / newMin.w))
+                && (min.y < (newMax.y / newMax.w)) && (max.y > (newMin.y / newMin.w)))) {
                 continue;
             }
 
@@ -199,7 +194,7 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
 
             // ...only render it if it is not
             if (!found) {
-                buildRoomList(VP, portal.getAdjoiningRoom(), glm::vec2(newMin), glm::vec2(newMax));
+                buildRoomList(VP, portal.getAdjoiningRoom(), glm::vec2(newMin) / newMin.w, glm::vec2(newMax) / newMax.w);
             }
         }
     }

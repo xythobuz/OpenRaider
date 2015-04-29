@@ -2,6 +2,20 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150429 ]
+    * Fixed the new BoundingBox rendering approach
+    * Fixed portal rendering method, no longer checking portals behind player.
+
+    [ 20150424 ]
+    * Imgui update
+
+    [ 20150417 ]
+    * Updated imgui
+    * First try at scissoring rendering through room portals.
+
+    [ 20150413 ]
+    * Now trying to cache all bounding box vertices, drawing all at end of frame.
+
     [ 20150408 ]
     * Now checking for errors after every OpenGL call.
     * Slightly tweaked portal visibility checks.
