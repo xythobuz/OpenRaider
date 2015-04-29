@@ -100,6 +100,13 @@ class Shader {
                        gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
                        Shader& shader = colorShader);
 
+    static void drawGL(std::vector<glm::vec4>& vertices, std::vector<glm::vec3>& colors,
+                       gl::GLenum mode = gl::GL_TRIANGLES, ShaderTexture* target = nullptr,
+                       Shader& shader = transformedColorShader);
+    static void drawGL(std::vector<glm::vec4>& vertices, std::vector<glm::vec3>& colors,
+                       std::vector<unsigned short>& indices, gl::GLenum mode = gl::GL_TRIANGLES,
+                       ShaderTexture* target = nullptr, Shader& shader = transformedColorShader);
+
     static std::string getVersion(bool linked);
 
   private:
@@ -116,6 +123,10 @@ class Shader {
     static Shader colorShader;
     static const char* colorShaderVertex;
     static const char* colorShaderFragment;
+
+    static Shader transformedColorShader;
+    static const char* transformedColorShaderVertex;
+    static const char* transformedColorShaderFragment;
 
     static unsigned int vertexArrayID;
     static bool lastBufferWasNotFramebuffer;

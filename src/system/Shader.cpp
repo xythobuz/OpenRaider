@@ -246,6 +246,7 @@ std::string Shader::getVersion(bool linked) {
 
 Shader Shader::textureShader;
 Shader Shader::colorShader;
+Shader Shader::transformedColorShader;
 unsigned int Shader::vertexArrayID = 0;
 bool Shader::lastBufferWasNotFramebuffer = true;
 
@@ -275,6 +276,9 @@ int Shader::initialize() {
         return -4;
     if (colorShader.addUniform("MVP") < 0)
         return -5;
+
+    if (transformedColorShader.compile(transformedColorShaderVertex, transformedColorShaderFragment) < 0)
+        return -6;
 
     return 0;
 }
@@ -402,6 +406,43 @@ void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec3>& co
     shader.otherBuffer.unbind(1);
 }
 
+void Shader::drawGL(std::vector<glm::vec4>& vertices, std::vector<glm::vec3>& colors,
+                    gl::GLenum mode, ShaderTexture* target, Shader& shader) {
+    bindProperBuffer(target);
+
+    shader.use();
+    shader.vertexBuffer.bufferData(vertices);
+    shader.otherBuffer.bufferData(colors);
+
+    shader.vertexBuffer.bindBuffer(0, 4);
+    shader.otherBuffer.bindBuffer(1, 3);
+
+    gl::glDrawArrays(mode, 0, shader.vertexBuffer.getSize());
+
+    shader.vertexBuffer.unbind(0);
+    shader.otherBuffer.unbind(0);
+}
+
+void Shader::drawGL(std::vector<glm::vec4>& vertices, std::vector<glm::vec3>& colors,
+                    std::vector<unsigned short>& indices, gl::GLenum mode,
+                    ShaderTexture* target, Shader& shader) {
+    bindProperBuffer(target);
+
+    shader.use();
+    shader.vertexBuffer.bufferData(vertices);
+    shader.otherBuffer.bufferData(colors);
+    shader.indexBuffer.bufferData(indices);
+
+    shader.vertexBuffer.bindBuffer(0, 4);
+    shader.otherBuffer.bindBuffer(1, 3);
+    shader.indexBuffer.bindBuffer();
+
+    gl::glDrawElements(mode, shader.indexBuffer.getSize(), gl::GL_UNSIGNED_SHORT, nullptr);
+
+    shader.vertexBuffer.unbind(0);
+    shader.otherBuffer.unbind(0);
+}
+
 // --------------------------------------
 // *INDENT-OFF*
 
@@ -456,6 +497,34 @@ void main() {
 )!?!";
 
 const char* Shader::colorShaderFragment = R"!?!(
+#version 330 core
+
+in vec3 color;
+
+layout(location = 0) out vec4 color_out;
+
+void main() {
+    color_out = vec4(color, 1);
+}
+)!?!";
+
+// --------------------------------------
+
+const char* Shader::transformedColorShaderVertex = R"!?!(
+#version 330 core
+
+layout(location = 0) in vec4 vertexPosition;
+layout(location = 1) in vec3 vertexColor;
+
+out vec3 color;
+
+void main() {
+    gl_Position = vertexPosition;
+    color = vertexColor;
+}
+)!?!";
+
+const char* Shader::transformedColorShaderFragment = R"!?!(
 #version 330 core
 
 in vec3 color;

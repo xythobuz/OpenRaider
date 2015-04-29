@@ -1,2 +1,6 @@
 .DS_Store
+.VolumeIcon.icns
+.fseventsd
+Icon
+
 build*

@@ -27,7 +27,8 @@ class BoundingBox {
   private:
     std::array<glm::vec3, 8> corner;
 
-    static std::vector<glm::vec3> vertices, colorsLine, colorsPoint;
+    static std::vector<glm::vec4> vertices;
+    static std::vector<glm::vec3> colorsLine, colorsPoint;
     static std::vector<unsigned short> indicesLine;
 };
 

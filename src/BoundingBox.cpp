@@ -13,7 +13,8 @@
 
 #include <glbinding/gl/gl.h>
 
-std::vector<glm::vec3> BoundingBox::vertices, BoundingBox::colorsLine, BoundingBox::colorsPoint;
+std::vector<glm::vec4> BoundingBox::vertices;
+std::vector<glm::vec3> BoundingBox::colorsLine, BoundingBox::colorsPoint;
 std::vector<unsigned short> BoundingBox::indicesLine;
 
 BoundingBox::BoundingBox(glm::vec3 min, glm::vec3 max) {
@@ -39,8 +40,7 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
     auto startSize = vertices.size();
 
     for (auto& c : corner) {
-        glm::vec4 t = VP * glm::vec4(c, 1.0f);
-        vertices.emplace_back(glm::vec3(t) / t.w);
+        vertices.emplace_back(VP * glm::vec4(c, 1.0f));
         colorsLine.emplace_back(colorLine);
         colorsPoint.emplace_back(colorDot);
     }
@@ -73,8 +73,8 @@ void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot)
 
 void BoundingBox::display() {
     if (vertices.size() > 0) {
-        Shader::drawGL(vertices, colorsLine, indicesLine, glm::mat4(1.0f), gl::GL_LINES);
-        Shader::drawGL(vertices, colorsPoint, glm::mat4(1.0f), gl::GL_POINTS);
+        Shader::drawGL(vertices, colorsLine, indicesLine, gl::GL_LINES);
+        Shader::drawGL(vertices, colorsPoint, gl::GL_POINTS);
     }
 
     vertices.clear();
