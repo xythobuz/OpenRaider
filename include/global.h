@@ -100,59 +100,59 @@ template<typename T, typename U>
     abort();
 }
 
-#define orAssert(x) { \
+#define orAssert(x) do { \
     auto assertEvalTemp = x; \
     if (!assertEvalTemp) \
         orAssertImplementation(#x, assertEvalTemp, true, __FILE__, __LINE__); \
-}
+} while (0)
 
-#define orAssertEqual(x, y) { \
+#define orAssertEqual(x, y) do { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp != assertEvalTemp2) \
         orAssertImplementation(#x " == " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, "!="); \
-}
+} while (0)
 
-#define orAssertNotEqual(x, y) { \
+#define orAssertNotEqual(x, y) do { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp == assertEvalTemp2) \
         orAssertImplementation(#x " != " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, "=="); \
-}
+} while (0)
 
-#define orAssertLessThan(x, y) { \
+#define orAssertLessThan(x, y) do { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp >= assertEvalTemp2) \
         orAssertImplementation(#x " < " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, ">="); \
-}
+} while (0)
 
-#define orAssertLessThanEqual(x, y) { \
+#define orAssertLessThanEqual(x, y) do { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp > assertEvalTemp2) \
         orAssertImplementation(#x " <= " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, ">"); \
-}
+} while (0)
 
-#define orAssertGreaterThan(x, y) { \
+#define orAssertGreaterThan(x, y) do { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp <= assertEvalTemp2) \
         orAssertImplementation(#x " > " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, "<="); \
-}
+} while (0)
 
-#define orAssertGreaterThanEqual(x, y) { \
+#define orAssertGreaterThanEqual(x, y) do { \
     auto assertEvalTemp = x; \
     auto assertEvalTemp2 = y; \
     if (assertEvalTemp < assertEvalTemp2) \
         orAssertImplementation(#x " >= " #y, assertEvalTemp, assertEvalTemp2, \
                                   __FILE__, __LINE__, "<"); \
-}
+} while (0)
 
 #else // NDEBUG
 
@@ -170,6 +170,7 @@ template<typename T, typename U>
 
 // Fall back to the default C assert
 #include <cassert>
+#define orAssert(x) assert(x)
 #define orAssertEqual(x, y) assert((x) == (y))
 #define orAssertNotEqual(x, y) assert((x) != (y))
 #define orAssertLessThan(x, y) assert((x) < (y))

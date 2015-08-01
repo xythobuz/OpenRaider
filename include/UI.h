@@ -17,7 +17,7 @@
 
 #include "system/Shader.h"
 
-struct ImDrawList;
+struct ImDrawData;
 
 class UI {
   public:
@@ -38,7 +38,7 @@ class UI {
     static void handleControllerAxis(float value, KeyboardButton axis);
     static void handleControllerButton(KeyboardButton button, bool released);
 
-    static void renderImGui(ImDrawList** const draw_lists, int count);
+    static void renderImGui(ImDrawData* draw_data);
 
   private:
     static bool visible;
@@ -55,6 +55,7 @@ class UI {
     static Shader imguiShader;
     static const char* imguiShaderVertex;
     static const char* imguiShaderFragment;
+    static unsigned int vboHandle, elementHandle;
 };
 
 #endif

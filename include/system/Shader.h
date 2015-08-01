@@ -65,6 +65,8 @@ class Shader {
     int addUniform(const char* name);
     unsigned int getUniform(int n);
 
+    int getAttrib(const char* name);
+
     void loadUniform(int uni, glm::vec2 vec);
     void loadUniform(int uni, glm::vec4 vec);
     void loadUniform(int uni, glm::mat4 mat);

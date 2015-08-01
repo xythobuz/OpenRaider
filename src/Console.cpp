@@ -135,7 +135,7 @@ void Console::display() {
             logToTTY = logToClipboard = logToFile = false;
         }
         if (scrollToBottom) {
-            ImGui::SetScrollPosHere();
+            ImGui::SetScrollHere();
             scrollToBottom = false;
         }
         ImGui::EndChild();

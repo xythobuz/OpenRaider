@@ -272,14 +272,14 @@ void SoundManager::display() {
         ImGui::SliderInt("##soundslide", &index, 0, soundMap.size() - 1);
         ImGui::PopItemWidth();
         ImGui::SameLine();
-        if (ImGui::Button("+##soundplus", ImVec2(0, 0), true)) {
+        if (ImGui::Button("+##soundplus", ImVec2(0, 0))) {
             if (index < (soundMap.size() - 1))
                 index++;
             else
                 index = 0;
         }
         ImGui::SameLine();
-        if (ImGui::Button("-##soundminus", ImVec2(0, 0), true)) {
+        if (ImGui::Button("-##soundminus", ImVec2(0, 0))) {
             if (index > 0)
                 index--;
             else

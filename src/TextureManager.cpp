@@ -410,7 +410,7 @@ void TextureManager::display() {
         ImGui::SliderInt("##texslide", &index, 0, TextureManager::numTextures(
                              game ? TextureStorage::GAME : TextureStorage::SYSTEM) - 1);
         ImGui::SameLine();
-        if (ImGui::Button("+##texplus", ImVec2(0, 0), true)) {
+        if (ImGui::Button("+##texplus", ImVec2(0, 0))) {
             if (index < (numTextures(
                              game ? TextureStorage::GAME : TextureStorage::SYSTEM) - 1))
                 index++;
@@ -418,7 +418,7 @@ void TextureManager::display() {
                 index = 0;
         }
         ImGui::SameLine();
-        if (ImGui::Button("-##texminus", ImVec2(0, 0), true)) {
+        if (ImGui::Button("-##texminus", ImVec2(0, 0))) {
             if (index > 0)
                 index--;
             else
@@ -453,14 +453,14 @@ void TextureManager::display() {
             ImGui::SliderInt("##tileslide", &index, 0, numTiles() - 1);
             ImGui::PopItemWidth();
             ImGui::SameLine();
-            if (ImGui::Button("+##tileplus", ImVec2(0, 0), true)) {
+            if (ImGui::Button("+##tileplus", ImVec2(0, 0))) {
                 if (index < (numTiles() - 1))
                     index++;
                 else
                     index = 0;
             }
             ImGui::SameLine();
-            if (ImGui::Button("-##tileminus", ImVec2(0, 0), true)) {
+            if (ImGui::Button("-##tileminus", ImVec2(0, 0))) {
                 if (index > 0)
                     index--;
                 else
@@ -491,7 +491,7 @@ void TextureManager::display() {
                 tile = getFirstTileAnimation(index);
             }
             ImGui::SameLine();
-            if (ImGui::Button("+##animplus", ImVec2(0, 0), true)) {
+            if (ImGui::Button("+##animplus", ImVec2(0, 0))) {
                 if (index < (numAnimatedTiles() - 1))
                     index++;
                 else
@@ -499,7 +499,7 @@ void TextureManager::display() {
                 tile = getFirstTileAnimation(index);
             }
             ImGui::SameLine();
-            if (ImGui::Button("-##animminus", ImVec2(0, 0), true)) {
+            if (ImGui::Button("-##animminus", ImVec2(0, 0))) {
                 if (index > 0)
                     index--;
                 else
@@ -552,7 +552,7 @@ void TextureManager::display() {
                 sprite = 0;
             }
             ImGui::SameLine();
-            if (ImGui::Button("+##spriteplus", ImVec2(0, 0), true)) {
+            if (ImGui::Button("+##spriteplus", ImVec2(0, 0))) {
                 if (index < (World::sizeSpriteSequence() - 1))
                     index++;
                 else
@@ -560,7 +560,7 @@ void TextureManager::display() {
                 sprite = 0;
             }
             ImGui::SameLine();
-            if (ImGui::Button("-##spriteminus", ImVec2(0, 0), true)) {
+            if (ImGui::Button("-##spriteminus", ImVec2(0, 0))) {
                 if (index > 0)
                     index--;
                 else

@@ -26,12 +26,16 @@
 #include <glbinding/gl/gl.h>
 #include <glm/gtc/matrix_transform.hpp>
 
+#define OFFSETOF(TYPE, ELEMENT) (&(static_cast<TYPE *>(nullptr)->ELEMENT))
+
 Shader UI::imguiShader;
 bool UI::visible = false;
 unsigned int UI::fontTex;
 std::string UI::iniFilename;
 std::string UI::logFilename;
 bool UI::metaKeyIsActive = false;
+unsigned int UI::vboHandle = 0;
+unsigned int UI::elementHandle = 0;
 
 std::list<std::tuple<KeyboardButton, bool>> UI::keyboardEvents;
 std::list<std::tuple<unsigned int, unsigned int, KeyboardButton, bool>> UI::clickEvents;
@@ -43,6 +47,8 @@ void UI::setSize(glm::i32vec2 s) {
     io.DisplaySize = ImVec2(s.x, s.y);
 }
 
+static int attribPos, attribUV, attribCol;
+
 int UI::initialize() {
     if (imguiShader.compile(imguiShaderVertex, imguiShaderFragment) < 0)
         return -1;
@@ -50,6 +56,10 @@ int UI::initialize() {
         return -2;
     if (imguiShader.addUniform("textureSampler") < 0)
         return -3;
+
+    attribPos = imguiShader.getAttrib("vertexPosition_screen");
+    attribUV = imguiShader.getAttrib("vertexUV");
+    attribCol = imguiShader.getAttrib("vertexColor");
 
     iniFilename = RunTime::getBaseDir() + "/imgui.ini";
     logFilename = RunTime::getBaseDir() + "/imgui_log.txt";
@@ -94,7 +104,11 @@ int UI::initialize() {
     auto bm = TextureManager::getBufferManager(fontTex, TextureStorage::SYSTEM);
     io.Fonts->TexID = bm;
 
+    gl::glGenBuffers(1, &vboHandle);
+    gl::glGenBuffers(1, &elementHandle);
+
     // Set up OpenRaider style
+    /*
     ImGuiStyle& style = ImGui::GetStyle();
     style.Colors[ImGuiCol_Text]                 = ImVec4(0.90f, 0.90f, 0.90f, 1.00f);
     style.Colors[ImGuiCol_WindowBg]             = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
@@ -142,6 +156,7 @@ int UI::initialize() {
     style.TouchExtraPadding                     = ImVec2(0, 0);
     style.IndentSpacing                         = 3;
     style.ScrollbarWidth                        = 10;
+    */
 
     return 0;
 }
@@ -375,6 +390,9 @@ void UI::display() {
 
 void UI::shutdown() {
     ImGui::Shutdown();
+
+    gl::glDeleteBuffers(1, &vboHandle);
+    gl::glDeleteBuffers(1, &elementHandle);
 }
 
 void UI::handleKeyboard(KeyboardButton key, bool pressed) {
@@ -482,70 +500,59 @@ void UI::handleControllerButton(KeyboardButton button, bool released) {
     }
 }
 
-void UI::renderImGui(ImDrawList** const cmd_lists, int cmd_lists_count) {
-    if (cmd_lists_count == 0)
+void UI::renderImGui(ImDrawData* draw_data) {
+    if (draw_data->CmdListsCount == 0)
         return;
-
-    static ShaderBuffer vert, uv, col;
 
     gl::glEnable(gl::GL_SCISSOR_TEST);
     Shader::set2DState(true);
 
+    gl::glEnableVertexAttribArray(attribPos);
+    gl::glEnableVertexAttribArray(attribUV);
+    gl::glEnableVertexAttribArray(attribCol);
+
+    gl::glBindBuffer(gl::GL_ARRAY_BUFFER, vboHandle);
+
+    gl::glVertexAttribPointer(attribPos, 2, gl::GL_FLOAT, gl::GL_FALSE, sizeof(ImDrawVert), OFFSETOF(ImDrawVert, pos));
+    gl::glVertexAttribPointer(attribUV, 2, gl::GL_FLOAT, gl::GL_FALSE, sizeof(ImDrawVert), OFFSETOF(ImDrawVert, uv));
+    gl::glVertexAttribPointer(attribCol, 4, gl::GL_UNSIGNED_BYTE, gl::GL_TRUE, sizeof(ImDrawVert), OFFSETOF(ImDrawVert, col));
+
     imguiShader.use();
     imguiShader.loadUniform(0, Window::getSize());
-    vert.bindBuffer(0, 2);
-    uv.bindBuffer(1, 2);
-    col.bindBuffer(2, 4);
 
-    /*! \fixme Don't copy data
-     * The GL calls and the shaders can probably be slightly altered
-     * to avoid copying all the vertices, uvs and colors again here.
-     */
+    for (int i = 0; i < draw_data->CmdListsCount; i++) {
+        const ImDrawList* cmd_list = draw_data->CmdLists[i];
+        const ImDrawIdx* idx_buffer_offset = 0;
 
-    for (int i = 0; i < cmd_lists_count; i++) {
-        auto& commands = cmd_lists[i]->commands;
-        auto& buffer = cmd_lists[i]->vtx_buffer;
+        gl::glBindBuffer(gl::GL_ARRAY_BUFFER, vboHandle);
+        gl::glBufferData(gl::GL_ARRAY_BUFFER, cmd_list->VtxBuffer.size() * sizeof(ImDrawVert), &cmd_list->VtxBuffer.front(), gl::GL_STREAM_DRAW);
 
-        int offset = 0;
-        for (int n = 0; n < commands.size(); n++) {
-            std::vector<glm::vec2> vertices;
-            std::vector<glm::vec2> uvs;
-            std::vector<glm::vec4> colors;
+        gl::glBindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, elementHandle);
+        gl::glBufferData(gl::GL_ELEMENT_ARRAY_BUFFER, cmd_list->IdxBuffer.size() * sizeof(ImDrawIdx), &cmd_list->IdxBuffer.front(), gl::GL_STREAM_DRAW);
 
-            for (int v = 0; v < commands[n].vtx_count; v++) {
-                vertices.push_back(glm::vec2(buffer[offset + v].pos.x, buffer[offset + v].pos.y));
-                uvs.push_back(glm::vec2(buffer[offset + v].uv.x, buffer[offset + v].uv.y));
+        for (const ImDrawCmd* pcmd = cmd_list->CmdBuffer.begin(); pcmd != cmd_list->CmdBuffer.end(); pcmd++) {
+            if (pcmd->UserCallback) {
+                pcmd->UserCallback(cmd_list, pcmd);
+                Log::get(LOG_INFO) << "renderImGui: did not draw (Callback)" << Log::endl;
+            } else {
+                auto bm = static_cast<BufferManager*>(pcmd->TextureId);
+                orAssert(bm != nullptr);
+                imguiShader.loadUniform(1, bm->getTextureID(), bm->getTextureStorage());
 
-                float r, g, b, a;
-                a = ((buffer[offset + v].col & 0xFF000000) >> 24) / 255.0f;
-                b = ((buffer[offset + v].col & 0x00FF0000) >> 16) / 255.0f;
-                g = ((buffer[offset + v].col & 0x0000FF00) >> 8) / 255.0f;
-                r = (buffer[offset + v].col & 0x000000FF) / 255.0f;
-                colors.push_back(glm::vec4(r, g, b, a));
+                gl::glScissor(pcmd->ClipRect.x,
+                              Window::getSize().y - pcmd->ClipRect.w,
+                              pcmd->ClipRect.z - pcmd->ClipRect.x,
+                              pcmd->ClipRect.w - pcmd->ClipRect.y);
+
+                gl::glDrawElements(gl::GL_TRIANGLES, pcmd->ElemCount, gl::GL_UNSIGNED_SHORT, idx_buffer_offset);
             }
-
-            offset += commands[n].vtx_count;
-
-            vert.bufferData(vertices);
-            uv.bufferData(uvs);
-            col.bufferData(colors);
-
-            auto bm = static_cast<BufferManager*>(commands[n].texture_id);
-            orAssert(bm != nullptr);
-            imguiShader.loadUniform(1, bm->getTextureID(), bm->getTextureStorage());
-
-            gl::glScissor(commands[n].clip_rect.x,
-                      Window::getSize().y - commands[n].clip_rect.w,
-                      commands[n].clip_rect.z - commands[n].clip_rect.x,
-                      commands[n].clip_rect.w - commands[n].clip_rect.y);
-
-            gl::glDrawArrays(gl::GL_TRIANGLES, 0, vertices.size());
+            idx_buffer_offset += pcmd->ElemCount;
         }
     }
 
-    vert.unbind(0);
-    uv.unbind(1);
-    col.unbind(2);
+    gl::glDisableVertexAttribArray(attribPos);
+    gl::glDisableVertexAttribArray(attribUV);
+    gl::glDisableVertexAttribArray(attribCol);
 
     Shader::set2DState(false);
     gl::glDisable(gl::GL_SCISSOR_TEST);

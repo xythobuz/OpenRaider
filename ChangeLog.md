@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150801 ]
+    * Updated to current Imgui version (now using indexed rendering)
+
     [ 20150429 ]
     * Fixed the new BoundingBox rendering approach
     * Fixed portal rendering method, no longer checking portals behind player.

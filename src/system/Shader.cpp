@@ -103,6 +103,13 @@ Shader::~Shader() {
         gl::glDeleteProgram(programID);
 }
 
+int Shader::getAttrib(const char* name) {
+    orAssert(programID >= 0);
+    orAssert(name != nullptr);
+    orAssert(name[0] != '\0');
+    return gl::glGetAttribLocation(programID, name);
+}
+
 int Shader::addUniform(const char* name) {
     orAssert(programID >= 0);
     int r = gl::glGetUniformLocation(programID, name);
@@ -261,6 +268,7 @@ int Shader::initialize() {
     gl::glDepthFunc(gl::GL_LESS);
 
     gl::glEnable(gl::GL_BLEND);
+    gl::glBlendEquation(gl::GL_FUNC_ADD);
     gl::glBlendFunc(gl::GL_SRC_ALPHA, gl::GL_ONE_MINUS_SRC_ALPHA);
 
     gl::glPointSize(5.0f);
