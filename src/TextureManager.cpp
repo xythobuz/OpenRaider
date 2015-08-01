@@ -147,10 +147,10 @@ int TextureManager::loadBufferSlot(unsigned char* image,
     orAssertGreaterThan(width, 0);
     orAssertGreaterThan(height, 0);
     orAssert((mode == ColorMode::RGB)
-           || (mode == ColorMode::BGR)
-           || (mode == ColorMode::ARGB)
-           || (mode == ColorMode::RGBA)
-           || (mode ==  ColorMode::BGRA));
+             || (mode == ColorMode::BGR)
+             || (mode == ColorMode::ARGB)
+             || (mode == ColorMode::RGBA)
+             || (mode ==  ColorMode::BGRA));
     orAssert((bpp == 8) || (bpp == 24) || (bpp == 32));
 
     if (slot < 0)
@@ -189,14 +189,16 @@ int TextureManager::loadBufferSlot(unsigned char* image,
 
     gl::glPixelStorei(gl::GL_UNPACK_ALIGNMENT, 1);
     bindTexture(slot, s);
-    gl::glTexImage2D(gl::GL_TEXTURE_2D, 0, gl::GLint(gl::GL_RGBA), width, height, 0, glcMode, gl::GL_UNSIGNED_BYTE, image);
+    gl::glTexImage2D(gl::GL_TEXTURE_2D, 0, gl::GLint(gl::GL_RGBA), width, height, 0, glcMode,
+                     gl::GL_UNSIGNED_BYTE, image);
 
     if (filter) {
         // Trilinear filtering
         gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_WRAP_S, gl::GLint(gl::GL_REPEAT));
         gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_WRAP_T, gl::GLint(gl::GL_REPEAT));
         gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MAG_FILTER, gl::GLint(gl::GL_LINEAR));
-        gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MIN_FILTER, gl::GLint(gl::GL_LINEAR_MIPMAP_LINEAR));
+        gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MIN_FILTER,
+                            gl::GLint(gl::GL_LINEAR_MIPMAP_LINEAR));
         gl::glGenerateMipmap(gl::GL_TEXTURE_2D);
     } else {
         gl::glTexParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MIN_FILTER, gl::GLint(gl::GL_NEAREST));

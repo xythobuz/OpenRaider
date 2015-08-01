@@ -141,6 +141,7 @@ void Mesh::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {
     }
 
     if (indicesColorBuff.size() > 0)
-        Shader::drawGL(verticesColorBuff, colorsBuff, indicesColorBuff, MVP, gl::GL_TRIANGLES, shaderTexture);
+        Shader::drawGL(verticesColorBuff, colorsBuff, indicesColorBuff, MVP, gl::GL_TRIANGLES,
+                       shaderTexture);
 }
 

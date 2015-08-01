@@ -33,7 +33,8 @@ bool BoundingBox::inBox(glm::vec3 p) {
 }
 
 bool BoundingBox::inBoxPlane(glm::vec3 p) {
-    return ((p.x >= corner[0].x) && (p.x <= corner[7].x) && (p.z >= corner[0].z) && (p.z <= corner[7].z));
+    return ((p.x >= corner[0].x) && (p.x <= corner[7].x) && (p.z >= corner[0].z)
+            && (p.z <= corner[7].z));
 }
 
 void BoundingBox::display(glm::mat4 VP, glm::vec3 colorLine, glm::vec3 colorDot) {

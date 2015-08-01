@@ -68,10 +68,11 @@ ShaderTexture::ShaderTexture(int w, int h) : width(w), height(h) {
     gl::glGenRenderbuffers(1, &depth);
     gl::glBindRenderbuffer(gl::GL_RENDERBUFFER, depth);
     gl::glRenderbufferStorage(gl::GL_RENDERBUFFER, gl::GL_DEPTH_COMPONENT, width, height);
-    gl::glFramebufferRenderbuffer(gl::GL_FRAMEBUFFER, gl::GL_DEPTH_ATTACHMENT, gl::GL_RENDERBUFFER, depth);
+    gl::glFramebufferRenderbuffer(gl::GL_FRAMEBUFFER, gl::GL_DEPTH_ATTACHMENT, gl::GL_RENDERBUFFER,
+                                  depth);
 
     gl::glFramebufferTexture(gl::GL_FRAMEBUFFER, gl::GL_COLOR_ATTACHMENT0,
-                         TextureManager::getTextureID(texture, TextureStorage::SYSTEM), 0);
+                             TextureManager::getTextureID(texture, TextureStorage::SYSTEM), 0);
 
     gl::GLenum drawBuffer = gl::GL_COLOR_ATTACHMENT0;
     gl::glDrawBuffers(1, &drawBuffer);
@@ -142,7 +143,8 @@ void Shader::loadUniform(int uni, glm::mat4 mat) {
 void Shader::loadUniform(int uni, int texture, TextureStorage store) {
     if ((Render::getMode() == RenderMode::Solid)
         && (store == TextureStorage::GAME)) {
-        gl::glUniform1i(getUniform(uni), TextureManager::bindTexture(TEXTURE_SPLASH, TextureStorage::SYSTEM));
+        gl::glUniform1i(getUniform(uni), TextureManager::bindTexture(TEXTURE_SPLASH,
+                        TextureStorage::SYSTEM));
     } else {
         gl::glUniform1i(getUniform(uni), TextureManager::bindTexture(texture, store));
     }
@@ -285,7 +287,8 @@ int Shader::initialize() {
     if (colorShader.addUniform("MVP") < 0)
         return -5;
 
-    if (transformedColorShader.compile(transformedColorShaderVertex, transformedColorShaderFragment) < 0)
+    if (transformedColorShader.compile(transformedColorShaderVertex,
+                                       transformedColorShaderFragment) < 0)
         return -6;
 
     return 0;
@@ -347,7 +350,8 @@ void Shader::drawGL(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uv
     drawGLOnly(indices, MVP, texture, store, mode, target, shader);
 }
 
-void Shader::drawGLBuffer(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs, Shader& shader) {
+void Shader::drawGLBuffer(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& uvs,
+                          Shader& shader) {
     shader.vertexBuffer.bufferData(vertices);
     shader.otherBuffer.bufferData(uvs);
 }

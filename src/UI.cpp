@@ -513,9 +513,12 @@ void UI::renderImGui(ImDrawData* draw_data) {
 
     gl::glBindBuffer(gl::GL_ARRAY_BUFFER, vboHandle);
 
-    gl::glVertexAttribPointer(attribPos, 2, gl::GL_FLOAT, gl::GL_FALSE, sizeof(ImDrawVert), OFFSETOF(ImDrawVert, pos));
-    gl::glVertexAttribPointer(attribUV, 2, gl::GL_FLOAT, gl::GL_FALSE, sizeof(ImDrawVert), OFFSETOF(ImDrawVert, uv));
-    gl::glVertexAttribPointer(attribCol, 4, gl::GL_UNSIGNED_BYTE, gl::GL_TRUE, sizeof(ImDrawVert), OFFSETOF(ImDrawVert, col));
+    gl::glVertexAttribPointer(attribPos, 2, gl::GL_FLOAT, gl::GL_FALSE, sizeof(ImDrawVert),
+                              OFFSETOF(ImDrawVert, pos));
+    gl::glVertexAttribPointer(attribUV, 2, gl::GL_FLOAT, gl::GL_FALSE, sizeof(ImDrawVert),
+                              OFFSETOF(ImDrawVert, uv));
+    gl::glVertexAttribPointer(attribCol, 4, gl::GL_UNSIGNED_BYTE, gl::GL_TRUE, sizeof(ImDrawVert),
+                              OFFSETOF(ImDrawVert, col));
 
     imguiShader.use();
     imguiShader.loadUniform(0, Window::getSize());
@@ -525,12 +528,15 @@ void UI::renderImGui(ImDrawData* draw_data) {
         const ImDrawIdx* idx_buffer_offset = 0;
 
         gl::glBindBuffer(gl::GL_ARRAY_BUFFER, vboHandle);
-        gl::glBufferData(gl::GL_ARRAY_BUFFER, cmd_list->VtxBuffer.size() * sizeof(ImDrawVert), &cmd_list->VtxBuffer.front(), gl::GL_STREAM_DRAW);
+        gl::glBufferData(gl::GL_ARRAY_BUFFER, cmd_list->VtxBuffer.size() * sizeof(ImDrawVert),
+                         &cmd_list->VtxBuffer.front(), gl::GL_STREAM_DRAW);
 
         gl::glBindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, elementHandle);
-        gl::glBufferData(gl::GL_ELEMENT_ARRAY_BUFFER, cmd_list->IdxBuffer.size() * sizeof(ImDrawIdx), &cmd_list->IdxBuffer.front(), gl::GL_STREAM_DRAW);
+        gl::glBufferData(gl::GL_ELEMENT_ARRAY_BUFFER, cmd_list->IdxBuffer.size() * sizeof(ImDrawIdx),
+                         &cmd_list->IdxBuffer.front(), gl::GL_STREAM_DRAW);
 
-        for (const ImDrawCmd* pcmd = cmd_list->CmdBuffer.begin(); pcmd != cmd_list->CmdBuffer.end(); pcmd++) {
+        for (const ImDrawCmd* pcmd = cmd_list->CmdBuffer.begin(); pcmd != cmd_list->CmdBuffer.end();
+             pcmd++) {
             if (pcmd->UserCallback) {
                 pcmd->UserCallback(cmd_list, pcmd);
                 Log::get(LOG_INFO) << "renderImGui: did not draw (Callback)" << Log::endl;

@@ -163,7 +163,7 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
 
             // Check if the portal lies behind the player
             if (!((newMin.z <= newMin.w) && (newMin.z >= -newMin.w)
-                && (newMax.z <= newMax.w) && (newMax.z >= -newMax.w))) {
+                  && (newMax.z <= newMax.w) && (newMax.z >= -newMax.w))) {
                 continue;
             }
 
@@ -174,7 +174,7 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
 
             // Check if the portal intersects the portal leading into this room
             if (!((min.x < (newMax.x / newMax.w)) && (max.x > (newMin.x / newMin.w))
-                && (min.y < (newMax.y / newMax.w)) && (max.y > (newMin.y / newMin.w)))) {
+                  && (min.y < (newMax.y / newMax.w)) && (max.y > (newMin.y / newMin.w)))) {
                 continue;
             }
 
@@ -194,7 +194,8 @@ void Render::buildRoomList(glm::mat4 VP, int room, glm::vec2 min, glm::vec2 max)
 
             // ...only render it if it is not
             if (!found) {
-                buildRoomList(VP, portal.getAdjoiningRoom(), glm::vec2(newMin) / newMin.w, glm::vec2(newMax) / newMax.w);
+                buildRoomList(VP, portal.getAdjoiningRoom(), glm::vec2(newMin) / newMin.w,
+                              glm::vec2(newMax) / newMax.w);
             }
         }
     }

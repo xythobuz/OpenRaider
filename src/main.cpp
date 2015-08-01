@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
     // Register global OpenGL after-callback for all GL functions except glGetError
     glbinding::setCallbackMaskExcept(glbinding::CallbackMask::After
                                      | glbinding::CallbackMask::ParametersAndReturnValue,
-                                     { "glGetError" });
+    { "glGetError" });
     glbinding::setAfterCallback(glErrorCallback);
     glbinding::setUnresolvedCallback(glUnresolvedCallback);
 #endif

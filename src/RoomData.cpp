@@ -56,9 +56,9 @@ bool Portal::showBoundingBox = false;
 
 Portal::Portal(int adj, glm::vec3 n, glm::vec3 v1, glm::vec3 v2, glm::vec3 v3,
                glm::vec3 v4) : adjoiningRoom(adj), normal(n), bbox(v1, v3),
-                               bboxNormal(v1 + ((v3 - v1) / 2.0f),
-                                          v1 + ((v3 - v1) / 2.0f)
-                                             + (normal * 1024.0f)) {
+    bboxNormal(v1 + ((v3 - v1) / 2.0f),
+               v1 + ((v3 - v1) / 2.0f)
+               + (normal * 1024.0f)) {
     vert[0] = v1; vert[1] = v2;
     vert[2] = v3; vert[3] = v4;
 }
