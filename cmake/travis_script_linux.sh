@@ -7,7 +7,7 @@ if [ "$CC" = "clang" ]; then export CC="clang-3.5"; fi
 if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.5"; fi
 
 # Need to build latest glbinding from source
-GLBVER=`curl https://api.github.com/repos/hpicgs/glbinding/releases/latest | grep -m1 tag_name | cut -d\" -f4`
+GLBVER=`curl https://api.github.com/repos/cginternals/glbinding/releases/latest | grep -m1 tag_name | cut -d\" -f4`
 curl -L https://github.com/hpicgs/glbinding/archive/${GLBVER}.tar.gz | tar xzf -
 cd glbinding-${GLBVER#v}
 
