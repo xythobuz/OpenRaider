@@ -32,6 +32,11 @@ os:
     - linux
     - osx
 
+matrix:
+    allow_failures:
+        - os: linux
+          compiler: clang
+
 env:
     global:
         # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
