@@ -11,12 +11,14 @@ wget 'http://downloads.sourceforge.net/project/ogl-math/glm-0.9.6.3/glm-0.9.6.3.
 unzip glm-0.9.6.3.zip
 sudo cp -R glm/glm /usr/local/include/glm
 
-if [ "$CXX" = "clang++" ]; then export CXXFLAGS="-stdlib=libc++"; fi
-if [ "$CXX" = "clang++" ]; then svn co --quiet http://llvm.org/svn/llvm-project/libcxx/trunk libcxx; fi
-if [ "$CXX" = "clang++" ]; then cd libcxx/lib && bash buildit; fi
-if [ "$CXX" = "clang++" ]; then sudo cp ./libc++.so.1.0 /usr/lib/; fi
-if [ "$CXX" = "clang++" ]; then sudo mkdir /usr/include/c++/v1; fi
-if [ "$CXX" = "clang++" ]; then cd .. && sudo cp -r include/* /usr/include/c++/v1/; fi
-if [ "$CXX" = "clang++" ]; then cd /usr/lib && sudo ln -sf libc++.so.1.0 libc++.so; fi
-if [ "$CXX" = "clang++" ]; then sudo ln -sf libc++.so.1.0 libc++.so.1 && cd $cwd; fi
+if [ "$CXX" = "clang++" ]; then
+    export CXXFLAGS="-stdlib=libc++"
+    svn co --quiet http://llvm.org/svn/llvm-project/libcxx/trunk libcxx
+    cd libcxx/lib && bash buildit
+    sudo cp ./libc++.so.1.0 /usr/lib/
+    sudo mkdir /usr/include/c++/v1
+    cd .. && sudo cp -r include/* /usr/include/c++/v1/
+    cd /usr/lib && sudo ln -sf libc++.so.1.0 libc++.so
+    sudo ln -sf libc++.so.1.0 libc++.so.1 && cd $cwd
+fi
 

@@ -4,6 +4,7 @@
 
     [ 20150801 ]
     * Updated to current Imgui version (now using indexed rendering)
+    * Added mouse selection window (not yet doing anything useful)
 
     [ 20150429 ]
     * Fixed the new BoundingBox rendering approach

@@ -15,6 +15,7 @@
 #include "Menu.h"
 #include "Render.h"
 #include "RunTime.h"
+#include "Selector.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
 #include "World.h"
@@ -173,7 +174,7 @@ void UI::eventsFinished() {
 
     ImGui::NewFrame();
 
-    if (!(visible || Console::isVisible() || Menu::isVisible())) {
+    if (!(visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible())) {
         while (!motionEvents.empty()) {
             auto i = motionEvents.front();
             Game::handleMouseMotion(std::get<0>(i), std::get<1>(i),
@@ -185,7 +186,7 @@ void UI::eventsFinished() {
     while (!keyboardEvents.empty()) {
         auto i = keyboardEvents.front();
 
-        if (!(visible || Console::isVisible() || Menu::isVisible())) {
+        if (!(visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible())) {
             for (int n = forwardAction; n < ActionEventCount; n++) {
                 auto ae = static_cast<ActionEvents>(n);
                 if (RunTime::getKeyBinding(ae) == std::get<0>(i))
@@ -194,7 +195,7 @@ void UI::eventsFinished() {
         }
 
         if (std::get<1>(i)) {
-            if ((!io.WantCaptureKeyboard) || (!(visible || Console::isVisible() || Menu::isVisible()))) {
+            if ((!io.WantCaptureKeyboard) || (!(visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible()))) {
                 if (!metaKeyIsActive) {
                     if (RunTime::getKeyBinding(debugAction) == std::get<0>(i)) {
                         visible = !visible;
@@ -215,6 +216,16 @@ void UI::eventsFinished() {
     }
 
     bool clicked = !clickEvents.empty();
+    while (!clickEvents.empty()) {
+        auto i = clickEvents.front();
+
+        if (Selector::isVisible() && (!io.WantCaptureMouse)) {
+            Selector::handleMouseClick(std::get<0>(i), std::get<1>(i), std::get<2>(i), std::get<3>(i));
+        }
+
+        clickEvents.pop_front();
+    }
+
     clickEvents.clear();
     motionEvents.clear();
     scrollEvents.clear();
@@ -225,10 +236,10 @@ void UI::eventsFinished() {
         Console::setVisible(false);
     }
 
-    if (Window::getTextInput() != (visible || Console::isVisible() || Menu::isVisible()))
-        Window::setTextInput(visible || Console::isVisible() || Menu::isVisible());
+    if (Window::getTextInput() != (visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible()))
+        Window::setTextInput(visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible());
 
-    bool input = !(visible || Console::isVisible() || Menu::isVisible());
+    bool input = !(visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible());
     if (Window::getMousegrab() != input)
         Window::setMousegrab(input);
 
@@ -263,6 +274,7 @@ void UI::display() {
 
     Console::display();
     Menu::display();
+    Selector::display();
 
     if (!visible) {
         ImGui::Render();
@@ -272,6 +284,16 @@ void UI::display() {
     static bool showTestWindow = false;
     static bool showStyleWindow = false;
     if (ImGui::Begin("Engine", &visible, ImVec2(500, 600))) {
+        if (Selector::isVisible()) {
+            if (ImGui::Button("Disable Mouse Object Picking")) {
+                Selector::setVisible(false);
+            }
+        } else {
+            if (ImGui::Button("Enable Mouse Object Picking")) {
+                Selector::setVisible(true);
+            }
+        }
+
         Render::displayUI();
         RunTime::display();
         TextureManager::display();
@@ -456,7 +478,7 @@ void UI::handleControllerAxis(float value, KeyboardButton axis) {
 }
 
 void UI::handleControllerButton(KeyboardButton button, bool released) {
-    if (visible || Console::isVisible())
+    if (visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible())
         return;
 
     if (Menu::isVisible()) {
