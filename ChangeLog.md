@@ -2,6 +2,9 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150803 ]
+    * Started working on ray casting for mouse object selection
+
     [ 20150801 ]
     * Updated to current Imgui version (now using indexed rendering)
     * Added mouse selection window (not yet doing anything useful)

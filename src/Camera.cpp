@@ -37,9 +37,10 @@ static bool equal(glm::vec3 a, float b) {
 
 // ----------------------------------------------------------------------------
 
-const static float fov = 45.0f;
-const static float nearDist = 0.1f;
-const static float farDist = 75000.0f;
+const float Camera::fov = 45.0f;
+const float Camera::nearDist = 0.1f;
+const float Camera::farDist = 75000.0f;
+
 const static float maxSpeed = 3072.0f;
 const static float controllerDeadZone = 0.33f;
 const static float controllerViewFactor = glm::pi<float>();
@@ -61,7 +62,6 @@ float Camera::rotationDeltaX = 0.75f;
 float Camera::rotationDeltaY = 0.75f;
 bool Camera::updateViewFrustum = true;
 bool Camera::dirty = true;
-bool Camera::showOverlay = false;
 bool Camera::movingFaster = false;
 bool Camera::keepInRoom = false;
 int Camera::room = -1;
@@ -214,19 +214,6 @@ bool Camera::update() {
 
     dirty = false;
     return updateViewFrustum;
-}
-
-void Camera::displayUI() {
-    if (!showOverlay)
-        return;
-
-    if (ImGui::Begin("Camera Look-At Overlay", &showOverlay, ImVec2(0, 0), -1.0f,
-                     ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize
-                     | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings
-                     | ImGuiWindowFlags_AlwaysAutoResize)) {
-        // TODO
-    }
-    ImGui::End();
 }
 
 // ----------------------------------------------------------------------------

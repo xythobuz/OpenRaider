@@ -186,7 +186,7 @@ void UI::eventsFinished() {
     while (!keyboardEvents.empty()) {
         auto i = keyboardEvents.front();
 
-        if (!(visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible())) {
+        if (!(visible || Console::isVisible() || Menu::isVisible() /* || Selector::isVisible() */ )) {
             for (int n = forwardAction; n < ActionEventCount; n++) {
                 auto ae = static_cast<ActionEvents>(n);
                 if (RunTime::getKeyBinding(ae) == std::get<0>(i))
@@ -268,9 +268,6 @@ void UI::display() {
         }
         ImGui::End();
     }
-
-    if (Game::isLoaded())
-        Camera::displayUI();
 
     Console::display();
     Menu::display();

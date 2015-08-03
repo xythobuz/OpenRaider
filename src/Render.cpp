@@ -274,11 +274,6 @@ void Render::displayUI() {
         ImGui::SameLine();
         ImGui::Checkbox("Show Frustum##camera", &displayViewFrustum);
         ImGui::SameLine();
-        bool showOverlay = Camera::getShowOverlay();
-        if (ImGui::Checkbox("Overlay##camera", &showOverlay)) {
-            Camera::setShowOverlay(showOverlay);
-        }
-        ImGui::SameLine();
         bool keepInRoom = Camera::getKeepInRoom();
         if (ImGui::Checkbox("Keep in Room##camera", &keepInRoom)) {
             Camera::setKeepInRoom(keepInRoom);
