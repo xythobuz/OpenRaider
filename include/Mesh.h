@@ -10,6 +10,7 @@
 
 #include <vector>
 
+#include "BoundingSphere.h"
 #include "system/Shader.h"
 
 struct IndexedRectangle {
@@ -42,8 +43,7 @@ class Mesh {
     void prepare();
     void display(glm::mat4 MVP, ShaderTexture* shaderTexture = nullptr);
 
-    glm::vec3 getCenter() { return center; }
-    float getRadius() { return radius; }
+    BoundingSphere& getBoundingSphere() { return sphere; }
 
   private:
     std::vector<unsigned short> indicesBuff;
@@ -56,8 +56,7 @@ class Mesh {
     std::vector<glm::vec3> colorsBuff;
     std::vector<unsigned int> colorsIndexBuff;
 
-    glm::vec3 center;
-    float radius;
+    BoundingSphere sphere;
 };
 
 #endif

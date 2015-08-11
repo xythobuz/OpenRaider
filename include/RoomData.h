@@ -18,6 +18,7 @@ class StaticModel {
 
     glm::vec3 getCenter();
     float getRadius();
+    void displayBoundingSphere(glm::mat4 VP, glm::vec3 color);
 
   private:
     void find();

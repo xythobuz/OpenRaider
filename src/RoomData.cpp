@@ -34,14 +34,19 @@ void StaticModel::find() {
 
 glm::vec3 StaticModel::getCenter() {
     find();
-    glm::vec3 center = World::getStaticMesh(cache).getCenter();
+    glm::vec3 center = World::getStaticMesh(cache).getBoundingSphere().getPosition();
     glm::vec4 tmp = model * glm::vec4(center, 1.0f);
     return glm::vec3(tmp) / tmp.w;
 }
 
 float StaticModel::getRadius() {
     find();
-    return World::getStaticMesh(cache).getRadius();
+    return World::getStaticMesh(cache).getBoundingSphere().getRadius();
+}
+
+void StaticModel::displayBoundingSphere(glm::mat4 VP, glm::vec3 color) {
+    find();
+    World::getStaticMesh(cache).getBoundingSphere().display(VP * model, color);
 }
 
 void StaticModel::display(glm::mat4 VP) {

@@ -10,7 +10,8 @@
 
 #include <memory>
 
-#include "RoomData.h"
+#include "BoundingBox.h"
+#include "BoundingSphere.h"
 
 class StaticMesh {
   public:
@@ -19,8 +20,7 @@ class StaticMesh {
     void display(glm::mat4 MVP);
     void displayUI();
 
-    glm::vec3 getCenter();
-    float getRadius();
+    BoundingSphere& getBoundingSphere();
 
     int getID() { return id; }
 

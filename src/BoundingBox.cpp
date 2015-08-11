@@ -9,7 +9,7 @@
 #include "Camera.h"
 #include "World.h"
 #include "system/Shader.h"
-#include "RoomData.h"
+#include "BoundingBox.h"
 
 #include <glbinding/gl/gl.h>
 

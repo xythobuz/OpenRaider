@@ -11,6 +11,7 @@
 
 #include "global.h"
 #include "BoundingBox.h"
+#include "BoundingSphere.h"
 #include "Camera.h"
 #include "Log.h"
 #include "Menu.h"
@@ -91,6 +92,7 @@ void Render::display() {
         Camera::displayFrustum(VP);
 
     BoundingBox::display();
+    BoundingSphere::display();
 
     if (mode == RenderMode::Wireframe) {
         gl::glPolygonMode(gl::GL_FRONT_AND_BACK, gl::GL_FILL);

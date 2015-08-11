@@ -133,8 +133,8 @@ void Mesh::prepare() {
     verticesColorBuff = std::move(vertCol);
     colorsBuff = std::move(cols);
 
-    center = average / float(averageCount);
-    radius = 0.0f;
+    glm::vec3 center = average / float(averageCount);
+    float radius = 0.0f;
     for (auto& vert : verticesBuff) {
         float dist = glm::distance(center, vert);
         if (dist > radius) radius = dist;
@@ -143,6 +143,9 @@ void Mesh::prepare() {
         float dist = glm::distance(center, vert);
         if (dist > radius) radius = dist;
     }
+
+    sphere.setPosition(center);
+    sphere.setRadius(radius);
 }
 
 void Mesh::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {

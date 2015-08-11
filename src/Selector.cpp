@@ -22,7 +22,6 @@ bool Selector::visible = false;
 
 static int lastX = -1, lastY = -1;
 static bool workToDo = false;
-static float grabSphere = 102.4f;
 static bool clickOnGeometry = false, clickOnRoomModels = true, clickOnRoomSprites = true;
 static bool clickOnSprites = true, clickOnMeshes = false, clickOnModels = false;
 
@@ -105,7 +104,6 @@ void Selector::display() {
         }
     }
 
-    ImGui::SliderFloat("Grab Sphere", &grabSphere, 0.1f, 10240.0f);
     ImGui::Checkbox("Geometry", &clickOnGeometry);
     ImGui::SameLine();
     ImGui::Checkbox("RoomModels", &clickOnRoomModels);
@@ -140,6 +138,8 @@ void Selector::display() {
         ImGui::Text("Intersect Norm: (%.2f %.2f %.2f)", lastIntersectNorm.x, lastIntersectNorm.y, lastIntersectNorm.z);
         ImGui::Text("Last Room: %lu", lastRoom);
         ImGui::Text("Last RoomModel: %lu", lastModel);
+
+        World::getRoom(lastRoom).getModel(lastModel).displayBoundingSphere(Camera::getProjectionMatrix() * Camera::getViewMatrix(), glm::vec3(1.0f, 0.0f, 0.0f));
     }
 
     ImGui::End();

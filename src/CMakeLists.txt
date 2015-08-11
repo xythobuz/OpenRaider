@@ -47,6 +47,7 @@ endif (OPENAL_FOUND)
 
 # Set Source files
 set (SRCS ${SRCS} "BoundingBox.cpp" "../include/BoundingBox.h")
+set (SRCS ${SRCS} "BoundingSphere.cpp" "../include/BoundingSphere.h")
 set (SRCS ${SRCS} "Camera.cpp" "../include/Camera.h")
 set (SRCS ${SRCS} "Console.cpp" "../include/Console.h")
 set (SRCS ${SRCS} "Entity.cpp" "../include/Entity.h")
