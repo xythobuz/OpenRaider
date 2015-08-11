@@ -19,22 +19,81 @@
 #include <glm/gtx/intersect.hpp>
 
 bool Selector::visible = false;
-
-static int lastX = -1, lastY = -1;
-static bool workToDo = false;
-static bool clickOnGeometry = false, clickOnRoomModels = true, clickOnRoomSprites = true;
-static bool clickOnSprites = true, clickOnMeshes = false, clickOnModels = false;
+WorldObjects Selector::lastClickedObject = WorldObjectCount;
+std::array<bool, WorldObjectCount> Selector::clickOnObject = {{ false, true, true, true, false, false }};
+glm::i32vec2 Selector::rayScreen(-1, -1);
+glm::vec3 Selector::rayWorld, Selector::lastIntersectPos, Selector::lastIntersectNorm;
+unsigned long Selector::lastIndexA, Selector::lastIndexB;
 
 void Selector::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton button, bool released) {
     if ((button == leftmouseKey) && (!released)) {
-        lastX = x;
-        lastY = y;
+        // Calculate click ray
+        rayScreen = glm::vec2(x, y);
+        glm::vec2 normalized = glm::vec2((2.0f * rayScreen.x) / Window::getSize().x - 1.0f,
+                                         1.0f - (2.0f * rayScreen.y) / Window::getSize().y);
+        glm::vec4 rayClip(normalized.x, normalized.y, -1.0f, 1.0f);
+        glm::vec4 rayEye(glm::inverse(Camera::getProjectionMatrix()) * rayClip);
+        rayEye = glm::vec4(rayEye.x, rayEye.y, -1.0f, 0.0f);
+        rayWorld = glm::vec3(glm::inverse(Camera::getViewMatrix()) * rayEye);
+        rayWorld = glm::normalize(rayWorld);
 
-        if (workToDo) {
-            Log::get(LOG_DEBUG) << "Selector missed mouse click event!" << Log::endl;
+        // Check for any intersections with object bounding spheres
+        bool foundSomething = false;
+        float depth = -1.0f;
+
+        if (clickOnObject[modelObject]) {
+
         }
 
-        workToDo = true;
+        if (clickOnObject[meshObject]) {
+
+        }
+
+        if (clickOnObject[spriteObject]) {
+
+        }
+
+        if (clickOnObject[roomModelObject]) {
+            for (unsigned long i = 0; i < World::sizeRoom(); i++) {
+                Room &r = World::getRoom(i);
+                for (unsigned long j = 0; j < r.sizeModels(); j++) {
+                    StaticModel &sm = r.getModel(j);
+                    glm::vec3 pos, norm;
+                    if (glm::intersectRaySphere(Camera::getPosition(), rayWorld, sm.getCenter(), sm.getRadius(),
+                                                pos, norm)) {
+                        float newDepth = glm::abs(glm::distance(sm.getCenter(), Camera::getPosition()));
+                        if ((newDepth < depth) || (depth < 0.0f)) {
+                            depth = newDepth;
+                            lastIndexA = i;
+                            lastIndexB = j;
+                            lastIntersectPos = pos;
+                            lastIntersectNorm = norm;
+                            lastClickedObject = roomModelObject;
+                            foundSomething = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (clickOnObject[roomSpriteObject]) {
+
+        }
+
+        if (clickOnObject[geometryObject]) {
+
+
+        }
+
+        if (!foundSomething) {
+            lastClickedObject = WorldObjectCount;
+        }
+    }
+}
+
+void Selector::displaySelection() {
+    if (lastClickedObject == roomModelObject) {
+        World::getRoom(lastIndexA).getModel(lastIndexB).displayBoundingSphere(Camera::getProjectionMatrix() * Camera::getViewMatrix(), glm::vec3(1.0f, 0.0f, 0.0f));
     }
 }
 
@@ -47,73 +106,16 @@ void Selector::display() {
         return;
     }
 
-    static glm::vec3 rayWorld;
-    static glm::vec3 lastIntersectPos, lastIntersectNorm;
-    static unsigned long lastRoom, lastModel;
-    static bool foundSomething = false;
-
-    if (workToDo) {
-        // Calculate click ray
-        glm::vec2 normalized = glm::vec2((2.0f * lastX) / Window::getSize().x - 1.0f,
-                                         1.0f - (2.0f * lastY) / Window::getSize().y);
-        glm::vec4 rayClip(normalized.x, normalized.y, -1.0f, 1.0f);
-        glm::vec4 rayEye(glm::inverse(Camera::getProjectionMatrix()) * rayClip);
-        rayEye = glm::vec4(rayEye.x, rayEye.y, -1.0f, 0.0f);
-        rayWorld = glm::vec3(glm::inverse(Camera::getViewMatrix()) * rayEye);
-        rayWorld = glm::normalize(rayWorld);
-        workToDo = false;
-
-        // Check for any intersections with object bounding spheres
-        if (clickOnModels) {
-
-        }
-
-        if (clickOnMeshes) {
-
-        }
-
-        if (clickOnSprites) {
-
-        }
-
-        if (clickOnRoomModels) {
-            for (unsigned long i = 0; i < World::sizeRoom(); i++) {
-                Room& r = World::getRoom(i);
-                for (unsigned long j = 0; j < r.sizeModels(); j++) {
-                    StaticModel& sm = r.getModel(j);
-                    glm::vec3 pos, norm;
-                    if (glm::intersectRaySphere(Camera::getPosition(), rayWorld, sm.getCenter(), sm.getRadius(),
-                                                pos, norm)) {
-                        //! \fixme This is not enough. Should be depth sorted?!
-                        lastRoom = i;
-                        lastModel = j;
-                        lastIntersectPos = pos;
-                        lastIntersectNorm = norm;
-                        foundSomething = true;
-                    }
-                }
-            }
-        }
-
-        if (clickOnRoomSprites) {
-
-        }
-
-        if (clickOnGeometry) {
-
-        }
-    }
-
-    ImGui::Checkbox("Geometry", &clickOnGeometry);
+    ImGui::Checkbox("Geometry", &clickOnObject[geometryObject]);
     ImGui::SameLine();
-    ImGui::Checkbox("RoomModels", &clickOnRoomModels);
+    ImGui::Checkbox("RoomModels", &clickOnObject[roomModelObject]);
     ImGui::SameLine();
-    ImGui::Checkbox("RoomSprites", &clickOnRoomSprites);
-    ImGui::Checkbox("Sprites", &clickOnSprites);
+    ImGui::Checkbox("RoomSprites", &clickOnObject[roomSpriteObject]);
+    ImGui::Checkbox("Sprites", &clickOnObject[spriteObject]);
     ImGui::SameLine();
-    ImGui::Checkbox("Meshes", &clickOnMeshes);
+    ImGui::Checkbox("Meshes", &clickOnObject[meshObject]);
     ImGui::SameLine();
-    ImGui::Checkbox("Models", &clickOnModels);
+    ImGui::Checkbox("Models", &clickOnObject[modelObject]);
     ImGui::SameLine();
     if (ImGui::Button("Hide Selector")) {
         visible = false;
@@ -121,25 +123,26 @@ void Selector::display() {
     ImGui::Separator();
 
     // Not yet implemented!
-    clickOnModels = false;
-    clickOnMeshes = false;
-    clickOnSprites = false;
-    clickOnRoomSprites = false;
-    clickOnGeometry = false;
+    clickOnObject[modelObject] = false;
+    clickOnObject[meshObject] = false;
+    clickOnObject[spriteObject] = false;
+    clickOnObject[roomSpriteObject] = false;
+    clickOnObject[geometryObject] = false;
 
     ImGui::Text("Camera: (%.2f %.2f %.2f)", Camera::getPosition().x, Camera::getPosition().y, Camera::getPosition().z);
-    ImGui::Text("Last click: (%d %d)", lastX, lastY);
-    if ((lastX >= 0) && (lastY >= 0)) {
+    ImGui::Text("Last click: (%d %d)", rayScreen.x, rayScreen.y);
+    if ((rayScreen.x >= 0) && (rayScreen.y >= 0)) {
         ImGui::Text("Normalized Ray: (%.3f %.3f %.3f)", rayWorld.x, rayWorld.y, rayWorld.z);
     }
 
-    if (foundSomething) {
+    if (lastClickedObject != WorldObjectCount) {
         ImGui::Text("Intersect Pos: (%.2f %.2f %.2f)", lastIntersectPos.x, lastIntersectPos.y, lastIntersectPos.z);
         ImGui::Text("Intersect Norm: (%.2f %.2f %.2f)", lastIntersectNorm.x, lastIntersectNorm.y, lastIntersectNorm.z);
-        ImGui::Text("Last Room: %lu", lastRoom);
-        ImGui::Text("Last RoomModel: %lu", lastModel);
+    }
 
-        World::getRoom(lastRoom).getModel(lastModel).displayBoundingSphere(Camera::getProjectionMatrix() * Camera::getViewMatrix(), glm::vec3(1.0f, 0.0f, 0.0f));
+    if (lastClickedObject == roomModelObject) {
+        ImGui::Text("Last Room: %lu", lastIndexA);
+        ImGui::Text("Last RoomModel: %lu", lastIndexB);
     }
 
     ImGui::End();

@@ -15,6 +15,7 @@
 #include "Camera.h"
 #include "Log.h"
 #include "Menu.h"
+#include "Selector.h"
 #include "StaticMesh.h"
 #include "World.h"
 #include "system/Shader.h"
@@ -90,6 +91,8 @@ void Render::display() {
 
     if (displayViewFrustum)
         Camera::displayFrustum(VP);
+
+    Selector::displaySelection();
 
     BoundingBox::display();
     BoundingSphere::display();

@@ -12,7 +12,7 @@
 
 class BoundingSphere {
   public:
-    BoundingSphere(glm::vec3 p = glm::vec3(0.0f, 0.0f, 0.0f), float r = 100.0f, int res = 10) : pos(p), radius(r), resolution(res) { }
+    BoundingSphere(glm::vec3 p = glm::vec3(0.0f, 0.0f, 0.0f), float r = 100.0f, int res = 42) : pos(p), radius(r), resolution(res) { }
 
     void setPosition(glm::vec3 p) { pos = p; }
     glm::vec3 getPosition() { return pos; }

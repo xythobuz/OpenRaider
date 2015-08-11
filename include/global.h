@@ -11,6 +11,17 @@
 
 void renderFrame();
 
+typedef enum {
+    geometryObject = 0,
+    roomSpriteObject,
+    roomModelObject,
+    spriteObject,
+    meshObject,
+    modelObject,
+
+    WorldObjectCount // Should always be at the end
+} WorldObjects;
+
 // Actions that can be bound to a key and sent to the game engine
 typedef enum {
     menuAction = 0,
