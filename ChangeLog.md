@@ -6,7 +6,9 @@
     * Can click on RoomModels and RoomSprites
     * This will show their BoundingSpheres
     * Fixed Mouse Selector Depth Sorting Issue
-    * Improved Room List UI
+    * Improved Room List UI, added Entity List UI
+    * Fixed Room and Entity Sprite rotation Issue
+    * Fixed upside-down Sound Listener positioning
 
     [ 20150803 ]
     * Started working on ray casting for mouse object selection

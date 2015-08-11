@@ -14,6 +14,7 @@ class Entity {
         : id(i), room(r), pos(po), rot(ro), cache(-1), cacheType(-1),
           sprite(0), animation(0), frame(0) { }
     void display(glm::mat4 VP);
+    void displayUI();
 
     int getID() { return id; }
     int getRoom() { return room; }
@@ -35,6 +36,8 @@ class Entity {
     static bool getShowEntityModels() { return showEntityModels; }
 
   private:
+    void find();
+
     int id;
     int room;
     glm::vec3 pos;

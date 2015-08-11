@@ -12,6 +12,7 @@
 #include "Entity.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <imgui/imgui.h>
 
 #define CACHE_SPRITE 0
 #define CACHE_MESH 1
@@ -21,8 +22,8 @@ bool Entity::showEntitySprites = true;
 bool Entity::showEntityMeshes = false;
 bool Entity::showEntityModels = false;
 
-void Entity::display(glm::mat4 VP) {
-    if ((cache == -1) || (cacheType == -1)) {
+void Entity::find() {
+    if ((cache <= -1) || (cacheType <= -1)) {
         /*
          * The order in which to look for matching objects with the same ID
          * seems to be very important!
@@ -60,11 +61,15 @@ void Entity::display(glm::mat4 VP) {
         orAssertGreaterThan(cache, -1);
         orAssertGreaterThan(cacheType, -1);
     }
+}
+
+void Entity::display(glm::mat4 VP) {
+    find();
 
     glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
     glm::mat4 rotate;
-    if (cacheType == 0) {
-        rotate = glm::rotate(glm::mat4(1.0f), Camera::getRotation().x, glm::vec3(0.0f, 1.0f, 0.0f));
+    if (cacheType == CACHE_SPRITE) {
+        rotate = glm::rotate(glm::mat4(1.0f), -Camera::getRotation().x, glm::vec3(0.0f, 1.0f, 0.0f));
     } else {
         rotate = glm::rotate(glm::mat4(1.0f), rot.y, glm::vec3(0.0f, 1.0f, 0.0f));
     }
@@ -81,5 +86,22 @@ void Entity::display(glm::mat4 VP) {
         if (showEntityModels)
             World::getSkeletalModel(cache).display(MVP, animation, frame);
     }
+}
+
+void Entity::displayUI() {
+    find();
+
+    ImGui::Text("%03d", id);
+    ImGui::NextColumn();
+    if (cacheType == CACHE_SPRITE) {
+        ImGui::Text("SpriteSequence");
+    } else if (cacheType == CACHE_MESH) {
+        ImGui::Text("StaticMesh");
+    } else if (cacheType == CACHE_MODEL) {
+        ImGui::Text("SkeletalModel");
+    }
+    ImGui::NextColumn();
+    ImGui::Text("%03d", cache);
+    ImGui::NextColumn();
 }
 

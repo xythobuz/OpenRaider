@@ -209,7 +209,7 @@ bool Camera::update() {
         calculateFrustumPlanes();
 
     glm::vec3 at(0.0f, 0.0f, -1.0f);
-    glm::vec3 up(0.0f, -1.0f, 0.0f);
+    glm::vec3 up(0.0f, 1.0f, 0.0f);
     Sound::listenAt(pos, quaternion * at, quaternion * up);
 
     dirty = false;

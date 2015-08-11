@@ -77,11 +77,8 @@ void RoomSprite::displayBoundingSphere(glm::mat4 VP, glm::vec3 color) {
 
 void RoomSprite::display(glm::mat4 VP) {
     glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
-
-    //! \fixme Calculate angle between camera and sprite
-    glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), Camera::getRotation().x,
+    glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), -Camera::getRotation().x,
                                    glm::vec3(0.0f, 1.0f, 0.0f));
-
     World::getSprite(sprite).display(VP * (translate * rotate));
 }
 

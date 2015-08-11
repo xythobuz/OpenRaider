@@ -296,9 +296,9 @@ void UI::display() {
 
         Render::displayUI();
         RunTime::display();
-        TextureManager::display();
-        SoundManager::display();
         World::displayUI();
+        SoundManager::display();
+        TextureManager::display();
 
         if (ImGui::CollapsingHeader("Library Versions")) {
             ImGui::TextWrapped("%s", VERSION);

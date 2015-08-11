@@ -122,7 +122,7 @@ Mesh& World::getMesh(unsigned long index) {
 void World::displayUI() {
     // Rooms
     static bool offsets = false;
-    if (ImGui::CollapsingHeader("Rooms")) {
+    if (ImGui::CollapsingHeader("Room Listing")) {
         ImGui::Columns(8, "rooms");
         ImGui::Text("No");
         ImGui::NextColumn();
@@ -159,9 +159,36 @@ void World::displayUI() {
         ImGui::Columns(1);
     }
 
-    // Static Meshes
+    // Entities
     static bool offsets2 = false;
-    if (ImGui::CollapsingHeader("StaticMeshes")) {
+    if (ImGui::CollapsingHeader("Entity Listing")) {
+        ImGui::Columns(4, "entities");
+        ImGui::Text("No");
+        ImGui::NextColumn();
+        ImGui::Text("ID");
+        ImGui::NextColumn();
+        ImGui::Text("Type");
+        ImGui::NextColumn();
+        ImGui::Text("Index");
+        ImGui::NextColumn();
+        ImGui::Separator();
+        if (!offsets2) {
+            ImGui::SetColumnOffset(1, 40.0f);
+            ImGui::SetColumnOffset(2, 80.0f);
+            ImGui::SetColumnOffset(3, 200.0f);
+            offsets2 = true;
+        }
+        for (int i = 0; i < entities.size(); i++) {
+            ImGui::Text("%03d", i);
+            ImGui::NextColumn();
+            entities.at(i)->displayUI();
+        }
+        ImGui::Columns(1);
+    }
+
+    // Static Meshes
+    static bool offsets3 = false;
+    if (ImGui::CollapsingHeader("StaticMesh Listing")) {
         ImGui::Columns(3, "staticmeshes");
         ImGui::Text("No");
         ImGui::NextColumn();
@@ -170,10 +197,10 @@ void World::displayUI() {
         ImGui::Text("Mesh");
         ImGui::NextColumn();
         ImGui::Separator();
-        if (!offsets2) {
+        if (!offsets3) {
             ImGui::SetColumnOffset(1, 40.0f);
             ImGui::SetColumnOffset(2, 80.0f);
-            offsets2 = true;
+            offsets3 = true;
         }
         for (int i = 0; i < staticMeshes.size(); i++) {
             ImGui::Text("%03d", i);
