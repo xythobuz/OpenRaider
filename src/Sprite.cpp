@@ -38,6 +38,21 @@ Sprite::Sprite(int tile, int x, int y, int width, int height) : texture(tile) {
     vertexBuff.emplace_back(vertexBuff.at(2));
 
     uv2D = glm::vec4(uvBuff.at(0), uvBuff.at(2));
+
+    glm::vec3 average(0.0f, 0.0f, 0.0f);
+    int averageCount = 0;
+    for (auto& vert : vertexBuff) {
+        average += vert;
+        averageCount++;
+    }
+    glm::vec3 center = average / float(averageCount);
+    float radius = 0.0f;
+    for (auto& vert : vertexBuff) {
+        float dist = glm::distance(center, vert);
+        if (dist > radius) radius = dist;
+    }
+    boundingSphere.setPosition(center);
+    boundingSphere.setRadius(radius);
 }
 
 void Sprite::display(glm::mat4 MVP) {

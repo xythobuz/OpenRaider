@@ -123,7 +123,7 @@ void World::displayUI() {
     // Rooms
     static bool offsets = false;
     if (ImGui::CollapsingHeader("Rooms")) {
-        ImGui::Columns(6, "rooms");
+        ImGui::Columns(8, "rooms");
         ImGui::Text("No");
         ImGui::NextColumn();
         ImGui::Text("Ind.");
@@ -136,13 +136,19 @@ void World::displayUI() {
         ImGui::NextColumn();
         ImGui::Text("Portals");
         ImGui::NextColumn();
+        ImGui::Text("Sprites");
+        ImGui::NextColumn();
+        ImGui::Text("Tools");
+        ImGui::NextColumn();
         ImGui::Separator();
         if (!offsets) {
             ImGui::SetColumnOffset(1, 40.0f);
             ImGui::SetColumnOffset(2, 80.0f);
             ImGui::SetColumnOffset(3, 120.0f);
             ImGui::SetColumnOffset(4, 180.0f);
-            ImGui::SetColumnOffset(5, 300.0f);
+            ImGui::SetColumnOffset(5, 250.0f);
+            ImGui::SetColumnOffset(6, 350.0f);
+            ImGui::SetColumnOffset(7, 400.0f);
             offsets = true;
         }
         for (int i = 0; i < rooms.size(); i++) {

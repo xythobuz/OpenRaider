@@ -20,7 +20,10 @@
 
 bool Selector::visible = false;
 WorldObjects Selector::lastClickedObject = WorldObjectCount;
-std::array<bool, WorldObjectCount> Selector::clickOnObject = {{ false, true, true, true, false, false }};
+
+// geometryObject, roomSpriteObject, roomModelObject, spriteObject, meshObject, modelObject, entityObject
+std::array<bool, WorldObjectCount> Selector::clickOnObject = {{ false, true, true, false, false, false, false }};
+
 glm::i32vec2 Selector::rayScreen(-1, -1);
 glm::vec3 Selector::rayWorld, Selector::lastIntersectPos, Selector::lastIntersectNorm;
 unsigned long Selector::lastIndexA, Selector::lastIndexB;
@@ -41,48 +44,48 @@ void Selector::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton b
         bool foundSomething = false;
         float depth = -1.0f;
 
-        if (clickOnObject[modelObject]) {
-
-        }
-
-        if (clickOnObject[meshObject]) {
-
-        }
-
-        if (clickOnObject[spriteObject]) {
-
-        }
-
-        if (clickOnObject[roomModelObject]) {
+        if (clickOnObject[roomModelObject] || clickOnObject[roomSpriteObject]) {
             for (unsigned long i = 0; i < World::sizeRoom(); i++) {
-                Room &r = World::getRoom(i);
-                for (unsigned long j = 0; j < r.sizeModels(); j++) {
-                    StaticModel &sm = r.getModel(j);
-                    glm::vec3 pos, norm;
-                    if (glm::intersectRaySphere(Camera::getPosition(), rayWorld, sm.getCenter(), sm.getRadius(),
-                                                pos, norm)) {
-                        float newDepth = glm::abs(glm::distance(sm.getCenter(), Camera::getPosition()));
-                        if ((newDepth < depth) || (depth < 0.0f)) {
-                            depth = newDepth;
-                            lastIndexA = i;
-                            lastIndexB = j;
-                            lastIntersectPos = pos;
-                            lastIntersectNorm = norm;
-                            lastClickedObject = roomModelObject;
-                            foundSomething = true;
+                Room& r = World::getRoom(i);
+                glm::vec3 pos, norm;
+
+                if (clickOnObject[roomModelObject]) {
+                    for (unsigned long j = 0; j < r.sizeModels(); j++) {
+                        StaticModel& sm = r.getModel(j);
+                        if (glm::intersectRaySphere(Camera::getPosition(), rayWorld, sm.getCenter(), sm.getRadius(),
+                                                    pos, norm)) {
+                            float newDepth = glm::abs(glm::distance(sm.getCenter(), Camera::getPosition()));
+                            if ((newDepth < depth) || (depth < 0.0f)) {
+                                depth = newDepth;
+                                lastIndexA = i;
+                                lastIndexB = j;
+                                lastIntersectPos = pos;
+                                lastIntersectNorm = norm;
+                                lastClickedObject = roomModelObject;
+                                foundSomething = true;
+                            }
+                        }
+                    }
+                }
+
+                if (clickOnObject[roomSpriteObject]) {
+                    for (unsigned long j = 0; j < r.sizeSprites(); j++) {
+                        RoomSprite& rs = r.getSprite(j);
+                        if (glm::intersectRaySphere(Camera::getPosition(), rayWorld, rs.getCenter(), rs.getRadius(), pos, norm)) {
+                            float newDepth = glm::abs(glm::distance(rs.getCenter(), Camera::getPosition()));
+                            if ((newDepth < depth) || (depth < 0.0f)) {
+                                depth = newDepth;
+                                lastIndexA = i;
+                                lastIndexB = j;
+                                lastIntersectPos = pos;
+                                lastIntersectNorm = norm;
+                                lastClickedObject = roomSpriteObject;
+                                foundSomething = true;
+                            }
                         }
                     }
                 }
             }
-        }
-
-        if (clickOnObject[roomSpriteObject]) {
-
-        }
-
-        if (clickOnObject[geometryObject]) {
-
-
         }
 
         if (!foundSomething) {
@@ -94,6 +97,10 @@ void Selector::handleMouseClick(unsigned int x, unsigned int y, KeyboardButton b
 void Selector::displaySelection() {
     if (lastClickedObject == roomModelObject) {
         World::getRoom(lastIndexA).getModel(lastIndexB).displayBoundingSphere(Camera::getProjectionMatrix() * Camera::getViewMatrix(), glm::vec3(1.0f, 0.0f, 0.0f));
+    } else if (lastClickedObject == roomSpriteObject) {
+        World::getRoom(lastIndexA).getSprite(lastIndexB).displayBoundingSphere(Camera::getProjectionMatrix() * Camera::getViewMatrix(), glm::vec3(1.0f, 0.0f, 0.0f));
+    } else {
+        lastClickedObject = WorldObjectCount;
     }
 }
 
@@ -106,28 +113,14 @@ void Selector::display() {
         return;
     }
 
-    ImGui::Checkbox("Geometry", &clickOnObject[geometryObject]);
-    ImGui::SameLine();
     ImGui::Checkbox("RoomModels", &clickOnObject[roomModelObject]);
     ImGui::SameLine();
     ImGui::Checkbox("RoomSprites", &clickOnObject[roomSpriteObject]);
-    ImGui::Checkbox("Sprites", &clickOnObject[spriteObject]);
-    ImGui::SameLine();
-    ImGui::Checkbox("Meshes", &clickOnObject[meshObject]);
-    ImGui::SameLine();
-    ImGui::Checkbox("Models", &clickOnObject[modelObject]);
     ImGui::SameLine();
     if (ImGui::Button("Hide Selector")) {
         visible = false;
     }
     ImGui::Separator();
-
-    // Not yet implemented!
-    clickOnObject[modelObject] = false;
-    clickOnObject[meshObject] = false;
-    clickOnObject[spriteObject] = false;
-    clickOnObject[roomSpriteObject] = false;
-    clickOnObject[geometryObject] = false;
 
     ImGui::Text("Camera: (%.2f %.2f %.2f)", Camera::getPosition().x, Camera::getPosition().y, Camera::getPosition().z);
     ImGui::Text("Last click: (%d %d)", rayScreen.x, rayScreen.y);
@@ -143,6 +136,11 @@ void Selector::display() {
     if (lastClickedObject == roomModelObject) {
         ImGui::Text("Last Room: %lu", lastIndexA);
         ImGui::Text("Last RoomModel: %lu", lastIndexB);
+    } else if (lastClickedObject == roomSpriteObject) {
+        ImGui::Text("Last Room: %lu", lastIndexA);
+        ImGui::Text("Last RoomSprite: %lu", lastIndexB);
+    } else {
+        lastClickedObject = WorldObjectCount;
     }
 
     ImGui::End();

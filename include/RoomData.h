@@ -34,6 +34,11 @@ class RoomSprite {
   public:
     RoomSprite(glm::vec3 p, int s) : pos(p), sprite(s) { }
     void display(glm::mat4 VP);
+    void displayUI();
+
+    glm::vec3 getCenter();
+    float getRadius();
+    void displayBoundingSphere(glm::mat4 VP, glm::vec3 color);
 
   private:
     glm::vec3 pos;

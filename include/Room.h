@@ -44,8 +44,11 @@ class Room {
     int getNumZSectors() { return numZSectors; }
     int getIndex() { return roomIndex; }
 
-    void addSprite(RoomSprite* s) { sprites.emplace_back(s); }
     void addSector(Sector* s) { sectors.emplace_back(s); }
+
+    void addSprite(RoomSprite* s) { sprites.emplace_back(s); }
+    unsigned long sizeSprites() { return sprites.size(); }
+    RoomSprite& getSprite(unsigned long index) { return *sprites.at(index); }
 
     void addModel(StaticModel* s) { models.emplace_back(s); }
     unsigned long sizeModels() { return models.size(); }

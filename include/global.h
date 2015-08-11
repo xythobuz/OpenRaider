@@ -18,6 +18,7 @@ typedef enum {
     spriteObject,
     meshObject,
     modelObject,
+    entityObject,
 
     WorldObjectCount // Should always be at the end
 } WorldObjects;

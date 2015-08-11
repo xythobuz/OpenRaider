@@ -60,6 +60,20 @@ void StaticModel::displayUI() {
 
 // ----------------------------------------------------------------------------
 
+glm::vec3 RoomSprite::getCenter() {
+    glm::vec3 center = World::getSprite(sprite).getBoundingSphere().getPosition();
+    glm::vec4 tmp = glm::translate(glm::mat4(1.0f), pos) * glm::vec4(center, 1.0f);
+    return glm::vec3(tmp) / tmp.w;
+}
+
+float RoomSprite::getRadius() {
+    return World::getSprite(sprite).getBoundingSphere().getRadius();
+}
+
+void RoomSprite::displayBoundingSphere(glm::mat4 VP, glm::vec3 color) {
+    World::getSprite(sprite).getBoundingSphere().display(VP * glm::translate(glm::mat4(1.0f), pos), color);
+}
+
 void RoomSprite::display(glm::mat4 VP) {
     glm::mat4 translate = glm::translate(glm::mat4(1.0f), pos);
 
@@ -68,6 +82,10 @@ void RoomSprite::display(glm::mat4 VP) {
                                    glm::vec3(0.0f, 1.0f, 0.0f));
 
     World::getSprite(sprite).display(VP * (translate * rotate));
+}
+
+void RoomSprite::displayUI() {
+    ImGui::Text("Sprite %d", sprite);
 }
 
 // ----------------------------------------------------------------------------

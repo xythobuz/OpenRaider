@@ -2,6 +2,12 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150811 ]
+    * Can click on RoomModels and RoomSprites
+    * This will show their BoundingSpheres
+    * Fixed Mouse Selector Depth Sorting Issue
+    * Improved Room List UI
+
     [ 20150803 ]
     * Started working on ray casting for mouse object selection
 

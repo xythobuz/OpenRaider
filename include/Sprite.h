@@ -10,6 +10,8 @@
 
 #include <vector>
 
+#include "BoundingSphere.h"
+
 class Sprite {
   public:
     Sprite(int tile, int x, int y, int width, int height);
@@ -17,12 +19,14 @@ class Sprite {
 
     int getTexture() { return texture; }
     glm::vec4 getUVs() { return uv2D; }
+    BoundingSphere& getBoundingSphere() { return boundingSphere; }
 
   private:
     int texture;
     std::vector<glm::vec3> vertexBuff;
     std::vector<glm::vec2> uvBuff;
     glm::vec4 uv2D;
+    BoundingSphere boundingSphere;
 };
 
 class SpriteSequence {

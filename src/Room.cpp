@@ -6,6 +6,7 @@
  */
 
 #include "global.h"
+#include "Camera.h"
 #include "Log.h"
 #include "Room.h"
 
@@ -137,6 +138,21 @@ void Room::displayUI() {
         }
     } else {
         ImGui::Text("None");
+    }
+    ImGui::NextColumn();
+    if (sprites.size() > 0) {
+        if (ImGui::TreeNode("...##sprite")) {
+            for (auto& s : sprites) {
+                s->displayUI();
+            }
+            ImGui::TreePop();
+        }
+    } else {
+        ImGui::Text("None");
+    }
+    ImGui::NextColumn();
+    if (ImGui::Button("Warp")) {
+        Camera::setPosition(pos);
     }
     ImGui::NextColumn();
     ImGui::PopID();
