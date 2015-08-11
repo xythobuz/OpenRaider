@@ -186,7 +186,7 @@ void UI::eventsFinished() {
     while (!keyboardEvents.empty()) {
         auto i = keyboardEvents.front();
 
-        if (!(visible || Console::isVisible() || Menu::isVisible() /* || Selector::isVisible() */ )) {
+        if (!(visible || Console::isVisible() || Menu::isVisible() /* || Selector::isVisible() */)) {
             for (int n = forwardAction; n < ActionEventCount; n++) {
                 auto ae = static_cast<ActionEvents>(n);
                 if (RunTime::getKeyBinding(ae) == std::get<0>(i))
@@ -195,7 +195,8 @@ void UI::eventsFinished() {
         }
 
         if (std::get<1>(i)) {
-            if ((!io.WantCaptureKeyboard) || (!(visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible()))) {
+            if ((!io.WantCaptureKeyboard) || (!(visible || Console::isVisible() || Menu::isVisible()
+                                                || Selector::isVisible()))) {
                 if (!metaKeyIsActive) {
                     if (RunTime::getKeyBinding(debugAction) == std::get<0>(i)) {
                         visible = !visible;
@@ -236,7 +237,8 @@ void UI::eventsFinished() {
         Console::setVisible(false);
     }
 
-    if (Window::getTextInput() != (visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible()))
+    if (Window::getTextInput() != (visible || Console::isVisible() || Menu::isVisible()
+                                   || Selector::isVisible()))
         Window::setTextInput(visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible());
 
     bool input = !(visible || Console::isVisible() || Menu::isVisible() || Selector::isVisible());

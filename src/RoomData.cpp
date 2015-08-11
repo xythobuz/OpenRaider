@@ -71,7 +71,8 @@ float RoomSprite::getRadius() {
 }
 
 void RoomSprite::displayBoundingSphere(glm::mat4 VP, glm::vec3 color) {
-    World::getSprite(sprite).getBoundingSphere().display(VP * glm::translate(glm::mat4(1.0f), pos), color);
+    World::getSprite(sprite).getBoundingSphere().display(VP * glm::translate(glm::mat4(1.0f), pos),
+            color);
 }
 
 void RoomSprite::display(glm::mat4 VP) {
