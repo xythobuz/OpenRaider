@@ -21,7 +21,7 @@ StaticModel::StaticModel(glm::vec3 pos, float angle, int i) : id(i), cache(-1) {
     model = translate * rotate;
 }
 
-void StaticModel::display(glm::mat4 VP) {
+void StaticModel::find() {
     if (cache < 0) {
         for (int i = 0; i < World::sizeStaticMesh(); i++) {
             if (World::getStaticMesh(i).getID() == id) {
@@ -30,7 +30,22 @@ void StaticModel::display(glm::mat4 VP) {
         }
         orAssertGreaterThanEqual(cache, 0);
     }
+}
 
+glm::vec3 StaticModel::getCenter() {
+    find();
+    glm::vec3 center = World::getStaticMesh(cache).getCenter();
+    glm::vec4 tmp = model * glm::vec4(center, 1.0f);
+    return glm::vec3(tmp) / tmp.w;
+}
+
+float StaticModel::getRadius() {
+    find();
+    return World::getStaticMesh(cache).getRadius();
+}
+
+void StaticModel::display(glm::mat4 VP) {
+    find();
     World::getStaticMesh(cache).display(VP * model);
 }
 

@@ -13,6 +13,14 @@
 
 bool StaticMesh::showBoundingBox = false;
 
+glm::vec3 StaticMesh::getCenter() {
+    return World::getMesh(mesh).getCenter();
+}
+
+float StaticMesh::getRadius() {
+    return World::getMesh(mesh).getRadius();
+}
+
 void StaticMesh::display(glm::mat4 MVP) {
     World::getMesh(mesh).display(MVP);
 

@@ -252,10 +252,11 @@ void UI::display() {
                          ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize
                          | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings
                          | ImGuiWindowFlags_AlwaysAutoResize)) {
-#ifdef DEBUG
-            ImGui::Text("%d FPS  %lu CPF", RunTime::getFPS(), RunTime::getCallCount());
-#else
             ImGui::Text("%d FPS", RunTime::getFPS());
+
+#ifdef DEBUG
+            ImGui::SameLine();
+            ImGui::Text("%lu CPF", RunTime::getCallCount());
 #endif
 
             ImGui::Text("X: %.1f (%.2f)", Camera::getPosition().x, Camera::getRotation().x);
@@ -264,7 +265,7 @@ void UI::display() {
 
             auto window = ImGui::GetWindowSize();
             auto screen = Window::getSize();
-            //ImGui::SetWindowPos(ImVec2(10, screen.y - window.y - 10));
+            ImGui::SetWindowPos(ImVec2(10, screen.y - window.y - 10));
         }
         ImGui::End();
     }

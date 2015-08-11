@@ -47,10 +47,6 @@ class Camera {
     static bool boxInFrustum(BoundingBox b);
     static void displayFrustum(glm::mat4 MVP);
 
-    static const float fov;
-    static const float nearDist;
-    static const float farDist;
-
   private:
     static void calculateFrustumPlanes();
 
@@ -64,6 +60,10 @@ class Camera {
     static bool updateViewFrustum, dirty, movingFaster;
     static bool keepInRoom;
     static int room;
+
+    static const float fov;
+    static const float nearDist;
+    static const float farDist;
 };
 
 #endif

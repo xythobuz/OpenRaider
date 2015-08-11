@@ -16,7 +16,12 @@ class StaticModel {
     void display(glm::mat4 VP);
     void displayUI();
 
+    glm::vec3 getCenter();
+    float getRadius();
+
   private:
+    void find();
+
     int id;
     int cache;
     glm::mat4 model;

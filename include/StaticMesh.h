@@ -19,6 +19,9 @@ class StaticMesh {
     void display(glm::mat4 MVP);
     void displayUI();
 
+    glm::vec3 getCenter();
+    float getRadius();
+
     int getID() { return id; }
 
     static void setShowBoundingBox(bool s) { showBoundingBox = s; }

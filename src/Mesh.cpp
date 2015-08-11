@@ -10,6 +10,7 @@
 #include "Mesh.h"
 
 #include <glbinding/gl/gl.h>
+#include <glm/glm.hpp>
 
 Mesh::Mesh(const std::vector<glm::vec3>& vert,
            const std::vector<IndexedRectangle>& rect,
@@ -57,6 +58,9 @@ void Mesh::prepare() {
     std::vector<glm::vec2> uvBuff;
     std::vector<unsigned int> tex;
 
+    glm::vec3 average(0.0f, 0.0f, 0.0f);
+    unsigned long averageCount = 0;
+
     int vertIndex = 0;
     for (int i = 0; i < indicesBuff.size(); i++) {
         unsigned int texture = TextureManager::getTile(texturesBuff.at(i)).getTexture();
@@ -70,6 +74,10 @@ void Mesh::prepare() {
             vert.push_back(verticesBuff.at(vertIndex + v));
             uvBuff.push_back(TextureManager::getTile(texturesBuff.at(i)).getUV(v));
             tex.push_back(texture);
+
+            // Calculate quick-n-dirty center point of mesh
+            average += verticesBuff.at(vertIndex + v);
+            averageCount++;
         }
 
         if (indicesBuff.at(i) == 0) {
@@ -105,6 +113,9 @@ void Mesh::prepare() {
             vertCol.push_back(verticesColorBuff.at(vertIndex + v));
             glm::vec4 c = TextureManager::getPalette(colorsIndexBuff.at(i));
             cols.push_back(glm::vec3(c.x, c.y, c.z));
+
+            average += verticesColorBuff.at(vertIndex + v);
+            averageCount++;
         }
 
         if (indicesColorBuff.at(i) == 0) {
@@ -121,6 +132,17 @@ void Mesh::prepare() {
     indicesColorBuff = std::move(indCol);
     verticesColorBuff = std::move(vertCol);
     colorsBuff = std::move(cols);
+
+    center = average / float(averageCount);
+    radius = 0.0f;
+    for (auto& vert : verticesBuff) {
+        float dist = glm::distance(center, vert);
+        if (dist > radius) radius = dist;
+    }
+    for (auto& vert : verticesColorBuff) {
+        float dist = glm::distance(center, vert);
+        if (dist > radius) radius = dist;
+    }
 }
 
 void Mesh::display(glm::mat4 MVP, ShaderTexture* shaderTexture) {

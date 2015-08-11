@@ -42,6 +42,9 @@ class Mesh {
     void prepare();
     void display(glm::mat4 MVP, ShaderTexture* shaderTexture = nullptr);
 
+    glm::vec3 getCenter() { return center; }
+    float getRadius() { return radius; }
+
   private:
     std::vector<unsigned short> indicesBuff;
     std::vector<glm::vec3> verticesBuff;
@@ -52,6 +55,9 @@ class Mesh {
     std::vector<glm::vec3> verticesColorBuff;
     std::vector<glm::vec3> colorsBuff;
     std::vector<unsigned int> colorsIndexBuff;
+
+    glm::vec3 center;
+    float radius;
 };
 
 #endif

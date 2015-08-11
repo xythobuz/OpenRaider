@@ -15,7 +15,7 @@
 #include <glm/gtx/intersect.hpp>
 
 bool Room::showBoundingBox = false;
-bool Room::showRoomModels = false;
+bool Room::showRoomModels = true;
 bool Room::showRoomSprites = true;
 bool Room::showRoomGeometry = true;
 
