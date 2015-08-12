@@ -121,7 +121,6 @@ Mesh& World::getMesh(unsigned long index) {
 
 void World::displayUI() {
     // Rooms
-    static bool offsets = false;
     if (ImGui::CollapsingHeader("Room Listing")) {
         ImGui::Columns(8, "rooms");
         ImGui::Text("No");
@@ -141,6 +140,8 @@ void World::displayUI() {
         ImGui::Text("Tools");
         ImGui::NextColumn();
         ImGui::Separator();
+
+        static bool offsets = false;
         if (!offsets) {
             ImGui::SetColumnOffset(1, 40.0f);
             ImGui::SetColumnOffset(2, 80.0f);
@@ -151,16 +152,17 @@ void World::displayUI() {
             ImGui::SetColumnOffset(7, 400.0f);
             offsets = true;
         }
+
         for (int i = 0; i < rooms.size(); i++) {
             ImGui::Text("%03d", i);
             ImGui::NextColumn();
             rooms.at(i)->displayUI();
         }
+
         ImGui::Columns(1);
     }
 
     // Entities
-    static bool offsets2 = false;
     if (ImGui::CollapsingHeader("Entity Listing")) {
         ImGui::Columns(4, "entities");
         ImGui::Text("No");
@@ -172,22 +174,25 @@ void World::displayUI() {
         ImGui::Text("Index");
         ImGui::NextColumn();
         ImGui::Separator();
+
+        static bool offsets2 = false;
         if (!offsets2) {
             ImGui::SetColumnOffset(1, 40.0f);
             ImGui::SetColumnOffset(2, 80.0f);
             ImGui::SetColumnOffset(3, 200.0f);
             offsets2 = true;
         }
+
         for (int i = 0; i < entities.size(); i++) {
             ImGui::Text("%03d", i);
             ImGui::NextColumn();
             entities.at(i)->displayUI();
         }
+
         ImGui::Columns(1);
     }
 
     // Static Meshes
-    static bool offsets3 = false;
     if (ImGui::CollapsingHeader("StaticMesh Listing")) {
         ImGui::Columns(3, "staticmeshes");
         ImGui::Text("No");
@@ -197,16 +202,20 @@ void World::displayUI() {
         ImGui::Text("Mesh");
         ImGui::NextColumn();
         ImGui::Separator();
+
+        static bool offsets3 = false;
         if (!offsets3) {
             ImGui::SetColumnOffset(1, 40.0f);
             ImGui::SetColumnOffset(2, 80.0f);
             offsets3 = true;
         }
+
         for (int i = 0; i < staticMeshes.size(); i++) {
             ImGui::Text("%03d", i);
             ImGui::NextColumn();
             staticMeshes.at(i)->displayUI();
         }
+
         ImGui::Columns(1);
     }
 }

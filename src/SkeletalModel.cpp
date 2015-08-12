@@ -61,7 +61,7 @@ void AnimationFrame::add(BoneFrame* f) {
 
 class MatrixStack {
   public:
-    MatrixStack(glm::mat4 start) : startVal(start) { stack.push_back(startVal); }
+    explicit MatrixStack(glm::mat4 start) : startVal(start) { stack.push_back(startVal); }
 
     void push() {
         //orAssertGreaterThan(stack.size(), 0);

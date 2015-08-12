@@ -37,6 +37,9 @@
 #include <stdio.h>  // FILENAME_MAX
 #include <new>      // operator new
 
+#ifndef PATH_MAX
+#define PATH_MAX 4096
+#endif
 
 namespace ImGuiFs {
 

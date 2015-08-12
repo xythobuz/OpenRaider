@@ -20,8 +20,8 @@ Sprite::Sprite(int tile, int x, int y, int width, int height) : texture(tile) {
     width >>= 8;
     height >>= 8;
 
-    int width2 = (int)(width * scale);
-    int height2 = (int)(height * scale);
+    int width2 = static_cast<int>(width * scale);
+    int height2 = static_cast<int>(height * scale);
 
     uvBuff.emplace_back(float(x + texelOffset) / texelScale, float(y + height) / texelScale);
     uvBuff.emplace_back(float(x + texelOffset) / texelScale, float(y + texelOffset) / texelScale);

@@ -15,7 +15,7 @@
 
 class File {
   public:
-    File(std::string file);
+    explicit File(std::string file);
 
     std::string& getName() { return name; }
     std::string& getPath() { return path; }

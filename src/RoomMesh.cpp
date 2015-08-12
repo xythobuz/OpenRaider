@@ -45,7 +45,7 @@ void RoomMesh::prepare() {
                 v = 2;
             else if (v == 2)
                 v = 0;
-            ind.push_back(vert.size());
+            ind.push_back(static_cast<unsigned short>(vert.size()));
             vert.push_back(verticesBuff.at(vertIndex + v));
             uvsBuff.push_back(TextureManager::getTile(texturesBuff.at(i)).getUV(v));
             tex.push_back(texture);

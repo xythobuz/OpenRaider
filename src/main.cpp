@@ -18,7 +18,6 @@
 #include "TextureManager.h"
 #include "UI.h"
 #include "World.h"
-#include "commander/commander.h"
 #include "commands/Command.h"
 #include "system/Shader.h"
 #include "system/Sound.h"
@@ -26,6 +25,7 @@
 #include "utils/time.h"
 
 #include <glbinding/Binding.h>
+#include <ezoptionparser/ezOptionParser.hpp>
 
 #ifdef DEBUG
 #include <glbinding/callbacks.h>
@@ -75,15 +75,51 @@ static void glUnresolvedCallback(const glbinding::AbstractFunction& func) {
 }
 #endif
 
-int main(int argc, char* argv[]) {
-    command_t cmd;
-    command_init(&cmd, argv[0], VERSION);
-    command_option(&cmd, "-c", "--config <file>", "select config file to use",
-    [](command_t* self) {
-        configFileToUse = self->arg;
-    });
-    command_parse(&cmd, argc, argv);
-    command_free(&cmd);
+int main(int argc, const char* argv[]) {
+    ez::ezOptionParser opt;
+    opt.overview = "Open Tomb Raider Game Engine";
+    opt.syntax = "OpenRaider [OPTIONS]";
+    opt.example = "OpenRaider --config ~/.OpenRaider/OpenRaider.ini";
+    opt.footer = VERSION;
+
+    opt.add("", 0, 0, 0, "Display usage instructions.", "-h", "-help", "--help", "--usage");
+    opt.add("", 0, 1, 0, "Config file to use", "-c", "--conf", "--config");
+
+    opt.parse(argc, argv);
+
+    if (opt.isSet("-h")) {
+        std::string usage;
+        opt.getUsage(usage);
+        std::cout << usage << std::endl;
+        return -1;
+    }
+
+    std::vector<std::string> badOptions;
+    if (!opt.gotRequired(badOptions)) {
+        for (int i = 0; i < badOptions.size(); i++) {
+            std::cout << "ERROR: Missing required option " << badOptions[i] << "." << std::endl;
+        }
+        std::string usage;
+        opt.getUsage(usage);
+        std::cout << usage << std::endl;
+        return -2;
+    }
+
+    if (!opt.gotExpected(badOptions)) {
+        for (int i = 0; i < badOptions.size(); i++) {
+            std::cout << "ERROR: Got unexpected number of arguments for option " << badOptions[i] << "." <<
+                      std::endl;
+        }
+        std::string usage;
+        opt.getUsage(usage);
+        std::cout << usage << std::endl;
+        return -3;
+    }
+
+    if (opt.isSet("-c")) {
+        std::cout << "Test!" << std::endl;
+        opt.get("-c")->getString(configFileToUse);
+    }
 
     glbinding::Binding::initialize();
     Log::initialize();
@@ -105,20 +141,20 @@ int main(int argc, char* argv[]) {
     int error = Window::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Window (" << error << ")!" << std::endl;
-        return -1;
+        return -4;
     }
 
     error = Shader::initialize();
     if (error != 0) {
         std::cout << "Could not initialize OpenGL (" << error << ")!" << std::endl;
-        return -2;
+        return -5;
     }
 
     // Initialize Texture Manager
     error = TextureManager::initialize();
     if (error != 0) {
         std::cout << "Could not initialize TextureManager (" << error << ")!" << std::endl;
-        return -3;
+        return -6;
     }
 
     if (configFileToUse == "") {
@@ -128,38 +164,43 @@ int main(int argc, char* argv[]) {
                 if (p != "/")
                     p += "/";
                 p += "share/OpenRaider/";
-                Command::executeFile(p + DEFAULT_CONFIG_FILE);
+                if (Command::executeFile(p + DEFAULT_CONFIG_FILE) != 0) {
+                    std::cout << "Could not find any config files. Trying to continue..." << std::endl;
+                }
             }
         }
     } else {
-        Command::executeFile(configFileToUse);
+        if (Command::executeFile(configFileToUse) != 0) {
+            std::cout << "Could not find specified config file!" << std::endl;
+            return -7;
+        }
     }
 
     error = TextureManager::initializeSplash();
     if (error != 0) {
         std::cout << "Coult not load Splash Texture (" << error << ")!" << std::endl;
-        return -4;
+        return -8;
     }
 
     // Initialize Sound
     error = Sound::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Sound (" << error << ")!" << std::endl;
-        return -5;
+        return -9;
     }
 
     // Initialize Debug UI
     error = UI::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Debug UI (" << error << ")!" << std::endl;
-        return -6;
+        return -10;
     }
 
     // Initialize Menu
     error = Menu::initialize();
     if (error != 0) {
         std::cout << "Could not initialize Menu (" << error << ")!" << std::endl;
-        return -7;
+        return -11;
     }
 
     Log::get(LOG_INFO) << "Starting " << VERSION << Log::endl;

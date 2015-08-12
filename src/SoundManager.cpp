@@ -156,7 +156,6 @@ int SoundManager::playSound(int index) {
 }
 
 void SoundManager::display() {
-    static bool offsets = false;
     if (ImGui::CollapsingHeader("Sound Sources")) {
         ImGui::Columns(5, "soundsources");
         ImGui::Text("No");
@@ -170,6 +169,8 @@ void SoundManager::display() {
         ImGui::Text("Tools");
         ImGui::NextColumn();
         ImGui::Separator();
+
+        static bool offsets = false;
         if (!offsets) {
             ImGui::SetColumnOffset(1, 40.0f);
             ImGui::SetColumnOffset(2, 80.0f);
@@ -177,6 +178,7 @@ void SoundManager::display() {
             ImGui::SetColumnOffset(4, 350.0f);
             offsets = true;
         }
+
         for (int i = 0; i < soundSources.size(); i++) {
             auto& ss = soundSources.at(i);
             ImGui::Text("%03d", i);
@@ -208,10 +210,10 @@ void SoundManager::display() {
             ImGui::PopID();
             ImGui::NextColumn();
         }
+
         ImGui::Columns(1);
     }
 
-    static bool offsets2 = false;
     if (ImGui::CollapsingHeader("Sound Details")) {
         ImGui::Columns(4, "sounddetails");
         ImGui::Text("No");
@@ -223,12 +225,15 @@ void SoundManager::display() {
         ImGui::Text("Tools");
         ImGui::NextColumn();
         ImGui::Separator();
+
+        static bool offsets2 = false;
         if (!offsets2) {
             ImGui::SetColumnOffset(1, 40.0f);
             ImGui::SetColumnOffset(2, 80.0f);
             ImGui::SetColumnOffset(3, 180.0f);
             offsets2 = true;
         }
+
         for (int i = 0; i < soundDetails.size(); i++) {
             auto& sd = soundDetails.at(i);
             ImGui::Text("%03d", i);
@@ -250,6 +255,7 @@ void SoundManager::display() {
             ImGui::PopID();
             ImGui::NextColumn();
         }
+
         ImGui::Columns(1);
     }
 

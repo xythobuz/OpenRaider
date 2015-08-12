@@ -567,10 +567,10 @@ void UI::renderImGui(ImDrawData* draw_data) {
                 orAssert(bm != nullptr);
                 imguiShader.loadUniform(1, bm->getTextureID(), bm->getTextureStorage());
 
-                gl::glScissor(pcmd->ClipRect.x,
-                              Window::getSize().y - pcmd->ClipRect.w,
-                              pcmd->ClipRect.z - pcmd->ClipRect.x,
-                              pcmd->ClipRect.w - pcmd->ClipRect.y);
+                gl::glScissor(static_cast<gl::GLint>(pcmd->ClipRect.x),
+                              static_cast<gl::GLint>(Window::getSize().y - pcmd->ClipRect.w),
+                              static_cast<gl::GLsizei>(pcmd->ClipRect.z - pcmd->ClipRect.x),
+                              static_cast<gl::GLsizei>(pcmd->ClipRect.w - pcmd->ClipRect.y));
 
                 gl::glDrawElements(gl::GL_TRIANGLES, pcmd->ElemCount, gl::GL_UNSIGNED_SHORT, idx_buffer_offset);
             }

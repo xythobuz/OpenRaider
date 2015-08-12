@@ -2,6 +2,10 @@
 
 ## OpenRaider (0.1.4) xythobuz <xythobuz@xythobuz.de>
 
+    [ 20150813 ]
+    * Removed commander lib, added ezOptionParser
+    * Fixed many warnings
+
     [ 20150811 ]
     * Can click on RoomModels and RoomSprites
     * This will show their BoundingSpheres

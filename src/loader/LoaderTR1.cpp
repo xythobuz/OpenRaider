@@ -295,6 +295,8 @@ void LoaderTR1::loadAngleSet(BoneFrame* bf, BinaryReader& frame, uint16_t numMes
      */
     uint16_t numValues = frame.readU16();
 
+    orAssertEqual(numValues, numMeshes);
+
     for (int i = 0; i < numValues; i++) {
         int mesh = startingMesh + i;
         glm::vec3 offset(0.0f, 0.0f, 0.0f);

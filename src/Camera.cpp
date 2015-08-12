@@ -349,12 +349,12 @@ void Camera::calculateFrustumPlanes() {
 
     if (indexBuffer.size() == 0) {
         for (int i = 0; i < 6; i++) {
-            indexBuffer.push_back(4 * i);
-            indexBuffer.push_back((4 * i) + 1);
-            indexBuffer.push_back((4 * i) + 2);
-            indexBuffer.push_back((4 * i) + 3);
-            indexBuffer.push_back((4 * i) + 2);
-            indexBuffer.push_back(4 * i);
+            indexBuffer.push_back(static_cast<unsigned short>(4 * i));
+            indexBuffer.push_back(static_cast<unsigned short>((4 * i) + 1));
+            indexBuffer.push_back(static_cast<unsigned short>((4 * i) + 2));
+            indexBuffer.push_back(static_cast<unsigned short>((4 * i) + 3));
+            indexBuffer.push_back(static_cast<unsigned short>((4 * i) + 2));
+            indexBuffer.push_back(static_cast<unsigned short>(4 * i));
         }
     }
 }

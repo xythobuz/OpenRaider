@@ -30,7 +30,7 @@ class BoneTag {
 
 class BoneFrame {
   public:
-    BoneFrame(glm::vec3 p) : pos(p) { }
+    explicit BoneFrame(glm::vec3 p) : pos(p) { }
     ~BoneFrame();
 
     glm::vec3 getPosition() { return pos; }
@@ -46,7 +46,7 @@ class BoneFrame {
 
 class AnimationFrame {
   public:
-    AnimationFrame(char r) : rate(r) { }
+    explicit AnimationFrame(char r) : rate(r) { }
     ~AnimationFrame();
 
     unsigned long size();
@@ -60,7 +60,7 @@ class AnimationFrame {
 
 class SkeletalModel {
   public:
-    SkeletalModel(int i) : id(i) { }
+    explicit SkeletalModel(int i) : id(i) { }
     ~SkeletalModel();
     void display(glm::mat4 MVP, int aframe, int bframe, ShaderTexture* shaderTexture = nullptr);
 

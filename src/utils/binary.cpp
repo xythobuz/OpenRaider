@@ -21,7 +21,7 @@ uint8_t BinaryReader::readU8() {
 uint16_t BinaryReader::readU16() {
     uint16_t a = readU8();
     uint16_t b = readU8();
-    return (a | (b << 8));
+    return static_cast<uint16_t>(a | (b << 8));
 }
 
 uint32_t BinaryReader::readU32() {

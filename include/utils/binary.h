@@ -39,7 +39,7 @@ class BinaryReader {
 
 class BinaryFile : public BinaryReader {
   public:
-    BinaryFile(std::string f = "");
+    explicit BinaryFile(std::string f = "");
     virtual ~BinaryFile();
 
     int open(std::string f = "");

@@ -330,12 +330,12 @@ void TextureManager::prepare() {
         unsigned int width = std::get<1>(tex);
         unsigned int height = std::get<2>(tex);
         unsigned char* image = new unsigned char[width * height * 4];
-        for (unsigned int i = 0; i < (width * height); i++) {
-            auto col = getPalette(img[i]);
-            image[i * 4] = col.x * 255;
-            image[(i * 4) + 1] = col.y * 255;
-            image[(i * 4) + 2] = col.z * 255;
-            image[(i * 4) + 3] = col.w * 255;
+        for (unsigned int j = 0; j < (width * height); j++) {
+            auto col = getPalette(img[j]);
+            image[j * 4] = static_cast<unsigned char>(col.x * 255);
+            image[(j * 4) + 1] = static_cast<unsigned char>(col.y * 255);
+            image[(j * 4) + 2] = static_cast<unsigned char>(col.z * 255);
+            image[(j * 4) + 3] = static_cast<unsigned char>(col.w * 255);
         }
         delete [] img;
         loadBufferSlot(image, width, height, ColorMode::RGBA, 32, TextureStorage::GAME, i, true);

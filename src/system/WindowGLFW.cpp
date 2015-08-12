@@ -187,12 +187,12 @@ void WindowGLFW::keyCallback(GLFWwindow* w, int key, int scancode, int action, i
 }
 
 void WindowGLFW::charCallback(GLFWwindow* w, unsigned int codepoint) {
-    static std::codecvt_utf8<char32_t> conv;
-    static mbstate_t state;
-    static const int bufferSize = 42;
-    static char buffer[bufferSize + 1];
-
     if (textinput) {
+        static std::codecvt_utf8<char32_t> conv;
+        static mbstate_t state;
+        static const int bufferSize = 42;
+        static char buffer[bufferSize + 1];
+
         char32_t inBuff[2] = { codepoint, '\0' };
         const char32_t* in = nullptr;
         char* ex = nullptr;

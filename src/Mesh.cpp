@@ -70,7 +70,7 @@ void Mesh::prepare() {
                 v = 2;
             else if (v == 2)
                 v = 0;
-            ind.push_back(vert.size());
+            ind.push_back(static_cast<unsigned short>(vert.size()));
             vert.push_back(verticesBuff.at(vertIndex + v));
             uvBuff.push_back(TextureManager::getTile(texturesBuff.at(i)).getUV(v));
             tex.push_back(texture);
@@ -109,7 +109,7 @@ void Mesh::prepare() {
                 v = 2;
             else if (v == 2)
                 v = 0;
-            indCol.push_back(vertCol.size());
+            indCol.push_back(static_cast<unsigned short>(vertCol.size()));
             vertCol.push_back(verticesColorBuff.at(vertIndex + v));
             glm::vec4 c = TextureManager::getPalette(colorsIndexBuff.at(i));
             cols.push_back(glm::vec3(c.x, c.y, c.z));
@@ -135,12 +135,12 @@ void Mesh::prepare() {
 
     glm::vec3 center = average / float(averageCount);
     float radius = 0.0f;
-    for (auto& vert : verticesBuff) {
-        float dist = glm::distance(center, vert);
+    for (auto& v : verticesBuff) {
+        float dist = glm::distance(center, v);
         if (dist > radius) radius = dist;
     }
-    for (auto& vert : verticesColorBuff) {
-        float dist = glm::distance(center, vert);
+    for (auto& v : verticesColorBuff) {
+        float dist = glm::distance(center, v);
         if (dist > radius) radius = dist;
     }
 

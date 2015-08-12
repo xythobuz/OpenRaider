@@ -51,7 +51,7 @@ unsigned char* argb16to32(unsigned char* image, unsigned int w, unsigned int h) 
         // arrr.rrgg gggb.bbbb shift to 5bit
         img[i * 4] = (image[(i * 2) + 1] & 0x80) ? 0xFF : 0; // A
         img[(i * 4) + 1] = (image[(i * 2) + 1] & 0x7C) >> 2; // R
-        img[(i * 4) + 2] = (image[(i * 2) + 1] & 0x03) << 3;
+        img[(i * 4) + 2] = static_cast<unsigned char>((image[(i * 2) + 1] & 0x03) << 3);
         img[(i * 4) + 2] |= (image[i * 2] & 0xE0) >> 5; // G
         img[(i * 4) + 3] = image[i * 2] & 0x1F; // B
 
