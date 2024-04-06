@@ -14,6 +14,7 @@ include_directories (SYSTEM  ${GLM_INCLUDE_DIRS})
 # Add glbinding Library
 find_package (glbinding REQUIRED)
 include_directories (SYSTEM ${GLBINDING_INCLUDES})
+set (GLBINDING_LIBRARIES "glbinding::glbinding")
 set (LIBS ${LIBS} ${GLBINDING_LIBRARIES})
 
 # Add SDL2 Library

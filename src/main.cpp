@@ -27,14 +27,14 @@
 #include <glbinding/Binding.h>
 #include <ezoptionparser/ezOptionParser.hpp>
 
-#ifdef DEBUG
+#ifdef DEBUG_GLBINDINGS
 #include <glbinding/callbacks.h>
 #include <glbinding/Meta.h>
 #endif
 
 static std::string configFileToUse;
 
-#ifdef DEBUG
+#ifdef DEBUG_GLBINDINGS
 static void glErrorCallback(const glbinding::FunctionCall& call) {
     RunTime::incrementCallCount();
 
@@ -126,7 +126,7 @@ int main(int argc, const char* argv[]) {
     RunTime::initialize(); // RunTime is required by other constructors
     Command::fillCommandList();
 
-#ifdef DEBUG
+#ifdef DEBUG_GLBINDINGS
     // Register global OpenGL after-callback for all GL functions except glGetError
     glbinding::setCallbackMaskExcept(glbinding::CallbackMask::After
                                      | glbinding::CallbackMask::ParametersAndReturnValue,
