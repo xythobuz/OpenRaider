@@ -52,7 +52,7 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 endif()
 
 # Flags for all builds
-set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} ${WARNINGS}")
+set (OpenRaider_CXX_FLAGS "${OpenRaider_CXX_FLAGS} ${WARNINGS} -DGLM_ENABLE_EXPERIMENTAL")
 
 # Flags for Debug build
 set (OpenRaider_CXX_FLAGS_DEBUG "${OpenRaider_CXX_FLAGS_DEBUG} -DDEBUG")

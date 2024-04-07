@@ -27,14 +27,15 @@
 #include <glbinding/Binding.h>
 #include <ezoptionparser/ezOptionParser.hpp>
 
-#ifdef DEBUG_GLBINDINGS
-#include <glbinding/callbacks.h>
+// TODO broken
+#ifdef ENABLE_GL_DEBUGGING
+#include <glbinding/CallbackMask.h>
 #include <glbinding/Meta.h>
-#endif
+#endif // ENABLE_GL_DEBUGGING
 
 static std::string configFileToUse;
 
-#ifdef DEBUG_GLBINDINGS
+#ifdef ENABLE_GL_DEBUGGING
 static void glErrorCallback(const glbinding::FunctionCall& call) {
     RunTime::incrementCallCount();
 
@@ -73,7 +74,7 @@ static void glUnresolvedCallback(const glbinding::AbstractFunction& func) {
     Log::get(LOG_ERROR) << "Unresolved OpenGL call: \"" << func.name() << "\"!" << Log::endl;
     orAssert(func.isResolved());
 }
-#endif
+#endif // ENABLE_GL_DEBUGGING
 
 int main(int argc, const char* argv[]) {
     ez::ezOptionParser opt;
@@ -121,19 +122,19 @@ int main(int argc, const char* argv[]) {
         opt.get("-c")->getString(configFileToUse);
     }
 
-    glbinding::Binding::initialize();
+    glbinding::Binding::initialize(nullptr);
     Log::initialize();
     RunTime::initialize(); // RunTime is required by other constructors
     Command::fillCommandList();
 
-#ifdef DEBUG_GLBINDINGS
+#ifdef ENABLE_GL_DEBUGGING
     // Register global OpenGL after-callback for all GL functions except glGetError
     glbinding::setCallbackMaskExcept(glbinding::CallbackMask::After
                                      | glbinding::CallbackMask::ParametersAndReturnValue,
     { "glGetError" });
     glbinding::setAfterCallback(glErrorCallback);
     glbinding::setUnresolvedCallback(glUnresolvedCallback);
-#endif
+#endif // ENABLE_GL_DEBUGGING
 
     Log::get(LOG_INFO) << "Initializing " << VERSION << Log::endl;
 
