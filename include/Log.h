@@ -64,7 +64,7 @@ class LogLevel {
     template<typename T>
     LogLevel& operator<< (const T t) {
         printBuffer << t;
-        if (printBuffer.str().back() == Log::endl) {
+        if ((printBuffer.str().length() > 0) && (printBuffer.str().back() == Log::endl)) {
             std::string s = printBuffer.str().substr(0, printBuffer.str().length() - 1);
             printBuffer.str("");
             Log::wholeLog.emplace_back(s, level);
