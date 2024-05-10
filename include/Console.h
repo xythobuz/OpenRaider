@@ -9,6 +9,7 @@
 #define _CONSOLE_H_
 
 #include <vector>
+#include <cstddef>
 
 /*!
  * \brief Console 'overlay'
