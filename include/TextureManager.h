@@ -12,6 +12,7 @@
 #include <array>
 #include <tuple>
 #include <vector>
+#include <string>
 
 // These are loaded into TextureStorage::SYSTEM by initialize()!
 #define TEXTURE_WHITE 0
